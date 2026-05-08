@@ -1,0 +1,11 @@
+# Prometheus — stack docker-compose (ficheiro em falta impedia o serviço a subir).
+# Adicione jobs (ex.: api:8000/metrics) quando a API expuser métricas Prometheus.
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]

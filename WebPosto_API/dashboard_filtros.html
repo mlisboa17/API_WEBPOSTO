@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebPosto API — Dashboard com Filtros</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1f4e78;
+            --secondary: #d9e1f2;
+            --success: #00b050;
+            --danger: #c00000;
+            --warning: #ffc000;
+            --text: #333;
+            --border: #ddd;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #2d5fa3 100%);
+            color: white;
+            padding: 25px;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        .status {
+            display: flex;
+            gap: 30px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .status-item {
+            text-align: center;
+        }
+
+        .status-item .label {
+            font-size: 0.85em;
+            opacity: 0.8;
+        }
+
+        .status-item .value {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-top: 3px;
+        }
+
+        /* MAIN */
+        .main {
+            padding: 30px;
+        }
+
+        /* FILTROS */
+        .filters-section {
+            background: var(--secondary);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .filters-section h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .filter-group input,
+        .filter-group select {
+            padding: 10px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.95em;
+        }
+
+        .filter-group input:focus,
+        .filter-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95em;
+        }
+
+        button:hover {
+            background: #2d5fa3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(31, 78, 120, 0.3);
+        }
+
+        .btn-clear {
+            background: #666;
+        }
+
+        .btn-clear:hover {
+            background: #555;
+        }
+
+        /* RESULTADOS */
+        .results-section {
+            background: #f9f9f9;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .results-header h3 {
+            color: var(--primary);
+            font-size: 1.2em;
+        }
+
+        .results-stats {
+            display: flex;
+            gap: 20px;
+            font-size: 0.95em;
+        }
+
+        .stat {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .stat strong {
+            color: var(--primary);
+        }
+
+        /* TABELA */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+        }
+
+        th {
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border);
+            position: sticky;
+            top: 0;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .action-buttons button {
+            padding: 6px 12px;
+            font-size: 0.85em;
+        }
+
+        .btn-edit {
+            background: var(--warning);
+        }
+
+        .btn-edit:hover {
+            background: #e6ac00;
+        }
+
+        .btn-delete {
+            background: var(--danger);
+        }
+
+        .btn-delete:hover {
+            background: #a00000;
+        }
+
+        /* BADGES */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .badge-aberto {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffc107;
+        }
+
+        .badge-pago {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #28a745;
+        }
+
+        .badge-cancelado {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* MESSAGES */
+        .message {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .message.info {
+            background: #d1ecf1;
+            border: 2px solid #17a2b8;
+            color: #0c5460;
+        }
+
+        .message.loading {
+            background: #fff3cd;
+            border: 2px solid var(--warning);
+            color: #856404;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(0,0,0,0.1);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .currency {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: var(--success);
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .modal-content h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .modal-content .form-group {
+            margin-bottom: 20px;
+        }
+
+        .modal-content label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .modal-content input,
+        .modal-content select,
+        .modal-content textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            font-size: 1em;
+        }
+
+        .modal-content textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+            justify-content: flex-end;
+        }
+
+        .modal-buttons button {
+            flex: 1;
+            padding: 12px;
+        }
+
+        .btn-cancel {
+            background: #999;
+        }
+
+        .btn-cancel:hover {
+            background: #777;
+        }
+
+        .btn-save {
+            background: var(--success);
+        }
+
+        .btn-save:hover {
+            background: #00a046;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 1024px) {
+            .filters-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            .status {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            table {
+                font-size: 0.85em;
+            }
+
+            td, th {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1>🔍 WebPosto API — Consulta e Alteração com Filtros</h1>
+            <p>Busque, consulte e altere despesas com filtros avançados</p>
+            <div class="status">
+                <div class="status-item">
+                    <div class="label">API Status</div>
+                    <div class="value" id="api-status">🟢</div>
+                </div>
+                <div class="status-item">
+                    <div class="label">Total de Registros</div>
+                    <div class="value" id="total-records">0</div>
+                </div>
+                <div class="status-item">
+                    <div class="label">Exibindo</div>
+                    <div class="value" id="showing-records">0</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN -->
+        <div class="main">
+            <!-- FILTROS -->
+            <div class="filters-section">
+                <h3>🔎 Filtros de Busca</h3>
+
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label>Fornecedor / Nome</label>
+                        <input type="text" id="filter-fornecedor" placeholder="Procurar por nome...">
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Data Inicial</label>
+                        <input type="date" id="filter-data-inicial">
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Data Final</label>
+                        <input type="date" id="filter-data-final">
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Situação</label>
+                        <select id="filter-situacao">
+                            <option value="">-- Todas --</option>
+                            <option value="Aberto">Aberto</option>
+                            <option value="Pago">Pago</option>
+                            <option value="Cancelado">Cancelado</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Valor Mínimo (R$)</label>
+                        <input type="number" id="filter-valor-min" placeholder="0.00" step="0.01" min="0">
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Valor Máximo (R$)</label>
+                        <input type="number" id="filter-valor-max" placeholder="999999.99" step="0.01" min="0">
+                    </div>
+                </div>
+
+                <div class="filter-buttons">
+                    <button class="btn-success" onclick="aplicarFiltros()">🔍 Buscar</button>
+                    <button class="btn-clear" onclick="limparFiltros()">🔄 Limpar Filtros</button>
+                </div>
+            </div>
+
+            <div id="message-container"></div>
+
+            <!-- RESULTADOS -->
+            <div class="results-section">
+                <div class="results-header">
+                    <h3>📋 Resultados</h3>
+                    <div class="results-stats">
+                        <div class="stat">
+                            <strong id="count-label">Total:</strong> <span id="count-value">0</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Soma:</strong> <span class="currency" id="sum-value">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="table-container">
+                    <div class="empty-state">
+                        <p>👉 Clique em "Buscar" para carregar despesas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE EDIÇÃO -->
+    <div class="modal" id="modal-edicao">
+        <div class="modal-content">
+            <h2>✏️ Alterar Despesa</h2>
+
+            <div class="form-group">
+                <label>Fornecedor</label>
+                <input type="text" id="modal-fornecedor">
+            </div>
+
+            <div class="form-group">
+                <label>Valor (R$)</label>
+                <input type="number" id="modal-valor" step="0.01" min="0">
+            </div>
+
+            <div class="form-group">
+                <label>Vencimento</label>
+                <input type="date" id="modal-vencimento">
+            </div>
+
+            <div class="form-group">
+                <label>Situação</label>
+                <select id="modal-situacao">
+                    <option>Aberto</option>
+                    <option>Pago</option>
+                    <option>Cancelado</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Descrição</label>
+                <textarea id="modal-descricao"></textarea>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="btn-cancel" onclick="fecharModal()">Cancelar</button>
+                <button class="btn-save" onclick="salvarAlteracao()">💾 Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_KEY = '<WEBPOSTO_API_TOKEN>';
+        const API_URL = 'https://web.qualityautomacao.com.br';
+
+        let todosRegistros = [];
+        let registroEmEdicao = null;
+
+        // STATUS API
+        window.addEventListener('load', () => {
+            verificarStatusAPI();
+        });
+
+        function verificarStatusAPI() {
+            fetch(`${API_URL}/INTEGRACAO/FILIAL?CHAVE=${API_KEY}`)
+                .then(r => {
+                    if (r.status === 200) {
+                        document.getElementById('api-status').textContent = '🟢';
+                        mostrarMensagem('API conectada com sucesso!', 'info');
+                    }
+                })
+                .catch(e => {
+                    document.getElementById('api-status').textContent = '🔴';
+                    mostrarMensagem('❌ Erro ao conectar na API: ' + e.message, 'error');
+                });
+        }
+
+        // APLICAR FILTROS
+        async function aplicarFiltros() {
+            mostrarMensagem('Carregando dados...', 'loading');
+
+            try {
+                // Pega data inicial/final dos filtros ou últimos 30 dias
+                let dataInicial = document.getElementById('filter-data-inicial').value;
+                let dataFinal = document.getElementById('filter-data-final').value;
+
+                if (!dataFinal) {
+                    dataFinal = new Date().toISOString().split('T')[0];
+                }
+                if (!dataInicial) {
+                    const d = new Date();
+                    d.setDate(d.getDate() - 30);
+                    dataInicial = d.toISOString().split('T')[0];
+                    document.getElementById('filter-data-inicial').value = dataInicial;
+                }
+
+                // Busca da API
+                const url = `${API_URL}/INTEGRACAO/TITULO_PAGAR?CHAVE=${API_KEY}&dataInicial=${dataInicial}&dataFinal=${dataFinal}`;
+                const r = await fetch(url);
+                const data = await r.json();
+                todosRegistros = data.resultados || data || [];
+
+                // Aplica filtros adicionais localmente
+                const registrosFiltrados = filtrarRegistros(todosRegistros);
+
+                document.getElementById('total-records').textContent = todosRegistros.length;
+                document.getElementById('showing-records').textContent = registrosFiltrados.length;
+
+                renderizarTabela(registrosFiltrados);
+                mostrarMensagem(`✅ ${registrosFiltrados.length} de ${todosRegistros.length} despesas encontradas`, 'info');
+            } catch (e) {
+                mostrarMensagem('❌ Erro ao carregar: ' + e.message, 'error');
+            }
+        }
+
+        // FILTRAR REGISTROS
+        function filtrarRegistros(registros) {
+            const fornecedor = document.getElementById('filter-fornecedor').value.toLowerCase();
+            const situacao = document.getElementById('filter-situacao').value;
+            const valorMin = parseFloat(document.getElementById('filter-valor-min').value) || 0;
+            const valorMax = parseFloat(document.getElementById('filter-valor-max').value) || Infinity;
+
+            return registros.filter(r => {
+                const nome = (r.nomeFornecedor || '').toLowerCase();
+                const situ = r.situacao || 'Aberto';
+                const valor = r.valor || 0;
+
+                return (
+                    nome.includes(fornecedor) &&
+                    (!situacao || situ === situacao) &&
+                    valor >= valorMin &&
+                    valor <= valorMax
+                );
+            });
+        }
+
+        // RENDERIZAR TABELA
+        function renderizarTabela(registros) {
+            const container = document.getElementById('table-container');
+
+            if (registros.length === 0) {
+                container.innerHTML = '<div class="empty-state"><p>Nenhum registro encontrado</p></div>';
+                document.getElementById('count-value').textContent = '0';
+                document.getElementById('sum-value').textContent = 'R$ 0,00';
+                return;
+            }
+
+            const soma = registros.reduce((a, r) => a + (r.valor || 0), 0);
+            document.getElementById('count-value').textContent = registros.length;
+            document.getElementById('sum-value').textContent = `R$ ${soma.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
+
+            let html = '<table><thead><tr>';
+            html += '<th>Fornecedor</th>';
+            html += '<th>Valor</th>';
+            html += '<th>Vencimento</th>';
+            html += '<th>Situação</th>';
+            html += '<th>Descrição</th>';
+            html += '<th>Ações</th>';
+            html += '</tr></thead><tbody>';
+
+            registros.forEach(r => {
+                const badge = `badge-${(r.situacao || 'Aberto').toLowerCase()}`;
+                const descricao = (r.descricao || '---').substring(0, 30);
+
+                html += '<tr>';
+                html += `<td><strong>${r.nomeFornecedor || 'N/A'}</strong></td>`;
+                html += `<td class="currency">R$ ${(r.valor || 0).toLocaleString('pt-BR', {minimumFractionDigits: 2})}</td>`;
+                html += `<td>${r.vencimento || 'N/A'}</td>`;
+                html += `<td><span class="badge ${badge}">${r.situacao || 'Aberto'}</span></td>`;
+                html += `<td>${descricao}</td>`;
+                html += `<td><div class="action-buttons">`;
+                html += `<button class="btn-edit" onclick="abrirEdicao(${JSON.stringify(r).replace(/"/g, '&quot;')})">✏️ Editar</button>`;
+                html += `</div></td>`;
+                html += '</tr>';
+            });
+
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        // EDIÇÃO
+        function abrirEdicao(registro) {
+            registroEmEdicao = registro;
+            document.getElementById('modal-fornecedor').value = registro.nomeFornecedor || '';
+            document.getElementById('modal-valor').value = registro.valor || '';
+            document.getElementById('modal-vencimento').value = registro.vencimento || '';
+            document.getElementById('modal-situacao').value = registro.situacao || 'Aberto';
+            document.getElementById('modal-descricao').value = registro.descricao || '';
+
+            document.getElementById('modal-edicao').classList.add('active');
+        }
+
+        function fecharModal() {
+            document.getElementById('modal-edicao').classList.remove('active');
+            registroEmEdicao = null;
+        }
+
+        async function salvarAlteracao() {
+            if (!registroEmEdicao) return;
+
+            mostrarMensagem('Salvando alterações...', 'loading');
+
+            try {
+                const novosDados = {
+                    ...registroEmEdicao,
+                    nomeFornecedor: document.getElementById('modal-fornecedor').value,
+                    valor: parseFloat(document.getElementById('modal-valor').value),
+                    vencimento: document.getElementById('modal-vencimento').value,
+                    situacao: document.getElementById('modal-situacao').value,
+                    descricao: document.getElementById('modal-descricao').value
+                };
+
+                const id = registroEmEdicao.tituloPagarCodigo || registroEmEdicao.codigo;
+                const r = await fetch(`${API_URL}/INTEGRACAO/TITULO_PAGAR/${id}?CHAVE=${API_KEY}`, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(novosDados)
+                });
+
+                if (r.status === 200 || r.status === 204) {
+                    mostrarMensagem('✅ Despesa alterada com sucesso!', 'info');
+                    fecharModal();
+                    aplicarFiltros(); // Recarrega
+                } else {
+                    throw new Error(`HTTP ${r.status}`);
+                }
+            } catch (e) {
+                mostrarMensagem('❌ Erro ao salvar: ' + e.message, 'error');
+            }
+        }
+
+        // LIMPAR FILTROS
+        function limparFiltros() {
+            document.getElementById('filter-fornecedor').value = '';
+            document.getElementById('filter-data-inicial').value = '';
+            document.getElementById('filter-data-final').value = '';
+            document.getElementById('filter-situacao').value = '';
+            document.getElementById('filter-valor-min').value = '';
+            document.getElementById('filter-valor-max').value = '';
+            document.getElementById('table-container').innerHTML = '<div class="empty-state"><p>👉 Clique em "Buscar" para carregar despesas</p></div>';
+            document.getElementById('count-value').textContent = '0';
+            document.getElementById('sum-value').textContent = 'R$ 0,00';
+        }
+
+        // MENSAGENS
+        function mostrarMensagem(texto, tipo) {
+            const container = document.getElementById('message-container');
+            const div = document.createElement('div');
+            div.className = `message ${tipo}`;
+            if (tipo === 'loading') {
+                div.innerHTML = `<span class="loading-spinner"></span> ${texto}`;
+            } else {
+                div.innerHTML = texto;
+            }
+            container.innerHTML = '';
+            container.appendChild(div);
+
+            if (tipo !== 'loading') {
+                setTimeout(() => {
+                    container.innerHTML = '';
+                }, 5000);
+            }
+        }
+
+        // DEFINIR DATAS PADRÃO
+        window.addEventListener('load', () => {
+            const hoje = new Date();
+            const mes30dias = new Date(hoje);
+            mes30dias.setDate(mes30dias.getDate() - 30);
+
+            document.getElementById('filter-data-inicial').value = mes30dias.toISOString().split('T')[0];
+            document.getElementById('filter-data-final').value = hoje.toISOString().split('T')[0];
+        });
+
+        // FECHAR MODAL
+        document.getElementById('modal-edicao').addEventListener('click', (e) => {
+            if (e.target.id === 'modal-edicao') {
+                fecharModal();
+            }
+        });
+    </script>
+</body>
+</html>

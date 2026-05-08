@@ -1,0 +1,155 @@
+================================================================================
+  LOGOS AUDITORIA - COMEÇAR AQUI
+================================================================================
+
+🎯 VOCÊ ESTÁ AQUI: MÁQUINA NOVA → DESENVOLVIMENTO LOCAL
+
+================================================================================
+  10 PASSOS EXATOS PARA RODAR
+================================================================================
+
+[PASSO 1] - CLONAR CÓDIGO (2 min)
+─────────────────────────────────────────────────────────────────────────────
+  $ cd /home/seu-usuario
+  $ git clone https://seu-repo.com/logos-auditoria.git
+  $ cd logos-auditoria
+  $ ls -la setup_local.sh
+
+  ✓ Esperado: arquivo existe e é executável (verde)
+
+
+[PASSO 2] - RODAR SETUP (5 min - vai instalar tudo)
+─────────────────────────────────────────────────────────────────────────────
+  $ chmod +x setup_local.sh
+  $ ./setup_local.sh
+
+  O script vai:
+  ✓ Instalar Docker
+  ✓ Instalar Python 3.11
+  ✓ Instalar dependências do sistema
+  ✓ Criar virtual environment (venv)
+  ✓ Instalar pacotes Python
+  ✓ Build Docker image
+  ✓ Iniciar stack (6 containers)
+  ✓ Rodar testes
+
+  ✓ Esperado: "✓ SETUP LOCAL COMPLETO!"
+
+
+[PASSO 3] - ATIVAR VIRTUAL ENVIRONMENT
+─────────────────────────────────────────────────────────────────────────────
+  Linux/macOS:
+  $ source venv/bin/activate
+
+  Windows:
+  $ venv\Scripts\activate
+
+  ✓ Esperado: prompt com (venv) na frente
+
+
+[PASSO 4] - VERIFICAR CONTAINERS RODANDO
+─────────────────────────────────────────────────────────────────────────────
+  $ docker-compose ps
+
+  ✓ Esperado: 6 containers com STATUS "Up"
+  - api
+  - mongo
+  - redis
+  - nginx
+  - prometheus
+  - grafana
+
+
+[PASSO 5] - TESTAR API
+─────────────────────────────────────────────────────────────────────────────
+  $ curl http://localhost:8000/auditoria/health
+
+  ✓ Esperado: {"status":"ok",...}
+
+  Se erro: $ docker-compose logs api
+
+
+[PASSO 6] - ACESSAR NO NAVEGADOR
+─────────────────────────────────────────────────────────────────────────────
+  Dashboard:
+  → http://localhost:8000
+
+  Swagger UI (API):
+  → http://localhost:8000/docs
+
+  Grafana (Monitoring):
+  → http://localhost:3000
+  User: admin / Senha: admin
+
+  ✓ Esperado: Tela de login ou dashboard visível
+
+
+[PASSO 7] - RODAR TESTES
+─────────────────────────────────────────────────────────────────────────────
+  $ pytest test_auditoria.py -v
+
+  ✓ Esperado: 20+ testes com "PASSED"
+
+
+[PASSO 8] - CONFIGURAR .env (credenciais webPosto)
+─────────────────────────────────────────────────────────────────────────────
+  $ nano .env
+
+  Editar:
+  WEBPOSTO_BASE_URL=http://seu-webposto:3000/api
+  WEBPOSTO_BEARER_TOKEN=seu_token_jwt
+
+  Salvar: Ctrl+O → Enter → Ctrl+X
+
+
+[PASSO 9] - RODAR SERVIDOR LOCAL
+─────────────────────────────────────────────────────────────────────────────
+  Opção A - Com Docker:
+  $ docker-compose up
+
+  Opção B - Direto:
+  $ python servicos_auditoria.py
+
+  ✓ Esperado: "Application startup complete"
+
+
+[PASSO 10] - VALIDAR TUDO
+─────────────────────────────────────────────────────────────────────────────
+  Em outro terminal:
+
+  $ curl http://localhost:8000/auditoria/health
+  $ open http://localhost:8000
+  $ pytest test_auditoria.py -v
+  $ docker-compose ps
+
+  ✓ Esperado: Tudo verde (200, containers Up, testes PASSED)
+
+================================================================================
+  PRONTO! VOCÊ ESTÁ DESENVOLVENDO LOCALMENTE 🚀
+================================================================================
+
+📚 DOCUMENTAÇÃO:
+  PASSO_A_PASSO.md      ← Instruções detalhadas (você está aqui)
+  SETUP_LOCAL.md        ← Setup manual passo-a-passo
+  Makefile              ← Comandos úteis (make help)
+
+🛠️ COMANDOS DIA-A-DIA:
+  docker-compose up                    ← Rodar sistema
+  docker-compose ps                    ← Ver status
+  docker-compose logs -f api           ← Ver logs
+  pytest test_auditoria.py -v          ← Rodar testes
+  make help                            ← Ver todos os comandos
+
+🌐 ACESSOS:
+  API:        http://localhost:8000
+  Swagger:    http://localhost:8000/docs
+  Grafana:    http://localhost:3000 (admin/admin)
+  Prometheus: http://localhost:9090
+
+❌ ERRO? VER PASSO_A_PASSO.md seção "Se algo der errado"
+
+================================================================================
+  Próximos passos:
+  1. Desenvolver código localmente
+  2. Quando pronto: ler GO_LIVE.md para ir para produção
+================================================================================

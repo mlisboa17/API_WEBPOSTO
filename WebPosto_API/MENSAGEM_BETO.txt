@@ -1,0 +1,18 @@
+Opa Beto, tudo bem?
+
+Valeu, recebi! Mas olha, a chave BI que liberou não é bem o que a gente precisa. Essa chave BI só acessa relatórios, não dá acesso aos endpoints operacionais mesmo.
+
+O que a gente realmente precisa é da API REST (a outra) com acesso a GET, POST e PUT nesses 8 módulos:
+
+1. Clientes
+2. Produtos
+3. Abastecimentos
+4. Financeiro
+5. Movimentos de Caixa
+6. Caixa
+7. Cartões
+8. Relatórios
+
+A chave BI é limitada, não resolve pra gente. Pode liberar a API REST?
+
+Valeu!

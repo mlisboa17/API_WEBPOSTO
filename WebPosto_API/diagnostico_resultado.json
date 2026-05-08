@@ -1,0 +1,273 @@
+{
+  "data": "2026-04-18",
+  "chave": "4d6bbe21****",
+  "base_url": "https://web.qualityautomacao.com.br",
+  "total": 25,
+  "ok": 13,
+  "resultados": [
+    {
+      "descricao": "Filial (healthcheck)",
+      "endpoint": "/INTEGRACAO/FILIAL",
+      "status": 401,
+      "ok": false,
+      "latencia_ms": 636,
+      "registros": null,
+      "campos": null
+    },
+    {
+      "descricao": "Usuários",
+      "endpoint": "/INTEGRACAO/USUARIO",
+      "status": 200,
+      "ok": true,
+      "latencia_ms": 180,
+      "registros": 1,
+      "campos": [
+        "ultimoCodigo",
+        "resultados"
+      ]
+    },
+    {
+      "descricao": "Administradoras",
+      "endpoint": "/INTEGRACAO/ADMINISTRADORA",
+      "status": 200,
+      "ok": true,
+      "latencia_ms": 138,
+      "registros": 1,
+      "campos": [
+        "ultimoCodigo",
+        "resultados"
+      ]
+    },
+    {
+      "descricao": "Abastecimentos (últimos 7 dias)",
+      "endpoint": "/INTEGRACAO/ABASTECIMENTO",
+      "status": 200,
+      "ok": true,
+      "latencia_ms": 552,
+      "registros": 1,
+      "campos": [
+        "ultimoCodigo",
+        "resultados"
+      ]
+    },
+    {
+      "descricao": "Abastecimentos (ontem)",
+      "endpoint": "/INTEGRACAO/ABASTECIMENTO",
+      "status": 200,
+      "ok": true,
+      "latencia_ms": 167,
+      "registros": 1,
+      "campos": [
+        "ultimoCodigo",
+        "resultados"
+      ]
+    },
+    {
+      "descricao": "Encerrantes (últimos 7 dias)",
+      "endpoint": "/INTEGRACAO/ABASTECIMENTO_ENCERRANTE",
+      "status": 400,
+      "ok": false,
+      "latencia_ms": 134,
+      "registros": 1,
+      "campos": null
+    },
+    {
+      "descricao": "Divergências de Abastecimento",
+      "endpoint": "/INTEGRACAO/ABASTECIMENTO_DIVERGENCIA",
+      "status": 401,
+      "ok": false,
+      "latencia_ms": 127,
+      "registros": null,
+      "campos": null
+    },
+    {
+      "descricao": "Pedido de Combustível",
+      "endpoint": "/INTEGRACAO/PEDIDO_COMBUSTIVEL",
+      "status": 401,
+      "ok": false,
+      "latencia_ms": 132,
+      "registros": null,
+      "campos": null
+    },
+    {
+      "descricao": "LMC (Livro Movimento Combustível)",
+      "endpoint": "/INTEGRACAO/LMC",
+      "status": 200,
+      "ok": true,
+      "latencia_ms": 6065,
+      "registros": 1,
+      "campos": [
+        "ultimoCodigo",
+        "resultados"
+      ]
+    },
+    {
+      "descricao": "Vendas (últimos 7 dias)",
+      "endpoint": "/INTEGRACAO/VENDA",
+      "status": 200,
+      "ok": true,
+      "latencia_ms": 1275,
+      "registros": 1,
+      "campos": [
+        "ultimoCodigo",
+        "resultados"
+      ]
+    },
+    {
+      "descricao": "Vendas Rede",
+      "endpoint": "/INTEGRACAO/VENDA_REDE",
+      "status": 401,
+      "ok": false,
+      "latencia_ms": 133,
+      "registros": null,
+      "campos": null
+    },
+    {
+      "descricao": "Títulos a Receber",
+      "endpoint": "/INTEGRACAO/TITULO_RECEBER",
+      "status": 200,
+      "ok": true,
+      "latencia_ms": 180,
+      "registros": 1,
+      "campos": [
+        "ultimoCodigo",
+        "resultados"
+      ]
+    },
+    {
+      "descricao": "Títulos a Pagar",
+      "endpoint": "/INTEGRACAO/TITULO_PAGAR",
+      "status": 200,
+      "ok": true,
+      "latencia_ms": 274,
+      "registros": 1,
+      "campos": [
+        "ultimoCodigo",
+        "resultados"
+      ]
+    },
+    {
+      "descricao": "Caixa",
+      "endpoint": "/INTEGRACAO/CAIXA",
+      "status": 200,
+      "ok": true,
+      "latencia_ms": 151,
+      "registros": 1,
+      "campos": [
+        "ultimoCodigo",
+        "resultados"
+      ]
+    },
+    {
+      "descricao": "Transferências",
+      "endpoint": "/INTEGRACAO/TRANSFERENCIA",
+      "status": 401,
+      "ok": false,
+      "latencia_ms": 133,
+      "registros": null,
+      "campos": null
+    },
+    {
+      "descricao": "Adiantamento Fornecedor",
+      "endpoint": "/INTEGRACAO/ADIANTAMENTO_FORNECEDOR",
+      "status": 200,
+      "ok": true,
+      "latencia_ms": 137,
+      "registros": 1,
+      "campos": [
+        "ultimoCodigo",
+        "resultados"
+      ]
+    },
+    {
+      "descricao": "Clientes",
+      "endpoint": "/INTEGRACAO/CLIENTE",
+      "status": 200,
+      "ok": true,
+      "latencia_ms": 187,
+      "registros": 1,
+      "campos": [
+        "ultimoCodigo",
+        "resultados"
+      ]
+    },
+    {
+      "descricao": "Veículos",
+      "endpoint": "/INTEGRACAO/VEICULO",
+      "status": 401,
+      "ok": false,
+      "latencia_ms": 135,
+      "registros": null,
+      "campos": null
+    },
+    {
+      "descricao": "Produtos",
+      "endpoint": "/INTEGRACAO/PRODUTO",
+      "status": 200,
+      "ok": true,
+      "latencia_ms": 570,
+      "registros": 1,
+      "campos": [
+        "ultimoCodigo",
+        "resultados"
+      ]
+    },
+    {
+      "descricao": "Combustível (cadastro)",
+      "endpoint": "/INTEGRACAO/COMBUSTIVEL",
+      "status": 401,
+      "ok": false,
+      "latencia_ms": 132,
+      "registros": null,
+      "campos": null
+    },
+    {
+      "descricao": "Preço por Produto",
+      "endpoint": "/INTEGRACAO/PRECO_PRODUTO",
+      "status": 401,
+      "ok": false,
+      "latencia_ms": 129,
+      "registros": null,
+      "campos": null
+    },
+    {
+      "descricao": "Estoque",
+      "endpoint": "/INTEGRACAO/ESTOQUE",
+      "status": 200,
+      "ok": true,
+      "latencia_ms": 139,
+      "registros": 1,
+      "campos": [
+        "ultimoCodigo",
+        "resultados"
+      ]
+    },
+    {
+      "descricao": "NF Entrada",
+      "endpoint": "/INTEGRACAO/NOTA_FISCAL_ENTRADA",
+      "status": 401,
+      "ok": false,
+      "latencia_ms": 127,
+      "registros": null,
+      "campos": null
+    },
+    {
+      "descricao": "NF Saída",
+      "endpoint": "/INTEGRACAO/NOTA_FISCAL_SAIDA",
+      "status": 401,
+      "ok": false,
+      "latencia_ms": 129,
+      "registros": null,
+      "campos": null
+    },
+    {
+      "descricao": "Pedidos de Compras",
+      "endpoint": "/INTEGRACAO/PEDIDO_COMPRAS",
+      "status": 401,
+      "ok": false,
+      "latencia_ms": 123,
+      "registros": null,
+      "campos": null
+    }
+  ]
+}

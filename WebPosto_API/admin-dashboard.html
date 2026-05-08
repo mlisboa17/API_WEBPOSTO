@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>webPosto Admin — Gerenciamento de Dados</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0052CC;
+            --primary-dark: #003A99;
+            --success: #28A745;
+            --warning: #FFC107;
+            --danger: #DC3545;
+            --info: #17A2B8;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --gray: #6C757D;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--dark);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .status-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .status-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .status-card-icon {
+            font-size: 2.5em;
+            margin-right: 15px;
+        }
+
+        .status-card-info h3 {
+            color: var(--gray);
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .status-card-info .value {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            color: var(--gray);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab-btn:hover {
+            background: rgba(0, 82, 204, 0.1);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border-left: 4px solid var(--primary);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card.receber {
+            border-left-color: var(--success);
+        }
+
+        .card.pagar {
+            border-left-color: var(--danger);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .card-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        .badge-receber {
+            background: #D4EDDA;
+            color: #155724;
+        }
+
+        .badge-pagar {
+            background: #F8D7DA;
+            color: #721C24;
+        }
+
+        .badge-pago {
+            background: #D1ECF1;
+            color: #0C5460;
+        }
+
+        .badge-pendente {
+            background: #FFF3CD;
+            color: #856404;
+        }
+
+        .card-body {
+            margin-bottom: 15px;
+        }
+
+        .card-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+
+        .card-label {
+            color: var(--gray);
+        }
+
+        .card-value {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .valor-grande {
+            font-size: 1.5em;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 10px;
+            padding-top: 15px;
+            border-top: 1px solid var(--light);
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #C82333;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 0.8em;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #DDD;
+            border-radius: 6px;
+            font-size: 1em;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--light);
+        }
+
+        .modal-header h2 {
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        /* Alert */
+        .alert {
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .alert-success {
+            background: #D4EDDA;
+            color: #155724;
+            border: 1px solid #C3E6CB;
+        }
+
+        .alert-danger {
+            background: #F8D7DA;
+            color: #721C24;
+            border: 1px solid #F5C6CB;
+        }
+
+        .alert-info {
+            background: #D1ECF1;
+            color: #0C5460;
+            border: 1px solid #BEE5EB;
+        }
+
+        /* Table */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .table thead {
+            background: #F8F9FA;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .table th,
+        .table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--light);
+        }
+
+        .table tbody tr:hover {
+            background: #F8F9FA;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: white;
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs {
+                flex-wrap: wrap;
+            }
+
+            .tab-btn {
+                flex: 1;
+                min-width: 120px;
+            }
+        }
+
+        /* Status live indicator */
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .status-indicator.online {
+            background: var(--success);
+        }
+
+        .status-indicator.offline {
+            background: var(--danger);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>💰 webPosto Admin</h1>
+        <p>Gerenciamento de Dados Financeiro, Caixa e Auditoria</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">
+            <span class="status-indicator online"></span>
+            Conectado com API Real
+        </p>
+    </header>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Status Cards -->
+        <div class="status-bar">
+            <div class="status-card">
+                <div style="flex: 1;">
+                    <div class="status-card-info">
+                        <h3>Total a Receber</h3>
+                        <div class="value" id="total-receber">R$ 0,00</div>
+                    </div>
+                </div>
+                <div class="status-card-icon">💵</div>
+            </div>
+
+            <div class="status-card">
+                <div style="flex: 1;">
+                    <div class="status-card-info">
+                        <h3>Total a Pagar</h3>
+                        <div class="value" id="total-pagar">R$ 0,00</div>
+                    </div>
+                </div>
+                <div class="status-card-icon">💳</div>
+            </div>
+
+            <div class="status-card">
+                <div style="flex: 1;">
+                    <div class="status-card-info">
+                        <h3>Saldo em Caixa</h3>
+                        <div class="value" id="saldo-caixa">R$ 0,00</div>
+                    </div>
+                </div>
+                <div class="status-card-icon">📦</div>
+            </div>
+
+            <div class="status-card">
+                <div style="flex: 1;">
+                    <div class="status-card-info">
+                        <h3>Operações Auditadas</h3>
+                        <div class="value" id="total-auditoria">0</div>
+                    </div>
+                </div>
+                <div class="status-card-icon">📋</div>
+            </div>
+        </div>
+
+        <!-- Alerts -->
+        <div id="alerts-container"></div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('financeiro')">💰 Financeiro</button>
+            <button class="tab-btn" onclick="switchTab('caixa')">📦 Caixa</button>
+            <button class="tab-btn" onclick="switchTab('auditoria')">📋 Auditoria</button>
+        </div>
+
+        <!-- Tab: Financeiro -->
+        <div id="financeiro" class="tab-content active">
+            <div style="margin-bottom: 20px; display: flex; gap: 10px;">
+                <button class="btn btn-success" onclick="openFormFinanceiro()">➕ Novo Título</button>
+                <button class="btn btn-primary" onclick="loadFinanceiro()">🔄 Atualizar</button>
+            </div>
+
+            <div id="financeiro-loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p style="margin-top: 10px; color: var(--gray);">Carregando títulos...</p>
+            </div>
+
+            <div id="financeiro-cards" class="cards-grid"></div>
+        </div>
+
+        <!-- Tab: Caixa -->
+        <div id="caixa" class="tab-content">
+            <div style="margin-bottom: 20px; display: flex; gap: 10px;">
+                <button class="btn btn-success" onclick="openFormCaixa()">➕ Novo Movimento</button>
+                <button class="btn btn-primary" onclick="loadCaixa()">🔄 Atualizar</button>
+            </div>
+
+            <div id="caixa-loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p style="margin-top: 10px; color: var(--gray);">Carregando movimentos...</p>
+            </div>
+
+            <div id="caixa-cards" class="cards-grid"></div>
+        </div>
+
+        <!-- Tab: Auditoria -->
+        <div id="auditoria" class="tab-content">
+            <div style="margin-bottom: 20px; display: flex; gap: 10px;">
+                <button class="btn btn-primary" onclick="loadAuditoria()">🔄 Atualizar</button>
+                <button class="btn" style="background: var(--light); color: var(--dark);" onclick="document.getElementById('auditoria-filter').style.display = document.getElementById('auditoria-filter').style.display === 'none' ? 'block' : 'none'">🔍 Filtros</button>
+            </div>
+
+            <div id="auditoria-filter" style="display: none; background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Tabela</label>
+                        <select id="filter-tabela">
+                            <option value="">Todas</option>
+                            <option value="financeiro">Financeiro</option>
+                            <option value="caixa">Caixa</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Operação</label>
+                        <select id="filter-operacao">
+                            <option value="">Todas</option>
+                            <option value="CREATE">CREATE</option>
+                            <option value="UPDATE">UPDATE</option>
+                            <option value="DELETE">DELETE</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="loadAuditoria(true)">Aplicar Filtros</button>
+            </div>
+
+            <div id="auditoria-loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p style="margin-top: 10px; color: var(--gray);">Carregando auditoria...</p>
+            </div>
+
+            <div id="auditoria-table"></div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Modal: Novo/Editar Financeiro -->
+    <div id="modal-financeiro" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-financeiro-title">Novo Título</h2>
+                <button class="modal-close" onclick="closeModal('modal-financeiro')">✕</button>
+            </div>
+
+            <form onsubmit="submitFinanceiro(event)">
+                <div class="form-group">
+                    <label>Tipo *</label>
+                    <select id="form-tipo" required>
+                        <option value="RECEBER">A Receber</option>
+                        <option value="PAGAR">A Pagar</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Valor (R$) *</label>
+                        <input type="number" id="form-valor" placeholder="0.00" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Vencimento *</label>
+                        <input type="datetime-local" id="form-vencimento" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Descrição *</label>
+                    <input type="text" id="form-descricao" placeholder="Ex: Venda de produtos" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Cliente/Fornecedor *</label>
+                    <input type="text" id="form-cliente" placeholder="Ex: Cliente ABC Ltda" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Categoria</label>
+                    <input type="text" id="form-categoria" placeholder="Ex: Vendas">
+                </div>
+
+                <div class="form-row">
+                    <button type="submit" class="btn btn-success">💾 Salvar</button>
+                    <button type="button" class="btn" style="background: var(--light); color: var(--dark);" onclick="closeModal('modal-financeiro')">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Novo Movimento Caixa -->
+    <div id="modal-caixa" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Novo Movimento de Caixa</h2>
+                <button class="modal-close" onclick="closeModal('modal-caixa')">✕</button>
+            </div>
+
+            <form onsubmit="submitCaixa(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Caixa # *</label>
+                        <input type="number" id="form-caixa-numero" placeholder="1" min="1" max="999" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de Movimento *</label>
+                        <select id="form-movimento-tipo" required>
+                            <option value="VENDA">Venda</option>
+                            <option value="ABERTURA">Abertura</option>
+                            <option value="SAQUE">Saque</option>
+                            <option value="FECHAMENTO">Fechamento</option>
+                            <option value="TRANSFERENCIA">Transferência</option>
+                            <option value="DEVOLUCAO">Devolução</option>
+                            <option value="AJUSTE">Ajuste</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Valor (R$) *</label>
+                    <input type="number" id="form-movimento-valor" placeholder="0.00" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Descrição *</label>
+                    <input type="text" id="form-movimento-descricao" placeholder="Ex: Venda de combustível" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Referência</label>
+                        <input type="text" id="form-movimento-referencia" placeholder="Ex: VND-001">
+                    </div>
+                    <div class="form-group">
+                        <label>Operador</label>
+                        <input type="text" id="form-movimento-operador" placeholder="Ex: João Silva">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <button type="submit" class="btn btn-success">💾 Salvar</button>
+                    <button type="button" class="btn" style="background: var(--light); color: var(--dark);" onclick="closeModal('modal-caixa')">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>webPosto API v0.2.0 • Desenvolvido para Grupo Lisboa • 2026</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        const API_URL = 'http://localhost:5000/api/v1';
+        const USUARIO = 'admin-dashboard';
+
+        // ========== UTILITIES ==========
+
+        function showAlert(message, type = 'info') {
+            const container = document.getElementById('alerts-container');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.textContent = message;
+            container.appendChild(alert);
+
+            setTimeout(() => alert.remove(), 5000);
+        }
+
+        function formatMoney(value) {
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format(value);
+        }
+
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleDateString('pt-BR', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            });
+        }
+
+        function formatDateTime(dateString) {
+            return new Date(dateString).toLocaleString('pt-BR');
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            document.getElementById(tab).classList.add('active');
+            event.target.classList.add('active');
+
+            if (tab === 'financeiro') loadFinanceiro();
+            else if (tab === 'caixa') loadCaixa();
+            else if (tab === 'auditoria') loadAuditoria();
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        // ========== FINANCEIRO ==========
+
+        async function loadFinanceiro() {
+            const loading = document.getElementById('financeiro-loading');
+            const container = document.getElementById('financeiro-cards');
+
+            loading.style.display = 'block';
+            container.innerHTML = '';
+
+            try {
+                const response = await fetch(`${API_URL}/financeiro?limite=100`);
+                const data = await response.json();
+
+                if (data.dados && data.dados.length > 0) {
+                    let totalReceber = 0;
+                    let totalPagar = 0;
+
+                    data.dados.forEach(titulo => {
+                        totalReceber += titulo.tipo === 'RECEBER' ? titulo.valor : 0;
+                        totalPagar += titulo.tipo === 'PAGAR' ? titulo.valor : 0;
+
+                        const card = document.createElement('div');
+                        card.className = `card ${titulo.tipo.toLowerCase()}`;
+                        card.innerHTML = `
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">${titulo.descricao}</div>
+                                    <small style="color: var(--gray);">${titulo.cliente_fornecedor}</small>
+                                </div>
+                                <span class="card-badge badge-${titulo.tipo.toLowerCase()}">${titulo.tipo}</span>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="card-row">
+                                    <span class="card-label">Valor:</span>
+                                    <span class="card-value valor-grande">${formatMoney(titulo.valor)}</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Vencimento:</span>
+                                    <span class="card-value">${formatDate(titulo.data_vencimento)}</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Status:</span>
+                                    <span class="card-badge badge-${titulo.status}">${titulo.status}</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Dias:</span>
+                                    <span class="card-value">${titulo.dias_vencido > 0 ? '+' : ''}${titulo.dias_vencido}</span>
+                                </div>
+                            </div>
+
+                            <div class="card-actions">
+                                <button class="btn btn-primary btn-small" onclick="editFinanceiro('${titulo.id}', ${JSON.stringify(titulo)})">✏️ Editar</button>
+                                <button class="btn btn-danger btn-small" onclick="deleteFinanceiro('${titulo.id}')">🗑️ Deletar</button>
+                            </div>
+                        `;
+                        container.appendChild(card);
+                    });
+
+                    document.getElementById('total-receber').textContent = formatMoney(totalReceber);
+                    document.getElementById('total-pagar').textContent = formatMoney(totalPagar);
+
+                } else {
+                    container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gray);">Nenhum título registrado</p>';
+                }
+            } catch (error) {
+                showAlert('❌ Erro ao carregar financeiro: ' + error.message, 'danger');
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        function openFormFinanceiro() {
+            document.getElementById('modal-financeiro-title').textContent = 'Novo Título';
+            document.getElementById('form-tipo').value = 'RECEBER';
+            document.getElementById('form-valor').value = '';
+            document.getElementById('form-vencimento').value = '';
+            document.getElementById('form-descricao').value = '';
+            document.getElementById('form-cliente').value = '';
+            document.getElementById('form-categoria').value = '';
+            openModal('modal-financeiro');
+        }
+
+        function editFinanceiro(id, titulo) {
+            document.getElementById('modal-financeiro-title').textContent = `Editar: ${titulo.descricao}`;
+            document.getElementById('form-tipo').value = titulo.tipo;
+            document.getElementById('form-valor').value = titulo.valor;
+            document.getElementById('form-vencimento').value = new Date(titulo.data_vencimento).toISOString().slice(0, 16);
+            document.getElementById('form-descricao').value = titulo.descricao;
+            document.getElementById('form-cliente').value = titulo.cliente_fornecedor;
+            document.getElementById('form-categoria').value = titulo.categoria || '';
+            document.getElementById('form-id').value = id;
+            openModal('modal-financeiro');
+        }
+
+        async function submitFinanceiro(e) {
+            e.preventDefault();
+
+            const tipo = document.getElementById('form-tipo').value;
+            const valor = parseFloat(document.getElementById('form-valor').value);
+            const vencimento = new Date(document.getElementById('form-vencimento').value).toISOString();
+            const descricao = document.getElementById('form-descricao').value;
+            const cliente = document.getElementById('form-cliente').value;
+            const categoria = document.getElementById('form-categoria').value;
+
+            if (!tipo || !valor || !vencimento || !descricao || !cliente) {
+                showAlert('⚠️ Preencha todos os campos obrigatórios', 'warning');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/financeiro`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Usuario': USUARIO,
+                        'X-Motivo': 'Criação via Dashboard'
+                    },
+                    body: JSON.stringify({
+                        tipo,
+                        valor,
+                        data_vencimento: vencimento,
+                        descricao,
+                        cliente_fornecedor: cliente,
+                        categoria
+                    })
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    showAlert('✅ Título criado com sucesso!', 'success');
+                    closeModal('modal-financeiro');
+                    loadFinanceiro();
+                } else {
+                    showAlert('❌ Erro: ' + result.detail, 'danger');
+                }
+            } catch (error) {
+                showAlert('❌ Erro: ' + error.message, 'danger');
+            }
+        }
+
+        async function deleteFinanceiro(id) {
+            if (!confirm('Tem certeza que quer deletar este título?')) return;
+
+            try {
+                const response = await fetch(`${API_URL}/financeiro/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-Usuario': USUARIO,
+                        'X-Motivo': 'Deleção via Dashboard'
+                    }
+                });
+
+                if (response.ok) {
+                    showAlert('✅ Título deletado com sucesso!', 'success');
+                    loadFinanceiro();
+                } else {
+                    showAlert('❌ Erro ao deletar', 'danger');
+                }
+            } catch (error) {
+                showAlert('❌ Erro: ' + error.message, 'danger');
+            }
+        }
+
+        // ========== CAIXA ==========
+
+        async function loadCaixa() {
+            const loading = document.getElementById('caixa-loading');
+            const container = document.getElementById('caixa-cards');
+
+            loading.style.display = 'block';
+            container.innerHTML = '';
+
+            try {
+                const response = await fetch(`${API_URL}/caixa?limite=100`);
+                const data = await response.json();
+
+                if (data.dados && data.dados.length > 0) {
+                    let totalCaixa = 0;
+
+                    data.dados.forEach(movimento => {
+                        totalCaixa += movimento.saldo;
+
+                        const card = document.createElement('div');
+                        card.className = 'card';
+                        card.innerHTML = `
+                            <div class="card-header">
+                                <div>
+                                    <div class="card-title">${movimento.descricao}</div>
+                                    <small style="color: var(--gray);">Caixa #${movimento.numero_caixa}</small>
+                                </div>
+                                <span class="card-badge badge-pagar">${movimento.tipo_movimento}</span>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="card-row">
+                                    <span class="card-label">Valor:</span>
+                                    <span class="card-value valor-grande">${formatMoney(movimento.valor)}</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Saldo:</span>
+                                    <span class="card-value">${formatMoney(movimento.saldo)}</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Operador:</span>
+                                    <span class="card-value">${movimento.operador || 'N/A'}</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-label">Data:</span>
+                                    <span class="card-value">${formatDate(movimento.data_movimento)}</span>
+                                </div>
+                            </div>
+
+                            <div class="card-actions">
+                                <button class="btn btn-primary btn-small" onclick="editCaixa('${movimento.id}', ${JSON.stringify(movimento)})">✏️ Editar</button>
+                                <button class="btn btn-danger btn-small" onclick="deleteCaixa('${movimento.id}')">🗑️ Deletar</button>
+                            </div>
+                        `;
+                        container.appendChild(card);
+                    });
+
+                    document.getElementById('saldo-caixa').textContent = formatMoney(totalCaixa);
+
+                } else {
+                    container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gray);">Nenhum movimento registrado</p>';
+                }
+            } catch (error) {
+                showAlert('❌ Erro ao carregar caixa: ' + error.message, 'danger');
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        function openFormCaixa() {
+            document.getElementById('form-caixa-numero').value = '1';
+            document.getElementById('form-movimento-tipo').value = 'VENDA';
+            document.getElementById('form-movimento-valor').value = '';
+            document.getElementById('form-movimento-descricao').value = '';
+            document.getElementById('form-movimento-referencia').value = '';
+            document.getElementById('form-movimento-operador').value = '';
+            openModal('modal-caixa');
+        }
+
+        function editCaixa(id, movimento) {
+            document.getElementById('form-caixa-numero').value = movimento.numero_caixa;
+            document.getElementById('form-movimento-tipo').value = movimento.tipo_movimento;
+            document.getElementById('form-movimento-valor').value = movimento.valor;
+            document.getElementById('form-movimento-descricao').value = movimento.descricao;
+            document.getElementById('form-movimento-referencia').value = movimento.referencia || '';
+            document.getElementById('form-movimento-operador').value = movimento.operador || '';
+            openModal('modal-caixa');
+        }
+
+        async function submitCaixa(e) {
+            e.preventDefault();
+
+            const numero_caixa = parseInt(document.getElementById('form-caixa-numero').value);
+            const tipo_movimento = document.getElementById('form-movimento-tipo').value;
+            const valor = parseFloat(document.getElementById('form-movimento-valor').value);
+            const descricao = document.getElementById('form-movimento-descricao').value;
+            const referencia = document.getElementById('form-movimento-referencia').value;
+            const operador = document.getElementById('form-movimento-operador').value;
+
+            try {
+                const response = await fetch(`${API_URL}/caixa`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Usuario': USUARIO,
+                        'X-Motivo': 'Criação via Dashboard'
+                    },
+                    body: JSON.stringify({
+                        numero_caixa,
+                        tipo_movimento,
+                        valor,
+                        descricao,
+                        referencia,
+                        operador
+                    })
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    showAlert('✅ Movimento criado com sucesso!', 'success');
+                    closeModal('modal-caixa');
+                    loadCaixa();
+                } else {
+                    showAlert('❌ Erro: ' + result.detail, 'danger');
+                }
+            } catch (error) {
+                showAlert('❌ Erro: ' + error.message, 'danger');
+            }
+        }
+
+        async function deleteCaixa(id) {
+            if (!confirm('Tem certeza que quer deletar este movimento?')) return;
+
+            try {
+                const response = await fetch(`${API_URL}/caixa/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-Usuario': USUARIO,
+                        'X-Motivo': 'Deleção via Dashboard'
+                    }
+                });
+
+                if (response.ok) {
+                    showAlert('✅ Movimento deletado com sucesso!', 'success');
+                    loadCaixa();
+                } else {
+                    showAlert('❌ Erro ao deletar', 'danger');
+                }
+            } catch (error) {
+                showAlert('❌ Erro: ' + error.message, 'danger');
+            }
+        }
+
+        // ========== AUDITORIA ==========
+
+        async function loadAuditoria(useFilters = false) {
+            const loading = document.getElementById('auditoria-loading');
+            const container = document.getElementById('auditoria-table');
+
+            loading.style.display = 'block';
+            container.innerHTML = '';
+
+            let url = `${API_URL}/auditoria?limite=100`;
+
+            if (useFilters) {
+                const tabela = document.getElementById('filter-tabela').value;
+                const operacao = document.getElementById('filter-operacao').value;
+
+                if (tabela) url += `&tabela=${tabela}`;
+                if (operacao) url += `&operacao=${operacao}`;
+            }
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.dados && data.dados.length > 0) {
+                    document.getElementById('total-auditoria').textContent = data.total;
+
+                    let html = `
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Data/Hora</th>
+                                    <th>Operação</th>
+                                    <th>Tabela</th>
+                                    <th>Record ID</th>
+                                    <th>Usuário</th>
+                                    <th>Motivo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+
+                    data.dados.forEach(log => {
+                        const operacaoBadge = {
+                            'CREATE': '#D4EDDA',
+                            'UPDATE': '#D1ECF1',
+                            'DELETE': '#F8D7DA'
+                        }[log.operacao] || '#F8F9FA';
+
+                        html += `
+                            <tr>
+                                <td>${formatDateTime(log.data_operacao)}</td>
+                                <td><span class="card-badge" style="background: ${operacaoBadge};">${log.operacao}</span></td>
+                                <td><strong>${log.tabela}</strong></td>
+                                <td><code>${log.record_id}</code></td>
+                                <td>${log.usuario}</td>
+                                <td><small>${log.motivo || '—'}</small></td>
+                            </tr>
+                        `;
+                    });
+
+                    html += `
+                            </tbody>
+                        </table>
+                    `;
+
+                    container.innerHTML = html;
+
+                } else {
+                    container.innerHTML = '<p style="text-align: center; padding: 40px; color: var(--gray);">Nenhum registro de auditoria</p>';
+                }
+            } catch (error) {
+                showAlert('❌ Erro ao carregar auditoria: ' + error.message, 'danger');
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        // ========== INIT ==========
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadFinanceiro();
+            loadCaixa();
+            loadAuditoria();
+
+            // Auto-refresh a cada 30 segundos
+            setInterval(() => {
+                if (document.getElementById('financeiro').classList.contains('active')) loadFinanceiro();
+                else if (document.getElementById('caixa').classList.contains('active')) loadCaixa();
+                else if (document.getElementById('auditoria').classList.contains('active')) loadAuditoria();
+            }, 30000);
+        });
+
+        // Helper para form ID
+        document.addEventListener('DOMContentLoaded', () => {
+            const formId = document.createElement('input');
+            formId.type = 'hidden';
+            formId.id = 'form-id';
+            formId.value = '';
+        });
+    </script>
+</body>
+</html>

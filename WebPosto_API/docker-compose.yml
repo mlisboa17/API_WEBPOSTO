@@ -1,0 +1,81 @@
+version: "3.9"
+
+services:
+  # Redis (cache + event bus)
+  redis:
+    image: redis:7-alpine
+    container_name: webposto-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - webposto-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # PostgreSQL (opcional - descomente para produção)
+  # postgres:
+  #   image: postgres:15-alpine
+  #   container_name: webposto-postgres
+  #   restart: unless-stopped
+  #   environment:
+  #     POSTGRES_USER: webposto
+  #     POSTGRES_PASSWORD: webposto_secure_password_change_me
+  #     POSTGRES_DB: webposto
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - webposto-network
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U webposto"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+
+  # API webPosto Sync Service
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: webposto-api
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      WEBPOSTO_API_KEY: ${WEBPOSTO_API_KEY:-<WEBPOSTO_API_TOKEN>}
+      WEBPOSTO_BASE_URL: ${WEBPOSTO_BASE_URL:-http://web.qualityautomacao.com.br}
+      DATABASE_URL: ${DATABASE_URL:-sqlite+aiosqlite:///./webposto.db}
+      REDIS_URL: redis://redis:6379/0
+      API_PORT: 5000
+      DEBUG: "false"
+      ENVIRONMENT: production
+      LOG_LEVEL: INFO
+    ports:
+      - "5000:5000"
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./webposto.db:/app/webposto.db
+    networks:
+      - webposto-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+networks:
+  webposto-network:
+    driver: bridge
+
+volumes:
+  redis_data:

@@ -1,0 +1,413 @@
+{
+  "versao": "1.0",
+  "data_geracao": "2026-04-12",
+  "sistema": "Logos Auditoria",
+  "descricao": "Schema completo para despesas e fechamentos de caixa",
+
+  "enums": {
+    "CategoriaDesapesa": [
+      "luz",
+      "gelo",
+      "vale_operador",
+      "vale_cliente",
+      "manutencao",
+      "combustivel",
+      "limpeza",
+      "insumos",
+      "outros"
+    ],
+    "StatusJustificativa": [
+      "pendente",
+      "justificada",
+      "rejeitada",
+      "em_analise"
+    ],
+    "TipoCaixa": [
+      "pista",
+      "conveniencia",
+      "restaurante"
+    ],
+    "StatusCaixa": [
+      "aberto",
+      "fechado",
+      "consolidado",
+      "em_auditoria"
+    ],
+    "EspecieFinanceira": [
+      "dinheiro",
+      "pix",
+      "cartao_debito",
+      "cartao_credito",
+      "frotista",
+      "prazo"
+    ]
+  },
+
+  "models": {
+    "DespesaCaixa": {
+      "tipo": "object",
+      "obrigatorios": [
+        "id",
+        "unidade_id",
+        "caixa_tipo",
+        "horario",
+        "categoria",
+        "valor",
+        "operador"
+      ],
+      "campos": {
+        "id": {
+          "tipo": "string",
+          "descricao": "ID único da despesa",
+          "exemplo": "exp_001"
+        },
+        "unidade_id": {
+          "tipo": "string",
+          "descricao": "ID da unidade (Real, Casa Caiada, VIP)",
+          "exemplo": "real_01"
+        },
+        "caixa_tipo": {
+          "tipo": "enum",
+          "enum": "TipoCaixa",
+          "descricao": "Tipo de caixa",
+          "exemplo": "pista"
+        },
+        "horario": {
+          "tipo": "datetime",
+          "format": "ISO8601",
+          "descricao": "Horário da despesa",
+          "exemplo": "2026-04-12T14:30:00"
+        },
+        "categoria": {
+          "tipo": "enum",
+          "enum": "CategoriaDesapesa",
+          "descricao": "Categoria da despesa",
+          "exemplo": "gelo"
+        },
+        "valor": {
+          "tipo": "float",
+          "restricoes": [
+            "maior que 0",
+            "máximo 2 casas decimais"
+          ],
+          "exemplo": 85.50
+        },
+        "operador": {
+          "tipo": "string",
+          "descricao": "Operador que registrou",
+          "exemplo": "João Silva"
+        },
+        "descricao": {
+          "tipo": "string",
+          "obrigatorio": false,
+          "descricao": "Descrição adicional",
+          "exemplo": "Gelo para refrigeração"
+        },
+        "status_justificativa": {
+          "tipo": "enum",
+          "enum": "StatusJustificativa",
+          "padrao": "pendente",
+          "descricao": "Status da justificativa"
+        },
+        "documento_anexo": {
+          "tipo": "string",
+          "obrigatorio": false,
+          "descricao": "URL/Path do documento comprobatório",
+          "exemplo": "/docs/gelo_001.pdf"
+        },
+        "tem_documento": {
+          "tipo": "boolean",
+          "padrao": false,
+          "descricao": "Flag: tem documento anexo?"
+        }
+      }
+    },
+
+    "MovimentacaoEspecie": {
+      "tipo": "object",
+      "obrigatorios": [
+        "especie",
+        "valor_esperado",
+        "valor_informado"
+      ],
+      "campos": {
+        "especie": {
+          "tipo": "enum",
+          "enum": "EspecieFinanceira",
+          "exemplo": "dinheiro"
+        },
+        "valor_esperado": {
+          "tipo": "float",
+          "restricoes": ["maior ou igual a 0"],
+          "descricao": "Valor que deveria ter",
+          "exemplo": 2500.00
+        },
+        "valor_informado": {
+          "tipo": "float",
+          "restricoes": ["maior ou igual a 0"],
+          "descricao": "Valor informado pelo operador",
+          "exemplo": 2495.30
+        },
+        "diferenca": {
+          "tipo": "float",
+          "calculado": true,
+          "formula": "valor_esperado - valor_informado",
+          "descricao": "Diferença automática",
+          "exemplo": 4.70
+        },
+        "variacao_percentual": {
+          "tipo": "float",
+          "calculado": true,
+          "formula": "(diferenca / valor_esperado) * 100",
+          "descricao": "Variação %",
+          "exemplo": 0.19
+        }
+      }
+    },
+
+    "FechamentoCaixa": {
+      "tipo": "object",
+      "obrigatorios": [
+        "id",
+        "unidade_id",
+        "caixa_tipo",
+        "horario_abertura",
+        "horario_fechamento",
+        "operador_fechamento"
+      ],
+      "campos": {
+        "id": {
+          "tipo": "string",
+          "descricao": "ID único do fechamento",
+          "exemplo": "fech_001"
+        },
+        "unidade_id": {
+          "tipo": "string",
+          "descricao": "ID da unidade",
+          "exemplo": "real_01"
+        },
+        "caixa_tipo": {
+          "tipo": "enum",
+          "enum": "TipoCaixa"
+        },
+        "horario_abertura": {
+          "tipo": "datetime",
+          "format": "ISO8601"
+        },
+        "horario_fechamento": {
+          "tipo": "datetime",
+          "format": "ISO8601"
+        },
+        "faturamento_bruto": {
+          "tipo": "float",
+          "padrao": 0,
+          "restricoes": ["maior ou igual a 0"],
+          "descricao": "Total vendido"
+        },
+        "despesas_caixa_total": {
+          "tipo": "float",
+          "padrao": 0,
+          "descricao": "Despesas da pista/conveniência"
+        },
+        "movimentacoes": {
+          "tipo": "array",
+          "items": "MovimentacaoEspecie",
+          "padrao": [],
+          "descricao": "Detalhamento por espécie"
+        },
+        "saldo_esperado_dinheiro": {
+          "tipo": "float",
+          "padrao": 0
+        },
+        "saldo_informado_dinheiro": {
+          "tipo": "float",
+          "padrao": 0
+        },
+        "quebra_caixa": {
+          "tipo": "float",
+          "calculado": true,
+          "formula": "saldo_esperado_dinheiro - saldo_informado_dinheiro",
+          "descricao": "Diferença de caixa"
+        },
+        "status": {
+          "tipo": "enum",
+          "enum": "StatusCaixa",
+          "padrao": "aberto"
+        },
+        "operador_fechamento": {
+          "tipo": "string",
+          "exemplo": "Maria Santos"
+        },
+        "flagged_auditoria": {
+          "tipo": "boolean",
+          "padrao": false,
+          "descricao": "Marcado para auditoria?"
+        },
+        "motivo_auditoria": {
+          "tipo": "string",
+          "obrigatorio": false
+        },
+        "despesas_sem_categoria": {
+          "tipo": "integer",
+          "padrao": 0
+        },
+        "despesas_sem_documento": {
+          "tipo": "integer",
+          "padrao": 0
+        }
+      }
+    },
+
+    "ResumoAuditoriaUnidade": {
+      "tipo": "object",
+      "campos": {
+        "unidade_id": {
+          "tipo": "string"
+        },
+        "data": {
+          "tipo": "datetime"
+        },
+        "faturamento_total": {
+          "tipo": "float",
+          "descricao": "Soma de todos os caixas"
+        },
+        "despesas_operacionais": {
+          "tipo": "float",
+          "descricao": "Total despesas"
+        },
+        "saldo_especie_total": {
+          "tipo": "float",
+          "descricao": "Total em dinheiro"
+        },
+        "quebra_total": {
+          "tipo": "float"
+        },
+        "quebra_percentual": {
+          "tipo": "float",
+          "descricao": "% quebra vs faturamento"
+        },
+        "caixas_fechados": {
+          "tipo": "integer"
+        },
+        "caixas_abertos": {
+          "tipo": "integer"
+        },
+        "caixas_em_auditoria": {
+          "tipo": "integer"
+        },
+        "despesas_sem_categoria_total": {
+          "tipo": "integer"
+        },
+        "despesas_sem_documento_total": {
+          "tipo": "integer"
+        },
+        "caixas_com_quebra_acima_10": {
+          "tipo": "integer",
+          "descricao": "Caixas com quebra > R$10"
+        },
+        "desvio_percentual_media_despesas": {
+          "tipo": "float",
+          "descricao": "Desvio % vs média histórica (5%)"
+        },
+        "outlier_unidade": {
+          "tipo": "boolean",
+          "descricao": "Unidade é outlier? (|desvio| > 10%)"
+        }
+      }
+    }
+  },
+
+  "endpoints": {
+    "GET /auditoria/despesas/{unidade_id}": {
+      "descricao": "Lista de despesas estruturadas",
+      "parametros": {
+        "unidade_id": "string (obrigatório)"
+      },
+      "resposta": {
+        "tipo": "array",
+        "items": "DespesaCaixa"
+      },
+      "codigos": [200, 404]
+    },
+    "GET /auditoria/fechamentos/{unidade_id}": {
+      "descricao": "Fechamentos + resumo consolidado",
+      "parametros": {
+        "unidade_id": "string (obrigatório)"
+      },
+      "resposta": "ListaFechamentos",
+      "codigos": [200, 404]
+    },
+    "GET /auditoria/resumo/{unidade_id}": {
+      "descricao": "KPIs de auditoria (insights estoicos)",
+      "parametros": {
+        "unidade_id": "string (obrigatório)"
+      },
+      "resposta": "ResumoAuditoriaUnidade",
+      "codigos": [200, 404]
+    },
+    "GET /auditoria/despesas-por-categoria/{unidade_id}": {
+      "descricao": "Agrupamento por categoria",
+      "parametros": {
+        "unidade_id": "string (obrigatório)"
+      },
+      "resposta": {
+        "tipo": "object",
+        "exemplo": {
+          "gelo": {
+            "total": 250.00,
+            "qtd": 3,
+            "sem_documento": 1
+          }
+        }
+      },
+      "codigos": [200, 404]
+    },
+    "POST /auditoria/registrar-despesa": {
+      "descricao": "Registrar nova despesa com validação",
+      "corpo": "DespesaCaixa",
+      "resposta": "DespesaCaixa",
+      "codigos": [200, 422]
+    }
+  },
+
+  "validacoes": {
+    "DespesaCaixa.valor": "maior que 0, máximo 2 casas decimais",
+    "DespesaCaixa.categoria": "deve ser um dos valores do enum",
+    "FechamentoCaixa.quebra_caixa": "calculado automaticamente",
+    "MovimentacaoEspecie.diferenca": "calculado automaticamente",
+    "MovimentacaoEspecie.variacao_percentual": "calculado automaticamente"
+  },
+
+  "calculos_automaticos": [
+    {
+      "campo": "DespesaCaixa.valor",
+      "operacao": "round(valor, 2)",
+      "exemplo": "99.999 → 100.00"
+    },
+    {
+      "campo": "MovimentacaoEspecie.diferenca",
+      "operacao": "valor_esperado - valor_informado",
+      "exemplo": "2500.00 - 2495.30 = 4.70"
+    },
+    {
+      "campo": "MovimentacaoEspecie.variacao_percentual",
+      "operacao": "(diferenca / valor_esperado) * 100",
+      "exemplo": "(4.70 / 2500.00) * 100 = 0.19%"
+    },
+    {
+      "campo": "FechamentoCaixa.quebra_caixa",
+      "operacao": "saldo_esperado - saldo_informado",
+      "exemplo": "2500.00 - 2495.30 = 4.70"
+    },
+    {
+      "campo": "ResumoAuditoriaUnidade.desvio_percentual_media_despesas",
+      "operacao": "((despesas_operacionais / faturamento_total) - 0.05) * 100",
+      "padraoHistorico": "5%"
+    },
+    {
+      "campo": "ResumoAuditoriaUnidade.outlier_unidade",
+      "operacao": "abs(desvio_percentual) > 10",
+      "descricao": "True se desvio acima de 10%"
+    }
+  ]
+}
