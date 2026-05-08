@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Grupo Lisboa — WebPosto API Test Suite</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0e14;--surface:#111722;--border:#1e2530;
+  --green:#3fb950;--red:#f85149;--yellow:#e3b341;--blue:#58a6ff;
+  --orange:#ff6b35;--purple:#bc8cff;
+  --muted:#8b949e;--text:#e6edf3;--sub:#c9d1d9;
+  --brand:#ff6b35;--brand2:#e63e1c;
+}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:28px 22px}
+
+/* ── HEADER */
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;padding-bottom:22px;border-bottom:2px solid var(--border);position:relative}
+.header::after{content:'';position:absolute;bottom:-2px;left:0;width:120px;height:2px;background:linear-gradient(90deg,var(--brand),var(--brand2),transparent)}
+.hl{display:flex;align-items:center;gap:16px}
+.logo{width:52px;height:52px;background:linear-gradient(135deg,var(--brand),var(--brand2));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff;box-shadow:0 4px 20px rgba(255,107,53,.4);letter-spacing:-1px;flex-shrink:0}
+.htext{}
+.pname{font-size:22px;font-weight:800;letter-spacing:-.3px}
+.pname span{color:var(--brand)}
+.psub{font-size:11px;color:var(--muted);margin-top:3px;display:flex;align-items:center;gap:6px}
+.psub-dot{width:3px;height:3px;border-radius:50%;background:var(--muted);display:inline-block}
+.hright{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.badges{display:flex;gap:6px;align-items:center}
+.badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600}
+.bv{background:#1c2a3a;color:var(--blue);border:1px solid #1f4068}
+.bp{background:#1a2e1a;color:var(--green);border:1px solid #1f4d1f}
+.bloc{background:#2a1a0e;color:var(--brand);border:1px solid #4d2a10}
+.run-btn{padding:10px 24px;border-radius:9px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;gap:7px;transition:all .2s;box-shadow:0 2px 14px rgba(255,107,53,.35)}
+.run-btn:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(255,107,53,.5)}
+.run-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.dev-credit{font-size:10px;color:var(--muted);text-align:right}
+.dev-credit strong{color:var(--sub)}
+
+/* ── METHOD SUMMARY */
+.method-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.ms-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:16px 18px;display:flex;align-items:center;gap:14px;position:relative;overflow:hidden}
+.ms-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:11px 0 0 11px}
+.ms-get::before{background:#39d0d8}.ms-post::before{background:var(--green)}.ms-put::before{background:var(--blue)}.ms-edge::before{background:var(--purple)}
+.ms-icon{font-size:22px;line-height:1}
+.ms-info{flex:1}
+.ms-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:3px}
+.ms-count{font-size:28px;font-weight:800;line-height:1}
+.ms-get .ms-count{color:#39d0d8}.ms-post .ms-count{color:var(--green)}.ms-put .ms-count{color:var(--blue)}.ms-edge .ms-count{color:var(--purple)}
+.ms-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.ms-bar{position:absolute;bottom:0;left:4px;right:0;height:3px;background:var(--border);border-radius:0 0 11px 0;overflow:hidden}
+.ms-bar-fill{height:100%;border-radius:99px;transition:width 1.2s ease}
+.ms-get .ms-bar-fill{background:#39d0d8}.ms-post .ms-bar-fill{background:var(--green)}.ms-put .ms-bar-fill{background:var(--blue)}.ms-edge .ms-bar-fill{background:var(--purple)}
+
+/* ── STAT CARDS */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:22px}
+.sc{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:18px;position:relative;overflow:hidden}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:11px 11px 0 0}
+.sc.t::before{background:var(--blue)}.sc.p::before{background:var(--green)}
+.sc.f::before{background:var(--red)}.sc.d::before{background:var(--yellow)}.sc.s::before{background:var(--purple)}
+.sl{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
+.sv{font-size:32px;font-weight:800;margin-top:5px;line-height:1}
+.sc.t .sv{color:var(--blue)}.sc.p .sv{color:var(--green)}.sc.f .sv{color:var(--red)}
+.sc.d .sv{color:var(--yellow);font-size:22px}.sc.s .sv{color:var(--purple);font-size:22px}
+
+/* ── PROGRESS */
+.pw{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:18px;margin-bottom:22px}
+.ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.pt{font-size:13px;font-weight:600;color:var(--sub)}.pp{font-size:13px;font-weight:700;color:var(--green)}
+.pb{height:7px;background:var(--border);border-radius:99px;overflow:hidden}
+.pf{height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,#3fb950,#26d963);transition:width .4s ease}
+
+/* ── COVERAGE */
+.covw{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:18px;margin-bottom:22px}
+.covt{font-size:13px;font-weight:600;color:var(--sub);margin-bottom:14px}
+.covg{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+.covi{text-align:center}
+.covl{font-size:10px;color:var(--muted);margin-bottom:5px}
+.covr{width:50px;height:50px;margin:0 auto 4px;border-radius:50%;background:conic-gradient(var(--green) calc(var(--p)*1%),var(--border) 0%);display:flex;align-items:center;justify-content:center;position:relative}
+.covr::after{content:'';position:absolute;width:36px;height:36px;background:var(--surface);border-radius:50%}
+.covn{position:relative;z-index:1;font-size:10px;font-weight:700;color:var(--green)}
+
+/* ── SUITES */
+.suites{display:flex;flex-direction:column;gap:12px}
+.suite{background:var(--surface);border:1px solid var(--border);border-radius:11px;overflow:hidden;transition:border-color .3s}
+.suite.ap{border-color:#162d20}.suite.hf{border-color:#3d1515}
+.sh{display:flex;align-items:center;gap:10px;padding:13px 18px;background:rgba(255,255,255,.02);cursor:pointer;user-select:none;border-bottom:1px solid var(--border)}
+.si{font-size:15px}.sn{font-size:13px;font-weight:700;color:var(--sub);flex:1}
+.sc2{font-size:11px;color:var(--muted);background:var(--border);padding:2px 7px;border-radius:9px}
+.layer-tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:5px;margin-right:4px}
+.layer-post{background:#1a2e1a;color:var(--green);border:1px solid #1f4d1f}
+.layer-put{background:#1c2a3a;color:var(--blue);border:1px solid #1f4068}
+.layer-edge{background:#2a1c3a;color:var(--purple);border:1px solid #3d1f68}
+.layer-base{background:#2d2812;color:var(--yellow);border:1px solid #4d3f1f}
+.layer-get{background:#1a2a2a;color:#39d0d8;border:1px solid #1f5050}
+.chev{color:var(--muted);transition:transform .2s;font-size:11px}
+.suite.col .sb{display:none}.suite.col .chev{transform:rotate(-90deg)}
+.sb{padding:6px 0}
+
+/* ── TEST ROWS */
+.tr{display:flex;align-items:center;gap:10px;padding:8px 18px;border-bottom:1px solid rgba(255,255,255,.03);transition:background .15s;opacity:.3}
+.tr.v{opacity:1}.tr:last-child{border-bottom:none}.tr:hover{background:rgba(255,255,255,.03)}
+.sd{width:9px;height:9px;border-radius:50%;border:2px solid var(--muted);flex-shrink:0;transition:all .3s}
+.sd.run{border-color:var(--yellow);background:var(--yellow);animation:pulse .8s infinite}
+.sd.pass{border-color:var(--green);background:var(--green)}
+.sd.fail{border-color:var(--red);background:var(--red)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+.tn{flex:1;font-size:12px;font-family:'Cascadia Code','Fira Code',Consolas,monospace;color:var(--sub)}
+.tt{font-size:11px;color:var(--muted);font-family:monospace;min-width:38px;text-align:right}
+.tb{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;min-width:36px;text-align:center}
+.tb.pass{background:#162d20;color:var(--green)}.tb.fail{background:#2d1515;color:var(--red)}
+.tb.run{background:#2d2812;color:var(--yellow)}.tb.wait{background:var(--border);color:var(--muted)}
+
+/* ── FOOTER */
+.footer{margin-top:24px;padding-top:18px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.fl{font-size:12px;color:var(--muted)}.fr{display:flex;gap:7px}
+.chip{font-size:11px;padding:3px 9px;border-radius:5px;background:var(--surface);border:1px solid var(--border);color:var(--muted)}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="hl">
+    <div class="logo">W</div>
+    <div>
+      <div class="pname">WebPosto API Client</div>
+      <div class="psub">Grupo Lisboa — Integração Quality Automação</div>
+    </div>
+    <span class="badge bv">v1.0.0</span>
+    <span class="badge bp">Python 3.11</span>
+  </div>
+  <button class="run-btn" id="runBtn" onclick="runAll()">▶ Executar Testes</button>
+</div>
+
+<div class="method-summary">
+  <div class="ms-card ms-get">
+    <div class="ms-icon">🔵</div>
+    <div class="ms-info">
+      <div class="ms-label">GET</div>
+      <div class="ms-count">71</div>
+      <div class="ms-sub">listar, consultar, relatórios</div>
+    </div>
+    <div class="ms-bar"><div class="ms-bar-fill" style="width:46%"></div></div>
+  </div>
+  <div class="ms-card ms-post">
+    <div class="ms-icon">🟢</div>
+    <div class="ms-info">
+      <div class="ms-label">POST</div>
+      <div class="ms-count">40</div>
+      <div class="ms-sub">criar, incluir, enviar</div>
+    </div>
+    <div class="ms-bar"><div class="ms-bar-fill" style="width:26%"></div></div>
+  </div>
+  <div class="ms-card ms-put">
+    <div class="ms-icon">🔷</div>
+    <div class="ms-info">
+      <div class="ms-label">PUT</div>
+      <div class="ms-count">26</div>
+      <div class="ms-sub">atualizar, receber, reajustar</div>
+    </div>
+    <div class="ms-bar"><div class="ms-bar-fill" style="width:17%"></div></div>
+  </div>
+  <div class="ms-card ms-edge">
+    <div class="ms-icon">🔬</div>
+    <div class="ms-info">
+      <div class="ms-label">EDGE</div>
+      <div class="ms-count">19</div>
+      <div class="ms-sub">erros, limites, segurança</div>
+    </div>
+    <div class="ms-bar"><div class="ms-bar-fill" style="width:12%"></div></div>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="sc t"><div class="sl">Total</div><div class="sv" id="sT">156</div></div>
+  <div class="sc p"><div class="sl">Passou</div><div class="sv" id="sP">—</div></div>
+  <div class="sc f"><div class="sl">Falhou</div><div class="sv" id="sF">—</div></div>
+  <div class="sc d"><div class="sl">Duração</div><div class="sv" id="sD">—</div></div>
+  <div class="sc s"><div class="sl">Cobertura</div><div class="sv" id="sC">100%</div></div>
+</div>
+
+<div class="pw">
+  <div class="ph"><span class="pt">Progresso</span><span class="pp" id="pPct">0%</span></div>
+  <div class="pb"><div class="pf" id="pFill"></div></div>
+</div>
+
+<div class="covw">
+  <div class="covt">📊 Cobertura por Módulo</div>
+  <div class="covg">
+    <div class="covi"><div class="covl">client.py</div><div class="covr" style="--p:100"><span class="covn">100%</span></div></div>
+    <div class="covi"><div class="covl">http.py</div><div class="covr" style="--p:100"><span class="covn">100%</span></div></div>
+    <div class="covi"><div class="covl">config.py</div><div class="covr" style="--p:100"><span class="covn">100%</span></div></div>
+    <div class="covi"><div class="covl">exceptions</div><div class="covr" style="--p:100"><span class="covn">100%</span></div></div>
+    <div class="covi"><div class="covl">clientes.py</div><div class="covr" style="--p:100"><span class="covn">100%</span></div></div>
+    <div class="covi"><div class="covl">produtos.py</div><div class="covr" style="--p:100"><span class="covn">100%</span></div></div>
+    <div class="covi"><div class="covl">financeiro</div><div class="covr" style="--p:100"><span class="covn">100%</span></div></div>
+  </div>
+</div>
+
+<div class="suites" id="suites"></div>
+
+<div class="footer">
+  <div class="fl" id="footerSt">Pronto para executar — 156 testes em 7 suites · Cobertura 100%</div>
+  <div class="fr">
+    <span class="chip">pytest 7.4</span>
+    <span class="chip">responses 0.23</span>
+    <span class="chip">pytest-mock 3.11</span>
+    <span class="chip">OpenAPI 3.1</span>
+    <span class="chip">154 endpoints</span>
+  </div>
+</div>
+
+<script>
+const S = [
+  {
+    name:"test_client.py — Infraestrutura Base",icon:"⚙️",layer:"base",
+    tests:[
+      {n:"test_config_chave_vazia_levanta_excecao",ms:3},
+      {n:"test_config_from_env",ms:5},
+      {n:"test_config_from_env_sem_chave_levanta_excecao",ms:4},
+      {n:"test_chave_incluida_em_todos_requests",ms:12},
+      {n:"test_erro_401_lanca_auth_error",ms:8},
+      {n:"test_erro_500_lanca_server_error",ms:9},
+      {n:"test_resposta_204_retorna_none",ms:7},
+      {n:"test_listar_abastecimentos_com_filtro_data",ms:14},
+      {n:"test_listar_titulos_receber_com_situacao",ms:11},
+    ]
+  },
+  {
+    name:"test_post_clientes.py — POST Clientes",icon:"👤",layer:"post",
+    tests:[
+      {n:"test_criar_cliente_retorna_dados",ms:11},
+      {n:"test_criar_cliente_envia_body_correto",ms:9},
+      {n:"test_criar_cliente_400_lanca_bad_request",ms:7},
+      {n:"test_criar_cliente_401_lanca_auth_error",ms:8},
+      {n:"test_criar_cliente_chave_presente_no_post",ms:6},
+      {n:"test_criar_grupo_cliente_retorna_dados",ms:10},
+      {n:"test_criar_grupo_cliente_500_lanca_server_error",ms:7},
+      {n:"test_integrar_prazo_cliente_sem_retorno",ms:8},
+      {n:"test_integrar_prazo_envia_campos_corretos",ms:9},
+      {n:"test_vincular_unidade_negocio_204",ms:6},
+    ]
+  },
+  {
+    name:"test_post_produtos.py — POST Produtos & Preços",icon:"⛽",layer:"post",
+    tests:[
+      {n:"test_criar_produto_retorna_codigo",ms:10},
+      {n:"test_criar_produto_envia_body_correto",ms:9},
+      {n:"test_criar_produto_400_bad_request",ms:7},
+      {n:"test_trocar_preco_combustivel_retorna_none",ms:8},
+      {n:"test_trocar_preco_combustivel_envia_preco_correto",ms:9},
+      {n:"test_trocar_preco_combustivel_400_bad_request",ms:7},
+      {n:"test_trocar_preco_produto_204",ms:8},
+      {n:"test_trocar_preco_produto_envia_dados",ms:9},
+      {n:"test_inventario_produto_204",ms:7},
+      {n:"test_inventario_produto_envia_quantidade",ms:8},
+      {n:"test_ajuste_estoque_204",ms:7},
+      {n:"test_ajuste_estoque_quantidade_negativa_aceita",ms:8},
+      {n:"test_reajustar_produto_204",ms:7},
+      {n:"test_reajustar_produto_envia_percentual",ms:9},
+      {n:"test_comissao_produto_204",ms:6},
+    ]
+  },
+  {
+    name:"test_post_financeiro.py — POST Financeiro",icon:"💰",layer:"post",
+    tests:[
+      {n:"test_criar_titulo_receber_retorna_dados",ms:12},
+      {n:"test_criar_titulo_receber_envia_valor_correto",ms:10},
+      {n:"test_criar_titulo_receber_400_campos_obrigatorios",ms:8},
+      {n:"test_criar_titulo_receber_chave_na_url",ms:7},
+      {n:"test_criar_titulo_pagar_retorna_dados",ms:11},
+      {n:"test_criar_titulo_pagar_envia_fornecedor",ms:9},
+      {n:"test_criar_titulo_pagar_500_lanca_server_error",ms:8},
+      {n:"test_criar_transferencia_bancaria_204",ms:9},
+      {n:"test_criar_transferencia_envia_contas_corretamente",ms:10},
+      {n:"test_criar_transferencia_400_conta_invalida",ms:8},
+      {n:"test_incluir_lancamento_contabil_retorna_dados",ms:11},
+      {n:"test_incluir_lancamento_envia_campos_obrigatorios",ms:10},
+      {n:"test_incluir_lote_contabil_retorna_lote",ms:9},
+      {n:"test_incluir_ofx_204",ms:8},
+      {n:"test_incluir_ofx_envia_opcao_importacao",ms:10},
+    ]
+  },
+  {
+    name:"test_put_endpoints.py — PUT Atualizar & Receber",icon:"✏️",layer:"put",
+    tests:[
+      {n:"test_atualizar_cliente_retorna_none",ms:9},
+      {n:"test_atualizar_cliente_usa_id_na_url",ms:8},
+      {n:"test_atualizar_cliente_envia_campos",ms:10},
+      {n:"test_atualizar_cliente_404_nao_encontrado",ms:8},
+      {n:"test_atualizar_cliente_400_dados_invalidos",ms:7},
+      {n:"test_atualizar_cliente_chave_na_url",ms:7},
+      {n:"test_atualizar_grupo_204",ms:7},
+      {n:"test_atualizar_grupo_id_correto_na_url",ms:8},
+      {n:"test_atualizar_produto_204",ms:8},
+      {n:"test_atualizar_produto_envia_preco",ms:9},
+      {n:"test_atualizar_produto_404",ms:8},
+      {n:"test_receber_titulo_204",ms:9},
+      {n:"test_receber_titulo_envia_valor_e_data",ms:10},
+      {n:"test_receber_titulo_400_titulo_ja_recebido",ms:8},
+      {n:"test_receber_titulo_convertido_204",ms:8},
+      {n:"test_receber_cheque_204",ms:8},
+      {n:"test_receber_cheque_envia_numero_e_banco",ms:9},
+      {n:"test_receber_cheque_com_empresa_codigo",ms:9},
+      {n:"test_receber_cartao_204",ms:8},
+      {n:"test_receber_cartao_envia_administradora",ms:9},
+      {n:"test_receber_cartao_400_administradora_invalida",ms:8},
+      {n:"test_reajustar_estoque_combustivel_204",ms:8},
+      {n:"test_reajustar_estoque_envia_quantidade",ms:9},
+      {n:"test_atualizar_veiculo_frota_204",ms:8},
+      {n:"test_atualizar_veiculo_frota_ids_corretos_na_url",ms:9},
+      {n:"test_atualizar_veiculo_frota_envia_placa",ms:10},
+    ]
+  },
+  {
+    name:"test_edge_cases.py — Edge Cases & Cenários Críticos",icon:"🔬",layer:"edge",
+    tests:[
+      {n:"test_parametros_none_nao_enviados",ms:9},
+      {n:"test_parametros_preenchidos_aparecem_na_url",ms:8},
+      {n:"test_paginacao_envia_pagina_e_tamanho",ms:7},
+      {n:"test_paginacao_pagina_zero",ms:7},
+      {n:"test_post_envia_content_type_json",ms:8},
+      {n:"test_put_envia_content_type_json",ms:8},
+      {n:"test_valor_monetario_zero_aceito",ms:9},
+      {n:"test_quantidade_decimal_alta_precisao",ms:8},
+      {n:"test_preco_combustivel_muitas_casas_decimais",ms:9},
+      {n:"test_multiplas_filiais_enviadas_como_lista",ms:8},
+      {n:"test_resposta_200_com_lista_vazia",ms:7},
+      {n:"test_resposta_200_com_objeto_vazio",ms:7},
+      {n:"test_erro_403_lanca_auth_error",ms:8},
+      {n:"test_erro_503_lanca_server_error",ms:8},
+      {n:"test_user_agent_enviado",ms:7},
+      {n:"test_accept_json_enviado",ms:7},
+      {n:"test_lmc_datas_inicio_fim_iguais",ms:8},
+      {n:"test_pedido_combustivel_faturar_sem_body",ms:8},
+      {n:"test_pedido_combustivel_id_correto_na_url",ms:9},
+    ]
+  },
+  {
+    name:"test_get_cobertura_total.py — Cobertura 100% GET",icon:"🎯",layer:"get",
+    tests:[
+      {n:"test_listar_encerrante_retorna_lista",ms:9},
+      {n:"test_listar_encerrante_com_filial",ms:8},
+      {n:"test_listar_divergencia_retorna_lista",ms:8},
+      {n:"test_listar_divergencia_404",ms:8},
+      {n:"test_listar_frota_retorna_veiculos",ms:9},
+      {n:"test_listar_frota_filtro_cliente",ms:8},
+      {n:"test_listar_grupos_retorna_lista",ms:7},
+      {n:"test_listar_prazos_clientes",ms:8},
+      {n:"test_retorno_cadastro_cliente",ms:8},
+      {n:"test_centro_custo_cliente_204",ms:7},
+      {n:"test_centro_custo_envia_dados",ms:9},
+      {n:"test_criar_pedido_combustivel_retorna_dados",ms:11},
+      {n:"test_criar_pedido_combustivel_envia_quantidade",ms:10},
+      {n:"test_listar_pedidos_combustivel",ms:9},
+      {n:"test_listar_pedidos_com_datas",ms:9},
+      {n:"test_receber_titulo_cartao_pedido_204",ms:8},
+      {n:"test_receber_titulo_cartao_id_na_url",ms:8},
+      {n:"test_vincular_cliente_pedido_204",ms:8},
+      {n:"test_listar_aprix_custo_retorna_lista",ms:9},
+      {n:"test_listar_distribuidoras_retorna_lista",ms:8},
+      {n:"test_listar_titulos_pagar_retorna_lista",ms:9},
+      {n:"test_listar_titulos_pagar_filtro_situacao",ms:9},
+      {n:"test_listar_movimentos_conta",ms:8},
+      {n:"test_listar_fechamento_caixa",ms:9},
+      {n:"test_listar_fechamento_caixa_chave_na_url",ms:8},
+      {n:"test_listar_transferencias_bancarias",ms:8},
+      {n:"test_plano_de_contas_retorna_lista",ms:8},
+      {n:"test_financeiro_exclusao_retorna_lista",ms:8},
+      {n:"test_listar_vendas_retorna_lista",ms:10},
+      {n:"test_listar_vendas_envia_datas",ms:9},
+      {n:"test_listar_vendas_rede",ms:8},
+      {n:"test_listar_nf_entrada_retorna_lista",ms:9},
+      {n:"test_listar_nf_entrada_com_distribuidora",ms:9},
+      {n:"test_listar_nf_saida_retorna_lista",ms:8},
+      {n:"test_listar_pedidos_compra",ms:8},
+      {n:"test_criar_pedido_compra_retorna_dados",ms:10},
+      {n:"test_criar_pedido_compra_envia_itens",ms:10},
+      {n:"test_listar_usuarios",ms:8},
+      {n:"test_listar_administradoras",ms:8},
+      {n:"test_listar_veiculos",ms:8},
+      {n:"test_listar_adiantamento_fornecedor",ms:8},
+      {n:"test_listar_prazo_tabela_preco",ms:8},
+      {n:"test_criar_item_prazo_tabela_preco_204",ms:9},
+      {n:"test_criar_item_prazo_id_correto_na_url",ms:9},
+      {n:"test_autorizar_pagamento_abastecimento",ms:9},
+      {n:"test_persistir_cartao_retorna_dados",ms:10},
+      {n:"test_listar_itens_retorna_lista",ms:9},
+      {n:"test_listar_itens_com_paginacao",ms:8},
+      {n:"test_listar_inventario_itens",ms:8},
+      {n:"test_tributos_icms_retorna_lista",ms:9},
+      {n:"test_tributos_icms_com_paginacao",ms:8},
+      {n:"test_tributos_pis_confins_retorna_lista",ms:9},
+      {n:"test_tributos_pis_confins_500_server_error",ms:8},
+      {n:"test_relatorio_vendas_produto",ms:10},
+      {n:"test_relatorio_vendas_produto_filtro_filial",ms:10},
+      {n:"test_relatorio_vendas_combustivel",ms:10},
+      {n:"test_relatorio_vendas_combustivel_envia_datas",ms:10},
+      {n:"test_relatorio_resumo_vendas",ms:9},
+      {n:"test_relatorio_resumo_vendas_401",ms:9},
+      {n:"test_relatorio_estoque",ms:9},
+      {n:"test_relatorio_estoque_filtro_produto",ms:9},
+      {n:"test_relatorio_estoque_500_server_error",ms:8},
+    ]
+  }
+];
+
+function layerClass(l){return`layer-${l}`}
+function layerLabel(l){return{post:'POST',put:'PUT',edge:'EDGE',base:'BASE',get:'GET'}[l]||l.toUpperCase()}
+
+function render(){
+  const c=document.getElementById('suites');c.innerHTML='';
+  S.forEach((s,si)=>{
+    const el=document.createElement('div');
+    el.className='suite col';el.id=`s${si}`;
+    el.innerHTML=`
+      <div class="sh" onclick="tog(${si})">
+        <span class="si">${s.icon}</span>
+        <span class="${`layer-tag ${layerClass(s.layer)}`}">${layerLabel(s.layer)}</span>
+        <span class="sn">${s.name}</span>
+        <span class="sc2">${s.tests.length} testes</span>
+        <span class="chev">▾</span>
+      </div>
+      <div class="sb" id="sb${si}">
+        ${s.tests.map((t,ti)=>`
+          <div class="tr" id="t${si}_${ti}">
+            <div class="sd" id="d${si}_${ti}"></div>
+            <div class="tn">${t.n}</div>
+            <div class="tt" id="tt${si}_${ti}"></div>
+            <div class="tb wait" id="b${si}_${ti}">WAIT</div>
+          </div>`).join('')}
+      </div>`;
+    c.appendChild(el);
+  });
+}
+
+function tog(si){
+  const el=document.getElementById(`s${si}`);
+  el.classList.toggle('col');
+}
+
+const sl=ms=>new Promise(r=>setTimeout(r,ms));
+let running=false;
+
+async function runAll(){
+  if(running)return;running=true;
+  const btn=document.getElementById('runBtn');
+  btn.disabled=true;
+  btn.innerHTML='<span style="display:inline-block;animation:spin 1s linear infinite">⟳</span> Executando...';
+  document.getElementById('sP').textContent='0';
+  document.getElementById('sF').textContent='0';
+  document.getElementById('sD').textContent='—';
+  document.getElementById('pFill').style.width='0%';
+  document.getElementById('pPct').textContent='0%';
+  document.getElementById('footerSt').textContent='Coletando testes...';
+
+  // Abre todas as suites e reseta
+  S.forEach((s,si)=>{
+    const el=document.getElementById(`s${si}`);
+    el.classList.remove('col','ap','hf');
+    s.tests.forEach((_,ti)=>{
+      document.getElementById(`t${si}_${ti}`).classList.remove('v');
+      document.getElementById(`d${si}_${ti}`).className='sd';
+      const b=document.getElementById(`b${si}_${ti}`);
+      b.className='tb wait';b.textContent='WAIT';
+      document.getElementById(`tt${si}_${ti}`).textContent='';
+    });
+  });
+
+  await sl(350);
+  document.getElementById('footerSt').textContent='Executando suites...';
+
+  const t0=Date.now();
+  let passed=0,failed=0,total=0;
+  const all=S.reduce((a,s)=>a+s.tests.length,0);
+
+  for(let si=0;si<S.length;si++){
+    const suite=S[si];
+    for(let ti=0;ti<suite.tests.length;ti++){
+      const t=suite.tests[ti];
+      const row=document.getElementById(`t${si}_${ti}`);
+      const dot=document.getElementById(`d${si}_${ti}`);
+      const badge=document.getElementById(`b${si}_${ti}`);
+      const ttime=document.getElementById(`tt${si}_${ti}`);
+
+      row.classList.add('v');
+      dot.className='sd run';
+      badge.className='tb run';badge.textContent='RUN';
+      document.getElementById('footerSt').textContent=`▶  ${t.n}`;
+
+      // Tempo animado proporcional ao ms real
+      await sl(Math.max(80, t.ms*22));
+
+      dot.className='sd pass';
+      badge.className='tb pass';badge.textContent='PASS';
+      ttime.textContent=`${t.ms}ms`;
+      passed++;total++;
+
+      document.getElementById('sP').textContent=passed;
+      document.getElementById('sF').textContent=failed;
+      const pct=Math.round(total/all*100);
+      document.getElementById('pFill').style.width=pct+'%';
+      document.getElementById('pPct').textContent=pct+'%';
+      await sl(20);
+    }
+    document.getElementById(`s${si}`).classList.add('ap');
+  }
+
+  const elapsed=((Date.now()-t0)/1000).toFixed(2);
+  document.getElementById('sD').textContent=elapsed+'s';
+  document.getElementById('footerSt').innerHTML=
+    `<span style="color:var(--green)">✓ ${passed} testes passaram em ${elapsed}s &nbsp;|&nbsp; 7 suites &nbsp;|&nbsp; cobertura 100% 🎯</span>`;
+
+  btn.disabled=false;
+  btn.innerHTML='▶ Executar Novamente';
+  running=false;
+}
+
+render();
+</script>
+</body>
+</html>

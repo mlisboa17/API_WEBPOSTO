@@ -1,0 +1,65 @@
+# Dockerfile - WebPosto API (Unified Service)
+# Multi-stage build for optimized production image
+# Builds WebPosto_API with support for legacy Logos Auditoria endpoints
+
+# Stage 1: Build
+FROM python:3.11-slim as builder
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy and install requirements
+COPY WebPosto_API/requirements.txt .
+RUN pip install --user --no-cache-dir -r requirements.txt
+
+# Stage 2: Runtime
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Create non-root user for security
+RUN groupadd -r webposto && useradd -r -g webposto webposto
+
+# Copy Python packages from builder
+COPY --from=builder /root/.local /home/webposto/.local
+
+# Copy API code
+COPY WebPosto_API/src ./src
+COPY WebPosto_API/main.py .
+COPY WebPosto_API/env.example .env
+COPY WebPosto_API/scripts ./scripts
+COPY WebPosto_API/pyproject.toml .
+
+# Copy legacy Logos Auditoria files for backward compatibility
+COPY config.py ./legacy/config.py
+COPY models_auditoria.py ./legacy/models_auditoria.py
+COPY servicos_auditoria.py ./legacy/servicos_auditoria.py
+
+# Environment variables
+ENV PATH=/home/webposto/.local/bin:$PATH \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PORT=8000 \
+    HOST=0.0.0.0 \
+    ENVIRONMENT=production
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5).read()" || exit 1
+
+# Permissions
+RUN chown -R webposto:webposto /app
+
+# User
+USER webposto
+
+# Expose
+EXPOSE 8000
+
+# Start service
+CMD ["python", "main.py"]

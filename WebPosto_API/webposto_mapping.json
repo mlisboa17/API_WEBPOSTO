@@ -1,0 +1,1212 @@
+[
+  {
+    "categoria": "Abastecimento",
+    "nome": "Divergências de abastecimento",
+    "path": "/INTEGRACAO/ABASTECIMENTO_DIVERGENCIA",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\abastecimento.py",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": false,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Abastecimento",
+    "nome": "Encerrantes",
+    "path": "/INTEGRACAO/ABASTECIMENTO_ENCERRANTE",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\SUGESTOES_PROXIMOS_DASHBOARDS.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\abastecimento.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": false,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Abastecimento",
+    "nome": "Listar abastecimentos",
+    "path": "/INTEGRACAO/ABASTECIMENTO",
+    "found": true,
+    "files": [
+      "WebPosto_API\\COMO_APRESENTAR_AOS_DIRETORES.md",
+      "WebPosto_API\\INSPECIONAR_API.py",
+      "WebPosto_API\\MAPEAMENTO_ABASTECIMENTO.md",
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\RESULTADO_API.json",
+      "WebPosto_API\\SUGESTOES_PROXIMOS_DASHBOARDS.md",
+      "WebPosto_API\\TESTE_MAPEAMENTO_ABASTECIMENTO.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\dashboard_abastecimento.html",
+      "WebPosto_API\\dashboard_vendas.html",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\scripts_export_hub_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\abastecimento.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_client.py",
+      "WebPosto_API\\tests\\unit\\test_edge_cases.py",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true,
+      "cursor": true
+    }
+  },
+  {
+    "categoria": "Clientes",
+    "nome": "Frota (veículos por cliente)",
+    "path": "/INTEGRACAO/CLIENTE_FROTA",
+    "found": true,
+    "files": [
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\SUGESTOES_PROXIMOS_DASHBOARDS.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\clientes.py",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\tests\\unit\\test_put_endpoints.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Clientes",
+    "nome": "Grupos de clientes",
+    "path": "/INTEGRACAO/GRUPO_CLIENTE",
+    "found": true,
+    "files": [
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\clientes.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\tests\\unit\\test_post_clientes.py",
+      "WebPosto_API\\tests\\unit\\test_put_endpoints.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Clientes",
+    "nome": "Integração cadastro cliente (consulta)",
+    "path": "/INTEGRACAO/INTEGRACAO_CLIENTE_CADASTRO",
+    "found": true,
+    "files": [
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\clientes.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Clientes",
+    "nome": "Lista clientes com prazo",
+    "path": "/INTEGRACAO/INTEGRACAO_LISTA_CLIENTE_PRAZO",
+    "found": true,
+    "files": [
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\clientes.py",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Clientes",
+    "nome": "Listar clientes",
+    "path": "/INTEGRACAO/CLIENTE",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\SUGESTOES_PROXIMOS_DASHBOARDS.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\dashboard_vendas.html",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\clientes.py",
+      "WebPosto_API\\static\\explorador_tecnico.html",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_edge_cases.py",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\tests\\unit\\test_post_clientes.py",
+      "WebPosto_API\\tests\\unit\\test_put_endpoints.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Clientes",
+    "nome": "Retorno cadastro cliente (GET + filtros no body na lib — use query)",
+    "path": "/INTEGRACAO/RETORNO_CADASTRO_CLIENTE",
+    "found": true,
+    "files": [
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\clientes.py",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Financeiro",
+    "nome": "Adiantamento fornecedor",
+    "path": "/INTEGRACAO/ADIANTAMENTO_FORNECEDOR",
+    "found": true,
+    "files": [
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\financeiro.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\integracoes.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": false,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Financeiro",
+    "nome": "Caixa (turnos / movimento)",
+    "path": "/INTEGRACAO/CAIXA",
+    "found": true,
+    "files": [
+      "WebPosto_API\\INSPECIONAR_API.py",
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\RESULTADO_API.json",
+      "WebPosto_API\\SUGESTOES_PROXIMOS_DASHBOARDS.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\dashboard_vendas.html",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\scripts_export_hub_catalog.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Financeiro",
+    "nome": "Caixa apresentado × apurado",
+    "path": "/INTEGRACAO/CAIXA_APRESENTADO",
+    "found": true,
+    "files": [
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\dashboard_vendas.html",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\scripts_export_hub_catalog.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true,
+      "cursor": true
+    }
+  },
+  {
+    "categoria": "Financeiro",
+    "nome": "Cartão — a pagar",
+    "path": "/INTEGRACAO/CARTAO_PAGAR",
+    "found": true,
+    "files": [
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\dashboard_vendas.html",
+      "WebPosto_API\\scripts_export_hub_catalog.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Financeiro",
+    "nome": "Cartão — compra",
+    "path": "/INTEGRACAO/CARTAO_COMPRA",
+    "found": true,
+    "files": [
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\dashboard_vendas.html",
+      "WebPosto_API\\scripts_export_hub_catalog.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Financeiro",
+    "nome": "Cartão — remessa",
+    "path": "/INTEGRACAO/CARTAO_REMESSA",
+    "found": true,
+    "files": [
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\dashboard_vendas.html",
+      "WebPosto_API\\scripts_export_hub_catalog.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Financeiro",
+    "nome": "Fechamento de caixa (endpoint dedicado)",
+    "path": "/INTEGRACAO/FECHAMENTO_CAIXA",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\dashboard_vendas.html",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\financeiro.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Financeiro",
+    "nome": "Financeiro exclusão (débito caixa)",
+    "path": "/INTEGRACAO/FINANCEIRO_EXCLUSAO",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\dashboard_vendas.html",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\scripts_export_hub_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\financeiro.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Financeiro",
+    "nome": "Movimento de conta",
+    "path": "/INTEGRACAO/MOVIMENTO_CONTA",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\SUGESTOES_PROXIMOS_DASHBOARDS.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\financeiro.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Financeiro",
+    "nome": "Plano de contas",
+    "path": "/INTEGRACAO/PLANO_DE_CONTAS",
+    "found": true,
+    "files": [
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\financeiro.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Financeiro",
+    "nome": "Transferência (integração legada)",
+    "path": "/INTEGRACAO/TRANSFERENCIA",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\financeiro.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\tests\\unit\\test_post_financeiro.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": false,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Financeiro",
+    "nome": "Transferência bancária",
+    "path": "/INTEGRACAO/TRANSFERENCIA_BANCARIA",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\financeiro.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\tests\\unit\\test_post_financeiro.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": false,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Financeiro",
+    "nome": "Títulos a pagar",
+    "path": "/INTEGRACAO/TITULO_PAGAR",
+    "found": true,
+    "files": [
+      "WebPosto_API\\COMO_APRESENTAR_AOS_DIRETORES.md",
+      "WebPosto_API\\DEMO_PARA_DIRETORES.md",
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\SUGESTOES_PROXIMOS_DASHBOARDS.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\dashboard_demo.html",
+      "WebPosto_API\\dashboard_filtros.html",
+      "WebPosto_API\\dashboard_vendas.html",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\index.html",
+      "WebPosto_API\\src\\webposto\\endpoints\\financeiro.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\tests\\unit\\test_post_financeiro.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Financeiro",
+    "nome": "Títulos a receber",
+    "path": "/INTEGRACAO/TITULO_RECEBER",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\SUGESTOES_PROXIMOS_DASHBOARDS.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\dashboard_vendas.html",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\financeiro.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_client.py",
+      "WebPosto_API\\tests\\unit\\test_edge_cases.py",
+      "WebPosto_API\\tests\\unit\\test_post_financeiro.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Pedido combustível",
+    "nome": "APRIX custo",
+    "path": "/INTEGRACAO/APRIX_CUSTO",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\combustivel.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Pedido combustível",
+    "nome": "Distribuidoras",
+    "path": "/INTEGRACAO/DISTRIBUIDORA",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\combustivel.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Pedido combustível",
+    "nome": "LMC",
+    "path": "/INTEGRACAO/LMC",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\combustivel.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_edge_cases.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Pedido combustível",
+    "nome": "Listar pedidos",
+    "path": "/INTEGRACAO/PEDIDO_COMBUSTIVEL/PEDIDO",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\SUGESTOES_PROXIMOS_DASHBOARDS.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\combustivel.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\integracoes.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_edge_cases.py",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Produtos",
+    "nome": "Combustível (cadastro)",
+    "path": "/INTEGRACAO/COMBUSTIVEL",
+    "found": true,
+    "files": [
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": false,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Produtos",
+    "nome": "Estoque (integração)",
+    "path": "/INTEGRACAO/ESTOQUE",
+    "found": true,
+    "files": [
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\SUGESTOES_PROXIMOS_DASHBOARDS.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": false,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Produtos",
+    "nome": "Itens inventário",
+    "path": "/INTEGRACAO/PRODUTO_INVENTARIO_ITENS",
+    "found": true,
+    "files": [
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\produtos.py",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Produtos",
+    "nome": "Lista de itens",
+    "path": "/INTEGRACAO/LISTA_DE_ITENS",
+    "found": true,
+    "files": [
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\produtos.py",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Produtos",
+    "nome": "Listar produtos",
+    "path": "/INTEGRACAO/PRODUTO",
+    "found": true,
+    "files": [
+      "WebPosto_API\\INSPECIONAR_API.py",
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\RESULTADO_API.json",
+      "WebPosto_API\\SUGESTOES_PROXIMOS_DASHBOARDS.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\dashboard_vendas.html",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\produtos.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_edge_cases.py",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\tests\\unit\\test_post_produtos.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Produtos",
+    "nome": "Preço por produto",
+    "path": "/INTEGRACAO/PRECO_PRODUTO",
+    "found": true,
+    "files": [
+      "WebPosto_API\\SUGESTOES_PROXIMOS_DASHBOARDS.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": false,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Produtos",
+    "nome": "Retorno cadastro produto",
+    "path": "/INTEGRACAO/RETORNO_CADASTRO_PRODUTO",
+    "found": true,
+    "files": [
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\produtos.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Produtos",
+    "nome": "Tributo ICMS produtos",
+    "path": "/INTEGRACAO/INTEGRACAO_PRODUTO_TRIBUTO_ICMS",
+    "found": true,
+    "files": [
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\produtos.py",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Produtos",
+    "nome": "Tributo PIS/COFINS produtos",
+    "path": "/INTEGRACAO/INTEGRACAO_PRODUTO_TRIBUTO_PIS_CONFINS",
+    "found": true,
+    "files": [
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\produtos.py",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Relatórios",
+    "nome": "Rel. estoque",
+    "path": "/INTEGRACAO/RELATORIO/ESTOQUE",
+    "found": true,
+    "files": [
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\relatorios.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Relatórios",
+    "nome": "Rel. venda combustível",
+    "path": "/INTEGRACAO/RELATORIO/VENDA_COMBUSTIVEL",
+    "found": true,
+    "files": [
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\relatorios.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Relatórios",
+    "nome": "Rel. venda produto",
+    "path": "/INTEGRACAO/RELATORIO/VENDA_PRODUTO",
+    "found": true,
+    "files": [
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\relatorios.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Relatórios",
+    "nome": "Resumo vendas",
+    "path": "/INTEGRACAO/RELATORIO/RESUMO_VENDAS",
+    "found": true,
+    "files": [
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\relatorios.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": false,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Vendas & NF",
+    "nome": "Administradoras",
+    "path": "/INTEGRACAO/ADMINISTRADORA",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\dashboard_vendas.html",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\integracoes.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Vendas & NF",
+    "nome": "Filiais",
+    "path": "/INTEGRACAO/FILIAL",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\dashboard_demo.html",
+      "WebPosto_API\\dashboard_filtros.html",
+      "WebPosto_API\\dashboard_vendas.html",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\client.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\integracoes.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_client.py",
+      "WebPosto_API\\tests\\unit\\test_edge_cases.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Vendas & NF",
+    "nome": "NF entrada",
+    "path": "/INTEGRACAO/NOTA_FISCAL_ENTRADA",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\integracoes.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Vendas & NF",
+    "nome": "NF saída",
+    "path": "/INTEGRACAO/NOTA_FISCAL_SAIDA",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\integracoes.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Vendas & NF",
+    "nome": "Pedidos de compras",
+    "path": "/INTEGRACAO/PEDIDO_COMPRAS",
+    "found": true,
+    "files": [
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\SUGESTOES_PROXIMOS_DASHBOARDS.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\integracoes.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Vendas & NF",
+    "nome": "Prazo tabela preço",
+    "path": "/INTEGRACAO/PRAZO_TABELA_PRECO",
+    "found": true,
+    "files": [
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\integracoes.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Vendas & NF",
+    "nome": "Usuário empresa rede",
+    "path": "/INTEGRACAO/USUARIO_EMPRESA_REDE",
+    "found": true,
+    "files": [
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\integracoes.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Vendas & NF",
+    "nome": "Usuários",
+    "path": "/INTEGRACAO/USUARIO",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\dashboard_vendas.html",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\integracoes.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Vendas & NF",
+    "nome": "Vendas",
+    "path": "/INTEGRACAO/VENDA",
+    "found": true,
+    "files": [
+      "WebPosto_API\\COMO_APRESENTAR_AOS_DIRETORES.md",
+      "WebPosto_API\\INSPECIONAR_API.py",
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\RESULTADO_API.json",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\dashboard_vendas.html",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\index.html",
+      "WebPosto_API\\src\\webposto\\endpoints\\integracoes.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": true
+    }
+  },
+  {
+    "categoria": "Vendas & NF",
+    "nome": "Vendas rede",
+    "path": "/INTEGRACAO/VENDA_REDE",
+    "found": true,
+    "files": [
+      "WebPosto_API\\README.md",
+      "WebPosto_API\\RELATORIO_ONTEM_09_04_2026.md",
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\integracoes.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": true,
+      "pag": true,
+      "fil": false
+    }
+  },
+  {
+    "categoria": "Vendas & NF",
+    "nome": "Veículos (cadastro geral)",
+    "path": "/INTEGRACAO/VEICULO",
+    "found": true,
+    "files": [
+      "WebPosto_API\\api_hub_catalog.js",
+      "WebPosto_API\\api_hub_get_catalog.json",
+      "WebPosto_API\\diagnostico_api.py",
+      "WebPosto_API\\diagnostico_resultado.json",
+      "WebPosto_API\\explorador_catalog.py",
+      "WebPosto_API\\src\\webposto\\endpoints\\integracoes.py",
+      "WebPosto_API\\static\\painel_webposto.html",
+      "WebPosto_API\\tests\\unit\\test_get_cobertura_total.py",
+      "WebPosto_API\\webposto_mapping.json",
+      "WebPosto_API\\webposto_mapping.md"
+    ],
+    "meta": {
+      "dates": false,
+      "pag": true,
+      "fil": false
+    }
+  }
+]

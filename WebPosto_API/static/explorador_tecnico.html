@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WebPosto — Explorador técnico (testes)</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --panel: #1a2332;
+      --border: #2d3a4f;
+      --text: #e7ecf3;
+      --muted: #8b9cb3;
+      --accent: #3d8bfd;
+      --ok: #3ecf8e;
+      --warn: #f5a524;
+      --err: #f25555;
+      --get: #3ecf8e;
+      --post: #6c9eff;
+      --put: #f5a524;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+      min-height: 100vh;
+    }
+    header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--panel);
+    }
+    header h1 { margin: 0 0 0.25rem; font-size: 1.25rem; }
+    header p { margin: 0; color: var(--muted); font-size: 0.875rem; }
+    nav {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0 1.5rem;
+      margin-top: -1px;
+      border-bottom: 1px solid var(--border);
+      background: var(--panel);
+    }
+    nav button {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      font-size: 0.9rem;
+    }
+    nav button.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    main { padding: 1.25rem 1.5rem 3rem; max-width: 1400px; margin: 0 auto; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 960px) { .grid { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+    }
+    .card h2 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--muted); font-weight: 600; }
+    label { display: block; font-size: 0.75rem; color: var(--muted); margin-bottom: 0.2rem; }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.45rem 0.55rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.875rem;
+    }
+    textarea { font-family: ui-monospace, monospace; min-height: 120px; }
+    textarea.tall { min-height: 280px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+    .field { margin-bottom: 0.65rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.55rem 1rem;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.875rem;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-secondary { background: var(--border); color: var(--text); }
+    .badge {
+      font-size: 0.65rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .m-get { background: rgba(62, 207, 142, 0.2); color: var(--get); }
+    .m-post { background: rgba(108, 158, 255, 0.2); color: var(--post); }
+    .m-put { background: rgba(245, 165, 36, 0.2); color: var(--put); }
+    .m-patch { background: rgba(200, 120, 255, 0.2); color: #c9a0ff; }
+    .m-delete { background: rgba(242, 85, 85, 0.2); color: var(--err); }
+    .doc { font-size: 0.875rem; color: var(--text); }
+    .doc h2 { margin: 0 0 0.75rem; font-size: 1.05rem; color: var(--text); }
+    .doc h3 { margin: 1.25rem 0 0.5rem; font-size: 0.95rem; color: var(--accent); }
+    .doc p, .doc li { color: var(--muted); line-height: 1.55; }
+    .doc ul { margin: 0.35rem 0 0.75rem 1.25rem; padding: 0; }
+    .doc .callout {
+      border-left: 3px solid var(--accent);
+      padding: 0.65rem 0.85rem;
+      margin: 0.75rem 0;
+      background: rgba(61, 139, 253, 0.08);
+      border-radius: 0 8px 8px 0;
+      color: var(--text);
+    }
+    .doc .callout--ok {
+      border-left-color: var(--ok);
+      background: rgba(62, 207, 142, 0.1);
+    }
+    .doc code { font-size: 0.8rem; background: var(--bg); padding: 0.12rem 0.35rem; border-radius: 4px; }
+    .doc table.ref { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin: 0.5rem 0 1rem; }
+    .doc table.ref th, .doc table.ref td {
+      border-bottom: 1px solid var(--border);
+      padding: 0.45rem 0.4rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    .doc table.ref th { color: var(--muted); width: 28%; }
+    .panel-hide { display: none; }
+    .alert {
+      padding: 0.65rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      margin-bottom: 0.75rem;
+      border: 1px solid var(--warn);
+      background: rgba(245, 165, 36, 0.08);
+      color: #ffd591;
+    }
+    table.diag { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    table.diag th, table.diag td {
+      border-bottom: 1px solid var(--border);
+      padding: 0.4rem 0.35rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    table.diag th { color: var(--muted); font-weight: 600; }
+    .scroll { overflow: auto; max-height: 70vh; }
+    .stat { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .stat span { color: var(--muted); }
+    .stat strong { color: var(--text); }
+    #outStatus { font-family: ui-monospace, monospace; font-size: 0.85rem; margin-bottom: 0.5rem; }
+    a { color: var(--accent); }
+    .path-vars { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .path-vars .field { flex: 1; min-width: 120px; margin: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>WebPosto — Explorador técnico</h1>
+    <p>Tela preservada para testes avançados (JSON, POST/PUT). Para uso do dia a dia use o
+      <a href="/" style="color:var(--accent);font-weight:600;">Painel amigável</a>.
+      Swagger:
+      <a href="https://web.qualityautomacao.com.br/webjars/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config" target="_blank" rel="noopener">OpenAPI</a>
+    </p>
+  </header>
+  <nav>
+    <button type="button" class="active" data-tab="explorador">Explorador</button>
+    <button type="button" data-tab="guia">Guia HTTP (GET, POST, PUT…)</button>
+    <button type="button" data-tab="diagnostico">Diagnóstico (catálogo)</button>
+  </nav>
+  <main>
+    <div id="tab-explorador">
+      <div class="alert">
+        <strong>POST e PUT</strong> podem alterar dados reais no WebPosto. Use chave de homologação quando existir.
+        Permissões (401/403) dependem do contrato da sua <strong>CHAVE</strong> com a Quality Automação.
+        Explicação detalhada de <strong>GET</strong> (consultar), <strong>POST</strong> (criar), <strong>PUT</strong> (atualizar), parâmetros e códigos HTTP: aba <strong>Guia HTTP</strong>.
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h2>Conexão</h2>
+          <div class="field">
+            <label>URL base (HTTPS recomendado)</label>
+            <input type="text" id="baseUrl" placeholder="https://web.qualityautomacao.com.br" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label>CHAVE de integração</label>
+            <input type="password" id="chave" placeholder="Cole a chave" autocomplete="off" />
+          </div>
+          <div class="row">
+            <div class="field">
+              <label>Data inicial</label>
+              <input type="date" id="dIni" />
+            </div>
+            <div class="field">
+              <label>Data final</label>
+              <input type="date" id="dFim" />
+            </div>
+          </div>
+          <div class="row3">
+            <div class="field">
+              <label>Página</label>
+              <input type="number" id="pagina" value="0" min="0" />
+            </div>
+            <div class="field">
+              <label>Tam. página</label>
+              <input type="number" id="tamPag" value="50" min="1" max="500" />
+            </div>
+            <div class="field">
+              <label>Filial(is) CSV</label>
+              <input type="text" id="filial" placeholder="ex: 1 ou 1,2" />
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Endpoint</h2>
+          <div class="field">
+            <label>Operação</label>
+            <select id="endpointSel"></select>
+          </div>
+          <div id="pathVarsWrap" class="field" style="display:none;">
+            <label>Parâmetros da URL</label>
+            <div id="pathVars" class="path-vars"></div>
+          </div>
+          <div class="field">
+            <label>Path final</label>
+            <input type="text" id="pathFinal" readonly style="opacity:0.9;" />
+          </div>
+          <div class="field">
+            <label>Query JSON (editável — mesclado ao enviar; CHAVE é adicionada no servidor)</label>
+            <textarea id="queryJson" class="tall" spellcheck="false"></textarea>
+          </div>
+          <div class="field" id="bodyWrap" style="display:none;">
+            <label>Body JSON (POST / PUT)</label>
+            <textarea id="bodyJson" spellcheck="false">{}</textarea>
+          </div>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <button type="button" class="btn btn-primary" id="btnSend">Executar requisição</button>
+            <button type="button" class="btn btn-secondary" id="btnFill">Preencher query a partir dos filtros</button>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:1rem;">
+        <h2>Resposta</h2>
+        <div id="outStatus"></div>
+        <textarea id="outBody" class="tall" readonly spellcheck="false" style="min-height:360px;"></textarea>
+      </div>
+    </div>
+
+    <div id="tab-guia" class="panel-hide doc">
+      <div class="card" style="margin-bottom:1rem;">
+        <h2>Visão geral da integração WebPosto (Quality Automação)</h2>
+        <p>
+          A API expõe rotas sob o prefixo <code>/INTEGRACAO/...</code>. Quase todas as chamadas exigem o parâmetro de consulta
+          <strong>CHAVE</strong> (sua chave de integração). Nesta tela, o servidor local (<strong>proxy</strong>) injeta a CHAVE a partir do campo que você preencheu ou do arquivo <code>.env</code>, para você não precisar colá-la em toda requisição manual.
+        </p>
+        <div class="callout callout--ok">
+          <strong>Catálogo = tudo que esta ferramenta sabe chamar:</strong> cada linha do inventário (aba Diagnóstico) e cada opção do select (aba Explorador) é uma rota que <strong>você pode disparar daqui</strong>, com o método HTTP indicado (GET, POST ou PUT). Ou seja: tudo que está no catálogo está coberto pelo proxy e pela interface.
+        </div>
+        <div class="callout">
+          <strong>Quando dá certo de verdade:</strong> a API WebPosto precisa aceitar a chamada. Isso depende da <strong>sua CHAVE</strong> ter permissão para aquela operação e filial, dos <strong>parâmetros</strong> e do <strong>body JSON</strong> estarem corretos (POST/PUT), e dos <strong>IDs na URL</strong> existirem (PUT). Sem isso você pode ver <strong>401</strong>, <strong>403</strong>, <strong>400</strong> ou <strong>404</strong> — a rota continua “fazível” na ferramenta, mas o servidor recusa ou corrige o pedido.
+        </div>
+        <p>
+          Documentação interativa (contrato oficial): <a href="https://web.qualityautomacao.com.br/webjars/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config" target="_blank" rel="noopener">Swagger UI</a>
+          · JSON OpenAPI: <a href="https://web.qualityautomacao.com.br/v3/api-docs" target="_blank" rel="noopener">/v3/api-docs</a>
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h2>GET — consultar e listar (não altera o servidor)</h2>
+          <p><strong>O que é:</strong> você pede um recurso ou uma lista; o servidor devolve dados. É a operação mais segura para testes e relatórios.</p>
+          <p><strong>Quando usar no WebPosto:</strong> vendas, abastecimentos, clientes, produtos, títulos a pagar/receber, caixa, estoque, notas fiscais, etc. — tudo que o catálogo marca como GET.</p>
+          <p><strong>Parâmetros típicos (query string):</strong></p>
+          <ul>
+            <li><code>dataInicial</code> / <code>dataFinal</code> — filtro por período (quando a rota suporta).</li>
+            <li><code>pagina</code> / <code>tamanhoPagina</code> — paginação por “página” em várias listas.</li>
+            <li><code>ultimoCodigo</code> — em algumas listas (ex.: abastecimento) a documentação usa <strong>cursor</strong> em vez de só página; avance com o último código retornado.</li>
+            <li><code>filial</code> — uma ou mais filiais (às vezes lista ou CSV, conforme a rota).</li>
+            <li>Outros filtros específicos: <code>codigo</code>, <code>cpfCnpj</code>, <code>bico</code>, etc.</li>
+          </ul>
+          <p><strong>Boas práticas:</strong> comece com intervalo de datas curto e <code>tamanhoPagina</code> moderado para não sobrecarregar rede nem o servidor.</p>
+        </div>
+        <div class="card">
+          <h2>POST — criar ou disparar uma ação nova</h2>
+          <p><strong>O que é:</strong> você envia um <strong>corpo JSON</strong> com os campos exigidos pela rota. O servidor normalmente <strong>cria</strong> um registro ou processa um comando que não é só “ler”.</p>
+          <p><strong>Quando usar no WebPosto:</strong> cadastrar cliente, lançar título, registrar movimento, integrar prazos, vincular entidades, etc. — tudo que o catálogo marca como POST.</p>
+          <p><strong>Efeito:</strong> pode gerar dados novos no banco do posto. <strong>Não é idempotente por padrão</strong>: enviar duas vezes o mesmo POST pode criar dois registros, salvo quando a API deduplica internamente.</p>
+          <p><strong>O que preencher nesta tela:</strong> além da query (se houver), edite o campo <strong>Body JSON</strong> com o payload exato. O formato correto está no OpenAPI/Swagger da rota correspondente.</p>
+        </div>
+        <div class="card">
+          <h2>PUT — atualizar recurso existente</h2>
+          <p><strong>O que é:</strong> você indica <strong>qual</strong> registro alterar (muitas vezes pelo <code>id</code> ou outros códigos na <strong>URL</strong>, por exemplo <code>/INTEGRACAO/CLIENTE/123</code>) e envia no corpo os campos a atualizar (conforme contrato da rota — às vezes o objeto completo).</p>
+          <p><strong>Quando usar no WebPosto:</strong> corrigir cadastro, atualizar título, ajustar veículo de frota, reajustar estoque de combustível, etc. — rotas marcadas como PUT no catálogo.</p>
+          <p><strong>Atenção:</strong> PUT pode <strong>sobrescrever</strong> dados. Confira ambiente (homologação x produção) e confirme o ID na URL antes de enviar.</p>
+        </div>
+        <div class="card">
+          <h2>PATCH e DELETE — uso pontual</h2>
+          <p><strong>PATCH:</strong> em APIs REST costuma significar “atualização parcial”. O <strong>proxy deste explorador</strong> aceita PATCH se você estender a ferramenta ou chamar a API diretamente; o <strong>catálogo local</strong> foca nas rotas GET/POST/PUT mapeadas no projeto.</p>
+          <p><strong>DELETE:</strong> remoção de recurso. Só use se a documentação oficial da Quality expuser a rota e sua chave tiver permissão.</p>
+          <p>Para qualquer método fora do catálogo, use o Swagger ou monte a requisição manualmente com a mesma base URL e CHAVE.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:1rem;">
+        <h2>Códigos HTTP que você vai ver com frequência</h2>
+        <table class="ref">
+          <thead>
+            <tr><th>Código</th><th>Significado prático</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>200</strong></td><td>Sucesso genérico; corpo costuma trazer JSON com lista ou objeto.</td></tr>
+            <tr><td><strong>201</strong></td><td>Criado — comum após alguns POST bem-sucedidos.</td></tr>
+            <tr><td><strong>400</strong></td><td>Requisição inválida: parâmetro faltando, JSON mal formado, regra de negócio rejeitou o payload.</td></tr>
+            <tr><td><strong>401</strong></td><td>Não autenticado: CHAVE ausente, inválida ou expirada.</td></tr>
+            <tr><td><strong>403</strong></td><td>Autenticado mas sem permissão para aquela operação ou filial.</td></tr>
+            <tr><td><strong>404</strong></td><td>Rota ou recurso não encontrado (path errado ou ID inexistente).</td></tr>
+            <tr><td><strong>409 / 422</strong></td><td>Conflito ou validação — depende da API; leia a mensagem no corpo.</td></tr>
+            <tr><td><strong>500 / 502 / 503</strong></td><td>Erro no servidor ou indisponibilidade; tente depois ou abra chamado na Quality.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card" style="margin-top:1rem;">
+        <h2>Como esta tela avançada encaixa isso tudo</h2>
+        <ul>
+          <li><strong>Aba Explorador:</strong> escolhe <em>qualquer</em> rota do catálogo, monta query e body, e envia via <code>POST /api/explorer/proxy</code> para o seu computador repassar à API WebPosto (evita CORS no navegador).</li>
+          <li><strong>Aba Diagnóstico:</strong> lista <strong>100% das rotas catalogadas</strong> com método, caminho e notas — é o inventário completo do que esta tela pode executar.</li>
+          <li><strong>Esta aba Guia:</strong> explica o significado de cada verbo HTTP e o que esperar na prática — use junto do Swagger para os detalhes de cada campo.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="tab-diagnostico" class="panel-hide">
+      <div class="stat" id="statLine"></div>
+      <div class="card">
+        <h2>Inventário de rotas (catálogo local)</h2>
+        <p style="color:var(--muted); font-size:0.875rem; margin:0 0 1rem;">
+          <strong>Todas as linhas abaixo podem ser executadas</strong> na aba Explorador (mesmo método e path). O catálogo é a lista completa do que este projeto mapeou para testes e integração.
+          Lista derivada do cliente em <code>src/webposto/endpoints/</code> e de rotas usadas em diagnóstico. Coluna <strong>Operação</strong> = nome amigável; <strong>Path</strong> = caminho na API.
+          POST/PUT exigem JSON válido conforme o
+          <a href="https://web.qualityautomacao.com.br/v3/api-docs" target="_blank" rel="noopener">OpenAPI</a>.
+          Rotas com aviso (ex.: estoque) alteram dados reais — use com cuidado. Se a CHAVE não tiver permissão, a API responde 401/403 mesmo com a rota correta.
+        </p>
+        <div class="scroll">
+          <table class="diag" id="diagTable">
+            <thead>
+              <tr>
+                <th>Categoria</th>
+                <th>Operação</th>
+                <th>Mét.</th>
+                <th>Path</th>
+                <th>Notas / flags</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const LS = { chave: "webposto_expl_chave", base: "webposto_expl_base" };
+    let CATALOG = [];
+
+    function pad(n) { return String(n).padStart(2, "0"); }
+    function defaultDates() {
+      const end = new Date();
+      const start = new Date(end);
+      start.setDate(start.getDate() - 14);
+      return {
+        ini: start.getFullYear() + "-" + pad(start.getMonth() + 1) + "-" + pad(start.getDate()),
+        fim: end.getFullYear() + "-" + pad(end.getMonth() + 1) + "-" + pad(end.getDate()),
+      };
+    }
+
+    function methodClass(m) {
+      if (m === "GET") return "m-get";
+      if (m === "POST") return "m-post";
+      if (m === "PUT") return "m-put";
+      if (m === "PATCH") return "m-patch";
+      if (m === "DELETE") return "m-delete";
+      return "m-put";
+    }
+
+    function buildQueryFromEndpoint(ep) {
+      const q = {};
+      const di = document.getElementById("dIni").value;
+      const df = document.getElementById("dFim").value;
+      const pg = document.getElementById("pagina").value;
+      const tp = document.getElementById("tamPag").value;
+      const fil = document.getElementById("filial").value.trim();
+
+      if (ep.dates) {
+        if (di) q.dataInicial = di;
+        if (df) q.dataFinal = df;
+      }
+      if (ep.pag) {
+        if (pg !== "") q.pagina = parseInt(pg, 10);
+        if (tp !== "") q.tamanhoPagina = parseInt(tp, 10);
+      }
+      if (ep.fil && fil) q.filial = fil;
+
+      if (ep.extra && typeof ep.extra === "object") {
+        for (const [k, v] of Object.entries(ep.extra)) {
+          if (v && String(v).trim() !== "") q[k] = v;
+        }
+      }
+      return q;
+    }
+
+    function resolvePath(ep) {
+      let p = ep.path;
+      const names = ep.path_params || [];
+      for (const name of names) {
+        const inp = document.getElementById("pv_" + name);
+        const val = inp ? inp.value.trim() : "";
+        p = p.replace("{" + name + "}", val || "{" + name + "}");
+      }
+      return p;
+    }
+
+    function renderPathVars(ep) {
+      const wrap = document.getElementById("pathVarsWrap");
+      const box = document.getElementById("pathVars");
+      box.innerHTML = "";
+      const pp = ep.path_params || [];
+      if (!pp.length) {
+        wrap.style.display = "none";
+        return;
+      }
+      wrap.style.display = "block";
+      for (const name of pp) {
+        const d = document.createElement("div");
+        d.className = "field";
+        d.innerHTML = "<label>" + name + "</label><input type=\"text\" id=\"pv_" + name + "\" />";
+        box.appendChild(d);
+      }
+    }
+
+    function onEndpointChange() {
+      const i = parseInt(document.getElementById("endpointSel").value, 10);
+      const ep = CATALOG[i];
+      if (!ep) return;
+      renderPathVars(ep);
+      document.getElementById("queryJson").value = JSON.stringify(buildQueryFromEndpoint(ep), null, 2);
+      const needBody = !!ep.body;
+      document.getElementById("bodyWrap").style.display = needBody ? "block" : "none";
+      document.getElementById("pathFinal").value = resolvePath(ep);
+    }
+
+    function fillSelect() {
+      const sel = document.getElementById("endpointSel");
+      sel.innerHTML = "";
+      const byCat = {};
+      CATALOG.forEach((ep, idx) => {
+        (byCat[ep.categoria] = byCat[ep.categoria] || []).push({ ep, idx });
+      });
+      for (const cat of Object.keys(byCat).sort()) {
+        const og = document.createElement("optgroup");
+        og.label = cat;
+        for (const { ep, idx } of byCat[cat]) {
+          const o = document.createElement("option");
+          o.value = idx;
+          o.textContent = "[" + ep.method + "] " + ep.nome;
+          og.appendChild(o);
+        }
+        sel.appendChild(og);
+      }
+    }
+
+    async function loadCatalog() {
+      const r = await fetch("/api/explorer/catalog");
+      const j = await r.json();
+      CATALOG = j.endpoints || [];
+      fillSelect();
+      onEndpointChange();
+
+      const rs = await fetch("/api/explorer/stats");
+      const st = await rs.json();
+      document.getElementById("statLine").innerHTML =
+        "<span><strong>" + st.total + "</strong> rotas catalogadas</span>" +
+        "<span>GET: <strong>" + st.get + "</strong></span>" +
+        "<span>POST: <strong>" + st.post + "</strong></span>" +
+        "<span>PUT: <strong>" + st.put + "</strong></span>" +
+        (st.patch ? "<span>PATCH: <strong>" + st.patch + "</strong></span>" : "") +
+        (st.delete ? "<span>DELETE: <strong>" + st.delete + "</strong></span>" : "");
+
+      const tb = document.querySelector("#diagTable tbody");
+      tb.innerHTML = "";
+      const sorted = CATALOG.slice().sort((a, b) => {
+        const o = { GET: 0, POST: 1, PUT: 2, PATCH: 3, DELETE: 4 };
+        const ma = o[a.method] ?? 9;
+        const mb = o[b.method] ?? 9;
+        if (ma !== mb) return ma - mb;
+        const ca = (a.categoria || "").localeCompare(b.categoria || "");
+        if (ca !== 0) return ca;
+        return (a.nome || "").localeCompare(b.nome || "");
+      });
+      for (const ep of sorted) {
+        const tr = document.createElement("tr");
+        let nota = [];
+        if (ep.dates) nota.push("usa dataInicial/dataFinal");
+        if (ep.pag) nota.push("paginação (pagina/tamanhoPagina)");
+        if (ep.fil) nota.push("filial");
+        if (ep.body) nota.push("exige body JSON");
+        if (ep.path_params && ep.path_params.length) nota.push("URL: " + ep.path_params.join(", "));
+        if (ep.extra && typeof ep.extra === "object") {
+          const keys = Object.keys(ep.extra).filter((k) => ep.extra[k]);
+          if (keys.length) nota.push("query extra: " + keys.join(", "));
+        }
+        if (ep.aviso) nota.push(ep.aviso);
+        const nomeEsc = (ep.nome || "—")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/"/g, "&quot;");
+        tr.innerHTML =
+          "<td>" + ep.categoria + "</td>" +
+          "<td style=\"max-width:14rem;\">" + nomeEsc + "</td>" +
+          "<td><span class=\"badge " + methodClass(ep.method) + "\">" + ep.method + "</span></td>" +
+          "<td style=\"font-family:ui-monospace,monospace;font-size:0.72rem;\">" + ep.path + "</td>" +
+          "<td style=\"color:var(--muted);font-size:0.78rem;\">" + (nota.join(" · ") || "—") + "</td>";
+        tb.appendChild(tr);
+      }
+    }
+
+    document.querySelectorAll("nav button").forEach((b) => {
+      b.addEventListener("click", () => {
+        document.querySelectorAll("nav button").forEach((x) => x.classList.remove("active"));
+        b.classList.add("active");
+        const t = b.dataset.tab;
+        document.getElementById("tab-explorador").classList.toggle("panel-hide", t !== "explorador");
+        document.getElementById("tab-guia").classList.toggle("panel-hide", t !== "guia");
+        document.getElementById("tab-diagnostico").classList.toggle("panel-hide", t !== "diagnostico");
+      });
+    });
+
+    document.getElementById("endpointSel").addEventListener("change", onEndpointChange);
+    ["dIni", "dFim", "pagina", "tamPag", "filial"].forEach((id) => {
+      document.getElementById(id).addEventListener("change", () => {
+        const i = parseInt(document.getElementById("endpointSel").value, 10);
+        const ep = CATALOG[i];
+        if (ep) document.getElementById("pathFinal").value = resolvePath(ep);
+      });
+    });
+
+    document.getElementById("pathVars").addEventListener("input", () => {
+      const i = parseInt(document.getElementById("endpointSel").value, 10);
+      const ep = CATALOG[i];
+      if (ep) document.getElementById("pathFinal").value = resolvePath(ep);
+    });
+
+    document.getElementById("btnFill").addEventListener("click", () => {
+      const i = parseInt(document.getElementById("endpointSel").value, 10);
+      const ep = CATALOG[i];
+      if (ep) document.getElementById("queryJson").value = JSON.stringify(buildQueryFromEndpoint(ep), null, 2);
+    });
+
+    document.getElementById("btnSend").addEventListener("click", async () => {
+      const i = parseInt(document.getElementById("endpointSel").value, 10);
+      const ep = CATALOG[i];
+      const outS = document.getElementById("outStatus");
+      const outB = document.getElementById("outBody");
+      outS.textContent = "Enviando…";
+      outB.value = "";
+
+      let query = {};
+      try {
+        query = JSON.parse(document.getElementById("queryJson").value || "{}");
+      } catch (e) {
+        outS.innerHTML = "<span style=\"color:var(--err)\">Query JSON inválido</span>";
+        return;
+      }
+
+      let jsonBody = null;
+      if (ep.body) {
+        try {
+          jsonBody = JSON.parse(document.getElementById("bodyJson").value || "null");
+        } catch (e) {
+          outS.innerHTML = "<span style=\"color:var(--err)\">Body JSON inválido</span>";
+          return;
+        }
+      }
+
+      const path = resolvePath(ep);
+      if (path.includes("{")) {
+        outS.innerHTML = "<span style=\"color:var(--err)\">Preencha todos os parâmetros da URL.</span>";
+        return;
+      }
+
+      const payload = {
+        chave: document.getElementById("chave").value.trim() || null,
+        base_url: document.getElementById("baseUrl").value.trim() || null,
+        method: ep.method,
+        path,
+        query,
+        json_body: jsonBody,
+      };
+
+      try {
+        localStorage.setItem(LS.chave, document.getElementById("chave").value);
+        localStorage.setItem(LS.base, document.getElementById("baseUrl").value);
+        const r = await fetch("/api/explorer/proxy", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const data = await r.json();
+        if (!r.ok) {
+          outS.innerHTML = "<span style=\"color:var(--err)\">Proxy HTTP " + r.status + "</span> — " + (data.detail || JSON.stringify(data));
+          outB.value = typeof data === "object" ? JSON.stringify(data, null, 2) : String(data);
+          return;
+        }
+        const sc = data.status_code;
+        const col = sc >= 200 && sc < 300 ? "var(--ok)" : sc === 401 || sc === 403 ? "var(--warn)" : "var(--err)";
+        outS.innerHTML = "Status <strong style=\"color:" + col + "\">" + sc + "</strong> · " + data.elapsed_ms + " ms · " + (data.content_type || "");
+        outB.value = typeof data.body === "string" ? data.body : JSON.stringify(data.body, null, 2);
+      } catch (e) {
+        outS.innerHTML = "<span style=\"color:var(--err)\">Falha: " + e.message + "</span>";
+      }
+    });
+
+    (function init() {
+      const d = defaultDates();
+      document.getElementById("dIni").value = d.ini;
+      document.getElementById("dFim").value = d.fim;
+      document.getElementById("chave").value = localStorage.getItem(LS.chave) || "";
+      document.getElementById("baseUrl").value = localStorage.getItem(LS.base) || "https://web.qualityautomacao.com.br";
+      loadCatalog().catch((e) => {
+        document.getElementById("outStatus").textContent = "Erro ao carregar catálogo: " + e.message;
+      });
+    })();
+  </script>
+</body>
+</html>

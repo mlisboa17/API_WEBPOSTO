@@ -1,0 +1,1180 @@
+<?xml version="1.0" encoding="UTF-8"?><w:document xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mo="http://schemas.microsoft.com/office/mac/office/2008/main" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="urn:schemas-microsoft-com:mac:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 wp14">
+  <w:body>
+    <w:p>
+      <w:pPr>
+        <w:jc w:val="center"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+          <w:color w:val="1A5490"/>
+          <w:sz w:val="32"/>
+        </w:rPr>
+        <w:t>SOLICITAÇÃO TÉCNICA</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="360"/>
+        <w:jc w:val="center"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+          <w:sz w:val="26"/>
+        </w:rPr>
+        <w:t>Permissões de Acesso — API REST webPosto</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+        </w:rPr>
+        <w:t xml:space="preserve">Contato Técnico: </w:t>
+      </w:r>
+      <w:r>
+        <w:t>marcio@grupolisboa.com.br</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+        </w:rPr>
+        <w:t xml:space="preserve">Data: </w:t>
+      </w:r>
+      <w:r>
+        <w:t>08/04/2026</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="360"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+        </w:rPr>
+        <w:t xml:space="preserve">Organização: </w:t>
+      </w:r>
+      <w:r>
+        <w:t>Grupo Lisboa</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading1"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:color w:val="1A5490"/>
+        </w:rPr>
+        <w:t>1. Escopo Técnico</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="240"/>
+      </w:pPr>
+      <w:r>
+        <w:t xml:space="preserve">Solicitamos geração de chave de integração do tipo </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+        </w:rPr>
+        <w:t>API Integração</w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> (API REST v1) com permissões de leitura em </w:t>
+      </w:r>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+        </w:rPr>
+        <w:t>TODOS</w:t>
+      </w:r>
+      <w:r>
+        <w:t xml:space="preserve"> os módulos operacionais disponibilizados, conforme especificado na documentação &quot;Utilizando API REST&quot;.</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading1"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:color w:val="1A5490"/>
+        </w:rPr>
+        <w:t>2. Módulos e Endpoints Solicitados</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading2"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:color w:val="2E5C8A"/>
+        </w:rPr>
+        <w:t>2.1 Módulo: Clientes</w:t>
+      </w:r>
+    </w:p>
+    <w:tbl>
+      <w:tblPr>
+        <w:tblStyle w:val="LightGrid-Accent1"/>
+        <w:tblW w:type="auto" w:w="0"/>
+        <w:tblLook w:firstColumn="1" w:firstRow="1" w:lastColumn="0" w:lastRow="0" w:noHBand="0" w:noVBand="1" w:val="04A0"/>
+      </w:tblPr>
+      <w:tblGrid>
+        <w:gridCol w:w="4320"/>
+        <w:gridCol w:w="4320"/>
+      </w:tblGrid>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+            <w:shd w:fill="1a5490"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:rPr>
+                <w:b/>
+                <w:color w:val="FFFFFF"/>
+              </w:rPr>
+              <w:t>Endpoint</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+            <w:shd w:fill="1a5490"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:rPr>
+                <w:b/>
+                <w:color w:val="FFFFFF"/>
+              </w:rPr>
+              <w:t>Método</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/api/v1/clientes</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/api/v1/clientes/{id}</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/api/v1/clientes/{id}/frota</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/api/v1/clientes/grupos</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/api/v1/clientes/{id}/prazos</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+    </w:tbl>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="240"/>
+      </w:pPr>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading2"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:color w:val="2E5C8A"/>
+        </w:rPr>
+        <w:t>2.2 Módulo: Produtos</w:t>
+      </w:r>
+    </w:p>
+    <w:tbl>
+      <w:tblPr>
+        <w:tblStyle w:val="LightGrid-Accent1"/>
+        <w:tblW w:type="auto" w:w="0"/>
+        <w:tblLook w:firstColumn="1" w:firstRow="1" w:lastColumn="0" w:lastRow="0" w:noHBand="0" w:noVBand="1" w:val="04A0"/>
+      </w:tblPr>
+      <w:tblGrid>
+        <w:gridCol w:w="4320"/>
+        <w:gridCol w:w="4320"/>
+      </w:tblGrid>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+            <w:shd w:fill="1a5490"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:rPr>
+                <w:b/>
+                <w:color w:val="FFFFFF"/>
+              </w:rPr>
+              <w:t>Endpoint</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+            <w:shd w:fill="1a5490"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:rPr>
+                <w:b/>
+                <w:color w:val="FFFFFF"/>
+              </w:rPr>
+              <w:t>Método</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/api/v1/produtos</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/api/v1/produtos/{id}/precos</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/api/v1/produtos/{id}/inventario</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/api/v1/produtos/tributos/icms</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+    </w:tbl>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="240"/>
+      </w:pPr>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading2"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:color w:val="2E5C8A"/>
+        </w:rPr>
+        <w:t>2.3 Módulo: Abastecimentos</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/api/v1/abastecimentos</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet2"/>
+      </w:pPr>
+      <w:r>
+        <w:t>GET (com filtros de data)</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+        <w:spacing w:after="240"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/api/v1/abastecimentos/{id}</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet2"/>
+      </w:pPr>
+      <w:r>
+        <w:t>GET</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading2"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:color w:val="2E5C8A"/>
+        </w:rPr>
+        <w:t>2.4 Módulo: Financeiro (Prioridade Alta)</w:t>
+      </w:r>
+    </w:p>
+    <w:tbl>
+      <w:tblPr>
+        <w:tblStyle w:val="LightGrid-Accent1"/>
+        <w:tblW w:type="auto" w:w="0"/>
+        <w:tblLook w:firstColumn="1" w:firstRow="1" w:lastColumn="0" w:lastRow="0" w:noHBand="0" w:noVBand="1" w:val="04A0"/>
+      </w:tblPr>
+      <w:tblGrid>
+        <w:gridCol w:w="4320"/>
+        <w:gridCol w:w="4320"/>
+      </w:tblGrid>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+            <w:shd w:fill="1a5490"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:rPr>
+                <w:b/>
+                <w:color w:val="FFFFFF"/>
+              </w:rPr>
+              <w:t>Endpoint</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+            <w:shd w:fill="1a5490"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:rPr>
+                <w:b/>
+                <w:color w:val="FFFFFF"/>
+              </w:rPr>
+              <w:t>Método</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/api/v1/financeiro/titulos-receber</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/api/v1/financeiro/titulos-pagar</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/api/v1/financeiro/transferencias</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/api/v1/financeiro/lancamentos-contabeis</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/api/v1/financeiro/plano-contas</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/api/v1/financeiro/movimentos-conta</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/api/v1/financeiro/exclusoes</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/integracao/financeiro_exclusao</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>/integracao/financeiro_exclusao/retorno-paginado</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:type="dxa" w:w="4320"/>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:t>GET</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+    </w:tbl>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="240"/>
+      </w:pPr>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading2"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:color w:val="2E5C8A"/>
+        </w:rPr>
+        <w:t>2.5 Módulo: Movimentos de Caixa (Prioridade Alta)</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/integracao/movimento_conta</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet2"/>
+      </w:pPr>
+      <w:r>
+        <w:t>GET (listagem de movimentos de conta)</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+        <w:spacing w:after="240"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/integracao/movimento_conta/retorno-paginado</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet2"/>
+      </w:pPr>
+      <w:r>
+        <w:t>GET (retorno paginado)</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="240"/>
+      </w:pPr>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading2"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:color w:val="2E5C8A"/>
+        </w:rPr>
+        <w:t>2.6 Módulo: Caixa (Prioridade Alta)</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/api/v1/caixa/fechamentos</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet2"/>
+      </w:pPr>
+      <w:r>
+        <w:t>GET (listagem de fechamentos por período)</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/api/v1/caixa/movimentos</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet2"/>
+      </w:pPr>
+      <w:r>
+        <w:t>GET (movimentações detalhadas)</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+        <w:spacing w:after="240"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/api/v1/caixa/saldos</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet2"/>
+      </w:pPr>
+      <w:r>
+        <w:t>GET (saldos atualizados por caixa)</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:before="240"/>
+      </w:pPr>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/integracao/caixa_rede</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet2"/>
+      </w:pPr>
+      <w:r>
+        <w:t>GET (listagem de caixas da rede)</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/integracao/caixa_rede/retorno-paginado</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet2"/>
+      </w:pPr>
+      <w:r>
+        <w:t>GET (retorno paginado)</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/integracao/caixa_apresentado_rede</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet2"/>
+      </w:pPr>
+      <w:r>
+        <w:t>GET (caixas apresentados na rede)</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+        <w:spacing w:after="240"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/integracao/caixa_apresentado_rede/retorno-paginado</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet2"/>
+      </w:pPr>
+      <w:r>
+        <w:t>GET (retorno paginado)</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading2"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:color w:val="2E5C8A"/>
+        </w:rPr>
+        <w:t>2.7 Módulo: Cartões de Crédito</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/api/v1/cartoes/administradoras</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/api/v1/cartoes/pagamentos</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+        <w:spacing w:after="240"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/api/v1/cartoes/autorizacoes</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading2"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:color w:val="2E5C8A"/>
+        </w:rPr>
+        <w:t>2.8 Módulo: Relatórios</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/api/v1/relatorios/vendas-produto</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/api/v1/relatorios/vendas-combustivel</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/api/v1/relatorios/resumo-vendas</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+        <w:spacing w:after="240"/>
+      </w:pPr>
+      <w:r>
+        <w:t>/api/v1/relatorios/estoque</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading1"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:color w:val="1A5490"/>
+        </w:rPr>
+        <w:t>3. Especificações Técnicas da Integração</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+        </w:rPr>
+        <w:t xml:space="preserve">Arquitetura: </w:t>
+      </w:r>
+      <w:r>
+        <w:t>Cliente Python 3.11+ com biblioteca requests</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+        </w:rPr>
+        <w:t xml:space="preserve">Protocolo: </w:t>
+      </w:r>
+      <w:r>
+        <w:t>HTTP/HTTPS com autenticação via query parameter CHAVE</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+        </w:rPr>
+        <w:t xml:space="preserve">Padrão de Resposta: </w:t>
+      </w:r>
+      <w:r>
+        <w:t>JSON com status codes HTTP (200, 204, 400, 403, 404, 500+)</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+        </w:rPr>
+        <w:t xml:space="preserve">Retry: </w:t>
+      </w:r>
+      <w:r>
+        <w:t>Backoff exponencial em 429, 500, 502, 503, 504</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing w:after="240"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+        </w:rPr>
+        <w:t xml:space="preserve">Tratamento de Erro: </w:t>
+      </w:r>
+      <w:r>
+        <w:t>Exceções tipadas (AuthError, BadRequestError, ServerError)</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading1"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:color w:val="1A5490"/>
+        </w:rPr>
+        <w:t>4. Plano de Implementação</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading2"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:color w:val="2E5C8A"/>
+        </w:rPr>
+        <w:t>4.1 Fase 1: Validação (GET)</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+      </w:pPr>
+      <w:r>
+        <w:t>Ativar permissões de leitura em todos os módulos acima</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+      </w:pPr>
+      <w:r>
+        <w:t>Testar conectividade em cada endpoint via Swagger</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+      </w:pPr>
+      <w:r>
+        <w:t>Validar formatos de resposta JSON</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading2"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:color w:val="2E5C8A"/>
+        </w:rPr>
+        <w:t>4.2 Fase 2: Escrita (POST/PUT)</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+      </w:pPr>
+      <w:r>
+        <w:t>Após validação da Fase 1, solicitar permissões de escrita</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+      </w:pPr>
+      <w:r>
+        <w:t>Implementar operações de criação e atualização</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="ListBullet"/>
+        <w:spacing w:after="240"/>
+      </w:pPr>
+      <w:r>
+        <w:t>Iterar com time Quality para validar formatos de entrada</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Heading1"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:color w:val="1A5490"/>
+        </w:rPr>
+        <w:t>5. Informações de Contato</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+        </w:rPr>
+        <w:t xml:space="preserve">Email Técnico: </w:t>
+      </w:r>
+      <w:r>
+        <w:t>marcio@grupolisboa.com.br</w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:r>
+        <w:rPr>
+          <w:b/>
+        </w:rPr>
+        <w:t xml:space="preserve">Documentação Referência: </w:t>
+      </w:r>
+      <w:r>
+        <w:t>Utilizando API REST (webPosto Confluence)</w:t>
+      </w:r>
+    </w:p>
+    <w:sectPr w:rsidR="00FC693F" w:rsidRPr="0006063C" w:rsidSect="00034616">
+      <w:pgSz w:w="12240" w:h="15840"/>
+      <w:pgMar w:top="1440" w:right="1800" w:bottom="1440" w:left="1800" w:header="720" w:footer="720" w:gutter="0"/>
+      <w:cols w:space="720"/>
+      <w:docGrid w:linePitch="360"/>
+    </w:sectPr>
+  </w:body>
+</w:document>

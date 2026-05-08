@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard ABASTECIMENTO — WebPosto API</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .filtros {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .filtro-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filtro-group label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .filtro-group input,
+        .filtro-group select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .filtro-group input:focus,
+        .filtro-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .botoes-filtro {
+            grid-column: 1 / -1;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secundario {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-secundario:hover {
+            background: #d0d0d0;
+        }
+
+        .stats-grid {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .stat-card .valor {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .stat-card .unidade {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .grafico-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .tabela-container {
+            grid-column: 1 / -1;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        table th {
+            background: #f8f9fa;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .log-container {
+            grid-column: 1 / -1;
+            background: #222;
+            color: #0f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .log-entry {
+            margin-bottom: 8px;
+            padding: 5px;
+            border-left: 3px solid #0f0;
+            padding-left: 10px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 18px;
+            color: #667eea;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: #fee;
+            color: #c00;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            border-left: 4px solid #c00;
+        }
+
+        .exportar {
+            text-align: right;
+            margin-top: 15px;
+        }
+
+        .exportar button {
+            background: #28a745;
+        }
+
+        .exportar button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⛽ DASHBOARD ABASTECIMENTO</h1>
+            <p>WebPosto API — Análise em Tempo Real de Vendas de Combustível</p>
+        </div>
+
+        <div class="content">
+            <!-- FILTROS -->
+            <div class="filtros">
+                <div class="filtro-group">
+                    <label>Data Inicial</label>
+                    <input type="date" id="dataInicial" value="2026-04-03">
+                </div>
+                <div class="filtro-group">
+                    <label>Data Final</label>
+                    <input type="date" id="dataFinal" value="2026-04-10">
+                </div>
+                <div class="filtro-group">
+                    <label>Tipo de Combustível</label>
+                    <select id="codigoProduto">
+                        <option value="">Todos</option>
+                        <option value="1257884">Gasolina Comum</option>
+                        <option value="1975728">Etanol</option>
+                        <option value="1260803">Gasolina Aditivada</option>
+                    </select>
+                </div>
+                <div class="filtro-group">
+                    <label>Bico/Bomba</label>
+                    <select id="codigoBico">
+                        <option value="">Todos</option>
+                    </select>
+                </div>
+                <div class="filtro-group">
+                    <label>Operador (Frentista)</label>
+                    <select id="codigoFrentista">
+                        <option value="">Todos</option>
+                    </select>
+                </div>
+                <div class="filtro-group">
+                    <label>Valor Mínimo</label>
+                    <input type="number" id="valorMin" placeholder="0.00" step="0.01">
+                </div>
+
+                <div class="botoes-filtro">
+                    <button class="btn-primary" onclick="carregarDados()">🔄 Carregar Dados</button>
+                    <button class="btn-secundario" onclick="limparFiltros()">❌ Limpar</button>
+                </div>
+            </div>
+
+            <!-- ESTATÍSTICAS -->
+            <div class="stats-grid" id="statsContainer" style="display: none;">
+                <div class="stat-card">
+                    <h3>Total Abastecimentos</h3>
+                    <div class="valor" id="totalAbastecimentos">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Volume Total</h3>
+                    <div class="valor" id="volumeTotal">0</div>
+                    <div class="unidade">litros</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Faturamento Total</h3>
+                    <div class="valor" id="faturamentoTotal">R$ 0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Ticket Médio</h3>
+                    <div class="valor" id="ticketMedio">R$ 0</div>
+                </div>
+            </div>
+
+            <!-- GRÁFICOS -->
+            <div class="grafico-container">
+                <canvas id="grafico1"></canvas>
+            </div>
+
+            <div class="grafico-container">
+                <canvas id="grafico2"></canvas>
+            </div>
+
+            <!-- TABELA DETALHADA -->
+            <div class="tabela-container">
+                <h3 style="margin-bottom: 20px;">📋 Detalhes de Abastecimentos</h3>
+                <table id="tabelaAbastecimentos">
+                    <thead>
+                        <tr>
+                            <th>Data/Hora</th>
+                            <th>Combustível</th>
+                            <th>Litros</th>
+                            <th>Valor Unit.</th>
+                            <th>Total</th>
+                            <th>Operador</th>
+                            <th>Bico</th>
+                            <th>Encerrante</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="exportar">
+                    <button onclick="exportarCSV()">📥 Exportar CSV</button>
+                </div>
+            </div>
+
+            <!-- LOG -->
+            <div class="log-container" id="logContainer">
+                <div class="log-entry">Sistema pronto. Clique em "Carregar Dados" para iniciar.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://web.qualityautomacao.com.br';
+        const API_KEY = '4d6bbe21-92b2-4052-bcb5-a82c86858fd7';
+        let dadosOriginal = [];
+        let dadosFiltrados = [];
+
+        // Mapeamento de nomes
+        const nomesProdutos = {
+            '1257884': 'Gasolina Comum',
+            '1975728': 'Etanol',
+            '1260803': 'Gasolina Aditivada'
+        };
+
+        function log(mensagem) {
+            const logContainer = document.getElementById('logContainer');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            const timestamp = new Date().toLocaleTimeString();
+            entry.innerText = `[${timestamp}] ${mensagem}`;
+            logContainer.appendChild(entry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        function carregarDados() {
+            const dataInicial = document.getElementById('dataInicial').value;
+            const dataFinal = document.getElementById('dataFinal').value;
+
+            if (!dataInicial || !dataFinal) {
+                log('❌ ERRO: Selecione datas inicial e final');
+                return;
+            }
+
+            log('🔄 Carregando dados de abastecimento...');
+            const url = `${API_BASE}/INTEGRACAO/ABASTECIMENTO?CHAVE=${API_KEY}&dataInicial=${dataInicial}&dataFinal=${dataFinal}`;
+
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    dadosOriginal = data.resultados || [];
+                    log(`✅ Carregados ${dadosOriginal.length} registros`);
+
+                    // Popular dropdowns
+                    popularBicos();
+                    popularFrentistas();
+
+                    // Aplicar filtros e exibir
+                    aplicarFiltros();
+                })
+                .catch(err => {
+                    log(`❌ ERRO: ${err.message}`);
+                });
+        }
+
+        function popularBicos() {
+            const bicos = [...new Set(dadosOriginal.map(d => d.codigoBico))].sort((a,b) => a-b);
+            const select = document.getElementById('codigoBico');
+            bicos.forEach(bico => {
+                const option = document.createElement('option');
+                option.value = bico;
+                option.text = `Bico ${bico}`;
+                select.appendChild(option);
+            });
+            log(`📍 ${bicos.length} bicos encontrados`);
+        }
+
+        function popularFrentistas() {
+            const frentistas = [...new Set(dadosOriginal.map(d => d.codigoFrentista))].sort((a,b) => a-b);
+            const select = document.getElementById('codigoFrentista');
+            frentistas.forEach(frentista => {
+                const option = document.createElement('option');
+                option.value = frentista;
+                option.text = `Operador ${frentista}`;
+                select.appendChild(option);
+            });
+            log(`👤 ${frentistas.length} operadores encontrados`);
+        }
+
+        function aplicarFiltros() {
+            const codigoProduto = document.getElementById('codigoProduto').value;
+            const codigoBico = document.getElementById('codigoBico').value;
+            const codigoFrentista = document.getElementById('codigoFrentista').value;
+            const valorMin = parseFloat(document.getElementById('valorMin').value) || 0;
+
+            dadosFiltrados = dadosOriginal.filter(d => {
+                return (!codigoProduto || d.codigoProduto === codigoProduto) &&
+                       (!codigoBico || d.codigoBico == codigoBico) &&
+                       (!codigoFrentista || d.codigoFrentista == codigoFrentista) &&
+                       (d.valorTotal >= valorMin);
+            });
+
+            exibirEstatisticas();
+            exibirTabela();
+            exibirGraficos();
+            log(`📊 ${dadosFiltrados.length} registros após filtros`);
+        }
+
+        function exibirEstatisticas() {
+            if (dadosFiltrados.length === 0) return;
+
+            const totalAbastecimentos = dadosFiltrados.length;
+            const volumeTotal = dadosFiltrados.reduce((s, d) => s + d.quantidade, 0);
+            const faturamentoTotal = dadosFiltrados.reduce((s, d) => s + d.valorTotal, 0);
+            const ticketMedio = faturamentoTotal / totalAbastecimentos;
+
+            document.getElementById('totalAbastecimentos').innerText = totalAbastecimentos;
+            document.getElementById('volumeTotal').innerText = volumeTotal.toFixed(2);
+            document.getElementById('faturamentoTotal').innerText = 'R$ ' + faturamentoTotal.toFixed(2);
+            document.getElementById('ticketMedio').innerText = 'R$ ' + ticketMedio.toFixed(2);
+
+            document.getElementById('statsContainer').style.display = 'grid';
+        }
+
+        function exibirGraficos() {
+            if (dadosFiltrados.length === 0) return;
+
+            // Gráfico 1: Vendas por Combustível
+            const vendasPorCombustivel = {};
+            dadosFiltrados.forEach(d => {
+                const chave = nomesProdutos[d.codigoProduto] || d.codigoProduto;
+                vendasPorCombustivel[chave] = (vendasPorCombustivel[chave] || 0) + d.valorTotal;
+            });
+
+            const ctx1 = document.getElementById('grafico1').getContext('2d');
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(vendasPorCombustivel),
+                    datasets: [{
+                        label: 'Faturamento (R$)',
+                        data: Object.values(vendasPorCombustivel),
+                        backgroundColor: ['#667eea', '#764ba2', '#f093fb']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '💰 Faturamento por Tipo de Combustível'
+                        }
+                    }
+                }
+            });
+
+            // Gráfico 2: Volume por Combustível
+            const volumePorCombustivel = {};
+            dadosFiltrados.forEach(d => {
+                const chave = nomesProdutos[d.codigoProduto] || d.codigoProduto;
+                volumePorCombustivel[chave] = (volumePorCombustivel[chave] || 0) + d.quantidade;
+            });
+
+            const ctx2 = document.getElementById('grafico2').getContext('2d');
+            new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(volumePorCombustivel),
+                    datasets: [{
+                        data: Object.values(volumePorCombustivel),
+                        backgroundColor: ['#667eea', '#764ba2', '#f093fb']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '📊 Volume Total por Combustível (litros)'
+                        }
+                    }
+                }
+            });
+        }
+
+        function exibirTabela() {
+            const tbody = document.querySelector('#tabelaAbastecimentos tbody');
+            tbody.innerHTML = '';
+
+            dadosFiltrados.forEach(d => {
+                const row = tbody.insertRow();
+                const nomeProduto = nomesProdutos[d.codigoProduto] || d.codigoProduto;
+                const dataHora = new Date(d.dataHoraAbastecimento).toLocaleString('pt-BR');
+
+                row.innerHTML = `
+                    <td>${dataHora}</td>
+                    <td>${nomeProduto}</td>
+                    <td>${d.quantidade.toFixed(2)}</td>
+                    <td>R$ ${d.valorUnitario.toFixed(2)}</td>
+                    <td>R$ ${d.valorTotal.toFixed(2)}</td>
+                    <td>Operador ${d.codigoFrentista}</td>
+                    <td>Bico ${d.codigoBico}</td>
+                    <td>${d.encerrante.toFixed(1)}</td>
+                `;
+            });
+        }
+
+        function exportarCSV() {
+            if (dadosFiltrados.length === 0) {
+                log('❌ Nenhum dado para exportar');
+                return;
+            }
+
+            let csv = 'Data/Hora,Combustível,Litros,Valor Unit.,Total,Operador,Bico,Encerrante\n';
+            dadosFiltrados.forEach(d => {
+                const nomeProduto = nomesProdutos[d.codigoProduto] || d.codigoProduto;
+                const dataHora = new Date(d.dataHoraAbastecimento).toLocaleString('pt-BR');
+                csv += `${dataHora},${nomeProduto},${d.quantidade.toFixed(2)},${d.valorUnitario.toFixed(2)},${d.valorTotal.toFixed(2)},${d.codigoFrentista},${d.codigoBico},${d.encerrante}\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `abastecimento_${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            log('✅ CSV exportado com sucesso');
+        }
+
+        function limparFiltros() {
+            document.getElementById('dataInicial').value = '2026-04-03';
+            document.getElementById('dataFinal').value = '2026-04-10';
+            document.getElementById('codigoProduto').value = '';
+            document.getElementById('codigoBico').value = '';
+            document.getElementById('codigoFrentista').value = '';
+            document.getElementById('valorMin').value = '';
+            log('🔄 Filtros limpos');
+        }
+
+        // Event listeners
+        document.getElementById('codigoProduto').addEventListener('change', aplicarFiltros);
+        document.getElementById('codigoBico').addEventListener('change', aplicarFiltros);
+        document.getElementById('codigoFrentista').addEventListener('change', aplicarFiltros);
+        document.getElementById('valorMin').addEventListener('change', aplicarFiltros);
+
+        log('✅ Dashboard inicializado - WebPosto API ABASTECIMENTO');
+    </script>
+</body>
+</html>

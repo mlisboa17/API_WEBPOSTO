@@ -1,0 +1,1 @@
+# WebPosto HTTP Client (Adapter)

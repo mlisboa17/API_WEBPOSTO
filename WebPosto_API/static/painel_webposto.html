@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WebPosto — Integração Web</title>
+  <style>
+    :root {
+      --erp-header: #1a3a5c;
+      --erp-header2: #234a73;
+      --erp-ribbon: #eef2f7;
+      --erp-ribbon-border: #c5d0e0;
+      --bg: #dfe6ef;
+      --card: #fff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --brand: #0f766e;
+      --brand-light: #ccfbf1;
+      --border: #e2e8f0;
+      --ok: #059669;
+      --warn: #d97706;
+      --err: #dc2626;
+      --shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
+      --tab-active: #f0b429;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* —— Barra superior (estilo ERP) —— */
+    .erp-titlebar {
+      background: linear-gradient(180deg, var(--erp-header2) 0%, var(--erp-header) 100%);
+      color: #fff;
+      padding: 0.4rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+    }
+    .erp-titlebar strong { font-size: 0.95rem; letter-spacing: 0.02em; }
+    .erp-titlebar .pills { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(255,255,255,0.15);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+    .pill.ok { background: rgba(16, 185, 129, 0.35); }
+    .pill.bad { background: rgba(251, 113, 133, 0.35); }
+
+    /* Menu principal horizontal */
+    .erp-mainmenu {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      background: var(--erp-header);
+      border-bottom: 1px solid rgba(0,0,0,0.25);
+      padding: 0 0.25rem;
+      gap: 0;
+    }
+    .erp-mainmenu button {
+      border: none;
+      background: transparent;
+      color: rgba(255,255,255,0.85);
+      padding: 0.55rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -1px;
+    }
+    .erp-mainmenu button:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .erp-mainmenu button.active {
+      color: #fff;
+      background: rgba(0,0,0,0.15);
+      border-bottom-color: var(--tab-active);
+    }
+
+    /* Ribbon */
+    .erp-ribbon {
+      background: var(--erp-ribbon);
+      border-bottom: 1px solid var(--erp-ribbon-border);
+      padding: 0.5rem 0.75rem 0.35rem;
+      min-height: 5.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 0;
+      box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
+    }
+    .ribbon-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 0.65rem;
+      border-right: 1px solid var(--erp-ribbon-border);
+      min-height: 4.75rem;
+    }
+    .ribbon-group:last-of-type { border-right: none; }
+    .ribbon-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      justify-content: center;
+      flex: 1;
+      align-items: flex-start;
+    }
+    .ribbon-group-label {
+      font-size: 0.65rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 0.35rem;
+      text-align: center;
+      max-width: 9rem;
+      line-height: 1.2;
+    }
+    .ribbon-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.15rem;
+      width: 4.6rem;
+      padding: 0.35rem 0.2rem;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.68rem;
+      color: var(--text);
+      line-height: 1.15;
+      text-align: center;
+    }
+    .ribbon-btn:hover {
+      background: #fff;
+      border-color: var(--erp-ribbon-border);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .ribbon-btn .ic {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      background: linear-gradient(160deg, #fff 0%, #e8edf5 100%);
+      border: 1px solid #d0dae8;
+    }
+    .ribbon-btn.muted { opacity: 0.75; }
+    .ribbon-btn small { font-size: 0.6rem; color: var(--muted); font-weight: 400; }
+
+    /* Área de trabalho */
+    main.erp-workspace {
+      flex: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.25rem 0.5rem;
+      width: 100%;
+    }
+    .panel {
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 1.25rem 1.4rem;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border);
+    }
+    .panel h2 { margin: 0 0 0.85rem; font-size: 1rem; color: var(--text); }
+    .presets { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.85rem; }
+    .presets button {
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 0.4rem 0.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      color: var(--text);
+    }
+    .presets button:hover, .presets button.active {
+      border-color: var(--brand);
+      background: var(--brand-light);
+      color: #0f766e;
+      font-weight: 600;
+    }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 700px) { .row { grid-template-columns: 1fr; } }
+    label { display: block; font-size: 0.72rem; font-weight: 600; color: var(--muted); margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 0.02em; }
+    input[type="date"], input[type="text"], input[type="number"], input[type="password"] {
+      width: 100%;
+      padding: 0.5rem 0.6rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.88rem;
+    }
+    .grid-consultas {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.75rem;
+    }
+    .card-q {
+      text-align: left;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      background: #fff;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card-q:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      border-color: #99f6e4;
+    }
+    .card-q .emoji { font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .card-q h3 { margin: 0 0 0.2rem; font-size: 0.88rem; }
+    .card-q p { margin: 0; font-size: 0.75rem; color: var(--muted); }
+    .result-head { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.65rem; }
+    .result-meta { font-size: 0.82rem; color: var(--muted); }
+    .result-meta strong { color: var(--text); }
+    .table-wrap { overflow: auto; max-height: 420px; border: 1px solid var(--border); border-radius: 10px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+    th, td { padding: 0.4rem 0.45rem; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { background: #f8fafc; position: sticky; top: 0; font-weight: 600; color: var(--muted); }
+    tr:hover td { background: #f8fafc; }
+    pre.raw {
+      margin: 0;
+      padding: 1rem;
+      background: #1e293b;
+      color: #e2e8f0;
+      border-radius: 10px;
+      font-size: 0.7rem;
+      overflow: auto;
+      max-height: 360px;
+    }
+    .link-tech { font-size: 0.82rem; margin: 0.5rem 0 1rem; }
+    .optional-key { margin-top: 0.85rem; padding-top: 0.85rem; border-top: 1px dashed var(--border); }
+    .spinner { display: none; width: 1rem; height: 1rem; border: 2px solid #cbd5e1; border-top-color: var(--brand); border-radius: 50%; animation: spin 0.7s linear infinite; }
+    .loading .spinner { display: inline-block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    a { color: #2563eb; }
+
+    .erp-statusbar {
+      background: linear-gradient(180deg, #e8edf4 0%, #dce4ef 100%);
+      border-top: 1px solid var(--erp-ribbon-border);
+      padding: 0.35rem 1rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: space-between;
+    }
+    .erp-statusbar strong { color: var(--text); }
+  </style>
+</head>
+<body>
+  <div class="erp-titlebar">
+    <div>
+      <strong>WebPosto</strong>
+      <span style="opacity:0.85;margin-left:0.35rem;">Integração Web · consultas à API Quality</span>
+    </div>
+    <div class="pills" id="statusBar">
+      <span class="pill" id="pillBase">Carregando…</span>
+      <span class="pill" id="pillKey">…</span>
+    </div>
+  </div>
+
+  <nav class="erp-mainmenu" id="mainMenu" aria-label="Menu principal"></nav>
+  <div class="erp-ribbon" id="ribbon" role="toolbar" aria-label="Atalhos do módulo"></div>
+
+  <main class="erp-workspace" id="workspace">
+    <div class="panel">
+      <h2>Período e filtros</h2>
+      <div class="presets" id="presets"></div>
+      <div class="row">
+        <div>
+          <label>Data inicial</label>
+          <input type="date" id="dIni" />
+        </div>
+        <div>
+          <label>Data final</label>
+          <input type="date" id="dFim" />
+        </div>
+      </div>
+      <div class="row" style="margin-top:0.85rem;">
+        <div>
+          <label>Filial (opcional)</label>
+          <input type="text" id="filial" placeholder="Ex.: 1 ou 1,2" />
+        </div>
+        <div>
+          <label>Registros por página</label>
+          <input type="number" id="tamPag" value="30" min="1" max="200" />
+        </div>
+      </div>
+      <div class="optional-key" id="keyBox" style="display:none;">
+        <label>Chave de integração (se não houver no .env)</label>
+        <input type="password" id="chaveManual" placeholder="Cole aqui só se necessário" autocomplete="off" />
+        <p style="font-size:0.78rem;color:var(--muted);margin:0.45rem 0 0;">Guarde no navegador: preencha uma vez e usamos no próximo acesso.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Consultas rápidas (todas)</h2>
+      <p style="margin:-0.35rem 0 0.85rem;font-size:0.84rem;color:var(--muted);">
+        O mesmo que os botões do menu acima: leitura <strong>GET</strong> segura. Ícones do ribbon organizados como no WebPosto desktop (financeiro, cadastros, etc.).
+      </p>
+      <div class="grid-consultas" id="gridConsultas"></div>
+    </div>
+
+    <div class="panel" id="resultPanel" style="display:none;">
+      <div class="result-head">
+        <h2 style="margin:0;">Resultado</h2>
+        <div class="result-meta" id="resultMeta"></div>
+      </div>
+      <div id="resultTable"></div>
+      <details style="margin-top:0.85rem;">
+        <summary style="cursor:pointer;font-weight:600;color:var(--brand);">Ver JSON completo</summary>
+        <pre class="raw" id="resultRaw"></pre>
+      </details>
+    </div>
+
+    <p class="link-tech">
+      <a href="/tecnico" target="_blank" rel="noopener">Explorador técnico</a> — catálogo completo, POST e PUT.
+      · <a href="/app/landing" target="_blank" rel="noopener">Página de demonstração</a> (index)
+    </p>
+  </main>
+
+  <footer class="erp-statusbar">
+    <span>Usuário: <strong>integração</strong> · Rede: <strong>API REST</strong> · Unidade: <strong>conforme filtro</strong></span>
+    <span>Integração: <strong id="statusData"></strong> · Painel web <strong>1.0</strong></span>
+  </footer>
+
+  <script>
+    const LS_CHAVE = "webposto_expl_chave";
+
+    const PRESETS = [
+      { id: "hoje", label: "Hoje", days: 0 },
+      { id: "ontem", label: "Ontem", days: 1, single: true },
+      { id: "7", label: "Últimos 7 dias", days: 7 },
+      { id: "14", label: "Últimos 14 dias", days: 14 },
+      { id: "30", label: "Últimos 30 dias", days: 30 },
+    ];
+
+    /**
+     * Consultas GET usadas pelo painel. `id` referencia itens do ribbon.
+     */
+    const CONSULTAS = [
+      { id: "caixa", emoji: "💵", titulo: "Caixa (turnos)", desc: "Abertura, fechamento, apuração", path: "/INTEGRACAO/CAIXA", dates: true, pag: true, fil: true },
+      { id: "caixa_apresentado", emoji: "🧾", titulo: "Caixa apresentado", desc: "Valores apurados × apresentados", path: "/INTEGRACAO/CAIXA_APRESENTADO", dates: true, pag: true, fil: true },
+      { id: "fechamento_caixa", emoji: "🔒", titulo: "Fechamento de caixa", desc: "Endpoint dedicado de fechamento", path: "/INTEGRACAO/FECHAMENTO_CAIXA", dates: true, pag: true, fil: true },
+      { id: "vendas", emoji: "🛒", titulo: "Vendas", desc: "Vendas do período", path: "/INTEGRACAO/VENDA", dates: true, pag: true, fil: true },
+      { id: "vendas_rede", emoji: "🌐", titulo: "Vendas rede", desc: "Vendas em rede", path: "/INTEGRACAO/VENDA_REDE", dates: true, pag: true, fil: false },
+      { id: "abastecimentos", emoji: "⛽", titulo: "Abastecimentos", desc: "Abastecimentos no período", path: "/INTEGRACAO/ABASTECIMENTO", dates: true, pag: true, fil: true },
+      { id: "encerrantes", emoji: "📏", titulo: "Encerrantes", desc: "Encerrantes de bicos", path: "/INTEGRACAO/ABASTECIMENTO_ENCERRANTE", dates: true, pag: false, fil: true },
+      { id: "lmc", emoji: "📒", titulo: "LMC", desc: "Livro de movimentação — pode demorar", path: "/INTEGRACAO/LMC", dates: true, pag: true, fil: true },
+      { id: "clientes", emoji: "👥", titulo: "Clientes", desc: "Cadastro de clientes", path: "/INTEGRACAO/CLIENTE", dates: false, pag: true, fil: false },
+      { id: "grupo_cliente", emoji: "📁", titulo: "Grupos de clientes", desc: "Grupos cadastrais", path: "/INTEGRACAO/GRUPO_CLIENTE", dates: false, pag: true, fil: false },
+      { id: "produtos", emoji: "📦", titulo: "Produtos", desc: "Cadastro de produtos", path: "/INTEGRACAO/PRODUTO", dates: false, pag: true, fil: false },
+      { id: "estoque", emoji: "📊", titulo: "Estoque", desc: "Posição de estoque", path: "/INTEGRACAO/ESTOQUE", dates: false, pag: false, fil: false },
+      { id: "combustivel_cad", emoji: "🛢️", titulo: "Combustível (cadastro)", desc: "Produtos combustível", path: "/INTEGRACAO/COMBUSTIVEL", dates: false, pag: true, fil: false },
+      { id: "titulo_receber", emoji: "📥", titulo: "Títulos a receber", desc: "Contas a receber", path: "/INTEGRACAO/TITULO_RECEBER", dates: true, pag: true, fil: true },
+      { id: "titulo_pagar", emoji: "📤", titulo: "Títulos a pagar", desc: "Contas a pagar", path: "/INTEGRACAO/TITULO_PAGAR", dates: true, pag: true, fil: true },
+      { id: "movimento_conta", emoji: "🏦", titulo: "Movimento de conta", desc: "Extrato / mov. bancário", path: "/INTEGRACAO/MOVIMENTO_CONTA", dates: true, pag: true, fil: true },
+      { id: "transferencia", emoji: "↔️", titulo: "Transferências", desc: "Transferência (integração)", path: "/INTEGRACAO/TRANSFERENCIA", dates: true, pag: false, fil: true },
+      { id: "transferencia_bancaria", emoji: "🏧", titulo: "Transferência bancária", desc: "TED / entre contas", path: "/INTEGRACAO/TRANSFERENCIA_BANCARIA", dates: true, pag: false, fil: true },
+      { id: "plano_contas", emoji: "📑", titulo: "Plano de contas", desc: "Estrutura contábil", path: "/INTEGRACAO/PLANO_DE_CONTAS", dates: false, pag: true, fil: false },
+      { id: "adiantamento_forn", emoji: "📝", titulo: "Adiantamento fornecedor", desc: "Adiantamentos", path: "/INTEGRACAO/ADIANTAMENTO_FORNECEDOR", dates: true, pag: false, fil: true },
+      { id: "financeiro_exclusao", emoji: "🗑️", titulo: "Exclusões financeiras", desc: "Débito caixa / exclusões", path: "/INTEGRACAO/FINANCEIRO_EXCLUSAO", dates: true, pag: false, fil: true },
+      { id: "filiais", emoji: "🏢", titulo: "Filiais", desc: "Unidades cadastradas", path: "/INTEGRACAO/FILIAL", dates: false, pag: true, fil: false },
+      { id: "usuarios", emoji: "👤", titulo: "Usuários", desc: "Usuários do sistema", path: "/INTEGRACAO/USUARIO", dates: false, pag: true, fil: false },
+      { id: "usuarios_rede", emoji: "👥", titulo: "Usuário empresa rede", desc: "Vínculo rede", path: "/INTEGRACAO/USUARIO_EMPRESA_REDE", dates: false, pag: true, fil: false },
+      { id: "administradoras", emoji: "💳", titulo: "Administradoras", desc: "Cartões / bandeiras", path: "/INTEGRACAO/ADMINISTRADORA", dates: false, pag: true, fil: false },
+      { id: "veiculos", emoji: "🚗", titulo: "Veículos", desc: "Cadastro geral de veículos", path: "/INTEGRACAO/VEICULO", dates: false, pag: true, fil: false },
+      { id: "prazo_tabela", emoji: "💲", titulo: "Prazo / tabela preço", desc: "Tabelas de prazo", path: "/INTEGRACAO/PRAZO_TABELA_PRECO", dates: false, pag: true, fil: false },
+      { id: "nf_entrada", emoji: "📨", titulo: "NF entrada", desc: "Notas de entrada", path: "/INTEGRACAO/NOTA_FISCAL_ENTRADA", dates: true, pag: true, fil: true },
+      { id: "nf_saida", emoji: "📩", titulo: "NF saída", desc: "Notas de saída", path: "/INTEGRACAO/NOTA_FISCAL_SAIDA", dates: true, pag: true, fil: true },
+      { id: "pedido_compras", emoji: "🛍️", titulo: "Pedidos de compras", desc: "Compras", path: "/INTEGRACAO/PEDIDO_COMPRAS", dates: true, pag: true, fil: false },
+      { id: "pedido_combustivel", emoji: "🚛", titulo: "Pedidos combustível", desc: "Pedidos pista", path: "/INTEGRACAO/PEDIDO_COMBUSTIVEL/PEDIDO", dates: true, pag: true, fil: false },
+      { id: "distribuidora", emoji: "🏭", titulo: "Distribuidoras", desc: "Fornecedores combustível", path: "/INTEGRACAO/DISTRIBUIDORA", dates: false, pag: true, fil: false },
+      { id: "aprix", emoji: "📈", titulo: "APRIX custo", desc: "Custos APRIX", path: "/INTEGRACAO/APRIX_CUSTO", dates: true, pag: true, fil: true },
+      { id: "rel_venda_produto", emoji: "📋", titulo: "Rel. venda produto", desc: "Relatório integração", path: "/INTEGRACAO/RELATORIO/VENDA_PRODUTO", dates: true, pag: true, fil: true },
+      { id: "rel_venda_combustivel", emoji: "⛽", titulo: "Rel. venda combustível", desc: "Relatório integração", path: "/INTEGRACAO/RELATORIO/VENDA_COMBUSTIVEL", dates: true, pag: true, fil: true },
+      { id: "rel_resumo_vendas", emoji: "📊", titulo: "Resumo de vendas", desc: "Relatório integração", path: "/INTEGRACAO/RELATORIO/RESUMO_VENDAS", dates: true, pag: false, fil: true },
+      { id: "rel_estoque", emoji: "📦", titulo: "Rel. estoque", desc: "Relatório integração", path: "/INTEGRACAO/RELATORIO/ESTOQUE", dates: false, pag: true, fil: true },
+    ];
+
+    const BY_ID = Object.fromEntries(CONSULTAS.map((c) => [c.id, c]));
+
+    /**
+     * Menu superior + ribbon (organização semelhante ao WebPosto desktop).
+     * type: consulta | link | app
+     */
+    const MENU_TABS = [
+      {
+        id: "inicio",
+        label: "Início",
+        groups: [
+          {
+            label: "Área de trabalho",
+            items: [
+              { type: "focus", label: "Consultas abaixo", icon: "⬇️", hint: "role a página" },
+              { type: "app", href: "/app/vendas", label: "Relatório vendas", icon: "📊", hint: "dashboard" },
+              { type: "app", href: "/app/abastecimento", label: "Abastecimento", icon: "⛽" },
+              { type: "app", href: "/app/despesas", label: "Despesas / títulos", icon: "💰" },
+            ],
+          },
+          {
+            label: "Ferramentas",
+            items: [
+              { type: "link", href: "/tecnico", label: "Explorador técnico", icon: "🔧", hint: "POST/PUT" },
+              { type: "app", href: "/app/filtros", label: "Filtros avançados", icon: "🎛️" },
+              { type: "app", href: "/app/landing", label: "Página demo", icon: "🏠" },
+            ],
+          },
+        ],
+      },
+      {
+        id: "cadastros",
+        label: "Cadastros",
+        groups: [
+          {
+            label: "Gerais",
+            items: [
+              { type: "consulta", id: "clientes", label: "Clientes", icon: "👥" },
+              { type: "consulta", id: "grupo_cliente", label: "Grupos", icon: "📁" },
+              { type: "consulta", id: "produtos", label: "Produtos", icon: "📦" },
+              { type: "consulta", id: "combustivel_cad", label: "Combustível", icon: "🛢️" },
+              { type: "consulta", id: "filiais", label: "Filiais", icon: "🏢" },
+            ],
+          },
+          {
+            label: "Operacionais",
+            items: [
+              { type: "consulta", id: "veiculos", label: "Veículos", icon: "🚗" },
+              { type: "consulta", id: "administradoras", label: "Administradoras", icon: "💳" },
+              { type: "consulta", id: "prazo_tabela", label: "Prazo / preço", icon: "💲" },
+              { type: "consulta", id: "distribuidora", label: "Distribuidoras", icon: "🏭" },
+            ],
+          },
+        ],
+      },
+      {
+        id: "movimentos",
+        label: "Movimentos",
+        groups: [
+          {
+            label: "Vendas & PDV",
+            items: [
+              { type: "consulta", id: "vendas", label: "Vendas", icon: "🛒" },
+              { type: "consulta", id: "vendas_rede", label: "Vendas rede", icon: "🌐" },
+            ],
+          },
+          {
+            label: "Combustível",
+            items: [
+              { type: "consulta", id: "abastecimentos", label: "Abastecimentos", icon: "⛽" },
+              { type: "consulta", id: "encerrantes", label: "Encerrantes", icon: "📏" },
+              { type: "consulta", id: "lmc", label: "LMC", icon: "📒" },
+              { type: "consulta", id: "pedido_combustivel", label: "Pedidos pista", icon: "🚛" },
+            ],
+          },
+          {
+            label: "Estoque & compras",
+            items: [
+              { type: "consulta", id: "estoque", label: "Estoque", icon: "📊" },
+              { type: "consulta", id: "pedido_compras", label: "Pedido compras", icon: "🛍️" },
+              { type: "consulta", id: "aprix", label: "APRIX custo", icon: "📈" },
+            ],
+          },
+        ],
+      },
+      {
+        id: "financeiro",
+        label: "Financeiro",
+        groups: [
+          {
+            label: "Contas a pagar",
+            items: [
+              { type: "consulta", id: "titulo_pagar", label: "Título a pagar", icon: "📤" },
+              { type: "consulta", id: "titulo_pagar", label: "Cheque / cartão (títulos)", icon: "💳", hint: "mesma lista" },
+              { type: "consulta", id: "adiantamento_forn", label: "Adiantamento", icon: "📝" },
+            ],
+          },
+          {
+            label: "Contas a receber",
+            items: [
+              { type: "consulta", id: "titulo_receber", label: "Título a receber", icon: "📥" },
+              { type: "consulta", id: "titulo_receber", label: "Cheque / cartão (rec.)", icon: "🏷️", hint: "títulos" },
+              { type: "consulta", id: "vendas", label: "Faturamento (vendas)", icon: "🧾", hint: "vendas período" },
+            ],
+          },
+          {
+            label: "Caixa",
+            items: [
+              { type: "consulta", id: "fechamento_caixa", label: "Fechamento caixa", icon: "🔒" },
+              { type: "consulta", id: "caixa", label: "Caixa / turnos", icon: "💵" },
+              { type: "consulta", id: "caixa_apresentado", label: "Caixa apresentado", icon: "🧾" },
+              { type: "consulta", id: "financeiro_exclusao", label: "Sangria / exc.", icon: "📤", hint: "exclusões" },
+            ],
+          },
+          {
+            label: "Banco & contábil",
+            items: [
+              { type: "consulta", id: "movimento_conta", label: "Mov. conta", icon: "🏦" },
+              { type: "consulta", id: "plano_contas", label: "Plano de contas", icon: "📑" },
+              { type: "consulta", id: "transferencia", label: "Transferências", icon: "↔️" },
+              { type: "consulta", id: "transferencia_bancaria", label: "Transf. bancária", icon: "🏧" },
+            ],
+          },
+          {
+            label: "Outros",
+            items: [
+              { type: "link", href: "/tecnico", label: "Conciliação / OFX", icon: "🔗", hint: "POST no técnico" },
+              { type: "link", href: "/tecnico", label: "Lançamentos contábeis", icon: "📒", hint: "POST no técnico" },
+            ],
+          },
+        ],
+      },
+      {
+        id: "relatorios",
+        label: "Relatórios",
+        groups: [
+          {
+            label: "Integração / API",
+            items: [
+              { type: "consulta", id: "rel_venda_produto", label: "Venda produto", icon: "📋" },
+              { type: "consulta", id: "rel_venda_combustivel", label: "Venda combustível", icon: "⛽" },
+              { type: "consulta", id: "rel_resumo_vendas", label: "Resumo vendas", icon: "📊" },
+              { type: "consulta", id: "rel_estoque", label: "Estoque", icon: "📦" },
+            ],
+          },
+          {
+            label: "Telas web",
+            items: [
+              { type: "app", href: "/app/vendas", label: "Dashboard vendas", icon: "📈" },
+              { type: "app", href: "/app/abastecimento", label: "Dashboard pista", icon: "🛢️" },
+            ],
+          },
+        ],
+      },
+      {
+        id: "config",
+        label: "Configurações",
+        groups: [
+          {
+            label: "Cadastros auxiliares",
+            items: [
+              { type: "consulta", id: "usuarios", label: "Usuários", icon: "👤" },
+              { type: "consulta", id: "usuarios_rede", label: "Usuário rede", icon: "🌐" },
+              { type: "consulta", id: "filiais", label: "Filiais", icon: "🏢" },
+            ],
+          },
+        ],
+      },
+      {
+        id: "admin",
+        label: "Administração",
+        groups: [
+          {
+            label: "Acesso & unidades",
+            items: [
+              { type: "consulta", id: "usuarios", label: "Usuários", icon: "👤" },
+              { type: "consulta", id: "filiais", label: "Filiais", icon: "🏢" },
+              { type: "consulta", id: "administradoras", label: "Administradoras", icon: "💳" },
+            ],
+          },
+        ],
+      },
+      {
+        id: "util",
+        label: "Utilitários",
+        groups: [
+          {
+            label: "Diagnóstico",
+            items: [
+              { type: "link", href: "/tecnico", label: "Explorador técnico", icon: "🔧" },
+              { type: "app", href: "/app/filtros", label: "Painel filtros", icon: "🎛️" },
+              { type: "consulta", id: "lmc", label: "LMC", icon: "📒" },
+            ],
+          },
+        ],
+      },
+      {
+        id: "fiscal",
+        label: "Fiscal",
+        groups: [
+          {
+            label: "Notas fiscais",
+            items: [
+              { type: "consulta", id: "nf_entrada", label: "NF entrada", icon: "📨" },
+              { type: "consulta", id: "nf_saida", label: "NF saída", icon: "📩" },
+            ],
+          },
+        ],
+      },
+      {
+        id: "tbr",
+        label: "TBR",
+        groups: [
+          {
+            label: "Combustível / B2B",
+            items: [
+              { type: "consulta", id: "pedido_combustivel", label: "Pedidos", icon: "🚛" },
+              { type: "consulta", id: "distribuidora", label: "Distribuidoras", icon: "🏭" },
+              { type: "consulta", id: "aprix", label: "APRIX", icon: "📈" },
+            ],
+          },
+        ],
+      },
+    ];
+
+    let cfg = { has_key: false, key_hint: null, base_url: "" };
+    let activePreset = "14";
+    let activeTab = "inicio";
+
+    function pad(n) { return String(n).padStart(2, "0"); }
+    function fmt(d) {
+      return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+    }
+
+    function applyPreset(id) {
+      activePreset = id;
+      const p = PRESETS.find((x) => x.id === id);
+      if (!p) return;
+      const end = new Date();
+      end.setHours(0, 0, 0, 0);
+      let start = new Date(end);
+      if (p.single) {
+        start.setDate(start.getDate() - 1);
+        document.getElementById("dIni").value = fmt(start);
+        document.getElementById("dFim").value = fmt(start);
+      } else if (p.days === 0) {
+        document.getElementById("dIni").value = fmt(end);
+        document.getElementById("dFim").value = fmt(end);
+      } else {
+        start.setDate(start.getDate() - p.days);
+        document.getElementById("dIni").value = fmt(start);
+        document.getElementById("dFim").value = fmt(end);
+      }
+      document.querySelectorAll(".presets button").forEach((b) => {
+        b.classList.toggle("active", b.dataset.preset === id);
+      });
+    }
+
+    function buildQuery(c) {
+      const q = { pagina: 0, tamanhoPagina: parseInt(document.getElementById("tamPag").value, 10) || 30 };
+      const di = document.getElementById("dIni").value;
+      const df = document.getElementById("dFim").value;
+      const fil = document.getElementById("filial").value.trim();
+      if (c.dates) {
+        if (di) q.dataInicial = di;
+        if (df) q.dataFinal = df;
+      }
+      if (c.pag === false) {
+        delete q.pagina;
+        delete q.tamanhoPagina;
+      }
+      if (c.fil && fil) q.filial = fil;
+      return q;
+    }
+
+    function chaveParaProxy() {
+      if (cfg.has_key) return null;
+      const m = document.getElementById("chaveManual").value.trim();
+      if (m) return m;
+      return localStorage.getItem(LS_CHAVE) || null;
+    }
+
+    async function callProxy(path, query) {
+      const payload = {
+        chave: chaveParaProxy(),
+        base_url: null,
+        method: "GET",
+        path,
+        query,
+        json_body: null,
+      };
+      const r = await fetch("/api/explorer/proxy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await r.json();
+      if (!r.ok) throw new Error(data.detail || JSON.stringify(data));
+      return data;
+    }
+
+    function renderTable(rows) {
+      if (!rows || !rows.length) return "<p style=\"color:var(--muted);\">Nenhuma linha nesta página.</p>";
+      const keys = Object.keys(rows[0]).slice(0, 10);
+      let h = "<div class=\"table-wrap\"><table><thead><tr>";
+      keys.forEach((k) => { h += "<th>" + k + "</th>"; });
+      h += "</tr></thead><tbody>";
+      rows.forEach((row) => {
+        h += "<tr>";
+        keys.forEach((k) => {
+          let v = row[k];
+          if (v !== null && typeof v === "object") v = JSON.stringify(v);
+          h += "<td>" + (v === null || v === undefined ? "" : String(v)) + "</td>";
+        });
+        h += "</tr>";
+      });
+      h += "</tbody></table></div>";
+      return h;
+    }
+
+    async function runConsulta(c) {
+      const meta = document.getElementById("resultMeta");
+      const panel = document.getElementById("resultPanel");
+      const raw = document.getElementById("resultRaw");
+      const tbl = document.getElementById("resultTable");
+      panel.style.display = "block";
+      meta.innerHTML = "<span class=\"spinner\"></span> Buscando…";
+      meta.parentElement.classList.add("loading");
+      tbl.innerHTML = "";
+      raw.textContent = "";
+
+      const manual = document.getElementById("chaveManual").value.trim();
+      if (manual) localStorage.setItem(LS_CHAVE, manual);
+
+      try {
+        const q = buildQuery(c);
+        const data = await callProxy(c.path, q);
+        meta.parentElement.classList.remove("loading");
+        const sc = data.status_code;
+        const ok = sc >= 200 && sc < 300;
+        meta.innerHTML =
+          "<span><strong>HTTP " + sc + "</strong></span> · " + data.elapsed_ms + " ms · " + (c.titulo || c.path);
+
+        const body = data.body;
+        if (ok && body && typeof body === "object" && Array.isArray(body.resultados)) {
+          const n = body.resultados.length;
+          const ult = body.ultimoCodigo != null ? " · ultimoCodigo: " + body.ultimoCodigo : "";
+          meta.innerHTML += " · <strong>" + n + "</strong> registro(s) nesta página" + ult;
+          tbl.innerHTML = renderTable(body.resultados);
+        } else if (ok && Array.isArray(body)) {
+          meta.innerHTML += " · <strong>" + body.length + "</strong> itens";
+          tbl.innerHTML = renderTable(body);
+        } else {
+          tbl.innerHTML = "<p style=\"color:var(--muted);\">Resposta não é uma lista tabular. Veja o JSON abaixo.</p>";
+        }
+        raw.textContent = JSON.stringify(body, null, 2);
+      } catch (e) {
+        meta.parentElement.classList.remove("loading");
+        meta.innerHTML = "<strong style=\"color:var(--err);\">Erro</strong>";
+        tbl.innerHTML = "<p style=\"color:var(--err);\">" + e.message + "</p>";
+        raw.textContent = e.message;
+      }
+      document.getElementById("workspace").scrollIntoView({ behavior: "smooth", block: "start" });
+      panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function handleRibbonItem(it) {
+      if (it.type === "focus") {
+        document.getElementById("workspace").scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+      if (it.type === "link" || it.type === "app") {
+        const u = it.href.startsWith("http") ? it.href : it.href;
+        window.open(u, "_blank", "noopener,noreferrer");
+        return;
+      }
+      if (it.type === "consulta") {
+        const c = BY_ID[it.id];
+        if (c) runConsulta(c);
+      }
+    }
+
+    function renderMainMenu() {
+      const nav = document.getElementById("mainMenu");
+      nav.innerHTML = "";
+      MENU_TABS.forEach((tab) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.textContent = tab.label;
+        b.classList.toggle("active", tab.id === activeTab);
+        b.addEventListener("click", () => {
+          activeTab = tab.id;
+          nav.querySelectorAll("button").forEach((x, i) => x.classList.toggle("active", MENU_TABS[i].id === activeTab));
+          renderRibbon();
+        });
+        nav.appendChild(b);
+      });
+    }
+
+    function renderRibbon() {
+      const box = document.getElementById("ribbon");
+      box.innerHTML = "";
+      const tab = MENU_TABS.find((t) => t.id === activeTab);
+      if (!tab) return;
+      tab.groups.forEach((g) => {
+        const grp = document.createElement("div");
+        grp.className = "ribbon-group";
+        const items = document.createElement("div");
+        items.className = "ribbon-items";
+        g.items.forEach((it) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "ribbon-btn" + (it.hint ? " muted" : "");
+          const hint = it.hint ? "<small>" + it.hint + "</small>" : "";
+          btn.innerHTML =
+            "<span class=\"ic\">" + (it.icon || "📌") + "</span>" +
+            "<span>" + it.label + "</span>" + hint;
+          btn.addEventListener("click", () => handleRibbonItem(it));
+          items.appendChild(btn);
+        });
+        const lbl = document.createElement("div");
+        lbl.className = "ribbon-group-label";
+        lbl.textContent = g.label;
+        grp.appendChild(items);
+        grp.appendChild(lbl);
+        box.appendChild(grp);
+      });
+    }
+
+    async function init() {
+      document.getElementById("statusData").textContent = new Date().toLocaleDateString("pt-BR");
+
+      const r = await fetch("/api/explorer/config");
+      cfg = await r.json();
+
+      document.getElementById("pillBase").textContent = "API: " + (cfg.base_url || "—");
+      const pk = document.getElementById("pillKey");
+      if (cfg.has_key) {
+        pk.textContent = "Chave: .env (" + (cfg.key_hint || "configurada") + ")";
+        pk.className = "pill ok";
+        document.getElementById("keyBox").style.display = "none";
+      } else {
+        pk.textContent = "Chave: não encontrada no .env";
+        pk.className = "pill bad";
+        document.getElementById("keyBox").style.display = "block";
+        document.getElementById("chaveManual").value = localStorage.getItem(LS_CHAVE) || "";
+      }
+
+      const pr = document.getElementById("presets");
+      PRESETS.forEach((p) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.textContent = p.label;
+        b.dataset.preset = p.id;
+        b.addEventListener("click", () => applyPreset(p.id));
+        pr.appendChild(b);
+      });
+      applyPreset(activePreset);
+
+      renderMainMenu();
+      renderRibbon();
+
+      const grid = document.getElementById("gridConsultas");
+      CONSULTAS.forEach((c) => {
+        const el = document.createElement("button");
+        el.type = "button";
+        el.className = "card-q";
+        el.innerHTML =
+          "<div class=\"emoji\">" + c.emoji + "</div><h3>" + c.titulo + "</h3><p>" + c.desc + "</p>";
+        el.addEventListener("click", () => runConsulta(c));
+        grid.appendChild(el);
+      });
+    }
+
+    init().catch((e) => {
+      document.getElementById("pillKey").textContent = "Erro: " + e.message;
+      document.getElementById("pillKey").className = "pill bad";
+    });
+  </script>
+</body>
+</html>

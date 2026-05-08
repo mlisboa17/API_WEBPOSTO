@@ -1,0 +1,147 @@
+╔════════════════════════════════════════════════════════════════════════╗
+║                                                                        ║
+║            WEBPOSTO API — DASHBOARD DEMONSTRATIVO                    ║
+║            Grupo Lisboa | Integração com API WebPosto                ║
+║                                                                        ║
+╚════════════════════════════════════════════════════════════════════════╝
+
+📊 O QUE É ISTO?
+────────────────
+Um sistema interativo que demonstra em TEMPO REAL:
+  ✅ Leitura de dados (GET)
+  ✅ Inserção de dados (POST)
+  ✅ Alteração de dados (PUT)
+
+SEM precisar de backend — conecta direto na API WebPosto.
+
+
+🚀 COMO USAR
+────────────
+
+1️⃣  ABRIR O ARQUIVO
+   Clique duplo em: dashboard_demo.html
+   (Abre automaticamente no navegador)
+
+2️⃣  USAR O DASHBOARD
+
+   LADO ESQUERDO (Ler dados - GET):
+   • Clique em "🔄 Carregar Despesas"
+   • Mostra lista de TODOS os títulos a pagar
+   • Atualiza totais e estatísticas
+
+   LADO DIREITO (Criar/Alterar - POST/PUT):
+
+   📌 ABA "Criar Nova":
+      - Preencha: Fornecedor, Valor, Vencimento, Descrição
+      - Clique em "💾 Criar Despesa"
+      - Novo título é salvo na API WebPosto
+      - Aparece na tabela automáticamente
+
+   📌 ABA "Alterar Existente":
+      - Selecione um título da lista
+      - Modifique os dados
+      - Clique em "✏️ Alterar Despesa"
+      - Mudanças são salvas na API WebPosto
+
+3️⃣  VER O LOG
+   Abaixo mostra TODAS as operações HTTP
+   Prova que funciona:
+   • Timestamp de cada operação
+   • Tipo (GET, POST, PUT)
+   • Dados enviados/recebidos
+
+
+📋 DADOS DE ACESSO
+──────────────────
+API: https://web.qualityautomacao.com.br
+Chave: 4d6bbe21-92b2-4052-bcb5-a82c86858fd7
+Filial: POSTO VIP (Olinda/PE)
+Status: ✅ ATIVA E TESTADA
+
+
+📊 ENDPOINTS UTILIZADOS
+───────────────────────
+GET    /INTEGRACAO/TITULO_PAGAR     → Lista títulos a pagar
+POST   /INTEGRACAO/TITULO_PAGAR     → Cria novo título
+PUT    /INTEGRACAO/TITULO_PAGAR/{id}→ Altera título existente
+
+
+⚙️ TECNOLOGIA
+──────────────
+Linguagem: HTML5 + CSS3 + JavaScript
+Conexão: Requisições HTTPS diretas à API
+Autenticação: Chave API
+Compatibilidade: Todos os navegadores modernos
+
+
+🎯 PARA OS DIRETORES
+────────────────────
+Este dashboard prova que:
+
+1. ✅ A integração com WebPosto FUNCIONA em produção
+2. ✅ Podemos LER todos os dados em tempo real
+3. ✅ Podemos CRIAR novos registros automaticamente
+4. ✅ Podemos ALTERAR registros conforme necessário
+5. ✅ Isso pode ser escalado para:
+   - Abastecimentos
+   - Vendas
+   - Estoque
+   - Caixa
+   - Clientes
+   - Produtos
+   - E muito mais (143 endpoints disponíveis)
+
+6. ✅ Está pronto para:
+   - Automações
+   - Integrações com outros sistemas
+   - Relatórios inteligentes
+   - Alertas automáticos
+
+
+📁 ARQUIVOS NO PROJETO
+──────────────────────
+dashboard_demo.html              ← ABRA ESTE ARQUIVO
+DEMO_PARA_DIRETORES.md          ← Documentação completa
+VENDAS_DESPESAS_09_04_2026.xlsx ← Dados de exemplo
+RELATORIO_ONTEM_09_04_2026.md   ← Análise de dados reais
+requirements.txt                ← Dependências (Python)
+src/webposto/                   ← Código Python base
+
+
+🔄 PRÓXIMOS PASSOS
+───────────────────
+1. Mostrar dashboard aos diretores
+2. Aprovação para desenvolver backend robusto
+3. Implementar autenticação segura (JWT)
+4. Frontend profissional (React/Vue)
+5. Deploy em produção
+6. Treinar equipes
+
+
+📞 DÚVIDAS?
+───────────
+Se o dashboard não carregar dados:
+
+1. Verifique conexão de internet
+2. Abra o console do navegador (F12 → Console)
+3. Procure por erros CORS
+4. Se houver erro de chave, contate suporte Quality Automação
+
+Se houver erro "CORS blocked":
+• É normal em alguns navegadores
+• Em produção, usar backend proxy
+• Para testes locais, pode usar extensão "CORS Unblock"
+
+
+⭐ RESUMO
+─────────
+✅ Sistema de demonstração FUNCIONANDO
+✅ Integração com API WebPosto VALIDADA
+✅ GET, POST, PUT já implementados
+✅ Pronto para apresentar aos diretores
+✅ Próximo: Expandir para backend + frontend profissional
+
+
+Criado em: 10/04/2026
+Status: ✅ PRONTO PARA DEMONSTRAÇÃO
+Mantido por: Grupo Lisboa | Sócio-Diretor: Márcio Lisbôa
