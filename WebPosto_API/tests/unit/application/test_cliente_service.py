@@ -65,8 +65,8 @@ class TestClienteService:
         service, repository, event_bus = mocked_dependencies
 
         clientes = [
-            Cliente(id="1", nome="Cliente 1", cnpj="1234"),
-            Cliente(id="2", nome="Cliente 2", cnpj="5678"),
+            Cliente(id="1", nome="Cliente 1", cnpj="12345678901234"),
+            Cliente(id="2", nome="Cliente 2", cnpj="98765432109876"),
         ]
         repository.find_all.return_value = clientes
 

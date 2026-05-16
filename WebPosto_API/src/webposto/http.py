@@ -116,6 +116,12 @@ class HTTPClient:
             return self._handle_response(response)
         except requests.exceptions.Timeout:
             raise TimeoutError(f"Timeout após {self.config.timeout}s em GET {path}")
+        except requests.exceptions.RetryError as e:
+            raise ServerError(
+                f"Erro no servidor WebPosto após tentativas: {e}",
+                500,
+                str(e),
+            )
         except requests.exceptions.ConnectionError as e:
             raise ConnectionError(f"Falha de conexão em GET {path}: {e}")
 
