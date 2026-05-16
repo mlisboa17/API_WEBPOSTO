@@ -12,18 +12,24 @@
         }
 
         :root {
-            --primary: #1f4e78;
-            --secondary: #d9e1f2;
-            --success: #00b050;
-            --danger: #c00000;
-            --warning: #ffc000;
-            --text: #333;
-            --border: #ddd;
+            --lionda-bg: #020203;
+            --lionda-surface: #0a0c10;
+            --lionda-panel: rgba(12, 16, 22, 0.72);
+            --lionda-cyan: #00e5ff;
+            --lionda-cyan-dim: rgba(0, 229, 255, 0.35);
+            --lionda-glow: 0 0 24px rgba(0, 229, 255, 0.22);
+            --primary: #0e3d52;
+            --secondary: #1a2836;
+            --success: #00e676;
+            --danger: #ff5252;
+            --warning: #ffd740;
+            --text: #e8eaed;
+            --border: rgba(0, 229, 255, 0.12);
         }
 
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(160deg, #e8eaf0 0%, #cfd8e6 45%, #b0bec5 100%);
+            background: var(--lionda-bg);
             color: var(--text);
             min-height: 100vh;
             padding: 20px;
@@ -32,17 +38,84 @@
         .container {
             max-width: 1600px;
             margin: 0 auto;
-            background: white;
+            background: var(--lionda-surface);
             border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            box-shadow: var(--lionda-glow), 0 10px 40px rgba(0,0,0,0.6);
             overflow: hidden;
+            border: 1px solid var(--border);
         }
 
         header {
-            background: linear-gradient(135deg, #0d2137 0%, var(--primary) 55%, #1a5276 100%);
+            background: linear-gradient(135deg, #020203 0%, #0a1628 55%, #0d2137 100%);
             color: white;
-            padding: 28px 32px;
-            border-bottom: 4px solid #c5a059;
+            padding: 28px 32px 20px;
+            border-bottom: 1px solid var(--lionda-cyan-dim);
+            box-shadow: inset 0 -1px 0 rgba(0, 229, 255, 0.08);
+        }
+
+        .lionda-chave-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px 14px;
+            margin-top: 16px;
+            padding: 12px 14px;
+            background: var(--lionda-panel);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border-radius: 10px;
+            border: 1px solid var(--lionda-cyan-dim);
+            min-height: 52px;
+        }
+        .lionda-chave-bar label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--lionda-cyan);
+            font-weight: 700;
+        }
+        .lionda-chave-bar input {
+            flex: 1;
+            min-width: 200px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--lionda-cyan-dim);
+            background: rgba(0,0,0,0.35);
+            color: #fff;
+            font-family: ui-monospace, Consolas, monospace;
+            font-size: 0.85rem;
+        }
+        .lionda-chave-bar button {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(135deg, #00838f, #00bcd4);
+            color: #020203;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: var(--lionda-glow);
+        }
+        #lionda-chave-hint {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.55);
+            width: 100%;
+        }
+
+        .app-sidebar {
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+        }
+
+        .skeleton-placeholder {
+            min-height: 120px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(0,229,255,0.06) 50%, rgba(255,255,255,0.04) 75%);
+            background-size: 200% 100%;
+            animation: lionda-shimmer 1.2s ease-in-out infinite;
+            border-radius: 8px;
+        }
+        @keyframes lionda-shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
 
         header h1 {
@@ -998,6 +1071,12 @@
             color: var(--success);
         }
 
+        #message-container {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin-bottom: 12px;
+        }
         .message {
             padding: 15px;
             border-radius: 6px;
@@ -1014,9 +1093,10 @@
         }
 
         .message.error {
-            background: #f8d7da;
-            border: 2px solid var(--danger);
-            color: #721c24;
+            background: #ffebee;
+            border: 2px solid #ff5252;
+            color: #b71c1c;
+            font-weight: 600;
         }
 
         .message.loading {
@@ -1232,6 +1312,13 @@
             color: #0d2137;
             font-variant-numeric: tabular-nums;
         }
+        .exec-kpi--destaque {
+            border-color: #00e676;
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.12), rgba(0, 230, 118, 0.04));
+        }
+        .exec-kpi--destaque .exec-kpi__val {
+            color: #00e676;
+        }
         .exec-kpi__sub {
             display: block;
             font-size: 0.76rem;
@@ -1245,6 +1332,9 @@
         }
         .exec-panel {
             padding: 18px 20px 22px;
+            border-bottom: 1px solid #eceff1;
+        }
+        .exec-panel--full {
             border-bottom: 1px solid #eceff1;
         }
         .exec-panel:nth-child(odd) {
@@ -1471,6 +1561,12 @@
             <h1>Central de inteligência operacional</h1>
             <div class="header-unidade">Posto VIP — Rio Doce</div>
             <p>Relatórios de <strong>vendas PDV</strong>, <strong>combustível</strong> e <strong>financeiro/caixa</strong> — organizados pelo <strong>menu lateral</strong>. O <strong>painel executivo</strong> reúne indicadores para a diretoria (impressão/PDF).</p>
+            <div class="lionda-chave-bar" id="lionda-chave-bar" aria-label="Chave de integração WebPosto">
+                <label for="lionda-chave-input">CHAVE API</label>
+                <input type="password" id="lionda-chave-input" placeholder="Cole a chave WebPosto ou use .env no servidor" autocomplete="off">
+                <button type="button" id="lionda-chave-save">Salvar CHAVE</button>
+                <span id="lionda-chave-hint">Carregando…</span>
+            </div>
         </header>
 
         <div class="main">
@@ -1650,8 +1746,8 @@
                 </div>
                 <div class="bloco__body">
                     <p class="exec-lead">
-                        Consolida em uma página <strong>caixa por turno</strong>, <strong>apurado de despesas no caixa (formas)</strong>,
-                        <strong>títulos a pagar e a receber</strong> e, quando já carregados na sessão, <strong>vendas PDV</strong> e volume de <strong>abastecimentos</strong>.
+                        Consolida em uma página <strong>galonagem e combustível</strong> (ABASTECIMENTO), <strong>caixa por turno</strong>,
+                        <strong>apurado de despesas no caixa (formas)</strong>, <strong>títulos a pagar e a receber</strong> e, quando já carregados na sessão, <strong>vendas PDV</strong>.
                         Ideal para reunir dados antes de exportar: use <strong>Imprimir / salvar em PDF</strong> no navegador (Ctrl+P → “Salvar como PDF”).
                     </p>
                     <div class="exec-toolbar">
@@ -1955,10 +2051,23 @@
         </div><!-- /main -->
     </div>
 
-    <script src="api_hub_catalog.js"></script>
+    <script src="/api_hub_catalog.js"></script>
+    <script src="/theme/executive.js"></script>
     <script>
-        const API_KEY = '4d6bbe21-92b2-4052-bcb5-a82c86858fd7';
-        const API_URL = 'https://web.qualityautomacao.com.br';
+        const API_URL = window.location.origin;
+        function getApiKey() {
+            const k = (typeof getWebPostoChave === 'function' ? getWebPostoChave() : '') ||
+                (localStorage.getItem('WEBPOSTO_CHAVE') || '');
+            const s = String(k || '').trim();
+            if (!s || s === 'SEU_TOKEN_AQUI' || s === '__from_env__') return '';
+            return s;
+        }
+        let API_KEY = getApiKey();
+
+        function wpFail(label, r) {
+            if (typeof wpHttpError === 'function') throw new Error(wpHttpError(label, r));
+            throw new Error(label + ' HTTP ' + (r && r.status));
+        }
         /** Nome da unidade — aparece no painel executivo (PDF) e pode ser reutilizado em outros blocos. */
         const POSTO_UNIDADE_NOME = 'Posto VIP — Rio Doce';
 
@@ -1982,9 +2091,10 @@
         const ROTULO_COMBUSTIVEL_POR_CODIGO = {
             '1257884': 'Gasolina comum',
             '1975728': 'Etanol',
-            '1260803': 'Gasolina aditivada'
+            '1260803': 'Gasolina aditivada',
+            '1257999': 'Diesel S10',
+            '1258001': 'Diesel comum'
         };
-        /* Inclua outros codigoProduto da API, ex.: diesel — '1234567': 'Diesel S10', */
 
         const CAMPOS_NOME_PRODUTO = [
             'descricaoProduto', 'nomeProduto', 'produtoNome', 'descricaoProdutoCombustivel',
@@ -2297,10 +2407,12 @@
                 u.searchParams.set('tamanhoPagina', String(tamanhoPagina));
                 if (ultimoCodigo != null && ultimoCodigo !== '') u.searchParams.set('ultimoCodigo', String(ultimoCodigo));
                 appendFilialToUrl(u);
-                const r = await fetch(u.toString());
+                API_KEY = getApiKey();
+                u.searchParams.set('CHAVE', API_KEY);
+                const r = await wpFetch(u.toString());
                 httpStatus = r.status;
                 requests++;
-                if (!r.ok) throw new Error('CAIXA_APRESENTADO HTTP ' + r.status);
+                if (!r.ok) wpFail('CAIXA_APRESENTADO', r);
                 const data = await r.json();
                 const batch = data.resultados || [];
                 todas = todas.concat(batch);
@@ -2349,10 +2461,12 @@
                         if (v != null && v !== '') u.searchParams.set(k, String(v));
                     });
                 }
-                const r = await fetch(u.toString());
+                API_KEY = getApiKey();
+                u.searchParams.set('CHAVE', API_KEY);
+                const r = await wpFetch(u.toString());
                 httpStatus = r.status;
                 requests++;
-                if (!r.ok) throw new Error(path.replace(/^.*\//, '') + ' HTTP ' + r.status);
+                if (!r.ok) wpFail(path.replace(/^.*\//, ''), r);
                 const j = await r.json();
                 const batch = Array.isArray(j) ? j : (j.resultados || []);
                 todas = todas.concat(batch);
@@ -2412,8 +2526,10 @@
                 appendFilialToUrl(u);
                 const sit = situacaoTituloPagarParam();
                 if (sit) u.searchParams.set('situacaoPagar', sit);
-                const r = await fetch(u.toString());
-                if (!r.ok) throw new Error('TITULO_PAGAR HTTP ' + r.status);
+                API_KEY = getApiKey();
+                u.searchParams.set('CHAVE', API_KEY);
+                const r = await wpFetch(u.toString());
+                if (!r.ok) wpFail('TITULO_PAGAR', r);
                 const j = await r.json();
                 const batch = j.resultados || [];
                 todas = todas.concat(batch);
@@ -2873,12 +2989,68 @@
             return h;
         }
 
+        /** Galonagem do período a partir de GET /INTEGRACAO/ABASTECIMENTO (exclui aferições). */
+        function agregarGalonagemExecutiva(listaBruta) {
+            const lista = filtrarAbastecimentosVenda(listaBruta || []);
+            const nomePorCodigo = extrairNomePorCodigoDaApi(lista);
+            const porCod = {};
+            let totalLitros = 0;
+            let totalReais = 0;
+            lista.forEach(function (a) {
+                const c = String(a.codigoProduto || '').trim() || '?';
+                const litros = Number(a.quantidade) || 0;
+                const reais = valorFinanceiroAbastecimento(a);
+                totalLitros += litros;
+                totalReais += reais;
+                if (!porCod[c]) {
+                    porCod[c] = { litros: 0, reais: 0, nome: rotuloCombustivel(c, nomePorCodigo) };
+                }
+                porCod[c].litros += litros;
+                porCod[c].reais += reais;
+            });
+            const porProduto = Object.keys(porCod)
+                .map(function (c) {
+                    return [porCod[c].nome, porCod[c].litros, porCod[c].reais];
+                })
+                .sort(function (a, b) { return b[1] - a[1]; });
+            return {
+                totalLitros: totalLitros,
+                totalReais: totalReais,
+                porProduto: porProduto,
+                qtdRegistros: lista.length,
+                qtdAfericaoExcluida: (listaBruta || []).length - lista.length,
+            };
+        }
+
+        function renderTabelaExecGalonagem(titulo, gal) {
+            let h = '<h3>' + escapeHtml(titulo) + '</h3>';
+            if (!gal || gal.qtdRegistros === 0) {
+                h += '<p style="margin:0;font-size:0.84rem;color:#78909c;">Nenhum abastecimento de venda no período (ou sem permissão na API).</p>';
+                return h;
+            }
+            h += '<p style="margin:0 0 10px;font-size:0.84rem;color:#546e7a;">';
+            h += '<strong>' + gal.qtdRegistros.toLocaleString('pt-BR') + '</strong> abastecimento(s) · ';
+            h += 'total <strong>' + fmtLitros(gal.totalLitros) + '</strong> · faturamento <strong>' + fmtReais(gal.totalReais) + '</strong>';
+            if (gal.qtdAfericaoExcluida > 0) {
+                h += ' · ' + gal.qtdAfericaoExcluida + ' aferição(ões) excluída(s)';
+            }
+            h += '</p>';
+            h += '<table class="exec-table"><thead><tr><th>Combustível</th><th class="td-num">Litros (L)</th><th class="td-num">Faturamento (R$)</th></tr></thead><tbody>';
+            (gal.porProduto || []).forEach(function (row) {
+                h += '<tr><td>' + escapeHtml(row[0]) + '</td><td class="td-num">' + fmtLitros(row[1]) + '</td><td class="td-num">' + fmtReais(row[2]) + '</td></tr>';
+            });
+            h += '</tbody><tfoot><tr><td><strong>Total período</strong></td><td class="td-num"><strong>' + fmtLitros(gal.totalLitros) + '</strong></td>';
+            h += '<td class="td-num"><strong>' + fmtReais(gal.totalReais) + '</strong></td></tr></tfoot></table>';
+            return h;
+        }
+
         function renderPainelExecutivoHtml(snap) {
             const filialTxt = snap.filial ? escapeHtml(snap.filial) : 'Todas (parâmetro vazio)';
             const periodo = escapeHtml(snap.diLabel + ' a ' + snap.dfLabel);
             const k = snap.kpi;
             const vendas = snap.vendas;
             const abast = snap.abastecimentosCount;
+            const gal = snap.galonagem;
 
             let h = '<div class="exec-report">';
             h += '<div class="exec-cover">';
@@ -2890,6 +3062,12 @@
             h += '</div>';
 
             h += '<div class="exec-kpi-grid">';
+            if (gal && gal.qtdRegistros > 0) {
+                h += '<div class="exec-kpi exec-kpi--destaque"><span class="exec-kpi__lab">Galonagem do período</span><span class="exec-kpi__val">' + fmtLitros(gal.totalLitros) + '</span>';
+                h += '<span class="exec-kpi__sub">Faturamento combustível ' + fmtReais(gal.totalReais) + ' · ' + gal.qtdRegistros.toLocaleString('pt-BR') + ' abastecimentos</span></div>';
+            } else {
+                h += '<div class="exec-kpi exec-kpi--destaque"><span class="exec-kpi__lab">Galonagem do período</span><span class="exec-kpi__val">—</span><span class="exec-kpi__sub">Sem abastecimentos no período ou falha na API</span></div>';
+            }
             h += '<div class="exec-kpi"><span class="exec-kpi__lab">Turnos de caixa</span><span class="exec-kpi__val">' + k.turnos + '</span></div>';
             h += '<div class="exec-kpi"><span class="exec-kpi__lab">Valor apurado (soma CAIXA)</span><span class="exec-kpi__val">' + fmtReais(k.totalApuradoCaixa) + '</span></div>';
             h += '<div class="exec-kpi"><span class="exec-kpi__lab">Turnos fechados</span><span class="exec-kpi__val">' + k.turnosFechados + '</span><span class="exec-kpi__sub">de ' + k.turnos + ' turno(s)</span></div>';
@@ -2908,13 +3086,15 @@
             }
             h += '</div>';
 
+            h += '<div class="exec-panel exec-panel--full">' + renderTabelaExecGalonagem('Galonagem por combustível — período', gal) + '</div>';
+
             h += '<div class="exec-split">';
             h += '<div class="exec-panel">' + renderTabelaExecPares('Principais categorias — contas a pagar (plano)', snap.topPlanoPagar) + '</div>';
             h += '<div class="exec-panel">' + renderTabelaExecPares('Principais clientes — contas a receber (valor)', snap.topClienteReceber) + '</div>';
             h += '</div>';
 
             h += '<div class="exec-foot">';
-            h += '<strong>Fontes de dados:</strong> GET /INTEGRACAO/CAIXA, CAIXA_APRESENTADO, TITULO_PAGAR';
+            h += '<strong>Fontes de dados:</strong> GET /INTEGRACAO/ABASTECIMENTO, CAIXA, CAIXA_APRESENTADO, TITULO_PAGAR';
             h += (snap.erroReceber ? '' : ', TITULO_RECEBER');
             h += '. Respeitam data inicial/final, filial e situação de título a pagar configurados nos parâmetros globais.';
             h += ' Valores dependem do retorno real da API e das permissões da chave.';
@@ -2938,7 +3118,7 @@
                 out.innerHTML = '<div class="exec-error">Defina <strong>data inicial</strong> e <strong>data final</strong> nos parâmetros globais.</div>';
                 return;
             }
-            out.innerHTML = '<p class="exec-loading">Consolidando indicadores (CAIXA, formas de pagamento, títulos)…</p>';
+            out.innerHTML = '<p class="exec-loading">Consolidando indicadores (abastecimentos / galonagem, CAIXA, formas de pagamento, títulos)…</p>';
             const t0 = performance.now();
             let errReceber = null;
             try {
@@ -2946,12 +3126,16 @@
                     errReceber = e.message || String(e);
                     return { rows: [], httpStatus: 0, requests: 0 };
                 });
-                const [caixaPkg, apPkg, titulosPagar, recebPkg] = await Promise.all([
+                const abastPromise = fetchTodasPaginasAbastecimento(di, df).catch(function () { return []; });
+                const [caixaPkg, apPkg, titulosPagar, recebPkg, abastLista] = await Promise.all([
                     fetchTodasPaginasCaixa(di, df),
                     fetchTodasPaginasCaixaApresentado(di, df),
                     fetchTodasPaginasTituloPagar(di, df),
                     recebPromise,
+                    abastPromise,
                 ]);
+                todosAbastecimentos = Array.isArray(abastLista) ? abastLista : [];
+                const galonagem = agregarGalonagemExecutiva(todosAbastecimentos);
                 const ms = performance.now() - t0;
                 const caixaRows = caixaPkg.rows || [];
                 const apRows = apPkg.rows || [];
@@ -2996,6 +3180,7 @@
                     geradoEm: new Date().toLocaleString('pt-BR', { dateStyle: 'long', timeStyle: 'short' }),
                     erroReceber: errReceber,
                     abastecimentosCount: todosAbastecimentos.length,
+                    galonagem: galonagem,
                     vendas: vendasSnap,
                     kpi: {
                         turnos: caixaRows.length,
@@ -3397,9 +3582,11 @@
                 u.searchParams.set('pagina', String(pagina));
                 u.searchParams.set('tamanhoPagina', String(pageSize));
                 appendFilialToUrl(u);
-                const r = await fetch(u.toString());
+                API_KEY = getApiKey();
+                u.searchParams.set('CHAVE', API_KEY);
+                const r = await wpFetch(u.toString());
                 if (r.status === 401 || r.status === 403) throw new Error('FINANCEIRO_EXCLUSAO HTTP ' + r.status);
-                if (!r.ok) throw new Error('FINANCEIRO_EXCLUSAO HTTP ' + r.status);
+                if (!r.ok) wpFail('FINANCEIRO_EXCLUSAO', r);
                 const j = await r.json();
                 const batch = Array.isArray(j) ? j : (j.resultados || []);
                 todas = todas.concat(batch);
@@ -3553,7 +3740,9 @@
                 const u = montarUrlConsultaHub(item);
                 const urlMascarada = u.toString().replace(/CHAVE=[^&]+/, 'CHAVE=***');
                 const t0 = performance.now();
-                const r = await fetch(u.toString());
+                API_KEY = getApiKey();
+                u.searchParams.set('CHAVE', API_KEY);
+                const r = await wpFetch(u.toString());
                 const ms = Math.round(performance.now() - t0);
                 const bodyText = await r.text();
                 let bodyJson = null;
@@ -3755,7 +3944,8 @@
                 let obs = '';
                 let nReg = '—';
                 try {
-                    const r = await fetch(url);
+                    API_KEY = getApiKey();
+                    const r = await wpFetch(url);
                     status = r.status;
                     if (status === 200) {
                         try {
@@ -4055,8 +4245,10 @@
                 u.searchParams.set('pagina', String(pagina));
                 u.searchParams.set('tamanhoPagina', String(tp));
                 appendFilialToUrl(u);
-                const r = await fetch(u.toString());
-                if (!r.ok) throw new Error('VENDA HTTP ' + r.status);
+                API_KEY = getApiKey();
+                u.searchParams.set('CHAVE', API_KEY);
+                const r = await wpFetch(u.toString());
+                if (!r.ok) wpFail('VENDA', r);
                 const j = await r.json();
                 const batch = j.resultados || [];
                 todas = todas.concat(batch);
@@ -4119,8 +4311,10 @@
                 }
                 appendFilialToUrl(u);
 
-                const r = await fetch(u.toString());
-                if (!r.ok) throw new Error('ABASTECIMENTO HTTP ' + r.status);
+                API_KEY = getApiKey();
+                u.searchParams.set('CHAVE', API_KEY);
+                const r = await wpFetch(u.toString());
+                if (!r.ok) wpFail('ABASTECIMENTO', r);
                 const data = await r.json();
                 const batch = data.resultados || [];
                 todas = todas.concat(batch);

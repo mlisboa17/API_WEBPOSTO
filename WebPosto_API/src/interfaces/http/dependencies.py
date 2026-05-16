@@ -10,6 +10,21 @@ from src.infrastructure.repositories.cliente_repository import (
     SQLAlchemyClienteRepository,
 )
 from src.infrastructure.webposto.client import WebPostoClient
+from fastapi import Depends, HTTPException, Request
+from typing import Dict
+from src.infrastructure.security.jwt_utils import decode_token
+
+
+async def get_current_user(request: Request) -> Dict:
+    """Dependency: extrai usuário do cookie de access token e valida."""
+    token = request.cookies.get("access_token")
+    if not token:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    try:
+        payload = decode_token(token)
+        return payload
+    except Exception:
+        raise HTTPException(status_code=401, detail="Invalid token")
 
 
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
@@ -22,7 +37,7 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
 
 
 async def get_cliente_repository(
-    db: AsyncSession,
+    db: AsyncSession = Depends(get_db),
 ) -> SQLAlchemyClienteRepository:
     """Dependency: Repositório de Clientes."""
     return SQLAlchemyClienteRepository(db)
@@ -41,17 +56,17 @@ async def get_webposto_client() -> WebPostoClient:
 
 
 async def get_cliente_service(
-    repository: SQLAlchemyClienteRepository,
-    event_bus: RedisEventBus,
+    repository: SQLAlchemyClienteRepository = Depends(get_cliente_repository),
+    event_bus: RedisEventBus = Depends(get_event_bus),
 ) -> ClienteService:
     """Dependency: Serviço de Clientes."""
     return ClienteService(repository, event_bus)
 
 
 async def get_sync_service(
-    webposto_client: WebPostoClient,
-    cliente_service: ClienteService,
-    event_bus: RedisEventBus,
+    webposto_client: WebPostoClient = Depends(get_webposto_client),
+    cliente_service: ClienteService = Depends(get_cliente_service),
+    event_bus: RedisEventBus = Depends(get_event_bus),
 ) -> SyncService:
     """Dependency: Serviço de Sincronização."""
     return SyncService(webposto_client, cliente_service, event_bus)
