@@ -6,14 +6,14 @@
 - `dashboard_vendas.html` — shell OLED + CHAVE
 - `theme/executive.js` — proxy `wpFetch`
 
-**Checklist:** proxy `/api/webposto/proxy`, GZip, CORS, campo CHAVE, zero CORS.
+**Checklist:** proxy `/api/webposto/proxy`, GZip, CORS, campo CHAVE, cockpit Lionda (`static/dashboard_logos.html` + `theme/cockpit.js`), cards semânticos (verde/azul/vermelho), CLS fixo.
 
 ## Claude 3.7 — Adelaide Tax & KPIs (40%)
 
 - `src/domain/adelaide/` — catálogo combustíveis + `tax_profile.py`
 - `src/application/usecases/fetch_executive_kpis.py`
 
-**Checklist:** Decimal, Pydantic v2, masking por role, graceful fallback.
+**Checklist:** Decimal, Pydantic v2, `/api/v1/adelaide/metrics`, masking por role, graceful fallback + cache 60s.
 
 ## Grok 4 — Cache, Testes & Anomalias (20%)
 
@@ -21,7 +21,7 @@
 - `src/infrastructure/anomaly/caixa_anomaly.py`
 - `tests/fix_suite.py`
 
-**Checklist:** cache TTL 60s, testes 500/RetryError, health da chave.
+**Checklist:** cache TTL 60s, `scripts/seed_real_data.py --prewarm`, prewarm startup, `redis_adapter`, anomalias caixa.
 
 ## Setup local (30s)
 

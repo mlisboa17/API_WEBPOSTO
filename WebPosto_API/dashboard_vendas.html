@@ -1552,6 +1552,220 @@
             color: #78909c;
             font-size: 0.95rem;
         }
+        .api-hub-hero__list {
+            margin: 12px 0 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 8px;
+            font-size: 0.88rem;
+            color: #455a64;
+        }
+        .api-hub-hero__list li {
+            padding-left: 1.35rem;
+            position: relative;
+            line-height: 1.45;
+        }
+        .api-hub-hero__list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00897b;
+            font-weight: 700;
+        }
+        .api-hub-result__head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 16px 18px;
+            margin: -18px -18px 16px;
+            border-radius: 14px 14px 0 0;
+            background: linear-gradient(135deg, #0d2137 0%, #1f4e78 100%);
+            color: #eceff1;
+        }
+        .api-hub-result__head-main h5 {
+            margin: 0 0 6px;
+            font-size: 1.12rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .api-hub-result__head-main p {
+            margin: 0;
+            font-size: 0.8rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+        .api-hub-result__head-main code {
+            font-size: 0.72rem;
+            background: rgba(255,255,255,0.12);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #b2ebf2;
+        }
+        .api-hub-result__pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+        .api-hub-pill {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 72px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .api-hub-pill strong {
+            font-size: 1.05rem;
+            margin-top: 4px;
+            text-transform: none;
+            letter-spacing: 0;
+            color: #fff;
+        }
+        .api-hub-pill--ok strong { color: #a5d6a7; }
+        .api-hub-pill--err strong { color: #ef9a9a; }
+        .api-hub-kpis {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .api-hub-kpi {
+            background: #fff;
+            border: 1px solid #cfd8dc;
+            border-radius: 10px;
+            padding: 10px 12px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+        .api-hub-kpi__lbl {
+            display: block;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #78909c;
+            margin-bottom: 4px;
+        }
+        .api-hub-kpi strong {
+            font-size: 1.05rem;
+            color: #0d2137;
+        }
+        .api-hub-kpi--money strong { color: #2e7d32; }
+        .api-hub-result .caixa-apr-sheet-wrap {
+            max-height: min(62vh, 640px);
+            border-color: #90a4ae;
+        }
+        .api-hub-result table.sheet-caixa-apr thead th {
+            background: #1f4e78;
+            border-color: #163a5c;
+        }
+        .api-hub-result table.sheet-caixa-apr tbody td:first-child {
+            background: #eceff1;
+        }
+        .api-hub-result__url {
+            font-size: 0.76rem;
+            color: #546e7a;
+            margin: 0 0 12px;
+            padding: 10px 12px;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px dashed #cfd8dc;
+            word-break: break-all;
+        }
+        .api-hub-result__url code { font-size: 0.72rem; }
+        .api-hub-result details.api-hub-json {
+            margin-top: 12px;
+            border: 1px solid #e0e4e8;
+            border-radius: 10px;
+            background: #fff;
+            overflow: hidden;
+        }
+        .api-hub-result details.api-hub-json summary {
+            cursor: pointer;
+            padding: 10px 14px;
+            font-weight: 600;
+            font-size: 0.84rem;
+            color: #546e7a;
+            background: #f5f7f8;
+        }
+        .api-hub-result details.api-hub-json pre {
+            margin: 0;
+            padding: 12px 14px;
+            font-size: 0.7rem;
+            max-height: 280px;
+            overflow: auto;
+            background: #fafbfc;
+            border-top: 1px solid #e0e4e8;
+        }
+        .api-hub-trunc {
+            margin: 0 0 10px;
+            padding: 8px 12px;
+            background: #fff8e1;
+            border-radius: 8px;
+            border: 1px solid #ffe082;
+            font-size: 0.84rem;
+            color: #5d4037;
+        }
+        .bloco--audit-sc .bloco__head { background: linear-gradient(90deg, #1a237e, #283593); }
+        .audit-lead { font-size: 0.92rem; color: #37474f; line-height: 1.55; margin: 0 0 16px; max-width: 720px; }
+        .audit-filtros {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            margin-bottom: 16px;
+            padding: 16px;
+            background: #eceff1;
+            border-radius: 10px;
+            border: 1px solid #cfd8dc;
+        }
+        .audit-filtros .filter-group--wide { grid-column: 1 / -1; }
+        .audit-hint { font-size: 0.8rem; color: #546e7a; margin: 6px 0 0; }
+        .audit-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+        .btn-audit-primary {
+            background: #1a237e; color: #fff; border: none; padding: 10px 18px; border-radius: 8px;
+            font-weight: 600; cursor: pointer;
+        }
+        .btn-audit-primary:hover { background: #283593; }
+        .btn-audit-primary:disabled { opacity: 0.6; cursor: wait; }
+        .btn-audit-secondary {
+            background: #fff; color: #1a237e; border: 2px solid #1a237e; padding: 8px 16px;
+            border-radius: 8px; font-weight: 600; cursor: pointer;
+        }
+        .btn-audit-secondary:disabled { opacity: 0.6; cursor: wait; }
+        .btn-audit-ghost {
+            background: transparent; color: #455a64; border: 1px dashed #90a4ae;
+            padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 0.88rem;
+        }
+        .audit-resultado { min-height: 120px; }
+        .audit-loading, .audit-empty { color: #607d8b; font-size: 0.92rem; }
+        .audit-error { color: #c62828; background: #ffebee; padding: 12px; border-radius: 8px; }
+        .audit-total-posto { font-size: 1.05rem; margin: 0 0 14px; color: #1a237e; }
+        .audit-grid-tres { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .audit-card {
+            background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .audit-card__head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .audit-card__head h4 { margin: 0; color: #1a237e; font-size: 1.1rem; }
+        .audit-card__badge { font-size: 0.72rem; background: #e8eaf6; color: #3949ab; padding: 4px 8px; border-radius: 6px; }
+        .audit-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+        .audit-kpi { background: #f5f5f5; padding: 10px; border-radius: 8px; }
+        .audit-kpi span { display: block; font-size: 0.75rem; color: #757575; margin-bottom: 4px; }
+        .audit-kpi strong { font-size: 1rem; color: #212121; }
+        .audit-kpi--fat strong { color: #1b5e20; font-size: 1.15rem; }
+        .audit-kpi--div strong { color: #c62828; }
+        .audit-alert { color: #e65100; font-weight: 600; margin: 10px 0 0; font-size: 0.88rem; }
+        .audit-meta { font-size: 0.82rem; color: #78909c; margin: 10px 0 0; }
+        .audit-card--compact .audit-card__title { margin: 0 0 6px; color: #1a237e; }
+        .audit-card--compact .audit-card__fat { margin: 0; font-size: 1.2rem; font-weight: 700; color: #1b5e20; }
+        .audit-card--compact .audit-card__sub { margin: 4px 0 0; font-size: 0.82rem; color: #607d8b; }
     </style>
 </head>
 <body>
@@ -1587,6 +1801,7 @@
                     <button type="button" class="app-nav__btn" data-nav-target="fin-consultas" onclick="irParaVisao('fin-consultas')">Financeiro · consultas<small>Títulos a pagar, caixa, conferência, exclusão</small></button>
                     <button type="button" class="app-nav__btn" data-nav-target="fin-turno" onclick="irParaVisao('fin-turno')">Movimento de caixa<small>Turno, formas, fechamento, despesas detalhe</small></button>
                     <button type="button" class="app-nav__btn" data-nav-target="fin-cartoes" onclick="irParaVisao('fin-cartoes')">Cartões &amp; recebíveis<small>Receber, remessa, pagar, compra</small></button>
+                    <button type="button" class="app-nav__btn" data-nav-target="audit-sc" onclick="irParaVisao('audit-sc')">Auditoria · sub-centro<small>Período + PISTA / LOJA / FOOD · R$</small></button>
                 </nav>
                 <p class="app-sidebar__foot">Período, filial, situação de título e tamanho de página ficam em <strong>Parâmetros globais</strong>. O tipo <em>PDV / Combustível</em> alinha o botão <strong>Carregar relatório ativo</strong>.</p>
             </aside>
@@ -1693,6 +1908,11 @@
                             <p>Títulos a receber (com opção só pendentes), remessa, cartão a pagar e cartão compra.</p>
                             <span class="inicio-card__ep">TITULO_RECEBER · CARTAO_*</span>
                         </button>
+                        <button type="button" class="inicio-card inicio-card--destaque" onclick="irParaVisao('audit-sc')">
+                            <h4>Auditoria · sub-centro</h4>
+                            <p>Escolha período e PISTA, LOJA ou FOOD — faturamento em R$ e reconciliação de caixa.</p>
+                            <span class="inicio-card__ep">GET /v1/audit/faturamento</span>
+                        </button>
                     </div>
                     <div class="inicio-auditoria-chave" style="margin-top:22px;padding-top:18px;border-top:1px solid #e0e0e0;">
                         <h4 style="margin:0 0 8px;font-size:1rem;color:#37474f;">O que minha CHAVE está liberada a fazer?</h4>
@@ -1720,12 +1940,17 @@
                 <div class="bloco__body">
                     <div class="api-hub-hero">
                         <h4>Um só lugar para explorar a integração</h4>
-                        <p>
-                            Aqui estão os <strong>mesmos endpoints GET</strong> do catálogo oficial do projeto (integração WebPosto).
-                            Use as <strong>datas</strong> e a <strong>filial</strong> em <em>Parâmetros globais</em> quando o cartão indicar.
-                            <strong>POST e PUT</strong> (cadastro, baixas, estoque) não são disparados desta tela por segurança — use o
-                            <a href="https://web.qualityautomacao.com.br/webjars/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config" target="_blank" rel="noopener">Swagger</a> ou o explorador técnico do repositório.
+                        <p style="margin:0 0 4px;font-size:0.92rem;color:#455a64;max-width:920px;line-height:1.55;">
+                            Catálogo oficial de consultas <strong>GET</strong> da WebPosto — resultado em <strong>planilha legível</strong>
+                            (datas, valores em R$, litros e códigos formatados).
                         </p>
+                        <ul class="api-hub-hero__list">
+                            <li>Use <strong>datas</strong> e <strong>filial</strong> em <em>Parâmetros globais</em> quando o cartão indicar.</li>
+                            <li>Clique em <strong>Consultar agora</strong> — o painel abaixo mostra resumo, totais e tabela.</li>
+                            <li><strong>POST e PUT</strong> não são disparados aqui (segurança). Para cadastro/estoque use o
+                                <a href="https://web.qualityautomacao.com.br/webjars/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config" target="_blank" rel="noopener">Swagger</a>
+                                ou <a href="/tecnico">explorador técnico</a>.</li>
+                        </ul>
                     </div>
                     <div class="api-hub-toolbar">
                         <label for="api-hub-search">Buscar</label>
@@ -1734,6 +1959,49 @@
                     <div class="api-hub-chips" id="api-hub-chips" aria-label="Filtrar por categoria"></div>
                     <div id="api-hub-cards" class="api-hub-grid"></div>
                     <div id="api-hub-result" class="api-hub-result" style="display:none;"></div>
+                </div>
+            </section>
+            </div>
+
+            <div id="view-audit-sc" class="nav-view">
+            <section class="bloco bloco--audit-sc" aria-labelledby="tit-audit-sc">
+                <div class="bloco__head">
+                    <h3 id="tit-audit-sc">Auditoria por sub-centro de custo</h3>
+                    <span class="bloco__tag">PISTA · LOJA · FOOD · faturamento R$</span>
+                </div>
+                <div class="bloco__body">
+                    <p class="audit-lead">
+                        Escolha o <strong>período</strong> e o <strong>sub-centro</strong> antes de consultar.
+                        Pista usa ABASTECIMENTO (litros + R$); Loja e Food usam PDV (galonagem zero).
+                        Chave da API vem do servidor (<code>.env</code>).
+                    </p>
+                    <div class="audit-filtros">
+                        <div class="filter-group">
+                            <label for="audit-data-inicial">Data inicial</label>
+                            <input type="date" id="audit-data-inicial" autocomplete="off">
+                        </div>
+                        <div class="filter-group">
+                            <label for="audit-data-final">Data final</label>
+                            <input type="date" id="audit-data-final" autocomplete="off">
+                        </div>
+                        <div class="filter-group filter-group--wide">
+                            <label for="audit-sub-centro">Sub-centro</label>
+                            <select id="audit-sub-centro">
+                                <option value="PISTA">PISTA — combustível (bicos)</option>
+                                <option value="LOJA">LOJA — conveniência (sem food)</option>
+                                <option value="FOOD">FOOD — lanchonete</option>
+                            </select>
+                            <p id="audit-sub-centro-hint" class="audit-hint"></p>
+                        </div>
+                    </div>
+                    <div class="audit-actions">
+                        <button type="button" class="btn-audit-primary" id="audit-btn-consultar" onclick="consultarAuditSubCentro()">Consultar sub-centro selecionado</button>
+                        <button type="button" class="btn-audit-secondary" id="audit-btn-todos" onclick="consultarAuditTodosSubCentros()">Ver os 3 sub-centros</button>
+                        <button type="button" class="btn-audit-ghost" onclick="copiarPeriodoGlobalParaAudit()">Copiar datas dos parâmetros globais</button>
+                    </div>
+                    <div id="audit-resultado" class="audit-resultado" aria-live="polite">
+                        <p class="audit-empty">Defina período e sub-centro, depois clique em consultar.</p>
+                    </div>
                 </div>
             </section>
             </div>
@@ -2053,6 +2321,7 @@
 
     <script src="/api_hub_catalog.js"></script>
     <script src="/theme/executive.js"></script>
+    <script src="/theme/audit_subcentro.js"></script>
     <script>
         const API_URL = window.location.origin;
         function getApiKey() {
@@ -2317,17 +2586,23 @@
             const opt = options || {};
             const nome = opt.nomeEndpoint || 'INTEGRACAO';
             const ordenar = typeof opt.ordenarChaves === 'function' ? opt.ordenarChaves : ordenarChavesCaixaApresentado;
+            const maxRows = opt.maxRows != null ? opt.maxRows : rows.length;
+            const visiveis = rows.length > maxRows ? rows.slice(0, maxRows) : rows;
             if (!rows.length) {
                 return '<p class="caixa-apr-empty">' + (opt.emptyHtml || ('Nenhum registro de <strong>' + escapeHtml(nome) + '</strong> no período.')) + '</p>';
             }
             const keys = ordenar(coletarChavesUnicasLinhas(rows));
-            let h = '<div class="caixa-apr-sheet-wrap"><table class="sheet-caixa-apr"><thead><tr>';
+            let h = '';
+            if (rows.length > maxRows) {
+                h += '<p class="api-hub-trunc">Mostrando <strong>' + maxRows + '</strong> de <strong>' + rows.length.toLocaleString('pt-BR') + '</strong> registros. Refine datas/filial ou abra o JSON bruto.</p>';
+            }
+            h += '<div class="caixa-apr-sheet-wrap"><table class="sheet-caixa-apr"><thead><tr>';
             h += '<th>#</th>';
             keys.forEach((col) => {
                 h += '<th title="' + escapeHtml(col) + '">' + escapeHtml(rotuloCampoJson(col)) + '</th>';
             });
             h += '</tr></thead><tbody>';
-            rows.forEach((row, i) => {
+            visiveis.forEach((row, i) => {
                 h += '<tr><td>' + (i + 1) + '</td>';
                 keys.forEach((col) => {
                     h += celulaFormatadaIntegracao(col, row[col]);
@@ -3607,6 +3882,106 @@
             });
         }
 
+        const HUB_PRIORIDADE_COLUNAS = [
+            'empresaCodigo', 'filialCodigo', 'nomeFilial', 'descricaoFilial', 'caixaCodigo', 'turnoCodigo', 'turno',
+            'codigo', 'produtoCodigo', 'clienteCodigo', 'fornecedorCodigo', 'nome', 'descricao', 'historico',
+            'data', 'dataAbertura', 'dataFechamento', 'dataMovimento', 'dataLancamento', 'dataVencimento', 'dataEmissao',
+            'dataInicial', 'dataFinal', 'dataPagamento', 'dataRecebimento',
+            'valor', 'valorTotal', 'valorTitulo', 'valorOriginal', 'valorPago', 'saldo', 'quantidade', 'litros', 'volume',
+            'situacao', 'ativo', 'planoContasDescricao', 'nomeCliente', 'nomeFornecedor',
+        ];
+
+        function resolverOrdenacaoHub(item) {
+            const p = (item && item.path) || '';
+            if (p.indexOf('TITULO_PAGAR') >= 0) return ordenarChavesTituloPagar;
+            if (p.indexOf('TITULO_RECEBER') >= 0) return ordenarChavesTituloReceber;
+            if (p.indexOf('CAIXA_APRESENTADO') >= 0) return ordenarChavesCaixaApresentado;
+            if (p.indexOf('FINANCEIRO_EXCLUSAO') >= 0) return ordenarChavesFinanceiroExclusao;
+            if (p.indexOf('CARTAO_') >= 0) return ordenarChavesCartaoIntegracao;
+            if (p.indexOf('CAIXA') >= 0) {
+                return function (keys) {
+                    return ordenarChavesComPrioridade(keys, [
+                        'empresaCodigo', 'filialCodigo', 'caixaCodigo', 'dataAbertura', 'dataFechamento',
+                        'consolidado', 'apurado', 'diferenca', 'valor',
+                    ]);
+                };
+            }
+            if (p.indexOf('VENDA') >= 0 || p.indexOf('ABASTECIMENTO') >= 0) {
+                return function (keys) {
+                    return ordenarChavesComPrioridade(keys, [
+                        'empresaCodigo', 'filialCodigo', 'vendaCodigo', 'abastecimentoCodigo', 'produtoCodigo',
+                        'data', 'dataMovimento', 'hora', 'quantidade', 'litros', 'volume', 'valor', 'valorTotal', 'preco',
+                    ]);
+                };
+            }
+            if (p.indexOf('PRODUTO') >= 0 && p.indexOf('EMPRESA') < 0 && p.indexOf('INVENTARIO') < 0) {
+                return function (keys) {
+                    return ordenarChavesComPrioridade(keys, [
+                        'produtoCodigo', 'codigo', 'nome', 'descricao', 'grupoCodigo', 'codigoBarras',
+                        'precoVenda', 'precoCusto', 'unidadeMedida', 'ncm', 'ativo', 'combustivel',
+                    ]);
+                };
+            }
+            return function (keys) {
+                return ordenarChavesComPrioridade(keys, HUB_PRIORIDADE_COLUNAS);
+            };
+        }
+
+        function numeroCelulaHub(val) {
+            if (val == null || val === '') return null;
+            if (typeof val === 'number' && Number.isFinite(val)) return val;
+            const s = String(val).trim().replace(/\s/g, '').replace(',', '.');
+            if (!/^-?\d+([.]\d+)?$/.test(s)) return null;
+            const n = Number(s);
+            return Number.isFinite(n) ? n : null;
+        }
+
+        function montarKpisHub(rows) {
+            if (!rows || !rows.length) return '';
+            const keys = coletarChavesUnicasLinhas(rows);
+            const monetarias = keys.filter(function (k) {
+                return colunaProvavelMonetaria(k);
+            });
+            let h = '<div class="api-hub-kpis">';
+            h += '<div class="api-hub-kpi"><span class="api-hub-kpi__lbl">Registros</span><strong>' + rows.length.toLocaleString('pt-BR') + '</strong></div>';
+            h += '<div class="api-hub-kpi"><span class="api-hub-kpi__lbl">Colunas</span><strong>' + keys.length + '</strong></div>';
+            monetarias.slice(0, 3).forEach(function (k) {
+                let sum = 0;
+                let cnt = 0;
+                rows.forEach(function (row) {
+                    const n = numeroCelulaHub(row[k]);
+                    if (n != null) {
+                        sum += n;
+                        cnt++;
+                    }
+                });
+                if (!cnt) return;
+                h += '<div class="api-hub-kpi api-hub-kpi--money"><span class="api-hub-kpi__lbl">Σ ' + escapeHtml(rotuloCampoJson(k)) + '</span><strong>' + fmtReais(sum) + '</strong></div>';
+            });
+            h += '</div>';
+            return h;
+        }
+
+        function montarCabecalhoResultadoHub(item, httpStatus, ms, rows, urlMascarada, pathEfetivo) {
+            const ok = httpStatus >= 200 && httpStatus < 300;
+            const pillClass = ok ? 'api-hub-pill--ok' : 'api-hub-pill--err';
+            let h = '<div class="api-hub-result__head">';
+            h += '<div class="api-hub-result__head-main"><h5>' + escapeHtml(item.nome) + '</h5>';
+            h += '<p><code>' + escapeHtml(item.path) + '</code> · ' + escapeHtml(item.categoria || '') + '</p></div>';
+            h += '<div class="api-hub-result__pills">';
+            h += '<span class="api-hub-pill ' + pillClass + '"><span>HTTP</span><strong>' + httpStatus + '</strong></span>';
+            h += '<span class="api-hub-pill"><span>Tempo</span><strong>' + ms + ' ms</strong></span>';
+            h += '<span class="api-hub-pill"><span>Linhas</span><strong>' + (rows ? rows.length : 0) + '</strong></span>';
+            h += '</div></div>';
+            const pathReal = (typeof pathEfetivo !== 'undefined' && pathEfetivo) ? pathEfetivo : resolverPathHub(item);
+            if (item && item.path && pathReal !== item.path) {
+                h += '<p style="font-size:0.8rem;color:#80cbc4;margin-top:4px;">↳ Consulta efetiva: <code>' + escapeHtml(pathReal) + '</code> (401 em <code>' + escapeHtml(item.path) + '</code> com esta CHAVE)</p>';
+            }
+            h += '<p class="api-hub-result__url"><strong>Proxy</strong> <code>POST ' + escapeHtml(API_URL + '/api/webposto/proxy') + '</code> → <code>' + escapeHtml(pathReal) + '</code></p>';
+            h += '<p class="api-hub-result__url" style="font-size:0.75rem;color:#888;">Ref. local (CHAVE oculta): <code>' + escapeHtml(urlMascarada) + '</code></p>';
+            return h;
+        }
+
         function extrairLinhasRespostaHub(body) {
             if (Array.isArray(body)) return { rows: body, wrapper: null };
             if (body && typeof body === 'object' && Array.isArray(body.resultados)) {
@@ -3616,8 +3991,20 @@
             return { rows: [], wrapper: null };
         }
 
+        /** Rotas sem permissão na CHAVE atual → equivalente liberado (Quality). */
+        const HUB_ROTA_EQUIVALENTE = {
+            '/INTEGRACAO/LISTA_DE_ITENS': '/INTEGRACAO/PRODUTO',
+            '/INTEGRACAO/RETORNO_CADASTRO_PRODUTO': '/INTEGRACAO/PRODUTO',
+        };
+
+        function resolverPathHub(item) {
+            const p = (item && item.path) || '';
+            return HUB_ROTA_EQUIVALENTE[p] || p;
+        }
+
         function montarUrlConsultaHub(item) {
-            const u = new URL(API_URL + item.path);
+            const path = resolverPathHub(item);
+            const u = new URL(API_URL + path);
             u.searchParams.set('CHAVE', API_KEY);
             if (item.dates) {
                 const di = (document.getElementById('filter-data-inicial') && document.getElementById('filter-data-inicial').value || '').trim();
@@ -3706,7 +4093,9 @@
             }
             wrap.innerHTML = list.map(function (it) {
                 const idxGlobal = full.indexOf(it);
-                const hint = it.dates ? 'Usa datas dos parâmetros globais.' : 'Sem data obrigatória neste modelo de URL.';
+                const pathEff = resolverPathHub(it);
+                const mapHint = pathEff !== it.path ? ' Redireciona para ' + pathEff + ' (CHAVE sem acesso à rota do catálogo).' : '';
+                const hint = (it.dates ? 'Usa datas dos parâmetros globais.' : 'Sem data obrigatória neste modelo de URL.') + mapHint;
                 const filHint = it.fil ? ' Envia filial se preenchida.' : '';
                 return '<div class="api-hub-card" data-hub-idx="' + idxGlobal + '">' +
                     '<div class="api-hub-card__cat">' + escapeHtml(it.categoria) + '</div>' +
@@ -3734,7 +4123,8 @@
             if (btn) btn.disabled = true;
             if (out) {
                 out.style.display = 'block';
-                out.innerHTML = '<div class="api-hub-result__meta">Consultando…</div>';
+                out.innerHTML = '<div class="api-hub-result__head"><div class="api-hub-result__head-main"><h5>Consultando…</h5><p>Aguarde a resposta da WebPosto.</p></div></div>';
+                out.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
             try {
                 const u = montarUrlConsultaHub(item);
@@ -3751,29 +4141,37 @@
                 } catch (e1) {
                     bodyJson = null;
                 }
+                const pathEfetivo = resolverPathHub(item);
                 const parsed = bodyJson != null ? extrairLinhasRespostaHub(bodyJson) : { rows: [], wrapper: null };
                 const rows = parsed.rows;
-                const statusColor = r.ok ? '#2e7d32' : '#c62828';
-                let h = '<div class="api-hub-result__meta"><strong style="color:' + statusColor + '">HTTP ' + r.status + '</strong> · ' + ms + ' ms · ';
-                h += escapeHtml(item.nome) + ' <code>' + escapeHtml(item.path) + '</code><br>URL (CHAVE oculta): <code style="font-size:0.76rem;word-break:break-all;">' + escapeHtml(urlMascarada) + '</code></div>';
+                let h = montarCabecalhoResultadoHub(item, r.status, ms, rows, urlMascarada, pathEfetivo);
                 if (!r.ok) {
-                    h += '<p style="color:#b71c1c;font-size:0.9rem;white-space:pre-wrap;">' + escapeHtml(bodyText.slice(0, 1200)) + '</p>';
+                    const errMsg = bodyText && bodyText.trim() ? bodyText.slice(0, 1200) : (
+                        r.status === 401
+                            ? 'Sem permissão na WebPosto para esta rota. O hub redireciona automaticamente para ' + pathEfetivo + ' quando aplicável — recarregue com Ctrl+F5.'
+                            : 'Resposta vazia da API (body null).'
+                    );
+                    h += '<p style="color:#b71c1c;font-size:0.9rem;white-space:pre-wrap;padding:12px;background:#ffebee;border-radius:8px;">' + escapeHtml(errMsg) + '</p>';
                 } else if (rows.length) {
+                    h += montarKpisHub(rows);
                     h += renderPlanilhaIntegracao(rows, {
                         nomeEndpoint: item.path.replace(/^\/INTEGRACAO\//, ''),
-                        ordenarChaves: ordenarChavesHubAlfabetica,
+                        ordenarChaves: resolverOrdenacaoHub(item),
                         emptyHtml: 'Sem linhas.',
+                        maxRows: 120,
                     });
                 } else {
                     h += '<p class="caixa-apr-empty">Resposta OK — sem linhas em <code>resultados[]</code> ou lista vazia. Confira o JSON abaixo.</p>';
                 }
                 if (bodyJson != null) {
-                    h += '<details style="margin-top:14px;"><summary style="cursor:pointer;font-weight:600;">JSON bruto</summary><pre style="font-size:0.72rem;overflow:auto;max-height:340px;background:#fff;padding:12px;border-radius:8px;border:1px solid #e0e0e0;">';
-                    h += escapeHtml(JSON.stringify(bodyJson, null, 2)) + '</pre></details>';
+                    h += '<details class="api-hub-json"><summary>JSON bruto (técnico)</summary><pre>' + escapeHtml(JSON.stringify(bodyJson, null, 2)) + '</pre></details>';
                 } else if (bodyText) {
-                    h += '<details style="margin-top:14px;"><summary>Resposta texto</summary><pre style="font-size:0.72rem;">' + escapeHtml(bodyText.slice(0, 14000)) + '</pre></details>';
+                    h += '<details class="api-hub-json"><summary>Resposta texto</summary><pre>' + escapeHtml(bodyText.slice(0, 14000)) + '</pre></details>';
                 }
-                if (out) out.innerHTML = h;
+                if (out) {
+                    out.innerHTML = h;
+                    out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
                 mostrarMensagem('Hub API: ' + item.path + ' → HTTP ' + r.status, r.ok ? 'info' : 'error');
             } catch (e) {
                 if (out) {
@@ -3794,7 +4192,7 @@
                 btn.classList.toggle('is-active', btn.getAttribute('data-nav-target') === key);
             });
 
-            ['view-inicio', 'view-exec', 'view-combustivel', 'view-financeiro', 'view-pdv', 'view-api-hub'].forEach(function (id) {
+            ['view-inicio', 'view-exec', 'view-combustivel', 'view-financeiro', 'view-pdv', 'view-api-hub', 'view-audit-sc'].forEach(function (id) {
                 const el = document.getElementById(id);
                 if (el) el.classList.remove('nav-view--active');
             });
@@ -3825,6 +4223,7 @@
                     pdv: 'view-pdv',
                     combustivel: 'view-combustivel',
                     'api-hub': 'view-api-hub',
+                    'audit-sc': 'view-audit-sc',
                 };
                 const target = document.getElementById(idMap[key]);
                 if (target) target.classList.add('nav-view--active');
@@ -3832,6 +4231,9 @@
 
             if (key === 'api-hub') {
                 initApiHubView();
+            }
+            if (key === 'audit-sc' && typeof initAuditSubCentroView === 'function') {
+                initAuditSubCentroView();
             }
 
             if (key === 'pdv') {
@@ -4276,6 +4678,7 @@
                 inicio: 1, exec: 1, pdv: 1, combustivel: 1,
                 'fin-consultas': 1, 'fin-turno': 1, 'fin-cartoes': 1,
                 'api-hub': 1,
+                'audit-sc': 1,
             };
             if (saved && valid[saved]) irParaVisao(saved);
             else irParaVisao('inicio');

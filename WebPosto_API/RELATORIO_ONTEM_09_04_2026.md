@@ -2,7 +2,7 @@
 **Filial:** POSTO VIP — Rio Doce Comércio e Serviços Ltda  
 **CNPJ:** 03.008.754/0001-86  
 **Endereço:** Av. Brasil, 2701 — Rio Doce, Olinda/PE  
-**Chave API usada:** <WEBPOSTO_API_TOKEN>  
+**Chave API usada:** $WEBPOSTO_CHAVE  
 **Gerado em:** 10/04/2026 via WebPosto API (HTTP 200 confirmado)
 
 ---
@@ -115,7 +115,7 @@
 from webposto import WebPostoClient, WebPostoConfig
 from datetime import date
 
-config = WebPostoConfig(chave="<WEBPOSTO_API_TOKEN>")
+config = WebPostoConfig(chave="$WEBPOSTO_CHAVE")
 client = WebPostoClient(config)
 
 # Busca TODOS os abastecimentos paginando
@@ -251,3 +251,4 @@ print(f"Valor total: R$ {sum(a['valorTotal'] for a in todos):.2f}")
 ---
 
 *Gerado automaticamente pelo diagnóstico WebPosto API — Grupo Lisboa*
+

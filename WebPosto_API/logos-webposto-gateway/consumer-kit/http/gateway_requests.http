@@ -1,0 +1,30 @@
+﻿### Readiness
+GET http://127.0.0.1:8050/ready
+Accept: application/json
+
+### Health
+GET http://127.0.0.1:8050/health
+Accept: application/json
+
+### Expenses by posto and date
+GET http://127.0.0.1:8050/v1/expenses?data_consulta=2026-05-17T00:00:00
+X-Consumer-Token: dev-consumer-token
+X-Posto-ID: 23
+Accept: application/json
+
+### List grupos (CRUD read)
+GET http://127.0.0.1:8050/v1/crud/grupos?offset=0&limit=20
+X-Consumer-Token: dev-consumer-token
+Accept: application/json
+
+### Create grupo (CRUD write)
+POST http://127.0.0.1:8050/v1/crud/grupos
+X-Consumer-Token: dev-consumer-token
+X-Admin-Token: dev-admin-token
+Content-Type: application/json
+
+{
+	"nome": "Aditivos",
+	"ativo": true
+}
+

@@ -1,0 +1,913 @@
+═══════════════════════════════════════════════════════════════════════════════
+  DIVISÃO PARALELA DE TAREFAS — 3 IAS TRABALHAM EM PARALELO
+  PROJETO: API WebPosto + Sincronização Multi-Centro de Custo (CC)
+  DATA: 2026-05-08
+  DEADLINE: 72 horas (3 dias)
+═══════════════════════════════════════════════════════════════════════════════
+
+🎯 OBJETIVO GERAL
+─────────────────────────────────────────────────────────────────────────────
+Implementar sistema de sincronização de Centros de Custo (CC) que:
+1. Descobre CCs da API Quality automaticamente
+2. Modela rateios financeiros em DDD
+3. Auditoria com integridade de dados e detecção de anomalias
+
+TOTAL DE ESFORÇO: 100%
+├─ GEMINI 2.0:  40% (Infrastructure / Performance)
+├─ CLAUDE 3.7:  40% (Architecture / DDD)
+└─ GROK 4:      20% (Algorithms / Audit)
+
+═══════════════════════════════════════════════════════════════════════════════
+  TASK 1 — GEMINI 2.0 (40%) — PERFORMANCE & INFRASTRUCTURE
+═══════════════════════════════════════════════════════════════════════════════
+
+📍 ARQUIVOS PRINCIPAIS:
+   1. src/infrastructure/webposto_client.py (NEW)
+   2. src/infrastructure/cache_layer.py (NEW)
+   3. docker-compose.yml (MODIFY)
+   4. tests/test_api_discovery.py (NEW)
+
+🔧 RESPONSABILIDADES:
+
+1️⃣ DISCOVERY ENGINE (Assíncrono)
+   ─────────────────────────────────
+   Implementar em: src/infrastructure/webposto_client.py
+   
+   Método: async def discover_centros_custo()
+   - GET /api/v1/centros-custo?ativo=true
+   - Parsear resposta com Pydantic
+   - Retornar: List[CentroCustoDTO]
+   
+   Campos esperados:
+   {
+     "id": "cc_001",
+     "nome": "Operações Pista",
+     "ativo": true,
+     "area_responsavel": "Frota"
+   }
+
+2️⃣ CONNECTION POOLING
+   ──────────────────
+   Implementar em: src/infrastructure/webposto_client.py
+   
+   Config HTTPX:
+   ```python
+   AsyncClient(
+       timeout=30.0,
+       limits=httpx.Limits(max_connections=100, max_keepalive_connections=20),
+       headers={"Connection": "keep-alive"}
+   )
+   ```
+   
+   Benefício: Reduz latência em 60% vs. single connection
+
+3️⃣ REDIS CACHE LAYER
+   ─────────────────
+   Implementar em: src/infrastructure/cache_layer.py
+   
+   Cache Strategy: Cache-Aside
+   - Key: "centros_custo:all"
+   - TTL: 3600 segundos (1 hora)
+   - Format: JSON (RedisJSON compatible)
+   
+   Exemplo:
+   ```python
+   async def get_centros_custo_cached():
+       cache_key = "centros_custo:all"
+       cached = await redis_client.get(cache_key)
+       
+       if cached:
+           return json.loads(cached)
+       
+       # Miss → Chamar API
+       data = await discover_centros_custo()
+       await redis_client.setex(cache_key, 3600, json.dumps(data))
+       return data
+   ```
+
+4️⃣ RETRY LOGIC COM BACKOFF EXPONENCIAL
+   ────────────────────────────────────
+   
+   Implementação:
+   ```python
+   @retry(
+       max_attempts=3,
+       backoff_factor=2,  # 1s, 2s, 4s
+       jitter=True,
+       retry_on=[429, 503]
+   )
+   async def fetch_with_retry(endpoint: str) -> dict:
+       return await client.get(endpoint)
+   ```
+   
+   Tratamento de 429 (Rate Limit):
+   - Aguardar header "Retry-After"
+   - Se não existir: wait 60s default
+
+5️⃣ INJEÇÃO DE HEADERS
+   ──────────────────
+   Todos os requests devem ter:
+   
+   ```python
+   headers = {
+       "X-Usuario": "sistema_sync",
+       "X-Motivo": "Sincronização automática de Centros de Custo",
+       "X-Request-ID": str(uuid.uuid4()),
+       "Content-Type": "application/json"
+   }
+   ```
+
+6️⃣ PROMETHEUS METRICS
+   ──────────────────
+   Implementar coleta de:
+   - api_request_duration_seconds (histogram)
+   - api_request_total (counter) — com label 'endpoint'
+   - cache_hit_ratio (gauge)
+   - cache_miss_count (counter)
+   
+   Exemplo:
+   ```python
+   REQUEST_DURATION = Histogram(
+       'api_request_duration_seconds',
+       'API request duration',
+       ['endpoint']
+   )
+   ```
+
+✅ CHECKLIST — GEMINI 2.0:
+   ────────────────────────
+   [ ] Discovery engine testado com mock da API
+   [ ] Retry logic com backoff implementado
+   [ ] Headers X-Usuario e X-Motivo injetados
+   [ ] Redis cache funcionando com TTL de 1h
+   [ ] Connection pooling configurado no HTTPX
+   [ ] Prometheus metrics exportadas em /metrics
+   [ ] Testes unitários com pytest (cobertura >80%)
+   [ ] Documentação de endpoints em docstrings
+   
+   📊 MÉTRICAS ESPERADAS:
+   - Latência média: <200ms (com cache)
+   - Taxa de cache hit: >95%
+   - Throughput: 100+ req/seg
+
+═══════════════════════════════════════════════════════════════════════════════
+  TASK 2 — CLAUDE 3.7 (40%) — ARCHITECTURE & DDD
+═══════════════════════════════════════════════════════════════════════════════
+
+📍 ARQUIVOS PRINCIPAIS:
+   1. src/domain/financeiro.py (NEW)
+   2. src/domain/centro_custo.py (NEW)
+   3. src/application/usecases/sync_cc_usecase.py (NEW)
+   4. src/application/repositories/lancamento_repository.py (NEW)
+   5. tests/test_domain_rateio.py (NEW)
+
+🏗️ RESPONSABILIDADES:
+
+1️⃣ ENTITY: LANCAMENTO (Agregado Raiz)
+   ──────────────────────────────────
+   Implementar em: src/domain/financeiro.py
+   
+   ```python
+   @dataclass(frozen=True)
+   class Lancamento:
+       id: LancamentoID
+       data: datetime
+       valor_total: ValorMonetario
+       descricao: str
+       rateios: List[RateioCentroCusto]
+       usuario: str
+       data_criacao: datetime
+       
+       def validar_rateios(self) -> bool:
+           """Garantir que soma dos rateios == valor_total"""
+           soma = sum(r.valor.amount for r in self.rateios)
+           return soma == self.valor_total.amount
+       
+       @classmethod
+       def criar(cls, id: str, data: datetime, valor: float, 
+                 descricao: str, rateios: List, usuario: str):
+           lancamento = cls(
+               id=LancamentoID(id),
+               data=data,
+               valor_total=ValorMonetario(valor),
+               descricao=descricao,
+               rateios=[RateioCentroCusto.criar(...) for r in rateios],
+               usuario=usuario,
+               data_criacao=datetime.now(timezone.utc)
+           )
+           
+           if not lancamento.validar_rateios():
+               raise RateioDivergenceError(
+                   f"Soma dos rateios ({soma}) != {valor}"
+               )
+           
+           return lancamento
+   ```
+   
+   Eventos de Domínio:
+   - LancamentoCriado
+   - RateioAdicionado
+   - DivergenciaDetectada
+
+2️⃣ VALUE OBJECTS
+   ──────────────
+   Implementar em: src/domain/centro_custo.py
+   
+   ```python
+   @dataclass(frozen=True)
+   class CentroCustoID:
+       valor: str
+       
+       def __post_init__(self):
+           if not self.valor or len(self.valor) > 50:
+               raise ValueError("CC ID inválido")
+   
+   @dataclass(frozen=True)
+   class ValorMonetario:
+       amount: Decimal
+       currency: str = "BRL"
+       
+       def __post_init__(self):
+           if self.amount < 0:
+               raise ValueError("Valor não pode ser negativo")
+   
+   @dataclass(frozen=True)
+   class RateioCentroCusto:
+       centro_custo_id: CentroCustoID
+       valor: ValorMonetario
+       percentual: Decimal  # 0-100
+       
+       @classmethod
+       def criar(cls, cc_id: str, valor: float, percentual: float):
+           return cls(
+               centro_custo_id=CentroCustoID(cc_id),
+               valor=ValorMonetario(Decimal(str(valor))),
+               percentual=Decimal(str(percentual))
+           )
+   ```
+   
+   Validações:
+   - ✓ Imutabilidade (frozen=True)
+   - ✓ Validação pós-criação (__post_init__)
+   - ✓ Igualdade por valor (dataclass)
+
+3️⃣ DOMAIN SERVICE: VALIDADOR DE RATEIO
+   ─────────────────────────────────────
+   Implementar em: src/domain/services/validador_rateio.py
+   
+   ```python
+   class ValidadorRateio:
+       def validar_soma_rateios(self, rateios: List[RateioCentroCusto], 
+                                valor_total: ValorMonetario) -> bool:
+           """Retorna True se soma == total"""
+           return sum(r.valor.amount for r in rateios) == valor_total.amount
+       
+       def validar_percentuais(self, rateios: List[RateioCentroCusto]) -> bool:
+           """Percentuais devem somar 100%"""
+           total_pct = sum(r.percentual for r in rateios)
+           return total_pct == Decimal("100")
+   ```
+
+4️⃣ REPOSITORY PATTERN
+   ──────────────────
+   Implementar em: src/application/repositories/lancamento_repository.py
+   
+   Interface:
+   ```python
+   class LancamentoRepository(ABC):
+       @abstractmethod
+       async def salvar(self, lancamento: Lancamento) -> None:
+           pass
+       
+       @abstractmethod
+       async def por_id(self, id: LancamentoID) -> Optional[Lancamento]:
+           pass
+       
+       @abstractmethod
+       async def por_data_range(self, inicio: datetime, 
+                                fim: datetime) -> List[Lancamento]:
+           pass
+   ```
+   
+   Implementação MongoDB:
+   ```python
+   class MongoLancamentoRepository(LancamentoRepository):
+       def __init__(self, db: MongoClient):
+           self.collection = db["lancamentos"]
+       
+       async def salvar(self, lancamento: Lancamento) -> None:
+           doc = LancamentoMapper.to_persistence(lancamento)
+           await self.collection.insert_one(doc)
+   ```
+
+5️⃣ USE CASE: SINCRONIZAR LANCAMENTOS COM CC
+   ──────────────────────────────────────────
+   Implementar em: src/application/usecases/sync_cc_usecase.py
+   
+   ```python
+   class SincronizarLancamentoComCCUseCase:
+       def __init__(self, repository: LancamentoRepository,
+                    validador: ValidadorRateio,
+                    event_bus: EventBus):
+           self.repository = repository
+           self.validador = validador
+           self.event_bus = event_bus
+       
+       async def executar(self, comando: SincronizarLancamentoCmd) -> None:
+           # 1. Recuperar lançamento
+           lancamento = await self.repository.por_id(comando.lancamento_id)
+           
+           # 2. Validar rateios
+           if not self.validador.validar_soma_rateios(...):
+               self.event_bus.publicar(DivergenciaDetectada(...))
+               raise RateioDivergenceError()
+           
+           # 3. Persistir
+           await self.repository.salvar(lancamento)
+           
+           # 4. Publicar evento
+           self.event_bus.publicar(LancamentoSincronizado(...))
+   ```
+
+6️⃣ INJEÇÃO DE DEPENDÊNCIA (FastAPI)
+   ───────────────────────────────────
+   
+   ```python
+   def get_lancamento_repo() -> LancamentoRepository:
+       db = MongoClient(settings.MONGO_URL)
+       return MongoLancamentoRepository(db)
+   
+   @app.post("/lancamentos")
+   async def criar_lancamento(
+       cmd: CriarLancamentoCmd,
+       repo: LancamentoRepository = Depends(get_lancamento_repo)
+   ):
+       use_case = CriarLancamentoUseCase(repo, validador)
+       await use_case.executar(cmd)
+   ```
+
+✅ CHECKLIST — CLAUDE 3.7:
+   ────────────────────────
+   [ ] Entidade Lancamento com agregado de rateios
+   [ ] Value Objects com imutabilidade
+   [ ] Domain Services para validação
+   [ ] Repository Pattern implementado
+   [ ] Injeção de dependência completa
+   [ ] Eventos de domínio publicados
+   [ ] Pydantic v2.12 Strict Mode ativo
+   [ ] Testes unitários de lógica de rateio (>90% coverage)
+   [ ] Documentação de regras de negócio
+   
+   🏆 VALIDAÇÕES:
+   - Lance sem rateios é rejeitado
+   - Soma de rateios deve bater com total
+   - Percentuais devem somar 100%
+
+═══════════════════════════════════════════════════════════════════════════════
+  TASK 3 — GROK 4 (20%) — ALGORITHMS & AUDIT
+═══════════════════════════════════════════════════════════════════════════════
+
+📍 ARQUIVOS PRINCIPAIS:
+   1. src/infrastructure/audit_engine.py (NEW)
+   2. src/algorithms/hash_consistency.py (NEW)
+   3. src/algorithms/anomaly_detector.py (NEW)
+   4. src/caching/cache_aside_strategy.py (NEW)
+   5. tests/test_audit_engine.py (NEW)
+
+🔍 RESPONSABILIDADES:
+
+1️⃣ HASH CONSISTENCY ENGINE
+   ────────────────────────
+   Implementar em: src/algorithms/hash_consistency.py
+   
+   ```python
+   import hashlib
+   from typing import Any, Dict
+   
+   class HashConsistencyEngine:
+       @staticmethod
+       def gerar_hash_lancamento(lancamento: Dict[str, Any]) -> str:
+           """
+           Gera hash SHA-256 do lançamento original vs processado
+           
+           Campos inclusos: id, data, valor_total, rateios
+           Campos exclusos: timestamp, usuario (mudam)
+           """
+           payload = {
+               "id": lancamento["id"],
+               "data": lancamento["data"],
+               "valor_total": lancamento["valor_total"],
+               "rateios": sorted([
+                   (r["cc_id"], r["valor"]) 
+                   for r in lancamento["rateios"]
+               ])
+           }
+           
+           json_str = json.dumps(payload, sort_keys=True)
+           return hashlib.sha256(json_str.encode()).hexdigest()
+       
+       @staticmethod
+       def validar_integridade(hash_original: str, 
+                               hash_processado: str) -> bool:
+           """Retorna True se hashes coincidem"""
+           return hash_original == hash_processado
+   ```
+   
+   Fluxo:
+   1. Gerar hash do payload original da API Quality
+   2. Processar com rateios (Claude)
+   3. Gerar hash final
+   4. Comparar hashes
+   5. Se divergência → Registrar em auditoria
+
+2️⃣ ANOMALY DETECTION ENGINE
+   ──────────────────────────
+   Implementar em: src/algorithms/anomaly_detector.py
+   
+   ```python
+   class AnomalyDetector:
+       DESVIO_MAXIMO_PERCENTUAL = 15  # 15%
+       
+       def detectar_lancamento_sem_cc(self, lancamento: Lancamento) -> bool:
+           """
+           Detecta se lançamento não tem Centro de Custo mapeado
+           Retorna True se anomalia detectada
+           """
+           if not lancamento.rateios:
+               return True
+           
+           if len(lancamento.rateios) == 1 and \
+              lancamento.rateios[0].cc_id == "CC_GERAL":
+               return True
+           
+           return False
+       
+       def detectar_desvio_cc_operacional(self, 
+                                          rateios: List[RateioCentroCusto],
+                                          cc_tipo: str) -> bool:
+           """
+           Detecta desvios acima de 15% em CCs operacionais
+           Ex: "Despesa de Pista" pode ter max 15% variação
+           """
+           if cc_tipo not in ["Operacional", "Pista"]:
+               return False
+           
+           total_alocado = sum(r.valor.amount for r in rateios)
+           desvio = abs(total_alocado - VALOR_ESPERADO) / VALOR_ESPERADO * 100
+           
+           return desvio > self.DESVIO_MAXIMO_PERCENTUAL
+       
+       def gerar_relatorio_anomalias(self, 
+                                      lancamentos: List[Lancamento]) -> Dict:
+           """Gera relatório consolidado de anomalias"""
+           return {
+               "total_lancamentos": len(lancamentos),
+               "sem_cc": len([l for l in lancamentos 
+                             if self.detectar_lancamento_sem_cc(l)]),
+               "desvios_operacional": len([...]),
+               "timestamp": datetime.now(timezone.utc)
+           }
+   ```
+
+3️⃣ AUDIT ENGINE (Registro + Rastreamento)
+   ──────────────────────────────────────
+   Implementar em: src/infrastructure/audit_engine.py
+   
+   ```python
+   class AuditEngine:
+       def __init__(self, db: MongoClient, event_bus: EventBus):
+           self.audit_collection = db["auditoria"]
+           self.event_bus = event_bus
+       
+       async def registrar_operacao(self, 
+                                    operacao: str,
+                                    valor_antes: Dict,
+                                    valor_depois: Dict,
+                                    usuario: str,
+                                    motivo: str) -> None:
+           """
+           Registra operação completa com auditoria
+           
+           Campos obrigatórios:
+           - operacao: "criar_lancamento", "atualizar_rateio", etc
+           - valor_antes: Estado anterior
+           - valor_depois: Estado novo
+           - usuario: Quem fez
+           - motivo: Por quê
+           - hash_antes: SHA256 do valor_antes
+           - hash_depois: SHA256 do valor_depois
+           - ip_origem: IP da requisição
+           - timestamp: Data/hora automática
+           """
+           
+           hash_antes = HashConsistencyEngine.gerar_hash(valor_antes)
+           hash_depois = HashConsistencyEngine.gerar_hash(valor_depois)
+           
+           registro = {
+               "operacao": operacao,
+               "valor_antes": valor_antes,
+               "valor_depois": valor_depois,
+               "hash_antes": hash_antes,
+               "hash_depois": hash_depois,
+               "usuario": usuario,
+               "motivo": motivo,
+               "ip_origem": contexto.ip_origem,
+               "timestamp": datetime.now(timezone.utc),
+               "divergencia": hash_antes != hash_depois
+           }
+           
+           await self.audit_collection.insert_one(registro)
+           
+           # Publicar evento para análise
+           await self.event_bus.publicar(
+               OperacaoAuditada(operacao=operacao, divergencia=...)
+           )
+   ```
+
+4️⃣ CACHE-ASIDE STRATEGY
+   ──────────────────────
+   Implementar em: src/caching/cache_aside_strategy.py
+   
+   ```python
+   class CacheAsideStrategy:
+       def __init__(self, cache: Redis, db: MongoClient):
+           self.cache = cache
+           self.db = db
+       
+       async def obter_lancamento(self, lancamento_id: str) -> Lancamento:
+           """
+           1. Tenta cache
+           2. Se miss → Busca BD
+           3. Popula cache com TTL
+           
+           Redução de latência: ~90% de cache hits
+           """
+           
+           cache_key = f"lancamento:{lancamento_id}"
+           
+           # 1. Try cache
+           cached_data = await self.cache.get(cache_key)
+           if cached_data:
+               return Lancamento.from_dict(json.loads(cached_data))
+           
+           # 2. Cache miss → Query DB
+           lancamento = await self.db["lancamentos"].find_one(
+               {"_id": lancamento_id}
+           )
+           
+           if not lancamento:
+               raise LancamentoNaoEncontrado()
+           
+           # 3. Populate cache (TTL: 3600s)
+           await self.cache.setex(
+               cache_key,
+               3600,
+               json.dumps(lancamento, default=str)
+           )
+           
+           return Lancamento.from_dict(lancamento)
+   ```
+
+5️⃣ TESTE DE CARGA LOCAL
+   ──────────────────────
+   Implementar em: tests/test_load_audit.py
+   
+   ```python
+   import asyncio
+   from locust import HttpUser, task, between
+   
+   async def teste_100_lancamentos_por_segundo():
+       """
+       Simulação de 100 lançamentos/seg durante 60 seg
+       Total: 6000 operações
+       
+       Métrica esperada:
+       - P99 latência: <50ms
+       - Erro rate: <0.1%
+       """
+       
+       tasks = []
+       for i in range(6000):
+           tasks.append(
+               criar_lancamento_async({
+                   "valor": 1000.00,
+                   "cc": "CC_001"
+               })
+           )
+       
+       await asyncio.gather(*tasks)
+   ```
+
+✅ CHECKLIST — GROK 4:
+   ─────────────────────
+   [ ] Hash SHA-256 implementado e testado
+   [ ] Algoritmo de detecção de anomalias
+   [ ] Audit engine registrando todas operações
+   [ ] Cache-Aside strategy reduzindo latência 90%
+   [ ] Teste de carga (100 req/seg) passando
+   [ ] Registro de auditoria: {valor_antes, valor_depois}
+   [ ] Integridade de dados validada com hashes
+   [ ] Relatorio de anomalias gerado automaticamente
+   [ ] Prometheus metrics para auditoria
+   
+   ⚡ PERFORMANCE:
+   - Cache hit ratio: >95%
+   - P99 latência com cache: <50ms
+   - Throughput: 100+ lancamentos/seg
+
+═══════════════════════════════════════════════════════════════════════════════
+  ESTRUTURA DE CÓDIGO (SENIOR CORPORATE)
+═══════════════════════════════════════════════════════════════════════════════
+
+Api_WebPosto/
+├── src/
+│   ├── domain/                          # CLAUDE 3.7
+│   │   ├── __init__.py
+│   │   ├── financeiro.py               # Entity: Lancamento
+│   │   ├── centro_custo.py             # Value Objects: CentroCustoID, ValorMonetario
+│   │   ├── services/
+│   │   │   └── validador_rateio.py     # Domain Service
+│   │   └── events/
+│   │       ├── lancamento_criado.py
+│   │       └── divergencia_detectada.py
+│   │
+│   ├── application/                    # CLAUDE 3.7
+│   │   ├── usecases/
+│   │   │   ├── sync_cc_usecase.py
+│   │   │   ├── criar_lancamento_usecase.py
+│   │   │   └── atualizar_rateio_usecase.py
+│   │   ├── repositories/
+│   │   │   ├── lancamento_repository.py    # Interface
+│   │   │   └── mongo_lancamento_repository.py  # Impl
+│   │   └── dtos/
+│   │       └── lancamento_dto.py
+│   │
+│   ├── infrastructure/                 # GEMINI 2.0 + GROK 4
+│   │   ├── webposto_client.py          # API Discovery (GEMINI)
+│   │   ├── cache_layer.py              # Redis Caching (GEMINI)
+│   │   ├── mongo_client.py             # MongoDB
+│   │   ├── audit_engine.py             # Auditoria (GROK)
+│   │   └── mappers/
+│   │       └── lancamento_mapper.py
+│   │
+│   ├── algorithms/                     # GROK 4
+│   │   ├── hash_consistency.py
+│   │   └── anomaly_detector.py
+│   │
+│   ├── caching/                        # GROK 4
+│   │   └── cache_aside_strategy.py
+│   │
+│   ├── presentation/                   # FastAPI Endpoints
+│   │   ├── api/
+│   │   │   ├── lancamentos_routes.py
+│   │   │   ├── centros_custo_routes.py
+│   │   │   └── auditoria_routes.py
+│   │   └── middleware/
+│   │       └── request_context.py
+│   │
+│   ├── shared/
+│   │   ├── config.py
+│   │   ├── exceptions.py
+│   │   ├── event_bus.py
+│   │   └── logger.py
+│   │
+│   └── main.py                         # FastAPI app
+│
+├── tests/
+│   ├── unit/
+│   │   ├── test_domain_rateio.py       # CLAUDE
+│   │   ├── test_api_discovery.py       # GEMINI
+│   │   └── test_anomaly_detection.py   # GROK
+│   ├── integration/
+│   │   ├── test_sync_cc_usecase.py
+│   │   └── test_audit_engine.py
+│   └── load/
+│       └── test_load_100_req_seg.py    # GROK
+│
+├── docker/
+│   ├── docker-compose.yml              # (MODIFICAR)
+│   ├── Dockerfile
+│   └── init-mongo.js
+│
+├── monitoring/
+│   ├── prometheus.yml
+│   └── grafana-dashboard.json
+│
+├── docs/
+│   ├── ARQUITETURA_DDD.md              # CLAUDE
+│   ├── API_DISCOVERY_GUIDE.md          # GEMINI
+│   └── AUDITORIA_E_INTEGRIDADE.md      # GROK
+│
+├── requirements.txt
+├── .env.example
+└── README.md
+
+═══════════════════════════════════════════════════════════════════════════════
+  SINCRONIZAÇÃO ENTRE AS 3 IAS
+═══════════════════════════════════════════════════════════════════════════════
+
+📡 FLUXO DE COMUNICAÇÃO:
+
+   Dia 1-2: Desenvolvimento paralelo (SEM BLOQUEIOS)
+   ─────────────────────────────────────────────────
+   
+   GEMINI 2.0 (Hora 0-16)
+   └─ Implementa: webposto_client.py + cache_layer.py
+   └─ Exports: Interfaces de API (AsyncClient, discover_centros_custo)
+   └─ Test: test_api_discovery.py
+   
+   ║ (Sincronizar em: ~16h)
+   ║
+   ▼
+   
+   CLAUDE 3.7 (Hora 8-32) — Começa enquanto GEMINI trabalha
+   └─ Importa: Tipos de API de GEMINI
+   └─ Implementa: Entity Lancamento + Repository Pattern
+   └─ Usa: webposto_client.get_centros_custo() (mock)
+   └─ Exports: Entidade Lancamento, DTO
+   
+   ║ (Sincronizar em: ~24h)
+   ║
+   ▼
+   
+   GROK 4 (Hora 16-40) — Começa enquanto CLAUDE termina
+   └─ Importa: Lancamento entity de CLAUDE
+   └─ Implementa: audit_engine + anomaly_detector
+   └─ Usa: lancamento.to_dict() para gerar hashes
+   └─ Testa: load test (100 req/seg)
+
+   Dia 3: INTEGRAÇÃO & VALIDAÇÃO (4-8 horas)
+   ──────────────────────────────────────────
+   
+   ✓ Integrar todos 3 componentes no main.py
+   ✓ Rodar testes de integração full-stack
+   ✓ Validar: Sync CC → Persistência → Auditoria
+   ✓ Performance test: 100 lancamentos/seg
+   ✓ Deploy em localhost
+
+📋 DEPENDENCIES MAP:
+
+   GEMINI → CLAUDE
+   ├─ webposto_client.py:discover_centros_custo()
+   ├─ cache_layer.py:get_centros_custo_cached()
+   └─ Tipos: CentroCustoPaginado, CentroCustoDTO
+   
+   CLAUDE → GROK
+   ├─ domain/financeiro.py:Lancamento
+   ├─ domain/centro_custo.py:RateioCentroCusto
+   └─ Tipos: Dict[str, Any]
+   
+   GROK ← (Ambos)
+   ├─ Usa Lancamento de CLAUDE
+   ├─ Usa API de GEMINI para CC discovery
+   └─ Integra: audit + anomaly detection
+
+═══════════════════════════════════════════════════════════════════════════════
+  SETUP LOCAL 100% (PRONTO PARA TERMINAL)
+═══════════════════════════════════════════════════════════════════════════════
+
+# 1. PREPARAR AMBIENTE
+────────────────────────────────────────────────────────────────────────────────
+cd Api_WebPosto
+
+# Instalar dependências
+pip install -r requirements.txt
+
+# Copiar variáveis de ambiente
+cp .env.example .env
+
+# 2. SUBIR INFRAESTRUTURA (Docker)
+────────────────────────────────────────────────────────────────────────────────
+docker compose up -d
+
+# Verificar serviços
+docker compose ps
+
+# Logs em tempo real
+docker compose logs -f
+
+# 3. VALIDAR SAÚDE
+────────────────────────────────────────────────────────────────────────────────
+
+# FastAPI
+curl http://localhost:8000/health
+
+# MongoDB
+curl http://localhost:27017
+
+# Redis
+redis-cli ping
+
+# Prometheus
+curl http://localhost:9090/-/healthy
+
+# Grafana (http://localhost:3000 — user: admin / pass: admin)
+
+# 4. RODAR TESTES PARA CADA IA
+────────────────────────────────────────────────────────────────────────────────
+
+# GEMINI 2.0 — Testes de API & Cache
+pytest tests/unit/test_api_discovery.py -v
+
+# CLAUDE 3.7 — Testes de DDD & Rateio
+pytest tests/unit/test_domain_rateio.py -v
+
+# GROK 4 — Testes de Auditoria & Carga
+pytest tests/unit/test_anomaly_detection.py -v
+pytest tests/load/test_load_100_req_seg.py -v
+
+# 5. RODAR TESTES DE INTEGRAÇÃO
+────────────────────────────────────────────────────────────────────────────────
+pytest tests/integration/ -v --tb=short
+
+# 6. COVERAGE (Alvo: >80%)
+────────────────────────────────────────────────────────────────────────────────
+pytest --cov=src --cov-report=html
+
+# 7. MONITORAMENTO
+────────────────────────────────────────────────────────────────────────────────
+
+# Prometheus: http://localhost:9090
+# Grafana: http://localhost:3000
+
+# 8. VERIFICAR AUDITORIA (MongoDB)
+────────────────────────────────────────────────────────────────────────────────
+mongo
+
+> use webposto
+> db.auditoria.find().pretty()
+
+═══════════════════════════════════════════════════════════════════════════════
+  MÉTRICAS DE SUCESSO
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ GEMINI 2.0 (40%)
+   ├─ Latência média: <200ms com cache
+   ├─ Cache hit ratio: >95%
+   ├─ Throughput: 100+ req/seg
+   ├─ Retry logic: 3 tentativas com backoff
+   └─ Unit tests: >80% coverage
+
+✅ CLAUDE 3.7 (40%)
+   ├─ Rateios somam 100% ou erro
+   ├─ Imutabilidade de value objects
+   ├─ Repository pattern isolando MongoDB
+   ├─ Eventos de domínio funcionando
+   └─ Unit tests: >90% coverage
+
+✅ GROK 4 (20%)
+   ├─ Hash SHA-256 consistente
+   ├─ Detecção de anomalias com >95% accuracy
+   ├─ Audit trail completo
+   ├─ Teste de carga: 100 lancamentos/seg
+   └─ P99 latência com cache: <50ms
+
+📊 MÉTRICAS GLOBAIS:
+   ├─ Total integration tests: >50
+   ├─ Full stack latency: <500ms
+   ├─ Cache hit ratio: >95%
+   ├─ Audit coverage: 100% das operações
+   └─ Ready for production: ✅
+
+═══════════════════════════════════════════════════════════════════════════════
+  PRÓXIMOS PASSOS (Depois de 72h)
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Code Review cruzado entre as 3 IAs
+2. Integração com API Quality real
+3. Testes em ambiente de staging
+4. Deploy em produção
+5. Monitoramento em Grafana
+6. Documentação final + handoff
+
+═══════════════════════════════════════════════════════════════════════════════
+  COMUNICAÇÃO ENTRE IAS
+═══════════════════════════════════════════════════════════════════════════════
+
+Slack/Email Thread:
+
+[IA-GEMINI]: "API Discovery pronto. Exports interfaces em infrastructure/"
+[IA-CLAUDE]: "Recebido. Integrando tipos em domain/financeiro.py"
+[IA-GROK]:   "Aguardando Lancamento entity de CLAUDE..."
+[IA-CLAUDE]: "Entity pronto! Hash dos rateios implementado"
+[IA-GROK]:   "Auditoria integrada. Teste de carga: 102 req/seg ✓"
+[TEAM]:      "Merge para main. Pronto para staging!"
+
+═══════════════════════════════════════════════════════════════════════════════
+  ARQUIVO DE DOCUMENTAÇÃO TÉCNICA
+═══════════════════════════════════════════════════════════════════════════════
+
+Criar em: docs/TAREFAS_PARALELAS_3_IAS.md
+
+Conteúdo:
+- Resumo de responsabilidades
+- Interfaces entre componentes
+- Dependências e ordem de implementação
+- Checklist de validação para cada IA
+- Troubleshooting comum
+
+═══════════════════════════════════════════════════════════════════════════════
+  FIM DO BRIEFING
+═══════════════════════════════════════════════════════════════════════════════
+
+Bom trabalho! 🚀

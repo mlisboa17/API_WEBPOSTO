@@ -586,7 +586,7 @@
     </div>
 
     <script>
-        const API_KEY = '<WEBPOSTO_API_TOKEN>';
+        const API_KEY = localStorage.getItem('WEBPOSTO_CHAVE') || 'SEU_TOKEN_AQUI';
         const API_URL = 'https://web.qualityautomacao.com.br';
 
         let todosRegistros = [];

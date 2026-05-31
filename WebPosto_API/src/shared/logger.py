@@ -1,11 +1,21 @@
 import logging
 from typing import Any
 
-import structlog
+try:
+    import structlog
+except ImportError:  # pragma: no cover
+    structlog = None  # type: ignore
 
 
 def setup_logging(log_level: str = "INFO", log_format: str = "json") -> None:
     """Configura logging estruturado com structlog."""
+
+    if structlog is None:
+        logging.basicConfig(
+            format="%(asctime)s %(levelname)s %(name)s %(message)s",
+            level=getattr(logging, log_level.upper(), logging.INFO),
+        )
+        return
 
     if log_format == "json":
         structlog.configure(
@@ -48,4 +58,6 @@ def setup_logging(log_level: str = "INFO", log_format: str = "json") -> None:
 
 def get_logger(name: str) -> Any:
     """Retorna um logger estruturado."""
+    if structlog is None:
+        return logging.getLogger(name)
     return structlog.get_logger(name)

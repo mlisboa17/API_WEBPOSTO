@@ -74,7 +74,7 @@ curl http://localhost:8000/health
 
 **Arquivo: `.env`**
 ```bash
-WEBPOSTO_API_KEY=<WEBPOSTO_API_TOKEN>
+WEBPOSTO_API_KEY=$WEBPOSTO_CHAVE
 WEBPOSTO_BASE_URL=http://web.qualityautomacao.com.br
 DATABASE_URL=sqlite+aiosqlite:///./webposto.db
 REDIS_URL=redis://redis:6379/0
@@ -362,3 +362,4 @@ deploy:
 **Versão:** 0.1.0  
 **Última atualização:** 13/04/2026  
 **Mantido por:** Grupo Lisboa
+

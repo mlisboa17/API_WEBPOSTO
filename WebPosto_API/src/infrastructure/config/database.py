@@ -32,8 +32,14 @@ async def get_db() -> AsyncSession:
 async def init_db():
     """Inicializa o banco de dados."""
     async with engine.begin() as conn:
-        # Aqui virá: await conn.run_sync(Base.metadata.create_all)
-        pass
+        # Import models' Base metadata and create tables if missing
+        try:
+            from src.infrastructure.adapter.database import Base as AdapterBase
+
+            await conn.run_sync(AdapterBase.metadata.create_all)
+        except Exception:
+            # If adapter isn't present or models are not yet defined, skip gracefully
+            pass
 
 
 async def close_db():

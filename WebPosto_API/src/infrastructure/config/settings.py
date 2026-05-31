@@ -11,6 +11,8 @@ class Settings(BaseSettings):
     # webPosto API
     webposto_base_url: str = "http://web.qualityautomacao.com.br"
     webposto_api_key: str = ""
+    webposto_vip_posto_id: str = "VIP"
+    webposto_vip_posto_nome: str = "POSTO_VIP"
     webposto_sync_interval_seconds: int = 3600
     webposto_timeout_seconds: int = 30
 
@@ -30,7 +32,7 @@ class Settings(BaseSettings):
 
     # API
     api_host: str = "0.0.0.0"
-    api_port: int = 8000
+    api_port: int = 8040
     api_workers: int = 4
     api_title: str = "webPosto Service API"
     api_version: str = "0.1.0"
@@ -38,6 +40,14 @@ class Settings(BaseSettings):
     # Rate Limiting
     rate_limit_requests: int = 100
     rate_limit_window_seconds: int = 60
+
+    # Security / Auth
+    secret_key: str = "changeme_replace_in_env"
+    jwt_algorithm: str = "HS256"
+    access_token_expire_minutes: int = 15
+    refresh_token_expire_days: int = 7
+    consumer_token: str = "dev-consumer-token"
+    admin_token: str = "dev-admin-token"
 
     # Circuit Breaker
     circuit_breaker_threshold: int = 5
@@ -47,6 +57,7 @@ class Settings(BaseSettings):
         env_file = ".env"
         env_file_encoding = "utf-8"
         case_sensitive = False
+        extra = "ignore"
 
 
 # Instância global de settings

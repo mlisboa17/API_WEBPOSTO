@@ -46,7 +46,10 @@ class RedisEventBus:
             await self.redis.publish(channel, payload)
             logger.info(f"Evento publicado: {event.event_name}", channel=channel)
         except Exception as e:
-            logger.error(f"Erro ao publicar evento: {str(e)}", event=event.event_name)
+            logger.error(
+                f"Erro ao publicar evento: {str(e)}",
+                event_name=event.event_name,
+            )
             raise
 
     async def subscribe(
@@ -106,7 +109,8 @@ class RedisEventBus:
                 "timestamp": event.timestamp.isoformat(),
                 "aggregate_id": event.aggregate_id,
                 **event.__dict__,
-            }
+            },
+            default=str,
         )
 
     @staticmethod

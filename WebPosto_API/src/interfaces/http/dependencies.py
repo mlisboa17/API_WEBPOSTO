@@ -10,6 +10,7 @@ from src.infrastructure.repositories.cliente_repository import (
     SQLAlchemyClienteRepository,
 )
 from src.infrastructure.webposto.client import WebPostoClient
+from src.application.usecases.extract_expenses import ExtractExpensesFromCashMovement
 from fastapi import Depends, HTTPException, Request
 from typing import Dict
 from src.infrastructure.security.jwt_utils import decode_token
@@ -70,3 +71,10 @@ async def get_sync_service(
 ) -> SyncService:
     """Dependency: Serviço de Sincronização."""
     return SyncService(webposto_client, cliente_service, event_bus)
+
+
+async def get_extract_expenses_usecase(
+    event_bus: RedisEventBus = Depends(get_event_bus),
+) -> ExtractExpensesFromCashMovement:
+    """Dependency: Caso de uso de extração/classificação de despesas."""
+    return ExtractExpensesFromCashMovement(event_bus=event_bus)

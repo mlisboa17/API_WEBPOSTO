@@ -7,9 +7,10 @@ from webposto.config import WebPostoConfig
 from webposto.client import WebPostoClient
 from datetime import date, timedelta
 
-# Nova chave
+# Nova chave - carregue de .env ou variáveis de ambiente
+import os
 config = WebPostoConfig(
-    chave="<WEBPOSTO_API_TOKEN>",
+    chave=os.getenv("WEBPOSTO_CHAVE", "SEU_TOKEN_AQUI"),
     base_url="http://web.qualityautomacao.com.br",
     timeout=30,
 )
@@ -35,7 +36,7 @@ endpoints = [
 ]
 
 print("\n" + "=" * 70)
-print("TESTANDO COM NOVA CHAVE: <WEBPOSTO_API_TOKEN>")
+print("TESTANDO COM NOVA CHAVE (veja .env)")
 print("=" * 70 + "\n")
 
 passed = 0

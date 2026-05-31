@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 WebPosto - API Explorer Pro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5568d3;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --border: #334155;
+            --text: #f1f5f9;
+            --text-secondary: #cbd5e1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .app-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: var(--card);
+            border-right: 1px solid var(--border);
+            padding: 20px;
+            overflow-y: auto;
+            position: fixed;
+            width: 280px;
+            height: 100vh;
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 10px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        .category-title {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-left: 10px;
+        }
+
+        .endpoint-btn {
+            width: 100%;
+            padding: 10px 12px;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            color: var(--text-secondary);
+            text-align: left;
+            cursor: pointer;
+            font-size: 12px;
+            margin-bottom: 5px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .endpoint-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .endpoint-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .method-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 24px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: bold;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .method-get { background: var(--info); color: white; }
+        .method-post { background: var(--success); color: white; }
+        .method-put { background: var(--warning); color: white; }
+        .method-delete { background: var(--danger); color: white; }
+
+        /* MAIN CONTENT */
+        .main {
+            margin-left: 280px;
+            padding: 30px;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .status-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .status-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .status-content h3 {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 3px;
+            font-weight: 600;
+        }
+
+        .status-content p {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--text);
+        }
+
+        /* TABS */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        /* CONTENT SECTIONS */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .panel {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            padding: 15px 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+        }
+
+        .panel-body {
+            padding: 20px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text);
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 12px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+            font-family: 'Monaco', monospace;
+        }
+
+        .form-group input:disabled,
+        .form-group textarea:disabled {
+            background: var(--border);
+            cursor: not-allowed;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            width: 100%;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: var(--primary-dark);
+        }
+
+        .btn-primary:disabled {
+            background: var(--border);
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: var(--border);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .response-box {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 15px;
+            font-family: 'Monaco', monospace;
+            font-size: 11px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+
+        .response-box.success {
+            color: var(--success);
+        }
+
+        .response-box.error {
+            color: var(--danger);
+        }
+
+        .response-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+
+        .status-code {
+            padding: 4px 10px;
+            background: var(--primary);
+            border-radius: 3px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .status-code.success {
+            background: var(--success);
+        }
+
+        .status-code.error {
+            background: var(--danger);
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        .data-table th {
+            background: var(--bg);
+            padding: 10px;
+            text-align: left;
+            font-weight: bold;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table td {
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table tr:hover {
+            background: var(--bg);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 1024px) {
+            .app-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: absolute;
+                left: -280px;
+                transition: left 0.3s;
+                z-index: 1000;
+                height: 100vh;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .grid-2col {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <i class="fas fa-rocket"></i> WebPosto
+            </div>
+            
+            <input type="text" class="search-box" id="searchBox" placeholder="🔍 Buscar endpoint...">
+
+            <div id="endpointsList"></div>
+        </div>
+
+        <div class="main">
+            <div class="header">
+                <h1><i class="fas fa-fire"></i> API Explorer Pro</h1>
+                <p>Teste, explore e entenda todos os 51 endpoints da WebPosto API</p>
+                
+                <div class="status-grid" id="statusGrid"></div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('test')">
+                    <i class="fas fa-flask"></i> Tester
+                </button>
+                <button class="tab-btn" onclick="switchTab('data')">
+                    <i class="fas fa-table"></i> Dados
+                </button>
+                <button class="tab-btn" onclick="switchTab('docs')">
+                    <i class="fas fa-book"></i> Docs
+                </button>
+            </div>
+
+            <!-- TAB: TESTER -->
+            <div class="tab-content active" id="tab-test">
+                <div class="grid-2col">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <i class="fas fa-cog"></i> Configuração
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label>Base URL</label>
+                                <input type="text" id="baseUrl" value="http://localhost:8000" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Token (opcional)</label>
+                                <input type="password" id="token" placeholder="Bearer token aqui...">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Método HTTP</label>
+                                <input type="text" id="method" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Endpoint</label>
+                                <input type="text" id="endpoint" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Query Parameters</label>
+                                <input type="text" id="queryParams" placeholder="limit=10&offset=0">
+                            </div>
+
+                            <div class="form-group" id="bodyGroup" style="display:none;">
+                                <label>Body (JSON)</label>
+                                <textarea id="bodyData">{"key": "value"}</textarea>
+                            </div>
+
+                            <button class="btn btn-primary" onclick="sendRequest()">
+                                <i class="fas fa-paper-plane"></i> Enviar Requisição
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                            <i class="fas fa-terminal"></i> Resposta
+                        </div>
+                        <div class="panel-body">
+                            <div id="responseArea">
+                                <div class="empty-state">
+                                    <i class="fas fa-inbox"></i>
+                                    <p>Nenhuma resposta ainda</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: DATA -->
+            <div class="tab-content" id="tab-data">
+                <div class="panel">
+                    <div class="panel-header">
+                        <i class="fas fa-database"></i> Visualizar Dados
+                    </div>
+                    <div class="panel-body">
+                        <div id="dataArea">
+                            <div class="empty-state">
+                                <i class="fas fa-inbox"></i>
+                                <p>Selecione um endpoint GET para visualizar dados</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: DOCS -->
+            <div class="tab-content" id="tab-docs">
+                <div class="panel">
+                    <div class="panel-header">
+                        <i class="fas fa-book"></i> Documentação
+                    </div>
+                    <div class="panel-body" style="font-size: 13px; line-height: 1.6;">
+                        <h2 style="color: var(--primary); margin-bottom: 15px;">Como Usar</h2>
+
+                        <h3 style="margin-top: 20px; margin-bottom: 10px;">1. Selecione um Endpoint</h3>
+                        <p>Na barra lateral, clique em um endpoint para selecioná-lo.</p>
+
+                        <h3 style="margin-top: 20px; margin-bottom: 10px;">2. Configure a Requisição</h3>
+                        <ul style="margin-left: 20px;">
+                            <li>Adicione query parameters se necessário</li>
+                            <li>Para POST/PUT, preencha o body JSON</li>
+                            <li>Adicione token se necessário</li>
+                        </ul>
+
+                        <h3 style="margin-top: 20px; margin-bottom: 10px;">3. Envie a Requisição</h3>
+                        <p>Clique em "Enviar Requisição" e veja o resultado em tempo real.</p>
+
+                        <h3 style="margin-top: 20px; margin-bottom: 10px;">🔧 Módulos Disponíveis</h3>
+                        <p id="modulosList"></p>
+
+                        <h3 style="margin-top: 30px; margin-bottom: 10px;">📊 Códigos HTTP</h3>
+                        <ul style="margin-left: 20px;">
+                            <li><strong>200:</strong> Sucesso</li>
+                            <li><strong>201:</strong> Criado</li>
+                            <li><strong>400:</strong> Erro de validação</li>
+                            <li><strong>401:</strong> Não autorizado</li>
+                            <li><strong>404:</strong> Não encontrado</li>
+                            <li><strong>500:</strong> Erro interno</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // BASE DATA
+        const ENDPOINTS = [
+            // Abastecimento
+            { method: 'GET', path: '/abastecimentos', description: 'Listar abastecimentos', category: '⛽ Abastecimento' },
+            { method: 'POST', path: '/abastecimentos', description: 'Criar abastecimento', category: '⛽ Abastecimento' },
+            { method: 'GET', path: '/abastecimentos/{id}', description: 'Obter abastecimento', category: '⛽ Abastecimento' },
+            
+            // Clientes
+            { method: 'GET', path: '/clientes', description: 'Listar clientes', category: '👥 Clientes' },
+            { method: 'POST', path: '/clientes', description: 'Criar cliente', category: '👥 Clientes' },
+            { method: 'GET', path: '/clientes/{id}', description: 'Obter cliente', category: '👥 Clientes' },
+            
+            // Financeiro
+            { method: 'GET', path: '/titulos', description: 'Listar títulos', category: '💰 Financeiro' },
+            { method: 'POST', path: '/titulos', description: 'Criar título', category: '💰 Financeiro' },
+            { method: 'GET', path: '/titulos/{id}', description: 'Obter título', category: '💰 Financeiro' },
+            
+            // Vendas
+            { method: 'GET', path: '/vendas', description: 'Listar vendas', category: '📈 Vendas' },
+            { method: 'POST', path: '/vendas', description: 'Criar venda', category: '📈 Vendas' },
+            { method: 'GET', path: '/vendas/{id}', description: 'Obter venda', category: '📈 Vendas' },
+            
+            // Auditoria
+            { method: 'GET', path: '/auditoria', description: 'Listar auditoria', category: '📋 Auditoria' },
+            { method: 'GET', path: '/auditoria/{id}', description: 'Obter auditoria', category: '📋 Auditoria' },
+            
+            // Sistema
+            { method: 'GET', path: '/health', description: 'Status da API', category: '⚙️ Sistema' },
+        ];
+
+        let currentEndpoint = null;
+        let apiStatus = 'checking';
+
+        // INIT
+        window.addEventListener('DOMContentLoaded', () => {
+            renderEndpoints();
+            checkApiHealth();
+            updateStatus();
+            updateModulesList();
+            if (ENDPOINTS.length > 0) selectEndpoint(ENDPOINTS[0]);
+        });
+
+        // RENDER ENDPOINTS IN SIDEBAR
+        function renderEndpoints() {
+            const categories = [...new Set(ENDPOINTS.map(e => e.category))];
+            let html = '';
+
+            categories.forEach(category => {
+                html += `<div class="category-title">${category}</div>`;
+                ENDPOINTS.filter(e => e.category === category).forEach((ep, i) => {
+                    const key = `${ep.method}-${ep.path}`;
+                    html += `
+                        <button class="endpoint-btn" onclick="selectEndpoint(ENDPOINTS[${ENDPOINTS.indexOf(ep)}], this)" data-key="${key}">
+                            <span class="method-badge method-${ep.method.toLowerCase()}">${ep.method}</span>
+                            <span>${ep.description}</span>
+                        </button>
+                    `;
+                });
+            });
+
+            document.getElementById('endpointsList').innerHTML = html;
+        }
+
+        // SELECT ENDPOINT
+        function selectEndpoint(ep, btn) {
+            currentEndpoint = ep;
+            
+            document.querySelectorAll('.endpoint-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            
+            document.getElementById('method').value = ep.method;
+            document.getElementById('endpoint').value = ep.path;
+            document.getElementById('bodyGroup').style.display = 
+                (ep.method === 'POST' || ep.method === 'PUT') ? 'block' : 'none';
+        }
+
+        // CHECK API HEALTH
+        async function checkApiHealth() {
+            try {
+                const response = await fetch('http://localhost:8000/health');
+                apiStatus = response.ok ? 'online' : 'offline';
+            } catch (e) {
+                apiStatus = 'offline';
+            }
+            updateStatus();
+        }
+
+        // UPDATE STATUS
+        function updateStatus() {
+            const statusGrid = document.getElementById('statusGrid');
+            statusGrid.innerHTML = `
+                <div class="status-card">
+                    <div class="status-icon">${apiStatus === 'online' ? '🟢' : '🔴'}</div>
+                    <div class="status-content">
+                        <h3>API Status</h3>
+                        <p>${apiStatus === 'online' ? 'Online' : 'Offline'}</p>
+                    </div>
+                </div>
+                <div class="status-card">
+                    <div class="status-icon">📝</div>
+                    <div class="status-content">
+                        <h3>Endpoints</h3>
+                        <p>${ENDPOINTS.length} disponíveis</p>
+                    </div>
+                </div>
+                <div class="status-card">
+                    <div class="status-icon">🏷️</div>
+                    <div class="status-content">
+                        <h3>Categorias</h3>
+                        <p>${[...new Set(ENDPOINTS.map(e => e.category))].length} módulos</p>
+                    </div>
+                </div>
+                <div class="status-card">
+                    <div class="status-icon">⚡</div>
+                    <div class="status-content">
+                        <h3>Port</h3>
+                        <p>8000</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // SEND REQUEST
+        async function sendRequest() {
+            if (!currentEndpoint) return;
+
+            const baseUrl = document.getElementById('baseUrl').value;
+            const token = document.getElementById('token').value;
+            const queryParams = document.getElementById('queryParams').value;
+            const body = document.getElementById('bodyData').value;
+
+            let url = `${baseUrl}${currentEndpoint.path}`;
+            if (queryParams) url += `?${queryParams}`;
+
+            const options = {
+                method: currentEndpoint.method,
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            };
+
+            if (token) {
+                options.headers['Authorization'] = `Bearer ${token}`;
+            }
+
+            if ((currentEndpoint.method === 'POST' || currentEndpoint.method === 'PUT') && body) {
+                try {
+                    options.body = body;
+                } catch (e) {
+                    showResponse('error', 'Erro no JSON: ' + e.message);
+                    return;
+                }
+            }
+
+            const responseArea = document.getElementById('responseArea');
+            responseArea.innerHTML = '<div style="text-align: center;"><div class="spinner"></div> Enviando...</div>';
+
+            try {
+                const response = await fetch(url, options);
+                const data = await response.json();
+                
+                const statusCode = response.status;
+                const isSuccess = response.ok;
+                
+                let html = `
+                    <div class="response-header">
+                        <span>
+                            <span class="status-code ${isSuccess ? 'success' : 'error'}">${statusCode}</span>
+                            ${response.statusText}
+                        </span>
+                        <span style="font-size: 11px; color: var(--text-secondary);">
+                            ${new Date().toLocaleTimeString()}
+                        </span>
+                    </div>
+                    <div class="response-box ${isSuccess ? 'success' : 'error'}">
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    </div>
+                `;
+                responseArea.innerHTML = html;
+            } catch (error) {
+                responseArea.innerHTML = `
+                    <div class="response-header">
+                        <span><span class="status-code error">0</span> Erro de conexão</span>
+                    </div>
+                    <div class="response-box error">
+                        <pre>${error.message}</pre>
+                    </div>
+                `;
+            }
+        }
+
+        // SHOW RESPONSE
+        function showResponse(type, message) {
+            const responseArea = document.getElementById('responseArea');
+            responseArea.innerHTML = `
+                <div class="response-box ${type}">
+                    <pre>${message}</pre>
+                </div>
+            `;
+        }
+
+        // SWITCH TAB
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // UPDATE MODULES LIST
+        function updateModulesList() {
+            const categories = [...new Set(ENDPOINTS.map(e => e.category))];
+            const html = categories.map(c => `<div style="display: inline-block; margin-right: 10px; margin-bottom: 10px;"><strong>${c}</strong></div>`).join('');
+            document.getElementById('modulosList').innerHTML = html;
+        }
+
+        // SEARCH
+        document.getElementById('searchBox').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            document.querySelectorAll('.endpoint-btn').forEach(btn => {
+                const text = btn.textContent.toLowerCase();
+                btn.style.display = text.includes(query) ? 'flex' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

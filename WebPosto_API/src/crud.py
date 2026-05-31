@@ -77,42 +77,13 @@ class FinanceiroCRUD:
                     total = len(titulos_reais)
                     return total, titulos_reais
             except Exception as e:
-                print(f"Aviso: Erro ao buscar dados reais da API webPosto: {str(e)}")
-                # Continuar com mock data se falhar
-                pass
+                raise Exception(
+                    f"API WebPosto indisponível para títulos (sem dados fictícios): {e}"
+                ) from e
 
-            # Fallback: Mock data caso API falhe
-            titulos_mock = [
-                {
-                    "id": f"TIT{str(i).zfill(3)}",
-                    "tipo": "RECEBER" if i % 2 == 0 else "PAGAR",
-                    "valor": 1000.00 + (i * 100),
-                    "data_vencimento": datetime.now() + timedelta(days=i),
-                    "descricao": f"Título {i}",
-                    "cliente_fornecedor": f"Cliente/Fornecedor {i}",
-                    "categoria": "Vendas" if i % 2 == 0 else "Compras",
-                    "pago": i % 5 == 0,
-                    "dias_vencido": -30 + i,
-                    "status": StatusTitulo.PENDENTE,
-                    "webposto_id": f"WP{str(i).zfill(6)}",
-                    "data_criacao": datetime.now() - timedelta(days=30),
-                    "data_pagamento": None if i % 5 != 0 else datetime.now(),
-                    "data_atualizacao": datetime.now(),
-                    "modificado_por": None,
-                }
-                for i in range(1, 11)
-            ]
-
-            # Filtros
-            if tipo:
-                titulos_mock = [t for t in titulos_mock if t["tipo"] == tipo]
-            if status:
-                titulos_mock = [t for t in titulos_mock if t["status"] == status]
-
-            total = len(titulos_mock)
-            titulos = titulos_mock[offset : offset + limite]
-
-            return total, titulos
+            raise Exception(
+                "Nenhum título retornado pela API WebPosto (sem dados fictícios)."
+            )
 
         except Exception as e:
             raise Exception(f"Erro ao listar financeiro: {str(e)}")
@@ -336,46 +307,13 @@ class CaixaCRUD:
                     total = len(movimentos_reais)
                     return total, movimentos_reais
             except Exception as e:
-                print(f"Aviso: Erro ao buscar dados reais de Caixa: {str(e)}")
-                # Continuar com mock data se falhar
-                pass
+                raise Exception(
+                    f"API WebPosto indisponível para caixa (sem dados fictícios): {e}"
+                ) from e
 
-            # Fallback: Mock data caso API falhe
-            movimentos_mock = [
-                {
-                    "id": f"CAIXA{str(i).zfill(3)}",
-                    "numero_caixa": (i % 3) + 1,
-                    "descricao": f"Movimento {i}",
-                    "tipo_movimento": ["ABERTURA", "VENDA", "SAQUE", "FECHAMENTO"][
-                        i % 4
-                    ],
-                    "valor": 100.00 + (i * 50),
-                    "saldo": 5000.00 + (i * 100),
-                    "data_movimento": datetime.now() - timedelta(hours=i),
-                    "referencia": f"REF{str(i).zfill(4)}",
-                    "operador": f"Operador {(i % 3) + 1}",
-                    "webposto_id": f"WPC{str(i).zfill(6)}",
-                    "data_criacao": datetime.now() - timedelta(hours=i),
-                    "data_atualizacao": datetime.now(),
-                    "modificado_por": None,
-                }
-                for i in range(1, 21)
-            ]
-
-            # Filtros
-            if numero_caixa:
-                movimentos_mock = [
-                    m for m in movimentos_mock if m["numero_caixa"] == numero_caixa
-                ]
-            if tipo_movimento:
-                movimentos_mock = [
-                    m for m in movimentos_mock if m["tipo_movimento"] == tipo_movimento
-                ]
-
-            total = len(movimentos_mock)
-            movimentos = movimentos_mock[offset : offset + limite]
-
-            return total, movimentos
+            raise Exception(
+                "Nenhum movimento de caixa retornado pela API WebPosto (sem dados fictícios)."
+            )
 
         except Exception as e:
             raise Exception(f"Erro ao listar caixa: {str(e)}")
@@ -576,43 +514,9 @@ class AuditoriaCRUD:
         try:
             offset = (pagina - 1) * limite
 
-            # Mock data
-            auditorias_mock = [
-                {
-                    "id": f"AUD{str(i).zfill(8)}",
-                    "tabela": "financeiro" if i % 2 == 0 else "caixa",
-                    "record_id": (
-                        f"TIT{str(i).zfill(3)}"
-                        if i % 2 == 0
-                        else f"CAIXA{str(i).zfill(3)}"
-                    ),
-                    "operacao": ["CREATE", "UPDATE", "DELETE"][i % 3],
-                    "usuario": "gerente" if i % 2 == 0 else "operador",
-                    "valores_antes": None,
-                    "valores_depois": {"updated": True},
-                    "data_operacao": datetime.now() - timedelta(hours=i),
-                    "ip_origem": "192.168.1.100",
-                    "motivo": f"Operação {i}",
-                }
-                for i in range(1, 51)
-            ]
-
-            # Filtros
-            if tabela:
-                auditorias_mock = [a for a in auditorias_mock if a["tabela"] == tabela]
-            if usuario:
-                auditorias_mock = [
-                    a for a in auditorias_mock if a["usuario"] == usuario
-                ]
-            if operacao:
-                auditorias_mock = [
-                    a for a in auditorias_mock if a["operacao"] == operacao
-                ]
-
-            total = len(auditorias_mock)
-            auditorias = auditorias_mock[offset : offset + limite]
-
-            return total, auditorias
+            raise Exception(
+                "Auditoria interna (Mongo) não configurada — sem dados fictícios."
+            )
 
         except Exception as e:
             raise Exception(f"Erro ao listar auditoria: {str(e)}")

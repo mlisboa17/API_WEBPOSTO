@@ -1,0 +1,29 @@
+@baseUrl = http://127.0.0.1:8050
+@consumerToken = dev-consumer-token
+@postoId = VIP
+
+### Ready
+GET {{baseUrl}}/ready
+Accept: application/json
+
+### Health
+GET {{baseUrl}}/health
+Accept: application/json
+
+### Expenses (hoje)
+GET {{baseUrl}}/v1/expenses
+X-Consumer-Token: {{consumerToken}}
+X-Posto-ID: {{postoId}}
+Accept: application/json
+
+### Expenses (data especifica)
+GET {{baseUrl}}/v1/expenses?data_consulta=2026-05-17T00:00:00
+X-Consumer-Token: {{consumerToken}}
+X-Posto-ID: {{postoId}}
+Accept: application/json
+
+### Products
+GET {{baseUrl}}/v1/products?include_inactive=false&force_refresh=false
+X-Consumer-Token: {{consumerToken}}
+X-Posto-ID: {{postoId}}
+Accept: application/json

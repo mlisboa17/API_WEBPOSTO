@@ -46,7 +46,8 @@ def test_config_from_env(monkeypatch):
 
 def test_config_from_env_sem_chave_levanta_excecao(monkeypatch):
     monkeypatch.delenv("WEBPOSTO_CHAVE", raising=False)
-    with pytest.raises(ValueError, match="WEBPOSTO_CHAVE"):
+    monkeypatch.delenv("WEBPOSTO_API_KEY", raising=False)
+    with pytest.raises(ValueError, match="WEBPOSTO"):
         WebPostoConfig.from_env()
 
 

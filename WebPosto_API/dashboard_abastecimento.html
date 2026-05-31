@@ -378,8 +378,9 @@
     </div>
 
     <script>
+        // Carregue a chave de .env ou variáveis de ambiente
         const API_BASE = 'https://web.qualityautomacao.com.br';
-        const API_KEY = '<WEBPOSTO_API_TOKEN>';
+        const API_KEY = localStorage.getItem('WEBPOSTO_CHAVE') || 'SEU_TOKEN_AQUI'; // Configure em .env
         let dadosOriginal = [];
         let dadosFiltrados = [];
 

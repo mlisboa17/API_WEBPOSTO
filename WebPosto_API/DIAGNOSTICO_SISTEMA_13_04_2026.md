@@ -27,7 +27,7 @@
 **Status:** ✅ **VÁLIDA E TESTADA**
 
 ```
-Chave: <WEBPOSTO_API_TOKEN>
+Chave: $WEBPOSTO_CHAVE
 Empresa: POSTO VIP — Rio Doce Comércio e Serviços Ltda
 CNPJ: 03.008.754/0001-86
 Endereço: Av. Brasil, 2701 — Rio Doce, Olinda/PE
@@ -97,7 +97,7 @@ Falta o arquivo `.env`. Modelo esperado (`.env.example`):
 
 ```bash
 # webPosto API
-WEBPOSTO_API_KEY=<WEBPOSTO_API_TOKEN>
+WEBPOSTO_API_KEY=$WEBPOSTO_CHAVE
 WEBPOSTO_BASE_URL=http://web.qualityautomacao.com.br
 
 # FastAPI
@@ -190,7 +190,7 @@ poetry install  # Instala do pyproject.toml
 ```bash
 cp .env.example .env
 # Editar e preencher:
-# WEBPOSTO_API_KEY=<WEBPOSTO_API_TOKEN>
+# WEBPOSTO_API_KEY=$WEBPOSTO_CHAVE
 # DATABASE_URL (se PostgreSQL disponível)
 # REDIS_URL (se Redis disponível)
 ```
@@ -256,4 +256,5 @@ curl http://localhost:8000/docs  # Swagger UI
 3. Iniciar uvicorn
 
 **Tempo estimado para estar 100% operacional:** 5 minutos ⏱️
+
 

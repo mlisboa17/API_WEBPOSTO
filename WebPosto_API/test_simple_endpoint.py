@@ -5,9 +5,10 @@ sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 from webposto.config import WebPostoConfig
 from webposto.client import WebPostoClient
+import os
 
 config = WebPostoConfig(
-    chave="<WEBPOSTO_API_TOKEN>",
+    chave=os.getenv("WEBPOSTO_CHAVE", "SEU_TOKEN_AQUI"),
     base_url="http://web.qualityautomacao.com.br",
     timeout=30,
 )

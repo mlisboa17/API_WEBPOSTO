@@ -1,0 +1,130 @@
+{
+  "tenants": [
+    {
+      "empresa_id": "posto_vip",
+      "nome_empresa": "Posto VIP - Empresa Original",
+      "webposto_token": "${WEBPOSTO_BEARER_TOKEN}",
+      "mongodb_url": "mongodb://admin:senha123@mongo:27017/webposto_vip?authSource=admin",
+      "redis_url": "redis://valkey-master:6379/0",
+      "ambiente": "production",
+      "rate_limit": {
+        "requests_per_hour": 5000,
+        "requests_per_minute": 500,
+        "concurrent_max": 50
+      },
+      "config_rateio": {
+        "tipo_rateio": "proporcional",
+        "validar_soma_100": true,
+        "permitir_centros_ausentes": false,
+        "centros_custo_padrao": [
+          {
+            "centro_custo_id": "cc_combustivel",
+            "nome": "Centro Combustível",
+            "percentual_padrao": 50
+          },
+          {
+            "centro_custo_id": "cc_manutencao",
+            "nome": "Centro Manutenção",
+            "percentual_padrao": 30
+          },
+          {
+            "centro_custo_id": "cc_administrativo",
+            "nome": "Centro Administrativo",
+            "percentual_padrao": 20
+          }
+        ]
+      },
+      "endpoints_prioridade": [
+        "/abastecimentos",
+        "/financeiro/lancamentos",
+        "/vendas"
+      ],
+      "health_check_interval_seconds": 60,
+      "ativo": true
+    },
+    {
+      "empresa_id": "empresa_nova_1",
+      "nome_empresa": "Empresa Nova - Teste 1",
+      "webposto_token": "${WEBPOSTO_TOKEN_EMPRESA_NOVA_1}",
+      "mongodb_url": "mongodb://admin:senha123@mongo:27017/webposto_nova1?authSource=admin",
+      "redis_url": "redis://valkey-master:6379/1",
+      "ambiente": "staging",
+      "rate_limit": {
+        "requests_per_hour": 1000,
+        "requests_per_minute": 100,
+        "concurrent_max": 10
+      },
+      "config_rateio": {
+        "tipo_rateio": "uniforme",
+        "validar_soma_100": true,
+        "permitir_centros_ausentes": false,
+        "centros_custo_padrao": [
+          {
+            "centro_custo_id": "cc_default",
+            "nome": "Centro Padrão",
+            "percentual_padrao": 100
+          }
+        ]
+      },
+      "endpoints_prioridade": [
+        "/abastecimentos"
+      ],
+      "health_check_interval_seconds": 60,
+      "ativo": true
+    },
+    {
+      "empresa_id": "empresa_nova_2",
+      "nome_empresa": "Empresa Nova - Teste 2",
+      "webposto_token": "${WEBPOSTO_TOKEN_EMPRESA_NOVA_2}",
+      "mongodb_url": "mongodb://admin:senha123@mongo:27017/webposto_nova2?authSource=admin",
+      "redis_url": "redis://valkey-master:6379/2",
+      "ambiente": "staging",
+      "rate_limit": {
+        "requests_per_hour": 1000,
+        "requests_per_minute": 100,
+        "concurrent_max": 10
+      },
+      "config_rateio": {
+        "tipo_rateio": "proporcional",
+        "validar_soma_100": true,
+        "permitir_centros_ausentes": true,
+        "centros_custo_padrao": [
+          {
+            "centro_custo_id": "cc_ops",
+            "nome": "Centro Operacional",
+            "percentual_padrao": 100
+          }
+        ]
+      },
+      "endpoints_prioridade": [
+        "/financeiro",
+        "/clientes"
+      ],
+      "health_check_interval_seconds": 60,
+      "ativo": true
+    }
+  ],
+  "configuracao_global": {
+    "prometheus_metrics_enabled": true,
+    "prometheus_port": 9091,
+    "valkey_master_url": "redis://valkey-master:6379",
+    "valkey_cluster_urls": [
+      "redis://valkey-cluster-node-1:6380",
+      "redis://valkey-cluster-node-2:6381",
+      "redis://valkey-cluster-node-3:6382"
+    ],
+    "cache_strategy": "cache_aside",
+    "cache_ttl_critico_segundos": 3600,
+    "cache_ttl_normal_segundos": 300,
+    "cache_ttl_baixo_segundos": 60,
+    "audit_retention_days": 365,
+    "anomaly_detection_enabled": true,
+    "anomaly_detection_threshold_percent": 15,
+    "health_check_timeout_seconds": 5,
+    "request_timeout_seconds": 30,
+    "retry_max_attempts": 3,
+    "retry_backoff_seconds": [1, 2, 4],
+    "log_level": "INFO",
+    "debug_mode": false
+  }
+}

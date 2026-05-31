@@ -15,8 +15,11 @@ import json
 from datetime import datetime, timedelta
 
 # ─── CONFIGURAÇÃO ─────────────────────────────────────────────────────────────
-API_KEY = "<WEBPOSTO_API_TOKEN>"
-BASE_URL = "https://web.qualityautomacao.com.br"
+import os
+
+# API key is read from environment when available (use .env or export WEBPOSTO_API_KEY)
+API_KEY = os.getenv("WEBPOSTO_API_KEY", "$WEBPOSTO_CHAVE")
+BASE_URL = os.getenv("WEBPOSTO_BASE_URL", "https://web.qualityautomacao.com.br")
 
 # Datas para testes (últimos 7 dias)
 HOJE = datetime.now().strftime("%Y-%m-%d")
@@ -141,3 +144,4 @@ print("\nSwagger completo disponível em:")
 print(
     "  https://web.qualityautomacao.com.br/webjars/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config"
 )
+

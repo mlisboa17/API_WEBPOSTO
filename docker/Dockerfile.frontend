@@ -1,0 +1,119 @@
+# GEMINI 2.0: Multi-stage Dockerfile for Reflex Frontend
+# Optimized for <250MB image size, high performance, and hot-reload support
+# Build stages: Node 22 (build) -> Python 3.14-slim (runtime)
+
+# ========================
+# Stage 1: Node.js Builder
+# ========================
+FROM node:22-alpine AS builder-node
+
+WORKDIR /app
+
+# Copy package files
+COPY package.json package-lock.json ./
+
+# Install dependencies with production optimization
+RUN npm ci --production && \
+    npm cache clean --force && \
+    # Install turbopack and build tools
+    npm install -g turbopack @vercel/ncc && \
+    # Prune dev dependencies
+    npm prune --production
+
+# Copy source code
+COPY . .
+
+# Build Next.js with Turbopack
+RUN npm run build
+
+# Prune node_modules for next.js minimal
+RUN npm prune --production --omit=dev
+
+# ========================
+# Stage 2: Python Runtime
+# ========================
+FROM python:3.14-slim
+
+# Install essential system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    tzdata \
+    curl \
+    # For asset compression
+    brotli \
+    gzip \
+    # For image optimization
+    libvips \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy Python requirements
+COPY requirements.txt requirements-frontend.txt ./
+
+# Install Python dependencies with performance optimization
+RUN pip install --no-cache-dir \
+    -r requirements.txt \
+    -r requirements-frontend.txt \
+    # Performance & async packages
+    uvicorn[standard] \
+    gunicorn \
+    aiofiles \
+    # Compression optimization
+    brotli \
+    # Caching & state
+    redis \
+    aioredis
+
+# Create necessary directories for cache & logs
+RUN mkdir -p /app/.cache /app/.logs /app/.reflex
+
+# Copy backend code
+COPY src/ ./src/
+COPY config/ ./config/
+
+# Copy Reflex config and rxconfig.py
+COPY rxconfig.py ./
+COPY .reflex/ ./.reflex/ || true
+
+# Copy compression & health scripts
+COPY docker/compress-assets.sh /app/
+COPY docker/healthcheck.sh /app/
+RUN chmod +x /app/compress-assets.sh /app/healthcheck.sh
+
+# Copy built Next.js application from Node builder
+COPY --from=builder-node /app/.next /app/.next
+COPY --from=builder-node /app/node_modules /app/node_modules
+COPY --from=builder-node /app/public /app/public
+
+# Compress static assets for production (Gzip + Brotli)
+RUN /app/compress-assets.sh
+
+# Create non-root user for security (appuser UID 1000)
+RUN useradd -m -u 1000 appuser && \
+    chown -R appuser:appuser /app && \
+    chmod -R 755 /app
+
+USER appuser
+
+# Environment configuration (Production)
+ENV NODE_ENV=production \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    REFLEX_ENV=production \
+    LOG_LEVEL=INFO \
+    CORS_ORIGINS=http://localhost:3000,https://localhost \
+    REDIS_URL=redis://redis:6379/1 \
+    CACHE_TTL=3600 \
+    GZIP_ENABLED=true \
+    BROTLI_ENABLED=true
+
+# Expose ports
+EXPOSE 3000
+
+# Health check (improved)
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD /app/healthcheck.sh || exit 1
+
+# Entry point: Start Reflex (frontend) with optimizations
+CMD ["reflex", "run", "--prod", "--frontend-only", "--host", "0.0.0.0", "--port", "3000"]

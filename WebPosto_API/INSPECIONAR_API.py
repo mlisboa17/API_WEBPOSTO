@@ -9,7 +9,7 @@ import asyncio
 from datetime import datetime, timedelta
 
 BASE_URL = "http://web.qualityautomacao.com.br"
-API_KEY = "<WEBPOSTO_API_TOKEN>"
+API_KEY = "$WEBPOSTO_CHAVE"
 HOJE = datetime.now().strftime("%Y-%m-%d")
 ONTEM = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
 
@@ -132,3 +132,4 @@ async def main():
 
 
 asyncio.run(main())
+

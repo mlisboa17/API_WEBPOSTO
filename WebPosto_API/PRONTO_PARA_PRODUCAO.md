@@ -105,7 +105,7 @@ Query params: numero_caixa, tipo_movimento, data
 ## 🔐 Credenciais de Produção
 
 ```
-WEBPOSTO_API_KEY: <WEBPOSTO_API_TOKEN>
+WEBPOSTO_API_KEY: $WEBPOSTO_CHAVE
 WEBPOSTO_BASE_URL: http://web.qualityautomacao.com.br
 Empresa: POSTO VIP
 CNPJ: 03.008.754/0001-86
@@ -247,3 +247,4 @@ bash validate-deploy.sh
 **Status:** 🚀 **PRONTO PARA COLOCAR EM PRODUÇÃO AGORA**
 
 Referência completa: `DEPLOY_PRODUCAO.md`
+

@@ -1,0 +1,83 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "logos-webposto-gateway"
+version = "1.0.0-alpha"
+description = "API Gateway unificada para integração com WebPosto (Porta 8050)"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+authors = [
+    {name = "Logos Engineering Team", email = "engineering@logos.com"}
+]
+keywords = ["gateway", "api", "webposto", "logos", "cache", "async"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Framework :: FastAPI",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP",
+]
+
+dependencies = [
+    "fastapi==0.104.1",
+    "uvicorn[standard]==0.24.0",
+    "sqlalchemy==2.0.23",
+    "sqlmodel==0.0.14",
+    "aiosqlite==0.19.0",
+    "httpx==0.25.2",
+    "pydantic==2.5.0",
+    "pydantic-settings==2.1.0",
+    "python-dotenv==1.0.0",
+    "anyio==4.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==7.4.3",
+    "pytest-asyncio==0.21.1",
+    "pytest-cov==4.1.0",
+    "black==23.12.0",
+    "ruff==0.1.10",
+    "mypy==1.7.1",
+]
+test = [
+    "pytest==7.4.3",
+    "pytest-asyncio==0.21.1",
+    "pytest-cov==4.1.0",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+include = '\.pyi?$'
+extend-exclude = '/(migrations|\.git|\.hg|\.mypy_cache|\.tox|\.venv|_build|buck-out|build|dist)/'
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+select = ["E", "F", "W", "I", "B"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "--strict-markers --tb=short -v"
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests",
+    "slow: Slow tests",
+]

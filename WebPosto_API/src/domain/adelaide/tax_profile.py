@@ -76,6 +76,8 @@ class ExecutiveKpiSummary(BaseModel):
     taxas_cartao_total: Decimal = Decimal("0")
     margem_liquida_total: Decimal = Decimal("0")
     litros_total: Decimal = Decimal("0")
+    despesas_caixa: Decimal = Decimal("0")
+    faturamento_nao_combustivel: Decimal = Decimal("0")
     produtos: list[AdelaideTaxProfile] = Field(default_factory=list)
     masked: bool = False
     fallback: bool = False
@@ -124,11 +126,19 @@ def agregar_abastecimentos(
             if custo_por_codigo and codigo in custo_por_codigo
             else custo_aquisicao_litro(codigo)
         )
+        from src.domain.adelaide.fuel_catalog import eh_combustivel_codigo
+
+        pis_rate = (
+            MONOFASICO_PIS_COFINS_RATE
+            if eh_combustivel_codigo(codigo)
+            else Decimal("0")
+        )
         if codigo not in buckets:
             buckets[codigo] = AdelaideTaxProfile(
                 codigo_produto=codigo,
                 nome_produto=nome,
                 custo_aquisicao_litro=custo_litro,
+                pis_cofins_rate=pis_rate,
             )
         p = buckets[codigo]
         buckets[codigo] = p.model_copy(

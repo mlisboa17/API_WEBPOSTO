@@ -57,7 +57,7 @@ Tudo sem precisar de backend — conecta direto na API WebPosto.
 
 ```
 Base URL: https://web.qualityautomacao.com.br
-Chave API: <WEBPOSTO_API_TOKEN>
+Chave API: Veja .env (WEBPOSTO_CHAVE)
 Filial: POSTO VIP (Olinda/PE)
 Empresa: Rio Doce Comércio e Serviços Ltda (CNPJ 03.008.754/0001-86)
 ```

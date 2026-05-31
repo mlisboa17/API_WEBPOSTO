@@ -29,6 +29,7 @@ class AbastecimentoEndpoints:
         bico: Optional[int] = None,
         pagina: Optional[int] = None,
         tamanho_pagina: Optional[int] = None,
+        ultimo_codigo: Optional[str] = None,
     ) -> List[Dict]:
         """
         Lista abastecimentos no período informado.
@@ -52,6 +53,8 @@ class AbastecimentoEndpoints:
             "pagina": pagina,
             "tamanhoPagina": tamanho_pagina,
         }
+        if ultimo_codigo not in (None, ""):
+            params["ultimoCodigo"] = ultimo_codigo
         return self._http.get("/INTEGRACAO/ABASTECIMENTO", params)
 
     def listar_encerrante(

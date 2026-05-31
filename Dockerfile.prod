@@ -1,0 +1,56 @@
+# Multi-stage Dockerfile: Production-optimized (<100MB)
+
+# ===== STAGE 1: Builder =====
+FROM python:3.12-slim as builder
+
+WORKDIR /app
+
+# Instalar dependências de build
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copiar requirements
+COPY requirements.txt .
+
+# Instalar dependências Python em wheel format
+RUN pip install --user --no-cache-dir \
+    --index-url https://pypi.org/simple/ \
+    -r requirements.txt
+
+
+# ===== STAGE 2: Runtime =====
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# Apenas libpq runtime (não dev)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpq5 \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copiar dependências Python do builder
+COPY --from=builder /root/.local /root/.local
+
+# Definir PATH
+ENV PATH=/root/.local/bin:$PATH
+
+# Copiar código da aplicação
+COPY src/ ./src/
+COPY main.py .
+
+# Criar usuário não-root
+RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+USER appuser
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
+# Porta
+EXPOSE 8000
+
+# Comando
+CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

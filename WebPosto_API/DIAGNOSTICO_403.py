@@ -5,7 +5,7 @@ Diagnostico completo do erro 403 - ver body, headers e tentar HTTPS
 import httpx
 import asyncio
 
-API_KEY = "<WEBPOSTO_API_TOKEN>"
+API_KEY = "$WEBPOSTO_CHAVE"
 
 
 async def testar(url, params=None, headers_extra=None):
@@ -56,3 +56,4 @@ async def main():
 
 
 asyncio.run(main())
+

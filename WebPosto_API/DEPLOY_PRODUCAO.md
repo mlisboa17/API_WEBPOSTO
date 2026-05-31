@@ -26,7 +26,7 @@ Antes de fazer deploy em produção, valide:
 
 ```bash
 # webPosto API — CREDENCIAIS REAIS
-WEBPOSTO_API_KEY=<WEBPOSTO_API_TOKEN>
+WEBPOSTO_API_KEY=$WEBPOSTO_CHAVE
 WEBPOSTO_BASE_URL=http://web.qualityautomacao.com.br
 
 # FastAPI
@@ -585,3 +585,4 @@ echo "Deploy validado! 🚀"
 
 **Deploy realizado com sucesso!** 🎉  
 Próxima sincronização automática: a cada 5 minutos (configurável)
+

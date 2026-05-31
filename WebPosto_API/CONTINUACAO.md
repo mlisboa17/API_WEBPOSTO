@@ -7,14 +7,17 @@
 
 ```bash
 cd WebPosto_API
-# .env já existe localmente (não versionado) — copie de env.example se precisar
+docker compose up -d valkey
+python scripts/seed_real_data.py --prewarm
 python src/presentation/app.py
 ```
 
 | URL | Uso |
 |-----|-----|
 | http://localhost:8000/ | Dashboard operacional (`dashboard_vendas.html`) |
-| http://localhost:8000/dashboard | Cockpit Adelaide (`static/dashboard_logos.html`) |
+| http://localhost:8000/dashboard | Cockpit Lionda (`static/dashboard_logos.html` + `theme/cockpit.js`) |
+| http://localhost:8000/api/v1/adelaide/metrics | KPIs JSON (hoje / 7d / mensal) |
+| http://localhost:8000/api/v1/webposto/produtos?pagina=1 | Catálogo de produtos (INTEGRACAO/PRODUTO) |
 | http://localhost:8000/health | Health + validação da chave (EMPRESAS) |
 
 **`.env` local (não commitar):**
@@ -42,7 +45,8 @@ API_PORT=8000
 | POST PRODUTO (criar) | 404 — módulo não habilitado no contrato |
 | PUT ALTERAR_PRODUTO | Escrita permitida (body completo obrigatório) |
 | FILIAL | 401 — sem permissão (não usar no health) |
-| LISTA_DE_ITENS, AJUSTE_ESTOQUE | 401/404 |
+| LISTA_DE_ITENS (legado) | use **GET /INTEGRACAO/PRODUTO** (LISTA_DE_ITENS = 401 nesta chave) |
+| AJUSTE_ESTOQUE | 404 |
 
 Reexecutar teste: `python scripts/check_produto_crud.py`
 

@@ -1,16 +1,24 @@
 """
 Testes de Integração — Chamadas reais à API WebPosto
-Requer: WEBPOSTO_CHAVE válida no .env
+Requer: WEBPOSTO_CHAVE ou WEBPOSTO_API_KEY válida no .env
 """
 
+import os
 import sys
 from pathlib import Path
+
+import pytest
 
 # Adiciona src ao path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "src"))
 
 from webposto.config import WebPostoConfig
 from webposto.client import WebPostoClient
+
+pytestmark = pytest.mark.skipif(
+    not (os.environ.get("WEBPOSTO_CHAVE") or os.environ.get("WEBPOSTO_API_KEY")),
+    reason="WEBPOSTO_API_KEY ausente — testes de integração reais ignorados",
+)
 
 
 def test_config_from_env():

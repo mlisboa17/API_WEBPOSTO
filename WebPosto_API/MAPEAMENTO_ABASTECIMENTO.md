@@ -3,7 +3,7 @@
 ## 📋 Resumo Executivo
 
 **Endpoint:** `GET /INTEGRACAO/ABASTECIMENTO`  
-**Autenticação:** Query param `CHAVE=<WEBPOSTO_API_TOKEN>`  
+**Autenticação:** Query param `CHAVE=$WEBPOSTO_CHAVE`  
 **Filtros:** `dataInicial` e `dataFinal` (YYYY-MM-DD)  
 **Status HTTP:** 200 OK ✅  
 **Estrutura:** JSON array de objetos dentro de `resultados[]`  
@@ -157,7 +157,7 @@ O `abastecimentoCodigo` e `vendaItemCodigo` permitem cruzamento com:
 
 ### Request
 ```http
-GET /INTEGRACAO/ABASTECIMENTO?CHAVE=<WEBPOSTO_API_TOKEN>&dataInicial=2026-04-03&dataFinal=2026-04-10
+GET /INTEGRACAO/ABASTECIMENTO?CHAVE=$WEBPOSTO_CHAVE&dataInicial=2026-04-03&dataFinal=2026-04-10
 ```
 
 ### Response (HTTP 200)
@@ -296,4 +296,5 @@ Com este mapeamento validado, você pode:
 **Mapeamento finalizado:** 10/04/2026  
 **Status:** ✅ **VALIDADO E TESTADO**  
 **Próximo:** Criar dashboard_abastecimento.html
+
 

@@ -677,7 +677,7 @@ def test_persistir_cartao_retorna_dados(client):
 def test_listar_itens_retorna_lista(client):
     """GET lista de itens retorna lista."""
     mock = [{"codigo": 1, "nome": "GASOLINA COMUM"}, {"codigo": 2, "nome": "DIESEL"}]
-    resp.add(resp.GET, f"{BASE}/INTEGRACAO/LISTA_DE_ITENS", json=mock, status=200)
+    resp.add(resp.GET, f"{BASE}/INTEGRACAO/PRODUTO", json=mock, status=200)
 
     resultado = client.produtos.listar_itens()
 
@@ -687,7 +687,7 @@ def test_listar_itens_retorna_lista(client):
 @resp.activate
 def test_listar_itens_com_paginacao(client):
     """GET lista de itens aceita paginação."""
-    resp.add(resp.GET, f"{BASE}/INTEGRACAO/LISTA_DE_ITENS", json=[], status=200)
+    resp.add(resp.GET, f"{BASE}/INTEGRACAO/PRODUTO", json=[], status=200)
 
     client.produtos.listar_itens(pagina=1, tamanho_pagina=20)
 
