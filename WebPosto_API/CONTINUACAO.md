@@ -53,10 +53,10 @@ Reexecutar teste: `python scripts/check_produto_crud.py`
 ## Pendências para próxima sessão
 
 - [ ] Pedir à Quality habilitar `POST /INTEGRACAO/PRODUTO` e `ajusteEstoqueProduto` se precisar CRUD completo.
-- [ ] Alinhar `API_PORT` no `.env` (estava 5000; `env.example` usa 8000).
-- [ ] Rota `metrics` — depende de `redis_adapter` (pode 500).
+- [x] ✅ Alinhar `API_PORT` no `.env` (estava 5000; `env.example` usa 8000). → Gateway roda em 8050
+- [x] ✅ Rota `metrics` — depende de `redis_adapter` (pode 500). → `/api/v1/adelaide/metrics` funciona com dados reais
 - [ ] Cache Valkey / hit ratio / testes 100% (plano multi-IA em `multi-ai-tasks/README.md`).
-- [ ] Exemplo de `PUT /ALTERAR_PRODUTO/{id}` com payload completo a partir de um GET real.
+- [x] ✅ Exemplo de `PUT /ALTERAR_PRODUTO/{id}` com payload completo → `EXEMPLO_ALTERAR_PRODUTO.md` + `scripts/exemplo_alterar_produto.py`
 
 ## Arquivos principais
 
@@ -68,6 +68,17 @@ Reexecutar teste: `python scripts/check_produto_crud.py`
 | `static/dashboard_logos.html` | Cockpit Adelaide |
 | `env.example` | Variáveis de ambiente modelo |
 | `scripts/check_produto_crud.py` | Teste permissões produto |
+
+## O que foi feito nesta sessão (31/05/2026)
+
+1. ✅ **Normalizado line-endings** — CRLF → LF across project
+2. ✅ **Validado rota `/api/v1/adelaide/metrics`** — funciona com dados reais via Valkey
+3. ✅ **Documentado exemplo de PUT /ALTERAR_PRODUTO** — criado `EXEMPLO_ALTERAR_PRODUTO.md` com:
+   - Exemplo real de payload com todos os campos
+   - 3 casos de uso (preço, ativo, fiscal)
+   - Referência completa de campos (tipos, validações, CST ICMS)
+   - Script Python em `scripts/exemplo_alterar_produto.py`
+4. ✅ **Valkey cache running** — docker compose com pool Valkey/Redis funcionando
 
 ## Git
 
