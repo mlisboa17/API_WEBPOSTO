@@ -22,7 +22,7 @@
 
 ### 2. Configuração (.env)
 ```bash
-WEBPOSTO_API_KEY=4d6bbe21-92b2-4052-bcb5-a82c86858fd7
+WEBPOSTO_API_KEY=$WEBPOSTO_CHAVE
 WEBPOSTO_BASE_URL=http://web.qualityautomacao.com.br
 DATABASE_URL=sqlite+aiosqlite:///./webposto.db
 API_PORT=8000
@@ -154,7 +154,7 @@ curl http://localhost:8000/sync/caixa
 | **Empresa** | POSTO VIP — Rio Doce Comércio e Serviços Ltda |
 | **CNPJ** | 03.008.754/0001-86 |
 | **Endereço** | Av. Brasil, 2701 — Rio Doce, Olinda/PE |
-| **API Key** | `4d6bbe21-92b2-4052-bcb5-a82c86858fd7` |
+| **API Key** | `$WEBPOSTO_CHAVE` |
 | **Base URL** | `http://web.qualityautomacao.com.br` |
 
 **Testes realizados em 09/04/2026:**
@@ -258,3 +258,4 @@ Quando pronto:
 **Mantido por:** Grupo Lisboa  
 **Última atualização:** 13/04/2026 17:30 UTC  
 **Versão:** 0.1.0
+

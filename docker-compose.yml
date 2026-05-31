@@ -23,8 +23,8 @@ services:
       LOGOS_SPACE_DB: mongodb://mongo:27017/logos
 
       # New WebPosto API
-      DATABASE_URL: mongodb://admin:${MONGO_ROOT_PASSWORD:-changeme}@mongo:27017/webposto?authSource=admin
-      REDIS_URL: redis://redis:6379/0
+      DATABASE_URL: "postgresql+asyncpg://${POSTGRES_USER:-webposto}:${POSTGRES_PASSWORD:-changeme}@postgres:5432/${POSTGRES_DB:-webposto}"
+      VALKEY_URL: redis://valkey:6379/0
       API_HOST: 0.0.0.0
       API_PORT: 8000
 
@@ -56,6 +56,27 @@ services:
       retries: 3
       start_period: 25s
 
+  # Frontend (Vite dev server) - development convenience service
+  frontend:
+    image: node:18-alpine
+    container_name: webposto-frontend
+    working_dir: /app
+    volumes:
+      - ./frontend/react-vite:/app
+      - /app/node_modules
+    ports:
+      - "3000:5173" # Expose Vite dev server on localhost:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - VITE_API_URL=http://api:8000
+    depends_on:
+      - api
+      - redis
+    command: sh -c "npm install --silent && npm run dev -- --host 0.0.0.0"
+    networks:
+      - logos-network
+    restart: unless-stopped
+
   # MongoDB (Logos Space + WebPosto)
   mongo:
     image: mongo:7.0
@@ -75,6 +96,45 @@ services:
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Postgres (Primary relational DB for WebPosto)
+  postgres:
+    image: postgres:17-alpine
+    container_name: webposto-postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-webposto}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_DB: ${POSTGRES_DB:-webposto}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - logos-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER:-webposto}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Valkey (Redis-compatible key-value store used as session/caching layer)
+  valkey:
+    image: redis:7-alpine
+    container_name: webposto-valkey
+    ports:
+      - "6380:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - valkey_data:/data
+    networks:
+      - logos-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "-p", "6379", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -168,3 +228,5 @@ volumes:
   redis_data:
   prometheus_data:
   grafana_data:
+  postgres_data:
+  valkey_data:

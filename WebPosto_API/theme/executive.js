@@ -72,6 +72,7 @@
             }
             const cfg = await r.json();
             global.__WP_HINT_FROM_SERVER__ = true;
+            global.__WP_SERVER_HAS_KEY__ = !!cfg.has_key;
             if (hint) {
                 if (cfg.has_key && cfg.key_hint) {
                     hint.textContent =
@@ -136,7 +137,15 @@
         });
 
         const fromUrl = sanitizeChave(url.searchParams.get('CHAVE'));
-        const chave = fromUrl || getChave();
+        const local = getChave();
+        let chave = fromUrl || undefined;
+        if (!chave && local) {
+            if (global.__WP_FORCE_LOCAL_CHAVE__) {
+                chave = local;
+            } else if (!global.__WP_SERVER_HAS_KEY__) {
+                chave = local;
+            }
+        }
         const method = (init && init.method) || 'GET';
 
         const r = await fetch(PROXY_URL, {
@@ -223,6 +232,7 @@
 
         if (btn) {
             btn.addEventListener('click', function () {
+                global.__WP_FORCE_LOCAL_CHAVE__ = true;
                 setChave(input ? input.value : '');
                 loadConfigFromServer();
                 if (typeof global.mostrarMensagem === 'function') {

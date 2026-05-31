@@ -153,6 +153,42 @@ class FinanceiroEndpoints:
         }
         return self._http.get("/INTEGRACAO/FECHAMENTO_CAIXA", params)
 
+    def listar_caixa_apresentado(
+        self,
+        data_inicial: date,
+        data_final: date,
+        filial: Optional[List[int]] = None,
+        pagina: Optional[int] = None,
+        tamanho_pagina: Optional[int] = None,
+    ) -> List[Dict]:
+        """Valores apurados × apresentados por forma de pagamento."""
+        params = {
+            "dataInicial": data_inicial.isoformat(),
+            "dataFinal": data_final.isoformat(),
+            "filial": filial,
+            "pagina": pagina,
+            "tamanhoPagina": tamanho_pagina,
+        }
+        return self._http.get("/INTEGRACAO/CAIXA_APRESENTADO", params)
+
+    def listar_caixa(
+        self,
+        data_inicial: date,
+        data_final: date,
+        filial: Optional[List[int]] = None,
+        pagina: Optional[int] = None,
+        tamanho_pagina: Optional[int] = None,
+    ) -> List[Dict]:
+        """Movimentos de caixa no período."""
+        params = {
+            "dataInicial": data_inicial.isoformat(),
+            "dataFinal": data_final.isoformat(),
+            "filial": filial,
+            "pagina": pagina,
+            "tamanhoPagina": tamanho_pagina,
+        }
+        return self._http.get("/INTEGRACAO/CAIXA", params)
+
     # ── TRANSFERÊNCIA BANCÁRIA ────────────────────────────────────────────────
 
     def listar_transferencias(

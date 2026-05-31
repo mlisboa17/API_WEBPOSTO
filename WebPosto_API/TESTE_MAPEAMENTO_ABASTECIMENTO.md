@@ -11,7 +11,7 @@
 ### 1️⃣ CONECTIVIDADE
 ```
 Endpoint: /INTEGRACAO/ABASTECIMENTO
-Chave API: 4d6bbe21-92b2-4052-bcb5-a82c86858fd7
+Chave API: $WEBPOSTO_CHAVE
 Status HTTP: 200 OK ✅
 Resposta: JSON com estrutura consistente ✅
 ```
@@ -225,4 +225,5 @@ O sistema está **100% pronto** para:
 **Validado em:** 10/04/2026  
 **Aprovado por:** Claude / WebPosto API Integration  
 **Próximo passo:** Apresentar aos diretores ou proceder com Fase 2 (Backend)
+
 

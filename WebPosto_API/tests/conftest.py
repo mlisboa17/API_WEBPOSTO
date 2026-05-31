@@ -1,7 +1,19 @@
 import asyncio
+import os
 from datetime import datetime
+from pathlib import Path
 
 import pytest
+
+_ENV = Path(__file__).resolve().parents[1] / ".env"
+if _ENV.is_file():
+    for line in _ENV.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, _, v = line.partition("=")
+            k = k.strip()
+            if k and k not in os.environ:
+                os.environ[k] = v.strip().strip('"').strip("'")
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 

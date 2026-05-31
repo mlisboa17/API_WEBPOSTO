@@ -1,0 +1,21 @@
+Valkey/Redis conectado: redis://localhost:6379/0
+C:\Users\mlisb\OneDrive\ProjetosAntigravy\LOGOS SPACE\Api_WebPosto\WebPosto_API\src\presentation\app.py:624: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+INFO:     Started server process [20868]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 10048] error while attempting to bind on address ('127.0.0.1', 8050): [winerror 10048] normalmente é permitida apenas uma utilização de cada endereço de soquete (protocolo/endereço de rede/porta)
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+
+  Logos WebPosto Gateway
+  Health:    http://127.0.0.1:8050/health
+  Cockpit:   http://127.0.0.1:8050/dashboard
+  Produtos:  http://127.0.0.1:8050/produtos
+  Operacional: http://127.0.0.1:8050/
+

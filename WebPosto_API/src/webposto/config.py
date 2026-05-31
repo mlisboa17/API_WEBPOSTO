@@ -32,10 +32,10 @@ class WebPostoConfig:
     @classmethod
     def from_env(cls) -> "WebPostoConfig":
         """Carrega configuração a partir de variáveis de ambiente."""
-        chave = os.environ.get("WEBPOSTO_CHAVE")
+        chave = os.environ.get("WEBPOSTO_CHAVE") or os.environ.get("WEBPOSTO_API_KEY")
         if not chave:
             raise ValueError(
-                "Variável de ambiente WEBPOSTO_CHAVE não definida. "
+                "Variável WEBPOSTO_CHAVE ou WEBPOSTO_API_KEY não definida. "
                 "Obtenha a chave em: Administração > Integrações > Integração > Incluir > API Integração"
             )
 

@@ -379,9 +379,9 @@ ENDPOINTS = [
     },
     {
         "categoria": "Produtos",
-        "nome": "Lista de itens",
+        "nome": "Lista de itens (catálogo PRODUTO)",
         "method": "GET",
-        "path": "/INTEGRACAO/LISTA_DE_ITENS",
+        "path": "/INTEGRACAO/PRODUTO",
         "pag": True,
     },
     {

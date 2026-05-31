@@ -1,61 +1,45 @@
 version: "3.9"
 
 services:
-  # Valkey/Redis (cache + event bus) — alias valkey para stack Lionda
-  valkey:
+  valkey-cache:
     image: valkey/valkey:8-alpine
-    container_name: webposto-valkey
+    container_name: logos-valkey-audit
+    command: valkey-server --appendonly yes
     restart: unless-stopped
     ports:
       - "6379:6379"
     volumes:
-      - valkey_data:/data
+      - valkey_audit_data:/data
     networks:
       - webposto-network
     healthcheck:
       test: ["CMD", "valkey-cli", "ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      interval: 5s
+      timeout: 3s
+      retries: 3
 
-  redis:
-    image: redis:7-alpine
-    container_name: webposto-redis
+  postgres-db:
+    image: postgres:17-alpine
+    container_name: logos-db-audit
     restart: unless-stopped
+    environment:
+      POSTGRES_DB: audit_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin_password_2026
     ports:
-      - "6379:6379"
+      - "5432:5432"
     volumes:
-      - redis_data:/data
+      - pg_audit_data:/var/lib/postgresql/data
     networks:
       - webposto-network
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: ["CMD-SHELL", "pg_isready -U admin -d audit_db"]
       interval: 10s
       timeout: 5s
       retries: 5
+    profiles:
+      - postgres
 
-  # PostgreSQL (opcional - descomente para produção)
-  # postgres:
-  #   image: postgres:15-alpine
-  #   container_name: webposto-postgres
-  #   restart: unless-stopped
-  #   environment:
-  #     POSTGRES_USER: webposto
-  #     POSTGRES_PASSWORD: webposto_secure_password_change_me
-  #     POSTGRES_DB: webposto
-  #   ports:
-  #     - "5432:5432"
-  #   volumes:
-  #     - postgres_data:/var/lib/postgresql/data
-  #   networks:
-  #     - webposto-network
-  #   healthcheck:
-  #     test: ["CMD-SHELL", "pg_isready -U webposto"]
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 5
-
-  # API webPosto Sync Service
   api:
     build:
       context: .
@@ -65,34 +49,52 @@ services:
     env_file:
       - .env
     environment:
-      WEBPOSTO_API_KEY: ${WEBPOSTO_API_KEY:-4d6bbe21-92b2-4052-bcb5-a82c86858fd7}
-      WEBPOSTO_BASE_URL: ${WEBPOSTO_BASE_URL:-http://web.qualityautomacao.com.br}
+      WEBPOSTO_BASE_URL: ${WEBPOSTO_BASE_URL:-https://web.qualityautomacao.com.br}
       DATABASE_URL: ${DATABASE_URL:-sqlite+aiosqlite:///./webposto.db}
-      REDIS_URL: redis://redis:6379/0
-      API_PORT: 5000
-      DEBUG: "false"
-      ENVIRONMENT: production
+      REDIS_URL: redis://valkey-cache:6379/0
+      VALKEY_URL: redis://valkey-cache:6379/0
+      CELERY_BROKER_URL: redis://valkey-cache:6379/1
+      API_PORT: 8040
+      ENVIRONMENT: development
       LOG_LEVEL: INFO
     ports:
-      - "5000:5000"
+      - "8040:8040"
     depends_on:
-      redis:
+      valkey-cache:
         condition: service_healthy
-    volumes:
-      - ./webposto.db:/app/webposto.db
     networks:
       - webposto-network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8040/health"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 10s
+      start_period: 15s
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: webposto-worker
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      REDIS_URL: redis://valkey-cache:6379/0
+      CELERY_BROKER_URL: redis://valkey-cache:6379/1
+    command: ["celery", "-A", "src.infrastructure.background.celery_app:celery_app", "worker", "-l", "info"]
+    depends_on:
+      valkey-cache:
+        condition: service_healthy
+    networks:
+      - webposto-network
+    profiles:
+      - worker
 
 networks:
   webposto-network:
     driver: bridge
 
 volumes:
-  redis_data:
-  valkey_data:
+  valkey_audit_data:
+  pg_audit_data:

@@ -83,6 +83,12 @@ class HTTPClient:
         if response.status_code == 400:
             raise BadRequestError(f"Requisição inválida: {body}", 400, body)
         elif response.status_code in (401, 403):
+            logger.critical(
+                "WEBPOSTO_AUTH_FAILURE method=%s url=%s status=%s — token expirado ou sem permissão",
+                response.request.method if response.request else "?",
+                response.url,
+                response.status_code,
+            )
             raise AuthError(
                 "Chave de integração inválida ou sem permissão. "
                 "Verifique WEBPOSTO_CHAVE e o contrato com a Quality Automação.",
@@ -142,6 +148,12 @@ class HTTPClient:
             return self._handle_response(response)
         except requests.exceptions.Timeout:
             raise TimeoutError(f"Timeout após {self.config.timeout}s em POST {path}")
+        except requests.exceptions.RetryError as e:
+            raise ServerError(
+                f"Erro no servidor WebPosto após tentativas: {e}",
+                500,
+                str(e),
+            )
         except requests.exceptions.ConnectionError as e:
             raise ConnectionError(f"Falha de conexão em POST {path}: {e}")
 
@@ -162,6 +174,12 @@ class HTTPClient:
             return self._handle_response(response)
         except requests.exceptions.Timeout:
             raise TimeoutError(f"Timeout após {self.config.timeout}s em PUT {path}")
+        except requests.exceptions.RetryError as e:
+            raise ServerError(
+                f"Erro no servidor WebPosto após tentativas: {e}",
+                500,
+                str(e),
+            )
         except requests.exceptions.ConnectionError as e:
             raise ConnectionError(f"Falha de conexão em PUT {path}: {e}")
 

@@ -2,8 +2,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from src.infrastructure.config.database import close_db, init_db
+from src.infrastructure.config.gateway_database import init_gateway_db
 from src.infrastructure.config.settings import settings
-from src.interfaces.http.routes import clientes, health, sync
+from src.interfaces.http.routes import clientes, expenses, gateway_expenses, health, sync
 from src.interfaces.http.routes import auth
 from src.interfaces.http.routes import metrics
 from src.shared.logger import setup_logging
@@ -33,6 +34,8 @@ def create_app() -> FastAPI:
 
     # Incluir rotas
     app.include_router(health.router)
+    app.include_router(gateway_expenses.router)
+    app.include_router(expenses.router)
     app.include_router(clientes.router)
     app.include_router(sync.router)
     app.include_router(auth.router)
@@ -43,6 +46,7 @@ def create_app() -> FastAPI:
     async def on_startup():
         """Executado ao iniciar a aplicação."""
         await init_db()
+        await init_gateway_db()
 
     # Shutdown event
     @app.on_event("shutdown")

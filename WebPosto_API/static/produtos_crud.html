@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logos · Produtos CRUD</title>
+    <link rel="stylesheet" href="/theme/omie.css">
+</head>
+<body class="omie-app">
+    <div class="omie-page">
+        <header class="omie-page-header">
+            <div>
+                <h1>Produtos · WebPosto</h1>
+                <p>Preço venda A + custo · filtros ativo/inativo · vários grupos</p>
+            </div>
+            <nav class="omie-nav">
+                <a href="/dashboard">Cockpit</a>
+                <a href="/produtos" class="is-active">Produtos</a>
+                <a href="/">Operacional</a>
+            </nav>
+        </header>
+
+        <p id="statusBar" class="omie-status-bar">Carregando…</p>
+
+        <section class="omie-card">
+            <div class="omie-filter-grid">
+                <label>
+                    <span>Buscar descrição</span>
+                    <input id="filtroDescricao" class="omie-input" type="text" placeholder="Nome do produto">
+                </label>
+                <label>
+                    <span>Situação</span>
+                    <select id="filtroSituacao" class="omie-input">
+                        <option value="todos" selected>Todos</option>
+                        <option value="ativos">Somente ativos</option>
+                        <option value="inativos">Somente inativos</option>
+                    </select>
+                </label>
+                <div class="omie-toolbar">
+                    <button type="button" id="btnBuscar" class="omie-btn omie-btn--primary">Buscar</button>
+                    <button type="button" id="btnNovo" class="omie-btn omie-btn--secondary">+ Novo</button>
+                    <button type="button" id="gruposMarcarTodos" class="omie-btn omie-btn--ghost">Marcar grupos</button>
+                    <button type="button" id="gruposLimpar" class="omie-btn omie-btn--ghost">Limpar grupos</button>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <p class="text-sm text-gray-500 mb-2">Grupos (marque um ou mais para filtrar)</p>
+                <p id="gruposResumo" class="text-xs text-cyan-400/90 font-mono mb-2">—</p>
+                <div id="filtroGruposList" class="grupos-panel">
+                    <span class="text-gray-600 text-sm p-2">Carregando grupos…</span>
+                </div>
+            </div>
+
+            <div class="table-scroll mt-4">
+                <table class="data-table data-table--lg">
+                    <thead>
+                        <tr>
+                            <th>Cód.</th>
+                            <th>Descrição</th>
+                            <th>Grupo</th>
+                            <th>Status</th>
+                            <th class="text-right">Preço venda (A)</th>
+                            <th class="text-right">Preço custo</th>
+                            <th>NCM</th>
+                            <th class="text-right">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaProdutos" class="font-mono">
+                        <tr><td colspan="8" class="p-6 text-center text-gray-600">Aguardando…</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="omie-pagination">
+                <span id="paginacaoInfo">—</span>
+                <div class="flex gap-2">
+                    <button type="button" id="btnPagAnterior" class="omie-btn omie-btn--ghost">Anterior</button>
+                    <button type="button" id="btnPagProxima" class="omie-btn omie-btn--ghost">Próxima</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="painelForm" class="omie-card hidden">
+            <h2 id="formTitulo">Novo produto</h2>
+            <form id="formProduto" class="omie-form-grid">
+                <input type="hidden" id="produtoId">
+                <label><span>Descrição *</span><input id="descricao" class="omie-input" required></label>
+                <label><span>Descrição resumida</span><input id="descricaoResumida" class="omie-input"></label>
+                <label><span>Tipo (P=produto, C=combustível)</span>
+                    <select id="tipoProduto" class="omie-input">
+                        <option value="P">P — Produto</option>
+                        <option value="C">C — Combustível</option>
+                        <option value="S">S — Serviço</option>
+                    </select>
+                </label>
+                <label><span>Grupo *</span><select id="grupoCodigo" class="omie-input" required></select></label>
+                <label><span>Preço venda (A) *</span><input id="precoVenda" class="omie-input" type="number" step="0.0001" min="0" required></label>
+                <label><span>Preço custo</span><input id="precoCusto" class="omie-input" type="number" step="0.0001" min="0" value="0"></label>
+                <label><span>Unidade venda</span><input id="unidadeVenda" class="omie-input" value="UN" maxlength="6"></label>
+                <label><span>Código barras</span><input id="codigoBarras" class="omie-input"></label>
+                <label><span>NCM *</span><input id="codigoNcm" class="omie-input" value="00000000" maxlength="8"></label>
+                <label><span>CST ICMS saída</span><input id="cstSaida" class="omie-input" value="060" maxlength="3"></label>
+                <label class="omie-form-span-2 flex items-center gap-2">
+                    <input id="ativo" type="checkbox" checked> Produto ativo
+                </label>
+            </form>
+            <div class="omie-toolbar mt-4">
+                <button type="button" id="btnSalvar" class="omie-btn omie-btn--success">Salvar na WebPosto</button>
+                <button type="button" id="btnCancelar" class="omie-btn omie-btn--ghost">Cancelar</button>
+            </div>
+            <pre id="formDebug" class="text-xs text-gray-600 overflow-auto max-h-32 hidden mt-4"></pre>
+        </section>
+    </div>
+
+    <script src="/theme/produtos.js" defer></script>
+</body>
+</html>

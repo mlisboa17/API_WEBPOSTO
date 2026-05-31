@@ -56,7 +56,7 @@ def interpret(status):
 
 tests = [
     ("GET", "/INTEGRACAO/PRODUTO", {"pagina": 0, "tamanhoPagina": 3}, None, "Listar (Read)"),
-    ("GET", "/INTEGRACAO/LISTA_DE_ITENS", {"pagina": 0, "tamanhoPagina": 3}, None, "Lista de itens"),
+    ("GET", "/INTEGRACAO/PRODUTO", {"pagina": 0, "tamanhoPagina": 3}, None, "Lista de itens (PRODUTO)"),
     ("GET", "/INTEGRACAO/RETORNO_CADASTRO_PRODUTO", {"pagina": 0, "tamanhoPagina": 3}, None, "Retorno cadastro"),
     ("POST", "/INTEGRACAO/PRODUTO", None, {}, "Criar (POST)"),
     ("PUT", "/INTEGRACAO/ALTERAR_PRODUTO/1", None, {}, "Atualizar (PUT)"),

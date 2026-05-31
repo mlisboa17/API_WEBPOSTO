@@ -1,37 +1,41 @@
-FROM python:3.10-slim
+# syntax=docker/dockerfile:1
+FROM python:3.11-slim AS builder
 
-# Metadados
+WORKDIR /build
+RUN pip install --no-cache-dir poetry poetry-plugin-export
+
+COPY pyproject.toml poetry.lock* ./
+RUN poetry export -f requirements.txt --output requirements.txt --without-hashes 2>/dev/null \
+    || poetry export -f requirements.txt --output requirements.txt --without-hashes --only main
+
+RUN pip wheel --no-cache-dir -r requirements.txt -w /wheels
+
+FROM python:3.11-slim AS runtime
+
 LABEL maintainer="Grupo Lisboa <mlisboa17@gmail.com>"
-LABEL description="webPosto Sync Service — FastAPI + SQLAlchemy"
-LABEL version="0.1.0"
+LABEL description="Logos WebPosto Gateway — FastAPI + DDD + resiliência"
 
 WORKDIR /app
 
-# Instalar Poetry
-RUN pip install --no-cache-dir poetry
+RUN apt-get update && apt-get install -y --no-install-recommends curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copiar arquivos de dependência
-COPY pyproject.toml poetry.lock* ./
+COPY --from=builder /wheels /wheels
+RUN pip install --no-cache-dir /wheels/* && rm -rf /wheels
 
-# Instalar dependências (sem dev)
-RUN poetry config virtualenvs.create false && \
-    poetry install --no-dev --no-interaction --no-ansi
-
-# Copiar código fonte
 COPY src ./src
-COPY .env ./.env
+COPY theme ./theme
+COPY static ./static
+COPY dashboard_vendas.html api_hub_get_catalog.json api_hub_catalog.js ./
 
-# Variáveis de ambiente
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
-    LOG_LEVEL=INFO
+    PYTHONPATH=/app \
+    API_PORT=8000
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=5 \
-    CMD python -c "import requests; requests.get('http://localhost:5000/health', timeout=5)" || exit 1
+EXPOSE 8000
 
-# Expor porta
-EXPOSE 5000
+HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
 
-# Iniciar API em produção
-CMD ["uvicorn", "src.main_minimal:app", "--host", "0.0.0.0", "--port", "5000", "--workers", "4"]
+CMD ["uvicorn", "src.presentation.app:app", "--host", "0.0.0.0", "--port", "8000"]

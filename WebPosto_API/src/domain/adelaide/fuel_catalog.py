@@ -7,11 +7,12 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import Dict, Optional
 
-# codigoProduto → rótulo fiscal/operacional
+# codigoProduto → rótulo alinhado ao relatório do Posto VIP
 FUEL_CATALOG: Dict[str, str] = {
-    "1257884": "Gasolina comum",
-    "1975728": "Etanol",
-    "1260803": "Gasolina aditivada",
+    "1257884": "Gasolina",
+    "1257885": "Gasolina aditivada",
+    "1975728": "Etanol aditivado",
+    "1260803": "Diesel S10",
     "1257999": "Diesel S10",
     "1258001": "Diesel comum",
 }
@@ -51,3 +52,7 @@ def custo_aquisicao_litro(codigo: str) -> Decimal:
     return DEFAULT_ACQUISITION_COST_PER_LITER.get(
         str(codigo or "").strip(), Decimal("0")
     )
+
+
+def eh_combustivel_codigo(codigo: str) -> bool:
+    return str(codigo or "").strip() in FUEL_CATALOG

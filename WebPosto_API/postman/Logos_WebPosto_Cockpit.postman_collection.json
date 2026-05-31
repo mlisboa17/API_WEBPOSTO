@@ -1,0 +1,390 @@
+{
+  "info": {
+    "_postman_id": "logos-webposto-cockpit-2026",
+    "name": "Logos · WebPosto Cockpit (Quality + Gateway)",
+    "description": "Use no Cursor com a extensão Postman (Postman.postman-for-vscode).\n\n**Importar:** Import → Folder → `postman/` + Import → `.env` → `.env` raiz\n**Environment:** Logos · Local\n\n**O que dá para fazer aqui:**\n- Testar API Quality e gateway sem abrir o browser\n- Rodar pasta inteira (Collection Runner)\n- Scripts de teste (status, JSON, posto identificado)\n- Proxy POST igual ao dashboard operacional\n- Gerar código curl/JS a partir de qualquer request\n- Sincronizar variáveis com `.env` automaticamente",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "const k = pm.environment.get('WEBPOSTO_API_KEY');",
+          "if (k && !pm.environment.get('CHAVE')) { pm.environment.set('CHAVE', k); }",
+          "const u = pm.environment.get('WEBPOSTO_BASE_URL');",
+          "if (u) { pm.environment.set('base_url', u); }",
+          "const p = pm.environment.get('API_PORT') || '8000';",
+          "pm.environment.set('gateway_url', 'http://127.0.0.1:' + p);"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    { "key": "base_url", "value": "http://web.qualityautomacao.com.br" },
+    { "key": "CHAVE", "value": "" },
+    { "key": "gateway_url", "value": "http://127.0.0.1:8000" },
+    { "key": "data_inicial", "value": "2026-05-01" },
+    { "key": "data_final", "value": "2026-05-16" },
+    { "key": "grupos_exemplo", "value": "24554,24555" }
+  ],
+  "item": [
+    {
+      "name": "0 · Checklist rápido (rodar pasta inteira)",
+      "description": "Clique direito na pasta → Run. Valida chave, posto e gateway antes do dashboard.",
+      "item": [
+        {
+          "name": "01 Gateway health",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Gateway online', () => pm.response.to.have.status(200));",
+                  "pm.test('JSON healthy', () => { const j = pm.response.json(); pm.expect(j.status).to.eql('healthy'); });"
+                ]
+              }
+            }
+          ],
+          "request": { "method": "GET", "url": "{{gateway_url}}/health" }
+        },
+        {
+          "name": "02 Chave WebPosto (EMPRESAS)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('CHAVE válida (200)', () => pm.response.to.have.status(200));",
+                  "const body = pm.response.json();",
+                  "const rows = Array.isArray(body) ? body : (body.resultados || []);",
+                  "pm.test('Posto identificado', () => pm.expect(rows.length).to.be.above(0));",
+                  "if (rows[0]) {",
+                  "  const f = rows[0].fantasia || rows[0].nomeFantasia || '';",
+                  "  pm.environment.set('posto_fantasia', f);",
+                  "  console.log('Posto:', f);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/INTEGRACAO/EMPRESAS?CHAVE={{CHAVE}}",
+              "query": [{ "key": "CHAVE", "value": "{{CHAVE}}" }]
+            }
+          }
+        },
+        {
+          "name": "03 Grupos no gateway",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Grupos OK', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('Mais de 9 grupos no cadastro', () => pm.expect(j.total_grupos_sistema || j.total_grupos).to.be.above(9));"
+                ]
+              }
+            }
+          ],
+          "request": { "method": "GET", "url": "{{gateway_url}}/api/v1/webposto/grupos-produto" }
+        },
+        {
+          "name": "04 Adelaide metrics (dados reais)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Métricas 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('Dados reais confirmados', () => {",
+                  "  pm.expect(j.status_api).to.eql('dados_reais_live');",
+                  "  pm.expect(j.fallback).to.eql(false);",
+                  "  pm.expect(j.dados_reais).to.eql(true);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{gateway_url}}/api/v1/adelaide/metrics?periodo=mensal",
+              "query": [{ "key": "periodo", "value": "mensal" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "1 · Quality direto (API oficial)",
+      "item": [
+        {
+          "name": "EMPRESAS — qual posto é a CHAVE",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/INTEGRACAO/EMPRESAS?CHAVE={{CHAVE}}",
+              "query": [{ "key": "CHAVE", "value": "{{CHAVE}}" }]
+            }
+          }
+        },
+        {
+          "name": "FILIAL",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/INTEGRACAO/FILIAL?CHAVE={{CHAVE}}&pagina=0&tamanhoPagina=50",
+              "query": [
+                { "key": "CHAVE", "value": "{{CHAVE}}" },
+                { "key": "pagina", "value": "0" },
+                { "key": "tamanhoPagina", "value": "50" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "GRUPO",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/INTEGRACAO/GRUPO?CHAVE={{CHAVE}}&pagina=0&tamanhoPagina=200",
+              "query": [
+                { "key": "CHAVE", "value": "{{CHAVE}}" },
+                { "key": "pagina", "value": "0" },
+                { "key": "tamanhoPagina", "value": "200" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "GRUPO_META",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/INTEGRACAO/GRUPO_META?CHAVE={{CHAVE}}&pagina=0&tamanhoPagina=200",
+              "query": [
+                { "key": "CHAVE", "value": "{{CHAVE}}" },
+                { "key": "pagina", "value": "0" },
+                { "key": "tamanhoPagina", "value": "200" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "PRODUTO",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/INTEGRACAO/PRODUTO?CHAVE={{CHAVE}}&pagina=0&tamanhoPagina=50",
+              "query": [
+                { "key": "CHAVE", "value": "{{CHAVE}}" },
+                { "key": "pagina", "value": "0" },
+                { "key": "tamanhoPagina", "value": "50" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "PRODUTO por grupoCodigo",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/INTEGRACAO/PRODUTO?CHAVE={{CHAVE}}&grupoCodigo=24554&pagina=0&tamanhoPagina=50",
+              "query": [
+                { "key": "CHAVE", "value": "{{CHAVE}}" },
+                { "key": "grupoCodigo", "value": "24554" },
+                { "key": "pagina", "value": "0" },
+                { "key": "tamanhoPagina", "value": "50" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "ABASTECIMENTO",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/INTEGRACAO/ABASTECIMENTO?CHAVE={{CHAVE}}&dataInicial={{data_inicial}}&dataFinal={{data_final}}&pagina=0&tamanhoPagina=100",
+              "query": [
+                { "key": "CHAVE", "value": "{{CHAVE}}" },
+                { "key": "dataInicial", "value": "{{data_inicial}}" },
+                { "key": "dataFinal", "value": "{{data_final}}" },
+                { "key": "pagina", "value": "0" },
+                { "key": "tamanhoPagina", "value": "100" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "VENDA (PDV)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/INTEGRACAO/VENDA?CHAVE={{CHAVE}}&dataInicial={{data_inicial}}&dataFinal={{data_final}}&pagina=0&tamanhoPagina=100",
+              "query": [
+                { "key": "CHAVE", "value": "{{CHAVE}}" },
+                { "key": "dataInicial", "value": "{{data_inicial}}" },
+                { "key": "dataFinal", "value": "{{data_final}}" },
+                { "key": "pagina", "value": "0" },
+                { "key": "tamanhoPagina", "value": "100" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "CAIXA",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/INTEGRACAO/CAIXA?CHAVE={{CHAVE}}&dataInicial={{data_inicial}}&dataFinal={{data_final}}",
+              "query": [
+                { "key": "CHAVE", "value": "{{CHAVE}}" },
+                { "key": "dataInicial", "value": "{{data_inicial}}" },
+                { "key": "dataFinal", "value": "{{data_final}}" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "CAIXA_APRESENTADO",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/INTEGRACAO/CAIXA_APRESENTADO?CHAVE={{CHAVE}}&dataInicial={{data_inicial}}&dataFinal={{data_final}}",
+              "query": [
+                { "key": "CHAVE", "value": "{{CHAVE}}" },
+                { "key": "dataInicial", "value": "{{data_inicial}}" },
+                { "key": "dataFinal", "value": "{{data_final}}" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2 · Gateway Logos (nosso backend)",
+      "item": [
+        {
+          "name": "GET /health",
+          "request": { "method": "GET", "url": "{{gateway_url}}/health" }
+        },
+        {
+          "name": "GET /api/config",
+          "request": { "method": "GET", "url": "{{gateway_url}}/api/config" }
+        },
+        {
+          "name": "GET /api/health/webposto",
+          "request": { "method": "GET", "url": "{{gateway_url}}/api/health/webposto" }
+        },
+        {
+          "name": "GET grupos-produto",
+          "request": { "method": "GET", "url": "{{gateway_url}}/api/v1/webposto/grupos-produto" }
+        },
+        {
+          "name": "GET produtos (filtro grupos)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{gateway_url}}/api/v1/webposto/produtos?pagina=1&limite=20&grupos={{grupos_exemplo}}",
+              "query": [
+                { "key": "pagina", "value": "1" },
+                { "key": "limite", "value": "20" },
+                { "key": "grupos", "value": "{{grupos_exemplo}}" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET dashboard/filtros",
+          "request": { "method": "GET", "url": "{{gateway_url}}/api/v1/dashboard/filtros" }
+        },
+        {
+          "name": "GET adelaide/metrics (hoje)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{gateway_url}}/api/v1/adelaide/metrics?periodo=hoje",
+              "query": [{ "key": "periodo", "value": "hoje" }]
+            }
+          }
+        },
+        {
+          "name": "GET adelaide/metrics (mensal + grupos)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{gateway_url}}/api/v1/adelaide/metrics?periodo=mensal&grupos={{grupos_exemplo}}&data_inicial={{data_inicial}}&data_final={{data_final}}",
+              "query": [
+                { "key": "periodo", "value": "mensal" },
+                { "key": "grupos", "value": "{{grupos_exemplo}}" },
+                { "key": "data_inicial", "value": "{{data_inicial}}" },
+                { "key": "data_final", "value": "{{data_final}}" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "GET executive/kpis",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{gateway_url}}/api/executive/kpis?periodo=mensal",
+              "query": [{ "key": "periodo", "value": "mensal" }]
+            }
+          }
+        },
+        {
+          "name": "GET cache/stats",
+          "request": { "method": "GET", "url": "{{gateway_url}}/api/cache/stats" }
+        }
+      ]
+    },
+    {
+      "name": "3 · Proxy (igual dashboard operacional)",
+      "item": [
+        {
+          "name": "POST proxy → EMPRESAS",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"path\": \"/INTEGRACAO/EMPRESAS\",\n  \"method\": \"GET\",\n  \"query\": {},\n  \"use_cache\": true\n}"
+            },
+            "url": "{{gateway_url}}/api/webposto/proxy"
+          }
+        },
+        {
+          "name": "POST proxy → CAIXA_APRESENTADO",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"path\": \"/INTEGRACAO/CAIXA_APRESENTADO\",\n  \"method\": \"GET\",\n  \"query\": {\n    \"dataInicial\": \"{{data_inicial}}\",\n    \"dataFinal\": \"{{data_final}}\"\n  },\n  \"use_cache\": true\n}"
+            },
+            "url": "{{gateway_url}}/api/webposto/proxy"
+          }
+        },
+        {
+          "name": "POST proxy → ABASTECIMENTO",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"path\": \"/INTEGRACAO/ABASTECIMENTO\",\n  \"method\": \"GET\",\n  \"query\": {\n    \"dataInicial\": \"{{data_inicial}}\",\n    \"dataFinal\": \"{{data_final}}\",\n    \"pagina\": 0,\n    \"tamanhoPagina\": 50\n  },\n  \"use_cache\": true\n}"
+            },
+            "url": "{{gateway_url}}/api/webposto/proxy"
+          }
+        }
+      ]
+    }
+  ]
+}

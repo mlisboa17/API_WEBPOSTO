@@ -12,7 +12,7 @@ Uso:
     python diagnostico_api.py
 
     Ou com chave direta:
-    python diagnostico_api.py --chave 4d6bbe21-92b2-4052-bcb5-a82c86858fd7
+    python diagnostico_api.py --chave $WEBPOSTO_CHAVE  # Configure em .env
 """
 
 import sys
@@ -28,7 +28,8 @@ except ImportError:
     sys.exit(1)
 
 # ─── CONFIG ───────────────────────────────────────────────────────────────────
-DEFAULT_KEY = "4d6bbe21-92b2-4052-bcb5-a82c86858fd7"
+import os
+DEFAULT_KEY = os.getenv("WEBPOSTO_CHAVE", "SEU_TOKEN_AQUI")  # Configure em .env
 BASE_URL = "https://web.qualityautomacao.com.br"
 BASE_URL_ALT = "http://web.qualityautomacao.com.br"
 

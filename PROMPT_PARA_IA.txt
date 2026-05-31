@@ -1,0 +1,221 @@
+# BRIEFING COMPLETO — PROJETO API WEBPOSTO + SISTEMA INTERNO
+
+## 🎯 OBJETIVO
+Reconstruir um sistema integrado que sincroniza dados da API WebPosto (51 endpoints de combustível, vendas, financeiro, frota) com um sistema interno de auditoria e processamento em tempo real.
+
+## 📊 ARQUITETURA GERAL
+
+### Stack Tecnológico:
+- **Backend**: FastAPI 0.124.4 (Python 3.14.0)
+- **Banco de Dados**: MongoDB 5.0 + Redis 7.0
+- **Proxy/Load Balancer**: Nginx
+- **Monitoramento**: Prometheus + Grafana
+- **Containerização**: Docker Compose
+- **Validação**: Pydantic v2.12.5
+- **Testing**: pytest 9.0.1 + pytest-asyncio
+
+### Arquitetura de Código (DDD):
+```
+/domain         → Entidades e lógica de negócio
+/application    → Casos de uso e orquestração
+/infrastructure → Banco de dados, APIs externas
+/interfaces     → Rotas HTTP (FastAPI)
+```
+
+## 🔐 CREDENCIAIS E CONFIGURAÇÃO
+
+### Token WebPosto:
+- **Variável**: WEBPOSTO_BEARER_TOKEN (veja arquivo .env)
+- **Capacidades**: Acesso COMPLETO a 51 endpoints
+- **Operações**: GET (consulta), POST (criar), PUT (atualizar), DELETE (soft delete)
+- **Auditoria**: Todas operações rastreadas com X-Usuario e X-Motivo headers
+
+### Endpoints WebPosto (51 total):
+- Abastecimento (combustível, divergências, encerrantes)
+- Clientes (dados cadastrais, frota, grupos)
+- Produtos (combustível, estoque, preços)
+- Financeiro (títulos receber/pagar, caixa, cartão)
+- Vendas (notas fiscais, pedidos, múltiplas filiais)
+- Relatórios (vendas, estoque, performance)
+- Administração (usuários, filiais, grupos)
+
+## 📂 ARQUIVOS PARA COPIAR
+
+### CRÍTICOS (obrigatório):
+1. BRIEFING_PARA_IA.md — Resumo executivo e guia de implementação
+2. OPERACOES_COMPLETAS_COM_TOKEN.md — Documentação completa de todos 51 endpoints
+3. requirements.txt — Todas dependências Python
+4. main.py — Código principal da API FastAPI
+5. models.py — Modelos Pydantic para validação de dados
+6. config.py — Configuração do projeto
+7. docker-compose.yml — Stack completo (FastAPI, MongoDB, Redis, Nginx, Prometheus, Grafana)
+8. .env — Variáveis de ambiente (token protegido, não expor)
+
+### ALTAMENTE RECOMENDADO:
+9. exemplo_uso_completo.py — Cliente Python assíncrono pronto para usar
+10. exemplos_curl.md — Comandos cURL para testes rápidos
+11. services/financeiro_service.py — Lógica de negócio do módulo financeiro
+12. Dockerfile + Dockerfile.webposto — Containerização
+13. SUMARIO_TOKEN.md — Resumo de capacidades e permissões
+14. REFERENCIA_RAPIDA.md — Referência rápida de endpoints e campos
+
+### COMPLEMENTAR:
+15. prometheus.yml — Configuração de monitoramento
+16. nginx.conf — Configuração do proxy reverso
+17. mongo-init.js — Inicialização do MongoDB
+18. PASSO_A_PASSO.md — Guia passo-a-passo de implementação
+19. SETUP.md — Instruções de setup local
+
+## 🚀 COMO COMEÇAR
+
+### 1. CLONAR/BAIXAR ARQUIVOS
+Copie a pasta: c:\Users\mlisb\OneDrive\ProjetosAntigravy\LOGOS SPACE\Api_WebPosto
+
+### 2. INSTALAR DEPENDÊNCIAS
+```bash
+pip install -r requirements.txt
+```
+
+### 3. CONFIGURAR .env
+```
+WEBPOSTO_BEARER_TOKEN=4d6bbe21-92b2-4052-bcb5-a82c86858fd7
+MONGODB_URL=mongodb://mongo:27017/webposto
+REDIS_URL=redis://redis:6379
+ENV=development
+DEBUG=true
+```
+
+### 4. INICIAR STACK
+```bash
+docker-compose up -d
+```
+
+### 5. VERIFICAR SAÚDE
+```bash
+# API
+curl http://localhost:8000/health
+
+# MongoDB
+curl http://localhost:27017
+
+# Redis
+redis-cli ping
+
+# Grafana
+http://localhost:3000 (user: admin / pass: admin)
+
+# Prometheus
+http://localhost:9090
+```
+
+## 📝 ESTRUTURA DE DADOS PRINCIPAL
+
+### Modelos Pydantic:
+1. **MovimentacaoEspecie** → Registros de abastecimento
+2. **FechamentoCaixa** → Fechamento diário de caixa
+3. **DespesaCaixa** → Despesas do dia
+4. **ClienteAuditoria** → Dados de clientes para auditoria
+5. **ResumoAuditoria** → Resumo consolidado de operações
+
+### Tabelas MongoDB:
+- webposto_abastecimentos
+- webposto_clientes
+- webposto_vendas
+- webposto_financeiro
+- auditoria_registros
+- sincronizacao_logs
+
+## 🔄 FLUXO PRINCIPAL DE INTEGRAÇÃO
+
+1. **Sincronização Inicial**
+   - Baixar todos os dados da API WebPosto
+   - Validar com Pydantic
+   - Armazenar em MongoDB
+   - Indexar em Redis para performance
+
+2. **Processamento em Tempo Real**
+   - Webhook ou polling (a cada 1 hora)
+   - Detectar mudanças vs. última sincronização
+   - Atualizar registros modificados
+   - Registrar em auditoria com hash
+
+3. **Auditoria Completa**
+   - QUEM fez? (X-Usuario header)
+   - O QUÊ fez? (operação: GET/POST/PUT/DELETE)
+   - QUANDO fez? (timestamp automático)
+   - ONDE fez? (IP capturado)
+   - POR QUÊ fez? (X-Motivo header)
+   - VALORES ANTES? (backup automático)
+   - VALORES DEPOIS? (novo estado)
+   - HASH? (verificação de integridade)
+
+## 🧪 TESTES
+
+### Suite de Testes:
+- 17 testes unitários (✅ PASSANDO)
+- 6 testes de integração com API real (✅ PASSANDO)
+- Coverage esperado: >80%
+
+### Como rodar:
+```bash
+pytest -v
+pytest --cov=services
+```
+
+## 📊 DASHBOARD E MONITORAMENTO
+
+### Grafana (http://localhost:3000):
+- Widgets de sincronização
+- Histórico de operações
+- Taxa de erro
+- Performance de endpoints
+
+### Prometheus (http://localhost:9090):
+- Métricas de requisições HTTP
+- Latência de BD
+- Uso de memória Redis
+- Status de sincronização
+
+## ⚠️ CONSIDERAÇÕES IMPORTANTES
+
+1. **Segurança**:
+   - Token NUNCA deve estar em logs ou documentação pública
+   - Usar variáveis de ambiente (.env)
+   - HTTPS obrigatório em produção
+   - Rotação periódica de token recomendada
+
+2. **Performance**:
+   - Usar índices no MongoDB para queries frequentes
+   - Cache em Redis para dados pouco mutáveis
+   - Paginação obrigatória para grandes volumes
+   - Conexão pooling habilitada
+
+3. **Rate Limiting**:
+   - API WebPosto: 1000 req/hora, 100 req/minuto, 10 simultâneas
+   - Implementar retry com backoff exponencial
+   - Se erro 429: aguardar 60 segundos
+
+4. **Erro Handling**:
+   - 400: Validação falhou (ver detail)
+   - 401: Token expirado
+   - 403: Sem permissão
+   - 404: Recurso não encontrado
+   - 422: Erro de validação Pydantic
+   - 429: Rate limit excedido
+   - 500: Erro interno (logar e alertar)
+
+## 📞 PRIMEIROS PASSOS RECOMENDADOS
+
+1. Leia: BRIEFING_PARA_IA.md (entender escopo)
+2. Leia: OPERACOES_COMPLETAS_COM_TOKEN.md (entender endpoints)
+3. Configure .env com token
+4. Execute: docker-compose up -d
+5. Teste: curl http://localhost:8000/health
+6. Execute um GET simples (ex: listar clientes)
+7. Execute um POST (criar título)
+8. Monitore em Grafana
+
+## 🎉 SUCESSO!
+
+Você tem toda documentação e código para reconstruir o sistema!
+Se precisar de ajuda, revise OPERACOES_COMPLETAS_COM_TOKEN.md para entender cada endpoint.

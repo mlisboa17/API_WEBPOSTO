@@ -42,6 +42,7 @@ class IntegracoesEndpoints:
         filial: Optional[List[int]] = None,
         pagina: Optional[int] = None,
         tamanho_pagina: Optional[int] = None,
+        ultimo_codigo: Optional[int] = None,
     ) -> List[Dict]:
         """Lista vendas no período."""
         params = {
@@ -51,6 +52,8 @@ class IntegracoesEndpoints:
             "pagina": pagina,
             "tamanhoPagina": tamanho_pagina,
         }
+        if ultimo_codigo is not None:
+            params["ultimoCodigo"] = ultimo_codigo
         return self._http.get("/INTEGRACAO/VENDA", params)
 
     def listar_vendas_rede(
@@ -68,6 +71,26 @@ class IntegracoesEndpoints:
             "tamanhoPagina": tamanho_pagina,
         }
         return self._http.get("/INTEGRACAO/VENDA_REDE", params)
+
+    # ── GRUPOS DE PRODUTO ─────────────────────────────────────────────────────
+
+    def listar_grupos_produto(
+        self,
+        pagina: Optional[int] = None,
+        tamanho_pagina: Optional[int] = None,
+    ) -> List[Dict]:
+        """Lista grupos de produto (código + nome, ex.: COMBUSTIVEIS)."""
+        params = {"pagina": pagina, "tamanhoPagina": tamanho_pagina}
+        return self._http.get("/INTEGRACAO/GRUPO", params)
+
+    def listar_grupos_produto_meta(
+        self,
+        pagina: Optional[int] = None,
+        tamanho_pagina: Optional[int] = None,
+    ) -> List[Dict]:
+        """Metadados de grupos (collection oficial Postman — GRUPO_META)."""
+        params = {"pagina": pagina, "tamanhoPagina": tamanho_pagina}
+        return self._http.get("/INTEGRACAO/GRUPO_META", params)
 
     # ── NOTAS FISCAIS ─────────────────────────────────────────────────────────
 

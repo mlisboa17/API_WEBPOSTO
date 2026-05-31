@@ -18,7 +18,7 @@ class ProdutosEndpoints:
         POST /INTEGRACAO/ALTERACAO_PRECO_COMBUSTIVEL  (legado)
         POST /INTEGRACAO/TROCA_PRECO_COMBUSTIVEL
         POST /INTEGRACAO/PRODUTO_INVENTARIO
-        GET  /INTEGRACAO/LISTA_DE_ITENS
+        GET  /INTEGRACAO/LISTA_DE_ITENS  (legado — use PRODUTO; muitas chaves retornam 401)
         GET  /INTEGRACAO/PRODUTO_INVENTARIO_ITENS
         GET  /INTEGRACAO/RETORNO_CADASTRO_PRODUTO
         POST /INTEGRACAO/PRODUTO_COMISSAO
@@ -35,20 +35,48 @@ class ProdutosEndpoints:
         self,
         codigo: Optional[int] = None,
         nome: Optional[str] = None,
+        grupo_codigo: Optional[int] = None,
+        ativo: Optional[bool] = None,
         pagina: Optional[int] = None,
         tamanho_pagina: Optional[int] = None,
+        empresa_codigo: Optional[int] = None,
     ) -> List[Dict]:
-        """Lista produtos."""
+        """Lista produtos (GET /INTEGRACAO/PRODUTO)."""
         params = {
             "codigo": codigo,
             "nome": nome,
+            "grupoCodigo": grupo_codigo,
             "pagina": pagina,
             "tamanhoPagina": tamanho_pagina,
         }
+        if ativo is not None:
+            params["ativo"] = ativo
+            if empresa_codigo is not None:
+                params["empresaCodigo"] = empresa_codigo
+            elif hasattr(self._http.config, "empresa_codigo") and self._http.config.empresa_codigo is not None:
+                params["empresaCodigo"] = self._http.config.empresa_codigo
         return self._http.get("/INTEGRACAO/PRODUTO", params)
 
+    def listar_empresa(
+        self,
+        produto_codigo: Optional[int] = None,
+        pagina: Optional[int] = None,
+        tamanho_pagina: Optional[int] = None,
+    ) -> List[Dict]:
+        """Preços por empresa: venda A, custo, ativo (GET /INTEGRACAO/PRODUTO_EMPRESA)."""
+        params = {
+            "produtoCodigo": produto_codigo,
+            "pagina": pagina,
+            "tamanhoPagina": tamanho_pagina,
+        }
+        return self._http.get("/INTEGRACAO/PRODUTO_EMPRESA", params)
+
+    def incluir(self, body: Dict) -> Dict:
+        """Cadastra produto (POST /INTEGRACAO/INCLUIR_PRODUTO)."""
+        return self._http.post("/INTEGRACAO/INCLUIR_PRODUTO", body)
+
     def criar(self, body: Dict) -> Dict:
-        """Cadastra um novo produto."""
+        """Cadastra um novo produto (POST /INTEGRACAO/PRODUTO)."""
         return self._http.post("/INTEGRACAO/PRODUTO", body)
 
     def atualizar(self, produto_id: int, body: Dict) -> None:
@@ -80,10 +108,18 @@ class ProdutosEndpoints:
         self,
         pagina: Optional[int] = None,
         tamanho_pagina: Optional[int] = None,
+        nome: Optional[str] = None,
+        grupo_codigo: Optional[int] = None,
+        ativo: Optional[bool] = None,
     ) -> List[Dict]:
-        """Lista itens disponíveis."""
-        params = {"pagina": pagina, "tamanhoPagina": tamanho_pagina}
-        return self._http.get("/INTEGRACAO/LISTA_DE_ITENS", params)
+        """Lista itens do catálogo via GET /INTEGRACAO/PRODUTO (rota liberada na CHAVE)."""
+        return self.listar(
+            nome=nome,
+            grupo_codigo=grupo_codigo,
+            ativo=ativo,
+            pagina=pagina,
+            tamanho_pagina=tamanho_pagina,
+        )
 
     def listar_inventario_itens(
         self,

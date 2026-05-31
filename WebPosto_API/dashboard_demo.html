@@ -512,7 +512,7 @@
 
     <script>
         // CONFIGURAÇÃO
-        const API_KEY = '4d6bbe21-92b2-4052-bcb5-a82c86858fd7';
+        const API_KEY = localStorage.getItem('WEBPOSTO_CHAVE') || 'SEU_TOKEN_AQUI';
         const API_URL = 'https://web.qualityautomacao.com.br';
         const DATE_TODAY = new Date().toISOString().split('T')[0];
         const DATE_YESTERDAY = new Date(new Date().setDate(new Date().getDate()-1)).toISOString().split('T')[0];

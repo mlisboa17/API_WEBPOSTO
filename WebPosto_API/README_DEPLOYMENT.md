@@ -31,7 +31,7 @@
 - **start_api.sh** — Script para rodar localmente
 
 ### ✅ Credenciais
-- API Key: `4d6bbe21-92b2-4052-bcb5-a82c86858fd7` (testada)
+- API Key: `$WEBPOSTO_CHAVE` (testada)
 - Empresa: POSTO VIP — Rio Doce Comércio e Serviços Ltda
 
 ---
@@ -82,7 +82,7 @@ curl http://localhost:8000/health
 
 ```bash
 # webPosto API
-WEBPOSTO_API_KEY=4d6bbe21-92b2-4052-bcb5-a82c86858fd7
+WEBPOSTO_API_KEY=$WEBPOSTO_CHAVE
 WEBPOSTO_BASE_URL=http://web.qualityautomacao.com.br
 
 # Banco de Dados
@@ -242,3 +242,4 @@ docker-compose exec api curl -I http://web.qualityautomacao.com.br
 **Mantido por:** Grupo Lisboa  
 **Suporte:** mlisboa17@gmail.com  
 **Última atualização:** 13/04/2026 18:30 UTC
+

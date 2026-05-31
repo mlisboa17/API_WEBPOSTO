@@ -1,0 +1,53 @@
+﻿version: '3.9'
+
+services:
+  logos-gateway:
+    container_name: logos-webposto-gateway
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PYTHON_VERSION: "3.12"
+    ports:
+      - "8050:8050"
+    environment:
+      - DATABASE_URL=sqlite+aiosqlite:///./logos_gateway.db
+      - LOG_LEVEL=INFO
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./logos_gateway.db:/app/logos_gateway.db
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8050/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - logos-network
+
+  # Valkey local para cache rápido (opcional, para cache distribuído futuro)
+  valkey:
+    container_name: logos-cache
+    image: valkey/valkey:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - valkey-data:/data
+    healthcheck:
+      test: ["CMD", "valkey-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - logos-network
+
+volumes:
+  valkey-data:
+
+networks:
+  logos-network:
+    driver: bridge
+

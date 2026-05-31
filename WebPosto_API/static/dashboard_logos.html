@@ -1,169 +1,368 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logos Space - Cockpit Executivo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { background-color: #020203; color: #ffffff; font-family: 'Inter', system-ui, sans-serif; }
-        .glass-panel {
-            background: rgba(15, 15, 18, 0.7);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .cyber-glow { box-shadow: 0 0 20px rgba(0, 245, 255, 0.15); }
-        .kpi-value { min-height: 2.5rem; }
-    </style>
+    <title>Logos Cockpit — LISBÔA</title>
+    <link rel="stylesheet" href="/theme/omie.css">
 </head>
-<body class="p-6">
-    <div class="max-w-7xl mx-auto space-y-6" id="app-root">
-        <header class="glass-panel p-6 rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 cyber-glow">
-            <div>
-                <h1 class="text-3xl font-extrabold tracking-wider text-white">LOGOS SPACE</h1>
-                <p class="text-xs text-cyan-400 font-mono">ADELAIDE COMPLIANCE ENGINE · v2026.1</p>
-                <p id="statusLine" class="text-xs text-gray-500 mt-2 font-mono">Conectando ao gateway…</p>
+<body class="omie-app">
+    <div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
+    <div class="app-shell">
+        <aside class="sidebar" id="appSidebar" aria-label="Menu principal">
+            <button type="button" class="sidebar-close" id="btnSidebarClose" aria-label="Fechar menu">✕</button>
+            <div class="sidebar-brand">
+                <h1>LOGOS COCKPIT</h1>
+                <p>Rede LISBÔA · Adelaide WebPosto</p>
             </div>
-            <div class="flex items-center gap-3 w-full md:w-auto flex-col sm:flex-row">
-                <input id="tokenInput" type="password" placeholder="Chave WebPosto (vazio = .env)"
-                       class="bg-[#0A0A0C] border border-white/10 rounded-xl px-4 py-2 text-sm text-gray-300 focus:outline-none focus:border-cyan-400 w-full md:w-80">
-                <button type="button" onclick="saveToken()" class="bg-cyan-500 hover:bg-cyan-400 text-black font-bold text-sm px-4 py-2 rounded-xl w-full sm:w-auto">
-                    Salvar
+            <nav>
+                <div class="nav-group">Principal</div>
+                <button type="button" class="nav-item nav-item--active" data-view="overview">
+                    <span aria-hidden="true">◆</span> Visão geral
                 </button>
-                <a href="/" class="text-xs text-cyan-300 underline whitespace-nowrap">Dashboard operacional →</a>
+                <div class="nav-submenu" id="navSubmenuFiltros">
+                    <button type="button" class="nav-submenu__toggle" id="btnNavFiltrosToggle"
+                        aria-expanded="false" aria-controls="navSubmenuFiltrosList">
+                        <span class="nav-submenu__label">Filtros</span>
+                        <span class="nav-submenu__hint">por situação</span>
+                        <span class="nav-submenu__chevron" aria-hidden="true">▾</span>
+                    </button>
+                    <div class="nav-submenu__list" id="navSubmenuFiltrosList" hidden>
+                        <button type="button" class="nav-item nav-item--sub" data-view="unidades">
+                            <span aria-hidden="true">◎</span> Onde · filiais
+                        </button>
+                        <button type="button" class="nav-item nav-item--sub" data-view="periodo">
+                            <span aria-hidden="true">▦</span> Quando · período
+                        </button>
+                        <button type="button" class="nav-item nav-item--sub" data-view="grupos">
+                            <span aria-hidden="true">▤</span> O quê · grupos
+                        </button>
+                        <button type="button" class="nav-item nav-item--sub" data-view="venda">
+                            <span aria-hidden="true">▥</span> Como · tipo de venda
+                        </button>
+                    </div>
+                </div>
+                <div class="nav-group">Análise</div>
+                <button type="button" class="nav-item" data-view="catalogo">
+                    <span aria-hidden="true">◇</span> Catálogo fiscal
+                </button>
+                <div class="nav-group">Sistema</div>
+                <a href="/produtos" class="nav-item">Produtos CRUD</a>
+                <a href="/" class="nav-item">Painel operacional</a>
+            </nav>
+            <div class="sidebar-foot">
+                <button type="button" class="btn-primary" id="btnAtualizar" data-action="refresh-dashboard">↻ Atualizar dados</button>
             </div>
-        </header>
+        </aside>
 
-        <div id="alertBox" class="hidden glass-panel p-4 rounded-2xl border border-red-500/40 text-red-300 text-sm"></div>
+        <main class="main-content">
+            <div class="top-bar">
+                <div class="top-bar__row">
+                    <button type="button" class="menu-toggle" id="btnMenuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+                    <div class="top-bar__meta">
+                        <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Rede LISBÔA</p>
+                        <p id="periodoResumoLabel" class="period-chip">Período — carregando…</p>
+                    </div>
+                </div>
+                <div class="top-bar__status">
+                    <button type="button" class="btn-refresh" id="btnRefreshTop" data-action="refresh-dashboard" aria-label="Atualizar dashboard">↻ Atualizar</button>
+                    <span id="statusBadge" class="status-badge status-badge--sync">Aguardando…</span>
+                    <span id="connStatusTop" class="text-xs text-gray-500"></span>
+                </div>
+            </div>
+            <span id="chipPosto" class="hidden" aria-hidden="true"></span>
+            <span id="chipFilial" class="hidden" aria-hidden="true"></span>
+            <span id="chipGrupo" class="hidden" aria-hidden="true"></span>
 
-        <main class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div class="glass-panel p-6 rounded-3xl space-y-2">
-                <p class="text-xs font-bold text-gray-500 uppercase">Faturamento Bruto</p>
-                <h2 id="fatBruto" class="text-3xl font-black text-white kpi-value">R$ 0,00</h2>
-                <span class="text-xs text-green-400">WebPosto · proxy local</span>
+            <!-- VISÃO GERAL — 2 cards -->
+            <div id="view-overview" class="cockpit-view cockpit-view--cards">
+                <div id="gruposFiltroBanner" class="grupos-filtro-banner hidden" role="alert">
+                    <p id="gruposFiltroText">—</p>
+                    <button type="button" class="btn-refresh" id="btnLimparGruposOverview">Ver venda completa</button>
+                </div>
+                <div id="alertBox" class="dash-alert hidden"></div>
+                <div id="partialDataBanner" class="partial-banner hidden" role="status">
+                    <strong>Atenção:</strong> <span id="partialDataText">—</span>
+                </div>
+
+                <section id="noDataGate" class="dash-card dash-card--empty hidden" aria-live="polite">
+                    <p class="dash-card--empty__title">Sem métricas para exibir</p>
+                    <p id="noDataMessage" class="dash-card--empty__text">
+                        Verifique a chave no .env e se o servidor está em execução.
+                    </p>
+                </section>
+
+                <section id="dashCardVenda" class="dash-card hidden" aria-label="Venda do dia">
+                    <header class="dash-card__head">
+                        <div class="dash-card__head-main">
+                            <h2 id="vendaDiaTitulo" class="dash-card__title">Venda do dia</h2>
+                            <p id="dashCardFiltros" class="dash-card__filtros">—</p>
+                            <p id="lastUpdatedAt" class="dash-card__updated">—</p>
+                        </div>
+                        <div class="dash-card__head-actions">
+                            <button type="button" class="btn-ghost-sm" id="btnIrFiltros">Ajustar filtros</button>
+                            <button type="button" class="btn-ghost-sm hidden" id="btnLimparGruposStrip">Limpar grupo</button>
+                            <button type="button" class="btn-refresh" data-action="refresh-dashboard">↻ Atualizar</button>
+                        </div>
+                    </header>
+                    <div class="filial-pills filial-pills--in-card" id="filialPillsBar" aria-label="Troca rápida de filial">
+                        <span class="filial-pills__label">Filial</span>
+                    </div>
+                    <div class="dash-card__hero">
+                        <span class="dash-card__hero-label">Faturamento total</span>
+                        <div id="kpiFat" class="dash-card__hero-value kpi-val">—</div>
+                        <p id="kpiFatMeta" class="dash-card__hero-meta">—</p>
+                    </div>
+                    <div class="dash-card__metrics" aria-label="Indicadores do dia">
+                        <div class="dash-metric dash-metric--tax">
+                            <span class="dash-metric__label">PIS/COFINS recuperável</span>
+                            <div id="kpiTax" class="dash-metric__value text-emerald kpi-val">—</div>
+                        </div>
+                        <div class="dash-metric dash-metric--fuel">
+                            <span class="dash-metric__label">Volume (litros)</span>
+                            <div id="kpiGal" class="dash-metric__value text-sky kpi-val">—</div>
+                            <p id="kpiGalMeta" class="dash-metric__meta">—</p>
+                        </div>
+                        <div class="dash-metric dash-metric--expense">
+                            <span class="dash-metric__label">Despesas de caixa</span>
+                            <div id="kpiExp" class="dash-metric__value text-red kpi-val">—</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="porProdutoSection" class="dash-card hidden" aria-label="Vendas por produto">
+                    <header class="dash-card__head dash-card__head--compact">
+                        <h2 class="dash-card__title">Vendas por produto</h2>
+                        <p id="porProdutoPeriodo" class="dash-card__filtros">—</p>
+                    </header>
+                    <p class="table-scroll-hint">Deslize horizontalmente para ver todas as colunas →</p>
+                    <div class="table-scroll">
+                        <table class="data-table data-table--sm">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Produto</th>
+                                    <th class="text-right">Litros</th>
+                                    <th class="text-right">Faturamento</th>
+                                </tr>
+                            </thead>
+                            <tbody id="porProdutoBody" class="font-mono"></tbody>
+                        </table>
+                    </div>
+                </section>
             </div>
-            <div class="glass-panel p-6 rounded-3xl space-y-2 border-l-2 border-emerald-500">
-                <p class="text-xs font-bold text-gray-400 uppercase">Crédito Adelaide (PIS/COFINS)</p>
-                <h2 id="creditoAdelaide" class="text-3xl font-black text-emerald-400 kpi-value">R$ 0,00</h2>
-                <span class="text-xs text-gray-500">Recuperação monofásica</span>
+
+            <!-- ONDE · FILIAIS -->
+            <div id="view-unidades" class="cockpit-view hidden filter-view">
+                <section class="dash-card filter-intro">
+                    <p class="filter-intro__tag">Situação 1 · Onde</p>
+                    <h2 class="filter-intro__title">Filiais e postos</h2>
+                    <p class="filter-intro__text">
+                        Escolha <strong>qual unidade</strong> entra na consulta: rede inteira, um posto ou código
+                        de filial interno no WebPosto (bomba/loja).
+                    </p>
+                </section>
+                <section class="dash-card filter-card">
+                    <h2>Postos da rede LISBÔA</h2>
+                    <p class="hint">
+                        <strong>LISBÔA (todas)</strong> consolida POSTO VIP RIO DOCE + POSTO CASA CAIADA.
+                    </p>
+                    <div id="postoFilterList" class="unit-list">
+                        <label class="unit-card unit-card--master" id="unitCardGrupoLisboa">
+                            <input type="checkbox" id="postoGrupoLisboaAll" data-posto-id="consolidado" checked>
+                            <div>
+                                <div class="unit-card__title">LISBÔA (todas as filiais)</div>
+                                <div class="unit-card__sub">POSTO VIP RIO DOCE + POSTO CASA CAIADA</div>
+                            </div>
+                        </label>
+                        <label class="unit-card">
+                            <input type="checkbox" data-posto-id="rio_doce" class="posto-unit-cb">
+                            <div>
+                                <div class="unit-card__title">POSTO VIP RIO DOCE</div>
+                                <div class="unit-card__sub">Filial · Olinda/PE</div>
+                            </div>
+                        </label>
+                        <label class="unit-card">
+                            <input type="checkbox" data-posto-id="casa_caiada" class="posto-unit-cb">
+                            <div>
+                                <div class="unit-card__title">POSTO CASA CAIADA</div>
+                                <div class="unit-card__sub">Filial · Olinda/PE</div>
+                            </div>
+                        </label>
+                    </div>
+                    <p id="postoFilterSummary" class="text-xs text-cyan-400/90 font-mono mt-4">LISBÔA · todas as filiais</p>
+                </section>
+                <section class="dash-card filter-card">
+                    <h2>Código de filial WebPosto</h2>
+                    <p class="hint">
+                        <strong>Filial</strong> ≠ posto. Código interno (ex. bomba <code>1</code>, loja <code>2</code>).
+                        Vazio = todas as filiais do(s) posto(s) marcado(s).
+                    </p>
+                    <div class="field mt-2">
+                        <label for="filialFilter">Código(s) de filial</label>
+                        <input id="filialFilter" type="text" placeholder="Vazio = todas · Ex: 1 ou 1, 2" autocomplete="off">
+                    </div>
+                    <div class="filter-card__foot">
+                        <button type="button" class="omie-btn omie-btn--primary" data-action="goto-overview">Ver resultado na visão geral</button>
+                    </div>
+                </section>
             </div>
-            <div class="glass-panel p-6 rounded-3xl space-y-2">
-                <p class="text-xs font-bold text-gray-500 uppercase">Galonagem Acumulada</p>
-                <h2 id="galonagem" class="text-3xl font-black text-white kpi-value">0 L</h2>
-                <span id="periodoLabel" class="text-xs text-cyan-400">Período: 30D</span>
+
+            <!-- QUANDO · PERÍODO -->
+            <div id="view-periodo" class="cockpit-view hidden filter-view">
+                <section class="dash-card filter-intro">
+                    <p class="filter-intro__tag">Situação 2 · Quando</p>
+                    <h2 class="filter-intro__title">Período e datas</h2>
+                    <p class="filter-intro__text">
+                        Define <strong>qual intervalo de tempo</strong> a consulta Adelaide deve usar na visão geral.
+                        Por padrão o cockpit mostra o <strong>dia atual</strong> (fuso Recife).
+                    </p>
+                </section>
+                <section class="dash-card filter-card">
+                    <h2>Modo de data na visão geral</h2>
+                    <div class="modo-data-opcoes" role="radiogroup" aria-label="Modo de data">
+                        <label class="modo-data-opcao">
+                            <input type="radio" name="modoDataConsulta" value="dia_atual" id="modoDataDiaAtual" checked>
+                            <span><strong>Dia atual</strong> — sempre hoje, independente dos campos abaixo</span>
+                        </label>
+                        <label class="modo-data-opcao">
+                            <input type="radio" name="modoDataConsulta" value="periodo_custom" id="modoDataPeriodo">
+                            <span><strong>Período personalizado</strong> — usa as datas definidas abaixo</span>
+                        </label>
+                    </div>
+                </section>
+                <section class="dash-card filter-card">
+                    <h2>Atalhos de período</h2>
+                    <p class="hint">Escolha um atalho ou informe data inicial e final manualmente.</p>
+                    <div class="date-presets" id="datePresetsBar">
+                        <button type="button" class="date-preset date-preset--active" data-preset="hoje">Hoje</button>
+                        <button type="button" class="date-preset" data-preset="ontem">Ontem</button>
+                        <button type="button" class="date-preset" data-preset="7d">Últimos 7 dias</button>
+                        <button type="button" class="date-preset" data-preset="mensal">Últimos 30 dias</button>
+                        <button type="button" class="date-preset" data-preset="mes_atual">Mês atual</button>
+                    </div>
+                    <select id="periodoFilter" aria-hidden="true">
+                        <option value="hoje" selected>hoje</option>
+                        <option value="7d">7d</option>
+                        <option value="mensal">mensal</option>
+                    </select>
+                    <div class="date-range">
+                        <div class="field">
+                            <label for="dataInicialFilter">Data inicial</label>
+                            <input id="dataInicialFilter" type="date" title="Início do período">
+                        </div>
+                        <div class="field">
+                            <label for="dataFinalFilter">Data final</label>
+                            <input id="dataFinalFilter" type="date" title="Fim do período">
+                        </div>
+                    </div>
+                    <p id="periodoDiasInfo" class="text-xs text-gray-500 font-mono mt-3">—</p>
+                    <div class="filter-card__foot">
+                        <button type="button" class="omie-btn omie-btn--primary" id="btnAplicarPeriodo">Aplicar período na visão geral</button>
+                        <button type="button" class="omie-btn omie-btn--secondary" id="btnVoltarDiaAtual">Voltar ao dia atual</button>
+                    </div>
+                </section>
             </div>
-            <div class="glass-panel p-6 rounded-3xl space-y-2 border-l-2 border-red-500">
-                <p class="text-xs font-bold text-gray-500 uppercase">Margem líquida real</p>
-                <h2 id="margem" class="text-3xl font-black text-red-400 kpi-value">R$ 0,00</h2>
-                <span class="text-xs text-gray-400">Adelaide Tax Engine</span>
+
+            <!-- O QUÊ · GRUPOS -->
+            <div id="view-grupos" class="cockpit-view hidden filter-view">
+                <section class="dash-card filter-intro">
+                    <p class="filter-intro__tag">Situação 3 · O quê</p>
+                    <h2 class="filter-intro__title">Grupos de produto</h2>
+                    <p class="filter-intro__text">
+                        Filtra a venda por <strong>grupo de cadastro</strong> (ex.: BAZAR, LUBRIFICANTES).
+                        Nenhum grupo marcado = venda completa do período. Marcar um ou mais grupos = só essas linhas nos KPIs.
+                    </p>
+                </section>
+                <section class="dash-card filter-card">
+                    <div class="grupos-status-row">
+                        <label for="gruposStatusFilter">Exibir na lista</label>
+                        <select id="gruposStatusFilter" aria-label="Filtrar grupos por status">
+                            <option value="todos">Todos</option>
+                            <option value="ativos">Somente ativos</option>
+                            <option value="inativos">Somente inativos</option>
+                        </select>
+                    </div>
+                    <div class="grupos-toolbar">
+                        <input type="search" id="gruposSearchInput" placeholder="Buscar grupo…" autocomplete="off">
+                        <button type="button" class="btn-ghost" id="gruposSelectAtivosBtn">Marcar ativos</button>
+                        <button type="button" class="btn-ghost" id="gruposClearBtn">Limpar seleção</button>
+                        <button type="button" class="btn-ghost" id="gruposReloadBtn">Recarregar</button>
+                    </div>
+                    <p id="gruposFilterSummary" class="text-xs text-gray-400 font-mono mb-3">Carregando…</p>
+                    <div id="gruposFilterList" class="grupos-grid">
+                        <p class="text-gray-600 text-sm col-span-full">Aguardando catálogo…</p>
+                    </div>
+                    <div class="filter-card__foot">
+                        <button type="button" class="omie-btn omie-btn--primary" data-action="goto-overview">Ver resultado na visão geral</button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- COMO · TIPO DE VENDA -->
+            <div id="view-venda" class="cockpit-view hidden filter-view">
+                <section class="dash-card filter-intro">
+                    <p class="filter-intro__tag">Situação 4 · Como</p>
+                    <h2 class="filter-intro__title">Tipo de venda</h2>
+                    <p class="filter-intro__text">
+                        Define <strong>como</strong> a Adelaide monta a consulta: todos os produtos, só combustível,
+                        e se entram ou não registros de aferição de tanque.
+                    </p>
+                </section>
+                <section class="dash-card filter-card">
+                    <div class="field">
+                        <label for="tipoProdutoFilter">Produtos na consulta</label>
+                        <select id="tipoProdutoFilter">
+                            <option value="todos">Todos (combustível + loja)</option>
+                            <option value="combustivel">Somente combustível (pista)</option>
+                        </select>
+                    </div>
+                    <label class="modo-data-opcao mt-4">
+                        <input id="excluirAfericaoFilter" type="checkbox" checked>
+                        <span>Excluir registros de <strong>aferição</strong> de tanque</span>
+                    </label>
+                    <div class="filter-card__foot">
+                        <button type="button" class="omie-btn omie-btn--primary" data-action="goto-overview">Ver resultado na visão geral</button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- CATÁLOGO -->
+            <div id="view-catalogo" class="cockpit-view hidden">
+                <section id="catalogoSection" class="glass-card p-6 hidden">
+                    <div class="catalog-header">
+                        <div>
+                            <h3>Catálogo · auditoria fiscal</h3>
+                            <p class="text-xs text-gray-500">GET /INTEGRACAO/PRODUTO · CST monofásico PE</p>
+                            <p id="catalogoStatusBadge" class="text-xs text-cyan-400/90 font-mono mt-1">—</p>
+                        </div>
+                        <input id="descricaoProdutoFilter" type="search" placeholder="Buscar produto">
+                    </div>
+                    <p class="table-scroll-hint">Deslize horizontalmente para ver todas as colunas →</p>
+                    <div class="table-scroll">
+                        <table class="data-table data-table--md">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Produto</th>
+                                    <th>Preço</th>
+                                    <th>NCM</th>
+                                    <th class="text-right">Fiscal</th>
+                                </tr>
+                            </thead>
+                            <tbody id="fiscalTable" class="font-mono">
+                                <tr><td colspan="5" class="p-6 text-center text-gray-600">Aguardando dados…</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                <p id="catalogoGateMsg" class="text-sm text-gray-500 text-center py-12">
+                    Carregue os KPIs na visão geral para habilitar o catálogo.
+                </p>
             </div>
         </main>
-
-        <section class="glass-panel p-8 rounded-3xl space-y-4">
-            <div class="flex justify-between items-center flex-wrap gap-2">
-                <h3 class="text-xl font-bold tracking-tight">Mapeamento fiscal de combustíveis</h3>
-                <span class="px-3 py-1 bg-cyan-950 text-cyan-400 text-xs rounded-full font-mono font-bold">Adelaide ativa</span>
-            </div>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="border-b border-white/10 text-gray-400 text-xs uppercase tracking-wider">
-                            <th class="py-3 pr-4">Código</th>
-                            <th class="py-3 pr-4">Produto</th>
-                            <th class="py-3 pr-4">Regime efetivo</th>
-                            <th class="py-3 pr-4">CST Sefaz</th>
-                            <th class="py-3">Status fiscal</th>
-                        </tr>
-                    </thead>
-                    <tbody id="fiscalTable" class="text-sm font-mono divide-y divide-white/5"></tbody>
-                </table>
-            </div>
-        </section>
     </div>
 
-    <script>
-        const fmtBRL = (n) => 'R$ ' + Number(n || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        const fmtL = (n) => Number(n || 0).toLocaleString('pt-BR', { maximumFractionDigits: 0 }) + ' L';
-
-        document.getElementById('tokenInput').value = localStorage.getItem('WEBPOSTO_CHAVE') || '';
-
-        function showAlert(msg) {
-            const box = document.getElementById('alertBox');
-            box.textContent = msg;
-            box.classList.remove('hidden');
-        }
-
-        function saveToken() {
-            const key = document.getElementById('tokenInput').value.trim();
-            if (key) localStorage.setItem('WEBPOSTO_CHAVE', key);
-            else localStorage.removeItem('WEBPOSTO_CHAVE');
-            fetchData();
-        }
-
-        async function checkHealth() {
-            try {
-                const r = await fetch('/health');
-                const h = await r.json();
-                const line = document.getElementById('statusLine');
-                if (h.status === 'healthy') {
-                    line.textContent = 'Gateway OK · chave ' + (h.api_key === 'active' ? 'ativa no .env' : 'ausente');
-                    line.className = 'text-xs text-emerald-400 mt-2 font-mono';
-                } else {
-                    line.textContent = 'Atenção: configure WEBPOSTO_API_KEY no .env';
-                    line.className = 'text-xs text-amber-400 mt-2 font-mono';
-                    showAlert('WEBPOSTO_API_KEY não encontrada no .env. Cole a chave acima ou atualize o .env e reinicie o servidor.');
-                }
-            } catch (e) {
-                showAlert('Não foi possível conectar ao gateway. Execute: python src/presentation/app.py');
-            }
-        }
-
-        async function fetchData() {
-            const userKey = localStorage.getItem('WEBPOSTO_CHAVE');
-            let url = '/api/v1/adelaide/overview?periodo=30d';
-            if (userKey) url += '&api_key=' + encodeURIComponent(userKey);
-
-            try {
-                const res = await fetch(url);
-                const data = await res.json();
-                if (!res.ok) {
-                    showAlert(data.detail || 'Erro ao carregar overview Adelaide');
-                    return;
-                }
-                document.getElementById('alertBox').classList.add('hidden');
-
-                document.getElementById('fatBruto').textContent = fmtBRL(data.faturamento_bruto);
-                document.getElementById('creditoAdelaide').textContent = fmtBRL(data.credito_recuperavel);
-                document.getElementById('galonagem').textContent = fmtL(data.galonagem_total);
-                document.getElementById('margem').textContent = fmtBRL(data.margem_liquida_real);
-                if (data.periodo) document.getElementById('periodoLabel').textContent = 'Período: ' + data.periodo;
-
-                if (data.fallback && data.mensagem) {
-                    showAlert('Dados parciais / fallback: ' + data.mensagem);
-                }
-
-                const tbody = document.getElementById('fiscalTable');
-                tbody.innerHTML = '';
-                (data.combustiveis || []).forEach((row) => {
-                    const tr = document.createElement('tr');
-                    const ok = row.status_fiscal && row.status_fiscal.includes('✓');
-                    tr.innerHTML =
-                        '<td class="py-4 pr-4">' + row.codigo + '</td>' +
-                        '<td class="py-4 pr-4 font-sans font-bold">' + row.produto + '</td>' +
-                        '<td class="py-4 pr-4 ' + (ok ? 'text-emerald-400' : 'text-red-400') + '">' + row.regime_efetivo + '</td>' +
-                        '<td class="py-4 pr-4">' + row.cst_sefaz + '</td>' +
-                        '<td class="py-4 font-sans font-bold ' + (ok ? 'text-emerald-400' : 'text-red-400') + '">' + row.status_fiscal + '</td>';
-                    tbody.appendChild(tr);
-                });
-            } catch (err) {
-                console.error(err);
-                showAlert('Erro de rede: ' + err.message);
-            }
-        }
-
-        checkHealth();
-        fetchData();
-    </script>
+    <script src="/theme/cockpit.js" defer></script>
 </body>
 </html>

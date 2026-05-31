@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://logos.local/contracts/expenses.response.schema.json",
+  "title": "ExpensesResponse",
+  "type": "object",
+  "required": ["posto_id", "data_consulta", "total", "items"],
+  "properties": {
+    "posto_id": {
+      "type": "string"
+    },
+    "data_consulta": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "total": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["posto_id", "valor", "descricao", "timestamp", "origem"],
+        "properties": {
+          "id": {
+            "type": ["string", "null"]
+          },
+          "posto_id": {
+            "type": "string"
+          },
+          "valor": {
+            "type": "string",
+            "description": "Decimal monetario serializado"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "origem": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
