@@ -1,0 +1,2003 @@
+{
+  "generatedAt": "2026-06-08T13:13:31",
+  "periodo": {
+    "dataInicial": "2026-06-01",
+    "dataFinal": "2026-06-07"
+  },
+  "endpointResults": [
+    {
+      "endpoint": "DESPESAS_FINANCEIRO_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+      "httpStatus": 200,
+      "timeout": false,
+      "registros": 427,
+      "valorTotal": "135761.20",
+      "empresaCodigos": [
+        5256,
+        5333,
+        5555,
+        5556,
+        5557,
+        5559,
+        5560,
+        11495,
+        46433,
+        74014
+      ],
+      "empresaCodigosAlvo": [
+        5256,
+        5333,
+        5555,
+        5556,
+        5557,
+        5559,
+        5560,
+        11495,
+        46433,
+        74014
+      ],
+      "campos": [
+        "empresaCodigo",
+        "planoContaGerencialCodigo",
+        "descricaoDocumento",
+        "data",
+        "valor"
+      ],
+      "tipoHits": {
+        "Tarifa bancária": 427,
+        "Despesa operacional genérica": 17,
+        "Energia / utilities": 19,
+        "Compra mercadoria / NF entrada": 15,
+        "Sangria / retirada caixa": 1,
+        "Salário / folha": 27,
+        "Compra combustível / TRR": 1
+      },
+      "tipoSamples": {
+        "Tarifa bancária": [
+          "pagamento alamoa",
+          "REF (SEU MOISES PALMEIRA)",
+          "para seu moises"
+        ],
+        "Despesa operacional genérica": [
+          "pagamento alamoa",
+          "ref pagamento da mangueira nova",
+          "PAGAMENTO ZE"
+        ],
+        "Energia / utilities": [
+          "SR MOISES( CREDITO TELEFONE SR MOISES)",
+          "AGUA PARA CONSUMO",
+          "1 AGUA P/ CONSUMO"
+        ],
+        "Compra mercadoria / NF entrada": [
+          "ref. compra 3 pedras de cloro",
+          "REF A COMPRA DE UM CADEADO",
+          "REF COMPRA PÁRAFUSOS"
+        ],
+        "Sangria / retirada caixa": [
+          "retirada das metralhas do estacionamneto"
+        ],
+        "Salário / folha": [
+          "ref ao salario de caio",
+          "salario ana",
+          "COMPLEMENTO SALARIO FUNCIONARIO"
+        ],
+        "Compra combustível / TRR": [
+          "MATERIAS DE ANALISE COMBUSTIVEL"
+        ]
+      },
+      "errors": [],
+      "sampleRow": {
+        "empresaCodigo": 11495,
+        "planoContaGerencialCodigo": 29019,
+        "descricaoDocumento": "pagamento alamoa",
+        "data": "2026-06-01",
+        "valor": 70.0
+      },
+      "grupo": "financeiro"
+    },
+    {
+      "endpoint": "MOVIMENTO_CONTA",
+      "path": "/INTEGRACAO/MOVIMENTO_CONTA",
+      "httpStatus": 200,
+      "timeout": false,
+      "registros": 400,
+      "valorTotal": "10450.52",
+      "empresaCodigos": [
+        5256,
+        5333,
+        5554,
+        5557,
+        5559,
+        5560,
+        11495,
+        46433,
+        74014
+      ],
+      "empresaCodigosAlvo": [
+        5256,
+        5333,
+        5557,
+        5559,
+        5560,
+        11495,
+        46433,
+        74014
+      ],
+      "campos": [
+        "empresaCodigo",
+        "movimentoContaCodigo",
+        "valor",
+        "dataMovimento",
+        "descricao",
+        "tipoDocumentoOrigem",
+        "codigoTipoDocumentoOrigem",
+        "documentoOrigemCodigo",
+        "tipo",
+        "conciliado",
+        "evento",
+        "saldo",
+        "contaCodigo",
+        "planoContaGerencialCodigo",
+        "centroCustoCodigo",
+        "documento",
+        "lote",
+        "daraHoraConciliacao",
+        "usuarioConciliacao",
+        "codigoPessoa",
+        "tipoPessoa",
+        "codigo"
+      ],
+      "tipoHits": {
+        "Tarifa bancária": 400,
+        "Transferência bancária": 400,
+        "Despesa operacional genérica": 200
+      },
+      "tipoSamples": {
+        "Tarifa bancária": [
+          "TRANSF. BANCÁRIA : AG:4047 CONTA:10993263 CLIENTE : CONSUMIDOR FINAL",
+          "TAXA REFERENTE A TRANSFERÊNCIA: AG:4047 CONTA:10993263 ",
+          "TRANSF. BANCÁRIA : AG:1 CONTA:426831613 CLIENTE : CONSUMIDOR FINAL"
+        ],
+        "Transferência bancária": [
+          "TRANSF. BANCÁRIA : AG:4047 CONTA:10993263 CLIENTE : CONSUMIDOR FINAL",
+          "TAXA REFERENTE A TRANSFERÊNCIA: AG:4047 CONTA:10993263 ",
+          "TRANSF. BANCÁRIA : AG:1 CONTA:426831613 CLIENTE : CONSUMIDOR FINAL"
+        ],
+        "Despesa operacional genérica": [
+          "TAXA REFERENTE A TRANSFERÊNCIA: AG:4047 CONTA:10993263 ",
+          "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:426831613 ",
+          "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:174832850 "
+        ]
+      },
+      "errors": [],
+      "sampleRow": {
+        "empresaCodigo": 11495,
+        "movimentoContaCodigo": 63005844,
+        "valor": 50.0,
+        "dataMovimento": "2026-06-01",
+        "descricao": "TRANSF. BANCÁRIA : AG:4047 CONTA:10993263 CLIENTE : CONSUMIDOR FINAL",
+        "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+        "codigoTipoDocumentoOrigem": 42,
+        "documentoOrigemCodigo": 26245718,
+        "tipo": "Crédito",
+        "conciliado": false,
+        "evento": "2026-06-01T00:04:16.071-03:00",
+        "saldo": null,
+        "contaCodigo": 60536,
+        "planoContaGerencialCodigo": 138652,
+        "centroCustoCodigo": 7295,
+        "documento": "0A748FBC-03E2-49B3-A5B6-51E38A9DDB37",
+        "lote": null,
+        "daraHoraConciliacao": null,
+        "usuarioConciliacao": null,
+        "codigoPessoa": null,
+        "tipoPessoa": "Não Identificado",
+        "codigo": 63005844
+      },
+      "grupo": "financeiro"
+    },
+    {
+      "endpoint": "CONTA_REDE",
+      "path": "/INTEGRACAO/CONTA",
+      "httpStatus": 200,
+      "timeout": false,
+      "registros": 17,
+      "valorTotal": "0.00",
+      "empresaCodigos": [
+        5555,
+        11495
+      ],
+      "empresaCodigosAlvo": [
+        5555,
+        11495
+      ],
+      "campos": [
+        "empresaCodigo",
+        "contaCodigo",
+        "descricao",
+        "saldoAtual",
+        "ativo",
+        "usaOfx",
+        "codigo"
+      ],
+      "tipoHits": {
+        "Despesa operacional genérica": 17
+      },
+      "tipoSamples": {
+        "Despesa operacional genérica": [
+          "CAIXA(POSTO)",
+          "SANTANDER (3909 130006368)",
+          "BANCO DO BRASIL (56816-3)"
+        ]
+      },
+      "errors": [],
+      "sampleRow": {
+        "empresaCodigo": 5555,
+        "contaCodigo": 17837,
+        "descricao": "CAIXA(POSTO)",
+        "saldoAtual": -1686105.18,
+        "ativo": true,
+        "usaOfx": false,
+        "codigo": 17837
+      },
+      "grupo": "financeiro"
+    },
+    {
+      "endpoint": "TITULO_PAGAR",
+      "path": "/INTEGRACAO/TITULO_PAGAR",
+      "httpStatus": 200,
+      "timeout": false,
+      "registros": 66,
+      "valorTotal": "363452.16",
+      "empresaCodigos": [
+        5555,
+        11495
+      ],
+      "empresaCodigosAlvo": [
+        5555,
+        11495
+      ],
+      "campos": [
+        "empresaCodigo",
+        "tituloPagarCodigo",
+        "notaEntradaCodigo",
+        "dataMovimento",
+        "vencimento",
+        "dataPagamento",
+        "situacao",
+        "tipo",
+        "tipoLancamento",
+        "valor",
+        "valorPago",
+        "desconto",
+        "acrescimo",
+        "cheque",
+        "dinheiro",
+        "troco",
+        "adiantamento",
+        "cartao",
+        "fornecedorCodigo",
+        "fornecedorIntermediadorCodigo",
+        "planoContaGerencialCodigo",
+        "descricao",
+        "numeroTitulo",
+        "nomeFornecedor",
+        "cpfCnpjFornecedor",
+        "pagamento",
+        "numeroRemessa",
+        "planoContaGerencialNivel",
+        "planoContaGerencialDescricao",
+        "centroCustoCodigo",
+        "centroCustoDescricao",
+        "parcela",
+        "quantidadeParcelas",
+        "linhaDigitavel",
+        "autorizado",
+        "nossoNumero",
+        "bancoFornecedor",
+        "agenciaFornecedor",
+        "contaFornecedor",
+        "tipoChavePixFornecedor"
+      ],
+      "tipoHits": {
+        "Troco": 66,
+        "Compra mercadoria / NF entrada": 66,
+        "Salário / folha": 66,
+        "Tarifa bancária": 11,
+        "Compra combustível / TRR": 26,
+        "Energia / utilities": 18,
+        "Despesa operacional genérica": 7
+      },
+      "tipoSamples": {
+        "Troco": [
+          "VEEM JULIA 06/2026",
+          "ALELO 8  FUNC 06/2026",
+          "ALELO 6 FUNC 02/2026 06/2026"
+        ],
+        "Compra mercadoria / NF entrada": [
+          "VEEM JULIA 06/2026",
+          "ALELO 8  FUNC 06/2026",
+          "ALELO 6 FUNC 02/2026 06/2026"
+        ],
+        "Salário / folha": [
+          "VEEM JULIA 06/2026",
+          "ALELO 8  FUNC 06/2026",
+          "ALELO 6 FUNC 02/2026 06/2026"
+        ],
+        "Tarifa bancária": [
+          "Ref Nf:000211180 - COMERCIAL BEZERRA  FILIAL 01",
+          "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+          "Ref Nf:000028221 - CHIC FABRICACAO DE DOCES E SALGADOS LTDA"
+        ],
+        "Compra combustível / TRR": [
+          "Ref Nf:002887328 - VIBRA ENERGIA S.A",
+          "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+          "Ref Nf:002887626 - VIBRA ENERGIA S.A"
+        ],
+        "Energia / utilities": [
+          "Ref Nf:002887328 - VIBRA ENERGIA S.A",
+          "Ref Nf:002887626 - VIBRA ENERGIA S.A",
+          "Ref Nf:002887626 - VIBRA ENERGIA S.A"
+        ],
+        "Despesa operacional genérica": [
+          "Ref Nf:002887328 - VIBRA ENERGIA S.A",
+          "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+          "Ref Nf:004272391 - SUAPE"
+        ]
+      },
+      "errors": [],
+      "sampleRow": {
+        "empresaCodigo": 5555,
+        "tituloPagarCodigo": 2758905,
+        "notaEntradaCodigo": null,
+        "dataMovimento": "2026-06-05",
+        "vencimento": "2026-06-05",
+        "dataPagamento": null,
+        "situacao": "Aberto",
+        "tipo": "Título",
+        "tipoLancamento": "Boleto",
+        "valor": 189.2,
+        "valorPago": 0.0,
+        "desconto": 0.0,
+        "acrescimo": 0.0,
+        "cheque": 0.0,
+        "dinheiro": 0.0,
+        "troco": 0.0,
+        "adiantamento": 0.0,
+        "cartao": 0.0,
+        "fornecedorCodigo": 644460,
+        "fornecedorIntermediadorCodigo": null,
+        "planoContaGerencialCodigo": 29073,
+        "descricao": "VEEM JULIA 06/2026",
+        "numeroTitulo": "veem julia",
+        "nomeFornecedor": "VEM TRABALHADOR",
+        "cpfCnpjFornecedor": "12.010.388/0001-90",
+        "pagamento": [],
+        "numeroRemessa": null,
+        "planoContaGerencialNivel": "2.03.02.002",
+        "planoContaGerencialDescricao": "B02 - VEM TRANSPORTE/PASSAGEM",
+        "centroCustoCodigo": 7295,
+        "centroCustoDescricao": "PISTA",
+        "parcela": 10,
+        "quantidadeParcelas": 12,
+        "linhaDigitavel": null,
+        "autorizado": false,
+        "nossoNumero": null,
+        "bancoFornecedor": null,
+        "agenciaFornecedor": null,
+        "contaFornecedor": null,
+        "tipoChavePixFornecedor": null,
+        "chavePixFornecedor": null,
+        "qrCodePix": null,
+        "tipoTributo": null,
+        "codigoReceitaTributo": null,
+        "renavam": null,
+        "placa": null,
+        "codigoMunicipio": null,
+        "digitoFgts": null,
+        "lacreConSocialFgts": null,
+        "identificadorFgts": 0,
+        "observacao": null,
+        "codigo": 2758905
+      },
+      "grupo": "financeiro"
+    },
+    {
+      "endpoint": "TITULO_PAGAR_REDE",
+      "path": "/INTEGRACAO/TITULO_PAGAR_REDE",
+      "httpStatus": 401,
+      "timeout": false,
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresaCodigos": [],
+      "empresaCodigosAlvo": [],
+      "campos": [],
+      "tipoHits": {},
+      "tipoSamples": {},
+      "errors": [
+        ""
+      ],
+      "sampleRow": null,
+      "grupo": "financeiro"
+    },
+    {
+      "endpoint": "CONSULTAR_TITULO_PAGAR_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_TITULO_PAGAR_REDE",
+      "httpStatus": 200,
+      "timeout": false,
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresaCodigos": [],
+      "empresaCodigosAlvo": [],
+      "campos": [],
+      "tipoHits": {},
+      "tipoSamples": {},
+      "errors": [],
+      "sampleRow": null,
+      "grupo": "financeiro"
+    },
+    {
+      "endpoint": "TITULO_RECEBER",
+      "path": "/INTEGRACAO/TITULO_RECEBER",
+      "httpStatus": 200,
+      "timeout": false,
+      "registros": 11,
+      "valorTotal": "176.31",
+      "empresaCodigos": [
+        11495
+      ],
+      "empresaCodigosAlvo": [
+        11495
+      ],
+      "campos": [
+        "empresaCodigo",
+        "tituloCodigo",
+        "dataMovimento",
+        "dataVencimento",
+        "valor",
+        "vendaCodigo",
+        "duplicataCodigo",
+        "tipo",
+        "pendente",
+        "clienteCodigo",
+        "dataPagamento",
+        "planoContaGerencialCodigo",
+        "nomeCliente",
+        "cpfCnpjCliente",
+        "convertido",
+        "documento",
+        "tituloNumero",
+        "codigo"
+      ],
+      "tipoHits": {
+        "Tarifa bancária": 4,
+        "Despesa operacional genérica": 7
+      },
+      "tipoSamples": {
+        "Tarifa bancária": [
+          "Nota",
+          "Nota",
+          "Nota"
+        ],
+        "Despesa operacional genérica": [
+          "Nota",
+          "Nota",
+          "Nota"
+        ]
+      },
+      "errors": [],
+      "sampleRow": {
+        "empresaCodigo": 11495,
+        "tituloCodigo": 20713424,
+        "dataMovimento": "2026-06-01",
+        "dataVencimento": "2026-06-01",
+        "valor": 29.94,
+        "vendaCodigo": 355246576,
+        "duplicataCodigo": null,
+        "tipo": "Nota",
+        "pendente": true,
+        "clienteCodigo": 1210874,
+        "dataPagamento": null,
+        "planoContaGerencialCodigo": null,
+        "nomeCliente": "DESPERDICIO",
+        "cpfCnpjCliente": "423.707.250-95",
+        "convertido": false,
+        "documento": "1 / 1",
+        "tituloNumero": 3014,
+        "codigo": 20713424
+      },
+      "grupo": "financeiro"
+    },
+    {
+      "endpoint": "TITULO_RECEBER_REDE",
+      "path": "/INTEGRACAO/TITULO_RECEBER_REDE",
+      "httpStatus": 401,
+      "timeout": false,
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresaCodigos": [],
+      "empresaCodigosAlvo": [],
+      "campos": [],
+      "tipoHits": {},
+      "tipoSamples": {},
+      "errors": [
+        ""
+      ],
+      "sampleRow": null,
+      "grupo": "financeiro"
+    },
+    {
+      "endpoint": "DUPLICATA_REDE",
+      "path": "/INTEGRACAO/DUPLICATA_REDE",
+      "httpStatus": 401,
+      "timeout": false,
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresaCodigos": [],
+      "empresaCodigosAlvo": [],
+      "campos": [],
+      "tipoHits": {},
+      "tipoSamples": {},
+      "errors": [
+        ""
+      ],
+      "sampleRow": null,
+      "grupo": "financeiro"
+    },
+    {
+      "endpoint": "LANCAMENTO_CONTABIL",
+      "path": "/INTEGRACAO/LANCAMENTO_CONTABIL",
+      "httpStatus": 200,
+      "timeout": false,
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresaCodigos": [],
+      "empresaCodigosAlvo": [],
+      "campos": [],
+      "tipoHits": {},
+      "tipoSamples": {},
+      "errors": [],
+      "sampleRow": null,
+      "grupo": "financeiro"
+    },
+    {
+      "endpoint": "LANCAMENTO_CONTABIL_ITEM",
+      "path": "/INTEGRACAO/LANCAMENTO_CONTABIL_ITEM",
+      "httpStatus": 401,
+      "timeout": false,
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresaCodigos": [],
+      "empresaCodigosAlvo": [],
+      "campos": [],
+      "tipoHits": {},
+      "tipoSamples": {},
+      "errors": [
+        ""
+      ],
+      "sampleRow": null,
+      "grupo": "financeiro"
+    },
+    {
+      "endpoint": "FINANCEIRO_EXCLUSAO",
+      "path": "/INTEGRACAO/FINANCEIRO_EXCLUSAO",
+      "httpStatus": 200,
+      "timeout": false,
+      "registros": 10203,
+      "valorTotal": "40483250.07",
+      "empresaCodigos": [
+        5555,
+        11495
+      ],
+      "empresaCodigosAlvo": [
+        5555,
+        11495
+      ],
+      "campos": [
+        "empresaCodigo",
+        "codigoDocumentoOrigem",
+        "valor",
+        "tipo",
+        "dataExclusao",
+        "usuarioExclusao",
+        "codigo"
+      ],
+      "tipoHits": {
+        "Tarifa bancária": 10203,
+        "Exclusão financeira / débito caixa": 10203,
+        "Despesa operacional genérica": 2976
+      },
+      "tipoSamples": {
+        "Tarifa bancária": [
+          "MOVIMENTO_CONTA_CREDITO",
+          "MOVIMENTO_CONTA_CREDITO",
+          "MOVIMENTO_CONTA_DEBITO"
+        ],
+        "Exclusão financeira / débito caixa": [
+          "MOVIMENTO_CONTA_CREDITO",
+          "MOVIMENTO_CONTA_CREDITO",
+          "MOVIMENTO_CONTA_DEBITO"
+        ],
+        "Despesa operacional genérica": [
+          "MOVIMENTO_CONTA_DEBITO",
+          "MOVIMENTO_CONTA_DEBITO",
+          "MOVIMENTO_CONTA_DEBITO"
+        ]
+      },
+      "errors": [],
+      "sampleRow": {
+        "empresaCodigo": 11495,
+        "codigoDocumentoOrigem": 59806854,
+        "valor": 27.0,
+        "tipo": "MOVIMENTO_CONTA_CREDITO",
+        "dataExclusao": "2026-04-08T14:26:50.357299-03:00",
+        "usuarioExclusao": 40591,
+        "codigo": 199
+      },
+      "grupo": "financeiro"
+    },
+    {
+      "endpoint": "TRANSFERENCIA_BANCARIA",
+      "path": "/INTEGRACAO/TRANSFERENCIA_BANCARIA",
+      "httpStatus": 200,
+      "timeout": false,
+      "registros": 400,
+      "valorTotal": "14788.96",
+      "empresaCodigos": [
+        11495
+      ],
+      "empresaCodigosAlvo": [
+        11495
+      ],
+      "campos": [
+        "empresaCodigo",
+        "transferenciaBancariaCodigo",
+        "contaCodigo",
+        "vendaCodigo",
+        "valor",
+        "dataMovimento",
+        "tipoInclusao",
+        "planoContaGerencialCodigo",
+        "centroCustoCodigo",
+        "documento",
+        "clienteCodigo",
+        "caixaCodigo",
+        "codigo"
+      ],
+      "tipoHits": {
+        "Tarifa bancária": 400,
+        "Transferência bancária": 400
+      },
+      "tipoSamples": {},
+      "errors": [],
+      "sampleRow": {
+        "empresaCodigo": 11495,
+        "transferenciaBancariaCodigo": 26245718,
+        "contaCodigo": 60536,
+        "vendaCodigo": 355229847,
+        "valor": 50.0,
+        "dataMovimento": "2026-06-01",
+        "tipoInclusao": 2,
+        "planoContaGerencialCodigo": 138652,
+        "centroCustoCodigo": 7295,
+        "documento": "Ag:4047 Conta:10993263",
+        "clienteCodigo": 546586,
+        "caixaCodigo": 4335818,
+        "codigo": 26245718
+      },
+      "grupo": "financeiro"
+    },
+    {
+      "endpoint": "CAIXA",
+      "path": "/INTEGRACAO/CAIXA",
+      "httpStatus": 200,
+      "timeout": false,
+      "registros": 21,
+      "valorTotal": "-25087.87",
+      "empresaCodigos": [
+        5555,
+        11495
+      ],
+      "empresaCodigosAlvo": [
+        5555,
+        11495
+      ],
+      "campos": [
+        "empresaCodigo",
+        "caixaCodigo",
+        "dataMovimento",
+        "turnoCodigo",
+        "turno",
+        "pdvCodigo",
+        "funcionarioCodigo",
+        "centroCusto",
+        "abertura",
+        "fechamento",
+        "fechado",
+        "consolidado",
+        "tipoInclusao",
+        "bloqueado",
+        "tipoBloqueio",
+        "apurado",
+        "diferenca",
+        "codigo"
+      ],
+      "tipoHits": {
+        "Despesa operacional genérica": 21
+      },
+      "tipoSamples": {},
+      "errors": [],
+      "sampleRow": {
+        "empresaCodigo": 11495,
+        "caixaCodigo": 4335818,
+        "dataMovimento": "2026-06-01",
+        "turnoCodigo": 1,
+        "turno": "1º TURNO",
+        "pdvCodigo": 54193,
+        "funcionarioCodigo": 227386,
+        "centroCusto": 7295,
+        "abertura": "2026-06-01T00:00:29.000-03:00",
+        "fechamento": "2026-06-01T23:55:23.000-03:00",
+        "fechado": true,
+        "consolidado": true,
+        "tipoInclusao": "PDV",
+        "bloqueado": false,
+        "tipoBloqueio": "Desbloqueado",
+        "apurado": 40214.96,
+        "diferenca": -50.66,
+        "codigo": 4335818
+      },
+      "grupo": "caixa"
+    },
+    {
+      "endpoint": "CAIXA_APRESENTADO",
+      "path": "/INTEGRACAO/CAIXA_APRESENTADO",
+      "httpStatus": 200,
+      "timeout": false,
+      "registros": 21,
+      "valorTotal": "-25087.87",
+      "empresaCodigos": [
+        5555,
+        11495
+      ],
+      "empresaCodigosAlvo": [
+        5555,
+        11495
+      ],
+      "campos": [
+        "empresaCodigo",
+        "caixaCodigo",
+        "dinheiroApresentado",
+        "dinheiroApurado",
+        "dinheiroDiferenca",
+        "notaPrazoApresentado",
+        "notaPrazoApurado",
+        "notaPrazoDiferenca",
+        "chequeApresentado",
+        "chequeApurado",
+        "chequeDiferenca",
+        "chequePreApresentado",
+        "chequePreApurado",
+        "chequePreDiferenca",
+        "cartaoApresentado",
+        "cartaoApurado",
+        "cartaoDiferenca",
+        "cartaFreteApresentado",
+        "cartaFreteApurado",
+        "cartaFreteDiferenca",
+        "valeClienteApresentado",
+        "valeClienteApurado",
+        "valeClienteDiferenca",
+        "emprestimoApresentado",
+        "emprestimoApurado",
+        "emprestimoDiferenca",
+        "prePagApresentado",
+        "prePagApurado",
+        "prePagDiferenca",
+        "despesaApresentado",
+        "despesaApurado",
+        "despesaDiferenca",
+        "valeFunApresentado",
+        "valeFunApurado",
+        "valeFunDiferenca",
+        "chequePagarApresentado",
+        "chequePagarApurado",
+        "chequePagarDiferenca",
+        "transfBancApresentado",
+        "transfBancApurado"
+      ],
+      "tipoHits": {
+        "Suprimento / fundo caixa": 21,
+        "Troco": 21,
+        "Tarifa bancária": 21,
+        "Título a receber": 21,
+        "Despesa operacional genérica": 21
+      },
+      "tipoSamples": {},
+      "errors": [],
+      "sampleRow": {
+        "empresaCodigo": 11495,
+        "caixaCodigo": 4335818,
+        "dinheiroApresentado": 9029.0,
+        "dinheiroApurado": 9079.66,
+        "dinheiroDiferenca": -50.66,
+        "notaPrazoApresentado": 0.0,
+        "notaPrazoApurado": 0.0,
+        "notaPrazoDiferenca": 0.0,
+        "chequeApresentado": 0.0,
+        "chequeApurado": 0.0,
+        "chequeDiferenca": 0.0,
+        "chequePreApresentado": 0.0,
+        "chequePreApurado": 0.0,
+        "chequePreDiferenca": 0.0,
+        "cartaoApresentado": 18540.44,
+        "cartaoApurado": 18540.44,
+        "cartaoDiferenca": 0.0,
+        "cartaFreteApresentado": 0.0,
+        "cartaFreteApurado": 0.0,
+        "cartaFreteDiferenca": 0.0,
+        "valeClienteApresentado": 0.0,
+        "valeClienteApurado": 0.0,
+        "valeClienteDiferenca": 0.0,
+        "emprestimoApresentado": 0.0,
+        "emprestimoApurado": 0.0,
+        "emprestimoDiferenca": 0.0,
+        "prePagApresentado": 0.0,
+        "prePagApurado": 0.0,
+        "prePagDiferenca": 0.0,
+        "despesaApresentado": 386.73,
+        "despesaApurado": 386.73,
+        "despesaDiferenca": 0.0,
+        "valeFunApresentado": 1045.09,
+        "valeFunApurado": 1045.09,
+        "valeFunDiferenca": 0.0,
+        "chequePagarApresentado": 0.0,
+        "chequePagarApurado": 0.0,
+        "chequePagarDiferenca": 0.0,
+        "transfBancApresentado": 11163.04,
+        "transfBancApurado": 11163.04,
+        "transfBancDiferenca": 0.0,
+        "transfDebApresentado": 0.0,
+        "transfDebApurado": 0.0,
+        "transfDebDiferenca": 0.0,
+        "fundoCxDebApresentado": 0.0,
+        "fundoCxDebApurado": 0.0,
+        "fundoCxDebDiferenca": 0.0,
+        "valeCliente": 0,
+        "suprimentoCaixa": 0,
+        "recebimentoCaixa": 0,
+        "chequeTroco": 0,
+        "servicoCaixa": 0,
+        "prePagoCredito": 0,
+        "fundoCaixaCredito": 0,
+        "ordemPagamento": 0,
+        "pagamentoCaixa": 0,
+        "saidaTrocaValor": 0,
+        "consolidado": true,
+        "codigo": 4335818
+      },
+      "grupo": "caixa"
+    },
+    {
+      "endpoint": "CONSULTAR_CAIXA_APRESENTADO_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_CAIXA_APRESENTADO_REDE",
+      "httpStatus": 200,
+      "timeout": false,
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresaCodigos": [],
+      "empresaCodigosAlvo": [],
+      "campos": [],
+      "tipoHits": {},
+      "tipoSamples": {},
+      "errors": [],
+      "sampleRow": null,
+      "grupo": "caixa"
+    },
+    {
+      "endpoint": "FECHAMENTO_CAIXA",
+      "path": "/INTEGRACAO/FECHAMENTO_CAIXA",
+      "httpStatus": 401,
+      "timeout": false,
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresaCodigos": [],
+      "empresaCodigosAlvo": [],
+      "campos": [],
+      "tipoHits": {},
+      "tipoSamples": {},
+      "errors": [
+        ""
+      ],
+      "sampleRow": null,
+      "grupo": "caixa"
+    },
+    {
+      "endpoint": "COMPRA_REDE",
+      "path": "/INTEGRACAO/COMPRA_REDE",
+      "httpStatus": 401,
+      "timeout": false,
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresaCodigos": [],
+      "empresaCodigosAlvo": [],
+      "campos": [],
+      "tipoHits": {},
+      "tipoSamples": {},
+      "errors": [
+        ""
+      ],
+      "sampleRow": null,
+      "grupo": "compras"
+    },
+    {
+      "endpoint": "NOTA_ENTRADA",
+      "path": "/INTEGRACAO/NOTA_ENTRADA",
+      "httpStatus": 401,
+      "timeout": false,
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresaCodigos": [],
+      "empresaCodigosAlvo": [],
+      "campos": [],
+      "tipoHits": {},
+      "tipoSamples": {},
+      "errors": [
+        ""
+      ],
+      "sampleRow": null,
+      "grupo": "compras"
+    },
+    {
+      "endpoint": "NOTA_ENTRADA_REDE",
+      "path": "/INTEGRACAO/NOTA_ENTRADA_REDE",
+      "httpStatus": 401,
+      "timeout": false,
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresaCodigos": [],
+      "empresaCodigosAlvo": [],
+      "campos": [],
+      "tipoHits": {},
+      "tipoSamples": {},
+      "errors": [
+        ""
+      ],
+      "sampleRow": null,
+      "grupo": "compras"
+    },
+    {
+      "endpoint": "COMPRA_ITEM_REDE",
+      "path": "/INTEGRACAO/COMPRA_ITEM_REDE",
+      "httpStatus": 401,
+      "timeout": false,
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresaCodigos": [],
+      "empresaCodigosAlvo": [],
+      "campos": [],
+      "tipoHits": {},
+      "tipoSamples": {},
+      "errors": [
+        ""
+      ],
+      "sampleRow": null,
+      "grupo": "compras"
+    },
+    {
+      "endpoint": "PEDIDO_COMPRAS",
+      "path": "/INTEGRACAO/PEDIDO_COMPRAS",
+      "httpStatus": 401,
+      "timeout": false,
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresaCodigos": [],
+      "empresaCodigosAlvo": [],
+      "campos": [],
+      "tipoHits": {},
+      "tipoSamples": {},
+      "errors": [
+        ""
+      ],
+      "sampleRow": null,
+      "grupo": "compras"
+    },
+    {
+      "endpoint": "PEDIDO_COMBUSTIVEL",
+      "path": "/INTEGRACAO/PEDIDO_COMBUSTIVEL/PEDIDO",
+      "httpStatus": 500,
+      "timeout": false,
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresaCodigos": [],
+      "empresaCodigosAlvo": [],
+      "campos": [],
+      "tipoHits": {},
+      "tipoSamples": {},
+      "errors": [
+        "Request method 'GET' is not supported"
+      ],
+      "sampleRow": null,
+      "grupo": "compras"
+    },
+    {
+      "endpoint": "PEDIDO_TRR",
+      "path": "/INTEGRACAO/PEDIDO_TRR",
+      "httpStatus": 200,
+      "timeout": false,
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresaCodigos": [],
+      "empresaCodigosAlvo": [],
+      "campos": [],
+      "tipoHits": {},
+      "tipoSamples": {},
+      "errors": [],
+      "sampleRow": null,
+      "grupo": "compras"
+    },
+    {
+      "endpoint": "CARTAO_COMPRA",
+      "path": "/INTEGRACAO/CARTAO_COMPRA",
+      "httpStatus": 400,
+      "timeout": false,
+      "registros": 2,
+      "valorTotal": "0.00",
+      "empresaCodigos": [
+        5555
+      ],
+      "empresaCodigosAlvo": [
+        5555
+      ],
+      "campos": [
+        "empresaCodigo",
+        "cartaoCompraCodigo",
+        "bandeiraCartao",
+        "descricao",
+        "diaFechamentoFatura",
+        "diaVencimentoFatura",
+        "titularCartao",
+        "limite",
+        "saldoUtilizado",
+        "planoContaGerencialCodigo",
+        "referencia",
+        "codigo"
+      ],
+      "tipoHits": {
+        "Compra mercadoria / NF entrada": 2
+      },
+      "tipoSamples": {
+        "Compra mercadoria / NF entrada": [
+          "CARTAO MP ELO AZUL - FINAL 5178",
+          "NUBANK MARCIO"
+        ]
+      },
+      "errors": [
+        "No argument for named parameter ':ULTIMO_CODIGO'"
+      ],
+      "sampleRow": {
+        "empresaCodigo": 5555,
+        "cartaoCompraCodigo": 727,
+        "bandeiraCartao": "Elo",
+        "descricao": "CARTAO MP ELO AZUL - FINAL 5178",
+        "diaFechamentoFatura": 10,
+        "diaVencimentoFatura": 20,
+        "titularCartao": "MOISES P L FILHO",
+        "limite": 10000.0,
+        "saldoUtilizado": 1150.0,
+        "planoContaGerencialCodigo": 29095,
+        "referencia": "00001",
+        "codigo": 727
+      },
+      "grupo": "compras"
+    },
+    {
+      "endpoint": "DESPESA_FUNCIONARIO",
+      "path": "/INTEGRACAO/DESPESA_FUNCIONARIO",
+      "httpStatus": 401,
+      "timeout": false,
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresaCodigos": [],
+      "empresaCodigosAlvo": [],
+      "campos": [],
+      "tipoHits": {},
+      "tipoSamples": {},
+      "errors": [
+        ""
+      ],
+      "sampleRow": null,
+      "grupo": "funcionarios"
+    },
+    {
+      "endpoint": "VALE_FUNCIONARIO_REDE",
+      "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+      "httpStatus": 401,
+      "timeout": false,
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresaCodigos": [],
+      "empresaCodigosAlvo": [],
+      "campos": [],
+      "tipoHits": {},
+      "tipoSamples": {},
+      "errors": [
+        ""
+      ],
+      "sampleRow": null,
+      "grupo": "funcionarios"
+    }
+  ],
+  "despesasConsolidadas": {
+    "totalRegistros": 427,
+    "porTipo": {
+      "Despesa operacional genérica": {
+        "count": 363,
+        "valor": "119117.95"
+      },
+      "Energia / utilities": {
+        "count": 19,
+        "valor": "186.00"
+      },
+      "Compra mercadoria / NF entrada": {
+        "count": 15,
+        "valor": "2116.75"
+      },
+      "Tarifa bancária": {
+        "count": 2,
+        "valor": "87.50"
+      },
+      "Sangria / retirada caixa": {
+        "count": 1,
+        "valor": "200.00"
+      },
+      "Salário / folha": {
+        "count": 27,
+        "valor": "13711.00"
+      },
+      "Compra combustível / TRR": {
+        "count": 1,
+        "valor": "399.00"
+      }
+    },
+    "topDescricoes": [
+      [
+        "Vale",
+        87
+      ],
+      [
+        "ref",
+        60
+      ],
+      [
+        "REF",
+        50
+      ],
+      [
+        "material",
+        10
+      ],
+      [
+        "ALMOÇO",
+        9
+      ],
+      [
+        "AGUA",
+        7
+      ],
+      [
+        "UBER",
+        6
+      ],
+      [
+        "DIARIA",
+        6
+      ],
+      [
+        "sr",
+        6
+      ],
+      [
+        "1",
+        5
+      ],
+      [
+        "folguista",
+        5
+      ],
+      [
+        "pagamento",
+        4
+      ],
+      [
+        "para",
+        4
+      ],
+      [
+        "PARA",
+        4
+      ],
+      [
+        "POSTO",
+        4
+      ]
+    ],
+    "samples": {
+      "Despesa operacional genérica": [
+        {
+          "descricao": "pagamento alamoa",
+          "valor": "70.0",
+          "empresa": 11495
+        },
+        {
+          "descricao": "REF (SEU MOISES PALMEIRA)",
+          "valor": "100.0",
+          "empresa": 46433
+        }
+      ],
+      "Energia / utilities": [
+        {
+          "descricao": "SR MOISES( CREDITO TELEFONE SR MOISES)",
+          "valor": "40.0",
+          "empresa": 46433
+        },
+        {
+          "descricao": "AGUA PARA CONSUMO",
+          "valor": "7.0",
+          "empresa": 11495
+        }
+      ],
+      "Compra mercadoria / NF entrada": [
+        {
+          "descricao": "ref. compra 3 pedras de cloro",
+          "valor": "30.0",
+          "empresa": 11495
+        },
+        {
+          "descricao": "REF A COMPRA DE UM CADEADO",
+          "valor": "59.0",
+          "empresa": 5555
+        }
+      ],
+      "Tarifa bancária": [
+        {
+          "descricao": "REF. PAG. JULI DÔCES",
+          "valor": "30.5",
+          "empresa": 11495
+        },
+        {
+          "descricao": "REF PAGAMENTO DOCES",
+          "valor": "57.0",
+          "empresa": 46433
+        }
+      ],
+      "Sangria / retirada caixa": [
+        {
+          "descricao": "retirada das metralhas do estacionamneto",
+          "valor": "200.0",
+          "empresa": 5560
+        }
+      ],
+      "Salário / folha": [
+        {
+          "descricao": "ref ao salario de caio",
+          "valor": "450.0",
+          "empresa": 5559
+        },
+        {
+          "descricao": "salario ana",
+          "valor": "500.0",
+          "empresa": 5559
+        }
+      ],
+      "Compra combustível / TRR": [
+        {
+          "descricao": "MATERIAS DE ANALISE COMBUSTIVEL",
+          "valor": "399.0",
+          "empresa": 5557
+        }
+      ]
+    }
+  },
+  "matrix": [
+    {
+      "tipoFinanceiro": "Despesa operacional genérica",
+      "endpointOrigem": "DESPESAS_FINANCEIRO_REDE",
+      "endpointPath": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+      "registros": 363,
+      "valorTotal": "119117.95",
+      "empresas": "rede (10 filiais)",
+      "apareceNoWebPostoUI": "Sim — tela financeiro/despesas consolidada",
+      "integradoLogosSpace": "Sim — /v1/financial/expenses",
+      "observacao": "Classificado por descricaoDocumento"
+    },
+    {
+      "tipoFinanceiro": "Salário / folha",
+      "endpointOrigem": "DESPESAS_FINANCEIRO_REDE",
+      "endpointPath": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+      "registros": 27,
+      "valorTotal": "13711.00",
+      "empresas": "rede (10 filiais)",
+      "apareceNoWebPostoUI": "Sim — tela financeiro/despesas consolidada",
+      "integradoLogosSpace": "Sim — /v1/financial/expenses",
+      "observacao": "Classificado por descricaoDocumento"
+    },
+    {
+      "tipoFinanceiro": "Energia / utilities",
+      "endpointOrigem": "DESPESAS_FINANCEIRO_REDE",
+      "endpointPath": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+      "registros": 19,
+      "valorTotal": "186.00",
+      "empresas": "rede (10 filiais)",
+      "apareceNoWebPostoUI": "Sim — tela financeiro/despesas consolidada",
+      "integradoLogosSpace": "Sim — /v1/financial/expenses",
+      "observacao": "Classificado por descricaoDocumento"
+    },
+    {
+      "tipoFinanceiro": "Compra mercadoria / NF entrada",
+      "endpointOrigem": "DESPESAS_FINANCEIRO_REDE",
+      "endpointPath": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+      "registros": 15,
+      "valorTotal": "2116.75",
+      "empresas": "rede (10 filiais)",
+      "apareceNoWebPostoUI": "Sim — tela financeiro/despesas consolidada",
+      "integradoLogosSpace": "Sim — /v1/financial/expenses",
+      "observacao": "Classificado por descricaoDocumento"
+    },
+    {
+      "tipoFinanceiro": "Tarifa bancária",
+      "endpointOrigem": "DESPESAS_FINANCEIRO_REDE",
+      "endpointPath": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+      "registros": 2,
+      "valorTotal": "87.50",
+      "empresas": "rede (10 filiais)",
+      "apareceNoWebPostoUI": "Sim — tela financeiro/despesas consolidada",
+      "integradoLogosSpace": "Sim — /v1/financial/expenses",
+      "observacao": "Classificado por descricaoDocumento"
+    },
+    {
+      "tipoFinanceiro": "Sangria / retirada caixa",
+      "endpointOrigem": "DESPESAS_FINANCEIRO_REDE",
+      "endpointPath": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+      "registros": 1,
+      "valorTotal": "200.00",
+      "empresas": "rede (10 filiais)",
+      "apareceNoWebPostoUI": "Sim — tela financeiro/despesas consolidada",
+      "integradoLogosSpace": "Sim — /v1/financial/expenses",
+      "observacao": "Classificado por descricaoDocumento"
+    },
+    {
+      "tipoFinanceiro": "Compra combustível / TRR",
+      "endpointOrigem": "DESPESAS_FINANCEIRO_REDE",
+      "endpointPath": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+      "registros": 1,
+      "valorTotal": "399.00",
+      "empresas": "rede (10 filiais)",
+      "apareceNoWebPostoUI": "Sim — tela financeiro/despesas consolidada",
+      "integradoLogosSpace": "Sim — /v1/financial/expenses",
+      "observacao": "Classificado por descricaoDocumento"
+    },
+    {
+      "tipoFinanceiro": "Tarifa bancária",
+      "endpointOrigem": "MOVIMENTO_CONTA",
+      "endpointPath": "/INTEGRACAO/MOVIMENTO_CONTA",
+      "registros": 400,
+      "valorTotal": "—",
+      "empresas": [
+        5256,
+        5333,
+        5557,
+        5559,
+        5560,
+        11495,
+        46433,
+        74014
+      ],
+      "apareceNoWebPostoUI": "Sim",
+      "integradoLogosSpace": "Não — apenas diagnóstico",
+      "observacao": "Também em DESPESAS_REDE",
+      "exemplos": [
+        "TRANSF. BANCÁRIA : AG:4047 CONTA:10993263 CLIENTE : CONSUMIDOR FINAL",
+        "TAXA REFERENTE A TRANSFERÊNCIA: AG:4047 CONTA:10993263 "
+      ]
+    },
+    {
+      "tipoFinanceiro": "Transferência bancária",
+      "endpointOrigem": "MOVIMENTO_CONTA",
+      "endpointPath": "/INTEGRACAO/MOVIMENTO_CONTA",
+      "registros": 400,
+      "valorTotal": "—",
+      "empresas": [
+        5256,
+        5333,
+        5557,
+        5559,
+        5560,
+        11495,
+        46433,
+        74014
+      ],
+      "apareceNoWebPostoUI": "Parcial — endpoint separado",
+      "integradoLogosSpace": "Não — apenas diagnóstico",
+      "observacao": "NÃO consolidado em DESPESAS_REDE — fonte paralela",
+      "exemplos": [
+        "TRANSF. BANCÁRIA : AG:4047 CONTA:10993263 CLIENTE : CONSUMIDOR FINAL",
+        "TAXA REFERENTE A TRANSFERÊNCIA: AG:4047 CONTA:10993263 "
+      ]
+    },
+    {
+      "tipoFinanceiro": "Despesa operacional genérica",
+      "endpointOrigem": "MOVIMENTO_CONTA",
+      "endpointPath": "/INTEGRACAO/MOVIMENTO_CONTA",
+      "registros": 200,
+      "valorTotal": "—",
+      "empresas": [
+        5256,
+        5333,
+        5557,
+        5559,
+        5560,
+        11495,
+        46433,
+        74014
+      ],
+      "apareceNoWebPostoUI": "Sim",
+      "integradoLogosSpace": "Não — apenas diagnóstico",
+      "observacao": "Também em DESPESAS_REDE",
+      "exemplos": [
+        "TAXA REFERENTE A TRANSFERÊNCIA: AG:4047 CONTA:10993263 ",
+        "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:426831613 "
+      ]
+    },
+    {
+      "tipoFinanceiro": "Despesa operacional genérica",
+      "endpointOrigem": "CONTA_REDE",
+      "endpointPath": "/INTEGRACAO/CONTA",
+      "registros": 17,
+      "valorTotal": "—",
+      "empresas": [
+        5555,
+        11495
+      ],
+      "apareceNoWebPostoUI": "Sim",
+      "integradoLogosSpace": "Fallback accounts-payable",
+      "observacao": "Também em DESPESAS_REDE",
+      "exemplos": [
+        "CAIXA(POSTO)",
+        "SANTANDER (3909 130006368)"
+      ]
+    },
+    {
+      "tipoFinanceiro": "Troco",
+      "endpointOrigem": "TITULO_PAGAR",
+      "endpointPath": "/INTEGRACAO/TITULO_PAGAR",
+      "registros": 66,
+      "valorTotal": "—",
+      "empresas": [
+        5555,
+        11495
+      ],
+      "apareceNoWebPostoUI": "Parcial — endpoint separado",
+      "integradoLogosSpace": "Sim — /v1/financial/accounts-payable",
+      "observacao": "NÃO consolidado em DESPESAS_REDE — fonte paralela",
+      "exemplos": [
+        "VEEM JULIA 06/2026",
+        "ALELO 8  FUNC 06/2026"
+      ]
+    },
+    {
+      "tipoFinanceiro": "Compra mercadoria / NF entrada",
+      "endpointOrigem": "TITULO_PAGAR",
+      "endpointPath": "/INTEGRACAO/TITULO_PAGAR",
+      "registros": 66,
+      "valorTotal": "—",
+      "empresas": [
+        5555,
+        11495
+      ],
+      "apareceNoWebPostoUI": "Sim",
+      "integradoLogosSpace": "Sim — /v1/financial/accounts-payable",
+      "observacao": "Também em DESPESAS_REDE",
+      "exemplos": [
+        "VEEM JULIA 06/2026",
+        "ALELO 8  FUNC 06/2026"
+      ]
+    },
+    {
+      "tipoFinanceiro": "Salário / folha",
+      "endpointOrigem": "TITULO_PAGAR",
+      "endpointPath": "/INTEGRACAO/TITULO_PAGAR",
+      "registros": 66,
+      "valorTotal": "—",
+      "empresas": [
+        5555,
+        11495
+      ],
+      "apareceNoWebPostoUI": "Sim",
+      "integradoLogosSpace": "Sim — /v1/financial/accounts-payable",
+      "observacao": "Também em DESPESAS_REDE",
+      "exemplos": [
+        "VEEM JULIA 06/2026",
+        "ALELO 8  FUNC 06/2026"
+      ]
+    },
+    {
+      "tipoFinanceiro": "Compra combustível / TRR",
+      "endpointOrigem": "TITULO_PAGAR",
+      "endpointPath": "/INTEGRACAO/TITULO_PAGAR",
+      "registros": 26,
+      "valorTotal": "—",
+      "empresas": [
+        5555,
+        11495
+      ],
+      "apareceNoWebPostoUI": "Sim",
+      "integradoLogosSpace": "Sim — /v1/financial/accounts-payable",
+      "observacao": "Também em DESPESAS_REDE",
+      "exemplos": [
+        "Ref Nf:002887328 - VIBRA ENERGIA S.A",
+        "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA"
+      ]
+    },
+    {
+      "tipoFinanceiro": "Energia / utilities",
+      "endpointOrigem": "TITULO_PAGAR",
+      "endpointPath": "/INTEGRACAO/TITULO_PAGAR",
+      "registros": 18,
+      "valorTotal": "—",
+      "empresas": [
+        5555,
+        11495
+      ],
+      "apareceNoWebPostoUI": "Sim",
+      "integradoLogosSpace": "Sim — /v1/financial/accounts-payable",
+      "observacao": "Também em DESPESAS_REDE",
+      "exemplos": [
+        "Ref Nf:002887328 - VIBRA ENERGIA S.A",
+        "Ref Nf:002887626 - VIBRA ENERGIA S.A"
+      ]
+    },
+    {
+      "tipoFinanceiro": "Tarifa bancária",
+      "endpointOrigem": "TITULO_PAGAR",
+      "endpointPath": "/INTEGRACAO/TITULO_PAGAR",
+      "registros": 11,
+      "valorTotal": "—",
+      "empresas": [
+        5555,
+        11495
+      ],
+      "apareceNoWebPostoUI": "Sim",
+      "integradoLogosSpace": "Sim — /v1/financial/accounts-payable",
+      "observacao": "Também em DESPESAS_REDE",
+      "exemplos": [
+        "Ref Nf:000211180 - COMERCIAL BEZERRA  FILIAL 01",
+        "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA"
+      ]
+    },
+    {
+      "tipoFinanceiro": "Despesa operacional genérica",
+      "endpointOrigem": "TITULO_PAGAR",
+      "endpointPath": "/INTEGRACAO/TITULO_PAGAR",
+      "registros": 7,
+      "valorTotal": "—",
+      "empresas": [
+        5555,
+        11495
+      ],
+      "apareceNoWebPostoUI": "Sim",
+      "integradoLogosSpace": "Sim — /v1/financial/accounts-payable",
+      "observacao": "Também em DESPESAS_REDE",
+      "exemplos": [
+        "Ref Nf:002887328 - VIBRA ENERGIA S.A",
+        "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA"
+      ]
+    },
+    {
+      "tipoFinanceiro": "(endpoint TITULO_PAGAR_REDE)",
+      "endpointOrigem": "TITULO_PAGAR_REDE",
+      "endpointPath": "/INTEGRACAO/TITULO_PAGAR_REDE",
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresas": [],
+      "apareceNoWebPostoUI": "Não comprovado",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 401 — "
+    },
+    {
+      "tipoFinanceiro": "(endpoint CONSULTAR_TITULO_PAGAR_REDE)",
+      "endpointOrigem": "CONSULTAR_TITULO_PAGAR_REDE",
+      "endpointPath": "/INTEGRACAO/CONSULTAR_TITULO_PAGAR_REDE",
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresas": [],
+      "apareceNoWebPostoUI": "Sem dados no período",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 200 — sem registros"
+    },
+    {
+      "tipoFinanceiro": "Despesa operacional genérica",
+      "endpointOrigem": "TITULO_RECEBER",
+      "endpointPath": "/INTEGRACAO/TITULO_RECEBER",
+      "registros": 7,
+      "valorTotal": "—",
+      "empresas": [
+        11495
+      ],
+      "apareceNoWebPostoUI": "Sim",
+      "integradoLogosSpace": "Não (stub accounts-receivable vazio)",
+      "observacao": "Também em DESPESAS_REDE",
+      "exemplos": [
+        "Nota",
+        "Nota"
+      ]
+    },
+    {
+      "tipoFinanceiro": "Tarifa bancária",
+      "endpointOrigem": "TITULO_RECEBER",
+      "endpointPath": "/INTEGRACAO/TITULO_RECEBER",
+      "registros": 4,
+      "valorTotal": "—",
+      "empresas": [
+        11495
+      ],
+      "apareceNoWebPostoUI": "Sim",
+      "integradoLogosSpace": "Não (stub accounts-receivable vazio)",
+      "observacao": "Também em DESPESAS_REDE",
+      "exemplos": [
+        "Nota",
+        "Nota"
+      ]
+    },
+    {
+      "tipoFinanceiro": "(endpoint TITULO_RECEBER_REDE)",
+      "endpointOrigem": "TITULO_RECEBER_REDE",
+      "endpointPath": "/INTEGRACAO/TITULO_RECEBER_REDE",
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresas": [],
+      "apareceNoWebPostoUI": "Não comprovado",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 401 — "
+    },
+    {
+      "tipoFinanceiro": "(endpoint DUPLICATA_REDE)",
+      "endpointOrigem": "DUPLICATA_REDE",
+      "endpointPath": "/INTEGRACAO/DUPLICATA_REDE",
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresas": [],
+      "apareceNoWebPostoUI": "Não comprovado",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 401 — "
+    },
+    {
+      "tipoFinanceiro": "(endpoint LANCAMENTO_CONTABIL)",
+      "endpointOrigem": "LANCAMENTO_CONTABIL",
+      "endpointPath": "/INTEGRACAO/LANCAMENTO_CONTABIL",
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresas": [],
+      "apareceNoWebPostoUI": "Sem dados no período",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 200 — sem registros"
+    },
+    {
+      "tipoFinanceiro": "(endpoint LANCAMENTO_CONTABIL_ITEM)",
+      "endpointOrigem": "LANCAMENTO_CONTABIL_ITEM",
+      "endpointPath": "/INTEGRACAO/LANCAMENTO_CONTABIL_ITEM",
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresas": [],
+      "apareceNoWebPostoUI": "Não comprovado",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 401 — "
+    },
+    {
+      "tipoFinanceiro": "Tarifa bancária",
+      "endpointOrigem": "FINANCEIRO_EXCLUSAO",
+      "endpointPath": "/INTEGRACAO/FINANCEIRO_EXCLUSAO",
+      "registros": 10203,
+      "valorTotal": "—",
+      "empresas": [
+        5555,
+        11495
+      ],
+      "apareceNoWebPostoUI": "Sim",
+      "integradoLogosSpace": "Não",
+      "observacao": "Também em DESPESAS_REDE",
+      "exemplos": [
+        "MOVIMENTO_CONTA_CREDITO",
+        "MOVIMENTO_CONTA_CREDITO"
+      ]
+    },
+    {
+      "tipoFinanceiro": "Exclusão financeira / débito caixa",
+      "endpointOrigem": "FINANCEIRO_EXCLUSAO",
+      "endpointPath": "/INTEGRACAO/FINANCEIRO_EXCLUSAO",
+      "registros": 10203,
+      "valorTotal": "—",
+      "empresas": [
+        5555,
+        11495
+      ],
+      "apareceNoWebPostoUI": "Parcial — endpoint separado",
+      "integradoLogosSpace": "Não",
+      "observacao": "NÃO consolidado em DESPESAS_REDE — fonte paralela",
+      "exemplos": [
+        "MOVIMENTO_CONTA_CREDITO",
+        "MOVIMENTO_CONTA_CREDITO"
+      ]
+    },
+    {
+      "tipoFinanceiro": "Despesa operacional genérica",
+      "endpointOrigem": "FINANCEIRO_EXCLUSAO",
+      "endpointPath": "/INTEGRACAO/FINANCEIRO_EXCLUSAO",
+      "registros": 2976,
+      "valorTotal": "—",
+      "empresas": [
+        5555,
+        11495
+      ],
+      "apareceNoWebPostoUI": "Sim",
+      "integradoLogosSpace": "Não",
+      "observacao": "Também em DESPESAS_REDE",
+      "exemplos": [
+        "MOVIMENTO_CONTA_DEBITO",
+        "MOVIMENTO_CONTA_DEBITO"
+      ]
+    },
+    {
+      "tipoFinanceiro": "Tarifa bancária",
+      "endpointOrigem": "TRANSFERENCIA_BANCARIA",
+      "endpointPath": "/INTEGRACAO/TRANSFERENCIA_BANCARIA",
+      "registros": 400,
+      "valorTotal": "—",
+      "empresas": [
+        11495
+      ],
+      "apareceNoWebPostoUI": "Sim",
+      "integradoLogosSpace": "Não",
+      "observacao": "Também em DESPESAS_REDE",
+      "exemplos": []
+    },
+    {
+      "tipoFinanceiro": "Transferência bancária",
+      "endpointOrigem": "TRANSFERENCIA_BANCARIA",
+      "endpointPath": "/INTEGRACAO/TRANSFERENCIA_BANCARIA",
+      "registros": 400,
+      "valorTotal": "—",
+      "empresas": [
+        11495
+      ],
+      "apareceNoWebPostoUI": "Parcial — endpoint separado",
+      "integradoLogosSpace": "Não",
+      "observacao": "NÃO consolidado em DESPESAS_REDE — fonte paralela",
+      "exemplos": []
+    },
+    {
+      "tipoFinanceiro": "Despesa operacional genérica",
+      "endpointOrigem": "CAIXA",
+      "endpointPath": "/INTEGRACAO/CAIXA",
+      "registros": 21,
+      "valorTotal": "—",
+      "empresas": [
+        5555,
+        11495
+      ],
+      "apareceNoWebPostoUI": "Sim",
+      "integradoLogosSpace": "Parcial — KPIs executive (soma sangria se campos existirem)",
+      "observacao": "Também em DESPESAS_REDE",
+      "exemplos": []
+    },
+    {
+      "tipoFinanceiro": "Suprimento / fundo caixa",
+      "endpointOrigem": "CAIXA_APRESENTADO",
+      "endpointPath": "/INTEGRACAO/CAIXA_APRESENTADO",
+      "registros": 21,
+      "valorTotal": "—",
+      "empresas": [
+        5555,
+        11495
+      ],
+      "apareceNoWebPostoUI": "Parcial — endpoint separado",
+      "integradoLogosSpace": "Não",
+      "observacao": "NÃO consolidado em DESPESAS_REDE — fonte paralela",
+      "exemplos": []
+    },
+    {
+      "tipoFinanceiro": "Troco",
+      "endpointOrigem": "CAIXA_APRESENTADO",
+      "endpointPath": "/INTEGRACAO/CAIXA_APRESENTADO",
+      "registros": 21,
+      "valorTotal": "—",
+      "empresas": [
+        5555,
+        11495
+      ],
+      "apareceNoWebPostoUI": "Parcial — endpoint separado",
+      "integradoLogosSpace": "Não",
+      "observacao": "NÃO consolidado em DESPESAS_REDE — fonte paralela",
+      "exemplos": []
+    },
+    {
+      "tipoFinanceiro": "Tarifa bancária",
+      "endpointOrigem": "CAIXA_APRESENTADO",
+      "endpointPath": "/INTEGRACAO/CAIXA_APRESENTADO",
+      "registros": 21,
+      "valorTotal": "—",
+      "empresas": [
+        5555,
+        11495
+      ],
+      "apareceNoWebPostoUI": "Sim",
+      "integradoLogosSpace": "Não",
+      "observacao": "Também em DESPESAS_REDE",
+      "exemplos": []
+    },
+    {
+      "tipoFinanceiro": "Título a receber",
+      "endpointOrigem": "CAIXA_APRESENTADO",
+      "endpointPath": "/INTEGRACAO/CAIXA_APRESENTADO",
+      "registros": 21,
+      "valorTotal": "—",
+      "empresas": [
+        5555,
+        11495
+      ],
+      "apareceNoWebPostoUI": "Parcial — endpoint separado",
+      "integradoLogosSpace": "Não",
+      "observacao": "NÃO consolidado em DESPESAS_REDE — fonte paralela",
+      "exemplos": []
+    },
+    {
+      "tipoFinanceiro": "Despesa operacional genérica",
+      "endpointOrigem": "CAIXA_APRESENTADO",
+      "endpointPath": "/INTEGRACAO/CAIXA_APRESENTADO",
+      "registros": 21,
+      "valorTotal": "—",
+      "empresas": [
+        5555,
+        11495
+      ],
+      "apareceNoWebPostoUI": "Sim",
+      "integradoLogosSpace": "Não",
+      "observacao": "Também em DESPESAS_REDE",
+      "exemplos": []
+    },
+    {
+      "tipoFinanceiro": "(endpoint CONSULTAR_CAIXA_APRESENTADO_REDE)",
+      "endpointOrigem": "CONSULTAR_CAIXA_APRESENTADO_REDE",
+      "endpointPath": "/INTEGRACAO/CONSULTAR_CAIXA_APRESENTADO_REDE",
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresas": [],
+      "apareceNoWebPostoUI": "Sem dados no período",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 200 — sem registros"
+    },
+    {
+      "tipoFinanceiro": "(endpoint FECHAMENTO_CAIXA)",
+      "endpointOrigem": "FECHAMENTO_CAIXA",
+      "endpointPath": "/INTEGRACAO/FECHAMENTO_CAIXA",
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresas": [],
+      "apareceNoWebPostoUI": "Não comprovado",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 401 — "
+    },
+    {
+      "tipoFinanceiro": "(endpoint COMPRA_REDE)",
+      "endpointOrigem": "COMPRA_REDE",
+      "endpointPath": "/INTEGRACAO/COMPRA_REDE",
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresas": [],
+      "apareceNoWebPostoUI": "Não comprovado",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 401 — "
+    },
+    {
+      "tipoFinanceiro": "(endpoint NOTA_ENTRADA)",
+      "endpointOrigem": "NOTA_ENTRADA",
+      "endpointPath": "/INTEGRACAO/NOTA_ENTRADA",
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresas": [],
+      "apareceNoWebPostoUI": "Não comprovado",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 401 — "
+    },
+    {
+      "tipoFinanceiro": "(endpoint NOTA_ENTRADA_REDE)",
+      "endpointOrigem": "NOTA_ENTRADA_REDE",
+      "endpointPath": "/INTEGRACAO/NOTA_ENTRADA_REDE",
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresas": [],
+      "apareceNoWebPostoUI": "Não comprovado",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 401 — "
+    },
+    {
+      "tipoFinanceiro": "(endpoint COMPRA_ITEM_REDE)",
+      "endpointOrigem": "COMPRA_ITEM_REDE",
+      "endpointPath": "/INTEGRACAO/COMPRA_ITEM_REDE",
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresas": [],
+      "apareceNoWebPostoUI": "Não comprovado",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 401 — "
+    },
+    {
+      "tipoFinanceiro": "(endpoint PEDIDO_COMPRAS)",
+      "endpointOrigem": "PEDIDO_COMPRAS",
+      "endpointPath": "/INTEGRACAO/PEDIDO_COMPRAS",
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresas": [],
+      "apareceNoWebPostoUI": "Não comprovado",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 401 — "
+    },
+    {
+      "tipoFinanceiro": "(endpoint PEDIDO_COMBUSTIVEL)",
+      "endpointOrigem": "PEDIDO_COMBUSTIVEL",
+      "endpointPath": "/INTEGRACAO/PEDIDO_COMBUSTIVEL/PEDIDO",
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresas": [],
+      "apareceNoWebPostoUI": "Não comprovado",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 500 — Request method 'GET' is not supported"
+    },
+    {
+      "tipoFinanceiro": "(endpoint PEDIDO_TRR)",
+      "endpointOrigem": "PEDIDO_TRR",
+      "endpointPath": "/INTEGRACAO/PEDIDO_TRR",
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresas": [],
+      "apareceNoWebPostoUI": "Sem dados no período",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 200 — sem registros"
+    },
+    {
+      "tipoFinanceiro": "(endpoint CARTAO_COMPRA)",
+      "endpointOrigem": "CARTAO_COMPRA",
+      "endpointPath": "/INTEGRACAO/CARTAO_COMPRA",
+      "registros": 2,
+      "valorTotal": "0.00",
+      "empresas": [
+        5555
+      ],
+      "apareceNoWebPostoUI": "Não comprovado",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 400 — No argument for named parameter ':ULTIMO_CODIGO'"
+    },
+    {
+      "tipoFinanceiro": "(endpoint DESPESA_FUNCIONARIO)",
+      "endpointOrigem": "DESPESA_FUNCIONARIO",
+      "endpointPath": "/INTEGRACAO/DESPESA_FUNCIONARIO",
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresas": [],
+      "apareceNoWebPostoUI": "Não comprovado",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 401 — "
+    },
+    {
+      "tipoFinanceiro": "(endpoint VALE_FUNCIONARIO_REDE)",
+      "endpointOrigem": "VALE_FUNCIONARIO_REDE",
+      "endpointPath": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+      "registros": 0,
+      "valorTotal": "0.00",
+      "empresas": [],
+      "apareceNoWebPostoUI": "Não comprovado",
+      "integradoLogosSpace": "Não",
+      "observacao": "HTTP 401 — "
+    }
+  ]
+}

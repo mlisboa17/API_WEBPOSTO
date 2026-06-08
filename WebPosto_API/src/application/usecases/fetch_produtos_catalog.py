@@ -15,6 +15,65 @@ from src.domain.catalog.product_schema import (
 SituacaoProduto = Literal["todos", "ativos", "inativos"]
 
 
+def is_active_fuel_product(row: dict[str, Any]) -> bool:
+    if not isinstance(row, dict):
+        return False
+
+    # Check if active / status / situacao
+    def _is_active(v: Any) -> bool:
+        if v is None:
+            return True
+        if isinstance(v, bool):
+            return v
+        s = str(v).strip().lower()
+        if s in ("false", "0", "inativo", "inativos", "n", "nao", "não", "inactive", "i"):
+            return False
+        return True
+
+    active = True
+    for key in ("ativo", "status", "situacao", "situação", "produtoAtivo"):
+        if key in row and row[key] is not None:
+            if not _is_active(row[key]):
+                active = False
+                break
+    if not active:
+        return False
+
+    import unicodedata
+    def _normalize(val: Any) -> str:
+        if val is None:
+            return ""
+        s = str(val).strip().casefold()
+        s = "".join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
+        return s
+
+    fuel_keywords = {"combustivel", "combustiveis", "fuel"}
+    for key in (
+        "tipoProduto", "tipoProdutoCodigo", "grupoProduto", "grupoProdutoCodigo",
+        "produtoTipo", "produtoGrupo", "descricaoTipo", "descricaoGrupo", "tipoCombustivel"
+    ):
+        val = _normalize(row.get(key))
+        if val in fuel_keywords or any(kw in val for kw in fuel_keywords):
+            return True
+
+    if row.get("combustivel") is True:
+        return True
+
+    tp = str(row.get("tipoProduto") or row.get("produtoTipo") or "").strip().upper()
+    if tp == "C":
+        return True
+
+    desc = _normalize(row.get("nome") or row.get("descricao") or row.get("produto") or "")
+    for kw in fuel_keywords:
+        if kw in desc:
+            return True
+    for kw in {"gasolina", "etanol", "diesel", "gnv", "comb."}:
+        if kw in desc:
+            return True
+
+    return False
+
+
 def _primeiro(row: dict, *chaves: str, default=None):
     for k in chaves:
         if row.get(k) is not None and row.get(k) != "":

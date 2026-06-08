@@ -1,0 +1,643 @@
+{
+  "filiais": [
+    {
+      "nomeFantasia": "POSTO VIP",
+      "razaoSocial": "RIO DOCE COMERCIO E SERVICOS LTDA",
+      "cnpj": "03.008.754/0001-86",
+      "codWeb": 11495,
+      "empresaCodigo": 11495,
+      "status": "CONFIRMADA",
+      "origem": "TABELA_CORPORATIVA",
+      "dataEncerramento": null,
+      "existeNaApi": true,
+      "codigoApiDescoberto": 11495,
+      "possuiDespesas": true,
+      "possuiVendas": true,
+      "possuiEstoque": true,
+      "possuiContasPagar": true,
+      "possuiContasReceber": true,
+      "possuiMovimentacaoCaixa": true,
+      "apareceEmEndpointsRede": true,
+      "endpoints": {
+        "venda": {
+          "httpStatus": 200,
+          "totalRegistros": 200
+        },
+        "venda_item": {
+          "httpStatus": 200,
+          "totalRegistros": 200
+        },
+        "venda_forma_pagamento": {
+          "httpStatus": 200,
+          "totalRegistros": 200
+        },
+        "titulo_pagar": {
+          "httpStatus": 200,
+          "totalRegistros": 47
+        },
+        "titulo_receber": {
+          "httpStatus": 200,
+          "totalRegistros": 11
+        },
+        "produto_empresa": {
+          "httpStatus": 200,
+          "totalRegistros": 200
+        },
+        "produto_estoque": {
+          "httpStatus": 200,
+          "totalRegistros": 4960
+        }
+      }
+    },
+    {
+      "nomeFantasia": "AP CASA CAIADA",
+      "razaoSocial": "AUTO POSTO CASA CAIADA LTDA",
+      "cnpj": "04.284.939/0001-86",
+      "codWeb": 5555,
+      "empresaCodigo": 5555,
+      "status": "CONFIRMADA",
+      "origem": "TABELA_CORPORATIVA",
+      "dataEncerramento": null,
+      "existeNaApi": true,
+      "codigoApiDescoberto": 5555,
+      "possuiDespesas": true,
+      "possuiVendas": true,
+      "possuiEstoque": true,
+      "possuiContasPagar": true,
+      "possuiContasReceber": false,
+      "possuiMovimentacaoCaixa": true,
+      "apareceEmEndpointsRede": true,
+      "endpoints": {
+        "venda": {
+          "httpStatus": 200,
+          "totalRegistros": 200
+        },
+        "venda_item": {
+          "httpStatus": 200,
+          "totalRegistros": 200
+        },
+        "venda_forma_pagamento": {
+          "httpStatus": 200,
+          "totalRegistros": 200
+        },
+        "titulo_pagar": {
+          "httpStatus": 200,
+          "totalRegistros": 12
+        },
+        "titulo_receber": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_empresa": {
+          "httpStatus": 200,
+          "totalRegistros": 200
+        },
+        "produto_estoque": {
+          "httpStatus": 200,
+          "totalRegistros": 1734
+        }
+      }
+    },
+    {
+      "nomeFantasia": "POSTO BR SHOPPING",
+      "razaoSocial": "DISTRIBUIDORA RS DERIVADOS DE PETROLEO LTDA",
+      "cnpj": "07.018.760/0001-75",
+      "codWeb": 5256,
+      "empresaCodigo": 5256,
+      "status": "CONFIRMADA",
+      "origem": "TABELA_CORPORATIVA",
+      "dataEncerramento": null,
+      "existeNaApi": false,
+      "codigoApiDescoberto": null,
+      "possuiDespesas": true,
+      "possuiVendas": false,
+      "possuiEstoque": false,
+      "possuiContasPagar": false,
+      "possuiContasReceber": false,
+      "possuiMovimentacaoCaixa": false,
+      "apareceEmEndpointsRede": true,
+      "endpoints": {
+        "venda": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_item": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_forma_pagamento": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_pagar": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_receber": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_empresa": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_estoque": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        }
+      }
+    },
+    {
+      "nomeFantasia": "POSTO JANGA",
+      "razaoSocial": "POSTO CIDADE PATRIMONIO LTDA",
+      "cnpj": "05.428.059/0002-80",
+      "codWeb": 5333,
+      "empresaCodigo": 5333,
+      "status": "CONFIRMADA",
+      "origem": "TABELA_CORPORATIVA",
+      "dataEncerramento": null,
+      "existeNaApi": false,
+      "codigoApiDescoberto": null,
+      "possuiDespesas": true,
+      "possuiVendas": false,
+      "possuiEstoque": false,
+      "possuiContasPagar": false,
+      "possuiContasReceber": false,
+      "possuiMovimentacaoCaixa": false,
+      "apareceEmEndpointsRede": true,
+      "endpoints": {
+        "venda": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_item": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_forma_pagamento": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_pagar": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_receber": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_empresa": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_estoque": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        }
+      }
+    },
+    {
+      "nomeFantasia": "POSTO CIDADE PATRIMONIO",
+      "razaoSocial": "POSTO CIDADE PATRIMONIO LTDA",
+      "cnpj": "05.428.059/0001-07",
+      "codWeb": 5556,
+      "empresaCodigo": 5556,
+      "status": "CONFIRMADA",
+      "origem": "TABELA_CORPORATIVA",
+      "dataEncerramento": null,
+      "existeNaApi": false,
+      "codigoApiDescoberto": null,
+      "possuiDespesas": true,
+      "possuiVendas": false,
+      "possuiEstoque": false,
+      "possuiContasPagar": false,
+      "possuiContasReceber": false,
+      "possuiMovimentacaoCaixa": false,
+      "apareceEmEndpointsRede": true,
+      "endpoints": {
+        "venda": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_item": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_forma_pagamento": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_pagar": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_receber": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_empresa": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_estoque": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        }
+      }
+    },
+    {
+      "nomeFantasia": "POSTO ENSEADA DO NORTE",
+      "razaoSocial": "POSTO ENSEADA DO NORTE LTDA",
+      "cnpj": "00.338.804/0001-03",
+      "codWeb": 5557,
+      "empresaCodigo": 5557,
+      "status": "CONFIRMADA",
+      "origem": "TABELA_CORPORATIVA",
+      "dataEncerramento": null,
+      "existeNaApi": false,
+      "codigoApiDescoberto": null,
+      "possuiDespesas": true,
+      "possuiVendas": false,
+      "possuiEstoque": false,
+      "possuiContasPagar": false,
+      "possuiContasReceber": false,
+      "possuiMovimentacaoCaixa": false,
+      "apareceEmEndpointsRede": true,
+      "endpoints": {
+        "venda": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_item": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_forma_pagamento": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_pagar": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_receber": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_empresa": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_estoque": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        }
+      }
+    },
+    {
+      "nomeFantasia": "POSTO REAL",
+      "razaoSocial": "REAL RECIFE LTDA",
+      "cnpj": "24.156.978/0001-05",
+      "codWeb": 5558,
+      "empresaCodigo": 5558,
+      "status": "INATIVA",
+      "origem": "TABELA_CORPORATIVA",
+      "dataEncerramento": "2026-05-20",
+      "existeNaApi": false,
+      "codigoApiDescoberto": null,
+      "possuiDespesas": false,
+      "possuiVendas": false,
+      "possuiEstoque": false,
+      "possuiContasPagar": false,
+      "possuiContasReceber": false,
+      "possuiMovimentacaoCaixa": false,
+      "apareceEmEndpointsRede": false,
+      "endpoints": {
+        "venda": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_item": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_forma_pagamento": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_pagar": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_receber": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_empresa": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_estoque": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        }
+      }
+    },
+    {
+      "nomeFantasia": "POSTO RJ",
+      "razaoSocial": "RJ COMBUSTIVEIS E LUBRIFICANTES",
+      "cnpj": "08.726.064/0001-86",
+      "codWeb": 5559,
+      "empresaCodigo": 5559,
+      "status": "CONFIRMADA",
+      "origem": "TABELA_CORPORATIVA",
+      "dataEncerramento": null,
+      "existeNaApi": false,
+      "codigoApiDescoberto": null,
+      "possuiDespesas": true,
+      "possuiVendas": false,
+      "possuiEstoque": false,
+      "possuiContasPagar": false,
+      "possuiContasReceber": false,
+      "possuiMovimentacaoCaixa": false,
+      "apareceEmEndpointsRede": true,
+      "endpoints": {
+        "venda": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_item": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_forma_pagamento": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_pagar": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_receber": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_empresa": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_estoque": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        }
+      }
+    },
+    {
+      "nomeFantasia": "POSTO SERTÃ",
+      "razaoSocial": "AUTO POSTO IGARASSU LTDA",
+      "cnpj": "04.274.378/0001-34",
+      "codWeb": 5560,
+      "empresaCodigo": 5560,
+      "status": "CONFIRMADA",
+      "origem": "TABELA_CORPORATIVA",
+      "dataEncerramento": null,
+      "existeNaApi": false,
+      "codigoApiDescoberto": null,
+      "possuiDespesas": true,
+      "possuiVendas": false,
+      "possuiEstoque": false,
+      "possuiContasPagar": false,
+      "possuiContasReceber": false,
+      "possuiMovimentacaoCaixa": false,
+      "apareceEmEndpointsRede": true,
+      "endpoints": {
+        "venda": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_item": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_forma_pagamento": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_pagar": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_receber": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_empresa": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_estoque": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        }
+      }
+    },
+    {
+      "nomeFantasia": "POSTO DOZE",
+      "razaoSocial": "POSTO DOZE COMERCIO DE COMBUSTIVEIS E DERIVADOS DE PETROLEO",
+      "cnpj": "52.308.604/0001-01",
+      "codWeb": 46433,
+      "empresaCodigo": 46433,
+      "status": "CONFIRMADA",
+      "origem": "TABELA_CORPORATIVA",
+      "dataEncerramento": null,
+      "existeNaApi": false,
+      "codigoApiDescoberto": null,
+      "possuiDespesas": true,
+      "possuiVendas": false,
+      "possuiEstoque": false,
+      "possuiContasPagar": false,
+      "possuiContasReceber": false,
+      "possuiMovimentacaoCaixa": false,
+      "apareceEmEndpointsRede": true,
+      "endpoints": {
+        "venda": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_item": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_forma_pagamento": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_pagar": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_receber": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_empresa": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_estoque": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        }
+      }
+    },
+    {
+      "nomeFantasia": "POSTO DOZE FILIAL II",
+      "razaoSocial": "POSTO DOZE COMERCIO DE COMBUSTIVEIS E DERIVADOS DE PETROLEO",
+      "cnpj": "52.308.604/0002-84",
+      "codWeb": 74014,
+      "empresaCodigo": 74014,
+      "status": "CONFIRMADA",
+      "origem": "TABELA_CORPORATIVA",
+      "dataEncerramento": null,
+      "existeNaApi": false,
+      "codigoApiDescoberto": null,
+      "possuiDespesas": true,
+      "possuiVendas": false,
+      "possuiEstoque": false,
+      "possuiContasPagar": false,
+      "possuiContasReceber": false,
+      "possuiMovimentacaoCaixa": false,
+      "apareceEmEndpointsRede": true,
+      "endpoints": {
+        "venda": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_item": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "venda_forma_pagamento": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_pagar": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "titulo_receber": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_empresa": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        },
+        "produto_estoque": {
+          "httpStatus": 200,
+          "totalRegistros": 0
+        }
+      }
+    },
+    {
+      "nomeFantasia": "AUTO POSTO GLOBO",
+      "razaoSocial": "AUTO POSTO GLOBO LTDA",
+      "cnpj": "41.043.647/0001-88",
+      "codWeb": null,
+      "empresaCodigo": null,
+      "status": "PENDENTE_IDENTIFICACAO",
+      "origem": "TABELA_CORPORATIVA",
+      "dataEncerramento": null,
+      "existeNaApi": false,
+      "codigoApiDescoberto": null,
+      "possuiDespesas": false,
+      "possuiVendas": false,
+      "possuiEstoque": false,
+      "possuiContasPagar": false,
+      "possuiContasReceber": false,
+      "possuiMovimentacaoCaixa": false,
+      "apareceEmEndpointsRede": false,
+      "endpoints": {
+        "venda": {
+          "httpStatus": null,
+          "totalRegistros": 0
+        },
+        "venda_item": {
+          "httpStatus": null,
+          "totalRegistros": 0
+        },
+        "venda_forma_pagamento": {
+          "httpStatus": null,
+          "totalRegistros": 0
+        },
+        "titulo_pagar": {
+          "httpStatus": null,
+          "totalRegistros": 0
+        },
+        "titulo_receber": {
+          "httpStatus": null,
+          "totalRegistros": 0
+        },
+        "produto_empresa": {
+          "httpStatus": null,
+          "totalRegistros": 0
+        },
+        "produto_estoque": {
+          "httpStatus": null,
+          "totalRegistros": 0
+        }
+      }
+    }
+  ],
+  "networkSnapshot": {
+    "despesas_rede": {
+      "path": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+      "httpStatus": 200,
+      "rows": 419,
+      "empresaCodigos": [
+        5256,
+        5333,
+        5555,
+        5556,
+        5557,
+        5559,
+        5560,
+        11495,
+        46433,
+        74014
+      ]
+    },
+    "caixa_rede": {
+      "path": "/INTEGRACAO/CONSULTAR_CAIXA_REDE",
+      "httpStatus": 200,
+      "rows": 21,
+      "empresaCodigos": [
+        5555,
+        11495
+      ]
+    },
+    "caixa_apresentado_rede": {
+      "path": "/INTEGRACAO/CONSULTAR_CAIXA_APRESENTADO_REDE",
+      "httpStatus": 200,
+      "rows": 0,
+      "empresaCodigos": []
+    }
+  },
+  "empresaCodigosRede": [
+    5256,
+    5333,
+    5555,
+    5556,
+    5557,
+    5559,
+    5560,
+    11495,
+    46433,
+    74014
+  ],
+  "globoInvestigacao": {
+    "cnpj": "41.043.647/0001-88",
+    "candidatosEmpresas": [],
+    "codigoDescoberto": null
+  }
+}

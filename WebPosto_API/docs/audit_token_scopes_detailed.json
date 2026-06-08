@@ -1,0 +1,802 @@
+[
+  {
+    "endpoint": "DESPESAS_REDE",
+    "empresaCodigo": 5256,
+    "httpStatus": 200,
+    "registros": 3,
+    "possuiDados": true,
+    "observacao": "Retornou 54 registros no total, sendo 3 específicos da empresa 5256."
+  },
+  {
+    "endpoint": "VENDA_ITEM",
+    "empresaCodigo": 5256,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "VENDA_ITEM_REDE",
+    "empresaCodigo": 5256,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "VENDA_REDE",
+    "empresaCodigo": 5256,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "CAIXA_REDE",
+    "empresaCodigo": 5256,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "CAIXA_APRESENTADO_REDE",
+    "empresaCodigo": 5256,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_ESTOQUE",
+    "empresaCodigo": 5256,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_EMPRESA",
+    "empresaCodigo": 5256,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "ABASTECIMENTO",
+    "empresaCodigo": 5256,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Retornou 200 registros no total, mas nenhum pertence à empresa 5256. Empresas no retorno: [5555, 11495]."
+  },
+  {
+    "endpoint": "LMC_REDE",
+    "empresaCodigo": 5256,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "DESPESAS_REDE",
+    "empresaCodigo": 5333,
+    "httpStatus": 200,
+    "registros": 6,
+    "possuiDados": true,
+    "observacao": "Retornou 54 registros no total, sendo 6 específicos da empresa 5333."
+  },
+  {
+    "endpoint": "VENDA_ITEM",
+    "empresaCodigo": 5333,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "VENDA_ITEM_REDE",
+    "empresaCodigo": 5333,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "VENDA_REDE",
+    "empresaCodigo": 5333,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "CAIXA_REDE",
+    "empresaCodigo": 5333,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "CAIXA_APRESENTADO_REDE",
+    "empresaCodigo": 5333,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_ESTOQUE",
+    "empresaCodigo": 5333,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_EMPRESA",
+    "empresaCodigo": 5333,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "ABASTECIMENTO",
+    "empresaCodigo": 5333,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Retornou 200 registros no total, mas nenhum pertence à empresa 5333. Empresas no retorno: [5555, 11495]."
+  },
+  {
+    "endpoint": "LMC_REDE",
+    "empresaCodigo": 5333,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "DESPESAS_REDE",
+    "empresaCodigo": 5555,
+    "httpStatus": 200,
+    "registros": 2,
+    "possuiDados": true,
+    "observacao": "Retornou 54 registros no total, sendo 2 específicos da empresa 5555."
+  },
+  {
+    "endpoint": "VENDA_ITEM",
+    "empresaCodigo": 5555,
+    "httpStatus": 200,
+    "registros": 200,
+    "possuiDados": true,
+    "observacao": "Retornou 200 registros no total, sendo 200 específicos da empresa 5555."
+  },
+  {
+    "endpoint": "VENDA_ITEM_REDE",
+    "empresaCodigo": 5555,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "VENDA_REDE",
+    "empresaCodigo": 5555,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "CAIXA_REDE",
+    "empresaCodigo": 5555,
+    "httpStatus": 200,
+    "registros": 1,
+    "possuiDados": true,
+    "observacao": "Retornou 1 registros no total, sendo 1 específicos da empresa 5555."
+  },
+  {
+    "endpoint": "CAIXA_APRESENTADO_REDE",
+    "empresaCodigo": 5555,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_ESTOQUE",
+    "empresaCodigo": 5555,
+    "httpStatus": 200,
+    "registros": 1734,
+    "possuiDados": true,
+    "observacao": "Retornou 1734 registros no total, sendo 1734 específicos da empresa 5555."
+  },
+  {
+    "endpoint": "PRODUTO_EMPRESA",
+    "empresaCodigo": 5555,
+    "httpStatus": 200,
+    "registros": 200,
+    "possuiDados": true,
+    "observacao": "Retornou 200 registros no total, sendo 200 específicos da empresa 5555."
+  },
+  {
+    "endpoint": "ABASTECIMENTO",
+    "empresaCodigo": 5555,
+    "httpStatus": 200,
+    "registros": 46,
+    "possuiDados": true,
+    "observacao": "Retornou 200 registros no total, sendo 46 específicos da empresa 5555."
+  },
+  {
+    "endpoint": "LMC_REDE",
+    "empresaCodigo": 5555,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "DESPESAS_REDE",
+    "empresaCodigo": 5556,
+    "httpStatus": 200,
+    "registros": 6,
+    "possuiDados": true,
+    "observacao": "Retornou 54 registros no total, sendo 6 específicos da empresa 5556."
+  },
+  {
+    "endpoint": "VENDA_ITEM",
+    "empresaCodigo": 5556,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "VENDA_ITEM_REDE",
+    "empresaCodigo": 5556,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "VENDA_REDE",
+    "empresaCodigo": 5556,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "CAIXA_REDE",
+    "empresaCodigo": 5556,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "CAIXA_APRESENTADO_REDE",
+    "empresaCodigo": 5556,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_ESTOQUE",
+    "empresaCodigo": 5556,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_EMPRESA",
+    "empresaCodigo": 5556,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "ABASTECIMENTO",
+    "empresaCodigo": 5556,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Retornou 200 registros no total, mas nenhum pertence à empresa 5556. Empresas no retorno: [5555, 11495]."
+  },
+  {
+    "endpoint": "LMC_REDE",
+    "empresaCodigo": 5556,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "DESPESAS_REDE",
+    "empresaCodigo": 5557,
+    "httpStatus": 200,
+    "registros": 9,
+    "possuiDados": true,
+    "observacao": "Retornou 54 registros no total, sendo 9 específicos da empresa 5557."
+  },
+  {
+    "endpoint": "VENDA_ITEM",
+    "empresaCodigo": 5557,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "VENDA_ITEM_REDE",
+    "empresaCodigo": 5557,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "VENDA_REDE",
+    "empresaCodigo": 5557,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "CAIXA_REDE",
+    "empresaCodigo": 5557,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "CAIXA_APRESENTADO_REDE",
+    "empresaCodigo": 5557,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_ESTOQUE",
+    "empresaCodigo": 5557,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_EMPRESA",
+    "empresaCodigo": 5557,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "ABASTECIMENTO",
+    "empresaCodigo": 5557,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Retornou 200 registros no total, mas nenhum pertence à empresa 5557. Empresas no retorno: [5555, 11495]."
+  },
+  {
+    "endpoint": "LMC_REDE",
+    "empresaCodigo": 5557,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "DESPESAS_REDE",
+    "empresaCodigo": 5559,
+    "httpStatus": 200,
+    "registros": 2,
+    "possuiDados": true,
+    "observacao": "Retornou 54 registros no total, sendo 2 específicos da empresa 5559."
+  },
+  {
+    "endpoint": "VENDA_ITEM",
+    "empresaCodigo": 5559,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "VENDA_ITEM_REDE",
+    "empresaCodigo": 5559,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "VENDA_REDE",
+    "empresaCodigo": 5559,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "CAIXA_REDE",
+    "empresaCodigo": 5559,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "CAIXA_APRESENTADO_REDE",
+    "empresaCodigo": 5559,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_ESTOQUE",
+    "empresaCodigo": 5559,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_EMPRESA",
+    "empresaCodigo": 5559,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "ABASTECIMENTO",
+    "empresaCodigo": 5559,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Retornou 200 registros no total, mas nenhum pertence à empresa 5559. Empresas no retorno: [5555, 11495]."
+  },
+  {
+    "endpoint": "LMC_REDE",
+    "empresaCodigo": 5559,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "DESPESAS_REDE",
+    "empresaCodigo": 5560,
+    "httpStatus": 200,
+    "registros": 2,
+    "possuiDados": true,
+    "observacao": "Retornou 54 registros no total, sendo 2 específicos da empresa 5560."
+  },
+  {
+    "endpoint": "VENDA_ITEM",
+    "empresaCodigo": 5560,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "VENDA_ITEM_REDE",
+    "empresaCodigo": 5560,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "VENDA_REDE",
+    "empresaCodigo": 5560,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "CAIXA_REDE",
+    "empresaCodigo": 5560,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "CAIXA_APRESENTADO_REDE",
+    "empresaCodigo": 5560,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_ESTOQUE",
+    "empresaCodigo": 5560,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_EMPRESA",
+    "empresaCodigo": 5560,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "ABASTECIMENTO",
+    "empresaCodigo": 5560,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Retornou 200 registros no total, mas nenhum pertence à empresa 5560. Empresas no retorno: [5555, 11495]."
+  },
+  {
+    "endpoint": "LMC_REDE",
+    "empresaCodigo": 5560,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "DESPESAS_REDE",
+    "empresaCodigo": 11495,
+    "httpStatus": 200,
+    "registros": 6,
+    "possuiDados": true,
+    "observacao": "Retornou 54 registros no total, sendo 6 específicos da empresa 11495."
+  },
+  {
+    "endpoint": "VENDA_ITEM",
+    "empresaCodigo": 11495,
+    "httpStatus": 200,
+    "registros": 200,
+    "possuiDados": true,
+    "observacao": "Retornou 200 registros no total, sendo 200 específicos da empresa 11495."
+  },
+  {
+    "endpoint": "VENDA_ITEM_REDE",
+    "empresaCodigo": 11495,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "VENDA_REDE",
+    "empresaCodigo": 11495,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "CAIXA_REDE",
+    "empresaCodigo": 11495,
+    "httpStatus": 200,
+    "registros": 2,
+    "possuiDados": true,
+    "observacao": "Retornou 2 registros no total, sendo 2 específicos da empresa 11495."
+  },
+  {
+    "endpoint": "CAIXA_APRESENTADO_REDE",
+    "empresaCodigo": 11495,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_ESTOQUE",
+    "empresaCodigo": 11495,
+    "httpStatus": 200,
+    "registros": 4960,
+    "possuiDados": true,
+    "observacao": "Retornou 4960 registros no total, sendo 4960 específicos da empresa 11495."
+  },
+  {
+    "endpoint": "PRODUTO_EMPRESA",
+    "empresaCodigo": 11495,
+    "httpStatus": 200,
+    "registros": 200,
+    "possuiDados": true,
+    "observacao": "Retornou 200 registros no total, sendo 200 específicos da empresa 11495."
+  },
+  {
+    "endpoint": "ABASTECIMENTO",
+    "empresaCodigo": 11495,
+    "httpStatus": 200,
+    "registros": 154,
+    "possuiDados": true,
+    "observacao": "Retornou 200 registros no total, sendo 154 específicos da empresa 11495."
+  },
+  {
+    "endpoint": "LMC_REDE",
+    "empresaCodigo": 11495,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "DESPESAS_REDE",
+    "empresaCodigo": 46433,
+    "httpStatus": 200,
+    "registros": 6,
+    "possuiDados": true,
+    "observacao": "Retornou 54 registros no total, sendo 6 específicos da empresa 46433."
+  },
+  {
+    "endpoint": "VENDA_ITEM",
+    "empresaCodigo": 46433,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "VENDA_ITEM_REDE",
+    "empresaCodigo": 46433,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "VENDA_REDE",
+    "empresaCodigo": 46433,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "CAIXA_REDE",
+    "empresaCodigo": 46433,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "CAIXA_APRESENTADO_REDE",
+    "empresaCodigo": 46433,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_ESTOQUE",
+    "empresaCodigo": 46433,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_EMPRESA",
+    "empresaCodigo": 46433,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "ABASTECIMENTO",
+    "empresaCodigo": 46433,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Retornou 200 registros no total, mas nenhum pertence à empresa 46433. Empresas no retorno: [5555, 11495]."
+  },
+  {
+    "endpoint": "LMC_REDE",
+    "empresaCodigo": 46433,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "DESPESAS_REDE",
+    "empresaCodigo": 74014,
+    "httpStatus": 200,
+    "registros": 12,
+    "possuiDados": true,
+    "observacao": "Retornou 54 registros no total, sendo 12 específicos da empresa 74014."
+  },
+  {
+    "endpoint": "VENDA_ITEM",
+    "empresaCodigo": 74014,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "VENDA_ITEM_REDE",
+    "empresaCodigo": 74014,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "VENDA_REDE",
+    "empresaCodigo": 74014,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  },
+  {
+    "endpoint": "CAIXA_REDE",
+    "empresaCodigo": 74014,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "CAIXA_APRESENTADO_REDE",
+    "empresaCodigo": 74014,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_ESTOQUE",
+    "empresaCodigo": 74014,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "PRODUTO_EMPRESA",
+    "empresaCodigo": 74014,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Lista vazia retornada para o período."
+  },
+  {
+    "endpoint": "ABASTECIMENTO",
+    "empresaCodigo": 74014,
+    "httpStatus": 200,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "Retornou 200 registros no total, mas nenhum pertence à empresa 74014. Empresas no retorno: [5555, 11495]."
+  },
+  {
+    "endpoint": "LMC_REDE",
+    "empresaCodigo": 74014,
+    "httpStatus": 401,
+    "registros": 0,
+    "possuiDados": false,
+    "observacao": "HTTP 401 - Acesso negado ou erro no endpoint."
+  }
+]

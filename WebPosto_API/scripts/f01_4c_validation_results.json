@@ -1,0 +1,244 @@
+{
+  "period": {
+    "dataInicial": "2026-06-01",
+    "dataFinal": "2026-06-07"
+  },
+  "elapsedMs": 34624,
+  "lineage": {
+    "supplierCoveragePercent": 100.0,
+    "supplierFinancialCoverage": 97.64,
+    "supplierBranchCoverage": 100.0,
+    "supplierHoldingCoverage": 100.0,
+    "totalRecords": 79,
+    "tituloPagarRegistros": 70
+  },
+  "masterSuppliers": {
+    "uniqueRaw": 28,
+    "uniqueCanonical": 28,
+    "averageCoverageScore": 94.3
+  },
+  "analytics": {
+    "totalValor": "425336.92",
+    "totalRegistros": 79,
+    "leader": {
+      "supplierCanonicalName": "VIBRA",
+      "supplierName": "VIBRA ENERGIA S.A",
+      "valorTotal": "382769.46",
+      "participacaoPct": "89.99",
+      "quantidade": 15,
+      "filiaisCount": 2,
+      "filiais": [
+        "11495",
+        "5555"
+      ],
+      "valorMedio": "25517.96",
+      "valorMaximo": "30055.00",
+      "valorMinimo": "15378.50",
+      "supplierShare": 89.99,
+      "supplierDependencyIndex": 0.8999,
+      "supplierNetworkPresence": 66.7,
+      "sources": [
+        "TITULO_PAGAR"
+      ],
+      "evidenceSample": [
+        "TITULO_PAGAR:3073238",
+        "TITULO_PAGAR:3075000",
+        "TITULO_PAGAR:3075456"
+      ]
+    },
+    "mostConcentrated": {
+      "supplierCanonicalName": "VIBRA",
+      "supplierName": "VIBRA ENERGIA S.A",
+      "valorTotal": "382769.46",
+      "participacaoPct": "89.99",
+      "quantidade": 15,
+      "filiaisCount": 2,
+      "filiais": [
+        "11495",
+        "5555"
+      ],
+      "valorMedio": "25517.96",
+      "valorMaximo": "30055.00",
+      "valorMinimo": "15378.50",
+      "supplierShare": 89.99,
+      "supplierDependencyIndex": 0.8999,
+      "supplierNetworkPresence": 66.7,
+      "sources": [
+        "TITULO_PAGAR"
+      ],
+      "evidenceSample": [
+        "TITULO_PAGAR:3073238",
+        "TITULO_PAGAR:3075000",
+        "TITULO_PAGAR:3075456"
+      ]
+    },
+    "mostPresent": {
+      "supplierCanonicalName": "VIBRA",
+      "supplierName": "VIBRA ENERGIA S.A",
+      "valorTotal": "382769.46",
+      "participacaoPct": "89.99",
+      "quantidade": 15,
+      "filiaisCount": 2,
+      "filiais": [
+        "11495",
+        "5555"
+      ],
+      "valorMedio": "25517.96",
+      "valorMaximo": "30055.00",
+      "valorMinimo": "15378.50",
+      "supplierShare": 89.99,
+      "supplierDependencyIndex": 0.8999,
+      "supplierNetworkPresence": 66.7,
+      "sources": [
+        "TITULO_PAGAR"
+      ],
+      "evidenceSample": [
+        "TITULO_PAGAR:3073238",
+        "TITULO_PAGAR:3075000",
+        "TITULO_PAGAR:3075456"
+      ]
+    },
+    "top5": [
+      {
+        "supplierCanonicalName": "VIBRA",
+        "supplierName": "VIBRA ENERGIA S.A",
+        "valorTotal": "382769.46",
+        "participacaoPct": "89.99",
+        "quantidade": 15,
+        "filiaisCount": 2,
+        "filiais": [
+          "11495",
+          "5555"
+        ],
+        "valorMedio": "25517.96",
+        "valorMaximo": "30055.00",
+        "valorMinimo": "15378.50",
+        "supplierShare": 89.99,
+        "supplierDependencyIndex": 0.8999,
+        "supplierNetworkPresence": 66.7,
+        "sources": [
+          "TITULO_PAGAR"
+        ],
+        "evidenceSample": [
+          "TITULO_PAGAR:3073238",
+          "TITULO_PAGAR:3075000",
+          "TITULO_PAGAR:3075456"
+        ]
+      },
+      {
+        "supplierCanonicalName": "O E C",
+        "supplierName": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+        "valorTotal": "13650.00",
+        "participacaoPct": "3.21",
+        "quantidade": 7,
+        "filiaisCount": 1,
+        "filiais": [
+          "11495"
+        ],
+        "valorMedio": "1950.00",
+        "valorMaximo": "1950.00",
+        "valorMinimo": "1950.00",
+        "supplierShare": 3.21,
+        "supplierDependencyIndex": 0.0321,
+        "supplierNetworkPresence": 33.3,
+        "sources": [
+          "TITULO_PAGAR"
+        ],
+        "evidenceSample": [
+          "TITULO_PAGAR:3079589",
+          "TITULO_PAGAR:3079590",
+          "TITULO_PAGAR:3079591"
+        ]
+      },
+      {
+        "supplierCanonicalName": "SOLAR INOVE",
+        "supplierName": "SOLAR INOVE",
+        "valorTotal": "5008.48",
+        "participacaoPct": "1.18",
+        "quantidade": 1,
+        "filiaisCount": 1,
+        "filiais": [
+          "11495"
+        ],
+        "valorMedio": "5008.48",
+        "valorMaximo": "5008.48",
+        "valorMinimo": "5008.48",
+        "supplierShare": 1.18,
+        "supplierDependencyIndex": 0.0118,
+        "supplierNetworkPresence": 33.3,
+        "sources": [
+          "DESPESAS_REDE_DESC"
+        ],
+        "evidenceSample": [
+          "DESPESAS_REDE:REF NF:000064790 - SOLAR INOVE - PERNAMBUCO - SOLAR INOVE - PERNAMBUCO"
+        ]
+      },
+      {
+        "supplierCanonicalName": "SUAPE",
+        "supplierName": "SUAPE",
+        "valorTotal": "4073.52",
+        "participacaoPct": "0.96",
+        "quantidade": 6,
+        "filiaisCount": 1,
+        "filiais": [
+          "11495"
+        ],
+        "valorMedio": "678.92",
+        "valorMaximo": "1027.92",
+        "valorMinimo": "323.10",
+        "supplierShare": 0.96,
+        "supplierDependencyIndex": 0.0096,
+        "supplierNetworkPresence": 33.3,
+        "sources": [
+          "DESPESAS_REDE_DESC",
+          "TITULO_PAGAR"
+        ],
+        "evidenceSample": [
+          "TITULO_PAGAR:3073823",
+          "TITULO_PAGAR:3073824",
+          "TITULO_PAGAR:3080075"
+        ]
+      },
+      {
+        "supplierCanonicalName": "UNIFORDEX FIALHO FARDAS",
+        "supplierName": "UNIFORDEX FIALHO FARDAS",
+        "valorTotal": "2956.00",
+        "participacaoPct": "0.69",
+        "quantidade": 1,
+        "filiaisCount": 1,
+        "filiais": [
+          "74014"
+        ],
+        "valorMedio": "2956.00",
+        "valorMaximo": "2956.00",
+        "valorMinimo": "2956.00",
+        "supplierShare": 0.69,
+        "supplierDependencyIndex": 0.0069,
+        "supplierNetworkPresence": 33.3,
+        "sources": [
+          "DESPESAS_REDE_DESC"
+        ],
+        "evidenceSample": [
+          "DESPESAS_REDE:REF NF:000006363 - UNIFORDEX FIALHO FARDAS - UNIFORDEX FIALHO FARDAS"
+        ]
+      }
+    ],
+    "top20Count": 20
+  },
+  "network": {
+    "sharedCount": 4,
+    "exclusiveCount": 10
+  },
+  "risk": {
+    "supplierConcentrationRisk": 89.99,
+    "maxSeverity": "CRITICAL",
+    "alertCount": 1
+  },
+  "acceptance": {
+    "coverageCalculated": true,
+    "concentrationMeasured": true,
+    "rankingConsistent": true,
+    "evidenceTraceable": true,
+    "pass": true
+  }
+}

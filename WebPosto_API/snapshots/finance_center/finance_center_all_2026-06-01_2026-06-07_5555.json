@@ -1,0 +1,957 @@
+{
+  "lastUpdated": "2026-06-08T16:39:16",
+  "center": {
+    "summary": {
+      "periodo": {
+        "dataInicial": "2026-06-01",
+        "dataFinal": "2026-06-07"
+      },
+      "despesasGerenciais": {
+        "totalRegistros": 48,
+        "totalValor": "7383.63",
+        "porCategoriaLogos": {
+          "COMPRAS": "120.58",
+          "OPERACIONAL": "34.00",
+          "OUTROS": "784.15",
+          "PESSOAL": "6444.90"
+        },
+        "porEmpresa": {
+          "5555": "7383.63"
+        }
+      },
+      "contasPagar": {
+        "emAberto": {
+          "count": 16,
+          "valor": "136895.40"
+        },
+        "vencido": {
+          "count": 11,
+          "valor": "84795.20"
+        },
+        "pago": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 5,
+          "valor": "52100.20"
+        }
+      },
+      "contasReceber": {
+        "pendente": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "recebido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "vencido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 0,
+          "valor": "0.00"
+        }
+      },
+      "movimentoBancario": {
+        "totalRegistros": 0,
+        "creditos": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "debitos": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "tarifas": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "transferencias": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "saldoMovimentado": {
+          "creditos": "0.00",
+          "debitos": "0.00",
+          "liquido": "0.00"
+        }
+      },
+      "caixa": {
+        "turnos": 6,
+        "despesaCaixa": {
+          "apurado": "1286.53",
+          "turnos": 6
+        },
+        "valeFuncionario": {
+          "apurado": "7065.90",
+          "turnos": 6
+        },
+        "emprestimos": {
+          "apurado": "0.00",
+          "turnos": 6
+        },
+        "diferencas": 6
+      },
+      "coverage": {
+        "despesasGerenciais": {
+          "status": "ok",
+          "registros": 48
+        },
+        "contasPagar": {
+          "status": "ok",
+          "registros": 16
+        },
+        "contasReceber": {
+          "status": "empty",
+          "registros": 0
+        },
+        "movimentoBancario": {
+          "status": "ok",
+          "registros": 0
+        },
+        "caixa": {
+          "status": "ok",
+          "turnos": 6
+        }
+      },
+      "warnings": [
+        "caixa.fundoCaixa: indisponível na API"
+      ],
+      "snapshotKey": "finance:center:summary:2026-06-01:2026-06-07:5555",
+      "performanceMs": {
+        "despesas": 0,
+        "payables": 7375.6,
+        "receivables": 6445.1,
+        "bank": 53802.1,
+        "cash": 5980.7,
+        "total": 57839.5
+      }
+    },
+    "expenses": {
+      "page": 1,
+      "limit": 500,
+      "total": 48,
+      "resumo": {
+        "totalRegistros": 48,
+        "totalValor": "7383.63",
+        "porCategoriaLogos": {
+          "COMPRAS": "120.58",
+          "OPERACIONAL": "34.00",
+          "OUTROS": "784.15",
+          "PESSOAL": "6444.90"
+        },
+        "porEmpresa": {
+          "5555": "7383.63"
+        }
+      },
+      "data": [
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "59.00",
+          "planoConta": "REF A COMPRA DE UM CADEADO",
+          "planoContaCodigo": 47656,
+          "centroCusto": "",
+          "categoriaLogos": "COMPRAS"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "393.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "850.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "18.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "200.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "1000.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "27.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "300.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "600.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "48.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "40.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-02",
+          "valor": "26.77",
+          "planoConta": "ref tomada",
+          "planoContaCodigo": 47656,
+          "centroCusto": "",
+          "categoriaLogos": "OUTROS"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-02",
+          "valor": "200.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-02",
+          "valor": "74.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-02",
+          "valor": "23.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-02",
+          "valor": "300.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-02",
+          "valor": "400.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-02",
+          "valor": "150.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-02",
+          "valor": "18.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-02",
+          "valor": "50.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-02",
+          "valor": "38.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-02",
+          "valor": "100.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-02",
+          "valor": "110.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-02",
+          "valor": "5.00",
+          "planoConta": "REF. UBER JULIA",
+          "planoContaCodigo": 29073,
+          "centroCusto": "",
+          "categoriaLogos": "OPERACIONAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "9.00",
+          "planoConta": "REF A AGUA PARA COSUMO",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "categoriaLogos": "OPERACIONAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "30.00",
+          "planoConta": "REF GASOLINA MOTO HENRIQUE",
+          "planoContaCodigo": 29060,
+          "centroCusto": "",
+          "categoriaLogos": "OUTROS"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "431.96",
+          "planoConta": "REF SINDICADO",
+          "planoContaCodigo": 49980,
+          "centroCusto": "",
+          "categoriaLogos": "OUTROS"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "1.42",
+          "planoConta": "REF. DESCONTO LISBOA+",
+          "planoContaCodigo": 62800,
+          "centroCusto": "",
+          "categoriaLogos": "OUTROS"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "150.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "500.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "24.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "300.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "26.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "85.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "9.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "21.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "219.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "10.00",
+          "planoConta": "REF A UBER JULIA",
+          "planoContaCodigo": 29073,
+          "centroCusto": "",
+          "categoriaLogos": "OPERACIONAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-04",
+          "valor": "234.00",
+          "planoConta": "ref santa clara",
+          "planoContaCodigo": 29020,
+          "centroCusto": "",
+          "categoriaLogos": "OUTROS"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-04",
+          "valor": "61.58",
+          "planoConta": "ref material encanaçao",
+          "planoContaCodigo": 47656,
+          "centroCusto": "",
+          "categoriaLogos": "COMPRAS"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-04",
+          "valor": "9.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-04",
+          "valor": "52.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-05",
+          "valor": "9.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-05",
+          "valor": "40.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-05",
+          "valor": "61.90",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-05",
+          "valor": "10.00",
+          "planoConta": "REF UBER JULIA",
+          "planoContaCodigo": 29073,
+          "centroCusto": "",
+          "categoriaLogos": "OPERACIONAL"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-06",
+          "valor": "30.00",
+          "planoConta": "ref gasolina bruno",
+          "planoContaCodigo": 48547,
+          "centroCusto": "",
+          "categoriaLogos": "OUTROS"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-06",
+          "valor": "30.00",
+          "planoConta": "gasolina moto henrique",
+          "planoContaCodigo": 48547,
+          "centroCusto": "",
+          "categoriaLogos": "OUTROS"
+        }
+      ],
+      "snapshotKey": "finance:center:expenses:2026-06-01:2026-06-07:5555",
+      "performanceMs": {
+        "despesas": 9653.5
+      }
+    },
+    "payables": {
+      "page": 1,
+      "limit": 500,
+      "total": 16,
+      "resumo": {
+        "emAberto": {
+          "count": 16,
+          "valor": "136895.40"
+        },
+        "vencido": {
+          "count": 11,
+          "valor": "84795.20"
+        },
+        "pago": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 5,
+          "valor": "52100.20"
+        }
+      },
+      "buckets": {
+        "emAberto": {
+          "count": 16,
+          "valor": "136895.40"
+        },
+        "vencido": {
+          "count": 11,
+          "valor": "84795.20"
+        },
+        "pago": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 5,
+          "valor": "52100.20"
+        }
+      },
+      "data": [
+        {
+          "empresaCodigo": 5555,
+          "tituloPagarCodigo": 2758905,
+          "fornecedor": "VEM TRABALHADOR",
+          "valor": "189.20",
+          "vencimento": "2026-06-05",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 5555,
+          "tituloPagarCodigo": 2796802,
+          "fornecedor": "ALELO",
+          "valor": "1800.00",
+          "vencimento": "2026-06-02",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 5555,
+          "tituloPagarCodigo": 2952501,
+          "fornecedor": "ALELO",
+          "valor": "900.00",
+          "vencimento": "2026-06-04",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 5555,
+          "tituloPagarCodigo": 3077028,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "29804.50",
+          "vencimento": "2026-06-05",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 5555,
+          "tituloPagarCodigo": 3077029,
+          "fornecedor": "IPSEP TRANSPORTE",
+          "valor": "250.00",
+          "vencimento": "2026-06-02",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 5555,
+          "tituloPagarCodigo": 3077720,
+          "fornecedor": "MILAGRES GAS E AGUA",
+          "valor": "60.00",
+          "vencimento": "2026-06-02",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 5555,
+          "tituloPagarCodigo": 3077732,
+          "fornecedor": "MILAGRES GAS E AGUA",
+          "valor": "207.80",
+          "vencimento": "2026-06-02",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 5555,
+          "tituloPagarCodigo": 3077866,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "21295.20",
+          "vencimento": "2026-06-06",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 5555,
+          "tituloPagarCodigo": 3077867,
+          "fornecedor": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+          "valor": "250.00",
+          "vencimento": "2026-07-05",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 5555,
+          "tituloPagarCodigo": 3077868,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "29804.50",
+          "vencimento": "2026-06-06",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 5555,
+          "tituloPagarCodigo": 3077869,
+          "fornecedor": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+          "valor": "250.00",
+          "vencimento": "2026-06-06",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 5555,
+          "tituloPagarCodigo": 3078070,
+          "fornecedor": "MILAGRES GAS E AGUA",
+          "valor": "234.00",
+          "vencimento": "2026-06-04",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 5555,
+          "tituloPagarCodigo": 3081173,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "30055.00",
+          "vencimento": "2026-06-09",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 5555,
+          "tituloPagarCodigo": 3081174,
+          "fornecedor": "IPSEP TRANSPORTE",
+          "valor": "250.00",
+          "vencimento": "2026-07-05",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 5555,
+          "tituloPagarCodigo": 3081181,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "21295.20",
+          "vencimento": "2026-06-09",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 5555,
+          "tituloPagarCodigo": 3081182,
+          "fornecedor": "IPSEP TRANSPORTE",
+          "valor": "250.00",
+          "vencimento": "2026-07-05",
+          "situacao": "Aberto"
+        }
+      ],
+      "snapshotKey": "finance:center:payables:2026-06-01:2026-06-07:5555",
+      "performanceMs": {
+        "payables": 9189.7
+      }
+    },
+    "receivables": {
+      "page": 1,
+      "limit": 500,
+      "total": 0,
+      "resumo": {
+        "pendente": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "recebido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "vencido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 0,
+          "valor": "0.00"
+        }
+      },
+      "buckets": {
+        "pendente": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "recebido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "vencido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 0,
+          "valor": "0.00"
+        }
+      },
+      "data": [],
+      "snapshotKey": "finance:center:receivables:2026-06-01:2026-06-07:5555",
+      "performanceMs": {
+        "receivables": 6375.4
+      }
+    },
+    "bank": {
+      "page": 1,
+      "limit": 500,
+      "total": 0,
+      "resumo": {
+        "creditos": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "debitos": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "tarifas": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "transferencias": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "saldoMovimentado": {
+          "creditos": "0.00",
+          "debitos": "0.00",
+          "liquido": "0.00"
+        },
+        "totalRegistros": 0
+      },
+      "data": [],
+      "paginacaoCompleta": 0,
+      "snapshotKey": "finance:center:bank:2026-06-01:2026-06-07:5555",
+      "performanceMs": {
+        "bank": 55669.6
+      }
+    },
+    "cash": {
+      "turnos": {
+        "count": 6,
+        "items": [
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4335874,
+            "data": "2026-06-01",
+            "diferenca": "-2.01"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4336819,
+            "data": "2026-06-02",
+            "diferenca": "-272.07"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4337788,
+            "data": "2026-06-03",
+            "diferenca": "208.96"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4338775,
+            "data": "2026-06-04",
+            "diferenca": "3.23"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4339720,
+            "data": "2026-06-05",
+            "diferenca": "-32.19"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4340665,
+            "data": "2026-06-06",
+            "diferenca": "-17399.90"
+          }
+        ]
+      },
+      "diferencas": {
+        "count": 6,
+        "items": [
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4335874,
+            "data": "2026-06-01",
+            "diferenca": "-2.01"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4336819,
+            "data": "2026-06-02",
+            "diferenca": "-272.07"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4337788,
+            "data": "2026-06-03",
+            "diferenca": "208.96"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4338775,
+            "data": "2026-06-04",
+            "diferenca": "3.23"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4339720,
+            "data": "2026-06-05",
+            "diferenca": "-32.19"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4340665,
+            "data": "2026-06-06",
+            "diferenca": "-17399.90"
+          }
+        ]
+      },
+      "despesaCaixa": {
+        "apurado": "1286.53",
+        "turnos": 6
+      },
+      "valeFuncionario": {
+        "apurado": "7065.90",
+        "turnos": 6
+      },
+      "emprestimos": {
+        "apurado": "0.00",
+        "turnos": 6
+      },
+      "fundoCaixa": {
+        "disponivel": false,
+        "apurado": null
+      },
+      "snapshotKey": "finance:center:cash:2026-06-01:2026-06-07:5555",
+      "performanceMs": {
+        "cash": 7874.3
+      },
+      "warnings": [
+        "fundoCaixa: campo não disponível na API WebPosto"
+      ]
+    }
+  },
+  "warnings": [
+    "caixa.fundoCaixa: indisponível na API"
+  ],
+  "snapshotKey": "finance:center:all:2026-06-01:2026-06-07:5555"
+}

@@ -1,0 +1,130 @@
+<!doctype html>
+
+<html lang="pt-BR">
+
+  <head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>WebPosto Integracao</title>
+
+    <link rel="stylesheet" href="/frontend/styles.css?v=f01-2-cf" />
+
+  </head>
+
+  <body>
+
+    <header class="topbar">
+
+      <div>
+
+        <h1>Painel Financeiro</h1>
+
+        <p>Modulo integrado WebPosto: financas, vendas e estoque</p>
+
+      </div>
+
+      <button id="refreshBtn" class="btn-primary" type="button">Atualizar</button>
+
+    </header>
+
+
+
+    <section class="filters" id="filtersContainer"></section>
+
+
+
+    <nav class="tabs" id="tabs">
+
+      <section class="tab-domain" aria-label="Executive">
+
+        <h2 class="tab-domain__title">Executive</h2>
+
+        <div class="tab-domain__items">
+
+          <button class="tab" data-view="executive" type="button">Executive</button>
+
+          <button class="tab active" data-view="dashboard" type="button">Dashboard</button>
+
+        </div>
+
+      </section>
+
+
+
+      <section class="tab-domain" aria-label="Financial">
+
+        <h2 class="tab-domain__title">Financial</h2>
+
+        <div class="tab-domain__items">
+
+          <button class="tab" data-view="expenses" type="button">Expenses</button>
+
+          <button class="tab" data-view="accounts" type="button">Accounts</button>
+
+          <button class="tab" data-view="financeCenter" type="button">Finance Center</button>
+          <button class="tab" data-view="cashFlow" type="button">Cash Flow</button>
+
+        </div>
+
+      </section>
+
+
+
+      <section class="tab-domain" aria-label="Operacional">
+
+        <h2 class="tab-domain__title">Operacional</h2>
+
+        <div class="tab-domain__items">
+
+          <button class="tab" data-view="fuels" type="button">Fuels</button>
+
+          <button class="tab" data-view="sales" type="button">Sales</button>
+
+          <button class="tab" data-view="stock" type="button">Stock</button>
+
+        </div>
+
+      </section>
+
+    </nav>
+
+
+
+    <main>
+
+      <section id="loading" class="state hidden">Carregando...</section>
+
+      <section id="error" class="state error hidden"></section>
+
+
+
+      <section id="executiveView" class="view hidden"></section>
+
+      <section id="dashboardView" class="view"></section>
+
+      <section id="expensesView" class="view hidden"></section>
+
+      <section id="accountsView" class="view hidden"></section>
+
+      <section id="financeCenterView" class="view hidden"></section>
+      <section id="cashFlowView" class="view hidden"></section>
+
+      <section id="fuelsView" class="view hidden"></section>
+
+      <section id="salesView" class="view hidden"></section>
+
+      <section id="stockView" class="view hidden"></section>
+
+    </main>
+
+
+
+    <script type="module" src="/frontend/app.js?v=f01-2-cf"></script>
+
+  </body>
+
+</html>
+

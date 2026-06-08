@@ -1,0 +1,1240 @@
+{
+  "generatedAt": "2026-06-08T14:44:37",
+  "period": {
+    "dataInicial": "2026-06-01",
+    "dataFinal": "2026-06-07"
+  },
+  "dates": {
+    "padrao_interno": "YYYY-MM-DD",
+    "by_file_patterns": {
+      "app.js": {
+        "toISOString": 2,
+        "new Date()": 2,
+        "toLocaleString": 0,
+        "localeDateString": 0
+      },
+      "format.js": {
+        "toISOString": 0,
+        "new Date()": 1,
+        "toLocaleString": 0,
+        "localeDateString": 0
+      },
+      "filters.js": {
+        "toISOString": 0,
+        "new Date()": 0,
+        "toLocaleString": 0,
+        "localeDateString": 0
+      },
+      "snapshotService.js": {
+        "toISOString": 1,
+        "new Date()": 2,
+        "toLocaleString": 0,
+        "localeDateString": 0
+      },
+      "export.js": {
+        "toISOString": 0,
+        "new Date()": 1,
+        "toLocaleString": 1,
+        "localeDateString": 0
+      }
+    },
+    "screens": [
+      {
+        "tela": "executive",
+        "formato_enviado": "YYYY-MM-DD (query dataInicial/dataFinal)",
+        "formato_exibido": "DD/MM/YYYY via formatDate (UTC)",
+        "formato_backend": "str YYYY-MM-DD sem conversão TZ",
+        "bug_p0": false,
+        "risco": "P2 default período app.js usa toISOString (UTC midnight)"
+      },
+      {
+        "tela": "dashboard",
+        "formato_enviado": "YYYY-MM-DD (query dataInicial/dataFinal)",
+        "formato_exibido": "DD/MM/YYYY via formatDate (UTC)",
+        "formato_backend": "str YYYY-MM-DD sem conversão TZ",
+        "bug_p0": false,
+        "risco": "P2 default período app.js usa toISOString (UTC midnight)"
+      },
+      {
+        "tela": "expenses",
+        "formato_enviado": "YYYY-MM-DD (query dataInicial/dataFinal)",
+        "formato_exibido": "DD/MM/YYYY via formatDate (UTC)",
+        "formato_backend": "str YYYY-MM-DD sem conversão TZ",
+        "bug_p0": false,
+        "risco": "P2 default período app.js usa toISOString (UTC midnight)"
+      },
+      {
+        "tela": "accounts",
+        "formato_enviado": "YYYY-MM-DD (query dataInicial/dataFinal)",
+        "formato_exibido": "DD/MM/YYYY via formatDate (UTC)",
+        "formato_backend": "str YYYY-MM-DD sem conversão TZ",
+        "bug_p0": false,
+        "risco": "P2 default período app.js usa toISOString (UTC midnight)"
+      },
+      {
+        "tela": "sales",
+        "formato_enviado": "YYYY-MM-DD (query dataInicial/dataFinal)",
+        "formato_exibido": "DD/MM/YYYY via formatDate (UTC)",
+        "formato_backend": "str YYYY-MM-DD sem conversão TZ",
+        "bug_p0": false,
+        "risco": "P2 default período app.js usa toISOString (UTC midnight)"
+      },
+      {
+        "tela": "stock",
+        "formato_enviado": "YYYY-MM-DD (query dataInicial/dataFinal)",
+        "formato_exibido": "DD/MM/YYYY via formatDate (UTC)",
+        "formato_backend": "str YYYY-MM-DD sem conversão TZ",
+        "bug_p0": false,
+        "risco": "P2 default período app.js usa toISOString (UTC midnight)"
+      },
+      {
+        "tela": "fuels",
+        "formato_enviado": "YYYY-MM-DD (query dataInicial/dataFinal)",
+        "formato_exibido": "DD/MM/YYYY via formatDate (UTC)",
+        "formato_backend": "str YYYY-MM-DD sem conversão TZ",
+        "bug_p0": false,
+        "risco": "P2 default período app.js usa toISOString (UTC midnight)"
+      },
+      {
+        "tela": "financial",
+        "formato_enviado": "YYYY-MM-DD (query dataInicial/dataFinal)",
+        "formato_exibido": "DD/MM/YYYY via formatDate (UTC)",
+        "formato_backend": "str YYYY-MM-DD sem conversão TZ",
+        "bug_p0": false,
+        "risco": "P2 default período app.js usa toISOString (UTC midnight)"
+      }
+    ],
+    "issues": [
+      {
+        "sev": "P2",
+        "local": "frontend/app.js",
+        "issue": "Default dataInicial/dataFinal via toISOString() — pode deslocar 1 dia após 21h BRT"
+      },
+      {
+        "sev": "INFO",
+        "local": "frontend/services/format.js",
+        "issue": "Exibição usa Date.UTC + timeZone UTC — correto para strings YYYY-MM-DD"
+      },
+      {
+        "sev": "INFO",
+        "local": "frontend/services/export.js",
+        "issue": "toLocaleString apenas no rodapé 'Gerado em' — não afeta filtros"
+      }
+    ],
+    "conclusao_p0": "Sem bug P0 de data comprovado no pipeline de filtros"
+  },
+  "expenses": {
+    "casos": {
+      "A_11495": {
+        "empresaCodigo": "11495",
+        "expenses": {
+          "registros": 73,
+          "valorTotal": "24926.71",
+          "empresaCodigos": [
+            11495
+          ],
+          "ms_first_page": 4996.0
+        },
+        "pass": true,
+        "notes": []
+      },
+      "B_5555": {
+        "empresaCodigo": "5555",
+        "expenses": {
+          "registros": 46,
+          "valorTotal": "7292.73",
+          "empresaCodigos": [
+            5555
+          ],
+          "ms_first_page": 4530.7
+        },
+        "pass": true,
+        "notes": []
+      },
+      "C_multi": {
+        "empresaCodigo": "11495,5555",
+        "expenses": {
+          "registros": 119,
+          "valorTotal": "32219.44",
+          "empresaCodigos": [
+            5555,
+            11495
+          ],
+          "ms_first_page": 2195.0
+        },
+        "pass": true,
+        "notes": []
+      },
+      "D_todos": {
+        "empresaCodigo": null,
+        "expenses": {
+          "registros": 417,
+          "valorTotal": "127565.20",
+          "empresaCodigos": [
+            5256,
+            5333,
+            5555,
+            5556,
+            5557,
+            5559,
+            5560,
+            11495,
+            46433,
+            74014
+          ],
+          "ms_first_page": 2152.0
+        },
+        "pass": true,
+        "notes": []
+      }
+    },
+    "api_bruta_registros": 431,
+    "backend_todos": 417
+  },
+  "caixa": {
+    "caixa_registros": 21,
+    "apresentado_registros": 21,
+    "campos_caixa": [
+      "empresaCodigo",
+      "caixaCodigo",
+      "dataMovimento",
+      "turnoCodigo",
+      "turno",
+      "pdvCodigo",
+      "funcionarioCodigo",
+      "centroCusto",
+      "abertura",
+      "fechamento",
+      "fechado",
+      "consolidado",
+      "tipoInclusao",
+      "bloqueado",
+      "tipoBloqueio",
+      "apurado",
+      "diferenca",
+      "codigo"
+    ],
+    "campos_apresentado_despesa": [
+      "valeClienteApresentado",
+      "valeClienteApurado",
+      "valeClienteDiferenca",
+      "emprestimoApresentado",
+      "emprestimoApurado",
+      "emprestimoDiferenca",
+      "despesaApresentado",
+      "despesaApurado",
+      "despesaDiferenca",
+      "valeFunApresentado",
+      "valeFunApurado",
+      "valeFunDiferenca"
+    ],
+    "sample_numeric": {
+      "dinheiroApresentado": 9029.0,
+      "dinheiroApurado": 9079.66,
+      "dinheiroDiferenca": -50.66,
+      "notaPrazoApresentado": 0.0,
+      "notaPrazoApurado": 0.0,
+      "notaPrazoDiferenca": 0.0,
+      "chequeApresentado": 0.0,
+      "chequeApurado": 0.0,
+      "chequeDiferenca": 0.0,
+      "chequePreApresentado": 0.0,
+      "chequePreApurado": 0.0,
+      "chequePreDiferenca": 0.0,
+      "cartaoApresentado": 18540.44,
+      "cartaoApurado": 18540.44,
+      "cartaoDiferenca": 0.0,
+      "cartaFreteApresentado": 0.0,
+      "cartaFreteApurado": 0.0,
+      "cartaFreteDiferenca": 0.0,
+      "valeClienteApresentado": 0.0,
+      "valeClienteApurado": 0.0,
+      "valeClienteDiferenca": 0.0,
+      "emprestimoApresentado": 0.0,
+      "emprestimoApurado": 0.0,
+      "emprestimoDiferenca": 0.0,
+      "prePagApresentado": 0.0,
+      "prePagApurado": 0.0,
+      "prePagDiferenca": 0.0,
+      "despesaApresentado": 386.73,
+      "despesaApurado": 386.73,
+      "despesaDiferenca": 0.0,
+      "valeFunApresentado": 1045.09,
+      "valeFunApurado": 1045.09,
+      "valeFunDiferenca": 0.0,
+      "chequePagarApresentado": 0.0,
+      "chequePagarApurado": 0.0,
+      "chequePagarDiferenca": 0.0,
+      "transfBancApresentado": 11163.04,
+      "transfBancApurado": 11163.04,
+      "transfBancDiferenca": 0.0,
+      "transfDebApresentado": 0.0,
+      "transfDebApurado": 0.0,
+      "transfDebDiferenca": 0.0,
+      "fundoCxDebApresentado": 0.0,
+      "fundoCxDebApurado": 0.0,
+      "fundoCxDebDiferenca": 0.0,
+      "valeCliente": 0
+    },
+    "sangria_explicita": false,
+    "suprimento_explicito": false,
+    "fundo_caixa_explicito": false,
+    "vale_funcionario": true,
+    "despesa_caixa_agregada": true,
+    "quebra_campo": "diferenca (CAIXA) / dinheiroDiferenca (CAIXA_APRESENTADO)",
+    "conclusao": "Despesa de caixa = agregados despesaApresentado/Apurado/Diferenca em CAIXA_APRESENTADO; sangria/suprimento não expostos como campos dedicados no token"
+  },
+  "banking": {
+    "movimento_registros": 200,
+    "transferencia_registros": 200,
+    "campos_movimento": [
+      "empresaCodigo",
+      "movimentoContaCodigo",
+      "valor",
+      "dataMovimento",
+      "descricao",
+      "tipoDocumentoOrigem",
+      "codigoTipoDocumentoOrigem",
+      "documentoOrigemCodigo",
+      "tipo",
+      "conciliado",
+      "evento",
+      "saldo",
+      "contaCodigo",
+      "planoContaGerencialCodigo",
+      "centroCustoCodigo",
+      "documento",
+      "lote",
+      "daraHoraConciliacao",
+      "usuarioConciliacao",
+      "codigoPessoa",
+      "tipoPessoa",
+      "codigo"
+    ],
+    "sample_tipo": "Crédito",
+    "sample_descricao": "TRANSF. BANCÁRIA : AG:4047 CONTA:10993263 CLIENTE : CONSUMIDOR FINAL",
+    "sample_tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+    "tipos_detectados": [
+      "Crédito",
+      "Débito",
+      "TRANSFERENCIA_BANCARIA",
+      "TAXA/TARIFA"
+    ],
+    "modulo_futuro": "Conciliação Bancária via fact_movimento_bancario"
+  },
+  "accounts_payable": {
+    "registros": 70,
+    "valorTotal_amostra": null,
+    "campos": [
+      "empresaCodigo",
+      "tituloPagarCodigo",
+      "notaEntradaCodigo",
+      "dataMovimento",
+      "vencimento",
+      "dataPagamento",
+      "situacao",
+      "tipo",
+      "tipoLancamento",
+      "valor",
+      "valorPago",
+      "desconto",
+      "acrescimo",
+      "cheque",
+      "dinheiro",
+      "troco",
+      "adiantamento",
+      "cartao",
+      "fornecedorCodigo",
+      "fornecedorIntermediadorCodigo",
+      "planoContaGerencialCodigo",
+      "descricao",
+      "numeroTitulo",
+      "nomeFornecedor",
+      "cpfCnpjFornecedor",
+      "pagamento",
+      "numeroRemessa",
+      "planoContaGerencialNivel",
+      "planoContaGerencialDescricao",
+      "centroCustoCodigo",
+      "centroCustoDescricao",
+      "parcela",
+      "quantidadeParcelas",
+      "linhaDigitavel",
+      "autorizado"
+    ],
+    "tem_parcela": true,
+    "tem_valorPago": true,
+    "tem_vencimento": true,
+    "sample_situacao": "Aberto",
+    "sample_parcela": "10/12",
+    "fluxo_caixa_projetado": "Usar fact_titulo_pagar — não somar com DESPESAS_REDE"
+  },
+  "accounts_receivable": {
+    "registros": 11,
+    "campos": [
+      "empresaCodigo",
+      "tituloCodigo",
+      "dataMovimento",
+      "dataVencimento",
+      "valor",
+      "vendaCodigo",
+      "duplicataCodigo",
+      "tipo",
+      "pendente",
+      "clienteCodigo",
+      "dataPagamento",
+      "planoContaGerencialCodigo",
+      "nomeCliente",
+      "cpfCnpjCliente",
+      "convertido",
+      "documento",
+      "tituloNumero",
+      "codigo"
+    ],
+    "sample": {
+      "valor": 29.94,
+      "clienteCodigo": 1210874
+    },
+    "integrado_logos": "Stub — /v1/financial/accounts-receivable retorna vazio"
+  },
+  "network": {
+    "MOVIMENTO_CONTA": {
+      "endpoint": "MOVIMENTO_CONTA",
+      "path": "/INTEGRACAO/MOVIMENTO_CONTA",
+      "httpStatus": 200,
+      "registros": 200,
+      "empresaCodigos": [
+        5256,
+        5333,
+        5554,
+        5557,
+        5559,
+        5560,
+        11495,
+        46433,
+        74014
+      ],
+      "campos": [
+        "empresaCodigo",
+        "movimentoContaCodigo",
+        "valor",
+        "dataMovimento",
+        "descricao",
+        "tipoDocumentoOrigem",
+        "codigoTipoDocumentoOrigem",
+        "documentoOrigemCodigo",
+        "tipo",
+        "conciliado",
+        "evento",
+        "saldo",
+        "contaCodigo",
+        "planoContaGerencialCodigo",
+        "centroCustoCodigo",
+        "documento",
+        "lote",
+        "daraHoraConciliacao",
+        "usuarioConciliacao",
+        "codigoPessoa",
+        "tipoPessoa",
+        "codigo"
+      ],
+      "ms": 1199.4,
+      "empresaCodigosAlvo": [
+        5256,
+        5333,
+        5557,
+        5559,
+        5560,
+        11495,
+        46433,
+        74014
+      ],
+      "sampleRow": {
+        "empresaCodigo": 11495,
+        "movimentoContaCodigo": 63005844,
+        "valor": 50.0,
+        "dataMovimento": "2026-06-01",
+        "descricao": "TRANSF. BANCÁRIA : AG:4047 CONTA:10993263 CLIENTE : CONSUMIDOR FINAL",
+        "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+        "codigoTipoDocumentoOrigem": 42,
+        "documentoOrigemCodigo": 26245718,
+        "tipo": "Crédito",
+        "conciliado": false,
+        "evento": "2026-06-01T00:04:16.071-03:00",
+        "saldo": null,
+        "contaCodigo": 60536,
+        "planoContaGerencialCodigo": 138652,
+        "centroCustoCodigo": 7295,
+        "documento": "0A748FBC-03E2-49B3-A5B6-51E38A9DDB37",
+        "lote": null,
+        "daraHoraConciliacao": null,
+        "usuarioConciliacao": null,
+        "codigoPessoa": null,
+        "tipoPessoa": "Não Identificado",
+        "codigo": 63005844
+      }
+    },
+    "CAIXA": {
+      "endpoint": "CAIXA",
+      "path": "/INTEGRACAO/CAIXA",
+      "httpStatus": 200,
+      "registros": 21,
+      "empresaCodigos": [
+        5555,
+        11495
+      ],
+      "campos": [
+        "empresaCodigo",
+        "caixaCodigo",
+        "dataMovimento",
+        "turnoCodigo",
+        "turno",
+        "pdvCodigo",
+        "funcionarioCodigo",
+        "centroCusto",
+        "abertura",
+        "fechamento",
+        "fechado",
+        "consolidado",
+        "tipoInclusao",
+        "bloqueado",
+        "tipoBloqueio",
+        "apurado",
+        "diferenca",
+        "codigo"
+      ],
+      "ms": 797.2,
+      "empresaCodigosAlvo": [
+        5555,
+        11495
+      ],
+      "sampleRow": {
+        "empresaCodigo": 11495,
+        "caixaCodigo": 4335818,
+        "dataMovimento": "2026-06-01",
+        "turnoCodigo": 1,
+        "turno": "1º TURNO",
+        "pdvCodigo": 54193,
+        "funcionarioCodigo": 227386,
+        "centroCusto": 7295,
+        "abertura": "2026-06-01T00:00:29.000-03:00",
+        "fechamento": "2026-06-01T23:55:23.000-03:00",
+        "fechado": true,
+        "consolidado": true,
+        "tipoInclusao": "PDV",
+        "bloqueado": false,
+        "tipoBloqueio": "Desbloqueado",
+        "apurado": 40214.96,
+        "diferenca": -50.66,
+        "codigo": 4335818
+      }
+    },
+    "CAIXA_APRESENTADO": {
+      "endpoint": "CAIXA_APRESENTADO",
+      "path": "/INTEGRACAO/CAIXA_APRESENTADO",
+      "httpStatus": 200,
+      "registros": 21,
+      "empresaCodigos": [
+        5555,
+        11495
+      ],
+      "campos": [
+        "empresaCodigo",
+        "caixaCodigo",
+        "dinheiroApresentado",
+        "dinheiroApurado",
+        "dinheiroDiferenca",
+        "notaPrazoApresentado",
+        "notaPrazoApurado",
+        "notaPrazoDiferenca",
+        "chequeApresentado",
+        "chequeApurado",
+        "chequeDiferenca",
+        "chequePreApresentado",
+        "chequePreApurado",
+        "chequePreDiferenca",
+        "cartaoApresentado",
+        "cartaoApurado",
+        "cartaoDiferenca",
+        "cartaFreteApresentado",
+        "cartaFreteApurado",
+        "cartaFreteDiferenca",
+        "valeClienteApresentado",
+        "valeClienteApurado",
+        "valeClienteDiferenca",
+        "emprestimoApresentado",
+        "emprestimoApurado",
+        "emprestimoDiferenca",
+        "prePagApresentado",
+        "prePagApurado",
+        "prePagDiferenca",
+        "despesaApresentado",
+        "despesaApurado",
+        "despesaDiferenca",
+        "valeFunApresentado",
+        "valeFunApurado",
+        "valeFunDiferenca"
+      ],
+      "ms": 742.9,
+      "empresaCodigosAlvo": [
+        5555,
+        11495
+      ],
+      "sampleRow": {
+        "empresaCodigo": 11495,
+        "caixaCodigo": 4335818,
+        "dinheiroApresentado": 9029.0,
+        "dinheiroApurado": 9079.66,
+        "dinheiroDiferenca": -50.66,
+        "notaPrazoApresentado": 0.0,
+        "notaPrazoApurado": 0.0,
+        "notaPrazoDiferenca": 0.0,
+        "chequeApresentado": 0.0,
+        "chequeApurado": 0.0,
+        "chequeDiferenca": 0.0,
+        "chequePreApresentado": 0.0,
+        "chequePreApurado": 0.0,
+        "chequePreDiferenca": 0.0,
+        "cartaoApresentado": 18540.44,
+        "cartaoApurado": 18540.44,
+        "cartaoDiferenca": 0.0,
+        "cartaFreteApresentado": 0.0,
+        "cartaFreteApurado": 0.0,
+        "cartaFreteDiferenca": 0.0,
+        "valeClienteApresentado": 0.0,
+        "valeClienteApurado": 0.0,
+        "valeClienteDiferenca": 0.0,
+        "emprestimoApresentado": 0.0,
+        "emprestimoApurado": 0.0,
+        "emprestimoDiferenca": 0.0,
+        "prePagApresentado": 0.0,
+        "prePagApurado": 0.0,
+        "prePagDiferenca": 0.0,
+        "despesaApresentado": 386.73,
+        "despesaApurado": 386.73,
+        "despesaDiferenca": 0.0,
+        "valeFunApresentado": 1045.09,
+        "valeFunApurado": 1045.09,
+        "valeFunDiferenca": 0.0,
+        "chequePagarApresentado": 0.0,
+        "chequePagarApurado": 0.0,
+        "chequePagarDiferenca": 0.0,
+        "transfBancApresentado": 11163.04,
+        "transfBancApurado": 11163.04,
+        "transfBancDiferenca": 0.0,
+        "transfDebApresentado": 0.0,
+        "transfDebApurado": 0.0,
+        "transfDebDiferenca": 0.0,
+        "fundoCxDebApresentado": 0.0,
+        "fundoCxDebApurado": 0.0,
+        "fundoCxDebDiferenca": 0.0,
+        "valeCliente": 0,
+        "suprimentoCaixa": 0,
+        "recebimentoCaixa": 0,
+        "chequeTroco": 0,
+        "servicoCaixa": 0,
+        "prePagoCredito": 0,
+        "fundoCaixaCredito": 0,
+        "ordemPagamento": 0,
+        "pagamentoCaixa": 0,
+        "saidaTrocaValor": 0,
+        "consolidado": true,
+        "codigo": 4335818
+      }
+    },
+    "TITULO_PAGAR": {
+      "endpoint": "TITULO_PAGAR",
+      "path": "/INTEGRACAO/TITULO_PAGAR",
+      "httpStatus": 200,
+      "registros": 70,
+      "empresaCodigos": [
+        5555,
+        11495
+      ],
+      "campos": [
+        "empresaCodigo",
+        "tituloPagarCodigo",
+        "notaEntradaCodigo",
+        "dataMovimento",
+        "vencimento",
+        "dataPagamento",
+        "situacao",
+        "tipo",
+        "tipoLancamento",
+        "valor",
+        "valorPago",
+        "desconto",
+        "acrescimo",
+        "cheque",
+        "dinheiro",
+        "troco",
+        "adiantamento",
+        "cartao",
+        "fornecedorCodigo",
+        "fornecedorIntermediadorCodigo",
+        "planoContaGerencialCodigo",
+        "descricao",
+        "numeroTitulo",
+        "nomeFornecedor",
+        "cpfCnpjFornecedor",
+        "pagamento",
+        "numeroRemessa",
+        "planoContaGerencialNivel",
+        "planoContaGerencialDescricao",
+        "centroCustoCodigo",
+        "centroCustoDescricao",
+        "parcela",
+        "quantidadeParcelas",
+        "linhaDigitavel",
+        "autorizado"
+      ],
+      "ms": 733.8,
+      "empresaCodigosAlvo": [
+        5555,
+        11495
+      ],
+      "sampleRow": {
+        "empresaCodigo": 5555,
+        "tituloPagarCodigo": 2758905,
+        "notaEntradaCodigo": null,
+        "dataMovimento": "2026-06-05",
+        "vencimento": "2026-06-05",
+        "dataPagamento": null,
+        "situacao": "Aberto",
+        "tipo": "Título",
+        "tipoLancamento": "Boleto",
+        "valor": 189.2,
+        "valorPago": 0.0,
+        "desconto": 0.0,
+        "acrescimo": 0.0,
+        "cheque": 0.0,
+        "dinheiro": 0.0,
+        "troco": 0.0,
+        "adiantamento": 0.0,
+        "cartao": 0.0,
+        "fornecedorCodigo": 644460,
+        "fornecedorIntermediadorCodigo": null,
+        "planoContaGerencialCodigo": 29073,
+        "descricao": "VEEM JULIA 06/2026",
+        "numeroTitulo": "veem julia",
+        "nomeFornecedor": "VEM TRABALHADOR",
+        "cpfCnpjFornecedor": "12.010.388/0001-90",
+        "pagamento": [],
+        "numeroRemessa": null,
+        "planoContaGerencialNivel": "2.03.02.002",
+        "planoContaGerencialDescricao": "B02 - VEM TRANSPORTE/PASSAGEM",
+        "centroCustoCodigo": 7295,
+        "centroCustoDescricao": "PISTA",
+        "parcela": 10,
+        "quantidadeParcelas": 12,
+        "linhaDigitavel": null,
+        "autorizado": false,
+        "nossoNumero": null,
+        "bancoFornecedor": null,
+        "agenciaFornecedor": null,
+        "contaFornecedor": null,
+        "tipoChavePixFornecedor": null,
+        "chavePixFornecedor": null,
+        "qrCodePix": null,
+        "tipoTributo": null,
+        "codigoReceitaTributo": null,
+        "renavam": null,
+        "placa": null,
+        "codigoMunicipio": null,
+        "digitoFgts": null,
+        "lacreConSocialFgts": null,
+        "identificadorFgts": 0,
+        "observacao": null,
+        "codigo": 2758905
+      }
+    },
+    "TITULO_RECEBER": {
+      "endpoint": "TITULO_RECEBER",
+      "path": "/INTEGRACAO/TITULO_RECEBER",
+      "httpStatus": 200,
+      "registros": 11,
+      "empresaCodigos": [
+        11495
+      ],
+      "campos": [
+        "empresaCodigo",
+        "tituloCodigo",
+        "dataMovimento",
+        "dataVencimento",
+        "valor",
+        "vendaCodigo",
+        "duplicataCodigo",
+        "tipo",
+        "pendente",
+        "clienteCodigo",
+        "dataPagamento",
+        "planoContaGerencialCodigo",
+        "nomeCliente",
+        "cpfCnpjCliente",
+        "convertido",
+        "documento",
+        "tituloNumero",
+        "codigo"
+      ],
+      "ms": 732.5,
+      "empresaCodigosAlvo": [
+        11495
+      ],
+      "sampleRow": {
+        "empresaCodigo": 11495,
+        "tituloCodigo": 20713424,
+        "dataMovimento": "2026-06-01",
+        "dataVencimento": "2026-06-01",
+        "valor": 29.94,
+        "vendaCodigo": 355246576,
+        "duplicataCodigo": null,
+        "tipo": "Nota",
+        "pendente": true,
+        "clienteCodigo": 1210874,
+        "dataPagamento": null,
+        "planoContaGerencialCodigo": null,
+        "nomeCliente": "DESPERDICIO",
+        "cpfCnpjCliente": "423.707.250-95",
+        "convertido": false,
+        "documento": "1 / 1",
+        "tituloNumero": 3014,
+        "codigo": 20713424
+      }
+    },
+    "TITULO_PAGAR_PAGAMENTOS": {
+      "endpoint": "TITULO_PAGAR_PAGAMENTOS",
+      "path": "/INTEGRACAO/TITULO_PAGAR_PAGAMENTOS",
+      "httpStatus": 401,
+      "registros": 0,
+      "empresaCodigos": [],
+      "campos": [],
+      "ms": 732.5,
+      "observacao": ""
+    },
+    "TITULO_RECEBER_PAGAMENTOS": {
+      "endpoint": "TITULO_RECEBER_PAGAMENTOS",
+      "path": "/INTEGRACAO/TITULO_RECEBER_PAGAMENTOS",
+      "httpStatus": 401,
+      "registros": 0,
+      "empresaCodigos": [],
+      "campos": [],
+      "ms": 728.1,
+      "observacao": ""
+    },
+    "COMPRA_REDE": {
+      "endpoint": "COMPRA_REDE",
+      "path": "/INTEGRACAO/COMPRA_REDE",
+      "httpStatus": 401,
+      "registros": 0,
+      "empresaCodigos": [],
+      "campos": [],
+      "ms": 738.7,
+      "observacao": ""
+    },
+    "NOTA_ENTRADA": {
+      "endpoint": "NOTA_ENTRADA",
+      "path": "/INTEGRACAO/NOTA_ENTRADA",
+      "httpStatus": 401,
+      "registros": 0,
+      "empresaCodigos": [],
+      "campos": [],
+      "ms": 744.4,
+      "observacao": ""
+    },
+    "FORNECEDOR_REDE": {
+      "endpoint": "FORNECEDOR_REDE",
+      "path": "/INTEGRACAO/FORNECEDOR_REDE",
+      "httpStatus": 401,
+      "registros": 0,
+      "empresaCodigos": [],
+      "campos": [],
+      "ms": 733.8,
+      "observacao": ""
+    },
+    "CENTRO_CUSTO_REDE": {
+      "endpoint": "CENTRO_CUSTO_REDE",
+      "path": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+      "httpStatus": 401,
+      "registros": 0,
+      "empresaCodigos": [],
+      "campos": [],
+      "ms": 835.5,
+      "observacao": ""
+    },
+    "FORMA_PAGAMENTO_REDE": {
+      "endpoint": "FORMA_PAGAMENTO_REDE",
+      "path": "/INTEGRACAO/FORMA_PAGAMENTO_REDE",
+      "httpStatus": 401,
+      "registros": 0,
+      "empresaCodigos": [],
+      "campos": [],
+      "ms": 747.8,
+      "observacao": ""
+    },
+    "EMPRESAS": {
+      "endpoint": "EMPRESAS",
+      "path": "/INTEGRACAO/EMPRESAS",
+      "httpStatus": 200,
+      "registros": 2,
+      "empresaCodigos": [
+        5555,
+        11495
+      ],
+      "campos": [
+        "empresaCodigo",
+        "cnpj",
+        "razao",
+        "fantasia",
+        "tipoLogradouro",
+        "logradouro",
+        "endereco",
+        "bairro",
+        "numero",
+        "cep",
+        "cidade",
+        "estado",
+        "latitude",
+        "longitude",
+        "ultimoUsuarioAlteracao",
+        "centroCustoPrincipal",
+        "empresaCodigoExterno",
+        "sigla",
+        "tipoImposto",
+        "codigo"
+      ],
+      "ms": 783.9,
+      "empresaCodigosAlvo": [
+        5555,
+        11495
+      ],
+      "sampleRow": {
+        "empresaCodigo": 5555,
+        "cnpj": "04.284.939/0001-86",
+        "razao": "AUTO POSTO CASA CAIADA LTDA",
+        "fantasia": "AP CASA CAIADA",
+        "tipoLogradouro": "AVE",
+        "logradouro": "AVENIDA GOVERNADOR CARLOS DE LIMA",
+        "endereco": "AVE AVENIDA GOVERNADOR CARLOS DE LIMA",
+        "bairro": "CASA CAIADA",
+        "numero": "2350",
+        "cep": "53.040-000",
+        "cidade": "OLINDA",
+        "estado": "PE",
+        "latitude": -7.9847269,
+        "longitude": -34.8384772,
+        "ultimoUsuarioAlteracao": "CAMILY",
+        "centroCustoPrincipal": 7295,
+        "empresaCodigoExterno": null,
+        "sigla": null,
+        "tipoImposto": "R",
+        "codigo": 5555
+      }
+    },
+    "TRANSFERENCIA_BANCARIA": {
+      "endpoint": "TRANSFERENCIA_BANCARIA",
+      "path": "/INTEGRACAO/TRANSFERENCIA_BANCARIA",
+      "httpStatus": 200,
+      "registros": 200,
+      "empresaCodigos": [
+        11495
+      ],
+      "campos": [
+        "empresaCodigo",
+        "transferenciaBancariaCodigo",
+        "contaCodigo",
+        "vendaCodigo",
+        "valor",
+        "dataMovimento",
+        "tipoInclusao",
+        "planoContaGerencialCodigo",
+        "centroCustoCodigo",
+        "documento",
+        "clienteCodigo",
+        "caixaCodigo",
+        "codigo"
+      ],
+      "ms": 4578.7,
+      "empresaCodigosAlvo": [
+        11495
+      ],
+      "sampleRow": {
+        "empresaCodigo": 11495,
+        "transferenciaBancariaCodigo": 26245718,
+        "contaCodigo": 60536,
+        "vendaCodigo": 355229847,
+        "valor": 50.0,
+        "dataMovimento": "2026-06-01",
+        "tipoInclusao": 2,
+        "planoContaGerencialCodigo": 138652,
+        "centroCustoCodigo": 7295,
+        "documento": "Ag:4047 Conta:10993263",
+        "clienteCodigo": 546586,
+        "caixaCodigo": 4335818,
+        "codigo": 26245718
+      }
+    },
+    "DESPESAS_REDE": {
+      "endpoint": "DESPESAS_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+      "httpStatus": 200,
+      "registros": 431,
+      "empresaCodigos": [
+        5256,
+        5333,
+        5555,
+        5556,
+        5557,
+        5559,
+        5560,
+        11495,
+        46433,
+        74014
+      ],
+      "campos": [
+        "empresaCodigo",
+        "planoContaGerencialCodigo",
+        "descricaoDocumento",
+        "data",
+        "valor"
+      ],
+      "ms": 970.3,
+      "empresaCodigosAlvo": [
+        5256,
+        5333,
+        5555,
+        5556,
+        5557,
+        5559,
+        5560,
+        11495,
+        46433,
+        74014
+      ],
+      "sampleRow": {
+        "empresaCodigo": 11495,
+        "planoContaGerencialCodigo": 29019,
+        "descricaoDocumento": "pagamento alamoa",
+        "data": "2026-06-01",
+        "valor": 70.0
+      }
+    }
+  },
+  "network_classified": {
+    "MOVIMENTO_CONTA": "USAR_AGORA",
+    "CAIXA": "USAR_AGORA",
+    "CAIXA_APRESENTADO": "USAR_AGORA",
+    "TITULO_PAGAR": "USAR_AGORA",
+    "TITULO_RECEBER": "USAR_COM_CUIDADO",
+    "TITULO_PAGAR_PAGAMENTOS": "AGUARDAR_TOKEN",
+    "TITULO_RECEBER_PAGAMENTOS": "AGUARDAR_TOKEN",
+    "COMPRA_REDE": "AGUARDAR_TOKEN",
+    "NOTA_ENTRADA": "AGUARDAR_TOKEN",
+    "FORNECEDOR_REDE": "AGUARDAR_TOKEN",
+    "CENTRO_CUSTO_REDE": "AGUARDAR_TOKEN",
+    "FORMA_PAGAMENTO_REDE": "AGUARDAR_TOKEN",
+    "EMPRESAS": "USAR_AGORA",
+    "TRANSFERENCIA_BANCARIA": "USAR_COM_CUIDADO",
+    "DESPESAS_REDE": "USAR_AGORA"
+  },
+  "screens_health": {
+    "screens": {
+      "executive": {
+        "endpoints": {
+          "/api/v1/executive/snapshot": {
+            "status": 200,
+            "ms": 9.3,
+            "rows": 0,
+            "fromSnapshot": false
+          },
+          "/api/v1/kpis": {
+            "status": 200,
+            "ms": 14659.2,
+            "rows": 0,
+            "fromSnapshot": null
+          },
+          "/api/v1/dre": {
+            "status": 200,
+            "ms": 12304.3,
+            "rows": 0,
+            "fromSnapshot": null
+          }
+        },
+        "classificacao": "OK",
+        "issues": [],
+        "ms_avg": 8990.9
+      },
+      "dashboard": {
+        "endpoints": {
+          "/v1/financial/overview": {
+            "status": 200,
+            "ms": 3391.1,
+            "rows": 0,
+            "fromSnapshot": null
+          }
+        },
+        "classificacao": "OK",
+        "issues": [],
+        "ms_avg": 3391.1
+      },
+      "expenses": {
+        "endpoints": {
+          "/v1/financial/expenses": {
+            "status": 200,
+            "ms": 3101.2,
+            "rows": 73,
+            "fromSnapshot": null
+          }
+        },
+        "classificacao": "OK",
+        "issues": [],
+        "ms_avg": 3101.2
+      },
+      "accounts": {
+        "endpoints": {
+          "/v1/financial/accounts-payable": {
+            "status": 200,
+            "ms": 3864.0,
+            "rows": 50,
+            "fromSnapshot": null
+          }
+        },
+        "classificacao": "OK",
+        "issues": [],
+        "ms_avg": 3864.0
+      },
+      "sales": {
+        "endpoints": {
+          "/v1/sales": {
+            "status": 200,
+            "ms": 10623.0,
+            "rows": 50,
+            "fromSnapshot": null
+          }
+        },
+        "classificacao": "OK",
+        "issues": [],
+        "ms_avg": 10623.0
+      },
+      "stock": {
+        "endpoints": {
+          "/v1/stock": {
+            "status": 200,
+            "ms": 4337.6,
+            "rows": 11,
+            "fromSnapshot": null
+          }
+        },
+        "classificacao": "OK",
+        "issues": [],
+        "ms_avg": 4337.6
+      },
+      "fuels": {
+        "endpoints": {
+          "/api/v1/fuel/executive": {
+            "status": 200,
+            "ms": 2161.4,
+            "rows": 0,
+            "fromSnapshot": null
+          },
+          "/api/v1/sales/fuel-summary": {
+            "status": 200,
+            "ms": 11500.4,
+            "rows": 0,
+            "fromSnapshot": null
+          }
+        },
+        "classificacao": "PARCIAL",
+        "issues": [
+          "/api/v1/sales/fuel-summary: sem dados"
+        ],
+        "ms_avg": 6830.9
+      },
+      "financial": {
+        "endpoints": {
+          "/api/v1/financial/snapshot": {
+            "status": 200,
+            "ms": 8.4,
+            "rows": 0,
+            "fromSnapshot": false
+          },
+          "/v1/financial/expenses": {
+            "status": 200,
+            "ms": 1693.1,
+            "rows": 50,
+            "fromSnapshot": null
+          }
+        },
+        "classificacao": "PARCIAL",
+        "issues": [
+          "/api/v1/financial/snapshot: sem dados"
+        ],
+        "ms_avg": 850.8
+      }
+    },
+    "performance": {
+      "executive": {
+        "ms_avg": 8990.9,
+        "ms_max": 14659.2
+      },
+      "dashboard": {
+        "ms_avg": 3391.1,
+        "ms_max": 3391.1
+      },
+      "expenses": {
+        "ms_avg": 3101.2,
+        "ms_max": 3101.2
+      },
+      "accounts": {
+        "ms_avg": 3864.0,
+        "ms_max": 3864.0
+      },
+      "sales": {
+        "ms_avg": 10623.0,
+        "ms_max": 10623.0
+      },
+      "stock": {
+        "ms_avg": 4337.6,
+        "ms_max": 4337.6
+      },
+      "fuels": {
+        "ms_avg": 6830.9,
+        "ms_max": 11500.4
+      },
+      "financial": {
+        "ms_avg": 850.8,
+        "ms_max": 1693.1
+      }
+    },
+    "snapshots": {
+      "executive": {
+        "call1_fromSnapshot": false,
+        "call2_fromSnapshot": false,
+        "call1_ms": 5.3,
+        "call2_ms": 4.0,
+        "hit_rate": "MISS/LIVE"
+      },
+      "fuel": {
+        "call1_fromSnapshot": false,
+        "call2_fromSnapshot": false,
+        "call1_ms": 5.2,
+        "call2_ms": 4.4,
+        "hit_rate": "MISS/LIVE"
+      },
+      "financial": {
+        "call1_fromSnapshot": false,
+        "call2_fromSnapshot": false,
+        "call1_ms": 4.1,
+        "call2_ms": 4.0,
+        "hit_rate": "MISS/LIVE"
+      }
+    }
+  },
+  "postman": {
+    "collection_exists": true,
+    "collection_items": 25,
+    "chave_in_collection": true,
+    "endpoints_probed_python": 15,
+    "recommendation": "Postman para smoke manual + evidência QA; Python para auditorias quantitativas",
+    "auth_ok": true
+  }
+}

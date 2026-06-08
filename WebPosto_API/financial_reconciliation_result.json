@@ -1,0 +1,129 @@
+{
+  "baseUrl": "http://127.0.0.1:8041",
+  "periods": [
+    {
+      "period": {
+        "label": "dia_2026_06_06",
+        "dataInicial": "2026-06-06",
+        "dataFinal": "2026-06-06"
+      },
+      "rows": {
+        "expenses": 0,
+        "accountsPayable": 0,
+        "sales": 0
+      },
+      "totals": {
+        "expensesTableSum": "0",
+        "accountsTableSum": "0",
+        "salesTableSum": "0",
+        "salesItemsTableSum": "0",
+        "salesConsolidadoTotal": "0",
+        "salesConsolidadoQtd": 0,
+        "overviewTotalDespesas": "0",
+        "overviewTotalAPagar": "0",
+        "kpiFaturamento": "0",
+        "kpiDespesas": "0",
+        "kpiResultado": "0",
+        "kpiTicketMedio": "0",
+        "kpiQtdVendas": 0,
+        "dreReceitas": "0",
+        "dreCustos": "0",
+        "dreOutrasDespesas": "0",
+        "dreResultado": "0"
+      },
+      "checks": {
+        "salesTableVsConsolidado": "0",
+        "kpiReceitaVsSalesConsolidado": "0",
+        "kpiDespesaVsExpensesTable": "0",
+        "kpiFormulaResultadoDiff": "0",
+        "kpiFormulaTicketDiff": "0",
+        "dreFormulaDiff": "0",
+        "dreReceitasVsSalesConsolidado": "0",
+        "overviewDespesasVsExpensesTable": "0",
+        "overviewAPagarVsAccountsTable": "0"
+      },
+      "sample10": {
+        "count": 0,
+        "sum": "0",
+        "rows": []
+      },
+      "errors": {
+        "expenses": [
+          "HTTPConnectionPool(host='127.0.0.1', port=8041): Read timed out. (read timeout=5)"
+        ],
+        "accountsPayable": [
+          "HTTPConnectionPool(host='127.0.0.1', port=8041): Read timed out. (read timeout=5)"
+        ],
+        "sales": [
+          "HTTPConnectionPool(host='127.0.0.1', port=8041): Read timed out. (read timeout=5)"
+        ],
+        "overview": "HTTPConnectionPool(host='127.0.0.1', port=8041): Read timed out. (read timeout=5)",
+        "kpi": "HTTPConnectionPool(host='127.0.0.1', port=8041): Read timed out. (read timeout=5)",
+        "dre": "HTTPConnectionPool(host='127.0.0.1', port=8041): Read timed out. (read timeout=5)",
+        "salesConsolidado": "HTTPConnectionPool(host='127.0.0.1', port=8041): Read timed out. (read timeout=5)"
+      }
+    },
+    {
+      "period": {
+        "label": "semana_2026_06_01_ate_2026_06_07",
+        "dataInicial": "2026-06-01",
+        "dataFinal": "2026-06-07"
+      },
+      "rows": {
+        "expenses": 0,
+        "accountsPayable": 0,
+        "sales": 0
+      },
+      "totals": {
+        "expensesTableSum": "0",
+        "accountsTableSum": "0",
+        "salesTableSum": "0",
+        "salesItemsTableSum": "0",
+        "salesConsolidadoTotal": "0",
+        "salesConsolidadoQtd": 0,
+        "overviewTotalDespesas": "0",
+        "overviewTotalAPagar": "0",
+        "kpiFaturamento": "0",
+        "kpiDespesas": "0",
+        "kpiResultado": "0",
+        "kpiTicketMedio": "0",
+        "kpiQtdVendas": 0,
+        "dreReceitas": "0",
+        "dreCustos": "0",
+        "dreOutrasDespesas": "0",
+        "dreResultado": "0"
+      },
+      "checks": {
+        "salesTableVsConsolidado": "0",
+        "kpiReceitaVsSalesConsolidado": "0",
+        "kpiDespesaVsExpensesTable": "0",
+        "kpiFormulaResultadoDiff": "0",
+        "kpiFormulaTicketDiff": "0",
+        "dreFormulaDiff": "0",
+        "dreReceitasVsSalesConsolidado": "0",
+        "overviewDespesasVsExpensesTable": "0",
+        "overviewAPagarVsAccountsTable": "0"
+      },
+      "sample10": {
+        "count": 0,
+        "sum": "0",
+        "rows": []
+      },
+      "errors": {
+        "expenses": [
+          "HTTPConnectionPool(host='127.0.0.1', port=8041): Read timed out. (read timeout=5)"
+        ],
+        "accountsPayable": [
+          "HTTPConnectionPool(host='127.0.0.1', port=8041): Read timed out. (read timeout=5)"
+        ],
+        "sales": [
+          "HTTPConnectionPool(host='127.0.0.1', port=8041): Read timed out. (read timeout=5)"
+        ],
+        "overview": "HTTPConnectionPool(host='127.0.0.1', port=8041): Read timed out. (read timeout=5)",
+        "kpi": "HTTPConnectionPool(host='127.0.0.1', port=8041): Read timed out. (read timeout=5)",
+        "dre": "HTTPConnectionPool(host='127.0.0.1', port=8041): Read timed out. (read timeout=5)",
+        "salesConsolidado": "HTTPConnectionPool(host='127.0.0.1', port=8041): Read timed out. (read timeout=5)"
+      }
+    }
+  ]
+}

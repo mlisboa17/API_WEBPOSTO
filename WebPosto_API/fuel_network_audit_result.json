@@ -1,0 +1,4420 @@
+{
+  "auditorias_por_periodo": {
+    "06/06/2026": [
+      {
+        "endpoint": "/INTEGRACAO/ABASTECIMENTO_REDE",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      },
+      {
+        "endpoint": "/INTEGRACAO/CONSULTAR_ABASTECIMENTO_REDE",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      },
+      {
+        "endpoint": "/INTEGRACAO/LMC_REDE",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      },
+      {
+        "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+        "httpStatus": 200,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "raw_records": []
+      },
+      {
+        "endpoint": "/INTEGRACAO/PRODUTO_EMPRESA_REDE",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      },
+      {
+        "endpoint": "/INTEGRACAO/CONSULTAR_PRODUTO_EMPRESA_REDE",
+        "httpStatus": 200,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "raw_records": []
+      },
+      {
+        "endpoint": "/INTEGRACAO/EMPRESAS_REDE",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      },
+      {
+        "endpoint": "/INTEGRACAO/CONSULTAR_EMPRESAS_REDE",
+        "httpStatus": 200,
+        "quantidadeRegistros": 2,
+        "empresaCodigosEncontrados": [
+          5555,
+          11495
+        ],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [
+          "bairro",
+          "centroCustoPrincipal",
+          "cep",
+          "cidade",
+          "cnpj",
+          "codigo",
+          "empresaCodigo",
+          "empresaCodigoExterno",
+          "endereco",
+          "estado",
+          "fantasia",
+          "latitude",
+          "logradouro",
+          "longitude",
+          "numero",
+          "razao",
+          "sigla",
+          "tipoImposto",
+          "tipoLogradouro",
+          "ultimoUsuarioAlteracao"
+        ],
+        "possuiEmpresaCodigo": true,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "raw_records": [
+          {
+            "empresaCodigo": 5555,
+            "cnpj": "04.284.939/0001-86",
+            "razao": "AUTO POSTO CASA CAIADA LTDA",
+            "fantasia": "AP CASA CAIADA",
+            "tipoLogradouro": "AVE",
+            "logradouro": "AVENIDA GOVERNADOR CARLOS DE LIMA",
+            "endereco": "AVE AVENIDA GOVERNADOR CARLOS DE LIMA",
+            "bairro": "CASA CAIADA",
+            "numero": "2350",
+            "cep": "53.040-000",
+            "cidade": "OLINDA",
+            "estado": "PE",
+            "latitude": -7.9847269,
+            "longitude": -34.8384772,
+            "ultimoUsuarioAlteracao": "PETROSYSTEM",
+            "centroCustoPrincipal": 7295,
+            "empresaCodigoExterno": null,
+            "sigla": null,
+            "tipoImposto": "R",
+            "codigo": 5555
+          },
+          {
+            "empresaCodigo": 11495,
+            "cnpj": "03.008.754/0001-86",
+            "razao": "RIO DOCE COMERCIO E SERVICOS LTDA",
+            "fantasia": "POSTO VIP",
+            "tipoLogradouro": "AVE",
+            "logradouro": "AVENIDA BRASIL",
+            "endereco": "AVE AVENIDA BRASIL",
+            "bairro": "RIO DOCE",
+            "numero": "2701",
+            "cep": "53.070-380",
+            "cidade": "OLINDA",
+            "estado": "PE",
+            "latitude": -7.955013199999999,
+            "longitude": -34.851076,
+            "ultimoUsuarioAlteracao": "JOSIANE DA SILVA OLIVEIRA",
+            "centroCustoPrincipal": 7295,
+            "empresaCodigoExterno": null,
+            "sigla": null,
+            "tipoImposto": "R",
+            "codigo": 11495
+          }
+        ]
+      },
+      {
+        "endpoint": "/INTEGRACAO/PRODUTO_COMBUSTIVEL",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      }
+    ],
+    "01/06/2026 a 07/06/2026": [
+      {
+        "endpoint": "/INTEGRACAO/ABASTECIMENTO_REDE",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      },
+      {
+        "endpoint": "/INTEGRACAO/CONSULTAR_ABASTECIMENTO_REDE",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      },
+      {
+        "endpoint": "/INTEGRACAO/LMC_REDE",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      },
+      {
+        "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+        "httpStatus": 200,
+        "quantidadeRegistros": 28,
+        "empresaCodigosEncontrados": [
+          5555,
+          11495
+        ],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [
+          "abertura",
+          "codigo",
+          "dataMovimento",
+          "disponivel",
+          "empresaCodigo",
+          "entrada",
+          "escritural",
+          "fechamento",
+          "lmcBico",
+          "lmcCodigo",
+          "lmcNota",
+          "lmcTanque",
+          "perdaSobra",
+          "precoCusto",
+          "produtoCodigo",
+          "produtoLmcCodigo",
+          "saida",
+          "saldo",
+          "ultimoUsuarioAlteracao"
+        ],
+        "possuiEmpresaCodigo": true,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "raw_records": [
+          {
+            "empresaCodigo": 11495,
+            "lmcCodigo": 6864916,
+            "produtoCodigo": [
+              1257885
+            ],
+            "dataMovimento": "2026-06-01",
+            "abertura": 2713.0,
+            "entrada": 0.0,
+            "saida": 206.26,
+            "perdaSobra": 1.26,
+            "escritural": 2506.74,
+            "fechamento": 2508.0,
+            "disponivel": 2713.0,
+            "ultimoUsuarioAlteracao": "MARCIO",
+            "saldo": 7.6837,
+            "precoCusto": 6.0982,
+            "produtoLmcCodigo": 8298,
+            "codigo": 6864916,
+            "lmcTanque": [
+              {
+                "lmcTanqueCodigo": 7641469,
+                "tanqueCodigo": 29879,
+                "abertura": 2713.0,
+                "escritural": 2506.74,
+                "fechamento": 2508.0
+              }
+            ],
+            "lmcBico": [
+              {
+                "lmcBicoCodigo": 19805311,
+                "bicoCodigo": 42903,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 30089,
+                "abertura": 42045.01,
+                "fechamento": 42138.37,
+                "afericao": 0.0,
+                "venda": 93.36
+              },
+              {
+                "lmcBicoCodigo": 19805312,
+                "bicoCodigo": 42906,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 30089,
+                "abertura": 23173.68,
+                "fechamento": 23200.95,
+                "afericao": 0.0,
+                "venda": 27.27
+              },
+              {
+                "lmcBicoCodigo": 19805313,
+                "bicoCodigo": 42909,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 30090,
+                "abertura": 843384.91,
+                "fechamento": 843438.76,
+                "afericao": 0.0,
+                "venda": 53.85
+              },
+              {
+                "lmcBicoCodigo": 19805314,
+                "bicoCodigo": 42912,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 30090,
+                "abertura": 799590.04,
+                "fechamento": 799621.82,
+                "afericao": 0.0,
+                "venda": 31.78
+              },
+              {
+                "lmcBicoCodigo": 19805315,
+                "bicoCodigo": 46763,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 33455,
+                "abertura": 219.35,
+                "fechamento": 219.35,
+                "afericao": 0.0,
+                "venda": 0.0
+              },
+              {
+                "lmcBicoCodigo": 19805316,
+                "bicoCodigo": 46764,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 33455,
+                "abertura": 3470.41,
+                "fechamento": 3470.41,
+                "afericao": 0.0,
+                "venda": 0.0
+              }
+            ],
+            "lmcNota": []
+          },
+          {
+            "empresaCodigo": 11495,
+            "lmcCodigo": 6864916,
+            "produtoCodigo": [
+              1320666
+            ],
+            "dataMovimento": "2026-06-01",
+            "abertura": 2713.0,
+            "entrada": 0.0,
+            "saida": 206.26,
+            "perdaSobra": 1.26,
+            "escritural": 2506.74,
+            "fechamento": 2508.0,
+            "disponivel": 2713.0,
+            "ultimoUsuarioAlteracao": "MARCIO",
+            "saldo": 0.0,
+            "precoCusto": 0.0,
+            "produtoLmcCodigo": 8298,
+            "codigo": 6864916,
+            "lmcTanque": [
+              {
+                "lmcTanqueCodigo": 7641469,
+                "tanqueCodigo": 29879,
+                "abertura": 2713.0,
+                "escritural": 2506.74,
+                "fechamento": 2508.0
+              }
+            ],
+            "lmcBico": [
+              {
+                "lmcBicoCodigo": 19805311,
+                "bicoCodigo": 42903,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 30089,
+                "abertura": 42045.01,
+                "fechamento": 42138.37,
+                "afericao": 0.0,
+                "venda": 93.36
+              },
+              {
+                "lmcBicoCodigo": 19805312,
+                "bicoCodigo": 42906,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 30089,
+                "abertura": 23173.68,
+                "fechamento": 23200.95,
+                "afericao": 0.0,
+                "venda": 27.27
+              },
+              {
+                "lmcBicoCodigo": 19805313,
+                "bicoCodigo": 42909,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 30090,
+                "abertura": 843384.91,
+                "fechamento": 843438.76,
+                "afericao": 0.0,
+                "venda": 53.85
+              },
+              {
+                "lmcBicoCodigo": 19805314,
+                "bicoCodigo": 42912,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 30090,
+                "abertura": 799590.04,
+                "fechamento": 799621.82,
+                "afericao": 0.0,
+                "venda": 31.78
+              },
+              {
+                "lmcBicoCodigo": 19805315,
+                "bicoCodigo": 46763,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 33455,
+                "abertura": 219.35,
+                "fechamento": 219.35,
+                "afericao": 0.0,
+                "venda": 0.0
+              },
+              {
+                "lmcBicoCodigo": 19805316,
+                "bicoCodigo": 46764,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 33455,
+                "abertura": 3470.41,
+                "fechamento": 3470.41,
+                "afericao": 0.0,
+                "venda": 0.0
+              }
+            ],
+            "lmcNota": []
+          },
+          {
+            "empresaCodigo": 11495,
+            "lmcCodigo": 6864918,
+            "produtoCodigo": [
+              1260803
+            ],
+            "dataMovimento": "2026-06-01",
+            "abertura": 2687.0,
+            "entrada": 0.0,
+            "saida": 238.02,
+            "perdaSobra": -4.98,
+            "escritural": 2448.98,
+            "fechamento": 2444.0,
+            "disponivel": 2687.0,
+            "ultimoUsuarioAlteracao": "MARCIO",
+            "saldo": -32.7281,
+            "precoCusto": 6.5719,
+            "produtoLmcCodigo": 8528,
+            "codigo": 6864918,
+            "lmcTanque": [
+              {
+                "lmcTanqueCodigo": 7641471,
+                "tanqueCodigo": 29881,
+                "abertura": 2687.0,
+                "escritural": 2448.98,
+                "fechamento": 2444.0
+              }
+            ],
+            "lmcBico": [
+              {
+                "lmcBicoCodigo": 19805323,
+                "bicoCodigo": 46697,
+                "tanqueCodigo": 29881,
+                "bombaCodigo": 33455,
+                "abertura": 88.97,
+                "fechamento": 88.97,
+                "afericao": 0.0,
+                "venda": 0.0
+              },
+              {
+                "lmcBicoCodigo": 19805324,
+                "bicoCodigo": 46698,
+                "tanqueCodigo": 29881,
+                "bombaCodigo": 33455,
+                "abertura": 124968.88,
+                "fechamento": 125206.9,
+                "afericao": 0.0,
+                "venda": 238.02
+              }
+            ],
+            "lmcNota": []
+          },
+          {
+            "empresaCodigo": 11495,
+            "lmcCodigo": 6864918,
+            "produtoCodigo": [
+              1320665
+            ],
+            "dataMovimento": "2026-06-01",
+            "abertura": 2687.0,
+            "entrada": 0.0,
+            "saida": 238.02,
+            "perdaSobra": -4.98,
+            "escritural": 2448.98,
+            "fechamento": 2444.0,
+            "disponivel": 2687.0,
+            "ultimoUsuarioAlteracao": "MARCIO",
+            "saldo": 0.0,
+            "precoCusto": 0.0,
+            "produtoLmcCodigo": 8528,
+            "codigo": 6864918,
+            "lmcTanque": [
+              {
+                "lmcTanqueCodigo": 7641471,
+                "tanqueCodigo": 29881,
+                "abertura": 2687.0,
+                "escritural": 2448.98,
+                "fechamento": 2444.0
+              }
+            ],
+            "lmcBico": [
+              {
+                "lmcBicoCodigo": 19805323,
+                "bicoCodigo": 46697,
+                "tanqueCodigo": 29881,
+                "bombaCodigo": 33455,
+                "abertura": 88.97,
+                "fechamento": 88.97,
+                "afericao": 0.0,
+                "venda": 0.0
+              },
+              {
+                "lmcBicoCodigo": 19805324,
+                "bicoCodigo": 46698,
+                "tanqueCodigo": 29881,
+                "bombaCodigo": 33455,
+                "abertura": 124968.88,
+                "fechamento": 125206.9,
+                "afericao": 0.0,
+                "venda": 238.02
+              }
+            ],
+            "lmcNota": []
+          },
+          {
+            "empresaCodigo": 11495,
+            "lmcCodigo": 6864919,
+            "produtoCodigo": [
+              1975728
+            ],
+            "dataMovimento": "2026-06-01",
+            "abertura": 4480.0,
+            "entrada": 0.0,
+            "saida": 2069.64,
+            "perdaSobra": 24.64,
+            "escritural": 2410.36,
+            "fechamento": 2435.0,
+            "disponivel": 4480.0,
+            "ultimoUsuarioAlteracao": "MARCIO",
+            "saldo": 107.6596,
+            "precoCusto": 4.3693,
+            "produtoLmcCodigo": 21497,
+            "codigo": 6864919,
+            "lmcTanque": [
+              {
+                "lmcTanqueCodigo": 7641472,
+                "tanqueCodigo": 29882,
+                "abertura": 4480.0,
+                "escritural": 2410.36,
+                "fechamento": 2435.0
+              }
+            ],
+            "lmcBico": [
+              {
+                "lmcBicoCodigo": 19805325,
+                "bicoCodigo": 42904,
+                "tanqueCodigo": 29882,
+                "bombaCodigo": 30089,
+                "abertura": 145749.85,
+                "fechamento": 145930.58,
+                "afericao": 0.0,
+                "venda": 180.73
+              },
+              {
+                "lmcBicoCodigo": 19805326,
+                "bicoCodigo": 42907,
+                "tanqueCodigo": 29882,
+                "bombaCodigo": 30089,
+                "abertura": 156867.81,
+                "fechamento": 157460.19,
+                "afericao": 0.0,
+                "venda": 592.38
+              },
+              {
+                "lmcBicoCodigo": 19805327,
+                "bicoCodigo": 42908,
+                "tanqueCodigo": 29882,
+                "bombaCodigo": 30090,
+                "abertura": 1530718.71,
+                "fechamento": 1531400.41,
+                "afericao": 0.0,
+                "venda": 681.7
+              },
+              {
+                "lmcBicoCodigo": 19805328,
+                "bicoCodigo": 42911,
+                "tanqueCodigo": 29882,
+                "bombaCodigo": 30090,
+                "abertura": 1147528.22,
+                "fechamento": 1147980.78,
+                "afericao": 0.0,
+                "venda": 452.56
+              },
+              {
+                "lmcBicoCodigo": 19805329,
+                "bicoCodigo": 46664,
+                "tanqueCodigo": 29882,
+                "bombaCodigo": 33455,
+                "abertura": 31277.81,
+                "fechamento": 31440.08,
+                "afericao": 0.0,
+                "venda": 162.27
+              },
+              {
+                "lmcBicoCodigo": 19805330,
+                "bicoCodigo": 46665,
+                "tanqueCodigo": 29882,
+                "bombaCodigo": 33455,
+                "abertura": 427.57,
+                "fechamento": 427.57,
+                "afericao": 0.0,
+                "venda": 0.0
+              }
+            ],
+            "lmcNota": []
+          }
+        ]
+      },
+      {
+        "endpoint": "/INTEGRACAO/PRODUTO_EMPRESA_REDE",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      },
+      {
+        "endpoint": "/INTEGRACAO/CONSULTAR_PRODUTO_EMPRESA_REDE",
+        "httpStatus": 200,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "raw_records": []
+      },
+      {
+        "endpoint": "/INTEGRACAO/EMPRESAS_REDE",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      },
+      {
+        "endpoint": "/INTEGRACAO/CONSULTAR_EMPRESAS_REDE",
+        "httpStatus": 200,
+        "quantidadeRegistros": 2,
+        "empresaCodigosEncontrados": [
+          5555,
+          11495
+        ],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [
+          "bairro",
+          "centroCustoPrincipal",
+          "cep",
+          "cidade",
+          "cnpj",
+          "codigo",
+          "empresaCodigo",
+          "empresaCodigoExterno",
+          "endereco",
+          "estado",
+          "fantasia",
+          "latitude",
+          "logradouro",
+          "longitude",
+          "numero",
+          "razao",
+          "sigla",
+          "tipoImposto",
+          "tipoLogradouro",
+          "ultimoUsuarioAlteracao"
+        ],
+        "possuiEmpresaCodigo": true,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "raw_records": [
+          {
+            "empresaCodigo": 5555,
+            "cnpj": "04.284.939/0001-86",
+            "razao": "AUTO POSTO CASA CAIADA LTDA",
+            "fantasia": "AP CASA CAIADA",
+            "tipoLogradouro": "AVE",
+            "logradouro": "AVENIDA GOVERNADOR CARLOS DE LIMA",
+            "endereco": "AVE AVENIDA GOVERNADOR CARLOS DE LIMA",
+            "bairro": "CASA CAIADA",
+            "numero": "2350",
+            "cep": "53.040-000",
+            "cidade": "OLINDA",
+            "estado": "PE",
+            "latitude": -7.9847269,
+            "longitude": -34.8384772,
+            "ultimoUsuarioAlteracao": "PETROSYSTEM",
+            "centroCustoPrincipal": 7295,
+            "empresaCodigoExterno": null,
+            "sigla": null,
+            "tipoImposto": "R",
+            "codigo": 5555
+          },
+          {
+            "empresaCodigo": 11495,
+            "cnpj": "03.008.754/0001-86",
+            "razao": "RIO DOCE COMERCIO E SERVICOS LTDA",
+            "fantasia": "POSTO VIP",
+            "tipoLogradouro": "AVE",
+            "logradouro": "AVENIDA BRASIL",
+            "endereco": "AVE AVENIDA BRASIL",
+            "bairro": "RIO DOCE",
+            "numero": "2701",
+            "cep": "53.070-380",
+            "cidade": "OLINDA",
+            "estado": "PE",
+            "latitude": -7.955013199999999,
+            "longitude": -34.851076,
+            "ultimoUsuarioAlteracao": "JOSIANE DA SILVA OLIVEIRA",
+            "centroCustoPrincipal": 7295,
+            "empresaCodigoExterno": null,
+            "sigla": null,
+            "tipoImposto": "R",
+            "codigo": 11495
+          }
+        ]
+      },
+      {
+        "endpoint": "/INTEGRACAO/PRODUTO_COMBUSTIVEL",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      }
+    ],
+    "01/05/2026 a 31/05/2026": [
+      {
+        "endpoint": "/INTEGRACAO/ABASTECIMENTO_REDE",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      },
+      {
+        "endpoint": "/INTEGRACAO/CONSULTAR_ABASTECIMENTO_REDE",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      },
+      {
+        "endpoint": "/INTEGRACAO/LMC_REDE",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      },
+      {
+        "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+        "httpStatus": 200,
+        "quantidadeRegistros": 200,
+        "empresaCodigosEncontrados": [
+          5555,
+          11495
+        ],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [
+          "abertura",
+          "codigo",
+          "dataMovimento",
+          "disponivel",
+          "empresaCodigo",
+          "entrada",
+          "escritural",
+          "fechamento",
+          "lmcBico",
+          "lmcCodigo",
+          "lmcNota",
+          "lmcTanque",
+          "perdaSobra",
+          "precoCusto",
+          "produtoCodigo",
+          "produtoLmcCodigo",
+          "saida",
+          "saldo",
+          "ultimoUsuarioAlteracao"
+        ],
+        "possuiEmpresaCodigo": true,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "raw_records": [
+          {
+            "empresaCodigo": 11495,
+            "lmcCodigo": 6790065,
+            "produtoCodigo": [
+              1257885
+            ],
+            "dataMovimento": "2026-05-01",
+            "abertura": 3751.0,
+            "entrada": 0.0,
+            "saida": 304.26,
+            "perdaSobra": 2.26,
+            "escritural": 3446.74,
+            "fechamento": 3449.0,
+            "disponivel": 3751.0,
+            "ultimoUsuarioAlteracao": "JOSÉ ARTHUR MAIA GIRAO",
+            "saldo": 13.9331,
+            "precoCusto": 6.1651,
+            "produtoLmcCodigo": 8298,
+            "codigo": 6790065,
+            "lmcTanque": [
+              {
+                "lmcTanqueCodigo": 7559234,
+                "tanqueCodigo": 29879,
+                "abertura": 3751.0,
+                "escritural": 3446.74,
+                "fechamento": 3449.0
+              }
+            ],
+            "lmcBico": [
+              {
+                "lmcBicoCodigo": 19585688,
+                "bicoCodigo": 42903,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 30089,
+                "abertura": 34986.04,
+                "fechamento": 35105.7,
+                "afericao": 0.0,
+                "venda": 119.66
+              },
+              {
+                "lmcBicoCodigo": 19585689,
+                "bicoCodigo": 42906,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 30089,
+                "abertura": 19965.32,
+                "fechamento": 20011.23,
+                "afericao": 0.0,
+                "venda": 45.91
+              },
+              {
+                "lmcBicoCodigo": 19585690,
+                "bicoCodigo": 42909,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 30090,
+                "abertura": 840735.74,
+                "fechamento": 840735.74,
+                "afericao": 0.0,
+                "venda": 0.0
+              },
+              {
+                "lmcBicoCodigo": 19585691,
+                "bicoCodigo": 42912,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 30090,
+                "abertura": 796269.43,
+                "fechamento": 796408.12,
+                "afericao": 0.0,
+                "venda": 138.69
+              },
+              {
+                "lmcBicoCodigo": 19585692,
+                "bicoCodigo": 46763,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 33455,
+                "abertura": 219.35,
+                "fechamento": 219.35,
+                "afericao": 0.0,
+                "venda": 0.0
+              },
+              {
+                "lmcBicoCodigo": 19585693,
+                "bicoCodigo": 46764,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 33455,
+                "abertura": 3451.14,
+                "fechamento": 3451.14,
+                "afericao": 0.0,
+                "venda": 0.0
+              }
+            ],
+            "lmcNota": []
+          },
+          {
+            "empresaCodigo": 11495,
+            "lmcCodigo": 6790065,
+            "produtoCodigo": [
+              1320666
+            ],
+            "dataMovimento": "2026-05-01",
+            "abertura": 3751.0,
+            "entrada": 0.0,
+            "saida": 304.26,
+            "perdaSobra": 2.26,
+            "escritural": 3446.74,
+            "fechamento": 3449.0,
+            "disponivel": 3751.0,
+            "ultimoUsuarioAlteracao": "JOSÉ ARTHUR MAIA GIRAO",
+            "saldo": 0.0,
+            "precoCusto": 0.0,
+            "produtoLmcCodigo": 8298,
+            "codigo": 6790065,
+            "lmcTanque": [
+              {
+                "lmcTanqueCodigo": 7559234,
+                "tanqueCodigo": 29879,
+                "abertura": 3751.0,
+                "escritural": 3446.74,
+                "fechamento": 3449.0
+              }
+            ],
+            "lmcBico": [
+              {
+                "lmcBicoCodigo": 19585688,
+                "bicoCodigo": 42903,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 30089,
+                "abertura": 34986.04,
+                "fechamento": 35105.7,
+                "afericao": 0.0,
+                "venda": 119.66
+              },
+              {
+                "lmcBicoCodigo": 19585689,
+                "bicoCodigo": 42906,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 30089,
+                "abertura": 19965.32,
+                "fechamento": 20011.23,
+                "afericao": 0.0,
+                "venda": 45.91
+              },
+              {
+                "lmcBicoCodigo": 19585690,
+                "bicoCodigo": 42909,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 30090,
+                "abertura": 840735.74,
+                "fechamento": 840735.74,
+                "afericao": 0.0,
+                "venda": 0.0
+              },
+              {
+                "lmcBicoCodigo": 19585691,
+                "bicoCodigo": 42912,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 30090,
+                "abertura": 796269.43,
+                "fechamento": 796408.12,
+                "afericao": 0.0,
+                "venda": 138.69
+              },
+              {
+                "lmcBicoCodigo": 19585692,
+                "bicoCodigo": 46763,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 33455,
+                "abertura": 219.35,
+                "fechamento": 219.35,
+                "afericao": 0.0,
+                "venda": 0.0
+              },
+              {
+                "lmcBicoCodigo": 19585693,
+                "bicoCodigo": 46764,
+                "tanqueCodigo": 29879,
+                "bombaCodigo": 33455,
+                "abertura": 3451.14,
+                "fechamento": 3451.14,
+                "afericao": 0.0,
+                "venda": 0.0
+              }
+            ],
+            "lmcNota": []
+          },
+          {
+            "empresaCodigo": 11495,
+            "lmcCodigo": 6790066,
+            "produtoCodigo": [
+              1257884
+            ],
+            "dataMovimento": "2026-05-01",
+            "abertura": 9478.0,
+            "entrada": 0.0,
+            "saida": 1800.56,
+            "perdaSobra": 0.56,
+            "escritural": 7677.44,
+            "fechamento": 7678.0,
+            "disponivel": 9478.0,
+            "ultimoUsuarioAlteracao": "JOSÉ ARTHUR MAIA GIRAO",
+            "saldo": 3.1444,
+            "precoCusto": 5.615,
+            "produtoLmcCodigo": 8297,
+            "codigo": 6790066,
+            "lmcTanque": [
+              {
+                "lmcTanqueCodigo": 7559235,
+                "tanqueCodigo": 29880,
+                "abertura": 9478.0,
+                "escritural": 7677.44,
+                "fechamento": 7678.0
+              }
+            ],
+            "lmcBico": [
+              {
+                "lmcBicoCodigo": 19585694,
+                "bicoCodigo": 42902,
+                "tanqueCodigo": 29880,
+                "bombaCodigo": 30089,
+                "abertura": 261117.31,
+                "fechamento": 261924.77,
+                "afericao": 0.0,
+                "venda": 807.46
+              },
+              {
+                "lmcBicoCodigo": 19585695,
+                "bicoCodigo": 42905,
+                "tanqueCodigo": 29880,
+                "bombaCodigo": 30089,
+                "abertura": 220088.27,
+                "fechamento": 220421.02,
+                "afericao": 0.0,
+                "venda": 332.75
+              },
+              {
+                "lmcBicoCodigo": 19585696,
+                "bicoCodigo": 42910,
+                "tanqueCodigo": 29880,
+                "bombaCodigo": 30090,
+                "abertura": 1384357.36,
+                "fechamento": 1385010.67,
+                "afericao": 0.0,
+                "venda": 653.31
+              },
+              {
+                "lmcBicoCodigo": 19585697,
+                "bicoCodigo": 42913,
+                "tanqueCodigo": 29880,
+                "bombaCodigo": 30090,
+                "abertura": 1238532.48,
+                "fechamento": 1238532.48,
+                "afericao": 0.0,
+                "venda": 0.0
+              },
+              {
+                "lmcBicoCodigo": 19585698,
+                "bicoCodigo": 46699,
+                "tanqueCodigo": 29880,
+                "bombaCodigo": 33455,
+                "abertura": 354.78,
+                "fechamento": 354.78,
+                "afericao": 0.0,
+                "venda": 0.0
+              },
+              {
+                "lmcBicoCodigo": 19585699,
+                "bicoCodigo": 46700,
+                "tanqueCodigo": 29880,
+                "bombaCodigo": 33455,
+                "abertura": 36938.36,
+                "fechamento": 36945.4,
+                "afericao": 0.0,
+                "venda": 7.04
+              }
+            ],
+            "lmcNota": []
+          },
+          {
+            "empresaCodigo": 11495,
+            "lmcCodigo": 6790066,
+            "produtoCodigo": [
+              1319213
+            ],
+            "dataMovimento": "2026-05-01",
+            "abertura": 9478.0,
+            "entrada": 0.0,
+            "saida": 1800.56,
+            "perdaSobra": 0.56,
+            "escritural": 7677.44,
+            "fechamento": 7678.0,
+            "disponivel": 9478.0,
+            "ultimoUsuarioAlteracao": "JOSÉ ARTHUR MAIA GIRAO",
+            "saldo": 0.0,
+            "precoCusto": 0.0,
+            "produtoLmcCodigo": 8297,
+            "codigo": 6790066,
+            "lmcTanque": [
+              {
+                "lmcTanqueCodigo": 7559235,
+                "tanqueCodigo": 29880,
+                "abertura": 9478.0,
+                "escritural": 7677.44,
+                "fechamento": 7678.0
+              }
+            ],
+            "lmcBico": [
+              {
+                "lmcBicoCodigo": 19585694,
+                "bicoCodigo": 42902,
+                "tanqueCodigo": 29880,
+                "bombaCodigo": 30089,
+                "abertura": 261117.31,
+                "fechamento": 261924.77,
+                "afericao": 0.0,
+                "venda": 807.46
+              },
+              {
+                "lmcBicoCodigo": 19585695,
+                "bicoCodigo": 42905,
+                "tanqueCodigo": 29880,
+                "bombaCodigo": 30089,
+                "abertura": 220088.27,
+                "fechamento": 220421.02,
+                "afericao": 0.0,
+                "venda": 332.75
+              },
+              {
+                "lmcBicoCodigo": 19585696,
+                "bicoCodigo": 42910,
+                "tanqueCodigo": 29880,
+                "bombaCodigo": 30090,
+                "abertura": 1384357.36,
+                "fechamento": 1385010.67,
+                "afericao": 0.0,
+                "venda": 653.31
+              },
+              {
+                "lmcBicoCodigo": 19585697,
+                "bicoCodigo": 42913,
+                "tanqueCodigo": 29880,
+                "bombaCodigo": 30090,
+                "abertura": 1238532.48,
+                "fechamento": 1238532.48,
+                "afericao": 0.0,
+                "venda": 0.0
+              },
+              {
+                "lmcBicoCodigo": 19585698,
+                "bicoCodigo": 46699,
+                "tanqueCodigo": 29880,
+                "bombaCodigo": 33455,
+                "abertura": 354.78,
+                "fechamento": 354.78,
+                "afericao": 0.0,
+                "venda": 0.0
+              },
+              {
+                "lmcBicoCodigo": 19585699,
+                "bicoCodigo": 46700,
+                "tanqueCodigo": 29880,
+                "bombaCodigo": 33455,
+                "abertura": 36938.36,
+                "fechamento": 36945.4,
+                "afericao": 0.0,
+                "venda": 7.04
+              }
+            ],
+            "lmcNota": []
+          },
+          {
+            "empresaCodigo": 11495,
+            "lmcCodigo": 6790067,
+            "produtoCodigo": [
+              1260803
+            ],
+            "dataMovimento": "2026-05-01",
+            "abertura": 3477.0,
+            "entrada": 0.0,
+            "saida": 7.3,
+            "perdaSobra": 20.862,
+            "escritural": 3469.7,
+            "fechamento": 3490.562,
+            "disponivel": 3477.0,
+            "ultimoUsuarioAlteracao": "JOSÉ ARTHUR MAIA GIRAO",
+            "saldo": 136.6524,
+            "precoCusto": 6.5503,
+            "produtoLmcCodigo": 8528,
+            "codigo": 6790067,
+            "lmcTanque": [
+              {
+                "lmcTanqueCodigo": 7559236,
+                "tanqueCodigo": 29881,
+                "abertura": 3477.0,
+                "escritural": 3469.7,
+                "fechamento": 3490.562
+              }
+            ],
+            "lmcBico": [
+              {
+                "lmcBicoCodigo": 19585700,
+                "bicoCodigo": 46697,
+                "tanqueCodigo": 29881,
+                "bombaCodigo": 33455,
+                "abertura": 88.97,
+                "fechamento": 88.97,
+                "afericao": 0.0,
+                "venda": 0.0
+              },
+              {
+                "lmcBicoCodigo": 19585701,
+                "bicoCodigo": 46698,
+                "tanqueCodigo": 29881,
+                "bombaCodigo": 33455,
+                "abertura": 118720.84,
+                "fechamento": 118728.14,
+                "afericao": 0.0,
+                "venda": 7.3
+              }
+            ],
+            "lmcNota": []
+          }
+        ]
+      },
+      {
+        "endpoint": "/INTEGRACAO/PRODUTO_EMPRESA_REDE",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      },
+      {
+        "endpoint": "/INTEGRACAO/CONSULTAR_PRODUTO_EMPRESA_REDE",
+        "httpStatus": 200,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "raw_records": []
+      },
+      {
+        "endpoint": "/INTEGRACAO/EMPRESAS_REDE",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      },
+      {
+        "endpoint": "/INTEGRACAO/CONSULTAR_EMPRESAS_REDE",
+        "httpStatus": 200,
+        "quantidadeRegistros": 2,
+        "empresaCodigosEncontrados": [
+          5555,
+          11495
+        ],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [
+          "bairro",
+          "centroCustoPrincipal",
+          "cep",
+          "cidade",
+          "cnpj",
+          "codigo",
+          "empresaCodigo",
+          "empresaCodigoExterno",
+          "endereco",
+          "estado",
+          "fantasia",
+          "latitude",
+          "logradouro",
+          "longitude",
+          "numero",
+          "razao",
+          "sigla",
+          "tipoImposto",
+          "tipoLogradouro",
+          "ultimoUsuarioAlteracao"
+        ],
+        "possuiEmpresaCodigo": true,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "raw_records": [
+          {
+            "empresaCodigo": 5555,
+            "cnpj": "04.284.939/0001-86",
+            "razao": "AUTO POSTO CASA CAIADA LTDA",
+            "fantasia": "AP CASA CAIADA",
+            "tipoLogradouro": "AVE",
+            "logradouro": "AVENIDA GOVERNADOR CARLOS DE LIMA",
+            "endereco": "AVE AVENIDA GOVERNADOR CARLOS DE LIMA",
+            "bairro": "CASA CAIADA",
+            "numero": "2350",
+            "cep": "53.040-000",
+            "cidade": "OLINDA",
+            "estado": "PE",
+            "latitude": -7.9847269,
+            "longitude": -34.8384772,
+            "ultimoUsuarioAlteracao": "PETROSYSTEM",
+            "centroCustoPrincipal": 7295,
+            "empresaCodigoExterno": null,
+            "sigla": null,
+            "tipoImposto": "R",
+            "codigo": 5555
+          },
+          {
+            "empresaCodigo": 11495,
+            "cnpj": "03.008.754/0001-86",
+            "razao": "RIO DOCE COMERCIO E SERVICOS LTDA",
+            "fantasia": "POSTO VIP",
+            "tipoLogradouro": "AVE",
+            "logradouro": "AVENIDA BRASIL",
+            "endereco": "AVE AVENIDA BRASIL",
+            "bairro": "RIO DOCE",
+            "numero": "2701",
+            "cep": "53.070-380",
+            "cidade": "OLINDA",
+            "estado": "PE",
+            "latitude": -7.955013199999999,
+            "longitude": -34.851076,
+            "ultimoUsuarioAlteracao": "JOSIANE DA SILVA OLIVEIRA",
+            "centroCustoPrincipal": 7295,
+            "empresaCodigoExterno": null,
+            "sigla": null,
+            "tipoImposto": "R",
+            "codigo": 11495
+          }
+        ]
+      },
+      {
+        "endpoint": "/INTEGRACAO/PRODUTO_COMBUSTIVEL",
+        "httpStatus": 401,
+        "quantidadeRegistros": 0,
+        "empresaCodigosEncontrados": [],
+        "produtoCodigosEncontrados": [],
+        "camposDisponiveis": [],
+        "possuiEmpresaCodigo": false,
+        "possuiProdutoCodigo": false,
+        "possuiQuantidade": false,
+        "possuiLitros": false,
+        "possuiValor": false,
+        "candidatoDashboardCombustivel": false,
+        "error": "HTTP 401"
+      }
+    ]
+  },
+  "descoberta_empresas": [
+    {
+      "empresaCodigo": 5256,
+      "nome": "POSTO BR SHOPPING",
+      "status": "NAO_CONFIRMADO"
+    },
+    {
+      "empresaCodigo": 5333,
+      "nome": "POSTO JANGA",
+      "status": "NAO_CONFIRMADO"
+    },
+    {
+      "empresaCodigo": 5555,
+      "nome": "AP CASA CAIADA",
+      "status": "CONFIRMADO_NA_API"
+    },
+    {
+      "empresaCodigo": 5556,
+      "nome": "POSTO CIDADE PATRIMONIO",
+      "status": "NAO_CONFIRMADO"
+    },
+    {
+      "empresaCodigo": 5557,
+      "nome": "POSTO ENSEADA DO NORTE",
+      "status": "NAO_CONFIRMADO"
+    },
+    {
+      "empresaCodigo": 5559,
+      "nome": "POSTO RJ",
+      "status": "NAO_CONFIRMADO"
+    },
+    {
+      "empresaCodigo": 5560,
+      "nome": "POSTO SERTÃ",
+      "status": "NAO_CONFIRMADO"
+    },
+    {
+      "empresaCodigo": 11495,
+      "nome": "POSTO VIP",
+      "status": "CONFIRMADO_NA_API"
+    },
+    {
+      "empresaCodigo": 46433,
+      "nome": "POSTO DOZE",
+      "status": "NAO_CONFIRMADO"
+    },
+    {
+      "empresaCodigo": 74014,
+      "nome": "POSTO DOZE FILIAL II",
+      "status": "NAO_CONFIRMADO"
+    }
+  ],
+  "descoberta_combustiveis": [
+    {
+      "produtoCodigo": 1257884,
+      "descricao": "GASOLINA COMUM.",
+      "combustivel": true,
+      "grupo": "24554",
+      "tipo": "C",
+      "classificacao": "GASOLINA COMUM"
+    },
+    {
+      "produtoCodigo": 1257885,
+      "descricao": "GASOLINA ADITIVADA GRID",
+      "combustivel": true,
+      "grupo": "24554",
+      "tipo": "C",
+      "classificacao": "GASOLINA ADITIVADA"
+    },
+    {
+      "produtoCodigo": 1257886,
+      "descricao": "ETANOL COMUM",
+      "combustivel": true,
+      "grupo": "24554",
+      "tipo": "C",
+      "classificacao": "ETANOL"
+    },
+    {
+      "produtoCodigo": 1257889,
+      "descricao": "TOP AUTO ESSENCIAL SL 20W50 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257890,
+      "descricao": "TOP AUTO 5W30 SQ SIMT 24/1",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257891,
+      "descricao": "LUBRAX ATF TA 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257892,
+      "descricao": "LUBRAX ATF TA 1/2L (500ML)",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257893,
+      "descricao": "LUBRAX EXTRA TURBO  CH-4 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257894,
+      "descricao": "LUBRAX ESSENCIAL 4T 20W 50 1LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257895,
+      "descricao": "TOP AUTO ALTA RODAGEM 25W50 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257896,
+      "descricao": "TOP AUTO 5W40 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257898,
+      "descricao": "LUBRAX DOT4 FL FREIO 500ML",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257899,
+      "descricao": "TOP AUTO  ESSENCIAL SL 15W 40 SEMI SUP12/1",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257900,
+      "descricao": "LUBRAX AVANTE 10W40 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257901,
+      "descricao": "LUBRAX CX MARCHA  GL5 85W140 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257902,
+      "descricao": "LUBRAX  GL5 90 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257903,
+      "descricao": "LUBRAX ESSENCIAL 2T 200LM",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257904,
+      "descricao": "LUBRAX DOT3 FL FREIO 500ML",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257905,
+      "descricao": "LUBRAX TOP TURBO 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257906,
+      "descricao": "LUBRAX TECNO 10W40 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257907,
+      "descricao": "LUBRAX DOT4 FL FREIO 200ML.",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257908,
+      "descricao": "LIMPADOR PARABRISA 100ML",
+      "combustivel": false,
+      "grupo": "28811",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257910,
+      "descricao": "ADITIVO ORBI FLEX 200ML",
+      "combustivel": false,
+      "grupo": "24556",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257913,
+      "descricao": "FLUIDO RADIADOR ORBI ROSA 1L",
+      "combustivel": false,
+      "grupo": "24557",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257914,
+      "descricao": "LUBRAX ALTA RODAGEM 25W-50 1LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257915,
+      "descricao": "ARLA A GRANEL",
+      "combustivel": false,
+      "grupo": "24556",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1260803,
+      "descricao": "DIESEL S10 COMUM",
+      "combustivel": true,
+      "grupo": "24554",
+      "tipo": "C",
+      "classificacao": "DIESEL S10"
+    },
+    {
+      "produtoCodigo": 1271895,
+      "descricao": "WHITE LUB",
+      "combustivel": false,
+      "grupo": "26039",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1271902,
+      "descricao": "TOP AUTO MOTO 4T 20W50 MA 24/1",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1271903,
+      "descricao": "LUBRAX ESSENCIAL 2T 500ML",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1271912,
+      "descricao": "AGUA PRATA DO VALE 10LT",
+      "combustivel": false,
+      "grupo": "56795",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1271913,
+      "descricao": "ESTOPA POLIMENTO",
+      "combustivel": false,
+      "grupo": "26039",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1271916,
+      "descricao": "FLANELA",
+      "combustivel": false,
+      "grupo": "26039",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1271924,
+      "descricao": "QUEROSENE 1 LT",
+      "combustivel": false,
+      "grupo": "26039",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1271925,
+      "descricao": "AGUA DESTILADA",
+      "combustivel": false,
+      "grupo": "26039",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1271926,
+      "descricao": "QUEROSENE 500ML",
+      "combustivel": false,
+      "grupo": "26039",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1277237,
+      "descricao": "TOP AUTO TECNO 15W40 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1277238,
+      "descricao": "LUBRAX SN 10W30 LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1277271,
+      "descricao": "LUBRAX ATF TA 20LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1277274,
+      "descricao": "LUBRAX ALTA RODAGEM 10W40 LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1277303,
+      "descricao": "LUBRAX CX MARCHA  90 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322873,
+      "descricao": "LUBRAX ALTA RODAGEM 25W-50 3LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322874,
+      "descricao": "LUBRAX ALTA RODAGEM 25W-50 500LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322875,
+      "descricao": "LUBRAX AVANTE 1LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322876,
+      "descricao": "LUBRAX ESSENCIAL 2T 200ML",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322877,
+      "descricao": "LUBRAX ESSENCIAL  DT 2T 1LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322879,
+      "descricao": "LUBRAX ESSENCIAL  SM 3L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322880,
+      "descricao": "LUBRAX ESSENCIAL  SL 15W 40 3LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322881,
+      "descricao": "LUBRAX ESSENCIAL  SM 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322882,
+      "descricao": "LUBRAX ESSENCIAL  SJ 1LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322884,
+      "descricao": "LUBRAX EXTRA TURBO  CH-4 20L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322885,
+      "descricao": "LUBRAX EXTRA TURBO  CH-4 3L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322886,
+      "descricao": "LUBRAX EXTREMO 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322887,
+      "descricao": "LUBRAX EXTREMO 3L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322888,
+      "descricao": "LUBRAX INDIC 1LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322891,
+      "descricao": "LUBRAX TECNO 10W40 3L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322893,
+      "descricao": "LUBRAX TECNO 15W40 3L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322894,
+      "descricao": "LUBRAX TOP TURBO 20L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322895,
+      "descricao": "LUBRAX TOP TURBO 3LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322896,
+      "descricao": "LUBRAX TRM 5 140 1LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322898,
+      "descricao": "LUBRAX TRM 5 90 1LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322899,
+      "descricao": "LUBRAX TURBO VIGORO 3LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322900,
+      "descricao": "LUBRAX TECNO 15W40  500ML",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1322957,
+      "descricao": "LUBRAX ATF 100ML",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1378362,
+      "descricao": "BONE NACIONAL CEDROMIX 5OZ",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1390757,
+      "descricao": "LUBRAX  ESSENCIAL SL 15W40 500ML",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1390855,
+      "descricao": "ÓLEO ESSENCIAL GP 4 TEMPO",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1390856,
+      "descricao": "ÓLEO  ATF 1 LITRO",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1390858,
+      "descricao": "ÓLEO  SINTÉTICO 5W-20 VALORA",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1390863,
+      "descricao": "ÓLEO  TECNO 15W-40 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1390867,
+      "descricao": "LUBRAX FLUIDO DE FREIO 500ML DOT-4",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1390869,
+      "descricao": "LUBRAX FLUIDO DE FREIO 200ML DOT-4",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1390935,
+      "descricao": "LUBRAX  ESSENCIAL SL 20W 50 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1401736,
+      "descricao": "GASOLINA COMUM C",
+      "combustivel": true,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "GASOLINA COMUM"
+    },
+    {
+      "produtoCodigo": 1408527,
+      "descricao": "LUBRAX ESSENCIAL  SL 20W 50 500ML",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1408643,
+      "descricao": "LUBRAX TURBO VIGORO 20LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1408645,
+      "descricao": "LUBRAX TECNO 10W40  500ML",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1408652,
+      "descricao": "LUBRAX ATF TA 20L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1415336,
+      "descricao": "LUBRAX INDICC 1LT",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1415346,
+      "descricao": "LUBRAX NAUTICA GASOLINA 2T 500ML",
+      "combustivel": true,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "GASOLINA COMUM"
+    },
+    {
+      "produtoCodigo": 1415365,
+      "descricao": "AGUA PRATA DO VALE 20LT",
+      "combustivel": false,
+      "grupo": "56795",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1415366,
+      "descricao": "AGUA INDAIA 20LT",
+      "combustivel": false,
+      "grupo": "56795",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1415368,
+      "descricao": "LUBRAX ATF 500ML",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1422020,
+      "descricao": "LUBRAX ESSENCIAL  SL 20W 50 3L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1422767,
+      "descricao": "LUBRAX NAUTICA TECNO 20W40 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1452187,
+      "descricao": "LUBRAX CAIXA  DE MACHA 140",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1466627,
+      "descricao": "LUBRAX EXTRA TURBO 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1483522,
+      "descricao": "LUBRAX TURBO CH-4 15W 40 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1563679,
+      "descricao": "LUBRAX TURBO CH-4 15W 40 3L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1563680,
+      "descricao": "LUBRAX TURBO CH-4 15W 40 20L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1573714,
+      "descricao": "LUBRAX TURBO VIGOROSO 20L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1599671,
+      "descricao": "LUBRAX ESSENCIAL 2T 500ML API TC.",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1599675,
+      "descricao": "AGUA INDAIA 10LT",
+      "combustivel": false,
+      "grupo": "56795",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1599687,
+      "descricao": "AGUA SANTA CLARA 20LT",
+      "combustivel": false,
+      "grupo": "56795",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1634012,
+      "descricao": "LUBRAX EXTRA TURBO 15W 40 1L",
+      "combustivel": false,
+      "grupo": "24555",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1682719,
+      "descricao": "COMPSOR AC 150 0/20",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1721565,
+      "descricao": "RODO 20 CM CABO MADEIRA",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1727010,
+      "descricao": "LUCKY STRIKE FRESH MINT X",
+      "combustivel": false,
+      "grupo": "162956",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1727011,
+      "descricao": "ROTH RED MACO",
+      "combustivel": false,
+      "grupo": "162956",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1727022,
+      "descricao": "LUCKY STRIKE ORIGINAL RED KS",
+      "combustivel": false,
+      "grupo": "162956",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1785041,
+      "descricao": "CALCA COS E ELAST MASC MODELO BR FRENTISTA POLYCOTTON MAIS 1M/2G",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1785042,
+      "descricao": "CAMISA SOC M/C S/BOL MODELO BR FRENTISTA C/FITA TORAX CEDROMIX 5OZ 1M/2G",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1787935,
+      "descricao": "BOTA ELAST C/BP PRETA N.39 - CABRITOS",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1787944,
+      "descricao": "ELETRODO MEGANORDESTE 1/8 3,25MM E6013 (UN:1.5)",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1787945,
+      "descricao": "ARAME FARPADO GIR 250 (UN:1)",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1787946,
+      "descricao": "ABRAC.NYLON NAT.387X7.60MM C/ 25   REF: F7040NYNA25 - FRONTEC",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1787947,
+      "descricao": "QD.DISJ.EMB.PRACTIBOX S 12 DIN BR 135001   REF: 135001 - LEGRAND",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1787948,
+      "descricao": "DISJ.MONO.CURVA B 3KA 25A 5SL1 125-6MB   REF: 5SL1 125-6MB - SIEMENS",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1787949,
+      "descricao": "DISCO CORTE INOX 41/2 AR102 CLASSIC NORT (UN:10)",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1787950,
+      "descricao": "BROCA AR 3/8 DORMER",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1787951,
+      "descricao": "PA AUTO BROCANTE 5,5 X 2 ZB",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1787952,
+      "descricao": "MANG BOMBA COMBUSTIVEL 3/4 POL C/ACO TRANSPOWER",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1787953,
+      "descricao": "GAS NATURAL VEICULAR (GNV)",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1787954,
+      "descricao": "PNEU 275/80R22,5 149/146 L HSR2 SA",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1794941,
+      "descricao": "BICO ABAST 3/4 PRETO CURTO 4651 / 9241- BREMEN",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1795095,
+      "descricao": "ESPOLETA BLOCO",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1797024,
+      "descricao": "CALCA COS E ELAST MASC MODELO BR FRENTISTA POLYCOTTON MAIS 3P/4M/2G/1GG",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1797025,
+      "descricao": "CAMISA SOC M/C S/BOL MODELO BR FRENTISTA C/FITA TORAX CEDROMIX 5OZ 3P/4M/2G/1GG",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1797226,
+      "descricao": "PROCESSADOR 1151 INTEL CORE I3 6100 3.7GHZ OEM",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1797227,
+      "descricao": "COOLER MYMAX SOCKET 1150/1151/1155/1156",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1797228,
+      "descricao": "PLACA MAE 1151 DUEX DX H110Z DDR4",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1797229,
+      "descricao": "MEMORIA 8GB DDR4 2666MHZ S3",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1797230,
+      "descricao": "SSD 240GB LEXAR SATA III LNQ100X240G-RNNNU",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1797231,
+      "descricao": "GABINETE ATX VALIANTY S/FONTE",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1797232,
+      "descricao": "FONTE ATX 200W C3TECH S/CABO",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1797233,
+      "descricao": "WINDOWS 10 PRO 32/64 BITS COA",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1797234,
+      "descricao": "TECLADO USB MAXPRINT PRETO",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1797235,
+      "descricao": "MOUSE USB MAXPRINT CLASSIC ESSENTIAL PRETO 600000125",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1797236,
+      "descricao": "ESTABILIZADOR 300VA MCM 4T",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1797237,
+      "descricao": "MONITOR LED 19 VXPRO VX19OX WIDESCREEN HDMI/VGA",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1800086,
+      "descricao": "BREAKAWAY 3/4 VALV. SEGURANCA MARTINELLI",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1800087,
+      "descricao": "TRINCHA ECON.P/ESM.CERD.PT 697 1.1/2\"   REF: 60697006 - 851",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1800088,
+      "descricao": "ZARCAO NAVAL VERM.OXIDO 3.6L   REF: ZC140FC4450 - TECHNICAL",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1800089,
+      "descricao": "PERFIL U 2 CH. 12",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1800090,
+      "descricao": "CANTONEIRA L 3/4 X 1/8 - GERDAU",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1800091,
+      "descricao": "DISCO CORTE ACO INOX 4.1/2 - STARRETT",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1800092,
+      "descricao": "OCULOS FUME SEGURANCA - PLASTCOR",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801121,
+      "descricao": "SUCO CITRUS ACEROLA 330 ML",
+      "combustivel": false,
+      "grupo": "55453",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801186,
+      "descricao": "DEL VALLE LARANJA CAIXA 1L",
+      "combustivel": false,
+      "grupo": "55453",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801243,
+      "descricao": "SUCO POSITIVO UVA",
+      "combustivel": false,
+      "grupo": "55453",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801244,
+      "descricao": "DE MONTÃO 75G",
+      "combustivel": false,
+      "grupo": "55446",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801245,
+      "descricao": "AMENDOIN CROKÍSSIMO",
+      "combustivel": false,
+      "grupo": "55446",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801246,
+      "descricao": "BISCOITO CLUB SOCIAL PIZZA",
+      "combustivel": false,
+      "grupo": "55446",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801247,
+      "descricao": "BISCOITO CLUB SOCIAL QUEIJO",
+      "combustivel": false,
+      "grupo": "55446",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801248,
+      "descricao": "BISCOITO CLUB SOCIAL ORIGINAL",
+      "combustivel": false,
+      "grupo": "55446",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801249,
+      "descricao": "CHEETOS LUA PARMESÃO 160G",
+      "combustivel": false,
+      "grupo": "55446",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801250,
+      "descricao": "BISCOITO WAFER MORANGO 130G",
+      "combustivel": false,
+      "grupo": "55446",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801251,
+      "descricao": "BISCOITO TORTINHA CHOCOLATE",
+      "combustivel": false,
+      "grupo": "55446",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801252,
+      "descricao": "THEREE BOND",
+      "combustivel": false,
+      "grupo": "55445",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801253,
+      "descricao": "IPANEMA A NATOMICA 39/40",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801254,
+      "descricao": "KIBON SORVETE DIAMANTE NEGRO  2L",
+      "combustivel": false,
+      "grupo": "55447",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801255,
+      "descricao": "IPANEMA ANATOMICA 37/38",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801256,
+      "descricao": "BISCOITO TORTINHA LIMÃO",
+      "combustivel": false,
+      "grupo": "55446",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801257,
+      "descricao": "MABEL ROSQUINHA COCO",
+      "combustivel": false,
+      "grupo": "55446",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801258,
+      "descricao": "CHEETOS ONDA REQUEIJÃO 140G",
+      "combustivel": false,
+      "grupo": "55446",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801259,
+      "descricao": "KIBON CORNETTO SONHO DE VALSA 75G",
+      "combustivel": false,
+      "grupo": "55447",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801260,
+      "descricao": "POWER BULL 500ML",
+      "combustivel": false,
+      "grupo": "55451",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801261,
+      "descricao": "SUNDAE MORANGO ZECAS",
+      "combustivel": false,
+      "grupo": "55447",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801262,
+      "descricao": "IPANEMA ANATOMICA SU CINZA 41/42",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801263,
+      "descricao": "IPANEMA ANATOMICA SU CINZA 43/44",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801264,
+      "descricao": "IPANEMA CHARME FEM A 36",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801265,
+      "descricao": "IPANEMA CHARME FEM A 35",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801266,
+      "descricao": "IPANEMA CHARME FEM A 37",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801267,
+      "descricao": "IPANEMA CLASSICA TAN FEM BRANCO/PRATA 36",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801268,
+      "descricao": "IPANEMA CLASSICA TEN FEM BRANCO/PRATA 33/34",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801269,
+      "descricao": "RUFLES ORIGINAL 32G",
+      "combustivel": false,
+      "grupo": "55446",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801270,
+      "descricao": "BLACK MOON 1,5L",
+      "combustivel": false,
+      "grupo": "55451",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801271,
+      "descricao": "SUCO DEL VALLE LIMÃO 450ML",
+      "combustivel": false,
+      "grupo": "55453",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801272,
+      "descricao": "SUCO DEL VALLE UVA 450ML",
+      "combustivel": false,
+      "grupo": "55453",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801273,
+      "descricao": "GATORADE LIMAO 500ML",
+      "combustivel": false,
+      "grupo": "55453",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801274,
+      "descricao": "BATATA SENSACOES FRANGO GRELHADOS 35 G",
+      "combustivel": false,
+      "grupo": "55446",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801275,
+      "descricao": "RUFLES CHURRASCO 100G",
+      "combustivel": false,
+      "grupo": "55446",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801276,
+      "descricao": "DORITOS 200G",
+      "combustivel": false,
+      "grupo": "55446",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801277,
+      "descricao": "TIC TAC TORMENTTA",
+      "combustivel": false,
+      "grupo": "55449",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801278,
+      "descricao": "PRESERVATIVO PREDENCE RETARDANTE",
+      "combustivel": false,
+      "grupo": "162989",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801279,
+      "descricao": "SANDALHAS IP CHARME FEM VIOLETAS 38",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801280,
+      "descricao": "SANDALHAS IP CHARME FEM VIOLETAS 39/40",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801281,
+      "descricao": "SANDALHAS IP URBANA MASC   37/38",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801282,
+      "descricao": "SANDALHAS IP URBANA MASC 39/40",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801283,
+      "descricao": "SANDALHAS IP URBANA MASC 41/42",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801284,
+      "descricao": "SANDALHAS IP URBANA MASC 43/44",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801285,
+      "descricao": "WHISKY BLACK WHITE 1L",
+      "combustivel": false,
+      "grupo": "55450",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801286,
+      "descricao": "TROLLI MORANGO ZECAS",
+      "combustivel": false,
+      "grupo": "55447",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801290,
+      "descricao": "MILHO VERDE/ ERVILHA ODERICH 200G",
+      "combustivel": false,
+      "grupo": "55445",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801291,
+      "descricao": "AGUA VILLA S/GÁS 1,5L",
+      "combustivel": false,
+      "grupo": "55453",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801292,
+      "descricao": "TODDYNHO CHOCOLATE",
+      "combustivel": false,
+      "grupo": "55453",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801293,
+      "descricao": "SANDALHAS IP CHARME FEM R/R 36",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801294,
+      "descricao": "SANDALHAS IP CHARME FEM R/R 37",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801295,
+      "descricao": "SANDALHAS IP CHARME FEM R/R 38",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801296,
+      "descricao": "SANDALHAS IP CHARME FEM R/R 39/40",
+      "combustivel": false,
+      "grupo": "55443",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801297,
+      "descricao": "NESTLE PICOLE MEGA ALPINO",
+      "combustivel": false,
+      "grupo": "55447",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801298,
+      "descricao": "NESTLE SEM PARAR CHOCOLATE E CREMA",
+      "combustivel": false,
+      "grupo": "55447",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801299,
+      "descricao": "CHICLETE SPLOW MENTA",
+      "combustivel": false,
+      "grupo": "55449",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801300,
+      "descricao": "PIRULITO PICOLÉ FLORESTAL",
+      "combustivel": false,
+      "grupo": "55449",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801301,
+      "descricao": "ÁGUA SANTA CLARA 1,5 L",
+      "combustivel": false,
+      "grupo": "55453",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801302,
+      "descricao": "NESTLE PICOLE MOÇA DOCE DE LEITE",
+      "combustivel": false,
+      "grupo": "55447",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801303,
+      "descricao": "TORCIDA PIMENTA 20G",
+      "combustivel": false,
+      "grupo": "55446",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801304,
+      "descricao": "TORCIDA CHURRASCO 20G",
+      "combustivel": false,
+      "grupo": "55446",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801305,
+      "descricao": "AZEITE EXTRA VIRGEM 500ML",
+      "combustivel": false,
+      "grupo": "55445",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1801306,
+      "descricao": "VINAGRE DE ÁLCOOL FIGUEIRA 500ML",
+      "combustivel": false,
+      "grupo": "55445",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1257912,
+      "descricao": "FLUIDO PRA RADIADORES 500ML",
+      "combustivel": false,
+      "grupo": "24557",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1271896,
+      "descricao": "CERA POLIDORA",
+      "combustivel": false,
+      "grupo": "26039",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1271899,
+      "descricao": "FLUIDO PRA RADIADORES RX RADBRAS 1LT.",
+      "combustivel": false,
+      "grupo": "24557",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1271901,
+      "descricao": "FLUIDO PRA RADIADORES RX RADBRAS 500ML",
+      "combustivel": false,
+      "grupo": "24557",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1271910,
+      "descricao": "CARVAO 3KG",
+      "combustivel": false,
+      "grupo": "26039",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1271911,
+      "descricao": "VASILHAME DIVERSOS 20LT",
+      "combustivel": false,
+      "grupo": "56795",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1318862,
+      "descricao": "GRAXA AUTOLITH 500G",
+      "combustivel": false,
+      "grupo": "26039",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1331393,
+      "descricao": "OXI SANITIZACAO",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1331394,
+      "descricao": "LIMPA PARABRISA",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1331395,
+      "descricao": "GRAXA BRANCA SPRAY",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1331396,
+      "descricao": "DESENGRIPANTE",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1331397,
+      "descricao": "SILICONE SPRAY",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1331398,
+      "descricao": "ENGINE CLEANER - ADITIVO P/ LIMPEZA DO MOTOR",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1331399,
+      "descricao": "OLEO MOTOR PRO HONDA 0W-20 (1L)",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1331400,
+      "descricao": "FILTRO OLEO",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1331401,
+      "descricao": "ELEMENTO FILTRO AR C",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1331402,
+      "descricao": "ARRUELA DRENO 14MM",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1331403,
+      "descricao": "DESCARBONIZANTE LIMPA TBI WURTH",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1361465,
+      "descricao": "CATALISADOR P/TINT.EPOXI 0,9L AMIDA            CORAL",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1361466,
+      "descricao": "DILUENTE P/TINT.EPOXI    0,9L WANDEP           CORAL",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1361467,
+      "descricao": "TINT.ESM.EPOXI BR        2,7L AM SEG           CORAL",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1376873,
+      "descricao": "SOLVENTE AGUARRAZ ACHAQUI 0.9L   REF: 457965 - ACHAQUI",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1376874,
+      "descricao": "ROLO LA CARNEIRO BAIXA  9CM 1379   REF: 498165 - TIGRE PINCEIS",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1376875,
+      "descricao": "TRINCHA ECON.P/ESM.CERD.PT 697 2\"   REF: 642401 - TIGRE PINCEIS",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1376876,
+      "descricao": "ESMALTE SINT.SEC.RAP.BRANCO NEVE 3.6L   REF: 254126 - ACHAQUI",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1377650,
+      "descricao": "ROLO LA CARNEIRO BAIXA  9CM 1379   REF: 61379090 - TIGRE PINCEIS",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1377651,
+      "descricao": "ESMALTE SINT.SEC.RAP.PRETO FOSCO 3.6L   REF: 258148 - ACHAQUI",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1378354,
+      "descricao": "MANGUEIRA 3/4 FUEL PUMP STEEL TRAMA ACO 10122212 BALFLEX",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1378355,
+      "descricao": "TERMINAL 3/4 FIXO LATAO MANG 109860 SUPRIR",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1378356,
+      "descricao": "TERMINAL LATAO 3/4 GIRATORIO P/MANG SUPRIR",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1378357,
+      "descricao": "CALCA COS E ELAST MASC MODELO BR FRENTISTA POLYCOTTON MAIS 2M",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1378358,
+      "descricao": "CALCA COS E ELAST MASC MODELO BR CHEFE POLYCOTTON MAIS 2XG",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1378359,
+      "descricao": "CAMISA SOC M/C S/BOL MODELO BR FRENTISTA C/FITA TORAX CEDROMIX 5OZ 2M",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1378360,
+      "descricao": "CAMISA SOC M/C S/BOL MODELO BR CHEFE C/FITA TORAX CEDROMIX 5OZ 2XG",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1378361,
+      "descricao": "CALCA COS E ELAST FEM MODELO BR POLYCOTTON MAIS 2M",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1378363,
+      "descricao": "CAMISA GOLA CARECA M/C MALHA PP 4M",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1378364,
+      "descricao": "BICO ABAST 11AP AZUL C/ALETAS 1AA11-AP-100W",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1378365,
+      "descricao": "PERFIL U.D.C 4 X 2,00MM 2 PCS",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1378366,
+      "descricao": "ELETRODO STAR DS13 X 3,25MM",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1378367,
+      "descricao": "DISCO DE CORTE 4.1/2 - INOX STARRET",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1384358,
+      "descricao": "CAIXA DE BOBINA 80X40 COM 30 UNIDADES",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1384695,
+      "descricao": "AGUA DE COCO RESFRIADA - GARRAFA 500ML",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1384696,
+      "descricao": "PILHA AA TUBO/48 AMARELINHAS PQNA 10862",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1384697,
+      "descricao": "PILHA AAA4 TUBO/40 AMAREL PALITO 10303",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1384698,
+      "descricao": "NUTRY AVEIA/BANANA/MEL 22G DISP",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1384699,
+      "descricao": "SARDINHA ROB CR MOLHO DE TOMATE 125G",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1384700,
+      "descricao": "ALCOOL HOSPITALAR ZULU BACTERICID 70 1L",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1385357,
+      "descricao": "EZFORECOURT PLUS C/ 2CL DRIVER",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1385358,
+      "descricao": "KIT EZID CABEADO V2",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1392788,
+      "descricao": "14025005F DISCO DE TACOGRAFO SEMANAL 125KM/H",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1392789,
+      "descricao": "PSL47 FILTRO LUBRIFICANTE (PAPEL SELADO)",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1392790,
+      "descricao": "PSL55 FILTRO LUBRIFICANTE (PAPEL SELADO)",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1392791,
+      "descricao": "PSL77 FILTRO LUBRIFICANTE (PAPEL SELADO) PSL77",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1392792,
+      "descricao": "PSL560 FILTRO LUBRIFICANTE (PAPEL SELADO)",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1392793,
+      "descricao": "PSL145 FILTRO LUBRIFICANTE (PAPEL SELADO)",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1392794,
+      "descricao": "PSL146 FILTRO LUBRIFICANTE (PAPEL SELADO)",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1392795,
+      "descricao": "PSL619 FILTRO LUBRIFICANTE (OLEO) PSL619",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1401384,
+      "descricao": "ETANOL HIDRATADO COMBUSTIVEL",
+      "combustivel": true,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "ETANOL"
+    },
+    {
+      "produtoCodigo": 1415357,
+      "descricao": "ADITIVO RX GAS 200ML",
+      "combustivel": false,
+      "grupo": "24556",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1415369,
+      "descricao": "VASILHAME DIVERSOS 10LT",
+      "combustivel": false,
+      "grupo": "56795",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1422538,
+      "descricao": "LUBRAX COMPSOR AC 150 BL 20L",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1445099,
+      "descricao": "OLEO DIESEL B S10",
+      "combustivel": true,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "DIESEL S10"
+    },
+    {
+      "produtoCodigo": 1481016,
+      "descricao": "DISC.CORT.ABRAS.METAL/ACO/INOX 4.1/2\"   REF: DAC115-14 - STARRET",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1481017,
+      "descricao": "SPRAY USO GERAL ALUM.P/RODAS 55001 400ML   REF: 55001 - COLORGIN",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1481018,
+      "descricao": "SPRAY ALTA TEMPER.ALUMINIO 5723 300ML   REF: 5723 - COLORGIN",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1481019,
+      "descricao": "FITA ISOL.33+ 19MMX 5M   REF: HB004162127 - SCOTCH",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1481020,
+      "descricao": "ELETROD.SOLD.E6013 3.25X350MM   REF: 7457601332 - VONDER",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1521965,
+      "descricao": "BOTA NOBUCK BI-DENS.CAN.BAIX.PRETO 42   REF: 493 - CABRITOS FLORESTA",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1537211,
+      "descricao": "KIT UPGRADE PROC I3-3220 4GB MEMORIA,PLACA MAE LGA1155 SSD 120GB E GABINETE",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1574039,
+      "descricao": "BICO ABAST 1/2 9711 / 93560 S/CAPA CURTA BREMEN",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1574040,
+      "descricao": "CAPA BICO VERMELHA 1/2 ABAST.BR 50 BREMEN",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1574041,
+      "descricao": "TERMINAL LUB 35D 3/4 GIRAT. P/MANG LUBEFER",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1574042,
+      "descricao": "TERMINAL LUB 35B FIXO P/MANG. 3/4 FINA LUBEFER",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1574043,
+      "descricao": "MANGUEIRA COMBUS. 3/4 HMBC12 - HYLIK",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1574044,
+      "descricao": "BICO ABAST. 3/4 PRETO CURTO 4651- BREMEN",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1574765,
+      "descricao": "RENDE MUITO CORAL CINZA ALPINO  3.2L   REF: 5764550 - CORAL",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1575491,
+      "descricao": "CONVERSOR AUT AC DC 12,8V 5A",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1576415,
+      "descricao": "CAPA BICO CINZA 1077",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1576416,
+      "descricao": "TERMINAL GIRAT. 3/4 P/ MANG.COMB. LUB 35D LUBEFER",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1576417,
+      "descricao": "TERMINAL FIXO 3/4 P/MANG COMB. LUB 35B LUBEFER",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1576418,
+      "descricao": "MANGUEIRA COMB 3/4 C/ACO 5700 SUPRIR",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1598495,
+      "descricao": "AGUA CRYSTAL 20L",
+      "combustivel": false,
+      "grupo": "56795",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1599680,
+      "descricao": "AGUA BELLA 20LT",
+      "combustivel": false,
+      "grupo": "56795",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1599689,
+      "descricao": "ATF HIDRAULICO 1L",
+      "combustivel": false,
+      "grupo": "24556",
+      "tipo": "P",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1607666,
+      "descricao": "AREIA FINA",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1607667,
+      "descricao": "CIMENTO 50 KG",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1607668,
+      "descricao": "TIJOLO 8 FUROS",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1607669,
+      "descricao": "VEDALIT 1LT",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1653305,
+      "descricao": "LUM LED GS 105/850 120 F 108-305V10102",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1655751,
+      "descricao": "UNIDADE INTERNA SPLIT HW 24 KBTUS INVERTER SO FRIO 220V ECO GARDEN GREE - GWC24Q",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1655752,
+      "descricao": "UNIDADE EXTERNA SPLIT HW 24 KBTUS INVERTER SO FRIO 220V ECO GARDEN GREE - GWC24Q",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1655776,
+      "descricao": "MANG P/ BOMBA DE COMB. 3/4 MONT.",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1655801,
+      "descricao": "TRINCHA SIMP.CB.PLAST.500 38MM 1.1/2   REF: 60500006 - TIGRE PINCEIS",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1655802,
+      "descricao": "ROLO LA SINT.BAIXA 23CM(C/S)2773SR(CONJ)   REF: 2773SR - ATLAS",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1655803,
+      "descricao": "LATEX VINIL ACRILICO BRANCO GELO  3.6L   REF: 197300301 - ACHAQUI",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1655806,
+      "descricao": "CABO 2.5MM2/750V SUPERASTIC FLEX AM/VD   REF: 492329 - SUPERASTIC FLEX",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1655807,
+      "descricao": "CABO 4.0MM2/750V SUPERASTIC FLEX PT   REF: 221198 - SUPERASTIC FLEX",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1655808,
+      "descricao": "DISJ.MONO.CURVA B 3KA 32A 5SL1 132-6MB   REF: 715050 - SIEMENS",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1662240,
+      "descricao": "VALVULA DE SEGURANCA BREAK AWAY  PARA COMBUSTIVEIS",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1662241,
+      "descricao": "MANGOTE BREAK AWAY 3/4 ALUMINIO PRENSADO",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1662264,
+      "descricao": "TAMPA DESCARGA SELADA 4 POL ALUMINIO",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1662304,
+      "descricao": "CALCA COS E ELAST MASC MODELO BR FRENTISTA POLYCOTTON MAIS 4P/6M/4GG",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1662305,
+      "descricao": "CAMISA SOC M/C S/BOL MODELO BR FRENTISTA C/FITA TORAX CEDROMIX 5OZ 4P/6M/2GG",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1662306,
+      "descricao": "CAMISA SOC M/C S/BOL MODELO BR CHEFE C/FITA TORAX CEDROMIX 5OZ 2M/2GG",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1662307,
+      "descricao": "CAMISA SOC M/C S/BOL MODELO BR MANIA CEDROMIX 5OZ 2P",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1664228,
+      "descricao": "BOMBA SEXT PRIME HH PMD  -GC-GG-ET - N.SERIE: 04180123",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1664229,
+      "descricao": "BOMBA SEXT PRIME HH PMD  -GC-GG-ET - N.SERIE: 04190123",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1664230,
+      "descricao": "BOMBA SEXT PRIME HH PMD  -GC-GG-ET - N.SERIE: 04200123",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1664231,
+      "descricao": "FERRO DIVERSOS",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1683286,
+      "descricao": "TERMINAL GIRAT. 3/4 ALUM. 1834-EGA -HIDRAFLUX",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1683287,
+      "descricao": "REGUA DE MEDICAO C/V 4 MTS 3/4 189 TRN",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1685495,
+      "descricao": "CALCA COS E ELAST MASC MODELO BR FRENTISTA POLYCOTTON MAIS 4M/1G",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1685496,
+      "descricao": "CAMISA SOC M/C S/BOL MODELO BR FRENTISTA C/FITA TORAX CEDROMIX 5OZ 4M/1G",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1685497,
+      "descricao": "CAMISA SOC M/C S/BOL MODELO BR CHEFE C/FITA TORAX CEDROMIX 5OZ 1GG",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1685498,
+      "descricao": "TRINCHA ECON.P/LATEX C.GRIS 695 4\"   REF: 60695016 - TIGRE PINCEIS",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1685499,
+      "descricao": "PINTA PISO CORAL 5202466 AMAR.DEM. 3.6L   REF: 5202466 - CORAL",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1685500,
+      "descricao": "FITA ISOL.33+ 19MMX10M   REF: HB004162143 - SCOTCH",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1685501,
+      "descricao": "KIT DE SISTEMA FOTOVOLTAICO COMPLETO",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1686272,
+      "descricao": "SUPORTE PRETO UNIVERSAL P/ MANGUEIRA 1659",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1686273,
+      "descricao": "CJ BREAKAWAY 3/4 CHICOTE MARTINELLI",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1686480,
+      "descricao": "MODULO EXPOSITOR COM ILUMINACAO",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1686482,
+      "descricao": "MODULO PDV",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1686483,
+      "descricao": "TESTEIRA DE COBERTURA EM ACM ADESIVADO 900MM",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1686484,
+      "descricao": "TESTEIRA DE COBERTURA EM ACM SIMPLES 1000MM VERDE",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1686485,
+      "descricao": "TESTEIRA DE COBERTURA EM LONA BACKLIGHT 900MM",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1687742,
+      "descricao": "PLACA ORELHA BOMBA PREMMIA VIBRA PDV DIVERSOS",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1687743,
+      "descricao": "CARTAZ A3 MOD PREMMIA",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1687744,
+      "descricao": "FAIXA PISTA ARTE ANTIGA GRID VIBRA PDV",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1689841,
+      "descricao": "ABRAC.NYLON UV PT 283X4.80MM C/ 40   REF: F7028UVPR40 - FRONTEC",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1689842,
+      "descricao": "CABO 2.5MM2/750V SUPERASTIC FLEX PT   REF: 23235302 - SUPERASTIC FLEX",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1689843,
+      "descricao": "CABO 2.5MM2/750V SUPERASTIC FLEX VM   REF: 23235303 - SUPERASTIC FLEX",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1689844,
+      "descricao": "CANALETA 20X10X2000MM S/DV.(FITA ADES.)   REF: 191.400 - DUDA",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1689845,
+      "descricao": "TOMADA DUPLA 10A SOB.TRD-CJ4SPBM/39146   REF: 39146 - MEC-TRONIC",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1689846,
+      "descricao": "FITA ISOL.IMPERIAL 18MMX10M   REF: HB004236020 - IMPERIAL",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1691468,
+      "descricao": "HASTE ATERRAM.IH-512 1/2X1.5M(2851)   REF: 479268 - INTELLI",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1691469,
+      "descricao": "CONECTOR ATERRAM.TH 12-58   REF: 113531 - INTELLI",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1692182,
+      "descricao": "BOTA NOBUCK BI-DENS.CAN.BAIX.CAFE 42   REF: 468 - CABRITOS FLORESTA",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1692958,
+      "descricao": "PNEU 295/80R22,5 152/148M HSR2 EE",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1693035,
+      "descricao": "BOTA COURO ELAST/PU MONO.40   REF: 308 - CABRITOS FLORESTA",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1699792,
+      "descricao": "MOCHILA PNOTEBOOK 15 IKONN PRETA 31R209001 SAMSONITE PT 1 UN",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1699793,
+      "descricao": "MULTIFUNCIONAL TANQUE DE TINTA ECOTANK L4260 EPSON CX 1 UN",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1699794,
+      "descricao": "MOUSE SEM FIO FULL SIZE M190 CINZA 910-005902 LOGITECH PT 1 UN",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1699806,
+      "descricao": "FAIXA PSITA 4,00 X 1,00 M DIGITAL VIBRA PROMO 1° SEMESTRE",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1699807,
+      "descricao": "COLETE GG - PETROBRAS PREMMIA",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1699808,
+      "descricao": "COLETE G - PETROBRAS PREMMIA",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1699809,
+      "descricao": "ORELHA DE BOMBA - VIBRA PROMO 1 SEMESTRE 23",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1699810,
+      "descricao": "CALIBRADOR - VIBRA PROMO 1 SEMESTRE 23",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1699811,
+      "descricao": "CARTAZ A3 - PETROBRAS PREMMIA",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1699812,
+      "descricao": "GUIA DE BOLSO - PETROBRAS PREMMIA",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1699813,
+      "descricao": "CARTAZ A5 CAMPANHA VIBRA - 25834",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1700729,
+      "descricao": "ESCOVA ACO 3 FILEIRAS C/CABO PLASTICO   REF: 415310 - MAX METALURGICA",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1700730,
+      "descricao": "TRINCHA ECON.P/ESM.CERD.PT 697 1.1/2\"   REF: 60697006 - TIGRE PINCEIS",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1700731,
+      "descricao": "LIXA P/FERRO 221T 220   REF: HB004602734 - 3M ABRASIVOS",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1700732,
+      "descricao": "ADESIVO INST.(MULTIUSO)793  20G   REF: 20571002800 - TEKBOND",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1700733,
+      "descricao": "OCULOS PROTECAO VERDE NITRO(HASTE REG)   REF: VIC51150 00 VD - STEELPRO",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1700734,
+      "descricao": "LUVA SEG.MALHA MESCLADA (4F)74MS/9   REF: 440 - ACRILON",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1700735,
+      "descricao": "CONE P/SINALIZ.PLAST.LAR/BR 50CM   REF: 700.01283 - PLASTCOR",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1700736,
+      "descricao": "TRITAO PRIMER ANTICORROS.P/FERRO VM.3.6L   REF: 2453 - INTERNACIONAL",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1700737,
+      "descricao": "FITA ISOL.33+ 19MMX20M   REF: HB004482483 - SCOTCH",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1701056,
+      "descricao": "DISCO CORTE",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1706085,
+      "descricao": "ACM VISUAL MAIS BRANCO BRILHO 1,22 X 5,00-3.00MM",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    },
+    {
+      "produtoCodigo": 1706685,
+      "descricao": "LED SMD MOD. GLOBO A60 5W AMARELA",
+      "combustivel": false,
+      "grupo": "29273",
+      "tipo": "U",
+      "classificacao": "OUTRO"
+    }
+  ]
+}

@@ -1,0 +1,323 @@
+{
+  "period": {
+    "dataInicial": "2026-06-01",
+    "dataFinal": "2026-06-07"
+  },
+  "elapsedMs": 30083,
+  "taxonomy": {
+    "categories": [
+      "ESTRATEGICOS",
+      "OPERACIONAL",
+      "FINANCEIRO",
+      "RH",
+      "TRIBUTARIO",
+      "OUTROS"
+    ],
+    "priority": [
+      "PLANO_CONTA",
+      "CENTRO_CUSTO",
+      "FORNECEDOR",
+      "DESCRICAO"
+    ]
+  },
+  "categoryAnalytics": [
+    {
+      "supplierCategory": "ESTRATEGICOS",
+      "valorTotal": "406131.68",
+      "participacaoPct": "95.48",
+      "fornecedoresCount": 25,
+      "filiaisCount": 3,
+      "lancamentosCount": 66
+    },
+    {
+      "supplierCategory": "OPERACIONAL",
+      "valorTotal": "19205.24",
+      "participacaoPct": "4.52",
+      "fornecedoresCount": 3,
+      "filiaisCount": 1,
+      "lancamentosCount": 13
+    }
+  ],
+  "topStrategic": [
+    {
+      "supplierCanonicalName": "VIBRA",
+      "supplierCategory": "ESTRATEGICOS",
+      "supplierSubcategory": "Combustiveis",
+      "supplierStrategic": true,
+      "strategicHomologated": true,
+      "valorTotal": "382769.46",
+      "participacaoPct": "89.99",
+      "filiaisCount": 2,
+      "readinessScore": 40,
+      "strategicSupplierScore": 89,
+      "strategicBand": "CRITICAL",
+      "components": {
+        "volumeFinanceiro": 22.5,
+        "capilaridadeRede": 16.7,
+        "recorrenciaHistorica": 25,
+        "criticidadeOperacional": 25
+      },
+      "evidenceSample": [
+        "TITULO_PAGAR:3073238",
+        "TITULO_PAGAR:3075000",
+        "TITULO_PAGAR:3075456"
+      ]
+    },
+    {
+      "supplierCanonicalName": "SUAPE",
+      "supplierCategory": "ESTRATEGICOS",
+      "supplierSubcategory": "Conveniencia Core",
+      "supplierStrategic": true,
+      "strategicHomologated": false,
+      "valorTotal": "4073.52",
+      "participacaoPct": "0.96",
+      "filiaisCount": 1,
+      "readinessScore": 65,
+      "strategicSupplierScore": 49,
+      "strategicBand": "MEDIUM",
+      "components": {
+        "volumeFinanceiro": 0.2,
+        "capilaridadeRede": 8.3,
+        "recorrenciaHistorica": 15.0,
+        "criticidadeOperacional": 25
+      },
+      "evidenceSample": [
+        "TITULO_PAGAR:3073823",
+        "TITULO_PAGAR:3073824",
+        "TITULO_PAGAR:3080075"
+      ]
+    },
+    {
+      "supplierCanonicalName": "UNIFORDEX FIALHO FARDAS",
+      "supplierCategory": "ESTRATEGICOS",
+      "supplierSubcategory": "Conveniencia Core",
+      "supplierStrategic": true,
+      "strategicHomologated": false,
+      "valorTotal": "2956.00",
+      "participacaoPct": "0.69",
+      "filiaisCount": 1,
+      "readinessScore": 25,
+      "strategicSupplierScore": 36,
+      "strategicBand": "MEDIUM",
+      "components": {
+        "volumeFinanceiro": 0.2,
+        "capilaridadeRede": 8.3,
+        "recorrenciaHistorica": 2.5,
+        "criticidadeOperacional": 25
+      },
+      "evidenceSample": [
+        "DESPESAS_REDE:REF NF:000006363 - UNIFORDEX FIALHO FARDAS - UNIFORDEX FIALHO FARDAS"
+      ]
+    },
+    {
+      "supplierCanonicalName": "ALELO",
+      "supplierCategory": "ESTRATEGICOS",
+      "supplierSubcategory": "Combustiveis",
+      "supplierStrategic": true,
+      "strategicHomologated": false,
+      "valorTotal": "2700.00",
+      "participacaoPct": "0.63",
+      "filiaisCount": 1,
+      "readinessScore": 40,
+      "strategicSupplierScore": 38,
+      "strategicBand": "MEDIUM",
+      "components": {
+        "volumeFinanceiro": 0.2,
+        "capilaridadeRede": 8.3,
+        "recorrenciaHistorica": 5.0,
+        "criticidadeOperacional": 25
+      },
+      "evidenceSample": [
+        "TITULO_PAGAR:2796802",
+        "TITULO_PAGAR:2952501"
+      ]
+    },
+    {
+      "supplierCanonicalName": "ARLEGO TRANSPORTES COMBUSTIVEIS",
+      "supplierCategory": "ESTRATEGICOS",
+      "supplierSubcategory": "Combustiveis",
+      "supplierStrategic": true,
+      "strategicHomologated": false,
+      "valorTotal": "2000.00",
+      "participacaoPct": "0.47",
+      "filiaisCount": 2,
+      "readinessScore": 40,
+      "strategicSupplierScore": 59,
+      "strategicBand": "HIGH",
+      "components": {
+        "volumeFinanceiro": 0.1,
+        "capilaridadeRede": 16.7,
+        "recorrenciaHistorica": 17.5,
+        "criticidadeOperacional": 25
+      },
+      "evidenceSample": [
+        "TITULO_PAGAR:3073239",
+        "TITULO_PAGAR:3075001",
+        "TITULO_PAGAR:3075461"
+      ]
+    },
+    {
+      "supplierCanonicalName": "INDUSTRIA BEBIDAS IGARASSU",
+      "supplierCategory": "ESTRATEGICOS",
+      "supplierSubcategory": "Conveniencia Core",
+      "supplierStrategic": true,
+      "strategicHomologated": false,
+      "valorTotal": "1944.79",
+      "participacaoPct": "0.46",
+      "filiaisCount": 1,
+      "readinessScore": 40,
+      "strategicSupplierScore": 36,
+      "strategicBand": "MEDIUM",
+      "components": {
+        "volumeFinanceiro": 0.1,
+        "capilaridadeRede": 8.3,
+        "recorrenciaHistorica": 2.5,
+        "criticidadeOperacional": 25
+      },
+      "evidenceSample": [
+        "TITULO_PAGAR:3080087"
+      ]
+    },
+    {
+      "supplierCanonicalName": "IPSEP TRANSPORTE",
+      "supplierCategory": "ESTRATEGICOS",
+      "supplierSubcategory": "Combustiveis",
+      "supplierStrategic": true,
+      "strategicHomologated": false,
+      "valorTotal": "1800.00",
+      "participacaoPct": "0.42",
+      "filiaisCount": 2,
+      "readinessScore": 40,
+      "strategicSupplierScore": 59,
+      "strategicBand": "HIGH",
+      "components": {
+        "volumeFinanceiro": 0.1,
+        "capilaridadeRede": 16.7,
+        "recorrenciaHistorica": 17.5,
+        "criticidadeOperacional": 25
+      },
+      "evidenceSample": [
+        "TITULO_PAGAR:3075457",
+        "TITULO_PAGAR:3077029",
+        "TITULO_PAGAR:3080482"
+      ]
+    },
+    {
+      "supplierCanonicalName": "CASA SALGADOS ALIMENTOS",
+      "supplierCategory": "ESTRATEGICOS",
+      "supplierSubcategory": "Conveniencia Core",
+      "supplierStrategic": true,
+      "strategicHomologated": false,
+      "valorTotal": "1293.50",
+      "participacaoPct": "0.30",
+      "filiaisCount": 1,
+      "readinessScore": 40,
+      "strategicSupplierScore": 36,
+      "strategicBand": "MEDIUM",
+      "components": {
+        "volumeFinanceiro": 0.1,
+        "capilaridadeRede": 8.3,
+        "recorrenciaHistorica": 2.5,
+        "criticidadeOperacional": 25
+      },
+      "evidenceSample": [
+        "TITULO_PAGAR:3080105"
+      ]
+    },
+    {
+      "supplierCanonicalName": "CONCEITO DISTRIBUIDORA",
+      "supplierCategory": "ESTRATEGICOS",
+      "supplierSubcategory": "Conveniencia Core",
+      "supplierStrategic": true,
+      "strategicHomologated": false,
+      "valorTotal": "1061.00",
+      "participacaoPct": "0.25",
+      "filiaisCount": 1,
+      "readinessScore": 40,
+      "strategicSupplierScore": 36,
+      "strategicBand": "MEDIUM",
+      "components": {
+        "volumeFinanceiro": 0.1,
+        "capilaridadeRede": 8.3,
+        "recorrenciaHistorica": 2.5,
+        "criticidadeOperacional": 25
+      },
+      "evidenceSample": [
+        "TITULO_PAGAR:3076090"
+      ]
+    },
+    {
+      "supplierCanonicalName": "CHIC FABRICACAO DOCES",
+      "supplierCategory": "ESTRATEGICOS",
+      "supplierSubcategory": "Conveniencia Core",
+      "supplierStrategic": true,
+      "strategicHomologated": false,
+      "valorTotal": "975.50",
+      "participacaoPct": "0.23",
+      "filiaisCount": 1,
+      "readinessScore": 40,
+      "strategicSupplierScore": 38,
+      "strategicBand": "MEDIUM",
+      "components": {
+        "volumeFinanceiro": 0.1,
+        "capilaridadeRede": 8.3,
+        "recorrenciaHistorica": 5.0,
+        "criticidadeOperacional": 25
+      },
+      "evidenceSample": [
+        "TITULO_PAGAR:3075379",
+        "TITULO_PAGAR:3080096"
+      ]
+    }
+  ],
+  "kpis": {
+    "strategicSupplierIndex": 95.48,
+    "supplierDependencyIndex": 3.21,
+    "corporateCostIndex": 96.79,
+    "supplierCoverageIndex": 100.0,
+    "averageSupplierConfidenceScore": 96.6,
+    "economiaPotencialPeriodo": "57449.34",
+    "economiaPotencialAnualEstimada": "2987365.68"
+  },
+  "highlights": {
+    "vibraStrategicScore": 89,
+    "vibraHomologated": true,
+    "vibraConcentrationAlertSuppressed": true,
+    "maiorCategoriaConsumo": "ESTRATEGICOS",
+    "maiorCategoriaDependencia": "ESTRATEGICOS",
+    "maiorPlanoConta": "COMBUSTIVEL",
+    "maiorCentroCusto": "PISTA"
+  },
+  "procurementOpportunitiesCount": 17,
+  "corporateCostMatrixRows": 79,
+  "supplierIntelligenceRisk": {
+    "concentrationRisk": 0,
+    "vibraInAlerts": false,
+    "homologated": [
+      "VIBRA"
+    ]
+  },
+  "segmentationRisk": {
+    "vibraInAlerts": false,
+    "homologatedMonitoring": [
+      {
+        "fornecedor": "VIBRA",
+        "monitorar": [
+          "prazo",
+          "volume",
+          "exposicao",
+          "crescimento",
+          "condicoes"
+        ],
+        "alertaConcentracaoSuprimido": true
+      }
+    ]
+  },
+  "acceptance": {
+    "vibraNoFalseConcentrationAlert": true,
+    "vibraHomologated": true,
+    "matrixTraceable": true,
+    "categoriesCreated": true,
+    "pass": true
+  }
+}

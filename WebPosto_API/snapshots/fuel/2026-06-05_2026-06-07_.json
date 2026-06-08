@@ -1,0 +1,39 @@
+{
+  "lastUpdated": "2026-06-08T15:08:57",
+  "fuel": {
+    "success": true,
+    "data": {
+      "litrosTotal": 0.0,
+      "filiais": [],
+      "combustiveis": [],
+      "ranking": [],
+      "detalhes": [],
+      "agrupamento": {
+        "empresaCodigo": true,
+        "produtoCodigo": true,
+        "data": true
+      },
+      "consistencia": {
+        "somaCombustiveis": 0,
+        "somaFiliais": 0
+      },
+      "kpis": {
+        "litrosVendidos": 0.0,
+        "combustivelLider": {
+          "nome": "Sem dados",
+          "litros": 0.0
+        },
+        "filialLider": {
+          "empresaCodigo": null,
+          "nomeFilial": "Sem dados",
+          "litros": 0.0
+        },
+        "participacaoDiesel": 0.0,
+        "participacaoGasolina": 0.0,
+        "participacaoEtanol": 0.0
+      }
+    },
+    "error": null
+  },
+  "warnings": []
+}

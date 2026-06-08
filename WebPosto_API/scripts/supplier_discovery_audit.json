@@ -1,0 +1,235 @@
+{
+  "period": {
+    "dataInicial": "2026-06-01",
+    "dataFinal": "2026-06-07"
+  },
+  "endpoints": {
+    "FORNECEDOR_REDE": {
+      "path": "/INTEGRACAO/FORNECEDOR_REDE",
+      "httpStatus": 401,
+      "registros": 0,
+      "classification": "401",
+      "supplierFieldsInSchema": [],
+      "fieldCoverage": {},
+      "sampleKeys": []
+    },
+    "CONTA_FORNECEDOR": {
+      "path": "/INTEGRACAO/CONTA_FORNECEDOR",
+      "httpStatus": 401,
+      "registros": 0,
+      "classification": "401",
+      "supplierFieldsInSchema": [],
+      "fieldCoverage": {},
+      "sampleKeys": []
+    },
+    "FORNECEDOR": {
+      "path": "/INTEGRACAO/FORNECEDOR",
+      "httpStatus": 200,
+      "registros": 200,
+      "classification": "USAR_AGORA",
+      "supplierFieldsInSchema": [
+        "fornecedorCodigo",
+        "tipoPessoa"
+      ],
+      "fieldCoverage": {
+        "fornecedorCodigo": {
+          "count": 200,
+          "pct": 100.0
+        },
+        "tipoPessoa": {
+          "count": 200,
+          "pct": 100.0
+        }
+      },
+      "sampleKeys": [
+        "bairro",
+        "celular",
+        "cep",
+        "cidade",
+        "cnpjCpf",
+        "codigo",
+        "codigoMunicipio",
+        "complemento",
+        "contasFornecedor",
+        "contatoEmail",
+        "contatoWhatsapp",
+        "dataHoraAtualizacao",
+        "email",
+        "fantasia",
+        "fax",
+        "fornecedorCodigo",
+        "fornecedorCodigoExterno",
+        "fornecedorReferencia",
+        "inscricaoEstadual",
+        "inscricaoMunicipal",
+        "logradouro",
+        "numero",
+        "observacoes",
+        "pais",
+        "razao",
+        "telefone",
+        "tipoLogradouro",
+        "tipoPessoa",
+        "uf",
+        "ultimoUsuarioAlteracao"
+      ]
+    },
+    "DESPESAS_REDE": {
+      "path": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+      "httpStatus": 200,
+      "registros": 436,
+      "classification": "SEM_COBERTURA",
+      "supplierFieldsInSchema": [],
+      "fieldCoverage": {},
+      "sampleKeys": [
+        "data",
+        "descricaoDocumento",
+        "empresaCodigo",
+        "planoContaGerencialCodigo",
+        "valor"
+      ]
+    },
+    "TITULO_PAGAR": {
+      "path": "/INTEGRACAO/TITULO_PAGAR",
+      "httpStatus": 200,
+      "registros": 70,
+      "classification": "USAR_AGORA",
+      "supplierFieldsInSchema": [
+        "fornecedorCodigo",
+        "nomeFornecedor",
+        "cpfCnpjFornecedor",
+        "contaFornecedor"
+      ],
+      "fieldCoverage": {
+        "fornecedorCodigo": {
+          "count": 70,
+          "pct": 100.0
+        },
+        "nomeFornecedor": {
+          "count": 70,
+          "pct": 100.0
+        },
+        "cpfCnpjFornecedor": {
+          "count": 70,
+          "pct": 100.0
+        },
+        "contaFornecedor": {
+          "count": 1,
+          "pct": 1.43
+        }
+      },
+      "sampleKeys": [
+        "acrescimo",
+        "adiantamento",
+        "agenciaFornecedor",
+        "autorizado",
+        "bancoFornecedor",
+        "cartao",
+        "centroCustoCodigo",
+        "centroCustoDescricao",
+        "chavePixFornecedor",
+        "cheque",
+        "codigo",
+        "codigoMunicipio",
+        "codigoReceitaTributo",
+        "contaFornecedor",
+        "cpfCnpjFornecedor",
+        "dataMovimento",
+        "dataPagamento",
+        "desconto",
+        "descricao",
+        "digitoFgts",
+        "dinheiro",
+        "empresaCodigo",
+        "fornecedorCodigo",
+        "fornecedorIntermediadorCodigo",
+        "identificadorFgts",
+        "lacreConSocialFgts",
+        "linhaDigitavel",
+        "nomeFornecedor",
+        "nossoNumero",
+        "notaEntradaCodigo"
+      ]
+    },
+    "MOVIMENTO_CONTA": {
+      "path": "/INTEGRACAO/MOVIMENTO_CONTA",
+      "httpStatus": 200,
+      "registros": 200,
+      "classification": "USAR_COM_CUIDADO",
+      "supplierFieldsInSchema": [
+        "codigoPessoa",
+        "tipoPessoa"
+      ],
+      "fieldCoverage": {
+        "codigoPessoa": {
+          "count": 0,
+          "pct": 0.0
+        },
+        "tipoPessoa": {
+          "count": 200,
+          "pct": 100.0
+        }
+      },
+      "sampleKeys": [
+        "centroCustoCodigo",
+        "codigo",
+        "codigoPessoa",
+        "codigoTipoDocumentoOrigem",
+        "conciliado",
+        "contaCodigo",
+        "daraHoraConciliacao",
+        "dataMovimento",
+        "descricao",
+        "documento",
+        "documentoOrigemCodigo",
+        "empresaCodigo",
+        "evento",
+        "lote",
+        "movimentoContaCodigo",
+        "planoContaGerencialCodigo",
+        "saldo",
+        "tipo",
+        "tipoDocumentoOrigem",
+        "tipoPessoa",
+        "usuarioConciliacao",
+        "valor"
+      ]
+    },
+    "COMPRA_REDE": {
+      "path": "/INTEGRACAO/COMPRA_REDE",
+      "httpStatus": 401,
+      "registros": 0,
+      "classification": "401",
+      "supplierFieldsInSchema": [],
+      "fieldCoverage": {},
+      "sampleKeys": []
+    },
+    "PEDIDO_COMPRAS": {
+      "path": "/INTEGRACAO/PEDIDO_COMPRAS",
+      "httpStatus": 401,
+      "registros": 0,
+      "classification": "401",
+      "supplierFieldsInSchema": [],
+      "fieldCoverage": {},
+      "sampleKeys": []
+    },
+    "NOTA_ENTRADA": {
+      "path": "/INTEGRACAO/NOTA_ENTRADA",
+      "httpStatus": 401,
+      "registros": 0,
+      "classification": "401",
+      "supplierFieldsInSchema": [],
+      "fieldCoverage": {},
+      "sampleKeys": []
+    },
+    "CLIENTE_EMPRESA_REDE": {
+      "path": "/INTEGRACAO/CLIENTE_EMPRESA_REDE",
+      "httpStatus": 401,
+      "registros": 0,
+      "classification": "401",
+      "supplierFieldsInSchema": [],
+      "fieldCoverage": {},
+      "sampleKeys": []
+    }
+  }
+}

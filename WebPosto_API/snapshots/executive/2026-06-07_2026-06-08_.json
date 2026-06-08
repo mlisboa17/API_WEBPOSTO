@@ -1,0 +1,603 @@
+{
+  "lastUpdated": "2026-06-08T12:57:15",
+  "kpis": {
+    "faturamento": "28034.12",
+    "despesasTotais": "2991.54",
+    "despesas": "2991.54",
+    "resultadoOperacional": "25042.58",
+    "resultado": "25042.58",
+    "margemPct": "89.33",
+    "margem": "89.33",
+    "ticketMedio": "100.8421582733812949640287770",
+    "qtdVendas": 278,
+    "qtdClientes": 0,
+    "estoqueTotal": "17.00",
+    "periodoInicial": "2026-06-07",
+    "periodoFinal": "2026-06-08",
+    "filtros": {
+      "empresaCodigo": null,
+      "centroCusto": null,
+      "tipoDespesa": null
+    },
+    "empresasCodigos": [
+      5256,
+      5333,
+      5555,
+      5556,
+      5557,
+      5559,
+      11495,
+      46433,
+      74014
+    ],
+    "origemSistema": "webpostos",
+    "lineage": {
+      "faturamento": "endpoint=/INTEGRACAO/VENDA_ITEM_REDE|campo=totalVenda|filtro=empresaCodigo:None,centroCusto:None,tipoDespesa:None|periodo=2026-06-07..2026-06-08|rede=5256,5333,5555,5556,5557,5559,11495,46433,74014",
+      "despesasTotais": "endpoint=/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE|campo=valor|filtro=empresaCodigo:None,centroCusto:None,tipoDespesa:None|periodo=2026-06-07..2026-06-08|rede=5256,5333,5555,5556,5557,5559,11495,46433,74014",
+      "resultadoOperacional": "endpoint=calculo_backend|campo=faturamento-despesas|filtro=empresaCodigo:None,centroCusto:None,tipoDespesa:None|periodo=2026-06-07..2026-06-08|rede=5256,5333,5555,5556,5557,5559,11495,46433,74014",
+      "margemPct": "endpoint=calculo_backend|campo=resultado/faturamento*100|filtro=empresaCodigo:None,centroCusto:None,tipoDespesa:None|periodo=2026-06-07..2026-06-08|rede=5256,5333,5555,5556,5557,5559,11495,46433,74014",
+      "ticketMedio": "endpoint=calculo_backend|campo=faturamento/qtdVendas|filtro=empresaCodigo:None,centroCusto:None,tipoDespesa:None|periodo=2026-06-07..2026-06-08|rede=5256,5333,5555,5556,5557,5559,11495,46433,74014",
+      "estoque": "endpoint=/INTEGRACAO/PRODUTO_ESTOQUE|campo=quantidade|filtro=empresaCodigo:None,centroCusto:None|periodo=2026-06-07..2026-06-08|rede=5256,5333,5555,5556,5557,5559,11495,46433,74014"
+    }
+  },
+  "dre": {
+    "receitas": "28034.12",
+    "custosProduto": "0",
+    "custos": "0",
+    "outrasDespesas": "2991.54",
+    "despesas": "2991.54",
+    "resultadoOperacional": "25042.58",
+    "resultado": "25042.58",
+    "margemPct": "89.33",
+    "margemPercentual": "89.33",
+    "validacaoOk": true,
+    "divergencia": "0.00",
+    "periodoInicial": "2026-06-07",
+    "periodoFinal": "2026-06-08",
+    "agrupamento": [
+      {
+        "planoConta": "SR. MOISES / COM PEDRO",
+        "valor": "400.00"
+      },
+      {
+        "planoConta": "REF PAGAMENTO FELIPE",
+        "valor": "400.00"
+      },
+      {
+        "planoConta": "ref pag apoio loja",
+        "valor": "195.00"
+      },
+      {
+        "planoConta": "PAG REF A 35 GELOS",
+        "valor": "171.50"
+      },
+      {
+        "planoConta": "EXTRA REFERENTE AS FERIAS DE LENILSON",
+        "valor": "150.00"
+      },
+      {
+        "planoConta": "ref diaria marco hora extra",
+        "valor": "130.00"
+      },
+      {
+        "planoConta": "folguista joao",
+        "valor": "130.00"
+      },
+      {
+        "planoConta": "ref despesa posto",
+        "valor": "120.83"
+      },
+      {
+        "planoConta": "REF,DIARIA APOIO CALDINHO",
+        "valor": "120.00"
+      },
+      {
+        "planoConta": "REF DIARIA APOIO",
+        "valor": "120.00"
+      },
+      {
+        "planoConta": "REF DIARIA",
+        "valor": "120.00"
+      },
+      {
+        "planoConta": "FOLGUISTA DA LIMPEZA",
+        "valor": "120.00"
+      },
+      {
+        "planoConta": "100 REAIS DE GASOLINA SR MOISES",
+        "valor": "100.00"
+      },
+      {
+        "planoConta": "ref a domingo/trabalhado",
+        "valor": "100.00"
+      },
+      {
+        "planoConta": "pagamento neto domingo",
+        "valor": "100.00"
+      },
+      {
+        "planoConta": "DIARIA",
+        "valor": "100.00"
+      },
+      {
+        "planoConta": "ref a uma diaria",
+        "valor": "90.00"
+      },
+      {
+        "planoConta": "REF DIARIA ARTHUR",
+        "valor": "70.00"
+      },
+      {
+        "planoConta": "REF PAG (PUDIM LOJA)",
+        "valor": "64.00"
+      },
+      {
+        "planoConta": "MATERIAL",
+        "valor": "61.00"
+      },
+      {
+        "planoConta": "ref despesa posto uber de jack t",
+        "valor": "27.00"
+      },
+      {
+        "planoConta": "ref 20 reais /gasolin/troc/mang",
+        "valor": "20.00"
+      },
+      {
+        "planoConta": "SR MOISEIS",
+        "valor": "20.00"
+      },
+      {
+        "planoConta": "REF A COMPRA PARA O ESPETINHO",
+        "valor": "12.71"
+      },
+      {
+        "planoConta": "duas aguas mineral",
+        "valor": "12.00"
+      },
+      {
+        "planoConta": "nota de arla/cliente",
+        "valor": "10.01"
+      },
+      {
+        "planoConta": "1 agua lanchonete",
+        "valor": "8.00"
+      },
+      {
+        "planoConta": "sr moises pegou na coveniencia",
+        "valor": "7.49"
+      },
+      {
+        "planoConta": "1 FLANELA BRINDE",
+        "valor": "6.00"
+      },
+      {
+        "planoConta": "POSTO",
+        "valor": "6.00"
+      }
+    ],
+    "formula": "receitas - custosProduto - outrasDespesas = resultadoOperacional",
+    "lineage": {
+      "receitas": "endpoint=/INTEGRACAO/VENDA_ITEM_REDE|campo=totalVenda|filtro=empresaCodigo:None,centroCusto:None|periodo=2026-06-07..2026-06-08|rede=5256,5333,5555,5556,5557,5559,11495,46433,74014",
+      "custosProduto": "endpoint=/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE|campo=valor(classificado_custo)|filtro=empresaCodigo:None,centroCusto:None|periodo=2026-06-07..2026-06-08|rede=5256,5333,5555,5556,5557,5559,11495,46433,74014",
+      "outrasDespesas": "endpoint=/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE|campo=valor(classificado_outra)|filtro=empresaCodigo:None,centroCusto:None|periodo=2026-06-07..2026-06-08|rede=5256,5333,5555,5556,5557,5559,11495,46433,74014",
+      "resultadoOperacional": "endpoint=calculo_backend|campo=receitas-custosProduto-outrasDespesas|filtro=empresaCodigo:None,centroCusto:None|periodo=2026-06-07..2026-06-08|rede=5256,5333,5555,5556,5557,5559,11495,46433,74014",
+      "margemPct": "endpoint=calculo_backend|campo=resultado/receitas*100|filtro=empresaCodigo:None,centroCusto:None|periodo=2026-06-07..2026-06-08|rede=5256,5333,5555,5556,5557,5559,11495,46433,74014"
+    }
+  },
+  "coverage": {
+    "filiaisTotais": 12,
+    "filiaisConfirmadas": 10,
+    "filiaisPendentesIdentificacao": 1,
+    "filiaisAtivas": 10,
+    "filiaisInativas": 1,
+    "filiaisComDados": 9,
+    "filiaisSemDados": 1,
+    "filiaisComCombustivel": 2,
+    "filiaisSemToken": 1,
+    "filiaisSemSincronizacao": 10,
+    "coveragePercent": 90.0,
+    "coverageConfirmedPercent": 83.33,
+    "coverageOperationalPercent": 90.0,
+    "fuelCoveragePercent": 20.0,
+    "networkHealth": 90.0,
+    "indiceCoberturaRede": 67.67,
+    "mensagemDiretoria": "O software LOGOS SPACE esta operacional. A limitacao atual e a integracao WebPosto (token e endpoints por filial).",
+    "filiais": [
+      {
+        "codWeb": 11495,
+        "empresaCodigo": 11495,
+        "codigoApi": 11495,
+        "nome": "POSTO VIP",
+        "nomeFantasia": "POSTO VIP",
+        "razaoSocial": "RIO DOCE COMERCIO E SERVICOS LTDA",
+        "cnpj": "03.008.754/0001-86",
+        "status": "CONFIRMADA",
+        "statusOperacional": "ATIVA",
+        "statusDetalhado": "Dados operacionais",
+        "status_detalhado": "Dados operacionais",
+        "origem": "TABELA_CORPORATIVA",
+        "dataEncerramento": null,
+        "possuiDadosOperacionais": true,
+        "apiEncontrada": true,
+        "raw": {
+          "empresaCodigo": 11495,
+          "cnpj": "03.008.754/0001-86",
+          "razao": "RIO DOCE COMERCIO E SERVICOS LTDA",
+          "fantasia": "POSTO VIP",
+          "tipoLogradouro": "AVE",
+          "logradouro": "AVENIDA BRASIL",
+          "endereco": "AVE AVENIDA BRASIL",
+          "bairro": "RIO DOCE",
+          "numero": "2701",
+          "cep": "53.070-380",
+          "cidade": "OLINDA",
+          "estado": "PE",
+          "latitude": -7.955013199999999,
+          "longitude": -34.851076,
+          "ultimoUsuarioAlteracao": "JOSIANE DA SILVA OLIVEIRA",
+          "centroCustoPrincipal": 7295,
+          "empresaCodigoExterno": null,
+          "sigla": null,
+          "tipoImposto": "R",
+          "codigo": 11495
+        }
+      },
+      {
+        "codWeb": 5555,
+        "empresaCodigo": 5555,
+        "codigoApi": 5555,
+        "nome": "AP CASA CAIADA",
+        "nomeFantasia": "AP CASA CAIADA",
+        "razaoSocial": "AUTO POSTO CASA CAIADA LTDA",
+        "cnpj": "04.284.939/0001-86",
+        "status": "CONFIRMADA",
+        "statusOperacional": "ATIVA",
+        "statusDetalhado": "Dados operacionais",
+        "status_detalhado": "Dados operacionais",
+        "origem": "TABELA_CORPORATIVA",
+        "dataEncerramento": null,
+        "possuiDadosOperacionais": true,
+        "apiEncontrada": true,
+        "raw": {
+          "empresaCodigo": 5555,
+          "cnpj": "04.284.939/0001-86",
+          "razao": "AUTO POSTO CASA CAIADA LTDA",
+          "fantasia": "AP CASA CAIADA",
+          "tipoLogradouro": "AVE",
+          "logradouro": "AVENIDA GOVERNADOR CARLOS DE LIMA",
+          "endereco": "AVE AVENIDA GOVERNADOR CARLOS DE LIMA",
+          "bairro": "CASA CAIADA",
+          "numero": "2350",
+          "cep": "53.040-000",
+          "cidade": "OLINDA",
+          "estado": "PE",
+          "latitude": -7.9847269,
+          "longitude": -34.8384772,
+          "ultimoUsuarioAlteracao": "PETROSYSTEM",
+          "centroCustoPrincipal": 7295,
+          "empresaCodigoExterno": null,
+          "sigla": null,
+          "tipoImposto": "R",
+          "codigo": 5555
+        }
+      },
+      {
+        "codWeb": 5256,
+        "empresaCodigo": 5256,
+        "codigoApi": null,
+        "nome": "POSTO BR SHOPPING",
+        "nomeFantasia": "POSTO BR SHOPPING",
+        "razaoSocial": "DISTRIBUIDORA RS DERIVADOS DE PETROLEO LTDA",
+        "cnpj": "07.018.760/0001-75",
+        "status": "CONFIRMADA",
+        "statusOperacional": "ATIVA",
+        "statusDetalhado": "Token insuficiente",
+        "status_detalhado": "Token insuficiente",
+        "origem": "TABELA_CORPORATIVA",
+        "dataEncerramento": null,
+        "possuiDadosOperacionais": false,
+        "apiEncontrada": false,
+        "raw": {
+          "empresaCodigo": 5256,
+          "codigo": 5256,
+          "razao": "DISTRIBUIDORA RS DERIVADOS DE PETROLEO LTDA",
+          "fantasia": "POSTO BR SHOPPING",
+          "cnpj": "07.018.760/0001-75"
+        }
+      },
+      {
+        "codWeb": 5333,
+        "empresaCodigo": 5333,
+        "codigoApi": null,
+        "nome": "POSTO JANGA",
+        "nomeFantasia": "POSTO JANGA",
+        "razaoSocial": "POSTO CIDADE PATRIMONIO LTDA",
+        "cnpj": "05.428.059/0002-80",
+        "status": "CONFIRMADA",
+        "statusOperacional": "ATIVA",
+        "statusDetalhado": "Dados operacionais em rede",
+        "status_detalhado": "Dados operacionais em rede",
+        "origem": "TABELA_CORPORATIVA",
+        "dataEncerramento": null,
+        "possuiDadosOperacionais": true,
+        "apiEncontrada": false,
+        "raw": {
+          "empresaCodigo": 5333,
+          "codigo": 5333,
+          "razao": "POSTO CIDADE PATRIMONIO LTDA",
+          "fantasia": "POSTO JANGA",
+          "cnpj": "05.428.059/0002-80"
+        }
+      },
+      {
+        "codWeb": 5556,
+        "empresaCodigo": 5556,
+        "codigoApi": null,
+        "nome": "POSTO CIDADE PATRIMONIO",
+        "nomeFantasia": "POSTO CIDADE PATRIMONIO",
+        "razaoSocial": "POSTO CIDADE PATRIMONIO LTDA",
+        "cnpj": "05.428.059/0001-07",
+        "status": "CONFIRMADA",
+        "statusOperacional": "ATIVA",
+        "statusDetalhado": "Dados operacionais em rede",
+        "status_detalhado": "Dados operacionais em rede",
+        "origem": "TABELA_CORPORATIVA",
+        "dataEncerramento": null,
+        "possuiDadosOperacionais": true,
+        "apiEncontrada": false,
+        "raw": {
+          "empresaCodigo": 5556,
+          "codigo": 5556,
+          "razao": "POSTO CIDADE PATRIMONIO LTDA",
+          "fantasia": "POSTO CIDADE PATRIMONIO",
+          "cnpj": "05.428.059/0001-07"
+        }
+      },
+      {
+        "codWeb": 5557,
+        "empresaCodigo": 5557,
+        "codigoApi": null,
+        "nome": "POSTO ENSEADA DO NORTE",
+        "nomeFantasia": "POSTO ENSEADA DO NORTE",
+        "razaoSocial": "POSTO ENSEADA DO NORTE LTDA",
+        "cnpj": "00.338.804/0001-03",
+        "status": "CONFIRMADA",
+        "statusOperacional": "ATIVA",
+        "statusDetalhado": "Dados operacionais em rede",
+        "status_detalhado": "Dados operacionais em rede",
+        "origem": "TABELA_CORPORATIVA",
+        "dataEncerramento": null,
+        "possuiDadosOperacionais": true,
+        "apiEncontrada": false,
+        "raw": {
+          "empresaCodigo": 5557,
+          "codigo": 5557,
+          "razao": "POSTO ENSEADA DO NORTE LTDA",
+          "fantasia": "POSTO ENSEADA DO NORTE",
+          "cnpj": "00.338.804/0001-03"
+        }
+      },
+      {
+        "codWeb": 5558,
+        "empresaCodigo": 5558,
+        "codigoApi": null,
+        "nome": "POSTO REAL",
+        "nomeFantasia": "POSTO REAL",
+        "razaoSocial": "REAL RECIFE LTDA",
+        "cnpj": "24.156.978/0001-05",
+        "status": "INATIVA",
+        "statusOperacional": "INATIVA",
+        "statusDetalhado": "Inativa",
+        "status_detalhado": "Inativa",
+        "origem": "TABELA_CORPORATIVA",
+        "dataEncerramento": "2026-05-20",
+        "possuiDadosOperacionais": false,
+        "apiEncontrada": false,
+        "raw": {
+          "empresaCodigo": 5558,
+          "codigo": 5558,
+          "razao": "REAL RECIFE LTDA",
+          "fantasia": "POSTO REAL",
+          "cnpj": "24.156.978/0001-05"
+        }
+      },
+      {
+        "codWeb": 5559,
+        "empresaCodigo": 5559,
+        "codigoApi": null,
+        "nome": "POSTO RJ",
+        "nomeFantasia": "POSTO RJ",
+        "razaoSocial": "RJ COMBUSTIVEIS E LUBRIFICANTES",
+        "cnpj": "08.726.064/0001-86",
+        "status": "CONFIRMADA",
+        "statusOperacional": "ATIVA",
+        "statusDetalhado": "Dados operacionais em rede",
+        "status_detalhado": "Dados operacionais em rede",
+        "origem": "TABELA_CORPORATIVA",
+        "dataEncerramento": null,
+        "possuiDadosOperacionais": true,
+        "apiEncontrada": false,
+        "raw": {
+          "empresaCodigo": 5559,
+          "codigo": 5559,
+          "razao": "RJ COMBUSTIVEIS E LUBRIFICANTES",
+          "fantasia": "POSTO RJ",
+          "cnpj": "08.726.064/0001-86"
+        }
+      },
+      {
+        "codWeb": 5560,
+        "empresaCodigo": 5560,
+        "codigoApi": null,
+        "nome": "POSTO SERTÃ",
+        "nomeFantasia": "POSTO SERTÃ",
+        "razaoSocial": "AUTO POSTO IGARASSU LTDA",
+        "cnpj": "04.274.378/0001-34",
+        "status": "CONFIRMADA",
+        "statusOperacional": "ATIVA",
+        "statusDetalhado": "Dados operacionais em rede",
+        "status_detalhado": "Dados operacionais em rede",
+        "origem": "TABELA_CORPORATIVA",
+        "dataEncerramento": null,
+        "possuiDadosOperacionais": true,
+        "apiEncontrada": false,
+        "raw": {
+          "empresaCodigo": 5560,
+          "codigo": 5560,
+          "razao": "AUTO POSTO IGARASSU LTDA",
+          "fantasia": "POSTO SERTÃ",
+          "cnpj": "04.274.378/0001-34"
+        }
+      },
+      {
+        "codWeb": 46433,
+        "empresaCodigo": 46433,
+        "codigoApi": null,
+        "nome": "POSTO DOZE",
+        "nomeFantasia": "POSTO DOZE",
+        "razaoSocial": "POSTO DOZE COMERCIO DE COMBUSTIVEIS E DERIVADOS DE PETROLEO",
+        "cnpj": "52.308.604/0001-01",
+        "status": "CONFIRMADA",
+        "statusOperacional": "ATIVA",
+        "statusDetalhado": "Dados operacionais em rede",
+        "status_detalhado": "Dados operacionais em rede",
+        "origem": "TABELA_CORPORATIVA",
+        "dataEncerramento": null,
+        "possuiDadosOperacionais": true,
+        "apiEncontrada": false,
+        "raw": {
+          "empresaCodigo": 46433,
+          "codigo": 46433,
+          "razao": "POSTO DOZE COMERCIO DE COMBUSTIVEIS E DERIVADOS DE PETROLEO",
+          "fantasia": "POSTO DOZE",
+          "cnpj": "52.308.604/0001-01"
+        }
+      },
+      {
+        "codWeb": 74014,
+        "empresaCodigo": 74014,
+        "codigoApi": null,
+        "nome": "POSTO DOZE FILIAL II",
+        "nomeFantasia": "POSTO DOZE FILIAL II",
+        "razaoSocial": "POSTO DOZE COMERCIO DE COMBUSTIVEIS E DERIVADOS DE PETROLEO",
+        "cnpj": "52.308.604/0002-84",
+        "status": "CONFIRMADA",
+        "statusOperacional": "ATIVA",
+        "statusDetalhado": "Dados operacionais em rede",
+        "status_detalhado": "Dados operacionais em rede",
+        "origem": "TABELA_CORPORATIVA",
+        "dataEncerramento": null,
+        "possuiDadosOperacionais": true,
+        "apiEncontrada": false,
+        "raw": {
+          "empresaCodigo": 74014,
+          "codigo": 74014,
+          "razao": "POSTO DOZE COMERCIO DE COMBUSTIVEIS E DERIVADOS DE PETROLEO",
+          "fantasia": "POSTO DOZE FILIAL II",
+          "cnpj": "52.308.604/0002-84"
+        }
+      },
+      {
+        "codWeb": null,
+        "empresaCodigo": null,
+        "codigoApi": null,
+        "nome": "AUTO POSTO GLOBO",
+        "nomeFantasia": "AUTO POSTO GLOBO",
+        "razaoSocial": "AUTO POSTO GLOBO LTDA",
+        "cnpj": "41.043.647/0001-88",
+        "status": "PENDENTE_IDENTIFICACAO",
+        "statusOperacional": "PENDENTE_IDENTIFICACAO",
+        "statusDetalhado": "Pendente identificacao",
+        "status_detalhado": "Pendente identificacao",
+        "origem": "TABELA_CORPORATIVA",
+        "dataEncerramento": null,
+        "possuiDadosOperacionais": false,
+        "apiEncontrada": false,
+        "raw": {
+          "empresaCodigo": null,
+          "codigo": null,
+          "razao": "AUTO POSTO GLOBO LTDA",
+          "fantasia": "AUTO POSTO GLOBO",
+          "cnpj": "41.043.647/0001-88"
+        }
+      }
+    ]
+  },
+  "dataQuality": {
+    "score": 69.31,
+    "status": "danger",
+    "summary": {
+      "totalRegistros": 909,
+      "validos": 630,
+      "invalidos": 279
+    },
+    "issues": {
+      "duplicados": 0,
+      "filiaisNaoMapeadas": 0,
+      "empresasNaoMapeadas": 0,
+      "produtosNaoMapeados": 0,
+      "despesasSemConta": 0,
+      "vendasSemFilial": 0,
+      "valoresInvalidos": 0,
+      "datasInvalidas": 0,
+      "formasPagamentoNaoMapeadas": 279,
+      "contasPagarSemVencimento": 0
+    },
+    "totalRegistros": 909,
+    "validos": 630,
+    "invalidos": 279,
+    "duplicados": 0,
+    "filiaisNaoMapeadas": 0,
+    "empresasNaoMapeadas": 0,
+    "produtosNaoMapeados": 0,
+    "despesasSemConta": 0,
+    "vendasSemFilial": 0,
+    "valoresInvalidos": 0,
+    "datasInvalidas": 0,
+    "formasPagamentoNaoMapeadas": 279,
+    "contasPagarSemVencimento": 0,
+    "lineage": [
+      "endpoint=/v1/financial/companies|fonte=/INTEGRACAO/EMPRESAS|campo=empresaCodigo",
+      "endpoint=/v1/financial/expenses|fonte=/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE|campos=data,valor,planoConta",
+      "endpoint=/v1/financial/accounts-payable|fonte=/INTEGRACAO/TITULO_PAGAR|campos=vencimento,valor",
+      "endpoint=/v1/sales|fonte=/INTEGRACAO/VENDA+VENDA_ITEM+VENDA_FORMA_PAGAMENTO|campos=vendaCodigo,totalVenda,formaPagamento"
+    ]
+  },
+  "fuel": {
+    "success": true,
+    "data": {
+      "litrosTotal": 0.0,
+      "filiais": [],
+      "combustiveis": [],
+      "ranking": [],
+      "detalhes": [],
+      "agrupamento": {
+        "empresaCodigo": true,
+        "produtoCodigo": true,
+        "data": true
+      },
+      "consistencia": {
+        "somaCombustiveis": 0,
+        "somaFiliais": 0
+      },
+      "kpis": {
+        "litrosVendidos": 0.0,
+        "combustivelLider": {
+          "nome": "Sem dados",
+          "litros": 0.0
+        },
+        "filialLider": {
+          "empresaCodigo": null,
+          "nomeFilial": "Sem dados",
+          "litros": 0.0
+        },
+        "participacaoDiesel": 0.0,
+        "participacaoGasolina": 0.0,
+        "participacaoEtanol": 0.0
+      }
+    },
+    "error": null
+  },
+  "warnings": []
+}

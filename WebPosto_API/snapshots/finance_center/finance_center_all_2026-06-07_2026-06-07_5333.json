@@ -1,0 +1,4946 @@
+{
+  "lastUpdated": "2026-06-08T17:44:28",
+  "center": {
+    "summary": {
+      "periodo": {
+        "dataInicial": "2026-06-07",
+        "dataFinal": "2026-06-07"
+      },
+      "despesasGerenciais": {
+        "totalRegistros": 1,
+        "totalValor": "8.00",
+        "porCategoriaLogos": {
+          "OPERACIONAL": "8.00"
+        },
+        "porEmpresa": {
+          "5333": "8.00"
+        }
+      },
+      "contasPagar": {
+        "emAberto": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "vencido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "pago": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 0,
+          "valor": "0.00"
+        }
+      },
+      "contasReceber": {
+        "pendente": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "recebido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "vencido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 0,
+          "valor": "0.00"
+        }
+      },
+      "movimentoBancario": {
+        "totalRegistros": 308,
+        "creditos": {
+          "count": 154,
+          "valor": "8660.21"
+        },
+        "debitos": {
+          "count": 154,
+          "valor": "69.31"
+        },
+        "tarifas": {
+          "count": 154,
+          "valor": "69.31"
+        },
+        "transferencias": {
+          "count": 154,
+          "valor": "8660.21"
+        },
+        "saldoMovimentado": {
+          "creditos": "8660.21",
+          "debitos": "69.31",
+          "liquido": "8590.90"
+        }
+      },
+      "caixa": {
+        "turnos": 0,
+        "despesaCaixa": {
+          "apurado": "0.00",
+          "turnos": 0
+        },
+        "valeFuncionario": {
+          "apurado": "0.00",
+          "turnos": 0
+        },
+        "emprestimos": {
+          "apurado": "0.00",
+          "turnos": 0
+        },
+        "diferencas": 0
+      },
+      "coverage": {
+        "despesasGerenciais": {
+          "status": "ok",
+          "registros": 1
+        },
+        "contasPagar": {
+          "status": "empty",
+          "registros": 0
+        },
+        "contasReceber": {
+          "status": "empty",
+          "registros": 0
+        },
+        "movimentoBancario": {
+          "status": "ok",
+          "registros": 308
+        },
+        "caixa": {
+          "status": "ok",
+          "turnos": 0
+        }
+      },
+      "warnings": [
+        "caixa.fundoCaixa: indisponível na API"
+      ],
+      "snapshotKey": "finance:center:summary:2026-06-07:2026-06-07:5333",
+      "performanceMs": {
+        "despesas": 0,
+        "payables": 3226.5,
+        "receivables": 2852.8,
+        "bank": 35790.6,
+        "cash": 2505.4,
+        "total": 40048.9
+      }
+    },
+    "expenses": {
+      "page": 1,
+      "limit": 500,
+      "total": 1,
+      "resumo": {
+        "totalRegistros": 1,
+        "totalValor": "8.00",
+        "porCategoriaLogos": {
+          "OPERACIONAL": "8.00"
+        },
+        "porEmpresa": {
+          "5333": "8.00"
+        }
+      },
+      "data": [
+        {
+          "empresaCodigo": 5333,
+          "data": "2026-06-07",
+          "valor": "8.00",
+          "planoConta": "1 agua lanchonete",
+          "planoContaCodigo": 47952,
+          "centroCusto": "",
+          "categoriaLogos": "OPERACIONAL"
+        }
+      ],
+      "snapshotKey": "finance:center:expenses:2026-06-07:2026-06-07:5333",
+      "performanceMs": {
+        "despesas": 5621.1
+      }
+    },
+    "payables": {
+      "page": 1,
+      "limit": 500,
+      "total": 0,
+      "resumo": {
+        "emAberto": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "vencido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "pago": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 0,
+          "valor": "0.00"
+        }
+      },
+      "buckets": {
+        "emAberto": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "vencido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "pago": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 0,
+          "valor": "0.00"
+        }
+      },
+      "data": [],
+      "snapshotKey": "finance:center:payables:2026-06-07:2026-06-07:5333",
+      "performanceMs": {
+        "payables": 4757.2
+      }
+    },
+    "receivables": {
+      "page": 1,
+      "limit": 500,
+      "total": 0,
+      "resumo": {
+        "pendente": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "recebido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "vencido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 0,
+          "valor": "0.00"
+        }
+      },
+      "buckets": {
+        "pendente": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "recebido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "vencido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 0,
+          "valor": "0.00"
+        }
+      },
+      "data": [],
+      "snapshotKey": "finance:center:receivables:2026-06-07:2026-06-07:5333",
+      "performanceMs": {
+        "receivables": 4355.6
+      }
+    },
+    "bank": {
+      "page": 1,
+      "limit": 500,
+      "total": 462,
+      "resumo": {
+        "creditos": {
+          "count": 154,
+          "valor": "8660.21"
+        },
+        "debitos": {
+          "count": 154,
+          "valor": "69.31"
+        },
+        "tarifas": {
+          "count": 154,
+          "valor": "69.31"
+        },
+        "transferencias": {
+          "count": 154,
+          "valor": "8660.21"
+        },
+        "saldoMovimentado": {
+          "creditos": "8660.21",
+          "debitos": "69.31",
+          "liquido": "8590.90"
+        },
+        "totalRegistros": 308
+      },
+      "data": [
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63380409,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:649475298 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63380711,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1581 CONTA:12880000007982079343 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63380760,
+          "valor": "14.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:397147342 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63380927,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:918497450 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381326,
+          "valor": "40.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:917 CONTA:12880000008561666330 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381372,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:35670134 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381648,
+          "valor": "10.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:994622581 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381749,
+          "valor": "10.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:734070899 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381803,
+          "valor": "70.20",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:6247 CONTA:379966 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381822,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:8274 CONTA:11363 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63382009,
+          "valor": "150.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:264332563 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63382033,
+          "valor": "35.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:249595348 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63382089,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:7884 CONTA:320594 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63382387,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:3257361647 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63383430,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:523544359 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63384526,
+          "valor": "100.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:3206 CONTA:29249296 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63384944,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:18266554 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63384986,
+          "valor": "15.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:3201 CONTA:5018889 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63385270,
+          "valor": "80.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:45 CONTA:37010000005909934372 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63385623,
+          "valor": "28.08",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:4039 CONTA:10412149 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386270,
+          "valor": "150.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:53774104270 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386391,
+          "valor": "100.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:178390741 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386546,
+          "valor": "298.66",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:899627369 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386763,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:419807644 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386831,
+          "valor": "14.04",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:45 CONTA:12880000008366314683 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386833,
+          "valor": "120.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:386226450 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386952,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:181652056 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63387152,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:839745531 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63387274,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:330748605 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63387733,
+          "valor": "35.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:402776801 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63388139,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:7884 CONTA:290359 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63388258,
+          "valor": "32.50",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:316744905 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63388763,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:31835225 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63388935,
+          "valor": "15.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:1033522414 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389103,
+          "valor": "80.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:66583530 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389188,
+          "valor": "100.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:385652623 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389228,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:822077915 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389252,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:89818719370 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389548,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:28301262861 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389633,
+          "valor": "100.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:3205 CONTA:173541 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63390185,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:649148894 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63390304,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1581 CONTA:12880000008737052916 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63390682,
+          "valor": "100.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1606 CONTA:1165739 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63391358,
+          "valor": "25.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:7884 CONTA:422457 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63391736,
+          "valor": "5.50",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:4274 CONTA:208647 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63392274,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:3006828099 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63392739,
+          "valor": "100.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:550 CONTA:840862 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63392745,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:388881836 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63392879,
+          "valor": "92.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:907829770 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63392881,
+          "valor": "153.99",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:952849541 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393090,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:2968751421 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393191,
+          "valor": "100.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:57 CONTA:52859933 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393228,
+          "valor": "15.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:988031782 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393315,
+          "valor": "17.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:6066 CONTA:857514 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393619,
+          "valor": "70.20",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1599 CONTA:975265 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393726,
+          "valor": "327.98",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:3899 CONTA:3947106 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393730,
+          "valor": "35.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:4039 CONTA:20153399 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393732,
+          "valor": "100.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:6298 CONTA:3250687 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393889,
+          "valor": "35.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:291596142 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394036,
+          "valor": "40.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:775759015 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394394,
+          "valor": "150.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:524617206 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394504,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:14671232110 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394506,
+          "valor": "35.10",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:66694078060 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394543,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:4365695611 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394607,
+          "valor": "70.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:606654247 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63395050,
+          "valor": "5.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:83900217 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63395407,
+          "valor": "79.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:250878956 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63395680,
+          "valor": "10.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:238394778 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63395725,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:3886 CONTA:10767017 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63396234,
+          "valor": "15.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:26274944 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63396552,
+          "valor": "15.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:274093514 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397292,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:695297095 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397340,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:662263209 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397342,
+          "valor": "15.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:500912262 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397439,
+          "valor": "10.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:67270339003 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397517,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:905865142 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397695,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:89813022605 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397697,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:4047 CONTA:20010354 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397778,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:424713395 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397781,
+          "valor": "38.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:4039 CONTA:10053629 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397869,
+          "valor": "15.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:74496702781 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63398164,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:772546224 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63398721,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:2798 CONTA:695866 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63398893,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:643576580 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63399222,
+          "valor": "70.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:934805793 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63399623,
+          "valor": "100.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:8310 CONTA:10205 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63400046,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:42578038480 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63400339,
+          "valor": "10.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:664310256 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63401004,
+          "valor": "40.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:550789046 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63401411,
+          "valor": "100.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:5944167385 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63401580,
+          "valor": "60.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:20 CONTA:1807806 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63402407,
+          "valor": "100.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:393251436 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63402505,
+          "valor": "10.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:298536382 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63402845,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:148010636 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63402935,
+          "valor": "10.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:969886914 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63402971,
+          "valor": "80.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:141696892 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63403200,
+          "valor": "266.35",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:950920711 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63403237,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:303050215 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63403642,
+          "valor": "48.56",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:361 CONTA:163298 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63403746,
+          "valor": "36.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:598749314 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63403941,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:678697531 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63404120,
+          "valor": "105.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:20810529 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63404124,
+          "valor": "15.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1030 CONTA:12880000008741804277 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63404153,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:191075274 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63404615,
+          "valor": "100.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:45919339 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63404931,
+          "valor": "55.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:286 CONTA:6407820 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405114,
+          "valor": "224.06",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:7884 CONTA:387668 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405193,
+          "valor": "100.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:7884 CONTA:403002 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405269,
+          "valor": "26.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:739025048 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405351,
+          "valor": "10.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:40179093 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405625,
+          "valor": "257.98",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:57 CONTA:150363625 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405655,
+          "valor": "100.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:59179689 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405686,
+          "valor": "40.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:73916831732 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405734,
+          "valor": "60.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:291 CONTA:6070736 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405935,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:3295 CONTA:10733126 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63406157,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:86382916460 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63406289,
+          "valor": "25.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:7 CONTA:1246810 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63406747,
+          "valor": "60.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:2203 CONTA:413127 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63406749,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:2970 CONTA:30606445 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407085,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:991661440 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407283,
+          "valor": "47.81",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:7884 CONTA:395760 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407488,
+          "valor": "100.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:4383 CONTA:309830 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407544,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:9248 CONTA:665995 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407635,
+          "valor": "40.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:7884 CONTA:429122 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407746,
+          "valor": "305.37",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:286 CONTA:1631144 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407748,
+          "valor": "7.02",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:655 CONTA:18397573 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407899,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:92889232454 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408025,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:789241539 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408382,
+          "valor": "10.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:821 CONTA:1113461 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408460,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:897418072 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408658,
+          "valor": "100.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:2965 CONTA:30474938 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408715,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:2330504 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408924,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:3250 CONTA:12880000008716883045 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409033,
+          "valor": "25.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:3243 CONTA:5101303476 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409214,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:648 CONTA:12880000008010200261 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409317,
+          "valor": "25.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:3220 CONTA:12880000007979566638 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409354,
+          "valor": "13.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:93917367774 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409724,
+          "valor": "14.04",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:3880 CONTA:12880000008927863753 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409913,
+          "valor": "25.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:154504254 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410055,
+          "valor": "99.92",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:7884 CONTA:132767 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410182,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:15855309 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410376,
+          "valor": "259.84",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1580 CONTA:12880000008054245732 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410378,
+          "valor": "25.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:2383 CONTA:10076628 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410715,
+          "valor": "70.20",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1584 CONTA:12880000009853662774 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410722,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:7884 CONTA:153102 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410801,
+          "valor": "10.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:620693183 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410929,
+          "valor": "31.91",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1581 CONTA:12880000008054221647 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410967,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:373606789 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63411199,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:1110051166 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63411427,
+          "valor": "55.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:96889199 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63411735,
+          "valor": "35.60",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:230239824 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63411928,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:3250 CONTA:37010000005993704183 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63411931,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:43725596453 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63412320,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TRANSF. BANCÁRIA : AG:1 CONTA:216397480 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63380410,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:649475298 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63380714,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1581 CONTA:12880000007982079343 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63380761,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:397147342 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63380928,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:918497450 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381327,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:917 CONTA:12880000008561666330 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381373,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:35670134 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381649,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:994622581 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381750,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:734070899 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381804,
+          "valor": "0.46",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:6247 CONTA:379966 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381823,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:8274 CONTA:11363 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63382010,
+          "valor": "0.98",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:264332563 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63382034,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:249595348 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63382090,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:320594 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63382388,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:3257361647 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63383431,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:523544359 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63384527,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3206 CONTA:29249296 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63384945,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:18266554 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63384987,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3201 CONTA:5018889 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63385271,
+          "valor": "0.52",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:45 CONTA:37010000005909934372 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63385624,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:4039 CONTA:10412149 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386271,
+          "valor": "0.98",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:53774104270 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386392,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:178390741 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386547,
+          "valor": "1.94",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:899627369 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386764,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:419807644 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386832,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:45 CONTA:12880000008366314683 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386834,
+          "valor": "0.78",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:386226450 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386953,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:181652056 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63387153,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:839745531 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63387275,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:330748605 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63387734,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:402776801 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63388140,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:290359 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63388259,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:316744905 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63388764,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:31835225 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63388936,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:1033522414 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389104,
+          "valor": "0.52",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:66583530 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389189,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:385652623 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389229,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:822077915 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389253,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:89818719370 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389549,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:28301262861 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389634,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3205 CONTA:173541 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63390186,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:649148894 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63390305,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1581 CONTA:12880000008737052916 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63390683,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1606 CONTA:1165739 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63391359,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:422457 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63391737,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:4274 CONTA:208647 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63392275,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:3006828099 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63392740,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:550 CONTA:840862 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63392746,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:388881836 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63392880,
+          "valor": "0.60",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:907829770 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63392882,
+          "valor": "1.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:952849541 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393091,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:2968751421 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393192,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:57 CONTA:52859933 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393229,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:988031782 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393316,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:6066 CONTA:857514 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393620,
+          "valor": "0.46",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1599 CONTA:975265 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393727,
+          "valor": "2.13",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3899 CONTA:3947106 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393731,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:4039 CONTA:20153399 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393733,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:6298 CONTA:3250687 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393890,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:291596142 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394037,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:775759015 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394395,
+          "valor": "0.98",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:524617206 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394505,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:14671232110 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394507,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:66694078060 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394544,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:4365695611 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394608,
+          "valor": "0.46",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:606654247 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63395051,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:83900217 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63395408,
+          "valor": "0.51",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:250878956 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63395681,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:238394778 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63395726,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3886 CONTA:10767017 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63396235,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:26274944 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63396553,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:274093514 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397293,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:695297095 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397341,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:662263209 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397343,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:500912262 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397440,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:67270339003 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397518,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:905865142 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397696,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:89813022605 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397698,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:4047 CONTA:20010354 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397779,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:424713395 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397782,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:4039 CONTA:10053629 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397870,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:74496702781 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63398165,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:772546224 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63398722,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:2798 CONTA:695866 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63398894,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:643576580 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63399223,
+          "valor": "0.46",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:934805793 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63399624,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:8310 CONTA:10205 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63400047,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:42578038480 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63400340,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:664310256 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63401005,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:550789046 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63401412,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:5944167385 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63401581,
+          "valor": "0.39",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:20 CONTA:1807806 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63402408,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:393251436 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63402506,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:298536382 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63402846,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:148010636 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63402936,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:969886914 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63402972,
+          "valor": "0.52",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:141696892 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63403201,
+          "valor": "1.73",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:950920711 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63403238,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:303050215 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63403643,
+          "valor": "0.32",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:361 CONTA:163298 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63403747,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:598749314 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63403942,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:678697531 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63404121,
+          "valor": "0.68",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:20810529 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63404125,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1030 CONTA:12880000008741804277 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63404154,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:191075274 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63404616,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:45919339 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63404932,
+          "valor": "0.36",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:286 CONTA:6407820 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405115,
+          "valor": "1.46",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:387668 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405194,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:403002 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405270,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:739025048 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405352,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:40179093 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405626,
+          "valor": "1.68",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:57 CONTA:150363625 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405656,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:59179689 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405687,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:73916831732 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405735,
+          "valor": "0.39",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:291 CONTA:6070736 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405936,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3295 CONTA:10733126 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63406158,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:86382916460 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63406290,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7 CONTA:1246810 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63406748,
+          "valor": "0.39",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:2203 CONTA:413127 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63406750,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:2970 CONTA:30606445 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407086,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:991661440 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407284,
+          "valor": "0.31",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:395760 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407489,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:4383 CONTA:309830 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407545,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:9248 CONTA:665995 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407636,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:429122 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407747,
+          "valor": "1.98",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:286 CONTA:1631144 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407749,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:655 CONTA:18397573 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407900,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:92889232454 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408026,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:789241539 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408383,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:821 CONTA:1113461 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408461,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:897418072 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408659,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:2965 CONTA:30474938 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408716,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:2330504 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408925,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3250 CONTA:12880000008716883045 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409034,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3243 CONTA:5101303476 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409215,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:648 CONTA:12880000008010200261 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409318,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3220 CONTA:12880000007979566638 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409355,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:93917367774 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409725,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3880 CONTA:12880000008927863753 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409914,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:154504254 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410056,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:132767 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410183,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:15855309 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410377,
+          "valor": "1.69",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1580 CONTA:12880000008054245732 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410380,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:2383 CONTA:10076628 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410716,
+          "valor": "0.46",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1584 CONTA:12880000009853662774 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410723,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:153102 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410802,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:620693183 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410930,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1581 CONTA:12880000008054221647 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410968,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:373606789 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63411200,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:1110051166 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63411428,
+          "valor": "0.36",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:96889199 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63411736,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:230239824 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63411929,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3250 CONTA:37010000005993704183 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63411932,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:43725596453 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63412321,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:216397480 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63380410,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:649475298 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63380714,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1581 CONTA:12880000007982079343 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63380761,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:397147342 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63380928,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:918497450 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381327,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:917 CONTA:12880000008561666330 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381373,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:35670134 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381649,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:994622581 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381750,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:734070899 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381804,
+          "valor": "0.46",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:6247 CONTA:379966 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63381823,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:8274 CONTA:11363 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63382010,
+          "valor": "0.98",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:264332563 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63382034,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:249595348 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63382090,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:320594 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63382388,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:3257361647 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63383431,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:523544359 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63384527,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3206 CONTA:29249296 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63384945,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:18266554 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63384987,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3201 CONTA:5018889 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63385271,
+          "valor": "0.52",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:45 CONTA:37010000005909934372 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63385624,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:4039 CONTA:10412149 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386271,
+          "valor": "0.98",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:53774104270 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386392,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:178390741 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386547,
+          "valor": "1.94",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:899627369 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386764,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:419807644 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386832,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:45 CONTA:12880000008366314683 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386834,
+          "valor": "0.78",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:386226450 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63386953,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:181652056 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63387153,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:839745531 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63387275,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:330748605 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63387734,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:402776801 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63388140,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:290359 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63388259,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:316744905 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63388764,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:31835225 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63388936,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:1033522414 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389104,
+          "valor": "0.52",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:66583530 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389189,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:385652623 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389229,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:822077915 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389253,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:89818719370 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389549,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:28301262861 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63389634,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3205 CONTA:173541 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63390186,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:649148894 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63390305,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1581 CONTA:12880000008737052916 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63390683,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1606 CONTA:1165739 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63391359,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:422457 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63391737,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:4274 CONTA:208647 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63392275,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:3006828099 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63392740,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:550 CONTA:840862 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63392746,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:388881836 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63392880,
+          "valor": "0.60",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:907829770 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63392882,
+          "valor": "1.00",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:952849541 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393091,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:2968751421 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393192,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:57 CONTA:52859933 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393229,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:988031782 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393316,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:6066 CONTA:857514 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393620,
+          "valor": "0.46",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1599 CONTA:975265 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393727,
+          "valor": "2.13",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3899 CONTA:3947106 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393731,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:4039 CONTA:20153399 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393733,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:6298 CONTA:3250687 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63393890,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:291596142 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394037,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:775759015 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394395,
+          "valor": "0.98",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:524617206 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394505,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:14671232110 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394507,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:66694078060 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394544,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:4365695611 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63394608,
+          "valor": "0.46",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:606654247 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63395051,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:83900217 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63395408,
+          "valor": "0.51",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:250878956 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63395681,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:238394778 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63395726,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3886 CONTA:10767017 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63396235,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:26274944 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63396553,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:274093514 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397293,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:695297095 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397341,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:662263209 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397343,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:500912262 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397440,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:67270339003 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397518,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:905865142 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397696,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:89813022605 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397698,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:4047 CONTA:20010354 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397779,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:424713395 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397782,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:4039 CONTA:10053629 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63397870,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:74496702781 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63398165,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:772546224 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63398722,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:2798 CONTA:695866 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63398894,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:643576580 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63399223,
+          "valor": "0.46",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:934805793 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63399624,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:8310 CONTA:10205 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63400047,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:42578038480 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63400340,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:664310256 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63401005,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:550789046 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63401412,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:5944167385 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63401581,
+          "valor": "0.39",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:20 CONTA:1807806 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63402408,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:393251436 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63402506,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:298536382 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63402846,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:148010636 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63402936,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:969886914 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63402972,
+          "valor": "0.52",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:141696892 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63403201,
+          "valor": "1.73",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:950920711 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63403238,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:303050215 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63403643,
+          "valor": "0.32",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:361 CONTA:163298 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63403747,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:598749314 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63403942,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:678697531 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63404121,
+          "valor": "0.68",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:20810529 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63404125,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1030 CONTA:12880000008741804277 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63404154,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:191075274 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63404616,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:45919339 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63404932,
+          "valor": "0.36",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:286 CONTA:6407820 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405115,
+          "valor": "1.46",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:387668 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405194,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:403002 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405270,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:739025048 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405352,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:40179093 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405626,
+          "valor": "1.68",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:57 CONTA:150363625 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405656,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:59179689 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405687,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:73916831732 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405735,
+          "valor": "0.39",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:291 CONTA:6070736 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63405936,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3295 CONTA:10733126 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63406158,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:86382916460 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63406290,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7 CONTA:1246810 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63406748,
+          "valor": "0.39",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:2203 CONTA:413127 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63406750,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:2970 CONTA:30606445 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407086,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:991661440 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407284,
+          "valor": "0.31",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:395760 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407489,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:4383 CONTA:309830 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407545,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:9248 CONTA:665995 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407636,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:429122 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407747,
+          "valor": "1.98",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:286 CONTA:1631144 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407749,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:655 CONTA:18397573 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63407900,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:92889232454 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408026,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:789241539 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408383,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:821 CONTA:1113461 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408461,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:897418072 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408659,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:2965 CONTA:30474938 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408716,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:2330504 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63408925,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3250 CONTA:12880000008716883045 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409034,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3243 CONTA:5101303476 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409215,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:648 CONTA:12880000008010200261 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409318,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3220 CONTA:12880000007979566638 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409355,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:93917367774 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409725,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3880 CONTA:12880000008927863753 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63409914,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:154504254 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410056,
+          "valor": "0.65",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:132767 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410183,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:15855309 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410377,
+          "valor": "1.69",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1580 CONTA:12880000008054245732 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410380,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:2383 CONTA:10076628 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410716,
+          "valor": "0.46",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1584 CONTA:12880000009853662774 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410723,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7884 CONTA:153102 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410802,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:620693183 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410930,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1581 CONTA:12880000008054221647 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63410968,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:373606789 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63411200,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:1110051166 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63411428,
+          "valor": "0.36",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:96889199 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63411736,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:230239824 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63411929,
+          "valor": "0.30",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3250 CONTA:37010000005993704183 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63411932,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:43725596453 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        },
+        {
+          "empresaCodigo": 5333,
+          "movimentoContaCodigo": 63412321,
+          "valor": "0.33",
+          "dataMovimento": "2026-06-07",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:216397480 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 55718
+        }
+      ],
+      "paginacaoCompleta": 308,
+      "snapshotKey": "finance:center:bank:2026-06-07:2026-06-07:5333",
+      "performanceMs": {
+        "bank": 37324.0
+      }
+    },
+    "cash": {
+      "turnos": {
+        "count": 0,
+        "items": []
+      },
+      "diferencas": {
+        "count": 0,
+        "items": []
+      },
+      "despesaCaixa": {
+        "apurado": "0.00",
+        "turnos": 0
+      },
+      "valeFuncionario": {
+        "apurado": "0.00",
+        "turnos": 0
+      },
+      "emprestimos": {
+        "apurado": "0.00",
+        "turnos": 0
+      },
+      "fundoCaixa": {
+        "disponivel": false,
+        "apurado": null
+      },
+      "snapshotKey": "finance:center:cash:2026-06-07:2026-06-07:5333",
+      "performanceMs": {
+        "cash": 4075.8
+      },
+      "warnings": [
+        "fundoCaixa: campo não disponível na API WebPosto"
+      ]
+    }
+  },
+  "warnings": [
+    "caixa.fundoCaixa: indisponível na API"
+  ],
+  "snapshotKey": "finance:center:all:2026-06-07:2026-06-07:5333"
+}

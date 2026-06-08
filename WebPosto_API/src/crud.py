@@ -9,7 +9,7 @@ from typing import Optional
 from sqlalchemy.ext.asyncio import AsyncSession
 from pydantic import ValidationError
 
-from .models import (
+from .schemas import (
     FinanceiroCreate,
     FinanceiroUpdate,
     CaixaCreate,

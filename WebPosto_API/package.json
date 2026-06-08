@@ -1,0 +1,15 @@
+{
+  "name": "webposto-api",
+  "version": "1.0.0",
+  "description": "API de Integração WebPosto e Frontend",
+  "scripts": {
+    "contract-check": "node scripts/contract_check.js",
+    "test:e2e": "playwright test",
+    "test:e2e:finance": "playwright test e2e/finance_center"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.51.0",
+    "@types/node": "^22.13.0",
+    "typescript": "^5.8.0"
+  }
+}

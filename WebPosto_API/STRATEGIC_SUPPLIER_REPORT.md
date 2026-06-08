@@ -1,0 +1,23 @@
+# STRATEGIC SUPPLIER REPORT — F01.4-D
+
+## Top 10 Estratégicos
+
+| Fornecedor | Score | Faixa | Valor |
+| --- | --- | --- | --- |
+| VIBRA | 89 | CRITICAL | 382769.46 |
+| SUAPE | 49 | MEDIUM | 4073.52 |
+| UNIFORDEX FIALHO FARDAS | 36 | MEDIUM | 2956.00 |
+| ALELO | 38 | MEDIUM | 2700.00 |
+| ARLEGO TRANSPORTES COMBUSTIVEIS | 59 | HIGH | 2000.00 |
+| INDUSTRIA BEBIDAS IGARASSU | 36 | MEDIUM | 1944.79 |
+| IPSEP TRANSPORTE | 59 | HIGH | 1800.00 |
+| CASA SALGADOS ALIMENTOS | 36 | MEDIUM | 1293.50 |
+| CONCEITO DISTRIBUIDORA | 36 | MEDIUM | 1061.00 |
+| CHIC FABRICACAO DOCES | 38 | MEDIUM | 975.50 |
+
+
+## VIBRA
+
+- Strategic Score: **89**
+- Homologada: **True**
+- Alerta concentração suprimido: **True**

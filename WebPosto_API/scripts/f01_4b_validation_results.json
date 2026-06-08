@@ -1,0 +1,409 @@
+{
+  "period": {
+    "dataInicial": "2026-06-01",
+    "dataFinal": "2026-06-07"
+  },
+  "elapsedMs": 29918,
+  "accountAnalytics": {
+    "totalValor": "127978.10",
+    "totalRegistros": 422,
+    "top5Planos": [
+      {
+        "planoContaCodigo": 29072,
+        "descricao": "B01 - SALARIOS",
+        "categoriaLogosV3": "PESSOAL",
+        "valorTotal": "57567.91",
+        "quantidade": 115,
+        "participacaoPct": "44.98",
+        "pesoRedePct": "44.98",
+        "crescimentoPct": "0.00",
+        "porFilial": {
+          "5555": "6444.90",
+          "46433": "10821.00",
+          "5256": "10546.00",
+          "11495": "14147.01",
+          "5559": "11176.00",
+          "5557": "1074.00",
+          "74014": "3359.00"
+        }
+      },
+      {
+        "planoContaCodigo": 48547,
+        "descricao": "DESPESA POSTO",
+        "categoriaLogosV3": "OPERACIONAL",
+        "valorTotal": "18580.33",
+        "quantidade": 83,
+        "participacaoPct": "14.52",
+        "pesoRedePct": "14.52",
+        "crescimentoPct": "0.00",
+        "porFilial": {
+          "5556": "5342.93",
+          "5333": "663.00",
+          "46433": "5983.40",
+          "5256": "2103.00",
+          "5560": "4178.00",
+          "5557": "200.00",
+          "5559": "50.00",
+          "5555": "60.00"
+        }
+      },
+      {
+        "planoContaCodigo": 39370,
+        "descricao": "SR. MOISES",
+        "categoriaLogosV3": "PESSOAL",
+        "valorTotal": "16707.49",
+        "quantidade": 38,
+        "participacaoPct": "13.05",
+        "pesoRedePct": "13.05",
+        "crescimentoPct": "0.00",
+        "porFilial": {
+          "46433": "2362.00",
+          "5557": "7045.49",
+          "5556": "142.00",
+          "5256": "1598.00",
+          "74014": "2110.00",
+          "5559": "750.00",
+          "11495": "500.00",
+          "5560": "2200.00"
+        }
+      },
+      {
+        "planoContaCodigo": 29057,
+        "descricao": "A13 - UNIFORMES/FARDAMENTOS E EPI´S",
+        "categoriaLogosV3": "COMPRAS",
+        "valorTotal": "6882.00",
+        "quantidade": 2,
+        "participacaoPct": "5.38",
+        "pesoRedePct": "5.38",
+        "crescimentoPct": "0.00",
+        "porFilial": {
+          "5557": "3926.00",
+          "74014": "2956.00"
+        }
+      },
+      {
+        "planoContaCodigo": 167278,
+        "descricao": "REF NF:000064790 - SOLAR INOVE - PERNAMBUCO - SOLAR INOVE - PERNAMBUCO",
+        "categoriaLogosV3": "ENERGIA",
+        "valorTotal": "5016.48",
+        "quantidade": 2,
+        "participacaoPct": "3.92",
+        "pesoRedePct": "3.92",
+        "crescimentoPct": "0.00",
+        "porFilial": {
+          "11495": "5008.48",
+          "5333": "8.00"
+        }
+      }
+    ],
+    "top20Count": 20
+  },
+  "costCenterAnalytics": {
+    "top5Centros": [
+      {
+        "centroCusto": "PISTA",
+        "valorTotal": "404777.42",
+        "quantidade": 48,
+        "participacaoPct": "97.47",
+        "filiais": [
+          "11495",
+          "5555"
+        ]
+      },
+      {
+        "centroCusto": "LOJA",
+        "valorTotal": "7387.64",
+        "quantidade": 12,
+        "participacaoPct": "1.78",
+        "filiais": [
+          "11495"
+        ]
+      },
+      {
+        "centroCusto": "FOOD",
+        "valorTotal": "2635.50",
+        "quantidade": 7,
+        "participacaoPct": "0.63",
+        "filiais": [
+          "11495"
+        ]
+      },
+      {
+        "centroCusto": "LUBRIFICANTE",
+        "valorTotal": "501.80",
+        "quantidade": 3,
+        "participacaoPct": "0.12",
+        "filiais": [
+          "5555"
+        ]
+      }
+    ],
+    "matrizKeys": 4
+  },
+  "benchmark": {
+    "filiais": [
+      {
+        "empresaCodigo": "11495",
+        "gasto": "25046.71",
+        "indiceBenchmarkRede": 1.9571,
+        "indiceBenchmarkMelhor": 22.0966,
+        "classificacaoRede": "Critico",
+        "classificacaoMelhor": "Critico"
+      },
+      {
+        "empresaCodigo": "46433",
+        "gasto": "20685.80",
+        "indiceBenchmarkRede": 1.6164,
+        "indiceBenchmarkMelhor": 18.2493,
+        "classificacaoRede": "Critico",
+        "classificacaoMelhor": "Critico"
+      },
+      {
+        "empresaCodigo": "5557",
+        "gasto": "18136.27",
+        "indiceBenchmarkRede": 1.4171,
+        "indiceBenchmarkMelhor": 16.0001,
+        "classificacaoRede": "Critico",
+        "classificacaoMelhor": "Critico"
+      },
+      {
+        "empresaCodigo": "74014",
+        "gasto": "15132.00",
+        "indiceBenchmarkRede": 1.1824,
+        "indiceBenchmarkMelhor": 13.3497,
+        "classificacaoRede": "Medio",
+        "classificacaoMelhor": "Critico"
+      },
+      {
+        "empresaCodigo": "5256",
+        "gasto": "14597.00",
+        "indiceBenchmarkRede": 1.1406,
+        "indiceBenchmarkMelhor": 12.8777,
+        "classificacaoRede": "Medio",
+        "classificacaoMelhor": "Critico"
+      },
+      {
+        "empresaCodigo": "5559",
+        "gasto": "12276.50",
+        "indiceBenchmarkRede": 0.9593,
+        "indiceBenchmarkMelhor": 10.8305,
+        "classificacaoRede": "Bom",
+        "classificacaoMelhor": "Critico"
+      },
+      {
+        "empresaCodigo": "5555",
+        "gasto": "7383.63",
+        "indiceBenchmarkRede": 0.5769,
+        "indiceBenchmarkMelhor": 6.514,
+        "classificacaoRede": "Excelente",
+        "classificacaoMelhor": "Critico"
+      },
+      {
+        "empresaCodigo": "5556",
+        "gasto": "7208.68",
+        "indiceBenchmarkRede": 0.5633,
+        "indiceBenchmarkMelhor": 6.3596,
+        "classificacaoRede": "Excelente",
+        "classificacaoMelhor": "Critico"
+      },
+      {
+        "empresaCodigo": "5560",
+        "gasto": "6378.00",
+        "indiceBenchmarkRede": 0.4984,
+        "indiceBenchmarkMelhor": 5.6268,
+        "classificacaoRede": "Excelente",
+        "classificacaoMelhor": "Critico"
+      },
+      {
+        "empresaCodigo": "5333",
+        "gasto": "1133.51",
+        "indiceBenchmarkRede": 0.0886,
+        "indiceBenchmarkMelhor": 1.0,
+        "classificacaoRede": "Excelente",
+        "classificacaoMelhor": "Bom"
+      }
+    ],
+    "mediaRede": "12797.81",
+    "melhorFilial": "5333",
+    "maxIndiceRede": 1.9571,
+    "minIndiceRede": 0.0886,
+    "consistent": true
+  },
+  "anomalies": {
+    "total": 8,
+    "bySeverity": {
+      "HIGH": 8
+    },
+    "sample": [
+      {
+        "tipo": "DESPESA_ANORMAL",
+        "severidade": "HIGH",
+        "descricao": "FARDAMNETOS",
+        "valor": "3926.00",
+        "empresaCodigo": 5557,
+        "planoContaCodigo": 29057,
+        "categoriaLogosV3": "COMPRAS"
+      },
+      {
+        "tipo": "DESPESA_ANORMAL",
+        "severidade": "HIGH",
+        "descricao": "REF NF:000064790 - SOLAR INOVE - PERNAMBUCO - SOLAR INOVE - PERNAMBUCO",
+        "valor": "5008.48",
+        "empresaCodigo": 11495,
+        "planoContaCodigo": 167278,
+        "categoriaLogosV3": "ENERGIA"
+      },
+      {
+        "tipo": "DESPESA_ANORMAL",
+        "severidade": "HIGH",
+        "descricao": "REF NF:000006363 - UNIFORDEX FIALHO FARDAS - UNIFORDEX FIALHO FARDAS",
+        "valor": "2956.00",
+        "empresaCodigo": 74014,
+        "planoContaCodigo": 29057,
+        "categoriaLogosV3": "COMPRAS"
+      },
+      {
+        "tipo": "DESPESA_ANORMAL",
+        "severidade": "HIGH",
+        "descricao": "SALAR - ADMINISTRATIVO",
+        "valor": "1750.00",
+        "empresaCodigo": 11495,
+        "planoContaCodigo": 29072,
+        "categoriaLogosV3": "PESSOAL"
+      },
+      {
+        "tipo": "DESPESA_ANORMAL",
+        "severidade": "HIGH",
+        "descricao": "sr moises",
+        "valor": "1600.00",
+        "empresaCodigo": 74014,
+        "planoContaCodigo": 39370,
+        "categoriaLogosV3": "PESSOAL"
+      }
+    ]
+  },
+  "dreReadiness": {
+    "coberturaPct": 89.81,
+    "metaFuturaPct": 85,
+    "lacunasPct": 10.19,
+    "linhas": {
+      "receitaBruta": {
+        "valor": "0.00",
+        "coberturaPct": 0
+      },
+      "cmv": {
+        "valor": "9975.43",
+        "coberturaPct": 0
+      },
+      "despesasOperacionais": {
+        "valor": "115002.67",
+        "coberturaPct": 89.81
+      },
+      "despesasAdministrativas": {
+        "valor": "3000.00",
+        "coberturaPct": 89.81
+      },
+      "despesasFinanceiras": {
+        "valor": "0.00",
+        "coberturaPct": 89.81
+      },
+      "despesasTributarias": {
+        "valor": "0.00",
+        "coberturaPct": 89.81
+      },
+      "resultadoOperacional": {
+        "valor": "0.00",
+        "coberturaPct": 0
+      },
+      "resultadoLiquido": {
+        "valor": "0.00",
+        "coberturaPct": 0
+      }
+    },
+    "bloqueios": [
+      "LANCAMENTO_CONTABIL vazio no período",
+      "CENTRO_CUSTO_REDE HTTP 401",
+      "Receita via TITULO_PAGAR parcial"
+    ],
+    "plano85": "Integrar receitas TITULO_RECEBER + catálogo contábil completo na A04"
+  },
+  "dataQuality": {
+    "score": 83.7,
+    "components": {
+      "planoConta": 100.0,
+      "centroCusto": 100.0,
+      "fornecedor": 0.0,
+      "categoriaV3": 96.2,
+      "classificationSource": 96.2
+    }
+  },
+  "healthScoreV3": {
+    "networkScoreV3": 94,
+    "networkLevel": "saudavel",
+    "dataQualityScore": 83.7,
+    "branches": [
+      {
+        "empresaCodigo": "5559",
+        "scoreV3": 100,
+        "components": {
+          "planoConta": 40.0,
+          "centroCusto": 30.0,
+          "benchmarkRede": 31.0
+        },
+        "indiceBenchmarkRede": 0.9593,
+        "classificacao": "Bom"
+      },
+      {
+        "empresaCodigo": "5555",
+        "scoreV3": 100,
+        "components": {
+          "planoConta": 40.0,
+          "centroCusto": 30.0,
+          "benchmarkRede": 40.2
+        },
+        "indiceBenchmarkRede": 0.5769,
+        "classificacao": "Excelente"
+      },
+      {
+        "empresaCodigo": "5556",
+        "scoreV3": 100,
+        "components": {
+          "planoConta": 40.0,
+          "centroCusto": 30.0,
+          "benchmarkRede": 40.5
+        },
+        "indiceBenchmarkRede": 0.5633,
+        "classificacao": "Excelente"
+      },
+      {
+        "empresaCodigo": "5560",
+        "scoreV3": 100,
+        "components": {
+          "planoConta": 40.0,
+          "centroCusto": 30.0,
+          "benchmarkRede": 42.0
+        },
+        "indiceBenchmarkRede": 0.4984,
+        "classificacao": "Excelente"
+      },
+      {
+        "empresaCodigo": "5333",
+        "scoreV3": 100,
+        "components": {
+          "planoConta": 40.0,
+          "centroCusto": 30.0,
+          "benchmarkRede": 51.9
+        },
+        "indiceBenchmarkRede": 0.0886,
+        "classificacao": "Excelente"
+      }
+    ]
+  },
+  "acceptance": {
+    "confidenceValid": true,
+    "benchmarkConsistent": true,
+    "anomaliesTraceable": true,
+    "dreDocumented": true,
+    "pass": true
+  }
+}

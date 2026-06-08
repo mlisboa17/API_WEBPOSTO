@@ -12,6 +12,7 @@ from datetime import datetime
 from src.infrastructure.config.settings import settings
 from src.infrastructure.webposto.client import WebPostoClient
 from src.routes_crud import router as crud_router
+from src.interfaces.http.routes.fechamento_enterprise import router as enterprise_router
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -37,6 +38,7 @@ app.add_middleware(
 
 # Incluir routers CRUD
 app.include_router(crud_router)
+app.include_router(enterprise_router)
 
 client = WebPostoClient()
 

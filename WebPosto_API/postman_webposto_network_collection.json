@@ -1,0 +1,794 @@
+{
+  "info": {
+    "name": "LOGOS SPACE — WebPosto Network Probe",
+    "description": "Collection gerada por webposto_network_probe.py",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "CHAVE",
+      "value": "<WEBPOSTO_API_TOKEN>"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://web.qualityautomacao.com.br"
+    }
+  ],
+  "item": [
+    {
+      "name": "TituloPagarRede [USAR_AGORA]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/TITULO_PAGAR?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "TITULO_PAGAR"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "TituloReceberRede [USAR_COM_CUIDADO]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/TITULO_RECEBER?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "TITULO_RECEBER"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "ContaRede [USAR_AGORA]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/CONTA?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "CONTA"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "MovimentoConta [USAR_AGORA]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/MOVIMENTO_CONTA?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "MOVIMENTO_CONTA"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "DespesasFinanceiroRede [USAR_AGORA]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "CONSULTAR_DESPESAS_FINANCEIRO_REDE"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "TransferenciaBancaria [USAR_COM_CUIDADO]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/TRANSFERENCIA_BANCARIA?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "TRANSFERENCIA_BANCARIA"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "VendaRede [USAR_AGORA]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/VENDA?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "VENDA"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "VendaItem [USAR_AGORA]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/VENDA_ITEM?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "VENDA_ITEM"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "VendasFormaPagamentoRede [APENAS_DIAGNOSTICO]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/CONSULTAR_VENDA_FORMA_PAGAMENTO_REDE?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "CONSULTAR_VENDA_FORMA_PAGAMENTO_REDE"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "VendaFormaPagamento [USAR_AGORA]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/VENDA_FORMA_PAGAMENTO?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "VENDA_FORMA_PAGAMENTO"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "AbastecimentoRede [USAR_AGORA]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/ABASTECIMENTO?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "ABASTECIMENTO"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CaixaRede [USAR_AGORA]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/CAIXA?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "CAIXA"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "CaixaApresentadoRede [USAR_AGORA]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/CAIXA_APRESENTADO?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "CAIXA_APRESENTADO"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "NfceRede [USAR_AGORA]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/NFCE?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "NFCE"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "ProdutoEstoque [APENAS_DIAGNOSTICO]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/PRODUTO_ESTOQUE?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "PRODUTO_ESTOQUE"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Produto [USAR_COM_CUIDADO]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/PRODUTO?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "PRODUTO"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "ProdutoEmpresa [USAR_AGORA]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/PRODUTO_EMPRESA?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "PRODUTO_EMPRESA"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "TanqueRede [USAR_AGORA]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/TANQUE?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "TANQUE"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "EstoquePeriodo [USAR_COM_CUIDADO]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/ESTOQUE_PERIODO?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "ESTOQUE_PERIODO"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "LmcRede [USAR_AGORA]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/CONSULTAR_LMC_REDE?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "CONSULTAR_LMC_REDE"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "AnaliseVendasCombustivel [APENAS_DIAGNOSTICO]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/CONSULTAR_ANALISE_VENDAS_COMBUSTIVEL?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "CONSULTAR_ANALISE_VENDAS_COMBUSTIVEL"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Empresas [USAR_AGORA]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/EMPRESAS?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "EMPRESAS"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "PlanoContaGerencial [USAR_COM_CUIDADO]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/PLANO_CONTA_GERENCIAL?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "PLANO_CONTA_GERENCIAL"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "LancamentoContabil [APENAS_DIAGNOSTICO]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/LANCAMENTO_CONTABIL?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "LANCAMENTO_CONTABIL"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "DRE [APENAS_DIAGNOSTICO]",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://web.qualityautomacao.com.br/INTEGRACAO/DRE?CHAVE={{CHAVE}}&dataInicial=2026-06-01&dataFinal=2026-06-07",
+          "host": [
+            "web.qualityautomacao.com.br"
+          ],
+          "path": [
+            "INTEGRACAO",
+            "DRE"
+          ],
+          "query": [
+            {
+              "key": "CHAVE",
+              "value": "{{CHAVE}}"
+            },
+            {
+              "key": "dataInicial",
+              "value": "2026-06-01"
+            },
+            {
+              "key": "dataFinal",
+              "value": "2026-06-07"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

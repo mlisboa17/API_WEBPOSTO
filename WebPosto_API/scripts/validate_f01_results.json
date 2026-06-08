@@ -1,0 +1,199 @@
+{
+  "period": {
+    "dataInicial": "2026-06-01",
+    "dataFinal": "2026-06-07"
+  },
+  "checks": [
+    {
+      "case": "expenses_Todos",
+      "ok": true,
+      "total": 419,
+      "ms": 24411.2,
+      "empresas": [
+        5256,
+        5333,
+        5555,
+        5556,
+        5557,
+        5559,
+        5560,
+        11495,
+        46433,
+        74014
+      ]
+    },
+    {
+      "case": "expenses_11495",
+      "ok": true,
+      "total": 73,
+      "ms": 6487.8,
+      "empresas": [
+        11495
+      ]
+    },
+    {
+      "case": "expenses_5555",
+      "ok": true,
+      "total": 46,
+      "ms": 1161.4,
+      "empresas": [
+        5555
+      ]
+    },
+    {
+      "case": "expenses_11495,5555",
+      "ok": true,
+      "total": 119,
+      "ms": 1168.3,
+      "empresas": [
+        5555,
+        11495
+      ]
+    },
+    {
+      "case": "summary_success",
+      "ok": true
+    },
+    {
+      "case": "no_totalFinanceiro",
+      "ok": true
+    },
+    {
+      "case": "receivables_11",
+      "ok": true,
+      "total": 11
+    },
+    {
+      "case": "bank_movements_200plus",
+      "ok": true,
+      "registros": 2000
+    },
+    {
+      "case": "cash_21_turnos",
+      "ok": true,
+      "turnos": 21
+    },
+    {
+      "case": "payables_buckets",
+      "ok": true,
+      "buckets": {
+        "emAberto": {
+          "count": 63,
+          "valor": "311176.28"
+        },
+        "vencido": {
+          "count": 31,
+          "valor": "140698.76"
+        },
+        "pago": {
+          "count": 7,
+          "valor": "104126.08"
+        },
+        "aVencer": {
+          "count": 32,
+          "valor": "170477.52"
+        }
+      }
+    },
+    {
+      "case": "categoriaLogos_present",
+      "ok": false
+    },
+    {
+      "case": "expenses_categoriaLogos",
+      "ok": true,
+      "sample": [
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-01",
+          "valor": "70.00",
+          "planoConta": "pagamento alamoa",
+          "planoContaCodigo": 29019,
+          "centroCusto": "",
+          "categoriaLogos": "OUTROS"
+        },
+        {
+          "empresaCodigo": 5557,
+          "data": "2026-06-01",
+          "valor": "200.00",
+          "planoConta": "para seu moises",
+          "planoContaCodigo": 39370,
+          "centroCusto": "",
+          "categoriaLogos": "OUTROS"
+        }
+      ]
+    }
+  ],
+  "performance": {
+    "summary_ms": 14454.7
+  },
+  "summary": {
+    "despesas": {
+      "totalRegistros": 419,
+      "totalValor": "127767.20",
+      "porCategoriaLogos": {
+        "COMERCIAL": "6.00",
+        "COMPRAS": "5681.12",
+        "FINANCEIRO": "87.50",
+        "OPERACIONAL": "4420.31",
+        "OUTROS": "63883.26",
+        "PESSOAL": "53689.01"
+      },
+      "porEmpresa": {
+        "5256": "14597.00",
+        "5333": "1133.51",
+        "5555": "7292.73",
+        "5556": "7208.68",
+        "5557": "18136.27",
+        "5559": "12276.50",
+        "5560": "6378.00",
+        "11495": "24926.71",
+        "46433": "20685.80",
+        "74014": "15132.00"
+      }
+    },
+    "contasPagar": {
+      "emAberto": {
+        "count": 63,
+        "valor": "311176.28"
+      },
+      "vencido": {
+        "count": 31,
+        "valor": "140698.76"
+      },
+      "pago": {
+        "count": 7,
+        "valor": "104126.08"
+      },
+      "aVencer": {
+        "count": 32,
+        "valor": "170477.52"
+      }
+    },
+    "contasReceber": {
+      "pendente": {
+        "count": 11,
+        "valor": "176.31"
+      },
+      "recebido": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "vencido": {
+        "count": 6,
+        "valor": "92.58"
+      },
+      "aVencer": {
+        "count": 5,
+        "valor": "83.73"
+      }
+    },
+    "movimentoRegistros": 2000,
+    "caixaTurnos": 21,
+    "warnings": [
+      "movimentoBancario: possível truncamento — paginar ultimoCodigo para volume completo",
+      "caixa.fundoCaixa: indisponível na API"
+    ],
+    "snapshotKey": "finance:center:summary:2026-06-01:2026-06-07:all"
+  }
+}

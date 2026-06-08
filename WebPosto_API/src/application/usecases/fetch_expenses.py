@@ -11,6 +11,7 @@ from src.infrastructure.caching.gateway_cache import GatewayCache
 from src.infrastructure.clients.gateway_webposto_client import GatewayWebPostoClient
 from src.infrastructure.config.settings import settings
 from src.infrastructure.repositories.gateway_credentials_repository import GatewayCredentialsRepository
+from src.services.money_normalizer import normalize_webposto_expense_value
 
 
 class FetchExpensesUseCase:
@@ -113,7 +114,7 @@ class FetchExpensesUseCase:
                 # Somente dados reais completos.
                 continue
             descricao = str(descricao_raw)
-            valor = Decimal(str(valor_raw))
+            valor = normalize_webposto_expense_value(valor_raw)
             ts = datetime.fromisoformat(str(ts_raw).replace("Z", "+00:00"))
             result.append(
                 CashExpense(

@@ -1,0 +1,179 @@
+{
+  "executedAt": "2026-06-08",
+  "periodo": {
+    "dataInicial": "2026-05-09",
+    "dataFinal": "2026-06-08"
+  },
+  "endpoints": [
+    {
+      "name": "CONSULTAR_VENDA_ITEM_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_VENDA_ITEM_REDE",
+      "httpStatus": 401,
+      "ok": false,
+      "error": "",
+      "records": 0,
+      "fields": {
+        "existsEmpresaCodigo": false,
+        "existsProdutoCodigo": false,
+        "existsQuantidade": false,
+        "existsData": false,
+        "coverageEmpresas": [],
+        "coverageCount": 0,
+        "sample": null
+      }
+    },
+    {
+      "name": "CONSULTAR_ABASTECIMENTO_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_ABASTECIMENTO_REDE",
+      "httpStatus": 401,
+      "ok": false,
+      "error": "",
+      "records": 0,
+      "fields": {
+        "existsEmpresaCodigo": false,
+        "existsProdutoCodigo": false,
+        "existsQuantidade": false,
+        "existsData": false,
+        "coverageEmpresas": [],
+        "coverageCount": 0,
+        "sample": null
+      }
+    },
+    {
+      "name": "CONSULTAR_VENDA_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_VENDA_REDE",
+      "httpStatus": 200,
+      "ok": true,
+      "error": null,
+      "records": 0,
+      "fields": {
+        "existsEmpresaCodigo": false,
+        "existsProdutoCodigo": false,
+        "existsQuantidade": false,
+        "existsData": false,
+        "coverageEmpresas": [],
+        "coverageCount": 0,
+        "sample": null
+      }
+    },
+    {
+      "name": "CONSULTAR_LMC_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+      "httpStatus": 200,
+      "ok": true,
+      "error": null,
+      "records": 200,
+      "fields": {
+        "existsEmpresaCodigo": true,
+        "existsProdutoCodigo": true,
+        "existsQuantidade": true,
+        "existsData": true,
+        "coverageEmpresas": [
+          5555,
+          11495
+        ],
+        "coverageCount": 2,
+        "sample": {
+          "empresaCodigo": 11495,
+          "lmcCodigo": 6811831,
+          "produtoCodigo": [
+            1257885
+          ],
+          "dataMovimento": "2026-05-09",
+          "abertura": 776.43,
+          "entrada": 2500.0,
+          "saida": 1400.88,
+          "perdaSobra": -6.55,
+          "escritural": 1875.55,
+          "fechamento": 1869.0,
+          "disponivel": 3276.43,
+          "ultimoUsuarioAlteracao": "JOSÉ ARTHUR MAIA GIRAO",
+          "saldo": -39.733,
+          "precoCusto": 6.0661,
+          "produtoLmcCodigo": 8298,
+          "codigo": 6811831,
+          "lmcTanque": [
+            {
+              "lmcTanqueCodigo": 7583287,
+              "tanqueCodigo": 29879,
+              "abertura": 776.43,
+              "escritural": 1875.55,
+              "fechamento": 1869.0
+            }
+          ],
+          "lmcBico": [
+            {
+              "lmcBicoCodigo": 19652216,
+              "bicoCodigo": 42903,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 30089,
+              "abertura": 37027.06,
+              "fechamento": 38141.51,
+              "afericao": 0.0,
+              "venda": 1114.45
+            },
+            {
+              "lmcBicoCodigo": 19652217,
+              "bicoCodigo": 42906,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 30089,
+              "abertura": 21139.03,
+              "fechamento": 21239.87,
+              "afericao": 0.0,
+              "venda": 100.84
+            },
+            {
+              "lmcBicoCodigo": 19652218,
+              "bicoCodigo": 42909,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 30090,
+              "abertura": 841249.19,
+              "fechamento": 841359.04,
+              "afericao": 0.0,
+              "venda": 109.85
+            },
+            {
+              "lmcBicoCodigo": 19652219,
+              "bicoCodigo": 42912,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 30090,
+              "abertura": 798069.37,
+              "fechamento": 798145.11,
+              "afericao": 0.0,
+              "venda": 75.74
+            },
+            {
+              "lmcBicoCodigo": 19652220,
+              "bicoCodigo": 46763,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 33455,
+              "abertura": 219.35,
+              "fechamento": 219.35,
+              "afericao": 0.0,
+              "venda": 0.0
+            },
+            {
+              "lmcBicoCodigo": 19652221,
+              "bicoCodigo": 46764,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 33455,
+              "abertura": 3451.14,
+              "fechamento": 3451.14,
+              "afericao": 0.0,
+              "venda": 0.0
+            }
+          ],
+          "lmcNota": [
+            {
+              "compraCodigo": 2132993,
+              "numeroNota": "002877647",
+              "dataEntrada": "2026-05-09",
+              "volumeRecebido": 2500.0,
+              "tanqueCodigo": 29879
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

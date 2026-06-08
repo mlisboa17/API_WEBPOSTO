@@ -1,0 +1,588 @@
+{
+  "lastUpdated": "2026-06-08T17:34:09",
+  "fuel": {
+    "success": true,
+    "data": {
+      "litrosTotal": 57725.899999999994,
+      "filiais": [
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "litros": 51315.38,
+          "participacao": 100.0
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "litros": 6410.52,
+          "participacao": 100.0
+        }
+      ],
+      "combustiveis": [
+        {
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "litros": 14488.810000000001,
+          "participacao": 25.1
+        },
+        {
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "litros": 14488.810000000001,
+          "participacao": 25.1
+        },
+        {
+          "produtoCodigo": 1257884,
+          "combustivel": "GASOLINA COMUM.",
+          "litros": 11996.929999999998,
+          "participacao": 20.78
+        },
+        {
+          "produtoCodigo": 1319213,
+          "combustivel": "GASOLINA COMUM.",
+          "litros": 11996.929999999998,
+          "participacao": 20.78
+        },
+        {
+          "produtoCodigo": 1257885,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "litros": 1346.18,
+          "participacao": 2.33
+        },
+        {
+          "produtoCodigo": 1320666,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "litros": 1346.18,
+          "participacao": 2.33
+        },
+        {
+          "produtoCodigo": 1260803,
+          "combustivel": "DIESEL S10 COMUM",
+          "litros": 1031.03,
+          "participacao": 1.79
+        },
+        {
+          "produtoCodigo": 1320665,
+          "combustivel": "DIESEL S10 COMUM",
+          "litros": 1031.03,
+          "participacao": 1.79
+        }
+      ],
+      "ranking": [
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "litros": 51315.38,
+          "participacao": 100.0,
+          "posicao": 1
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "litros": 6410.52,
+          "participacao": 100.0,
+          "posicao": 2
+        }
+      ],
+      "detalhes": [
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257884,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-01",
+          "litros": 3619.2,
+          "participacao": 7.05
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1319213,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-01",
+          "litros": 3619.2,
+          "participacao": 7.05
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257884,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-03",
+          "litros": 3186.22,
+          "participacao": 6.21
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1319213,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-03",
+          "litros": 3186.22,
+          "participacao": 6.21
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257884,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-02",
+          "litros": 2891.04,
+          "participacao": 5.63
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1319213,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-02",
+          "litros": 2891.04,
+          "participacao": 5.63
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "data": "2026-06-06",
+          "litros": 2339.36,
+          "participacao": 4.56
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "data": "2026-06-06",
+          "litros": 2339.36,
+          "participacao": 4.56
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "data": "2026-06-01",
+          "litros": 2069.64,
+          "participacao": 4.03
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "data": "2026-06-01",
+          "litros": 2069.64,
+          "participacao": 4.03
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "data": "2026-06-02",
+          "litros": 2059.36,
+          "participacao": 4.01
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "data": "2026-06-02",
+          "litros": 2059.36,
+          "participacao": 4.01
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "data": "2026-06-04",
+          "litros": 1846.54,
+          "participacao": 3.6
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "data": "2026-06-04",
+          "litros": 1846.54,
+          "participacao": 3.6
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "data": "2026-06-05",
+          "litros": 1827.0,
+          "participacao": 3.56
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "data": "2026-06-05",
+          "litros": 1827.0,
+          "participacao": 3.56
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "data": "2026-06-07",
+          "litros": 1770.78,
+          "participacao": 3.45
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "data": "2026-06-07",
+          "litros": 1770.78,
+          "participacao": 3.45
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "data": "2026-06-03",
+          "litros": 1671.34,
+          "participacao": 3.26
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "data": "2026-06-03",
+          "litros": 1671.34,
+          "participacao": 3.26
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1260803,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-04",
+          "litros": 316.73,
+          "participacao": 0.62
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320665,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-04",
+          "litros": 316.73,
+          "participacao": 0.62
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1260803,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-01",
+          "litros": 238.02,
+          "participacao": 0.46
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320665,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-01",
+          "litros": 238.02,
+          "participacao": 0.46
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257885,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-03",
+          "litros": 231.71,
+          "participacao": 0.45
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320666,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-03",
+          "litros": 231.71,
+          "participacao": 0.45
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257885,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-07",
+          "litros": 213.92,
+          "participacao": 0.42
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320666,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-07",
+          "litros": 213.92,
+          "participacao": 0.42
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257885,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-01",
+          "litros": 206.26,
+          "participacao": 0.4
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320666,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-01",
+          "litros": 206.26,
+          "participacao": 0.4
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257885,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-05",
+          "litros": 192.07,
+          "participacao": 0.37
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320666,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-05",
+          "litros": 192.07,
+          "participacao": 0.37
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257885,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-04",
+          "litros": 181.13,
+          "participacao": 0.35
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320666,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-04",
+          "litros": 181.13,
+          "participacao": 0.35
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257885,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-02",
+          "litros": 163.79,
+          "participacao": 0.32
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320666,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-02",
+          "litros": 163.79,
+          "participacao": 0.32
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257885,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-06",
+          "litros": 157.3,
+          "participacao": 0.31
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320666,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-06",
+          "litros": 157.3,
+          "participacao": 0.31
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1260803,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-03",
+          "litros": 136.86,
+          "participacao": 0.27
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320665,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-03",
+          "litros": 136.86,
+          "participacao": 0.27
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1260803,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-06",
+          "litros": 130.93,
+          "participacao": 0.26
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320665,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-06",
+          "litros": 130.93,
+          "participacao": 0.26
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1260803,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-02",
+          "litros": 118.19,
+          "participacao": 0.23
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320665,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-02",
+          "litros": 118.19,
+          "participacao": 0.23
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1260803,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-05",
+          "litros": 74.57,
+          "participacao": 0.15
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320665,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-05",
+          "litros": 74.57,
+          "participacao": 0.15
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1260803,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-07",
+          "litros": 15.73,
+          "participacao": 0.03
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320665,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-07",
+          "litros": 15.73,
+          "participacao": 0.03
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1257884,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-01",
+          "litros": 2300.47,
+          "participacao": 35.89
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1319213,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-01",
+          "litros": 2300.47,
+          "participacao": 35.89
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "data": "2026-06-01",
+          "litros": 904.79,
+          "participacao": 14.11
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "data": "2026-06-01",
+          "litros": 904.79,
+          "participacao": 14.11
+        }
+      ],
+      "agrupamento": {
+        "empresaCodigo": true,
+        "produtoCodigo": true,
+        "data": true
+      },
+      "consistencia": {
+        "somaCombustiveis": 57725.9,
+        "somaFiliais": 57725.9
+      },
+      "kpis": {
+        "litrosVendidos": 57725.9,
+        "combustivelLider": {
+          "nome": "Produto 1975728",
+          "litros": 14488.81
+        },
+        "filialLider": {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "litros": 51315.38
+        },
+        "participacaoDiesel": 0.0,
+        "participacaoGasolina": 0.0,
+        "participacaoEtanol": 0.0
+      },
+      "lineage": {
+        "aggregate": "multiselect_backend"
+      }
+    },
+    "error": null
+  },
+  "warnings": []
+}

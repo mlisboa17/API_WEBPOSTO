@@ -1,5 +1,4 @@
-from datetime import timedelta
-from typing import Dict
+import hmac
 
 from fastapi import APIRouter, Depends, HTTPException, Response, status, Request
 from pydantic import BaseModel
@@ -10,6 +9,7 @@ from src.infrastructure.security.jwt_utils import (
     create_refresh_token,
     decode_token,
 )
+from src.infrastructure.security.passwords import verify_password
 
 router = APIRouter(prefix="/auth", tags=["auth"]) 
 
@@ -19,16 +19,25 @@ class LoginPayload(BaseModel):
     password: str
 
 
+def _validate_credentials(email: str, password: str) -> bool:
+    if email != settings.auth_user_email:
+        return False
+
+    if settings.auth_user_password_hash:
+        return verify_password(password, settings.auth_user_password_hash)
+
+    return hmac.compare_digest(password, settings.auth_user_password)
+
+
 @router.post("/login")
 async def login(payload: LoginPayload, response: Response):
-    """Mock login: validate credentials, set HttpOnly cookies (access + refresh)."""
-    # TODO: Replace with real user validation (DB)
-    if payload.email != "admin@company.com" or payload.password != "password":
+    """Validate credentials and issue access/refresh tokens."""
+    if not _validate_credentials(payload.email, payload.password):
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
     # subject can be user id or email
     subject = payload.email
-    access_token = create_access_token(subject, extra={"role": "director"})
+    access_token = create_access_token(subject, extra={"role": settings.auth_user_role})
     refresh_token = create_refresh_token(subject)
 
     # Set HttpOnly Secure cookies
@@ -60,8 +69,8 @@ async def login(payload: LoginPayload, response: Response):
         "user": {
             "sub": payload.email,
             "email": payload.email,
-            "role": "director",
-            "company_id": "default-company",
+            "role": settings.auth_user_role,
+            "company_id": settings.auth_user_company_id,
             "permissions": ["READ", "WRITE", "DELETE", "AUDIT", "EXPORT"]
         }
     }

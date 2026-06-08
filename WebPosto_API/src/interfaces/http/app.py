@@ -1,12 +1,20 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
 
 from src.infrastructure.config.database import close_db, init_db
 from src.infrastructure.config.gateway_database import init_gateway_db
 from src.infrastructure.config.settings import settings
 from src.interfaces.http.routes import clientes, expenses, gateway_expenses, health, sync
+from src.interfaces.http.routes import fechamento_enterprise
 from src.interfaces.http.routes import auth
 from src.interfaces.http.routes import metrics
+from src.interfaces.http.routes import analytics
+from src.interfaces.http.routes import finance_center
+from src.interfaces.http.routes import cash_flow
+from src.interfaces.http.routes import financial_intelligence
 from src.shared.logger import setup_logging
 
 
@@ -35,11 +43,25 @@ def create_app() -> FastAPI:
     # Incluir rotas
     app.include_router(health.router)
     app.include_router(gateway_expenses.router)
+    app.include_router(fechamento_enterprise.router)
     app.include_router(expenses.router)
     app.include_router(clientes.router)
     app.include_router(sync.router)
     app.include_router(auth.router)
     app.include_router(metrics.router)
+    app.include_router(analytics.router)
+    app.include_router(finance_center.router)
+    app.include_router(cash_flow.router)
+    app.include_router(financial_intelligence.router)
+
+    root = Path(__file__).resolve().parents[3]
+    frontend_dir = root / "frontend"
+    if frontend_dir.is_dir():
+        app.mount("/frontend", StaticFiles(directory=str(frontend_dir)), name="frontend")
+
+        @app.get("/app/financial")
+        async def financial_frontend() -> FileResponse:
+            return FileResponse(frontend_dir / "index.html", media_type="text/html; charset=utf-8")
 
     # Startup event
     @app.on_event("startup")
@@ -55,3 +77,6 @@ def create_app() -> FastAPI:
         await close_db()
 
     return app
+
+
+app = create_app()

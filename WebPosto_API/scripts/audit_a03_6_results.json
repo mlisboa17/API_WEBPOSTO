@@ -1,0 +1,218 @@
+{
+  "generatedAt": "2026-06-08T12:37:58",
+  "base": "http://127.0.0.1:8040",
+  "period": {
+    "dataInicial": "2026-06-03",
+    "dataFinal": "2026-06-08"
+  },
+  "health": {
+    "status": 200,
+    "ms": 15.8
+  },
+  "snapshots": {
+    "executive_single": {
+      "status": 200,
+      "ms": 15.4,
+      "fromSnapshot": false,
+      "lastUpdated": null,
+      "hasData": false
+    },
+    "executive_multi": {
+      "status": 200,
+      "ms": 20.6,
+      "fromSnapshot": false,
+      "lastUpdated": null,
+      "hasData": false
+    },
+    "executive_all": {
+      "status": 200,
+      "ms": 13.8,
+      "fromSnapshot": false,
+      "lastUpdated": null,
+      "hasData": false
+    },
+    "fuel_single": {
+      "status": 200,
+      "ms": 22.6,
+      "fromSnapshot": false,
+      "lastUpdated": null,
+      "hasData": false
+    },
+    "fuel_multi": {
+      "status": 200,
+      "ms": 6.7,
+      "fromSnapshot": false,
+      "lastUpdated": null,
+      "hasData": false
+    },
+    "fuel_all": {
+      "status": 200,
+      "ms": 18.4,
+      "fromSnapshot": false,
+      "lastUpdated": null,
+      "hasData": false
+    },
+    "financial_single": {
+      "status": 200,
+      "ms": 18.2,
+      "fromSnapshot": false,
+      "lastUpdated": null,
+      "hasData": false
+    },
+    "financial_multi": {
+      "status": 200,
+      "ms": 13.4,
+      "fromSnapshot": false,
+      "lastUpdated": null,
+      "hasData": false
+    },
+    "financial_all": {
+      "status": 200,
+      "ms": 15.6,
+      "fromSnapshot": false,
+      "lastUpdated": null,
+      "hasData": false
+    }
+  },
+  "refresh": {
+    "executive": {
+      "status": 200,
+      "ms": 7.7,
+      "body": {
+        "status": "started",
+        "key": "2026-06-03:2026-06-08:11495"
+      }
+    },
+    "fuel": {
+      "status": 200,
+      "ms": 1945.6,
+      "body": {
+        "status": "started",
+        "key": "2026-06-03:2026-06-08:11495"
+      }
+    },
+    "financial": {
+      "status": 200,
+      "ms": 434.0,
+      "body": {
+        "status": "started",
+        "key": "2026-06-03:2026-06-08:11495"
+      }
+    }
+  },
+  "performance": {
+    "executive_snapshot": {
+      "status": 200,
+      "ms": 5.8
+    },
+    "fuel_snapshot": {
+      "status": 200,
+      "ms": 12.8
+    },
+    "fuel_executive": {
+      "status": 200,
+      "ms": 5262.2
+    },
+    "kpis_multi": {
+      "status": 200,
+      "ms": 41586.3
+    },
+    "expenses_multi": {
+      "status": 200,
+      "ms": 3756.7
+    },
+    "accounts_multi": {
+      "status": 200,
+      "ms": 3160.3
+    },
+    "sales_multi": {
+      "status": 200,
+      "ms": 29871.7
+    },
+    "stock_multi": {
+      "status": 200,
+      "ms": 9453.0
+    },
+    "coverage": {
+      "status": 200,
+      "ms": 807.6
+    }
+  },
+  "multiselect": {
+    "kpis_single_ms": 14443.6,
+    "kpis_multi_ms": 37475.9,
+    "kpis_multi_has_lineage": {
+      "aggregate": "multiselect_backend"
+    }
+  },
+  "totals": {
+    "expenses": {
+      "status": 200,
+      "rows_on_page": 45,
+      "api_total": 45,
+      "autosoma_field": "valor",
+      "autosoma": 13810.23,
+      "divergence": null
+    },
+    "accounts": {
+      "status": 200,
+      "rows_on_page": 41,
+      "api_total": 41,
+      "autosoma_field": "valor",
+      "autosoma": 202365.44,
+      "divergence": null
+    },
+    "sales": {
+      "status": 200,
+      "rows_on_page": 200,
+      "api_total": 200,
+      "autosoma_field": null,
+      "autosoma": 0.0,
+      "divergence": null
+    },
+    "stock": {
+      "status": 200,
+      "rows_on_page": 11,
+      "api_total": 11,
+      "autosoma_field": null,
+      "autosoma": 0.0,
+      "divergence": null
+    }
+  },
+  "fuel": {
+    "fuel_executive_ms": 9488.5,
+    "fuel_summary_ms": 34953.8,
+    "litros_lmc": 8768.62,
+    "litros_vendidos_summary": 0,
+    "products_code_only": 0,
+    "combustiveis_count": 6
+  },
+  "coverage": {
+    "indiceCoberturaRede": 67.67,
+    "filiaisComCombustivel": 2,
+    "filiaisComDados": 9
+  },
+  "disk_snapshots": {
+    "snapshots/executive": {
+      "count": 3,
+      "files": [
+        "2026-06-03_2026-06-08_.json",
+        "2026-06-03_2026-06-08_11495.json",
+        "2026-06-05_2026-06-07_.json"
+      ]
+    },
+    "snapshots/fuel": {
+      "count": 2,
+      "files": [
+        "2026-06-03_2026-06-08_.json",
+        "2026-06-03_2026-06-08_11495.json"
+      ]
+    },
+    "snapshots/financial": {
+      "count": 1,
+      "files": [
+        "2026-06-03_2026-06-08_11495.json"
+      ]
+    }
+  }
+}

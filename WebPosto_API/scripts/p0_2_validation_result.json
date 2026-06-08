@@ -1,0 +1,86 @@
+{
+  "periodo": {
+    "dataInicial": "2026-06-01",
+    "dataFinal": "2026-06-07"
+  },
+  "casos": {
+    "A_single_11495": {
+      "empresaCodigo": "11495",
+      "expenses": {
+        "registros": 71,
+        "total_api": 71,
+        "valorTotal": "24676.71",
+        "empresaCodigos": [
+          11495
+        ]
+      },
+      "overview": {
+        "total_despesas": "24676.71",
+        "postos": 1
+      },
+      "pass": true,
+      "notes": []
+    },
+    "B_single_5555": {
+      "empresaCodigo": "5555",
+      "expenses": {
+        "registros": 46,
+        "total_api": 46,
+        "valorTotal": "7292.73",
+        "empresaCodigos": [
+          5555
+        ]
+      },
+      "overview": {
+        "total_despesas": "7292.73",
+        "postos": 1
+      },
+      "pass": true,
+      "notes": []
+    },
+    "C_multi_11495_5555": {
+      "empresaCodigo": "11495,5555",
+      "expenses": {
+        "registros": 117,
+        "total_api": 117,
+        "valorTotal": "31969.44",
+        "empresaCodigos": [
+          5555,
+          11495
+        ]
+      },
+      "overview": {
+        "total_despesas": "31969.44",
+        "postos": 2
+      },
+      "pass": true,
+      "notes": []
+    },
+    "D_todos": {
+      "empresaCodigo": null,
+      "expenses": {
+        "registros": 415,
+        "total_api": 415,
+        "valorTotal": "127315.20",
+        "empresaCodigos": [
+          5256,
+          5333,
+          5555,
+          5556,
+          5557,
+          5559,
+          5560,
+          11495,
+          46433,
+          74014
+        ]
+      },
+      "overview": {
+        "total_despesas": "127315.20",
+        "postos": 11
+      },
+      "pass": true,
+      "notes": []
+    }
+  }
+}

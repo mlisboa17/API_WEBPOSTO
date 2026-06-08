@@ -1,0 +1,88 @@
+{
+  "period": {
+    "dataInicial": "2026-06-01",
+    "dataFinal": "2026-06-07"
+  },
+  "cases": [
+    {
+      "case": "A_Todos",
+      "ok": true,
+      "ms": 32483.9,
+      "cards": {
+        "entradasPrevistas": "113811.92",
+        "saidasPrevistas": "144109.25",
+        "saldoProjetado": "-30297.33",
+        "saldoAcumulado": "-30297.33"
+      },
+      "daily_len": 7
+    },
+    {
+      "case": "B_11495",
+      "ok": true,
+      "ms": 11494.5,
+      "cards": {
+        "entradasPrevistas": "6305.77",
+        "saidasPrevistas": "55960.06",
+        "saldoProjetado": "-49654.29",
+        "saldoAcumulado": "-49654.29"
+      },
+      "daily_len": 7
+    },
+    {
+      "case": "C_5555",
+      "ok": true,
+      "ms": 11114.5,
+      "cards": {
+        "entradasPrevistas": "0.00",
+        "saidasPrevistas": "84795.20",
+        "saldoProjetado": "-84795.20",
+        "saldoAcumulado": "-84795.20"
+      },
+      "daily_len": 7
+    },
+    {
+      "case": "D_11495_5555",
+      "ok": true,
+      "ms": 12427.6,
+      "cards": {
+        "entradasPrevistas": "6305.77",
+        "saidasPrevistas": "140755.26",
+        "saldoProjetado": "-134449.49",
+        "saldoAcumulado": "-134449.49"
+      },
+      "daily_len": 7
+    },
+    {
+      "case": "E_All",
+      "ok": true,
+      "ms": 15245.9,
+      "cards": {
+        "entradasPrevistas": "55793.09",
+        "saidasPrevistas": "141067.72",
+        "saldoProjetado": "-85274.63",
+        "saldoAcumulado": "-85274.63"
+      },
+      "daily_len": 7
+    },
+    {
+      "case": "F_Todos",
+      "ok": true,
+      "ms": 15153.5,
+      "cards": {
+        "entradasPrevistas": "113811.92",
+        "saidasPrevistas": "144109.25",
+        "saldoProjetado": "-30297.33",
+        "saldoAcumulado": "-30297.33"
+      },
+      "daily_len": 7
+    }
+  ],
+  "snapshot": {
+    "miss_ms": 11.8,
+    "miss": true,
+    "hit_ms": 0.0,
+    "hit": true,
+    "target_ok": true
+  },
+  "pass": true
+}

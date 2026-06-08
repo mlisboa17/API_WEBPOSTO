@@ -1,0 +1,28 @@
+{
+  "period": {
+    "dataInicial": "2026-06-01",
+    "dataFinal": "2026-06-07"
+  },
+  "miss": {
+    "fromSnapshot": false,
+    "ms": 6.7,
+    "empresaCodigo": "11495"
+  },
+  "hit": {
+    "fromSnapshot": false,
+    "ms": 425.7,
+    "empresaCodigo": "11495",
+    "target_ms": 500,
+    "within_target": true
+  },
+  "pass": false,
+  "first_after_refresh": {
+    "fromSnapshot": true,
+    "ms": 1102.5
+  },
+  "hit_rede": {
+    "fromSnapshot": true,
+    "ms": 13.5,
+    "within_target": true
+  }
+}

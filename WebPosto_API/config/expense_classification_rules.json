@@ -1,0 +1,111 @@
+{
+  "version": "2.0.0",
+  "generatedFrom": "WebPosto CONSULTAR_DESPESAS_FINANCEIRO_REDE 2026-06-01..2026-06-07",
+  "evidenceRecords": 437,
+  "rules": {
+    "ENERGIA": {
+      "confidence": 98,
+      "keywords": [
+        "celpe", "neoenergia", "coelba", "energia", "luz", "solar inove", "solar", "eletric", "cpfl", "enel"
+      ],
+      "suppliers": ["SOLAR INOVE", "NEOENERGIA", "CELPE", "COELBA"]
+    },
+    "TECNOLOGIA": {
+      "confidence": 97,
+      "keywords": ["vivo", "claro", "tim ", "tim-", "oi ", "internet", "telefone", "chip", "telefonia"],
+      "suppliers": ["VIVO", "CLARO", "TIM", "OI"]
+    },
+    "FINANCEIRO": {
+      "confidence": 96,
+      "keywords": [
+        "tarifa", "juros", "iof", "ted", "doc", "multa banc", "taxa banc", "taxa transferencia",
+        "bradesco", "santander", "itau", "caixa economica", "banco do brasil", " bb "
+      ],
+      "suppliers": ["BRADESCO", "SANTANDER", "ITAU", "CAIXA", "BANCO DO BRASIL"]
+    },
+    "PESSOAL": {
+      "confidence": 95,
+      "keywords": [
+        "salario", "salar ", "folha", "pro labore", "pro-labore", "funcionario", "vale", "vale funcionario",
+        "vale de funcionario", "adiantamento", "complemento salario", "quinzena", "ferias", "férias",
+        "sindicato", "sindicado", "folguista", "beneficio", "consolidacao caixa", "sr moises", "seu moises",
+        "para sr moises", "para seu moises", "moises(", "dona paulinha", "cristiane", "luciana", "gildo",
+        "quinzena", "quiinzena", "pagamento ze", "pagamento felipe"
+      ],
+      "suppliers": []
+    },
+    "FRETES": {
+      "confidence": 94,
+      "keywords": ["frete", "transporte de mercadoria", "carreto", "entrega telha"]
+    },
+    "VEÍCULOS": {
+      "confidence": 93,
+      "keywords": [
+        "abastecimento", "gasolina", "combustivel", "diesel", "caminhao", "caminhão", "bmw",
+        "aut p/", "aut. p/", "autorizado sr moises", "ref ao abastecimento"
+      ]
+    },
+    "MANUTENÇÃO": {
+      "confidence": 92,
+      "keywords": [
+        "pedreiro", "mangueira", "banheiro", "porta do banheiro", "telha", "manutencao", "manutenção",
+        "reforma", "conserto", "troca da", "copia chave", "ports de madeira"
+      ]
+    },
+    "COMPRAS": {
+      "confidence": 91,
+      "keywords": [
+        "compra", "mercadoria", "material", "parafuso", "cloro", "cadeado", "nota entrada",
+        "nf:", "ref nf:", "unifordex", "fardamento", "fardamnetos", "fardas", "aviamentos"
+      ]
+    },
+    "SERVIÇOS": {
+      "confidence": 90,
+      "keywords": [
+        "servico", "serviço", "servicos", "serviços", "servco", "servços", "servico posto", "servico jeck",
+        "consultoria", "honorario", "honorário", "contador", "contabil"
+      ]
+    },
+    "OPERACIONAL": {
+      "confidence": 88,
+      "keywords": [
+        "agua", "água", "limpeza", "material de limpeza", "almoço", "almoco", "uber", "diaria", "diária",
+        "alimentacao", "alimentação", "alelo", "martelete", "oficina", "gas completo", "gas para",
+        "forros", "led totem", "despesa posto", "coroa de flores"
+      ]
+    },
+    "MARKETING": {
+      "confidence": 88,
+      "keywords": ["marketing", "publicidade", "propaganda", "brinde", "comissao", "comissão"]
+    },
+    "TRIBUTÁRIO": {
+      "confidence": 87,
+      "keywords": ["imposto", "icms", "iss", "inss", "fgts", "darf", "gps", "tributo", "simples nacional"]
+    },
+    "ALUGUÉIS": {
+      "confidence": 86,
+      "keywords": ["aluguel", "locacao", "locação", "condominio", "condomínio"]
+    },
+    "SEGUROS": {
+      "confidence": 85,
+      "keywords": ["seguro", "apolice", "apólice", "allianz", "porto seguro"]
+    }
+  },
+  "legacyMapping": {
+    "OPERACIONAL": "OPERACIONAL",
+    "PESSOAL": "PESSOAL",
+    "ENERGIA": "OPERACIONAL",
+    "MANUTENÇÃO": "COMPRAS",
+    "FINANCEIRO": "FINANCEIRO",
+    "TRIBUTÁRIO": "ADMINISTRATIVA",
+    "MARKETING": "COMERCIAL",
+    "COMPRAS": "COMPRAS",
+    "TECNOLOGIA": "ADMINISTRATIVA",
+    "FRETES": "COMPRAS",
+    "VEÍCULOS": "OPERACIONAL",
+    "SERVIÇOS": "ADMINISTRATIVA",
+    "ALUGUÉIS": "OPERACIONAL",
+    "SEGUROS": "FINANCEIRO",
+    "OUTROS": "OUTROS"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "period": {
+    "dataInicial": "2026-06-01",
+    "dataFinal": "2026-06-07"
+  },
+  "cases": [
+    {
+      "case": "A_Todos",
+      "ok": true,
+      "ms": 33172.8,
+      "cards": {
+        "entradasPrevistas": "113811.92",
+        "saidasPrevistas": "144109.25",
+        "saldoProjetado": "-30297.33",
+        "saldoAcumulado": "-30297.33"
+      },
+      "daily_len": 7,
+      "parity_delta": "0.00"
+    },
+    {
+      "case": "B_11495",
+      "ok": true,
+      "ms": 11856.0,
+      "cards": {
+        "entradasPrevistas": "6305.77",
+        "saidasPrevistas": "55960.06",
+        "saldoProjetado": "-49654.29",
+        "saldoAcumulado": "-49654.29"
+      },
+      "daily_len": 7,
+      "parity_delta": "0.00"
+    },
+    {
+      "case": "C_5555",
+      "ok": true,
+      "ms": 11684.1,
+      "cards": {
+        "entradasPrevistas": "0.00",
+        "saidasPrevistas": "84795.20",
+        "saldoProjetado": "-84795.20",
+        "saldoAcumulado": "-84795.20"
+      },
+      "daily_len": 7,
+      "parity_delta": "0.00"
+    },
+    {
+      "case": "D_11495_5555",
+      "ok": true,
+      "ms": 11873.9,
+      "cards": {
+        "entradasPrevistas": "6305.77",
+        "saidasPrevistas": "140755.26",
+        "saldoProjetado": "-134449.49",
+        "saldoAcumulado": "-134449.49"
+      },
+      "daily_len": 7,
+      "parity_delta": "0.00"
+    },
+    {
+      "case": "E_All",
+      "ok": true,
+      "ms": 35229.1,
+      "cards": {
+        "entradasPrevistas": "55793.09",
+        "saidasPrevistas": "141067.72",
+        "saldoProjetado": "-85274.63",
+        "saldoAcumulado": "-85274.63"
+      },
+      "daily_len": 7,
+      "parity_delta": "0.00"
+    },
+    {
+      "case": "F_Todos",
+      "ok": true,
+      "ms": 14406.5,
+      "cards": {
+        "entradasPrevistas": "113811.92",
+        "saidasPrevistas": "144109.25",
+        "saldoProjetado": "-30297.33",
+        "saldoAcumulado": "-30297.33"
+      },
+      "daily_len": 7,
+      "parity_delta": "0.00"
+    }
+  ],
+  "snapshot": {
+    "store_hit_ms": 0.0,
+    "http_hit_ms_samples": [749.0, 260.5, 608.3],
+    "http_hit_median_ms": 608.3,
+    "fromSnapshot": true,
+    "ttl_seconds": 300,
+    "target_ok_store": true,
+    "target_ok_http_note": "payload grande; mediana HTTP ~608ms — otimizar em F01.3"
+  },
+  "playwright": {
+    "cash_flow_spec": "3/3 PASS"
+  },
+  "unit_tests": {
+    "test_cash_flow_service": "3/3 PASS"
+  },
+  "pass": true
+}

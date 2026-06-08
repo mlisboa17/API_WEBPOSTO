@@ -6,7 +6,7 @@ Endpoints para criar, ler, atualizar e deletar dados.
 from fastapi import APIRouter, HTTPException, Query, Request
 from typing import Optional
 
-from .models import (
+from .schemas import (
     FinanceiroCreate,
     FinanceiroUpdate,
     CaixaCreate,

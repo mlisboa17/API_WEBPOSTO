@@ -1,0 +1,348 @@
+[
+  {
+    "endpoint": "/auditoria/health",
+    "status": 404,
+    "possuiDados": false,
+    "tempoRespostaMs": 1325,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/auditoria/despesas/real_01",
+    "status": 404,
+    "possuiDados": false,
+    "tempoRespostaMs": 1319,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/auditoria/fechamentos/real_01",
+    "status": 404,
+    "possuiDados": false,
+    "tempoRespostaMs": 1322,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/auditoria/resumo/real_01",
+    "status": 404,
+    "possuiDados": false,
+    "tempoRespostaMs": 1323,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/clientes/",
+    "status": 500,
+    "possuiDados": false,
+    "tempoRespostaMs": 5503,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/clientes/1",
+    "status": 500,
+    "possuiDados": false,
+    "tempoRespostaMs": 5464,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/expenses/extract",
+    "status": 500,
+    "possuiDados": false,
+    "tempoRespostaMs": 1748,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/health",
+    "status": 200,
+    "possuiDados": true,
+    "tempoRespostaMs": 5528,
+    "categoria": "PRODUCAO",
+    "utilizadoPor": [
+      "N/A (Infra)"
+    ]
+  },
+  {
+    "endpoint": "/ready",
+    "status": 200,
+    "possuiDados": true,
+    "tempoRespostaMs": 1757,
+    "categoria": "PRODUCAO",
+    "utilizadoPor": [
+      "N/A (Infra)"
+    ]
+  },
+  {
+    "endpoint": "/metrics/executive",
+    "status": 401,
+    "possuiDados": false,
+    "tempoRespostaMs": 1761,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": [
+      "executiveDashboard.js"
+    ]
+  },
+  {
+    "endpoint": "/metrics/stream",
+    "status": 200,
+    "possuiDados": true,
+    "tempoRespostaMs": 1763,
+    "categoria": "PRODUCAO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/sync/clientes",
+    "status": 500,
+    "possuiDados": false,
+    "tempoRespostaMs": 6741,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/sync/abastecimentos",
+    "status": 500,
+    "possuiDados": false,
+    "tempoRespostaMs": 6706,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/sync/financeiro",
+    "status": 500,
+    "possuiDados": false,
+    "tempoRespostaMs": 8302,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/sync/caixa",
+    "status": 500,
+    "possuiDados": false,
+    "tempoRespostaMs": 8300,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/sync/full",
+    "status": 500,
+    "possuiDados": false,
+    "tempoRespostaMs": 8271,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/auth/login",
+    "status": 422,
+    "possuiDados": false,
+    "tempoRespostaMs": 5060,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": [
+      "auth.js"
+    ]
+  },
+  {
+    "endpoint": "/v1/financial/expenses",
+    "status": 422,
+    "possuiDados": false,
+    "tempoRespostaMs": 5072,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": [
+      "expenses.js",
+      "app.js"
+    ]
+  },
+  {
+    "endpoint": "/v1/financial/accounts-payable",
+    "status": 422,
+    "possuiDados": false,
+    "tempoRespostaMs": 5093,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": [
+      "accountsPayable.js",
+      "app.js"
+    ]
+  },
+  {
+    "endpoint": "/v1/sales",
+    "status": 422,
+    "possuiDados": false,
+    "tempoRespostaMs": 5101,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": [
+      "sales.js",
+      "app.js"
+    ]
+  },
+  {
+    "endpoint": "/v1/stock",
+    "status": 422,
+    "possuiDados": false,
+    "tempoRespostaMs": 5109,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": [
+      "stock.js",
+      "app.js"
+    ]
+  },
+  {
+    "endpoint": "/v1/financial/overview",
+    "status": 422,
+    "possuiDados": false,
+    "tempoRespostaMs": 5117,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": [
+      "executiveDashboard.js",
+      "app.js"
+    ]
+  },
+  {
+    "endpoint": "/v1/companies",
+    "status": 404,
+    "possuiDados": false,
+    "tempoRespostaMs": 5461,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/api/v1/kpis",
+    "status": 422,
+    "possuiDados": false,
+    "tempoRespostaMs": 5463,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": [
+      "executiveDashboard.js",
+      "analyticsEngine.js"
+    ]
+  },
+  {
+    "endpoint": "/api/v1/dre",
+    "status": 422,
+    "possuiDados": false,
+    "tempoRespostaMs": 5493,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": [
+      "executiveDashboard.js",
+      "analyticsEngine.js"
+    ]
+  },
+  {
+    "endpoint": "/api/v1/data-quality",
+    "status": 422,
+    "possuiDados": false,
+    "tempoRespostaMs": 5508,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": [
+      "executiveDashboard.js"
+    ]
+  },
+  {
+    "endpoint": "/api/v1/network-coverage",
+    "status": 404,
+    "possuiDados": false,
+    "tempoRespostaMs": 5527,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/api/v1/filiais",
+    "status": 200,
+    "possuiDados": true,
+    "tempoRespostaMs": 8797,
+    "categoria": "PRODUCAO",
+    "utilizadoPor": [
+      "filiais.js",
+      "app.js"
+    ]
+  },
+  {
+    "endpoint": "/EMPRESAS",
+    "status": 404,
+    "possuiDados": false,
+    "tempoRespostaMs": 6462,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/VENDA",
+    "status": 404,
+    "possuiDados": false,
+    "tempoRespostaMs": 6465,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/VENDA_ITEM",
+    "status": 404,
+    "possuiDados": false,
+    "tempoRespostaMs": 6468,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/VENDA_FORMA_PAGAMENTO",
+    "status": 404,
+    "possuiDados": false,
+    "tempoRespostaMs": 6468,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+    "status": 404,
+    "possuiDados": false,
+    "tempoRespostaMs": 6469,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/TITULO_PAGAR",
+    "status": 404,
+    "possuiDados": false,
+    "tempoRespostaMs": 6470,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/TITULO_RECEBER",
+    "status": 404,
+    "possuiDados": false,
+    "tempoRespostaMs": 6471,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/CONSULTAR_CAIXA_REDE",
+    "status": 404,
+    "possuiDados": false,
+    "tempoRespostaMs": 6473,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/CONSULTAR_CAIXA_APRESENTADO_REDE",
+    "status": 404,
+    "possuiDados": false,
+    "tempoRespostaMs": 6473,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/PRODUTO_EMPRESA",
+    "status": 404,
+    "possuiDados": false,
+    "tempoRespostaMs": 6474,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  },
+  {
+    "endpoint": "/PRODUTO_ESTOQUE",
+    "status": 404,
+    "possuiDados": false,
+    "tempoRespostaMs": 6475,
+    "categoria": "OBSOLETO",
+    "utilizadoPor": []
+  }
+]

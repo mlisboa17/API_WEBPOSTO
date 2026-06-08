@@ -1,0 +1,461 @@
+{
+  "generated_at": "2026-06-08T17:01:30",
+  "period": {
+    "dataInicial": "2026-06-01",
+    "dataFinal": "2026-06-07"
+  },
+  "filter_cases": [
+    {
+      "case": "A_Todos",
+      "empresaCodigo": null,
+      "performance_ms": {
+        "summary": 39667.0,
+        "payables": 1054.8,
+        "receivables": 769.9,
+        "bank": 11747.5,
+        "cash": 10729.3,
+        "snapshot": 10.2
+      },
+      "counts": {
+        "despesas": 421,
+        "cp_vencido": 31,
+        "cr_vencido": 6,
+        "bank": 2000,
+        "caixa_turnos": 21
+      },
+      "parity_api_summary_vs_payables": [],
+      "parity_export": {
+        "export_rows": 14,
+        "diffs": [],
+        "pass": true
+      },
+      "parity_snapshot": [],
+      "pass": true
+    },
+    {
+      "case": "B_11495",
+      "empresaCodigo": "11495",
+      "performance_ms": {
+        "summary": 14331.6,
+        "payables": 946.4,
+        "receivables": 775.2,
+        "bank": 10695.8,
+        "cash": 1185.7,
+        "snapshot": 3.9
+      },
+      "counts": {
+        "despesas": 73,
+        "cp_vencido": 20,
+        "cr_vencido": 6,
+        "bank": 287,
+        "caixa_turnos": 15
+      },
+      "parity_api_summary_vs_payables": [],
+      "parity_export": {
+        "export_rows": 14,
+        "diffs": [],
+        "pass": true
+      },
+      "parity_snapshot": [],
+      "pass": true
+    },
+    {
+      "case": "C_5555",
+      "empresaCodigo": "5555",
+      "performance_ms": {
+        "summary": 12722.0,
+        "payables": 789.4,
+        "receivables": 758.0,
+        "bank": 10497.6,
+        "cash": 10667.5,
+        "snapshot": 6.2
+      },
+      "counts": {
+        "despesas": 48,
+        "cp_vencido": 11,
+        "cr_vencido": 0,
+        "bank": 0,
+        "caixa_turnos": 6
+      },
+      "parity_api_summary_vs_payables": [],
+      "parity_export": {
+        "export_rows": 14,
+        "diffs": [],
+        "pass": true
+      },
+      "parity_snapshot": [],
+      "pass": true
+    },
+    {
+      "case": "D_11495_5555",
+      "empresaCodigo": "11495,5555",
+      "performance_ms": {
+        "summary": 13425.0,
+        "payables": 1589.7,
+        "receivables": 784.2,
+        "bank": 14709.7,
+        "cash": 1144.2,
+        "snapshot": 7.7
+      },
+      "counts": {
+        "despesas": 121,
+        "cp_vencido": 31,
+        "cr_vencido": 6,
+        "bank": 287,
+        "caixa_turnos": 21
+      },
+      "parity_api_summary_vs_payables": [],
+      "parity_export": {
+        "export_rows": 14,
+        "diffs": [],
+        "pass": true
+      },
+      "parity_snapshot": [],
+      "pass": true
+    },
+    {
+      "case": "E_SelecionarTudo",
+      "empresaCodigo": "11495,5256,5333,5555,5556,5557,5558,5559,5560,46433,74014",
+      "performance_ms": {
+        "summary": 13521.4,
+        "payables": 760.8,
+        "receivables": 829.1,
+        "bank": 10939.2,
+        "cash": 1163.6,
+        "snapshot": 3.8
+      },
+      "counts": {
+        "despesas": 421,
+        "cp_vencido": 31,
+        "cr_vencido": 6,
+        "bank": 1881,
+        "caixa_turnos": 21
+      },
+      "parity_api_summary_vs_payables": [],
+      "parity_export": {
+        "export_rows": 14,
+        "diffs": [],
+        "pass": true
+      },
+      "parity_snapshot": [],
+      "pass": true
+    },
+    {
+      "case": "F_Limpar",
+      "empresaCodigo": null,
+      "performance_ms": {
+        "summary": 13595.7,
+        "payables": 1064.7,
+        "receivables": 924.4,
+        "bank": 11662.8,
+        "cash": 1280.4,
+        "snapshot": 15.6
+      },
+      "counts": {
+        "despesas": 421,
+        "cp_vencido": 31,
+        "cr_vencido": 6,
+        "bank": 2000,
+        "caixa_turnos": 21
+      },
+      "parity_api_summary_vs_payables": [],
+      "parity_export": {
+        "export_rows": 14,
+        "diffs": [],
+        "pass": true
+      },
+      "parity_snapshot": [],
+      "pass": true
+    }
+  ],
+  "cross_module": {
+    "DESPESAS_REDE": {
+      "http": 200,
+      "ms": 610.1,
+      "registros": 435,
+      "ok": true
+    },
+    "TITULO_PAGAR": {
+      "http": 200,
+      "ms": 159.5,
+      "registros": 70,
+      "ok": true
+    },
+    "TITULO_RECEBER": {
+      "http": 200,
+      "ms": 145.0,
+      "registros": 11,
+      "ok": true
+    },
+    "MOVIMENTO_CONTA": {
+      "http": 200,
+      "ms": 452.4,
+      "registros": 200,
+      "ok": true
+    },
+    "CAIXA": {
+      "http": 200,
+      "ms": 224.6,
+      "registros": 21,
+      "ok": true
+    },
+    "CAIXA_APRESENTADO": {
+      "http": 200,
+      "ms": 198.5,
+      "registros": 21,
+      "ok": true
+    }
+  },
+  "receivable_probe": {
+    "TITULO_RECEBER": {
+      "http": 200,
+      "ms": 378.7,
+      "registros": 11,
+      "ok": true
+    },
+    "TITULO_RECEBER_REDE": {
+      "http": 401,
+      "ms": 140.5,
+      "registros": 0,
+      "ok": false
+    },
+    "CLIENTE": {
+      "http": 200,
+      "ms": 228.4,
+      "registros": 200,
+      "ok": true
+    },
+    "CLIENTE_EMPRESA": {
+      "http": 200,
+      "ms": 214.4,
+      "registros": 132,
+      "ok": true
+    },
+    "CONSUMO_CLIENTE": {
+      "http": 400,
+      "ms": 128.9,
+      "registros": 0,
+      "ok": false
+    },
+    "INTEGRACAO_LISTA_CLIENTE_PRAZO": {
+      "http": 401,
+      "ms": 153.4,
+      "registros": 0,
+      "ok": false
+    },
+    "INTEGRACAO_CLIENTE_PRAZO": {
+      "http": 401,
+      "ms": 135.2,
+      "registros": 0,
+      "ok": false
+    },
+    "CLIENTE_UNIDADE_NEGOCIO": {
+      "http": 401,
+      "ms": 180.8,
+      "registros": 0,
+      "ok": false
+    }
+  },
+  "banking": {
+    "totals": {
+      "creditos": {
+        "count": 1021,
+        "valor": "113719.34"
+      },
+      "debitos": {
+        "count": 979,
+        "valor": "3410.49"
+      },
+      "tarifas": {
+        "count": 977,
+        "valor": "390.49"
+      },
+      "transferencias": {
+        "count": 978,
+        "valor": "58401.27"
+      }
+    },
+    "top_tarifas": [],
+    "pix_ted_doc_count": 0,
+    "top_descriptions": []
+  },
+  "cash": {
+    "turnos": 21,
+    "diferencas_count": 21,
+    "despesa_apurado": "4949.67",
+    "vale_apurado": "19879.91",
+    "emprestimo_apurado": "0.00",
+    "top_diff_filiais": [
+      {
+        "empresa": "5555",
+        "count": 6,
+        "valor": "17918.36"
+      },
+      {
+        "empresa": "11495",
+        "count": 15,
+        "valor": "544.11"
+      }
+    ]
+  },
+  "opportunities": [
+    {
+      "rank": 1,
+      "tipo": "Classificação LOGOS",
+      "descricao": "OUTROS representa 49.90% das despesas — refinar classificador",
+      "roi": "Alto"
+    },
+    {
+      "rank": 2,
+      "tipo": "CP vencido",
+      "descricao": "31 títulos vencidos — R$ 140698.76",
+      "roi": "Alto"
+    },
+    {
+      "rank": 3,
+      "tipo": "CR vencido",
+      "descricao": "6 recebíveis vencidos — R$ 92.58",
+      "roi": "Alto"
+    },
+    {
+      "rank": 4,
+      "tipo": "Diferença caixa",
+      "descricao": "21 turnos com diferença",
+      "roi": "Médio"
+    },
+    {
+      "rank": 5,
+      "tipo": "Roadmap F01.2+",
+      "descricao": "Ver TOP_50_FINANCIAL_OPPORTUNITIES.md para expansão",
+      "roi": "Variável"
+    },
+    {
+      "rank": 6,
+      "tipo": "Roadmap F01.2+",
+      "descricao": "Ver TOP_50_FINANCIAL_OPPORTUNITIES.md para expansão",
+      "roi": "Variável"
+    },
+    {
+      "rank": 7,
+      "tipo": "Roadmap F01.2+",
+      "descricao": "Ver TOP_50_FINANCIAL_OPPORTUNITIES.md para expansão",
+      "roi": "Variável"
+    },
+    {
+      "rank": 8,
+      "tipo": "Roadmap F01.2+",
+      "descricao": "Ver TOP_50_FINANCIAL_OPPORTUNITIES.md para expansão",
+      "roi": "Variável"
+    },
+    {
+      "rank": 9,
+      "tipo": "Roadmap F01.2+",
+      "descricao": "Ver TOP_50_FINANCIAL_OPPORTUNITIES.md para expansão",
+      "roi": "Variável"
+    },
+    {
+      "rank": 10,
+      "tipo": "Roadmap F01.2+",
+      "descricao": "Ver TOP_50_FINANCIAL_OPPORTUNITIES.md para expansão",
+      "roi": "Variável"
+    },
+    {
+      "rank": 11,
+      "tipo": "Roadmap F01.2+",
+      "descricao": "Ver TOP_50_FINANCIAL_OPPORTUNITIES.md para expansão",
+      "roi": "Variável"
+    },
+    {
+      "rank": 12,
+      "tipo": "Roadmap F01.2+",
+      "descricao": "Ver TOP_50_FINANCIAL_OPPORTUNITIES.md para expansão",
+      "roi": "Variável"
+    },
+    {
+      "rank": 13,
+      "tipo": "Roadmap F01.2+",
+      "descricao": "Ver TOP_50_FINANCIAL_OPPORTUNITIES.md para expansão",
+      "roi": "Variável"
+    },
+    {
+      "rank": 14,
+      "tipo": "Roadmap F01.2+",
+      "descricao": "Ver TOP_50_FINANCIAL_OPPORTUNITIES.md para expansão",
+      "roi": "Variável"
+    },
+    {
+      "rank": 15,
+      "tipo": "Roadmap F01.2+",
+      "descricao": "Ver TOP_50_FINANCIAL_OPPORTUNITIES.md para expansão",
+      "roi": "Variável"
+    },
+    {
+      "rank": 16,
+      "tipo": "Roadmap F01.2+",
+      "descricao": "Ver TOP_50_FINANCIAL_OPPORTUNITIES.md para expansão",
+      "roi": "Variável"
+    },
+    {
+      "rank": 17,
+      "tipo": "Roadmap F01.2+",
+      "descricao": "Ver TOP_50_FINANCIAL_OPPORTUNITIES.md para expansão",
+      "roi": "Variável"
+    },
+    {
+      "rank": 18,
+      "tipo": "Roadmap F01.2+",
+      "descricao": "Ver TOP_50_FINANCIAL_OPPORTUNITIES.md para expansão",
+      "roi": "Variável"
+    },
+    {
+      "rank": 19,
+      "tipo": "Roadmap F01.2+",
+      "descricao": "Ver TOP_50_FINANCIAL_OPPORTUNITIES.md para expansão",
+      "roi": "Variável"
+    },
+    {
+      "rank": 20,
+      "tipo": "Roadmap F01.2+",
+      "descricao": "Ver TOP_50_FINANCIAL_OPPORTUNITIES.md para expansão",
+      "roi": "Variável"
+    }
+  ],
+  "snapshot_perf": {
+    "miss_11495": {
+      "fromSnapshot": false,
+      "ms": 3.1
+    },
+    "hit_11495": {
+      "fromSnapshot": true,
+      "ms": 11.8,
+      "target_ok": true
+    },
+    "hit_rede": {
+      "fromSnapshot": true,
+      "ms": 9.3,
+      "target_ok": true
+    }
+  },
+  "gaps": [
+    {
+      "id": "AGING_CP_BANDS",
+      "descricao": "UI especifica buckets Hoje/7d/15d/30d; implementação usa vencido/emAberto/aVencer/pago",
+      "severidade": "media"
+    },
+    {
+      "id": "SNAPSHOT_HIT_FILIAL",
+      "descricao": "HIT snapshot por filial depende refresh async WebPosto",
+      "severidade": "media"
+    },
+    {
+      "id": "RECEIVABLE_SOURCES",
+      "descricao": "CONSUMO_CLIENTE/CLIENTE_EMPRESA não integrados ao Finance Center",
+      "severidade": "baixa"
+    }
+  ],
+  "acceptance": {
+    "parity_api": true,
+    "playwright_ref": "15/15 (F01.1)",
+    "ready_f01_2": true
+  }
+}

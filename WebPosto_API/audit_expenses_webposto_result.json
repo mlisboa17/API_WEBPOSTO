@@ -1,0 +1,233 @@
+{
+  "generatedAt": "2026-06-08T12:56:22",
+  "periodo": {
+    "dataInicial": "2026-06-01",
+    "dataFinal": "2026-06-07",
+    "empresaCodigo": 11495
+  },
+  "camadas": {
+    "api_bruta_paginada": {
+      "path": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+      "pages": 1,
+      "registros": 427,
+      "valorTotal": "135761.20",
+      "empresaCodigos": [
+        5256,
+        5333,
+        5555,
+        5556,
+        5557,
+        5559,
+        5560,
+        11495,
+        46433,
+        74014
+      ],
+      "ultimoCodigoUsed": false,
+      "errors": [],
+      "sampleFields": [
+        "empresaCodigo",
+        "planoContaGerencialCodigo",
+        "descricaoDocumento",
+        "data",
+        "valor"
+      ]
+    },
+    "api_bruta_pagina_unica": {
+      "registros": 427,
+      "hasUltimoCodigo": false,
+      "ultimoCodigo": null,
+      "valorTotal": "135761.20"
+    },
+    "endpoints_alternativos": {
+      "financeiro": {
+        "path": "/INTEGRACAO/TITULO_PAGAR",
+        "pages": 2,
+        "registros": 54,
+        "valorTotal": "278406.96",
+        "empresaCodigos": [
+          11495
+        ],
+        "ultimoCodigoUsed": true,
+        "errors": [],
+        "sampleFields": [
+          "empresaCodigo",
+          "tituloPagarCodigo",
+          "notaEntradaCodigo",
+          "dataMovimento",
+          "vencimento",
+          "dataPagamento",
+          "situacao",
+          "tipo",
+          "tipoLancamento",
+          "valor",
+          "valorPago",
+          "desconto",
+          "acrescimo",
+          "cheque",
+          "dinheiro",
+          "troco",
+          "adiantamento",
+          "cartao",
+          "fornecedorCodigo",
+          "fornecedorIntermediadorCodigo",
+          "planoContaGerencialCodigo",
+          "descricao",
+          "numeroTitulo",
+          "nomeFornecedor",
+          "cpfCnpjFornecedor",
+          "pagamento",
+          "numeroRemessa",
+          "planoContaGerencialNivel",
+          "planoContaGerencialDescricao",
+          "centroCustoCodigo",
+          "centroCustoDescricao",
+          "parcela",
+          "quantidadeParcelas",
+          "linhaDigitavel",
+          "autorizado",
+          "nossoNumero",
+          "bancoFornecedor",
+          "agenciaFornecedor",
+          "contaFornecedor",
+          "tipoChavePixFornecedor",
+          "chavePixFornecedor",
+          "qrCodePix",
+          "tipoTributo",
+          "codigoReceitaTributo",
+          "renavam",
+          "placa",
+          "codigoMunicipio",
+          "digitoFgts",
+          "lacreConSocialFgts",
+          "identificadorFgts",
+          "observacao",
+          "codigo"
+        ]
+      },
+      "conta": {
+        "path": "/INTEGRACAO/CONTA",
+        "pages": 2,
+        "registros": 9,
+        "valorTotal": "0.00",
+        "empresaCodigos": [
+          11495
+        ],
+        "ultimoCodigoUsed": true,
+        "errors": [],
+        "sampleFields": [
+          "empresaCodigo",
+          "contaCodigo",
+          "descricao",
+          "saldoAtual",
+          "ativo",
+          "usaOfx",
+          "codigo"
+        ]
+      },
+      "movimento_conta": {
+        "path": "/INTEGRACAO/MOVIMENTO_CONTA",
+        "pages": 5,
+        "registros": 1000,
+        "valorTotal": "80200.22",
+        "empresaCodigos": [
+          11495
+        ],
+        "ultimoCodigoUsed": true,
+        "errors": [],
+        "sampleFields": [
+          "empresaCodigo",
+          "movimentoContaCodigo",
+          "valor",
+          "dataMovimento",
+          "descricao",
+          "tipoDocumentoOrigem",
+          "codigoTipoDocumentoOrigem",
+          "documentoOrigemCodigo",
+          "tipo",
+          "conciliado",
+          "evento",
+          "saldo",
+          "contaCodigo",
+          "planoContaGerencialCodigo",
+          "centroCustoCodigo",
+          "documento",
+          "lote",
+          "daraHoraConciliacao",
+          "usuarioConciliacao",
+          "codigoPessoa",
+          "tipoPessoa",
+          "codigo"
+        ]
+      }
+    },
+    "backend_logos": {
+      "status": 200,
+      "registros": 71,
+      "total_api": 71,
+      "valorTotal": "24676.71",
+      "empresaCodigos": [
+        11495
+      ]
+    },
+    "normalizacao": {
+      "raw_registros": 427,
+      "apos_normalizar": 427,
+      "descartados_normalizacao": 0,
+      "apos_dedupe": 383,
+      "descartados_dedupe": 44,
+      "valorTotal_normalizado": "123899.40"
+    },
+    "backend_fetch_simulado": {
+      "success": true,
+      "registros": 427,
+      "hasUltimoCodigo": false,
+      "ultimoCodigo": null
+    }
+  },
+  "diagnostico": [
+    {
+      "causa": "backend_perde_registros",
+      "severidade": "P0",
+      "detalhe": "API paginada=427 vs backend LOGOS=71."
+    },
+    {
+      "causa": "deduplicacao",
+      "severidade": "P2",
+      "detalhe": "44 registros removidos por _dedupe_rows."
+    }
+  ],
+  "registrosPerdidos": {
+    "paginacao": 0,
+    "backend_vs_api": 356,
+    "normalizacao": 0,
+    "dedupe": 44
+  },
+  "comparacao": {
+    "api_bruta_paginada": {
+      "registros": 427,
+      "valor": "135761.20"
+    },
+    "api_bruta_pagina_unica": {
+      "registros": 427,
+      "hasUltimoCodigo": false,
+      "ultimoCodigo": null,
+      "valorTotal": "135761.20"
+    },
+    "apos_normalizacao": {
+      "registros": 383,
+      "valor": "123899.40"
+    },
+    "backend_logos": {
+      "status": 200,
+      "registros": 71,
+      "total_api": 71,
+      "valorTotal": "24676.71",
+      "empresaCodigos": [
+        11495
+      ]
+    },
+    "frontend_tabela": "equivale backend (fetchAllPages limit 500 x 40 paginas API LOGOS)",
+    "export_csv_pdf": "equivale linhas visiveis filtradas na tabela (sortedRows)"
+  }
+}

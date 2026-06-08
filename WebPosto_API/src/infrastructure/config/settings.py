@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     webposto_vip_posto_nome: str = "POSTO_VIP"
     webposto_sync_interval_seconds: int = 3600
     webposto_timeout_seconds: int = 30
+    webposto_money_debug: bool = False
 
     # Banco de Dados
     database_url: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/webposto"
@@ -48,6 +49,11 @@ class Settings(BaseSettings):
     refresh_token_expire_days: int = 7
     consumer_token: str = "dev-consumer-token"
     admin_token: str = "dev-admin-token"
+    auth_user_email: str = "admin@company.com"
+    auth_user_password: str = "password"
+    auth_user_password_hash: str = ""
+    auth_user_role: str = "director"
+    auth_user_company_id: str = "default-company"
 
     # Circuit Breaker
     circuit_breaker_threshold: int = 5

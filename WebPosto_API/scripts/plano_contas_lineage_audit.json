@@ -1,0 +1,310 @@
+{
+  "period": {
+    "dataInicial": "2026-06-01",
+    "dataFinal": "2026-06-07"
+  },
+  "facts": {
+    "DESPESAS_REDE": {
+      "httpStatus": 200,
+      "registros": 436,
+      "campos": {
+        "planoContaGerencialCodigo": {
+          "count": 436,
+          "pct": 100.0,
+          "byEmpresa": {
+            "11495": 17.66,
+            "46433": 13.53,
+            "5256": 7.34,
+            "5333": 5.96,
+            "5555": 11.93,
+            "5556": 10.09,
+            "5557": 13.99,
+            "5559": 6.88,
+            "5560": 2.52,
+            "74014": 10.09
+          }
+        },
+        "planoContaGerencialDescricao": {
+          "count": 0,
+          "pct": 0.0,
+          "byEmpresa": {}
+        },
+        "planoContaContabilCodigo": {
+          "count": 0,
+          "pct": 0.0,
+          "byEmpresa": {}
+        },
+        "planoContaContabilDescricao": {
+          "count": 0,
+          "pct": 0.0,
+          "byEmpresa": {}
+        },
+        "centroCustoCodigo": {
+          "count": 0,
+          "pct": 0.0,
+          "byEmpresa": {}
+        },
+        "centroCustoDescricao": {
+          "count": 0,
+          "pct": 0.0,
+          "byEmpresa": {}
+        }
+      },
+      "sampleKeys": [
+        "data",
+        "descricaoDocumento",
+        "empresaCodigo",
+        "planoContaGerencialCodigo",
+        "valor"
+      ]
+    },
+    "TITULO_PAGAR": {
+      "httpStatus": 200,
+      "registros": 70,
+      "campos": {
+        "planoContaGerencialCodigo": {
+          "count": 70,
+          "pct": 100.0,
+          "byEmpresa": {
+            "11495": 77.14,
+            "5555": 22.86
+          }
+        },
+        "planoContaGerencialDescricao": {
+          "count": 70,
+          "pct": 100.0,
+          "byEmpresa": {
+            "11495": 77.14,
+            "5555": 22.86
+          }
+        },
+        "planoContaContabilCodigo": {
+          "count": 0,
+          "pct": 0.0,
+          "byEmpresa": {}
+        },
+        "planoContaContabilDescricao": {
+          "count": 0,
+          "pct": 0.0,
+          "byEmpresa": {}
+        },
+        "centroCustoCodigo": {
+          "count": 70,
+          "pct": 100.0,
+          "byEmpresa": {
+            "11495": 77.14,
+            "5555": 22.86
+          }
+        },
+        "centroCustoDescricao": {
+          "count": 70,
+          "pct": 100.0,
+          "byEmpresa": {
+            "11495": 77.14,
+            "5555": 22.86
+          }
+        }
+      },
+      "sampleKeys": [
+        "acrescimo",
+        "adiantamento",
+        "agenciaFornecedor",
+        "autorizado",
+        "bancoFornecedor",
+        "cartao",
+        "centroCustoCodigo",
+        "centroCustoDescricao",
+        "chavePixFornecedor",
+        "cheque",
+        "codigo",
+        "codigoMunicipio",
+        "codigoReceitaTributo",
+        "contaFornecedor",
+        "cpfCnpjFornecedor",
+        "dataMovimento",
+        "dataPagamento",
+        "desconto",
+        "descricao",
+        "digitoFgts",
+        "dinheiro",
+        "empresaCodigo",
+        "fornecedorCodigo",
+        "fornecedorIntermediadorCodigo",
+        "identificadorFgts",
+        "lacreConSocialFgts",
+        "linhaDigitavel",
+        "nomeFornecedor",
+        "nossoNumero",
+        "notaEntradaCodigo",
+        "numeroRemessa",
+        "numeroTitulo",
+        "observacao",
+        "pagamento",
+        "parcela",
+        "placa",
+        "planoContaGerencialCodigo",
+        "planoContaGerencialDescricao",
+        "planoContaGerencialNivel",
+        "qrCodePix",
+        "quantidadeParcelas",
+        "renavam",
+        "situacao",
+        "tipo",
+        "tipoChavePixFornecedor",
+        "tipoLancamento",
+        "tipoTributo",
+        "tituloPagarCodigo",
+        "troco",
+        "valor",
+        "valorPago",
+        "vencimento"
+      ]
+    },
+    "MOVIMENTO_CONTA": {
+      "httpStatus": 200,
+      "registros": 200,
+      "campos": {
+        "planoContaGerencialCodigo": {
+          "count": 200,
+          "pct": 100.0,
+          "byEmpresa": {
+            "11495": 26.0,
+            "46433": 15.0,
+            "5256": 5.0,
+            "5333": 8.0,
+            "5554": 1.0,
+            "5557": 7.0,
+            "5559": 5.0,
+            "5560": 13.0,
+            "74014": 20.0
+          }
+        },
+        "planoContaGerencialDescricao": {
+          "count": 0,
+          "pct": 0.0,
+          "byEmpresa": {}
+        },
+        "planoContaContabilCodigo": {
+          "count": 0,
+          "pct": 0.0,
+          "byEmpresa": {}
+        },
+        "planoContaContabilDescricao": {
+          "count": 0,
+          "pct": 0.0,
+          "byEmpresa": {}
+        },
+        "centroCustoCodigo": {
+          "count": 200,
+          "pct": 100.0,
+          "byEmpresa": {
+            "11495": 26.0,
+            "46433": 15.0,
+            "5256": 5.0,
+            "5333": 8.0,
+            "5554": 1.0,
+            "5557": 7.0,
+            "5559": 5.0,
+            "5560": 13.0,
+            "74014": 20.0
+          }
+        },
+        "centroCustoDescricao": {
+          "count": 0,
+          "pct": 0.0,
+          "byEmpresa": {}
+        }
+      },
+      "sampleKeys": [
+        "centroCustoCodigo",
+        "codigo",
+        "codigoPessoa",
+        "codigoTipoDocumentoOrigem",
+        "conciliado",
+        "contaCodigo",
+        "daraHoraConciliacao",
+        "dataMovimento",
+        "descricao",
+        "documento",
+        "documentoOrigemCodigo",
+        "empresaCodigo",
+        "evento",
+        "lote",
+        "movimentoContaCodigo",
+        "planoContaGerencialCodigo",
+        "saldo",
+        "tipo",
+        "tipoDocumentoOrigem",
+        "tipoPessoa",
+        "usuarioConciliacao",
+        "valor"
+      ]
+    },
+    "LANCAMENTO_CONTABIL": {
+      "httpStatus": 200,
+      "registros": 0,
+      "campos": {
+        "planoContaGerencialCodigo": {
+          "count": 0,
+          "pct": 0.0,
+          "byEmpresa": {}
+        },
+        "planoContaGerencialDescricao": {
+          "count": 0,
+          "pct": 0.0,
+          "byEmpresa": {}
+        },
+        "planoContaContabilCodigo": {
+          "count": 0,
+          "pct": 0.0,
+          "byEmpresa": {}
+        },
+        "planoContaContabilDescricao": {
+          "count": 0,
+          "pct": 0.0,
+          "byEmpresa": {}
+        },
+        "centroCustoCodigo": {
+          "count": 0,
+          "pct": 0.0,
+          "byEmpresa": {}
+        },
+        "centroCustoDescricao": {
+          "count": 0,
+          "pct": 0.0,
+          "byEmpresa": {}
+        }
+      },
+      "sampleKeys": []
+    }
+  },
+  "catalogs": {
+    "PLANO_CONTA_GERENCIAL": {
+      "httpStatus": 200,
+      "registros": 200,
+      "sampleKeys": [
+        "apuraDre",
+        "codigo",
+        "descricao",
+        "hierarquia",
+        "natureza",
+        "planoContaCodigo",
+        "tipo"
+      ]
+    },
+    "CENTRO_CUSTO_REDE": {
+      "httpStatus": 401,
+      "registros": 0
+    }
+  },
+  "outrosAnalysis": {
+    "outrosRegistros": 70,
+    "outrosValor": "5942.37",
+    "comPlanoContaGerencialCodigo": 70,
+    "comPlanoContaGerencialPct": 100.0,
+    "reclassificavelViaPlanoDescricao": 46,
+    "valorReclassificavelViaPlano": "4482.07",
+    "reducaoOutrosPotencialPct": 75.43
+  },
+  "planoCatalogSize": 200
+}

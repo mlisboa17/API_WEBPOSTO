@@ -1,0 +1,206 @@
+{
+  "lastUpdated": "2026-06-08T11:44:03",
+  "fuel": {
+    "success": true,
+    "data": {
+      "litrosTotal": 8768.62,
+      "filiais": [
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "litros": 8768.62,
+          "participacao": 100.0
+        }
+      ],
+      "combustiveis": [
+        {
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "categoria": "Outros",
+          "litros": 3517.88,
+          "participacao": 40.12
+        },
+        {
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "categoria": "Outros",
+          "litros": 3517.88,
+          "participacao": 40.12
+        },
+        {
+          "produtoCodigo": 1260803,
+          "combustivel": "DIESEL S10 COMUM",
+          "categoria": "Diesel S10",
+          "litros": 453.59,
+          "participacao": 5.17
+        },
+        {
+          "produtoCodigo": 1320665,
+          "combustivel": "DIESEL S10 COMUM",
+          "categoria": "Diesel S10",
+          "litros": 453.59,
+          "participacao": 5.17
+        },
+        {
+          "produtoCodigo": 1257885,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "categoria": "Gasolina",
+          "litros": 412.84,
+          "participacao": 4.71
+        },
+        {
+          "produtoCodigo": 1320666,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "categoria": "Gasolina",
+          "litros": 412.84,
+          "participacao": 4.71
+        }
+      ],
+      "ranking": [
+        {
+          "posicao": 1,
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "litros": 8768.62,
+          "participacao": 100.0
+        }
+      ],
+      "detalhes": [
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "data": "2026-06-04",
+          "litros": 1846.54,
+          "participacao": 21.06
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "data": "2026-06-04",
+          "litros": 1846.54,
+          "participacao": 21.06
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "data": "2026-06-03",
+          "litros": 1671.34,
+          "participacao": 19.06
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "data": "2026-06-03",
+          "litros": 1671.34,
+          "participacao": 19.06
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1260803,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-04",
+          "litros": 316.73,
+          "participacao": 3.61
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320665,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-04",
+          "litros": 316.73,
+          "participacao": 3.61
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257885,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-03",
+          "litros": 231.71,
+          "participacao": 2.64
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320666,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-03",
+          "litros": 231.71,
+          "participacao": 2.64
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257885,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-04",
+          "litros": 181.13,
+          "participacao": 2.07
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320666,
+          "combustivel": "GASOLINA ADITIVADA GRID",
+          "data": "2026-06-04",
+          "litros": 181.13,
+          "participacao": 2.07
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1260803,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-03",
+          "litros": 136.86,
+          "participacao": 1.56
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320665,
+          "combustivel": "DIESEL S10 COMUM",
+          "data": "2026-06-03",
+          "litros": 136.86,
+          "participacao": 1.56
+        }
+      ],
+      "agrupamento": {
+        "empresaCodigo": true,
+        "produtoCodigo": true,
+        "data": true
+      },
+      "consistencia": {
+        "somaCombustiveis": 8768.62,
+        "somaFiliais": 8768.62
+      },
+      "kpis": {
+        "litrosVendidos": 8768.62,
+        "combustivelLider": {
+          "nome": "Produto 1975728",
+          "litros": 3517.88
+        },
+        "filialLider": {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "litros": 8768.62
+        },
+        "participacaoDiesel": 10.35,
+        "participacaoGasolina": 9.42,
+        "participacaoEtanol": 0.0
+      }
+    },
+    "error": null
+  },
+  "warnings": []
+}
