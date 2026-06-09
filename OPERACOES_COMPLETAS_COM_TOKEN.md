@@ -1132,7 +1132,7 @@ curl -X POST "http://localhost:8000/sync/full"
 **5. Monitorar auditoria:**
 ```bash
 # Ver tudo que foi feito com seu token
-curl -X GET "http://localhost:8000/auditoria/por-token?token=4d6bbe21..."
+curl -X GET "http://localhost:8000/auditoria/por-token?token=<REDACTED>"
 ```
 
 ---

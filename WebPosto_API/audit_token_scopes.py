@@ -17,7 +17,9 @@ def load_env():
 load_env()
 
 BASE_URL = os.getenv("WEBPOSTO_BASE_URL", "https://web.qualityautomacao.com.br")
-CHAVE = os.getenv("WEBPOSTO_API_KEY", "<WEBPOSTO_API_TOKEN>")
+CHAVE = os.getenv("WEBPOSTO_API_KEY", "").strip()
+if not CHAVE:
+    raise SystemExit("WEBPOSTO_API_KEY não definida. Copie .env.example para .env e configure a chave.")
 
 # Empresas a serem testadas (conforme solicitação)
 EMPRESAS_TESTE = [5256, 5333, 5555, 5556, 5557, 5559, 5560, 11495, 46433, 74014]

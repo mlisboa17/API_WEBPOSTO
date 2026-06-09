@@ -11,12 +11,15 @@ Uso:
     python scripts/exemplo_alterar_produto.py
 """
 
+import os
 import requests
 import json
 from datetime import datetime
 
-BASE_URL = "https://web.qualityautomacao.com.br"
-API_KEY = "<WEBPOSTO_API_TOKEN>"
+BASE_URL = os.getenv("WEBPOSTO_BASE_URL", "https://web.qualityautomacao.com.br").rstrip("/")
+API_KEY = os.getenv("WEBPOSTO_API_KEY", "").strip()
+if not API_KEY:
+    raise SystemExit("WEBPOSTO_API_KEY não definida. Copie .env.example para .env e configure a chave.")
 
 HEADERS = {
     "Authorization": f"Bearer {API_KEY}",

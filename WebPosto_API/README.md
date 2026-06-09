@@ -1,265 +1,147 @@
-# WebPosto API Client — Grupo Lisboa
+# LOGOS SPACE
 
-Cliente Python para integração com a API REST do **webPosto** (Quality Automação).
+Plataforma corporativa de inteligência operacional e financeira para redes de postos de combustível. Consolida dados do **WebPosto (Quality Automação)** em dashboards executivos, centro financeiro, fluxo de caixa, inteligência de fornecedores e analytics de combustíveis — com arquitetura **Snapshot First** (TTL 300s) para performance sub-segundo em cache HIT.
 
-**Base URL:** `http://web.qualityautomacao.com.br`
-**Auth:** Query param `?CHAVE=<chave_de_integração>`
-**Swagger:** https://web.qualityautomacao.com.br/webjars/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config
-**154 endpoints disponíveis**
+**Versão baseline:** 2.0 · Commit `10917af` · Maturidade financeira **9.6/10**
 
 ---
 
-## Pré-requisitos
+## Módulos
 
-### 1. Liberar contrato de API
-Entre em contato com o **setor comercial da Quality Automação** para ativar o contrato de API Integração.
+| Módulo | Descrição | Status |
+|--------|-----------|--------|
+| **Combustíveis** | KPIs de abastecimento, LMC, vendas por filial | ✅ Operacional |
+| **Finance Center** | CP, CR, Banco, Caixa, Despesas — visão corporativa | ✅ F01.1 |
+| **Cash Flow** | Fluxo operacional e projeção | ✅ F01.2 |
+| **Supplier Intelligence** | Concentração, risco, dependência (VIBRA homologada) | ✅ F01.4-C |
+| **Supplier Segmentation** | Strategic suppliers + Corporate Cost Matrix | ✅ F01.4-D |
+| **Analytics** | Executive snapshot, cobertura de rede, data quality | ✅ A03.7 |
+| **Data Warehouse** | DDL dimensional/fatos prontos para ETL A04 | ⚠️ 85% readiness |
 
-### 2. Gerar a Chave de Integração
-No sistema webPosto:
+---
+
+## Arquitetura
+
 ```
-Administração > Integrações > Integração > [Incluir]
-Tipo: API Integração
-Defina um usuário do sistema → Salvar
-Copie a chave gerada
+WebPosto API ──► webposto_client ──► Services (F01) ──► Snapshot Store (TTL 300s)
+                                              │
+                                              ▼
+                                    FastAPI (8040) + SPA frontend
+                                              │
+                         /api/v1/finance/center | cash-flow | intelligence
 ```
+
+- **Entrypoint:** `src/main.py` (porta **8040**)
+- **UI:** `/app/financial?view=finance-center` | `view=cash-flow`
+- **Regra de ouro:** nunca agregar `totalFinanceiro` somando DESPESA + CP + BANCO + CAIXA + CR
+
+Documentação detalhada: [ARCHITECTURE_BASELINE_2.1.md](./ARCHITECTURE_BASELINE_2.1.md)
 
 ---
 
 ## Instalação
 
-```bash
+### Pré-requisitos
+
+- Python 3.11+
+- Node.js 18+ (Playwright E2E)
+- Acesso à API WebPosto (chave por rede/filial)
+
+### Backend
+
+```powershell
+cd WebPosto_API
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+copy .env.example .env
+# Edite .env com WEBPOSTO_API_KEY e WEBPOSTO_BASE_URL
+python -m src.main
 ```
+
+API disponível em `http://127.0.0.1:8040`.
+
+### Frontend
+
+Servido pelo FastAPI em `/app/financial` (SPA estática em `frontend/`).
+
+### Testes
+
+```powershell
+# Unit tests F01
+python -m pytest tests/unit/test_cash_flow_service.py tests/unit/test_finance_center_service.py tests/unit/test_expense_classifier_v2.py tests/unit/test_expense_classifier_v3.py tests/unit/test_financial_intelligence_advanced.py tests/unit/test_supplier_mdm.py tests/unit/test_supplier_segmentation.py tests/unit/test_multiselect_utils.py -o addopts=
+
+# E2E (API deve estar rodando na 8040)
+npm install
+npm run test:e2e:finance
+```
+
+---
 
 ## Configuração
 
-```bash
-cp .env.example .env
-# Edite .env e preencha WEBPOSTO_CHAVE=sua_chave
-```
+Copie `.env.example` → `.env`:
+
+| Variável | Descrição |
+|----------|-----------|
+| `WEBPOSTO_BASE_URL` | Base URL Quality Automação (HTTPS) |
+| `WEBPOSTO_API_KEY` | Chave REST ativa |
+| `API_PORT` | Porta local (padrão **8040**) |
+| `WEBPOSTO_TIMEOUT_SECONDS` | Timeout HTTP (padrão 30) |
+
+**Nunca commite `.env`.** Ver [SECURITY_AUDIT_REPORT.md](./SECURITY_AUDIT_REPORT.md).
 
 ---
 
-## Uso
+## Deploy
 
-```python
-from webposto import WebPostoClient, WebPostoConfig
-from datetime import date
+1. Provisionar servidor com Python 3.11+
+2. Configurar `.env` de produção (secrets via vault / variáveis CI)
+3. Executar `uvicorn src.main:app --host 0.0.0.0 --port 8040 --workers 4`
+4. Reverse proxy (nginx) com TLS terminado
+5. Opcional: Redis para cache distribuído (futuro A04)
 
-# Via .env (recomendado)
-client = WebPostoClient.from_env()
-
-# Ou explícito
-client = WebPostoClient(WebPostoConfig(
-    chave="sua_chave_aqui",
-    empresa_codigo=1,  # opcional
-))
-```
-
-### Exemplos por domínio
-
-#### Abastecimento
-```python
-from datetime import date
-
-abastecimentos = client.abastecimento.listar(
-    data_inicial=date(2025, 4, 1),
-    data_final=date(2025, 4, 6),
-)
-
-encerrantes = client.abastecimento.listar_encerrante(
-    data_inicial=date(2025, 4, 1),
-    data_final=date(2025, 4, 6),
-)
-```
-
-#### Financeiro
-```python
-# Títulos a receber em aberto
-titulos = client.financeiro.listar_titulos_receber(
-    data_inicial=date(2025, 1, 1),
-    data_final=date(2025, 12, 31),
-    situacao="ABERTO",  # AMBOS | ABERTO | RECEBIDO
-)
-
-# Fechamento de caixa
-caixa = client.financeiro.listar_fechamento_caixa(
-    data_inicial=date(2025, 4, 5),
-    data_final=date(2025, 4, 5),
-)
-
-# Receber título
-client.financeiro.receber_titulo({"tituloCodigo": 1234, "valorRecebido": 500.00})
-```
-
-#### Combustível / LMC
-```python
-# Livro de Movimentação de Combustíveis
-lmc = client.combustivel.listar_lmc(
-    data_inicial=date(2025, 4, 1),
-    data_final=date(2025, 4, 6),
-    filial=[1, 2],
-)
-
-# Trocar preço de combustível
-client.produtos.trocar_preco_combustivel({
-    "produtoCodigo": 1,
-    "precoVenda": 5.89,
-    "filialCodigo": 1,
-})
-```
-
-#### Clientes
-```python
-# Listar clientes
-clientes = client.clientes.listar(nome="João")
-
-# Criar cliente
-novo = client.clientes.criar({
-    "nome": "João Silva",
-    "cpfCnpj": "123.456.789-00",
-    "email": "joao@email.com",
-})
-```
-
-#### Vendas / NF
-```python
-vendas = client.integracoes.listar_vendas(
-    data_inicial=date(2025, 4, 1),
-    data_final=date(2025, 4, 6),
-    filial=[1],
-)
-
-nf_entrada = client.integracoes.listar_nf_entrada(
-    data_inicial=date(2025, 4, 1),
-    data_final=date(2025, 4, 6),
-)
-```
+Repositório oficial: [LogosPostos](https://github.com/mlisboa17/LogosPostos.git)
 
 ---
 
-## Estrutura do Projeto
+## Roadmap
 
-```
-WebPosto_API/
-├── src/webposto/
-│   ├── __init__.py          # exports principais
-│   ├── client.py            # WebPostoClient — ponto de entrada
-│   ├── config.py            # WebPostoConfig
-│   ├── http.py              # HTTPClient com retry e tratamento de erros
-│   ├── exceptions.py        # Exceções customizadas
-│   └── endpoints/
-│       ├── abastecimento.py # Abastecimentos e encerrantes
-│       ├── clientes.py      # Clientes, frota, grupos
-│       ├── produtos.py      # Produtos, preços, estoque
-│       ├── financeiro.py    # Títulos, caixa, transferências
-│       ├── combustivel.py   # Pedidos de combustível, LMC
-│       ├── relatorios.py    # Relatórios gerenciais
-│       └── integracoes.py   # Vendas, NF, pedidos de compra, etc.
-├── scripts/
-│   └── sync.py              # Script de sincronização diária
-├── tests/
-│   └── unit/
-│       └── test_client.py   # Testes unitários
-├── .env.example
-├── Dockerfile
-├── docker-compose.yml
-├── pyproject.toml
-└── requirements.txt
-```
+| Fase | Escopo | Status |
+|------|--------|--------|
+| A01–A03.7 | Estabilização + consolidação financeira | ✅ |
+| F01.0–F01.4-D | Finance Center → Supplier Segmentation | ✅ |
+| **Release 2.0** | Governança + publicação | 🔄 Em preparação |
+| F02 | Tesouraria (CP/CR aging avançado) | Planejado |
+| A04 | ETL DW + carga dim/fact | Planejado (85% DDL) |
+| F04 | Compras (NOTA_ENTRADA — aguarda token) | Bloqueado 401 |
+
+Ver [FINANCIAL_ROADMAP_1.0.md](./FINANCIAL_ROADMAP_1.0.md).
 
 ---
 
-## Docker
+## Status Atual
 
-```bash
-# Build + run
-cp .env.example .env
-# Edite .env com sua WEBPOSTO_CHAVE
+| Métrica | Valor |
+|---------|-------|
+| DRE Readiness | **89,81%** |
+| OUTROS V3 | **0,52%** |
+| Health Score V3 | **94** (rede) |
+| Snapshot HIT rede | **13,5 ms** |
+| Unit tests F01 | **39/39 PASS** (subset direto) |
+| Playwright Finance Center | **14/15 PASS** (1 falha env — API offline) |
+| Segurança pré-push | **RETIDO** — credenciais no histórico Git |
 
-docker compose up -d
-
-# Apenas o sync (sem banco)
-docker compose up webposto-sync
-```
-
----
-
-## Testes
-
-```bash
-pip install -r requirements-dev.txt
-pytest tests/ -v
-```
+Relatório consolidado: [RELEASE_2_0_FINAL_REPORT.md](./RELEASE_2_0_FINAL_REPORT.md)
 
 ---
 
-## Tratamento de Erros
+## Screenshots
 
-```python
-from webposto.exceptions import AuthError, NotFoundError, ServerError, TimeoutError
-
-try:
-    result = client.abastecimento.listar(...)
-except AuthError:
-    print("Chave inválida — verifique WEBPOSTO_CHAVE e o contrato com a Quality")
-except ServerError:
-    print("Erro no servidor WebPosto — tente novamente")
-except TimeoutError:
-    print("Timeout — verifique conexão de rede")
-```
+Nenhum asset de screenshot versionado no repositório. Capturas disponíveis em `playwright-report/` após execução local de E2E (`npx playwright show-report`).
 
 ---
 
-## Endpoints Disponíveis (154 total)
+## Licença
 
-### Integrações (140)
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| GET | /INTEGRACAO/ABASTECIMENTO | Listar abastecimentos |
-| GET | /INTEGRACAO/ABASTECIMENTO_ENCERRANTE | Listar encerrantes |
-| GET | /INTEGRACAO/ABASTECIMENTO_DIVERGENCIA | Divergências de abastecimento |
-| GET | /INTEGRACAO/LMC | Livro de Movimentação de Combustíveis |
-| GET | /INTEGRACAO/APRIX_CUSTO | APRIX de custo |
-| GET | /INTEGRACAO/TITULO_RECEBER | Títulos a receber |
-| POST | /INTEGRACAO/TITULO_RECEBER | Criar título a receber |
-| PUT | /INTEGRACAO/RECEBER_TITULO | Receber título |
-| GET | /INTEGRACAO/TITULO_PAGAR | Títulos a pagar |
-| POST | /INTEGRACAO/TITULO_PAGAR | Criar título a pagar |
-| GET | /INTEGRACAO/FECHAMENTO_CAIXA | Fechamento de caixa |
-| GET | /INTEGRACAO/MOVIMENTO_CONTA | Movimentos de conta |
-| GET | /INTEGRACAO/TRANSFERENCIA_BANCARIA | Transferências bancárias |
-| POST | /INTEGRACAO/TRANSFERENCIA_BANCARIA | Criar transferência |
-| GET | /INTEGRACAO/FINANCEIRO_EXCLUSAO | Exclusões financeiras |
-| GET | /INTEGRACAO/VENDA | Listar vendas |
-| GET | /INTEGRACAO/VENDA_REDE | Vendas em rede |
-| GET | /INTEGRACAO/NOTA_FISCAL_ENTRADA | NF de entrada |
-| GET | /INTEGRACAO/NOTA_FISCAL_SAIDA | NF de saída |
-| GET | /INTEGRACAO/CLIENTE | Listar clientes |
-| POST | /INTEGRACAO/CLIENTE | Criar cliente |
-| PUT | /INTEGRACAO/CLIENTE/{id} | Atualizar cliente |
-| GET | /INTEGRACAO/PRODUTO | Listar produtos |
-| POST | /INTEGRACAO/PRODUTO | Criar produto |
-| PUT | /INTEGRACAO/ALTERAR_PRODUTO/{id} | Atualizar produto |
-| POST | /INTEGRACAO/TROCA_PRECO_COMBUSTIVEL | Trocar preço combustível |
-| POST | /INTEGRACAO/TROCA_PRECO_PRODUTO | Trocar preço produto |
-| GET | /INTEGRACAO/FILIAL | Listar filiais |
-| GET | /INTEGRACAO/USUARIO | Listar usuários |
-| GET | /INTEGRACAO/ADMINISTRADORA | Administradoras de cartão |
-| GET | /INTEGRACAO/DISTRIBUIDORA | Distribuidoras |
-| ... | ... | + 110 endpoints adicionais no Swagger |
-
-### Integração Pedido Combustível
-| Método | Endpoint |
-|--------|----------|
-| POST | /INTEGRACAO/PEDIDO_COMBUSTIVEL/PEDIDO |
-| GET | /INTEGRACAO/PEDIDO_COMBUSTIVEL/PEDIDO |
-| POST | /INTEGRACAO/PEDIDO_COMBUSTIVEL/PEDIDO/{id}/FATURAR |
-
----
-
-## Links
-
-- **Swagger UI:** https://web.qualityautomacao.com.br/webjars/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config
-- **OpenAPI JSON:** https://web.qualityautomacao.com.br/v3/api-docs/integracao
-- **Manual Confluence:** https://qualityautomacao.atlassian.net/wiki/spaces/webPosto/pages/923402268
+Uso interno — Rede Lisbôa / LOGOS SPACE.

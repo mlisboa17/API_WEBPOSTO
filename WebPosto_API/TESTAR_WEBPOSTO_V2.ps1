@@ -1,7 +1,8 @@
 # Testar endpoints REAIS descobertos no Swagger webPosto
 
-$baseUrl = "http://web.qualityautomacao.com.br"
-$apiKey = "<WEBPOSTO_API_TOKEN>"
+$baseUrl = if ($env:WEBPOSTO_BASE_URL) { $env:WEBPOSTO_BASE_URL } else { "https://web.qualityautomacao.com.br" }
+$apiKey = $env:WEBPOSTO_API_KEY
+if (-not $apiKey) { Write-Error "Defina WEBPOSTO_API_KEY no ambiente ou .env"; exit 1 }
 $hoje = (Get-Date).ToString("yyyy-MM-dd")
 $ontem = (Get-Date).AddDays(-30).ToString("yyyy-MM-dd")
 

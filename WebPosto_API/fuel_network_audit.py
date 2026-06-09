@@ -18,7 +18,9 @@ def load_env():
 load_env()
 
 BASE_URL = os.getenv("WEBPOSTO_BASE_URL", "https://web.qualityautomacao.com.br")
-CHAVE = os.getenv("WEBPOSTO_API_KEY", "<WEBPOSTO_API_TOKEN>")
+CHAVE = os.getenv("WEBPOSTO_API_KEY", "").strip()
+if not CHAVE:
+    raise SystemExit("WEBPOSTO_API_KEY não definida. Copie .env.example para .env e configure a chave.")
 
 # Filiais da Tabela Mestra Corporativa
 FILIAIS_MAPPING = {
