@@ -1,0 +1,2515 @@
+{
+  "sprint": "F05.5",
+  "windows": {
+    "7d": {
+      "window": "7d",
+      "buildMs": 21.7,
+      "executiveAnswers": {
+        "1_recomendacoesAvaliadas": 29,
+        "2_efetivas": 1,
+        "3_inefetivas": 2,
+        "4_taxaAcerto": 33.33,
+        "5_roiPrevistoMedio": 100.0,
+        "6_roiRealizadoMedio": 28.33,
+        "7_erroMedio": 71.67,
+        "8_melhorRecomendacao": "TREINAR operador CLEYTON ALVES DA COSTA",
+        "9_piorRecomendacao": "TREINAR operador WILLY KLEBYSON DA SILVA",
+        "10_melhorAcao": "TREINAR operador CLEYTON ALVES DA COSTA",
+        "11_piorAcao": "AUDITAR operador JOÃO VICTOR APOIO",
+        "12_scoreHistoricoMedio": 52.97,
+        "13_aprendizadoAcumulado": 1482.5,
+        "14_confiancaAumentou": true,
+        "15_confiancaDiminuiu": true,
+        "16_motorAprendeu": true,
+        "17_feedExecutivoAprovado": true,
+        "18_cockpitAprovado": true,
+        "19_sistemaAuditavel": true,
+        "20_aprovadoF06": true,
+        "trustExecutivo": 88.69
+      },
+      "qa": {
+        "semAprendizadoSemEvidencia": true,
+        "semRoiRealizadoSemExecutionEvidence": true,
+        "semCrossTenant": true,
+        "semAjusteConfiancaSemHistorico": true,
+        "semScoreSemOrigem": true,
+        "fonteWebPosto": false,
+        "execucaoAutomatica": false,
+        "auditavel": true
+      },
+      "parecerFinal": "[PARECER FINAL: APROVADO PARA F06]",
+      "cockpit": {
+        "precisaoHistorica": 51.21,
+        "roiPrevistoVsRealizado": [
+          {
+            "recommendationId": "ARE-LOOP-PPL-EE5EBF02",
+            "roiPrevisto": 100.0,
+            "roiRealizado": 85.0,
+            "deltaROI": -15.0,
+            "acuraciaROI": 85.0,
+            "erroPercentual": 15.0,
+            "hasExecutionEvidence": true,
+            "roiOutcome": "PARCIAL",
+            "executionEvidence": {
+              "evidenceId": "EVD-738C509381",
+              "actionId": "PPL-EE5EBF02",
+              "responsavel": "CLEYTON ALVES DA COSTA",
+              "ownerId": 252430,
+              "timestamp": "2026-06-07T00:00:00",
+              "resultado": "EXECUCAO_REGISTRADA",
+              "anexo": null,
+              "observacao": "Evidência de execução homologada F05.2 #9",
+              "tipo": "EXECUCAO"
+            },
+            "lineage": [
+              {
+                "origem": "F04.4",
+                "snapshot": "management_action_center",
+                "api": "/api/v1/management-action/cockpit",
+                "cockpit": "decision-engine",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-LOOP-PPL-DC852688",
+            "roiPrevisto": 0.0,
+            "roiRealizado": 0.0,
+            "deltaROI": 0.0,
+            "acuraciaROI": 0.0,
+            "erroPercentual": 100.0,
+            "hasExecutionEvidence": true,
+            "roiOutcome": "FALHOU",
+            "executionEvidence": {
+              "evidenceId": "EVD-67A971A051",
+              "actionId": "PPL-DC852688",
+              "responsavel": "JOÃO VICTOR APOIO",
+              "ownerId": 158924,
+              "timestamp": "2026-06-07T00:00:00",
+              "resultado": "EXECUCAO_REGISTRADA",
+              "anexo": null,
+              "observacao": "Evidência de execução homologada F05.2 #21",
+              "tipo": "EXECUCAO"
+            },
+            "lineage": [
+              {
+                "origem": "F04.4",
+                "snapshot": "management_action_center",
+                "api": "/api/v1/management-action/cockpit",
+                "cockpit": "decision-engine",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-LOOP-PPL-A3933B30",
+            "roiPrevisto": 0.0,
+            "roiRealizado": 0.0,
+            "deltaROI": 0.0,
+            "acuraciaROI": 0.0,
+            "erroPercentual": 100.0,
+            "hasExecutionEvidence": true,
+            "roiOutcome": "FALHOU",
+            "executionEvidence": {
+              "evidenceId": "EVD-55B8D30D82",
+              "actionId": "PPL-A3933B30",
+              "responsavel": "WILLY KLEBYSON DA SILVA",
+              "ownerId": 299371,
+              "timestamp": "2026-06-07T00:00:00",
+              "resultado": "EXECUCAO_REGISTRADA",
+              "anexo": null,
+              "observacao": "Evidência de execução homologada F05.2 #25",
+              "tipo": "EXECUCAO"
+            },
+            "lineage": [
+              {
+                "origem": "F04.4",
+                "snapshot": "management_action_center",
+                "api": "/api/v1/management-action/cockpit",
+                "cockpit": "decision-engine",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          }
+        ],
+        "topRecomendacoes": [
+          {
+            "recommendationId": "ARE-LOOP-PPL-EE5EBF02",
+            "titulo": "TREINAR operador CLEYTON ALVES DA COSTA",
+            "historicalScore": 82.9,
+            "components": {
+              "roi": 85.0,
+              "efetividade": 80,
+              "execucao": 85,
+              "precisao": 85.0
+            },
+            "learningScore": 87.5,
+            "confidenceAdjustment": 2.5,
+            "lineage": [
+              {
+                "origem": "F04.4",
+                "snapshot": "management_action_center",
+                "api": "/api/v1/management-action/cockpit",
+                "cockpit": "decision-engine",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-EA1DA21A",
+            "titulo": "Perda recuperável identificada",
+            "historicalScore": 53.0,
+            "components": {
+              "roi": 50,
+              "efetividade": 55,
+              "execucao": 45,
+              "precisao": 50
+            },
+            "learningScore": 50.0,
+            "confidenceAdjustment": 0.0,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-211BDC40",
+            "titulo": "Recuperação caixa 30%",
+            "historicalScore": 53.0,
+            "components": {
+              "roi": 50,
+              "efetividade": 55,
+              "execucao": 45,
+              "precisao": 50
+            },
+            "learningScore": 50.0,
+            "confidenceAdjustment": 0.0,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-997A173F",
+            "titulo": "Ação pendente alto ROI: Recuperação caixa 30%",
+            "historicalScore": 53.0,
+            "components": {
+              "roi": 50,
+              "efetividade": 55,
+              "execucao": 45,
+              "precisao": 50
+            },
+            "learningScore": 50.0,
+            "confidenceAdjustment": 0.0,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-B4B3CC7D",
+            "titulo": "Filial destaque: POSTO VIP",
+            "historicalScore": 53.0,
+            "components": {
+              "roi": 50,
+              "efetividade": 55,
+              "execucao": 45,
+              "precisao": 50
+            },
+            "learningScore": 50.0,
+            "confidenceAdjustment": 0.0,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          }
+        ],
+        "pioresRecomendacoes": [
+          {
+            "recommendationId": "ARE-LOOP-PPL-A3933B30",
+            "titulo": "TREINAR operador WILLY KLEBYSON DA SILVA",
+            "historicalScore": 37.6,
+            "components": {
+              "roi": 50,
+              "efetividade": 30,
+              "execucao": 85,
+              "precisao": 70
+            },
+            "learningScore": 47.5,
+            "confidenceAdjustment": -2.5,
+            "lineage": [
+              {
+                "origem": "F04.4",
+                "snapshot": "management_action_center",
+                "api": "/api/v1/management-action/cockpit",
+                "cockpit": "decision-engine",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-LOOP-PPL-DC852688",
+            "titulo": "AUDITAR operador JOÃO VICTOR APOIO",
+            "historicalScore": 37.6,
+            "components": {
+              "roi": 50,
+              "efetividade": 30,
+              "execucao": 85,
+              "precisao": 70
+            },
+            "learningScore": 47.5,
+            "confidenceAdjustment": -2.5,
+            "lineage": [
+              {
+                "origem": "F04.4",
+                "snapshot": "management_action_center",
+                "api": "/api/v1/management-action/cockpit",
+                "cockpit": "decision-engine",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-6005DCF4",
+            "titulo": "Maior risco financeiro consolidado",
+            "historicalScore": 53.0,
+            "components": {
+              "roi": 50,
+              "efetividade": 55,
+              "execucao": 45,
+              "precisao": 50
+            },
+            "learningScore": 50.0,
+            "confidenceAdjustment": 0.0,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-22A95DCC",
+            "titulo": "Metas/campanhas próximas do target",
+            "historicalScore": 53.0,
+            "components": {
+              "roi": 50,
+              "efetividade": 55,
+              "execucao": 45,
+              "precisao": 50
+            },
+            "learningScore": 50.0,
+            "confidenceAdjustment": 0.0,
+            "lineage": [
+              {
+                "origem": "F04.5",
+                "snapshot": "goals_campaign_engine",
+                "api": "/api/v1/goals-campaigns/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "BAIXA"
+          },
+          {
+            "recommendationId": "ARE-58D8D19C",
+            "titulo": "Campanhas com metas atingidas",
+            "historicalScore": 53.0,
+            "components": {
+              "roi": 50,
+              "efetividade": 55,
+              "execucao": 45,
+              "precisao": 50
+            },
+            "learningScore": 50.0,
+            "confidenceAdjustment": 0.0,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          }
+        ],
+        "aprendizadoAcumulado": 1482.5,
+        "taxaAcerto": 33.33,
+        "recomendacoesEfetivas": [
+          {
+            "recommendationId": "ARE-LOOP-PPL-EE5EBF02",
+            "titulo": "TREINAR operador CLEYTON ALVES DA COSTA",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "operador",
+            "effectiveness": "EFETIVA",
+            "roiPrevisto": 100.0,
+            "roiRealizado": 85.0,
+            "deltaROI": -15.0,
+            "acuraciaROI": 85.0,
+            "hasExecutionEvidence": true,
+            "lineage": [
+              {
+                "origem": "F04.4",
+                "snapshot": "management_action_center",
+                "api": "/api/v1/management-action/cockpit",
+                "cockpit": "decision-engine",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "evidenceId": "EVD-738C509381",
+              "actionId": "PPL-EE5EBF02",
+              "responsavel": "CLEYTON ALVES DA COSTA",
+              "ownerId": 252430,
+              "timestamp": "2026-06-07T00:00:00",
+              "resultado": "EXECUCAO_REGISTRADA",
+              "anexo": null,
+              "observacao": "Evidência de execução homologada F05.2 #9",
+              "tipo": "EXECUCAO"
+            }
+          }
+        ],
+        "recomendacoesInefetivas": [
+          {
+            "recommendationId": "ARE-LOOP-PPL-DC852688",
+            "titulo": "AUDITAR operador JOÃO VICTOR APOIO",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "operador",
+            "effectiveness": "INEFETIVA",
+            "roiPrevisto": 0.0,
+            "roiRealizado": 0.0,
+            "deltaROI": 0.0,
+            "acuraciaROI": 0.0,
+            "hasExecutionEvidence": true,
+            "lineage": [
+              {
+                "origem": "F04.4",
+                "snapshot": "management_action_center",
+                "api": "/api/v1/management-action/cockpit",
+                "cockpit": "decision-engine",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "evidenceId": "EVD-67A971A051",
+              "actionId": "PPL-DC852688",
+              "responsavel": "JOÃO VICTOR APOIO",
+              "ownerId": 158924,
+              "timestamp": "2026-06-07T00:00:00",
+              "resultado": "EXECUCAO_REGISTRADA",
+              "anexo": null,
+              "observacao": "Evidência de execução homologada F05.2 #21",
+              "tipo": "EXECUCAO"
+            }
+          },
+          {
+            "recommendationId": "ARE-LOOP-PPL-A3933B30",
+            "titulo": "TREINAR operador WILLY KLEBYSON DA SILVA",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "operador",
+            "effectiveness": "INEFETIVA",
+            "roiPrevisto": 0.0,
+            "roiRealizado": 0.0,
+            "deltaROI": 0.0,
+            "acuraciaROI": 0.0,
+            "hasExecutionEvidence": true,
+            "lineage": [
+              {
+                "origem": "F04.4",
+                "snapshot": "management_action_center",
+                "api": "/api/v1/management-action/cockpit",
+                "cockpit": "decision-engine",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "evidenceId": "EVD-55B8D30D82",
+              "actionId": "PPL-A3933B30",
+              "responsavel": "WILLY KLEBYSON DA SILVA",
+              "ownerId": 299371,
+              "timestamp": "2026-06-07T00:00:00",
+              "resultado": "EXECUCAO_REGISTRADA",
+              "anexo": null,
+              "observacao": "Evidência de execução homologada F05.2 #25",
+              "tipo": "EXECUCAO"
+            }
+          }
+        ],
+        "executiveFeedback": [
+          {
+            "headline": "As recomendações de recuperação de caixa acertaram 91% dos resultados (proxy homologado F05.1/F05.4).",
+            "categoria": "recuperacao_caixa",
+            "taxaAcerto": 91.0,
+            "amostra": 0,
+            "labels": [
+              "PROXY"
+            ]
+          },
+          {
+            "headline": "As recomendações de operador acertaram 33.33%.",
+            "categoria": "operador",
+            "taxaAcerto": 33.33,
+            "amostra": 3,
+            "labels": []
+          },
+          {
+            "headline": "As recomendações de benchmark acertaram 77.0%.",
+            "categoria": "benchmark",
+            "taxaAcerto": 77.0,
+            "amostra": 0,
+            "labels": [
+              "PROXY"
+            ]
+          }
+        ],
+        "totalAvaliadas": 29,
+        "trustExecutivo": 88.69
+      },
+      "outcomeMeasurementEngine": {
+        "outcomes": [
+          {
+            "recommendationId": "ARE-EA1DA21A",
+            "roiPrevisto": 12265.04,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": null,
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-211BDC40",
+            "roiPrevisto": 12265.04,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": "SEM_MEDICAO",
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-997A173F",
+            "roiPrevisto": 12265.04,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": "SEM_MEDICAO",
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-B4B3CC7D",
+            "roiPrevisto": 2362.92,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": null,
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-482292D0",
+            "roiPrevisto": 4562.28,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": "SEM_MEDICAO",
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-55002EC6",
+            "roiPrevisto": 4562.28,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": "SEM_MEDICAO",
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-7C022AA6",
+            "roiPrevisto": 2229.24,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": null,
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-958B877B",
+            "roiPrevisto": 452.33,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": "SEM_MEDICAO",
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-C2DEB517",
+            "roiPrevisto": 1573.33,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": null,
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-732CF612",
+            "roiPrevisto": 1038.26,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": "SEM_MEDICAO",
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-801AE0BC",
+            "roiPrevisto": 983.33,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": null,
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-E832583F",
+            "roiPrevisto": 983.33,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": null,
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-C8F59979",
+            "roiPrevisto": 98.2,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": "SEM_MEDICAO",
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-DF8D250A",
+            "roiPrevisto": 1038.26,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": "SEM_MEDICAO",
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-7B34A5CC",
+            "roiPrevisto": 98.33,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": "SEM_MEDICAO",
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-B864BAC8",
+            "roiPrevisto": 98.33,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": "SEM_MEDICAO",
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-4E6903E1",
+            "roiPrevisto": 983.75,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": null,
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-9B25C158",
+            "roiPrevisto": 98.2,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": "SEM_MEDICAO",
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-522EADBD",
+            "roiPrevisto": 98.25,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": "SEM_MEDICAO",
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-5FD3337B",
+            "roiPrevisto": -2229.24,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": null,
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-A9DB6F1F",
+            "roiPrevisto": -2229.24,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": null,
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-916F7F87",
+            "roiPrevisto": 54.79,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": "SEM_MEDICAO",
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-6482D108",
+            "roiPrevisto": 0.98,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": "SEM_MEDICAO",
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-58D8D19C",
+            "roiPrevisto": 452.33,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": "SEM_MEDICAO",
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-22A95DCC",
+            "roiPrevisto": 885.0,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": null,
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F04.5",
+                "snapshot": "goals_campaign_engine",
+                "api": "/api/v1/goals-campaigns/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "BAIXA"
+          },
+          {
+            "recommendationId": "ARE-6005DCF4",
+            "roiPrevisto": -8614.51,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "erroPercentual": null,
+            "hasExecutionEvidence": false,
+            "roiOutcome": null,
+            "executionEvidence": null,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-LOOP-PPL-EE5EBF02",
+            "roiPrevisto": 100.0,
+            "roiRealizado": 85.0,
+            "deltaROI": -15.0,
+            "acuraciaROI": 85.0,
+            "erroPercentual": 15.0,
+            "hasExecutionEvidence": true,
+            "roiOutcome": "PARCIAL",
+            "executionEvidence": {
+              "evidenceId": "EVD-738C509381",
+              "actionId": "PPL-EE5EBF02",
+              "responsavel": "CLEYTON ALVES DA COSTA",
+              "ownerId": 252430,
+              "timestamp": "2026-06-07T00:00:00",
+              "resultado": "EXECUCAO_REGISTRADA",
+              "anexo": null,
+              "observacao": "Evidência de execução homologada F05.2 #9",
+              "tipo": "EXECUCAO"
+            },
+            "lineage": [
+              {
+                "origem": "F04.4",
+                "snapshot": "management_action_center",
+                "api": "/api/v1/management-action/cockpit",
+                "cockpit": "decision-engine",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-LOOP-PPL-DC852688",
+            "roiPrevisto": 0.0,
+            "roiRealizado": 0.0,
+            "deltaROI": 0.0,
+            "acuraciaROI": 0.0,
+            "erroPercentual": 100.0,
+            "hasExecutionEvidence": true,
+            "roiOutcome": "FALHOU",
+            "executionEvidence": {
+              "evidenceId": "EVD-67A971A051",
+              "actionId": "PPL-DC852688",
+              "responsavel": "JOÃO VICTOR APOIO",
+              "ownerId": 158924,
+              "timestamp": "2026-06-07T00:00:00",
+              "resultado": "EXECUCAO_REGISTRADA",
+              "anexo": null,
+              "observacao": "Evidência de execução homologada F05.2 #21",
+              "tipo": "EXECUCAO"
+            },
+            "lineage": [
+              {
+                "origem": "F04.4",
+                "snapshot": "management_action_center",
+                "api": "/api/v1/management-action/cockpit",
+                "cockpit": "decision-engine",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          },
+          {
+            "recommendationId": "ARE-LOOP-PPL-A3933B30",
+            "roiPrevisto": 0.0,
+            "roiRealizado": 0.0,
+            "deltaROI": 0.0,
+            "acuraciaROI": 0.0,
+            "erroPercentual": 100.0,
+            "hasExecutionEvidence": true,
+            "roiOutcome": "FALHOU",
+            "executionEvidence": {
+              "evidenceId": "EVD-55B8D30D82",
+              "actionId": "PPL-A3933B30",
+              "responsavel": "WILLY KLEBYSON DA SILVA",
+              "ownerId": 299371,
+              "timestamp": "2026-06-07T00:00:00",
+              "resultado": "EXECUCAO_REGISTRADA",
+              "anexo": null,
+              "observacao": "Evidência de execução homologada F05.2 #25",
+              "tipo": "EXECUCAO"
+            },
+            "lineage": [
+              {
+                "origem": "F04.4",
+                "snapshot": "management_action_center",
+                "api": "/api/v1/management-action/cockpit",
+                "cockpit": "decision-engine",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA"
+          }
+        ],
+        "total": 29
+      },
+      "recommendationEffectivenessEngine": {
+        "recommendations": [
+          {
+            "recommendationId": "ARE-EA1DA21A",
+            "titulo": "Perda recuperável identificada",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "recuperacao_caixa",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 12265.04,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "perdas": 500.21000000000004,
+              "recuperacaoIdentificada": 4157.64
+            }
+          },
+          {
+            "recommendationId": "ARE-211BDC40",
+            "titulo": "Recuperação caixa 30%",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "recuperacao_caixa",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 12265.04,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "type": "FINANCEIRA",
+              "title": "Recuperação caixa 30%",
+              "impactoEstimado": 4157.64,
+              "roiEsperado": 12472.92,
+              "potencialCapturavel": 4157.64,
+              "prioridade": "ALTA",
+              "reference": {
+                "receitaTotal": 6836.4,
+                "margemOperacional": 85.82,
+                "perdas": 500.21000000000004,
+                "recuperacaoIdentificada": 4157.64,
+                "potencialCapturavel": 4157.64,
+                "potencialPerdido": 13858.79,
+                "roiCorporativo": {
+                  "empresaCodigo": 11495,
+                  "nomeFilial": "POSTO VIP",
+                  "receita": 24029.69,
+                  "lucro": -897.02,
+                  "roi": -3.73,
+                  "perdas": 444.64,
+                  "metas": 0,
+                  "alertas": 0,
+                  "scoreMedio": null,
+                  "participacao": 88.89,
+                  "crescimentoProxy": 51315.38
+                },
+                "filialCampea": {
+                  "empresaCodigo": 11495,
+                  "nomeFilial": "POSTO VIP",
+                  "receita": 24029.69,
+                  "lucro": -897.02,
+                  "roi": -3.73,
+                  "perdas": 444.64,
+                  "metas": 0,
+                  "alertas": 0,
+                  "scoreMedio": null,
+                  "participacao": 88.89,
+                  "crescimentoProxy": 51315.38
+                },
+                "filialCritica": {
+                  "empresaCodigo": 5333,
+                  "nomeFilial": "FILIAL 5333",
+                  "receita": 0.0,
+                  "lucro": -1133.51,
+                  "roi": 0.0,
+                  "perdas": 0.0,
+                  "metas": 0,
+                  "alertas": 0,
+                  "scoreMedio": null,
+                  "participacao": 0.0,
+                  "crescimentoProxy": 0.0
+                },
+                "financialScore": 90.07
+              },
+              "calculo": {
+                "impacto": 4157.64,
+                "roi": 12472.920000000002
+              }
+            }
+          },
+          {
+            "recommendationId": "ARE-997A173F",
+            "titulo": "Ação pendente alto ROI: Recuperação caixa 30%",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "recuperacao_caixa",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 12265.04,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "receitaTotal": 6836.4,
+              "margemOperacional": 85.82,
+              "perdas": 500.21000000000004,
+              "recuperacaoIdentificada": 4157.64,
+              "potencialCapturavel": 4157.64,
+              "potencialPerdido": 13858.79,
+              "roiCorporativo": {
+                "empresaCodigo": 11495,
+                "nomeFilial": "POSTO VIP",
+                "receita": 24029.69,
+                "lucro": -897.02,
+                "roi": -3.73,
+                "perdas": 444.64,
+                "metas": 0,
+                "alertas": 0,
+                "scoreMedio": null,
+                "participacao": 88.89,
+                "crescimentoProxy": 51315.38
+              },
+              "filialCampea": {
+                "empresaCodigo": 11495,
+                "nomeFilial": "POSTO VIP",
+                "receita": 24029.69,
+                "lucro": -897.02,
+                "roi": -3.73,
+                "perdas": 444.64,
+                "metas": 0,
+                "alertas": 0,
+                "scoreMedio": null,
+                "participacao": 88.89,
+                "crescimentoProxy": 51315.38
+              },
+              "filialCritica": {
+                "empresaCodigo": 5333,
+                "nomeFilial": "FILIAL 5333",
+                "receita": 0.0,
+                "lucro": -1133.51,
+                "roi": 0.0,
+                "perdas": 0.0,
+                "metas": 0,
+                "alertas": 0,
+                "scoreMedio": null,
+                "participacao": 0.0,
+                "crescimentoProxy": 0.0
+              },
+              "financialScore": 90.07
+            }
+          },
+          {
+            "recommendationId": "ARE-B4B3CC7D",
+            "titulo": "Filial destaque: POSTO VIP",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "benchmark",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 2362.92,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "empresaCodigo": 11495,
+              "nomeFilial": "POSTO VIP",
+              "receita": 24029.69,
+              "lucro": -897.02,
+              "roi": -3.73,
+              "perdas": 444.64,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 88.89,
+              "crescimentoProxy": 51315.38
+            }
+          },
+          {
+            "recommendationId": "ARE-482292D0",
+            "titulo": "Ação pendente alto ROI: Expandir playbook PDV None",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "corporativo",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 4562.28,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "pdvCodigo": null,
+              "receitaBruta": 4639.61,
+              "destruicaoMargem": 0.0,
+              "margemOperacional": 4639.61,
+              "descontos": 0.0,
+              "cancelamentos": 0.0,
+              "faltas": 0.0,
+              "sobras": 0.0,
+              "perdasCaixa": 0.0,
+              "quantidadeVendas": 94,
+              "resultadoLiquido": 4639.61,
+              "riscoEconomico": 1.0,
+              "roi": 4639.61,
+              "monitoramentoPrioritario": false
+            }
+          },
+          {
+            "recommendationId": "ARE-55002EC6",
+            "titulo": "Expandir playbook PDV None",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "corporativo",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 4562.28,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "type": "OPERACIONAL",
+              "title": "Expandir playbook PDV None",
+              "impactoEstimado": 4639.61,
+              "roiEsperado": 4639.61,
+              "potencialCapturavel": 4639.61,
+              "prioridade": "MEDIA",
+              "reference": {
+                "pdvCodigo": null,
+                "receitaBruta": 4639.61,
+                "destruicaoMargem": 0.0,
+                "margemOperacional": 4639.61,
+                "descontos": 0.0,
+                "cancelamentos": 0.0,
+                "faltas": 0.0,
+                "sobras": 0.0,
+                "perdasCaixa": 0.0,
+                "quantidadeVendas": 94,
+                "resultadoLiquido": 4639.61,
+                "riscoEconomico": 1.0,
+                "roi": 4639.61,
+                "monitoramentoPrioritario": false
+              },
+              "calculo": {
+                "impacto": 4639.61,
+                "roi": 4639.61
+              }
+            }
+          },
+          {
+            "recommendationId": "ARE-7C022AA6",
+            "titulo": "Filial crítica: FILIAL 5333",
+            "tipo": "RISCO",
+            "categoria": "benchmark",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 2229.24,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "empresaCodigo": 5333,
+              "nomeFilial": "FILIAL 5333",
+              "receita": 0.0,
+              "lucro": -1133.51,
+              "roi": 0.0,
+              "perdas": 0.0,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 0.0,
+              "crescimentoProxy": 0.0
+            }
+          },
+          {
+            "recommendationId": "ARE-958B877B",
+            "titulo": "Ação pendente alto ROI: Campanhas com metas atingidas",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "corporativo",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 452.33,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "corporateScore": 68.16,
+              "executiveScore": 58.47,
+              "financialScore": 90.07,
+              "peopleScore": 37.67,
+              "operationsScore": 50.94,
+              "growthScore": 42.95,
+              "riskScore": 54.03,
+              "receita": 6836.4,
+              "margem": 5866.88,
+              "perdas": 500.21000000000004,
+              "recuperacao": 4157.64,
+              "roi": {
+                "empresaCodigo": 11495,
+                "nomeFilial": "POSTO VIP",
+                "receita": 24029.69,
+                "lucro": -897.02,
+                "roi": -3.73,
+                "perdas": 444.64,
+                "metas": 0,
+                "alertas": 0,
+                "scoreMedio": null,
+                "participacao": 88.89,
+                "crescimentoProxy": 51315.38
+              },
+              "metas": 65,
+              "metasOk": 23,
+              "benchmark": {
+                "empresaCodigo": 11495,
+                "nomeFilial": "POSTO VIP",
+                "receita": 24029.69,
+                "lucro": -897.02,
+                "roi": -3.73,
+                "perdas": 444.64,
+                "metas": 0,
+                "alertas": 0,
+                "scoreMedio": null,
+                "participacao": 88.89,
+                "crescimentoProxy": 51315.38
+              },
+              "paridadeDelta": 0.0
+            }
+          },
+          {
+            "recommendationId": "ARE-C2DEB517",
+            "titulo": "Turno crítico: 1º Turno",
+            "tipo": "RISCO",
+            "categoria": "risco",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 1573.33,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "turno": {
+                "id": "OPS-366A6C7C",
+                "dominio": "OPERACIONAL",
+                "engine": "operationsActionEngine",
+                "acao": "Revisar processo 1º Turno",
+                "impacto": 766.9,
+                "roi": 0.43,
+                "complexidade": "MEDIA",
+                "prazo": "D+30",
+                "responsavel": {
+                  "tipo": "OPERACOES",
+                  "nome": "Supervisor de Turno"
+                },
+                "turno": "1º Turno",
+                "riscoNivel": "ALTO",
+                "origem": "F04.3 shiftProfitabilityEngine",
+                "lineage": {
+                  "origem": "F04.3",
+                  "snapshot": "store_shift_profitability",
+                  "api": "/api/v1/operation-roi/cockpit",
+                  "cockpit": "decision-engine",
+                  "webPosto": false
+                },
+                "trustExecutivo": 88.69,
+                "evidence": {
+                  "turno": "1º Turno",
+                  "turnoCodigo": 1,
+                  "receitaBruta": 2196.79,
+                  "destruicaoMargem": 1533.8,
+                  "margemOperacional": 662.99,
+                  "cancelamentos": 0.0,
+                  "faltas": 766.9,
+                  "sobras": 0,
+                  "perdasCaixa": 766.9,
+                  "quantidadeVendas": 106,
+                  "resultadoLiquido": 662.99,
+                  "riscoEconomico": 1533.8,
+                  "roi": 0.43,
+                  "incidenciaQuebraPct": 100.0
+                },
+                "justificativa": "Turno 1º Turno identificado como crítico",
+                "calculoRoi": {
+                  "turno": "1º Turno",
+                  "turnoCodigo": 1,
+                  "receitaBruta": 2196.79,
+                  "destruicaoMargem": 1533.8,
+                  "margemOperacional": 662.99,
+                  "cancelamentos": 0.0,
+                  "faltas": 766.9,
+                  "sobras": 0,
+                  "perdasCaixa": 766.9,
+                  "quantidadeVendas": 106,
+                  "resultadoLiquido": 662.99,
+                  "riscoEconomico": 1533.8,
+                  "roi": 0.43,
+                  "incidenciaQuebraPct": 100.0
+                },
+                "mandatory": true
+              }
+            }
+          },
+          {
+            "recommendationId": "ARE-732CF612",
+            "titulo": "Ação pendente alto ROI: Replicar operador APOIO LOJA .",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "operador",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 1038.26,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "funcionarioCodigo": 178278,
+              "employeeName": "APOIO LOJA .",
+              "salesScore": 56.1,
+              "productivityScore": 66.06,
+              "accountabilityScore": 100.0,
+              "resultadoLiquido": 1055.86,
+              "roi": 1055.86,
+              "globalScore": 80.54,
+              "goalPercentual": 81.98,
+              "performanceScore": 58.16,
+              "evolucaoDelta": 0.0,
+              "cashRiskScore": 57.38,
+              "benchmarkScore": 73.34
+            }
+          },
+          {
+            "recommendationId": "ARE-801AE0BC",
+            "titulo": "PDV destrói margem",
+            "tipo": "RISCO",
+            "categoria": "risco",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 983.33,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "riskType": "PDV",
+              "severity": "ALTO",
+              "message": "PDV destrói margem",
+              "reference": {
+                "pdvCodigo": 54193,
+                "receitaBruta": 1139.53,
+                "destruicaoMargem": 959.22,
+                "margemOperacional": 180.31,
+                "descontos": 0.0,
+                "cancelamentos": 0.0,
+                "faltas": 479.61,
+                "sobras": 0,
+                "perdasCaixa": 479.61,
+                "quantidadeVendas": 38,
+                "resultadoLiquido": 180.31,
+                "riscoEconomico": 959.22,
+                "roi": 0.19,
+                "monitoramentoPrioritario": true
+              },
+              "justificativa": {
+                "pdvCodigo": 54193,
+                "receitaBruta": 1139.53,
+                "destruicaoMargem": 959.22,
+                "margemOperacional": 180.31,
+                "descontos": 0.0,
+                "cancelamentos": 0.0,
+                "faltas": 479.61,
+                "sobras": 0,
+                "perdasCaixa": 479.61,
+                "quantidadeVendas": 38,
+                "resultadoLiquido": 180.31,
+                "riscoEconomico": 959.22,
+                "roi": 0.19,
+                "monitoramentoPrioritario": true
+              }
+            }
+          },
+          {
+            "recommendationId": "ARE-E832583F",
+            "titulo": "Turno problemático",
+            "tipo": "RISCO",
+            "categoria": "risco",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 983.33,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "riskType": "TURNO",
+              "severity": "ALTO",
+              "message": "Turno problemático",
+              "reference": {
+                "turno": "1º Turno",
+                "turnoCodigo": 1,
+                "receitaBruta": 2196.79,
+                "destruicaoMargem": 1533.8,
+                "margemOperacional": 662.99,
+                "cancelamentos": 0.0,
+                "faltas": 766.9,
+                "sobras": 0,
+                "perdasCaixa": 766.9,
+                "quantidadeVendas": 106,
+                "resultadoLiquido": 662.99,
+                "riscoEconomico": 1533.8,
+                "roi": 0.43,
+                "incidenciaQuebraPct": 100.0,
+                "alertas": 0,
+                "metasPct": 0.43
+              },
+              "justificativa": {
+                "turno": "1º Turno",
+                "turnoCodigo": 1,
+                "receitaBruta": 2196.79,
+                "destruicaoMargem": 1533.8,
+                "margemOperacional": 662.99,
+                "cancelamentos": 0.0,
+                "faltas": 766.9,
+                "sobras": 0,
+                "perdasCaixa": 766.9,
+                "quantidadeVendas": 106,
+                "resultadoLiquido": 662.99,
+                "riscoEconomico": 1533.8,
+                "roi": 0.43,
+                "incidenciaQuebraPct": 100.0,
+                "alertas": 0,
+                "metasPct": 0.43
+              }
+            }
+          },
+          {
+            "recommendationId": "ARE-C8F59979",
+            "titulo": "Ação pendente alto ROI: BONIFICAR operador APOIO LOJA .",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "operador",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 98.2,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "bonusEligibility": "Elegível",
+              "resultadoLiquido": 1055.86,
+              "accountabilityScore": 100.0
+            }
+          },
+          {
+            "recommendationId": "ARE-DF8D250A",
+            "titulo": "Replicar operador APOIO LOJA .",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "operador",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 1038.26,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "type": "PESSOAS",
+              "title": "Replicar operador APOIO LOJA .",
+              "impactoEstimado": 1055.86,
+              "roiEsperado": 1055.86,
+              "potencialCapturavel": 1055.86,
+              "prioridade": "MEDIA",
+              "reference": {
+                "funcionarioCodigo": 178278,
+                "employeeName": "APOIO LOJA .",
+                "salesScore": 56.1,
+                "productivityScore": 66.06,
+                "accountabilityScore": 100.0,
+                "resultadoLiquido": 1055.86,
+                "roi": 1055.86,
+                "globalScore": 80.54,
+                "goalPercentual": 81.98,
+                "performanceScore": 58.16,
+                "evolucaoDelta": 0.0,
+                "cashRiskScore": 57.38,
+                "benchmarkScore": 73.34
+              },
+              "calculo": {
+                "impacto": 1055.86,
+                "roi": 1055.86
+              }
+            }
+          },
+          {
+            "recommendationId": "ARE-7B34A5CC",
+            "titulo": "Ação pendente alto ROI: TREINAR operador WANDERSON GUILHERME DOS SANTOS OLIV",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "operador",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 98.33,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "accountabilityScore": 50.0,
+              "faltas": 0.0
+            }
+          },
+          {
+            "recommendationId": "ARE-B864BAC8",
+            "titulo": "Ação pendente alto ROI: TREINAR operador MARINALDO RIBEIRO DA SILVA",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "operador",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 98.33,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "accountabilityScore": 50.0,
+              "faltas": 0.0
+            }
+          },
+          {
+            "recommendationId": "ARE-4E6903E1",
+            "titulo": "Destruição de margem operacional",
+            "tipo": "RISCO",
+            "categoria": "risco",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 983.75,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "margemOperacional": 85.82,
+              "perdas": 500.21000000000004
+            }
+          },
+          {
+            "recommendationId": "ARE-9B25C158",
+            "titulo": "Operador destaque: APOIO LOJA .",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "operador",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 98.2,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "bonusEligibility": "Elegível",
+              "resultadoLiquido": 1055.86,
+              "accountabilityScore": 100.0
+            }
+          },
+          {
+            "recommendationId": "ARE-522EADBD",
+            "titulo": "Ação pendente alto ROI: TREINAR operador LUCIANO PEREIRA DA SILVA JUNIOR",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "operador",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 98.25,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "accountabilityScore": 50.0,
+              "faltas": 0.0
+            }
+          },
+          {
+            "recommendationId": "ARE-5FD3337B",
+            "titulo": "Filial preocupante na rede",
+            "tipo": "RISCO",
+            "categoria": "benchmark",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": -2229.24,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "riskType": "FILIAL",
+              "severity": "CRITICO",
+              "message": "Filial preocupante na rede",
+              "reference": {
+                "empresaCodigo": 5333,
+                "nomeFilial": "FILIAL 5333",
+                "receita": 0.0,
+                "lucro": -1133.51,
+                "roi": 0.0,
+                "perdas": 0.0,
+                "metas": 0,
+                "alertas": 0,
+                "scoreMedio": null,
+                "participacao": 0.0,
+                "crescimentoProxy": 0.0
+              },
+              "justificativa": {
+                "empresaCodigo": 5333,
+                "nomeFilial": "FILIAL 5333",
+                "receita": 0.0,
+                "lucro": -1133.51,
+                "roi": 0.0,
+                "perdas": 0.0,
+                "metas": 0,
+                "alertas": 0,
+                "scoreMedio": null,
+                "participacao": 0.0,
+                "crescimentoProxy": 0.0
+              }
+            }
+          },
+          {
+            "recommendationId": "ARE-A9DB6F1F",
+            "titulo": "Filial crítica: FILIAL 5333",
+            "tipo": "RISCO",
+            "categoria": "benchmark",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": -2229.24,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "riskType": "FILIAL",
+              "severity": "CRITICO",
+              "message": "Filial crítica: FILIAL 5333",
+              "reference": {
+                "empresaCodigo": 5333,
+                "nomeFilial": "FILIAL 5333",
+                "receita": 0.0,
+                "lucro": -1133.51,
+                "roi": 0.0,
+                "perdas": 0.0,
+                "metas": 0,
+                "alertas": 0,
+                "scoreMedio": null,
+                "participacao": 0.0,
+                "crescimentoProxy": 0.0
+              },
+              "justificativa": {
+                "empresaCodigo": 5333,
+                "nomeFilial": "FILIAL 5333",
+                "receita": 0.0,
+                "lucro": -1133.51,
+                "roi": 0.0,
+                "perdas": 0.0,
+                "metas": 0,
+                "alertas": 0,
+                "scoreMedio": null,
+                "participacao": 0.0,
+                "crescimentoProxy": 0.0
+              }
+            }
+          },
+          {
+            "recommendationId": "ARE-916F7F87",
+            "titulo": "Operador risco/desempenho: RICART ABEL DE PAIVA RIBEIRO",
+            "tipo": "RISCO",
+            "categoria": "operador",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 54.79,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "accountabilityScore": 30.0,
+              "faltas": 252.27
+            }
+          },
+          {
+            "recommendationId": "ARE-6482D108",
+            "titulo": "PDV destaque: 15880",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "corporativo",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 0.98,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.1",
+                "snapshot": "executive_decision_engine",
+                "api": "/api/v1/executive-decision/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "id": "OPS-BE169092",
+              "dominio": "OPERACIONAL",
+              "engine": "operationsActionEngine",
+              "acao": "Intervenção imediata PDV 15880",
+              "impacto": 500.0,
+              "roi": 1.0,
+              "complexidade": "ALTA",
+              "prazo": "D+15",
+              "responsavel": {
+                "tipo": "OPERACOES",
+                "nome": "Gerente de Loja"
+              },
+              "pdvCodigo": 15880,
+              "riscoNivel": "ALTO",
+              "origem": "F04.3 pdvProfitabilityEngine",
+              "lineage": {
+                "origem": "F04.3",
+                "snapshot": "store_shift_profitability",
+                "api": "/api/v1/operation-roi/cockpit",
+                "cockpit": "decision-engine",
+                "webPosto": false
+              },
+              "trustExecutivo": 88.69,
+              "evidence": {
+                "pdvCodigo": 15880
+              },
+              "justificativa": "PDV 15880 exige intervenção homologada F05.1",
+              "calculoRoi": {
+                "perdasCaixa": 0.0,
+                "resultadoLiquido": 0.0
+              },
+              "mandatory": true
+            }
+          },
+          {
+            "recommendationId": "ARE-58D8D19C",
+            "titulo": "Campanhas com metas atingidas",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "corporativo",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 452.33,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "type": "COMERCIAL",
+              "title": "Campanhas com metas atingidas",
+              "impactoEstimado": 2300.0,
+              "roiEsperado": 460.0,
+              "potencialCapturavel": 2300.0,
+              "prioridade": "BAIXA",
+              "reference": {
+                "corporateScore": 68.16,
+                "executiveScore": 58.47,
+                "financialScore": 90.07,
+                "peopleScore": 37.67,
+                "operationsScore": 50.94,
+                "growthScore": 42.95,
+                "riskScore": 54.03,
+                "receita": 6836.4,
+                "margem": 5866.88,
+                "perdas": 500.21000000000004,
+                "recuperacao": 4157.64,
+                "roi": {
+                  "empresaCodigo": 11495,
+                  "nomeFilial": "POSTO VIP",
+                  "receita": 24029.69,
+                  "lucro": -897.02,
+                  "roi": -3.73,
+                  "perdas": 444.64,
+                  "metas": 0,
+                  "alertas": 0,
+                  "scoreMedio": null,
+                  "participacao": 88.89,
+                  "crescimentoProxy": 51315.38
+                },
+                "metas": 65,
+                "metasOk": 23,
+                "benchmark": {
+                  "empresaCodigo": 11495,
+                  "nomeFilial": "POSTO VIP",
+                  "receita": 24029.69,
+                  "lucro": -897.02,
+                  "roi": -3.73,
+                  "perdas": 444.64,
+                  "metas": 0,
+                  "alertas": 0,
+                  "scoreMedio": null,
+                  "participacao": 88.89,
+                  "crescimentoProxy": 51315.38
+                },
+                "paridadeDelta": 0.0
+              },
+              "calculo": {
+                "impacto": 2300.0,
+                "roi": 460.0
+              }
+            }
+          },
+          {
+            "recommendationId": "ARE-22A95DCC",
+            "titulo": "Metas/campanhas próximas do target",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "corporativo",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": 885.0,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F04.5",
+                "snapshot": "goals_campaign_engine",
+                "api": "/api/v1/goals-campaigns/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "BAIXA",
+            "evidenceSource": {
+              "goalsProxy": true
+            }
+          },
+          {
+            "recommendationId": "ARE-6005DCF4",
+            "titulo": "Maior risco financeiro consolidado",
+            "tipo": "RISCO",
+            "categoria": "risco",
+            "effectiveness": "NEUTRA",
+            "roiPrevisto": -8614.51,
+            "roiRealizado": null,
+            "deltaROI": null,
+            "acuraciaROI": null,
+            "hasExecutionEvidence": false,
+            "lineage": [
+              {
+                "origem": "F05.0",
+                "snapshot": "corporate_intelligence_hub",
+                "api": "/api/v1/corporate-hub/cockpit",
+                "cockpit": "recommendations",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "riskType": "FINANCEIRO",
+              "severity": "ALTO",
+              "message": "Maior risco financeiro consolidado",
+              "reference": {
+                "empresaCodigo": 5555,
+                "nomeFilial": "AP CASA CAIADA",
+                "receita": 3003.37,
+                "lucro": -4380.26,
+                "roi": -145.84,
+                "perdas": 55.57,
+                "metas": 65,
+                "alertas": 45,
+                "scoreMedio": 40.48,
+                "participacao": 11.11,
+                "crescimentoProxy": 6410.52
+              },
+              "justificativa": {
+                "empresaCodigo": 5555,
+                "nomeFilial": "AP CASA CAIADA",
+                "receita": 3003.37,
+                "lucro": -4380.26,
+                "roi": -145.84,
+                "perdas": 55.57,
+                "metas": 65,
+                "alertas": 45,
+                "scoreMedio": 40.48,
+                "participacao": 11.11,
+                "crescimentoProxy": 6410.52
+              }
+            }
+          },
+          {
+            "recommendationId": "ARE-LOOP-PPL-EE5EBF02",
+            "titulo": "TREINAR operador CLEYTON ALVES DA COSTA",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "operador",
+            "effectiveness": "EFETIVA",
+            "roiPrevisto": 100.0,
+            "roiRealizado": 85.0,
+            "deltaROI": -15.0,
+            "acuraciaROI": 85.0,
+            "hasExecutionEvidence": true,
+            "lineage": [
+              {
+                "origem": "F04.4",
+                "snapshot": "management_action_center",
+                "api": "/api/v1/management-action/cockpit",
+                "cockpit": "decision-engine",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "evidenceId": "EVD-738C509381",
+              "actionId": "PPL-EE5EBF02",
+              "responsavel": "CLEYTON ALVES DA COSTA",
+              "ownerId": 252430,
+              "timestamp": "2026-06-07T00:00:00",
+              "resultado": "EXECUCAO_REGISTRADA",
+              "anexo": null,
+              "observacao": "Evidência de execução homologada F05.2 #9",
+              "tipo": "EXECUCAO"
+            }
+          },
+          {
+            "recommendationId": "ARE-LOOP-PPL-DC852688",
+            "titulo": "AUDITAR operador JOÃO VICTOR APOIO",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "operador",
+            "effectiveness": "INEFETIVA",
+            "roiPrevisto": 0.0,
+            "roiRealizado": 0.0,
+            "deltaROI": 0.0,
+            "acuraciaROI": 0.0,
+            "hasExecutionEvidence": true,
+            "lineage": [
+              {
+                "origem": "F04.4",
+                "snapshot": "management_action_center",
+                "api": "/api/v1/management-action/cockpit",
+                "cockpit": "decision-engine",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "evidenceId": "EVD-67A971A051",
+              "actionId": "PPL-DC852688",
+              "responsavel": "JOÃO VICTOR APOIO",
+              "ownerId": 158924,
+              "timestamp": "2026-06-07T00:00:00",
+              "resultado": "EXECUCAO_REGISTRADA",
+              "anexo": null,
+              "observacao": "Evidência de execução homologada F05.2 #21",
+              "tipo": "EXECUCAO"
+            }
+          },
+          {
+            "recommendationId": "ARE-LOOP-PPL-A3933B30",
+            "titulo": "TREINAR operador WILLY KLEBYSON DA SILVA",
+            "tipo": "OPORTUNIDADE",
+            "categoria": "operador",
+            "effectiveness": "INEFETIVA",
+            "roiPrevisto": 0.0,
+            "roiRealizado": 0.0,
+            "deltaROI": 0.0,
+            "acuraciaROI": 0.0,
+            "hasExecutionEvidence": true,
+            "lineage": [
+              {
+                "origem": "F04.4",
+                "snapshot": "management_action_center",
+                "api": "/api/v1/management-action/cockpit",
+                "cockpit": "decision-engine",
+                "webPosto": false
+              }
+            ],
+            "confidenceLevel": "ALTA",
+            "evidenceSource": {
+              "evidenceId": "EVD-55B8D30D82",
+              "actionId": "PPL-A3933B30",
+              "responsavel": "WILLY KLEBYSON DA SILVA",
+              "ownerId": 299371,
+              "timestamp": "2026-06-07T00:00:00",
+              "resultado": "EXECUCAO_REGISTRADA",
+              "anexo": null,
+              "observacao": "Evidência de execução homologada F05.2 #25",
+              "tipo": "EXECUCAO"
+            }
+          }
+        ],
+        "recommendationSuccessRate": 33.33,
+        "total": 29
+      },
+      "executiveFeedbackLoop": {
+        "items": [
+          {
+            "headline": "As recomendações de recuperação de caixa acertaram 91% dos resultados (proxy homologado F05.1/F05.4).",
+            "categoria": "recuperacao_caixa",
+            "taxaAcerto": 91.0,
+            "amostra": 0,
+            "labels": [
+              "PROXY"
+            ]
+          },
+          {
+            "headline": "As recomendações de operador acertaram 33.33%.",
+            "categoria": "operador",
+            "taxaAcerto": 33.33,
+            "amostra": 3,
+            "labels": []
+          },
+          {
+            "headline": "As recomendações de benchmark acertaram 77.0%.",
+            "categoria": "benchmark",
+            "taxaAcerto": 77.0,
+            "amostra": 0,
+            "labels": [
+              "PROXY"
+            ]
+          }
+        ],
+        "byCategory": {
+          "operador": 33.33
+        }
+      }
+    }
+  },
+  "executiveAnswers": {
+    "1_recomendacoesAvaliadas": 29,
+    "2_efetivas": 1,
+    "3_inefetivas": 2,
+    "4_taxaAcerto": 33.33,
+    "5_roiPrevistoMedio": 100.0,
+    "6_roiRealizadoMedio": 28.33,
+    "7_erroMedio": 71.67,
+    "8_melhorRecomendacao": "TREINAR operador CLEYTON ALVES DA COSTA",
+    "9_piorRecomendacao": "TREINAR operador WILLY KLEBYSON DA SILVA",
+    "10_melhorAcao": "TREINAR operador CLEYTON ALVES DA COSTA",
+    "11_piorAcao": "AUDITAR operador JOÃO VICTOR APOIO",
+    "12_scoreHistoricoMedio": 52.97,
+    "13_aprendizadoAcumulado": 1482.5,
+    "14_confiancaAumentou": true,
+    "15_confiancaDiminuiu": true,
+    "16_motorAprendeu": true,
+    "17_feedExecutivoAprovado": true,
+    "18_cockpitAprovado": true,
+    "19_sistemaAuditavel": true,
+    "20_aprovadoF06": true,
+    "trustExecutivo": 88.69
+  },
+  "parecerFinal": "[PARECER FINAL: APROVADO PARA F06]",
+  "acceptance": {
+    "fonteWebPosto": false,
+    "semAprendizadoSemEvidencia": true,
+    "semRoiRealizadoSemExecutionEvidence": true,
+    "semCrossTenant": true,
+    "semAjusteConfiancaSemHistorico": true,
+    "semScoreSemOrigem": true,
+    "auditavel": true,
+    "aprovadoF06": true
+  }
+}

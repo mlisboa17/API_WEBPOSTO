@@ -29,6 +29,8 @@ from src.interfaces.http.routes import executive_decision_engine
 from src.interfaces.http.routes import action_center
 from src.interfaces.http.routes import executive_ai_copilot
 from src.interfaces.http.routes import autonomous_recommendation_engine
+from src.interfaces.http.routes import closed_loop_learning_engine
+from src.interfaces.http.routes import nfce_intelligence
 from src.interfaces.http.routes import data_trust_baseline
 from src.interfaces.http.routes import prestacao_contas
 from src.interfaces.http.routes import financial_intelligence
@@ -84,6 +86,8 @@ def create_app() -> FastAPI:
     app.include_router(action_center.router)
     app.include_router(executive_ai_copilot.router)
     app.include_router(autonomous_recommendation_engine.router)
+    app.include_router(closed_loop_learning_engine.router)
+    app.include_router(nfce_intelligence.router)
     app.include_router(data_trust_baseline.router)
     app.include_router(prestacao_contas.router)
     app.include_router(financial_intelligence.router)

@@ -1,0 +1,440 @@
+{
+  "sprint": "G01",
+  "readOnly": true,
+  "fonteWebPosto": false,
+  "totalAcoes": 36,
+  "lineage": {
+    "COMPLETO": 36,
+    "PARCIAL": 0,
+    "AUSENTE": 0
+  },
+  "roiClassification": {
+    "COMPROVADO": 18,
+    "ESTIMADO": 17,
+    "FRÁGIL": 1,
+    "INVÁLIDO": 0
+  },
+  "feasibility": {
+    "EXECUTÁVEL": 19,
+    "PARCIALMENTE_EXECUTÁVEL": 17,
+    "NÃO_EXECUTÁVEL": 0
+  },
+  "ownership": {
+    "comDono": 36,
+    "semDono": 0
+  },
+  "proxyActions": 11,
+  "gapActions": 11,
+  "blockers": [],
+  "actionCenterReadiness": {
+    "registrarExecucao": true,
+    "validarResultado": true,
+    "medirRoiRealizado": true,
+    "fecharCiclo": true
+  },
+  "riskChallenge": {
+    "falsaPriorizacao": true,
+    "roiSuperestimado": 0,
+    "roiFragil": 1,
+    "lineageIncompleto": 0
+  },
+  "executiveAnswers": {
+    "1_lineageCompleto": 36,
+    "2_roiComprovado": 18,
+    "3_responsavelDefinido": 36,
+    "4_executaveis": 19,
+    "5_dependemProxy": 11,
+    "6_dependemGaps": 11,
+    "7_decisaoSemEvidencia": 0,
+    "8_roiFragil": 1,
+    "9_acaoSemDono": 0,
+    "10_acaoImpossivel": 0,
+    "11_riscoFalsaPriorizacao": true,
+    "12_riscoRoiSuperestimado": 0,
+    "13_d05SustentaF051": true,
+    "14_actionCenterMedeResultado": true,
+    "15_cicloDecisaoExecucao": true,
+    "16_motorAuditavel": true,
+    "17_trustExecutivoValido": true,
+    "18_bloqueadorF052": [],
+    "19_goNoGo": "GO",
+    "20_f052Liberado": true,
+    "totalAcoes": 36,
+    "lineageParcial": 0,
+    "lineageAusente": 0,
+    "roiEstimado": 17,
+    "parcialmenteExecutavel": 17,
+    "trustExecutivo": 88.69,
+    "paridadeDelta": 0.0,
+    "gapsD05": [
+      "LMC detalhe bico/tanque (401)",
+      "servicos/trocas tipados PDV",
+      "meta por operador/turno (sem endpoint)",
+      "autorizacaoGerencial",
+      "layoutOperacionalTurno UI-only"
+    ]
+  },
+  "parecerFinal": "[PARECER FINAL: GO PARA F05.2]",
+  "details": [
+    {
+      "id": "OPP-8E9E9E76",
+      "acao": "Recuperação caixa 30%",
+      "dominio": "OPORTUNIDADE",
+      "lineage": "COMPLETO",
+      "roiClass": "FRÁGIL",
+      "feasibility": "PARCIALMENTE_EXECUTÁVEL",
+      "ownership": true,
+      "proxy": true
+    },
+    {
+      "id": "OPP-34768CC6",
+      "acao": "Expandir playbook PDV None",
+      "dominio": "OPORTUNIDADE",
+      "lineage": "COMPLETO",
+      "roiClass": "ESTIMADO",
+      "feasibility": "PARCIALMENTE_EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "OPP-408FEE46",
+      "acao": "Replicar operador APOIO LOJA .",
+      "dominio": "OPORTUNIDADE",
+      "lineage": "COMPLETO",
+      "roiClass": "ESTIMADO",
+      "feasibility": "PARCIALMENTE_EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "OPP-18E4F2BE",
+      "acao": "Campanhas com metas atingidas",
+      "dominio": "OPORTUNIDADE",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "PARCIALMENTE_EXECUTÁVEL",
+      "ownership": true,
+      "proxy": true
+    },
+    {
+      "id": "PPL-99CF3836",
+      "acao": "BONIFICAR operador APOIO LOJA .",
+      "dominio": "PESSOAS",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "PPL-C7010AB9",
+      "acao": "TREINAR operador WANDERSON GUILHERME DOS SANTOS OLIV",
+      "dominio": "PESSOAS",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "PPL-4513FDC1",
+      "acao": "TREINAR operador MARINALDO RIBEIRO DA SILVA",
+      "dominio": "PESSOAS",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "PPL-4B1E2345",
+      "acao": "TREINAR operador LUCIANO PEREIRA DA SILVA JUNIOR",
+      "dominio": "PESSOAS",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "PPL-EE5EBF02",
+      "acao": "TREINAR operador CLEYTON ALVES DA COSTA",
+      "dominio": "PESSOAS",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "PPL-49415877",
+      "acao": "TREINAR operador HENRIQUE DO ESPIRITO SANTOS SILVA",
+      "dominio": "PESSOAS",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "PPL-D38E3F3F",
+      "acao": "TREINAR operador THACIANNA RIBEIRO DA SILVA",
+      "dominio": "PESSOAS",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "PPL-4E6F8D6B",
+      "acao": "TREINAR operador RICART ABEL DE PAIVA RIBEIRO",
+      "dominio": "PESSOAS",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "FIN-1E53618C",
+      "acao": "Expandir receita via benchmark",
+      "dominio": "FINANCEIRO",
+      "lineage": "COMPLETO",
+      "roiClass": "ESTIMADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": true
+    },
+    {
+      "id": "FIN-49EFD651",
+      "acao": "Recuperação de caixa homologada",
+      "dominio": "FINANCEIRO",
+      "lineage": "COMPLETO",
+      "roiClass": "ESTIMADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": true
+    },
+    {
+      "id": "FIN-23FE39CE",
+      "acao": "Otimizar despesas com potencial capturável",
+      "dominio": "FINANCEIRO",
+      "lineage": "COMPLETO",
+      "roiClass": "ESTIMADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": true
+    },
+    {
+      "id": "PPL-4582E358",
+      "acao": "ACOMPANHAR operador JOÃO RYVISON DE ANDRADE SOUZA",
+      "dominio": "PESSOAS",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "FIN-6BC4DD1D",
+      "acao": "Reduzir perdas operacionais",
+      "dominio": "FINANCEIRO",
+      "lineage": "COMPLETO",
+      "roiClass": "ESTIMADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": true
+    },
+    {
+      "id": "RSK-1AAFF9D1",
+      "acao": "ACEITAR: Operador gera risco",
+      "dominio": "RISCO",
+      "lineage": "COMPLETO",
+      "roiClass": "ESTIMADO",
+      "feasibility": "PARCIALMENTE_EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "RSK-1BE00D0F",
+      "acao": "ACEITAR: Operador crítico: 299151",
+      "dominio": "RISCO",
+      "lineage": "COMPLETO",
+      "roiClass": "ESTIMADO",
+      "feasibility": "PARCIALMENTE_EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "RSK-0265A941",
+      "acao": "ACEITAR: 12 realizações abaixo da meta",
+      "dominio": "RISCO",
+      "lineage": "COMPLETO",
+      "roiClass": "ESTIMADO",
+      "feasibility": "PARCIALMENTE_EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "PPL-DC852688",
+      "acao": "AUDITAR operador JOÃO VICTOR APOIO",
+      "dominio": "PESSOAS",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "RSK-544D252B",
+      "acao": "MITIGAR: Filial preocupante na rede",
+      "dominio": "RISCO",
+      "lineage": "COMPLETO",
+      "roiClass": "ESTIMADO",
+      "feasibility": "PARCIALMENTE_EXECUTÁVEL",
+      "ownership": true,
+      "proxy": true
+    },
+    {
+      "id": "RSK-3853E5D8",
+      "acao": "MITIGAR: Filial crítica: FILIAL 5333",
+      "dominio": "RISCO",
+      "lineage": "COMPLETO",
+      "roiClass": "ESTIMADO",
+      "feasibility": "PARCIALMENTE_EXECUTÁVEL",
+      "ownership": true,
+      "proxy": true
+    },
+    {
+      "id": "PPL-B9F5EF04",
+      "acao": "TREINAR operador VINICIUS JOSÉ ALVES DA SILVA",
+      "dominio": "PESSOAS",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "PPL-A3933B30",
+      "acao": "TREINAR operador WILLY KLEBYSON DA SILVA",
+      "dominio": "PESSOAS",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "PPL-B9D4BAEA",
+      "acao": "TREINAR operador FABIANO RODRIGUES",
+      "dominio": "PESSOAS",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "OPS-BE169092",
+      "acao": "Intervenção imediata PDV 15880",
+      "dominio": "OPERACIONAL",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "PARCIALMENTE_EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "OPS-366A6C7C",
+      "acao": "Revisar processo 1º Turno",
+      "dominio": "OPERACIONAL",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "FIN-808FC46C",
+      "acao": "Proteger margem operacional",
+      "dominio": "FINANCEIRO",
+      "lineage": "COMPLETO",
+      "roiClass": "ESTIMADO",
+      "feasibility": "EXECUTÁVEL",
+      "ownership": true,
+      "proxy": true
+    },
+    {
+      "id": "RSK-CBB9B27E",
+      "acao": "MITIGAR: PDV crítico: 54193",
+      "dominio": "RISCO",
+      "lineage": "COMPLETO",
+      "roiClass": "ESTIMADO",
+      "feasibility": "PARCIALMENTE_EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "RSK-094E21EE",
+      "acao": "MITIGAR: Turno problemático",
+      "dominio": "RISCO",
+      "lineage": "COMPLETO",
+      "roiClass": "ESTIMADO",
+      "feasibility": "PARCIALMENTE_EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "RSK-A32D6BC9",
+      "acao": "MITIGAR: Turno crítico: 1º Turno",
+      "dominio": "RISCO",
+      "lineage": "COMPLETO",
+      "roiClass": "ESTIMADO",
+      "feasibility": "PARCIALMENTE_EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "RSK-99C3EA99",
+      "acao": "MITIGAR: PDV destrói margem",
+      "dominio": "RISCO",
+      "lineage": "COMPLETO",
+      "roiClass": "ESTIMADO",
+      "feasibility": "PARCIALMENTE_EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "OPS-3AC87F38",
+      "acao": "Intervenção filial 5333",
+      "dominio": "OPERACIONAL",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "PARCIALMENTE_EXECUTÁVEL",
+      "ownership": true,
+      "proxy": true
+    },
+    {
+      "id": "OPS-3D141170",
+      "acao": "Intervenção imediata PDV 54193",
+      "dominio": "OPERACIONAL",
+      "lineage": "COMPLETO",
+      "roiClass": "COMPROVADO",
+      "feasibility": "PARCIALMENTE_EXECUTÁVEL",
+      "ownership": true,
+      "proxy": false
+    },
+    {
+      "id": "RSK-98A34E74",
+      "acao": "ELIMINAR: Maior risco financeiro consolidado",
+      "dominio": "RISCO",
+      "lineage": "COMPLETO",
+      "roiClass": "ESTIMADO",
+      "feasibility": "PARCIALMENTE_EXECUTÁVEL",
+      "ownership": true,
+      "proxy": true
+    }
+  ]
+}

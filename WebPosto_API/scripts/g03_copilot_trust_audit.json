@@ -1,0 +1,630 @@
+{
+  "sprint": "G03",
+  "readOnly": true,
+  "fonteWebPosto": false,
+  "answerAudit": {
+    "total": 10,
+    "rows": [
+      {
+        "id": "Q01",
+        "question": "Onde estamos perdendo dinheiro?",
+        "status": "CONFIÁVEL",
+        "confidenceLevel": "ALTA",
+        "hasEvidence": true,
+        "hasLineage": true,
+        "labels": []
+      },
+      {
+        "id": "Q02",
+        "question": "Qual ação gera mais ROI?",
+        "status": "PARCIAL",
+        "confidenceLevel": "MEDIA",
+        "hasEvidence": true,
+        "hasLineage": true,
+        "labels": [
+          "ESTIMADA"
+        ]
+      },
+      {
+        "id": "Q03",
+        "question": "Qual filial preocupa?",
+        "status": "CONFIÁVEL",
+        "confidenceLevel": "ALTA",
+        "hasEvidence": true,
+        "hasLineage": true,
+        "labels": []
+      },
+      {
+        "id": "Q04",
+        "question": "Quem merece promoção?",
+        "status": "PARCIAL",
+        "confidenceLevel": "MEDIA",
+        "hasEvidence": true,
+        "hasLineage": true,
+        "labels": [
+          "PARCIAL",
+          "PROXY"
+        ]
+      },
+      {
+        "id": "Q05",
+        "question": "Quem precisa treinamento?",
+        "status": "CONFIÁVEL",
+        "confidenceLevel": "ALTA",
+        "hasEvidence": true,
+        "hasLineage": true,
+        "labels": []
+      },
+      {
+        "id": "Q06",
+        "question": "Quem gera mais risco?",
+        "status": "CONFIÁVEL",
+        "confidenceLevel": "ALTA",
+        "hasEvidence": true,
+        "hasLineage": true,
+        "labels": []
+      },
+      {
+        "id": "Q07",
+        "question": "Qual PDV exige atenção?",
+        "status": "CONFIÁVEL",
+        "confidenceLevel": "ALTA",
+        "hasEvidence": true,
+        "hasLineage": true,
+        "labels": []
+      },
+      {
+        "id": "Q08",
+        "question": "Qual turno é crítico?",
+        "status": "CONFIÁVEL",
+        "confidenceLevel": "ALTA",
+        "hasEvidence": true,
+        "hasLineage": true,
+        "labels": []
+      },
+      {
+        "id": "Q09",
+        "question": "O que devo fazer hoje?",
+        "status": "CONFIÁVEL",
+        "confidenceLevel": "ALTA",
+        "hasEvidence": true,
+        "hasLineage": true,
+        "labels": []
+      },
+      {
+        "id": "Q10",
+        "question": "Quais são minhas prioridades?",
+        "status": "CONFIÁVEL",
+        "confidenceLevel": "ALTA",
+        "hasEvidence": true,
+        "hasLineage": true,
+        "labels": []
+      }
+    ],
+    "counts": {
+      "CONFIÁVEL": 8,
+      "PARCIAL": 2,
+      "FRÁGIL": 0
+    }
+  },
+  "recommendationAudit": {
+    "total": 20,
+    "rows": [
+      {
+        "recommendationId": "REC-OPP-8E9E9E76",
+        "acao": "Recuperação caixa 30%",
+        "responsavel": "JOÃO RYVISON DE ANDRADE SOUZA",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": [
+          "PROXY",
+          "FRÁGIL"
+        ]
+      },
+      {
+        "recommendationId": "REC-OPP-34768CC6",
+        "acao": "Expandir playbook PDV None",
+        "responsavel": "JOÃO RYVISON DE ANDRADE SOUZA",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": [
+          "ESTIMADA"
+        ]
+      },
+      {
+        "recommendationId": "REC-OPP-408FEE46",
+        "acao": "Replicar operador APOIO LOJA .",
+        "responsavel": "JOÃO RYVISON DE ANDRADE SOUZA",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": [
+          "ESTIMADA"
+        ]
+      },
+      {
+        "recommendationId": "REC-OPP-18E4F2BE",
+        "acao": "Campanhas com metas atingidas",
+        "responsavel": "JOÃO RYVISON DE ANDRADE SOUZA",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": [
+          "PROXY",
+          "FRÁGIL"
+        ]
+      },
+      {
+        "recommendationId": "REC-PPL-99CF3836",
+        "acao": "BONIFICAR operador APOIO LOJA .",
+        "responsavel": "APOIO LOJA .",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": []
+      },
+      {
+        "recommendationId": "REC-PPL-C7010AB9",
+        "acao": "TREINAR operador WANDERSON GUILHERME DOS SANTOS OLIV",
+        "responsavel": "WANDERSON GUILHERME DOS SANTOS OLIV",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": []
+      },
+      {
+        "recommendationId": "REC-PPL-4513FDC1",
+        "acao": "TREINAR operador MARINALDO RIBEIRO DA SILVA",
+        "responsavel": "MARINALDO RIBEIRO DA SILVA",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": []
+      },
+      {
+        "recommendationId": "REC-PPL-4B1E2345",
+        "acao": "TREINAR operador LUCIANO PEREIRA DA SILVA JUNIOR",
+        "responsavel": "LUCIANO PEREIRA DA SILVA JUNIOR",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": []
+      },
+      {
+        "recommendationId": "REC-PPL-EE5EBF02",
+        "acao": "TREINAR operador CLEYTON ALVES DA COSTA",
+        "responsavel": "CLEYTON ALVES DA COSTA",
+        "roiLabel": "ROI_REALIZADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": []
+      },
+      {
+        "recommendationId": "REC-PPL-49415877",
+        "acao": "TREINAR operador HENRIQUE DO ESPIRITO SANTOS SILVA",
+        "responsavel": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": []
+      },
+      {
+        "recommendationId": "REC-PPL-D38E3F3F",
+        "acao": "TREINAR operador THACIANNA RIBEIRO DA SILVA",
+        "responsavel": "THACIANNA RIBEIRO DA SILVA",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": []
+      },
+      {
+        "recommendationId": "REC-PPL-4E6F8D6B",
+        "acao": "TREINAR operador RICART ABEL DE PAIVA RIBEIRO",
+        "responsavel": "RICART ABEL DE PAIVA RIBEIRO",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": []
+      },
+      {
+        "recommendationId": "REC-FIN-1E53618C",
+        "acao": "Expandir receita via benchmark",
+        "responsavel": "Comercial",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": [
+          "PROXY",
+          "FRÁGIL"
+        ]
+      },
+      {
+        "recommendationId": "REC-FIN-49EFD651",
+        "acao": "Recuperação de caixa homologada",
+        "responsavel": "Tesouraria",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": [
+          "PROXY",
+          "FRÁGIL"
+        ]
+      },
+      {
+        "recommendationId": "REC-FIN-23FE39CE",
+        "acao": "Otimizar despesas com potencial capturável",
+        "responsavel": "Controladoria",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": [
+          "PROXY",
+          "FRÁGIL"
+        ]
+      },
+      {
+        "recommendationId": "REC-PPL-4582E358",
+        "acao": "ACOMPANHAR operador JOÃO RYVISON DE ANDRADE SOUZA",
+        "responsavel": "JOÃO RYVISON DE ANDRADE SOUZA",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": []
+      },
+      {
+        "recommendationId": "REC-FIN-6BC4DD1D",
+        "acao": "Reduzir perdas operacionais",
+        "responsavel": "Controladoria",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": [
+          "PROXY",
+          "FRÁGIL"
+        ]
+      },
+      {
+        "recommendationId": "REC-RSK-1AAFF9D1",
+        "acao": "ACEITAR: Operador gera risco",
+        "responsavel": "MARINALDO RIBEIRO DA SILVA",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": [
+          "ESTIMADA"
+        ]
+      },
+      {
+        "recommendationId": "REC-RSK-1BE00D0F",
+        "acao": "ACEITAR: Operador crítico: 299151",
+        "responsavel": "MARINALDO RIBEIRO DA SILVA",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": [
+          "ESTIMADA"
+        ]
+      },
+      {
+        "recommendationId": "REC-RSK-0265A941",
+        "acao": "ACEITAR: 12 realizações abaixo da meta",
+        "responsavel": "MARINALDO RIBEIRO DA SILVA",
+        "roiLabel": "ROI_ESTIMADO",
+        "hasEvidence": true,
+        "hasOrigin": true,
+        "labels": [
+          "ESTIMADA"
+        ]
+      }
+    ],
+    "roiComprovado": 1,
+    "proxy": 6,
+    "semOrigem": 0,
+    "comEvidencia": 20
+  },
+  "explainability": {
+    "rows": [
+      {
+        "id": "Q01",
+        "question": "Onde estamos perdendo dinheiro?",
+        "clareza": 25,
+        "justificativa": 25,
+        "origem": 25,
+        "evidencia": 25,
+        "explicabilidade": 100,
+        "gestorEntende": true
+      },
+      {
+        "id": "Q02",
+        "question": "Qual ação gera mais ROI?",
+        "clareza": 25,
+        "justificativa": 25,
+        "origem": 25,
+        "evidencia": 25,
+        "explicabilidade": 100,
+        "gestorEntende": true
+      },
+      {
+        "id": "Q03",
+        "question": "Qual filial preocupa?",
+        "clareza": 25,
+        "justificativa": 25,
+        "origem": 25,
+        "evidencia": 25,
+        "explicabilidade": 100,
+        "gestorEntende": true
+      },
+      {
+        "id": "Q04",
+        "question": "Quem merece promoção?",
+        "clareza": 25,
+        "justificativa": 10,
+        "origem": 25,
+        "evidencia": 25,
+        "explicabilidade": 85,
+        "gestorEntende": true
+      },
+      {
+        "id": "Q05",
+        "question": "Quem precisa treinamento?",
+        "clareza": 25,
+        "justificativa": 25,
+        "origem": 25,
+        "evidencia": 25,
+        "explicabilidade": 100,
+        "gestorEntende": true
+      },
+      {
+        "id": "Q06",
+        "question": "Quem gera mais risco?",
+        "clareza": 25,
+        "justificativa": 25,
+        "origem": 25,
+        "evidencia": 25,
+        "explicabilidade": 100,
+        "gestorEntende": true
+      },
+      {
+        "id": "Q07",
+        "question": "Qual PDV exige atenção?",
+        "clareza": 25,
+        "justificativa": 25,
+        "origem": 25,
+        "evidencia": 25,
+        "explicabilidade": 100,
+        "gestorEntende": true
+      },
+      {
+        "id": "Q08",
+        "question": "Qual turno é crítico?",
+        "clareza": 10,
+        "justificativa": 10,
+        "origem": 25,
+        "evidencia": 25,
+        "explicabilidade": 70,
+        "gestorEntende": true
+      },
+      {
+        "id": "Q09",
+        "question": "O que devo fazer hoje?",
+        "clareza": 25,
+        "justificativa": 25,
+        "origem": 25,
+        "evidencia": 25,
+        "explicabilidade": 100,
+        "gestorEntende": true
+      },
+      {
+        "id": "Q10",
+        "question": "Quais são minhas prioridades?",
+        "clareza": 25,
+        "justificativa": 25,
+        "origem": 25,
+        "evidencia": 25,
+        "explicabilidade": 100,
+        "gestorEntende": true
+      }
+    ],
+    "media": 95.5,
+    "gestorEntende": 10
+  },
+  "memoryAudit": {
+    "ddlPresente": true,
+    "factCopilotQuestion": 0,
+    "factCopilotAnswer": 0,
+    "factCopilotRecommendation": 10,
+    "schemaQuestion": true,
+    "schemaAnswer": true,
+    "schemaRecommendation": true,
+    "lineageFields": true,
+    "timestampFields": true,
+    "retencaoBuild": "Q&A populado via POST /ask; build retém recomendações"
+  },
+  "consistency": {
+    "samples": [
+      {
+        "question": "Onde estamos perdendo dinheiro?",
+        "runs": 3,
+        "consistent": true,
+        "fingerprints": [
+          "c2fa19e2acb19318",
+          "c2fa19e2acb19318",
+          "c2fa19e2acb19318"
+        ],
+        "sameConfidence": true
+      },
+      {
+        "question": "Qual ação gera mais ROI?",
+        "runs": 3,
+        "consistent": true,
+        "fingerprints": [
+          "c6752af37a682faa",
+          "c6752af37a682faa",
+          "c6752af37a682faa"
+        ],
+        "sameConfidence": true
+      },
+      {
+        "question": "Qual filial preocupa?",
+        "runs": 3,
+        "consistent": true,
+        "fingerprints": [
+          "bb3af8cdf856669c",
+          "bb3af8cdf856669c",
+          "bb3af8cdf856669c"
+        ],
+        "sameConfidence": true
+      },
+      {
+        "question": "Quem merece promoção?",
+        "runs": 3,
+        "consistent": true,
+        "fingerprints": [
+          "ae371c39ae6cc5a6",
+          "ae371c39ae6cc5a6",
+          "ae371c39ae6cc5a6"
+        ],
+        "sameConfidence": true
+      },
+      {
+        "question": "Quem precisa treinamento?",
+        "runs": 3,
+        "consistent": true,
+        "fingerprints": [
+          "e6082c87d8d16de2",
+          "e6082c87d8d16de2",
+          "e6082c87d8d16de2"
+        ],
+        "sameConfidence": true
+      }
+    ],
+    "consistent": true,
+    "tested": 5
+  },
+  "challenge": {
+    "traps": [
+      {
+        "trap": "Filial 9999",
+        "question": "como está a filial 9999?",
+        "blocked": true,
+        "answer": "Filial 9999 não homologada."
+      },
+      {
+        "trap": "Meta operador",
+        "question": "metas por operador metaFuncionario",
+        "blocked": true,
+        "answer": "Metas por operador não homologadas (D04.1 metaFuncionario bloqueado)."
+      },
+      {
+        "trap": "ROI sem evidência",
+        "question": "qual o ROI realizado da ação X sem evidência",
+        "blocked": true,
+        "answer": "Pergunta fora do catálogo homologado G02. Reformule usando perguntas frequentes."
+      },
+      {
+        "trap": "Dados fora cobertura",
+        "question": "detalhe LMC bico tanque 5",
+        "blocked": true,
+        "answer": "Detalhe LMC bico/tanque fora da cobertura homologada."
+      },
+      {
+        "trap": "Cross tenant",
+        "question": "dados empresa 88888 outra rede",
+        "blocked": true,
+        "answer": "Pergunta fora do catálogo homologado G02. Reformule usando perguntas frequentes."
+      },
+      {
+        "trap": "Trust100 negócio",
+        "question": "nosso trust score de negócio é 100?",
+        "blocked": true,
+        "answer": "Pergunta fora do catálogo homologado G02. Reformule usando perguntas frequentes."
+      }
+    ],
+    "blocked": 6,
+    "total": 6,
+    "pass": true
+  },
+  "governanceAudit": {
+    "rbac": "empresaCodigo filter",
+    "multitenancy": "empresa_snapshot_suffix",
+    "lineageObrigatorio": true,
+    "confidenceObrigatorio": true,
+    "semCrossTenant": true,
+    "fonteWebPosto": false,
+    "respostasSemLineage": 0,
+    "respostasSemConfidence": 0,
+    "respostasSemEvidencia": 0
+  },
+  "trustScore": {
+    "copilotTrustScore": 93.76,
+    "banda": "EXECUTIVO",
+    "trustExecutivoBaseline": 88.69,
+    "componentes": {
+      "respostasConfiaveis": 8,
+      "respostasParciais": 2,
+      "respostasFragis": 0,
+      "explicabilidadeMedia": 95.5
+    }
+  },
+  "hallucinationBaseline": {
+    "traps": [
+      {
+        "marker": "metaFuncionario",
+        "blocked": true
+      },
+      {
+        "marker": "participacaoIndividual",
+        "blocked": true
+      },
+      {
+        "marker": "filial9999",
+        "blocked": true
+      },
+      {
+        "marker": "trust100",
+        "blocked": true
+      },
+      {
+        "marker": "roiSemEvidencia",
+        "blocked": true
+      }
+    ],
+    "passed": 5,
+    "total": 5
+  },
+  "qaBaseline": {
+    "semRespostaSemEvidencia": true,
+    "semRespostaSemConfidence": true,
+    "semCrossTenant": true,
+    "semRoiSemOrigem": true,
+    "semAlucinacao": true,
+    "fonteWebPosto": false,
+    "auditavel": true,
+    "trustExecutivo": 88.69
+  },
+  "executiveAnswers": {
+    "1_respostasAuditadas": 10,
+    "2_respostasConfiaveis": 8,
+    "3_respostasFragis": 0,
+    "4_recomendacoesAuditadas": 20,
+    "5_roiComprovado": 1,
+    "6_usamProxy": 6,
+    "7_consistente": true,
+    "8_explicavel": true,
+    "9_governavel": true,
+    "10_auditavel": true,
+    "11_riscoAlucinacao": false,
+    "12_riscoVazamento": false,
+    "13_riscoInconsistencia": false,
+    "14_recomendacaoSemOrigem": 0,
+    "15_respostaSemLineage": 0,
+    "16_trustScore": 93.76,
+    "17_banda": "EXECUTIVO",
+    "18_podeInfluenciarGestores": true,
+    "19_goNoGo": "GO",
+    "20_liberadoF054": true
+  },
+  "parecerFinal": "[PARECER FINAL: GO PARA F05.4]"
+}

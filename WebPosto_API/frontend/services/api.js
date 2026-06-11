@@ -1049,3 +1049,58 @@ export async function postAutonomousRecommendationsRefresh(filters) {
   return raw?.data || raw;
 }
 
+export async function fetchClosedLoopLearningCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/closed-loop-learning/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    governanceRules: body?.governanceRules,
+    executiveFeedbackLoop: body?.executiveFeedbackLoop,
+    learningEngine: body?.learningEngine,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postClosedLoopLearningRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/closed-loop-learning/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchNfceIntelligenceCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/nfce-intelligence/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    governanceRules: body?.governanceRules,
+    nfceCatalogEngine: body?.nfceCatalogEngine,
+    nfceReconciliationEngine: body?.nfceReconciliationEngine,
+    nfceRiskEngine: body?.nfceRiskEngine,
+    nfceAnomalyEngine: body?.nfceAnomalyEngine,
+    nfceExecutiveIntelligence: body?.nfceExecutiveIntelligence,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postNfceIntelligenceRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/nfce-intelligence/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+

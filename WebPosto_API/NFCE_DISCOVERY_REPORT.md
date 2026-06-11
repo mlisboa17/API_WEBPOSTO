@@ -1,12 +1,9 @@
-# NFCE DISCOVERY — D01 · Agente 5
+# NFCE Discovery (F06.0)
 
-Registros: **200**
-
-## Respostas
-
-| # | Pergunta | Resposta |
-|---|---|---|
-| 1 | Ligação com venda? | **Sim** |
-| 2 | Cancelamento? | **Sim** |
-| 3 | Emissão fiscal? | **Sim** |
-| 4 | NFC-e canceladas? | Ver campo `situacao` + join VENDA.cancelada |
+- Endpoint: **/INTEGRACAO/NFCE**
+- Cobertura: **PARCIAL**
+- Service: **operator_accountability_incentive**
+- Snapshot dedicado: **False**
+- Snapshot indireto: **snapshots/people_intelligence/**
+- Eventos: cancelada, rejeitada, denegada, inutilizada
+- Campos descobertos: situacao, protocoloInutilizacao, vendaCodigo

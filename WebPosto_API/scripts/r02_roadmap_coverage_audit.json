@@ -1,0 +1,597 @@
+{
+  "sprint": "R02",
+  "readOnly": true,
+  "fonteWebPosto": false,
+  "homologatedSprints": [
+    "F01.x",
+    "F02.x",
+    "F03.x",
+    "F04.x",
+    "F05.0",
+    "F05.1",
+    "F05.2",
+    "F05.3",
+    "D00",
+    "D01",
+    "D02",
+    "D04",
+    "D04.1",
+    "D05",
+    "G01",
+    "G02",
+    "G03"
+  ],
+  "financialCoverage": {
+    "coberturaPct": 33.33,
+    "coberturaTecnicaPct": 51.28,
+    "modules": [
+      {
+        "name": "Finance Center",
+        "status": "CONCLUÍDO",
+        "sprint": "F01.x"
+      },
+      {
+        "name": "Cash Flow",
+        "status": "CONCLUÍDO",
+        "sprint": "F01.2"
+      },
+      {
+        "name": "Financial Intelligence",
+        "status": "PARCIAL",
+        "sprint": "F01.4"
+      },
+      {
+        "name": "Contas a pagar/receber",
+        "status": "PARCIAL",
+        "sprint": "gateway + finance_center"
+      },
+      {
+        "name": "DRE / Margem",
+        "status": "PARCIAL",
+        "sprint": "network_financial_overview"
+      },
+      {
+        "name": "Despesas semânticas",
+        "status": "CONCLUÍDO",
+        "sprint": "F03.2"
+      }
+    ],
+    "concluidos": 3,
+    "parciais": 3,
+    "gaps": [
+      "Margem consolidada rede",
+      "Títulos CONTA endpoint subutilizado",
+      "Conciliação fiscal-financeira"
+    ]
+  },
+  "fiscalCoverage": {
+    "items": [
+      {
+        "item": "NFCE",
+        "status": "PARCIAL",
+        "service": "operator_accountability_incentive",
+        "nota": "200 D02"
+      },
+      {
+        "item": "NFE",
+        "status": "NÃO EXPLORADO",
+        "service": null,
+        "nota": "sem motor dedicado"
+      },
+      {
+        "item": "SPED",
+        "status": "NÃO EXPLORADO",
+        "service": null,
+        "nota": "sem integração"
+      },
+      {
+        "item": "Tributação",
+        "status": "NÃO EXPLORADO",
+        "service": null,
+        "nota": "sem motor"
+      },
+      {
+        "item": "LMC principal",
+        "status": "PARCIAL",
+        "service": "d05_recovery",
+        "nota": "CONSULTAR_LMC_REDE 200"
+      },
+      {
+        "item": "LMC bico/tanque",
+        "status": "NÃO EXPLORADO",
+        "service": null,
+        "nota": "401 bloqueado"
+      },
+      {
+        "item": "Combustíveis",
+        "status": "PARCIAL",
+        "service": "fuel_analytics",
+        "nota": "analise vendas parcial"
+      },
+      {
+        "item": "Conciliação fiscal",
+        "status": "NÃO EXPLORADO",
+        "service": null,
+        "nota": "gap"
+      },
+      {
+        "item": "Fiscalização",
+        "status": "NÃO EXPLORADO",
+        "service": null,
+        "nota": "gap"
+      }
+    ],
+    "counts": {
+      "CONCLUÍDO": 0,
+      "PARCIAL": 3,
+      "NÃO EXPLORADO": 6
+    },
+    "coberturaPct": 16.67,
+    "explorado": 3,
+    "naoExplorado": 6,
+    "valorEstrategico": [
+      "LMC Intelligence",
+      "NFCE Compliance",
+      "Tax Intelligence",
+      "SPED"
+    ]
+  },
+  "cashCoverage": {
+    "coberturaRealPct": 97.5,
+    "coberturaTecnicaPct": 33.333333333333336,
+    "coberturaExecutivaPct": 88.69,
+    "modules": [
+      {
+        "name": "Cash Operations",
+        "status": "CONCLUÍDO",
+        "sprint": "F03.x"
+      },
+      {
+        "name": "Prestação de Contas",
+        "status": "CONCLUÍDO",
+        "sprint": "F03.4b",
+        "pct": 97.5
+      },
+      {
+        "name": "Vales/Faltas/Sobras",
+        "status": "CONCLUÍDO",
+        "sprint": "F03.4b"
+      },
+      {
+        "name": "Sangrias/Suprimentos",
+        "status": "PARCIAL",
+        "sprint": "D05 recovery"
+      },
+      {
+        "name": "Carta Frete",
+        "status": "CONCLUÍDO",
+        "sprint": "D05"
+      },
+      {
+        "name": "Employee Ledger",
+        "status": "CONCLUÍDO",
+        "sprint": "F03.3"
+      }
+    ],
+    "gaps": [
+      "autorizacaoGerencial",
+      "LMC detalhe bico/tanque (401)",
+      "servicos/trocas tipados PDV",
+      "layoutOperacionalTurno UI-only",
+      "meta por operador/turno (sem endpoint)"
+    ]
+  },
+  "peopleCoverage": {
+    "coberturaPct": 66.67,
+    "oficial": [
+      "Employee ledger",
+      "MAC actions",
+      "Join operador D01"
+    ],
+    "proxy": [
+      "metaFuncionario",
+      "participacaoIndividual",
+      "Goals parcial"
+    ],
+    "faltando": [
+      "funcionarioNome",
+      "participacaoIndividual",
+      "produtividadeFuncionario",
+      "metaFuncionario",
+      "fundoCaixa",
+      "layoutOperacionalTurno",
+      "autorizacaoGerencial"
+    ],
+    "modules": [
+      {
+        "name": "People Intelligence",
+        "status": "CONCLUÍDO",
+        "sprint": "F04.1"
+      },
+      {
+        "name": "Operator Profitability",
+        "status": "CONCLUÍDO",
+        "sprint": "F04.2"
+      },
+      {
+        "name": "Accountability/Incentive",
+        "status": "CONCLUÍDO",
+        "sprint": "F04.0+"
+      },
+      {
+        "name": "Goals & Campaigns",
+        "status": "PARCIAL",
+        "sprint": "F04.5",
+        "proxy": true
+      },
+      {
+        "name": "Metas operador",
+        "status": "NÃO EXPLORADO",
+        "sprint": "bloqueado D04.1"
+      },
+      {
+        "name": "Treinamento/Bônus MAC",
+        "status": "CONCLUÍDO",
+        "sprint": "F04.4 MAC"
+      }
+    ]
+  },
+  "executiveCoverage": {
+    "maturidade": "EXECUTIVO",
+    "trustExecutivo": 93.76,
+    "copilotTrustScore": 93.76,
+    "modules": [
+      {
+        "name": "F05.0 Corporate Hub",
+        "status": "CONCLUÍDO",
+        "parecer": "[PARECER FINAL: APROVADO PARA F05.1]"
+      },
+      {
+        "name": "F05.1 Decision Engine",
+        "status": "CONCLUÍDO",
+        "parecer": "[PARECER FINAL: APROVADO PARA F05.2]"
+      },
+      {
+        "name": "F05.2 Action Center",
+        "status": "CONCLUÍDO",
+        "parecer": "[PARECER FINAL: APROVADO PARA F05.3]"
+      },
+      {
+        "name": "F05.3 Copilot",
+        "status": "CONCLUÍDO",
+        "parecer": "[PARECER FINAL: APROVADO PARA F05.4]"
+      },
+      {
+        "name": "F04.7 Scorecard",
+        "status": "CONCLUÍDO",
+        "parecer": "[PARECER FINAL: APROVADO PARA F05]"
+      },
+      {
+        "name": "F04.6 Benchmark",
+        "status": "CONCLUÍDO",
+        "parecer": "[PARECER FINAL: APROVADO PARA F04.7]"
+      },
+      {
+        "name": "G02 Copilot Readiness",
+        "status": "CONCLUÍDO",
+        "parecer": "[PARECER FINAL: GO PARA F05.3]"
+      },
+      {
+        "name": "G03 Copilot Trust",
+        "status": "CONCLUÍDO",
+        "parecer": "[PARECER FINAL: GO PARA F05.4]"
+      }
+    ],
+    "dependencias": [
+      "D05 recovery",
+      "F04.x snapshots",
+      "G02 gate"
+    ],
+    "riscos": [
+      "Proxy em Goals",
+      "Promoção MAC parcial",
+      "ROI estimado vs realizado"
+    ]
+  },
+  "hiddenApiCoverage": {
+    "totalEndpoints": 39,
+    "http200": 24,
+    "consumidos": 20,
+    "ignorados": 19,
+    "consumptionPct": 51.28,
+    "neverConsumed": [
+      {
+        "endpoint": "ContaRede",
+        "path": "/INTEGRACAO/CONTA",
+        "httpStatus": 200,
+        "registros": 17
+      },
+      {
+        "endpoint": "Produto",
+        "path": "/INTEGRACAO/PRODUTO",
+        "httpStatus": 200,
+        "registros": 200
+      },
+      {
+        "endpoint": "ProdutoEmpresa",
+        "path": "/INTEGRACAO/PRODUTO_EMPRESA",
+        "httpStatus": 200,
+        "registros": 200
+      },
+      {
+        "endpoint": "TanqueRede",
+        "path": "/INTEGRACAO/TANQUE",
+        "httpStatus": 200,
+        "registros": 6
+      },
+      {
+        "endpoint": "EstoquePeriodo",
+        "path": "/INTEGRACAO/ESTOQUE_PERIODO",
+        "httpStatus": 200,
+        "registros": 200
+      },
+      {
+        "endpoint": "LmcRede",
+        "path": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+        "httpStatus": 200,
+        "registros": 28
+      },
+      {
+        "endpoint": "PlanoContaGerencial",
+        "path": "/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+        "httpStatus": 200,
+        "registros": 200
+      }
+    ],
+    "partiallyConsumed": [
+      {
+        "endpoint": "VendasFormaPagamentoRede",
+        "path": "/INTEGRACAO/CONSULTAR_VENDA_FORMA_PAGAMENTO_REDE",
+        "httpStatus": 200,
+        "registros": 0
+      },
+      {
+        "endpoint": "AnaliseVendasCombustivel",
+        "path": "/INTEGRACAO/CONSULTAR_ANALISE_VENDAS_COMBUSTIVEL",
+        "httpStatus": 200,
+        "registros": 0
+      }
+    ],
+    "blocked401": [
+      {
+        "endpoint": "VendaItemRede",
+        "path": "/INTEGRACAO/CONSULTAR_VENDA_ITEM_REDE",
+        "httpStatus": 401,
+        "registros": 0
+      },
+      {
+        "endpoint": "ProdutoRede",
+        "path": "/INTEGRACAO/PRODUTO_REDE",
+        "httpStatus": 401,
+        "registros": 0
+      },
+      {
+        "endpoint": "ProdutoEmpresaRede",
+        "path": "/INTEGRACAO/PRODUTO_EMPRESA_REDE",
+        "httpStatus": 401,
+        "registros": 0
+      },
+      {
+        "endpoint": "ProdutoCombustivel",
+        "path": "/INTEGRACAO/PRODUTO_COMBUSTIVEL",
+        "httpStatus": 401,
+        "registros": 0
+      },
+      {
+        "endpoint": "LancamentoContabilItem",
+        "path": "/INTEGRACAO/LANCAMENTO_CONTABIL_ITEM",
+        "httpStatus": 401,
+        "registros": 0
+      },
+      {
+        "endpoint": "DuplicataRede",
+        "path": "/INTEGRACAO/DUPLICATA_REDE",
+        "httpStatus": 401,
+        "registros": 0
+      },
+      {
+        "endpoint": "ClienteRede",
+        "path": "/INTEGRACAO/CLIENTE_REDE",
+        "httpStatus": 401,
+        "registros": 0
+      },
+      {
+        "endpoint": "FornecedorRede",
+        "path": "/INTEGRACAO/FORNECEDOR_REDE",
+        "httpStatus": 401,
+        "registros": 0
+      },
+      {
+        "endpoint": "CentroCustoRede",
+        "path": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+        "httpStatus": 401,
+        "registros": 0
+      },
+      {
+        "endpoint": "FuncionarioRede",
+        "path": "/INTEGRACAO/FUNCIONARIO_REDE",
+        "httpStatus": 401,
+        "registros": 0
+      },
+      {
+        "endpoint": "BombaRede",
+        "path": "/INTEGRACAO/BOMBA_REDE",
+        "httpStatus": 401,
+        "registros": 0
+      },
+      {
+        "endpoint": "BicoRede",
+        "path": "/INTEGRACAO/BICO_REDE",
+        "httpStatus": 401,
+        "registros": 0
+      },
+      {
+        "endpoint": "LmcRedeBico",
+        "path": "/INTEGRACAO/CONSULTAR_LMC_REDE_BICO",
+        "httpStatus": 401,
+        "registros": 0
+      },
+      {
+        "endpoint": "LmcRedeTanque",
+        "path": "/INTEGRACAO/CONSULTAR_LMC_REDE_TANQUE",
+        "httpStatus": 401,
+        "registros": 0
+      },
+      {
+        "endpoint": "ConsultarFuncionario",
+        "path": "/INTEGRACAO/CONSULTAR_FUNCIONARIO",
+        "httpStatus": 401,
+        "registros": 0,
+        "source": "D02"
+      }
+    ],
+    "subutilizados200": [
+      "/INTEGRACAO/CONTA",
+      "/INTEGRACAO/PRODUTO",
+      "/INTEGRACAO/PRODUTO_EMPRESA",
+      "/INTEGRACAO/TANQUE",
+      "/INTEGRACAO/ESTOQUE_PERIODO",
+      "/INTEGRACAO/CONSULTAR_LMC_REDE",
+      "/INTEGRACAO/PLANO_CONTA_GERENCIAL"
+    ],
+    "nuncaUsados": [
+      "/INTEGRACAO/CONTA",
+      "/INTEGRACAO/PRODUTO",
+      "/INTEGRACAO/PRODUTO_EMPRESA",
+      "/INTEGRACAO/TANQUE",
+      "/INTEGRACAO/ESTOQUE_PERIODO",
+      "/INTEGRACAO/CONSULTAR_LMC_REDE",
+      "/INTEGRACAO/PLANO_CONTA_GERENCIAL"
+    ]
+  },
+  "opportunityMapping": [
+    {
+      "frente": "Fiscal Intelligence (LMC+NFCE+Tax)",
+      "roi": "ALTO ROI",
+      "coberturaAtual": 22,
+      "complexidade": "ALTA"
+    },
+    {
+      "frente": "Financial Deep Coverage",
+      "roi": "ALTO ROI",
+      "coberturaAtual": 33,
+      "complexidade": "MÉDIA"
+    },
+    {
+      "frente": "Fuel Intelligence",
+      "roi": "MÉDIO ROI",
+      "coberturaAtual": 40,
+      "complexidade": "MÉDIA"
+    },
+    {
+      "frente": "NFCE Intelligence",
+      "roi": "MÉDIO ROI",
+      "coberturaAtual": 35,
+      "complexidade": "MÉDIA"
+    },
+    {
+      "frente": "Tax/SPED Intelligence",
+      "roi": "ALTO ROI",
+      "coberturaAtual": 5,
+      "complexidade": "ALTA"
+    },
+    {
+      "frente": "F05.4 Copilot Production",
+      "roi": "MÉDIO ROI",
+      "coberturaAtual": 95,
+      "complexidade": "BAIXA"
+    },
+    {
+      "frente": "People Metas Oficiais",
+      "roi": "BAIXO ROI",
+      "coberturaAtual": 0,
+      "complexidade": "ALTA"
+    },
+    {
+      "frente": "Endpoint CONTA/PRODUTO",
+      "roi": "BAIXO ROI",
+      "coberturaAtual": 10,
+      "complexidade": "BAIXA"
+    }
+  ],
+  "strategicRanking": [
+    {
+      "rank": 1,
+      "frente": "Financial Deep Coverage",
+      "roi": "ALTO ROI",
+      "coberturaAtual": 33,
+      "complexidade": "MÉDIA"
+    },
+    {
+      "rank": 2,
+      "frente": "Tax/SPED Intelligence",
+      "roi": "ALTO ROI",
+      "coberturaAtual": 5,
+      "complexidade": "ALTA"
+    },
+    {
+      "rank": 3,
+      "frente": "Fiscal Intelligence (LMC+NFCE+Tax)",
+      "roi": "ALTO ROI",
+      "coberturaAtual": 22,
+      "complexidade": "ALTA"
+    },
+    {
+      "rank": 4,
+      "frente": "NFCE Intelligence",
+      "roi": "MÉDIO ROI",
+      "coberturaAtual": 35,
+      "complexidade": "MÉDIA"
+    },
+    {
+      "rank": 5,
+      "frente": "Fuel Intelligence",
+      "roi": "MÉDIO ROI",
+      "coberturaAtual": 40,
+      "complexidade": "MÉDIA"
+    }
+  ],
+  "domainMaturity": {
+    "EXECUTIVO": 93.76,
+    "CAIXA": 97.5,
+    "PESSOAS": 66.67,
+    "FINANCEIRO": 33.33,
+    "FISCAL": 16.67,
+    "OPERACIONAL": 58.33
+  },
+  "sobreposicao": [
+    "F04.x People + F05 People engines",
+    "Cash F03 + Financial F01 despesas",
+    "D04 baseline vs D04.1 truth (refutado parcialmente)"
+  ],
+  "executiveAnswers": {
+    "1_dominioMaisMaduro": "CAIXA",
+    "2_dominioMenosExplorado": "FISCAL",
+    "3_financeiroConcluido": false,
+    "4_fiscalConcluido": false,
+    "5_caixaConcluido": true,
+    "6_pessoasConcluido": false,
+    "7_executivoConcluido": true,
+    "8_maiorGap": "FISCAL",
+    "9_maiorRoiFuturo": "Fiscal Intelligence (LMC+NFCE+Tax)",
+    "10_menorRoiFuturo": "People Metas Oficiais",
+    "11_endpoints200Subutilizados": 7,
+    "12_endpointsNuncaUsados": 7,
+    "13_inteligenciaFalta": "Fiscal/Tributário/SPED + LMC detalhe + Financial deep",
+    "14_inteligenciaMadura": "Executivo F05.x + Prestação Caixa F03.4b",
+    "15_sobreposicaoEsforcos": true,
+    "16_dominioNegligenciado": "FISCAL",
+    "17_roadmapEquilibrado": true,
+    "18_proximaSprintRecomendada": "F05.4",
+    "19_proximaFrenteRecomendada": "Financial Deep Coverage",
+    "20_continuarF05ouMudar": "CONTINUAR F05.x",
+    "trustExecutivo": 93.76,
+    "copilotTrustScore": 93.76
+  },
+  "parecerFinal": "[PARECER FINAL: CONTINUAR F05.x]"
+}

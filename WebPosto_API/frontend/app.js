@@ -56,6 +56,10 @@ import {
   postExecutiveCopilotAsk,
   fetchAutonomousRecommendationsCockpit,
   postAutonomousRecommendationsRefresh,
+  fetchClosedLoopLearningCockpit,
+  postClosedLoopLearningRefresh,
+  fetchNfceIntelligenceCockpit,
+  postNfceIntelligenceRefresh,
 } from "./services/api.js";
 import { APP_CONFIG } from "./config.js";
 import { renderFilters, updateCompanyOptions } from "./components/filters.js";
@@ -83,6 +87,8 @@ import { renderExecutiveDecision } from "./pages/executiveDecision.js";
 import { renderActionCenter } from "./pages/actionCenter.js";
 import { renderExecutiveCopilot } from "./pages/executiveCopilot.js";
 import { renderRecommendations } from "./pages/recommendations.js";
+import { renderLearning } from "./pages/learning.js";
+import { renderNfceIntelligence } from "./pages/nfceIntelligence.js";
 import { renderCompanySwitcher } from "./components/CompanySwitcher.js";
 import { createTableState } from "./services/tableState.js";
 import {
@@ -143,6 +149,12 @@ const VIEW_ALIASES = {
   recommendations: "recommendations",
   "recommendation-engine": "recommendations",
   recommendationengine: "recommendations",
+  learning: "learning",
+  "closed-loop-learning": "learning",
+  closedlooplearning: "learning",
+  nfceIntelligence: "nfceIntelligence",
+  "nfce-intelligence": "nfceIntelligence",
+  nfceintelligence: "nfceIntelligence",
 };
 
 const VIEW_URL_NAMES = {
@@ -162,6 +174,8 @@ const VIEW_URL_NAMES = {
   actionCenter: "action-center",
   executiveCopilot: "executive-copilot",
   recommendations: "recommendations",
+  learning: "learning",
+  nfceIntelligence: "nfce-intelligence",
 };
 
 function normalizeViewId(view) {
@@ -440,6 +454,8 @@ const executiveDecisionNode = document.querySelector("#executiveDecisionView");
 const actionCenterNode = document.querySelector("#actionCenterView");
 const executiveCopilotNode = document.querySelector("#executiveCopilotView");
 const recommendationsNode = document.querySelector("#recommendationsView");
+const learningNode = document.querySelector("#learningView");
+const nfceIntelligenceNode = document.querySelector("#nfceIntelligenceView");
 const fuelsNode = document.querySelector("#fuelsView");
 const salesNode = document.querySelector("#salesView");
 const stockNode = document.querySelector("#stockView");
@@ -483,6 +499,8 @@ function setView(view) {
   actionCenterNode.classList.toggle("hidden", view !== "actionCenter");
   executiveCopilotNode.classList.toggle("hidden", view !== "executiveCopilot");
   recommendationsNode.classList.toggle("hidden", view !== "recommendations");
+  learningNode.classList.toggle("hidden", view !== "learning");
+  nfceIntelligenceNode.classList.toggle("hidden", view !== "nfceIntelligence");
   fuelsNode.classList.toggle("hidden", view !== "fuels");
   salesNode.classList.toggle("hidden", view !== "sales");
   stockNode.classList.toggle("hidden", view !== "stock");
@@ -515,6 +533,8 @@ function ensureDataDefaults() {
   if (!state.data.actionCenter) state.data.actionCenter = null;
   if (!state.data.executiveCopilot) state.data.executiveCopilot = null;
   if (!state.data.recommendations) state.data.recommendations = null;
+  if (!state.data.learning) state.data.learning = null;
+  if (!state.data.nfceIntelligence) state.data.nfceIntelligence = null;
 }
 
 function clearFilters() {
@@ -907,6 +927,20 @@ function renderAll() {
     },
   });
 
+  renderLearning(learningNode, state.data.learning, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
+  renderNfceIntelligence(nfceIntelligenceNode, state.data.nfceIntelligence, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
   renderStock(
     stockNode,
     state.data.stock,
@@ -1238,6 +1272,59 @@ async function loadRecommendationsWithSnapshotFirst(bypassCache = false) {
   } catch (error) {
     console.warn("[recommendations] falha ao carregar cockpit:", error);
     state.data.recommendations = null;
+  }
+}
+
+async function loadLearningWithSnapshotFirst(bypassCache = false) {
+  try {
+    const learning = await fetchClosedLoopLearningCockpit(state.filters);
+    state.data.learning = {
+      cockpit: learning.cockpit,
+      executiveAnswers: learning.executiveAnswers,
+      parecerFinal: learning.parecerFinal,
+      qa: learning.qa,
+      governanceRules: learning.governanceRules,
+      executiveFeedbackLoop: learning.executiveFeedbackLoop,
+      learningEngine: learning.learningEngine,
+      fromSnapshot: learning.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (learning.snapshot?.stale) {
+      postClosedLoopLearningRefresh(state.filters).catch((error) => {
+        console.warn("[learning] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[learning] falha ao carregar cockpit:", error);
+    state.data.learning = null;
+  }
+}
+
+async function loadNfceIntelligenceWithSnapshotFirst(bypassCache = false) {
+  try {
+    const nfce = await fetchNfceIntelligenceCockpit(state.filters);
+    state.data.nfceIntelligence = {
+      cockpit: nfce.cockpit,
+      executiveAnswers: nfce.executiveAnswers,
+      parecerFinal: nfce.parecerFinal,
+      qa: nfce.qa,
+      governanceRules: nfce.governanceRules,
+      nfceCatalogEngine: nfce.nfceCatalogEngine,
+      nfceReconciliationEngine: nfce.nfceReconciliationEngine,
+      nfceRiskEngine: nfce.nfceRiskEngine,
+      nfceAnomalyEngine: nfce.nfceAnomalyEngine,
+      nfceExecutiveIntelligence: nfce.nfceExecutiveIntelligence,
+      fromSnapshot: nfce.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (nfce.snapshot?.stale) {
+      postNfceIntelligenceRefresh(state.filters).catch((error) => {
+        console.warn("[nfceIntelligence] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[nfceIntelligence] falha ao carregar cockpit:", error);
+    state.data.nfceIntelligence = null;
   }
 }
 
@@ -1679,6 +1766,14 @@ async function refreshAll(bypassCache = false) {
 
     if (state.view === "recommendations") {
       await loadRecommendationsWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "learning") {
+      await loadLearningWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "nfceIntelligence") {
+      await loadNfceIntelligenceWithSnapshotFirst(bypassCache);
     }
 
     if (state.view === "stock") {

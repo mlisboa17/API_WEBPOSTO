@@ -1,0 +1,679 @@
+{
+  "sprint": "F06.0",
+  "modo": "READ_ONLY_DISCOVERY",
+  "fiscalCoverageR02": {
+    "items": [
+      {
+        "item": "NFCE",
+        "status": "PARCIAL",
+        "service": "operator_accountability_incentive",
+        "nota": "200 D02"
+      },
+      {
+        "item": "NFE",
+        "status": "NÃO EXPLORADO",
+        "service": null,
+        "nota": "sem motor dedicado"
+      },
+      {
+        "item": "SPED",
+        "status": "NÃO EXPLORADO",
+        "service": null,
+        "nota": "sem integração"
+      },
+      {
+        "item": "Tributação",
+        "status": "NÃO EXPLORADO",
+        "service": null,
+        "nota": "sem motor"
+      },
+      {
+        "item": "LMC principal",
+        "status": "PARCIAL",
+        "service": "d05_recovery",
+        "nota": "CONSULTAR_LMC_REDE 200"
+      },
+      {
+        "item": "LMC bico/tanque",
+        "status": "NÃO EXPLORADO",
+        "service": null,
+        "nota": "401 bloqueado"
+      },
+      {
+        "item": "Combustíveis",
+        "status": "PARCIAL",
+        "service": "fuel_analytics",
+        "nota": "analise vendas parcial"
+      },
+      {
+        "item": "Conciliação fiscal",
+        "status": "NÃO EXPLORADO",
+        "service": null,
+        "nota": "gap"
+      },
+      {
+        "item": "Fiscalização",
+        "status": "NÃO EXPLORADO",
+        "service": null,
+        "nota": "gap"
+      }
+    ],
+    "counts": {
+      "CONCLUÍDO": 0,
+      "PARCIAL": 3,
+      "NÃO EXPLORADO": 6
+    },
+    "coberturaPct": 16.67,
+    "explorado": 3,
+    "naoExplorado": 6,
+    "valorEstrategico": [
+      "LMC Intelligence",
+      "NFCE Compliance",
+      "Tax Intelligence",
+      "SPED"
+    ]
+  },
+  "hiddenApiCoverage": {
+    "blocked401Fiscal": [
+      "/INTEGRACAO/CONSULTAR_LMC_REDE_TANQUE",
+      "/INTEGRACAO/BOMBA_REDE",
+      "/INTEGRACAO/PRODUTO_REDE",
+      "/INTEGRACAO/LANCAMENTO_CONTABIL_ITEM",
+      "/INTEGRACAO/CENTRO_CUSTO_REDE",
+      "/INTEGRACAO/CONSULTAR_LMC_REDE_BICO",
+      "/INTEGRACAO/PRODUTO_COMBUSTIVEL",
+      "/INTEGRACAO/BICO_REDE",
+      "/INTEGRACAO/PRODUTO_EMPRESA_REDE"
+    ],
+    "http200UnusedFiscal": [
+      "/INTEGRACAO/CONTA",
+      "/INTEGRACAO/PRODUTO",
+      "/INTEGRACAO/PRODUTO_EMPRESA",
+      "/INTEGRACAO/TANQUE",
+      "/INTEGRACAO/ESTOQUE_PERIODO",
+      "/INTEGRACAO/CONSULTAR_LMC_REDE",
+      "/INTEGRACAO/PLANO_CONTA_GERENCIAL"
+    ],
+    "http200AccessibleFiscal": []
+  },
+  "nfceDiscovery": {
+    "endpoint": "/INTEGRACAO/NFCE",
+    "coverage": "PARCIAL",
+    "service": "operator_accountability_incentive",
+    "snapshotDedicado": false,
+    "snapshotIndireto": "snapshots/people_intelligence/",
+    "camposDescobertos": [
+      "situacao",
+      "protocoloInutilizacao",
+      "vendaCodigo"
+    ],
+    "eventos": [
+      "cancelada",
+      "rejeitada",
+      "denegada",
+      "inutilizada"
+    ]
+  },
+  "lmcDiscovery": {
+    "endpointPrincipal": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+    "coverage": "PARCIAL",
+    "services": [
+      "fuel_analytics_service.py",
+      "executive_coverage_recovery_service.py"
+    ],
+    "snapshots": "snapshots/fuel/",
+    "bloqueados401": [
+      "/INTEGRACAO/CONSULTAR_LMC_REDE_BICO",
+      "/INTEGRACAO/CONSULTAR_LMC_REDE_TANQUE",
+      "/INTEGRACAO/BOMBA_REDE",
+      "/INTEGRACAO/BICO_REDE"
+    ],
+    "http200": "PARCIAL",
+    "reconciliacaoValidada": false
+  },
+  "taxDiscovery": {
+    "coverage": "NULA",
+    "estatico": [
+      "src/domain/adelaide/fiscal_catalog.py"
+    ],
+    "apiWrappers": [
+      "/INTEGRACAO/INTEGRACAO_PRODUTO_TRIBUTO_ICMS",
+      "/INTEGRACAO/INTEGRACAO_PRODUTO_TRIBUTO_PIS_CONFINS"
+    ],
+    "tributosMapeados": [
+      "ICMS",
+      "PIS",
+      "COFINS",
+      "CST",
+      "NCM",
+      "CFOP"
+    ],
+    "cfopSped": "NULA"
+  },
+  "financialClassificationDiscovery": {
+    "conta": {
+      "path": "/INTEGRACAO/CONTA",
+      "coverage": "PARCIAL",
+      "drePossivel": true
+    },
+    "planoContaGerencial": {
+      "path": "/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+      "coverage": "PARCIAL",
+      "runtimeService": false
+    },
+    "centroCusto": {
+      "path": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+      "coverage": "NULA",
+      "blocked401": true
+    },
+    "drePossivel": true,
+    "classificarDespesas": true,
+    "centroCustoPossivel": false
+  },
+  "productFiscalDiscovery": {
+    "coverage": "PARCIAL",
+    "paths": [
+      "/INTEGRACAO/PRODUTO",
+      "/INTEGRACAO/PRODUTO_EMPRESA"
+    ],
+    "ncmNoCatalogo": true,
+    "tributacaoIntegrada": false
+  },
+  "hiddenFiscalApis": {
+    "auditsRevisitados": [
+      "D00",
+      "D01",
+      "D02",
+      "D04",
+      "D05",
+      "R02"
+    ],
+    "naoExplorados": [
+      "NFE",
+      "SPED",
+      "Tributação",
+      "LMC bico/tanque",
+      "Conciliação fiscal",
+      "Fiscalização"
+    ],
+    "parcialmenteUsados": [
+      "NFCE",
+      "LMC principal",
+      "Combustíveis"
+    ]
+  },
+  "fiscalRoiMapping": [
+    {
+      "dominio": "NFCE Compliance",
+      "roi": "ALTO",
+      "cobertura": "PARCIAL",
+      "gap": "Motor dedicado + inutilização"
+    },
+    {
+      "dominio": "LMC Reconciliação",
+      "roi": "ALTO",
+      "cobertura": "PARCIAL",
+      "gap": "LMC×caixa não validado"
+    },
+    {
+      "dominio": "LMC Bico/Tanque",
+      "roi": "ALTO",
+      "cobertura": "NULA",
+      "gap": "401 token"
+    },
+    {
+      "dominio": "Tributação ICMS/PIS/COFINS",
+      "roi": "ALTO",
+      "cobertura": "NULA",
+      "gap": "Sem motor API"
+    },
+    {
+      "dominio": "Plano Contas Fiscal-Financeiro",
+      "roi": "MÉDIO",
+      "cobertura": "PARCIAL",
+      "gap": "200 sem runtime service"
+    },
+    {
+      "dominio": "Catálogo PRODUTO/NCM",
+      "roi": "MÉDIO",
+      "cobertura": "PARCIAL",
+      "gap": "Sem join tributário"
+    },
+    {
+      "dominio": "NFE Entrada/Saída",
+      "roi": "MÉDIO",
+      "cobertura": "NULA",
+      "gap": "401 + sem service"
+    },
+    {
+      "dominio": "SPED / Fiscalização",
+      "roi": "BAIXO",
+      "cobertura": "NULA",
+      "gap": "Zero integração"
+    }
+  ],
+  "fiscalArchitecture": {
+    "F06.1": "NFCE Intelligence — motor dedicado, snapshots nfce/, join VENDA, métricas cancelamento/inutilização",
+    "F06.2": "LMC Intelligence — reconciliação perda/sobra, fuel+lmc unificado, pedido token bico/tanque",
+    "F06.3": "Tax & Product Fiscal Catalog — PRODUTO tributos + fiscal_catalog dinâmico + NCM audit",
+    "F06.4": "Fiscal Reconciliation & Governance — conciliação fiscal-financeira, copilot homologado, audit F06"
+  },
+  "endpointInventory": [
+    {
+      "name": "NFCE",
+      "path": "/INTEGRACAO/NFCE",
+      "coverage": "PARCIAL",
+      "blocked401": false,
+      "http200Unused": false,
+      "serviceConsumers": [
+        "src/gateway/webposto_client.py",
+        "src/services/coverage_truth_audit_service.py",
+        "src/services/live_data_truth_baseline_service.py"
+      ],
+      "codeReferences": [
+        "src/gateway/webposto_client.py",
+        "src/services/coverage_truth_audit_service.py",
+        "src/services/live_data_truth_baseline_service.py"
+      ]
+    },
+    {
+      "name": "NFE_ENTRADA",
+      "path": "/INTEGRACAO/NOTA_FISCAL_ENTRADA",
+      "coverage": "NULA",
+      "blocked401": false,
+      "http200Unused": false,
+      "serviceConsumers": [],
+      "codeReferences": [
+        "src/webposto/endpoints/integracoes.py"
+      ]
+    },
+    {
+      "name": "NFE_SAIDA",
+      "path": "/INTEGRACAO/NOTA_FISCAL_SAIDA",
+      "coverage": "NULA",
+      "blocked401": false,
+      "http200Unused": false,
+      "serviceConsumers": [],
+      "codeReferences": [
+        "src/webposto/endpoints/integracoes.py"
+      ]
+    },
+    {
+      "name": "LMC_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+      "coverage": "PARCIAL",
+      "blocked401": false,
+      "http200Unused": true,
+      "serviceConsumers": [
+        "src/gateway/webposto_client.py",
+        "src/services/coverage_truth_audit_service.py",
+        "src/services/executive_coverage_recovery_service.py",
+        "src/services/fuel_analytics_service.py"
+      ],
+      "codeReferences": [
+        "src/gateway/webposto_client.py",
+        "src/services/coverage_truth_audit_service.py",
+        "src/services/executive_coverage_recovery_service.py",
+        "src/services/fuel_analytics_service.py"
+      ]
+    },
+    {
+      "name": "LMC_REDE_BICO",
+      "path": "/INTEGRACAO/CONSULTAR_LMC_REDE_BICO",
+      "coverage": "NULA",
+      "blocked401": true,
+      "http200Unused": false,
+      "serviceConsumers": [],
+      "codeReferences": []
+    },
+    {
+      "name": "LMC_REDE_TANQUE",
+      "path": "/INTEGRACAO/CONSULTAR_LMC_REDE_TANQUE",
+      "coverage": "NULA",
+      "blocked401": true,
+      "http200Unused": false,
+      "serviceConsumers": [],
+      "codeReferences": []
+    },
+    {
+      "name": "LMC_LEGADO",
+      "path": "/INTEGRACAO/LMC",
+      "coverage": "PARCIAL",
+      "blocked401": false,
+      "http200Unused": false,
+      "serviceConsumers": [
+        "src/gateway/webposto_client.py",
+        "src/services/coverage_truth_audit_service.py",
+        "src/services/executive_ai_copilot_service.py",
+        "src/services/executive_coverage_recovery_service.py",
+        "src/services/fuel_analytics_service.py"
+      ],
+      "codeReferences": [
+        "src/gateway/webposto_client.py",
+        "src/services/coverage_truth_audit_service.py",
+        "src/services/executive_ai_copilot_service.py",
+        "src/services/executive_coverage_recovery_service.py",
+        "src/services/fuel_analytics_service.py",
+        "src/webposto/client.py",
+        "src/webposto/endpoints/combustivel.py"
+      ]
+    },
+    {
+      "name": "TANQUE",
+      "path": "/INTEGRACAO/TANQUE",
+      "coverage": "PARCIAL",
+      "blocked401": false,
+      "http200Unused": true,
+      "serviceConsumers": [
+        "src/gateway/webposto_client.py",
+        "src/services/executive_coverage_recovery_service.py"
+      ],
+      "codeReferences": [
+        "src/gateway/webposto_client.py",
+        "src/infrastructure/services/cache_service.py",
+        "src/services/executive_coverage_recovery_service.py"
+      ]
+    },
+    {
+      "name": "BOMBA_REDE",
+      "path": "/INTEGRACAO/BOMBA_REDE",
+      "coverage": "NULA",
+      "blocked401": true,
+      "http200Unused": false,
+      "serviceConsumers": [],
+      "codeReferences": []
+    },
+    {
+      "name": "BICO_REDE",
+      "path": "/INTEGRACAO/BICO_REDE",
+      "coverage": "NULA",
+      "blocked401": true,
+      "http200Unused": false,
+      "serviceConsumers": [],
+      "codeReferences": []
+    },
+    {
+      "name": "PRODUTO",
+      "path": "/INTEGRACAO/PRODUTO",
+      "coverage": "PARCIAL",
+      "blocked401": false,
+      "http200Unused": true,
+      "serviceConsumers": [
+        "src/gateway/webposto_client.py",
+        "src/services/analytics_service.py",
+        "src/services/executive_coverage_recovery_service.py",
+        "src/services/network_financial_overview_service.py",
+        "src/services/prestacao_contas_intelligence_service.py",
+        "src/services/produto_catalog.py"
+      ],
+      "codeReferences": [
+        "src/application/usecases/dashboard_filtros_meta.py",
+        "src/application/usecases/fetch_produto_grupos.py",
+        "src/application/usecases/fetch_produtos_catalog.py",
+        "src/application/usecases/produto_crud.py",
+        "src/domain/adelaide/fuel_catalog.py",
+        "src/domain/catalog/product_schema.py",
+        "src/domain/catalog/produto_crud_schema.py",
+        "src/gateway/webposto_client.py"
+      ]
+    },
+    {
+      "name": "PRODUTO_EMPRESA",
+      "path": "/INTEGRACAO/PRODUTO_EMPRESA",
+      "coverage": "PARCIAL",
+      "blocked401": false,
+      "http200Unused": true,
+      "serviceConsumers": [
+        "src/gateway/webposto_client.py",
+        "src/services/produto_catalog.py"
+      ],
+      "codeReferences": [
+        "src/application/usecases/fetch_produtos_catalog.py",
+        "src/gateway/webposto_client.py",
+        "src/infrastructure/clients/posto_client_v1.py",
+        "src/services/produto_catalog.py",
+        "src/webposto/endpoints/produtos.py"
+      ]
+    },
+    {
+      "name": "PRODUTO_REDE",
+      "path": "/INTEGRACAO/PRODUTO_REDE",
+      "coverage": "NULA",
+      "blocked401": true,
+      "http200Unused": false,
+      "serviceConsumers": [
+        "src/gateway/webposto_client.py"
+      ],
+      "codeReferences": [
+        "src/gateway/webposto_client.py"
+      ]
+    },
+    {
+      "name": "PRODUTO_COMBUSTIVEL",
+      "path": "/INTEGRACAO/PRODUTO_COMBUSTIVEL",
+      "coverage": "NULA",
+      "blocked401": true,
+      "http200Unused": false,
+      "serviceConsumers": [
+        "src/gateway/webposto_client.py"
+      ],
+      "codeReferences": [
+        "src/gateway/webposto_client.py",
+        "src/webposto/endpoints/abastecimento.py"
+      ]
+    },
+    {
+      "name": "PRODUTO_TRIBUTO_ICMS",
+      "path": "/INTEGRACAO/INTEGRACAO_PRODUTO_TRIBUTO_ICMS",
+      "coverage": "NULA",
+      "blocked401": false,
+      "http200Unused": false,
+      "serviceConsumers": [],
+      "codeReferences": [
+        "src/webposto/endpoints/produtos.py"
+      ]
+    },
+    {
+      "name": "PRODUTO_TRIBUTO_PIS_COFINS",
+      "path": "/INTEGRACAO/INTEGRACAO_PRODUTO_TRIBUTO_PIS_CONFINS",
+      "coverage": "NULA",
+      "blocked401": false,
+      "http200Unused": false,
+      "serviceConsumers": [],
+      "codeReferences": [
+        "src/webposto/endpoints/produtos.py"
+      ]
+    },
+    {
+      "name": "CONTA",
+      "path": "/INTEGRACAO/CONTA",
+      "coverage": "PARCIAL",
+      "blocked401": false,
+      "http200Unused": true,
+      "serviceConsumers": [
+        "src/gateway/webposto_client.py",
+        "src/services/corporate_cash_flow_service.py",
+        "src/services/coverage_truth_audit_service.py",
+        "src/services/executive_coverage_recovery_service.py",
+        "src/services/expense_lineage_service.py",
+        "src/services/expense_semantic_service.py",
+        "src/services/financial_intelligence_advanced_service.py",
+        "src/services/financial_intelligence_service.py",
+        "src/services/logos_expense_classifier_v3.py",
+        "src/services/prestacao_contas_intelligence_service.py",
+        "src/services/supplier_intelligence_service.py",
+        "src/services/supplier_segmentation.py",
+        "src/services/supplier_segmentation_service.py"
+      ],
+      "codeReferences": [
+        "src/gateway/webposto_client.py",
+        "src/services/corporate_cash_flow_service.py",
+        "src/services/coverage_truth_audit_service.py",
+        "src/services/executive_coverage_recovery_service.py",
+        "src/services/expense_lineage_service.py",
+        "src/services/expense_semantic_service.py",
+        "src/services/financial_intelligence_advanced_service.py",
+        "src/services/financial_intelligence_service.py"
+      ]
+    },
+    {
+      "name": "PLANO_CONTA_GERENCIAL",
+      "path": "/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+      "coverage": "PARCIAL",
+      "blocked401": false,
+      "http200Unused": true,
+      "serviceConsumers": [
+        "build_account_category_mapping.py",
+        "logos_expense_classifier_v3.py"
+      ],
+      "codeReferences": []
+    },
+    {
+      "name": "PLANO_DE_CONTAS",
+      "path": "/INTEGRACAO/PLANO_DE_CONTAS",
+      "coverage": "NULA",
+      "blocked401": false,
+      "http200Unused": false,
+      "serviceConsumers": [],
+      "codeReferences": [
+        "src/webposto/endpoints/financeiro.py"
+      ]
+    },
+    {
+      "name": "DRE",
+      "path": "/INTEGRACAO/DRE",
+      "coverage": "PARCIAL",
+      "blocked401": false,
+      "http200Unused": false,
+      "serviceConsumers": [
+        "src/services/analytics_multiselect.py",
+        "src/services/financial_intelligence_advanced_service.py",
+        "src/services/management_classification_service.py"
+      ],
+      "codeReferences": [
+        "src/interfaces/http/routes/fechamento_enterprise.py",
+        "src/services/analytics_multiselect.py",
+        "src/services/financial_intelligence_advanced_service.py",
+        "src/services/management_classification_service.py"
+      ]
+    },
+    {
+      "name": "CENTRO_CUSTO_REDE",
+      "path": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+      "coverage": "NULA",
+      "blocked401": true,
+      "http200Unused": false,
+      "serviceConsumers": [
+        "src/services/expense_lineage_service.py",
+        "src/services/financial_intelligence_advanced_service.py"
+      ],
+      "codeReferences": [
+        "src/services/expense_lineage_service.py",
+        "src/services/financial_intelligence_advanced_service.py"
+      ]
+    },
+    {
+      "name": "LANCAMENTO_CONTABIL",
+      "path": "/INTEGRACAO/LANCAMENTO_CONTABIL",
+      "coverage": "PARCIAL",
+      "blocked401": false,
+      "http200Unused": false,
+      "serviceConsumers": [
+        "src/services/financial_intelligence_advanced_service.py"
+      ],
+      "codeReferences": [
+        "src/services/financial_intelligence_advanced_service.py",
+        "src/webposto/endpoints/financeiro.py"
+      ]
+    },
+    {
+      "name": "LANCAMENTO_CONTABIL_ITEM",
+      "path": "/INTEGRACAO/LANCAMENTO_CONTABIL_ITEM",
+      "coverage": "NULA",
+      "blocked401": true,
+      "http200Unused": false,
+      "serviceConsumers": [],
+      "codeReferences": []
+    },
+    {
+      "name": "ESTOQUE_PERIODO",
+      "path": "/INTEGRACAO/ESTOQUE_PERIODO",
+      "coverage": "PARCIAL",
+      "blocked401": false,
+      "http200Unused": true,
+      "serviceConsumers": [
+        "src/gateway/webposto_client.py"
+      ],
+      "codeReferences": [
+        "src/gateway/webposto_client.py"
+      ]
+    },
+    {
+      "name": "ANALISE_VENDAS_COMBUSTIVEL",
+      "path": "/INTEGRACAO/CONSULTAR_ANALISE_VENDAS_COMBUSTIVEL",
+      "coverage": "PARCIAL",
+      "blocked401": false,
+      "http200Unused": false,
+      "serviceConsumers": [
+        "src/gateway/webposto_client.py"
+      ],
+      "codeReferences": [
+        "src/gateway/webposto_client.py"
+      ]
+    }
+  ],
+  "executiveAnswers": {
+    "1_coberturaFiscalAtual": 16.67,
+    "2_coberturaNfce": "PARCIAL",
+    "3_coberturaLmc": "PARCIAL",
+    "4_coberturaTributaria": "NULA",
+    "5_coberturaPlanoContas": "PARCIAL",
+    "6_coberturaProdutos": "PARCIAL",
+    "7_endpointsFiscaisDescobertos": 25,
+    "8_endpointsFiscaisNaoUsados": 7,
+    "9_endpointsFiscaisBloqueados": 9,
+    "10_endpointsFiscaisHttp200": 17,
+    "11_maiorGapFiscal": "Tributação + SPED + NFE + LMC bico/tanque (401)",
+    "12_maiorOportunidadeFiscal": "NFCE Intelligence + LMC Reconciliation",
+    "13_maiorRoiFiscal": "Fiscal Intelligence (LMC+NFCE+Tax) — ALTO ROI",
+    "14_possivelFiscalIntelligence": true,
+    "15_possivelTaxIntelligence": true,
+    "16_possivelLmcIntelligence": true,
+    "17_possivelNfceIntelligence": true,
+    "18_proximaSprintRecomendada": "F06.1 — NFCE Intelligence",
+    "19_roadmapFiscalRecomendado": "F06.1 NFCE → F06.2 LMC → F06.3 Tax/Product → F06.4 Reconciliation",
+    "20_aprovadoF061": true
+  },
+  "qa": {
+    "readOnly": true,
+    "semAlteracaoRuntime": true,
+    "semDashboards": true,
+    "semScoreFiscal": true,
+    "semIaFiscalNova": true,
+    "discoveryCompleto": true,
+    "fontesAuditoria": [
+      "R02",
+      "D00",
+      "D01",
+      "D02",
+      "D04",
+      "D05"
+    ]
+  },
+  "parecerFinal": "[PARECER FINAL: APROVADO PARA F06.1]",
+  "d02NfceRows": null,
+  "d05LmcRecovery": {
+    "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+    "httpStatus": 200,
+    "registros": 28,
+    "perdaFisica": true,
+    "quebraCombustivel": true,
+    "reconciliacaoTanque": true,
+    "reconciliacaoBico": true,
+    "detalheBico401": true,
+    "detalheTanque401": true,
+    "lmcTotalmenteMapeado": true,
+    "coberturaRecoveryPct": 85.0,
+    "impactoOperacional": "perdaSobra + escritural vs caixa combustível"
+  }
+}
