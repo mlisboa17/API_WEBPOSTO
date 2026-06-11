@@ -39,10 +39,25 @@ CRITICAL_PDVS = {54193, 15880}
 
 
 def _dec(value: Any) -> float:
+    return safe_float(value, 0.0)
+
+
+def safe_float(value: Any, default: float = 0.0) -> float:
     try:
-        return float(Decimal(str(value or 0)))
-    except Exception:
-        return 0.0
+        if value is None or value == "":
+            return default
+        return float(Decimal(str(value)))
+    except (TypeError, ValueError, ArithmeticError):
+        return default
+
+
+def safe_int(value: Any, default: int = 0) -> int:
+    try:
+        if value is None or value == "":
+            return default
+        return int(float(value))
+    except (TypeError, ValueError):
+        return default
 
 
 def _round2(value: float) -> float:
@@ -220,7 +235,7 @@ class CashOperationsService:
             )
 
         severity_order = {"CRITICO": 0, "ALTO": 1, "ATENCAO": 2, "INFO": 3}
-        alerts.sort(key=lambda a: (severity_order.get(a["nivel"], 9), -a["diferencaAbsoluta"]))
+        alerts.sort(key=lambda a: (severity_order.get(a["nivel"], 9), -safe_float(a.get("diferencaAbsoluta"))))
 
         active = [a for a in alerts if a["nivel"] in {"INFO", "ATENCAO", "ALTO", "CRITICO"}]
         return {
@@ -264,7 +279,7 @@ class CashOperationsService:
             {"turno": turn, "alertas": len(rows), "diferencaAbsoluta": _round2(sum(r["diferencaAbsoluta"] for r in rows))}
             for turn, rows in by_turn.items()
         ]
-        items.sort(key=lambda x: x["diferencaAbsoluta"], reverse=True)
+        items.sort(key=lambda x: safe_float(x.get("diferencaAbsoluta")), reverse=True)
         return items
 
     @staticmethod
@@ -291,7 +306,12 @@ class CashOperationsService:
                     "monitoramentoPrioritario": code in focus,
                 }
             )
-        items.sort(key=lambda x: (not x.get("monitoramentoPrioritario", False), -x["diferencaAbsoluta"]))
+        items.sort(
+            key=lambda x: (
+                not x.get("monitoramentoPrioritario", False),
+                -safe_float(x.get("diferencaAbsoluta")),
+            )
+        )
         return items
 
     def _dimension_score(self, rows: list[dict[str, Any]]) -> float:
@@ -403,8 +423,8 @@ class CashOperationsService:
             },
             "operadoresCriticos": len(crit_ops),
             "pdvsCriticos": len(crit_pdvs),
-            "operadores": sorted(entity_scores, key=lambda x: x["score"])[:20],
-            "pdvs": sorted(pdv_entity_scores, key=lambda x: x["score"])[:20],
+            "operadores": sorted(entity_scores, key=lambda x: safe_float(x.get("score")))[:20],
+            "pdvs": sorted(pdv_entity_scores, key=lambda x: safe_float(x.get("score")))[:20],
         }
 
     def _operator_analytics(self, merged: list[dict[str, Any]], risk: dict[str, Any]) -> dict[str, Any]:
@@ -432,9 +452,15 @@ class CashOperationsService:
                 }
             )
 
-        items.sort(key=lambda x: x["diferencaAcumulada"])
-        best = sorted(items, key=lambda x: (-x.get("cashRiskScore") or 0, -x["fechamentos"]))[:20]
-        worst = sorted(items, key=lambda x: (x.get("cashRiskScore") or 0, x["diferencaAcumulada"]))[:20]
+        items.sort(key=lambda x: safe_float(x.get("diferencaAcumulada")))
+        best = sorted(
+            items,
+            key=lambda x: (-safe_float(x.get("cashRiskScore")), -safe_int(x.get("fechamentos"))),
+        )[:20]
+        worst = sorted(
+            items,
+            key=lambda x: (safe_float(x.get("cashRiskScore")), safe_float(x.get("diferencaAcumulada"))),
+        )[:20]
 
         return {
             "totalOperadores": len(items),
@@ -472,7 +498,7 @@ class CashOperationsService:
             }
             items.append(item)
 
-        items.sort(key=lambda x: x["diferencaAcumulada"])
+        items.sort(key=lambda x: safe_float(x.get("diferencaAcumulada")))
         focus = {
             "54193": next((x for x in items if x["pdvCodigo"] == 54193), None),
             "15880": next((x for x in items if x["pdvCodigo"] == 15880), None),
@@ -505,7 +531,7 @@ class CashOperationsService:
                 }
             )
 
-        items.sort(key=lambda x: abs(x["desvioAcumulado"]), reverse=True)
+        items.sort(key=lambda x: abs(safe_float(x.get("desvioAcumulado"))), reverse=True)
         return {"totalTurnos": len(items), "porTurno": items}
 
     @staticmethod

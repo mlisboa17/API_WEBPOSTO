@@ -13,6 +13,8 @@ from src.services.cash_operations_service import (
     CashOperationsService,
     _alert_level,
     _risk_band,
+    safe_float,
+    safe_int,
 )
 
 
@@ -128,3 +130,63 @@ def test_snapshot_ttl_constant():
     from src.services.cash_operations_snapshot_service import CASH_OPERATIONS_SNAPSHOT_TTL_SECONDS
 
     assert CASH_OPERATIONS_SNAPSHOT_TTL_SECONDS == 300.0
+
+
+def test_safe_float_handles_nullable_values():
+    assert safe_float(None) == 0.0
+    assert safe_float("") == 0.0
+    assert safe_float("12.5") == 12.5
+    assert safe_float("invalid", 3.0) == 3.0
+
+
+def test_operator_with_null_risk_score():
+    svc = CashOperationsService()
+    rows = _sample_rows()
+    risk = svc._build_risk_score(rows, rows)
+    for op in risk["operadores"]:
+        op["score"] = None
+    ops = svc._operator_analytics(rows, risk)
+    assert ops["totalOperadores"] == 2
+    assert len(ops["rankingMelhores"]) <= 20
+
+
+def test_operator_with_missing_risk_score():
+    svc = CashOperationsService()
+    rows = _sample_rows()
+    ops = svc._operator_analytics(rows, {"operadores": [], "pdvs": []})
+    assert all(item.get("cashRiskScore") is None for item in ops["todos"])
+    assert ops["rankingPiores"]
+
+
+def test_operator_with_empty_risk_score():
+    svc = CashOperationsService()
+    rows = _sample_rows()
+    risk = {"operadores": [{"funcionarioCodigo": 276288, "score": "", "band": "Critico"}], "pdvs": []}
+    ops = svc._operator_analytics(rows, risk)
+    assert ops["rankingMelhores"] is not None
+
+
+def test_operator_with_null_fechamentos():
+    items = [
+        {"cashRiskScore": 50.0, "fechamentos": None, "diferencaAcumulada": 10.0},
+        {"cashRiskScore": None, "fechamentos": 3, "diferencaAcumulada": 5.0},
+    ]
+    ranked = sorted(
+        items,
+        key=lambda x: (-safe_float(x.get("cashRiskScore")), -safe_int(x.get("fechamentos"))),
+    )
+    assert len(ranked) == 2
+
+
+def test_operator_sorting_with_partial_data():
+    svc = CashOperationsService()
+    rows = _sample_rows()
+    risk = svc._build_risk_score(rows, rows)
+    risk["operadores"] = [
+        {"funcionarioCodigo": 276288, "score": None, "band": "Critico"},
+        {"funcionarioCodigo": 294273, "score": 80.0, "band": "Bom"},
+    ]
+    ops = svc._operator_analytics(rows, risk)
+    best_scores = [item.get("cashRiskScore") for item in ops["rankingMelhores"]]
+    assert 80.0 in best_scores or None in best_scores
+    assert safe_int(None) == 0
