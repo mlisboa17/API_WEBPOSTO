@@ -25,6 +25,7 @@ from src.interfaces.http.routes import goals_campaign_engine
 from src.interfaces.http.routes import benchmark_intelligence
 from src.interfaces.http.routes import executive_scorecard
 from src.interfaces.http.routes import corporate_intelligence_hub
+from src.interfaces.http.routes import executive_decision_engine
 from src.interfaces.http.routes import data_trust_baseline
 from src.interfaces.http.routes import prestacao_contas
 from src.interfaces.http.routes import financial_intelligence
@@ -76,6 +77,7 @@ def create_app() -> FastAPI:
     app.include_router(benchmark_intelligence.router)
     app.include_router(executive_scorecard.router)
     app.include_router(corporate_intelligence_hub.router)
+    app.include_router(executive_decision_engine.router)
     app.include_router(data_trust_baseline.router)
     app.include_router(prestacao_contas.router)
     app.include_router(financial_intelligence.router)

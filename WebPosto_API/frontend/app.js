@@ -47,6 +47,8 @@ import {
   postExecutiveScorecardRefresh,
   fetchCorporateHubCockpit,
   postCorporateHubRefresh,
+  fetchExecutiveDecisionCockpit,
+  postExecutiveDecisionRefresh,
 } from "./services/api.js";
 import { APP_CONFIG } from "./config.js";
 import { renderFilters, updateCompanyOptions } from "./components/filters.js";
@@ -70,6 +72,7 @@ import { renderGoalsCampaign } from "./pages/goalsCampaign.js";
 import { renderBenchmark } from "./pages/benchmark.js";
 import { renderExecutiveScorecard } from "./pages/executiveScorecard.js";
 import { renderCorporateHub } from "./pages/corporateHub.js";
+import { renderExecutiveDecision } from "./pages/executiveDecision.js";
 import { renderCompanySwitcher } from "./components/CompanySwitcher.js";
 import { createTableState } from "./services/tableState.js";
 import {
@@ -119,6 +122,9 @@ const VIEW_ALIASES = {
   executivescorecard: "executiveScorecard",
   "corporate-hub": "corporateHub",
   corporatehub: "corporateHub",
+  "executive-decision": "executiveDecision",
+  "decision-engine": "executiveDecision",
+  decisionengine: "executiveDecision",
 };
 
 const VIEW_URL_NAMES = {
@@ -134,6 +140,7 @@ const VIEW_URL_NAMES = {
   benchmark: "benchmark",
   executiveScorecard: "executive-scorecard",
   corporateHub: "corporate-hub",
+  executiveDecision: "executive-decision",
 };
 
 function normalizeViewId(view) {
@@ -408,6 +415,7 @@ const goalsCampaignNode = document.querySelector("#goalsCampaignView");
 const benchmarkNode = document.querySelector("#benchmarkView");
 const executiveScorecardNode = document.querySelector("#executiveScorecardView");
 const corporateHubNode = document.querySelector("#corporateHubView");
+const executiveDecisionNode = document.querySelector("#executiveDecisionView");
 const fuelsNode = document.querySelector("#fuelsView");
 const salesNode = document.querySelector("#salesView");
 const stockNode = document.querySelector("#stockView");
@@ -447,6 +455,7 @@ function setView(view) {
   benchmarkNode.classList.toggle("hidden", view !== "benchmark");
   executiveScorecardNode.classList.toggle("hidden", view !== "executiveScorecard");
   corporateHubNode.classList.toggle("hidden", view !== "corporateHub");
+  executiveDecisionNode.classList.toggle("hidden", view !== "executiveDecision");
   fuelsNode.classList.toggle("hidden", view !== "fuels");
   salesNode.classList.toggle("hidden", view !== "sales");
   stockNode.classList.toggle("hidden", view !== "stock");
@@ -475,6 +484,7 @@ function ensureDataDefaults() {
   if (!state.data.benchmark) state.data.benchmark = null;
   if (!state.data.executiveScorecard) state.data.executiveScorecard = null;
   if (!state.data.corporateHub) state.data.corporateHub = null;
+  if (!state.data.executiveDecision) state.data.executiveDecision = null;
 }
 
 function clearFilters() {
@@ -838,6 +848,13 @@ function renderAll() {
     },
   });
 
+  renderExecutiveDecision(executiveDecisionNode, state.data.executiveDecision, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
   renderStock(
     stockNode,
     state.data.stock,
@@ -1096,6 +1113,30 @@ async function loadCorporateHubWithSnapshotFirst(bypassCache = false) {
   } catch (error) {
     console.warn("[corporateHub] falha ao carregar cockpit:", error);
     state.data.corporateHub = null;
+  }
+}
+
+async function loadExecutiveDecisionWithSnapshotFirst(bypassCache = false) {
+  try {
+    const decision = await fetchExecutiveDecisionCockpit(state.filters);
+    state.data.executiveDecision = {
+      cockpit: decision.cockpit,
+      executiveAnswers: decision.executiveAnswers,
+      parecerFinal: decision.parecerFinal,
+      decisaoArquitetural: decision.decisaoArquitetural,
+      qa: decision.qa,
+      planoCorporativoConsolidado: decision.planoCorporativoConsolidado,
+      fromSnapshot: decision.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (decision.snapshot?.stale) {
+      postExecutiveDecisionRefresh(state.filters).catch((error) => {
+        console.warn("[executiveDecision] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[executiveDecision] falha ao carregar cockpit:", error);
+    state.data.executiveDecision = null;
   }
 }
 
@@ -1497,6 +1538,10 @@ async function refreshAll(bypassCache = false) {
 
     if (state.view === "corporateHub") {
       await loadCorporateHubWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "executiveDecision") {
+      await loadExecutiveDecisionWithSnapshotFirst(bypassCache);
     }
 
     if (state.view === "stock") {

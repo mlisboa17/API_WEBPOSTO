@@ -935,3 +935,28 @@ export async function postCorporateHubRefresh(filters) {
   return raw?.data || raw;
 }
 
+export async function fetchExecutiveDecisionCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/executive-decision/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    decisaoArquitetural: body?.decisaoArquitetural,
+    qa: body?.qa,
+    planoCorporativoConsolidado: body?.planoCorporativoConsolidado,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postExecutiveDecisionRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/executive-decision/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
