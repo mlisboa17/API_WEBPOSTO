@@ -960,3 +960,92 @@ export async function postExecutiveDecisionRefresh(filters) {
   return raw?.data || raw;
 }
 
+export async function fetchActionCenterCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/action-center/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    governanceRules: body?.governanceRules,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postActionCenterRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/action-center/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchExecutiveCopilotCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/executive-copilot/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    governanceRules: body?.governanceRules,
+    conversationLayer: body?.conversationLayer,
+    recommendationEngine: body?.recommendationEngine,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postExecutiveCopilotRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/executive-copilot/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function postExecutiveCopilotAsk(filters, pergunta) {
+  const raw = await apiClient.post(
+    "/api/v1/executive-copilot/ask",
+    { pergunta },
+    {
+      params: performanceParams(filters),
+      timeout: ANALYTICS_TIMEOUT_MS,
+    }
+  );
+  const body = raw?.data || raw || {};
+  return body?.data || body;
+}
+
+export async function fetchAutonomousRecommendationsCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/autonomous-recommendations/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    governanceRules: body?.governanceRules,
+    executiveFeedEngine: body?.executiveFeedEngine,
+    recommendationPrioritizationEngine: body?.recommendationPrioritizationEngine,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postAutonomousRecommendationsRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/autonomous-recommendations/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+

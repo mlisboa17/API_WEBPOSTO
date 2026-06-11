@@ -49,6 +49,13 @@ import {
   postCorporateHubRefresh,
   fetchExecutiveDecisionCockpit,
   postExecutiveDecisionRefresh,
+  fetchActionCenterCockpit,
+  postActionCenterRefresh,
+  fetchExecutiveCopilotCockpit,
+  postExecutiveCopilotRefresh,
+  postExecutiveCopilotAsk,
+  fetchAutonomousRecommendationsCockpit,
+  postAutonomousRecommendationsRefresh,
 } from "./services/api.js";
 import { APP_CONFIG } from "./config.js";
 import { renderFilters, updateCompanyOptions } from "./components/filters.js";
@@ -73,6 +80,9 @@ import { renderBenchmark } from "./pages/benchmark.js";
 import { renderExecutiveScorecard } from "./pages/executiveScorecard.js";
 import { renderCorporateHub } from "./pages/corporateHub.js";
 import { renderExecutiveDecision } from "./pages/executiveDecision.js";
+import { renderActionCenter } from "./pages/actionCenter.js";
+import { renderExecutiveCopilot } from "./pages/executiveCopilot.js";
+import { renderRecommendations } from "./pages/recommendations.js";
 import { renderCompanySwitcher } from "./components/CompanySwitcher.js";
 import { createTableState } from "./services/tableState.js";
 import {
@@ -125,6 +135,14 @@ const VIEW_ALIASES = {
   "executive-decision": "executiveDecision",
   "decision-engine": "executiveDecision",
   decisionengine: "executiveDecision",
+  "action-center": "actionCenter",
+  actioncenter: "actionCenter",
+  "executive-copilot": "executiveCopilot",
+  executivecopilot: "executiveCopilot",
+  copilot: "executiveCopilot",
+  recommendations: "recommendations",
+  "recommendation-engine": "recommendations",
+  recommendationengine: "recommendations",
 };
 
 const VIEW_URL_NAMES = {
@@ -141,6 +159,9 @@ const VIEW_URL_NAMES = {
   executiveScorecard: "executive-scorecard",
   corporateHub: "corporate-hub",
   executiveDecision: "executive-decision",
+  actionCenter: "action-center",
+  executiveCopilot: "executive-copilot",
+  recommendations: "recommendations",
 };
 
 function normalizeViewId(view) {
@@ -416,6 +437,9 @@ const benchmarkNode = document.querySelector("#benchmarkView");
 const executiveScorecardNode = document.querySelector("#executiveScorecardView");
 const corporateHubNode = document.querySelector("#corporateHubView");
 const executiveDecisionNode = document.querySelector("#executiveDecisionView");
+const actionCenterNode = document.querySelector("#actionCenterView");
+const executiveCopilotNode = document.querySelector("#executiveCopilotView");
+const recommendationsNode = document.querySelector("#recommendationsView");
 const fuelsNode = document.querySelector("#fuelsView");
 const salesNode = document.querySelector("#salesView");
 const stockNode = document.querySelector("#stockView");
@@ -456,6 +480,9 @@ function setView(view) {
   executiveScorecardNode.classList.toggle("hidden", view !== "executiveScorecard");
   corporateHubNode.classList.toggle("hidden", view !== "corporateHub");
   executiveDecisionNode.classList.toggle("hidden", view !== "executiveDecision");
+  actionCenterNode.classList.toggle("hidden", view !== "actionCenter");
+  executiveCopilotNode.classList.toggle("hidden", view !== "executiveCopilot");
+  recommendationsNode.classList.toggle("hidden", view !== "recommendations");
   fuelsNode.classList.toggle("hidden", view !== "fuels");
   salesNode.classList.toggle("hidden", view !== "sales");
   stockNode.classList.toggle("hidden", view !== "stock");
@@ -485,6 +512,9 @@ function ensureDataDefaults() {
   if (!state.data.executiveScorecard) state.data.executiveScorecard = null;
   if (!state.data.corporateHub) state.data.corporateHub = null;
   if (!state.data.executiveDecision) state.data.executiveDecision = null;
+  if (!state.data.actionCenter) state.data.actionCenter = null;
+  if (!state.data.executiveCopilot) state.data.executiveCopilot = null;
+  if (!state.data.recommendations) state.data.recommendations = null;
 }
 
 function clearFilters() {
@@ -855,6 +885,28 @@ function renderAll() {
     },
   });
 
+  renderActionCenter(actionCenterNode, state.data.actionCenter, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
+  renderExecutiveCopilot(executiveCopilotNode, state.data.executiveCopilot, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+    onAsk: async (pergunta) => postExecutiveCopilotAsk(state.filters, pergunta),
+  });
+
+  renderRecommendations(recommendationsNode, state.data.recommendations, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
   renderStock(
     stockNode,
     state.data.stock,
@@ -1113,6 +1165,79 @@ async function loadCorporateHubWithSnapshotFirst(bypassCache = false) {
   } catch (error) {
     console.warn("[corporateHub] falha ao carregar cockpit:", error);
     state.data.corporateHub = null;
+  }
+}
+
+async function loadExecutiveCopilotWithSnapshotFirst(bypassCache = false) {
+  try {
+    const copilot = await fetchExecutiveCopilotCockpit(state.filters);
+    state.data.executiveCopilot = {
+      cockpit: copilot.cockpit,
+      executiveAnswers: copilot.executiveAnswers,
+      parecerFinal: copilot.parecerFinal,
+      qa: copilot.qa,
+      governanceRules: copilot.governanceRules,
+      conversationLayer: copilot.conversationLayer,
+      recommendationEngine: copilot.recommendationEngine,
+      fromSnapshot: copilot.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (copilot.snapshot?.stale) {
+      postExecutiveCopilotRefresh(state.filters).catch((error) => {
+        console.warn("[executiveCopilot] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[executiveCopilot] falha ao carregar cockpit:", error);
+    state.data.executiveCopilot = null;
+  }
+}
+
+async function loadActionCenterWithSnapshotFirst(bypassCache = false) {
+  try {
+    const ac = await fetchActionCenterCockpit(state.filters);
+    state.data.actionCenter = {
+      cockpit: ac.cockpit,
+      executiveAnswers: ac.executiveAnswers,
+      parecerFinal: ac.parecerFinal,
+      qa: ac.qa,
+      governanceRules: ac.governanceRules,
+      fromSnapshot: ac.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (ac.snapshot?.stale) {
+      postActionCenterRefresh(state.filters).catch((error) => {
+        console.warn("[actionCenter] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[actionCenter] falha ao carregar cockpit:", error);
+    state.data.actionCenter = null;
+  }
+}
+
+async function loadRecommendationsWithSnapshotFirst(bypassCache = false) {
+  try {
+    const rec = await fetchAutonomousRecommendationsCockpit(state.filters);
+    state.data.recommendations = {
+      cockpit: rec.cockpit,
+      executiveAnswers: rec.executiveAnswers,
+      parecerFinal: rec.parecerFinal,
+      qa: rec.qa,
+      governanceRules: rec.governanceRules,
+      executiveFeedEngine: rec.executiveFeedEngine,
+      recommendationPrioritizationEngine: rec.recommendationPrioritizationEngine,
+      fromSnapshot: rec.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (rec.snapshot?.stale) {
+      postAutonomousRecommendationsRefresh(state.filters).catch((error) => {
+        console.warn("[recommendations] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[recommendations] falha ao carregar cockpit:", error);
+    state.data.recommendations = null;
   }
 }
 
@@ -1542,6 +1667,18 @@ async function refreshAll(bypassCache = false) {
 
     if (state.view === "executiveDecision") {
       await loadExecutiveDecisionWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "actionCenter") {
+      await loadActionCenterWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "executiveCopilot") {
+      await loadExecutiveCopilotWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "recommendations") {
+      await loadRecommendationsWithSnapshotFirst(bypassCache);
     }
 
     if (state.view === "stock") {
