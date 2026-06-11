@@ -1,0 +1,318 @@
+{
+  "sprint": "G02",
+  "readOnly": true,
+  "fonteWebPosto": false,
+  "knowledgeCoverage": {
+    "domains": [
+      {
+        "domain": "Corporate Hub",
+        "status": "CONFIÁVEL",
+        "evidence": true,
+        "proxy": false,
+        "gaps": [],
+        "audit": "corporate_hub",
+        "snapshot": "corporate_hub"
+      },
+      {
+        "domain": "Executive Scorecard",
+        "status": "CONFIÁVEL",
+        "evidence": true,
+        "proxy": false,
+        "gaps": [],
+        "audit": "executive_scorecard",
+        "snapshot": "executive_scorecard"
+      },
+      {
+        "domain": "Benchmark",
+        "status": "CONFIÁVEL",
+        "evidence": true,
+        "proxy": false,
+        "gaps": [],
+        "audit": "benchmark",
+        "snapshot": "benchmark"
+      },
+      {
+        "domain": "People Intelligence",
+        "status": "CONFIÁVEL",
+        "evidence": true,
+        "proxy": false,
+        "gaps": [],
+        "audit": "people",
+        "snapshot": "people"
+      },
+      {
+        "domain": "Decision Engine",
+        "status": "CONFIÁVEL",
+        "evidence": true,
+        "proxy": false,
+        "gaps": [],
+        "audit": "decision_engine",
+        "snapshot": "decision_engine"
+      },
+      {
+        "domain": "Action Center",
+        "status": "CONFIÁVEL",
+        "evidence": true,
+        "proxy": false,
+        "gaps": [],
+        "audit": "action_center",
+        "snapshot": "action_center"
+      },
+      {
+        "domain": "Goals & Campaigns",
+        "status": "PARCIAL",
+        "evidence": true,
+        "proxy": true,
+        "gaps": [],
+        "audit": "goals",
+        "snapshot": "goals"
+      }
+    ],
+    "confiavel": 6,
+    "parcial": 1
+  },
+  "decisionEvidence": {
+    "total": 36,
+    "citable": 36,
+    "notCitable": 0
+  },
+  "actionEvidence": {
+    "total": 36,
+    "withExecutionEvidence": 3,
+    "canSpeakExecution": true,
+    "canSpeakResult": true
+  },
+  "traceability": {
+    "auditavel": 39,
+    "fragil": 18
+  },
+  "questionCatalog": [
+    {
+      "domain": "FINANCEIRO",
+      "question": "Onde estamos perdendo dinheiro?",
+      "source": "F05.0 financialHub.perdas",
+      "status": "RESPONDÍVEL"
+    },
+    {
+      "domain": "FINANCEIRO",
+      "question": "Qual ação gera mais ROI?",
+      "source": "F05.1 2_acaoMaiorRoi",
+      "status": "RESPONDÍVEL"
+    },
+    {
+      "domain": "FINANCEIRO",
+      "question": "Qual filial preocupa?",
+      "source": "F05.0 8_piorFilial / 5333",
+      "status": "RESPONDÍVEL"
+    },
+    {
+      "domain": "PESSOAS",
+      "question": "Quem merece promoção?",
+      "source": "F05.1 9_operadorPromocao / MAC",
+      "status": "PARCIALMENTE_RESPONDÍVEL"
+    },
+    {
+      "domain": "PESSOAS",
+      "question": "Quem precisa treinamento?",
+      "source": "F05.1 11_operadorTreinamento",
+      "status": "RESPONDÍVEL"
+    },
+    {
+      "domain": "PESSOAS",
+      "question": "Quem gera mais risco?",
+      "source": "F05.0 piorOperador / F04.1",
+      "status": "RESPONDÍVEL"
+    },
+    {
+      "domain": "OPERACOES",
+      "question": "Qual PDV exige atenção?",
+      "source": "F05.1 6_pdvIntervencao 54193",
+      "status": "RESPONDÍVEL"
+    },
+    {
+      "domain": "OPERACOES",
+      "question": "Qual turno é crítico?",
+      "source": "F05.1 7_turnoIntervencao 1º Turno",
+      "status": "RESPONDÍVEL"
+    },
+    {
+      "domain": "EXECUTIVO",
+      "question": "O que devo fazer hoje?",
+      "source": "F05.1 1_decisaoNumero1",
+      "status": "RESPONDÍVEL"
+    },
+    {
+      "domain": "EXECUTIVO",
+      "question": "Quais são minhas prioridades?",
+      "source": "F05.2 prioridade1",
+      "status": "RESPONDÍVEL"
+    }
+  ],
+  "hallucinationChallenge": {
+    "traps": [
+      {
+        "trap": "Metas por operador inexistentes",
+        "marker": "metaFuncionario",
+        "expectedRefusal": true,
+        "systemWouldRefuse": true
+      },
+      {
+        "trap": "Participação individual oficial UI",
+        "marker": "participacaoIndividual",
+        "expectedRefusal": true,
+        "systemWouldRefuse": true
+      },
+      {
+        "trap": "LMC detalhe bico/tanque",
+        "marker": "LMC bico",
+        "expectedRefusal": true,
+        "systemWouldRefuse": true
+      },
+      {
+        "trap": "ROI realizado sem evidência execução",
+        "marker": "roiRealizado sem executionEvidence",
+        "expectedRefusal": true,
+        "systemWouldRefuse": true
+      },
+      {
+        "trap": "Filial não homologada 9999",
+        "marker": "empresaCodigo 9999",
+        "expectedRefusal": true,
+        "systemWouldRefuse": true
+      },
+      {
+        "trap": "Trust 100 como negócio",
+        "marker": "trust100 negócio",
+        "expectedRefusal": true,
+        "systemWouldRefuse": true
+      },
+      {
+        "trap": "Dado sem lineage",
+        "marker": "sem snapshot",
+        "expectedRefusal": true,
+        "systemWouldRefuse": true
+      },
+      {
+        "trap": "Perdas onde estamos perdendo",
+        "marker": "perdas F05.0",
+        "expectedRefusal": false,
+        "systemWouldRefuse": false
+      },
+      {
+        "trap": "Maior ROI decisão",
+        "marker": "F05.1 acaoMaiorRoi",
+        "expectedRefusal": false,
+        "systemWouldRefuse": false
+      },
+      {
+        "trap": "Filial preocupa 5333",
+        "marker": "F05.0 piorFilial",
+        "expectedRefusal": false,
+        "systemWouldRefuse": false
+      }
+    ],
+    "riskCount": 0
+  },
+  "governance": {
+    "rbac": "API empresaCodigo filter — homologado",
+    "multitenancy": "empresa_snapshot_suffix",
+    "crossTenant": false,
+    "semCrossTenant": true,
+    "lineageObrigatorio": true,
+    "trustExecutivo": 88.69,
+    "vazamentoRisco": "BAIXO",
+    "fonteWebPosto": false
+  },
+  "architecture": {
+    "services": [
+      "corporate_intelligence_hub_service",
+      "executive_scorecard_service",
+      "benchmark_intelligence_service",
+      "operator_performance / people_intelligence",
+      "executive_decision_engine_service",
+      "action_center_service",
+      "goals_campaign_engine_service",
+      "executive_coverage_recovery_service"
+    ],
+    "snapshots": [
+      "corporate_hub",
+      "decision_engine",
+      "action_center",
+      "executive_scorecard",
+      "benchmark",
+      "people",
+      "goals"
+    ],
+    "apis": [
+      {
+        "path": "/api/v1/corporate-hub/cockpit",
+        "domain": "corporate_hub"
+      },
+      {
+        "path": "/api/v1/executive-scorecard/cockpit",
+        "domain": "executive_scorecard"
+      },
+      {
+        "path": "/api/v1/benchmark/cockpit",
+        "domain": "benchmark"
+      },
+      {
+        "path": "/api/v1/people-intelligence/cockpit",
+        "domain": "people"
+      },
+      {
+        "path": "/api/v1/goals-campaigns/cockpit",
+        "domain": "goals"
+      },
+      {
+        "path": "/api/v1/executive-decision/cockpit",
+        "domain": "decision_engine"
+      },
+      {
+        "path": "/api/v1/action-center/cockpit",
+        "domain": "action_center"
+      },
+      {
+        "path": "/api/v1/data-trust/recovery/cockpit",
+        "domain": "d05"
+      }
+    ],
+    "proibido": [
+      "WebPosto live",
+      "Postgres operacional direto"
+    ]
+  },
+  "executiveAnswers": {
+    "1_dominiosCobertos": 7,
+    "2_dominiosComEvidencia": 7,
+    "3_dominiosComProxy": 1,
+    "4_decisoesAuditaveis": 36,
+    "5_acoesComEvidencia": 3,
+    "6_copilotFalaRoi": true,
+    "7_copilotFalaExecucao": true,
+    "8_copilotFalaPessoas": true,
+    "9_copilotFalaOperacoes": true,
+    "10_copilotFalaFinanceiro": true,
+    "11_riscoAlucinacao": false,
+    "12_riscoVazamento": false,
+    "13_riscoCrossTenant": false,
+    "14_recomendacaoSemLineage": 0,
+    "15_roiSemOrigem": 0,
+    "16_catalogoCompleto": true,
+    "17_copilotGovernavel": true,
+    "18_copilotAuditavel": true,
+    "19_goNoGo": "GO",
+    "20_f053Liberado": true,
+    "trustExecutivo": 88.69,
+    "totalDecisoes": 36,
+    "totalAcoes": 36,
+    "confiavelDomains": 6,
+    "parcialDomains": 1,
+    "catalogoRespondivel": 9,
+    "catalogoParcial": 1,
+    "catalogoNao": 0,
+    "traceableRecommendations": 39,
+    "fragileRecommendations": 18
+  },
+  "parecerFinal": "[PARECER FINAL: GO PARA F05.3]"
+}
