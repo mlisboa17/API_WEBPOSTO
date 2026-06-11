@@ -1,0 +1,3510 @@
+{
+  "generatedAt": "2026-06-09T18:11:43",
+  "windows": {
+    "7d": [
+      "2026-06-01",
+      "2026-06-07"
+    ],
+    "30d": [
+      "2026-05-08",
+      "2026-06-07"
+    ],
+    "90d": [
+      "2026-03-09",
+      "2026-06-07"
+    ]
+  },
+  "readOnly": true,
+  "windowAnalysis": {
+    "7d": {
+      "batch": {
+        "CAIXA_REDE": {
+          "status": 200,
+          "count": 21,
+          "ms": 612.9
+        },
+        "CAIXA_APRESENTADO_REDE": {
+          "status": 200,
+          "count": 0,
+          "ms": 128.6
+        },
+        "CAIXA": {
+          "status": 200,
+          "count": 21,
+          "ms": 152.7
+        },
+        "CAIXA_APRESENTADO": {
+          "status": 200,
+          "count": 21,
+          "ms": 257.3
+        },
+        "MOVIMENTO_CONTA": {
+          "status": 200,
+          "count": 400,
+          "ms": 4805.4
+        },
+        "TRANSFERENCIA_BANCARIA": {
+          "status": 200,
+          "count": 400,
+          "ms": 69493.9
+        },
+        "DESPESAS_REDE": {
+          "status": 200,
+          "count": 1317,
+          "ms": 2280.4
+        }
+      },
+      "mergedCount": 21,
+      "despesaApuradoSum": 5079.67,
+      "diferencaSum": -768.86,
+      "reportDespesaSum": 5079.67,
+      "forensics": {
+        "camposMapeados": {
+          "ap_despesaApresentado": {
+            "canonical": "despesaApresentado",
+            "category": "DESPESA_CAIXA",
+            "registros": 21,
+            "preenchimentoPct": 100.0,
+            "naoZero": 19,
+            "soma": 5079.67,
+            "absSoma": 5079.67,
+            "exemplo": 386.73
+          },
+          "ap_despesaApurado": {
+            "canonical": "despesaApurado",
+            "category": "DESPESA_CAIXA",
+            "registros": 21,
+            "preenchimentoPct": 100.0,
+            "naoZero": 19,
+            "soma": 5079.67,
+            "absSoma": 5079.67,
+            "exemplo": 386.73
+          },
+          "ap_despesaDiferenca": {
+            "canonical": "despesaDiferenca",
+            "category": "DESPESA_CAIXA",
+            "registros": 21,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_valeFunApresentado": {
+            "canonical": "valeFunApresentado",
+            "category": "VALE_FUNCIONARIO",
+            "registros": 21,
+            "preenchimentoPct": 100.0,
+            "naoZero": 13,
+            "soma": 19989.91,
+            "absSoma": 19989.91,
+            "exemplo": 1045.09
+          },
+          "ap_valeFunApurado": {
+            "canonical": "valeFunApurado",
+            "category": "VALE_FUNCIONARIO",
+            "registros": 21,
+            "preenchimentoPct": 100.0,
+            "naoZero": 13,
+            "soma": 19989.91,
+            "absSoma": 19989.91,
+            "exemplo": 1045.09
+          },
+          "ap_valeFunDiferenca": {
+            "canonical": "valeFunDiferenca",
+            "category": "VALE_FUNCIONARIO",
+            "registros": 21,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_emprestimoApurado": {
+            "canonical": "emprestimoApurado",
+            "category": "EMPRESTIMO",
+            "registros": 21,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_emprestimoDiferenca": {
+            "canonical": "emprestimoDiferenca",
+            "category": "EMPRESTIMO",
+            "registros": 21,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_suprimentoCaixa": {
+            "canonical": "suprimentoCaixa",
+            "category": "SUPRIMENTO",
+            "registros": 21,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_fundoCaixaCredito": {
+            "canonical": "fundoCaixaCredito",
+            "category": "FUNDO_CAIXA",
+            "registros": 21,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_fundoCxDebApurado": {
+            "canonical": "fundoCxDebApurado",
+            "category": "FUNDO_CAIXA",
+            "registros": 21,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_fundoCxDebDiferenca": {
+            "canonical": "fundoCxDebDiferenca",
+            "category": "FUNDO_CAIXA",
+            "registros": 21,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_transfBancApurado": {
+            "canonical": "transfBancApurado",
+            "category": "OUTROS",
+            "registros": 21,
+            "preenchimentoPct": 100.0,
+            "naoZero": 15,
+            "soma": 70598.94,
+            "absSoma": 70598.94,
+            "exemplo": 11163.04
+          }
+        },
+        "camposDinamicos": [
+          {
+            "campo": "ap_chequeTroco",
+            "registros": 21,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_emprestimoApresentado",
+            "registros": 21,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_fundoCxDebApresentado",
+            "registros": 21,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_valeCliente",
+            "registros": 21,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_valeClienteApresentado",
+            "registros": 21,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_valeClienteApurado",
+            "registros": 21,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_valeClienteDiferenca",
+            "registros": 21,
+            "naoZero": 0,
+            "soma": 0.0
+          }
+        ],
+        "respostas": {
+          "despesasExplicitas": true,
+          "porPdv": true,
+          "porOperador": true,
+          "porTurno": true,
+          "impactaDiferenca": false
+        },
+        "totaisPorPdv": [
+          {
+            "pdvCodigo": 56764,
+            "despesaApurado": 1857.0
+          },
+          {
+            "pdvCodigo": 54193,
+            "despesaApurado": 1806.14
+          },
+          {
+            "pdvCodigo": 15880,
+            "despesaApurado": 1416.53
+          }
+        ],
+        "totaisPorOperador": [
+          {
+            "funcionarioCodigo": 276288,
+            "despesaApurado": 1360.5
+          },
+          {
+            "funcionarioCodigo": 158924,
+            "despesaApurado": 1226.53
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "despesaApurado": 670.39
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "despesaApurado": 649.75
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "despesaApurado": 496.5
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "despesaApurado": 486.0
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "despesaApurado": 190.0
+          }
+        ],
+        "correlacaoDespesaDiferenca": -0.0409,
+        "correlacaoDespesaDinheiro": -0.0409
+      },
+      "expenseVsDiff": {
+        "porPdv": [
+          {
+            "id": 54193,
+            "fechamentos": 7,
+            "despesaTotal": 1806.14,
+            "diferencaTotal": -479.61,
+            "diferencaDinheiro": -479.61,
+            "diasComDespesa": 5,
+            "diasSemDespesa": 2,
+            "correlacaoDespesaDiff": -0.6702
+          },
+          {
+            "id": 15880,
+            "fechamentos": 6,
+            "despesaTotal": 1416.53,
+            "diferencaTotal": -309.85,
+            "diferencaDinheiro": -309.85,
+            "diasComDespesa": 6,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": 0.2298
+          },
+          {
+            "id": 56764,
+            "fechamentos": 8,
+            "despesaTotal": 1857.0,
+            "diferencaTotal": 20.6,
+            "diferencaDinheiro": 20.6,
+            "diasComDespesa": 8,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": 0.7724
+          }
+        ],
+        "porOperador": [
+          {
+            "id": 294273,
+            "fechamentos": 3,
+            "despesaTotal": 649.75,
+            "diferencaTotal": -252.27,
+            "diferencaDinheiro": -252.27,
+            "diasComDespesa": 2,
+            "diasSemDespesa": 1,
+            "correlacaoDespesaDiff": -0.9373
+          },
+          {
+            "id": 299151,
+            "fechamentos": 1,
+            "despesaTotal": 190.0,
+            "diferencaTotal": -215.77,
+            "diferencaDinheiro": -215.77,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 299371,
+            "fechamentos": 1,
+            "despesaTotal": 486.0,
+            "diferencaTotal": -116.8,
+            "diferencaDinheiro": -116.8,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 227386,
+            "fechamentos": 3,
+            "despesaTotal": 670.39,
+            "diferencaTotal": -110.54,
+            "diferencaDinheiro": -110.54,
+            "diasComDespesa": 2,
+            "diasSemDespesa": 1,
+            "correlacaoDespesaDiff": 0.366
+          },
+          {
+            "id": 158924,
+            "fechamentos": 5,
+            "despesaTotal": 1226.53,
+            "diferencaTotal": -94.08,
+            "diferencaDinheiro": -94.08,
+            "diasComDespesa": 5,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": 0.1938
+          },
+          {
+            "id": 276288,
+            "fechamentos": 6,
+            "despesaTotal": 1360.5,
+            "diferencaTotal": 17.81,
+            "diferencaDinheiro": 17.81,
+            "diasComDespesa": 6,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": 0.7991
+          },
+          {
+            "id": 178278,
+            "fechamentos": 2,
+            "despesaTotal": 496.5,
+            "diferencaTotal": 2.79,
+            "diferencaDinheiro": 2.79,
+            "diasComDespesa": 2,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          }
+        ],
+        "porTurno": [
+          {
+            "turnoCodigo": 1,
+            "turno": "1º TURNO",
+            "fechamentos": 20,
+            "despesaTotal": 4994.67,
+            "diferencaTotal": -766.9,
+            "diferencaDinheiro": -766.9,
+            "diasComDespesa": 18,
+            "diasSemDespesa": 2,
+            "correlacaoDespesaDiff": -0.0274
+          },
+          {
+            "turnoCodigo": 2,
+            "turno": "2º TURNO",
+            "fechamentos": 1,
+            "despesaTotal": 85.0,
+            "diferencaTotal": -1.96,
+            "diferencaDinheiro": -1.96,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          }
+        ],
+        "porCaixa": [
+          {
+            "id": 4336819,
+            "fechamentos": 1,
+            "despesaTotal": 359.57,
+            "diferencaTotal": -272.07,
+            "diferencaDinheiro": -272.07,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4340665,
+            "fechamentos": 1,
+            "despesaTotal": 190.0,
+            "diferencaTotal": -215.77,
+            "diferencaDinheiro": -215.77,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4337788,
+            "fechamentos": 1,
+            "despesaTotal": 482.38,
+            "diferencaTotal": 208.96,
+            "diferencaDinheiro": 208.96,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4338777,
+            "fechamentos": 1,
+            "despesaTotal": 548.65,
+            "diferencaTotal": -194.36,
+            "diferencaDinheiro": -194.36,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4339655,
+            "fechamentos": 1,
+            "despesaTotal": 486.0,
+            "diferencaTotal": -116.8,
+            "diferencaDinheiro": -116.8,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4341557,
+            "fechamentos": 1,
+            "despesaTotal": 0.0,
+            "diferencaTotal": -57.3,
+            "diferencaDinheiro": -57.3,
+            "diasComDespesa": 0,
+            "diasSemDespesa": 1,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4335818,
+            "fechamentos": 1,
+            "despesaTotal": 386.73,
+            "diferencaTotal": -50.66,
+            "diferencaDinheiro": -50.66,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4336768,
+            "fechamentos": 1,
+            "despesaTotal": 0.0,
+            "diferencaTotal": -46.53,
+            "diferencaDinheiro": -46.53,
+            "diasComDespesa": 0,
+            "diasSemDespesa": 1,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4339720,
+            "fechamentos": 1,
+            "despesaTotal": 30.0,
+            "diferencaTotal": -32.19,
+            "diferencaDinheiro": -32.19,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4340637,
+            "fechamentos": 1,
+            "despesaTotal": 745.0,
+            "diferencaTotal": 28.86,
+            "diferencaDinheiro": 28.86,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4336785,
+            "fechamentos": 1,
+            "despesaTotal": 221.5,
+            "diferencaTotal": -12.66,
+            "diferencaDinheiro": -12.66,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4340691,
+            "fechamentos": 1,
+            "despesaTotal": 101.1,
+            "diferencaTotal": -11.38,
+            "diferencaDinheiro": -11.38,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4339630,
+            "fechamentos": 1,
+            "despesaTotal": 165.0,
+            "diferencaTotal": 10.01,
+            "diferencaDinheiro": 10.01,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4338701,
+            "fechamentos": 1,
+            "despesaTotal": 96.0,
+            "diferencaTotal": -7.33,
+            "diferencaDinheiro": -7.33,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4338775,
+            "fechamentos": 1,
+            "despesaTotal": 295.58,
+            "diferencaTotal": 3.23,
+            "diferencaDinheiro": 3.23,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4337730,
+            "fechamentos": 1,
+            "despesaTotal": 283.66,
+            "diferencaTotal": -2.58,
+            "diferencaDinheiro": -2.58,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4341596,
+            "fechamentos": 1,
+            "despesaTotal": 366.5,
+            "diferencaTotal": 2.17,
+            "diferencaDinheiro": 2.17,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4335874,
+            "fechamentos": 1,
+            "despesaTotal": 59.0,
+            "diferencaTotal": -2.01,
+            "diferencaDinheiro": -2.01,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4336075,
+            "fechamentos": 1,
+            "despesaTotal": 85.0,
+            "diferencaTotal": -1.96,
+            "diferencaDinheiro": -1.96,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4337731,
+            "fechamentos": 1,
+            "despesaTotal": 48.0,
+            "diferencaTotal": 0.89,
+            "diferencaDinheiro": 0.89,
+            "diasComDespesa": 1,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          }
+        ],
+        "correlacaoGlobal": -0.0409,
+        "mediaDiffComDespesa": -35.0,
+        "mediaDiffSemDespesa": -51.91,
+        "respostas": {
+          "pdvMesmoRanking": true,
+          "operadorMesmoRanking": false,
+          "correlacaoEstatistica": false
+        },
+        "focus54193": {
+          "id": 54193,
+          "fechamentos": 7,
+          "despesaTotal": 1806.14,
+          "diferencaTotal": -479.61,
+          "diferencaDinheiro": -479.61,
+          "diasComDespesa": 5,
+          "diasSemDespesa": 2,
+          "correlacaoDespesaDiff": -0.6702
+        },
+        "focus15880": {
+          "id": 15880,
+          "fechamentos": 6,
+          "despesaTotal": 1416.53,
+          "diferencaTotal": -309.85,
+          "diferencaDinheiro": -309.85,
+          "diasComDespesa": 6,
+          "diasSemDespesa": 0,
+          "correlacaoDespesaDiff": 0.2298
+        }
+      },
+      "crosscheck": {
+        "caixaDespesasTotal": 19,
+        "redeRegistros": 1317,
+        "matched": 3,
+        "unmatched": 16,
+        "matchRatePct": 15.8,
+        "valorParidadeOk": 3,
+        "valorParidadePct": 100.0,
+        "duplicidadesRede": 393,
+        "amostraCamposRede": [
+          "empresaCodigo",
+          "planoContaGerencialCodigo",
+          "descricaoDocumento",
+          "data",
+          "valor"
+        ],
+        "amostraMatched": [
+          {
+            "caixaCodigo": 4335835,
+            "empresaCodigo": 11495,
+            "data": "2026-06-01",
+            "valor": 130.0,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 178278,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "pag ref apoio loja joao vitor",
+            "caixaCodigoRede": null,
+            "valorRede": 130.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4335874,
+            "empresaCodigo": 5555,
+            "data": "2026-06-01",
+            "valor": 59.0,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "REF A COMPRA DE UM CADEADO",
+            "caixaCodigoRede": null,
+            "valorRede": 59.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4338701,
+            "empresaCodigo": 11495,
+            "data": "2026-06-04",
+            "valor": 96.0,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "ref a sanduiche natural",
+            "caixaCodigoRede": null,
+            "valorRede": 96.0,
+            "deltaValor": 0.0
+          }
+        ],
+        "amostraUnmatched": [
+          {
+            "caixaCodigo": 4335818,
+            "empresaCodigo": 11495,
+            "data": "2026-06-01",
+            "valor": 386.73,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227386,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4336075,
+            "empresaCodigo": 11495,
+            "data": "2026-06-01",
+            "valor": 85.0,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4336785,
+            "empresaCodigo": 11495,
+            "data": "2026-06-02",
+            "valor": 221.5,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4336819,
+            "empresaCodigo": 5555,
+            "data": "2026-06-02",
+            "valor": 359.57,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4337730,
+            "empresaCodigo": 11495,
+            "data": "2026-06-03",
+            "valor": 283.66,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227386,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4337731,
+            "empresaCodigo": 11495,
+            "data": "2026-06-03",
+            "valor": 48.0,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4337788,
+            "empresaCodigo": 5555,
+            "data": "2026-06-03",
+            "valor": 482.38,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4338775,
+            "empresaCodigo": 5555,
+            "data": "2026-06-04",
+            "valor": 295.58,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4338777,
+            "empresaCodigo": 11495,
+            "data": "2026-06-04",
+            "valor": 548.65,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 294273,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4339630,
+            "empresaCodigo": 11495,
+            "data": "2026-06-05",
+            "valor": 165.0,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288,
+            "redeMatch": false
+          }
+        ],
+        "respostas": {
+          "apareceDespesasRede": true,
+          "duplicidade": true,
+          "lancamentoCorrespondente": true,
+          "valorBate": true,
+          "centroPlanoRastreavel": false
+        }
+      },
+      "classification": {
+        "totalClassificados": 21,
+        "porCategoria": {
+          "DESPESA_CAIXA": 19,
+          "OUTROS": 1,
+          "VALE_FUNCIONARIO": 1
+        },
+        "amostra": [
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 386.73,
+            "caixaCodigo": 4335818,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227386
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 130.0,
+            "caixaCodigo": 4335835,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 178278
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 59.0,
+            "caixaCodigo": 4335874,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 85.0,
+            "caixaCodigo": 4336075,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288
+          },
+          {
+            "categoriaPdvDespesa": "OUTROS",
+            "confidenceScore": 0.7,
+            "classificationSource": "campo_transfBancApurado",
+            "valor": 10989.97,
+            "caixaCodigo": 4336768,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 294273
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 221.5,
+            "caixaCodigo": 4336785,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 359.57,
+            "caixaCodigo": 4336819,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 283.66,
+            "caixaCodigo": 4337730,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227386
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 48.0,
+            "caixaCodigo": 4337731,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 482.38,
+            "caixaCodigo": 4337788,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 96.0,
+            "caixaCodigo": 4338701,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 295.58,
+            "caixaCodigo": 4338775,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 548.65,
+            "caixaCodigo": 4338777,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 294273
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 165.0,
+            "caixaCodigo": 4339630,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 486.0,
+            "caixaCodigo": 4339655,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 299371
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 30.0,
+            "caixaCodigo": 4339720,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 745.0,
+            "caixaCodigo": 4340637,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 190.0,
+            "caixaCodigo": 4340665,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 299151
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 101.1,
+            "caixaCodigo": 4340691,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 294273
+          },
+          {
+            "categoriaPdvDespesa": "VALE_FUNCIONARIO",
+            "confidenceScore": 0.92,
+            "classificationSource": "campo_valeFunApurado",
+            "valor": 240.0,
+            "caixaCodigo": 4341557,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227386
+          }
+        ]
+      }
+    },
+    "30d": {
+      "batch": {
+        "CAIXA_REDE": {
+          "status": 200,
+          "count": 1395,
+          "ms": 2648.4
+        },
+        "CAIXA_APRESENTADO_REDE": {
+          "status": 200,
+          "count": 0,
+          "ms": 125.6
+        },
+        "CAIXA": {
+          "status": 200,
+          "count": 1395,
+          "ms": 2485.7
+        },
+        "CAIXA_APRESENTADO": {
+          "status": 200,
+          "count": 1395,
+          "ms": 2801.2
+        },
+        "MOVIMENTO_CONTA": {
+          "status": 200,
+          "count": 400,
+          "ms": 17226.1
+        },
+        "TRANSFERENCIA_BANCARIA": {
+          "status": 408,
+          "count": 0,
+          "ms": 120008.9
+        },
+        "DESPESAS_REDE": {
+          "status": 200,
+          "count": 5130,
+          "ms": 4504.4
+        }
+      },
+      "mergedCount": 1395,
+      "despesaApuradoSum": 525192.9,
+      "diferencaSum": -69386.25,
+      "reportDespesaSum": 525192.9,
+      "forensics": {
+        "camposMapeados": {
+          "ap_despesaApresentado": {
+            "canonical": "despesaApresentado",
+            "category": "DESPESA_CAIXA",
+            "registros": 1395,
+            "preenchimentoPct": 100.0,
+            "naoZero": 1275,
+            "soma": 525192.9,
+            "absSoma": 525192.9,
+            "exemplo": 573.8
+          },
+          "ap_despesaApurado": {
+            "canonical": "despesaApurado",
+            "category": "DESPESA_CAIXA",
+            "registros": 1395,
+            "preenchimentoPct": 100.0,
+            "naoZero": 1275,
+            "soma": 525192.9,
+            "absSoma": 525192.9,
+            "exemplo": 573.8
+          },
+          "ap_despesaDiferenca": {
+            "canonical": "despesaDiferenca",
+            "category": "DESPESA_CAIXA",
+            "registros": 1395,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_valeFunApresentado": {
+            "canonical": "valeFunApresentado",
+            "category": "VALE_FUNCIONARIO",
+            "registros": 1395,
+            "preenchimentoPct": 100.0,
+            "naoZero": 915,
+            "soma": 786145.05,
+            "absSoma": 786145.05,
+            "exemplo": 400.0
+          },
+          "ap_valeFunApurado": {
+            "canonical": "valeFunApurado",
+            "category": "VALE_FUNCIONARIO",
+            "registros": 1395,
+            "preenchimentoPct": 100.0,
+            "naoZero": 915,
+            "soma": 786145.05,
+            "absSoma": 786145.05,
+            "exemplo": 400.0
+          },
+          "ap_valeFunDiferenca": {
+            "canonical": "valeFunDiferenca",
+            "category": "VALE_FUNCIONARIO",
+            "registros": 1395,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_emprestimoApurado": {
+            "canonical": "emprestimoApurado",
+            "category": "EMPRESTIMO",
+            "registros": 1395,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_emprestimoDiferenca": {
+            "canonical": "emprestimoDiferenca",
+            "category": "EMPRESTIMO",
+            "registros": 1395,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_suprimentoCaixa": {
+            "canonical": "suprimentoCaixa",
+            "category": "SUPRIMENTO",
+            "registros": 1395,
+            "preenchimentoPct": 100.0,
+            "naoZero": 30,
+            "soma": 0.45,
+            "absSoma": 0.45,
+            "exemplo": 0.02
+          },
+          "ap_fundoCaixaCredito": {
+            "canonical": "fundoCaixaCredito",
+            "category": "FUNDO_CAIXA",
+            "registros": 1395,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_fundoCxDebApurado": {
+            "canonical": "fundoCxDebApurado",
+            "category": "FUNDO_CAIXA",
+            "registros": 1395,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_fundoCxDebDiferenca": {
+            "canonical": "fundoCxDebDiferenca",
+            "category": "FUNDO_CAIXA",
+            "registros": 1395,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_transfBancApurado": {
+            "canonical": "transfBancApurado",
+            "category": "OUTROS",
+            "registros": 1395,
+            "preenchimentoPct": 100.0,
+            "naoZero": 1125,
+            "soma": 5395479.75,
+            "absSoma": 5395479.75,
+            "exemplo": 1404.64
+          }
+        },
+        "camposDinamicos": [
+          {
+            "campo": "ap_chequeTroco",
+            "registros": 1395,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_emprestimoApresentado",
+            "registros": 1395,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_fundoCxDebApresentado",
+            "registros": 1395,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_valeCliente",
+            "registros": 1395,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_valeClienteApresentado",
+            "registros": 1395,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_valeClienteApurado",
+            "registros": 1395,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_valeClienteDiferenca",
+            "registros": 1395,
+            "naoZero": 0,
+            "soma": 0.0
+          }
+        ],
+        "respostas": {
+          "despesasExplicitas": true,
+          "porPdv": true,
+          "porOperador": true,
+          "porTurno": true,
+          "impactaDiferenca": true
+        },
+        "totaisPorPdv": [
+          {
+            "pdvCodigo": 54193,
+            "despesaApurado": 248449.8
+          },
+          {
+            "pdvCodigo": 15880,
+            "despesaApurado": 142617.75
+          },
+          {
+            "pdvCodigo": 56764,
+            "despesaApurado": 134125.35
+          }
+        ],
+        "totaisPorOperador": [
+          {
+            "funcionarioCodigo": 277311,
+            "despesaApurado": 114470.1
+          },
+          {
+            "funcionarioCodigo": 276288,
+            "despesaApurado": 105719.4
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "despesaApurado": 81133.35
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "despesaApurado": 69510.0
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "despesaApurado": 59553.3
+          },
+          {
+            "funcionarioCodigo": 158924,
+            "despesaApurado": 21409.95
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "despesaApurado": 18649.2
+          },
+          {
+            "funcionarioCodigo": 213391,
+            "despesaApurado": 18450.15
+          },
+          {
+            "funcionarioCodigo": 298670,
+            "despesaApurado": 10563.0
+          },
+          {
+            "funcionarioCodigo": 162738,
+            "despesaApurado": 9756.75
+          }
+        ],
+        "correlacaoDespesaDiferenca": -0.5469,
+        "correlacaoDespesaDinheiro": -0.5469
+      },
+      "expenseVsDiff": {
+        "porPdv": [
+          {
+            "id": 54193,
+            "fechamentos": 465,
+            "despesaTotal": 248449.8,
+            "diferencaTotal": -43146.9,
+            "diferencaDinheiro": -43146.9,
+            "diasComDespesa": 420,
+            "diasSemDespesa": 45,
+            "correlacaoDespesaDiff": -0.6435
+          },
+          {
+            "id": 15880,
+            "fechamentos": 450,
+            "despesaTotal": 142617.75,
+            "diferencaTotal": -24180.3,
+            "diferencaDinheiro": -24180.3,
+            "diasComDespesa": 390,
+            "diasSemDespesa": 60,
+            "correlacaoDespesaDiff": 0.2517
+          },
+          {
+            "id": 56764,
+            "fechamentos": 480,
+            "despesaTotal": 134125.35,
+            "diferencaTotal": -2059.05,
+            "diferencaDinheiro": -2059.05,
+            "diasComDespesa": 465,
+            "diasSemDespesa": 15,
+            "correlacaoDespesaDiff": -0.161
+          }
+        ],
+        "porOperador": [
+          {
+            "id": 299371,
+            "fechamentos": 30,
+            "despesaTotal": 69510.0,
+            "diferencaTotal": -113064.0,
+            "diferencaDinheiro": -113064.0,
+            "diasComDespesa": 30,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": -1.0
+          },
+          {
+            "id": 163694,
+            "fechamentos": 15,
+            "despesaTotal": 9240.0,
+            "diferencaTotal": 92542.35,
+            "diferencaDinheiro": 92542.35,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 277311,
+            "fechamentos": 270,
+            "despesaTotal": 114470.1,
+            "diferencaTotal": -12938.4,
+            "diferencaDinheiro": -12938.4,
+            "diasComDespesa": 240,
+            "diasSemDespesa": 30,
+            "correlacaoDespesaDiff": 0.3387
+          },
+          {
+            "id": 227386,
+            "fechamentos": 195,
+            "despesaTotal": 59553.3,
+            "diferencaTotal": -11914.5,
+            "diferencaDinheiro": -11914.5,
+            "diasComDespesa": 165,
+            "diasSemDespesa": 30,
+            "correlacaoDespesaDiff": -0.1364
+          },
+          {
+            "id": 276288,
+            "fechamentos": 375,
+            "despesaTotal": 105719.4,
+            "diferencaTotal": -11540.85,
+            "diferencaDinheiro": -11540.85,
+            "diasComDespesa": 360,
+            "diasSemDespesa": 15,
+            "correlacaoDespesaDiff": -0.2376
+          },
+          {
+            "id": 294273,
+            "fechamentos": 180,
+            "despesaTotal": 81133.35,
+            "diferencaTotal": -9441.0,
+            "diferencaDinheiro": -9441.0,
+            "diasComDespesa": 165,
+            "diasSemDespesa": 15,
+            "correlacaoDespesaDiff": -0.1805
+          },
+          {
+            "id": 178278,
+            "fechamentos": 90,
+            "despesaTotal": 18649.2,
+            "diferencaTotal": 9326.85,
+            "diferencaDinheiro": 9326.85,
+            "diasComDespesa": 90,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": 0.2991
+          },
+          {
+            "id": 158924,
+            "fechamentos": 90,
+            "despesaTotal": 21409.95,
+            "diferencaTotal": -4123.65,
+            "diferencaDinheiro": -4123.65,
+            "diasComDespesa": 90,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": 0.218
+          },
+          {
+            "id": 299151,
+            "fechamentos": 15,
+            "despesaTotal": 2850.0,
+            "diferencaTotal": -3236.55,
+            "diferencaDinheiro": -3236.55,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 80203,
+            "fechamentos": 30,
+            "despesaTotal": 0.0,
+            "diferencaTotal": -2764.05,
+            "diferencaDinheiro": -2764.05,
+            "diasComDespesa": 0,
+            "diasSemDespesa": 30,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 149304,
+            "fechamentos": 15,
+            "despesaTotal": 932.7,
+            "diferencaTotal": -1131.45,
+            "diferencaDinheiro": -1131.45,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 213391,
+            "fechamentos": 30,
+            "despesaTotal": 18450.15,
+            "diferencaTotal": -1121.1,
+            "diferencaDinheiro": -1121.1,
+            "diasComDespesa": 30,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": -1.0
+          },
+          {
+            "id": 162738,
+            "fechamentos": 15,
+            "despesaTotal": 9756.75,
+            "diferencaTotal": 154.95,
+            "diferencaDinheiro": 154.95,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 298670,
+            "fechamentos": 15,
+            "despesaTotal": 10563.0,
+            "diferencaTotal": -148.65,
+            "diferencaDinheiro": -148.65,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 83139,
+            "fechamentos": 15,
+            "despesaTotal": 225.0,
+            "diferencaTotal": 102.3,
+            "diferencaDinheiro": 102.3,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 299152,
+            "fechamentos": 15,
+            "despesaTotal": 2730.0,
+            "diferencaTotal": -88.5,
+            "diferencaDinheiro": -88.5,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          }
+        ],
+        "porTurno": [
+          {
+            "turnoCodigo": 1,
+            "turno": "1º TURNO",
+            "fechamentos": 1365,
+            "despesaTotal": 523917.9,
+            "diferencaTotal": -69420.9,
+            "diferencaDinheiro": -69420.9,
+            "diasComDespesa": 1260,
+            "diasSemDespesa": 105,
+            "correlacaoDespesaDiff": -0.5488
+          },
+          {
+            "turnoCodigo": 2,
+            "turno": "2º TURNO",
+            "fechamentos": 30,
+            "despesaTotal": 1275.0,
+            "diferencaTotal": 34.65,
+            "diferencaDinheiro": 34.65,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 15,
+            "correlacaoDespesaDiff": -1.0
+          }
+        ],
+        "porCaixa": [
+          {
+            "id": 4334613,
+            "fechamentos": 15,
+            "despesaTotal": 62220.0,
+            "diferencaTotal": -111312.0,
+            "diferencaDinheiro": -111312.0,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4333119,
+            "fechamentos": 15,
+            "despesaTotal": 9240.0,
+            "diferencaTotal": 92542.35,
+            "diferencaDinheiro": 92542.35,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4333042,
+            "fechamentos": 15,
+            "despesaTotal": 10384.95,
+            "diferencaTotal": -11460.15,
+            "diferencaDinheiro": -11460.15,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4334670,
+            "fechamentos": 15,
+            "despesaTotal": 3957.6,
+            "diferencaTotal": 10864.8,
+            "diferencaDinheiro": 10864.8,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4336819,
+            "fechamentos": 15,
+            "despesaTotal": 5393.55,
+            "diferencaTotal": -4081.05,
+            "diferencaDinheiro": -4081.05,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4324053,
+            "fechamentos": 15,
+            "despesaTotal": 7366.8,
+            "diferencaTotal": -3543.15,
+            "diferencaDinheiro": -3543.15,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4340665,
+            "fechamentos": 15,
+            "despesaTotal": 2850.0,
+            "diferencaTotal": -3236.55,
+            "diferencaDinheiro": -3236.55,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4337788,
+            "fechamentos": 15,
+            "despesaTotal": 7235.7,
+            "diferencaTotal": 3134.4,
+            "diferencaDinheiro": 3134.4,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4338777,
+            "fechamentos": 15,
+            "despesaTotal": 8229.75,
+            "diferencaTotal": -2915.4,
+            "diferencaDinheiro": -2915.4,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4333990,
+            "fechamentos": 15,
+            "despesaTotal": 3012.0,
+            "diferencaTotal": -2712.45,
+            "diferencaDinheiro": -2712.45,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4330269,
+            "fechamentos": 15,
+            "despesaTotal": 19812.0,
+            "diferencaTotal": 2635.65,
+            "diferencaDinheiro": 2635.65,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4332106,
+            "fechamentos": 15,
+            "despesaTotal": 12600.0,
+            "diferencaTotal": -2538.15,
+            "diferencaDinheiro": -2538.15,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4328420,
+            "fechamentos": 15,
+            "despesaTotal": 0.0,
+            "diferencaTotal": -2313.45,
+            "diferencaDinheiro": -2313.45,
+            "diasComDespesa": 0,
+            "diasSemDespesa": 15,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4317943,
+            "fechamentos": 15,
+            "despesaTotal": 3463.35,
+            "diferencaTotal": -2293.95,
+            "diferencaDinheiro": -2293.95,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4321731,
+            "fechamentos": 15,
+            "despesaTotal": 360.0,
+            "diferencaTotal": -2172.0,
+            "diferencaDinheiro": -2172.0,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4320809,
+            "fechamentos": 15,
+            "despesaTotal": 4650.0,
+            "diferencaTotal": -2088.6,
+            "diferencaDinheiro": -2088.6,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4316903,
+            "fechamentos": 15,
+            "despesaTotal": 2458.5,
+            "diferencaTotal": -1975.8,
+            "diferencaDinheiro": -1975.8,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4326430,
+            "fechamentos": 15,
+            "despesaTotal": 6440.55,
+            "diferencaTotal": -1909.35,
+            "diferencaDinheiro": -1909.35,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4323599,
+            "fechamentos": 15,
+            "despesaTotal": 19035.0,
+            "diferencaTotal": -1762.35,
+            "diferencaDinheiro": -1762.35,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4339655,
+            "fechamentos": 15,
+            "despesaTotal": 7290.0,
+            "diferencaTotal": -1752.0,
+            "diferencaDinheiro": -1752.0,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          }
+        ],
+        "correlacaoGlobal": -0.5469,
+        "mediaDiffComDespesa": -49.67,
+        "mediaDiffSemDespesa": -50.5,
+        "respostas": {
+          "pdvMesmoRanking": true,
+          "operadorMesmoRanking": true,
+          "correlacaoEstatistica": true
+        },
+        "focus54193": {
+          "id": 54193,
+          "fechamentos": 465,
+          "despesaTotal": 248449.8,
+          "diferencaTotal": -43146.9,
+          "diferencaDinheiro": -43146.9,
+          "diasComDespesa": 420,
+          "diasSemDespesa": 45,
+          "correlacaoDespesaDiff": -0.6435
+        },
+        "focus15880": {
+          "id": 15880,
+          "fechamentos": 450,
+          "despesaTotal": 142617.75,
+          "diferencaTotal": -24180.3,
+          "diferencaDinheiro": -24180.3,
+          "diasComDespesa": 390,
+          "diasSemDespesa": 60,
+          "correlacaoDespesaDiff": 0.2517
+        }
+      },
+      "crosscheck": {
+        "caixaDespesasTotal": 1275,
+        "redeRegistros": 5130,
+        "matched": 180,
+        "unmatched": 1095,
+        "matchRatePct": 14.1,
+        "valorParidadeOk": 180,
+        "valorParidadePct": 100.0,
+        "duplicidadesRede": 1530,
+        "amostraCamposRede": [
+          "empresaCodigo",
+          "planoContaGerencialCodigo",
+          "descricaoDocumento",
+          "data",
+          "valor"
+        ],
+        "amostraMatched": [
+          {
+            "caixaCodigo": 4316003,
+            "empresaCodigo": 5555,
+            "data": "2026-05-11",
+            "valor": 276.0,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 277311,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "REF SANTA CLARA",
+            "caixaCodigoRede": null,
+            "valorRede": 276.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4322582,
+            "empresaCodigo": 11495,
+            "data": "2026-05-18",
+            "valor": 15.0,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "PASSAGEM JOSIANE",
+            "caixaCodigoRede": null,
+            "valorRede": 15.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4323071,
+            "empresaCodigo": 5555,
+            "data": "2026-05-18",
+            "valor": 15.0,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 83139,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "ref areia lavada",
+            "caixaCodigoRede": null,
+            "valorRede": 15.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4328362,
+            "empresaCodigo": 11495,
+            "data": "2026-05-24",
+            "valor": 7.0,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227386,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "AGUA CONSUMO",
+            "caixaCodigoRede": null,
+            "valorRede": 7.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4328413,
+            "empresaCodigo": 11495,
+            "data": "2026-05-24",
+            "valor": 120.0,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 178278,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "Vale de funcionário referente a consolidação de caixa",
+            "caixaCodigoRede": null,
+            "valorRede": 120.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4329254,
+            "empresaCodigo": 11495,
+            "data": "2026-05-25",
+            "valor": 15.0,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "PASSAGEM JOSIANE",
+            "caixaCodigoRede": null,
+            "valorRede": 15.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4329316,
+            "empresaCodigo": 5555,
+            "data": "2026-05-25",
+            "valor": 7.0,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 277311,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "desconto lisboa",
+            "caixaCodigoRede": null,
+            "valorRede": 7.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4331130,
+            "empresaCodigo": 11495,
+            "data": "2026-05-27",
+            "valor": 15.0,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "PASSAGEM JOSIANE",
+            "caixaCodigoRede": null,
+            "valorRede": 15.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4335004,
+            "empresaCodigo": 11495,
+            "data": "2026-05-31",
+            "valor": 8.8,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 294273,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "DESCONTO LISBOA",
+            "caixaCodigoRede": null,
+            "valorRede": 8.8,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4335835,
+            "empresaCodigo": 11495,
+            "data": "2026-06-01",
+            "valor": 130.0,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 178278,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "pag ref apoio loja joao vitor",
+            "caixaCodigoRede": null,
+            "valorRede": 130.0,
+            "deltaValor": 0.0
+          }
+        ],
+        "amostraUnmatched": [
+          {
+            "caixaCodigo": 4313129,
+            "empresaCodigo": 11495,
+            "data": "2026-05-08",
+            "valor": 573.8,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4313170,
+            "empresaCodigo": 11495,
+            "data": "2026-05-08",
+            "valor": 704.2,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 298670,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4313244,
+            "empresaCodigo": 5555,
+            "data": "2026-05-08",
+            "valor": 1206.58,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 277311,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4314084,
+            "empresaCodigo": 11495,
+            "data": "2026-05-09",
+            "valor": 170.29,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4314109,
+            "empresaCodigo": 5555,
+            "data": "2026-05-09",
+            "valor": 279.0,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 277311,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4314162,
+            "empresaCodigo": 11495,
+            "data": "2026-05-09",
+            "valor": 994.01,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 213391,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4315110,
+            "empresaCodigo": 11495,
+            "data": "2026-05-10",
+            "valor": 650.45,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 162738,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4315911,
+            "empresaCodigo": 11495,
+            "data": "2026-05-11",
+            "valor": 114.5,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4315997,
+            "empresaCodigo": 11495,
+            "data": "2026-05-11",
+            "valor": 236.0,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 213391,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4316903,
+            "empresaCodigo": 11495,
+            "data": "2026-05-12",
+            "valor": 163.9,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227386,
+            "redeMatch": false
+          }
+        ],
+        "respostas": {
+          "apareceDespesasRede": true,
+          "duplicidade": true,
+          "lancamentoCorrespondente": true,
+          "valorBate": true,
+          "centroPlanoRastreavel": false
+        }
+      },
+      "classification": {
+        "totalClassificados": 1395,
+        "porCategoria": {
+          "DESPESA_CAIXA": 1275,
+          "VALE_FUNCIONARIO": 90,
+          "OUTROS": 30
+        },
+        "amostra": [
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 573.8,
+            "caixaCodigo": 4313129,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 704.2,
+            "caixaCodigo": 4313170,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 298670
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 1206.58,
+            "caixaCodigo": 4313244,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 277311
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 170.29,
+            "caixaCodigo": 4314084,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 279.0,
+            "caixaCodigo": 4314109,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 277311
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 994.01,
+            "caixaCodigo": 4314162,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 213391
+          },
+          {
+            "categoriaPdvDespesa": "VALE_FUNCIONARIO",
+            "confidenceScore": 0.92,
+            "classificationSource": "campo_valeFunApurado",
+            "valor": 444.0,
+            "caixaCodigo": 4315053,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 277311
+          },
+          {
+            "categoriaPdvDespesa": "VALE_FUNCIONARIO",
+            "confidenceScore": 0.92,
+            "classificationSource": "campo_valeFunApurado",
+            "valor": 250.0,
+            "caixaCodigo": 4315067,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227386
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 650.45,
+            "caixaCodigo": 4315110,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 162738
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 114.5,
+            "caixaCodigo": 4315911,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 236.0,
+            "caixaCodigo": 4315997,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 213391
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 276.0,
+            "caixaCodigo": 4316003,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 277311
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 163.9,
+            "caixaCodigo": 4316903,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227386
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 282.5,
+            "caixaCodigo": 4316917,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 546.5,
+            "caixaCodigo": 4316940,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 277311
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 65.0,
+            "caixaCodigo": 4317841,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 1066.1,
+            "caixaCodigo": 4317929,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 294273
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 230.89,
+            "caixaCodigo": 4317943,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 277311
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 372.96,
+            "caixaCodigo": 4318795,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227386
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 298.5,
+            "caixaCodigo": 4318797,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288
+          }
+        ]
+      }
+    },
+    "90d": {
+      "batch": {
+        "CAIXA_REDE": {
+          "status": 200,
+          "count": 3000,
+          "ms": 2850.0
+        },
+        "CAIXA_APRESENTADO_REDE": {
+          "status": 200,
+          "count": 0,
+          "ms": 124.6
+        },
+        "CAIXA": {
+          "status": 200,
+          "count": 3000,
+          "ms": 3046.3
+        },
+        "CAIXA_APRESENTADO": {
+          "status": 200,
+          "count": 3000,
+          "ms": 3271.5
+        },
+        "MOVIMENTO_CONTA": {
+          "status": 200,
+          "count": 400,
+          "ms": 19992.5
+        },
+        "TRANSFERENCIA_BANCARIA": {
+          "status": 408,
+          "count": 0,
+          "ms": 120016.1
+        },
+        "DESPESAS_REDE": {
+          "status": 200,
+          "count": 16722,
+          "ms": 133827.9
+        }
+      },
+      "mergedCount": 3000,
+      "despesaApuradoSum": 1362349.8,
+      "diferencaSum": -145325.7,
+      "reportDespesaSum": 1362349.8,
+      "forensics": {
+        "camposMapeados": {
+          "ap_despesaApresentado": {
+            "canonical": "despesaApresentado",
+            "category": "DESPESA_CAIXA",
+            "registros": 3000,
+            "preenchimentoPct": 100.0,
+            "naoZero": 2700,
+            "soma": 1362349.8,
+            "absSoma": 1362349.8,
+            "exemplo": 783.78
+          },
+          "ap_despesaApurado": {
+            "canonical": "despesaApurado",
+            "category": "DESPESA_CAIXA",
+            "registros": 3000,
+            "preenchimentoPct": 100.0,
+            "naoZero": 2700,
+            "soma": 1362349.8,
+            "absSoma": 1362349.8,
+            "exemplo": 783.78
+          },
+          "ap_despesaDiferenca": {
+            "canonical": "despesaDiferenca",
+            "category": "DESPESA_CAIXA",
+            "registros": 3000,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_valeFunApresentado": {
+            "canonical": "valeFunApresentado",
+            "category": "VALE_FUNCIONARIO",
+            "registros": 3000,
+            "preenchimentoPct": 100.0,
+            "naoZero": 2205,
+            "soma": 1737052.65,
+            "absSoma": 1737052.65,
+            "exemplo": 178.0
+          },
+          "ap_valeFunApurado": {
+            "canonical": "valeFunApurado",
+            "category": "VALE_FUNCIONARIO",
+            "registros": 3000,
+            "preenchimentoPct": 100.0,
+            "naoZero": 2205,
+            "soma": 1737052.65,
+            "absSoma": 1737052.65,
+            "exemplo": 178.0
+          },
+          "ap_valeFunDiferenca": {
+            "canonical": "valeFunDiferenca",
+            "category": "VALE_FUNCIONARIO",
+            "registros": 3000,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_emprestimoApurado": {
+            "canonical": "emprestimoApurado",
+            "category": "EMPRESTIMO",
+            "registros": 3000,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_emprestimoDiferenca": {
+            "canonical": "emprestimoDiferenca",
+            "category": "EMPRESTIMO",
+            "registros": 3000,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_suprimentoCaixa": {
+            "canonical": "suprimentoCaixa",
+            "category": "SUPRIMENTO",
+            "registros": 3000,
+            "preenchimentoPct": 100.0,
+            "naoZero": 15,
+            "soma": 0.15,
+            "absSoma": 0.15,
+            "exemplo": 0.01
+          },
+          "ap_fundoCaixaCredito": {
+            "canonical": "fundoCaixaCredito",
+            "category": "FUNDO_CAIXA",
+            "registros": 3000,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_fundoCxDebApurado": {
+            "canonical": "fundoCxDebApurado",
+            "category": "FUNDO_CAIXA",
+            "registros": 3000,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_fundoCxDebDiferenca": {
+            "canonical": "fundoCxDebDiferenca",
+            "category": "FUNDO_CAIXA",
+            "registros": 3000,
+            "preenchimentoPct": 100.0,
+            "naoZero": 0,
+            "soma": 0.0,
+            "absSoma": 0.0,
+            "exemplo": 0.0
+          },
+          "ap_transfBancApurado": {
+            "canonical": "transfBancApurado",
+            "category": "OUTROS",
+            "registros": 3000,
+            "preenchimentoPct": 100.0,
+            "naoZero": 3000,
+            "soma": 13473413.55,
+            "absSoma": 13473413.55,
+            "exemplo": 2926.14
+          }
+        },
+        "camposDinamicos": [
+          {
+            "campo": "ap_chequeTroco",
+            "registros": 3000,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_emprestimoApresentado",
+            "registros": 3000,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_fundoCxDebApresentado",
+            "registros": 3000,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_valeCliente",
+            "registros": 3000,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_valeClienteApresentado",
+            "registros": 3000,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_valeClienteApurado",
+            "registros": 3000,
+            "naoZero": 0,
+            "soma": 0.0
+          },
+          {
+            "campo": "ap_valeClienteDiferenca",
+            "registros": 3000,
+            "naoZero": 0,
+            "soma": 0.0
+          }
+        ],
+        "respostas": {
+          "despesasExplicitas": true,
+          "porPdv": true,
+          "porOperador": true,
+          "porTurno": true,
+          "impactaDiferenca": false
+        },
+        "totaisPorPdv": [
+          {
+            "pdvCodigo": 54193,
+            "despesaApurado": 703223.4
+          },
+          {
+            "pdvCodigo": 15880,
+            "despesaApurado": 473198.1
+          },
+          {
+            "pdvCodigo": 56764,
+            "despesaApurado": 185928.3
+          }
+        ],
+        "totaisPorOperador": [
+          {
+            "funcionarioCodigo": 227386,
+            "despesaApurado": 363303.9
+          },
+          {
+            "funcionarioCodigo": 213391,
+            "despesaApurado": 219390.9
+          },
+          {
+            "funcionarioCodigo": 157960,
+            "despesaApurado": 170456.4
+          },
+          {
+            "funcionarioCodigo": 276288,
+            "despesaApurado": 142104.15
+          },
+          {
+            "funcionarioCodigo": 158924,
+            "despesaApurado": 115360.05
+          },
+          {
+            "funcionarioCodigo": 277311,
+            "despesaApurado": 92023.95
+          },
+          {
+            "funcionarioCodigo": 149304,
+            "despesaApurado": 77497.2
+          },
+          {
+            "funcionarioCodigo": 295816,
+            "despesaApurado": 37025.85
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "despesaApurado": 29155.2
+          },
+          {
+            "funcionarioCodigo": 298670,
+            "despesaApurado": 25371.9
+          }
+        ],
+        "correlacaoDespesaDiferenca": 0.0035,
+        "correlacaoDespesaDinheiro": 0.0035
+      },
+      "expenseVsDiff": {
+        "porPdv": [
+          {
+            "id": 15880,
+            "fechamentos": 1005,
+            "despesaTotal": 473198.1,
+            "diferencaTotal": -95926.65,
+            "diferencaDinheiro": -95926.65,
+            "diasComDespesa": 885,
+            "diasSemDespesa": 120,
+            "correlacaoDespesaDiff": 0.0407
+          },
+          {
+            "id": 54193,
+            "fechamentos": 990,
+            "despesaTotal": 703223.4,
+            "diferencaTotal": -46544.7,
+            "diferencaDinheiro": -46544.7,
+            "diasComDespesa": 915,
+            "diasSemDespesa": 75,
+            "correlacaoDespesaDiff": -0.0415
+          },
+          {
+            "id": 56764,
+            "fechamentos": 1005,
+            "despesaTotal": 185928.3,
+            "diferencaTotal": -2854.35,
+            "diferencaDinheiro": -2854.35,
+            "diasComDespesa": 900,
+            "diasSemDespesa": 105,
+            "correlacaoDespesaDiff": 0.1376
+          }
+        ],
+        "porOperador": [
+          {
+            "id": 158924,
+            "fechamentos": 150,
+            "despesaTotal": 115360.05,
+            "diferencaTotal": -70389.6,
+            "diferencaDinheiro": -70389.6,
+            "diasComDespesa": 120,
+            "diasSemDespesa": 30,
+            "correlacaoDespesaDiff": 0.1759
+          },
+          {
+            "id": 213391,
+            "fechamentos": 390,
+            "despesaTotal": 219390.9,
+            "diferencaTotal": -24268.5,
+            "diferencaDinheiro": -24268.5,
+            "diasComDespesa": 330,
+            "diasSemDespesa": 60,
+            "correlacaoDespesaDiff": -0.4027
+          },
+          {
+            "id": 157960,
+            "fechamentos": 480,
+            "despesaTotal": 170456.4,
+            "diferencaTotal": -16008.0,
+            "diferencaDinheiro": -16008.0,
+            "diasComDespesa": 465,
+            "diasSemDespesa": 15,
+            "correlacaoDespesaDiff": -0.0823
+          },
+          {
+            "id": 227386,
+            "fechamentos": 405,
+            "despesaTotal": 363303.9,
+            "diferencaTotal": -15747.75,
+            "diferencaDinheiro": -15747.75,
+            "diasComDespesa": 375,
+            "diasSemDespesa": 30,
+            "correlacaoDespesaDiff": 0.2466
+          },
+          {
+            "id": 80203,
+            "fechamentos": 15,
+            "despesaTotal": 15175.5,
+            "diferencaTotal": -8578.95,
+            "diferencaDinheiro": -8578.95,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 160806,
+            "fechamentos": 75,
+            "despesaTotal": 2685.0,
+            "diferencaTotal": 7678.65,
+            "diferencaDinheiro": 7678.65,
+            "diasComDespesa": 30,
+            "diasSemDespesa": 45,
+            "correlacaoDespesaDiff": -0.4171
+          },
+          {
+            "id": 149304,
+            "fechamentos": 45,
+            "despesaTotal": 77497.2,
+            "diferencaTotal": -4757.55,
+            "diferencaDinheiro": -4757.55,
+            "diasComDespesa": 45,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": -0.2529
+          },
+          {
+            "id": 277311,
+            "fechamentos": 240,
+            "despesaTotal": 92023.95,
+            "diferencaTotal": -3871.2,
+            "diferencaDinheiro": -3871.2,
+            "diasComDespesa": 210,
+            "diasSemDespesa": 30,
+            "correlacaoDespesaDiff": 0.1979
+          },
+          {
+            "id": 298670,
+            "fechamentos": 45,
+            "despesaTotal": 25371.9,
+            "diferencaTotal": -2515.5,
+            "diferencaDinheiro": -2515.5,
+            "diasComDespesa": 45,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": 0.9918
+          },
+          {
+            "id": 290148,
+            "fechamentos": 15,
+            "despesaTotal": 12967.5,
+            "diferencaTotal": -2270.7,
+            "diferencaDinheiro": -2270.7,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 276288,
+            "fechamentos": 720,
+            "despesaTotal": 142104.15,
+            "diferencaTotal": -1267.35,
+            "diferencaDinheiro": -1267.35,
+            "diasComDespesa": 690,
+            "diasSemDespesa": 30,
+            "correlacaoDespesaDiff": 0.0736
+          },
+          {
+            "id": 294273,
+            "fechamentos": 45,
+            "despesaTotal": 29155.2,
+            "diferencaTotal": -846.3,
+            "diferencaDinheiro": -846.3,
+            "diasComDespesa": 45,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": -0.086
+          },
+          {
+            "id": 295816,
+            "fechamentos": 30,
+            "despesaTotal": 37025.85,
+            "diferencaTotal": -681.6,
+            "diferencaDinheiro": -681.6,
+            "diasComDespesa": 30,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": 1.0
+          },
+          {
+            "id": 295399,
+            "fechamentos": 15,
+            "despesaTotal": 3987.0,
+            "diferencaTotal": -645.3,
+            "diferencaDinheiro": -645.3,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 178278,
+            "fechamentos": 135,
+            "despesaTotal": 11190.0,
+            "diferencaTotal": -576.3,
+            "diferencaDinheiro": -576.3,
+            "diasComDespesa": 90,
+            "diasSemDespesa": 45,
+            "correlacaoDespesaDiff": -0.7888
+          },
+          {
+            "id": 298738,
+            "fechamentos": 75,
+            "despesaTotal": 8782.5,
+            "diferencaTotal": -321.45,
+            "diferencaDinheiro": -321.45,
+            "diasComDespesa": 60,
+            "diasSemDespesa": 15,
+            "correlacaoDespesaDiff": 0.842
+          },
+          {
+            "id": 161863,
+            "fechamentos": 30,
+            "despesaTotal": 10110.3,
+            "diferencaTotal": -304.05,
+            "diferencaDinheiro": -304.05,
+            "diasComDespesa": 30,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": -1.0
+          },
+          {
+            "id": 227385,
+            "fechamentos": 15,
+            "despesaTotal": 105.0,
+            "diferencaTotal": -258.6,
+            "diferencaDinheiro": -258.6,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 298451,
+            "fechamentos": 15,
+            "despesaTotal": 1805.85,
+            "diferencaTotal": 231.0,
+            "diferencaDinheiro": 231.0,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 162738,
+            "fechamentos": 15,
+            "despesaTotal": 9756.75,
+            "diferencaTotal": 154.95,
+            "diferencaDinheiro": 154.95,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 249526,
+            "fechamentos": 15,
+            "despesaTotal": 3905.25,
+            "diferencaTotal": -59.1,
+            "diferencaDinheiro": -59.1,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 298720,
+            "fechamentos": 30,
+            "despesaTotal": 10189.65,
+            "diferencaTotal": -22.5,
+            "diferencaDinheiro": -22.5,
+            "diasComDespesa": 30,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": 1.0
+          }
+        ],
+        "porTurno": [
+          {
+            "turnoCodigo": 1,
+            "turno": "1º TURNO",
+            "fechamentos": 2970,
+            "despesaTotal": 1362349.8,
+            "diferencaTotal": -153484.65,
+            "diferencaDinheiro": -153484.65,
+            "diasComDespesa": 2700,
+            "diasSemDespesa": 270,
+            "correlacaoDespesaDiff": 0.0094
+          },
+          {
+            "turnoCodigo": 2,
+            "turno": "2º TURNO",
+            "fechamentos": 30,
+            "despesaTotal": 0.0,
+            "diferencaTotal": 8158.95,
+            "diferencaDinheiro": 8158.95,
+            "diasComDespesa": 0,
+            "diasSemDespesa": 30,
+            "correlacaoDespesaDiff": null
+          }
+        ],
+        "porCaixa": [
+          {
+            "id": 4268321,
+            "fechamentos": 15,
+            "despesaTotal": 0.0,
+            "diferencaTotal": -72045.15,
+            "diferencaDinheiro": -72045.15,
+            "diasComDespesa": 0,
+            "diasSemDespesa": 15,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4275960,
+            "fechamentos": 15,
+            "despesaTotal": 5235.0,
+            "diferencaTotal": -12514.5,
+            "diferencaDinheiro": -12514.5,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4290215,
+            "fechamentos": 15,
+            "despesaTotal": 1627.35,
+            "diferencaTotal": 11390.55,
+            "diferencaDinheiro": 11390.55,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4289234,
+            "fechamentos": 15,
+            "despesaTotal": 15175.5,
+            "diferencaTotal": -8578.95,
+            "diferencaDinheiro": -8578.95,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4289200,
+            "fechamentos": 15,
+            "despesaTotal": 23654.7,
+            "diferencaTotal": -8412.0,
+            "diferencaDinheiro": -8412.0,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4288879,
+            "fechamentos": 15,
+            "despesaTotal": 0.0,
+            "diferencaTotal": 8158.65,
+            "diferencaDinheiro": 8158.65,
+            "diasComDespesa": 0,
+            "diasSemDespesa": 15,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4261931,
+            "fechamentos": 15,
+            "despesaTotal": 182.1,
+            "diferencaTotal": -6400.35,
+            "diferencaDinheiro": -6400.35,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4266388,
+            "fechamentos": 15,
+            "despesaTotal": 4237.5,
+            "diferencaTotal": -6339.9,
+            "diferencaDinheiro": -6339.9,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4285373,
+            "fechamentos": 15,
+            "despesaTotal": 26265.0,
+            "diferencaTotal": -2762.55,
+            "diferencaDinheiro": -2762.55,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4284459,
+            "fechamentos": 15,
+            "despesaTotal": 19500.0,
+            "diferencaTotal": -2669.25,
+            "diferencaDinheiro": -2669.25,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4317943,
+            "fechamentos": 15,
+            "despesaTotal": 3463.35,
+            "diferencaTotal": -2293.95,
+            "diferencaDinheiro": -2293.95,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4260651,
+            "fechamentos": 15,
+            "despesaTotal": 12967.5,
+            "diferencaTotal": -2270.7,
+            "diferencaDinheiro": -2270.7,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4305578,
+            "fechamentos": 15,
+            "despesaTotal": 2831.7,
+            "diferencaTotal": -2258.1,
+            "diferencaDinheiro": -2258.1,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4297837,
+            "fechamentos": 15,
+            "despesaTotal": 13786.5,
+            "diferencaTotal": -2196.75,
+            "diferencaDinheiro": -2196.75,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4316903,
+            "fechamentos": 15,
+            "despesaTotal": 2458.5,
+            "diferencaTotal": -1975.8,
+            "diferencaDinheiro": -1975.8,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4291181,
+            "fechamentos": 15,
+            "despesaTotal": 53599.8,
+            "diferencaTotal": -1776.0,
+            "diferencaDinheiro": -1776.0,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4299824,
+            "fechamentos": 15,
+            "despesaTotal": 51660.0,
+            "diferencaTotal": -1764.0,
+            "diferencaDinheiro": -1764.0,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4296960,
+            "fechamentos": 15,
+            "despesaTotal": 6690.0,
+            "diferencaTotal": 1651.05,
+            "diferencaDinheiro": 1651.05,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4278830,
+            "fechamentos": 15,
+            "despesaTotal": 3105.0,
+            "diferencaTotal": -1641.15,
+            "diferencaDinheiro": -1641.15,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          },
+          {
+            "id": 4296910,
+            "fechamentos": 15,
+            "despesaTotal": 7487.55,
+            "diferencaTotal": 1592.55,
+            "diferencaDinheiro": 1592.55,
+            "diasComDespesa": 15,
+            "diasSemDespesa": 0,
+            "correlacaoDespesaDiff": null
+          }
+        ],
+        "correlacaoGlobal": 0.0035,
+        "mediaDiffComDespesa": -28.94,
+        "mediaDiffSemDespesa": -223.97,
+        "respostas": {
+          "pdvMesmoRanking": true,
+          "operadorMesmoRanking": true,
+          "correlacaoEstatistica": false
+        },
+        "focus54193": {
+          "id": 54193,
+          "fechamentos": 990,
+          "despesaTotal": 703223.4,
+          "diferencaTotal": -46544.7,
+          "diferencaDinheiro": -46544.7,
+          "diasComDespesa": 915,
+          "diasSemDespesa": 75,
+          "correlacaoDespesaDiff": -0.0415
+        },
+        "focus15880": {
+          "id": 15880,
+          "fechamentos": 1005,
+          "despesaTotal": 473198.1,
+          "diferencaTotal": -95926.65,
+          "diferencaDinheiro": -95926.65,
+          "diasComDespesa": 885,
+          "diasSemDespesa": 120,
+          "correlacaoDespesaDiff": 0.0407
+        }
+      },
+      "crosscheck": {
+        "caixaDespesasTotal": 2700,
+        "redeRegistros": 16722,
+        "matched": 345,
+        "unmatched": 2355,
+        "matchRatePct": 12.8,
+        "valorParidadeOk": 345,
+        "valorParidadePct": 100.0,
+        "duplicidadesRede": 4897,
+        "amostraCamposRede": [
+          "empresaCodigo",
+          "planoContaGerencialCodigo",
+          "descricaoDocumento",
+          "data",
+          "valor"
+        ],
+        "amostraMatched": [
+          {
+            "caixaCodigo": 4259767,
+            "empresaCodigo": 11495,
+            "data": "2026-03-13",
+            "valor": 7.0,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227385,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "Agua consumo posto",
+            "caixaCodigoRede": null,
+            "valorRede": 7.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4261931,
+            "empresaCodigo": 11495,
+            "data": "2026-03-15",
+            "valor": 12.14,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227386,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "ref passou da numeracao q eu dijitei",
+            "caixaCodigoRede": null,
+            "valorRede": 12.14,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4262494,
+            "empresaCodigo": 11495,
+            "data": "2026-03-16",
+            "valor": 50.0,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 213391,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "REF GASOLINA DENILSON",
+            "caixaCodigoRede": null,
+            "valorRede": 50.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4262571,
+            "empresaCodigo": 5555,
+            "data": "2026-03-16",
+            "valor": 10.0,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 157960,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "ref passagem julia",
+            "caixaCodigoRede": null,
+            "valorRede": 10.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4267368,
+            "empresaCodigo": 11495,
+            "data": "2026-03-21",
+            "valor": 50.0,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "ref gasolina denilson",
+            "caixaCodigoRede": null,
+            "valorRede": 50.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4268324,
+            "empresaCodigo": 11495,
+            "data": "2026-03-22",
+            "valor": 7.0,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 213391,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "AGUA PARA CONSUMO",
+            "caixaCodigoRede": null,
+            "valorRede": 7.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4271137,
+            "empresaCodigo": 5555,
+            "data": "2026-03-25",
+            "valor": 9.0,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 157960,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "REF A AGUA PARA COSUMO",
+            "caixaCodigoRede": null,
+            "valorRede": 9.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4274042,
+            "empresaCodigo": 11495,
+            "data": "2026-03-28",
+            "valor": 15.0,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 178278,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "passagem josiane",
+            "caixaCodigoRede": null,
+            "valorRede": 15.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4275029,
+            "empresaCodigo": 5555,
+            "data": "2026-03-29",
+            "valor": 500.0,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "REF FERIAS HENRIQUE",
+            "caixaCodigoRede": null,
+            "valorRede": 500.0,
+            "deltaValor": 0.0
+          },
+          {
+            "caixaCodigo": 4280649,
+            "empresaCodigo": 11495,
+            "data": "2026-04-04",
+            "valor": 15.0,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 178278,
+            "redeMatch": true,
+            "planoConta": null,
+            "centroCusto": null,
+            "descricaoDocumento": "pag reg as pasagens josiane",
+            "caixaCodigoRede": null,
+            "valorRede": 15.0,
+            "deltaValor": 0.0
+          }
+        ],
+        "amostraUnmatched": [
+          {
+            "caixaCodigo": 4255751,
+            "empresaCodigo": 5555,
+            "data": "2026-03-09",
+            "valor": 783.78,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 157960,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4255769,
+            "empresaCodigo": 11495,
+            "data": "2026-03-09",
+            "valor": 252.0,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227386,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4255774,
+            "empresaCodigo": 11495,
+            "data": "2026-03-09",
+            "valor": 230.9,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4256755,
+            "empresaCodigo": 11495,
+            "data": "2026-03-10",
+            "valor": 104.0,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 213391,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4256777,
+            "empresaCodigo": 5555,
+            "data": "2026-03-10",
+            "valor": 432.2,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 157960,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4256826,
+            "empresaCodigo": 11495,
+            "data": "2026-03-10",
+            "valor": 18.99,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4257726,
+            "empresaCodigo": 11495,
+            "data": "2026-03-11",
+            "valor": 254.0,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4257737,
+            "empresaCodigo": 11495,
+            "data": "2026-03-11",
+            "valor": 1501.19,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227386,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4257761,
+            "empresaCodigo": 5555,
+            "data": "2026-03-11",
+            "valor": 240.0,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 157960,
+            "redeMatch": false
+          },
+          {
+            "caixaCodigo": 4258704,
+            "empresaCodigo": 11495,
+            "data": "2026-03-12",
+            "valor": 41.0,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 178278,
+            "redeMatch": false
+          }
+        ],
+        "respostas": {
+          "apareceDespesasRede": true,
+          "duplicidade": true,
+          "lancamentoCorrespondente": true,
+          "valorBate": true,
+          "centroPlanoRastreavel": false
+        }
+      },
+      "classification": {
+        "totalClassificados": 3000,
+        "porCategoria": {
+          "DESPESA_CAIXA": 2700,
+          "VALE_FUNCIONARIO": 255,
+          "OUTROS": 45
+        },
+        "amostra": [
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 783.78,
+            "caixaCodigo": 4255751,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 157960
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 252.0,
+            "caixaCodigo": 4255769,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227386
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 230.9,
+            "caixaCodigo": 4255774,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 104.0,
+            "caixaCodigo": 4256755,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 213391
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 432.2,
+            "caixaCodigo": 4256777,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 157960
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 18.99,
+            "caixaCodigo": 4256826,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 254.0,
+            "caixaCodigo": 4257726,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 1501.19,
+            "caixaCodigo": 4257737,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227386
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 240.0,
+            "caixaCodigo": 4257761,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 157960
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 41.0,
+            "caixaCodigo": 4258704,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 178278
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 447.0,
+            "caixaCodigo": 4258745,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 1020.0,
+            "caixaCodigo": 4258774,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227386
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 30.99,
+            "caixaCodigo": 4259659,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 276288
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 7.0,
+            "caixaCodigo": 4259767,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 227385
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 162.0,
+            "caixaCodigo": 4259776,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 157960
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 864.5,
+            "caixaCodigo": 4260651,
+            "pdvCodigo": 54193,
+            "funcionarioCodigo": 290148
+          },
+          {
+            "categoriaPdvDespesa": "VALE_FUNCIONARIO",
+            "confidenceScore": 0.92,
+            "classificationSource": "campo_valeFunApurado",
+            "valor": 120.0,
+            "caixaCodigo": 4260664,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 213391
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 1120.0,
+            "caixaCodigo": 4260693,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 157960
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 240.0,
+            "caixaCodigo": 4261602,
+            "pdvCodigo": 56764,
+            "funcionarioCodigo": 178278
+          },
+          {
+            "categoriaPdvDespesa": "DESPESA_CAIXA",
+            "confidenceScore": 0.95,
+            "classificationSource": "campo_despesaApurado",
+            "valor": 19.0,
+            "caixaCodigo": 4261675,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924
+          }
+        ]
+      }
+    }
+  },
+  "riskModel": {
+    "entrarNoCashRiskScore": true,
+    "pesoSugerido": 0.08,
+    "pesoMaximoRecomendado": 0.1,
+    "evitarFalsoPositivo": [
+      "Exigir match DESPESAS_REDE antes de penalizar",
+      "Separar VALE/SUPRIMENTO de DESPESA_CAIXA",
+      "Não misturar despesaApurado (fluxo) com despesaDiferenca (componente)"
+    ],
+    "regras": {
+      "despesaSemCorrespondenciaFinanceira": "+risco",
+      "despesaComCorrespondencia": "neutro",
+      "despesaRecorrenteOperador": "+risco leve",
+      "despesaRecorrentePdv": "+risco leve",
+      "suprimentoDocumentado": "-risco leve"
+    },
+    "justificativa": [
+      "baixa paridade DESPESAS_REDE → penalizar risco operacional"
+    ],
+    "correlacaoGlobal": -0.0409,
+    "matchRateDespesasRede": 15.8
+  },
+  "qa": {
+    "paridadeOk": true,
+    "failures": [],
+    "margemErro": "0,00"
+  },
+  "executiveAnswers": {
+    "1_despesasNoPdv": true,
+    "2_camposDespesa": [
+      "ap_despesaApresentado",
+      "ap_despesaApurado",
+      "ap_valeFunApresentado",
+      "ap_valeFunApurado",
+      "ap_transfBancApurado"
+    ],
+    "3_porPdv": true,
+    "4_porOperador": true,
+    "5_porTurno": true,
+    "6_impactaDiferenca": false,
+    "7_correlacao": -0.0409,
+    "8_apareceDespesasRede": true,
+    "9_duplicidade": true,
+    "10_classificacao": {
+      "DESPESA_CAIXA": 19,
+      "OUTROS": 1,
+      "VALE_FUNCIONARIO": 1
+    },
+    "11_entrarRiskScore": true,
+    "12_dwFactsProntos": [
+      "fact_pdv_expense",
+      "fact_pdv_expense_reconciliation"
+    ],
+    "13_prontoF032": true
+  }
+}

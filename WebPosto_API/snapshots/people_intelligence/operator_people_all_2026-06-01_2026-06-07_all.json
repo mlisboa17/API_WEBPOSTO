@@ -1,0 +1,2146 @@
+{
+  "data": {
+    "sprint": "F04.1",
+    "periodo": {
+      "dataInicial": "2026-06-01",
+      "dataFinal": "2026-06-07"
+    },
+    "elapsedMs": 94756.2,
+    "baseF040": {
+      "parecerFinal": "[PARECER FINAL: APROVADO PARA F04.1]",
+      "paridadeDelta": 0.0
+    },
+    "salesScoreEngine": {
+      "operators": [
+        {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "salesScore": 64.68,
+          "salesBand": "NORMAL",
+          "quantidadeVendas": 29,
+          "totalVendas": 1645.82,
+          "ticketMedio": 56.75,
+          "volumeCombustivel": 721.0,
+          "volumeConveniencia": 7.0
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "salesScore": 58.21,
+          "salesBand": "NORMAL",
+          "quantidadeVendas": 38,
+          "totalVendas": 1139.53,
+          "ticketMedio": 29.99,
+          "volumeCombustivel": 1139.53,
+          "volumeConveniencia": 0.0
+        },
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "salesScore": 56.1,
+          "salesBand": "NORMAL",
+          "quantidadeVendas": 68,
+          "totalVendas": 1057.26,
+          "ticketMedio": 15.55,
+          "volumeCombustivel": 0.0,
+          "volumeConveniencia": 1057.26
+        },
+        {
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "salesScore": 50.44,
+          "salesBand": "NORMAL",
+          "quantidadeVendas": 25,
+          "totalVendas": 1015.15,
+          "ticketMedio": 40.61,
+          "volumeCombustivel": 826.15,
+          "volumeConveniencia": 0.0
+        },
+        {
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "salesScore": 48.2,
+          "salesBand": "BAIXA",
+          "quantidadeVendas": 20,
+          "totalVendas": 1208.05,
+          "ticketMedio": 60.4,
+          "volumeCombustivel": 250.0,
+          "volumeConveniencia": 0.0
+        },
+        {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "salesScore": 31.08,
+          "salesBand": "BAIXA",
+          "quantidadeVendas": 9,
+          "totalVendas": 555.34,
+          "ticketMedio": 61.7,
+          "volumeCombustivel": 0.0,
+          "volumeConveniencia": 0.0
+        },
+        {
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "salesScore": 21.86,
+          "salesBand": "CRITICA",
+          "quantidadeVendas": 2,
+          "totalVendas": 120.0,
+          "ticketMedio": 60.0,
+          "volumeCombustivel": 0.0,
+          "volumeConveniencia": 0.0
+        },
+        {
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "salesScore": 8.09,
+          "salesBand": "CRITICA",
+          "quantidadeVendas": 9,
+          "totalVendas": 95.25,
+          "ticketMedio": 10.58,
+          "volumeCombustivel": 0.0,
+          "volumeConveniencia": 39.75
+        }
+      ]
+    },
+    "cashAccountabilityScore": {
+      "operators": [
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "accountabilityScore": 100,
+          "accountabilityBand": "ELITE",
+          "faltas": 0.0,
+          "sobras": 2.79,
+          "compensacoes": 0.0,
+          "recuperacoes": 0.0,
+          "saldoOperacional": 2.79
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "accountabilityScore": 100,
+          "accountabilityBand": "ELITE",
+          "faltas": 0.0,
+          "sobras": 17.81,
+          "compensacoes": 21.95,
+          "recuperacoes": 21.95,
+          "saldoOperacional": 17.81
+        },
+        {
+          "funcionarioCodigo": 158924,
+          "employeeName": "JOÃO VICTOR APOIO",
+          "accountabilityScore": 86.51,
+          "accountabilityBand": "ALTA",
+          "faltas": 94.08,
+          "sobras": 0.0,
+          "compensacoes": 212.19,
+          "recuperacoes": 212.19,
+          "saldoOperacional": -94.08
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+          "accountabilityScore": 69.33,
+          "accountabilityBand": "NORMAL",
+          "faltas": 110.54,
+          "sobras": 0.0,
+          "compensacoes": 0.0,
+          "recuperacoes": 0.0,
+          "saldoOperacional": -110.54
+        },
+        {
+          "funcionarioCodigo": 299371,
+          "employeeName": "WILLY KLEBYSON DA SILVA",
+          "accountabilityScore": 67.59,
+          "accountabilityBand": "NORMAL",
+          "faltas": 116.8,
+          "sobras": 0.0,
+          "compensacoes": 0.0,
+          "recuperacoes": 0.0,
+          "saldoOperacional": -116.8
+        },
+        {
+          "funcionarioCodigo": 299151,
+          "employeeName": "FABIANO RODRIGUES",
+          "accountabilityScore": 40.13,
+          "accountabilityBand": "BAIXA",
+          "faltas": 215.77,
+          "sobras": 0.0,
+          "compensacoes": 0.0,
+          "recuperacoes": 0.0,
+          "saldoOperacional": -215.77
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "accountabilityScore": 30.0,
+          "accountabilityBand": "BAIXA",
+          "faltas": 252.27,
+          "sobras": 0.0,
+          "compensacoes": 0.0,
+          "recuperacoes": 0.0,
+          "saldoOperacional": -252.27
+        }
+      ]
+    },
+    "complianceScoreEngine": {
+      "operators": [
+        {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "complianceScore": 100.0,
+          "complianceBand": "ELITE",
+          "totalDesconto": 0.0,
+          "cancelamentos": 0,
+          "nfceAnomalias": 0
+        },
+        {
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "complianceScore": 100.0,
+          "complianceBand": "ELITE",
+          "totalDesconto": 0.0,
+          "cancelamentos": 0,
+          "nfceAnomalias": 0
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "complianceScore": 100.0,
+          "complianceBand": "ELITE",
+          "totalDesconto": 0.0,
+          "cancelamentos": 0,
+          "nfceAnomalias": 0
+        },
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "complianceScore": 100.0,
+          "complianceBand": "ELITE",
+          "totalDesconto": 0.0,
+          "cancelamentos": 0,
+          "nfceAnomalias": 0
+        },
+        {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "complianceScore": 100.0,
+          "complianceBand": "ELITE",
+          "totalDesconto": 0.0,
+          "cancelamentos": 0,
+          "nfceAnomalias": 0
+        },
+        {
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "complianceScore": 100.0,
+          "complianceBand": "ELITE",
+          "totalDesconto": 0.0,
+          "cancelamentos": 0,
+          "nfceAnomalias": 0
+        },
+        {
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "complianceScore": 100.0,
+          "complianceBand": "ELITE",
+          "totalDesconto": 0.0,
+          "cancelamentos": 0,
+          "nfceAnomalias": 0
+        },
+        {
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "complianceScore": 60.0,
+          "complianceBand": "NORMAL",
+          "totalDesconto": 0.85,
+          "cancelamentos": 0,
+          "nfceAnomalias": 0
+        }
+      ],
+      "nfceRows": 200
+    },
+    "productivityScoreEngine": {
+      "operators": [
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "productivityScore": 66.06,
+          "productivityBand": "NORMAL",
+          "abastecimentos": 0,
+          "itensVendidos": 124,
+          "volumeFinanceiro": 1057.26,
+          "litrosCombustivel": 0.0
+        },
+        {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "productivityScore": 64.25,
+          "productivityBand": "NORMAL",
+          "abastecimentos": 49,
+          "itensVendidos": 9,
+          "volumeFinanceiro": 1645.82,
+          "litrosCombustivel": 106.58
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "productivityScore": 60.93,
+          "productivityBand": "NORMAL",
+          "abastecimentos": 40,
+          "itensVendidos": 40,
+          "volumeFinanceiro": 1139.53,
+          "litrosCombustivel": 172.45
+        },
+        {
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "productivityScore": 46.88,
+          "productivityBand": "BAIXA",
+          "abastecimentos": 38,
+          "itensVendidos": 2,
+          "volumeFinanceiro": 1208.05,
+          "litrosCombustivel": 35.71
+        },
+        {
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "productivityScore": 46.16,
+          "productivityBand": "BAIXA",
+          "abastecimentos": 32,
+          "itensVendidos": 21,
+          "volumeFinanceiro": 1015.15,
+          "litrosCombustivel": 131.2
+        },
+        {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "productivityScore": 29.24,
+          "productivityBand": "BAIXA",
+          "abastecimentos": 33,
+          "itensVendidos": 0,
+          "volumeFinanceiro": 555.34,
+          "litrosCombustivel": 0.0
+        },
+        {
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "productivityScore": 6.79,
+          "productivityBand": "CRITICA",
+          "abastecimentos": 8,
+          "itensVendidos": 0,
+          "volumeFinanceiro": 120.0,
+          "litrosCombustivel": 0.0
+        },
+        {
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "productivityScore": 6.06,
+          "productivityBand": "CRITICA",
+          "abastecimentos": 0,
+          "itensVendidos": 4,
+          "volumeFinanceiro": 95.25,
+          "litrosCombustivel": 0.0
+        }
+      ]
+    },
+    "contextFairnessEngine": {
+      "operators": [
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "globalScore": 80.54,
+          "contextAdjustedScore": 80.54,
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "verdict": "CONTEXTO_RUIM"
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "globalScore": 62.28,
+          "contextAdjustedScore": 65.39,
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextRiskPenalty": -3.11,
+          "multiContextBonus": 0.0,
+          "verdict": "CONTEXTO_RUIM"
+        },
+        {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "globalScore": 57.23,
+          "contextAdjustedScore": 57.23,
+          "contextClassification": "INCONCLUSIVO",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "verdict": "MISTO"
+        },
+        {
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "globalScore": 48.77,
+          "contextAdjustedScore": 48.77,
+          "contextClassification": "INCONCLUSIVO",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "verdict": "OPERADOR_RUIM"
+        },
+        {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "globalScore": 40.08,
+          "contextAdjustedScore": 40.08,
+          "contextClassification": "INCONCLUSIVO",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "verdict": "OPERADOR_RUIM"
+        },
+        {
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "globalScore": 39.15,
+          "contextAdjustedScore": 39.15,
+          "contextClassification": "INCONCLUSIVO",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "verdict": "OPERADOR_RUIM"
+        },
+        {
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "globalScore": 32.16,
+          "contextAdjustedScore": 32.16,
+          "contextClassification": "INCONCLUSIVO",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "verdict": "OPERADOR_RUIM"
+        },
+        {
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "globalScore": 28.54,
+          "contextAdjustedScore": 28.54,
+          "contextClassification": "INCONCLUSIVO",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "verdict": "OPERADOR_RUIM"
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "globalScore": 25.0,
+          "contextAdjustedScore": 25.0,
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "verdict": "MISTO"
+        },
+        {
+          "funcionarioCodigo": 158924,
+          "employeeName": "JOÃO VICTOR APOIO",
+          "globalScore": 21.63,
+          "contextAdjustedScore": 21.63,
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "verdict": "MISTO"
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+          "globalScore": 17.33,
+          "contextAdjustedScore": 17.33,
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "verdict": "MISTO"
+        },
+        {
+          "funcionarioCodigo": 299371,
+          "employeeName": "WILLY KLEBYSON DA SILVA",
+          "globalScore": 16.9,
+          "contextAdjustedScore": 16.9,
+          "contextClassification": "INCONCLUSIVO",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "verdict": "OPERADOR_RUIM"
+        },
+        {
+          "funcionarioCodigo": 299151,
+          "employeeName": "FABIANO RODRIGUES",
+          "globalScore": 10.03,
+          "contextAdjustedScore": 17.55,
+          "contextClassification": "INCONCLUSIVO",
+          "contextRiskPenalty": -7.52,
+          "multiContextBonus": 0.0,
+          "verdict": "OPERADOR_RUIM"
+        }
+      ],
+      "harmfulPdvs": [
+        15880,
+        54193
+      ],
+      "mandatoryQuestions": {
+        "operadorRuim": [
+          {
+            "funcionarioCodigo": 163694,
+            "employeeName": "MARINALDO RIBEIRO DA SILVA",
+            "globalScore": 48.77,
+            "contextAdjustedScore": 48.77,
+            "contextClassification": "INCONCLUSIVO",
+            "contextRiskPenalty": 0.0,
+            "multiContextBonus": 0.0,
+            "verdict": "OPERADOR_RUIM"
+          },
+          {
+            "funcionarioCodigo": 252430,
+            "employeeName": "CLEYTON ALVES DA COSTA",
+            "globalScore": 40.08,
+            "contextAdjustedScore": 40.08,
+            "contextClassification": "INCONCLUSIVO",
+            "contextRiskPenalty": 0.0,
+            "multiContextBonus": 0.0,
+            "verdict": "OPERADOR_RUIM"
+          },
+          {
+            "funcionarioCodigo": 80203,
+            "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+            "globalScore": 39.15,
+            "contextAdjustedScore": 39.15,
+            "contextClassification": "INCONCLUSIVO",
+            "contextRiskPenalty": 0.0,
+            "multiContextBonus": 0.0,
+            "verdict": "OPERADOR_RUIM"
+          },
+          {
+            "funcionarioCodigo": 63048,
+            "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+            "globalScore": 32.16,
+            "contextAdjustedScore": 32.16,
+            "contextClassification": "INCONCLUSIVO",
+            "contextRiskPenalty": 0.0,
+            "multiContextBonus": 0.0,
+            "verdict": "OPERADOR_RUIM"
+          },
+          {
+            "funcionarioCodigo": 249526,
+            "employeeName": "THACIANNA RIBEIRO DA SILVA",
+            "globalScore": 28.54,
+            "contextAdjustedScore": 28.54,
+            "contextClassification": "INCONCLUSIVO",
+            "contextRiskPenalty": 0.0,
+            "multiContextBonus": 0.0,
+            "verdict": "OPERADOR_RUIM"
+          }
+        ],
+        "contextoRuim": [
+          {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "globalScore": 80.54,
+            "contextAdjustedScore": 80.54,
+            "contextClassification": "DEPENDENTE_DO_PDV",
+            "contextRiskPenalty": 0.0,
+            "multiContextBonus": 0.0,
+            "verdict": "CONTEXTO_RUIM"
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "globalScore": 62.28,
+            "contextAdjustedScore": 65.39,
+            "contextClassification": "DEPENDENTE_DO_PDV",
+            "contextRiskPenalty": -3.11,
+            "multiContextBonus": 0.0,
+            "verdict": "CONTEXTO_RUIM"
+          }
+        ]
+      },
+      "performsInBadPdv": [
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "globalScore": 80.54,
+          "contextAdjustedScore": 80.54,
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "verdict": "CONTEXTO_RUIM"
+        }
+      ],
+      "contextDependentOperators": [
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "globalScore": 80.54,
+          "contextAdjustedScore": 80.54,
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "verdict": "CONTEXTO_RUIM"
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "globalScore": 62.28,
+          "contextAdjustedScore": 65.39,
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextRiskPenalty": -3.11,
+          "multiContextBonus": 0.0,
+          "verdict": "CONTEXTO_RUIM"
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "globalScore": 25.0,
+          "contextAdjustedScore": 25.0,
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "verdict": "MISTO"
+        },
+        {
+          "funcionarioCodigo": 158924,
+          "employeeName": "JOÃO VICTOR APOIO",
+          "globalScore": 21.63,
+          "contextAdjustedScore": 21.63,
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "verdict": "MISTO"
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+          "globalScore": 17.33,
+          "contextAdjustedScore": 17.33,
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "verdict": "MISTO"
+        }
+      ]
+    },
+    "bonusEligibilityEngine": {
+      "elegivel": [
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "salesScore": 56.1,
+          "productivityScore": 66.06,
+          "accountabilityScore": 100,
+          "complianceScore": 100.0,
+          "globalScore": 80.54,
+          "contextAdjustedScore": 80.54,
+          "globalClassification": "ALTA PERFORMANCE",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "CONTEXTO_RUIM",
+          "saldoOperacional": 2.79,
+          "bonusEligibility": "Elegível"
+        }
+      ],
+      "observacao": [],
+      "naoElegivel": [
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "salesScore": 58.21,
+          "productivityScore": 60.93,
+          "accountabilityScore": 30.0,
+          "complianceScore": 100.0,
+          "globalScore": 62.28,
+          "contextAdjustedScore": 65.39,
+          "globalClassification": "NORMAL",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "CONTEXTO_RUIM",
+          "saldoOperacional": -252.27,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "salesScore": 64.68,
+          "productivityScore": 64.25,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 57.23,
+          "contextAdjustedScore": 57.23,
+          "globalClassification": "NORMAL",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "salesScore": 48.2,
+          "productivityScore": 46.88,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 48.77,
+          "contextAdjustedScore": 48.77,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "salesScore": 31.08,
+          "productivityScore": 29.24,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 40.08,
+          "contextAdjustedScore": 40.08,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "salesScore": 50.44,
+          "productivityScore": 46.16,
+          "accountabilityScore": 0,
+          "complianceScore": 60.0,
+          "globalScore": 39.15,
+          "contextAdjustedScore": 39.15,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "salesScore": 21.86,
+          "productivityScore": 6.79,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 32.16,
+          "contextAdjustedScore": 32.16,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "salesScore": 8.09,
+          "productivityScore": 6.06,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 28.54,
+          "contextAdjustedScore": 28.54,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 100,
+          "complianceScore": 0,
+          "globalScore": 25.0,
+          "contextAdjustedScore": 25.0,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": 17.81,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 158924,
+          "employeeName": "JOÃO VICTOR APOIO",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 86.51,
+          "complianceScore": 0,
+          "globalScore": 21.63,
+          "contextAdjustedScore": 21.63,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": -94.08,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 69.33,
+          "complianceScore": 0,
+          "globalScore": 17.33,
+          "contextAdjustedScore": 17.33,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": -110.54,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 299371,
+          "employeeName": "WILLY KLEBYSON DA SILVA",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 67.59,
+          "complianceScore": 0,
+          "globalScore": 16.9,
+          "contextAdjustedScore": 16.9,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": -116.8,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 299151,
+          "employeeName": "FABIANO RODRIGUES",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 40.13,
+          "complianceScore": 0,
+          "globalScore": 10.03,
+          "contextAdjustedScore": 17.55,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": -215.77,
+          "bonusEligibility": "Não Elegível"
+        }
+      ]
+    },
+    "trainingEngine": {
+      "recommendations": [
+        {
+          "funcionarioCodigo": 299151,
+          "employeeName": "FABIANO RODRIGUES",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível",
+            "Compliance"
+          ],
+          "globalScore": 10.03,
+          "globalClassification": "CRÍTICO"
+        },
+        {
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível"
+          ],
+          "globalScore": 48.77,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível"
+          ],
+          "globalScore": 40.08,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível"
+          ],
+          "globalScore": 39.15,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível"
+          ],
+          "globalScore": 32.16,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível"
+          ],
+          "globalScore": 28.54,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "trainingCategories": [
+            "Atendimento",
+            "Vendas",
+            "Combustível",
+            "Compliance"
+          ],
+          "globalScore": 25.0,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 158924,
+          "employeeName": "JOÃO VICTOR APOIO",
+          "trainingCategories": [
+            "Atendimento",
+            "Vendas",
+            "Combustível",
+            "Compliance"
+          ],
+          "globalScore": 21.63,
+          "globalClassification": "CRÍTICO"
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+          "trainingCategories": [
+            "Atendimento",
+            "Vendas",
+            "Combustível",
+            "Compliance"
+          ],
+          "globalScore": 17.33,
+          "globalClassification": "CRÍTICO"
+        },
+        {
+          "funcionarioCodigo": 299371,
+          "employeeName": "WILLY KLEBYSON DA SILVA",
+          "trainingCategories": [
+            "Atendimento",
+            "Vendas",
+            "Combustível",
+            "Compliance"
+          ],
+          "globalScore": 16.9,
+          "globalClassification": "CRÍTICO"
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "trainingCategories": [
+            "Caixa",
+            "Vendas"
+          ],
+          "globalScore": 62.28,
+          "globalClassification": "NORMAL"
+        },
+        {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "trainingCategories": [
+            "Caixa",
+            "Vendas"
+          ],
+          "globalScore": 57.23,
+          "globalClassification": "NORMAL"
+        },
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "trainingCategories": [
+            "Vendas"
+          ],
+          "globalScore": 80.54,
+          "globalClassification": "ALTA PERFORMANCE"
+        }
+      ]
+    },
+    "operatorClassification": {
+      "summary": {
+        "ALTA PERFORMANCE": 1,
+        "NORMAL": 2,
+        "ATENÇÃO": 6,
+        "CRÍTICO": 4
+      },
+      "operators": [
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "salesScore": 56.1,
+          "productivityScore": 66.06,
+          "accountabilityScore": 100,
+          "complianceScore": 100.0,
+          "globalScore": 80.54,
+          "contextAdjustedScore": 80.54,
+          "globalClassification": "ALTA PERFORMANCE",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "CONTEXTO_RUIM",
+          "saldoOperacional": 2.79,
+          "bonusEligibility": "Elegível"
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "salesScore": 58.21,
+          "productivityScore": 60.93,
+          "accountabilityScore": 30.0,
+          "complianceScore": 100.0,
+          "globalScore": 62.28,
+          "contextAdjustedScore": 65.39,
+          "globalClassification": "NORMAL",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "CONTEXTO_RUIM",
+          "saldoOperacional": -252.27,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "salesScore": 64.68,
+          "productivityScore": 64.25,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 57.23,
+          "contextAdjustedScore": 57.23,
+          "globalClassification": "NORMAL",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "salesScore": 48.2,
+          "productivityScore": 46.88,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 48.77,
+          "contextAdjustedScore": 48.77,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "salesScore": 31.08,
+          "productivityScore": 29.24,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 40.08,
+          "contextAdjustedScore": 40.08,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "salesScore": 50.44,
+          "productivityScore": 46.16,
+          "accountabilityScore": 0,
+          "complianceScore": 60.0,
+          "globalScore": 39.15,
+          "contextAdjustedScore": 39.15,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "salesScore": 21.86,
+          "productivityScore": 6.79,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 32.16,
+          "contextAdjustedScore": 32.16,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "salesScore": 8.09,
+          "productivityScore": 6.06,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 28.54,
+          "contextAdjustedScore": 28.54,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 100,
+          "complianceScore": 0,
+          "globalScore": 25.0,
+          "contextAdjustedScore": 25.0,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": 17.81,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 158924,
+          "employeeName": "JOÃO VICTOR APOIO",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 86.51,
+          "complianceScore": 0,
+          "globalScore": 21.63,
+          "contextAdjustedScore": 21.63,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": -94.08,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 69.33,
+          "complianceScore": 0,
+          "globalScore": 17.33,
+          "contextAdjustedScore": 17.33,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": -110.54,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 299371,
+          "employeeName": "WILLY KLEBYSON DA SILVA",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 67.59,
+          "complianceScore": 0,
+          "globalScore": 16.9,
+          "contextAdjustedScore": 16.9,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": -116.8,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 299151,
+          "employeeName": "FABIANO RODRIGUES",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 40.13,
+          "complianceScore": 0,
+          "globalScore": 10.03,
+          "contextAdjustedScore": 17.55,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": -215.77,
+          "bonusEligibility": "Não Elegível"
+        }
+      ]
+    },
+    "cockpit": {
+      "topOperadores": [
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "salesScore": 56.1,
+          "productivityScore": 66.06,
+          "accountabilityScore": 100,
+          "complianceScore": 100.0,
+          "globalScore": 80.54,
+          "contextAdjustedScore": 80.54,
+          "globalClassification": "ALTA PERFORMANCE",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "CONTEXTO_RUIM",
+          "saldoOperacional": 2.79,
+          "bonusEligibility": "Elegível"
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "salesScore": 58.21,
+          "productivityScore": 60.93,
+          "accountabilityScore": 30.0,
+          "complianceScore": 100.0,
+          "globalScore": 62.28,
+          "contextAdjustedScore": 65.39,
+          "globalClassification": "NORMAL",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "CONTEXTO_RUIM",
+          "saldoOperacional": -252.27,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "salesScore": 64.68,
+          "productivityScore": 64.25,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 57.23,
+          "contextAdjustedScore": 57.23,
+          "globalClassification": "NORMAL",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "salesScore": 48.2,
+          "productivityScore": 46.88,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 48.77,
+          "contextAdjustedScore": 48.77,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "salesScore": 31.08,
+          "productivityScore": 29.24,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 40.08,
+          "contextAdjustedScore": 40.08,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "salesScore": 50.44,
+          "productivityScore": 46.16,
+          "accountabilityScore": 0,
+          "complianceScore": 60.0,
+          "globalScore": 39.15,
+          "contextAdjustedScore": 39.15,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "salesScore": 21.86,
+          "productivityScore": 6.79,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 32.16,
+          "contextAdjustedScore": 32.16,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "salesScore": 8.09,
+          "productivityScore": 6.06,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 28.54,
+          "contextAdjustedScore": 28.54,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 100,
+          "complianceScore": 0,
+          "globalScore": 25.0,
+          "contextAdjustedScore": 25.0,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": 17.81,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 158924,
+          "employeeName": "JOÃO VICTOR APOIO",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 86.51,
+          "complianceScore": 0,
+          "globalScore": 21.63,
+          "contextAdjustedScore": 21.63,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": -94.08,
+          "bonusEligibility": "Não Elegível"
+        }
+      ],
+      "elegiveisBonus": [
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "salesScore": 56.1,
+          "productivityScore": 66.06,
+          "accountabilityScore": 100,
+          "complianceScore": 100.0,
+          "globalScore": 80.54,
+          "contextAdjustedScore": 80.54,
+          "globalClassification": "ALTA PERFORMANCE",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "CONTEXTO_RUIM",
+          "saldoOperacional": 2.79,
+          "bonusEligibility": "Elegível"
+        }
+      ],
+      "necessitamTreinamento": [
+        {
+          "funcionarioCodigo": 299151,
+          "employeeName": "FABIANO RODRIGUES",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível",
+            "Compliance"
+          ],
+          "globalScore": 10.03,
+          "globalClassification": "CRÍTICO"
+        },
+        {
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível"
+          ],
+          "globalScore": 48.77,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível"
+          ],
+          "globalScore": 40.08,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível"
+          ],
+          "globalScore": 39.15,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível"
+          ],
+          "globalScore": 32.16,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível"
+          ],
+          "globalScore": 28.54,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "trainingCategories": [
+            "Atendimento",
+            "Vendas",
+            "Combustível",
+            "Compliance"
+          ],
+          "globalScore": 25.0,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 158924,
+          "employeeName": "JOÃO VICTOR APOIO",
+          "trainingCategories": [
+            "Atendimento",
+            "Vendas",
+            "Combustível",
+            "Compliance"
+          ],
+          "globalScore": 21.63,
+          "globalClassification": "CRÍTICO"
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+          "trainingCategories": [
+            "Atendimento",
+            "Vendas",
+            "Combustível",
+            "Compliance"
+          ],
+          "globalScore": 17.33,
+          "globalClassification": "CRÍTICO"
+        },
+        {
+          "funcionarioCodigo": 299371,
+          "employeeName": "WILLY KLEBYSON DA SILVA",
+          "trainingCategories": [
+            "Atendimento",
+            "Vendas",
+            "Combustível",
+            "Compliance"
+          ],
+          "globalScore": 16.9,
+          "globalClassification": "CRÍTICO"
+        }
+      ],
+      "operadoresCriticos": [
+        {
+          "funcionarioCodigo": 158924,
+          "employeeName": "JOÃO VICTOR APOIO",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 86.51,
+          "complianceScore": 0,
+          "globalScore": 21.63,
+          "contextAdjustedScore": 21.63,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": -94.08,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 69.33,
+          "complianceScore": 0,
+          "globalScore": 17.33,
+          "contextAdjustedScore": 17.33,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": -110.54,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 299371,
+          "employeeName": "WILLY KLEBYSON DA SILVA",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 67.59,
+          "complianceScore": 0,
+          "globalScore": 16.9,
+          "contextAdjustedScore": 16.9,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": -116.8,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 299151,
+          "employeeName": "FABIANO RODRIGUES",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 40.13,
+          "complianceScore": 0,
+          "globalScore": 10.03,
+          "contextAdjustedScore": 17.55,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": -215.77,
+          "bonusEligibility": "Não Elegível"
+        }
+      ],
+      "pdvsCriticos": [
+        15880,
+        54193
+      ],
+      "rankingGeral": [
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "salesScore": 56.1,
+          "productivityScore": 66.06,
+          "accountabilityScore": 100,
+          "complianceScore": 100.0,
+          "globalScore": 80.54,
+          "contextAdjustedScore": 80.54,
+          "globalClassification": "ALTA PERFORMANCE",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "CONTEXTO_RUIM",
+          "saldoOperacional": 2.79,
+          "bonusEligibility": "Elegível"
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "salesScore": 58.21,
+          "productivityScore": 60.93,
+          "accountabilityScore": 30.0,
+          "complianceScore": 100.0,
+          "globalScore": 62.28,
+          "contextAdjustedScore": 65.39,
+          "globalClassification": "NORMAL",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "CONTEXTO_RUIM",
+          "saldoOperacional": -252.27,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "salesScore": 64.68,
+          "productivityScore": 64.25,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 57.23,
+          "contextAdjustedScore": 57.23,
+          "globalClassification": "NORMAL",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "salesScore": 48.2,
+          "productivityScore": 46.88,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 48.77,
+          "contextAdjustedScore": 48.77,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "salesScore": 31.08,
+          "productivityScore": 29.24,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 40.08,
+          "contextAdjustedScore": 40.08,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "salesScore": 50.44,
+          "productivityScore": 46.16,
+          "accountabilityScore": 0,
+          "complianceScore": 60.0,
+          "globalScore": 39.15,
+          "contextAdjustedScore": 39.15,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "salesScore": 21.86,
+          "productivityScore": 6.79,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 32.16,
+          "contextAdjustedScore": 32.16,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "salesScore": 8.09,
+          "productivityScore": 6.06,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 28.54,
+          "contextAdjustedScore": 28.54,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 100,
+          "complianceScore": 0,
+          "globalScore": 25.0,
+          "contextAdjustedScore": 25.0,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": 17.81,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 158924,
+          "employeeName": "JOÃO VICTOR APOIO",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 86.51,
+          "complianceScore": 0,
+          "globalScore": 21.63,
+          "contextAdjustedScore": 21.63,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": -94.08,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 69.33,
+          "complianceScore": 0,
+          "globalScore": 17.33,
+          "contextAdjustedScore": 17.33,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": -110.54,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 299371,
+          "employeeName": "WILLY KLEBYSON DA SILVA",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 67.59,
+          "complianceScore": 0,
+          "globalScore": 16.9,
+          "contextAdjustedScore": 16.9,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": -116.8,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 299151,
+          "employeeName": "FABIANO RODRIGUES",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 40.13,
+          "complianceScore": 0,
+          "globalScore": 10.03,
+          "contextAdjustedScore": 17.55,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": -215.77,
+          "bonusEligibility": "Não Elegível"
+        }
+      ]
+    },
+    "executiveAnswers": {
+      "1_operadoresElite": 0,
+      "2_operadoresAltaPerformance": 1,
+      "3_operadoresAtencao": 6,
+      "4_operadoresCriticos": 4,
+      "5_maiorSalesScore": {
+        "funcionarioCodigo": 251934,
+        "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+        "salesScore": 64.68,
+        "salesBand": "NORMAL",
+        "quantidadeVendas": 29,
+        "totalVendas": 1645.82,
+        "ticketMedio": 56.75,
+        "volumeCombustivel": 721.0,
+        "volumeConveniencia": 7.0
+      },
+      "6_maiorProductivityScore": {
+        "funcionarioCodigo": 178278,
+        "employeeName": "APOIO LOJA .",
+        "salesScore": 56.1,
+        "productivityScore": 66.06,
+        "accountabilityScore": 100,
+        "complianceScore": 100.0,
+        "globalScore": 80.54,
+        "contextAdjustedScore": 80.54,
+        "globalClassification": "ALTA PERFORMANCE",
+        "contextClassification": "DEPENDENTE_DO_PDV",
+        "contextVerdict": "CONTEXTO_RUIM",
+        "saldoOperacional": 2.79,
+        "bonusEligibility": "Elegível"
+      },
+      "7_melhorAccountabilityScore": {
+        "funcionarioCodigo": 178278,
+        "employeeName": "APOIO LOJA .",
+        "accountabilityScore": 100,
+        "accountabilityBand": "ELITE",
+        "faltas": 0.0,
+        "sobras": 2.79,
+        "compensacoes": 0.0,
+        "recuperacoes": 0.0,
+        "saldoOperacional": 2.79
+      },
+      "8_piorAccountabilityScore": {
+        "funcionarioCodigo": 294273,
+        "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+        "accountabilityScore": 30.0,
+        "accountabilityBand": "BAIXA",
+        "faltas": 252.27,
+        "sobras": 0.0,
+        "compensacoes": 0.0,
+        "recuperacoes": 0.0,
+        "saldoOperacional": -252.27
+      },
+      "9_maiorComplianceScore": {
+        "funcionarioCodigo": 251934,
+        "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+        "complianceScore": 100.0,
+        "complianceBand": "ELITE",
+        "totalDesconto": 0.0,
+        "cancelamentos": 0,
+        "nfceAnomalias": 0
+      },
+      "10_maiorScoreGlobal": {
+        "funcionarioCodigo": 178278,
+        "employeeName": "APOIO LOJA .",
+        "salesScore": 56.1,
+        "productivityScore": 66.06,
+        "accountabilityScore": 100,
+        "complianceScore": 100.0,
+        "globalScore": 80.54,
+        "contextAdjustedScore": 80.54,
+        "globalClassification": "ALTA PERFORMANCE",
+        "contextClassification": "DEPENDENTE_DO_PDV",
+        "contextVerdict": "CONTEXTO_RUIM",
+        "saldoOperacional": 2.79,
+        "bonusEligibility": "Elegível"
+      },
+      "11_elegivelBonus": [
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "salesScore": 56.1,
+          "productivityScore": 66.06,
+          "accountabilityScore": 100,
+          "complianceScore": 100.0,
+          "globalScore": 80.54,
+          "contextAdjustedScore": 80.54,
+          "globalClassification": "ALTA PERFORMANCE",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "CONTEXTO_RUIM",
+          "saldoOperacional": 2.79,
+          "bonusEligibility": "Elegível"
+        }
+      ],
+      "12_deveTreinamento": [
+        {
+          "funcionarioCodigo": 299151,
+          "employeeName": "FABIANO RODRIGUES",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível",
+            "Compliance"
+          ],
+          "globalScore": 10.03,
+          "globalClassification": "CRÍTICO"
+        },
+        {
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível"
+          ],
+          "globalScore": 48.77,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível"
+          ],
+          "globalScore": 40.08,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível"
+          ],
+          "globalScore": 39.15,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível"
+          ],
+          "globalScore": 32.16,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "trainingCategories": [
+            "Caixa",
+            "Atendimento",
+            "Vendas",
+            "Combustível"
+          ],
+          "globalScore": 28.54,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "trainingCategories": [
+            "Atendimento",
+            "Vendas",
+            "Combustível",
+            "Compliance"
+          ],
+          "globalScore": 25.0,
+          "globalClassification": "ATENÇÃO"
+        },
+        {
+          "funcionarioCodigo": 158924,
+          "employeeName": "JOÃO VICTOR APOIO",
+          "trainingCategories": [
+            "Atendimento",
+            "Vendas",
+            "Combustível",
+            "Compliance"
+          ],
+          "globalScore": 21.63,
+          "globalClassification": "CRÍTICO"
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+          "trainingCategories": [
+            "Atendimento",
+            "Vendas",
+            "Combustível",
+            "Compliance"
+          ],
+          "globalScore": 17.33,
+          "globalClassification": "CRÍTICO"
+        },
+        {
+          "funcionarioCodigo": 299371,
+          "employeeName": "WILLY KLEBYSON DA SILVA",
+          "trainingCategories": [
+            "Atendimento",
+            "Vendas",
+            "Combustível",
+            "Compliance"
+          ],
+          "globalScore": 16.9,
+          "globalClassification": "CRÍTICO"
+        }
+      ],
+      "13_deveAcompanhamento": [],
+      "14_deveAuditoria": [
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "salesScore": 58.21,
+          "productivityScore": 60.93,
+          "accountabilityScore": 30.0,
+          "complianceScore": 100.0,
+          "globalScore": 62.28,
+          "contextAdjustedScore": 65.39,
+          "globalClassification": "NORMAL",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "CONTEXTO_RUIM",
+          "saldoOperacional": -252.27,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "salesScore": 64.68,
+          "productivityScore": 64.25,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 57.23,
+          "contextAdjustedScore": 57.23,
+          "globalClassification": "NORMAL",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "salesScore": 48.2,
+          "productivityScore": 46.88,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 48.77,
+          "contextAdjustedScore": 48.77,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "salesScore": 31.08,
+          "productivityScore": 29.24,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 40.08,
+          "contextAdjustedScore": 40.08,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "salesScore": 50.44,
+          "productivityScore": 46.16,
+          "accountabilityScore": 0,
+          "complianceScore": 60.0,
+          "globalScore": 39.15,
+          "contextAdjustedScore": 39.15,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "salesScore": 21.86,
+          "productivityScore": 6.79,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 32.16,
+          "contextAdjustedScore": 32.16,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "salesScore": 8.09,
+          "productivityScore": 6.06,
+          "accountabilityScore": 0,
+          "complianceScore": 100.0,
+          "globalScore": 28.54,
+          "contextAdjustedScore": 28.54,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "INCONCLUSIVO",
+          "contextVerdict": "OPERADOR_RUIM",
+          "saldoOperacional": null,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 100,
+          "complianceScore": 0,
+          "globalScore": 25.0,
+          "contextAdjustedScore": 25.0,
+          "globalClassification": "ATENÇÃO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": 17.81,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 158924,
+          "employeeName": "JOÃO VICTOR APOIO",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 86.51,
+          "complianceScore": 0,
+          "globalScore": 21.63,
+          "contextAdjustedScore": 21.63,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": -94.08,
+          "bonusEligibility": "Não Elegível"
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+          "salesScore": 0,
+          "productivityScore": 0,
+          "accountabilityScore": 69.33,
+          "complianceScore": 0,
+          "globalScore": 17.33,
+          "contextAdjustedScore": 17.33,
+          "globalClassification": "CRÍTICO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextVerdict": "MISTO",
+          "saldoOperacional": -110.54,
+          "bonusEligibility": "Não Elegível"
+        }
+      ],
+      "15_riscoFinanceiroCriticos": 537.19,
+      "16_potencialRecuperacao": 789.46,
+      "17_pdvsPrejudicamOperadores": [
+        15880,
+        54193
+      ],
+      "18_performaEmPdvRuim": [
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "globalScore": 80.54,
+          "contextAdjustedScore": 80.54,
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "verdict": "CONTEXTO_RUIM"
+        }
+      ],
+      "19_prontoGestaoPessoas": true,
+      "20_aprovadoF042": true,
+      "paridadeDelta": 0.0
+    },
+    "qa": {
+      "fourScoresOk": true,
+      "globalScoreOk": true,
+      "bonusEligibilityOk": true,
+      "trainingOk": true,
+      "classificationOk": true,
+      "paridadeZero": true
+    },
+    "parecerFinal": "[PARECER FINAL: APROVADO PARA F04.2]"
+  },
+  "lastUpdated": "2026-06-10T18:10:10"
+}

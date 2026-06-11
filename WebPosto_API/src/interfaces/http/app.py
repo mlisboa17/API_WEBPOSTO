@@ -14,6 +14,19 @@ from src.interfaces.http.routes import metrics
 from src.interfaces.http.routes import analytics
 from src.interfaces.http.routes import finance_center
 from src.interfaces.http.routes import cash_flow
+from src.interfaces.http.routes import cash_operations
+from src.interfaces.http.routes import operator_performance
+from src.interfaces.http.routes import operator_sales_intelligence
+from src.interfaces.http.routes import operator_accountability_incentive
+from src.interfaces.http.routes import operator_profitability
+from src.interfaces.http.routes import store_shift_profitability
+from src.interfaces.http.routes import management_action_center
+from src.interfaces.http.routes import goals_campaign_engine
+from src.interfaces.http.routes import benchmark_intelligence
+from src.interfaces.http.routes import executive_scorecard
+from src.interfaces.http.routes import corporate_intelligence_hub
+from src.interfaces.http.routes import data_trust_baseline
+from src.interfaces.http.routes import prestacao_contas
 from src.interfaces.http.routes import financial_intelligence
 from src.shared.logger import setup_logging
 
@@ -52,6 +65,19 @@ def create_app() -> FastAPI:
     app.include_router(analytics.router)
     app.include_router(finance_center.router)
     app.include_router(cash_flow.router)
+    app.include_router(cash_operations.router)
+    app.include_router(operator_performance.router)
+    app.include_router(operator_sales_intelligence.router)
+    app.include_router(operator_accountability_incentive.router)
+    app.include_router(operator_profitability.router)
+    app.include_router(store_shift_profitability.router)
+    app.include_router(management_action_center.router)
+    app.include_router(goals_campaign_engine.router)
+    app.include_router(benchmark_intelligence.router)
+    app.include_router(executive_scorecard.router)
+    app.include_router(corporate_intelligence_hub.router)
+    app.include_router(data_trust_baseline.router)
+    app.include_router(prestacao_contas.router)
     app.include_router(financial_intelligence.router)
 
     root = Path(__file__).resolve().parents[3]

@@ -552,6 +552,7 @@ export function renderTable(container, columns, rows, options = {}) {
       if (action === "pdf") {
         openPdfPreview(options.title || "Relatório", columns, sortedRows, {
           description: options.pdfDescription || "Dados filtrados e ordenados da visão atual.",
+          pdfNatureSummary: options.pdfNatureSummary,
         });
       }
       if (action === "clear") {

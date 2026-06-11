@@ -1,0 +1,4607 @@
+{
+  "sprint": "D02",
+  "module": "Hidden Nominal Layer Discovery",
+  "windows": {
+    "7d": {
+      "window": "7d",
+      "periodo": {
+        "inicio": "2026-06-02",
+        "fim": "2026-06-08"
+      },
+      "elapsedSec": 35.83,
+      "performance": {
+        "caixa": {
+          "key": "caixa_rede",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 20,
+          "elapsedSec": 21.47
+        },
+        "caixa_apresentado": {
+          "key": "caixa_apresentado",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 20,
+          "elapsedSec": 0.77,
+          "usedFallback": "caixa_apresentado_rede"
+        },
+        "venda": {
+          "key": "venda",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 2.38
+        },
+        "venda_item": {
+          "key": "venda_item",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 1.02
+        },
+        "venda_forma_pagamento": {
+          "key": "venda_forma_pagamento",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 2.45,
+          "usedFallback": "venda_forma_pagamento_rede"
+        },
+        "abastecimento": {
+          "key": "abastecimento",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 0.81
+        },
+        "nfce": {
+          "key": "nfce",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 0.87
+        },
+        "movimento_conta": {
+          "key": "movimento_conta",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 2.34
+        },
+        "transferencia_bancaria": {
+          "key": "transferencia_bancaria",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 1.5
+        }
+      },
+      "employeeNominalDiscovery": {
+        "1_funcionarioNome": true,
+        "2_nomeCompleto": true,
+        "3_cpf": true,
+        "4_matricula": false,
+        "5_apelidoOperacional": false,
+        "6_statusAtivo": true,
+        "endpointsAuditados": [
+          "/INTEGRACAO/FUNCIONARIO_REDE",
+          "/INTEGRACAO/CONSULTAR_FUNCIONARIO",
+          "/INTEGRACAO/FUNCIONARIO",
+          "/INTEGRACAO/FUNCIONARIO_EMPRESA",
+          "/INTEGRACAO/FUNCIONARIO_MOVIMENTO",
+          "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+          "/INTEGRACAO/USUARIO",
+          "/INTEGRACAO/USUARIO_EMPRESA_REDE",
+          "/INTEGRACAO/GRUPO_META",
+          "/INTEGRACAO/PRODUTO_META",
+          "/INTEGRACAO/FECHAMENTO_CAIXA"
+        ],
+        "endpointsComDados": [
+          "/INTEGRACAO/FUNCIONARIO",
+          "/INTEGRACAO/USUARIO",
+          "/INTEGRACAO/GRUPO_META",
+          "/INTEGRACAO/PRODUTO_META"
+        ],
+        "endpoints401": [
+          "/INTEGRACAO/FUNCIONARIO_REDE",
+          "/INTEGRACAO/CONSULTAR_FUNCIONARIO",
+          "/INTEGRACAO/FUNCIONARIO_EMPRESA",
+          "/INTEGRACAO/FUNCIONARIO_MOVIMENTO",
+          "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+          "/INTEGRACAO/USUARIO_EMPRESA_REDE",
+          "/INTEGRACAO/FECHAMENTO_CAIXA"
+        ],
+        "conclusao": "/INTEGRACAO/FUNCIONARIO expõe nome/cpf/ativo — join por funcionarioCodigo; transacional permanece codigo-only",
+        "funcionarioCatalogCount": 84
+      },
+      "nominalEndpointProbes": [
+        {
+          "endpoint": "FuncionarioRede",
+          "path": "/INTEGRACAO/FUNCIONARIO_REDE",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "ConsultarFuncionario",
+          "path": "/INTEGRACAO/CONSULTAR_FUNCIONARIO",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "Funcionario",
+          "path": "/INTEGRACAO/FUNCIONARIO",
+          "httpStatus": 200,
+          "registros": 84,
+          "campos": [
+            "admissao",
+            "ativo",
+            "celular",
+            "codigo",
+            "cpf",
+            "demissao",
+            "email",
+            "empresaCodigo",
+            "funcaoCodigo",
+            "funcionarioCodigo",
+            "funcionarioCodigoExterno",
+            "funcionarioReferencia",
+            "nome",
+            "ultimoUsuarioAlteracao"
+          ],
+          "nomeFields": [
+            "cpf",
+            "funcionarioCodigo",
+            "funcionarioCodigoExterno",
+            "funcionarioReferencia",
+            "nome",
+            "ultimoUsuarioAlteracao"
+          ],
+          "keywordFields": [
+            "cpf",
+            "funcionarioCodigo",
+            "funcionarioCodigoExterno",
+            "funcionarioReferencia",
+            "nome",
+            "ultimoUsuarioAlteracao"
+          ],
+          "samples": [
+            {
+              "empresaCodigo": 5555,
+              "funcionarioCodigo": 63044,
+              "funcionarioCodigoExterno": null,
+              "funcionarioReferencia": "00001",
+              "nome": "DOUGLAS HENRIQUE",
+              "cpf": null,
+              "funcaoCodigo": 11442,
+              "admissao": "2021-10-20",
+              "demissao": null,
+              "ultimoUsuarioAlteracao": "MARCIO",
+              "ativo": false,
+              "celular": null,
+              "email": null,
+              "codigo": 63044
+            },
+            {
+              "empresaCodigo": 5555,
+              "funcionarioCodigo": 63045,
+              "funcionarioCodigoExterno": null,
+              "funcionarioReferencia": "00002",
+              "nome": "LEONARDO DOS SANTOS",
+              "cpf": null,
+              "funcaoCodigo": 11442,
+              "admissao": "2021-10-20",
+              "demissao": null,
+              "ultimoUsuarioAlteracao": "CAMILY",
+              "ativo": false,
+              "celular": null,
+              "email": null,
+              "codigo": 63045
+            }
+          ],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "FuncionarioEmpresa",
+          "path": "/INTEGRACAO/FUNCIONARIO_EMPRESA",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "FuncionarioMovimento",
+          "path": "/INTEGRACAO/FUNCIONARIO_MOVIMENTO",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "ValeFuncionarioRede",
+          "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "Usuario",
+          "path": "/INTEGRACAO/USUARIO",
+          "httpStatus": 200,
+          "registros": 58,
+          "campos": [
+            "codigo",
+            "login",
+            "nome",
+            "perfil",
+            "senha",
+            "senhaExpirada",
+            "usuarioCodigo"
+          ],
+          "nomeFields": [
+            "nome",
+            "usuarioCodigo"
+          ],
+          "keywordFields": [
+            "nome",
+            "usuarioCodigo"
+          ],
+          "samples": [
+            {
+              "usuarioCodigo": 40446,
+              "nome": "PETROSYSTEM",
+              "login": "a8eaaa4f49375d4404b8bf60c4c1816e",
+              "senha": "7dd62dabf9467b54713cc8f4c6a5a8b5",
+              "perfil": "SUPORTE TI",
+              "senhaExpirada": true,
+              "codigo": 40446
+            },
+            {
+              "usuarioCodigo": 40501,
+              "nome": "ANDRE LISBOA",
+              "login": "bd767b6d9e385fe1694b2f26c9b68a8e",
+              "senha": "08c6297932f8c726d942a3468ba4a7b2",
+              "perfil": "DIRETORIA",
+              "senhaExpirada": true,
+              "codigo": 40501
+            }
+          ],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "UsuarioEmpresaRede",
+          "path": "/INTEGRACAO/USUARIO_EMPRESA_REDE",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "GrupoMeta",
+          "path": "/INTEGRACAO/GRUPO_META",
+          "httpStatus": 200,
+          "registros": 3,
+          "campos": [
+            "codigo",
+            "descricao",
+            "empresaCodigo",
+            "grupoMetaCodigo"
+          ],
+          "nomeFields": [],
+          "keywordFields": [
+            "grupoMetaCodigo"
+          ],
+          "samples": [
+            {
+              "grupoMetaCodigo": 3598,
+              "descricao": "META DO COMBO FOOD",
+              "empresaCodigo": 11495,
+              "codigo": 3598
+            },
+            {
+              "grupoMetaCodigo": 3600,
+              "descricao": "AÇÃO DA PASCOA",
+              "empresaCodigo": 11495,
+              "codigo": 3600
+            }
+          ],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "ProdutoMeta",
+          "path": "/INTEGRACAO/PRODUTO_META",
+          "httpStatus": 200,
+          "registros": 22,
+          "campos": [
+            "codigo",
+            "grupoMetaCodigo",
+            "produtoCodigo"
+          ],
+          "nomeFields": [],
+          "keywordFields": [
+            "grupoMetaCodigo"
+          ],
+          "samples": [
+            {
+              "grupoMetaCodigo": 3598,
+              "produtoCodigo": 2429571,
+              "codigo": 3598
+            },
+            {
+              "grupoMetaCodigo": 3598,
+              "produtoCodigo": 2436844,
+              "codigo": 3598
+            }
+          ],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "FechamentoCaixa",
+          "path": "/INTEGRACAO/FECHAMENTO_CAIXA",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        }
+      ],
+      "operatorIdentityTrace": {
+        "276288": {
+          "funcionarioCodigo": 276288,
+          "vendasCount": 53,
+          "caixaTurnosCount": 6,
+          "abastecimentosCount": 0,
+          "vendaItensCount": 88,
+          "empresas": [
+            11495
+          ],
+          "pdvs": [
+            56764
+          ],
+          "turnos": [
+            "1"
+          ],
+          "volumeVendas": 697.64,
+          "cadastroFuncionario": {
+            "encontrado": true,
+            "nome": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "cpf": "703.923.894-28",
+            "referencia": "00040",
+            "ativo": true,
+            "empresaCodigo": 11495
+          },
+          "nomeFieldsFound": [
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            }
+          ],
+          "nominalizavel": true,
+          "identidadeReal": "funcionario_api"
+        },
+        "294273": {
+          "funcionarioCodigo": 294273,
+          "vendasCount": 0,
+          "caixaTurnosCount": 4,
+          "abastecimentosCount": 0,
+          "vendaItensCount": 0,
+          "empresas": [
+            11495
+          ],
+          "pdvs": [
+            54193
+          ],
+          "turnos": [
+            "1"
+          ],
+          "volumeVendas": 0,
+          "cadastroFuncionario": {
+            "encontrado": true,
+            "nome": "RICART ABEL DE PAIVA RIBEIRO",
+            "cpf": "715.050.154-05",
+            "referencia": "00044",
+            "ativo": true,
+            "empresaCodigo": 11495
+          },
+          "nomeFieldsFound": [
+            {
+              "funcionario.nome": "RICART ABEL DE PAIVA RIBEIRO"
+            },
+            {
+              "funcionario.cpf": "715.050.154-05"
+            },
+            {
+              "funcionario.referencia": "00044"
+            }
+          ],
+          "nominalizavel": true,
+          "identidadeReal": "funcionario_api"
+        },
+        "213391": {
+          "funcionarioCodigo": 213391,
+          "vendasCount": 0,
+          "caixaTurnosCount": 0,
+          "abastecimentosCount": 0,
+          "vendaItensCount": 0,
+          "empresas": [],
+          "pdvs": [],
+          "turnos": [],
+          "volumeVendas": 0,
+          "cadastroFuncionario": {
+            "encontrado": true,
+            "nome": "JEFFERSON NASCIMENTO.",
+            "cpf": null,
+            "referencia": "00028",
+            "ativo": true,
+            "empresaCodigo": 11495
+          },
+          "nomeFieldsFound": [
+            {
+              "funcionario.nome": "JEFFERSON NASCIMENTO."
+            },
+            {
+              "funcionario.referencia": "00028"
+            }
+          ],
+          "nominalizavel": true,
+          "identidadeReal": "funcionario_api"
+        }
+      },
+      "funcionarioCatalogCount": 84,
+      "participationDiscovery": {
+        "calculavel": true,
+        "campoOficial": false,
+        "rankingInterno": false,
+        "participacaoCalculada": {
+          "158924": 34.64,
+          "80203": 57.46,
+          "63048": 7.9
+        },
+        "operadoresNoTurno": 3,
+        "origem": "calculado_VENDA.totalVenda"
+      },
+      "productivityDiscovery": {
+        "campoOficialPronto": false,
+        "keywordsEncontrados": {},
+        "classificacao": "B_calculada",
+        "proxyAbastecimentos": {
+          "80203": 17,
+          "158924": 11,
+          "63048": 6
+        },
+        "proxyVendas": {
+          "80203": 12,
+          "158924": 9,
+          "63048": 3
+        },
+        "origemPrestacao": "UI_calculada_ou_regra_interna_WebPosto"
+      },
+      "fundoCaixaForensics": {
+        "campoFundoCaixa": false,
+        "campoAbertura": {
+          "exists": true,
+          "coveragePct": 100.0,
+          "samples": [
+            "2026-06-02T00:01:33.000-03:00",
+            "2026-06-03T00:01:02.000-03:00",
+            "2026-06-04T00:13:26.000-03:00",
+            "2026-06-05T00:00:09.000-03:00",
+            "2026-06-06T00:00:03.000-03:00"
+          ]
+        },
+        "suprimentoInicial": {
+          "count": 0,
+          "exists": false
+        },
+        "saldoInicial": {
+          "count": 0,
+          "exists": false
+        },
+        "caixaApresentadoCount": 6,
+        "transferenciaCount": 200,
+        "aberturaSamples": [
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4336819,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924,
+            "abertura": "2026-06-02T00:01:33.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4337788,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924,
+            "abertura": "2026-06-03T00:01:02.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4338775,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924,
+            "abertura": "2026-06-04T00:13:26.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4339720,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924,
+            "abertura": "2026-06-05T00:00:09.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4340665,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 299151,
+            "abertura": "2026-06-06T00:00:03.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4343023,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924,
+            "abertura": "2026-06-08T07:28:12.000-03:00"
+          }
+        ],
+        "reconstruivel": true,
+        "origemProvavel": "CAIXA.abertura (+ MOVIMENTO_CONTA inferido)",
+        "gapVsPrestacao": "rótulo fundoCaixa ≠ abertura numérica sem regra UI"
+      },
+      "goalDiscovery": {
+        "hits": [],
+        "byEntity": {
+          "funcionario": false,
+          "pdv": false,
+          "turno": false,
+          "empresa": false
+        },
+        "metaOperacionalApi": false
+      },
+      "hiddenFieldScan": {
+        "bySource": {
+          "VENDA": {
+            "totalRows": 24,
+            "allKeys": [
+              "caixaCodigo",
+              "cancelada",
+              "centroCustoCodigo",
+              "centroCustoVeiculo",
+              "clienteCodigo",
+              "clienteCodigoExterno",
+              "clienteCpfCnpj",
+              "codigo",
+              "dataHora",
+              "destacaAcrescimoDesconto",
+              "empresaCodigo",
+              "formaPagamento",
+              "funcionarioCodigo",
+              "identificacaoFidelidade",
+              "itens",
+              "modeloDocumento",
+              "motoristaCodigo",
+              "notaChave",
+              "notaCodigo",
+              "notaNumero",
+              "notaSerie",
+              "placaVeiculo",
+              "totalVenda",
+              "troco",
+              "vendaCodigo",
+              "vendaUuid"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "centroCustoCodigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "clienteCodigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "clienteCpfCnpj",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "formaPagamento",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "itens",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "modeloDocumento",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "notaChave",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "notaNumero",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "notaSerie",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "vendaUuid",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "centroCustoVeiculo",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "clienteCodigoExterno",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "destacaAcrescimoDesconto",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "identificacaoFidelidade",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "motoristaCodigo",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "notaCodigo",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "placaVeiculo",
+                "coveragePct": 0.0
+              }
+            ],
+            "emptyFields": [
+              "centroCustoVeiculo",
+              "clienteCodigoExterno",
+              "destacaAcrescimoDesconto",
+              "identificacaoFidelidade",
+              "motoristaCodigo",
+              "notaCodigo",
+              "placaVeiculo"
+            ],
+            "unknownStrategic": [
+              {
+                "field": "clienteCpfCnpj",
+                "coveragePct": 100.0,
+                "source": "VENDA"
+              }
+            ]
+          },
+          "VENDA_ITEM": {
+            "totalRows": 17,
+            "allKeys": [
+              "aliquotaAdRemCbs",
+              "aliquotaAdRemIbs",
+              "aliquotaCbs",
+              "aliquotaCofins",
+              "aliquotaEfetivaCbs",
+              "aliquotaEfetivaIbs",
+              "aliquotaIbs",
+              "aliquotaPis",
+              "baseCofins",
+              "basePis",
+              "bcCbs",
+              "bcIbs",
+              "bicoCodigo",
+              "cfop",
+              "classTributariaCbs",
+              "classTributariaIbs",
+              "codigo",
+              "controleItem",
+              "cst",
+              "cstCbs",
+              "cstCofins",
+              "cstIbs",
+              "cstPis",
+              "dataMovimento",
+              "empresaCodigo",
+              "funcionarioCodigo",
+              "icmsAliquota",
+              "icmsBase",
+              "icmsValor",
+              "precoCusto",
+              "precoVenda",
+              "precoVendaBruto",
+              "produtoCodigo",
+              "produtoCodigoExterno",
+              "produtoKitCodigo",
+              "produtoLmcCodigo",
+              "quantidade",
+              "tanqueCodigo",
+              "totalAcrescimo",
+              "totalAcrescimoBruto",
+              "totalCusto",
+              "totalDesconto",
+              "totalDescontoBruto",
+              "totalVenda",
+              "totalVendaBruto",
+              "tributacaoAdRem",
+              "valorAdRemCbs",
+              "valorAdRemIbs",
+              "valorCbs",
+              "valorCofins",
+              "valorIbs",
+              "valorPis",
+              "valorTributacaoAdRem",
+              "vendaCodigo",
+              "vendaItemCodigo"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "cfop",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "classTributariaCbs",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "classTributariaIbs",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "controleItem",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "cst",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "cstCbs",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "cstCofins",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "cstIbs",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "cstPis",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "precoCusto",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "precoVenda",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "produtoCodigoExterno",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "totalCusto",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "tributacaoAdRem",
+                "coveragePct": 76.47
+              },
+              {
+                "field": "valorTributacaoAdRem",
+                "coveragePct": 76.47
+              },
+              {
+                "field": "aliquotaAdRemCbs",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "aliquotaAdRemIbs",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "aliquotaCbs",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "aliquotaCofins",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "aliquotaEfetivaCbs",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "aliquotaEfetivaIbs",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "aliquotaIbs",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "aliquotaPis",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "baseCofins",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "basePis",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "bcCbs",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "bcIbs",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "icmsAliquota",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "icmsBase",
+                "coveragePct": 0.0
+              }
+            ],
+            "emptyFields": [
+              "aliquotaAdRemCbs",
+              "aliquotaAdRemIbs",
+              "aliquotaCbs",
+              "aliquotaCofins",
+              "aliquotaEfetivaCbs",
+              "aliquotaEfetivaIbs",
+              "aliquotaIbs",
+              "aliquotaPis",
+              "baseCofins",
+              "basePis",
+              "bcCbs",
+              "bcIbs",
+              "icmsAliquota",
+              "icmsBase",
+              "icmsValor",
+              "precoVendaBruto",
+              "produtoKitCodigo",
+              "totalAcrescimo",
+              "totalAcrescimoBruto",
+              "totalDescontoBruto",
+              "totalVendaBruto",
+              "valorAdRemCbs",
+              "valorAdRemIbs",
+              "valorCbs",
+              "valorCofins",
+              "valorIbs",
+              "valorPis"
+            ],
+            "unknownStrategic": []
+          },
+          "ABASTECIMENTO": {
+            "totalRows": 34,
+            "allKeys": [
+              "abastecimentoCodigo",
+              "afericao",
+              "codigo",
+              "codigoBico",
+              "codigoFrentista",
+              "codigoProduto",
+              "dataFiscal",
+              "dataHoraAbastecimento",
+              "empresaCodigo",
+              "encerrante",
+              "horaFiscal",
+              "placa",
+              "precoCadastro",
+              "quantidade",
+              "stringFull",
+              "tabelaPrecoA",
+              "tabelaPrecoB",
+              "tabelaPrecoC",
+              "valorTotal",
+              "valorUnitario",
+              "vendaItemCodigo"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "codigoProduto",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "dataHoraAbastecimento",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "horaFiscal",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "precoCadastro",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "stringFull",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "tabelaPrecoA",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "tabelaPrecoB",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "valorUnitario",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "afericao",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "placa",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "tabelaPrecoC",
+                "coveragePct": 0.0
+              }
+            ],
+            "emptyFields": [
+              "afericao",
+              "placa",
+              "tabelaPrecoC"
+            ],
+            "unknownStrategic": []
+          },
+          "CAIXA": {
+            "totalRows": 6,
+            "allKeys": [
+              "abertura",
+              "apurado",
+              "bloqueado",
+              "caixaCodigo",
+              "centroCusto",
+              "codigo",
+              "consolidado",
+              "dataMovimento",
+              "diferenca",
+              "empresaCodigo",
+              "fechado",
+              "fechamento",
+              "funcionarioCodigo",
+              "pdvCodigo",
+              "tipoBloqueio",
+              "tipoInclusao",
+              "turno",
+              "turnoCodigo"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "abertura",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "centroCusto",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "tipoBloqueio",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "tipoInclusao",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "bloqueado",
+                "coveragePct": 0.0
+              }
+            ],
+            "emptyFields": [
+              "bloqueado"
+            ],
+            "unknownStrategic": [
+              {
+                "field": "abertura",
+                "coveragePct": 100.0,
+                "source": "CAIXA"
+              }
+            ]
+          },
+          "CAIXA_APRESENTADO": {
+            "totalRows": 6,
+            "allKeys": [
+              "caixaCodigo",
+              "cartaFreteApresentado",
+              "cartaFreteApurado",
+              "cartaFreteDiferenca",
+              "cartaoApresentado",
+              "cartaoApurado",
+              "cartaoDiferenca",
+              "chequeApresentado",
+              "chequeApurado",
+              "chequeDiferenca",
+              "chequePagarApresentado",
+              "chequePagarApurado",
+              "chequePagarDiferenca",
+              "chequePreApresentado",
+              "chequePreApurado",
+              "chequePreDiferenca",
+              "chequeTroco",
+              "codigo",
+              "consolidado",
+              "despesaApresentado",
+              "despesaApurado",
+              "despesaDiferenca",
+              "dinheiroApresentado",
+              "dinheiroApurado",
+              "dinheiroDiferenca",
+              "empresaCodigo",
+              "emprestimoApresentado",
+              "emprestimoApurado",
+              "emprestimoDiferenca",
+              "fundoCaixaCredito",
+              "fundoCxDebApresentado",
+              "fundoCxDebApurado",
+              "fundoCxDebDiferenca",
+              "notaPrazoApresentado",
+              "notaPrazoApurado",
+              "notaPrazoDiferenca",
+              "ordemPagamento",
+              "pagamentoCaixa",
+              "prePagApresentado",
+              "prePagApurado",
+              "prePagDiferenca",
+              "prePagoCredito",
+              "recebimentoCaixa",
+              "saidaTrocaValor",
+              "servicoCaixa",
+              "suprimentoCaixa",
+              "transfBancApresentado",
+              "transfBancApurado",
+              "transfBancDiferenca",
+              "transfDebApresentado",
+              "transfDebApurado",
+              "transfDebDiferenca",
+              "valeCliente",
+              "valeClienteApresentado",
+              "valeClienteApurado",
+              "valeClienteDiferenca",
+              "valeFunApresentado",
+              "valeFunApurado",
+              "valeFunDiferenca"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "cartaoApurado",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "despesaApurado",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "dinheiroDiferenca",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "valeFunApresentado",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "valeFunApurado",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "prePagApresentado",
+                "coveragePct": 50.0
+              },
+              {
+                "field": "prePagApurado",
+                "coveragePct": 50.0
+              },
+              {
+                "field": "chequePreApresentado",
+                "coveragePct": 16.67
+              },
+              {
+                "field": "chequePreApurado",
+                "coveragePct": 16.67
+              },
+              {
+                "field": "cartaFreteApresentado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "cartaFreteApurado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "cartaFreteDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "cartaoDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequeApresentado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequeApurado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequeDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequePagarApresentado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequePagarApurado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequePagarDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequePreDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequeTroco",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "despesaDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "emprestimoApresentado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "emprestimoApurado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "emprestimoDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "fundoCaixaCredito",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "fundoCxDebApresentado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "fundoCxDebApurado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "fundoCxDebDiferenca",
+                "coveragePct": 0.0
+              }
+            ],
+            "emptyFields": [
+              "cartaFreteApresentado",
+              "cartaFreteApurado",
+              "cartaFreteDiferenca",
+              "cartaoDiferenca",
+              "chequeApresentado",
+              "chequeApurado",
+              "chequeDiferenca",
+              "chequePagarApresentado",
+              "chequePagarApurado",
+              "chequePagarDiferenca",
+              "chequePreDiferenca",
+              "chequeTroco",
+              "despesaDiferenca",
+              "emprestimoApresentado",
+              "emprestimoApurado",
+              "emprestimoDiferenca",
+              "fundoCaixaCredito",
+              "fundoCxDebApresentado",
+              "fundoCxDebApurado",
+              "fundoCxDebDiferenca",
+              "notaPrazoApresentado",
+              "notaPrazoApurado",
+              "notaPrazoDiferenca",
+              "ordemPagamento",
+              "pagamentoCaixa",
+              "prePagDiferenca",
+              "prePagoCredito",
+              "recebimentoCaixa",
+              "saidaTrocaValor",
+              "servicoCaixa",
+              "suprimentoCaixa",
+              "transfBancApresentado",
+              "transfBancApurado",
+              "transfBancDiferenca",
+              "transfDebApresentado",
+              "transfDebApurado",
+              "transfDebDiferenca",
+              "valeCliente",
+              "valeClienteApresentado",
+              "valeClienteApurado"
+            ],
+            "unknownStrategic": []
+          },
+          "NFCE": {
+            "totalRows": 24,
+            "allKeys": [
+              "chaveDocumento",
+              "codigo",
+              "dataEmissao",
+              "empresaCodigo",
+              "nfceCodigo",
+              "numeroDocumento",
+              "protocoloAutorizacao",
+              "protocoloCancelamento",
+              "protocoloInutilizacao",
+              "serieDocumento",
+              "situacao",
+              "vendaCodigo"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "chaveDocumento",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "protocoloAutorizacao",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "protocoloCancelamento",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "protocoloInutilizacao",
+                "coveragePct": 0.0
+              }
+            ],
+            "emptyFields": [
+              "protocoloCancelamento",
+              "protocoloInutilizacao"
+            ],
+            "unknownStrategic": []
+          },
+          "VENDA_FORMA_PAGAMENTO": {
+            "totalRows": 23,
+            "allKeys": [
+              "administradoraCodigo",
+              "codigo",
+              "dataMovimento",
+              "empresaCodigo",
+              "formaPagamentoCodigo",
+              "nomeFormaPagamento",
+              "taxaPercentual",
+              "tipoFormaPagamento",
+              "turnoCodigo",
+              "valorPagamento",
+              "vencimento",
+              "vendaCodigo",
+              "vendaPrazoCodigo"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "tipoFormaPagamento",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "vendaPrazoCodigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "vencimento",
+                "coveragePct": 78.26
+              },
+              {
+                "field": "taxaPercentual",
+                "coveragePct": 73.91
+              }
+            ],
+            "emptyFields": [],
+            "unknownStrategic": []
+          }
+        },
+        "topStrategic": [
+          {
+            "field": "clienteCpfCnpj",
+            "coveragePct": 100.0,
+            "source": "VENDA"
+          },
+          {
+            "field": "abertura",
+            "coveragePct": 100.0,
+            "source": "CAIXA"
+          }
+        ],
+        "globalUnusedHits": {
+          "codigo": 134,
+          "codigoProduto": 34,
+          "dataHoraAbastecimento": 34,
+          "horaFiscal": 34,
+          "precoCadastro": 34,
+          "stringFull": 34,
+          "tabelaPrecoA": 34,
+          "tabelaPrecoB": 34,
+          "valorUnitario": 34,
+          "centroCustoCodigo": 24,
+          "clienteCodigo": 24,
+          "clienteCpfCnpj": 24,
+          "formaPagamento": 24,
+          "itens": 24,
+          "modeloDocumento": 24,
+          "notaChave": 24,
+          "notaNumero": 24,
+          "notaSerie": 24,
+          "vendaUuid": 24,
+          "chaveDocumento": 24,
+          "protocoloAutorizacao": 24,
+          "tipoFormaPagamento": 23,
+          "vendaPrazoCodigo": 23,
+          "vencimento": 18,
+          "cfop": 17,
+          "classTributariaCbs": 17,
+          "classTributariaIbs": 17,
+          "controleItem": 17,
+          "cst": 17,
+          "cstCbs": 17
+        }
+      },
+      "prestacaoGapAnalysis": {
+        "fields": {
+          "funcionarioNome": {
+            "origem": "/INTEGRACAO/FUNCIONARIO.nome",
+            "api": true,
+            "calculavel": false,
+            "inferivel": false
+          },
+          "participacaoIndividual": {
+            "origem": "calculavel_venda",
+            "api": false,
+            "calculavel": true,
+            "inferivel": true
+          },
+          "produtividadeFuncionario": {
+            "origem": "proxy_venda_abastecimento",
+            "api": false,
+            "calculavel": true,
+            "inferivel": true
+          },
+          "metaFuncionario": {
+            "origem": "grupo_meta_isolado",
+            "api": false,
+            "calculavel": false,
+            "inferivel": false
+          },
+          "fundoCaixa": {
+            "origem": "caixa_abertura_parcial",
+            "api": true,
+            "calculavel": true,
+            "inferivel": true
+          },
+          "layoutOperacionalTurno": {
+            "origem": "prestacao_pdf",
+            "api": false,
+            "calculavel": false,
+            "inferivel": false
+          }
+        },
+        "exclusivoPrestacao": [
+          "metaFuncionario",
+          "layoutOperacionalTurno"
+        ],
+        "calculavel": [
+          "participacaoIndividual",
+          "produtividadeFuncionario",
+          "fundoCaixa"
+        ],
+        "inferivel": [
+          "participacaoIndividual",
+          "produtividadeFuncionario",
+          "fundoCaixa"
+        ],
+        "inexistenteApi": [
+          "metaFuncionario",
+          "layoutOperacionalTurno"
+        ],
+        "coberturaD01Pct": 87.5,
+        "coberturaD02Pct": 97.5,
+        "atinge95": true,
+        "atinge100": false
+      },
+      "f04ImpactAnalysis": {
+        "classificacao": {
+          "funcionarioNome": "OBRIGATÓRIO",
+          "participacaoIndividual": "IMPORTANTE",
+          "produtividadeFuncionario": "IMPORTANTE",
+          "metaFuncionario": "OPCIONAL",
+          "fundoCaixa": "IMPORTANTE",
+          "layoutOperacionalTurno": "OPCIONAL"
+        },
+        "f04DependePdf": false,
+        "operadoresCriticosNominalizados": true
+      },
+      "architectureDecision": {
+        "opcao": "A",
+        "descricao": "API sozinha é suficiente",
+        "parecerFinal": "[PARECER FINAL: API SUFICIENTE PARA F04]"
+      },
+      "counts": {
+        "VENDA": 24,
+        "VENDA_ITEM": 17,
+        "ABASTECIMENTO": 34,
+        "CAIXA": 6,
+        "CAIXA_APRESENTADO": 6,
+        "NFCE": 24,
+        "VENDA_FORMA_PAGAMENTO": 23
+      }
+    },
+    "30d": {
+      "window": "30d",
+      "periodo": {
+        "inicio": "2026-05-09",
+        "fim": "2026-06-08"
+      },
+      "elapsedSec": 88.41,
+      "performance": {
+        "caixa": {
+          "key": "caixa_rede",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 93,
+          "elapsedSec": 17.34
+        },
+        "caixa_apresentado": {
+          "key": "caixa_apresentado",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 93,
+          "elapsedSec": 0.84,
+          "usedFallback": "caixa_apresentado_rede"
+        },
+        "venda": {
+          "key": "venda",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 9.99
+        },
+        "venda_item": {
+          "key": "venda_item",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 1.65
+        },
+        "venda_forma_pagamento": {
+          "key": "venda_forma_pagamento",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 12.68,
+          "usedFallback": "venda_forma_pagamento_rede"
+        },
+        "abastecimento": {
+          "key": "abastecimento",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 1.27
+        },
+        "nfce": {
+          "key": "nfce",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 1.33
+        },
+        "movimento_conta": {
+          "key": "movimento_conta",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 9.52
+        },
+        "transferencia_bancaria": {
+          "key": "transferencia_bancaria",
+          "status": 500,
+          "error": "",
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 0,
+          "elapsedSec": 31.7
+        }
+      },
+      "employeeNominalDiscovery": {
+        "1_funcionarioNome": true,
+        "2_nomeCompleto": true,
+        "3_cpf": true,
+        "4_matricula": false,
+        "5_apelidoOperacional": false,
+        "6_statusAtivo": true,
+        "endpointsAuditados": [
+          "/INTEGRACAO/FUNCIONARIO_REDE",
+          "/INTEGRACAO/CONSULTAR_FUNCIONARIO",
+          "/INTEGRACAO/FUNCIONARIO",
+          "/INTEGRACAO/FUNCIONARIO_EMPRESA",
+          "/INTEGRACAO/FUNCIONARIO_MOVIMENTO",
+          "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+          "/INTEGRACAO/USUARIO",
+          "/INTEGRACAO/USUARIO_EMPRESA_REDE",
+          "/INTEGRACAO/GRUPO_META",
+          "/INTEGRACAO/PRODUTO_META",
+          "/INTEGRACAO/FECHAMENTO_CAIXA"
+        ],
+        "endpointsComDados": [
+          "/INTEGRACAO/FUNCIONARIO",
+          "/INTEGRACAO/USUARIO",
+          "/INTEGRACAO/GRUPO_META",
+          "/INTEGRACAO/PRODUTO_META"
+        ],
+        "endpoints401": [
+          "/INTEGRACAO/FUNCIONARIO_REDE",
+          "/INTEGRACAO/CONSULTAR_FUNCIONARIO",
+          "/INTEGRACAO/FUNCIONARIO_EMPRESA",
+          "/INTEGRACAO/FUNCIONARIO_MOVIMENTO",
+          "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+          "/INTEGRACAO/USUARIO_EMPRESA_REDE",
+          "/INTEGRACAO/FECHAMENTO_CAIXA"
+        ],
+        "conclusao": "/INTEGRACAO/FUNCIONARIO expõe nome/cpf/ativo — join por funcionarioCodigo; transacional permanece codigo-only",
+        "funcionarioCatalogCount": 84
+      },
+      "nominalEndpointProbes": [
+        {
+          "endpoint": "FuncionarioRede",
+          "path": "/INTEGRACAO/FUNCIONARIO_REDE",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "ConsultarFuncionario",
+          "path": "/INTEGRACAO/CONSULTAR_FUNCIONARIO",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "Funcionario",
+          "path": "/INTEGRACAO/FUNCIONARIO",
+          "httpStatus": 200,
+          "registros": 84,
+          "campos": [
+            "admissao",
+            "ativo",
+            "celular",
+            "codigo",
+            "cpf",
+            "demissao",
+            "email",
+            "empresaCodigo",
+            "funcaoCodigo",
+            "funcionarioCodigo",
+            "funcionarioCodigoExterno",
+            "funcionarioReferencia",
+            "nome",
+            "ultimoUsuarioAlteracao"
+          ],
+          "nomeFields": [
+            "cpf",
+            "funcionarioCodigo",
+            "funcionarioCodigoExterno",
+            "funcionarioReferencia",
+            "nome",
+            "ultimoUsuarioAlteracao"
+          ],
+          "keywordFields": [
+            "cpf",
+            "funcionarioCodigo",
+            "funcionarioCodigoExterno",
+            "funcionarioReferencia",
+            "nome",
+            "ultimoUsuarioAlteracao"
+          ],
+          "samples": [
+            {
+              "empresaCodigo": 5555,
+              "funcionarioCodigo": 63044,
+              "funcionarioCodigoExterno": null,
+              "funcionarioReferencia": "00001",
+              "nome": "DOUGLAS HENRIQUE",
+              "cpf": null,
+              "funcaoCodigo": 11442,
+              "admissao": "2021-10-20",
+              "demissao": null,
+              "ultimoUsuarioAlteracao": "MARCIO",
+              "ativo": false,
+              "celular": null,
+              "email": null,
+              "codigo": 63044
+            },
+            {
+              "empresaCodigo": 5555,
+              "funcionarioCodigo": 63045,
+              "funcionarioCodigoExterno": null,
+              "funcionarioReferencia": "00002",
+              "nome": "LEONARDO DOS SANTOS",
+              "cpf": null,
+              "funcaoCodigo": 11442,
+              "admissao": "2021-10-20",
+              "demissao": null,
+              "ultimoUsuarioAlteracao": "CAMILY",
+              "ativo": false,
+              "celular": null,
+              "email": null,
+              "codigo": 63045
+            }
+          ],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "FuncionarioEmpresa",
+          "path": "/INTEGRACAO/FUNCIONARIO_EMPRESA",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "FuncionarioMovimento",
+          "path": "/INTEGRACAO/FUNCIONARIO_MOVIMENTO",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "ValeFuncionarioRede",
+          "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "Usuario",
+          "path": "/INTEGRACAO/USUARIO",
+          "httpStatus": 200,
+          "registros": 58,
+          "campos": [
+            "codigo",
+            "login",
+            "nome",
+            "perfil",
+            "senha",
+            "senhaExpirada",
+            "usuarioCodigo"
+          ],
+          "nomeFields": [
+            "nome",
+            "usuarioCodigo"
+          ],
+          "keywordFields": [
+            "nome",
+            "usuarioCodigo"
+          ],
+          "samples": [
+            {
+              "usuarioCodigo": 40446,
+              "nome": "PETROSYSTEM",
+              "login": "a8eaaa4f49375d4404b8bf60c4c1816e",
+              "senha": "7dd62dabf9467b54713cc8f4c6a5a8b5",
+              "perfil": "SUPORTE TI",
+              "senhaExpirada": true,
+              "codigo": 40446
+            },
+            {
+              "usuarioCodigo": 40501,
+              "nome": "ANDRE LISBOA",
+              "login": "bd767b6d9e385fe1694b2f26c9b68a8e",
+              "senha": "08c6297932f8c726d942a3468ba4a7b2",
+              "perfil": "DIRETORIA",
+              "senhaExpirada": true,
+              "codigo": 40501
+            }
+          ],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "UsuarioEmpresaRede",
+          "path": "/INTEGRACAO/USUARIO_EMPRESA_REDE",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "GrupoMeta",
+          "path": "/INTEGRACAO/GRUPO_META",
+          "httpStatus": 200,
+          "registros": 3,
+          "campos": [
+            "codigo",
+            "descricao",
+            "empresaCodigo",
+            "grupoMetaCodigo"
+          ],
+          "nomeFields": [],
+          "keywordFields": [
+            "grupoMetaCodigo"
+          ],
+          "samples": [
+            {
+              "grupoMetaCodigo": 3598,
+              "descricao": "META DO COMBO FOOD",
+              "empresaCodigo": 11495,
+              "codigo": 3598
+            },
+            {
+              "grupoMetaCodigo": 3600,
+              "descricao": "AÇÃO DA PASCOA",
+              "empresaCodigo": 11495,
+              "codigo": 3600
+            }
+          ],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "ProdutoMeta",
+          "path": "/INTEGRACAO/PRODUTO_META",
+          "httpStatus": 200,
+          "registros": 22,
+          "campos": [
+            "codigo",
+            "grupoMetaCodigo",
+            "produtoCodigo"
+          ],
+          "nomeFields": [],
+          "keywordFields": [
+            "grupoMetaCodigo"
+          ],
+          "samples": [
+            {
+              "grupoMetaCodigo": 3598,
+              "produtoCodigo": 2429571,
+              "codigo": 3598
+            },
+            {
+              "grupoMetaCodigo": 3598,
+              "produtoCodigo": 2436844,
+              "codigo": 3598
+            }
+          ],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "FechamentoCaixa",
+          "path": "/INTEGRACAO/FECHAMENTO_CAIXA",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        }
+      ],
+      "operatorIdentityTrace": {
+        "276288": {
+          "funcionarioCodigo": 276288,
+          "vendasCount": 63,
+          "caixaTurnosCount": 25,
+          "abastecimentosCount": 0,
+          "vendaItensCount": 98,
+          "empresas": [
+            11495
+          ],
+          "pdvs": [
+            56764
+          ],
+          "turnos": [
+            "1",
+            "2"
+          ],
+          "volumeVendas": 922.1,
+          "cadastroFuncionario": {
+            "encontrado": true,
+            "nome": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "cpf": "703.923.894-28",
+            "referencia": "00040",
+            "ativo": true,
+            "empresaCodigo": 11495
+          },
+          "nomeFieldsFound": [
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            }
+          ],
+          "nominalizavel": true,
+          "identidadeReal": "funcionario_api"
+        },
+        "294273": {
+          "funcionarioCodigo": 294273,
+          "vendasCount": 0,
+          "caixaTurnosCount": 13,
+          "abastecimentosCount": 0,
+          "vendaItensCount": 0,
+          "empresas": [
+            11495
+          ],
+          "pdvs": [
+            54193
+          ],
+          "turnos": [
+            "1"
+          ],
+          "volumeVendas": 0,
+          "cadastroFuncionario": {
+            "encontrado": true,
+            "nome": "RICART ABEL DE PAIVA RIBEIRO",
+            "cpf": "715.050.154-05",
+            "referencia": "00044",
+            "ativo": true,
+            "empresaCodigo": 11495
+          },
+          "nomeFieldsFound": [
+            {
+              "funcionario.nome": "RICART ABEL DE PAIVA RIBEIRO"
+            },
+            {
+              "funcionario.cpf": "715.050.154-05"
+            },
+            {
+              "funcionario.referencia": "00044"
+            }
+          ],
+          "nominalizavel": true,
+          "identidadeReal": "funcionario_api"
+        },
+        "213391": {
+          "funcionarioCodigo": 213391,
+          "vendasCount": 0,
+          "caixaTurnosCount": 2,
+          "abastecimentosCount": 0,
+          "vendaItensCount": 0,
+          "empresas": [
+            11495
+          ],
+          "pdvs": [
+            54193
+          ],
+          "turnos": [
+            "1"
+          ],
+          "volumeVendas": 0,
+          "cadastroFuncionario": {
+            "encontrado": true,
+            "nome": "JEFFERSON NASCIMENTO.",
+            "cpf": null,
+            "referencia": "00028",
+            "ativo": true,
+            "empresaCodigo": 11495
+          },
+          "nomeFieldsFound": [
+            {
+              "funcionario.nome": "JEFFERSON NASCIMENTO."
+            },
+            {
+              "funcionario.referencia": "00028"
+            }
+          ],
+          "nominalizavel": true,
+          "identidadeReal": "funcionario_api"
+        }
+      },
+      "funcionarioCatalogCount": 84,
+      "participationDiscovery": {
+        "calculavel": true,
+        "campoOficial": false,
+        "rankingInterno": false,
+        "participacaoCalculada": {
+          "277311": 49.28,
+          "80203": 50.72
+        },
+        "operadoresNoTurno": 2,
+        "origem": "calculado_VENDA.totalVenda"
+      },
+      "productivityDiscovery": {
+        "campoOficialPronto": false,
+        "keywordsEncontrados": {},
+        "classificacao": "B_calculada",
+        "proxyAbastecimentos": {
+          "80203": 17,
+          "277311": 14,
+          "63048": 2
+        },
+        "proxyVendas": {
+          "277311": 14,
+          "80203": 10
+        },
+        "origemPrestacao": "UI_calculada_ou_regra_interna_WebPosto"
+      },
+      "fundoCaixaForensics": {
+        "campoFundoCaixa": false,
+        "campoAbertura": {
+          "exists": true,
+          "coveragePct": 100.0,
+          "samples": [
+            "2026-05-09T00:01:36.000-03:00",
+            "2026-05-10T00:00:53.000-03:00",
+            "2026-05-11T00:21:35.000-03:00",
+            "2026-05-12T00:04:53.000-03:00",
+            "2026-05-13T00:10:41.000-03:00"
+          ]
+        },
+        "suprimentoInicial": {
+          "count": 0,
+          "exists": false
+        },
+        "saldoInicial": {
+          "count": 0,
+          "exists": false
+        },
+        "caixaApresentadoCount": 30,
+        "transferenciaCount": 0,
+        "aberturaSamples": [
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4314109,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 277311,
+            "abertura": "2026-05-09T00:01:36.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4315053,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 277311,
+            "abertura": "2026-05-10T00:00:53.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4316003,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 277311,
+            "abertura": "2026-05-11T00:21:35.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4316940,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 277311,
+            "abertura": "2026-05-12T00:04:53.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4317943,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 277311,
+            "abertura": "2026-05-13T00:10:41.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4318818,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 299152,
+            "abertura": "2026-05-14T00:00:24.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4319814,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 277311,
+            "abertura": "2026-05-15T00:01:47.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4320738,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 277311,
+            "abertura": "2026-05-16T00:00:14.000-03:00"
+          }
+        ],
+        "reconstruivel": true,
+        "origemProvavel": "CAIXA.abertura (+ MOVIMENTO_CONTA inferido)",
+        "gapVsPrestacao": "rótulo fundoCaixa ≠ abertura numérica sem regra UI"
+      },
+      "goalDiscovery": {
+        "hits": [],
+        "byEntity": {
+          "funcionario": false,
+          "pdv": false,
+          "turno": false,
+          "empresa": false
+        },
+        "metaOperacionalApi": false
+      },
+      "hiddenFieldScan": {
+        "bySource": {
+          "VENDA": {
+            "totalRows": 24,
+            "allKeys": [
+              "caixaCodigo",
+              "cancelada",
+              "centroCustoCodigo",
+              "centroCustoVeiculo",
+              "clienteCodigo",
+              "clienteCodigoExterno",
+              "clienteCpfCnpj",
+              "codigo",
+              "dataHora",
+              "destacaAcrescimoDesconto",
+              "empresaCodigo",
+              "formaPagamento",
+              "funcionarioCodigo",
+              "identificacaoFidelidade",
+              "itens",
+              "modeloDocumento",
+              "motoristaCodigo",
+              "notaChave",
+              "notaCodigo",
+              "notaNumero",
+              "notaSerie",
+              "placaVeiculo",
+              "totalVenda",
+              "troco",
+              "vendaCodigo",
+              "vendaUuid"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "centroCustoCodigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "clienteCodigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "clienteCpfCnpj",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "formaPagamento",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "itens",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "modeloDocumento",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "notaChave",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "notaNumero",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "notaSerie",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "vendaUuid",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "centroCustoVeiculo",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "clienteCodigoExterno",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "destacaAcrescimoDesconto",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "identificacaoFidelidade",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "motoristaCodigo",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "notaCodigo",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "placaVeiculo",
+                "coveragePct": 0.0
+              }
+            ],
+            "emptyFields": [
+              "centroCustoVeiculo",
+              "clienteCodigoExterno",
+              "destacaAcrescimoDesconto",
+              "identificacaoFidelidade",
+              "motoristaCodigo",
+              "notaCodigo",
+              "placaVeiculo"
+            ],
+            "unknownStrategic": [
+              {
+                "field": "clienteCpfCnpj",
+                "coveragePct": 100.0,
+                "source": "VENDA"
+              }
+            ]
+          },
+          "VENDA_ITEM": {
+            "totalRows": 18,
+            "allKeys": [
+              "aliquotaAdRemCbs",
+              "aliquotaAdRemIbs",
+              "aliquotaCbs",
+              "aliquotaCofins",
+              "aliquotaEfetivaCbs",
+              "aliquotaEfetivaIbs",
+              "aliquotaIbs",
+              "aliquotaPis",
+              "baseCofins",
+              "basePis",
+              "bcCbs",
+              "bcIbs",
+              "bicoCodigo",
+              "cfop",
+              "classTributariaCbs",
+              "classTributariaIbs",
+              "codigo",
+              "controleItem",
+              "cst",
+              "cstCbs",
+              "cstCofins",
+              "cstIbs",
+              "cstPis",
+              "dataMovimento",
+              "empresaCodigo",
+              "funcionarioCodigo",
+              "icmsAliquota",
+              "icmsBase",
+              "icmsValor",
+              "precoCusto",
+              "precoVenda",
+              "precoVendaBruto",
+              "produtoCodigo",
+              "produtoCodigoExterno",
+              "produtoKitCodigo",
+              "produtoLmcCodigo",
+              "quantidade",
+              "tanqueCodigo",
+              "totalAcrescimo",
+              "totalAcrescimoBruto",
+              "totalCusto",
+              "totalDesconto",
+              "totalDescontoBruto",
+              "totalVenda",
+              "totalVendaBruto",
+              "tributacaoAdRem",
+              "valorAdRemCbs",
+              "valorAdRemIbs",
+              "valorCbs",
+              "valorCofins",
+              "valorIbs",
+              "valorPis",
+              "valorTributacaoAdRem",
+              "vendaCodigo",
+              "vendaItemCodigo"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "cfop",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "classTributariaCbs",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "classTributariaIbs",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "controleItem",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "cst",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "cstCbs",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "cstCofins",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "cstIbs",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "cstPis",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "precoCusto",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "precoVenda",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "produtoCodigoExterno",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "totalCusto",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "tributacaoAdRem",
+                "coveragePct": 38.89
+              },
+              {
+                "field": "valorTributacaoAdRem",
+                "coveragePct": 38.89
+              },
+              {
+                "field": "aliquotaAdRemCbs",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "aliquotaAdRemIbs",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "aliquotaCbs",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "aliquotaCofins",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "aliquotaEfetivaCbs",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "aliquotaEfetivaIbs",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "aliquotaIbs",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "aliquotaPis",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "baseCofins",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "basePis",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "bcCbs",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "bcIbs",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "icmsAliquota",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "icmsBase",
+                "coveragePct": 0.0
+              }
+            ],
+            "emptyFields": [
+              "aliquotaAdRemCbs",
+              "aliquotaAdRemIbs",
+              "aliquotaCbs",
+              "aliquotaCofins",
+              "aliquotaEfetivaCbs",
+              "aliquotaEfetivaIbs",
+              "aliquotaIbs",
+              "aliquotaPis",
+              "baseCofins",
+              "basePis",
+              "bcCbs",
+              "bcIbs",
+              "icmsAliquota",
+              "icmsBase",
+              "icmsValor",
+              "precoVendaBruto",
+              "produtoKitCodigo",
+              "totalAcrescimo",
+              "totalAcrescimoBruto",
+              "totalDescontoBruto",
+              "totalVendaBruto",
+              "valorAdRemCbs",
+              "valorAdRemIbs",
+              "valorCbs",
+              "valorCofins",
+              "valorIbs",
+              "valorPis"
+            ],
+            "unknownStrategic": []
+          },
+          "ABASTECIMENTO": {
+            "totalRows": 33,
+            "allKeys": [
+              "abastecimentoCodigo",
+              "afericao",
+              "codigo",
+              "codigoBico",
+              "codigoFrentista",
+              "codigoProduto",
+              "dataFiscal",
+              "dataHoraAbastecimento",
+              "empresaCodigo",
+              "encerrante",
+              "horaFiscal",
+              "placa",
+              "precoCadastro",
+              "quantidade",
+              "stringFull",
+              "tabelaPrecoA",
+              "tabelaPrecoB",
+              "tabelaPrecoC",
+              "valorTotal",
+              "valorUnitario",
+              "vendaItemCodigo"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "codigoProduto",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "dataHoraAbastecimento",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "horaFiscal",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "precoCadastro",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "stringFull",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "tabelaPrecoA",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "tabelaPrecoB",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "valorUnitario",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "afericao",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "placa",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "tabelaPrecoC",
+                "coveragePct": 0.0
+              }
+            ],
+            "emptyFields": [
+              "afericao",
+              "placa",
+              "tabelaPrecoC"
+            ],
+            "unknownStrategic": []
+          },
+          "CAIXA": {
+            "totalRows": 30,
+            "allKeys": [
+              "abertura",
+              "apurado",
+              "bloqueado",
+              "caixaCodigo",
+              "centroCusto",
+              "codigo",
+              "consolidado",
+              "dataMovimento",
+              "diferenca",
+              "empresaCodigo",
+              "fechado",
+              "fechamento",
+              "funcionarioCodigo",
+              "pdvCodigo",
+              "tipoBloqueio",
+              "tipoInclusao",
+              "turno",
+              "turnoCodigo"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "abertura",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "centroCusto",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "tipoBloqueio",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "tipoInclusao",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "bloqueado",
+                "coveragePct": 0.0
+              }
+            ],
+            "emptyFields": [
+              "bloqueado"
+            ],
+            "unknownStrategic": [
+              {
+                "field": "abertura",
+                "coveragePct": 100.0,
+                "source": "CAIXA"
+              }
+            ]
+          },
+          "CAIXA_APRESENTADO": {
+            "totalRows": 30,
+            "allKeys": [
+              "caixaCodigo",
+              "cartaFreteApresentado",
+              "cartaFreteApurado",
+              "cartaFreteDiferenca",
+              "cartaoApresentado",
+              "cartaoApurado",
+              "cartaoDiferenca",
+              "chequeApresentado",
+              "chequeApurado",
+              "chequeDiferenca",
+              "chequePagarApresentado",
+              "chequePagarApurado",
+              "chequePagarDiferenca",
+              "chequePreApresentado",
+              "chequePreApurado",
+              "chequePreDiferenca",
+              "chequeTroco",
+              "codigo",
+              "consolidado",
+              "despesaApresentado",
+              "despesaApurado",
+              "despesaDiferenca",
+              "dinheiroApresentado",
+              "dinheiroApurado",
+              "dinheiroDiferenca",
+              "empresaCodigo",
+              "emprestimoApresentado",
+              "emprestimoApurado",
+              "emprestimoDiferenca",
+              "fundoCaixaCredito",
+              "fundoCxDebApresentado",
+              "fundoCxDebApurado",
+              "fundoCxDebDiferenca",
+              "notaPrazoApresentado",
+              "notaPrazoApurado",
+              "notaPrazoDiferenca",
+              "ordemPagamento",
+              "pagamentoCaixa",
+              "prePagApresentado",
+              "prePagApurado",
+              "prePagDiferenca",
+              "prePagoCredito",
+              "recebimentoCaixa",
+              "saidaTrocaValor",
+              "servicoCaixa",
+              "suprimentoCaixa",
+              "transfBancApresentado",
+              "transfBancApurado",
+              "transfBancDiferenca",
+              "transfDebApresentado",
+              "transfDebApurado",
+              "transfDebDiferenca",
+              "valeCliente",
+              "valeClienteApresentado",
+              "valeClienteApurado",
+              "valeClienteDiferenca",
+              "valeFunApresentado",
+              "valeFunApurado",
+              "valeFunDiferenca"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "cartaoApurado",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "dinheiroDiferenca",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "valeFunApresentado",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "valeFunApurado",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "despesaApurado",
+                "coveragePct": 86.67
+              },
+              {
+                "field": "prePagApresentado",
+                "coveragePct": 36.67
+              },
+              {
+                "field": "prePagApurado",
+                "coveragePct": 36.67
+              },
+              {
+                "field": "transfBancApresentado",
+                "coveragePct": 36.67
+              },
+              {
+                "field": "transfBancApurado",
+                "coveragePct": 36.67
+              },
+              {
+                "field": "chequePreApresentado",
+                "coveragePct": 10.0
+              },
+              {
+                "field": "chequePreApurado",
+                "coveragePct": 10.0
+              },
+              {
+                "field": "cartaFreteApresentado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "cartaFreteApurado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "cartaFreteDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "cartaoDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequeApresentado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequeApurado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequeDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequePagarApresentado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequePagarApurado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequePagarDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequePreDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequeTroco",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "despesaDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "emprestimoApresentado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "emprestimoApurado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "emprestimoDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "fundoCaixaCredito",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "fundoCxDebApresentado",
+                "coveragePct": 0.0
+              }
+            ],
+            "emptyFields": [
+              "cartaFreteApresentado",
+              "cartaFreteApurado",
+              "cartaFreteDiferenca",
+              "cartaoDiferenca",
+              "chequeApresentado",
+              "chequeApurado",
+              "chequeDiferenca",
+              "chequePagarApresentado",
+              "chequePagarApurado",
+              "chequePagarDiferenca",
+              "chequePreDiferenca",
+              "chequeTroco",
+              "despesaDiferenca",
+              "emprestimoApresentado",
+              "emprestimoApurado",
+              "emprestimoDiferenca",
+              "fundoCaixaCredito",
+              "fundoCxDebApresentado",
+              "fundoCxDebApurado",
+              "fundoCxDebDiferenca",
+              "notaPrazoApresentado",
+              "notaPrazoApurado",
+              "notaPrazoDiferenca",
+              "ordemPagamento",
+              "pagamentoCaixa",
+              "prePagDiferenca",
+              "prePagoCredito",
+              "recebimentoCaixa",
+              "saidaTrocaValor",
+              "servicoCaixa",
+              "suprimentoCaixa",
+              "transfBancDiferenca",
+              "transfDebApresentado",
+              "transfDebApurado",
+              "transfDebDiferenca",
+              "valeCliente",
+              "valeClienteApresentado",
+              "valeClienteApurado",
+              "valeClienteDiferenca",
+              "valeFunDiferenca"
+            ],
+            "unknownStrategic": []
+          },
+          "NFCE": {
+            "totalRows": 24,
+            "allKeys": [
+              "chaveDocumento",
+              "codigo",
+              "dataEmissao",
+              "empresaCodigo",
+              "nfceCodigo",
+              "numeroDocumento",
+              "protocoloAutorizacao",
+              "protocoloCancelamento",
+              "protocoloInutilizacao",
+              "serieDocumento",
+              "situacao",
+              "vendaCodigo"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "chaveDocumento",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "protocoloAutorizacao",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "protocoloCancelamento",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "protocoloInutilizacao",
+                "coveragePct": 0.0
+              }
+            ],
+            "emptyFields": [
+              "protocoloCancelamento",
+              "protocoloInutilizacao"
+            ],
+            "unknownStrategic": []
+          },
+          "VENDA_FORMA_PAGAMENTO": {
+            "totalRows": 23,
+            "allKeys": [
+              "administradoraCodigo",
+              "codigo",
+              "dataMovimento",
+              "empresaCodigo",
+              "formaPagamentoCodigo",
+              "nomeFormaPagamento",
+              "taxaPercentual",
+              "tipoFormaPagamento",
+              "turnoCodigo",
+              "valorPagamento",
+              "vencimento",
+              "vendaCodigo",
+              "vendaPrazoCodigo"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "tipoFormaPagamento",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "vendaPrazoCodigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "taxaPercentual",
+                "coveragePct": 56.52
+              },
+              {
+                "field": "vencimento",
+                "coveragePct": 56.52
+              }
+            ],
+            "emptyFields": [],
+            "unknownStrategic": []
+          }
+        },
+        "topStrategic": [
+          {
+            "field": "clienteCpfCnpj",
+            "coveragePct": 100.0,
+            "source": "VENDA"
+          },
+          {
+            "field": "abertura",
+            "coveragePct": 100.0,
+            "source": "CAIXA"
+          }
+        ],
+        "globalUnusedHits": {
+          "codigo": 182,
+          "codigoProduto": 33,
+          "dataHoraAbastecimento": 33,
+          "horaFiscal": 33,
+          "precoCadastro": 33,
+          "stringFull": 33,
+          "tabelaPrecoA": 33,
+          "tabelaPrecoB": 33,
+          "valorUnitario": 33,
+          "abertura": 30,
+          "centroCusto": 30,
+          "tipoBloqueio": 30,
+          "tipoInclusao": 30,
+          "cartaoApurado": 30,
+          "dinheiroDiferenca": 30,
+          "valeFunApresentado": 30,
+          "valeFunApurado": 30,
+          "despesaApurado": 26,
+          "centroCustoCodigo": 24,
+          "clienteCodigo": 24,
+          "clienteCpfCnpj": 24,
+          "formaPagamento": 24,
+          "itens": 24,
+          "modeloDocumento": 24,
+          "notaChave": 24,
+          "notaNumero": 24,
+          "notaSerie": 24,
+          "vendaUuid": 24,
+          "chaveDocumento": 24,
+          "protocoloAutorizacao": 24
+        }
+      },
+      "prestacaoGapAnalysis": {
+        "fields": {
+          "funcionarioNome": {
+            "origem": "/INTEGRACAO/FUNCIONARIO.nome",
+            "api": true,
+            "calculavel": false,
+            "inferivel": false
+          },
+          "participacaoIndividual": {
+            "origem": "calculavel_venda",
+            "api": false,
+            "calculavel": true,
+            "inferivel": true
+          },
+          "produtividadeFuncionario": {
+            "origem": "proxy_venda_abastecimento",
+            "api": false,
+            "calculavel": true,
+            "inferivel": true
+          },
+          "metaFuncionario": {
+            "origem": "grupo_meta_isolado",
+            "api": false,
+            "calculavel": false,
+            "inferivel": false
+          },
+          "fundoCaixa": {
+            "origem": "caixa_abertura_parcial",
+            "api": true,
+            "calculavel": true,
+            "inferivel": true
+          },
+          "layoutOperacionalTurno": {
+            "origem": "prestacao_pdf",
+            "api": false,
+            "calculavel": false,
+            "inferivel": false
+          }
+        },
+        "exclusivoPrestacao": [
+          "metaFuncionario",
+          "layoutOperacionalTurno"
+        ],
+        "calculavel": [
+          "participacaoIndividual",
+          "produtividadeFuncionario",
+          "fundoCaixa"
+        ],
+        "inferivel": [
+          "participacaoIndividual",
+          "produtividadeFuncionario",
+          "fundoCaixa"
+        ],
+        "inexistenteApi": [
+          "metaFuncionario",
+          "layoutOperacionalTurno"
+        ],
+        "coberturaD01Pct": 87.5,
+        "coberturaD02Pct": 97.5,
+        "atinge95": true,
+        "atinge100": false
+      },
+      "f04ImpactAnalysis": {
+        "classificacao": {
+          "funcionarioNome": "OBRIGATÓRIO",
+          "participacaoIndividual": "IMPORTANTE",
+          "produtividadeFuncionario": "IMPORTANTE",
+          "metaFuncionario": "OPCIONAL",
+          "fundoCaixa": "IMPORTANTE",
+          "layoutOperacionalTurno": "OPCIONAL"
+        },
+        "f04DependePdf": false,
+        "operadoresCriticosNominalizados": true
+      },
+      "architectureDecision": {
+        "opcao": "A",
+        "descricao": "API sozinha é suficiente",
+        "parecerFinal": "[PARECER FINAL: API SUFICIENTE PARA F04]"
+      },
+      "counts": {
+        "VENDA": 24,
+        "VENDA_ITEM": 18,
+        "ABASTECIMENTO": 33,
+        "CAIXA": 30,
+        "CAIXA_APRESENTADO": 30,
+        "NFCE": 24,
+        "VENDA_FORMA_PAGAMENTO": 23
+      }
+    },
+    "90d": {
+      "window": "90d",
+      "periodo": {
+        "inicio": "2026-03-10",
+        "fim": "2026-06-08"
+      },
+      "elapsedSec": 225.83,
+      "performance": {
+        "caixa": {
+          "key": "caixa_rede",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 21.82
+        },
+        "caixa_apresentado": {
+          "key": "caixa_apresentado",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 1.13,
+          "usedFallback": "caixa_apresentado_rede"
+        },
+        "venda": {
+          "key": "venda",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 40.6
+        },
+        "venda_item": {
+          "key": "venda_item",
+          "status": 500,
+          "error": "",
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 0,
+          "elapsedSec": 61.89
+        },
+        "venda_forma_pagamento": {
+          "key": "venda_forma_pagamento",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 49.03,
+          "usedFallback": "venda_forma_pagamento_rede"
+        },
+        "abastecimento": {
+          "key": "abastecimento",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 4.96
+        },
+        "nfce": {
+          "key": "nfce",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 3.89
+        },
+        "movimento_conta": {
+          "key": "movimento_conta",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "elapsedSec": 8.63
+        },
+        "transferencia_bancaria": {
+          "key": "transferencia_bancaria",
+          "status": 500,
+          "error": "",
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 0,
+          "elapsedSec": 31.86
+        }
+      },
+      "employeeNominalDiscovery": {
+        "1_funcionarioNome": true,
+        "2_nomeCompleto": true,
+        "3_cpf": true,
+        "4_matricula": false,
+        "5_apelidoOperacional": false,
+        "6_statusAtivo": true,
+        "endpointsAuditados": [
+          "/INTEGRACAO/FUNCIONARIO_REDE",
+          "/INTEGRACAO/CONSULTAR_FUNCIONARIO",
+          "/INTEGRACAO/FUNCIONARIO",
+          "/INTEGRACAO/FUNCIONARIO_EMPRESA",
+          "/INTEGRACAO/FUNCIONARIO_MOVIMENTO",
+          "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+          "/INTEGRACAO/USUARIO",
+          "/INTEGRACAO/USUARIO_EMPRESA_REDE",
+          "/INTEGRACAO/GRUPO_META",
+          "/INTEGRACAO/PRODUTO_META",
+          "/INTEGRACAO/FECHAMENTO_CAIXA"
+        ],
+        "endpointsComDados": [
+          "/INTEGRACAO/FUNCIONARIO",
+          "/INTEGRACAO/USUARIO",
+          "/INTEGRACAO/GRUPO_META",
+          "/INTEGRACAO/PRODUTO_META"
+        ],
+        "endpoints401": [
+          "/INTEGRACAO/FUNCIONARIO_REDE",
+          "/INTEGRACAO/CONSULTAR_FUNCIONARIO",
+          "/INTEGRACAO/FUNCIONARIO_EMPRESA",
+          "/INTEGRACAO/FUNCIONARIO_MOVIMENTO",
+          "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+          "/INTEGRACAO/USUARIO_EMPRESA_REDE",
+          "/INTEGRACAO/FECHAMENTO_CAIXA"
+        ],
+        "conclusao": "/INTEGRACAO/FUNCIONARIO expõe nome/cpf/ativo — join por funcionarioCodigo; transacional permanece codigo-only",
+        "funcionarioCatalogCount": 84
+      },
+      "nominalEndpointProbes": [
+        {
+          "endpoint": "FuncionarioRede",
+          "path": "/INTEGRACAO/FUNCIONARIO_REDE",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "ConsultarFuncionario",
+          "path": "/INTEGRACAO/CONSULTAR_FUNCIONARIO",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "Funcionario",
+          "path": "/INTEGRACAO/FUNCIONARIO",
+          "httpStatus": 200,
+          "registros": 84,
+          "campos": [
+            "admissao",
+            "ativo",
+            "celular",
+            "codigo",
+            "cpf",
+            "demissao",
+            "email",
+            "empresaCodigo",
+            "funcaoCodigo",
+            "funcionarioCodigo",
+            "funcionarioCodigoExterno",
+            "funcionarioReferencia",
+            "nome",
+            "ultimoUsuarioAlteracao"
+          ],
+          "nomeFields": [
+            "cpf",
+            "funcionarioCodigo",
+            "funcionarioCodigoExterno",
+            "funcionarioReferencia",
+            "nome",
+            "ultimoUsuarioAlteracao"
+          ],
+          "keywordFields": [
+            "cpf",
+            "funcionarioCodigo",
+            "funcionarioCodigoExterno",
+            "funcionarioReferencia",
+            "nome",
+            "ultimoUsuarioAlteracao"
+          ],
+          "samples": [
+            {
+              "empresaCodigo": 5555,
+              "funcionarioCodigo": 63044,
+              "funcionarioCodigoExterno": null,
+              "funcionarioReferencia": "00001",
+              "nome": "DOUGLAS HENRIQUE",
+              "cpf": null,
+              "funcaoCodigo": 11442,
+              "admissao": "2021-10-20",
+              "demissao": null,
+              "ultimoUsuarioAlteracao": "MARCIO",
+              "ativo": false,
+              "celular": null,
+              "email": null,
+              "codigo": 63044
+            },
+            {
+              "empresaCodigo": 5555,
+              "funcionarioCodigo": 63045,
+              "funcionarioCodigoExterno": null,
+              "funcionarioReferencia": "00002",
+              "nome": "LEONARDO DOS SANTOS",
+              "cpf": null,
+              "funcaoCodigo": 11442,
+              "admissao": "2021-10-20",
+              "demissao": null,
+              "ultimoUsuarioAlteracao": "CAMILY",
+              "ativo": false,
+              "celular": null,
+              "email": null,
+              "codigo": 63045
+            }
+          ],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "FuncionarioEmpresa",
+          "path": "/INTEGRACAO/FUNCIONARIO_EMPRESA",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "FuncionarioMovimento",
+          "path": "/INTEGRACAO/FUNCIONARIO_MOVIMENTO",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "ValeFuncionarioRede",
+          "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "Usuario",
+          "path": "/INTEGRACAO/USUARIO",
+          "httpStatus": 200,
+          "registros": 58,
+          "campos": [
+            "codigo",
+            "login",
+            "nome",
+            "perfil",
+            "senha",
+            "senhaExpirada",
+            "usuarioCodigo"
+          ],
+          "nomeFields": [
+            "nome",
+            "usuarioCodigo"
+          ],
+          "keywordFields": [
+            "nome",
+            "usuarioCodigo"
+          ],
+          "samples": [
+            {
+              "usuarioCodigo": 40446,
+              "nome": "PETROSYSTEM",
+              "login": "a8eaaa4f49375d4404b8bf60c4c1816e",
+              "senha": "7dd62dabf9467b54713cc8f4c6a5a8b5",
+              "perfil": "SUPORTE TI",
+              "senhaExpirada": true,
+              "codigo": 40446
+            },
+            {
+              "usuarioCodigo": 40501,
+              "nome": "ANDRE LISBOA",
+              "login": "bd767b6d9e385fe1694b2f26c9b68a8e",
+              "senha": "08c6297932f8c726d942a3468ba4a7b2",
+              "perfil": "DIRETORIA",
+              "senhaExpirada": true,
+              "codigo": 40501
+            }
+          ],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "UsuarioEmpresaRede",
+          "path": "/INTEGRACAO/USUARIO_EMPRESA_REDE",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "GrupoMeta",
+          "path": "/INTEGRACAO/GRUPO_META",
+          "httpStatus": 200,
+          "registros": 3,
+          "campos": [
+            "codigo",
+            "descricao",
+            "empresaCodigo",
+            "grupoMetaCodigo"
+          ],
+          "nomeFields": [],
+          "keywordFields": [
+            "grupoMetaCodigo"
+          ],
+          "samples": [
+            {
+              "grupoMetaCodigo": 3598,
+              "descricao": "META DO COMBO FOOD",
+              "empresaCodigo": 11495,
+              "codigo": 3598
+            },
+            {
+              "grupoMetaCodigo": 3600,
+              "descricao": "AÇÃO DA PASCOA",
+              "empresaCodigo": 11495,
+              "codigo": 3600
+            }
+          ],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "ProdutoMeta",
+          "path": "/INTEGRACAO/PRODUTO_META",
+          "httpStatus": 200,
+          "registros": 22,
+          "campos": [
+            "codigo",
+            "grupoMetaCodigo",
+            "produtoCodigo"
+          ],
+          "nomeFields": [],
+          "keywordFields": [
+            "grupoMetaCodigo"
+          ],
+          "samples": [
+            {
+              "grupoMetaCodigo": 3598,
+              "produtoCodigo": 2429571,
+              "codigo": 3598
+            },
+            {
+              "grupoMetaCodigo": 3598,
+              "produtoCodigo": 2436844,
+              "codigo": 3598
+            }
+          ],
+          "timeout": false,
+          "error": null
+        },
+        {
+          "endpoint": "FechamentoCaixa",
+          "path": "/INTEGRACAO/FECHAMENTO_CAIXA",
+          "httpStatus": 401,
+          "registros": 0,
+          "campos": [],
+          "nomeFields": [],
+          "keywordFields": [],
+          "samples": [],
+          "timeout": false,
+          "error": null
+        }
+      ],
+      "operatorIdentityTrace": {
+        "276288": {
+          "funcionarioCodigo": 276288,
+          "vendasCount": 47,
+          "caixaTurnosCount": 48,
+          "abastecimentosCount": 0,
+          "vendaItensCount": 0,
+          "empresas": [
+            11495
+          ],
+          "pdvs": [
+            56764
+          ],
+          "turnos": [
+            "1",
+            "2"
+          ],
+          "volumeVendas": 679.28,
+          "cadastroFuncionario": {
+            "encontrado": true,
+            "nome": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "cpf": "703.923.894-28",
+            "referencia": "00040",
+            "ativo": true,
+            "empresaCodigo": 11495
+          },
+          "nomeFieldsFound": [
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            },
+            {
+              "clienteCpfCnpj": "00.000.000/0000-00"
+            }
+          ],
+          "nominalizavel": true,
+          "identidadeReal": "funcionario_api"
+        },
+        "294273": {
+          "funcionarioCodigo": 294273,
+          "vendasCount": 0,
+          "caixaTurnosCount": 3,
+          "abastecimentosCount": 0,
+          "vendaItensCount": 0,
+          "empresas": [
+            11495
+          ],
+          "pdvs": [
+            54193
+          ],
+          "turnos": [
+            "1"
+          ],
+          "volumeVendas": 0,
+          "cadastroFuncionario": {
+            "encontrado": true,
+            "nome": "RICART ABEL DE PAIVA RIBEIRO",
+            "cpf": "715.050.154-05",
+            "referencia": "00044",
+            "ativo": true,
+            "empresaCodigo": 11495
+          },
+          "nomeFieldsFound": [
+            {
+              "funcionario.nome": "RICART ABEL DE PAIVA RIBEIRO"
+            },
+            {
+              "funcionario.cpf": "715.050.154-05"
+            },
+            {
+              "funcionario.referencia": "00044"
+            }
+          ],
+          "nominalizavel": true,
+          "identidadeReal": "funcionario_api"
+        },
+        "213391": {
+          "funcionarioCodigo": 213391,
+          "vendasCount": 0,
+          "caixaTurnosCount": 26,
+          "abastecimentosCount": 0,
+          "vendaItensCount": 0,
+          "empresas": [
+            11495
+          ],
+          "pdvs": [
+            54193,
+            56764
+          ],
+          "turnos": [
+            "1"
+          ],
+          "volumeVendas": 0,
+          "cadastroFuncionario": {
+            "encontrado": true,
+            "nome": "JEFFERSON NASCIMENTO.",
+            "cpf": null,
+            "referencia": "00028",
+            "ativo": true,
+            "empresaCodigo": 11495
+          },
+          "nomeFieldsFound": [
+            {
+              "funcionario.nome": "JEFFERSON NASCIMENTO."
+            },
+            {
+              "funcionario.referencia": "00028"
+            }
+          ],
+          "nominalizavel": true,
+          "identidadeReal": "funcionario_api"
+        }
+      },
+      "funcionarioCatalogCount": 84,
+      "participationDiscovery": {
+        "calculavel": true,
+        "campoOficial": false,
+        "rankingInterno": false,
+        "participacaoCalculada": {
+          "157960": 19.76,
+          "149304": 57.23,
+          "63048": 23.01
+        },
+        "operadoresNoTurno": 3,
+        "origem": "calculado_VENDA.totalVenda"
+      },
+      "productivityDiscovery": {
+        "campoOficialPronto": false,
+        "keywordsEncontrados": {},
+        "classificacao": "B_calculada",
+        "proxyAbastecimentos": {
+          "149304": 25,
+          "63048": 14,
+          "157960": 9
+        },
+        "proxyVendas": {
+          "149304": 17,
+          "157960": 8,
+          "63048": 8
+        },
+        "origemPrestacao": "UI_calculada_ou_regra_interna_WebPosto"
+      },
+      "fundoCaixaForensics": {
+        "campoFundoCaixa": false,
+        "campoAbertura": {
+          "exists": true,
+          "coveragePct": 100.0,
+          "samples": [
+            "2026-03-10T00:01:26.000-03:00",
+            "2026-03-11T00:01:07.000-03:00",
+            "2026-03-12T00:06:17.000-03:00",
+            "2026-03-13T00:00:06.000-03:00",
+            "2026-03-14T00:02:18.000-03:00"
+          ]
+        },
+        "suprimentoInicial": {
+          "count": 0,
+          "exists": false
+        },
+        "saldoInicial": {
+          "count": 0,
+          "exists": false
+        },
+        "caixaApresentadoCount": 67,
+        "transferenciaCount": 0,
+        "aberturaSamples": [
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4256777,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 157960,
+            "abertura": "2026-03-10T00:01:26.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4257761,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 157960,
+            "abertura": "2026-03-11T00:01:07.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4258745,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924,
+            "abertura": "2026-03-12T00:06:17.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4259776,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 157960,
+            "abertura": "2026-03-13T00:00:06.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4260693,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 157960,
+            "abertura": "2026-03-14T00:02:18.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4261675,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 158924,
+            "abertura": "2026-03-15T00:08:03.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4262571,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 157960,
+            "abertura": "2026-03-16T00:00:47.000-03:00"
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4263549,
+            "turnoCodigo": 1,
+            "pdvCodigo": 15880,
+            "funcionarioCodigo": 157960,
+            "abertura": "2026-03-17T00:04:31.000-03:00"
+          }
+        ],
+        "reconstruivel": true,
+        "origemProvavel": "CAIXA.abertura (+ MOVIMENTO_CONTA inferido)",
+        "gapVsPrestacao": "rótulo fundoCaixa ≠ abertura numérica sem regra UI"
+      },
+      "goalDiscovery": {
+        "hits": [],
+        "byEntity": {
+          "funcionario": false,
+          "pdv": false,
+          "turno": false,
+          "empresa": false
+        },
+        "metaOperacionalApi": false
+      },
+      "hiddenFieldScan": {
+        "bySource": {
+          "VENDA": {
+            "totalRows": 33,
+            "allKeys": [
+              "caixaCodigo",
+              "cancelada",
+              "centroCustoCodigo",
+              "centroCustoVeiculo",
+              "clienteCodigo",
+              "clienteCodigoExterno",
+              "clienteCpfCnpj",
+              "codigo",
+              "dataHora",
+              "destacaAcrescimoDesconto",
+              "empresaCodigo",
+              "formaPagamento",
+              "funcionarioCodigo",
+              "identificacaoFidelidade",
+              "itens",
+              "modeloDocumento",
+              "motoristaCodigo",
+              "notaChave",
+              "notaCodigo",
+              "notaNumero",
+              "notaSerie",
+              "placaVeiculo",
+              "totalVenda",
+              "troco",
+              "vendaCodigo",
+              "vendaUuid"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "centroCustoCodigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "clienteCodigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "clienteCpfCnpj",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "formaPagamento",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "itens",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "modeloDocumento",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "notaChave",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "notaNumero",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "notaSerie",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "vendaUuid",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "centroCustoVeiculo",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "clienteCodigoExterno",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "destacaAcrescimoDesconto",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "identificacaoFidelidade",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "motoristaCodigo",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "notaCodigo",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "placaVeiculo",
+                "coveragePct": 0.0
+              }
+            ],
+            "emptyFields": [
+              "centroCustoVeiculo",
+              "clienteCodigoExterno",
+              "destacaAcrescimoDesconto",
+              "identificacaoFidelidade",
+              "motoristaCodigo",
+              "notaCodigo",
+              "placaVeiculo"
+            ],
+            "unknownStrategic": [
+              {
+                "field": "clienteCpfCnpj",
+                "coveragePct": 100.0,
+                "source": "VENDA"
+              }
+            ]
+          },
+          "VENDA_ITEM": {
+            "totalRows": 0,
+            "allKeys": [],
+            "unusedInLogos": [],
+            "emptyFields": [],
+            "unknownStrategic": []
+          },
+          "ABASTECIMENTO": {
+            "totalRows": 51,
+            "allKeys": [
+              "abastecimentoCodigo",
+              "afericao",
+              "codigo",
+              "codigoBico",
+              "codigoFrentista",
+              "codigoProduto",
+              "dataFiscal",
+              "dataHoraAbastecimento",
+              "empresaCodigo",
+              "encerrante",
+              "horaFiscal",
+              "placa",
+              "precoCadastro",
+              "quantidade",
+              "stringFull",
+              "tabelaPrecoA",
+              "tabelaPrecoB",
+              "tabelaPrecoC",
+              "valorTotal",
+              "valorUnitario",
+              "vendaItemCodigo"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "codigoProduto",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "dataHoraAbastecimento",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "horaFiscal",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "precoCadastro",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "stringFull",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "tabelaPrecoA",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "tabelaPrecoB",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "valorUnitario",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "afericao",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "placa",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "tabelaPrecoC",
+                "coveragePct": 0.0
+              }
+            ],
+            "emptyFields": [
+              "afericao",
+              "placa",
+              "tabelaPrecoC"
+            ],
+            "unknownStrategic": []
+          },
+          "CAIXA": {
+            "totalRows": 67,
+            "allKeys": [
+              "abertura",
+              "apurado",
+              "bloqueado",
+              "caixaCodigo",
+              "centroCusto",
+              "codigo",
+              "consolidado",
+              "dataMovimento",
+              "diferenca",
+              "empresaCodigo",
+              "fechado",
+              "fechamento",
+              "funcionarioCodigo",
+              "pdvCodigo",
+              "tipoBloqueio",
+              "tipoInclusao",
+              "turno",
+              "turnoCodigo"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "abertura",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "centroCusto",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "tipoBloqueio",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "tipoInclusao",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "bloqueado",
+                "coveragePct": 0.0
+              }
+            ],
+            "emptyFields": [
+              "bloqueado"
+            ],
+            "unknownStrategic": [
+              {
+                "field": "abertura",
+                "coveragePct": 100.0,
+                "source": "CAIXA"
+              }
+            ]
+          },
+          "CAIXA_APRESENTADO": {
+            "totalRows": 67,
+            "allKeys": [
+              "caixaCodigo",
+              "cartaFreteApresentado",
+              "cartaFreteApurado",
+              "cartaFreteDiferenca",
+              "cartaoApresentado",
+              "cartaoApurado",
+              "cartaoDiferenca",
+              "chequeApresentado",
+              "chequeApurado",
+              "chequeDiferenca",
+              "chequePagarApresentado",
+              "chequePagarApurado",
+              "chequePagarDiferenca",
+              "chequePreApresentado",
+              "chequePreApurado",
+              "chequePreDiferenca",
+              "chequeTroco",
+              "codigo",
+              "consolidado",
+              "despesaApresentado",
+              "despesaApurado",
+              "despesaDiferenca",
+              "dinheiroApresentado",
+              "dinheiroApurado",
+              "dinheiroDiferenca",
+              "empresaCodigo",
+              "emprestimoApresentado",
+              "emprestimoApurado",
+              "emprestimoDiferenca",
+              "fundoCaixaCredito",
+              "fundoCxDebApresentado",
+              "fundoCxDebApurado",
+              "fundoCxDebDiferenca",
+              "notaPrazoApresentado",
+              "notaPrazoApurado",
+              "notaPrazoDiferenca",
+              "ordemPagamento",
+              "pagamentoCaixa",
+              "prePagApresentado",
+              "prePagApurado",
+              "prePagDiferenca",
+              "prePagoCredito",
+              "recebimentoCaixa",
+              "saidaTrocaValor",
+              "servicoCaixa",
+              "suprimentoCaixa",
+              "transfBancApresentado",
+              "transfBancApurado",
+              "transfBancDiferenca",
+              "transfDebApresentado",
+              "transfDebApurado",
+              "transfDebDiferenca",
+              "valeCliente",
+              "valeClienteApresentado",
+              "valeClienteApurado",
+              "valeClienteDiferenca",
+              "valeFunApresentado",
+              "valeFunApurado",
+              "valeFunDiferenca"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "cartaoApurado",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "transfBancApresentado",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "transfBancApurado",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "valeFunApresentado",
+                "coveragePct": 98.51
+              },
+              {
+                "field": "valeFunApurado",
+                "coveragePct": 98.51
+              },
+              {
+                "field": "dinheiroDiferenca",
+                "coveragePct": 89.55
+              },
+              {
+                "field": "despesaApurado",
+                "coveragePct": 88.06
+              },
+              {
+                "field": "prePagApresentado",
+                "coveragePct": 25.37
+              },
+              {
+                "field": "prePagApurado",
+                "coveragePct": 25.37
+              },
+              {
+                "field": "chequePreApresentado",
+                "coveragePct": 10.45
+              },
+              {
+                "field": "chequePreApurado",
+                "coveragePct": 10.45
+              },
+              {
+                "field": "prePagoCredito",
+                "coveragePct": 1.49
+              },
+              {
+                "field": "cartaFreteApresentado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "cartaFreteApurado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "cartaFreteDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "cartaoDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequeApresentado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequeApurado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequeDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequePagarApresentado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequePagarApurado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequePagarDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequePreDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "chequeTroco",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "despesaDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "emprestimoApresentado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "emprestimoApurado",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "emprestimoDiferenca",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "fundoCaixaCredito",
+                "coveragePct": 0.0
+              }
+            ],
+            "emptyFields": [
+              "cartaFreteApresentado",
+              "cartaFreteApurado",
+              "cartaFreteDiferenca",
+              "cartaoDiferenca",
+              "chequeApresentado",
+              "chequeApurado",
+              "chequeDiferenca",
+              "chequePagarApresentado",
+              "chequePagarApurado",
+              "chequePagarDiferenca",
+              "chequePreDiferenca",
+              "chequeTroco",
+              "despesaDiferenca",
+              "emprestimoApresentado",
+              "emprestimoApurado",
+              "emprestimoDiferenca",
+              "fundoCaixaCredito",
+              "fundoCxDebApresentado",
+              "fundoCxDebApurado",
+              "fundoCxDebDiferenca",
+              "notaPrazoApresentado",
+              "notaPrazoApurado",
+              "notaPrazoDiferenca",
+              "ordemPagamento",
+              "pagamentoCaixa",
+              "prePagDiferenca",
+              "recebimentoCaixa",
+              "saidaTrocaValor",
+              "servicoCaixa",
+              "suprimentoCaixa",
+              "transfBancDiferenca",
+              "transfDebApresentado",
+              "transfDebApurado",
+              "transfDebDiferenca",
+              "valeCliente",
+              "valeClienteApresentado",
+              "valeClienteApurado",
+              "valeClienteDiferenca",
+              "valeFunDiferenca"
+            ],
+            "unknownStrategic": []
+          },
+          "NFCE": {
+            "totalRows": 33,
+            "allKeys": [
+              "chaveDocumento",
+              "codigo",
+              "dataEmissao",
+              "empresaCodigo",
+              "nfceCodigo",
+              "numeroDocumento",
+              "protocoloAutorizacao",
+              "protocoloCancelamento",
+              "protocoloInutilizacao",
+              "serieDocumento",
+              "situacao",
+              "vendaCodigo"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "chaveDocumento",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "protocoloAutorizacao",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "protocoloCancelamento",
+                "coveragePct": 0.0
+              },
+              {
+                "field": "protocoloInutilizacao",
+                "coveragePct": 0.0
+              }
+            ],
+            "emptyFields": [
+              "protocoloCancelamento",
+              "protocoloInutilizacao"
+            ],
+            "unknownStrategic": []
+          },
+          "VENDA_FORMA_PAGAMENTO": {
+            "totalRows": 35,
+            "allKeys": [
+              "administradoraCodigo",
+              "codigo",
+              "dataMovimento",
+              "empresaCodigo",
+              "formaPagamentoCodigo",
+              "nomeFormaPagamento",
+              "taxaPercentual",
+              "tipoFormaPagamento",
+              "turnoCodigo",
+              "valorPagamento",
+              "vencimento",
+              "vendaCodigo",
+              "vendaPrazoCodigo"
+            ],
+            "unusedInLogos": [
+              {
+                "field": "codigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "tipoFormaPagamento",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "vendaPrazoCodigo",
+                "coveragePct": 100.0
+              },
+              {
+                "field": "vencimento",
+                "coveragePct": 60.0
+              },
+              {
+                "field": "taxaPercentual",
+                "coveragePct": 57.14
+              }
+            ],
+            "emptyFields": [],
+            "unknownStrategic": []
+          }
+        },
+        "topStrategic": [
+          {
+            "field": "clienteCpfCnpj",
+            "coveragePct": 100.0,
+            "source": "VENDA"
+          },
+          {
+            "field": "abertura",
+            "coveragePct": 100.0,
+            "source": "CAIXA"
+          }
+        ],
+        "globalUnusedHits": {
+          "codigo": 286,
+          "abertura": 67,
+          "centroCusto": 67,
+          "tipoBloqueio": 67,
+          "tipoInclusao": 67,
+          "cartaoApurado": 67,
+          "transfBancApresentado": 67,
+          "transfBancApurado": 67,
+          "valeFunApresentado": 66,
+          "valeFunApurado": 66,
+          "dinheiroDiferenca": 60,
+          "despesaApurado": 59,
+          "codigoProduto": 51,
+          "dataHoraAbastecimento": 51,
+          "horaFiscal": 51,
+          "precoCadastro": 51,
+          "stringFull": 51,
+          "tabelaPrecoA": 51,
+          "tabelaPrecoB": 51,
+          "valorUnitario": 51,
+          "tipoFormaPagamento": 35,
+          "vendaPrazoCodigo": 35,
+          "centroCustoCodigo": 33,
+          "clienteCodigo": 33,
+          "clienteCpfCnpj": 33,
+          "formaPagamento": 33,
+          "itens": 33,
+          "modeloDocumento": 33,
+          "notaChave": 33,
+          "notaNumero": 33
+        }
+      },
+      "prestacaoGapAnalysis": {
+        "fields": {
+          "funcionarioNome": {
+            "origem": "/INTEGRACAO/FUNCIONARIO.nome",
+            "api": true,
+            "calculavel": false,
+            "inferivel": false
+          },
+          "participacaoIndividual": {
+            "origem": "calculavel_venda",
+            "api": false,
+            "calculavel": true,
+            "inferivel": true
+          },
+          "produtividadeFuncionario": {
+            "origem": "proxy_venda_abastecimento",
+            "api": false,
+            "calculavel": true,
+            "inferivel": true
+          },
+          "metaFuncionario": {
+            "origem": "grupo_meta_isolado",
+            "api": false,
+            "calculavel": false,
+            "inferivel": false
+          },
+          "fundoCaixa": {
+            "origem": "caixa_abertura_parcial",
+            "api": true,
+            "calculavel": true,
+            "inferivel": true
+          },
+          "layoutOperacionalTurno": {
+            "origem": "prestacao_pdf",
+            "api": false,
+            "calculavel": false,
+            "inferivel": false
+          }
+        },
+        "exclusivoPrestacao": [
+          "metaFuncionario",
+          "layoutOperacionalTurno"
+        ],
+        "calculavel": [
+          "participacaoIndividual",
+          "produtividadeFuncionario",
+          "fundoCaixa"
+        ],
+        "inferivel": [
+          "participacaoIndividual",
+          "produtividadeFuncionario",
+          "fundoCaixa"
+        ],
+        "inexistenteApi": [
+          "metaFuncionario",
+          "layoutOperacionalTurno"
+        ],
+        "coberturaD01Pct": 87.5,
+        "coberturaD02Pct": 97.5,
+        "atinge95": true,
+        "atinge100": false
+      },
+      "f04ImpactAnalysis": {
+        "classificacao": {
+          "funcionarioNome": "OBRIGATÓRIO",
+          "participacaoIndividual": "IMPORTANTE",
+          "produtividadeFuncionario": "IMPORTANTE",
+          "metaFuncionario": "OPCIONAL",
+          "fundoCaixa": "IMPORTANTE",
+          "layoutOperacionalTurno": "OPCIONAL"
+        },
+        "f04DependePdf": false,
+        "operadoresCriticosNominalizados": true
+      },
+      "architectureDecision": {
+        "opcao": "A",
+        "descricao": "API sozinha é suficiente",
+        "parecerFinal": "[PARECER FINAL: API SUFICIENTE PARA F04]"
+      },
+      "counts": {
+        "VENDA": 33,
+        "VENDA_ITEM": 0,
+        "ABASTECIMENTO": 51,
+        "CAIXA": 67,
+        "CAIXA_APRESENTADO": 67,
+        "NFCE": 33,
+        "VENDA_FORMA_PAGAMENTO": 35
+      }
+    }
+  },
+  "executiveAnswers": {
+    "1_funcionarioNomeEndpoint": true,
+    "2_cpfOperador": true,
+    "3_matricula": false,
+    "4_produtividadeOficial": false,
+    "5_participacaoOficial": false,
+    "6_fundoCaixa": true,
+    "7_metaOperacional": false,
+    "8_rankingOficial": false,
+    "9_operadoresNominalizaveis": {
+      "276288": true,
+      "294273": true,
+      "213391": true
+    },
+    "10_camposExclusivosSemOrigem": 2,
+    "11_calculaveis": 3,
+    "12_inferiveis": 3,
+    "13_inexistentesApi": 2,
+    "14_pdfNecessario": false,
+    "15_novaCoberturaPct": 97.5,
+    "16_atinge95": true,
+    "17_atinge100": false,
+        "18_campoMaisValiosoOculto": "metaFuncionario",
+    "19_f04DependePdf": false,
+    "20_arquiteturaDefinitiva": "A",
+    "coberturaD01Pct": 87.5
+  },
+  "exclusivePrestacaoInvestigated": [
+    "funcionarioNome",
+    "participacaoIndividual (oficial UI)",
+    "produtividadeFuncionario (oficial UI)",
+    "metaFuncionario",
+    "fundoCaixa (rótulo Prestação)",
+    "layout operacional turno"
+  ],
+  "parecerFinal": "[PARECER FINAL: API SUFICIENTE PARA F04]",
+  "d01BaselineLoaded": true
+}

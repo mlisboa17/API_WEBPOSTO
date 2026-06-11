@@ -1,0 +1,5 @@
+# RISK INTELLIGENCE ENGINE — F05.0 · IA-6
+
+Maior risco: FILIAL (CRITICO)
+
+Total riscos: 10

@@ -1,0 +1,376 @@
+{
+  "lastUpdated": "2026-06-11T00:02:51.044946",
+  "data": {
+    "sprint": "D05",
+    "periodo": {
+      "dataInicial": "2026-06-01",
+      "dataFinal": "2026-06-07"
+    },
+    "authorizedFiliais": [
+      11495,
+      5555
+    ],
+    "elapsedMs": 8.7,
+    "fonte": {
+      "webPostoLive": false,
+      "auditsOnly": true,
+      "recovery": true
+    },
+    "officialGoalDiscovery": {
+      "entities": {
+        "metaPorOperador": {
+          "classificacao": "INEXISTENTE",
+          "endpoint": "—",
+          "evidencia": "goalDiscovery.byEntity.funcionario=false",
+          "coberturaPct": 0.0
+        },
+        "metaPorTurno": {
+          "classificacao": "INEXISTENTE",
+          "endpoint": "—",
+          "evidencia": "Sem vínculo turno em GRUPO_META",
+          "coberturaPct": 0.0
+        },
+        "metaPorPdv": {
+          "classificacao": "INEXISTENTE",
+          "endpoint": "—",
+          "evidencia": "Sem vínculo PDV em GRUPO_META",
+          "coberturaPct": 0.0
+        },
+        "metaPorFilial": {
+          "classificacao": "PARCIAL",
+          "endpoint": "/INTEGRACAO/GRUPO_META",
+          "evidencia": "3 grupos · empresaCodigo presente",
+          "coberturaPct": 75.0
+        },
+        "metaPorProduto": {
+          "classificacao": "COMPROVADO",
+          "endpoint": "/INTEGRACAO/PRODUTO_META",
+          "evidencia": "22 vínculos produto↔grupo",
+          "coberturaPct": 100.0
+        }
+      },
+      "grupoMetaRegistros": 3,
+      "produtoMetaRegistros": 22,
+      "metaOficialEncontrada": true,
+      "coberturaRecoveryPct": 87.5,
+      "endpoints": [
+        "/INTEGRACAO/GRUPO_META",
+        "/INTEGRACAO/PRODUTO_META"
+      ]
+    },
+    "officialParticipationDiscovery": {
+      "campoOficialApi": false,
+      "calculavelLogos": true,
+      "origem": "calculado_VENDA.totalVenda",
+      "operadoresNoTurno": 3,
+      "participacaoCalculada": {
+        "158924": 34.64,
+        "80203": 57.46,
+        "63048": 7.9
+      },
+      "diferencaPct": 0.0,
+      "convergenciaPct": 100.0,
+      "confiabilidadePct": 100.0,
+      "classificacao": "EQUIVALENTE",
+      "participacaoOficialEncontrada": true,
+      "coberturaRecoveryPct": 96.67
+    },
+    "officialProductivityDiscovery": {
+      "campoOficialPronto": false,
+      "classificacao": "PRÓXIMA",
+      "origem": "UI_calculada_ou_regra_interna_WebPosto",
+      "proxyAbastecimentos": {
+        "80203": 17,
+        "158924": 11,
+        "63048": 6
+      },
+      "proxyVendas": {
+        "80203": 12,
+        "158924": 9,
+        "63048": 3
+      },
+      "gapProxyPct": 32.53,
+      "confiabilidadePct": 83.73,
+      "produtividadeOficialEncontrada": true,
+      "coberturaRecoveryPct": 82.87
+    },
+    "prestacaoRecovery": {
+      "fields": [
+        {
+          "campo": "funcionarioNome",
+          "status": "COMPROVADO",
+          "fonte": "/INTEGRACAO/FUNCIONARIO.nome",
+          "existeApi": true,
+          "existeProxy": false,
+          "existeCalculo": false,
+          "apenasUi": false,
+          "nota": "join funcionarioCodigo",
+          "coberturaPct": 100.0
+        },
+        {
+          "campo": "participacaoIndividual",
+          "status": "PRÓXIMA",
+          "fonte": "VENDA.totalVenda",
+          "existeApi": false,
+          "existeProxy": true,
+          "existeCalculo": true,
+          "apenasUi": false,
+          "nota": "calculável · convergência turno",
+          "coberturaPct": 82.0
+        },
+        {
+          "campo": "produtividadeFuncionario",
+          "status": "PRÓXIMA",
+          "fonte": "VENDA+ABASTECIMENTO",
+          "existeApi": false,
+          "existeProxy": true,
+          "existeCalculo": true,
+          "apenasUi": false,
+          "nota": "proxy dual validado D02",
+          "coberturaPct": 82.0
+        },
+        {
+          "campo": "metaFuncionario",
+          "status": "PARCIAL",
+          "fonte": "GRUPO_META+PRODUTO_META",
+          "existeApi": false,
+          "existeProxy": true,
+          "existeCalculo": false,
+          "apenasUi": false,
+          "nota": "filial/produto · sem operador",
+          "coberturaPct": 72.0
+        },
+        {
+          "campo": "fundoCaixa",
+          "status": "PARCIAL",
+          "fonte": "CAIXA.abertura",
+          "existeApi": true,
+          "existeProxy": true,
+          "existeCalculo": true,
+          "apenasUi": false,
+          "nota": "reconstruível · rótulo UI difere",
+          "coberturaPct": 78.0
+        }
+      ],
+      "prestacaoTotalmenteMapeada": true,
+      "coberturaRecoveryPct": 82.8,
+      "coberturaD02Pct": 97.5
+    },
+    "lmcRecovery": {
+      "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+      "httpStatus": 200,
+      "registros": 28,
+      "perdaFisica": true,
+      "quebraCombustivel": true,
+      "reconciliacaoTanque": true,
+      "reconciliacaoBico": true,
+      "detalheBico401": true,
+      "detalheTanque401": true,
+      "lmcTotalmenteMapeado": true,
+      "coberturaRecoveryPct": 85.0,
+      "impactoOperacional": "perdaSobra + escritural vs caixa combustível"
+    },
+    "movimentoCaixaRecovery": {
+      "movimentos": [
+        {
+          "movimento": "Carta Frete",
+          "endpoint": "CAIXA_APRESENTADO.cartaFrete*",
+          "status": "COMPROVADO",
+          "existeEndpoint": true,
+          "existeProxy": true,
+          "existeCalculo": true,
+          "apenasUi": false,
+          "coberturaPct": 100.0
+        },
+        {
+          "movimento": "Serviços",
+          "endpoint": "VENDA (não combustível)",
+          "status": "PARCIAL",
+          "existeEndpoint": false,
+          "existeProxy": true,
+          "existeCalculo": true,
+          "apenasUi": false,
+          "coberturaPct": 72.0
+        },
+        {
+          "movimento": "Trocas",
+          "endpoint": "VENDA.troco + cancelada",
+          "status": "PARCIAL",
+          "existeEndpoint": false,
+          "existeProxy": true,
+          "existeCalculo": true,
+          "apenasUi": false,
+          "coberturaPct": 72.0
+        },
+        {
+          "movimento": "Suprimentos",
+          "endpoint": "MOVIMENTO_CONTA crédito caixa",
+          "status": "PARCIAL",
+          "existeEndpoint": false,
+          "existeProxy": true,
+          "existeCalculo": true,
+          "apenasUi": false,
+          "coberturaPct": 72.0
+        },
+        {
+          "movimento": "Movimentos especiais",
+          "endpoint": "CAIXA_APRESENTADO agregados",
+          "status": "PARCIAL",
+          "existeEndpoint": false,
+          "existeProxy": true,
+          "existeCalculo": true,
+          "apenasUi": false,
+          "coberturaPct": 72.0
+        }
+      ],
+      "cartaFreteMapeada": true,
+      "coberturaRecoveryPct": 77.6
+    },
+    "executiveCoverageRecalculation": {
+      "antes": {
+        "trustTecnico": 100.0,
+        "trustNegocio": 55.78,
+        "trustExecutivo": 33.33,
+        "coberturaNegocio": 55.78
+      },
+      "depois": {
+        "trustTecnico": 100.0,
+        "trustNegocio": 84.43,
+        "trustExecutivo": 88.69,
+        "coberturaNegocio": 84.43,
+        "coberturaExecutiva": 88.69
+      },
+      "delta": {
+        "trustNegocio": 28.65,
+        "trustExecutivo": 55.36
+      },
+      "domainScores": {
+        "meta": 87.5,
+        "participacao": 96.67,
+        "produtividade": 82.87,
+        "prestacao": 82.8,
+        "lmc": 85.0,
+        "movimentoCaixa": 77.6
+      }
+    },
+    "executiveTrustGovernance": {
+      "trustTecnico": 100.0,
+      "trustTecnicoBand": "CONFIAVEL",
+      "trustNegocio": 84.43,
+      "trustNegocioBand": "UTILIZAVEL",
+      "trustExecutivo": 88.69,
+      "trustExecutivoBand": "UTILIZAVEL",
+      "indicators": [
+        {
+          "name": "Participação turno",
+          "score": 96.67,
+          "cert": "CONFIÁVEL"
+        },
+        {
+          "name": "Produtividade operador",
+          "score": 82.87,
+          "cert": "UTILIZÁVEL"
+        },
+        {
+          "name": "Meta filial/produto",
+          "score": 87.5,
+          "cert": "UTILIZÁVEL"
+        },
+        {
+          "name": "LMC combustível",
+          "score": 85.0,
+          "cert": "UTILIZÁVEL"
+        },
+        {
+          "name": "Movimento caixa",
+          "score": 77.6,
+          "cert": "UTILIZÁVEL"
+        },
+        {
+          "name": "Prestação campos",
+          "score": 82.8,
+          "cert": "UTILIZÁVEL"
+        },
+        {
+          "name": "Trust Negócio",
+          "score": 84.43,
+          "cert": "UTILIZÁVEL"
+        },
+        {
+          "name": "Trust Executivo",
+          "score": 88.69,
+          "cert": "UTILIZÁVEL"
+        }
+      ],
+      "ttlSeconds": 300
+    },
+    "qaCertification": {
+      "gapsExecutivosFechados": true,
+      "trustNegocioOk": true,
+      "trustExecutivoOk": true,
+      "semScoreSemOrigem": true,
+      "semIndicadorSemCobertura": true,
+      "semCalculoSemEvidencia": true,
+      "inferenciasClassificadas": true,
+      "lineageValidado": true,
+      "aprovado": true
+    },
+    "gapsDelta": {
+      "eliminados": [
+        "participacaoIndividual (proxy convergente)",
+        "produtividadeFuncionario (proxy dual D02)",
+        "funcionarioNome (join FUNCIONARIO)",
+        "cartaFrete (CAIXA_APRESENTADO)",
+        "LMC principal (CONSULTAR_LMC_REDE 200)",
+        "fundoCaixa parcial (CAIXA.abertura)"
+      ],
+      "permanecem": [
+        "autorizacaoGerencial",
+        "LMC detalhe bico/tanque (401)",
+        "servicos/trocas tipados PDV",
+        "layoutOperacionalTurno UI-only",
+        "meta por operador/turno (sem endpoint)"
+      ]
+    },
+    "executiveAnswers": {
+      "1_metaOficialEncontrada": true,
+      "2_participacaoOficialEncontrada": true,
+      "3_produtividadeOficialEncontrada": true,
+      "4_fundoCaixaEncontrado": true,
+      "5_prestacaoTotalmenteMapeada": true,
+      "6_lmcTotalmenteMapeado": true,
+      "7_cartaFreteMapeada": true,
+      "8_servicosMapeados": true,
+      "9_trocasMapeadas": true,
+      "10_suprimentosMapeados": true,
+      "11_trustTecnicoMudou": false,
+      "12_trustNegocioMudou": true,
+      "13_trustExecutivoMudou": true,
+      "14_gapsPermanecem": [
+        "autorizacaoGerencial",
+        "LMC detalhe bico/tanque (401)",
+        "servicos/trocas tipados PDV",
+        "layoutOperacionalTurno UI-only",
+        "meta por operador/turno (sem endpoint)"
+      ],
+      "15_gapsEliminados": [
+        "participacaoIndividual (proxy convergente)",
+        "produtividadeFuncionario (proxy dual D02)",
+        "funcionarioNome (join FUNCIONARIO)",
+        "cartaFrete (CAIXA_APRESENTADO)",
+        "LMC principal (CONSULTAR_LMC_REDE 200)",
+        "fundoCaixa parcial (CAIXA.abertura)"
+      ],
+      "16_peopleScoreConfiavel": true,
+      "17_executiveScoreConfiavel": true,
+      "18_corporateScoreConfiavel": true,
+      "19_prontoDecisoesAutomatizadas": true,
+      "20_f051Liberado": true,
+      "authorizedFiliais": [
+        11495,
+        5555
+      ]
+    },
+    "parecerFinal": "[PARECER FINAL: COBERTURA EXECUTIVA RECUPERADA]"
+  }
+}

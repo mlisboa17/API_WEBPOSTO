@@ -1,0 +1,159 @@
+{
+  "lastUpdated": "2026-06-09T18:03:20",
+  "data": {
+    "totalPdvs": 3,
+    "ranking": [
+      {
+        "pdvCodigo": 54193,
+        "fechamentos": 7,
+        "diferencaAcumulada": -479.61,
+        "desvioPadrao": 61.77,
+        "diferencaMedia": -68.52,
+        "operadores": [
+          {
+            "funcionarioCodigo": 227386,
+            "fechamentos": 3
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "fechamentos": 3
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 7
+          }
+        ],
+        "cashRiskScore": 59.83,
+        "band": "Atencao",
+        "vsMediaRede": 7.64,
+        "monitoramentoPrioritario": true
+      },
+      {
+        "pdvCodigo": 15880,
+        "fechamentos": 6,
+        "diferencaAcumulada": -309.85,
+        "desvioPadrao": 157.74,
+        "diferencaMedia": -51.64,
+        "operadores": [
+          {
+            "funcionarioCodigo": 158924,
+            "fechamentos": 5
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 6
+          }
+        ],
+        "cashRiskScore": 54.25,
+        "band": "Critico",
+        "vsMediaRede": 61.5,
+        "monitoramentoPrioritario": true
+      },
+      {
+        "pdvCodigo": 56764,
+        "fechamentos": 8,
+        "diferencaAcumulada": 20.6,
+        "desvioPadrao": 11.75,
+        "diferencaMedia": 2.57,
+        "operadores": [
+          {
+            "funcionarioCodigo": 276288,
+            "fechamentos": 6
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "fechamentos": 2
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 7
+          },
+          {
+            "turno": "2º TURNO",
+            "fechamentos": 1
+          }
+        ],
+        "cashRiskScore": 64.1,
+        "band": "Atencao",
+        "vsMediaRede": -52.81,
+        "monitoramentoPrioritario": false
+      }
+    ],
+    "alvosCriticos": {
+      "54193": {
+        "pdvCodigo": 54193,
+        "fechamentos": 7,
+        "diferencaAcumulada": -479.61,
+        "desvioPadrao": 61.77,
+        "diferencaMedia": -68.52,
+        "operadores": [
+          {
+            "funcionarioCodigo": 227386,
+            "fechamentos": 3
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "fechamentos": 3
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 7
+          }
+        ],
+        "cashRiskScore": 59.83,
+        "band": "Atencao",
+        "vsMediaRede": 7.64,
+        "monitoramentoPrioritario": true
+      },
+      "15880": {
+        "pdvCodigo": 15880,
+        "fechamentos": 6,
+        "diferencaAcumulada": -309.85,
+        "desvioPadrao": 157.74,
+        "diferencaMedia": -51.64,
+        "operadores": [
+          {
+            "funcionarioCodigo": 158924,
+            "fechamentos": 5
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 6
+          }
+        ],
+        "cashRiskScore": 54.25,
+        "band": "Critico",
+        "vsMediaRede": 61.5,
+        "monitoramentoPrioritario": true
+      },
+      "mediaGlobalQuebra": 60.87
+    }
+  },
+  "snapshotKey": "cash:pdvs:2026-06-01:2026-06-07:all"
+}

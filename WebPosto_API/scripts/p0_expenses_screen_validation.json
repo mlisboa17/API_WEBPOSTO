@@ -1,0 +1,112 @@
+{
+  "case": {
+    "empresaCodigo": 5555,
+    "dataInicial": "2026-06-08",
+    "dataFinal": "2026-06-08",
+    "nome": "AP CASA CAIADA"
+  },
+  "scenarios": [
+    {
+      "label": "5555",
+      "total": 5,
+      "sumValor": "2317.00",
+      "resumoPorOrigem": {
+        "caixa": {
+          "count": 2,
+          "valor": "270.00"
+        },
+        "financeiro": {
+          "count": 2,
+          "valor": "1912.00"
+        },
+        "pdv": {
+          "count": 1,
+          "valor": "135.00"
+        }
+      },
+      "byOrigem": {
+        "financeiro": 2,
+        "caixa": 2,
+        "pdv": 1
+      },
+      "bobinaCount": 2,
+      "pass": true
+    },
+    {
+      "label": "11495",
+      "total": 10,
+      "sumValor": "1722.85",
+      "resumoPorOrigem": {
+        "caixa": {
+          "count": 3,
+          "valor": "601.61"
+        },
+        "financeiro": {
+          "count": 5,
+          "valor": "527.62"
+        },
+        "pdv": {
+          "count": 2,
+          "valor": "593.62"
+        }
+      },
+      "byOrigem": {
+        "financeiro": 5,
+        "caixa": 3,
+        "pdv": 2
+      },
+      "bobinaCount": 0
+    },
+    {
+      "label": "11495,5555",
+      "total": 15,
+      "sumValor": "4039.85",
+      "resumoPorOrigem": {
+        "caixa": {
+          "count": 5,
+          "valor": "871.61"
+        },
+        "financeiro": {
+          "count": 7,
+          "valor": "2439.62"
+        },
+        "pdv": {
+          "count": 3,
+          "valor": "728.62"
+        }
+      },
+      "byOrigem": {
+        "financeiro": 7,
+        "caixa": 5,
+        "pdv": 3
+      },
+      "bobinaCount": 2
+    },
+    {
+      "label": "Todos",
+      "total": 57,
+      "sumValor": "15774.98",
+      "resumoPorOrigem": {
+        "caixa": {
+          "count": 5,
+          "valor": "871.61"
+        },
+        "financeiro": {
+          "count": 49,
+          "valor": "14174.75"
+        },
+        "pdv": {
+          "count": 3,
+          "valor": "728.62"
+        }
+      },
+      "byOrigem": {
+        "financeiro": 49,
+        "caixa": 5,
+        "pdv": 3
+      },
+      "bobinaCount": 2
+    }
+  ],
+  "parecer": "APROVADO"
+}

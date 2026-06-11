@@ -1,0 +1,4427 @@
+{
+  "windows": {
+    "7d": {
+      "window": "7d",
+      "periodo": {
+        "inicio": "2026-06-01",
+        "fim": "2026-06-07"
+      },
+      "elapsedSec": 92.5,
+      "summary": {
+        "totalRecords": 444,
+        "tracedRecords": 444,
+        "coveragePct": 100.0,
+        "coverageFinanceiraPct": 100.0,
+        "coverageOperacionalPct": 100.0,
+        "avgLineageConfidence": 88.4,
+        "byOrigemReal": {
+          "Financeiro": 425,
+          "PDV": 19
+        },
+        "byClassificacao": {
+          "Financeira": 419,
+          "Fornecedor": 6,
+          "PDV": 19
+        },
+        "byEvento": {
+          "Outros": 434,
+          "Expediente": 3,
+          "Limpeza": 6,
+          "Material Operacional": 1
+        },
+        "pctFinanceiro": 96.26,
+        "pctCaixa": 0.0,
+        "pctPdv": 3.74,
+        "pctTesouraria": 0.0,
+        "pctOperacional": 3.74,
+        "operationalFinancial": {
+          "totalOperational": 19,
+          "counts": {
+            "SEM_MATCH": 15,
+            "MATCH_EXATO": 3,
+            "MATCH_PARCIAL": 1
+          },
+          "pct": {
+            "SEM_MATCH": 78.95,
+            "MATCH_EXATO": 15.79,
+            "MATCH_PARCIAL": 5.26
+          },
+          "pctWithFinancial": 21.05,
+          "pctWithoutFinancial": 78.95,
+          "allOperationalGenerateFinancial": false
+        },
+        "topDescriptions": [
+          [
+            "Vale de funcionário referente a consolidação de caixa",
+            83
+          ],
+          [
+            "material",
+            7
+          ],
+          [
+            "Despesa turno 1º TURNO · PDV 54193",
+            5
+          ],
+          [
+            "Despesa turno 1º TURNO · PDV 56764",
+            5
+          ],
+          [
+            "Despesa turno 1º TURNO · PDV 15880",
+            5
+          ],
+          [
+            "POSTO",
+            3
+          ],
+          [
+            "passagem josiane",
+            3
+          ],
+          [
+            "UBER CRIS IDA AUT SR MOISES",
+            3
+          ],
+          [
+            "UBER CRIS VINDA AUT SR MOISES",
+            3
+          ],
+          [
+            "ALMOÇO CRIS AUT SR MOISES",
+            3
+          ],
+          [
+            "ALMOÇO GEOVANE",
+            3
+          ],
+          [
+            "REF AO SALARIO DE ARTHUR",
+            3
+          ],
+          [
+            "ref ao salario/junior",
+            3
+          ],
+          [
+            "PARA SR MOISES",
+            2
+          ],
+          [
+            "ref material da reforma",
+            2
+          ],
+          [
+            "ref a material da reforma",
+            2
+          ],
+          [
+            "AGUA PARA CONSUMO",
+            2
+          ],
+          [
+            "SERVIÇO POSTO",
+            2
+          ],
+          [
+            "REF A COMPRA DE UM CADEADO",
+            2
+          ],
+          [
+            "1 AGUA P/ CONSUMO",
+            2
+          ],
+          [
+            "pag ref apoio loja joao vitor",
+            2
+          ],
+          [
+            "diaria camilla",
+            2
+          ],
+          [
+            "sr moises",
+            2
+          ],
+          [
+            "agua consumo",
+            2
+          ],
+          [
+            "REF DIARIA FOLHUISTA",
+            2
+          ],
+          [
+            "GEO ALMOÇO",
+            2
+          ],
+          [
+            "salario ana",
+            2
+          ],
+          [
+            "ref ao salario caio",
+            2
+          ],
+          [
+            "salário (carlos)",
+            2
+          ],
+          [
+            "FOLGUISTA DA LIMPEZA",
+            2
+          ],
+          [
+            "ref a sanduiche natural",
+            2
+          ],
+          [
+            "AGUA CONSUMO",
+            2
+          ],
+          [
+            "ref ao salario/glecia",
+            2
+          ],
+          [
+            "SR. MOISES / COM PEDRO",
+            2
+          ],
+          [
+            "ref compra para o espetinho",
+            2
+          ],
+          [
+            "salario josinaldo",
+            2
+          ],
+          [
+            "DIARIA",
+            2
+          ],
+          [
+            "ref diaria apoio",
+            2
+          ],
+          [
+            "para sr,o moises",
+            2
+          ],
+          [
+            "folguista joao",
+            2
+          ],
+          [
+            "ref pag apoio loja",
+            2
+          ],
+          [
+            "pagamento alamoa",
+            1
+          ],
+          [
+            "CAFE SR MOISES",
+            1
+          ],
+          [
+            "para moisés",
+            1
+          ],
+          [
+            "para seu moises",
+            1
+          ],
+          [
+            "REMEDIO SR MOISES",
+            1
+          ],
+          [
+            "MOISES( CARLOS ALBERTO)",
+            1
+          ],
+          [
+            "ABASTECIMENTO SR MOISES",
+            1
+          ],
+          [
+            "abastecimento sr moises",
+            1
+          ],
+          [
+            "REF (SEU MOISES PALMEIRA)",
+            1
+          ],
+          [
+            "SR MOISES( CREDITO TELEFONE SR MOISES)",
+            1
+          ],
+          [
+            "ref troca da mangueira",
+            1
+          ],
+          [
+            "Copia chave benheiro",
+            1
+          ],
+          [
+            "ref pagamento da mangueira nova",
+            1
+          ],
+          [
+            "PORTA DO BANHEIRO",
+            1
+          ],
+          [
+            "ref. compra 3 pedras de cloro",
+            1
+          ],
+          [
+            "FARDAMNETOS",
+            1
+          ],
+          [
+            "1 PORTS DE MADEIRA PARA O BANHEIRO MASCULINO",
+            1
+          ],
+          [
+            "PAGAMENTO ZE",
+            1
+          ],
+          [
+            "AGUA COMSUMO",
+            1
+          ],
+          [
+            "domingo trabalhado de seu bio zelador",
+            1
+          ],
+          [
+            "ABAST. AUT. P/ ANDRE",
+            1
+          ],
+          [
+            "REF MATERIAL LIMPEZA",
+            1
+          ],
+          [
+            "REF AO ABASTECIMENTO DO CAMINHAO",
+            1
+          ],
+          [
+            "GEOVANE ALMOÇO",
+            1
+          ],
+          [
+            "autorizado sr moises",
+            1
+          ],
+          [
+            "CONSERTO DAS FARDAS",
+            1
+          ],
+          [
+            "serviço de rinaldo lampada banheiro",
+            1
+          ],
+          [
+            "01 gas completo",
+            1
+          ],
+          [
+            "abastecimento autorizado sr moises",
+            1
+          ],
+          [
+            "alimentacao de gabriel pablo",
+            1
+          ],
+          [
+            "FÉRIAS GILDO ALVES",
+            1
+          ],
+          [
+            "REF DIARIA KELVIN APOIO",
+            1
+          ],
+          [
+            "Extra,(referente ás férias de Lenilson.)",
+            1
+          ],
+          [
+            "ref a folga de vitor",
+            1
+          ],
+          [
+            "DIARIA FOLGUISTA JOAO",
+            1
+          ],
+          [
+            "REF NF:000008744 - PEPSICO DO BRASIL LTDA - PEPSICO DO BRASIL LTDA",
+            1
+          ],
+          [
+            "REF. PAG. JULI DÔCES",
+            1
+          ],
+          [
+            "REF NF:004272391 - SUAPE - SUAPE",
+            1
+          ],
+          [
+            "REF NF:004271745 - SUAPE - SUAPE",
+            1
+          ],
+          [
+            "REF NF:000039800 - NORDESTE COMERCIO E INDUSTRIA DE BEBIDAS E ALIMENTOS LTDA FI - NORDESTE COMERCIO E INDUSTRIA DE BEBIDAS E ALIMENTOS LTDA FI",
+            1
+          ],
+          [
+            "REF NF:000075605 - CDD OLINDA - CDD OLINDA",
+            1
+          ],
+          [
+            "uma estopa blinde cliente",
+            1
+          ],
+          [
+            "5 para Tawan, autorizado pelo Sr Moises",
+            1
+          ],
+          [
+            "sr moises (pito do carro)",
+            1
+          ],
+          [
+            "REF SR MOISES FOGAO",
+            1
+          ],
+          [
+            "REF NF:000064790 - SOLAR INOVE - PERNAMBUCO - SOLAR INOVE - PERNAMBUCO",
+            1
+          ],
+          [
+            "confeito para o escritorio",
+            1
+          ],
+          [
+            "caderno pra anotacoes de alemao",
+            1
+          ],
+          [
+            "CARTAO ARTHUR - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
+            1
+          ],
+          [
+            "CARTAO DE ARTHUR DECORAÇÃO - PARCELA 1 DE 2 - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
+            1
+          ],
+          [
+            "REF NF:000001685 - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA - PARCELA 1 DE 2 - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
+            1
+          ],
+          [
+            "CARTAO DE ARTHUR(LOJA CASA CAIADA) CE COMERCIO EM AVIAMENTOS EM GERAL LTDA - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
+            1
+          ],
+          [
+            "(CASA CAIADA CARTAO E ARTHUR)COMERCIO EM AVIAMENTOS EM GERAL LTDA - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
+            1
+          ],
+          [
+            "REF NF:000001692 - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
+            1
+          ],
+          [
+            "material de limpeza",
+            1
+          ],
+          [
+            "cafe da manha conagem",
+            1
+          ],
+          [
+            "duas aguas mineral",
+            1
+          ],
+          [
+            "REF NF:000006363 - UNIFORDEX FIALHO FARDAS - UNIFORDEX FIALHO FARDAS",
+            1
+          ],
+          [
+            "ref tomada",
+            1
+          ]
+        ],
+        "topSuppliers": [
+          [
+            "SUAPE",
+            2
+          ],
+          [
+            "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+            1
+          ],
+          [
+            "COMERCIAL BEZERRA  FILIAL 01",
+            1
+          ],
+          [
+            "FORNECEDOR FOOD",
+            1
+          ],
+          [
+            "MILAGRES GAS E AGUA",
+            1
+          ]
+        ],
+        "topOperators": [
+          {
+            "funcionarioCodigo": 276288,
+            "count": 6,
+            "valor": 1360.5,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 158924,
+            "count": 5,
+            "valor": 1226.53,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "count": 2,
+            "valor": 670.39,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "count": 2,
+            "valor": 649.75,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "count": 2,
+            "valor": 496.5,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "count": 1,
+            "valor": 486.0,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "count": 1,
+            "valor": 190.0,
+            "diff": 0.0
+          }
+        ],
+        "topPdvs": [
+          {
+            "pdvCodigo": 56764,
+            "count": 8,
+            "valor": 1857.0
+          },
+          {
+            "pdvCodigo": 54193,
+            "count": 5,
+            "valor": 1806.14
+          },
+          {
+            "pdvCodigo": 15880,
+            "count": 6,
+            "valor": 1416.53
+          }
+        ],
+        "totalValor": 135811.27,
+        "categoriesNeverFinancial": [
+          "Expediente",
+          "Limpeza",
+          "Material Operacional"
+        ],
+        "categoriesAlwaysFinancial": [
+          "Financeiro"
+        ]
+      },
+      "contextSizes": {
+        "despesasRede": 439,
+        "titulos": 70,
+        "closures": 21,
+        "movimentos": 200,
+        "transferencias": 200
+      },
+      "caseStudies": [
+        {
+          "label": "LIMPEZA",
+          "frequencia": 6,
+          "empresas": [
+            5256,
+            5333,
+            5559,
+            74014
+          ],
+          "fornecedores": [],
+          "planos": [
+            "FOLGUISTA DA LIMPEZA",
+            "LIMPEZA DA CAMERA FRIA",
+            "LIMPEZA DO POSTO",
+            "REF MATERIAL LIMPEZA",
+            "material de limpeza"
+          ],
+          "centros": [],
+          "origens": {
+            "Financeiro": 6
+          },
+          "comTitulo": 0,
+          "comDespesaFinanceira": 6,
+          "comEventoOperacional": 6,
+          "amostra": [
+            {
+              "empresaCodigo": 5256,
+              "data": "2026-06-01",
+              "valor": "8.00",
+              "planoContaCodigo": 48547,
+              "planoConta": "REF MATERIAL LIMPEZA",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 5256,
+                "planoContaGerencialCodigo": 48547,
+                "descricaoDocumento": "REF MATERIAL LIMPEZA",
+                "data": "2026-06-01",
+                "valor": 8.0
+              },
+              "synthetic": false,
+              "descricao": "REF MATERIAL LIMPEZA",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "COMPRAS",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Limpeza",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Limpeza",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Limpeza",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:REF MATERIAL LIMPEZA",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            },
+            {
+              "empresaCodigo": 5559,
+              "data": "2026-06-02",
+              "valor": "60.50",
+              "planoContaCodigo": 29049,
+              "planoConta": "material de limpeza",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 5559,
+                "planoContaGerencialCodigo": 29049,
+                "descricaoDocumento": "material de limpeza",
+                "data": "2026-06-02",
+                "valor": 60.5
+              },
+              "synthetic": false,
+              "descricao": "material de limpeza",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "COMPRAS",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Limpeza",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Limpeza",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Limpeza",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:material de limpeza",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            },
+            {
+              "empresaCodigo": 74014,
+              "data": "2026-06-03",
+              "valor": "100.00",
+              "planoContaCodigo": 61815,
+              "planoConta": "FOLGUISTA DA LIMPEZA",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 74014,
+                "planoContaGerencialCodigo": 61815,
+                "descricaoDocumento": "FOLGUISTA DA LIMPEZA",
+                "data": "2026-06-03",
+                "valor": 100.0
+              },
+              "synthetic": false,
+              "descricao": "FOLGUISTA DA LIMPEZA",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "PESSOAL",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Limpeza",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Limpeza",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Limpeza",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:FOLGUISTA DA LIMPEZA",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            }
+          ]
+        },
+        {
+          "label": "MATERIAL OPERACIONAL",
+          "frequencia": 1,
+          "empresas": [
+            5556
+          ],
+          "fornecedores": [],
+          "planos": [
+            "material descartaveis"
+          ],
+          "centros": [],
+          "origens": {
+            "Financeiro": 1
+          },
+          "comTitulo": 0,
+          "comDespesaFinanceira": 1,
+          "comEventoOperacional": 1,
+          "amostra": [
+            {
+              "empresaCodigo": 5556,
+              "data": "2026-06-06",
+              "valor": "193.30",
+              "planoContaCodigo": 48547,
+              "planoConta": "material descartaveis",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 5556,
+                "planoContaGerencialCodigo": 48547,
+                "descricaoDocumento": "material descartaveis",
+                "data": "2026-06-06",
+                "valor": 193.3
+              },
+              "synthetic": false,
+              "descricao": "material descartaveis",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "COMPRAS",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Material Operacional",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Material Operacional",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Material Operacional",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:material descartaveis",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            }
+          ]
+        }
+      ],
+      "sourceFieldMatrix": {
+        "Valor": {
+          "Financeiro": "Sim — DESPESAS_REDE.valor",
+          "Caixa": "Sim — CAIXA_APRESENTADO.despesaApresentado",
+          "PDV": "Sim — CAIXA_APRESENTADO.despesaApurado",
+          "Tesouraria": "Sim — MOVIMENTO_CONTA / TRANSFERENCIA_BANCARIA"
+        },
+        "Fornecedor": {
+          "Financeiro": "Parcial — DESPESAS_REDE + TITULO_PAGAR",
+          "Caixa": "Não — agregado por fechamento",
+          "PDV": "Não — agregado por fechamento",
+          "Tesouraria": "Parcial — MOVIMENTO_CONTA"
+        },
+        "Plano Conta": {
+          "Financeiro": "Sim — planoContaGerencialDescricao",
+          "Caixa": "Não — inferido via match financeiro",
+          "PDV": "Não — inferido via match financeiro",
+          "Tesouraria": "Parcial — quando disponível"
+        },
+        "Centro Custo": {
+          "Financeiro": "Parcial — frequentemente null (401 CENTRO_CUSTO_REDE)",
+          "Caixa": "Não",
+          "PDV": "Não",
+          "Tesouraria": "Parcial"
+        },
+        "Operador": {
+          "Financeiro": "Parcial — quando presente no lançamento",
+          "Caixa": "Sim — funcionarioCodigo",
+          "PDV": "Sim — funcionarioCodigo",
+          "Tesouraria": "Não"
+        },
+        "PDV": {
+          "Financeiro": "Parcial — quando vinculado",
+          "Caixa": "Sim — pdvCodigo",
+          "PDV": "Sim — pdvCodigo",
+          "Tesouraria": "Não"
+        },
+        "Turno": {
+          "Financeiro": "Parcial",
+          "Caixa": "Sim — turnoCodigo / turno",
+          "PDV": "Sim — turnoCodigo / turno",
+          "Tesouraria": "Não"
+        }
+      },
+      "operationalFinancial": {
+        "totalOperational": 19,
+        "counts": {
+          "SEM_MATCH": 15,
+          "MATCH_EXATO": 3,
+          "MATCH_PARCIAL": 1
+        },
+        "pct": {
+          "SEM_MATCH": 78.95,
+          "MATCH_EXATO": 15.79,
+          "MATCH_PARCIAL": 5.26
+        },
+        "pctWithFinancial": 21.05,
+        "pctWithoutFinancial": 78.95,
+        "allOperationalGenerateFinancial": false
+      },
+      "untracedCount": 0,
+      "untracedSample": [],
+      "bobinaTermica": {
+        "ocorrenciasTela": 0,
+        "ocorrenciasRede": 0,
+        "empresas": [],
+        "datas": [],
+        "amostraTela": [],
+        "amostraRede": []
+      },
+      "sourceTaxonomy": {
+        "DESPESAS_REDE": {
+          "grupo": "Financeiro",
+          "endpoint": "DESPESAS_FINANCEIRO_REDE"
+        },
+        "TITULO_PAGAR": {
+          "grupo": "Financeiro",
+          "endpoint": "TITULO_PAGAR"
+        },
+        "TITULO_RECEBER": {
+          "grupo": "Financeiro",
+          "endpoint": "TITULO_RECEBER"
+        },
+        "CAIXA_APRESENTADO": {
+          "grupo": "Caixa",
+          "endpoint": "CAIXA_APRESENTADO"
+        },
+        "CAIXA_APRESENTADO_REDE": {
+          "grupo": "Caixa",
+          "endpoint": "CAIXA_APRESENTADO_REDE"
+        },
+        "CAIXA": {
+          "grupo": "PDV",
+          "endpoint": "CAIXA"
+        },
+        "CAIXA_REDE": {
+          "grupo": "PDV",
+          "endpoint": "CAIXA_REDE"
+        },
+        "MOVIMENTO_CONTA": {
+          "grupo": "Tesouraria",
+          "endpoint": "MOVIMENTO_CONTA"
+        },
+        "TRANSFERENCIA_BANCARIA": {
+          "grupo": "Tesouraria",
+          "endpoint": "TRANSFERENCIA_BANCARIA"
+        }
+      },
+      "paridade": {
+        "screenRecords": 444,
+        "tracedRecords": 444,
+        "delta": 0
+      }
+    },
+    "30d": {
+      "window": "30d",
+      "periodo": {
+        "inicio": "2026-05-08",
+        "fim": "2026-06-07"
+      },
+      "elapsedSec": 152.8,
+      "summary": {
+        "totalRecords": 1741,
+        "tracedRecords": 1741,
+        "coveragePct": 100.0,
+        "coverageFinanceiraPct": 100.0,
+        "coverageOperacionalPct": 100.0,
+        "avgLineageConfidence": 88.6,
+        "byOrigemReal": {
+          "Financeiro": 1656,
+          "PDV": 85
+        },
+        "byClassificacao": {
+          "Financeira": 1548,
+          "Fornecedor": 108,
+          "PDV": 85
+        },
+        "byEvento": {
+          "Outros": 1686,
+          "Limpeza": 27,
+          "Expediente": 14,
+          "Material Operacional": 14
+        },
+        "pctFinanceiro": 92.5,
+        "pctCaixa": 0.0,
+        "pctPdv": 7.5,
+        "pctTesouraria": 0.0,
+        "pctOperacional": 7.5,
+        "operationalFinancial": {
+          "totalOperational": 85,
+          "counts": {
+            "SEM_MATCH": 72,
+            "MATCH_EXATO": 12,
+            "MATCH_PARCIAL": 1
+          },
+          "pct": {
+            "SEM_MATCH": 84.71,
+            "MATCH_EXATO": 14.12,
+            "MATCH_PARCIAL": 1.18
+          },
+          "pctWithFinancial": 15.29,
+          "pctWithoutFinancial": 84.71,
+          "allOperationalGenerateFinancial": false
+        },
+        "topDescriptions": [
+          [
+            "Vale de funcionário referente a consolidação de caixa",
+            284
+          ],
+          [
+            "Despesa turno 1º TURNO · PDV 54193",
+            26
+          ],
+          [
+            "Despesa turno 1º TURNO · PDV 56764",
+            24
+          ],
+          [
+            "Despesa turno 1º TURNO · PDV 15880",
+            22
+          ],
+          [
+            "material",
+            18
+          ],
+          [
+            "ALMOÇO CRIS AUT SR MOISES",
+            13
+          ],
+          [
+            "UBER CRIS IDA AUT SR MOISES",
+            12
+          ],
+          [
+            "UBER CRIS VINDA AUT SR MOISES",
+            12
+          ],
+          [
+            "PASSAGEM JOSIANE",
+            12
+          ],
+          [
+            "ref a material da reforma",
+            12
+          ],
+          [
+            "ALMOÇO GEOVANE",
+            11
+          ],
+          [
+            "POSTO",
+            10
+          ],
+          [
+            "passagem josiane",
+            10
+          ],
+          [
+            "GEO ALMOÇO",
+            9
+          ],
+          [
+            "PARA SR MOISES",
+            9
+          ],
+          [
+            "ref diaria",
+            8
+          ],
+          [
+            "joao vitor",
+            7
+          ],
+          [
+            "ref diaria apoio",
+            7
+          ],
+          [
+            "BETO",
+            7
+          ],
+          [
+            "DIARIA",
+            6
+          ],
+          [
+            "GASOLINA P SERVIÇOS POSTO",
+            6
+          ],
+          [
+            "REF DIARIA APOIO",
+            5
+          ],
+          [
+            "material de limpeza",
+            5
+          ],
+          [
+            "AGUA CONSUMO",
+            5
+          ],
+          [
+            "GASOLINA MOTO PEDRO MANDADOS DO POSTO",
+            5
+          ],
+          [
+            "sr moises",
+            5
+          ],
+          [
+            "agua para consumo",
+            5
+          ],
+          [
+            "1 AGUA P/ CONSUMO",
+            5
+          ],
+          [
+            "para sr,o moises",
+            4
+          ],
+          [
+            "rer diaria apoio",
+            4
+          ],
+          [
+            "REF SR MOISES",
+            4
+          ],
+          [
+            "AGUA MINERAL",
+            4
+          ],
+          [
+            "ref gasolina denilson",
+            4
+          ],
+          [
+            "posto",
+            4
+          ],
+          [
+            "REF DIARIA CAMILLA",
+            4
+          ],
+          [
+            "agua mineral",
+            4
+          ],
+          [
+            "gasolina p serviços posto",
+            4
+          ],
+          [
+            "REF. UBER JULIA",
+            4
+          ],
+          [
+            "REF DIARIA",
+            4
+          ],
+          [
+            "POLICIA",
+            4
+          ],
+          [
+            "policia",
+            3
+          ],
+          [
+            "hora extra",
+            3
+          ],
+          [
+            "FOLGUISTA KAUA",
+            3
+          ],
+          [
+            "REF DIARIA FOLGUISTA",
+            3
+          ],
+          [
+            "ref hora extra",
+            3
+          ],
+          [
+            "FOLGUISTA EM TREINAMENTO GIDEÃO",
+            3
+          ],
+          [
+            "SERVIÇO POSTO",
+            3
+          ],
+          [
+            "VALE AGUA CONSUMO",
+            3
+          ],
+          [
+            "ALUGUEL DONA ANA",
+            3
+          ],
+          [
+            "uma estopa blinde cliente",
+            3
+          ],
+          [
+            "EXTRA",
+            3
+          ],
+          [
+            "diaria",
+            3
+          ],
+          [
+            "pagamento domingo neto",
+            3
+          ],
+          [
+            "JANGA FERRAGENS",
+            3
+          ],
+          [
+            "ref material da reforma",
+            3
+          ],
+          [
+            "FOLGUISTA DA LIMPEZA",
+            3
+          ],
+          [
+            "ref a uma diaria",
+            3
+          ],
+          [
+            "agua consumo",
+            3
+          ],
+          [
+            "para seu moises",
+            3
+          ],
+          [
+            "ref. agua consumo",
+            3
+          ],
+          [
+            "SR. MOISES / COM PEDRO",
+            3
+          ],
+          [
+            "ref ao salario/junior",
+            3
+          ],
+          [
+            "REF AO SALARIO DE ARTHUR",
+            3
+          ],
+          [
+            "REF. ÁGUA CONSUMO ( SANTA CLARA )",
+            2
+          ],
+          [
+            "FALHA BICO",
+            2
+          ],
+          [
+            "ref diaria camilla",
+            2
+          ],
+          [
+            "REF APOIO",
+            2
+          ],
+          [
+            "arla",
+            2
+          ],
+          [
+            "REF GASOLINA BRUNO",
+            2
+          ],
+          [
+            "ref a hr extra",
+            2
+          ],
+          [
+            "REF HR EXTRA",
+            2
+          ],
+          [
+            "REF HORA EXTRA ARTHUR",
+            2
+          ],
+          [
+            "RER DIARIA APOIO",
+            2
+          ],
+          [
+            "REF SANTA CLARA",
+            2
+          ],
+          [
+            "pagamento docinhos",
+            2
+          ],
+          [
+            "dinheiro de leo",
+            2
+          ],
+          [
+            "ABASTECIMENTO SR MOISES",
+            2
+          ],
+          [
+            "REF GASOLINA MOTO HENRIQUE",
+            2
+          ],
+          [
+            "domingo trabalhado de seu bio",
+            2
+          ],
+          [
+            "REF A UBER JULIA",
+            2
+          ],
+          [
+            "ref sr moises",
+            2
+          ],
+          [
+            "ref materias da reforma",
+            2
+          ],
+          [
+            "almoço geovane",
+            2
+          ],
+          [
+            "ref agua consumo",
+            2
+          ],
+          [
+            "REF NF:000184254 - JCM RECIFE ATAC - PE - FILIAL 15 - JCM RECIFE ATAC - PE - FILIAL 15",
+            2
+          ],
+          [
+            "FRETE TELHA",
+            2
+          ],
+          [
+            "ADIANTAMENTO PARA MANOEL",
+            2
+          ],
+          [
+            "ref a folga de arlisson",
+            2
+          ],
+          [
+            "pm",
+            2
+          ],
+          [
+            "REF LOJA",
+            2
+          ],
+          [
+            "UMA ÁGUA PARA CONSUMO",
+            2
+          ],
+          [
+            "REF OBRA",
+            2
+          ],
+          [
+            "REF. AGUA CONSUMO",
+            2
+          ],
+          [
+            "consumo",
+            2
+          ],
+          [
+            "AGUA",
+            2
+          ],
+          [
+            "referente diaria",
+            2
+          ],
+          [
+            "FOLGUISTA FAXINEIRA ANGELA",
+            2
+          ],
+          [
+            "REF MATERIAL DA REFORMA",
+            2
+          ],
+          [
+            "RETORNO TANQUE",
+            2
+          ],
+          [
+            "ref areia lavada",
+            2
+          ]
+        ],
+        "topSuppliers": [
+          [
+            "CAMPMITZ",
+            30
+          ],
+          [
+            "MILAGRES GAS E AGUA",
+            8
+          ],
+          [
+            "MMS TRANSPORTE",
+            6
+          ],
+          [
+            "FORNECEDOR FOOD",
+            5
+          ],
+          [
+            "SUAPE",
+            5
+          ],
+          [
+            "GALEGO DO GELO",
+            4
+          ],
+          [
+            "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+            4
+          ],
+          [
+            "LAVORO DISTRIBUIDORA",
+            4
+          ],
+          [
+            "CDD OLINDA",
+            4
+          ],
+          [
+            "IPSEP TRANSPORTE",
+            3
+          ],
+          [
+            "SOUZA DISTRIBUIDORA",
+            3
+          ],
+          [
+            "CRISTIANO SOARES DA SILVA",
+            2
+          ],
+          [
+            "DOMINGUES CONSTRUCAO",
+            2
+          ],
+          [
+            "ALELO",
+            2
+          ],
+          [
+            "PEPSICO DO BRASIL LTDA",
+            2
+          ],
+          [
+            "DELUTTI SUCOS",
+            2
+          ],
+          [
+            "SINPOSPETRO",
+            2
+          ],
+          [
+            "SOUZA CRUZ LTDA.",
+            2
+          ],
+          [
+            "COMPRAS A VISTA POSTO",
+            2
+          ],
+          [
+            "NORDESTE COMERCIO E INDUSTRIA DE BEBIDAS E ALIMENTOS LTDA FI",
+            2
+          ]
+        ],
+        "topOperators": [
+          {
+            "funcionarioCodigo": 277311,
+            "count": 16,
+            "valor": 7631.34,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 276288,
+            "count": 24,
+            "valor": 7047.96,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "count": 11,
+            "valor": 5408.89,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "count": 2,
+            "valor": 4634.0,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "count": 11,
+            "valor": 3970.22,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 158924,
+            "count": 6,
+            "valor": 1427.33,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "count": 6,
+            "valor": 1243.28,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 213391,
+            "count": 2,
+            "valor": 1230.01,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 298670,
+            "count": 1,
+            "valor": 704.2,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 162738,
+            "count": 1,
+            "valor": 650.45,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 163694,
+            "count": 1,
+            "valor": 616.0,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "count": 1,
+            "valor": 190.0,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 299152,
+            "count": 1,
+            "valor": 182.0,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 149304,
+            "count": 1,
+            "valor": 62.18,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 83139,
+            "count": 1,
+            "valor": 15.0,
+            "diff": 0.0
+          }
+        ],
+        "topPdvs": [
+          {
+            "pdvCodigo": 54193,
+            "count": 28,
+            "valor": 16563.32
+          },
+          {
+            "pdvCodigo": 15880,
+            "count": 26,
+            "valor": 9507.85
+          },
+          {
+            "pdvCodigo": 56764,
+            "count": 31,
+            "valor": 8941.69
+          }
+        ],
+        "totalValor": 466969.58,
+        "categoriesNeverFinancial": [
+          "Limpeza",
+          "Expediente",
+          "Material Operacional"
+        ],
+        "categoriesAlwaysFinancial": [
+          "Financeiro"
+        ]
+      },
+      "contextSizes": {
+        "despesasRede": 1710,
+        "titulos": 286,
+        "closures": 93,
+        "movimentos": 200,
+        "transferencias": 0
+      },
+      "caseStudies": [
+        {
+          "label": "BOBINA TERMICA",
+          "frequencia": 3,
+          "empresas": [
+            5555,
+            5556,
+            5557
+          ],
+          "fornecedores": [
+            "DOMINGUES CONSTRUCAO"
+          ],
+          "planos": [
+            "BOBINAS PARA PISTA",
+            "bobina termica",
+            "ref uma caixa de bobina termica"
+          ],
+          "centros": [],
+          "origens": {
+            "Financeiro": 3
+          },
+          "comTitulo": 1,
+          "comDespesaFinanceira": 3,
+          "comEventoOperacional": 3,
+          "amostra": [
+            {
+              "empresaCodigo": 5556,
+              "data": "2026-05-12",
+              "valor": "16.60",
+              "planoContaCodigo": 48547,
+              "planoConta": "bobina termica",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 5556,
+                "planoContaGerencialCodigo": 48547,
+                "descricaoDocumento": "bobina termica",
+                "data": "2026-05-12",
+                "valor": 16.6
+              },
+              "synthetic": false,
+              "descricao": "bobina termica",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "OUTROS",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Material Operacional",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Material Operacional",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Material Operacional",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:bobina termica",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            },
+            {
+              "empresaCodigo": 5555,
+              "data": "2026-05-13",
+              "valor": "135.00",
+              "planoContaCodigo": 141274,
+              "planoConta": "ref uma caixa de bobina termica",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 5555,
+                "planoContaGerencialCodigo": 141274,
+                "descricaoDocumento": "ref uma caixa de bobina termica",
+                "data": "2026-05-13",
+                "valor": 135.0
+              },
+              "synthetic": false,
+              "descricao": "ref uma caixa de bobina termica",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "FINANCEIRO",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE+TITULO_PAGAR",
+              "categoriaOperacional": "Material Operacional",
+              "classificacaoLineage": "Fornecedor",
+              "documento": "3068198",
+              "fornecedor": "DOMINGUES CONSTRUCAO",
+              "eventoOperacional": "Material Operacional",
+              "primarySource": "DESPESAS_REDE+TITULO_PAGAR",
+              "operationalFinancialMatch": "MATCH_DOCUMENTO",
+              "lineageConfidence": 100,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "TITULO_PAGAR",
+                "Evento:Material Operacional",
+                "Documento:3068198",
+                "Fornecedor:DOMINGUES CONSTRUCAO",
+                "Plano:ref uma caixa de bobina termica",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            },
+            {
+              "empresaCodigo": 5557,
+              "data": "2026-05-15",
+              "valor": "69.00",
+              "planoContaCodigo": 141274,
+              "planoConta": "BOBINAS PARA PISTA",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 5557,
+                "planoContaGerencialCodigo": 141274,
+                "descricaoDocumento": "BOBINAS PARA PISTA",
+                "data": "2026-05-15",
+                "valor": 69.0
+              },
+              "synthetic": false,
+              "descricao": "BOBINAS PARA PISTA",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "OUTROS",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Material Operacional",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Material Operacional",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Material Operacional",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:BOBINAS PARA PISTA",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            }
+          ]
+        },
+        {
+          "label": "LIMPEZA",
+          "frequencia": 27,
+          "empresas": [
+            5256,
+            5333,
+            5555,
+            5558,
+            5559,
+            11495,
+            46433,
+            74014
+          ],
+          "fornecedores": [],
+          "planos": [
+            "DIARIA MENINA DA LIMPEZA",
+            "FOLGUISTA DA LIMPEZA",
+            "LIMPEZA DA CAMERA FRIA",
+            "LIMPEZA DO POSTO",
+            "MATEIAL D LIMPEZA"
+          ],
+          "centros": [],
+          "origens": {
+            "Financeiro": 27
+          },
+          "comTitulo": 0,
+          "comDespesaFinanceira": 27,
+          "comEventoOperacional": 27,
+          "amostra": [
+            {
+              "empresaCodigo": 11495,
+              "data": "2026-05-08",
+              "valor": "483.80",
+              "planoContaCodigo": 29049,
+              "planoConta": "material de limpeza adriano nota dia 24/04",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 11495,
+                "planoContaGerencialCodigo": 29049,
+                "descricaoDocumento": "material de limpeza adriano nota dia 24/04",
+                "data": "2026-05-08",
+                "valor": 483.8
+              },
+              "synthetic": false,
+              "descricao": "material de limpeza adriano nota dia 24/04",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "COMPRAS",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Limpeza",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Limpeza",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Limpeza",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:material de limpeza adriano nota dia 24/04",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            },
+            {
+              "empresaCodigo": 5559,
+              "data": "2026-05-09",
+              "valor": "50.00",
+              "planoContaCodigo": 29049,
+              "planoConta": "material de limpeza",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 5559,
+                "planoContaGerencialCodigo": 29049,
+                "descricaoDocumento": "material de limpeza",
+                "data": "2026-05-09",
+                "valor": 50.0
+              },
+              "synthetic": false,
+              "descricao": "material de limpeza",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "COMPRAS",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Limpeza",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Limpeza",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Limpeza",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:material de limpeza",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            },
+            {
+              "empresaCodigo": 46433,
+              "data": "2026-05-09",
+              "valor": "626.50",
+              "planoContaCodigo": 48547,
+              "planoConta": "REF AOS PRODUTOS DE LIMPEZA LOJA E PISTA",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 46433,
+                "planoContaGerencialCodigo": 48547,
+                "descricaoDocumento": "REF AOS PRODUTOS DE LIMPEZA LOJA E PISTA",
+                "data": "2026-05-09",
+                "valor": 626.5
+              },
+              "synthetic": false,
+              "descricao": "REF AOS PRODUTOS DE LIMPEZA LOJA E PISTA",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "OPERACIONAL",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Limpeza",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Limpeza",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Limpeza",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:REF AOS PRODUTOS DE LIMPEZA LOJA E PISTA",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            }
+          ]
+        },
+        {
+          "label": "MATERIAL OPERACIONAL",
+          "frequencia": 14,
+          "empresas": [
+            5256,
+            5555,
+            5556,
+            5557,
+            5560,
+            11495,
+            46433
+          ],
+          "fornecedores": [
+            "DOMINGUES CONSTRUCAO",
+            "LAVORO DISTRIBUIDORA"
+          ],
+          "planos": [
+            "BOBINAS PARA PISTA",
+            "MANUTENÇÃO BOMBA COMBUSTIVEL",
+            "REF A FARDAMENTO",
+            "REF COMPRA COPO/P DIESEL",
+            "REF MANUTENÇÃO TELAHADO"
+          ],
+          "centros": [],
+          "origens": {
+            "Financeiro": 14
+          },
+          "comTitulo": 2,
+          "comDespesaFinanceira": 14,
+          "comEventoOperacional": 14,
+          "amostra": [
+            {
+              "empresaCodigo": 5556,
+              "data": "2026-05-12",
+              "valor": "16.60",
+              "planoContaCodigo": 48547,
+              "planoConta": "bobina termica",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 5556,
+                "planoContaGerencialCodigo": 48547,
+                "descricaoDocumento": "bobina termica",
+                "data": "2026-05-12",
+                "valor": 16.6
+              },
+              "synthetic": false,
+              "descricao": "bobina termica",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "OUTROS",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Material Operacional",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Material Operacional",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Material Operacional",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:bobina termica",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            },
+            {
+              "empresaCodigo": 46433,
+              "data": "2026-05-12",
+              "valor": "200.00",
+              "planoContaCodigo": 48547,
+              "planoConta": "REF A FARDAMENTO",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 46433,
+                "planoContaGerencialCodigo": 48547,
+                "descricaoDocumento": "REF A FARDAMENTO",
+                "data": "2026-05-12",
+                "valor": 200.0
+              },
+              "synthetic": false,
+              "descricao": "REF A FARDAMENTO",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "COMPRAS",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Material Operacional",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Material Operacional",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Material Operacional",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:REF A FARDAMENTO",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            },
+            {
+              "empresaCodigo": 5555,
+              "data": "2026-05-13",
+              "valor": "135.00",
+              "planoContaCodigo": 141274,
+              "planoConta": "ref uma caixa de bobina termica",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 5555,
+                "planoContaGerencialCodigo": 141274,
+                "descricaoDocumento": "ref uma caixa de bobina termica",
+                "data": "2026-05-13",
+                "valor": 135.0
+              },
+              "synthetic": false,
+              "descricao": "ref uma caixa de bobina termica",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "FINANCEIRO",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE+TITULO_PAGAR",
+              "categoriaOperacional": "Material Operacional",
+              "classificacaoLineage": "Fornecedor",
+              "documento": "3068198",
+              "fornecedor": "DOMINGUES CONSTRUCAO",
+              "eventoOperacional": "Material Operacional",
+              "primarySource": "DESPESAS_REDE+TITULO_PAGAR",
+              "operationalFinancialMatch": "MATCH_DOCUMENTO",
+              "lineageConfidence": 100,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "TITULO_PAGAR",
+                "Evento:Material Operacional",
+                "Documento:3068198",
+                "Fornecedor:DOMINGUES CONSTRUCAO",
+                "Plano:ref uma caixa de bobina termica",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            }
+          ]
+        }
+      ],
+      "sourceFieldMatrix": {
+        "Valor": {
+          "Financeiro": "Sim — DESPESAS_REDE.valor",
+          "Caixa": "Sim — CAIXA_APRESENTADO.despesaApresentado",
+          "PDV": "Sim — CAIXA_APRESENTADO.despesaApurado",
+          "Tesouraria": "Sim — MOVIMENTO_CONTA / TRANSFERENCIA_BANCARIA"
+        },
+        "Fornecedor": {
+          "Financeiro": "Parcial — DESPESAS_REDE + TITULO_PAGAR",
+          "Caixa": "Não — agregado por fechamento",
+          "PDV": "Não — agregado por fechamento",
+          "Tesouraria": "Parcial — MOVIMENTO_CONTA"
+        },
+        "Plano Conta": {
+          "Financeiro": "Sim — planoContaGerencialDescricao",
+          "Caixa": "Não — inferido via match financeiro",
+          "PDV": "Não — inferido via match financeiro",
+          "Tesouraria": "Parcial — quando disponível"
+        },
+        "Centro Custo": {
+          "Financeiro": "Parcial — frequentemente null (401 CENTRO_CUSTO_REDE)",
+          "Caixa": "Não",
+          "PDV": "Não",
+          "Tesouraria": "Parcial"
+        },
+        "Operador": {
+          "Financeiro": "Parcial — quando presente no lançamento",
+          "Caixa": "Sim — funcionarioCodigo",
+          "PDV": "Sim — funcionarioCodigo",
+          "Tesouraria": "Não"
+        },
+        "PDV": {
+          "Financeiro": "Parcial — quando vinculado",
+          "Caixa": "Sim — pdvCodigo",
+          "PDV": "Sim — pdvCodigo",
+          "Tesouraria": "Não"
+        },
+        "Turno": {
+          "Financeiro": "Parcial",
+          "Caixa": "Sim — turnoCodigo / turno",
+          "PDV": "Sim — turnoCodigo / turno",
+          "Tesouraria": "Não"
+        }
+      },
+      "operationalFinancial": {
+        "totalOperational": 85,
+        "counts": {
+          "SEM_MATCH": 72,
+          "MATCH_EXATO": 12,
+          "MATCH_PARCIAL": 1
+        },
+        "pct": {
+          "SEM_MATCH": 84.71,
+          "MATCH_EXATO": 14.12,
+          "MATCH_PARCIAL": 1.18
+        },
+        "pctWithFinancial": 15.29,
+        "pctWithoutFinancial": 84.71,
+        "allOperationalGenerateFinancial": false
+      },
+      "untracedCount": 0,
+      "untracedSample": [],
+      "bobinaTermica": {
+        "ocorrenciasTela": 3,
+        "ocorrenciasRede": 3,
+        "empresas": [
+          5555,
+          5556,
+          5557
+        ],
+        "datas": [
+          "2026-05-12",
+          "2026-05-13",
+          "2026-05-15"
+        ],
+        "amostraTela": [
+          {
+            "empresaCodigo": 5556,
+            "data": "2026-05-12",
+            "valor": "16.60",
+            "origem": "financeiro",
+            "origemReal": "Financeiro",
+            "fornecedor": null,
+            "planoConta": "bobina termica",
+            "centroCusto": "",
+            "documento": null,
+            "lineagePath": [
+              "DESPESA",
+              "Origem Técnica:DESPESAS_REDE",
+              "Origem Negócio:Financeiro",
+              "Evento:Material Operacional",
+              "Documento:?",
+              "Fornecedor:?",
+              "Plano:bobina termica",
+              "Centro:?",
+              "PDV:?",
+              "Turno:?",
+              "Operador:?"
+            ]
+          },
+          {
+            "empresaCodigo": 5555,
+            "data": "2026-05-13",
+            "valor": "135.00",
+            "origem": "financeiro",
+            "origemReal": "Financeiro",
+            "fornecedor": "DOMINGUES CONSTRUCAO",
+            "planoConta": "ref uma caixa de bobina termica",
+            "centroCusto": "",
+            "documento": "3068198",
+            "lineagePath": [
+              "DESPESA",
+              "Origem Técnica:DESPESAS_REDE",
+              "Origem Negócio:Financeiro",
+              "TITULO_PAGAR",
+              "Evento:Material Operacional",
+              "Documento:3068198",
+              "Fornecedor:DOMINGUES CONSTRUCAO",
+              "Plano:ref uma caixa de bobina termica",
+              "Centro:?",
+              "PDV:?",
+              "Turno:?",
+              "Operador:?"
+            ]
+          },
+          {
+            "empresaCodigo": 5557,
+            "data": "2026-05-15",
+            "valor": "69.00",
+            "origem": "financeiro",
+            "origemReal": "Financeiro",
+            "fornecedor": null,
+            "planoConta": "BOBINAS PARA PISTA",
+            "centroCusto": "",
+            "documento": null,
+            "lineagePath": [
+              "DESPESA",
+              "Origem Técnica:DESPESAS_REDE",
+              "Origem Negócio:Financeiro",
+              "Evento:Material Operacional",
+              "Documento:?",
+              "Fornecedor:?",
+              "Plano:BOBINAS PARA PISTA",
+              "Centro:?",
+              "PDV:?",
+              "Turno:?",
+              "Operador:?"
+            ]
+          }
+        ],
+        "amostraRede": [
+          {
+            "empresaCodigo": 5556,
+            "data": "2026-05-12",
+            "valor": 16.6,
+            "descricao": "bobina termica",
+            "planoConta": null,
+            "centroCusto": null
+          },
+          {
+            "empresaCodigo": 5555,
+            "data": "2026-05-13",
+            "valor": 135.0,
+            "descricao": "ref uma caixa de bobina termica",
+            "planoConta": null,
+            "centroCusto": null
+          },
+          {
+            "empresaCodigo": 5557,
+            "data": "2026-05-15",
+            "valor": 69.0,
+            "descricao": "BOBINAS PARA PISTA",
+            "planoConta": null,
+            "centroCusto": null
+          }
+        ]
+      },
+      "sourceTaxonomy": {
+        "DESPESAS_REDE": {
+          "grupo": "Financeiro",
+          "endpoint": "DESPESAS_FINANCEIRO_REDE"
+        },
+        "TITULO_PAGAR": {
+          "grupo": "Financeiro",
+          "endpoint": "TITULO_PAGAR"
+        },
+        "TITULO_RECEBER": {
+          "grupo": "Financeiro",
+          "endpoint": "TITULO_RECEBER"
+        },
+        "CAIXA_APRESENTADO": {
+          "grupo": "Caixa",
+          "endpoint": "CAIXA_APRESENTADO"
+        },
+        "CAIXA_APRESENTADO_REDE": {
+          "grupo": "Caixa",
+          "endpoint": "CAIXA_APRESENTADO_REDE"
+        },
+        "CAIXA": {
+          "grupo": "PDV",
+          "endpoint": "CAIXA"
+        },
+        "CAIXA_REDE": {
+          "grupo": "PDV",
+          "endpoint": "CAIXA_REDE"
+        },
+        "MOVIMENTO_CONTA": {
+          "grupo": "Tesouraria",
+          "endpoint": "MOVIMENTO_CONTA"
+        },
+        "TRANSFERENCIA_BANCARIA": {
+          "grupo": "Tesouraria",
+          "endpoint": "TRANSFERENCIA_BANCARIA"
+        }
+      },
+      "paridade": {
+        "screenRecords": 1741,
+        "tracedRecords": 1741,
+        "delta": 0
+      }
+    },
+    "90d": {
+      "window": "90d",
+      "periodo": {
+        "inicio": "2026-03-09",
+        "fim": "2026-06-07"
+      },
+      "elapsedSec": 176.1,
+      "summary": {
+        "totalRecords": 5537,
+        "tracedRecords": 5537,
+        "coveragePct": 100.0,
+        "coverageFinanceiraPct": 100.0,
+        "coverageOperacionalPct": 100.0,
+        "avgLineageConfidence": 89.2,
+        "byOrigemReal": {
+          "Financeiro": 5357,
+          "PDV": 180
+        },
+        "byClassificacao": {
+          "Financeira": 5032,
+          "Fornecedor": 325,
+          "PDV": 180
+        },
+        "byEvento": {
+          "Expediente": 48,
+          "Outros": 5392,
+          "Material Operacional": 37,
+          "Empréstimo": 2,
+          "Limpeza": 58
+        },
+        "pctFinanceiro": 94.49,
+        "pctCaixa": 0.0,
+        "pctPdv": 5.51,
+        "pctTesouraria": 0.0,
+        "pctOperacional": 5.51,
+        "operationalFinancial": {
+          "totalOperational": 180,
+          "counts": {
+            "SEM_MATCH": 155,
+            "MATCH_EXATO": 23,
+            "MATCH_PARCIAL": 2
+          },
+          "pct": {
+            "SEM_MATCH": 86.11,
+            "MATCH_EXATO": 12.78,
+            "MATCH_PARCIAL": 1.11
+          },
+          "pctWithFinancial": 13.89,
+          "pctWithoutFinancial": 86.11,
+          "allOperationalGenerateFinancial": false
+        },
+        "topDescriptions": [
+          [
+            "Vale de funcionário referente a consolidação de caixa",
+            1114
+          ],
+          [
+            "Despesa turno 1º TURNO · PDV 54193",
+            55
+          ],
+          [
+            "Despesa turno 1º TURNO · PDV 15880",
+            53
+          ],
+          [
+            "Despesa turno 1º TURNO · PDV 56764",
+            49
+          ],
+          [
+            "ALMOÇO CRIS AUT SR MOISES",
+            34
+          ],
+          [
+            "PARA SR MOISES",
+            33
+          ],
+          [
+            "UBER CRIS IDA AUT SR MOISES",
+            32
+          ],
+          [
+            "UBER CRIS VINDA AUT SR MOISES",
+            31
+          ],
+          [
+            "passagem josiane",
+            28
+          ],
+          [
+            "POSTO",
+            28
+          ],
+          [
+            "DIARIA",
+            27
+          ],
+          [
+            "ALMOÇO GEOVANE",
+            25
+          ],
+          [
+            "GEO ALMOÇO",
+            20
+          ],
+          [
+            "ref diaria",
+            18
+          ],
+          [
+            "material",
+            18
+          ],
+          [
+            "gasolina p serviços posto",
+            17
+          ],
+          [
+            "PASSAGEM JOSIANE",
+            17
+          ],
+          [
+            "GASOLINA P SERVIÇOS POSTO",
+            17
+          ],
+          [
+            "REF A HR EXTRA",
+            17
+          ],
+          [
+            "DIARIA FOLGUISTA JOSE CARLOS",
+            16
+          ],
+          [
+            "agua para consumo",
+            15
+          ],
+          [
+            "agua consumo",
+            15
+          ],
+          [
+            "sr moises",
+            15
+          ],
+          [
+            "ETANOL RESTAURANTE",
+            14
+          ],
+          [
+            "ref diaria apoio",
+            14
+          ],
+          [
+            "SANTA",
+            13
+          ],
+          [
+            "AGUA PRA CONSUMO",
+            13
+          ],
+          [
+            "para sr,o moises",
+            13
+          ],
+          [
+            "AGUA CONSUMO",
+            13
+          ],
+          [
+            "posto",
+            13
+          ],
+          [
+            "AGUA PARA CONSUMO",
+            12
+          ],
+          [
+            "POLICIA",
+            12
+          ],
+          [
+            "ref a material da reforma",
+            12
+          ],
+          [
+            "REF SR MOISES",
+            11
+          ],
+          [
+            "ref gasolina denilson",
+            10
+          ],
+          [
+            "GASOLINA MOTO PEDRO MANDADOS DO POSTO",
+            10
+          ],
+          [
+            "REF. UBER JULIA",
+            10
+          ],
+          [
+            "almoço geovani",
+            9
+          ],
+          [
+            "REF A DIARIA",
+            8
+          ],
+          [
+            "domingo trabalhado de seu bio",
+            8
+          ],
+          [
+            "agua",
+            8
+          ],
+          [
+            "1 AGUA P/ CONSUMO",
+            8
+          ],
+          [
+            "ref a hr extra",
+            8
+          ],
+          [
+            "material de limpeza",
+            8
+          ],
+          [
+            "BETO",
+            8
+          ],
+          [
+            "diaria",
+            8
+          ],
+          [
+            "ref a uma diaria",
+            8
+          ],
+          [
+            "rer diaria apoio",
+            8
+          ],
+          [
+            "joao vitor",
+            8
+          ],
+          [
+            "sindicato",
+            7
+          ],
+          [
+            "AGUA MINERAL",
+            7
+          ],
+          [
+            "REF DIARIA",
+            7
+          ],
+          [
+            "EXTRA",
+            7
+          ],
+          [
+            "REF AO SALARIO DE ARTHUR",
+            7
+          ],
+          [
+            "REF A SR MOISES",
+            6
+          ],
+          [
+            "AGUA",
+            6
+          ],
+          [
+            "REF A GASOLINA MOTO DE HENRIQUE",
+            6
+          ],
+          [
+            "SR. MOISES COM PEDRO",
+            6
+          ],
+          [
+            "RESTAURANTE",
+            6
+          ],
+          [
+            "ANGELA",
+            6
+          ],
+          [
+            "ALMOÇO EQUIPE JECK",
+            6
+          ],
+          [
+            "ADIANTAMENTO PARA MANOEL",
+            6
+          ],
+          [
+            "REF DIARIA APOIO",
+            6
+          ],
+          [
+            "ref hora extra",
+            6
+          ],
+          [
+            "hora extra",
+            6
+          ],
+          [
+            "REF A AGUA PARA COSUMO",
+            6
+          ],
+          [
+            "hora extra marcelo",
+            6
+          ],
+          [
+            "REF PAGAMENTO NEGUINHO",
+            6
+          ],
+          [
+            "ref sr moises",
+            6
+          ],
+          [
+            "ALUGUEL DONA ANA",
+            6
+          ],
+          [
+            "AGUA COMSUMO",
+            5
+          ],
+          [
+            "ABASTECIMENTO MMS",
+            5
+          ],
+          [
+            "VALE AGUA CONSUMO",
+            5
+          ],
+          [
+            "etanol restaurante",
+            5
+          ],
+          [
+            "Agua consumo posto",
+            5
+          ],
+          [
+            "agua mineral",
+            5
+          ],
+          [
+            "ALMOÇO GEO",
+            5
+          ],
+          [
+            "REF A UBER JULIA",
+            5
+          ],
+          [
+            "COTA SR MOISES",
+            5
+          ],
+          [
+            "REF A HORA EXTRA",
+            5
+          ],
+          [
+            "pm",
+            5
+          ],
+          [
+            "ref ao salario/junior",
+            5
+          ],
+          [
+            "salario ana",
+            5
+          ],
+          [
+            "salario adriano",
+            5
+          ],
+          [
+            "REF DIARIA FOLGUISTA",
+            5
+          ],
+          [
+            "pagamento domingo neto",
+            5
+          ],
+          [
+            "pagamento docinhos",
+            5
+          ],
+          [
+            "REF A GASOLINA MOTO DE BRUNO",
+            5
+          ],
+          [
+            "GASOLINA PARA TINTA",
+            4
+          ],
+          [
+            "DESCARTAVEIS",
+            4
+          ],
+          [
+            "REF HORA EXTRA",
+            4
+          ],
+          [
+            "diaria apoio",
+            4
+          ],
+          [
+            "ref a quinzena/junior",
+            4
+          ],
+          [
+            "REF A HR EXTRA TRABALHADA",
+            4
+          ],
+          [
+            "PARA SEU MOISES",
+            4
+          ],
+          [
+            "REF GASOLINA DENILSON",
+            4
+          ],
+          [
+            "ref passagem julia",
+            4
+          ],
+          [
+            "almoço geovane",
+            4
+          ],
+          [
+            "QUINZENA CRISTIANE",
+            4
+          ],
+          [
+            "SR MOISES",
+            4
+          ]
+        ],
+        "topSuppliers": [
+          [
+            "FORNECEDOR FOOD",
+            91
+          ],
+          [
+            "CAMPMITZ",
+            24
+          ],
+          [
+            "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+            20
+          ],
+          [
+            "MILAGRES GAS E AGUA",
+            19
+          ],
+          [
+            "CARVÃO SÃO CONRADO",
+            14
+          ],
+          [
+            "LAVORO DISTRIBUIDORA",
+            14
+          ],
+          [
+            "GALEGO DO GELO",
+            12
+          ],
+          [
+            "RIO DOCE INFORMATICA",
+            12
+          ],
+          [
+            "MR MACEDO ROCHA",
+            8
+          ],
+          [
+            "MMS TRANSPORTE",
+            8
+          ],
+          [
+            "IPSEP TRANSPORTE",
+            7
+          ],
+          [
+            "COMPRAS A VISTA LOJA",
+            7
+          ],
+          [
+            "SINPOSPETRO",
+            7
+          ],
+          [
+            "COMERCIAL BEZERRA  FILIAL 01",
+            6
+          ],
+          [
+            "ALELO",
+            6
+          ],
+          [
+            "SIMULATION",
+            5
+          ],
+          [
+            "SOUZA DISTRIBUIDORA",
+            5
+          ],
+          [
+            "SUAPE",
+            5
+          ],
+          [
+            "PRODUCON MATERIAIS DE CONSTRUCAO LTDA",
+            5
+          ],
+          [
+            "FERREIRA COSTA TAMARINEIRA",
+            4
+          ]
+        ],
+        "topOperators": [
+          {
+            "funcionarioCodigo": 227386,
+            "count": 25,
+            "valor": 24220.26,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 213391,
+            "count": 22,
+            "valor": 14626.06,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 157960,
+            "count": 31,
+            "valor": 11363.76,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 276288,
+            "count": 46,
+            "valor": 9473.61,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 158924,
+            "count": 8,
+            "valor": 7690.67,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 277311,
+            "count": 14,
+            "valor": 6134.93,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 149304,
+            "count": 3,
+            "valor": 5166.48,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 295816,
+            "count": 2,
+            "valor": 2468.39,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "count": 3,
+            "valor": 1943.68,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 298670,
+            "count": 3,
+            "valor": 1691.46,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 80203,
+            "count": 1,
+            "valor": 1011.7,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 290148,
+            "count": 1,
+            "valor": 864.5,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "count": 6,
+            "valor": 746.0,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 298720,
+            "count": 2,
+            "valor": 679.31,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 161863,
+            "count": 2,
+            "valor": 674.02,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 162738,
+            "count": 1,
+            "valor": 650.45,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 298738,
+            "count": 4,
+            "valor": 585.5,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 295399,
+            "count": 1,
+            "valor": 265.8,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 249526,
+            "count": 1,
+            "valor": 260.35,
+            "diff": 0.0
+          },
+          {
+            "funcionarioCodigo": 160806,
+            "count": 2,
+            "valor": 179.0,
+            "diff": 0.0
+          }
+        ],
+        "topPdvs": [
+          {
+            "pdvCodigo": 54193,
+            "count": 61,
+            "valor": 46881.56
+          },
+          {
+            "pdvCodigo": 15880,
+            "count": 59,
+            "valor": 31546.54
+          },
+          {
+            "pdvCodigo": 56764,
+            "count": 60,
+            "valor": 12395.22
+          }
+        ],
+        "totalValor": 1647510.81,
+        "categoriesNeverFinancial": [
+          "Expediente",
+          "Material Operacional",
+          "Empréstimo",
+          "Limpeza"
+        ],
+        "categoriesAlwaysFinancial": [
+          "Financeiro"
+        ]
+      },
+      "contextSizes": {
+        "despesasRede": 5574,
+        "titulos": 400,
+        "closures": 200,
+        "movimentos": 200,
+        "transferencias": 0
+      },
+      "caseStudies": [
+        {
+          "label": "BOBINA TERMICA",
+          "frequencia": 5,
+          "empresas": [
+            5256,
+            5555,
+            5556,
+            5557
+          ],
+          "fornecedores": [
+            "DOMINGUES CONSTRUCAO"
+          ],
+          "planos": [
+            "BOBINAS PARA IMPRESSORA PISTA",
+            "BOBINAS PARA PISTA",
+            "REF A BOBINAS DA GRANDE QUE A EMPRESORA DA PISTA NECESSITA",
+            "bobina termica",
+            "ref uma caixa de bobina termica"
+          ],
+          "centros": [],
+          "origens": {
+            "Financeiro": 5
+          },
+          "comTitulo": 1,
+          "comDespesaFinanceira": 5,
+          "comEventoOperacional": 5,
+          "amostra": [
+            {
+              "empresaCodigo": 5256,
+              "data": "2026-03-21",
+              "valor": "150.00",
+              "planoContaCodigo": 48547,
+              "planoConta": "REF A BOBINAS DA GRANDE QUE A EMPRESORA DA PISTA NECESSITA",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 5256,
+                "planoContaGerencialCodigo": 48547,
+                "descricaoDocumento": "REF A BOBINAS DA GRANDE QUE A EMPRESORA DA PISTA NECESSITA",
+                "data": "2026-03-21",
+                "valor": 150.0
+              },
+              "synthetic": false,
+              "descricao": "REF A BOBINAS DA GRANDE QUE A EMPRESORA DA PISTA NECESSITA",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "OUTROS",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Material Operacional",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Material Operacional",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Material Operacional",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:REF A BOBINAS DA GRANDE QUE A EMPRESORA DA PISTA NECESSITA",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            },
+            {
+              "empresaCodigo": 5557,
+              "data": "2026-04-17",
+              "valor": "11.60",
+              "planoContaCodigo": 141274,
+              "planoConta": "BOBINAS PARA IMPRESSORA PISTA",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 5557,
+                "planoContaGerencialCodigo": 141274,
+                "descricaoDocumento": "BOBINAS PARA IMPRESSORA PISTA",
+                "data": "2026-04-17",
+                "valor": 11.6
+              },
+              "synthetic": false,
+              "descricao": "BOBINAS PARA IMPRESSORA PISTA",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "OUTROS",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Material Operacional",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Material Operacional",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Material Operacional",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:BOBINAS PARA IMPRESSORA PISTA",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            },
+            {
+              "empresaCodigo": 5556,
+              "data": "2026-05-12",
+              "valor": "16.60",
+              "planoContaCodigo": 48547,
+              "planoConta": "bobina termica",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 5556,
+                "planoContaGerencialCodigo": 48547,
+                "descricaoDocumento": "bobina termica",
+                "data": "2026-05-12",
+                "valor": 16.6
+              },
+              "synthetic": false,
+              "descricao": "bobina termica",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "OUTROS",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Material Operacional",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Material Operacional",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Material Operacional",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:bobina termica",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            }
+          ]
+        },
+        {
+          "label": "LIMPEZA",
+          "frequencia": 58,
+          "empresas": [
+            5256,
+            5333,
+            5554,
+            5555,
+            5556,
+            5558,
+            5559,
+            11495,
+            46433,
+            74014
+          ],
+          "fornecedores": [
+            "CARVÃO SÃO CONRADO"
+          ],
+          "planos": [
+            " 02 UNIDADE- RODO PARA LIMPEZA DE PARABLISA DE CARRO-CLIENTE",
+            "DIARIA MENINA DA LIMPEZA",
+            "FOLGUISTA DA LIMPEZA",
+            "FOLGUISTA DA LIMPEZA. (Ângela)",
+            "FRETE MATERIAL DE LIMPEZA"
+          ],
+          "centros": [],
+          "origens": {
+            "Financeiro": 58
+          },
+          "comTitulo": 1,
+          "comDespesaFinanceira": 58,
+          "comEventoOperacional": 58,
+          "amostra": [
+            {
+              "empresaCodigo": 46433,
+              "data": "2026-03-13",
+              "valor": "166.64",
+              "planoContaCodigo": 48547,
+              "planoConta": "MATERIAL DE LIMPEZA",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 46433,
+                "planoContaGerencialCodigo": 48547,
+                "descricaoDocumento": "MATERIAL DE LIMPEZA",
+                "data": "2026-03-13",
+                "valor": 166.64
+              },
+              "synthetic": false,
+              "descricao": "MATERIAL DE LIMPEZA",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "COMPRAS",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Limpeza",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Limpeza",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Limpeza",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:MATERIAL DE LIMPEZA",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            },
+            {
+              "empresaCodigo": 5556,
+              "data": "2026-03-14",
+              "valor": "32.00",
+              "planoContaCodigo": 29049,
+              "planoConta": "bucha limpeza",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 5556,
+                "planoContaGerencialCodigo": 29049,
+                "descricaoDocumento": "bucha limpeza",
+                "data": "2026-03-14",
+                "valor": 32.0
+              },
+              "synthetic": false,
+              "descricao": "bucha limpeza",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "OPERACIONAL",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Limpeza",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Limpeza",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Limpeza",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:bucha limpeza",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            },
+            {
+              "empresaCodigo": 5556,
+              "data": "2026-03-14",
+              "valor": "20.00",
+              "planoContaCodigo": 48547,
+              "planoConta": "limpeza area do posto",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 5556,
+                "planoContaGerencialCodigo": 48547,
+                "descricaoDocumento": "limpeza area do posto",
+                "data": "2026-03-14",
+                "valor": 20.0
+              },
+              "synthetic": false,
+              "descricao": "limpeza area do posto",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "OPERACIONAL",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Limpeza",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Limpeza",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Limpeza",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:limpeza area do posto",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            }
+          ]
+        },
+        {
+          "label": "MATERIAL OPERACIONAL",
+          "frequencia": 37,
+          "empresas": [
+            5256,
+            5333,
+            5554,
+            5555,
+            5556,
+            5557,
+            5559,
+            5560,
+            11495,
+            46433
+          ],
+          "fornecedores": [
+            "DOMINGUES CONSTRUCAO",
+            "LAVORO DISTRIBUIDORA"
+          ],
+          "planos": [
+            "BOBINAS PARA IMPRESSORA PISTA",
+            "BOBINAS PARA PISTA",
+            "DESCARTAVEIS",
+            "DESCARTAVEIS LANCHONETE",
+            "DESCARTAVEL"
+          ],
+          "centros": [],
+          "origens": {
+            "Financeiro": 37
+          },
+          "comTitulo": 2,
+          "comDespesaFinanceira": 37,
+          "comEventoOperacional": 37,
+          "amostra": [
+            {
+              "empresaCodigo": 5554,
+              "data": "2026-03-10",
+              "valor": "408.50",
+              "planoContaCodigo": 47952,
+              "planoConta": "DESCARTAVEL",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 5554,
+                "planoContaGerencialCodigo": 47952,
+                "descricaoDocumento": "DESCARTAVEL",
+                "data": "2026-03-10",
+                "valor": 408.5
+              },
+              "synthetic": false,
+              "descricao": "DESCARTAVEL",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "OUTROS",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Material Operacional",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Material Operacional",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Material Operacional",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:DESCARTAVEL",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            },
+            {
+              "empresaCodigo": 5333,
+              "data": "2026-03-13",
+              "valor": "231.00",
+              "planoContaCodigo": 47952,
+              "planoConta": "DESCARTAVEIS",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 5333,
+                "planoContaGerencialCodigo": 47952,
+                "descricaoDocumento": "DESCARTAVEIS",
+                "data": "2026-03-13",
+                "valor": 231.0
+              },
+              "synthetic": false,
+              "descricao": "DESCARTAVEIS",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "OUTROS",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Material Operacional",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Material Operacional",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Material Operacional",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:DESCARTAVEIS",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            },
+            {
+              "empresaCodigo": 5333,
+              "data": "2026-03-13",
+              "valor": "500.00",
+              "planoContaCodigo": 47952,
+              "planoConta": "DESCARTAVEIS",
+              "tipoDespesa": "",
+              "centroCusto": "",
+              "status": "desconhecido",
+              "origem": "financeiro",
+              "raw": {
+                "empresaCodigo": 5333,
+                "planoContaGerencialCodigo": 47952,
+                "descricaoDocumento": "DESCARTAVEIS",
+                "data": "2026-03-13",
+                "valor": 500.0
+              },
+              "synthetic": false,
+              "descricao": "DESCARTAVEIS",
+              "caixaCodigo": null,
+              "pdvCodigo": null,
+              "funcionarioCodigo": null,
+              "matchFinanceiro": false,
+              "fonte": "DESPESAS_FINANCEIRO_REDE",
+              "categoria": "OUTROS",
+              "origemReal": "Financeiro",
+              "origemNegocio": "Financeiro",
+              "origemTecnica": "DESPESAS_REDE",
+              "categoriaOperacional": "Material Operacional",
+              "classificacaoLineage": "Financeira",
+              "documento": null,
+              "fornecedor": null,
+              "eventoOperacional": "Material Operacional",
+              "primarySource": "DESPESAS_REDE",
+              "operationalFinancialMatch": "MATCH_FINANCEIRO",
+              "lineageConfidence": 90,
+              "lineagePath": [
+                "DESPESA",
+                "Origem Técnica:DESPESAS_REDE",
+                "Origem Negócio:Financeiro",
+                "Evento:Material Operacional",
+                "Documento:?",
+                "Fornecedor:?",
+                "Plano:DESCARTAVEIS",
+                "Centro:?",
+                "PDV:?",
+                "Turno:?",
+                "Operador:?"
+              ],
+              "rastreabilidadeOk": true
+            }
+          ]
+        }
+      ],
+      "sourceFieldMatrix": {
+        "Valor": {
+          "Financeiro": "Sim — DESPESAS_REDE.valor",
+          "Caixa": "Sim — CAIXA_APRESENTADO.despesaApresentado",
+          "PDV": "Sim — CAIXA_APRESENTADO.despesaApurado",
+          "Tesouraria": "Sim — MOVIMENTO_CONTA / TRANSFERENCIA_BANCARIA"
+        },
+        "Fornecedor": {
+          "Financeiro": "Parcial — DESPESAS_REDE + TITULO_PAGAR",
+          "Caixa": "Não — agregado por fechamento",
+          "PDV": "Não — agregado por fechamento",
+          "Tesouraria": "Parcial — MOVIMENTO_CONTA"
+        },
+        "Plano Conta": {
+          "Financeiro": "Sim — planoContaGerencialDescricao",
+          "Caixa": "Não — inferido via match financeiro",
+          "PDV": "Não — inferido via match financeiro",
+          "Tesouraria": "Parcial — quando disponível"
+        },
+        "Centro Custo": {
+          "Financeiro": "Parcial — frequentemente null (401 CENTRO_CUSTO_REDE)",
+          "Caixa": "Não",
+          "PDV": "Não",
+          "Tesouraria": "Parcial"
+        },
+        "Operador": {
+          "Financeiro": "Parcial — quando presente no lançamento",
+          "Caixa": "Sim — funcionarioCodigo",
+          "PDV": "Sim — funcionarioCodigo",
+          "Tesouraria": "Não"
+        },
+        "PDV": {
+          "Financeiro": "Parcial — quando vinculado",
+          "Caixa": "Sim — pdvCodigo",
+          "PDV": "Sim — pdvCodigo",
+          "Tesouraria": "Não"
+        },
+        "Turno": {
+          "Financeiro": "Parcial",
+          "Caixa": "Sim — turnoCodigo / turno",
+          "PDV": "Sim — turnoCodigo / turno",
+          "Tesouraria": "Não"
+        }
+      },
+      "operationalFinancial": {
+        "totalOperational": 180,
+        "counts": {
+          "SEM_MATCH": 155,
+          "MATCH_EXATO": 23,
+          "MATCH_PARCIAL": 2
+        },
+        "pct": {
+          "SEM_MATCH": 86.11,
+          "MATCH_EXATO": 12.78,
+          "MATCH_PARCIAL": 1.11
+        },
+        "pctWithFinancial": 13.89,
+        "pctWithoutFinancial": 86.11,
+        "allOperationalGenerateFinancial": false
+      },
+      "untracedCount": 0,
+      "untracedSample": [],
+      "bobinaTermica": {
+        "ocorrenciasTela": 5,
+        "ocorrenciasRede": 5,
+        "empresas": [
+          5256,
+          5555,
+          5556,
+          5557
+        ],
+        "datas": [
+          "2026-03-21",
+          "2026-04-17",
+          "2026-05-12",
+          "2026-05-13",
+          "2026-05-15"
+        ],
+        "amostraTela": [
+          {
+            "empresaCodigo": 5256,
+            "data": "2026-03-21",
+            "valor": "150.00",
+            "origem": "financeiro",
+            "origemReal": "Financeiro",
+            "fornecedor": null,
+            "planoConta": "REF A BOBINAS DA GRANDE QUE A EMPRESORA DA PISTA NECESSITA",
+            "centroCusto": "",
+            "documento": null,
+            "lineagePath": [
+              "DESPESA",
+              "Origem Técnica:DESPESAS_REDE",
+              "Origem Negócio:Financeiro",
+              "Evento:Material Operacional",
+              "Documento:?",
+              "Fornecedor:?",
+              "Plano:REF A BOBINAS DA GRANDE QUE A EMPRESORA DA PISTA NECESSITA",
+              "Centro:?",
+              "PDV:?",
+              "Turno:?",
+              "Operador:?"
+            ]
+          },
+          {
+            "empresaCodigo": 5557,
+            "data": "2026-04-17",
+            "valor": "11.60",
+            "origem": "financeiro",
+            "origemReal": "Financeiro",
+            "fornecedor": null,
+            "planoConta": "BOBINAS PARA IMPRESSORA PISTA",
+            "centroCusto": "",
+            "documento": null,
+            "lineagePath": [
+              "DESPESA",
+              "Origem Técnica:DESPESAS_REDE",
+              "Origem Negócio:Financeiro",
+              "Evento:Material Operacional",
+              "Documento:?",
+              "Fornecedor:?",
+              "Plano:BOBINAS PARA IMPRESSORA PISTA",
+              "Centro:?",
+              "PDV:?",
+              "Turno:?",
+              "Operador:?"
+            ]
+          },
+          {
+            "empresaCodigo": 5556,
+            "data": "2026-05-12",
+            "valor": "16.60",
+            "origem": "financeiro",
+            "origemReal": "Financeiro",
+            "fornecedor": null,
+            "planoConta": "bobina termica",
+            "centroCusto": "",
+            "documento": null,
+            "lineagePath": [
+              "DESPESA",
+              "Origem Técnica:DESPESAS_REDE",
+              "Origem Negócio:Financeiro",
+              "Evento:Material Operacional",
+              "Documento:?",
+              "Fornecedor:?",
+              "Plano:bobina termica",
+              "Centro:?",
+              "PDV:?",
+              "Turno:?",
+              "Operador:?"
+            ]
+          },
+          {
+            "empresaCodigo": 5555,
+            "data": "2026-05-13",
+            "valor": "135.00",
+            "origem": "financeiro",
+            "origemReal": "Financeiro",
+            "fornecedor": "DOMINGUES CONSTRUCAO",
+            "planoConta": "ref uma caixa de bobina termica",
+            "centroCusto": "",
+            "documento": "3050360",
+            "lineagePath": [
+              "DESPESA",
+              "Origem Técnica:DESPESAS_REDE",
+              "Origem Negócio:Financeiro",
+              "TITULO_PAGAR",
+              "Evento:Material Operacional",
+              "Documento:3050360",
+              "Fornecedor:DOMINGUES CONSTRUCAO",
+              "Plano:ref uma caixa de bobina termica",
+              "Centro:?",
+              "PDV:?",
+              "Turno:?",
+              "Operador:?"
+            ]
+          },
+          {
+            "empresaCodigo": 5557,
+            "data": "2026-05-15",
+            "valor": "69.00",
+            "origem": "financeiro",
+            "origemReal": "Financeiro",
+            "fornecedor": null,
+            "planoConta": "BOBINAS PARA PISTA",
+            "centroCusto": "",
+            "documento": null,
+            "lineagePath": [
+              "DESPESA",
+              "Origem Técnica:DESPESAS_REDE",
+              "Origem Negócio:Financeiro",
+              "Evento:Material Operacional",
+              "Documento:?",
+              "Fornecedor:?",
+              "Plano:BOBINAS PARA PISTA",
+              "Centro:?",
+              "PDV:?",
+              "Turno:?",
+              "Operador:?"
+            ]
+          }
+        ],
+        "amostraRede": [
+          {
+            "empresaCodigo": 5256,
+            "data": "2026-03-21",
+            "valor": 150.0,
+            "descricao": "REF A BOBINAS DA GRANDE QUE A EMPRESORA DA PISTA NECESSITA",
+            "planoConta": null,
+            "centroCusto": null
+          },
+          {
+            "empresaCodigo": 5557,
+            "data": "2026-04-17",
+            "valor": 11.6,
+            "descricao": "BOBINAS PARA IMPRESSORA PISTA",
+            "planoConta": null,
+            "centroCusto": null
+          },
+          {
+            "empresaCodigo": 5556,
+            "data": "2026-05-12",
+            "valor": 16.6,
+            "descricao": "bobina termica",
+            "planoConta": null,
+            "centroCusto": null
+          },
+          {
+            "empresaCodigo": 5555,
+            "data": "2026-05-13",
+            "valor": 135.0,
+            "descricao": "ref uma caixa de bobina termica",
+            "planoConta": null,
+            "centroCusto": null
+          },
+          {
+            "empresaCodigo": 5557,
+            "data": "2026-05-15",
+            "valor": 69.0,
+            "descricao": "BOBINAS PARA PISTA",
+            "planoConta": null,
+            "centroCusto": null
+          }
+        ]
+      },
+      "sourceTaxonomy": {
+        "DESPESAS_REDE": {
+          "grupo": "Financeiro",
+          "endpoint": "DESPESAS_FINANCEIRO_REDE"
+        },
+        "TITULO_PAGAR": {
+          "grupo": "Financeiro",
+          "endpoint": "TITULO_PAGAR"
+        },
+        "TITULO_RECEBER": {
+          "grupo": "Financeiro",
+          "endpoint": "TITULO_RECEBER"
+        },
+        "CAIXA_APRESENTADO": {
+          "grupo": "Caixa",
+          "endpoint": "CAIXA_APRESENTADO"
+        },
+        "CAIXA_APRESENTADO_REDE": {
+          "grupo": "Caixa",
+          "endpoint": "CAIXA_APRESENTADO_REDE"
+        },
+        "CAIXA": {
+          "grupo": "PDV",
+          "endpoint": "CAIXA"
+        },
+        "CAIXA_REDE": {
+          "grupo": "PDV",
+          "endpoint": "CAIXA_REDE"
+        },
+        "MOVIMENTO_CONTA": {
+          "grupo": "Tesouraria",
+          "endpoint": "MOVIMENTO_CONTA"
+        },
+        "TRANSFERENCIA_BANCARIA": {
+          "grupo": "Tesouraria",
+          "endpoint": "TRANSFERENCIA_BANCARIA"
+        }
+      },
+      "paridade": {
+        "screenRecords": 5537,
+        "tracedRecords": 5537,
+        "delta": 0
+      }
+    }
+  },
+  "generatedAt": "2026-06-09 20:42:33",
+  "qaBobina": {
+    "case": {
+      "empresaCodigo": 5555,
+      "data": "2026-06-08",
+      "termo": "BOBINA"
+    },
+    "totalTela": 3,
+    "bobinaRows": [
+      {
+        "empresaCodigo": 5555,
+        "data": "2026-06-08",
+        "valor": "135.00",
+        "planoContaCodigo": 141274,
+        "planoConta": "BOBINA TERMICA",
+        "tipoDespesa": "",
+        "centroCusto": "",
+        "status": "desconhecido",
+        "origem": "financeiro",
+        "raw": {
+          "empresaCodigo": 5555,
+          "planoContaGerencialCodigo": 141274,
+          "descricaoDocumento": "BOBINA TERMICA",
+          "data": "2026-06-08",
+          "valor": 135.0
+        },
+        "synthetic": false,
+        "descricao": "BOBINA TERMICA",
+        "caixaCodigo": null,
+        "pdvCodigo": null,
+        "funcionarioCodigo": null,
+        "matchFinanceiro": true,
+        "fonte": "DESPESAS_FINANCEIRO_REDE",
+        "categoria": "OUTROS",
+        "origemReal": "Financeiro",
+        "origemNegocio": "Financeiro",
+        "origemTecnica": "DESPESAS_REDE",
+        "categoriaOperacional": "Material Operacional",
+        "classificacaoLineage": "Financeira",
+        "documento": null,
+        "fornecedor": null,
+        "eventoOperacional": "Material Operacional",
+        "primarySource": "DESPESAS_REDE",
+        "operationalFinancialMatch": "MATCH_FINANCEIRO",
+        "lineageConfidence": 90,
+        "lineagePath": [
+          "DESPESA",
+          "Origem Técnica:DESPESAS_REDE",
+          "Origem Negócio:Financeiro",
+          "Evento:Material Operacional",
+          "Documento:?",
+          "Fornecedor:?",
+          "Plano:BOBINA TERMICA",
+          "Centro:?",
+          "PDV:?",
+          "Turno:?",
+          "Operador:?"
+        ],
+        "rastreabilidadeOk": true
+      },
+      {
+        "empresaCodigo": 5555,
+        "data": "2026-06-08",
+        "valor": "135.00",
+        "descricao": "BOBINA TERMICA",
+        "planoConta": "BOBINA TERMICA",
+        "planoContaCodigo": null,
+        "tipoDespesa": "operacional",
+        "centroCusto": "7295",
+        "status": "apurado",
+        "origem": "caixa",
+        "caixaCodigo": 4343023,
+        "pdvCodigo": 15880,
+        "funcionarioCodigo": 158924,
+        "turnoCodigo": 1,
+        "turno": "1º TURNO",
+        "despesaApurado": "135.00",
+        "despesaApresentado": "135.00",
+        "despesaDiferenca": "0.00",
+        "matchFinanceiro": true,
+        "fonte": "CAIXA_APRESENTADO+CAIXA_REDE",
+        "categoria": "OUTROS",
+        "raw": {
+          "empresaCodigo": 5555,
+          "caixaCodigo": 4343023,
+          "dataMovimento": "2026-06-08",
+          "turnoCodigo": 1,
+          "turno": "1º TURNO",
+          "pdvCodigo": 15880,
+          "funcionarioCodigo": 158924,
+          "centroCusto": 7295,
+          "abertura": "2026-06-08T07:28:12.000-03:00",
+          "fechamento": "2026-06-08T23:59:39.000-03:00",
+          "fechado": true,
+          "consolidado": false,
+          "tipoInclusao": "PDV",
+          "bloqueado": false,
+          "tipoBloqueio": "Desbloqueado",
+          "apurado": 18904.19,
+          "diferenca": -26.09,
+          "codigo": 4343023,
+          "ap_empresaCodigo": 5555,
+          "ap_caixaCodigo": 4343023,
+          "ap_dinheiroApresentado": 2057.0,
+          "ap_dinheiroApurado": 2083.09,
+          "ap_dinheiroDiferenca": -26.09,
+          "ap_notaPrazoApresentado": 0.0,
+          "ap_notaPrazoApurado": 0.0,
+          "ap_notaPrazoDiferenca": 0.0,
+          "ap_chequeApresentado": 0.0,
+          "ap_chequeApurado": 0.0,
+          "ap_chequeDiferenca": 0.0,
+          "ap_chequePreApresentado": 0.0,
+          "ap_chequePreApurado": 0.0,
+          "ap_chequePreDiferenca": 0.0,
+          "ap_cartaoApresentado": 16469.1,
+          "ap_cartaoApurado": 16469.1,
+          "ap_cartaoDiferenca": 0.0,
+          "ap_cartaFreteApresentado": 0.0,
+          "ap_cartaFreteApurado": 0.0,
+          "ap_cartaFreteDiferenca": 0.0,
+          "ap_valeClienteApresentado": 0.0,
+          "ap_valeClienteApurado": 0.0,
+          "ap_valeClienteDiferenca": 0.0,
+          "ap_emprestimoApresentado": 0.0,
+          "ap_emprestimoApurado": 0.0,
+          "ap_emprestimoDiferenca": 0.0,
+          "ap_prePagApresentado": 100.0,
+          "ap_prePagApurado": 100.0,
+          "ap_prePagDiferenca": 0.0,
+          "ap_despesaApresentado": 135.0,
+          "ap_despesaApurado": 135.0,
+          "ap_despesaDiferenca": 0.0,
+          "ap_valeFunApresentado": 117.0,
+          "ap_valeFunApurado": 117.0,
+          "ap_valeFunDiferenca": 0.0,
+          "ap_chequePagarApresentado": 0.0,
+          "ap_chequePagarApurado": 0.0,
+          "ap_chequePagarDiferenca": 0.0,
+          "ap_transfBancApresentado": 0.0,
+          "ap_transfBancApurado": 0.0,
+          "ap_transfBancDiferenca": 0.0,
+          "ap_transfDebApresentado": 0.0,
+          "ap_transfDebApurado": 0.0,
+          "ap_transfDebDiferenca": 0.0,
+          "ap_fundoCxDebApresentado": 0.0,
+          "ap_fundoCxDebApurado": 0.0,
+          "ap_fundoCxDebDiferenca": 0.0,
+          "ap_valeCliente": 0,
+          "ap_suprimentoCaixa": 0,
+          "ap_recebimentoCaixa": 0,
+          "ap_chequeTroco": 0,
+          "ap_servicoCaixa": 0,
+          "ap_prePagoCredito": 0,
+          "ap_fundoCaixaCredito": 0,
+          "ap_ordemPagamento": 0,
+          "ap_pagamentoCaixa": 0,
+          "ap_saidaTrocaValor": 0,
+          "ap_consolidado": false,
+          "ap_codigo": 4343023
+        },
+        "synthetic": false,
+        "origemReal": "PDV",
+        "origemNegocio": "PDV",
+        "origemTecnica": "CAIXA_REDE+CAIXA_APRESENTADO",
+        "categoriaOperacional": "Material Operacional",
+        "classificacaoLineage": "PDV",
+        "documento": "4343023",
+        "fornecedor": null,
+        "eventoOperacional": "Material Operacional",
+        "primarySource": "CAIXA_REDE+CAIXA_APRESENTADO",
+        "operationalFinancialMatch": "MATCH_EXATO",
+        "lineageConfidence": 100,
+        "lineagePath": [
+          "DESPESA",
+          "Origem Técnica:CAIXA_REDE",
+          "Origem Negócio:PDV",
+          "Match:MATCH_EXATO",
+          "BOBINA TERMICA",
+          "Evento:Material Operacional",
+          "Documento:4343023",
+          "Fornecedor:?",
+          "Plano:BOBINA TERMICA",
+          "Centro:7295",
+          "PDV:15880",
+          "Turno:1",
+          "Operador:158924"
+        ],
+        "rastreabilidadeOk": true
+      }
+    ],
+    "paridadeValor": 0.0,
+    "paridadeOk": true,
+    "lineagePaths": [
+      [
+        "DESPESA",
+        "Origem Técnica:DESPESAS_REDE",
+        "Origem Negócio:Financeiro",
+        "Evento:Material Operacional",
+        "Documento:?",
+        "Fornecedor:?",
+        "Plano:BOBINA TERMICA",
+        "Centro:?",
+        "PDV:?",
+        "Turno:?",
+        "Operador:?"
+      ],
+      [
+        "DESPESA",
+        "Origem Técnica:CAIXA_REDE",
+        "Origem Negócio:PDV",
+        "Match:MATCH_EXATO",
+        "BOBINA TERMICA",
+        "Evento:Material Operacional",
+        "Documento:4343023",
+        "Fornecedor:?",
+        "Plano:BOBINA TERMICA",
+        "Centro:7295",
+        "PDV:15880",
+        "Turno:1",
+        "Operador:158924"
+      ]
+    ]
+  },
+  "snapshot": {
+    "lastUpdated": "2026-06-09T20:51:09",
+    "coveragePct": 100.0,
+    "keys": [
+      "expense:lineage:2026-03-09:2026-06-07:all",
+      "expense:sources:2026-03-09:2026-06-07:all",
+      "expense:categories:2026-03-09:2026-06-07:all",
+      "expense:operators:2026-03-09:2026-06-07:all",
+      "expense:pdvs:2026-03-09:2026-06-07:all"
+    ]
+  },
+  "executiveAnswers": {
+    "1_deOndeVem": "DESPESA→Origem Técnica→Origem Negócio→Documento→Fornecedor→Plano→Centro→PDV→Turno→Operador",
+    "2_fontes": [
+      "DESPESAS_REDE",
+      "TITULO_PAGAR",
+      "TITULO_RECEBER",
+      "CAIXA_APRESENTADO",
+      "CAIXA_APRESENTADO_REDE",
+      "CAIXA",
+      "CAIXA_REDE",
+      "MOVIMENTO_CONTA",
+      "TRANSFERENCIA_BANCARIA"
+    ],
+    "3_pctFinanceiro": 94.49,
+    "4_pctCaixa": 0.0,
+    "5_pctPdv": 5.51,
+    "6_pctTesouraria": 0.0,
+    "7_categoriasDominantes": {
+      "Financeira": 5032,
+      "Fornecedor": 325,
+      "PDV": 180
+    },
+    "8_fornecedoresDominantes": [
+      [
+        "FORNECEDOR FOOD",
+        91
+      ],
+      [
+        "CAMPMITZ",
+        24
+      ],
+      [
+        "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        20
+      ],
+      [
+        "MILAGRES GAS E AGUA",
+        19
+      ],
+      [
+        "CARVÃO SÃO CONRADO",
+        14
+      ],
+      [
+        "LAVORO DISTRIBUIDORA",
+        14
+      ],
+      [
+        "GALEGO DO GELO",
+        12
+      ],
+      [
+        "RIO DOCE INFORMATICA",
+        12
+      ],
+      [
+        "MR MACEDO ROCHA",
+        8
+      ],
+      [
+        "MMS TRANSPORTE",
+        8
+      ],
+      [
+        "IPSEP TRANSPORTE",
+        7
+      ],
+      [
+        "COMPRAS A VISTA LOJA",
+        7
+      ],
+      [
+        "SINPOSPETRO",
+        7
+      ],
+      [
+        "COMERCIAL BEZERRA  FILIAL 01",
+        6
+      ],
+      [
+        "ALELO",
+        6
+      ],
+      [
+        "SIMULATION",
+        5
+      ],
+      [
+        "SOUZA DISTRIBUIDORA",
+        5
+      ],
+      [
+        "SUAPE",
+        5
+      ],
+      [
+        "PRODUCON MATERIAIS DE CONSTRUCAO LTDA",
+        5
+      ],
+      [
+        "FERREIRA COSTA TAMARINEIRA",
+        4
+      ]
+    ],
+    "9_topPdvs": [
+      {
+        "pdvCodigo": 54193,
+        "count": 61,
+        "valor": 46881.56
+      },
+      {
+        "pdvCodigo": 15880,
+        "count": 59,
+        "valor": 31546.54
+      },
+      {
+        "pdvCodigo": 56764,
+        "count": 60,
+        "valor": 12395.22
+      }
+    ],
+    "10_topOperators": [
+      {
+        "funcionarioCodigo": 227386,
+        "count": 25,
+        "valor": 24220.26,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 213391,
+        "count": 22,
+        "valor": 14626.06,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 157960,
+        "count": 31,
+        "valor": 11363.76,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 276288,
+        "count": 46,
+        "valor": 9473.61,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 158924,
+        "count": 8,
+        "valor": 7690.67,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 277311,
+        "count": 14,
+        "valor": 6134.93,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 149304,
+        "count": 3,
+        "valor": 5166.48,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 295816,
+        "count": 2,
+        "valor": 2468.39,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 294273,
+        "count": 3,
+        "valor": 1943.68,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 298670,
+        "count": 3,
+        "valor": 1691.46,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 80203,
+        "count": 1,
+        "valor": 1011.7,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 290148,
+        "count": 1,
+        "valor": 864.5,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 178278,
+        "count": 6,
+        "valor": 746.0,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 298720,
+        "count": 2,
+        "valor": 679.31,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 161863,
+        "count": 2,
+        "valor": 674.02,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 162738,
+        "count": 1,
+        "valor": 650.45,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 298738,
+        "count": 4,
+        "valor": 585.5,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 295399,
+        "count": 1,
+        "valor": 265.8,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 249526,
+        "count": 1,
+        "valor": 260.35,
+        "diff": 0.0
+      },
+      {
+        "funcionarioCodigo": 160806,
+        "count": 2,
+        "valor": 179.0,
+        "diff": 0.0
+      }
+    ],
+    "11_bobinaLineage": [
+      [
+        "DESPESA",
+        "Origem Técnica:DESPESAS_REDE",
+        "Origem Negócio:Financeiro",
+        "Evento:Material Operacional",
+        "Documento:?",
+        "Fornecedor:?",
+        "Plano:BOBINA TERMICA",
+        "Centro:?",
+        "PDV:?",
+        "Turno:?",
+        "Operador:?"
+      ],
+      [
+        "DESPESA",
+        "Origem Técnica:CAIXA_REDE",
+        "Origem Negócio:PDV",
+        "Match:MATCH_EXATO",
+        "BOBINA TERMICA",
+        "Evento:Material Operacional",
+        "Documento:4343023",
+        "Fornecedor:?",
+        "Plano:BOBINA TERMICA",
+        "Centro:7295",
+        "PDV:15880",
+        "Turno:1",
+        "Operador:158924"
+      ]
+    ],
+    "12_coberturaFinanceira": 100.0,
+    "13_coberturaOperacional": 100.0,
+    "14_pctMatchExato": 12.78,
+    "15_pctMatchParcial": 1.11,
+    "16_todaOperacionalGeraFinanceira": false,
+    "17_pctGera": 13.89,
+    "18_pctNaoGera": 86.11,
+    "19_categoriasNuncaFinanceiro": [
+      "Expediente",
+      "Material Operacional",
+      "Empréstimo",
+      "Limpeza"
+    ],
+    "20_categoriasSempreFinanceiro": [
+      "Financeiro"
+    ],
+    "21_avgLineageConfidence": 89.2,
+    "22_untraced": 0,
+    "23_dwReady": "modelo_documentado",
+    "24_uiReady": true
+  }
+}

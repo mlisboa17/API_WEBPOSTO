@@ -1,0 +1,29 @@
+{
+  "lastUpdated": "2026-06-09T18:03:20",
+  "data": {
+    "totalTurnos": 2,
+    "porTurno": [
+      {
+        "turnoCodigo": 1,
+        "turno": "1º TURNO",
+        "fechamentos": 20,
+        "volumeFinanceiro": 408738.71,
+        "participacaoVolumePct": 99.26,
+        "desvioAcumulado": -766.9,
+        "incidenciaQuebraPct": 100.0,
+        "matrizRisco": "Critico"
+      },
+      {
+        "turnoCodigo": 2,
+        "turno": "2º TURNO",
+        "fechamentos": 1,
+        "volumeFinanceiro": 3043.54,
+        "participacaoVolumePct": 0.74,
+        "desvioAcumulado": -1.96,
+        "incidenciaQuebraPct": 100.0,
+        "matrizRisco": "Critico"
+      }
+    ]
+  },
+  "snapshotKey": "cash:turns:2026-06-01:2026-06-07:all"
+}

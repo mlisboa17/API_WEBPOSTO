@@ -1,0 +1,507 @@
+{
+  "lastUpdated": "2026-06-10T13:34:18",
+  "data": {
+    "total": 3,
+    "ranking": [
+      {
+        "pdvCodigo": 56764,
+        "fechamentos": 8,
+        "diferencaAcumulada": 20.6,
+        "desvioPadrao": 11.75,
+        "diferencaMedia": 2.57,
+        "operadores": [
+          {
+            "funcionarioCodigo": 276288,
+            "fechamentos": 6
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "fechamentos": 2
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 7
+          },
+          {
+            "turno": "2º TURNO",
+            "fechamentos": 1
+          }
+        ],
+        "cashRiskScore": 64.1,
+        "band": "Atencao",
+        "vsMediaRede": -52.81,
+        "monitoramentoPrioritario": false,
+        "indiceRecorrencia": 0.03,
+        "componentDiferenca": 95.7,
+        "componentRecorrencia": 97.0,
+        "componentRisk": 64.1,
+        "componentCompensado": 50.0,
+        "_rawScore": 89.70500000000001,
+        "componentEvolucao": 50.0,
+        "evolucaoDelta": 0.0,
+        "operatorPerformanceScore": 82.14,
+        "performanceScore": 82.14,
+        "performanceBand": "Bom"
+      },
+      {
+        "pdvCodigo": 15880,
+        "fechamentos": 6,
+        "diferencaAcumulada": -309.85,
+        "desvioPadrao": 157.74,
+        "diferencaMedia": -51.64,
+        "operadores": [
+          {
+            "funcionarioCodigo": 158924,
+            "fechamentos": 5
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 6
+          }
+        ],
+        "cashRiskScore": 54.25,
+        "band": "Critico",
+        "vsMediaRede": 61.5,
+        "monitoramentoPrioritario": true,
+        "indiceRecorrencia": 0.52,
+        "componentDiferenca": 35.4,
+        "componentRecorrencia": 48.0,
+        "componentRisk": 54.25,
+        "componentCompensado": 50.0,
+        "_rawScore": 42.32000000000001,
+        "componentEvolucao": 50.0,
+        "evolucaoDelta": 0.0,
+        "operatorPerformanceScore": 44.3,
+        "performanceScore": 44.3,
+        "performanceBand": "Critico"
+      },
+      {
+        "pdvCodigo": 54193,
+        "fechamentos": 7,
+        "diferencaAcumulada": -479.61,
+        "desvioPadrao": 61.77,
+        "diferencaMedia": -68.52,
+        "operadores": [
+          {
+            "funcionarioCodigo": 227386,
+            "fechamentos": 3
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "fechamentos": 3
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 7
+          }
+        ],
+        "cashRiskScore": 59.83,
+        "band": "Atencao",
+        "vsMediaRede": 7.64,
+        "monitoramentoPrioritario": true,
+        "indiceRecorrencia": 0.69,
+        "componentDiferenca": 0.0,
+        "componentRecorrencia": 31.0,
+        "componentRisk": 59.83,
+        "componentCompensado": 50.0,
+        "_rawScore": 19.716,
+        "componentEvolucao": 50.0,
+        "evolucaoDelta": 0.0,
+        "operatorPerformanceScore": 26.72,
+        "performanceScore": 26.72,
+        "performanceBand": "Critico"
+      }
+    ],
+    "topMelhores": [
+      {
+        "pdvCodigo": 56764,
+        "fechamentos": 8,
+        "diferencaAcumulada": 20.6,
+        "desvioPadrao": 11.75,
+        "diferencaMedia": 2.57,
+        "operadores": [
+          {
+            "funcionarioCodigo": 276288,
+            "fechamentos": 6
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "fechamentos": 2
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 7
+          },
+          {
+            "turno": "2º TURNO",
+            "fechamentos": 1
+          }
+        ],
+        "cashRiskScore": 64.1,
+        "band": "Atencao",
+        "vsMediaRede": -52.81,
+        "monitoramentoPrioritario": false,
+        "indiceRecorrencia": 0.03,
+        "componentDiferenca": 95.7,
+        "componentRecorrencia": 97.0,
+        "componentRisk": 64.1,
+        "componentCompensado": 50.0,
+        "_rawScore": 89.70500000000001,
+        "componentEvolucao": 50.0,
+        "evolucaoDelta": 0.0,
+        "operatorPerformanceScore": 82.14,
+        "performanceScore": 82.14,
+        "performanceBand": "Bom"
+      },
+      {
+        "pdvCodigo": 15880,
+        "fechamentos": 6,
+        "diferencaAcumulada": -309.85,
+        "desvioPadrao": 157.74,
+        "diferencaMedia": -51.64,
+        "operadores": [
+          {
+            "funcionarioCodigo": 158924,
+            "fechamentos": 5
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 6
+          }
+        ],
+        "cashRiskScore": 54.25,
+        "band": "Critico",
+        "vsMediaRede": 61.5,
+        "monitoramentoPrioritario": true,
+        "indiceRecorrencia": 0.52,
+        "componentDiferenca": 35.4,
+        "componentRecorrencia": 48.0,
+        "componentRisk": 54.25,
+        "componentCompensado": 50.0,
+        "_rawScore": 42.32000000000001,
+        "componentEvolucao": 50.0,
+        "evolucaoDelta": 0.0,
+        "operatorPerformanceScore": 44.3,
+        "performanceScore": 44.3,
+        "performanceBand": "Critico"
+      },
+      {
+        "pdvCodigo": 54193,
+        "fechamentos": 7,
+        "diferencaAcumulada": -479.61,
+        "desvioPadrao": 61.77,
+        "diferencaMedia": -68.52,
+        "operadores": [
+          {
+            "funcionarioCodigo": 227386,
+            "fechamentos": 3
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "fechamentos": 3
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 7
+          }
+        ],
+        "cashRiskScore": 59.83,
+        "band": "Atencao",
+        "vsMediaRede": 7.64,
+        "monitoramentoPrioritario": true,
+        "indiceRecorrencia": 0.69,
+        "componentDiferenca": 0.0,
+        "componentRecorrencia": 31.0,
+        "componentRisk": 59.83,
+        "componentCompensado": 50.0,
+        "_rawScore": 19.716,
+        "componentEvolucao": 50.0,
+        "evolucaoDelta": 0.0,
+        "operatorPerformanceScore": 26.72,
+        "performanceScore": 26.72,
+        "performanceBand": "Critico"
+      }
+    ],
+    "topPiores": [
+      {
+        "pdvCodigo": 54193,
+        "fechamentos": 7,
+        "diferencaAcumulada": -479.61,
+        "desvioPadrao": 61.77,
+        "diferencaMedia": -68.52,
+        "operadores": [
+          {
+            "funcionarioCodigo": 227386,
+            "fechamentos": 3
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "fechamentos": 3
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 7
+          }
+        ],
+        "cashRiskScore": 59.83,
+        "band": "Atencao",
+        "vsMediaRede": 7.64,
+        "monitoramentoPrioritario": true,
+        "indiceRecorrencia": 0.69,
+        "componentDiferenca": 0.0,
+        "componentRecorrencia": 31.0,
+        "componentRisk": 59.83,
+        "componentCompensado": 50.0,
+        "_rawScore": 19.716,
+        "componentEvolucao": 50.0,
+        "evolucaoDelta": 0.0,
+        "operatorPerformanceScore": 26.72,
+        "performanceScore": 26.72,
+        "performanceBand": "Critico"
+      },
+      {
+        "pdvCodigo": 15880,
+        "fechamentos": 6,
+        "diferencaAcumulada": -309.85,
+        "desvioPadrao": 157.74,
+        "diferencaMedia": -51.64,
+        "operadores": [
+          {
+            "funcionarioCodigo": 158924,
+            "fechamentos": 5
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 6
+          }
+        ],
+        "cashRiskScore": 54.25,
+        "band": "Critico",
+        "vsMediaRede": 61.5,
+        "monitoramentoPrioritario": true,
+        "indiceRecorrencia": 0.52,
+        "componentDiferenca": 35.4,
+        "componentRecorrencia": 48.0,
+        "componentRisk": 54.25,
+        "componentCompensado": 50.0,
+        "_rawScore": 42.32000000000001,
+        "componentEvolucao": 50.0,
+        "evolucaoDelta": 0.0,
+        "operatorPerformanceScore": 44.3,
+        "performanceScore": 44.3,
+        "performanceBand": "Critico"
+      },
+      {
+        "pdvCodigo": 56764,
+        "fechamentos": 8,
+        "diferencaAcumulada": 20.6,
+        "desvioPadrao": 11.75,
+        "diferencaMedia": 2.57,
+        "operadores": [
+          {
+            "funcionarioCodigo": 276288,
+            "fechamentos": 6
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "fechamentos": 2
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 7
+          },
+          {
+            "turno": "2º TURNO",
+            "fechamentos": 1
+          }
+        ],
+        "cashRiskScore": 64.1,
+        "band": "Atencao",
+        "vsMediaRede": -52.81,
+        "monitoramentoPrioritario": false,
+        "indiceRecorrencia": 0.03,
+        "componentDiferenca": 95.7,
+        "componentRecorrencia": 97.0,
+        "componentRisk": 64.1,
+        "componentCompensado": 50.0,
+        "_rawScore": 89.70500000000001,
+        "componentEvolucao": 50.0,
+        "evolucaoDelta": 0.0,
+        "operatorPerformanceScore": 82.14,
+        "performanceScore": 82.14,
+        "performanceBand": "Bom"
+      }
+    ],
+    "alvosCriticos": {
+      "operador276288": {
+        "funcionarioCodigo": 276288,
+        "fechamentos": 6,
+        "volumeApurado": 22096.86,
+        "diferencaAcumulada": 17.81,
+        "diferencaMedia": 2.97,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 58.32,
+        "band": "Critico",
+        "monitoramentoPrioritario": true,
+        "componentDiferenca": 92.94,
+        "componentRecorrencia": 0.0,
+        "componentRisk": 58.32,
+        "componentCompensado": 100.0,
+        "saldoLedger": 17.81,
+        "compensadoAutomatico": 21.95,
+        "_rawScore": 62.781000000000006,
+        "componentEvolucao": 50.0,
+        "evolucaoDelta": 0.0,
+        "operatorPerformanceScore": 60.92,
+        "performanceScore": 60.92,
+        "performanceBand": "Atencao"
+      },
+      "operador294273": {
+        "funcionarioCodigo": 294273,
+        "fechamentos": 3,
+        "volumeApurado": 108747.97,
+        "diferencaAcumulada": -252.27,
+        "diferencaMedia": -84.09,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 52.21,
+        "band": "Critico",
+        "monitoramentoPrioritario": true,
+        "componentDiferenca": 0.0,
+        "componentRecorrencia": 0.0,
+        "componentRisk": 52.21,
+        "componentCompensado": 0.0,
+        "saldoLedger": -252.27,
+        "compensadoAutomatico": 0.0,
+        "_rawScore": 10.442,
+        "componentEvolucao": 50.0,
+        "evolucaoDelta": 0.0,
+        "operatorPerformanceScore": 17.83,
+        "performanceScore": 17.83,
+        "performanceBand": "Critico"
+      },
+      "pdv54193": {
+        "pdvCodigo": 54193,
+        "fechamentos": 7,
+        "diferencaAcumulada": -479.61,
+        "desvioPadrao": 61.77,
+        "diferencaMedia": -68.52,
+        "operadores": [
+          {
+            "funcionarioCodigo": 227386,
+            "fechamentos": 3
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "fechamentos": 3
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 7
+          }
+        ],
+        "cashRiskScore": 59.83,
+        "band": "Atencao",
+        "vsMediaRede": 7.64,
+        "monitoramentoPrioritario": true,
+        "indiceRecorrencia": 0.69,
+        "componentDiferenca": 0.0,
+        "componentRecorrencia": 31.0,
+        "componentRisk": 59.83,
+        "componentCompensado": 50.0,
+        "_rawScore": 19.716,
+        "componentEvolucao": 50.0,
+        "evolucaoDelta": 0.0,
+        "operatorPerformanceScore": 26.72,
+        "performanceScore": 26.72,
+        "performanceBand": "Critico"
+      },
+      "pdv15880": {
+        "pdvCodigo": 15880,
+        "fechamentos": 6,
+        "diferencaAcumulada": -309.85,
+        "desvioPadrao": 157.74,
+        "diferencaMedia": -51.64,
+        "operadores": [
+          {
+            "funcionarioCodigo": 158924,
+            "fechamentos": 5
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 6
+          }
+        ],
+        "cashRiskScore": 54.25,
+        "band": "Critico",
+        "vsMediaRede": 61.5,
+        "monitoramentoPrioritario": true,
+        "indiceRecorrencia": 0.52,
+        "componentDiferenca": 35.4,
+        "componentRecorrencia": 48.0,
+        "componentRisk": 54.25,
+        "componentCompensado": 50.0,
+        "_rawScore": 42.32000000000001,
+        "componentEvolucao": 50.0,
+        "evolucaoDelta": 0.0,
+        "operatorPerformanceScore": 44.3,
+        "performanceScore": 44.3,
+        "performanceBand": "Critico"
+      }
+    }
+  },
+  "snapshotKey": "pdv:performance:2026-06-01:2026-06-07:all"
+}

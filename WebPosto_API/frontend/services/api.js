@@ -168,6 +168,15 @@ function baseFilterParams(filters) {
   const tipoDespesa = Array.isArray(filters.tipoDespesa)
     ? filters.tipoDespesa.join(",")
     : filters.tipoDespesa;
+  const expenseNature = Array.isArray(filters.expenseNature)
+    ? filters.expenseNature.join(",")
+    : filters.expenseNature;
+  const expenseManagementGroup = Array.isArray(filters.expenseManagementGroup)
+    ? filters.expenseManagementGroup.join(",")
+    : filters.expenseManagementGroup;
+  const expenseManagementClass = Array.isArray(filters.expenseManagementClass)
+    ? filters.expenseManagementClass.join(",")
+    : filters.expenseManagementClass;
 
   return {
     dataInicial: filters.dataInicial,
@@ -177,6 +186,13 @@ function baseFilterParams(filters) {
     centroCusto,
     valorMin: filters.valorMin,
     valorMax: filters.valorMax,
+    origem: filters.origem || undefined,
+    texto: filters.texto || undefined,
+    expenseNature: expenseNature || undefined,
+    expenseManagementGroup: expenseManagementGroup || undefined,
+    expenseManagementClass: expenseManagementClass || undefined,
+    dreImpact: filters.dreImpact || undefined,
+    cashFlowImpact: filters.cashFlowImpact || undefined,
   };
 }
 
@@ -598,6 +614,323 @@ export async function fetchCashFlow(filters) {
   const raw = await apiClient.get("/api/v1/finance/cash-flow", {
     params: cashFlowParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+function cashOperationsParams(filters) {
+  return financeCenterParams(filters);
+}
+
+export async function fetchCashOperationsSnapshot(filters) {
+  const raw = await apiClient.get("/api/v1/cash/operations/snapshot", {
+    params: cashOperationsParams(filters),
+    timeout: SNAPSHOT_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function postCashOperationsRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/cash/operations/refresh", null, {
+    params: cashOperationsParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchCashOperationsSummary(filters) {
+  const raw = await apiClient.get("/api/v1/cash/operations/summary", {
+    params: cashOperationsParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchCashOperationsAll(filters) {
+  const [summary, alerts, operators, pdvs, turns, riskScore] = await Promise.all([
+    fetchCashOperationsSummary(filters),
+    apiClient.get("/api/v1/cash/operations/alerts", { params: cashOperationsParams(filters), timeout: ANALYTICS_TIMEOUT_MS }),
+    apiClient.get("/api/v1/cash/operations/operators", { params: cashOperationsParams(filters), timeout: ANALYTICS_TIMEOUT_MS }),
+    apiClient.get("/api/v1/cash/operations/pdvs", { params: cashOperationsParams(filters), timeout: ANALYTICS_TIMEOUT_MS }),
+    apiClient.get("/api/v1/cash/operations/turns", { params: cashOperationsParams(filters), timeout: ANALYTICS_TIMEOUT_MS }),
+    apiClient.get("/api/v1/cash/operations/risk-score", { params: cashOperationsParams(filters), timeout: ANALYTICS_TIMEOUT_MS }),
+  ]);
+  return {
+    summary,
+    alerts: alerts?.data || alerts,
+    operators: operators?.data || operators,
+    pdvs: pdvs?.data || pdvs,
+    turns: turns?.data || turns,
+    riskScore: riskScore?.data || riskScore,
+    fromSnapshot: summary?.fromSnapshot,
+    lastUpdated: summary?.lastUpdated,
+    performanceMs: summary?.performanceMs,
+  };
+}
+
+function performanceParams(filters) {
+  return financeCenterParams(filters);
+}
+
+export async function fetchOperatorPerformanceSnapshot(filters) {
+  const raw = await apiClient.get("/api/v1/performance/snapshot", {
+    params: performanceParams(filters),
+    timeout: SNAPSHOT_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function postOperatorPerformanceRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/performance/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchOperatorPerformanceSummary(filters) {
+  const raw = await apiClient.get("/api/v1/performance/summary", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchOperatorPerformanceAll(filters) {
+  const [summaryResp, operatorsResp, pdvsResp, turnsResp] = await Promise.all([
+    apiClient.get("/api/v1/performance/summary", { params: performanceParams(filters), timeout: ANALYTICS_TIMEOUT_MS }),
+    apiClient.get("/api/v1/performance/operators", { params: performanceParams(filters), timeout: ANALYTICS_TIMEOUT_MS }),
+    apiClient.get("/api/v1/performance/pdvs", { params: performanceParams(filters), timeout: ANALYTICS_TIMEOUT_MS }),
+    apiClient.get("/api/v1/performance/turns", { params: performanceParams(filters), timeout: ANALYTICS_TIMEOUT_MS }),
+  ]);
+  const summaryBody = summaryResp?.data || summaryResp || {};
+  const summaryData = summaryBody?.data || summaryBody;
+  return {
+    summary: summaryData,
+    operators: operatorsResp?.data || operatorsResp,
+    pdvs: pdvsResp?.data || pdvsResp,
+    turns: turnsResp?.data || turnsResp,
+    evolution: summaryData?.evolution,
+    bestPractices: summaryData?.bestPractices,
+    criticalFocus: summaryData?.criticalFocus,
+    periodo: summaryData?.periodo,
+    fromSnapshot: summaryBody?.snapshot?.hit,
+    lastUpdated: new Date().toISOString(),
+  };
+}
+
+export async function fetchOperatorIntelligenceSnapshot(filters) {
+  const raw = await apiClient.get("/api/v1/operator-intelligence/snapshot", {
+    params: performanceParams(filters),
+    timeout: SNAPSHOT_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchOperatorIntelligenceCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/operator-intelligence/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postOperatorIntelligenceRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/operator-intelligence/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchPeopleIntelligenceCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/people-intelligence/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    classification: body?.classification,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postPeopleIntelligenceRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/people-intelligence/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchPeopleRoiCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/people-roi/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postPeopleRoiRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/people-roi/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchOperationRoiCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/operation-roi/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postOperationRoiRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/operation-roi/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchManagementActionCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/management-action/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postManagementActionRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/management-action/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchGoalsCampaignCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/goals-campaigns/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postGoalsCampaignRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/goals-campaigns/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchBenchmarkCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/benchmark/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postBenchmarkRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/benchmark/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchExecutiveScorecardCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/executive-scorecard/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    decisaoArquitetural: body?.decisaoArquitetural,
+    qa: body?.qa,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postExecutiveScorecardRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/executive-scorecard/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchCorporateHubCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/corporate-hub/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    decisaoArquitetural: body?.decisaoArquitetural,
+    qa: body?.qa,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postCorporateHubRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/corporate-hub/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
   });
   return raw?.data || raw;
 }

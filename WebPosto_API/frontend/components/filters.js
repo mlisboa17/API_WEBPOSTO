@@ -3,6 +3,18 @@ import {
   readEmpresaCodigoFromMultiSelectLogos,
   updateMultiSelectLogos,
 } from "./MultiSelectLogos.js";
+import {
+  mountNatureMultiSelectLogos,
+  readExpenseNatureFromMultiSelectLogos,
+} from "./NatureMultiSelectLogos.js";
+import {
+  CASHFLOW_IMPACT_OPTIONS,
+  DRE_IMPACT_OPTIONS,
+  mountManagementClassMultiSelect,
+  mountManagementGroupMultiSelect,
+  readManagementClassFromMultiSelect,
+  readManagementGroupFromMultiSelect,
+} from "./ManagementMultiSelectLogos.js";
 
 function normalizeMultiValue(value) {
   if (Array.isArray(value)) return value.filter((item) => String(item || "").trim() !== "");
@@ -43,6 +55,8 @@ export function renderFilters(container, state, onChange, onClear, options = {})
     "empresaCodigo",
     "centroCusto",
     "tipoDespesa",
+    "origem",
+    "texto",
     "valorMin",
     "valorMax",
   ];
@@ -90,6 +104,76 @@ export function renderFilters(container, state, onChange, onClear, options = {})
         </div>
       `
       : "",
+    isVisibleField(visible, "expenseNature")
+      ? `
+        <div class="field field--nature">
+          <label>Natureza</label>
+          <div id="natureMultiselectHost"></div>
+        </div>
+      `
+      : "",
+    isVisibleField(visible, "expenseManagementGroup")
+      ? `
+        <div class="field field--mgmt-group">
+          <label>Grupo Gerencial</label>
+          <div id="mgmtGroupMultiselectHost"></div>
+        </div>
+      `
+      : "",
+    isVisibleField(visible, "expenseManagementClass")
+      ? `
+        <div class="field field--mgmt-class">
+          <label>Classe Gerencial</label>
+          <div id="mgmtClassMultiselectHost"></div>
+        </div>
+      `
+      : "",
+    isVisibleField(visible, "dreImpact")
+      ? `
+        <div class="field">
+          <label for="dreImpact">Impacta DRE</label>
+          <select id="dreImpact">
+            ${DRE_IMPACT_OPTIONS.map(
+              (o) => `<option value="${o.value}" ${state.dreImpact === o.value ? "selected" : ""}>${o.label}</option>`
+            ).join("")}
+          </select>
+        </div>
+      `
+      : "",
+    isVisibleField(visible, "cashFlowImpact")
+      ? `
+        <div class="field">
+          <label for="cashFlowImpact">Impacta Caixa</label>
+          <select id="cashFlowImpact">
+            ${CASHFLOW_IMPACT_OPTIONS.map(
+              (o) =>
+                `<option value="${o.value}" ${state.cashFlowImpact === o.value ? "selected" : ""}>${o.label}</option>`
+            ).join("")}
+          </select>
+        </div>
+      `
+      : "",
+    isVisibleField(visible, "origem")
+      ? `
+        <div class="field">
+          <label for="origem">Origem</label>
+          <select id="origem">
+            <option value="" ${!state.origem ? "selected" : ""}>Todos</option>
+            <option value="financeiro" ${state.origem === "financeiro" ? "selected" : ""}>Financeiro</option>
+            <option value="caixa" ${state.origem === "caixa" ? "selected" : ""}>Caixa</option>
+            <option value="pdv" ${state.origem === "pdv" ? "selected" : ""}>PDV</option>
+          </select>
+        </div>
+      `
+      : "",
+    isVisibleField(visible, "texto")
+      ? `
+        <div class="field">
+          <label for="texto">Texto</label>
+          <input id="texto" type="text" value="${state.texto || ""}" placeholder="Descrição, plano de conta..." />
+        </div>
+      `
+      : "",
     isVisibleField(visible, "valorMin")
       ? `
         <div class="field">
@@ -121,6 +205,9 @@ export function renderFilters(container, state, onChange, onClear, options = {})
 
   const emitChange = debounce(() => {
     const host = container.querySelector("#empresaMultiselectHost");
+    const natureHost = container.querySelector("#natureMultiselectHost");
+    const mgmtGroupHost = container.querySelector("#mgmtGroupMultiselectHost");
+    const mgmtClassHost = container.querySelector("#mgmtClassMultiselectHost");
     const nextState = {
       ...state,
       dataInicial: container.querySelector("#dataInicial")?.value || state.dataInicial,
@@ -128,6 +215,17 @@ export function renderFilters(container, state, onChange, onClear, options = {})
       empresaCodigo: host ? readEmpresaCodigoFromMultiSelectLogos(host) : state.empresaCodigo,
       centroCusto: valueFromCommaInput(container.querySelector("#centroCusto")?.value || ""),
       tipoDespesa: valueFromCommaInput(container.querySelector("#tipoDespesa")?.value || ""),
+      expenseNature: natureHost ? readExpenseNatureFromMultiSelectLogos(natureHost) : state.expenseNature,
+      expenseManagementGroup: mgmtGroupHost
+        ? readManagementGroupFromMultiSelect(mgmtGroupHost)
+        : state.expenseManagementGroup,
+      expenseManagementClass: mgmtClassHost
+        ? readManagementClassFromMultiSelect(mgmtClassHost)
+        : state.expenseManagementClass,
+      dreImpact: container.querySelector("#dreImpact")?.value || "",
+      cashFlowImpact: container.querySelector("#cashFlowImpact")?.value || "",
+      origem: container.querySelector("#origem")?.value || "",
+      texto: container.querySelector("#texto")?.value || "",
       valorMin: container.querySelector("#valorMin")?.value || "",
       valorMax: container.querySelector("#valorMax")?.value || "",
     };
@@ -139,8 +237,29 @@ export function renderFilters(container, state, onChange, onClear, options = {})
     mountMultiSelectLogos(host, state.empresaCodigo, () => emitChange());
   }
 
-  container.querySelectorAll("input:not([type=search])").forEach((element) => {
-    if (element.closest("#empresaMultiselect")) return;
+  if (container.querySelector("#natureMultiselectHost")) {
+    const natureHost = container.querySelector("#natureMultiselectHost");
+    mountNatureMultiSelectLogos(natureHost, state.expenseNature, () => emitChange());
+  }
+
+  if (container.querySelector("#mgmtGroupMultiselectHost")) {
+    const mgmtGroupHost = container.querySelector("#mgmtGroupMultiselectHost");
+    mountManagementGroupMultiSelect(mgmtGroupHost, state.expenseManagementGroup, () => emitChange());
+  }
+
+  if (container.querySelector("#mgmtClassMultiselectHost")) {
+    const mgmtClassHost = container.querySelector("#mgmtClassMultiselectHost");
+    mountManagementClassMultiSelect(mgmtClassHost, state.expenseManagementClass, () => emitChange());
+  }
+
+  container.querySelectorAll("input:not([type=search]), select").forEach((element) => {
+    if (
+      element.closest("#empresaMultiselect") ||
+      element.closest("#natureMultiselect") ||
+      element.closest("#mgmtGroupMultiselect") ||
+      element.closest("#mgmtClassMultiselect")
+    )
+      return;
     element.addEventListener("change", emitChange);
     element.addEventListener("input", emitChange);
   });

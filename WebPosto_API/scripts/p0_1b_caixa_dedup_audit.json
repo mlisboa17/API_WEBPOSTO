@@ -1,0 +1,52 @@
+{
+  "case": {
+    "empresaCodigo": 5555,
+    "data": "2026-06-08"
+  },
+  "rawBySource": {
+    "CAIXA_APRESENTADO": [],
+    "CAIXA_APRESENTADO_REDE": [],
+    "CAIXA_REDE": [],
+    "CAIXA": []
+  },
+  "mergedClosures": [],
+  "screenLinesBeforeFix": [],
+  "duplicateClosureKeys": {},
+  "apiResumo": {
+    "caixa": {
+      "count": 1,
+      "valor": "135.00"
+    },
+    "financeiro": {
+      "count": 2,
+      "valor": "1912.00"
+    }
+  },
+  "apiTotal": 3,
+  "apiRows": [
+    {
+      "origem": "financeiro",
+      "valor": "135.00",
+      "caixaCodigo": null,
+      "pdvCodigo": null,
+      "turno": null,
+      "descricao": "BOBINA TERMICA"
+    },
+    {
+      "origem": "financeiro",
+      "valor": "1777.00",
+      "caixaCodigo": null,
+      "pdvCodigo": null,
+      "turno": null,
+      "descricao": "FARDAMENTOS PISTA"
+    },
+    {
+      "origem": "caixa",
+      "valor": "135.00",
+      "caixaCodigo": 4343023,
+      "pdvCodigo": 15880,
+      "turno": 158924,
+      "descricao": "BOBINA TERMICA"
+    }
+  ]
+}

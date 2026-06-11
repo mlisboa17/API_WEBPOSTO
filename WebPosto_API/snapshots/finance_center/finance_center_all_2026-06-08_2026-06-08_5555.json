@@ -1,0 +1,351 @@
+{
+  "lastUpdated": "2026-06-09T18:01:24",
+  "center": {
+    "summary": {
+      "periodo": {
+        "dataInicial": "2026-06-08",
+        "dataFinal": "2026-06-08"
+      },
+      "despesasGerenciais": {
+        "totalRegistros": 1,
+        "totalValor": "135.00",
+        "porCategoriaLogos": {
+          "OUTROS": "135.00"
+        },
+        "porEmpresa": {
+          "5555": "135.00"
+        }
+      },
+      "contasPagar": {
+        "emAberto": {
+          "count": 1,
+          "valor": "1777.00"
+        },
+        "vencido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "pago": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 1,
+          "valor": "1777.00"
+        }
+      },
+      "contasReceber": {
+        "pendente": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "recebido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "vencido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 0,
+          "valor": "0.00"
+        }
+      },
+      "movimentoBancario": {
+        "totalRegistros": 0,
+        "creditos": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "debitos": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "tarifas": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "transferencias": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "saldoMovimentado": {
+          "creditos": "0.00",
+          "debitos": "0.00",
+          "liquido": "0.00"
+        }
+      },
+      "caixa": {
+        "turnos": 1,
+        "despesaCaixa": {
+          "apurado": "135.00",
+          "turnos": 1
+        },
+        "valeFuncionario": {
+          "apurado": "117.00",
+          "turnos": 1
+        },
+        "emprestimos": {
+          "apurado": "0.00",
+          "turnos": 1
+        },
+        "diferencas": 1
+      },
+      "coverage": {
+        "despesasGerenciais": {
+          "status": "ok",
+          "registros": 1
+        },
+        "contasPagar": {
+          "status": "ok",
+          "registros": 1
+        },
+        "contasReceber": {
+          "status": "empty",
+          "registros": 0
+        },
+        "movimentoBancario": {
+          "status": "ok",
+          "registros": 0
+        },
+        "caixa": {
+          "status": "ok",
+          "turnos": 1
+        }
+      },
+      "warnings": [
+        "caixa.fundoCaixa: indisponível na API"
+      ],
+      "snapshotKey": "finance:center:summary:2026-06-08:2026-06-08:5555",
+      "performanceMs": {
+        "despesas": 0,
+        "payables": 2269.2,
+        "receivables": 1775.0,
+        "bank": 9717.3,
+        "cash": 1863.0,
+        "total": 11311.5
+      }
+    },
+    "expenses": {
+      "page": 1,
+      "limit": 500,
+      "total": 1,
+      "resumo": {
+        "totalRegistros": 1,
+        "totalValor": "135.00",
+        "porCategoriaLogos": {
+          "OUTROS": "135.00"
+        },
+        "porEmpresa": {
+          "5555": "135.00"
+        }
+      },
+      "data": [
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-08",
+          "valor": "135.00",
+          "planoConta": "BOBINA TERMICA",
+          "planoContaCodigo": 141274,
+          "centroCusto": "",
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceBand": "outros"
+        }
+      ],
+      "snapshotKey": "finance:center:expenses:2026-06-08:2026-06-08:5555",
+      "performanceMs": {
+        "despesas": 3408.5
+      }
+    },
+    "payables": {
+      "page": 1,
+      "limit": 500,
+      "total": 1,
+      "resumo": {
+        "emAberto": {
+          "count": 1,
+          "valor": "1777.00"
+        },
+        "vencido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "pago": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 1,
+          "valor": "1777.00"
+        }
+      },
+      "buckets": {
+        "emAberto": {
+          "count": 1,
+          "valor": "1777.00"
+        },
+        "vencido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "pago": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 1,
+          "valor": "1777.00"
+        }
+      },
+      "data": [
+        {
+          "empresaCodigo": 5555,
+          "tituloPagarCodigo": 3081720,
+          "fornecedor": "UNIFORDEX FIALHO FARDAS",
+          "valor": "1777.00",
+          "vencimento": "2026-06-08",
+          "situacao": "Aberto"
+        }
+      ],
+      "snapshotKey": "finance:center:payables:2026-06-08:2026-06-08:5555",
+      "performanceMs": {
+        "payables": 3187.0
+      }
+    },
+    "receivables": {
+      "page": 1,
+      "limit": 500,
+      "total": 0,
+      "resumo": {
+        "pendente": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "recebido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "vencido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 0,
+          "valor": "0.00"
+        }
+      },
+      "buckets": {
+        "pendente": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "recebido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "vencido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "aVencer": {
+          "count": 0,
+          "valor": "0.00"
+        }
+      },
+      "data": [],
+      "snapshotKey": "finance:center:receivables:2026-06-08:2026-06-08:5555",
+      "performanceMs": {
+        "receivables": 2958.0
+      }
+    },
+    "bank": {
+      "page": 1,
+      "limit": 500,
+      "total": 0,
+      "resumo": {
+        "creditos": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "debitos": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "tarifas": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "transferencias": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "saldoMovimentado": {
+          "creditos": "0.00",
+          "debitos": "0.00",
+          "liquido": "0.00"
+        },
+        "totalRegistros": 0
+      },
+      "data": [],
+      "paginacaoCompleta": 0,
+      "snapshotKey": "finance:center:bank:2026-06-08:2026-06-08:5555",
+      "performanceMs": {
+        "bank": 10562.2
+      }
+    },
+    "cash": {
+      "turnos": {
+        "count": 1,
+        "items": [
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4343023,
+            "data": "2026-06-08",
+            "diferenca": "-26.09"
+          }
+        ]
+      },
+      "diferencas": {
+        "count": 1,
+        "items": [
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4343023,
+            "data": "2026-06-08",
+            "diferenca": "-26.09"
+          }
+        ]
+      },
+      "despesaCaixa": {
+        "apurado": "135.00",
+        "turnos": 1
+      },
+      "valeFuncionario": {
+        "apurado": "117.00",
+        "turnos": 1
+      },
+      "emprestimos": {
+        "apurado": "0.00",
+        "turnos": 1
+      },
+      "fundoCaixa": {
+        "disponivel": false,
+        "apurado": null
+      },
+      "snapshotKey": "finance:center:cash:2026-06-08:2026-06-08:5555",
+      "performanceMs": {
+        "cash": 2762.4
+      },
+      "warnings": [
+        "fundoCaixa: campo não disponível na API WebPosto"
+      ]
+    }
+  },
+  "warnings": [
+    "caixa.fundoCaixa: indisponível na API"
+  ],
+  "snapshotKey": "finance:center:all:2026-06-08:2026-06-08:5555"
+}

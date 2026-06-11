@@ -24,6 +24,8 @@ ENDPOINTS = {
     "transferencia_bancaria": "/INTEGRACAO/TRANSFERENCIA_BANCARIA",
     "caixa": "/INTEGRACAO/CAIXA",
     "caixa_apresentado": "/INTEGRACAO/CAIXA_APRESENTADO",
+    "caixa_rede": "/INTEGRACAO/CONSULTAR_CAIXA_REDE",
+    "caixa_apresentado_rede": "/INTEGRACAO/CONSULTAR_CAIXA_APRESENTADO_REDE",
     "analise_vendas_combustivel": "/INTEGRACAO/CONSULTAR_ANALISE_VENDAS_COMBUSTIVEL",
     "despesas_financeiro_rede": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
     "empresas": "/INTEGRACAO/EMPRESAS",
@@ -43,6 +45,7 @@ ENDPOINTS = {
     "tanque": "/INTEGRACAO/TANQUE",
     "estoque_periodo": "/INTEGRACAO/ESTOQUE_PERIODO",
     "lmc_rede": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+    "funcionario": "/INTEGRACAO/FUNCIONARIO",
 }
 
 
@@ -100,6 +103,7 @@ class WebPostoClient:
             "produto_estoque",
             "estoque_periodo",
             "lmc_rede",
+            "funcionario",
         }:
             base = max(20.0, base)
         return httpx.Timeout(base, connect=min(5.0, base))

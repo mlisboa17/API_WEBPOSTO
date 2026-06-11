@@ -1,0 +1,184 @@
+{
+  "lastUpdated": "2026-06-09T17:36:04",
+  "fuel": {
+    "success": true,
+    "data": {
+      "litrosTotal": 10634.34,
+      "filiais": [
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "litros": 10634.34,
+          "participacao": 100.0
+        }
+      ],
+      "combustiveis": [
+        {
+          "produtoCodigo": 1257884,
+          "combustivel": "Produto 1257884",
+          "categoria": "Outros",
+          "litros": 3150.78,
+          "participacao": 29.63
+        },
+        {
+          "produtoCodigo": 1319213,
+          "combustivel": "Produto 1319213",
+          "categoria": "Outros",
+          "litros": 3150.78,
+          "participacao": 29.63
+        },
+        {
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "categoria": "Outros",
+          "litros": 1922.24,
+          "participacao": 18.08
+        },
+        {
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "categoria": "Outros",
+          "litros": 1922.24,
+          "participacao": 18.08
+        },
+        {
+          "produtoCodigo": 1257885,
+          "combustivel": "Produto 1257885",
+          "categoria": "Outros",
+          "litros": 171.38,
+          "participacao": 1.61
+        },
+        {
+          "produtoCodigo": 1320666,
+          "combustivel": "Produto 1320666",
+          "categoria": "Outros",
+          "litros": 171.38,
+          "participacao": 1.61
+        },
+        {
+          "produtoCodigo": 1260803,
+          "combustivel": "Produto 1260803",
+          "categoria": "Outros",
+          "litros": 72.77,
+          "participacao": 0.68
+        },
+        {
+          "produtoCodigo": 1320665,
+          "combustivel": "Produto 1320665",
+          "categoria": "Outros",
+          "litros": 72.77,
+          "participacao": 0.68
+        }
+      ],
+      "ranking": [
+        {
+          "posicao": 1,
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "litros": 10634.34,
+          "participacao": 100.0
+        }
+      ],
+      "detalhes": [
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257884,
+          "combustivel": "Produto 1257884",
+          "data": "2026-06-08",
+          "litros": 3150.78,
+          "participacao": 29.63
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1319213,
+          "combustivel": "Produto 1319213",
+          "data": "2026-06-08",
+          "litros": 3150.78,
+          "participacao": 29.63
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "data": "2026-06-08",
+          "litros": 1922.24,
+          "participacao": 18.08
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "data": "2026-06-08",
+          "litros": 1922.24,
+          "participacao": 18.08
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257885,
+          "combustivel": "Produto 1257885",
+          "data": "2026-06-08",
+          "litros": 171.38,
+          "participacao": 1.61
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320666,
+          "combustivel": "Produto 1320666",
+          "data": "2026-06-08",
+          "litros": 171.38,
+          "participacao": 1.61
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1260803,
+          "combustivel": "Produto 1260803",
+          "data": "2026-06-08",
+          "litros": 72.77,
+          "participacao": 0.68
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1320665,
+          "combustivel": "Produto 1320665",
+          "data": "2026-06-08",
+          "litros": 72.77,
+          "participacao": 0.68
+        }
+      ],
+      "agrupamento": {
+        "empresaCodigo": true,
+        "produtoCodigo": true,
+        "data": true
+      },
+      "consistencia": {
+        "somaCombustiveis": 10634.34,
+        "somaFiliais": 10634.34
+      },
+      "kpis": {
+        "litrosVendidos": 10634.34,
+        "combustivelLider": {
+          "nome": "Produto 1257884",
+          "litros": 3150.78
+        },
+        "filialLider": {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "litros": 10634.34
+        },
+        "participacaoDiesel": 0.0,
+        "participacaoGasolina": 0.0,
+        "participacaoEtanol": 0.0
+      }
+    },
+    "error": null
+  },
+  "warnings": []
+}

@@ -1,0 +1,1039 @@
+{
+  "sprint": "F04.4",
+  "windows": {
+    "7d": {
+      "window": "7d",
+      "periodo": {
+        "inicio": "2026-06-01",
+        "fim": "2026-06-07"
+      },
+      "buildMs": 14.4,
+      "executiveAnswers": {
+        "1_elegiveisPromocao": 0,
+        "2_elegiveisBonus": 1,
+        "3_precisamTreinamento": 10,
+        "4_precisamAuditoria": 5,
+        "5_principalPromocao": null,
+        "6_principalBonus": {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "bonusRecomendado": 52.79,
+          "resultadoLiquido": 1055.86,
+          "bonusRoiEsperado": 20.0,
+          "evidence": {
+            "bonusEligibility": "Elegível",
+            "resultadoLiquido": 1055.86,
+            "accountabilityScore": 100.0
+          }
+        },
+        "7_maiorRiscoOperacional": {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "recommendedActions": [
+            "TREINAR",
+            "AUDITAR",
+            "REESTRUTURAR_PDV"
+          ],
+          "primaryAction": "TREINAR",
+          "evidence": {
+            "TREINAR": {
+              "accountabilityScore": 30.0,
+              "faltas": 252.27
+            },
+            "AUDITAR": {
+              "riskScore": 75.28,
+              "destruicaoMargem": 504.54,
+              "receitaBruta": 1139.53
+            },
+            "REESTRUTURAR_PDV": {
+              "pdvCodigo": 15880,
+              "problemaEstrutural": true
+            }
+          },
+          "globalScore": 62.28,
+          "accountabilityScore": 30.0,
+          "roiNorm": 55.72,
+          "riskScore": 75.28,
+          "resultadoLiquido": 634.99,
+          "profitabilityBand": "NEUTRO",
+          "globalClassification": "NORMAL"
+        },
+        "8_emRecuperacao": [],
+        "9_emObservacao": [
+          {
+            "funcionarioCodigo": 252430,
+            "employeeName": "CLEYTON ALVES DA COSTA",
+            "governanceBand": "EM_OBSERVACAO",
+            "globalScore": 40.08,
+            "accountabilityScore": 50.0,
+            "profitabilityBand": "NEUTRO",
+            "primaryAction": "TREINAR"
+          },
+          {
+            "funcionarioCodigo": 80203,
+            "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+            "governanceBand": "EM_OBSERVACAO",
+            "globalScore": 39.15,
+            "accountabilityScore": 50.0,
+            "profitabilityBand": "NEUTRO",
+            "primaryAction": "TREINAR"
+          },
+          {
+            "funcionarioCodigo": 63048,
+            "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+            "governanceBand": "EM_OBSERVACAO",
+            "globalScore": 32.16,
+            "accountabilityScore": 50.0,
+            "profitabilityBand": "NEUTRO",
+            "primaryAction": "TREINAR"
+          },
+          {
+            "funcionarioCodigo": 249526,
+            "employeeName": "THACIANNA RIBEIRO DA SILVA",
+            "governanceBand": "EM_OBSERVACAO",
+            "globalScore": 28.54,
+            "accountabilityScore": 50.0,
+            "profitabilityBand": "NEUTRO",
+            "primaryAction": "TREINAR"
+          },
+          {
+            "funcionarioCodigo": 276288,
+            "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "governanceBand": "EM_OBSERVACAO",
+            "globalScore": 25.0,
+            "accountabilityScore": 100.0,
+            "profitabilityBand": null,
+            "primaryAction": "MONITORAR"
+          }
+        ],
+        "10_pdvIntervencaoImediata": {
+          "pdvCodigo": 54193,
+          "turno": "1º Turno",
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "operationBand": "ATENÇÃO",
+          "operationScore": 41.2,
+          "managementActions": [
+            "REESTRUTURAR_PDV",
+            "TREINAR",
+            "AUDITAR"
+          ],
+          "primaryAction": "REESTRUTURAR_PDV",
+          "resultadoLiquido": 634.99,
+          "roi": 1.26
+        },
+        "11_turnoIntervencaoImediata": {
+          "turno": "1º Turno",
+          "turnoCodigo": 1,
+          "receitaBruta": 2196.79,
+          "destruicaoMargem": 1533.8,
+          "margemOperacional": 662.99,
+          "cancelamentos": 0.0,
+          "faltas": 766.9,
+          "sobras": 0,
+          "perdasCaixa": 766.9,
+          "quantidadeVendas": 106,
+          "resultadoLiquido": 662.99,
+          "riscoEconomico": 1533.8,
+          "roi": 0.43,
+          "incidenciaQuebraPct": 100.0
+        },
+        "12_acoesAutomaticasGeradas": 13,
+        "13_acaoMaisRecorrente": "REESTRUTURAR_PDV",
+        "14_impactoFinanceiroEsperado": 52.79,
+        "15_riscoReduzivel": 504.54,
+        "16_valorRecuperavel": 151.36,
+        "17_gestaoMeritocratica": true,
+        "18_planoCarreira": false,
+        "19_governancaOperacional": true,
+        "20_aprovadoF045": true,
+        "paridadeDelta": 0.0
+      },
+      "qa": {
+        "paridadeDelta": 0.0,
+        "paridadeZero": true,
+        "acoesSemEvidencia": 0,
+        "falsosPositivos": 0,
+        "totalAcoes": 13,
+        "acoesComEvidenciaPct": 100.0,
+        "evidenciaCompleta": true,
+        "paridadeReceitaF042": 6836.4,
+        "paridadeReceitaF043": 6836.4
+      },
+      "parecerFinal": "[PARECER FINAL: APROVADO PARA F04.5]",
+      "paridadeDelta": 0.0,
+      "governanceBands": {
+        "ALTA_PERFORMANCE": 3,
+        "CRITICO": 5,
+        "EM_OBSERVACAO": 5
+      },
+      "actionCounts": {
+        "BONIFICAR": 1,
+        "REALOCACAO": 1,
+        "REESTRUTURAR_PDV": 13,
+        "TREINAR": 10,
+        "AUDITAR": 5,
+        "MONITORAR": 6
+      },
+      "cockpit": {
+        "acoesPendentes": [
+          {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "recommendedActions": [
+              "BONIFICAR",
+              "REALOCACAO",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "BONIFICAR",
+            "evidence": {
+              "BONIFICAR": {
+                "bonusEligibility": "Elegível",
+                "resultadoLiquido": 1055.86,
+                "accountabilityScore": 100.0
+              },
+              "REALOCACAO": {
+                "performsInBadPdv": true
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 80.54,
+            "accountabilityScore": 100.0,
+            "roiNorm": 99.87,
+            "riskScore": 0.13,
+            "resultadoLiquido": 1055.86,
+            "profitabilityBand": "GERA_LUCRO",
+            "globalClassification": "ALTA PERFORMANCE"
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "recommendedActions": [
+              "TREINAR",
+              "AUDITAR",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "TREINAR",
+            "evidence": {
+              "TREINAR": {
+                "accountabilityScore": 30.0,
+                "faltas": 252.27
+              },
+              "AUDITAR": {
+                "riskScore": 75.28,
+                "destruicaoMargem": 504.54,
+                "receitaBruta": 1139.53
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 62.28,
+            "accountabilityScore": 30.0,
+            "roiNorm": 55.72,
+            "riskScore": 75.28,
+            "resultadoLiquido": 634.99,
+            "profitabilityBand": "NEUTRO",
+            "globalClassification": "NORMAL"
+          },
+          {
+            "funcionarioCodigo": 251934,
+            "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "recommendedActions": [
+              "TREINAR",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "TREINAR",
+            "evidence": {
+              "TREINAR": {
+                "accountabilityScore": 50.0,
+                "faltas": 0.0
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 57.23,
+            "accountabilityScore": 50.0,
+            "roiNorm": 100.0,
+            "riskScore": 15.0,
+            "resultadoLiquido": 1645.82,
+            "profitabilityBand": "GERA_LUCRO",
+            "globalClassification": "NORMAL"
+          },
+          {
+            "funcionarioCodigo": 163694,
+            "employeeName": "MARINALDO RIBEIRO DA SILVA",
+            "recommendedActions": [
+              "TREINAR",
+              "MONITORAR",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "TREINAR",
+            "evidence": {
+              "TREINAR": {
+                "accountabilityScore": 50.0,
+                "faltas": 0.0
+              },
+              "MONITORAR": {
+                "bonusEligibility": "Não Elegível",
+                "globalClassification": "ATENÇÃO"
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 48.77,
+            "accountabilityScore": 50.0,
+            "roiNorm": 100.0,
+            "riskScore": 15.0,
+            "resultadoLiquido": 1208.05,
+            "profitabilityBand": "GERA_LUCRO",
+            "globalClassification": "ATENÇÃO"
+          },
+          {
+            "funcionarioCodigo": 252430,
+            "employeeName": "CLEYTON ALVES DA COSTA",
+            "recommendedActions": [
+              "TREINAR",
+              "MONITORAR",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "TREINAR",
+            "evidence": {
+              "TREINAR": {
+                "accountabilityScore": 50.0,
+                "faltas": 0.0
+              },
+              "MONITORAR": {
+                "bonusEligibility": "Não Elegível",
+                "globalClassification": "ATENÇÃO"
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 40.08,
+            "accountabilityScore": 50.0,
+            "roiNorm": 100.0,
+            "riskScore": 25.0,
+            "resultadoLiquido": 555.34,
+            "profitabilityBand": "NEUTRO",
+            "globalClassification": "ATENÇÃO"
+          },
+          {
+            "funcionarioCodigo": 80203,
+            "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+            "recommendedActions": [
+              "TREINAR",
+              "MONITORAR",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "TREINAR",
+            "evidence": {
+              "TREINAR": {
+                "accountabilityScore": 50.0,
+                "faltas": 0.0
+              },
+              "MONITORAR": {
+                "bonusEligibility": "Não Elegível",
+                "globalClassification": "ATENÇÃO"
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 39.15,
+            "accountabilityScore": 50.0,
+            "roiNorm": 99.92,
+            "riskScore": 29.08,
+            "resultadoLiquido": 1014.3,
+            "profitabilityBand": "NEUTRO",
+            "globalClassification": "ATENÇÃO"
+          },
+          {
+            "funcionarioCodigo": 63048,
+            "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+            "recommendedActions": [
+              "TREINAR",
+              "MONITORAR",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "TREINAR",
+            "evidence": {
+              "TREINAR": {
+                "accountabilityScore": 50.0,
+                "faltas": 0.0
+              },
+              "MONITORAR": {
+                "bonusEligibility": "Não Elegível",
+                "globalClassification": "ATENÇÃO"
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 32.16,
+            "accountabilityScore": 50.0,
+            "roiNorm": 100.0,
+            "riskScore": 25.0,
+            "resultadoLiquido": 120.0,
+            "profitabilityBand": "NEUTRO",
+            "globalClassification": "ATENÇÃO"
+          },
+          {
+            "funcionarioCodigo": 249526,
+            "employeeName": "THACIANNA RIBEIRO DA SILVA",
+            "recommendedActions": [
+              "TREINAR",
+              "MONITORAR",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "TREINAR",
+            "evidence": {
+              "TREINAR": {
+                "accountabilityScore": 50.0,
+                "faltas": 0.0
+              },
+              "MONITORAR": {
+                "bonusEligibility": "Não Elegível",
+                "globalClassification": "ATENÇÃO"
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 28.54,
+            "accountabilityScore": 50.0,
+            "roiNorm": 100.0,
+            "riskScore": 25.0,
+            "resultadoLiquido": 95.25,
+            "profitabilityBand": "NEUTRO",
+            "globalClassification": "ATENÇÃO"
+          },
+          {
+            "funcionarioCodigo": 276288,
+            "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "recommendedActions": [
+              "MONITORAR",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "MONITORAR",
+            "evidence": {
+              "MONITORAR": {
+                "bonusEligibility": "Não Elegível",
+                "globalClassification": "ATENÇÃO"
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 25.0,
+            "accountabilityScore": 100.0,
+            "roiNorm": 0.0,
+            "riskScore": 20.0,
+            "resultadoLiquido": null,
+            "profitabilityBand": null,
+            "globalClassification": "ATENÇÃO"
+          },
+          {
+            "funcionarioCodigo": 158924,
+            "employeeName": "JOÃO VICTOR APOIO",
+            "recommendedActions": [
+              "AUDITAR",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "AUDITAR",
+            "evidence": {
+              "AUDITAR": {
+                "riskScore": 54.05,
+                "destruicaoMargem": 0.0,
+                "receitaBruta": 0.0
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 21.63,
+            "accountabilityScore": 86.51,
+            "roiNorm": 0.0,
+            "riskScore": 54.05,
+            "resultadoLiquido": null,
+            "profitabilityBand": null,
+            "globalClassification": "CRÍTICO"
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+            "recommendedActions": [
+              "TREINAR",
+              "AUDITAR",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "TREINAR",
+            "evidence": {
+              "TREINAR": {
+                "accountabilityScore": 69.33,
+                "faltas": 0.0
+              },
+              "AUDITAR": {
+                "riskScore": 59.2,
+                "destruicaoMargem": 0.0,
+                "receitaBruta": 0.0
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 17.33,
+            "accountabilityScore": 69.33,
+            "roiNorm": 0.0,
+            "riskScore": 59.2,
+            "resultadoLiquido": null,
+            "profitabilityBand": null,
+            "globalClassification": "CRÍTICO"
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "employeeName": "WILLY KLEBYSON DA SILVA",
+            "recommendedActions": [
+              "TREINAR",
+              "AUDITAR",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "TREINAR",
+            "evidence": {
+              "TREINAR": {
+                "accountabilityScore": 67.59,
+                "faltas": 0.0
+              },
+              "AUDITAR": {
+                "riskScore": 59.72,
+                "destruicaoMargem": 0.0,
+                "receitaBruta": 0.0
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 16.9,
+            "accountabilityScore": 67.59,
+            "roiNorm": 0.0,
+            "riskScore": 59.72,
+            "resultadoLiquido": null,
+            "profitabilityBand": null,
+            "globalClassification": "CRÍTICO"
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "employeeName": "FABIANO RODRIGUES",
+            "recommendedActions": [
+              "TREINAR",
+              "AUDITAR",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "TREINAR",
+            "evidence": {
+              "TREINAR": {
+                "accountabilityScore": 40.13,
+                "faltas": 0.0
+              },
+              "AUDITAR": {
+                "riskScore": 67.96,
+                "destruicaoMargem": 0.0,
+                "receitaBruta": 0.0
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 10.03,
+            "accountabilityScore": 40.13,
+            "roiNorm": 0.0,
+            "riskScore": 67.96,
+            "resultadoLiquido": null,
+            "profitabilityBand": null,
+            "globalClassification": "CRÍTICO"
+          }
+        ],
+        "promocoes": [],
+        "bonificacoes": [
+          {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "bonusRecomendado": 52.79,
+            "resultadoLiquido": 1055.86,
+            "bonusRoiEsperado": 20.0,
+            "evidence": {
+              "bonusEligibility": "Elegível",
+              "resultadoLiquido": 1055.86,
+              "accountabilityScore": 100.0
+            }
+          }
+        ],
+        "treinamentos": [
+          {
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "trainingCategories": [
+              "CAIXA"
+            ],
+            "evidence": {
+              "accountabilityScore": 30.0,
+              "faltas": 252.27
+            }
+          },
+          {
+            "funcionarioCodigo": 251934,
+            "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "trainingCategories": [
+              "CAIXA"
+            ],
+            "evidence": {
+              "accountabilityScore": 50.0,
+              "faltas": 0.0
+            }
+          },
+          {
+            "funcionarioCodigo": 163694,
+            "employeeName": "MARINALDO RIBEIRO DA SILVA",
+            "trainingCategories": [
+              "CAIXA"
+            ],
+            "evidence": {
+              "accountabilityScore": 50.0,
+              "faltas": 0.0
+            }
+          },
+          {
+            "funcionarioCodigo": 252430,
+            "employeeName": "CLEYTON ALVES DA COSTA",
+            "trainingCategories": [
+              "CAIXA"
+            ],
+            "evidence": {
+              "accountabilityScore": 50.0,
+              "faltas": 0.0
+            }
+          },
+          {
+            "funcionarioCodigo": 80203,
+            "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+            "trainingCategories": [
+              "CAIXA",
+              "CONFORMIDADE",
+              "DESCONTOS"
+            ],
+            "evidence": {
+              "accountabilityScore": 50.0,
+              "faltas": 0.0
+            }
+          },
+          {
+            "funcionarioCodigo": 63048,
+            "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+            "trainingCategories": [
+              "CAIXA"
+            ],
+            "evidence": {
+              "accountabilityScore": 50.0,
+              "faltas": 0.0
+            }
+          },
+          {
+            "funcionarioCodigo": 249526,
+            "employeeName": "THACIANNA RIBEIRO DA SILVA",
+            "trainingCategories": [
+              "CAIXA",
+              "VENDAS"
+            ],
+            "evidence": {
+              "accountabilityScore": 50.0,
+              "faltas": 0.0
+            }
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+            "trainingCategories": [
+              "CAIXA",
+              "VENDAS"
+            ],
+            "evidence": {
+              "accountabilityScore": 69.33,
+              "faltas": 0.0
+            }
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "employeeName": "WILLY KLEBYSON DA SILVA",
+            "trainingCategories": [
+              "CAIXA",
+              "VENDAS"
+            ],
+            "evidence": {
+              "accountabilityScore": 67.59,
+              "faltas": 0.0
+            }
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "employeeName": "FABIANO RODRIGUES",
+            "trainingCategories": [
+              "CAIXA",
+              "VENDAS"
+            ],
+            "evidence": {
+              "accountabilityScore": 40.13,
+              "faltas": 0.0
+            }
+          }
+        ],
+        "auditorias": [
+          {
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "recommendedActions": [
+              "TREINAR",
+              "AUDITAR",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "TREINAR",
+            "evidence": {
+              "TREINAR": {
+                "accountabilityScore": 30.0,
+                "faltas": 252.27
+              },
+              "AUDITAR": {
+                "riskScore": 75.28,
+                "destruicaoMargem": 504.54,
+                "receitaBruta": 1139.53
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 62.28,
+            "accountabilityScore": 30.0,
+            "roiNorm": 55.72,
+            "riskScore": 75.28,
+            "resultadoLiquido": 634.99,
+            "profitabilityBand": "NEUTRO",
+            "globalClassification": "NORMAL"
+          },
+          {
+            "funcionarioCodigo": 158924,
+            "employeeName": "JOÃO VICTOR APOIO",
+            "recommendedActions": [
+              "AUDITAR",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "AUDITAR",
+            "evidence": {
+              "AUDITAR": {
+                "riskScore": 54.05,
+                "destruicaoMargem": 0.0,
+                "receitaBruta": 0.0
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 21.63,
+            "accountabilityScore": 86.51,
+            "roiNorm": 0.0,
+            "riskScore": 54.05,
+            "resultadoLiquido": null,
+            "profitabilityBand": null,
+            "globalClassification": "CRÍTICO"
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+            "recommendedActions": [
+              "TREINAR",
+              "AUDITAR",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "TREINAR",
+            "evidence": {
+              "TREINAR": {
+                "accountabilityScore": 69.33,
+                "faltas": 0.0
+              },
+              "AUDITAR": {
+                "riskScore": 59.2,
+                "destruicaoMargem": 0.0,
+                "receitaBruta": 0.0
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 17.33,
+            "accountabilityScore": 69.33,
+            "roiNorm": 0.0,
+            "riskScore": 59.2,
+            "resultadoLiquido": null,
+            "profitabilityBand": null,
+            "globalClassification": "CRÍTICO"
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "employeeName": "WILLY KLEBYSON DA SILVA",
+            "recommendedActions": [
+              "TREINAR",
+              "AUDITAR",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "TREINAR",
+            "evidence": {
+              "TREINAR": {
+                "accountabilityScore": 67.59,
+                "faltas": 0.0
+              },
+              "AUDITAR": {
+                "riskScore": 59.72,
+                "destruicaoMargem": 0.0,
+                "receitaBruta": 0.0
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 16.9,
+            "accountabilityScore": 67.59,
+            "roiNorm": 0.0,
+            "riskScore": 59.72,
+            "resultadoLiquido": null,
+            "profitabilityBand": null,
+            "globalClassification": "CRÍTICO"
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "employeeName": "FABIANO RODRIGUES",
+            "recommendedActions": [
+              "TREINAR",
+              "AUDITAR",
+              "REESTRUTURAR_PDV"
+            ],
+            "primaryAction": "TREINAR",
+            "evidence": {
+              "TREINAR": {
+                "accountabilityScore": 40.13,
+                "faltas": 0.0
+              },
+              "AUDITAR": {
+                "riskScore": 67.96,
+                "destruicaoMargem": 0.0,
+                "receitaBruta": 0.0
+              },
+              "REESTRUTURAR_PDV": {
+                "pdvCodigo": 15880,
+                "problemaEstrutural": true
+              }
+            },
+            "globalScore": 10.03,
+            "accountabilityScore": 40.13,
+            "roiNorm": 0.0,
+            "riskScore": 67.96,
+            "resultadoLiquido": null,
+            "profitabilityBand": null,
+            "globalClassification": "CRÍTICO"
+          }
+        ],
+        "pdvsCriticos": [
+          {
+            "pdvCodigo": 54193,
+            "receitaBruta": 1139.53,
+            "destruicaoMargem": 959.22,
+            "margemOperacional": 180.31,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 479.61,
+            "sobras": 0,
+            "perdasCaixa": 479.61,
+            "quantidadeVendas": 38,
+            "resultadoLiquido": 180.31,
+            "riscoEconomico": 959.22,
+            "roi": 0.19,
+            "monitoramentoPrioritario": true
+          }
+        ],
+        "turnosCriticos": []
+      }
+    }
+  },
+  "executiveAnswers": {
+    "1_elegiveisPromocao": 0,
+    "2_elegiveisBonus": 1,
+    "3_precisamTreinamento": 10,
+    "4_precisamAuditoria": 5,
+    "5_principalPromocao": null,
+    "6_principalBonus": {
+      "funcionarioCodigo": 178278,
+      "employeeName": "APOIO LOJA .",
+      "bonusRecomendado": 52.79,
+      "resultadoLiquido": 1055.86,
+      "bonusRoiEsperado": 20.0,
+      "evidence": {
+        "bonusEligibility": "Elegível",
+        "resultadoLiquido": 1055.86,
+        "accountabilityScore": 100.0
+      }
+    },
+    "7_maiorRiscoOperacional": {
+      "funcionarioCodigo": 294273,
+      "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+      "recommendedActions": [
+        "TREINAR",
+        "AUDITAR",
+        "REESTRUTURAR_PDV"
+      ],
+      "primaryAction": "TREINAR",
+      "evidence": {
+        "TREINAR": {
+          "accountabilityScore": 30.0,
+          "faltas": 252.27
+        },
+        "AUDITAR": {
+          "riskScore": 75.28,
+          "destruicaoMargem": 504.54,
+          "receitaBruta": 1139.53
+        },
+        "REESTRUTURAR_PDV": {
+          "pdvCodigo": 15880,
+          "problemaEstrutural": true
+        }
+      },
+      "globalScore": 62.28,
+      "accountabilityScore": 30.0,
+      "roiNorm": 55.72,
+      "riskScore": 75.28,
+      "resultadoLiquido": 634.99,
+      "profitabilityBand": "NEUTRO",
+      "globalClassification": "NORMAL"
+    },
+    "8_emRecuperacao": [],
+    "9_emObservacao": [
+      {
+        "funcionarioCodigo": 252430,
+        "employeeName": "CLEYTON ALVES DA COSTA",
+        "governanceBand": "EM_OBSERVACAO",
+        "globalScore": 40.08,
+        "accountabilityScore": 50.0,
+        "profitabilityBand": "NEUTRO",
+        "primaryAction": "TREINAR"
+      },
+      {
+        "funcionarioCodigo": 80203,
+        "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+        "governanceBand": "EM_OBSERVACAO",
+        "globalScore": 39.15,
+        "accountabilityScore": 50.0,
+        "profitabilityBand": "NEUTRO",
+        "primaryAction": "TREINAR"
+      },
+      {
+        "funcionarioCodigo": 63048,
+        "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+        "governanceBand": "EM_OBSERVACAO",
+        "globalScore": 32.16,
+        "accountabilityScore": 50.0,
+        "profitabilityBand": "NEUTRO",
+        "primaryAction": "TREINAR"
+      },
+      {
+        "funcionarioCodigo": 249526,
+        "employeeName": "THACIANNA RIBEIRO DA SILVA",
+        "governanceBand": "EM_OBSERVACAO",
+        "globalScore": 28.54,
+        "accountabilityScore": 50.0,
+        "profitabilityBand": "NEUTRO",
+        "primaryAction": "TREINAR"
+      },
+      {
+        "funcionarioCodigo": 276288,
+        "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+        "governanceBand": "EM_OBSERVACAO",
+        "globalScore": 25.0,
+        "accountabilityScore": 100.0,
+        "profitabilityBand": null,
+        "primaryAction": "MONITORAR"
+      }
+    ],
+    "10_pdvIntervencaoImediata": {
+      "pdvCodigo": 54193,
+      "turno": "1º Turno",
+      "funcionarioCodigo": 294273,
+      "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+      "operationBand": "ATENÇÃO",
+      "operationScore": 41.2,
+      "managementActions": [
+        "REESTRUTURAR_PDV",
+        "TREINAR",
+        "AUDITAR"
+      ],
+      "primaryAction": "REESTRUTURAR_PDV",
+      "resultadoLiquido": 634.99,
+      "roi": 1.26
+    },
+    "11_turnoIntervencaoImediata": {
+      "turno": "1º Turno",
+      "turnoCodigo": 1,
+      "receitaBruta": 2196.79,
+      "destruicaoMargem": 1533.8,
+      "margemOperacional": 662.99,
+      "cancelamentos": 0.0,
+      "faltas": 766.9,
+      "sobras": 0,
+      "perdasCaixa": 766.9,
+      "quantidadeVendas": 106,
+      "resultadoLiquido": 662.99,
+      "riscoEconomico": 1533.8,
+      "roi": 0.43,
+      "incidenciaQuebraPct": 100.0
+    },
+    "12_acoesAutomaticasGeradas": 13,
+    "13_acaoMaisRecorrente": "REESTRUTURAR_PDV",
+    "14_impactoFinanceiroEsperado": 52.79,
+    "15_riscoReduzivel": 504.54,
+    "16_valorRecuperavel": 151.36,
+    "17_gestaoMeritocratica": true,
+    "18_planoCarreira": false,
+    "19_governancaOperacional": true,
+    "20_aprovadoF045": true,
+    "paridadeDelta": 0.0
+  },
+  "parecerFinal": "[PARECER FINAL: APROVADO PARA F04.5]",
+  "acceptance": {
+    "actionEngine": true,
+    "governance": true,
+    "promotions": true,
+    "bonus": true,
+    "training": true,
+    "cockpit": true,
+    "paridadeZero": true,
+    "evidenciaCompleta": true,
+    "aprovado": true
+  }
+}

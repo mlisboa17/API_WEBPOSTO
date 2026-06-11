@@ -1,0 +1,7 @@
+# TRAINING RECOMMENDATION — F04.1 · Agente 7
+
+Categorias: Caixa · Atendimento · Vendas · Combustível · Compliance.
+
+Operadores com recomendação: FABIANO RODRIGUES (299151), MARINALDO RIBEIRO DA SILVA (163694), CLEYTON ALVES DA COSTA (252430), LUCIANO PEREIRA DA SILVA JUNIOR (80203), HENRIQUE DO ESPIRITO SANTOS SILVA (63048)
+
+Acompanhamento: —

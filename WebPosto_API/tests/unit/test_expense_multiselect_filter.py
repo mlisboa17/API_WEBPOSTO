@@ -13,9 +13,16 @@ from src.services.network_financial_overview_service import FinancialOverviewFil
 def _service_with_rows(rows: list[dict]) -> NetworkFinancialOverviewService:
     client = MagicMock()
     service = NetworkFinancialOverviewService(client)
-    client.call_endpoint = AsyncMock(
-        return_value=WebPostoResponse.ok({"resultados": rows, "synthetic": False})
-    )
+
+    async def _call(endpoint_key: str, params=None):
+        del params
+        if endpoint_key == "despesas_financeiro_rede":
+            payload = rows
+        else:
+            payload = []
+        return WebPostoResponse.ok({"resultados": payload, "synthetic": False, "ultimaPagina": True})
+
+    client.call_endpoint = AsyncMock(side_effect=_call)
     return service
 
 
@@ -88,4 +95,8 @@ async def test_get_financial_expenses_single_fetch() -> None:
     assert data["total"] == 1
     assert data["data"][0]["empresaCodigo"] == 11495
     assert Decimal(str(data["data"][0]["valor"])) == Decimal("50")
-    service.client.call_endpoint.assert_awaited_once()
+    assert service.client.call_endpoint.await_count >= 1
+    financeiro_calls = [
+        c for c in service.client.call_endpoint.await_args_list if c.args[0] == "despesas_financeiro_rede"
+    ]
+    assert len(financeiro_calls) == 1

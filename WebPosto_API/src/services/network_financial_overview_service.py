@@ -99,6 +99,12 @@ class FinancialOverviewFilters:
     vencimento_inicial: str | None = None
     vencimento_final: str | None = None
     categoria_logos: str | None = None
+    texto: str | None = None
+    expense_natures: tuple[str, ...] | None = None
+    expense_management_groups: tuple[str, ...] | None = None
+    expense_management_classes: tuple[str, ...] | None = None
+    dre_impact: str | None = None
+    cashflow_impact: str | None = None
 
 
 class NetworkFinancialOverviewService:
@@ -277,8 +283,21 @@ class NetworkFinancialOverviewService:
         if filters.status and not self._eq_text(row.get("status"), filters.status):
             return False
 
-        if filters.origem and not self._eq_text(row.get("origem"), filters.origem):
+        if filters.origem and not self._expense_origem_matches(row, filters.origem):
             return False
+
+        if filters.texto:
+            blob = " ".join(
+                str(row.get(key) or "")
+                for key in ("descricao", "planoConta", "centroCusto", "tipoDespesa")
+            )
+            if not self._contains(blob, filters.texto):
+                return False
+
+        if filters.categoria_logos:
+            cat = str(row.get("categoria") or row.get("categoriaLogos") or "")
+            if cat.casefold() != filters.categoria_logos.casefold():
+                return False
 
         return True
 
@@ -358,6 +377,350 @@ class NetworkFinancialOverviewService:
 
         return self._dedupe_rows(normalized, keys=self._EXPENSE_DEDUPE_KEYS), None
 
+    _SCREEN_EXPENSE_DEDUPE_KEYS = (
+        "origem",
+        "empresaCodigo",
+        "data",
+        "caixaCodigo",
+        "turnoCodigo",
+        "pdvCodigo",
+        "funcionarioCodigo",
+    )
+
+    _CLOSURE_RAW_DEDUPE_KEYS = (
+        "empresaCodigo",
+        "caixaCodigo",
+        "turnoCodigo",
+        "pdvCodigo",
+    )
+
+    @classmethod
+    def _closure_key(cls, row: dict[str, Any], data: str | None = None) -> tuple[Any, ...]:
+        dt = data or cls._shift_expense_date(row)
+        return (
+            row.get("empresaCodigo") or row.get("ap_empresaCodigo"),
+            str(dt or "")[:10],
+            row.get("caixaCodigo") or row.get("ap_caixaCodigo"),
+            row.get("turnoCodigo") or row.get("ap_turnoCodigo"),
+            row.get("pdvCodigo") or row.get("ap_pdvCodigo"),
+        )
+
+    @classmethod
+    def _dedupe_closure_source_rows(cls, rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        seen: set[tuple[Any, ...]] = set()
+        deduped: list[dict[str, Any]] = []
+        for row in rows:
+            key = cls._closure_key(row)
+            if key in seen:
+                continue
+            seen.add(key)
+            deduped.append(row)
+        return deduped
+
+    @staticmethod
+    def _shift_expense_date(row: dict[str, Any]) -> str:
+        return str(
+            row.get("dataMovimento")
+            or row.get("fechamento")
+            or row.get("abertura")
+            or row.get("data")
+            or row.get("dataLancamento")
+            or ""
+        )[:10]
+
+    @staticmethod
+    def _expense_description(row: dict[str, Any]) -> str:
+        return str(
+            row.get("descricaoDocumento")
+            or row.get("descricao")
+            or row.get("planoContaGerencialDescricao")
+            or row.get("planoConta")
+            or row.get("descricaoPlanoConta")
+            or ""
+        ).strip()
+
+    def _expense_categoria(self, descricao: str, plano: str, centro: str) -> str:
+        from src.services.logos_expense_classifier_v3 import classify_with_all_versions
+
+        classified = classify_with_all_versions(
+            descricao,
+            plano,
+            "",
+            centro,
+            descricao,
+        )
+        return str(classified.get("categoriaLogos") or "OUTROS")
+
+    def _normalize_financeiro_screen_expense(self, row: dict[str, Any]) -> dict[str, Any] | None:
+        item = self._normalize_expense(row)
+        if not item:
+            return None
+        descricao = self._expense_description(row) or str(item.get("planoConta") or "")
+        item["origem"] = "financeiro"
+        item["descricao"] = descricao
+        item["caixaCodigo"] = row.get("caixaCodigo")
+        item["pdvCodigo"] = row.get("pdvCodigo")
+        item["funcionarioCodigo"] = row.get("funcionarioCodigo")
+        item["matchFinanceiro"] = False
+        item["fonte"] = "DESPESAS_FINANCEIRO_REDE"
+        item["categoria"] = self._expense_categoria(descricao, str(item.get("planoConta") or ""), str(item.get("centroCusto") or ""))
+        return item
+
+    @classmethod
+    def _expense_origem_matches(cls, row: dict[str, Any], origem_filter: str) -> bool:
+        wanted = str(origem_filter or "").strip().casefold()
+        if not wanted:
+            return True
+        row_origem = str(row.get("origem") or "").strip().casefold()
+        if row_origem == wanted:
+            return True
+        if wanted == "pdv" and row_origem == "caixa":
+            apurado = cls._to_decimal(row.get("despesaApurado") or row.get("valor"))
+            return apurado is not None and apurado > 0
+        if wanted == "caixa" and row_origem == "caixa":
+            apresentado = cls._to_decimal(row.get("despesaApresentado") or row.get("valor"))
+            return apresentado is not None and apresentado > 0
+        return False
+
+    def _normalize_closure_screen_expense(self, merged: dict[str, Any]) -> dict[str, Any] | None:
+        apurado = normalize_webposto_expense_value(
+            merged.get("ap_despesaApurado") or merged.get("despesaApurado")
+        )
+        apresentado = normalize_webposto_expense_value(
+            merged.get("ap_despesaApresentado") or merged.get("despesaApresentado")
+        )
+        if (apurado is None or apurado == 0) and (apresentado is None or apresentado == 0):
+            return None
+
+        data = self._shift_expense_date(merged)
+        if not data:
+            return None
+
+        diff_raw = merged.get("ap_despesaDiferenca") if merged.get("ap_despesaDiferenca") is not None else merged.get("despesaDiferenca")
+        if diff_raw is not None:
+            diferenca = normalize_webposto_expense_value(diff_raw) or Decimal("0")
+        elif apurado is not None and apresentado is not None:
+            diferenca = apresentado - apurado
+        else:
+            diferenca = Decimal("0")
+
+        valor = apurado if apurado not in (None, Decimal("0")) else apresentado
+        if valor is None or valor == 0:
+            return None
+
+        turno = merged.get("turno") or merged.get("turnoCodigo") or merged.get("ap_turno") or ""
+        pdv = merged.get("pdvCodigo") or merged.get("ap_pdvCodigo") or "?"
+        descricao = self._expense_description(merged)
+        if not descricao:
+            descricao = f"Despesa turno {turno} · PDV {pdv}".strip(" ·")
+
+        centro = str(
+            merged.get("centroCusto")
+            or merged.get("descricaoCentroCusto")
+            or merged.get("subCentro")
+            or merged.get("ap_centroCusto")
+            or ""
+        )
+        return {
+            "empresaCodigo": merged.get("empresaCodigo") or merged.get("ap_empresaCodigo"),
+            "data": data,
+            "valor": str(valor),
+            "descricao": descricao,
+            "planoConta": descricao,
+            "planoContaCodigo": merged.get("planoContaCodigo") or merged.get("planoContaGerencialCodigo"),
+            "tipoDespesa": "operacional",
+            "centroCusto": centro,
+            "status": "apurado",
+            "origem": "caixa",
+            "caixaCodigo": merged.get("caixaCodigo") or merged.get("ap_caixaCodigo"),
+            "pdvCodigo": merged.get("pdvCodigo") or merged.get("ap_pdvCodigo"),
+            "funcionarioCodigo": merged.get("funcionarioCodigo") or merged.get("ap_funcionarioCodigo"),
+            "turnoCodigo": merged.get("turnoCodigo") or merged.get("ap_turnoCodigo"),
+            "turno": turno,
+            "despesaApurado": str(apurado or Decimal("0")),
+            "despesaApresentado": str(apresentado or Decimal("0")),
+            "despesaDiferenca": str(diferenca.quantize(Decimal("0.01"))),
+            "matchFinanceiro": False,
+            "fonte": "CAIXA_APRESENTADO+CAIXA_REDE",
+            "categoria": "OPERACIONAL",
+            "raw": merged,
+            "synthetic": False,
+        }
+
+    def _normalize_operational_screen_expense(
+        self,
+        row: dict[str, Any],
+        *,
+        origem: str,
+        fonte: str,
+        valor_fields: tuple[str, ...],
+    ) -> dict[str, Any] | None:
+        valor_raw = None
+        for field in valor_fields:
+            if row.get(field) not in (None, "", 0, "0", "0.0", "0.00"):
+                valor_raw = row.get(field)
+                break
+        valor = normalize_webposto_expense_value(valor_raw)
+        if valor is None or valor == 0:
+            return None
+
+        data = self._shift_expense_date(row)
+        if not data:
+            return None
+
+        turno = row.get("turno") or row.get("turnoCodigo") or row.get("ap_turno") or ""
+        pdv = row.get("pdvCodigo") or row.get("ap_pdvCodigo") or "?"
+        descricao = self._expense_description(row)
+        if not descricao:
+            descricao = f"Despesa {origem} · turno {turno} · PDV {pdv}".strip(" ·")
+
+        centro = str(
+            row.get("centroCusto")
+            or row.get("descricaoCentroCusto")
+            or row.get("subCentro")
+            or row.get("ap_centroCusto")
+            or ""
+        )
+        return {
+            "empresaCodigo": row.get("empresaCodigo") or row.get("ap_empresaCodigo"),
+            "data": data,
+            "valor": str(valor),
+            "descricao": descricao,
+            "planoConta": descricao,
+            "planoContaCodigo": row.get("planoContaCodigo") or row.get("planoContaGerencialCodigo"),
+            "tipoDespesa": "operacional",
+            "centroCusto": centro,
+            "status": "apurado",
+            "origem": origem,
+            "caixaCodigo": row.get("caixaCodigo") or row.get("ap_caixaCodigo"),
+            "pdvCodigo": row.get("pdvCodigo") or row.get("ap_pdvCodigo"),
+            "funcionarioCodigo": row.get("funcionarioCodigo") or row.get("ap_funcionarioCodigo"),
+            "matchFinanceiro": False,
+            "fonte": fonte,
+            "categoria": "OPERACIONAL",
+            "raw": row,
+            "synthetic": False,
+        }
+
+    async def _fetch_paginated_endpoint(
+        self,
+        endpoint_key: str,
+        filters: FinancialOverviewFilters,
+        max_pages: int = 15,
+    ) -> list[dict[str, Any]]:
+        params: dict[str, Any] = {
+            "dataInicial": filters.data_inicial,
+            "dataFinal": filters.data_final,
+        }
+        all_rows: list[dict[str, Any]] = []
+        for page in range(max_pages):
+            page_params = {**params, "pagina": page + 1} if page else params
+            resp = await self.client.call_endpoint(endpoint_key, params=page_params)
+            if not resp.success:
+                break
+            chunk = self._rows(resp.data)
+            if not chunk:
+                break
+            all_rows.extend(chunk)
+            if isinstance(resp.data, dict) and resp.data.get("ultimaPagina", True):
+                break
+        return all_rows
+
+    @staticmethod
+    def _financeiro_match_key(row: dict[str, Any]) -> tuple[Any, str, Decimal] | None:
+        empresa = row.get("empresaCodigo")
+        data = str(row.get("data") or "")[:10]
+        valor = NetworkFinancialOverviewService._to_decimal(row.get("valor"))
+        if empresa is None or not data or valor is None:
+            return None
+        return (empresa, data, valor.quantize(Decimal("0.01")))
+
+    def _apply_financeiro_matches(self, rows: list[dict[str, Any]]) -> None:
+        financeiro_index: dict[tuple[Any, str, Decimal], list[dict[str, Any]]] = {}
+        for row in rows:
+            if row.get("origem") != "financeiro":
+                continue
+            key = self._financeiro_match_key(row)
+            if key is not None:
+                financeiro_index.setdefault(key, []).append(row)
+
+        used_financeiro: set[int] = set()
+        for row in rows:
+            if row.get("origem") == "financeiro":
+                continue
+            key = self._financeiro_match_key(row)
+            if key is None:
+                continue
+            for candidate in financeiro_index.get(key, []):
+                cid = id(candidate)
+                if cid in used_financeiro:
+                    continue
+                row["matchFinanceiro"] = True
+                used_financeiro.add(cid)
+                if not self._expense_description(row.get("raw") or {}):
+                    row["descricao"] = candidate.get("descricao") or candidate.get("planoConta") or row.get("descricao")
+                    row["planoConta"] = row["descricao"]
+                    row["categoria"] = candidate.get("categoria") or row.get("categoria")
+                break
+
+        for row in rows:
+            if row.get("origem") == "financeiro":
+                row["matchFinanceiro"] = id(row) in used_financeiro
+
+    async def _load_screen_expenses(
+        self,
+        filters: FinancialOverviewFilters,
+    ) -> tuple[list[dict[str, Any]], WebPostoResponse | None]:
+        import asyncio
+
+        despesas_resp = await self._fetch_despesas_rede(filters)
+        if not despesas_resp.success:
+            return [], despesas_resp
+
+        caixa_rede, caixa, apresentado, apresentado_rede = await asyncio.gather(
+            self._fetch_paginated_endpoint("caixa_rede", filters),
+            self._fetch_paginated_endpoint("caixa", filters),
+            self._fetch_paginated_endpoint("caixa_apresentado", filters),
+            self._fetch_paginated_endpoint("caixa_apresentado_rede", filters),
+        )
+
+        normalized: list[dict[str, Any]] = []
+        for row in self._rows(despesas_resp.data):
+            item = self._normalize_financeiro_screen_expense(row)
+            if item and self._expense_matches(item, filters):
+                normalized.append(item)
+
+        ap_map = {
+            (row.get("empresaCodigo"), row.get("caixaCodigo")): row
+            for row in (apresentado + apresentado_rede)
+        }
+        caixa_rows = caixa_rede or caixa
+        if caixa_rede and caixa:
+            seen_keys = {(r.get("empresaCodigo"), r.get("caixaCodigo")) for r in caixa_rede}
+            caixa_rows = caixa_rede + [
+                r for r in caixa if (r.get("empresaCodigo"), r.get("caixaCodigo")) not in seen_keys
+            ]
+        caixa_rows = self._dedupe_closure_source_rows(caixa_rows)
+
+        for row in caixa_rows:
+            ap = ap_map.get((row.get("empresaCodigo"), row.get("caixaCodigo")), {})
+            merged = {**row, **{f"ap_{k}": v for k, v in ap.items()}}
+
+            closure_item = self._normalize_closure_screen_expense(merged)
+            if closure_item and self._expense_matches(closure_item, filters):
+                normalized.append(closure_item)
+
+        self._apply_financeiro_matches(normalized)
+        financeiro = self._dedupe_rows(
+            [row for row in normalized if row.get("origem") == "financeiro"],
+            keys=self._EXPENSE_DEDUPE_KEYS,
+        )
+        operational = self._dedupe_rows(
+            [row for row in normalized if row.get("origem") != "financeiro"],
+            keys=self._SCREEN_EXPENSE_DEDUPE_KEYS,
+        )
+        return financeiro + operational, None
+
     async def _fetch_titulo_pagar(self, filters: FinancialOverviewFilters, empresa_codigo: int | None) -> WebPostoResponse:
         params: dict[str, Any] = {
             "dataInicial": filters.data_inicial,
@@ -387,6 +750,7 @@ class NetworkFinancialOverviewService:
             primary = await self.client.call_endpoint(primary_key, params=params_)
             if primary.success:
                 return primary
+
 
             fallback = await self.client.call_endpoint(fallback_key, params=params_)
             return fallback
@@ -648,34 +1012,136 @@ class NetworkFinancialOverviewService:
         return rows[start:end], len(rows)
 
     async def get_financial_expenses(self, filters: FinancialOverviewFilters, page: int = 1, limit: int = 50) -> WebPostoResponse:
+        from src.services.employee_cash_ledger_service import EmployeeCashLedgerService
+        from src.services.expense_lineage_service import ExpenseLineageService
+        from src.services.expense_semantic_service import ExpenseSemanticService
+        from src.services.management_classification_service import ManagementClassificationService
+
         empresas, error = await self._resolve_empresas(filters)
         if error is not None:
             return error
         empresa_lookup = self._empresa_lookup(empresas)
 
-        all_expenses, fetch_error = await self._load_filtered_expenses(filters)
+        all_expenses, fetch_error = await self._load_screen_expenses(filters)
         if fetch_error is not None:
             return fetch_error
 
-        all_expenses.sort(key=lambda x: str(x.get("data") or ""), reverse=True)
-        page_data, total = self._paginate(all_expenses, page=page, limit=limit)
+        lineage_svc = ExpenseLineageService()
+        semantic_svc = ExpenseSemanticService()
+        mgmt_svc = ManagementClassificationService()
+        ledger_svc = EmployeeCashLedgerService()
+        ctx = await lineage_svc.build_context(self, filters)
+        enriched = [
+            mgmt_svc.classify_row(semantic_svc.classify_row(lineage_svc.enrich_row(row, ctx)))
+            for row in all_expenses
+        ]
+        lineage_summary = lineage_svc.summarize(enriched)
+        semantic_summary = semantic_svc.summarize(enriched)
+        management_summary = mgmt_svc.summarize(enriched)
+        resumo_cards = semantic_svc.build_resumo_cards(semantic_summary)
+        resumo_gerencial = mgmt_svc.build_resumo_cards(management_summary)
+
+        caixa_rows = list(ctx.closure_by_key.values())
+        caixa_events = ledger_svc.build_caixa_events(caixa_rows)
+        expense_events = ledger_svc.build_expense_events(enriched)
+        balance_by_op = ledger_svc.build_balance_by_operator(caixa_events, expense_events)
+        forensics = ledger_svc.summarize_forensics(caixa_events)
+        balance_summary = ledger_svc.summarize_balance(balance_by_op)
+        accountability = ledger_svc.build_accountability(
+            caixa_events, ctx.titulos, ctx.despesas_rede, ctx.movimentos
+        )
+        recovery = ledger_svc.build_recovery(balance_by_op, accountability)
+        employee_balance_card = ledger_svc.build_employee_balance_card(balance_summary)
+
+        filtered = mgmt_svc.filter_rows(semantic_svc.filter_by_natures(enriched, filters), filters)
+        filtered.sort(key=lambda x: str(x.get("data") or ""), reverse=True)
+        page_data, total = self._paginate(filtered, page=page, limit=limit)
+
+        resumo_por_origem: dict[str, dict[str, Any]] = {}
+        for row in enriched:
+            origem = str(row.get("origem") or "desconhecido")
+            bucket = resumo_por_origem.setdefault(origem, {"count": 0, "valor": Decimal("0")})
+            bucket["count"] += 1
+            val = self._to_decimal(row.get("valor"))
+            if val is not None:
+                bucket["valor"] += val
 
         return WebPostoResponse.ok(
             {
                 "page": max(page, 1),
                 "limit": min(max(limit, 1), 500),
                 "total": total,
+                "lineageCoveragePct": lineage_summary.get("coveragePct"),
+                "lineageTracedRecords": lineage_summary.get("tracedRecords"),
+                "avgLineageConfidence": lineage_summary.get("avgLineageConfidence"),
+                "semanticClassificationPct": semantic_summary.get("classificationPct"),
+                "avgSemanticConfidence": semantic_summary.get("avgSemanticConfidence"),
+                "pctFinancialImpact": semantic_summary.get("pctFinancialImpact"),
+                "resumoPorNatureza": resumo_cards,
+                "resumoPorGrupoGerencial": resumo_gerencial,
+                "employeeCashLedger": {
+                    "forensics": forensics,
+                    "balanceSummary": balance_summary,
+                    "accountability": accountability,
+                    "recovery": recovery,
+                    "employeeBalanceCard": employee_balance_card,
+                },
+                "managementClassificationPct": 100.0 if enriched else 0.0,
+                "valorDreSim": management_summary.get("valorDreSim"),
+                "valorDreNao": management_summary.get("valorDreNao"),
+                "valorCashflowSim": management_summary.get("valorCashflowSim"),
+                "resumoPorOrigem": {
+                    k: {"count": v["count"], "valor": str(v["valor"].quantize(Decimal("0.01")))}
+                    for k, v in sorted(resumo_por_origem.items())
+                },
                 "data": [
                     {
                         "empresaCodigo": row["empresaCodigo"],
                         "filial": self._empresa_name_by_codigo(row["empresaCodigo"], empresa_lookup),
                         "data": row["data"],
                         "valor": row["valor"],
+                        "descricao": row.get("descricao") or row.get("planoConta"),
                         "planoConta": row["planoConta"],
                         "tipoDespesa": row["tipoDespesa"],
                         "centroCusto": row["centroCusto"],
                         "origem": row["origem"],
+                        "origemReal": row.get("origemReal"),
+                        "origemTecnica": row.get("origemTecnica"),
+                        "origemNegocio": row.get("origemNegocio"),
+                        "expenseNature": row.get("expenseNature"),
+                        "expenseSubNature": row.get("expenseSubNature"),
+                        "expenseNatureLabel": row.get("expenseNatureLabel"),
+                        "semanticConfidence": row.get("semanticConfidence"),
+                        "impactsFinancialResult": bool(row.get("impactsFinancialResult")),
+                        "expenseManagementGroup": row.get("expenseManagementGroup"),
+                        "expenseManagementClass": row.get("expenseManagementClass"),
+                        "expenseManagementGroupLabel": row.get("expenseManagementGroupLabel"),
+                        "expenseManagementClassLabel": row.get("expenseManagementClassLabel"),
+                        "dreImpact": row.get("dreImpact"),
+                        "cashFlowImpact": row.get("cashFlowImpact"),
+                        "employeeAccountability": bool(row.get("employeeAccountability")),
+                        "categoriaOperacional": row.get("categoriaOperacional"),
+                        "classificacaoLineage": row.get("classificacaoLineage"),
+                        "documento": row.get("documento"),
+                        "fornecedor": row.get("fornecedor"),
+                        "eventoOperacional": row.get("eventoOperacional"),
+                        "operationalFinancialMatch": row.get("operationalFinancialMatch"),
+                        "lineageConfidence": row.get("lineageConfidence"),
+                        "lineagePath": row.get("lineagePath"),
+                        "primarySource": row.get("primarySource"),
+                        "rastreabilidadeOk": bool(row.get("rastreabilidadeOk")),
+                        "categoria": row.get("categoria"),
                         "status": row["status"],
+                        "caixaCodigo": row.get("caixaCodigo"),
+                        "pdvCodigo": row.get("pdvCodigo"),
+                        "funcionarioCodigo": row.get("funcionarioCodigo"),
+                        "turnoCodigo": row.get("turnoCodigo"),
+                        "turno": row.get("turno"),
+                        "despesaApurado": row.get("despesaApurado"),
+                        "despesaApresentado": row.get("despesaApresentado"),
+                        "despesaDiferenca": row.get("despesaDiferenca"),
+                        "matchFinanceiro": bool(row.get("matchFinanceiro")),
+                        "fonte": row.get("fonte"),
                         "synthetic": False,
                     }
                     for row in page_data

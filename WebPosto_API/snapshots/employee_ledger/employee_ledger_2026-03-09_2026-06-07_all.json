@@ -1,0 +1,397 @@
+{
+  "payload": {
+    "forensics": {
+      "faltasCount": 127,
+      "sobrasCount": 65,
+      "totalFaltas": 11783.87,
+      "totalSobras": 2095.49,
+      "saldoLiquidoRede": -9688.38,
+      "pctFaltasRastreadas": 100.0,
+      "pctSobrasRastreadas": 100.0
+    },
+    "balanceSummary": {
+      "totalOperadores": 22,
+      "credoresCount": 3,
+      "devedoresCount": 19,
+      "neutrosCount": 0,
+      "saldoMedio": -440.38,
+      "saldoMaximo": 511.91,
+      "saldoMinimo": -4692.64,
+      "topCredores": [
+        {
+          "funcionarioCodigo": 160806,
+          "sobras": 549.55,
+          "faltas": 37.64,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 37.64,
+          "saldo": 511.91,
+          "classificacao": "CREDOR"
+        },
+        {
+          "funcionarioCodigo": 298451,
+          "sobras": 15.4,
+          "faltas": 0.0,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 0.0,
+          "saldo": 15.4,
+          "classificacao": "CREDOR"
+        },
+        {
+          "funcionarioCodigo": 162738,
+          "sobras": 10.33,
+          "faltas": 0.0,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 0.0,
+          "saldo": 10.33,
+          "classificacao": "CREDOR"
+        }
+      ],
+      "topDevedores": [
+        {
+          "funcionarioCodigo": 158924,
+          "sobras": 191.1,
+          "faltas": 4883.74,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 191.1,
+          "saldo": -4692.64,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 213391,
+          "sobras": 113.43,
+          "faltas": 1731.33,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 150.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 113.43,
+          "saldo": -1617.9,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 157960,
+          "sobras": 807.3,
+          "faltas": 1874.5,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 807.3,
+          "saldo": -1067.2,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "sobras": 166.98,
+          "faltas": 1216.83,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 166.98,
+          "saldo": -1049.85,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 80203,
+          "sobras": 0.0,
+          "faltas": 571.93,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 0.0,
+          "saldo": -571.93,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 149304,
+          "sobras": 0.0,
+          "faltas": 317.17,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 0.0,
+          "saldo": -317.17,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 277311,
+          "sobras": 33.69,
+          "faltas": 291.77,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 33.69,
+          "saldo": -258.08,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 298670,
+          "sobras": 0.0,
+          "faltas": 167.7,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 0.0,
+          "saldo": -167.7,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 290148,
+          "sobras": 0.0,
+          "faltas": 151.38,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 0.0,
+          "saldo": -151.38,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "sobras": 165.77,
+          "faltas": 250.26,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 165.77,
+          "saldo": -84.49,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "sobras": 0.0,
+          "faltas": 56.42,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 0.0,
+          "saldo": -56.42,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 295816,
+          "sobras": 0.0,
+          "faltas": 45.44,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 0.0,
+          "saldo": -45.44,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 295399,
+          "sobras": 0.0,
+          "faltas": 43.02,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 0.0,
+          "saldo": -43.02,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 178278,
+          "sobras": 17.39,
+          "faltas": 55.81,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 17.39,
+          "saldo": -38.42,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 298738,
+          "sobras": 13.85,
+          "faltas": 35.28,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 120.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 13.85,
+          "saldo": -21.43,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 161863,
+          "sobras": 9.66,
+          "faltas": 29.93,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 9.66,
+          "saldo": -20.27,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 227385,
+          "sobras": 0.0,
+          "faltas": 17.24,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 0.0,
+          "saldo": -17.24,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 249526,
+          "sobras": 0.0,
+          "faltas": 3.94,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 0.0,
+          "saldo": -3.94,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 298720,
+          "sobras": 1.04,
+          "faltas": 2.54,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 1.04,
+          "saldo": -1.5,
+          "classificacao": "DEVEDOR"
+        }
+      ],
+      "principalCredor": {
+        "funcionarioCodigo": 160806,
+        "sobras": 549.55,
+        "faltas": 37.64,
+        "descontos": 0.0,
+        "acertos": 0.0,
+        "vales": 0.0,
+        "titulos": 0.0,
+        "compensadoAutomatico": 37.64,
+        "saldo": 511.91,
+        "classificacao": "CREDOR"
+      },
+      "principalDevedor": {
+        "funcionarioCodigo": 158924,
+        "sobras": 191.1,
+        "faltas": 4883.74,
+        "descontos": 0.0,
+        "acertos": 0.0,
+        "vales": 0.0,
+        "titulos": 0.0,
+        "compensadoAutomatico": 191.1,
+        "saldo": -4692.64,
+        "classificacao": "DEVEDOR"
+      },
+      "criticalOperators": [
+        {
+          "funcionarioCodigo": 276288,
+          "sobras": 165.77,
+          "faltas": 250.26,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 165.77,
+          "saldo": -84.49,
+          "classificacao": "DEVEDOR"
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "sobras": 0.0,
+          "faltas": 56.42,
+          "descontos": 0.0,
+          "acertos": 0.0,
+          "vales": 0.0,
+          "titulos": 0.0,
+          "compensadoAutomatico": 0.0,
+          "saldo": -56.42,
+          "classificacao": "DEVEDOR"
+        }
+      ]
+    },
+    "managementSummary": {
+      "totalRecords": 5537,
+      "byGroup": {
+        "FINANCEIRO": 3823,
+        "ADMINISTRATIVO": 290,
+        "TESOURARIA": 1245,
+        "OPERACIONAL": 179
+      },
+      "byClass": {
+        "OUTROS": 4001,
+        "VALE": 1215,
+        "AGUA": 243,
+        "ENERGIA": 38,
+        "ADIANTAMENTO": 30,
+        "BOBINA": 5,
+        "TELEFONIA": 4,
+        "MOVIMENTACAO_CAIXA": 1
+      },
+      "valorByGroup": {
+        "FINANCEIRO": 1117945.62,
+        "ADMINISTRATIVO": 16883.82,
+        "TESOURARIA": 421128.05,
+        "OPERACIONAL": 91553.32
+      },
+      "valorByClass": {
+        "OUTROS": 1208498.94,
+        "ENERGIA": 11416.39,
+        "AGUA": 4580.23,
+        "VALE": 407918.05,
+        "MOVIMENTACAO_CAIXA": 1000.0,
+        "ADIANTAMENTO": 13210.0,
+        "BOBINA": 382.2,
+        "TELEFONIA": 505.0
+      },
+      "pctByGroup": {
+        "OPERACIONAL": 3.23,
+        "TESOURARIA": 22.49,
+        "ADMINISTRATIVO": 5.24,
+        "FINANCEIRO": 69.04
+      },
+      "dreImpact": {
+        "PARCIAL": 4001,
+        "SIM": 290,
+        "NAO": 1246
+      },
+      "valorDreSim": 16883.82,
+      "valorDreNao": 422128.05,
+      "valorDreParcial": 1208498.94,
+      "cashFlowImpact": {
+        "PARCIAL": 4001,
+        "SIM": 1536
+      },
+      "valorCashflowSim": 439011.87,
+      "employeeAccountabilityCount": 2,
+      "totalValor": 1647510.81
+    }
+  },
+  "lastUpdated": "collect"
+}

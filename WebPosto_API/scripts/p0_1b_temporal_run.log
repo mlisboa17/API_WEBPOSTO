@@ -1,0 +1,1175 @@
+Auditing 7d (2026-06-01 -> 2026-06-07)...
+{
+  "totalRecords": 466,
+  "financeiro": 425,
+  "caixa": 22,
+  "pdv": 19,
+  "uniqueRecords": 444,
+  "duplicateRecords": 22,
+  "duplicatePct": 4.72,
+  "duplicateValue": 5364.67,
+  "totalValue": 141175.94,
+  "reliabilityLossPct": 3.8,
+  "impactedEmpresas": 2,
+  "impactedPdvs": 3,
+  "impactedTurnos": 2,
+  "impactedDates": [
+    "2026-06-01",
+    "2026-06-02",
+    "2026-06-03",
+    "2026-06-04",
+    "2026-06-05",
+    "2026-06-06",
+    "2026-06-07"
+  ],
+  "top20": [
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-06",
+      "caixaCodigo": 4340637,
+      "turnoCodigo": null,
+      "pdvCodigo": 56764,
+      "valor": 745.0,
+      "valorTotalGrupo": 1490.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-04",
+      "caixaCodigo": 4338777,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 548.65,
+      "valorTotalGrupo": 1097.3,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-05",
+      "caixaCodigo": 4339655,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 486.0,
+      "valorTotalGrupo": 972.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 5555,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-03",
+      "caixaCodigo": 4337788,
+      "turnoCodigo": null,
+      "pdvCodigo": 15880,
+      "valor": 482.38,
+      "valorTotalGrupo": 964.76,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-01",
+      "caixaCodigo": 4335818,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 386.73,
+      "valorTotalGrupo": 773.46,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-07",
+      "caixaCodigo": 4341596,
+      "turnoCodigo": null,
+      "pdvCodigo": 56764,
+      "valor": 366.5,
+      "valorTotalGrupo": 733.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 5555,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-02",
+      "caixaCodigo": 4336819,
+      "turnoCodigo": null,
+      "pdvCodigo": 15880,
+      "valor": 359.57,
+      "valorTotalGrupo": 719.14,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 5555,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-04",
+      "caixaCodigo": 4338775,
+      "turnoCodigo": null,
+      "pdvCodigo": 15880,
+      "valor": 295.58,
+      "valorTotalGrupo": 591.16,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-03",
+      "caixaCodigo": 4337730,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 283.66,
+      "valorTotalGrupo": 567.32,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-01",
+      "caixaCodigo": 4335835,
+      "turnoCodigo": null,
+      "pdvCodigo": 56764,
+      "valor": 260.0,
+      "valorTotalGrupo": 390.0,
+      "linhas": 3,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv",
+        "caixa"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-02",
+      "caixaCodigo": 4336785,
+      "turnoCodigo": null,
+      "pdvCodigo": 56764,
+      "valor": 221.5,
+      "valorTotalGrupo": 443.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-04",
+      "caixaCodigo": 4338701,
+      "turnoCodigo": null,
+      "pdvCodigo": 56764,
+      "valor": 192.0,
+      "valorTotalGrupo": 288.0,
+      "linhas": 3,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv",
+        "caixa"
+      ]
+    },
+    {
+      "empresaCodigo": 5555,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-06",
+      "caixaCodigo": 4340665,
+      "turnoCodigo": null,
+      "pdvCodigo": 15880,
+      "valor": 190.0,
+      "valorTotalGrupo": 380.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-05",
+      "caixaCodigo": 4339630,
+      "turnoCodigo": null,
+      "pdvCodigo": 56764,
+      "valor": 165.0,
+      "valorTotalGrupo": 330.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 5555,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-01",
+      "caixaCodigo": 4335874,
+      "turnoCodigo": null,
+      "pdvCodigo": 15880,
+      "valor": 118.0,
+      "valorTotalGrupo": 177.0,
+      "linhas": 3,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv",
+        "caixa"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-06",
+      "caixaCodigo": 4340691,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 101.1,
+      "valorTotalGrupo": 202.2,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-01",
+      "caixaCodigo": 4336075,
+      "turnoCodigo": null,
+      "pdvCodigo": 56764,
+      "valor": 85.0,
+      "valorTotalGrupo": 170.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-03",
+      "caixaCodigo": 4337731,
+      "turnoCodigo": null,
+      "pdvCodigo": 56764,
+      "valor": 48.0,
+      "valorTotalGrupo": 96.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 5555,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-05",
+      "caixaCodigo": 4339720,
+      "turnoCodigo": null,
+      "pdvCodigo": 15880,
+      "valor": 30.0,
+      "valorTotalGrupo": 60.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    }
+  ],
+  "dupGroupCount": 19
+}
+Auditing 30d (2026-05-08 -> 2026-06-07)...
+{
+  "totalRecords": 1840,
+  "financeiro": 1656,
+  "caixa": 98,
+  "pdv": 86,
+  "uniqueRecords": 1741,
+  "duplicateRecords": 99,
+  "duplicatePct": 5.38,
+  "duplicateValue": 36016.66,
+  "totalValue": 502986.24,
+  "reliabilityLossPct": 7.16,
+  "impactedEmpresas": 2,
+  "impactedPdvs": 3,
+  "impactedTurnos": 2,
+  "impactedDates": [
+    "2026-05-08",
+    "2026-05-09",
+    "2026-05-10",
+    "2026-05-11",
+    "2026-05-12",
+    "2026-05-13",
+    "2026-05-14",
+    "2026-05-15",
+    "2026-05-16",
+    "2026-05-17",
+    "2026-05-18",
+    "2026-05-19",
+    "2026-05-20",
+    "2026-05-21",
+    "2026-05-22",
+    "2026-05-23",
+    "2026-05-24",
+    "2026-05-25",
+    "2026-05-26",
+    "2026-05-27",
+    "2026-05-28",
+    "2026-05-29",
+    "2026-05-30",
+    "2026-05-31",
+    "2026-06-01",
+    "2026-06-02",
+    "2026-06-03",
+    "2026-06-04",
+    "2026-06-05",
+    "2026-06-06",
+    "2026-06-07"
+  ],
+  "top20": [
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-30",
+      "caixaCodigo": 4334613,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 4148.0,
+      "valorTotalGrupo": 8296.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 5555,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-26",
+      "caixaCodigo": 4330269,
+      "turnoCodigo": null,
+      "pdvCodigo": 15880,
+      "valor": 1320.8,
+      "valorTotalGrupo": 2641.6,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-19",
+      "caixaCodigo": 4323599,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 1269.0,
+      "valorTotalGrupo": 2538.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 5555,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-08",
+      "caixaCodigo": 4313244,
+      "turnoCodigo": null,
+      "pdvCodigo": 15880,
+      "valor": 1206.58,
+      "valorTotalGrupo": 2413.16,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-27",
+      "caixaCodigo": 4331197,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 1136.64,
+      "valorTotalGrupo": 2273.28,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 5555,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-15",
+      "caixaCodigo": 4319814,
+      "turnoCodigo": null,
+      "pdvCodigo": 15880,
+      "valor": 1097.8,
+      "valorTotalGrupo": 2195.6,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-13",
+      "caixaCodigo": 4317929,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 1066.1,
+      "valorTotalGrupo": 2132.2,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-09",
+      "caixaCodigo": 4314162,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 994.01,
+      "valorTotalGrupo": 1988.02,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-20",
+      "caixaCodigo": 4324590,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 990.89,
+      "valorTotalGrupo": 1981.78,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-19",
+      "caixaCodigo": 4323539,
+      "turnoCodigo": null,
+      "pdvCodigo": 56764,
+      "valor": 910.0,
+      "valorTotalGrupo": 1820.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-28",
+      "caixaCodigo": 4332106,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 840.0,
+      "valorTotalGrupo": 1680.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-28",
+      "caixaCodigo": 4332080,
+      "turnoCodigo": null,
+      "pdvCodigo": 56764,
+      "valor": 815.99,
+      "valorTotalGrupo": 1631.98,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-23",
+      "caixaCodigo": 4327390,
+      "turnoCodigo": null,
+      "pdvCodigo": 56764,
+      "valor": 781.0,
+      "valorTotalGrupo": 1562.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-06-06",
+      "caixaCodigo": 4340637,
+      "turnoCodigo": null,
+      "pdvCodigo": 56764,
+      "valor": 745.0,
+      "valorTotalGrupo": 1490.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 5555,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-29",
+      "caixaCodigo": 4333113,
+      "turnoCodigo": null,
+      "pdvCodigo": 15880,
+      "valor": 729.2,
+      "valorTotalGrupo": 1458.4,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-08",
+      "caixaCodigo": 4313170,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 704.2,
+      "valorTotalGrupo": 1408.4,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-29",
+      "caixaCodigo": 4333042,
+      "turnoCodigo": null,
+      "pdvCodigo": 56764,
+      "valor": 692.33,
+      "valorTotalGrupo": 1384.66,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-10",
+      "caixaCodigo": 4315110,
+      "turnoCodigo": null,
+      "pdvCodigo": 56764,
+      "valor": 650.45,
+      "valorTotalGrupo": 1300.9,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-29",
+      "caixaCodigo": 4333119,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 616.0,
+      "valorTotalGrupo": 1232.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-08",
+      "caixaCodigo": 4313129,
+      "turnoCodigo": null,
+      "pdvCodigo": 56764,
+      "valor": 573.8,
+      "valorTotalGrupo": 1147.6,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    }
+  ],
+  "dupGroupCount": 85
+}
+Auditing 90d (2026-03-09 -> 2026-06-07)...
+{
+  "totalRecords": 5744,
+  "financeiro": 5357,
+  "caixa": 203,
+  "pdv": 184,
+  "uniqueRecords": 5537,
+  "duplicateRecords": 207,
+  "duplicatePct": 3.6,
+  "duplicateValue": 92914.7,
+  "totalValue": 1740425.51,
+  "reliabilityLossPct": 5.34,
+  "impactedEmpresas": 2,
+  "impactedPdvs": 3,
+  "impactedTurnos": 2,
+  "impactedDates": [
+    "2026-03-09",
+    "2026-03-10",
+    "2026-03-11",
+    "2026-03-12",
+    "2026-03-13",
+    "2026-03-14",
+    "2026-03-15",
+    "2026-03-16",
+    "2026-03-17",
+    "2026-03-18",
+    "2026-03-19",
+    "2026-03-20",
+    "2026-03-21",
+    "2026-03-22",
+    "2026-03-23",
+    "2026-03-24",
+    "2026-03-25",
+    "2026-03-26",
+    "2026-03-27",
+    "2026-03-28",
+    "2026-03-29",
+    "2026-03-30",
+    "2026-03-31",
+    "2026-04-01",
+    "2026-04-02",
+    "2026-04-03",
+    "2026-04-04",
+    "2026-04-05",
+    "2026-04-06",
+    "2026-04-07",
+    "2026-04-08",
+    "2026-04-09",
+    "2026-04-10",
+    "2026-04-11",
+    "2026-04-12",
+    "2026-04-13",
+    "2026-04-14",
+    "2026-04-15",
+    "2026-04-16",
+    "2026-04-17",
+    "2026-04-18",
+    "2026-04-19",
+    "2026-04-20",
+    "2026-04-21",
+    "2026-04-22",
+    "2026-04-23",
+    "2026-04-24",
+    "2026-04-25",
+    "2026-04-26",
+    "2026-04-27",
+    "2026-04-28",
+    "2026-04-29",
+    "2026-04-30",
+    "2026-05-01",
+    "2026-05-02",
+    "2026-05-03",
+    "2026-05-04",
+    "2026-05-05",
+    "2026-05-06",
+    "2026-05-07",
+    "2026-05-08",
+    "2026-05-09",
+    "2026-05-10",
+    "2026-05-11",
+    "2026-05-12",
+    "2026-05-13"
+  ],
+  "top20": [
+    {
+      "empresaCodigo": 5555,
+      "empresaNome": "?",
+      "dataMovimento": "2026-04-25",
+      "caixaCodigo": 4300877,
+      "turnoCodigo": null,
+      "pdvCodigo": 15880,
+      "valor": 4899.07,
+      "valorTotalGrupo": 9798.14,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-02",
+      "caixaCodigo": 4307424,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 4407.0,
+      "valorTotalGrupo": 8814.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-04-15",
+      "caixaCodigo": 4291181,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 3573.32,
+      "valorTotalGrupo": 7146.64,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 5555,
+      "empresaNome": "?",
+      "dataMovimento": "2026-04-24",
+      "caixaCodigo": 4299824,
+      "turnoCodigo": null,
+      "pdvCodigo": 15880,
+      "valor": 3444.0,
+      "valorTotalGrupo": 6888.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-04-10",
+      "caixaCodigo": 4286371,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 2832.0,
+      "valorTotalGrupo": 5664.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-04-17",
+      "caixaCodigo": 4293142,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 2443.39,
+      "valorTotalGrupo": 4886.78,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-04-06",
+      "caixaCodigo": 4282507,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 2054.0,
+      "valorTotalGrupo": 4108.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-04-09",
+      "caixaCodigo": 4285373,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 1751.0,
+      "valorTotalGrupo": 3502.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-04-24",
+      "caixaCodigo": 4299821,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 1728.0,
+      "valorTotalGrupo": 3456.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-04-13",
+      "caixaCodigo": 4289200,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 1576.98,
+      "valorTotalGrupo": 3153.96,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-04-28",
+      "caixaCodigo": 4303615,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 1573.01,
+      "valorTotalGrupo": 3146.02,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-04-01",
+      "caixaCodigo": 4277858,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 1559.39,
+      "valorTotalGrupo": 3118.78,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-03-11",
+      "caixaCodigo": 4257737,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 1501.19,
+      "valorTotalGrupo": 3002.38,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-04-18",
+      "caixaCodigo": 4294170,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 1500.0,
+      "valorTotalGrupo": 3000.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-03-19",
+      "caixaCodigo": 4265926,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 1489.3,
+      "valorTotalGrupo": 2978.6,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 11495,
+      "empresaNome": "?",
+      "dataMovimento": "2026-04-08",
+      "caixaCodigo": 4284459,
+      "turnoCodigo": null,
+      "pdvCodigo": 54193,
+      "valor": 1300.0,
+      "valorTotalGrupo": 2600.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 5555,
+      "empresaNome": "?",
+      "dataMovimento": "2026-04-30",
+      "caixaCodigo": 4305598,
+      "turnoCodigo": null,
+      "pdvCodigo": 15880,
+      "valor": 1228.0,
+      "valorTotalGrupo": 2456.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 5555,
+      "empresaNome": "?",
+      "dataMovimento": "2026-05-08",
+      "caixaCodigo": 4313244,
+      "turnoCodigo": null,
+      "pdvCodigo": 15880,
+      "valor": 1206.58,
+      "valorTotalGrupo": 2413.16,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 5555,
+      "empresaNome": "?",
+      "dataMovimento": "2026-03-14",
+      "caixaCodigo": 4260693,
+      "turnoCodigo": null,
+      "pdvCodigo": 15880,
+      "valor": 1120.0,
+      "valorTotalGrupo": 2240.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    },
+    {
+      "empresaCodigo": 5555,
+      "empresaNome": "?",
+      "dataMovimento": "2026-04-04",
+      "caixaCodigo": 4280634,
+      "turnoCodigo": null,
+      "pdvCodigo": 15880,
+      "valor": 1100.0,
+      "valorTotalGrupo": 2200.0,
+      "linhas": 2,
+      "origem1": "caixa",
+      "origem2": "pdv",
+      "origens": [
+        "caixa",
+        "pdv"
+      ]
+    }
+  ],
+  "dupGroupCount": 180
+}
+JSON -> C:\Users\mlisb\OneDrive\ProjetosAntigravy\LOGOS SPACE\Api_WebPosto\WebPosto_API\scripts\p0_1b_temporal_dedup_audit.json
+Relatórios: TEMPORAL_DEDUP_AUDIT.md, EXPENSE_DEDUP_REGRESSION_REPORT.md, P0_1B atualizado

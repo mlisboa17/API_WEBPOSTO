@@ -1,0 +1,439 @@
+{
+  "lastUpdated": "2026-06-10T23:43:10.593185",
+  "data": {
+    "sprint": "D04",
+    "periodo": {
+      "dataInicial": "2026-06-01",
+      "dataFinal": "2026-06-07"
+    },
+    "authorizedFiliais": [
+      11495,
+      5555
+    ],
+    "elapsedMs": 8.0,
+    "fonte": {
+      "webPostoLive": false,
+      "snapshotsOnly": true
+    },
+    "tokenConnectivityAudit": {
+      "authorizedFiliais": [
+        11495,
+        5555
+      ],
+      "filiaisMeta": [
+        {
+          "codWeb": 11495,
+          "empresaCodigo": 11495,
+          "codigoApi": 11495,
+          "nome": "POSTO VIP",
+          "nomeFantasia": "POSTO VIP",
+          "razaoSocial": "RIO DOCE COMERCIO E SERVICOS LTDA",
+          "cnpj": "03.008.754/0001-86",
+          "status": "CONFIRMADA",
+          "statusOperacional": "ATIVA",
+          "statusDetalhado": "Dados operacionais",
+          "status_detalhado": "Dados operacionais",
+          "origem": "TABELA_CORPORATIVA",
+          "dataEncerramento": null,
+          "possuiDadosOperacionais": true,
+          "apiEncontrada": true,
+          "raw": {
+            "empresaCodigo": 11495,
+            "cnpj": "03.008.754/0001-86",
+            "razao": "RIO DOCE COMERCIO E SERVICOS LTDA",
+            "fantasia": "POSTO VIP",
+            "tipoLogradouro": "AVE",
+            "logradouro": "AVENIDA BRASIL",
+            "endereco": "AVE AVENIDA BRASIL",
+            "bairro": "RIO DOCE",
+            "numero": "2701",
+            "cep": "53.070-380",
+            "cidade": "OLINDA",
+            "estado": "PE",
+            "latitude": -7.955013199999999,
+            "longitude": -34.851076,
+            "ultimoUsuarioAlteracao": "JOSÉ ARTHUR MAIA GIRAO",
+            "centroCustoPrincipal": 7295,
+            "empresaCodigoExterno": null,
+            "sigla": null,
+            "tipoImposto": "R",
+            "codigo": 11495
+          }
+        },
+        {
+          "codWeb": 5555,
+          "empresaCodigo": 5555,
+          "codigoApi": 5555,
+          "nome": "AP CASA CAIADA",
+          "nomeFantasia": "AP CASA CAIADA",
+          "razaoSocial": "AUTO POSTO CASA CAIADA LTDA",
+          "cnpj": "04.284.939/0001-86",
+          "status": "CONFIRMADA",
+          "statusOperacional": "ATIVA",
+          "statusDetalhado": "Dados operacionais",
+          "status_detalhado": "Dados operacionais",
+          "origem": "TABELA_CORPORATIVA",
+          "dataEncerramento": null,
+          "possuiDadosOperacionais": true,
+          "apiEncontrada": true,
+          "raw": {
+            "empresaCodigo": 5555,
+            "cnpj": "04.284.939/0001-86",
+            "razao": "AUTO POSTO CASA CAIADA LTDA",
+            "fantasia": "AP CASA CAIADA",
+            "tipoLogradouro": "AVE",
+            "logradouro": "AVENIDA GOVERNADOR CARLOS DE LIMA",
+            "endereco": "AVE AVENIDA GOVERNADOR CARLOS DE LIMA",
+            "bairro": "CASA CAIADA",
+            "numero": "2350",
+            "cep": "53.040-000",
+            "cidade": "OLINDA",
+            "estado": "PE",
+            "latitude": -7.9847269,
+            "longitude": -34.8384772,
+            "ultimoUsuarioAlteracao": "CAMILY",
+            "centroCustoPrincipal": 7295,
+            "empresaCodigoExterno": null,
+            "sigla": null,
+            "tipoImposto": "R",
+            "codigo": 5555
+          }
+        }
+      ],
+      "integrations": [
+        {
+          "integration": "FUNCIONARIO",
+          "status": "OPERACIONAL",
+          "snapshotsFound": 1,
+          "snapshotsExpected": 1,
+          "evidence": [
+            "operator_people_all_2026-06-01_2026-06-07_all.json"
+          ]
+        },
+        {
+          "integration": "VENDA",
+          "status": "OPERACIONAL",
+          "snapshotsFound": 1,
+          "snapshotsExpected": 1,
+          "evidence": [
+            "store_shift_profitability_all_2026-06-01_2026-06-07_all.json"
+          ]
+        },
+        {
+          "integration": "VENDA_ITEM",
+          "status": "OPERACIONAL",
+          "snapshotsFound": 1,
+          "snapshotsExpected": 1,
+          "evidence": [
+            "operator_profitability_all_2026-06-01_2026-06-07_all.json"
+          ]
+        },
+        {
+          "integration": "VENDA_FORMA_PAGAMENTO",
+          "status": "OPERACIONAL",
+          "snapshotsFound": 1,
+          "snapshotsExpected": 1,
+          "evidence": [
+            "store_shift_profitability_all_2026-06-01_2026-06-07_all.json"
+          ]
+        },
+        {
+          "integration": "ABASTECIMENTO",
+          "status": "OPERACIONAL",
+          "snapshotsFound": 1,
+          "snapshotsExpected": 1,
+          "evidence": [
+            "2026-06-01_2026-06-07_5555_11495.json"
+          ]
+        },
+        {
+          "integration": "CAIXA",
+          "status": "OPERACIONAL",
+          "snapshotsFound": 1,
+          "snapshotsExpected": 1,
+          "evidence": [
+            "cash_summary_2026-06-01_2026-06-07_all.json"
+          ]
+        },
+        {
+          "integration": "CAIXA_APRESENTADO",
+          "status": "OPERACIONAL",
+          "snapshotsFound": 1,
+          "snapshotsExpected": 1,
+          "evidence": [
+            "employee_ledger_2026-06-01_2026-06-07_all.json"
+          ]
+        },
+        {
+          "integration": "DESPESAS",
+          "status": "OPERACIONAL",
+          "snapshotsFound": 2,
+          "snapshotsExpected": 2,
+          "evidence": [
+            "finance_center_all_2026-06-01_2026-06-07_11495.json",
+            "finance_center_all_2026-06-01_2026-06-07_5555.json"
+          ]
+        },
+        {
+          "integration": "NFCE",
+          "status": "INDISPONIVEL",
+          "snapshotsFound": 0,
+          "snapshotsExpected": 0,
+          "evidence": []
+        },
+        {
+          "integration": "TITULO_RECEBER",
+          "status": "OPERACIONAL",
+          "snapshotsFound": 1,
+          "snapshotsExpected": 1,
+          "evidence": [
+            "finance_center_all_2026-06-01_2026-06-07_11495.json"
+          ]
+        },
+        {
+          "integration": "TITULO_PAGAR",
+          "status": "OPERACIONAL",
+          "snapshotsFound": 1,
+          "snapshotsExpected": 1,
+          "evidence": [
+            "finance_center_all_2026-06-01_2026-06-07_11495.json"
+          ]
+        }
+      ],
+      "operacional": 10,
+      "parcial": 0,
+      "indisponivel": 1
+    },
+    "financialCoverageAudit": {
+      "coberturaPct": 100.0,
+      "camposVaziosPct": 0.0,
+      "inconsistentesPct": 0.0,
+      "duplicidadesPct": 0.0,
+      "dreValidacaoOk": true,
+      "divergencia": 0.0,
+      "filiais11495": true,
+      "filiais5555": true
+    },
+    "cashCoverageAudit": {
+      "coberturaPct": 100.0,
+      "conciliacaoPct": 100.0,
+      "paridadePct": 100.0,
+      "paridadeDelta": 0.0,
+      "diferencaTotal": -768.86,
+      "faltas": 0.0,
+      "sobras": 0.0
+    },
+    "salesCoverageAudit": {
+      "coberturaPct": 100.0,
+      "vendasComOperador": 8,
+      "vendasComPdv": 2,
+      "vendasComTurno": 8,
+      "totalCelulas": 8,
+      "receitaOperacional": 6836.4,
+      "combustivelSnapshot": true
+    },
+    "workforceCoverageAudit": {
+      "coberturaNominalPct": 100.0,
+      "coberturaOperacionalPct": 100.0,
+      "coberturaAccountabilityPct": 100.0,
+      "operadoresNominal": 8,
+      "operadoresOperacional": 8,
+      "operadoresPerformance": 7
+    },
+    "dataLineageConsistency": {
+      "lineage": [
+        {
+          "indicador": "Corporate Score",
+          "origem": "F04.7+F04.6",
+          "snapshot": "executive_scorecard",
+          "api": "/api/v1/corporate-hub/cockpit",
+          "cockpit": "corporate-hub"
+        },
+        {
+          "indicador": "Financial Hub",
+          "origem": "F03.3+F04.6",
+          "snapshot": "cash_operations_qa",
+          "api": "/api/v1/corporate-hub/cockpit",
+          "cockpit": "corporate-hub"
+        },
+        {
+          "indicador": "People Hub",
+          "origem": "F04.0-F04.6",
+          "snapshot": "people_intelligence",
+          "api": "/api/v1/corporate-hub/cockpit",
+          "cockpit": "corporate-hub"
+        },
+        {
+          "indicador": "Operations Hub",
+          "origem": "F04.3+F04.7",
+          "snapshot": "store_shift_profitability",
+          "api": "/api/v1/corporate-hub/cockpit",
+          "cockpit": "corporate-hub"
+        },
+        {
+          "indicador": "Receita Operacional",
+          "fonte": "F04.3",
+          "snapshot": "store_shift_profitability",
+          "api": "/api/v1/store-shift-profitability",
+          "cockpit": "operation-roi"
+        },
+        {
+          "indicador": "Cash Paridade",
+          "fonte": "F03.3",
+          "snapshot": "cash_operations_qa",
+          "api": "/api/v1/cash-operations",
+          "cockpit": "cash-operations"
+        },
+        {
+          "indicador": "People Score",
+          "fonte": "F04.1",
+          "snapshot": "people_intelligence",
+          "api": "/api/v1/operator-accountability-incentive/cockpit",
+          "cockpit": "people-intelligence"
+        }
+      ],
+      "camposOrfaos": 0,
+      "indicadoresOrfaos": 0,
+      "lineageQuebrado": false,
+      "dependenciasFrageis": 0,
+      "consistencyPct": 100.0
+    },
+    "trustBaselineEngine": {
+      "financialTrustScore": 100.0,
+      "cashTrustScore": 100.0,
+      "salesTrustScore": 100.0,
+      "peopleTrustScore": 100.0,
+      "lineageTrustScore": 100.0,
+      "corporateTrustScore": 100.0,
+      "financialTrustScoreBand": "CONFIAVEL",
+      "financialTrustScoreCert": "CONFIÁVEL",
+      "cashTrustScoreBand": "CONFIAVEL",
+      "cashTrustScoreCert": "CONFIÁVEL",
+      "salesTrustScoreBand": "CONFIAVEL",
+      "salesTrustScoreCert": "CONFIÁVEL",
+      "peopleTrustScoreBand": "CONFIAVEL",
+      "peopleTrustScoreCert": "CONFIÁVEL",
+      "lineageTrustScoreBand": "CONFIAVEL",
+      "lineageTrustScoreCert": "CONFIÁVEL",
+      "corporateTrustScoreBand": "CONFIAVEL",
+      "corporateTrustScoreCert": "CONFIÁVEL"
+    },
+    "dataGovernance": {
+      "lastValidatedAt": "2026-06-10T23:43:10.591812+00:00",
+      "dataTrust": 100.0,
+      "dataCoverage": {
+        "financial": 100.0,
+        "cash": 100.0,
+        "sales": 100.0,
+        "people": 100.0
+      },
+      "dataConfidence": "CONFIAVEL",
+      "snapshots": {
+        "trust:financial": {
+          "score": 100.0,
+          "ttlSeconds": 300
+        },
+        "trust:cash": {
+          "score": 100.0,
+          "ttlSeconds": 300
+        },
+        "trust:sales": {
+          "score": 100.0,
+          "ttlSeconds": 300
+        },
+        "trust:people": {
+          "score": 100.0,
+          "ttlSeconds": 300
+        },
+        "trust:corporate": {
+          "score": 100.0,
+          "ttlSeconds": 300
+        }
+      }
+    },
+    "qaCertification": {
+      "crossTenant": false,
+      "semCrossTenant": true,
+      "duplicidade": 0,
+      "semDuplicidade": true,
+      "indicadoresSemOrigem": 0,
+      "scoresSemEvidencia": 0,
+      "dadosFantasmas": 0,
+      "certifications": [
+        {
+          "name": "Receita Operacional",
+          "cert": "CONFIÁVEL",
+          "score": 100.0
+        },
+        {
+          "name": "Cash Paridade",
+          "cert": "CONFIÁVEL",
+          "score": 100.0
+        },
+        {
+          "name": "Financial Coverage",
+          "cert": "CONFIÁVEL",
+          "score": 100.0
+        },
+        {
+          "name": "People Coverage",
+          "cert": "CONFIÁVEL",
+          "score": 100.0
+        },
+        {
+          "name": "Corporate Score",
+          "cert": "CONFIÁVEL",
+          "score": 100.0
+        }
+      ],
+      "indicadoresBloqueados": [],
+      "indicadoresExecutivosConfianca": [
+        "Receita Operacional",
+        "Cash Paridade",
+        "Financial Coverage",
+        "People Coverage",
+        "Corporate Score"
+      ],
+      "aprovado": true
+    },
+    "executiveAnswers": {
+      "1_integracoesOperacionais": 10,
+      "2_integracoesParciais": 0,
+      "3_integracoesIndisponiveis": 1,
+      "4_coberturaFinanceira": 100.0,
+      "5_coberturaCaixa": 100.0,
+      "6_coberturaVendas": 100.0,
+      "7_coberturaPessoas": 100.0,
+      "8_coberturaNominal": 100.0,
+      "9_coberturaOperacional": 100.0,
+      "10_coberturaAccountability": 100.0,
+      "11_paridadeFinanceira": 0.0,
+      "12_paridadeOperacional": 0.0,
+      "13_paridadeCorporativa": 0.0,
+      "14_trustFinanceiro": 100.0,
+      "15_trustOperacional": 100.0,
+      "16_trustPessoas": 100.0,
+      "17_trustCorporativo": 100.0,
+      "18_indicadoresBloqueados": [],
+      "19_indicadoresExecutivosConfianca": [
+        "Receita Operacional",
+        "Cash Paridade",
+        "Financial Coverage",
+        "People Coverage",
+        "Corporate Score"
+      ],
+      "20_prontoDecisoesAutomatizadas": true,
+      "authorizedFiliais": [
+        11495,
+        5555
+      ]
+    },
+    "parecerFinal": "[PARECER FINAL: DADOS CERTIFICADOS PARA DECISÕES]",
+    "decisaoArquitetural": {
+      "regra": "Nenhum indicador executivo sem evidência de cobertura",
+      "corporateTrustScore": 100.0,
+      "corporateTrustBand": "CONFIAVEL",
+      "justificativa": "Baseline D04 filiais (11495, 5555): trust corporativo 100.0/100 · paridade corporativa Δ=0.0 · 10 integrações operacionais."
+    }
+  }
+}

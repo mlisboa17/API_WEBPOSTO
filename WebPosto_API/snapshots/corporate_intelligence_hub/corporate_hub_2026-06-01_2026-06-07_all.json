@@ -1,0 +1,3690 @@
+{
+  "lastUpdated": "2026-06-10T23:29:49.916368",
+  "data": {
+    "sprint": "F05.0",
+    "periodo": {
+      "dataInicial": "2026-06-01",
+      "dataFinal": "2026-06-07"
+    },
+    "elapsedMs": 6.9,
+    "fonte": {
+      "webPosto": false,
+      "audits": [
+        "f04_5",
+        "f04_6",
+        "f04_7"
+      ]
+    },
+    "corporateKpiConsolidation": {
+      "corporateScore": 68.16,
+      "executiveScore": 58.47,
+      "financialScore": 90.07,
+      "peopleScore": 37.67,
+      "operationsScore": 50.94,
+      "growthScore": 42.95,
+      "riskScore": 54.03,
+      "receita": 6836.4,
+      "margem": 5866.88,
+      "perdas": 500.21000000000004,
+      "recuperacao": 4157.64,
+      "roi": {
+        "empresaCodigo": 11495,
+        "nomeFilial": "POSTO VIP",
+        "receita": 24029.69,
+        "lucro": -897.02,
+        "roi": -3.73,
+        "perdas": 444.64,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 88.89,
+        "crescimentoProxy": 51315.38
+      },
+      "metas": 65,
+      "metasOk": 23,
+      "benchmark": {
+        "empresaCodigo": 11495,
+        "nomeFilial": "POSTO VIP",
+        "receita": 24029.69,
+        "lucro": -897.02,
+        "roi": -3.73,
+        "perdas": 444.64,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 88.89,
+        "crescimentoProxy": 51315.38
+      },
+      "paridadeDelta": 0.0
+    },
+    "financialIntelligenceHub": {
+      "receitaTotal": 6836.4,
+      "margemOperacional": 85.82,
+      "perdas": 500.21000000000004,
+      "recuperacaoIdentificada": 4157.64,
+      "potencialCapturavel": 4157.64,
+      "potencialPerdido": 13858.79,
+      "roiCorporativo": {
+        "empresaCodigo": 11495,
+        "nomeFilial": "POSTO VIP",
+        "receita": 24029.69,
+        "lucro": -897.02,
+        "roi": -3.73,
+        "perdas": 444.64,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 88.89,
+        "crescimentoProxy": 51315.38
+      },
+      "filialCampea": {
+        "empresaCodigo": 11495,
+        "nomeFilial": "POSTO VIP",
+        "receita": 24029.69,
+        "lucro": -897.02,
+        "roi": -3.73,
+        "perdas": 444.64,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 88.89,
+        "crescimentoProxy": 51315.38
+      },
+      "filialCritica": {
+        "empresaCodigo": 5333,
+        "nomeFilial": "FILIAL 5333",
+        "receita": 0.0,
+        "lucro": -1133.51,
+        "roi": 0.0,
+        "perdas": 0.0,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 0.0,
+        "crescimentoProxy": 0.0
+      },
+      "financialScore": 90.07
+    },
+    "peopleIntelligenceHub": {
+      "topOperadores": [
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "salesScore": 56.1,
+          "productivityScore": 66.06,
+          "accountabilityScore": 100.0,
+          "resultadoLiquido": 1055.86,
+          "roi": 1055.86,
+          "globalScore": 80.54,
+          "goalPercentual": 81.98,
+          "performanceScore": 58.16,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 57.38,
+          "benchmarkScore": 73.34
+        },
+        {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "salesScore": 64.68,
+          "productivityScore": 64.25,
+          "accountabilityScore": 50.0,
+          "resultadoLiquido": 1645.82,
+          "roi": 1645.82,
+          "globalScore": 57.23,
+          "goalPercentual": 89.48,
+          "performanceScore": 0.0,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 0.0,
+          "benchmarkScore": 72.08
+        },
+        {
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "salesScore": 48.2,
+          "productivityScore": 46.88,
+          "accountabilityScore": 50.0,
+          "resultadoLiquido": 1208.05,
+          "roi": 1208.05,
+          "globalScore": 48.77,
+          "goalPercentual": 89.49,
+          "performanceScore": 0.0,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 0.0,
+          "benchmarkScore": 59.59
+        },
+        {
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "salesScore": 50.44,
+          "productivityScore": 46.16,
+          "accountabilityScore": 50.0,
+          "resultadoLiquido": 1014.3,
+          "roi": 1014.3,
+          "globalScore": 39.15,
+          "goalPercentual": 69.48,
+          "performanceScore": 0.0,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 0.0,
+          "benchmarkScore": 53.13
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "salesScore": 58.21,
+          "productivityScore": 60.93,
+          "accountabilityScore": 30.0,
+          "resultadoLiquido": 634.99,
+          "roi": 634.99,
+          "globalScore": 62.28,
+          "goalPercentual": 64.49,
+          "performanceScore": 17.83,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 52.21,
+          "benchmarkScore": 52.01
+        },
+        {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "salesScore": 31.08,
+          "productivityScore": 29.24,
+          "accountabilityScore": 50.0,
+          "resultadoLiquido": 555.34,
+          "roi": 555.34,
+          "globalScore": 40.08,
+          "goalPercentual": 89.48,
+          "performanceScore": 0.0,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 0.0,
+          "benchmarkScore": 44.28
+        },
+        {
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "salesScore": 21.86,
+          "productivityScore": 6.79,
+          "accountabilityScore": 50.0,
+          "resultadoLiquido": 120.0,
+          "roi": 120.0,
+          "globalScore": 32.16,
+          "goalPercentual": 89.49,
+          "performanceScore": 0.0,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 0.0,
+          "benchmarkScore": 32.6
+        },
+        {
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "salesScore": 8.09,
+          "productivityScore": 6.06,
+          "accountabilityScore": 50.0,
+          "resultadoLiquido": 95.25,
+          "roi": 95.25,
+          "globalScore": 28.54,
+          "goalPercentual": 89.48,
+          "performanceScore": 0.0,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 0.0,
+          "benchmarkScore": 28.89
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "employeeName": null,
+          "salesScore": 0.0,
+          "productivityScore": 0.0,
+          "accountabilityScore": 0.0,
+          "resultadoLiquido": 0.0,
+          "roi": 0.0,
+          "globalScore": 25.0,
+          "goalPercentual": 103.52,
+          "performanceScore": 60.92,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 58.32,
+          "benchmarkScore": 19.28
+        },
+        {
+          "funcionarioCodigo": 158924,
+          "employeeName": null,
+          "salesScore": 0.0,
+          "productivityScore": 0.0,
+          "accountabilityScore": 0.0,
+          "resultadoLiquido": 0.0,
+          "roi": 0.0,
+          "globalScore": 21.63,
+          "goalPercentual": 100.15,
+          "performanceScore": 43.86,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 45.68,
+          "benchmarkScore": 18.27
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "employeeName": null,
+          "salesScore": 0.0,
+          "productivityScore": 0.0,
+          "accountabilityScore": 0.0,
+          "resultadoLiquido": 0.0,
+          "roi": 0.0,
+          "globalScore": 17.33,
+          "goalPercentual": 95.85,
+          "performanceScore": 40.38,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 52.72,
+          "benchmarkScore": 16.98
+        },
+        {
+          "funcionarioCodigo": 299371,
+          "employeeName": null,
+          "salesScore": 0.0,
+          "productivityScore": 0.0,
+          "accountabilityScore": 0.0,
+          "resultadoLiquido": 0.0,
+          "roi": 0.0,
+          "globalScore": 16.9,
+          "goalPercentual": 95.42,
+          "performanceScore": 39.39,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 52.7,
+          "benchmarkScore": 16.85
+        },
+        {
+          "funcionarioCodigo": 299151,
+          "employeeName": null,
+          "salesScore": 0.0,
+          "productivityScore": 0.0,
+          "accountabilityScore": 0.0,
+          "resultadoLiquido": 0.0,
+          "roi": 0.0,
+          "globalScore": 10.03,
+          "goalPercentual": 88.55,
+          "performanceScore": 22.8,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 46.77,
+          "benchmarkScore": 14.79
+        }
+      ],
+      "operadoresCriticos": [
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "governanceBand": "CRITICO",
+          "globalScore": 62.28,
+          "accountabilityScore": 30.0,
+          "profitabilityBand": "NEUTRO",
+          "primaryAction": "TREINAR"
+        },
+        {
+          "funcionarioCodigo": 158924,
+          "employeeName": "JOÃO VICTOR APOIO",
+          "governanceBand": "CRITICO",
+          "globalScore": 21.63,
+          "accountabilityScore": 86.51,
+          "profitabilityBand": null,
+          "primaryAction": "AUDITAR"
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+          "governanceBand": "CRITICO",
+          "globalScore": 17.33,
+          "accountabilityScore": 69.33,
+          "profitabilityBand": null,
+          "primaryAction": "TREINAR"
+        },
+        {
+          "funcionarioCodigo": 299371,
+          "employeeName": "WILLY KLEBYSON DA SILVA",
+          "governanceBand": "CRITICO",
+          "globalScore": 16.9,
+          "accountabilityScore": 67.59,
+          "profitabilityBand": null,
+          "primaryAction": "TREINAR"
+        },
+        {
+          "funcionarioCodigo": 299151,
+          "employeeName": "FABIANO RODRIGUES",
+          "governanceBand": "CRITICO",
+          "globalScore": 10.03,
+          "accountabilityScore": 40.13,
+          "profitabilityBand": null,
+          "primaryAction": "TREINAR"
+        }
+      ],
+      "treinamentos": [],
+      "promocoes": [
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "governanceBand": "ALTA_PERFORMANCE",
+          "globalScore": 80.54,
+          "accountabilityScore": 100.0,
+          "profitabilityBand": "GERA_LUCRO",
+          "primaryAction": "BONIFICAR"
+        },
+        {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "governanceBand": "ALTA_PERFORMANCE",
+          "globalScore": 57.23,
+          "accountabilityScore": 50.0,
+          "profitabilityBand": "GERA_LUCRO",
+          "primaryAction": "TREINAR"
+        },
+        {
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "governanceBand": "ALTA_PERFORMANCE",
+          "globalScore": 48.77,
+          "accountabilityScore": 50.0,
+          "profitabilityBand": "GERA_LUCRO",
+          "primaryAction": "TREINAR"
+        }
+      ],
+      "bonus": 0,
+      "accountabilityMedia": 53.75,
+      "roiPorOperador": [
+        {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "receitaBruta": 1645.82,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 1645.82,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 29,
+          "profitabilityScore": 92.5,
+          "profitabilityBand": "GERA_LUCRO",
+          "accountabilityScore": 50.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 1645.82,
+          "profitabilityAdjustedScore": 92.5
+        },
+        {
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "receitaBruta": 1208.05,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 1208.05,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 20,
+          "profitabilityScore": 77.87,
+          "profitabilityBand": "GERA_LUCRO",
+          "accountabilityScore": 50.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 1208.05,
+          "profitabilityAdjustedScore": 77.87
+        },
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "receitaBruta": 1057.26,
+          "destruicaoMargem": 1.4,
+          "margemOperacional": 1055.86,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0,
+          "sobras": 2.79,
+          "perdasCaixa": 2.79,
+          "quantidadeVendas": 68,
+          "profitabilityScore": 80.27,
+          "profitabilityBand": "GERA_LUCRO",
+          "accountabilityScore": 100.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 1055.86,
+          "profitabilityAdjustedScore": 80.27
+        },
+        {
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "receitaBruta": 1015.15,
+          "destruicaoMargem": 0.85,
+          "margemOperacional": 1014.3,
+          "descontos": 0.85,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 25,
+          "profitabilityScore": 65.39,
+          "profitabilityBand": "NEUTRO",
+          "accountabilityScore": 50.0,
+          "complianceScore": 60.0,
+          "resultadoLiquido": 1014.3,
+          "profitabilityAdjustedScore": 65.39
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "receitaBruta": 1139.53,
+          "destruicaoMargem": 504.54,
+          "margemOperacional": 634.99,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 252.27,
+          "sobras": 0.0,
+          "perdasCaixa": 252.27,
+          "quantidadeVendas": 38,
+          "profitabilityScore": 49.92,
+          "profitabilityBand": "NEUTRO",
+          "accountabilityScore": 30.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 634.99,
+          "profitabilityAdjustedScore": 51.48
+        },
+        {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "receitaBruta": 555.34,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 555.34,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 9,
+          "profitabilityScore": 56.06,
+          "profitabilityBand": "NEUTRO",
+          "accountabilityScore": 50.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 555.34,
+          "profitabilityAdjustedScore": 56.06
+        },
+        {
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "receitaBruta": 120.0,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 120.0,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 2,
+          "profitabilityScore": 41.51,
+          "profitabilityBand": "NEUTRO",
+          "accountabilityScore": 50.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 120.0,
+          "profitabilityAdjustedScore": 41.51
+        },
+        {
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "receitaBruta": 95.25,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 95.25,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 9,
+          "profitabilityScore": 40.68,
+          "profitabilityBand": "NEUTRO",
+          "accountabilityScore": 50.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 95.25,
+          "profitabilityAdjustedScore": 40.68
+        }
+      ],
+      "melhorOperador": {
+        "funcionarioCodigo": 178278,
+        "employeeName": "APOIO LOJA .",
+        "salesScore": 56.1,
+        "productivityScore": 66.06,
+        "accountabilityScore": 100.0,
+        "resultadoLiquido": 1055.86,
+        "roi": 1055.86,
+        "globalScore": 80.54,
+        "goalPercentual": 81.98,
+        "performanceScore": 58.16,
+        "evolucaoDelta": 0.0,
+        "cashRiskScore": 57.38,
+        "benchmarkScore": 73.34
+      },
+      "piorOperador": {
+        "funcionarioCodigo": 299151,
+        "employeeName": null,
+        "salesScore": 0.0,
+        "productivityScore": 0.0,
+        "accountabilityScore": 0.0,
+        "resultadoLiquido": 0.0,
+        "roi": 0.0,
+        "globalScore": 10.03,
+        "goalPercentual": 88.55,
+        "performanceScore": 22.8,
+        "evolucaoDelta": 0.0,
+        "cashRiskScore": 46.77,
+        "benchmarkScore": 14.79
+      }
+    },
+    "operationsIntelligenceHub": {
+      "pdvs": [
+        {
+          "pdvCodigo": null,
+          "receitaBruta": 4639.61,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 4639.61,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 94,
+          "resultadoLiquido": 4639.61,
+          "riscoEconomico": 1.0,
+          "roi": 4639.61,
+          "monitoramentoPrioritario": false
+        },
+        {
+          "pdvCodigo": 56764,
+          "receitaBruta": 1057.26,
+          "destruicaoMargem": 10.3,
+          "margemOperacional": 1046.96,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0,
+          "sobras": 20.6,
+          "perdasCaixa": 20.6,
+          "quantidadeVendas": 68,
+          "resultadoLiquido": 1046.96,
+          "riscoEconomico": 10.3,
+          "roi": 101.65,
+          "monitoramentoPrioritario": false
+        },
+        {
+          "pdvCodigo": 54193,
+          "receitaBruta": 1139.53,
+          "destruicaoMargem": 959.22,
+          "margemOperacional": 180.31,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 479.61,
+          "sobras": 0,
+          "perdasCaixa": 479.61,
+          "quantidadeVendas": 38,
+          "resultadoLiquido": 180.31,
+          "riscoEconomico": 959.22,
+          "roi": 0.19,
+          "monitoramentoPrioritario": true
+        }
+      ],
+      "turnos": [
+        {
+          "turno": "Turno ?",
+          "turnoCodigo": null,
+          "receitaBruta": 4639.61,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 4639.61,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 94,
+          "resultadoLiquido": 4639.61,
+          "riscoEconomico": 1.0,
+          "roi": 4639.61,
+          "incidenciaQuebraPct": null
+        },
+        {
+          "turno": "1º Turno",
+          "turnoCodigo": 1,
+          "receitaBruta": 2196.79,
+          "destruicaoMargem": 1533.8,
+          "margemOperacional": 662.99,
+          "cancelamentos": 0.0,
+          "faltas": 766.9,
+          "sobras": 0,
+          "perdasCaixa": 766.9,
+          "quantidadeVendas": 106,
+          "resultadoLiquido": 662.99,
+          "riscoEconomico": 1533.8,
+          "roi": 0.43,
+          "incidenciaQuebraPct": 100.0
+        }
+      ],
+      "quebras": 500.21000000000004,
+      "diferencaRede": -768.86,
+      "alertas": [
+        {
+          "severity": "CRITICO",
+          "category": "FILIAL",
+          "message": "Filial crítica: FILIAL 5333",
+          "reference": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          },
+          "evidence": {
+            "ref": {
+              "empresaCodigo": 5333,
+              "nomeFilial": "FILIAL 5333",
+              "receita": 0.0,
+              "lucro": -1133.51,
+              "roi": 0.0,
+              "perdas": 0.0,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 0.0,
+              "crescimentoProxy": 0.0
+            }
+          }
+        },
+        {
+          "severity": "ALTO",
+          "category": "PDV",
+          "message": "PDV crítico: 54193",
+          "reference": {
+            "pdvCodigo": 54193,
+            "fechamentos": 7,
+            "diferencaAcumulada": -479.61,
+            "desvioPadrao": 61.77,
+            "diferencaMedia": -68.52,
+            "operadores": [
+              {
+                "funcionarioCodigo": 227386,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 294273,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 299371,
+                "fechamentos": 1
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 7
+              }
+            ],
+            "cashRiskScore": 59.83,
+            "band": "Atencao",
+            "vsMediaRede": 7.64,
+            "monitoramentoPrioritario": true,
+            "indiceRecorrencia": 0.69,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 31.0,
+            "componentRisk": 59.83,
+            "componentCompensado": 50.0,
+            "_rawScore": 19.716,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 26.72,
+            "performanceScore": 26.72,
+            "performanceBand": "Critico"
+          },
+          "evidence": {
+            "ref": {
+              "pdvCodigo": 54193,
+              "fechamentos": 7,
+              "diferencaAcumulada": -479.61,
+              "desvioPadrao": 61.77,
+              "diferencaMedia": -68.52,
+              "operadores": [
+                {
+                  "funcionarioCodigo": 227386,
+                  "fechamentos": 3
+                },
+                {
+                  "funcionarioCodigo": 294273,
+                  "fechamentos": 3
+                },
+                {
+                  "funcionarioCodigo": 299371,
+                  "fechamentos": 1
+                }
+              ],
+              "turnos": [
+                {
+                  "turno": "1º TURNO",
+                  "fechamentos": 7
+                }
+              ],
+              "cashRiskScore": 59.83,
+              "band": "Atencao",
+              "vsMediaRede": 7.64,
+              "monitoramentoPrioritario": true,
+              "indiceRecorrencia": 0.69,
+              "componentDiferenca": 0.0,
+              "componentRecorrencia": 31.0,
+              "componentRisk": 59.83,
+              "componentCompensado": 50.0,
+              "_rawScore": 19.716,
+              "componentEvolucao": 50.0,
+              "evolucaoDelta": 0.0,
+              "operatorPerformanceScore": 26.72,
+              "performanceScore": 26.72,
+              "performanceBand": "Critico"
+            }
+          }
+        },
+        {
+          "severity": "ALTO",
+          "category": "TURNO",
+          "message": "Turno crítico: 1º Turno",
+          "reference": {
+            "turno": "1º Turno",
+            "turnoCodigo": 1,
+            "receitaBruta": 2196.79,
+            "destruicaoMargem": 1533.8,
+            "margemOperacional": 662.99,
+            "cancelamentos": 0.0,
+            "faltas": 766.9,
+            "sobras": 0,
+            "perdasCaixa": 766.9,
+            "quantidadeVendas": 106,
+            "resultadoLiquido": 662.99,
+            "riscoEconomico": 1533.8,
+            "roi": 0.43,
+            "incidenciaQuebraPct": 100.0,
+            "alertas": 0,
+            "metasPct": 0.43
+          },
+          "evidence": {
+            "ref": {
+              "turno": "1º Turno",
+              "turnoCodigo": 1,
+              "receitaBruta": 2196.79,
+              "destruicaoMargem": 1533.8,
+              "margemOperacional": 662.99,
+              "cancelamentos": 0.0,
+              "faltas": 766.9,
+              "sobras": 0,
+              "perdasCaixa": 766.9,
+              "quantidadeVendas": 106,
+              "resultadoLiquido": 662.99,
+              "riscoEconomico": 1533.8,
+              "roi": 0.43,
+              "incidenciaQuebraPct": 100.0,
+              "alertas": 0,
+              "metasPct": 0.43
+            }
+          }
+        },
+        {
+          "severity": "ATENCAO",
+          "category": "OPERADOR",
+          "message": "Operador crítico: 299151",
+          "reference": {
+            "funcionarioCodigo": 299151,
+            "employeeName": null,
+            "salesScore": 0.0,
+            "productivityScore": 0.0,
+            "accountabilityScore": 0.0,
+            "resultadoLiquido": 0.0,
+            "roi": 0.0,
+            "globalScore": 10.03,
+            "goalPercentual": 88.55,
+            "performanceScore": 22.8,
+            "evolucaoDelta": 0.0,
+            "cashRiskScore": 46.77,
+            "benchmarkScore": 14.79
+          },
+          "evidence": {
+            "ref": {
+              "funcionarioCodigo": 299151,
+              "employeeName": null,
+              "salesScore": 0.0,
+              "productivityScore": 0.0,
+              "accountabilityScore": 0.0,
+              "resultadoLiquido": 0.0,
+              "roi": 0.0,
+              "globalScore": 10.03,
+              "goalPercentual": 88.55,
+              "performanceScore": 22.8,
+              "evolucaoDelta": 0.0,
+              "cashRiskScore": 46.77,
+              "benchmarkScore": 14.79
+            }
+          }
+        },
+        {
+          "severity": "ATENCAO",
+          "category": "META",
+          "message": "12 realizações abaixo da meta",
+          "reference": {
+            "abaixoMeta": 12
+          },
+          "evidence": {
+            "ref": {
+              "abaixoMeta": 12
+            }
+          }
+        }
+      ],
+      "benchmarkOperacional": {
+        "1_melhorFilial": {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "receita": 24029.69,
+          "lucro": -897.02,
+          "roi": -3.73,
+          "perdas": 444.64,
+          "metas": 0,
+          "alertas": 0,
+          "scoreMedio": null,
+          "participacao": 88.89,
+          "crescimentoProxy": 51315.38
+        },
+        "2_piorFilial": {
+          "empresaCodigo": 5333,
+          "nomeFilial": "FILIAL 5333",
+          "receita": 0.0,
+          "lucro": -1133.51,
+          "roi": 0.0,
+          "perdas": 0.0,
+          "metas": 0,
+          "alertas": 0,
+          "scoreMedio": null,
+          "participacao": 0.0,
+          "crescimentoProxy": 0.0
+        },
+        "3_melhorOperador": {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "salesScore": 56.1,
+          "productivityScore": 66.06,
+          "accountabilityScore": 100.0,
+          "resultadoLiquido": 1055.86,
+          "roi": 1055.86,
+          "globalScore": 80.54,
+          "goalPercentual": 81.98,
+          "performanceScore": 58.16,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 57.38,
+          "benchmarkScore": 73.34
+        },
+        "4_piorOperador": {
+          "funcionarioCodigo": 299151,
+          "employeeName": null,
+          "salesScore": 0.0,
+          "productivityScore": 0.0,
+          "accountabilityScore": 0.0,
+          "resultadoLiquido": 0.0,
+          "roi": 0.0,
+          "globalScore": 10.03,
+          "goalPercentual": 88.55,
+          "performanceScore": 22.8,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 46.77,
+          "benchmarkScore": 14.79
+        },
+        "5_melhorPdv": {
+          "pdvCodigo": 56764,
+          "fechamentos": 8,
+          "diferencaAcumulada": 20.6,
+          "desvioPadrao": 11.75,
+          "diferencaMedia": 2.57,
+          "operadores": [
+            {
+              "funcionarioCodigo": 276288,
+              "fechamentos": 6
+            },
+            {
+              "funcionarioCodigo": 178278,
+              "fechamentos": 2
+            }
+          ],
+          "turnos": [
+            {
+              "turno": "1º TURNO",
+              "fechamentos": 7
+            },
+            {
+              "turno": "2º TURNO",
+              "fechamentos": 1
+            }
+          ],
+          "cashRiskScore": 64.1,
+          "band": "Atencao",
+          "vsMediaRede": -52.81,
+          "monitoramentoPrioritario": false,
+          "indiceRecorrencia": 0.03,
+          "componentDiferenca": 95.7,
+          "componentRecorrencia": 97.0,
+          "componentRisk": 64.1,
+          "componentCompensado": 50.0,
+          "_rawScore": 89.70500000000001,
+          "componentEvolucao": 50.0,
+          "evolucaoDelta": 0.0,
+          "operatorPerformanceScore": 82.14,
+          "performanceScore": 82.14,
+          "performanceBand": "Bom"
+        },
+        "6_piorPdv": {
+          "pdvCodigo": 54193,
+          "fechamentos": 7,
+          "diferencaAcumulada": -479.61,
+          "desvioPadrao": 61.77,
+          "diferencaMedia": -68.52,
+          "operadores": [
+            {
+              "funcionarioCodigo": 227386,
+              "fechamentos": 3
+            },
+            {
+              "funcionarioCodigo": 294273,
+              "fechamentos": 3
+            },
+            {
+              "funcionarioCodigo": 299371,
+              "fechamentos": 1
+            }
+          ],
+          "turnos": [
+            {
+              "turno": "1º TURNO",
+              "fechamentos": 7
+            }
+          ],
+          "cashRiskScore": 59.83,
+          "band": "Atencao",
+          "vsMediaRede": 7.64,
+          "monitoramentoPrioritario": true,
+          "indiceRecorrencia": 0.69,
+          "componentDiferenca": 0.0,
+          "componentRecorrencia": 31.0,
+          "componentRisk": 59.83,
+          "componentCompensado": 50.0,
+          "_rawScore": 19.716,
+          "componentEvolucao": 50.0,
+          "evolucaoDelta": 0.0,
+          "operatorPerformanceScore": 26.72,
+          "performanceScore": 26.72,
+          "performanceBand": "Critico"
+        },
+        "7_melhorTurno": {
+          "turno": "Turno ?",
+          "turnoCodigo": null,
+          "receitaBruta": 4639.61,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 4639.61,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 94,
+          "resultadoLiquido": 4639.61,
+          "riscoEconomico": 1.0,
+          "roi": 4639.61,
+          "incidenciaQuebraPct": null,
+          "alertas": 0,
+          "metasPct": 4639.61
+        },
+        "8_piorTurno": {
+          "turno": "1º Turno",
+          "turnoCodigo": 1,
+          "receitaBruta": 2196.79,
+          "destruicaoMargem": 1533.8,
+          "margemOperacional": 662.99,
+          "cancelamentos": 0.0,
+          "faltas": 766.9,
+          "sobras": 0,
+          "perdasCaixa": 766.9,
+          "quantidadeVendas": 106,
+          "resultadoLiquido": 662.99,
+          "riscoEconomico": 1533.8,
+          "roi": 0.43,
+          "incidenciaQuebraPct": 100.0,
+          "alertas": 0,
+          "metasPct": 0.43
+        },
+        "9_maiorRoi": {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "receita": 24029.69,
+          "lucro": -897.02,
+          "roi": -3.73,
+          "perdas": 444.64,
+          "metas": 0,
+          "alertas": 0,
+          "scoreMedio": null,
+          "participacao": 88.89,
+          "crescimentoProxy": 51315.38
+        },
+        "10_maiorRisco": {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "receita": 3003.37,
+          "lucro": -4380.26,
+          "roi": -145.84,
+          "perdas": 55.57,
+          "metas": 65,
+          "alertas": 45,
+          "scoreMedio": 40.48,
+          "participacao": 11.11,
+          "crescimentoProxy": 6410.52
+        },
+        "11_maiorOportunidade": {
+          "pdvCodigo": null,
+          "receitaBruta": 4639.61,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 4639.61,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 94,
+          "resultadoLiquido": 4639.61,
+          "riscoEconomico": 1.0,
+          "roi": 4639.61,
+          "monitoramentoPrioritario": false,
+          "alertas": 0,
+          "metasPct": 4639.61
+        },
+        "12_maiorGap": {
+          "tipo": "FILIAL",
+          "gap": 9011.02,
+          "empresaCodigo": 5333,
+          "nomeFilial": "FILIAL 5333",
+          "receita": 0.0,
+          "lucro": -1133.51,
+          "roi": 0.0,
+          "perdas": 0.0,
+          "metas": 0,
+          "alertas": 0,
+          "scoreMedio": null,
+          "participacao": 0.0,
+          "crescimentoProxy": 0.0
+        },
+        "13_melhorPratica": {
+          "padrao": "Alto benchmark operador",
+          "referencia": {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "salesScore": 56.1,
+            "productivityScore": 66.06,
+            "accountabilityScore": 100.0,
+            "resultadoLiquido": 1055.86,
+            "roi": 1055.86,
+            "globalScore": 80.54,
+            "goalPercentual": 81.98,
+            "performanceScore": 58.16,
+            "evolucaoDelta": 0.0,
+            "cashRiskScore": 57.38,
+            "benchmarkScore": 73.34
+          },
+          "acao": "Replicar mix vendas + accountability"
+        },
+        "14_piorPratica": {
+          "padrao": "PDV destruição de margem",
+          "referencia": {
+            "pdvCodigo": 54193,
+            "fechamentos": 7,
+            "diferencaAcumulada": -479.61,
+            "desvioPadrao": 61.77,
+            "diferencaMedia": -68.52,
+            "operadores": [
+              {
+                "funcionarioCodigo": 227386,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 294273,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 299371,
+                "fechamentos": 1
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 7
+              }
+            ],
+            "cashRiskScore": 59.83,
+            "band": "Atencao",
+            "vsMediaRede": 7.64,
+            "monitoramentoPrioritario": true,
+            "indiceRecorrencia": 0.69,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 31.0,
+            "componentRisk": 59.83,
+            "componentCompensado": 50.0,
+            "_rawScore": 19.716,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 26.72,
+            "performanceScore": 26.72,
+            "performanceBand": "Critico"
+          },
+          "acao": "Auditoria caixa + redução faltas"
+        },
+        "15_potencialCapturavel": 4157.64,
+        "16_potencialPerdido": 13858.79,
+        "17_rankingExecutivo": {
+          "filiais": [
+            {
+              "empresaCodigo": 11495,
+              "nomeFilial": "POSTO VIP",
+              "receita": 24029.69,
+              "lucro": -897.02,
+              "roi": -3.73,
+              "perdas": 444.64,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 88.89,
+              "crescimentoProxy": 51315.38
+            },
+            {
+              "empresaCodigo": 5555,
+              "nomeFilial": "AP CASA CAIADA",
+              "receita": 3003.37,
+              "lucro": -4380.26,
+              "roi": -145.84,
+              "perdas": 55.57,
+              "metas": 65,
+              "alertas": 45,
+              "scoreMedio": 40.48,
+              "participacao": 11.11,
+              "crescimentoProxy": 6410.52
+            },
+            {
+              "empresaCodigo": 5333,
+              "nomeFilial": "FILIAL 5333",
+              "receita": 0.0,
+              "lucro": -1133.51,
+              "roi": 0.0,
+              "perdas": 0.0,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 0.0,
+              "crescimentoProxy": 0.0
+            }
+          ],
+          "operadores": [
+            {
+              "funcionarioCodigo": 178278,
+              "employeeName": "APOIO LOJA .",
+              "salesScore": 56.1,
+              "productivityScore": 66.06,
+              "accountabilityScore": 100.0,
+              "resultadoLiquido": 1055.86,
+              "roi": 1055.86,
+              "globalScore": 80.54,
+              "goalPercentual": 81.98,
+              "performanceScore": 58.16,
+              "evolucaoDelta": 0.0,
+              "cashRiskScore": 57.38,
+              "benchmarkScore": 73.34
+            },
+            {
+              "funcionarioCodigo": 251934,
+              "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+              "salesScore": 64.68,
+              "productivityScore": 64.25,
+              "accountabilityScore": 50.0,
+              "resultadoLiquido": 1645.82,
+              "roi": 1645.82,
+              "globalScore": 57.23,
+              "goalPercentual": 89.48,
+              "performanceScore": 0.0,
+              "evolucaoDelta": 0.0,
+              "cashRiskScore": 0.0,
+              "benchmarkScore": 72.08
+            },
+            {
+              "funcionarioCodigo": 163694,
+              "employeeName": "MARINALDO RIBEIRO DA SILVA",
+              "salesScore": 48.2,
+              "productivityScore": 46.88,
+              "accountabilityScore": 50.0,
+              "resultadoLiquido": 1208.05,
+              "roi": 1208.05,
+              "globalScore": 48.77,
+              "goalPercentual": 89.49,
+              "performanceScore": 0.0,
+              "evolucaoDelta": 0.0,
+              "cashRiskScore": 0.0,
+              "benchmarkScore": 59.59
+            },
+            {
+              "funcionarioCodigo": 80203,
+              "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+              "salesScore": 50.44,
+              "productivityScore": 46.16,
+              "accountabilityScore": 50.0,
+              "resultadoLiquido": 1014.3,
+              "roi": 1014.3,
+              "globalScore": 39.15,
+              "goalPercentual": 69.48,
+              "performanceScore": 0.0,
+              "evolucaoDelta": 0.0,
+              "cashRiskScore": 0.0,
+              "benchmarkScore": 53.13
+            },
+            {
+              "funcionarioCodigo": 294273,
+              "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+              "salesScore": 58.21,
+              "productivityScore": 60.93,
+              "accountabilityScore": 30.0,
+              "resultadoLiquido": 634.99,
+              "roi": 634.99,
+              "globalScore": 62.28,
+              "goalPercentual": 64.49,
+              "performanceScore": 17.83,
+              "evolucaoDelta": 0.0,
+              "cashRiskScore": 52.21,
+              "benchmarkScore": 52.01
+            }
+          ],
+          "pdvs": [
+            {
+              "pdvCodigo": null,
+              "receitaBruta": 4639.61,
+              "destruicaoMargem": 0.0,
+              "margemOperacional": 4639.61,
+              "descontos": 0.0,
+              "cancelamentos": 0.0,
+              "faltas": 0.0,
+              "sobras": 0.0,
+              "perdasCaixa": 0.0,
+              "quantidadeVendas": 94,
+              "resultadoLiquido": 4639.61,
+              "riscoEconomico": 1.0,
+              "roi": 4639.61,
+              "monitoramentoPrioritario": false,
+              "alertas": 0,
+              "metasPct": 4639.61
+            },
+            {
+              "pdvCodigo": 56764,
+              "receitaBruta": 1057.26,
+              "destruicaoMargem": 10.3,
+              "margemOperacional": 1046.96,
+              "descontos": 0.0,
+              "cancelamentos": 0.0,
+              "faltas": 0,
+              "sobras": 20.6,
+              "perdasCaixa": 20.6,
+              "quantidadeVendas": 68,
+              "resultadoLiquido": 1046.96,
+              "riscoEconomico": 10.3,
+              "roi": 101.65,
+              "monitoramentoPrioritario": false,
+              "alertas": 0,
+              "metasPct": 101.65
+            },
+            {
+              "pdvCodigo": 54193,
+              "receitaBruta": 1139.53,
+              "destruicaoMargem": 959.22,
+              "margemOperacional": 180.31,
+              "descontos": 0.0,
+              "cancelamentos": 0.0,
+              "faltas": 479.61,
+              "sobras": 0,
+              "perdasCaixa": 479.61,
+              "quantidadeVendas": 38,
+              "resultadoLiquido": 180.31,
+              "riscoEconomico": 959.22,
+              "roi": 0.19,
+              "monitoramentoPrioritario": true,
+              "alertas": 0,
+              "metasPct": 0.19
+            }
+          ],
+          "turnos": [
+            {
+              "turno": "Turno ?",
+              "turnoCodigo": null,
+              "receitaBruta": 4639.61,
+              "destruicaoMargem": 0.0,
+              "margemOperacional": 4639.61,
+              "cancelamentos": 0.0,
+              "faltas": 0.0,
+              "sobras": 0.0,
+              "perdasCaixa": 0.0,
+              "quantidadeVendas": 94,
+              "resultadoLiquido": 4639.61,
+              "riscoEconomico": 1.0,
+              "roi": 4639.61,
+              "incidenciaQuebraPct": null,
+              "alertas": 0,
+              "metasPct": 4639.61
+            },
+            {
+              "turno": "1º Turno",
+              "turnoCodigo": 1,
+              "receitaBruta": 2196.79,
+              "destruicaoMargem": 1533.8,
+              "margemOperacional": 662.99,
+              "cancelamentos": 0.0,
+              "faltas": 766.9,
+              "sobras": 0,
+              "perdasCaixa": 766.9,
+              "quantidadeVendas": 106,
+              "resultadoLiquido": 662.99,
+              "riscoEconomico": 1533.8,
+              "roi": 0.43,
+              "incidenciaQuebraPct": 100.0,
+              "alertas": 0,
+              "metasPct": 0.43
+            }
+          ]
+        },
+        "18_benchmarkConfiavel": true,
+        "19_prontoScorecard": true,
+        "20_aprovadoF047": true,
+        "paridadeDelta": 0.0
+      },
+      "pdvDestroiMargem": {
+        "pdvCodigo": 54193,
+        "receitaBruta": 1139.53,
+        "destruicaoMargem": 959.22,
+        "margemOperacional": 180.31,
+        "descontos": 0.0,
+        "cancelamentos": 0.0,
+        "faltas": 479.61,
+        "sobras": 0,
+        "perdasCaixa": 479.61,
+        "quantidadeVendas": 38,
+        "resultadoLiquido": 180.31,
+        "riscoEconomico": 959.22,
+        "roi": 0.19,
+        "monitoramentoPrioritario": true
+      },
+      "pdvPreservaMargem": {
+        "pdvCodigo": null,
+        "receitaBruta": 4639.61,
+        "destruicaoMargem": 0.0,
+        "margemOperacional": 4639.61,
+        "descontos": 0.0,
+        "cancelamentos": 0.0,
+        "faltas": 0.0,
+        "sobras": 0.0,
+        "perdasCaixa": 0.0,
+        "quantidadeVendas": 94,
+        "resultadoLiquido": 4639.61,
+        "riscoEconomico": 1.0,
+        "roi": 4639.61,
+        "monitoramentoPrioritario": false
+      },
+      "turnoProblematico": {
+        "turno": "1º Turno",
+        "turnoCodigo": 1,
+        "receitaBruta": 2196.79,
+        "destruicaoMargem": 1533.8,
+        "margemOperacional": 662.99,
+        "cancelamentos": 0.0,
+        "faltas": 766.9,
+        "sobras": 0,
+        "perdasCaixa": 766.9,
+        "quantidadeVendas": 106,
+        "resultadoLiquido": 662.99,
+        "riscoEconomico": 1533.8,
+        "roi": 0.43,
+        "incidenciaQuebraPct": 100.0,
+        "alertas": 0,
+        "metasPct": 0.43
+      },
+      "turnoEficiente": null
+    },
+    "opportunityEngine": {
+      "opportunities": [
+        {
+          "type": "FINANCEIRA",
+          "title": "Recuperação caixa 30%",
+          "impactoEstimado": 4157.64,
+          "roiEsperado": 12472.92,
+          "potencialCapturavel": 4157.64,
+          "prioridade": "ALTA",
+          "reference": {
+            "receitaTotal": 6836.4,
+            "margemOperacional": 85.82,
+            "perdas": 500.21000000000004,
+            "recuperacaoIdentificada": 4157.64,
+            "potencialCapturavel": 4157.64,
+            "potencialPerdido": 13858.79,
+            "roiCorporativo": {
+              "empresaCodigo": 11495,
+              "nomeFilial": "POSTO VIP",
+              "receita": 24029.69,
+              "lucro": -897.02,
+              "roi": -3.73,
+              "perdas": 444.64,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 88.89,
+              "crescimentoProxy": 51315.38
+            },
+            "filialCampea": {
+              "empresaCodigo": 11495,
+              "nomeFilial": "POSTO VIP",
+              "receita": 24029.69,
+              "lucro": -897.02,
+              "roi": -3.73,
+              "perdas": 444.64,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 88.89,
+              "crescimentoProxy": 51315.38
+            },
+            "filialCritica": {
+              "empresaCodigo": 5333,
+              "nomeFilial": "FILIAL 5333",
+              "receita": 0.0,
+              "lucro": -1133.51,
+              "roi": 0.0,
+              "perdas": 0.0,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 0.0,
+              "crescimentoProxy": 0.0
+            },
+            "financialScore": 90.07
+          },
+          "calculo": {
+            "impacto": 4157.64,
+            "roi": 12472.920000000002
+          }
+        },
+        {
+          "type": "PESSOAS",
+          "title": "Replicar operador APOIO LOJA .",
+          "impactoEstimado": 1055.86,
+          "roiEsperado": 1055.86,
+          "potencialCapturavel": 1055.86,
+          "prioridade": "MEDIA",
+          "reference": {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "salesScore": 56.1,
+            "productivityScore": 66.06,
+            "accountabilityScore": 100.0,
+            "resultadoLiquido": 1055.86,
+            "roi": 1055.86,
+            "globalScore": 80.54,
+            "goalPercentual": 81.98,
+            "performanceScore": 58.16,
+            "evolucaoDelta": 0.0,
+            "cashRiskScore": 57.38,
+            "benchmarkScore": 73.34
+          },
+          "calculo": {
+            "impacto": 1055.86,
+            "roi": 1055.86
+          }
+        },
+        {
+          "type": "OPERACIONAL",
+          "title": "Expandir playbook PDV None",
+          "impactoEstimado": 4639.61,
+          "roiEsperado": 4639.61,
+          "potencialCapturavel": 4639.61,
+          "prioridade": "MEDIA",
+          "reference": {
+            "pdvCodigo": null,
+            "receitaBruta": 4639.61,
+            "destruicaoMargem": 0.0,
+            "margemOperacional": 4639.61,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 0.0,
+            "sobras": 0.0,
+            "perdasCaixa": 0.0,
+            "quantidadeVendas": 94,
+            "resultadoLiquido": 4639.61,
+            "riscoEconomico": 1.0,
+            "roi": 4639.61,
+            "monitoramentoPrioritario": false
+          },
+          "calculo": {
+            "impacto": 4639.61,
+            "roi": 4639.61
+          }
+        },
+        {
+          "type": "COMERCIAL",
+          "title": "Campanhas com metas atingidas",
+          "impactoEstimado": 2300.0,
+          "roiEsperado": 460.0,
+          "potencialCapturavel": 2300.0,
+          "prioridade": "BAIXA",
+          "reference": {
+            "corporateScore": 68.16,
+            "executiveScore": 58.47,
+            "financialScore": 90.07,
+            "peopleScore": 37.67,
+            "operationsScore": 50.94,
+            "growthScore": 42.95,
+            "riskScore": 54.03,
+            "receita": 6836.4,
+            "margem": 5866.88,
+            "perdas": 500.21000000000004,
+            "recuperacao": 4157.64,
+            "roi": {
+              "empresaCodigo": 11495,
+              "nomeFilial": "POSTO VIP",
+              "receita": 24029.69,
+              "lucro": -897.02,
+              "roi": -3.73,
+              "perdas": 444.64,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 88.89,
+              "crescimentoProxy": 51315.38
+            },
+            "metas": 65,
+            "metasOk": 23,
+            "benchmark": {
+              "empresaCodigo": 11495,
+              "nomeFilial": "POSTO VIP",
+              "receita": 24029.69,
+              "lucro": -897.02,
+              "roi": -3.73,
+              "perdas": 444.64,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 88.89,
+              "crescimentoProxy": 51315.38
+            },
+            "paridadeDelta": 0.0
+          },
+          "calculo": {
+            "impacto": 2300.0,
+            "roi": 460.0
+          }
+        }
+      ],
+      "topOportunidade": {
+        "type": "FINANCEIRA",
+        "title": "Recuperação caixa 30%",
+        "impactoEstimado": 4157.64,
+        "roiEsperado": 12472.92,
+        "potencialCapturavel": 4157.64,
+        "prioridade": "ALTA",
+        "reference": {
+          "receitaTotal": 6836.4,
+          "margemOperacional": 85.82,
+          "perdas": 500.21000000000004,
+          "recuperacaoIdentificada": 4157.64,
+          "potencialCapturavel": 4157.64,
+          "potencialPerdido": 13858.79,
+          "roiCorporativo": {
+            "empresaCodigo": 11495,
+            "nomeFilial": "POSTO VIP",
+            "receita": 24029.69,
+            "lucro": -897.02,
+            "roi": -3.73,
+            "perdas": 444.64,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 88.89,
+            "crescimentoProxy": 51315.38
+          },
+          "filialCampea": {
+            "empresaCodigo": 11495,
+            "nomeFilial": "POSTO VIP",
+            "receita": 24029.69,
+            "lucro": -897.02,
+            "roi": -3.73,
+            "perdas": 444.64,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 88.89,
+            "crescimentoProxy": 51315.38
+          },
+          "filialCritica": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          },
+          "financialScore": 90.07
+        },
+        "calculo": {
+          "impacto": 4157.64,
+          "roi": 12472.920000000002
+        }
+      },
+      "topOportunidades": [
+        {
+          "type": "FINANCEIRA",
+          "title": "Recuperação caixa 30%",
+          "impactoEstimado": 4157.64,
+          "roiEsperado": 12472.92,
+          "potencialCapturavel": 4157.64,
+          "prioridade": "ALTA",
+          "reference": {
+            "receitaTotal": 6836.4,
+            "margemOperacional": 85.82,
+            "perdas": 500.21000000000004,
+            "recuperacaoIdentificada": 4157.64,
+            "potencialCapturavel": 4157.64,
+            "potencialPerdido": 13858.79,
+            "roiCorporativo": {
+              "empresaCodigo": 11495,
+              "nomeFilial": "POSTO VIP",
+              "receita": 24029.69,
+              "lucro": -897.02,
+              "roi": -3.73,
+              "perdas": 444.64,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 88.89,
+              "crescimentoProxy": 51315.38
+            },
+            "filialCampea": {
+              "empresaCodigo": 11495,
+              "nomeFilial": "POSTO VIP",
+              "receita": 24029.69,
+              "lucro": -897.02,
+              "roi": -3.73,
+              "perdas": 444.64,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 88.89,
+              "crescimentoProxy": 51315.38
+            },
+            "filialCritica": {
+              "empresaCodigo": 5333,
+              "nomeFilial": "FILIAL 5333",
+              "receita": 0.0,
+              "lucro": -1133.51,
+              "roi": 0.0,
+              "perdas": 0.0,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 0.0,
+              "crescimentoProxy": 0.0
+            },
+            "financialScore": 90.07
+          },
+          "calculo": {
+            "impacto": 4157.64,
+            "roi": 12472.920000000002
+          }
+        },
+        {
+          "type": "PESSOAS",
+          "title": "Replicar operador APOIO LOJA .",
+          "impactoEstimado": 1055.86,
+          "roiEsperado": 1055.86,
+          "potencialCapturavel": 1055.86,
+          "prioridade": "MEDIA",
+          "reference": {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "salesScore": 56.1,
+            "productivityScore": 66.06,
+            "accountabilityScore": 100.0,
+            "resultadoLiquido": 1055.86,
+            "roi": 1055.86,
+            "globalScore": 80.54,
+            "goalPercentual": 81.98,
+            "performanceScore": 58.16,
+            "evolucaoDelta": 0.0,
+            "cashRiskScore": 57.38,
+            "benchmarkScore": 73.34
+          },
+          "calculo": {
+            "impacto": 1055.86,
+            "roi": 1055.86
+          }
+        },
+        {
+          "type": "OPERACIONAL",
+          "title": "Expandir playbook PDV None",
+          "impactoEstimado": 4639.61,
+          "roiEsperado": 4639.61,
+          "potencialCapturavel": 4639.61,
+          "prioridade": "MEDIA",
+          "reference": {
+            "pdvCodigo": null,
+            "receitaBruta": 4639.61,
+            "destruicaoMargem": 0.0,
+            "margemOperacional": 4639.61,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 0.0,
+            "sobras": 0.0,
+            "perdasCaixa": 0.0,
+            "quantidadeVendas": 94,
+            "resultadoLiquido": 4639.61,
+            "riscoEconomico": 1.0,
+            "roi": 4639.61,
+            "monitoramentoPrioritario": false
+          },
+          "calculo": {
+            "impacto": 4639.61,
+            "roi": 4639.61
+          }
+        },
+        {
+          "type": "COMERCIAL",
+          "title": "Campanhas com metas atingidas",
+          "impactoEstimado": 2300.0,
+          "roiEsperado": 460.0,
+          "potencialCapturavel": 2300.0,
+          "prioridade": "BAIXA",
+          "reference": {
+            "corporateScore": 68.16,
+            "executiveScore": 58.47,
+            "financialScore": 90.07,
+            "peopleScore": 37.67,
+            "operationsScore": 50.94,
+            "growthScore": 42.95,
+            "riskScore": 54.03,
+            "receita": 6836.4,
+            "margem": 5866.88,
+            "perdas": 500.21000000000004,
+            "recuperacao": 4157.64,
+            "roi": {
+              "empresaCodigo": 11495,
+              "nomeFilial": "POSTO VIP",
+              "receita": 24029.69,
+              "lucro": -897.02,
+              "roi": -3.73,
+              "perdas": 444.64,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 88.89,
+              "crescimentoProxy": 51315.38
+            },
+            "metas": 65,
+            "metasOk": 23,
+            "benchmark": {
+              "empresaCodigo": 11495,
+              "nomeFilial": "POSTO VIP",
+              "receita": 24029.69,
+              "lucro": -897.02,
+              "roi": -3.73,
+              "perdas": 444.64,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 88.89,
+              "crescimentoProxy": 51315.38
+            },
+            "paridadeDelta": 0.0
+          },
+          "calculo": {
+            "impacto": 2300.0,
+            "roi": 460.0
+          }
+        }
+      ]
+    },
+    "riskIntelligenceEngine": {
+      "risks": [
+        {
+          "riskType": "FILIAL",
+          "severity": "CRITICO",
+          "message": "Filial preocupante na rede",
+          "reference": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          },
+          "justificativa": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          }
+        },
+        {
+          "riskType": "FILIAL",
+          "severity": "CRITICO",
+          "message": "Filial crítica: FILIAL 5333",
+          "reference": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          },
+          "justificativa": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          }
+        },
+        {
+          "riskType": "FINANCEIRO",
+          "severity": "ALTO",
+          "message": "Maior risco financeiro consolidado",
+          "reference": {
+            "empresaCodigo": 5555,
+            "nomeFilial": "AP CASA CAIADA",
+            "receita": 3003.37,
+            "lucro": -4380.26,
+            "roi": -145.84,
+            "perdas": 55.57,
+            "metas": 65,
+            "alertas": 45,
+            "scoreMedio": 40.48,
+            "participacao": 11.11,
+            "crescimentoProxy": 6410.52
+          },
+          "justificativa": {
+            "empresaCodigo": 5555,
+            "nomeFilial": "AP CASA CAIADA",
+            "receita": 3003.37,
+            "lucro": -4380.26,
+            "roi": -145.84,
+            "perdas": 55.57,
+            "metas": 65,
+            "alertas": 45,
+            "scoreMedio": 40.48,
+            "participacao": 11.11,
+            "crescimentoProxy": 6410.52
+          }
+        },
+        {
+          "riskType": "PDV",
+          "severity": "ALTO",
+          "message": "PDV destrói margem",
+          "reference": {
+            "pdvCodigo": 54193,
+            "receitaBruta": 1139.53,
+            "destruicaoMargem": 959.22,
+            "margemOperacional": 180.31,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 479.61,
+            "sobras": 0,
+            "perdasCaixa": 479.61,
+            "quantidadeVendas": 38,
+            "resultadoLiquido": 180.31,
+            "riscoEconomico": 959.22,
+            "roi": 0.19,
+            "monitoramentoPrioritario": true
+          },
+          "justificativa": {
+            "pdvCodigo": 54193,
+            "receitaBruta": 1139.53,
+            "destruicaoMargem": 959.22,
+            "margemOperacional": 180.31,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 479.61,
+            "sobras": 0,
+            "perdasCaixa": 479.61,
+            "quantidadeVendas": 38,
+            "resultadoLiquido": 180.31,
+            "riscoEconomico": 959.22,
+            "roi": 0.19,
+            "monitoramentoPrioritario": true
+          }
+        },
+        {
+          "riskType": "TURNO",
+          "severity": "ALTO",
+          "message": "Turno problemático",
+          "reference": {
+            "turno": "1º Turno",
+            "turnoCodigo": 1,
+            "receitaBruta": 2196.79,
+            "destruicaoMargem": 1533.8,
+            "margemOperacional": 662.99,
+            "cancelamentos": 0.0,
+            "faltas": 766.9,
+            "sobras": 0,
+            "perdasCaixa": 766.9,
+            "quantidadeVendas": 106,
+            "resultadoLiquido": 662.99,
+            "riscoEconomico": 1533.8,
+            "roi": 0.43,
+            "incidenciaQuebraPct": 100.0,
+            "alertas": 0,
+            "metasPct": 0.43
+          },
+          "justificativa": {
+            "turno": "1º Turno",
+            "turnoCodigo": 1,
+            "receitaBruta": 2196.79,
+            "destruicaoMargem": 1533.8,
+            "margemOperacional": 662.99,
+            "cancelamentos": 0.0,
+            "faltas": 766.9,
+            "sobras": 0,
+            "perdasCaixa": 766.9,
+            "quantidadeVendas": 106,
+            "resultadoLiquido": 662.99,
+            "riscoEconomico": 1533.8,
+            "roi": 0.43,
+            "incidenciaQuebraPct": 100.0,
+            "alertas": 0,
+            "metasPct": 0.43
+          }
+        },
+        {
+          "riskType": "PDV",
+          "severity": "ALTO",
+          "message": "PDV crítico: 54193",
+          "reference": {
+            "pdvCodigo": 54193,
+            "fechamentos": 7,
+            "diferencaAcumulada": -479.61,
+            "desvioPadrao": 61.77,
+            "diferencaMedia": -68.52,
+            "operadores": [
+              {
+                "funcionarioCodigo": 227386,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 294273,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 299371,
+                "fechamentos": 1
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 7
+              }
+            ],
+            "cashRiskScore": 59.83,
+            "band": "Atencao",
+            "vsMediaRede": 7.64,
+            "monitoramentoPrioritario": true,
+            "indiceRecorrencia": 0.69,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 31.0,
+            "componentRisk": 59.83,
+            "componentCompensado": 50.0,
+            "_rawScore": 19.716,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 26.72,
+            "performanceScore": 26.72,
+            "performanceBand": "Critico"
+          },
+          "justificativa": {
+            "pdvCodigo": 54193,
+            "fechamentos": 7,
+            "diferencaAcumulada": -479.61,
+            "desvioPadrao": 61.77,
+            "diferencaMedia": -68.52,
+            "operadores": [
+              {
+                "funcionarioCodigo": 227386,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 294273,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 299371,
+                "fechamentos": 1
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 7
+              }
+            ],
+            "cashRiskScore": 59.83,
+            "band": "Atencao",
+            "vsMediaRede": 7.64,
+            "monitoramentoPrioritario": true,
+            "indiceRecorrencia": 0.69,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 31.0,
+            "componentRisk": 59.83,
+            "componentCompensado": 50.0,
+            "_rawScore": 19.716,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 26.72,
+            "performanceScore": 26.72,
+            "performanceBand": "Critico"
+          }
+        },
+        {
+          "riskType": "TURNO",
+          "severity": "ALTO",
+          "message": "Turno crítico: 1º Turno",
+          "reference": {
+            "turno": "1º Turno",
+            "turnoCodigo": 1,
+            "receitaBruta": 2196.79,
+            "destruicaoMargem": 1533.8,
+            "margemOperacional": 662.99,
+            "cancelamentos": 0.0,
+            "faltas": 766.9,
+            "sobras": 0,
+            "perdasCaixa": 766.9,
+            "quantidadeVendas": 106,
+            "resultadoLiquido": 662.99,
+            "riscoEconomico": 1533.8,
+            "roi": 0.43,
+            "incidenciaQuebraPct": 100.0,
+            "alertas": 0,
+            "metasPct": 0.43
+          },
+          "justificativa": {
+            "turno": "1º Turno",
+            "turnoCodigo": 1,
+            "receitaBruta": 2196.79,
+            "destruicaoMargem": 1533.8,
+            "margemOperacional": 662.99,
+            "cancelamentos": 0.0,
+            "faltas": 766.9,
+            "sobras": 0,
+            "perdasCaixa": 766.9,
+            "quantidadeVendas": 106,
+            "resultadoLiquido": 662.99,
+            "riscoEconomico": 1533.8,
+            "roi": 0.43,
+            "incidenciaQuebraPct": 100.0,
+            "alertas": 0,
+            "metasPct": 0.43
+          }
+        },
+        {
+          "riskType": "PESSOAS",
+          "severity": "ATENCAO",
+          "message": "Operador gera risco",
+          "reference": {
+            "funcionarioCodigo": 299151,
+            "employeeName": null,
+            "salesScore": 0.0,
+            "productivityScore": 0.0,
+            "accountabilityScore": 0.0,
+            "resultadoLiquido": 0.0,
+            "roi": 0.0,
+            "globalScore": 10.03,
+            "goalPercentual": 88.55,
+            "performanceScore": 22.8,
+            "evolucaoDelta": 0.0,
+            "cashRiskScore": 46.77,
+            "benchmarkScore": 14.79
+          },
+          "justificativa": {
+            "funcionarioCodigo": 299151,
+            "employeeName": null,
+            "salesScore": 0.0,
+            "productivityScore": 0.0,
+            "accountabilityScore": 0.0,
+            "resultadoLiquido": 0.0,
+            "roi": 0.0,
+            "globalScore": 10.03,
+            "goalPercentual": 88.55,
+            "performanceScore": 22.8,
+            "evolucaoDelta": 0.0,
+            "cashRiskScore": 46.77,
+            "benchmarkScore": 14.79
+          }
+        },
+        {
+          "riskType": "OPERADOR",
+          "severity": "ATENCAO",
+          "message": "Operador crítico: 299151",
+          "reference": {
+            "funcionarioCodigo": 299151,
+            "employeeName": null,
+            "salesScore": 0.0,
+            "productivityScore": 0.0,
+            "accountabilityScore": 0.0,
+            "resultadoLiquido": 0.0,
+            "roi": 0.0,
+            "globalScore": 10.03,
+            "goalPercentual": 88.55,
+            "performanceScore": 22.8,
+            "evolucaoDelta": 0.0,
+            "cashRiskScore": 46.77,
+            "benchmarkScore": 14.79
+          },
+          "justificativa": {
+            "funcionarioCodigo": 299151,
+            "employeeName": null,
+            "salesScore": 0.0,
+            "productivityScore": 0.0,
+            "accountabilityScore": 0.0,
+            "resultadoLiquido": 0.0,
+            "roi": 0.0,
+            "globalScore": 10.03,
+            "goalPercentual": 88.55,
+            "performanceScore": 22.8,
+            "evolucaoDelta": 0.0,
+            "cashRiskScore": 46.77,
+            "benchmarkScore": 14.79
+          }
+        },
+        {
+          "riskType": "META",
+          "severity": "ATENCAO",
+          "message": "12 realizações abaixo da meta",
+          "reference": {
+            "abaixoMeta": 12
+          },
+          "justificativa": {
+            "abaixoMeta": 12
+          }
+        }
+      ],
+      "topRisco": {
+        "riskType": "FILIAL",
+        "severity": "CRITICO",
+        "message": "Filial preocupante na rede",
+        "reference": {
+          "empresaCodigo": 5333,
+          "nomeFilial": "FILIAL 5333",
+          "receita": 0.0,
+          "lucro": -1133.51,
+          "roi": 0.0,
+          "perdas": 0.0,
+          "metas": 0,
+          "alertas": 0,
+          "scoreMedio": null,
+          "participacao": 0.0,
+          "crescimentoProxy": 0.0
+        },
+        "justificativa": {
+          "empresaCodigo": 5333,
+          "nomeFilial": "FILIAL 5333",
+          "receita": 0.0,
+          "lucro": -1133.51,
+          "roi": 0.0,
+          "perdas": 0.0,
+          "metas": 0,
+          "alertas": 0,
+          "scoreMedio": null,
+          "participacao": 0.0,
+          "crescimentoProxy": 0.0
+        }
+      },
+      "topRiscos": [
+        {
+          "riskType": "FILIAL",
+          "severity": "CRITICO",
+          "message": "Filial preocupante na rede",
+          "reference": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          },
+          "justificativa": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          }
+        },
+        {
+          "riskType": "FILIAL",
+          "severity": "CRITICO",
+          "message": "Filial crítica: FILIAL 5333",
+          "reference": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          },
+          "justificativa": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          }
+        },
+        {
+          "riskType": "FINANCEIRO",
+          "severity": "ALTO",
+          "message": "Maior risco financeiro consolidado",
+          "reference": {
+            "empresaCodigo": 5555,
+            "nomeFilial": "AP CASA CAIADA",
+            "receita": 3003.37,
+            "lucro": -4380.26,
+            "roi": -145.84,
+            "perdas": 55.57,
+            "metas": 65,
+            "alertas": 45,
+            "scoreMedio": 40.48,
+            "participacao": 11.11,
+            "crescimentoProxy": 6410.52
+          },
+          "justificativa": {
+            "empresaCodigo": 5555,
+            "nomeFilial": "AP CASA CAIADA",
+            "receita": 3003.37,
+            "lucro": -4380.26,
+            "roi": -145.84,
+            "perdas": 55.57,
+            "metas": 65,
+            "alertas": 45,
+            "scoreMedio": 40.48,
+            "participacao": 11.11,
+            "crescimentoProxy": 6410.52
+          }
+        },
+        {
+          "riskType": "PDV",
+          "severity": "ALTO",
+          "message": "PDV destrói margem",
+          "reference": {
+            "pdvCodigo": 54193,
+            "receitaBruta": 1139.53,
+            "destruicaoMargem": 959.22,
+            "margemOperacional": 180.31,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 479.61,
+            "sobras": 0,
+            "perdasCaixa": 479.61,
+            "quantidadeVendas": 38,
+            "resultadoLiquido": 180.31,
+            "riscoEconomico": 959.22,
+            "roi": 0.19,
+            "monitoramentoPrioritario": true
+          },
+          "justificativa": {
+            "pdvCodigo": 54193,
+            "receitaBruta": 1139.53,
+            "destruicaoMargem": 959.22,
+            "margemOperacional": 180.31,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 479.61,
+            "sobras": 0,
+            "perdasCaixa": 479.61,
+            "quantidadeVendas": 38,
+            "resultadoLiquido": 180.31,
+            "riscoEconomico": 959.22,
+            "roi": 0.19,
+            "monitoramentoPrioritario": true
+          }
+        },
+        {
+          "riskType": "TURNO",
+          "severity": "ALTO",
+          "message": "Turno problemático",
+          "reference": {
+            "turno": "1º Turno",
+            "turnoCodigo": 1,
+            "receitaBruta": 2196.79,
+            "destruicaoMargem": 1533.8,
+            "margemOperacional": 662.99,
+            "cancelamentos": 0.0,
+            "faltas": 766.9,
+            "sobras": 0,
+            "perdasCaixa": 766.9,
+            "quantidadeVendas": 106,
+            "resultadoLiquido": 662.99,
+            "riscoEconomico": 1533.8,
+            "roi": 0.43,
+            "incidenciaQuebraPct": 100.0,
+            "alertas": 0,
+            "metasPct": 0.43
+          },
+          "justificativa": {
+            "turno": "1º Turno",
+            "turnoCodigo": 1,
+            "receitaBruta": 2196.79,
+            "destruicaoMargem": 1533.8,
+            "margemOperacional": 662.99,
+            "cancelamentos": 0.0,
+            "faltas": 766.9,
+            "sobras": 0,
+            "perdasCaixa": 766.9,
+            "quantidadeVendas": 106,
+            "resultadoLiquido": 662.99,
+            "riscoEconomico": 1533.8,
+            "roi": 0.43,
+            "incidenciaQuebraPct": 100.0,
+            "alertas": 0,
+            "metasPct": 0.43
+          }
+        }
+      ],
+      "riscoFinanceiro": {
+        "empresaCodigo": 5555,
+        "nomeFilial": "AP CASA CAIADA",
+        "receita": 3003.37,
+        "lucro": -4380.26,
+        "roi": -145.84,
+        "perdas": 55.57,
+        "metas": 65,
+        "alertas": 45,
+        "scoreMedio": 40.48,
+        "participacao": 11.11,
+        "crescimentoProxy": 6410.52
+      },
+      "riscoOperacional": {
+        "pdvCodigo": 54193,
+        "receitaBruta": 1139.53,
+        "destruicaoMargem": 959.22,
+        "margemOperacional": 180.31,
+        "descontos": 0.0,
+        "cancelamentos": 0.0,
+        "faltas": 479.61,
+        "sobras": 0,
+        "perdasCaixa": 479.61,
+        "quantidadeVendas": 38,
+        "resultadoLiquido": 180.31,
+        "riscoEconomico": 959.22,
+        "roi": 0.19,
+        "monitoramentoPrioritario": true
+      },
+      "riscoPessoas": {
+        "funcionarioCodigo": 299151,
+        "employeeName": null,
+        "salesScore": 0.0,
+        "productivityScore": 0.0,
+        "accountabilityScore": 0.0,
+        "resultadoLiquido": 0.0,
+        "roi": 0.0,
+        "globalScore": 10.03,
+        "goalPercentual": 88.55,
+        "performanceScore": 22.8,
+        "evolucaoDelta": 0.0,
+        "cashRiskScore": 46.77,
+        "benchmarkScore": 14.79
+      },
+      "riscoFilial": {
+        "empresaCodigo": 5333,
+        "nomeFilial": "FILIAL 5333",
+        "receita": 0.0,
+        "lucro": -1133.51,
+        "roi": 0.0,
+        "perdas": 0.0,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 0.0,
+        "crescimentoProxy": 0.0
+      },
+      "riscoPdv": {
+        "pdvCodigo": 54193,
+        "receitaBruta": 1139.53,
+        "destruicaoMargem": 959.22,
+        "margemOperacional": 180.31,
+        "descontos": 0.0,
+        "cancelamentos": 0.0,
+        "faltas": 479.61,
+        "sobras": 0,
+        "perdasCaixa": 479.61,
+        "quantidadeVendas": 38,
+        "resultadoLiquido": 180.31,
+        "riscoEconomico": 959.22,
+        "roi": 0.19,
+        "monitoramentoPrioritario": true
+      },
+      "riscoTurno": {
+        "turno": "1º Turno",
+        "turnoCodigo": 1,
+        "receitaBruta": 2196.79,
+        "destruicaoMargem": 1533.8,
+        "margemOperacional": 662.99,
+        "cancelamentos": 0.0,
+        "faltas": 766.9,
+        "sobras": 0,
+        "perdasCaixa": 766.9,
+        "quantidadeVendas": 106,
+        "resultadoLiquido": 662.99,
+        "riscoEconomico": 1533.8,
+        "roi": 0.43,
+        "incidenciaQuebraPct": 100.0,
+        "alertas": 0,
+        "metasPct": 0.43
+      }
+    },
+    "cockpit": {
+      "corporateScore": 68.16,
+      "executiveScore": 58.47,
+      "financialScore": 90.07,
+      "peopleScore": 37.67,
+      "operationsScore": 50.94,
+      "topOportunidades": [
+        {
+          "type": "FINANCEIRA",
+          "title": "Recuperação caixa 30%",
+          "impactoEstimado": 4157.64,
+          "roiEsperado": 12472.92,
+          "potencialCapturavel": 4157.64,
+          "prioridade": "ALTA",
+          "reference": {
+            "receitaTotal": 6836.4,
+            "margemOperacional": 85.82,
+            "perdas": 500.21000000000004,
+            "recuperacaoIdentificada": 4157.64,
+            "potencialCapturavel": 4157.64,
+            "potencialPerdido": 13858.79,
+            "roiCorporativo": {
+              "empresaCodigo": 11495,
+              "nomeFilial": "POSTO VIP",
+              "receita": 24029.69,
+              "lucro": -897.02,
+              "roi": -3.73,
+              "perdas": 444.64,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 88.89,
+              "crescimentoProxy": 51315.38
+            },
+            "filialCampea": {
+              "empresaCodigo": 11495,
+              "nomeFilial": "POSTO VIP",
+              "receita": 24029.69,
+              "lucro": -897.02,
+              "roi": -3.73,
+              "perdas": 444.64,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 88.89,
+              "crescimentoProxy": 51315.38
+            },
+            "filialCritica": {
+              "empresaCodigo": 5333,
+              "nomeFilial": "FILIAL 5333",
+              "receita": 0.0,
+              "lucro": -1133.51,
+              "roi": 0.0,
+              "perdas": 0.0,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 0.0,
+              "crescimentoProxy": 0.0
+            },
+            "financialScore": 90.07
+          },
+          "calculo": {
+            "impacto": 4157.64,
+            "roi": 12472.920000000002
+          }
+        },
+        {
+          "type": "PESSOAS",
+          "title": "Replicar operador APOIO LOJA .",
+          "impactoEstimado": 1055.86,
+          "roiEsperado": 1055.86,
+          "potencialCapturavel": 1055.86,
+          "prioridade": "MEDIA",
+          "reference": {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "salesScore": 56.1,
+            "productivityScore": 66.06,
+            "accountabilityScore": 100.0,
+            "resultadoLiquido": 1055.86,
+            "roi": 1055.86,
+            "globalScore": 80.54,
+            "goalPercentual": 81.98,
+            "performanceScore": 58.16,
+            "evolucaoDelta": 0.0,
+            "cashRiskScore": 57.38,
+            "benchmarkScore": 73.34
+          },
+          "calculo": {
+            "impacto": 1055.86,
+            "roi": 1055.86
+          }
+        },
+        {
+          "type": "OPERACIONAL",
+          "title": "Expandir playbook PDV None",
+          "impactoEstimado": 4639.61,
+          "roiEsperado": 4639.61,
+          "potencialCapturavel": 4639.61,
+          "prioridade": "MEDIA",
+          "reference": {
+            "pdvCodigo": null,
+            "receitaBruta": 4639.61,
+            "destruicaoMargem": 0.0,
+            "margemOperacional": 4639.61,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 0.0,
+            "sobras": 0.0,
+            "perdasCaixa": 0.0,
+            "quantidadeVendas": 94,
+            "resultadoLiquido": 4639.61,
+            "riscoEconomico": 1.0,
+            "roi": 4639.61,
+            "monitoramentoPrioritario": false
+          },
+          "calculo": {
+            "impacto": 4639.61,
+            "roi": 4639.61
+          }
+        },
+        {
+          "type": "COMERCIAL",
+          "title": "Campanhas com metas atingidas",
+          "impactoEstimado": 2300.0,
+          "roiEsperado": 460.0,
+          "potencialCapturavel": 2300.0,
+          "prioridade": "BAIXA",
+          "reference": {
+            "corporateScore": 68.16,
+            "executiveScore": 58.47,
+            "financialScore": 90.07,
+            "peopleScore": 37.67,
+            "operationsScore": 50.94,
+            "growthScore": 42.95,
+            "riskScore": 54.03,
+            "receita": 6836.4,
+            "margem": 5866.88,
+            "perdas": 500.21000000000004,
+            "recuperacao": 4157.64,
+            "roi": {
+              "empresaCodigo": 11495,
+              "nomeFilial": "POSTO VIP",
+              "receita": 24029.69,
+              "lucro": -897.02,
+              "roi": -3.73,
+              "perdas": 444.64,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 88.89,
+              "crescimentoProxy": 51315.38
+            },
+            "metas": 65,
+            "metasOk": 23,
+            "benchmark": {
+              "empresaCodigo": 11495,
+              "nomeFilial": "POSTO VIP",
+              "receita": 24029.69,
+              "lucro": -897.02,
+              "roi": -3.73,
+              "perdas": 444.64,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 88.89,
+              "crescimentoProxy": 51315.38
+            },
+            "paridadeDelta": 0.0
+          },
+          "calculo": {
+            "impacto": 2300.0,
+            "roi": 460.0
+          }
+        }
+      ],
+      "topRiscos": [
+        {
+          "riskType": "FILIAL",
+          "severity": "CRITICO",
+          "message": "Filial preocupante na rede",
+          "reference": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          },
+          "justificativa": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          }
+        },
+        {
+          "riskType": "FILIAL",
+          "severity": "CRITICO",
+          "message": "Filial crítica: FILIAL 5333",
+          "reference": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          },
+          "justificativa": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          }
+        },
+        {
+          "riskType": "FINANCEIRO",
+          "severity": "ALTO",
+          "message": "Maior risco financeiro consolidado",
+          "reference": {
+            "empresaCodigo": 5555,
+            "nomeFilial": "AP CASA CAIADA",
+            "receita": 3003.37,
+            "lucro": -4380.26,
+            "roi": -145.84,
+            "perdas": 55.57,
+            "metas": 65,
+            "alertas": 45,
+            "scoreMedio": 40.48,
+            "participacao": 11.11,
+            "crescimentoProxy": 6410.52
+          },
+          "justificativa": {
+            "empresaCodigo": 5555,
+            "nomeFilial": "AP CASA CAIADA",
+            "receita": 3003.37,
+            "lucro": -4380.26,
+            "roi": -145.84,
+            "perdas": 55.57,
+            "metas": 65,
+            "alertas": 45,
+            "scoreMedio": 40.48,
+            "participacao": 11.11,
+            "crescimentoProxy": 6410.52
+          }
+        },
+        {
+          "riskType": "PDV",
+          "severity": "ALTO",
+          "message": "PDV destrói margem",
+          "reference": {
+            "pdvCodigo": 54193,
+            "receitaBruta": 1139.53,
+            "destruicaoMargem": 959.22,
+            "margemOperacional": 180.31,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 479.61,
+            "sobras": 0,
+            "perdasCaixa": 479.61,
+            "quantidadeVendas": 38,
+            "resultadoLiquido": 180.31,
+            "riscoEconomico": 959.22,
+            "roi": 0.19,
+            "monitoramentoPrioritario": true
+          },
+          "justificativa": {
+            "pdvCodigo": 54193,
+            "receitaBruta": 1139.53,
+            "destruicaoMargem": 959.22,
+            "margemOperacional": 180.31,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 479.61,
+            "sobras": 0,
+            "perdasCaixa": 479.61,
+            "quantidadeVendas": 38,
+            "resultadoLiquido": 180.31,
+            "riscoEconomico": 959.22,
+            "roi": 0.19,
+            "monitoramentoPrioritario": true
+          }
+        },
+        {
+          "riskType": "TURNO",
+          "severity": "ALTO",
+          "message": "Turno problemático",
+          "reference": {
+            "turno": "1º Turno",
+            "turnoCodigo": 1,
+            "receitaBruta": 2196.79,
+            "destruicaoMargem": 1533.8,
+            "margemOperacional": 662.99,
+            "cancelamentos": 0.0,
+            "faltas": 766.9,
+            "sobras": 0,
+            "perdasCaixa": 766.9,
+            "quantidadeVendas": 106,
+            "resultadoLiquido": 662.99,
+            "riscoEconomico": 1533.8,
+            "roi": 0.43,
+            "incidenciaQuebraPct": 100.0,
+            "alertas": 0,
+            "metasPct": 0.43
+          },
+          "justificativa": {
+            "turno": "1º Turno",
+            "turnoCodigo": 1,
+            "receitaBruta": 2196.79,
+            "destruicaoMargem": 1533.8,
+            "margemOperacional": 662.99,
+            "cancelamentos": 0.0,
+            "faltas": 766.9,
+            "sobras": 0,
+            "perdasCaixa": 766.9,
+            "quantidadeVendas": 106,
+            "resultadoLiquido": 662.99,
+            "riscoEconomico": 1533.8,
+            "roi": 0.43,
+            "incidenciaQuebraPct": 100.0,
+            "alertas": 0,
+            "metasPct": 0.43
+          }
+        }
+      ],
+      "topFiliais": [
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "receita": 24029.69,
+          "lucro": -897.02,
+          "roi": -3.73,
+          "perdas": 444.64,
+          "metas": 0,
+          "alertas": 0,
+          "scoreMedio": null,
+          "participacao": 88.89,
+          "crescimentoProxy": 51315.38
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "receita": 3003.37,
+          "lucro": -4380.26,
+          "roi": -145.84,
+          "perdas": 55.57,
+          "metas": 65,
+          "alertas": 45,
+          "scoreMedio": 40.48,
+          "participacao": 11.11,
+          "crescimentoProxy": 6410.52
+        },
+        {
+          "empresaCodigo": 5333,
+          "nomeFilial": "FILIAL 5333",
+          "receita": 0.0,
+          "lucro": -1133.51,
+          "roi": 0.0,
+          "perdas": 0.0,
+          "metas": 0,
+          "alertas": 0,
+          "scoreMedio": null,
+          "participacao": 0.0,
+          "crescimentoProxy": 0.0
+        }
+      ],
+      "topOperadores": [
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "salesScore": 56.1,
+          "productivityScore": 66.06,
+          "accountabilityScore": 100.0,
+          "resultadoLiquido": 1055.86,
+          "roi": 1055.86,
+          "globalScore": 80.54,
+          "goalPercentual": 81.98,
+          "performanceScore": 58.16,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 57.38,
+          "benchmarkScore": 73.34
+        },
+        {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "salesScore": 64.68,
+          "productivityScore": 64.25,
+          "accountabilityScore": 50.0,
+          "resultadoLiquido": 1645.82,
+          "roi": 1645.82,
+          "globalScore": 57.23,
+          "goalPercentual": 89.48,
+          "performanceScore": 0.0,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 0.0,
+          "benchmarkScore": 72.08
+        },
+        {
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "salesScore": 48.2,
+          "productivityScore": 46.88,
+          "accountabilityScore": 50.0,
+          "resultadoLiquido": 1208.05,
+          "roi": 1208.05,
+          "globalScore": 48.77,
+          "goalPercentual": 89.49,
+          "performanceScore": 0.0,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 0.0,
+          "benchmarkScore": 59.59
+        },
+        {
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "salesScore": 50.44,
+          "productivityScore": 46.16,
+          "accountabilityScore": 50.0,
+          "resultadoLiquido": 1014.3,
+          "roi": 1014.3,
+          "globalScore": 39.15,
+          "goalPercentual": 69.48,
+          "performanceScore": 0.0,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 0.0,
+          "benchmarkScore": 53.13
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "salesScore": 58.21,
+          "productivityScore": 60.93,
+          "accountabilityScore": 30.0,
+          "resultadoLiquido": 634.99,
+          "roi": 634.99,
+          "globalScore": 62.28,
+          "goalPercentual": 64.49,
+          "performanceScore": 17.83,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 52.21,
+          "benchmarkScore": 52.01
+        },
+        {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "salesScore": 31.08,
+          "productivityScore": 29.24,
+          "accountabilityScore": 50.0,
+          "resultadoLiquido": 555.34,
+          "roi": 555.34,
+          "globalScore": 40.08,
+          "goalPercentual": 89.48,
+          "performanceScore": 0.0,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 0.0,
+          "benchmarkScore": 44.28
+        },
+        {
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "salesScore": 21.86,
+          "productivityScore": 6.79,
+          "accountabilityScore": 50.0,
+          "resultadoLiquido": 120.0,
+          "roi": 120.0,
+          "globalScore": 32.16,
+          "goalPercentual": 89.49,
+          "performanceScore": 0.0,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 0.0,
+          "benchmarkScore": 32.6
+        },
+        {
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "salesScore": 8.09,
+          "productivityScore": 6.06,
+          "accountabilityScore": 50.0,
+          "resultadoLiquido": 95.25,
+          "roi": 95.25,
+          "globalScore": 28.54,
+          "goalPercentual": 89.48,
+          "performanceScore": 0.0,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 0.0,
+          "benchmarkScore": 28.89
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "employeeName": null,
+          "salesScore": 0.0,
+          "productivityScore": 0.0,
+          "accountabilityScore": 0.0,
+          "resultadoLiquido": 0.0,
+          "roi": 0.0,
+          "globalScore": 25.0,
+          "goalPercentual": 103.52,
+          "performanceScore": 60.92,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 58.32,
+          "benchmarkScore": 19.28
+        },
+        {
+          "funcionarioCodigo": 158924,
+          "employeeName": null,
+          "salesScore": 0.0,
+          "productivityScore": 0.0,
+          "accountabilityScore": 0.0,
+          "resultadoLiquido": 0.0,
+          "roi": 0.0,
+          "globalScore": 21.63,
+          "goalPercentual": 100.15,
+          "performanceScore": 43.86,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 45.68,
+          "benchmarkScore": 18.27
+        }
+      ],
+      "pdvsCriticos": [
+        {
+          "pdvCodigo": 54193,
+          "receitaBruta": 1139.53,
+          "destruicaoMargem": 959.22,
+          "margemOperacional": 180.31,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 479.61,
+          "sobras": 0,
+          "perdasCaixa": 479.61,
+          "quantidadeVendas": 38,
+          "resultadoLiquido": 180.31,
+          "riscoEconomico": 959.22,
+          "roi": 0.19,
+          "monitoramentoPrioritario": true
+        }
+      ],
+      "turnosCriticos": [
+        {
+          "turno": "1º Turno",
+          "turnoCodigo": 1,
+          "receitaBruta": 2196.79,
+          "destruicaoMargem": 1533.8,
+          "margemOperacional": 662.99,
+          "cancelamentos": 0.0,
+          "faltas": 766.9,
+          "sobras": 0,
+          "perdasCaixa": 766.9,
+          "quantidadeVendas": 106,
+          "resultadoLiquido": 662.99,
+          "riscoEconomico": 1533.8,
+          "roi": 0.43,
+          "incidenciaQuebraPct": 100.0,
+          "alertas": 0,
+          "metasPct": 0.43
+        }
+      ],
+      "alertasCorporativos": [
+        {
+          "severity": "CRITICO",
+          "category": "FILIAL",
+          "message": "Filial crítica: FILIAL 5333",
+          "reference": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          },
+          "evidence": {
+            "ref": {
+              "empresaCodigo": 5333,
+              "nomeFilial": "FILIAL 5333",
+              "receita": 0.0,
+              "lucro": -1133.51,
+              "roi": 0.0,
+              "perdas": 0.0,
+              "metas": 0,
+              "alertas": 0,
+              "scoreMedio": null,
+              "participacao": 0.0,
+              "crescimentoProxy": 0.0
+            }
+          }
+        },
+        {
+          "severity": "ALTO",
+          "category": "PDV",
+          "message": "PDV crítico: 54193",
+          "reference": {
+            "pdvCodigo": 54193,
+            "fechamentos": 7,
+            "diferencaAcumulada": -479.61,
+            "desvioPadrao": 61.77,
+            "diferencaMedia": -68.52,
+            "operadores": [
+              {
+                "funcionarioCodigo": 227386,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 294273,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 299371,
+                "fechamentos": 1
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 7
+              }
+            ],
+            "cashRiskScore": 59.83,
+            "band": "Atencao",
+            "vsMediaRede": 7.64,
+            "monitoramentoPrioritario": true,
+            "indiceRecorrencia": 0.69,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 31.0,
+            "componentRisk": 59.83,
+            "componentCompensado": 50.0,
+            "_rawScore": 19.716,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 26.72,
+            "performanceScore": 26.72,
+            "performanceBand": "Critico"
+          },
+          "evidence": {
+            "ref": {
+              "pdvCodigo": 54193,
+              "fechamentos": 7,
+              "diferencaAcumulada": -479.61,
+              "desvioPadrao": 61.77,
+              "diferencaMedia": -68.52,
+              "operadores": [
+                {
+                  "funcionarioCodigo": 227386,
+                  "fechamentos": 3
+                },
+                {
+                  "funcionarioCodigo": 294273,
+                  "fechamentos": 3
+                },
+                {
+                  "funcionarioCodigo": 299371,
+                  "fechamentos": 1
+                }
+              ],
+              "turnos": [
+                {
+                  "turno": "1º TURNO",
+                  "fechamentos": 7
+                }
+              ],
+              "cashRiskScore": 59.83,
+              "band": "Atencao",
+              "vsMediaRede": 7.64,
+              "monitoramentoPrioritario": true,
+              "indiceRecorrencia": 0.69,
+              "componentDiferenca": 0.0,
+              "componentRecorrencia": 31.0,
+              "componentRisk": 59.83,
+              "componentCompensado": 50.0,
+              "_rawScore": 19.716,
+              "componentEvolucao": 50.0,
+              "evolucaoDelta": 0.0,
+              "operatorPerformanceScore": 26.72,
+              "performanceScore": 26.72,
+              "performanceBand": "Critico"
+            }
+          }
+        },
+        {
+          "severity": "ALTO",
+          "category": "TURNO",
+          "message": "Turno crítico: 1º Turno",
+          "reference": {
+            "turno": "1º Turno",
+            "turnoCodigo": 1,
+            "receitaBruta": 2196.79,
+            "destruicaoMargem": 1533.8,
+            "margemOperacional": 662.99,
+            "cancelamentos": 0.0,
+            "faltas": 766.9,
+            "sobras": 0,
+            "perdasCaixa": 766.9,
+            "quantidadeVendas": 106,
+            "resultadoLiquido": 662.99,
+            "riscoEconomico": 1533.8,
+            "roi": 0.43,
+            "incidenciaQuebraPct": 100.0,
+            "alertas": 0,
+            "metasPct": 0.43
+          },
+          "evidence": {
+            "ref": {
+              "turno": "1º Turno",
+              "turnoCodigo": 1,
+              "receitaBruta": 2196.79,
+              "destruicaoMargem": 1533.8,
+              "margemOperacional": 662.99,
+              "cancelamentos": 0.0,
+              "faltas": 766.9,
+              "sobras": 0,
+              "perdasCaixa": 766.9,
+              "quantidadeVendas": 106,
+              "resultadoLiquido": 662.99,
+              "riscoEconomico": 1533.8,
+              "roi": 0.43,
+              "incidenciaQuebraPct": 100.0,
+              "alertas": 0,
+              "metasPct": 0.43
+            }
+          }
+        },
+        {
+          "severity": "ATENCAO",
+          "category": "OPERADOR",
+          "message": "Operador crítico: 299151",
+          "reference": {
+            "funcionarioCodigo": 299151,
+            "employeeName": null,
+            "salesScore": 0.0,
+            "productivityScore": 0.0,
+            "accountabilityScore": 0.0,
+            "resultadoLiquido": 0.0,
+            "roi": 0.0,
+            "globalScore": 10.03,
+            "goalPercentual": 88.55,
+            "performanceScore": 22.8,
+            "evolucaoDelta": 0.0,
+            "cashRiskScore": 46.77,
+            "benchmarkScore": 14.79
+          },
+          "evidence": {
+            "ref": {
+              "funcionarioCodigo": 299151,
+              "employeeName": null,
+              "salesScore": 0.0,
+              "productivityScore": 0.0,
+              "accountabilityScore": 0.0,
+              "resultadoLiquido": 0.0,
+              "roi": 0.0,
+              "globalScore": 10.03,
+              "goalPercentual": 88.55,
+              "performanceScore": 22.8,
+              "evolucaoDelta": 0.0,
+              "cashRiskScore": 46.77,
+              "benchmarkScore": 14.79
+            }
+          }
+        },
+        {
+          "severity": "ATENCAO",
+          "category": "META",
+          "message": "12 realizações abaixo da meta",
+          "reference": {
+            "abaixoMeta": 12
+          },
+          "evidence": {
+            "ref": {
+              "abaixoMeta": 12
+            }
+          }
+        }
+      ]
+    },
+    "executiveAnswers": {
+      "1_corporateScore": 68.16,
+      "2_executiveScore": 58.47,
+      "3_maiorRiscoCorporativo": {
+        "riskType": "FILIAL",
+        "severity": "CRITICO",
+        "message": "Filial preocupante na rede",
+        "reference": {
+          "empresaCodigo": 5333,
+          "nomeFilial": "FILIAL 5333",
+          "receita": 0.0,
+          "lucro": -1133.51,
+          "roi": 0.0,
+          "perdas": 0.0,
+          "metas": 0,
+          "alertas": 0,
+          "scoreMedio": null,
+          "participacao": 0.0,
+          "crescimentoProxy": 0.0
+        },
+        "justificativa": {
+          "empresaCodigo": 5333,
+          "nomeFilial": "FILIAL 5333",
+          "receita": 0.0,
+          "lucro": -1133.51,
+          "roi": 0.0,
+          "perdas": 0.0,
+          "metas": 0,
+          "alertas": 0,
+          "scoreMedio": null,
+          "participacao": 0.0,
+          "crescimentoProxy": 0.0
+        }
+      },
+      "4_maiorOportunidadeCorporativa": {
+        "type": "FINANCEIRA",
+        "title": "Recuperação caixa 30%",
+        "impactoEstimado": 4157.64,
+        "roiEsperado": 12472.92,
+        "potencialCapturavel": 4157.64,
+        "prioridade": "ALTA",
+        "reference": {
+          "receitaTotal": 6836.4,
+          "margemOperacional": 85.82,
+          "perdas": 500.21000000000004,
+          "recuperacaoIdentificada": 4157.64,
+          "potencialCapturavel": 4157.64,
+          "potencialPerdido": 13858.79,
+          "roiCorporativo": {
+            "empresaCodigo": 11495,
+            "nomeFilial": "POSTO VIP",
+            "receita": 24029.69,
+            "lucro": -897.02,
+            "roi": -3.73,
+            "perdas": 444.64,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 88.89,
+            "crescimentoProxy": 51315.38
+          },
+          "filialCampea": {
+            "empresaCodigo": 11495,
+            "nomeFilial": "POSTO VIP",
+            "receita": 24029.69,
+            "lucro": -897.02,
+            "roi": -3.73,
+            "perdas": 444.64,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 88.89,
+            "crescimentoProxy": 51315.38
+          },
+          "filialCritica": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          },
+          "financialScore": 90.07
+        },
+        "calculo": {
+          "impacto": 4157.64,
+          "roi": 12472.920000000002
+        }
+      },
+      "5_filialLider": {
+        "empresaCodigo": 11495,
+        "nomeFilial": "POSTO VIP",
+        "receita": 24029.69,
+        "lucro": -897.02,
+        "roi": -3.73,
+        "perdas": 444.64,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 88.89,
+        "crescimentoProxy": 51315.38
+      },
+      "6_filialPreocupa": {
+        "empresaCodigo": 5333,
+        "nomeFilial": "FILIAL 5333",
+        "receita": 0.0,
+        "lucro": -1133.51,
+        "roi": 0.0,
+        "perdas": 0.0,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 0.0,
+        "crescimentoProxy": 0.0
+      },
+      "7_operadorValor": {
+        "funcionarioCodigo": 178278,
+        "employeeName": "APOIO LOJA .",
+        "salesScore": 56.1,
+        "productivityScore": 66.06,
+        "accountabilityScore": 100.0,
+        "resultadoLiquido": 1055.86,
+        "roi": 1055.86,
+        "globalScore": 80.54,
+        "goalPercentual": 81.98,
+        "performanceScore": 58.16,
+        "evolucaoDelta": 0.0,
+        "cashRiskScore": 57.38,
+        "benchmarkScore": 73.34
+      },
+      "8_operadorRisco": {
+        "funcionarioCodigo": 299151,
+        "employeeName": null,
+        "salesScore": 0.0,
+        "productivityScore": 0.0,
+        "accountabilityScore": 0.0,
+        "resultadoLiquido": 0.0,
+        "roi": 0.0,
+        "globalScore": 10.03,
+        "goalPercentual": 88.55,
+        "performanceScore": 22.8,
+        "evolucaoDelta": 0.0,
+        "cashRiskScore": 46.77,
+        "benchmarkScore": 14.79
+      },
+      "9_pdvDestroiMargem": {
+        "pdvCodigo": 54193,
+        "receitaBruta": 1139.53,
+        "destruicaoMargem": 959.22,
+        "margemOperacional": 180.31,
+        "descontos": 0.0,
+        "cancelamentos": 0.0,
+        "faltas": 479.61,
+        "sobras": 0,
+        "perdasCaixa": 479.61,
+        "quantidadeVendas": 38,
+        "resultadoLiquido": 180.31,
+        "riscoEconomico": 959.22,
+        "roi": 0.19,
+        "monitoramentoPrioritario": true
+      },
+      "10_pdvPreservaMargem": {
+        "pdvCodigo": null,
+        "receitaBruta": 4639.61,
+        "destruicaoMargem": 0.0,
+        "margemOperacional": 4639.61,
+        "descontos": 0.0,
+        "cancelamentos": 0.0,
+        "faltas": 0.0,
+        "sobras": 0.0,
+        "perdasCaixa": 0.0,
+        "quantidadeVendas": 94,
+        "resultadoLiquido": 4639.61,
+        "riscoEconomico": 1.0,
+        "roi": 4639.61,
+        "monitoramentoPrioritario": false
+      },
+      "11_turnoProblematico": {
+        "turno": "1º Turno",
+        "turnoCodigo": 1,
+        "receitaBruta": 2196.79,
+        "destruicaoMargem": 1533.8,
+        "margemOperacional": 662.99,
+        "cancelamentos": 0.0,
+        "faltas": 766.9,
+        "sobras": 0,
+        "perdasCaixa": 766.9,
+        "quantidadeVendas": 106,
+        "resultadoLiquido": 662.99,
+        "riscoEconomico": 1533.8,
+        "roi": 0.43,
+        "incidenciaQuebraPct": 100.0,
+        "alertas": 0,
+        "metasPct": 0.43
+      },
+      "12_turnoEficiente": null,
+      "13_recuperado": 4157.64,
+      "14_podeRecuperar": 4157.64,
+      "15_acaoMaiorRoi": {
+        "type": "FINANCEIRA",
+        "title": "Recuperação caixa 30%",
+        "impactoEstimado": 4157.64,
+        "roiEsperado": 12472.92,
+        "potencialCapturavel": 4157.64,
+        "prioridade": "ALTA",
+        "reference": {
+          "receitaTotal": 6836.4,
+          "margemOperacional": 85.82,
+          "perdas": 500.21000000000004,
+          "recuperacaoIdentificada": 4157.64,
+          "potencialCapturavel": 4157.64,
+          "potencialPerdido": 13858.79,
+          "roiCorporativo": {
+            "empresaCodigo": 11495,
+            "nomeFilial": "POSTO VIP",
+            "receita": 24029.69,
+            "lucro": -897.02,
+            "roi": -3.73,
+            "perdas": 444.64,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 88.89,
+            "crescimentoProxy": 51315.38
+          },
+          "filialCampea": {
+            "empresaCodigo": 11495,
+            "nomeFilial": "POSTO VIP",
+            "receita": 24029.69,
+            "lucro": -897.02,
+            "roi": -3.73,
+            "perdas": 444.64,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 88.89,
+            "crescimentoProxy": 51315.38
+          },
+          "filialCritica": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          },
+          "financialScore": 90.07
+        },
+        "calculo": {
+          "impacto": 4157.64,
+          "roi": 12472.920000000002
+        }
+      },
+      "16_acaoReduzRisco": {
+        "riskType": "FILIAL",
+        "severity": "CRITICO",
+        "message": "Filial preocupante na rede",
+        "reference": {
+          "empresaCodigo": 5333,
+          "nomeFilial": "FILIAL 5333",
+          "receita": 0.0,
+          "lucro": -1133.51,
+          "roi": 0.0,
+          "perdas": 0.0,
+          "metas": 0,
+          "alertas": 0,
+          "scoreMedio": null,
+          "participacao": 0.0,
+          "crescimentoProxy": 0.0
+        },
+        "justificativa": {
+          "empresaCodigo": 5333,
+          "nomeFilial": "FILIAL 5333",
+          "receita": 0.0,
+          "lucro": -1133.51,
+          "roi": 0.0,
+          "perdas": 0.0,
+          "metas": 0,
+          "alertas": 0,
+          "scoreMedio": null,
+          "participacao": 0.0,
+          "crescimentoProxy": 0.0
+        }
+      },
+      "17_operacaoMelhorando": false,
+      "18_hubConfiavel": true,
+      "19_prontoDecisionEngine": true,
+      "20_aprovadoF051": true,
+      "paridadeDelta": 0.0
+    },
+    "qa": {
+      "paridadeDelta": 0.0,
+      "paridadeZero": true,
+      "crossTenant": false,
+      "semCrossTenant": true,
+      "duplicidade": 0,
+      "semDuplicidade": true,
+      "scoresSemEvidencia": 0,
+      "scoresComEvidencia": true,
+      "riscosSemJustificativa": 0,
+      "riscosComJustificativa": true,
+      "oportunidadesSemCalculo": 0,
+      "oportunidadesComCalculo": true,
+      "fonteWebPosto": false,
+      "fonteHomologada": true,
+      "lineage": [
+        {
+          "indicador": "Corporate Score",
+          "origem": "F04.7+F04.6",
+          "snapshot": "executive_scorecard",
+          "api": "/api/v1/corporate-hub/cockpit",
+          "cockpit": "corporate-hub"
+        },
+        {
+          "indicador": "Financial Hub",
+          "origem": "F03.3+F04.6",
+          "snapshot": "cash_operations_qa",
+          "api": "/api/v1/corporate-hub/cockpit",
+          "cockpit": "corporate-hub"
+        },
+        {
+          "indicador": "People Hub",
+          "origem": "F04.0-F04.6",
+          "snapshot": "people_intelligence",
+          "api": "/api/v1/corporate-hub/cockpit",
+          "cockpit": "corporate-hub"
+        },
+        {
+          "indicador": "Operations Hub",
+          "origem": "F04.3+F04.7",
+          "snapshot": "store_shift_profitability",
+          "api": "/api/v1/corporate-hub/cockpit",
+          "cockpit": "corporate-hub"
+        }
+      ]
+    },
+    "parecerFinal": "[PARECER FINAL: APROVADO PARA F05.1]",
+    "decisaoArquitetural": {
+      "pergunta": "O Logos Space possui maturidade para evoluir de plataforma analítica para plataforma de decisão?",
+      "resposta": true,
+      "corporateScore": 68.16,
+      "justificativa": "Corporate Score 68.16/100 · Δ=0.0 · 4 oportunidades · 5 riscos evidenciados."
+    }
+  }
+}

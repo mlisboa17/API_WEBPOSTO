@@ -1,0 +1,3971 @@
+{
+  "windows": {
+    "7d": {
+      "window": "7d",
+      "periodo": {
+        "inicio": "2026-06-01",
+        "fim": "2026-06-07"
+      },
+      "elapsedSec": 63.9,
+      "discovery": {
+        "totalRecords": 337,
+        "totalValor": 138563.82,
+        "bySource": {
+          "DESPESAS_REDE": 175,
+          "SCREEN_EXPENSES": 162
+        },
+        "topDescriptions": [
+          [
+            "VALE DE FUNCIONÁRIO REFERENTE A CONSOLIDAÇÃO DE CAIXA",
+            96
+          ],
+          [
+            "VALE DE FUNCIONÁRIO REFERENTE A CONSOLIDAÇÃO DE CAIXA VALE DE FUNCIONÁRIO REFERE",
+            83
+          ],
+          [
+            "REF AO SALARIO/JUNIOR",
+            3
+          ],
+          [
+            "REF AO SALARIO DE ARTHUR",
+            3
+          ],
+          [
+            "REF DIARIA APOIO",
+            3
+          ],
+          [
+            "REF AO SALARIO/JUNIOR REF AO SALARIO/JUNIOR",
+            3
+          ],
+          [
+            "REF AO SALARIO DE ARTHUR REF AO SALARIO DE ARTHUR",
+            3
+          ],
+          [
+            "REF DIARIA APOIO REF DIARIA APOIO",
+            3
+          ],
+          [
+            "DIARIA CAMILLA",
+            2
+          ],
+          [
+            "REF DIARIA FOLHUISTA",
+            2
+          ],
+          [
+            "SALARIO ANA",
+            2
+          ],
+          [
+            "REF AO SALARIO CAIO",
+            2
+          ],
+          [
+            "SALÁRIO (CARLOS)",
+            2
+          ],
+          [
+            "FOLGUISTA DA LIMPEZA",
+            2
+          ],
+          [
+            "REF AO SALARIO/GLECIA",
+            2
+          ],
+          [
+            "SALARIO JOSINALDO",
+            2
+          ],
+          [
+            "DIARIA",
+            2
+          ],
+          [
+            "REF DIARIA",
+            2
+          ],
+          [
+            "FOLGUISTA JOAO",
+            2
+          ],
+          [
+            "DIARIA CAMILLA DIARIA CAMILLA",
+            2
+          ],
+          [
+            "REF DIARIA FOLHUISTA REF DIARIA FOLHUISTA",
+            2
+          ],
+          [
+            "SALARIO ANA SALARIO ANA",
+            2
+          ],
+          [
+            "REF AO SALARIO CAIO REF AO SALARIO CAIO",
+            2
+          ],
+          [
+            "SALÁRIO (CARLOS) SALÁRIO (CARLOS)",
+            2
+          ],
+          [
+            "FOLGUISTA DA LIMPEZA FOLGUISTA DA LIMPEZA",
+            2
+          ],
+          [
+            "REF AO SALARIO/GLECIA REF AO SALARIO/GLECIA",
+            2
+          ],
+          [
+            "SALARIO JOSINALDO SALARIO JOSINALDO",
+            2
+          ],
+          [
+            "DIARIA DIARIA",
+            2
+          ],
+          [
+            "REF DIARIA REF DIARIA",
+            2
+          ],
+          [
+            "FOLGUISTA JOAO FOLGUISTA JOAO",
+            2
+          ]
+        ],
+        "withFuncionarioCodigo": 0,
+        "withNome": 0,
+        "withFornecedor": 0,
+        "withTitulo": 0,
+        "pctFuncionarioCodigo": 0.0,
+        "samples": [
+          {
+            "empresaCodigo": 46433,
+            "planoContaGerencialCodigo": 29072,
+            "descricaoDocumento": "Vale de funcionário referente a consolidação de caixa",
+            "data": "2026-06-01",
+            "valor": 1020.0,
+            "_source": "DESPESAS_REDE"
+          },
+          {
+            "empresaCodigo": 5555,
+            "planoContaGerencialCodigo": 29072,
+            "descricaoDocumento": "Vale de funcionário referente a consolidação de caixa",
+            "data": "2026-06-01",
+            "valor": 1000.0,
+            "_source": "DESPESAS_REDE"
+          },
+          {
+            "empresaCodigo": 5256,
+            "planoContaGerencialCodigo": 29072,
+            "descricaoDocumento": "Vale de funcionário referente a consolidação de caixa",
+            "data": "2026-06-01",
+            "valor": 636.0,
+            "_source": "DESPESAS_REDE"
+          },
+          {
+            "empresaCodigo": 5256,
+            "planoContaGerencialCodigo": 29072,
+            "descricaoDocumento": "Vale de funcionário referente a consolidação de caixa",
+            "data": "2026-06-01",
+            "valor": 1279.0,
+            "_source": "DESPESAS_REDE"
+          },
+          {
+            "empresaCodigo": 5256,
+            "planoContaGerencialCodigo": 29072,
+            "descricaoDocumento": "Vale de funcionário referente a consolidação de caixa",
+            "data": "2026-06-01",
+            "valor": 850.0,
+            "_source": "DESPESAS_REDE"
+          }
+        ]
+      },
+      "classification": {
+        "totalAdiantamentos": 162,
+        "byProvisionalType": {
+          "VALE_FUNCIONARIO": 108,
+          "EXTRA_FUNCIONARIO": 30,
+          "FOLGUISTA": 14,
+          "SALARIO": 1,
+          "ADIANTAMENTO_SALARIAL": 3,
+          "QUINZENA": 3,
+          "HORA_EXTRA": 3
+        },
+        "valorByProvisionalType": {
+          "VALE_FUNCIONARIO": 54314.91,
+          "EXTRA_FUNCIONARIO": 3330.0,
+          "FOLGUISTA": 1450.0,
+          "SALARIO": 1750.0,
+          "ADIANTAMENTO_SALARIAL": 500.0,
+          "QUINZENA": 3359.0,
+          "HORA_EXTRA": 340.0
+        },
+        "pctByProvisionalType": {
+          "VALE_FUNCIONARIO": 66.67,
+          "EXTRA_FUNCIONARIO": 18.52,
+          "FOLGUISTA": 8.64,
+          "SALARIO": 0.62,
+          "ADIANTAMENTO_SALARIAL": 1.85,
+          "QUINZENA": 1.85,
+          "HORA_EXTRA": 1.85
+        },
+        "avgConfidence": 91.2,
+        "unknownCount": 0,
+        "unknownPct": 0.0,
+        "samplesByType": {
+          "VALE_FUNCIONARIO": [
+            {
+              "provisionalType": "VALE_FUNCIONARIO",
+              "confidence": 95,
+              "reason": "semantic_subnature",
+              "valor": "1020.00",
+              "descricao": "Vale de funcionário referente a consolidação de caixa",
+              "funcionarioCodigo": null,
+              "data": "2026-06-01"
+            },
+            {
+              "provisionalType": "VALE_FUNCIONARIO",
+              "confidence": 95,
+              "reason": "semantic_subnature",
+              "valor": "1000.00",
+              "descricao": "Vale de funcionário referente a consolidação de caixa",
+              "funcionarioCodigo": null,
+              "data": "2026-06-01"
+            },
+            {
+              "provisionalType": "VALE_FUNCIONARIO",
+              "confidence": 95,
+              "reason": "semantic_subnature",
+              "valor": "636.00",
+              "descricao": "Vale de funcionário referente a consolidação de caixa",
+              "funcionarioCodigo": null,
+              "data": "2026-06-01"
+            }
+          ],
+          "QUINZENA": [
+            {
+              "provisionalType": "QUINZENA",
+              "confidence": 92,
+              "reason": "pattern:QUINZENA",
+              "valor": "1500.00",
+              "descricao": "QUINZENA CRISTIANE",
+              "funcionarioCodigo": null,
+              "data": "2026-06-04"
+            },
+            {
+              "provisionalType": "QUINZENA",
+              "confidence": 92,
+              "reason": "pattern:QUINZENA",
+              "valor": "876.00",
+              "descricao": "QUINZENA CAIO",
+              "funcionarioCodigo": null,
+              "data": "2026-06-05"
+            },
+            {
+              "provisionalType": "QUINZENA",
+              "confidence": 92,
+              "reason": "pattern:QUINZENA",
+              "valor": "983.00",
+              "descricao": "QUINZENA LUCIANA",
+              "funcionarioCodigo": null,
+              "data": "2026-06-05"
+            }
+          ],
+          "ADIANTAMENTO_SALARIAL": [
+            {
+              "provisionalType": "ADIANTAMENTO_SALARIAL",
+              "confidence": 82,
+              "reason": "pattern:\\bADIANTAMENTO\\b",
+              "valor": "200.00",
+              "descricao": "adiantamento felipe serviço teto",
+              "funcionarioCodigo": null,
+              "data": "2026-06-04"
+            },
+            {
+              "provisionalType": "ADIANTAMENTO_SALARIAL",
+              "confidence": 82,
+              "reason": "pattern:\\bADIANTAMENTO\\b",
+              "valor": "200.00",
+              "descricao": "REF AO ADIANTAMENTO DO ELETRICISTA",
+              "funcionarioCodigo": null,
+              "data": "2026-06-05"
+            },
+            {
+              "provisionalType": "ADIANTAMENTO_SALARIAL",
+              "confidence": 82,
+              "reason": "pattern:\\bADIANTAMENTO\\b",
+              "valor": "100.00",
+              "descricao": "ADIANTAMENTO MANOEL",
+              "funcionarioCodigo": null,
+              "data": "2026-06-06"
+            }
+          ],
+          "SALARIO": [
+            {
+              "provisionalType": "SALARIO",
+              "confidence": 90,
+              "reason": "pattern:\\bSALAR",
+              "valor": "1750.00",
+              "descricao": "SALAR - ADMINISTRATIVO",
+              "funcionarioCodigo": null,
+              "data": "2026-06-02"
+            }
+          ],
+          "EXTRA_FUNCIONARIO": [
+            {
+              "provisionalType": "EXTRA_FUNCIONARIO",
+              "confidence": 80,
+              "reason": "pattern:\\bEXTRA\\b",
+              "valor": "150.00",
+              "descricao": "Extra,(referente ás férias de Lenilson.)",
+              "funcionarioCodigo": null,
+              "data": "2026-06-01"
+            },
+            {
+              "provisionalType": "EXTRA_FUNCIONARIO",
+              "confidence": 80,
+              "reason": "pattern:DIARIA",
+              "valor": "80.00",
+              "descricao": "REF DIARIA KELVIN APOIO",
+              "funcionarioCodigo": null,
+              "data": "2026-06-01"
+            },
+            {
+              "provisionalType": "EXTRA_FUNCIONARIO",
+              "confidence": 80,
+              "reason": "pattern:DIARIA",
+              "valor": "120.00",
+              "descricao": "diaria camilla",
+              "funcionarioCodigo": null,
+              "data": "2026-06-02"
+            }
+          ],
+          "FOLGUISTA": [
+            {
+              "provisionalType": "FOLGUISTA",
+              "confidence": 88,
+              "reason": "pattern:FOLGUIST",
+              "valor": "120.00",
+              "descricao": "DIARIA FOLGUISTA JOAO",
+              "funcionarioCodigo": null,
+              "data": "2026-06-01"
+            },
+            {
+              "provisionalType": "FOLGUISTA",
+              "confidence": 88,
+              "reason": "pattern:FOLGUIST",
+              "valor": "80.00",
+              "descricao": "REF DIRARIA FOLGUISTA",
+              "funcionarioCodigo": null,
+              "data": "2026-06-02"
+            },
+            {
+              "provisionalType": "FOLGUISTA",
+              "confidence": 88,
+              "reason": "pattern:FOLGUIST",
+              "valor": "100.00",
+              "descricao": "DIARIA FOLGUISTA ALANDREKE",
+              "funcionarioCodigo": null,
+              "data": "2026-06-02"
+            }
+          ],
+          "HORA_EXTRA": [
+            {
+              "provisionalType": "HORA_EXTRA",
+              "confidence": 88,
+              "reason": "pattern:HORA\\s*EXTRA",
+              "valor": "150.00",
+              "descricao": "hora extra marcelo",
+              "funcionarioCodigo": null,
+              "data": "2026-06-05"
+            },
+            {
+              "provisionalType": "HORA_EXTRA",
+              "confidence": 88,
+              "reason": "pattern:HORA\\s*EXTRA",
+              "valor": "60.00",
+              "descricao": "hora extra",
+              "funcionarioCodigo": null,
+              "data": "2026-06-06"
+            },
+            {
+              "provisionalType": "HORA_EXTRA",
+              "confidence": 88,
+              "reason": "pattern:HORA\\s*EXTRA",
+              "valor": "130.00",
+              "descricao": "ref diaria marco hora extra",
+              "funcionarioCodigo": null,
+              "data": "2026-06-07"
+            }
+          ]
+        }
+      },
+      "payrollCalendar": {
+        "byBucket": {
+          "dia_01_05": 138,
+          "dia_06_10": 24
+        },
+        "valorByBucket": {
+          "dia_01_05": 62363.91,
+          "dia_06_10": 2680.0
+        },
+        "pctByBucket": {
+          "dia_01_05": 85.19,
+          "dia_06_10": 14.81
+        },
+        "byDay": {
+          "1": 29,
+          "2": 25,
+          "3": 33,
+          "4": 30,
+          "5": 21,
+          "6": 13,
+          "7": 11
+        },
+        "concentrationDay15": 0.0,
+        "concentrationEndMonth": 0.0,
+        "quinzenalPattern": false,
+        "endMonthPattern": false,
+        "recurringFixedByEmployee": [],
+        "payrollPeriodCaptured": true
+      },
+      "employeeMatch": {
+        "totalWorkforce": 162,
+        "pctFuncionarioCodigo": 0.0,
+        "pctNome": 0.0,
+        "pctDescMatch": 0.0,
+        "pctTituloMatch": 0.0,
+        "pctUnlinked": 100.0,
+        "funcionariosCatalogo": 0,
+        "blockedEndpoints": [
+          "FUNCIONARIO_REDE",
+          "VALE_FUNCIONARIO_REDE_ALT",
+          "DESPESA_FUNCIONARIO",
+          "DESPESA_FUNCIONARIO_REDE",
+          "CENTRO_CUSTO_REDE",
+          "FORNECEDOR_REDE"
+        ],
+        "endpointProbe": {
+          "FUNCIONARIO_REDE": {
+            "path": "/INTEGRACAO/FUNCIONARIO_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "VALE_FUNCIONARIO_REDE": {
+            "path": "/INTEGRACAO/CONSULTAR_VALE_FUNCIONARIO_REDE",
+            "status": 200,
+            "rowCount": 0,
+            "sample": []
+          },
+          "VALE_FUNCIONARIO_REDE_ALT": {
+            "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "DESPESA_FUNCIONARIO": {
+            "path": "/INTEGRACAO/DESPESA_FUNCIONARIO",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "DESPESA_FUNCIONARIO_REDE": {
+            "path": "/INTEGRACAO/CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "CENTRO_CUSTO_REDE": {
+            "path": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "FORNECEDOR_REDE": {
+            "path": "/INTEGRACAO/FORNECEDOR_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          }
+        }
+      },
+      "cashLoss": {
+        "cashShortages": 14,
+        "totalShortageValor": 1023.6,
+        "semanticAjustes": 0,
+        "destinations": {
+          "PERDA_OPERACIONAL_EMPRESA": 4,
+          "DESPESA_FUNCIONARIO": 3,
+          "AJUSTE_TEMPORARIO": 6,
+          "TITULO_RECEBER_FUNCIONARIO": 1
+        },
+        "pctTraced": 100.0,
+        "pctUntraced": 0.0,
+        "generatesTituloReceber": 1,
+        "generatesDescontoFuncionario": 0,
+        "inDespesasRede": 7,
+        "onlyOperational": 6,
+        "samples": [
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4335818,
+            "funcionarioCodigo": 227386,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-06-01",
+            "valorDiferenca": 50.66,
+            "diferenca": -50.66
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4335874,
+            "funcionarioCodigo": 158924,
+            "pdvCodigo": 15880,
+            "turnoCodigo": 1,
+            "data": "2026-06-02",
+            "valorDiferenca": 2.01,
+            "diferenca": -2.01
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4336075,
+            "funcionarioCodigo": 276288,
+            "pdvCodigo": 56764,
+            "turnoCodigo": 2,
+            "data": "2026-06-01",
+            "valorDiferenca": 1.96,
+            "diferenca": -1.96
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4336768,
+            "funcionarioCodigo": 294273,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-06-03",
+            "valorDiferenca": 46.53,
+            "diferenca": -46.53
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4336785,
+            "funcionarioCodigo": 276288,
+            "pdvCodigo": 56764,
+            "turnoCodigo": 1,
+            "data": "2026-06-02",
+            "valorDiferenca": 12.66,
+            "diferenca": -12.66
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4336819,
+            "funcionarioCodigo": 158924,
+            "pdvCodigo": 15880,
+            "turnoCodigo": 1,
+            "data": "2026-06-03",
+            "valorDiferenca": 272.07,
+            "diferenca": -272.07
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4337730,
+            "funcionarioCodigo": 227386,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-06-04",
+            "valorDiferenca": 2.58,
+            "diferenca": -2.58
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4338701,
+            "funcionarioCodigo": 276288,
+            "pdvCodigo": 56764,
+            "turnoCodigo": 1,
+            "data": "2026-06-04",
+            "valorDiferenca": 7.33,
+            "diferenca": -7.33
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4338777,
+            "funcionarioCodigo": 294273,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-06-05",
+            "valorDiferenca": 194.36,
+            "diferenca": -194.36
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4339655,
+            "funcionarioCodigo": 299371,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-06-06",
+            "valorDiferenca": 116.8,
+            "diferenca": -116.8
+          }
+        ]
+      },
+      "financialImpact": {
+        "totalAdiantamentos": 162,
+        "valorVales": 54314.91,
+        "valorQuinzenas": 3359.0,
+        "valorSalarios": 1750.0,
+        "valorExtras": 3670.0,
+        "valorFolguistas": 1450.0,
+        "valorEmprestimos": 0,
+        "valorPerdasCaixa": 1023.6,
+        "valorPotencialDescontoFuncionario": 1023.6,
+        "valorAbsorvidoEmpresa": 0.0
+      },
+      "payrollSeparation": {
+        "despesaPessoal": [
+          "SALARIO",
+          "QUINZENA",
+          "FOLGUISTA",
+          "HORA_EXTRA",
+          "EXTRA_FUNCIONARIO",
+          "PREMIACAO"
+        ],
+        "adiantamento": [
+          "VALE_FUNCIONARIO",
+          "ADIANTAMENTO_SALARIAL",
+          "EMPRESTIMO_FUNCIONARIO"
+        ],
+        "contasReceberFuncionario": [
+          "EMPRESTIMO_FUNCIONARIO"
+        ],
+        "perdaOperacional": [
+          "PERDA_CAIXA_EMPRESA",
+          "PERDA_CAIXA_FUNCIONARIO"
+        ],
+        "impactsDRE": [
+          "SALARIO",
+          "QUINZENA",
+          "FOLGUISTA",
+          "SERVICOS_PESSOAL"
+        ],
+        "notImpactsDRE": [
+          "VALE_FUNCIONARIO",
+          "ADIANTAMENTO_SALARIAL",
+          "MOVIMENTACAO_CAIXA"
+        ],
+        "cashLossTracedPct": 100.0
+      },
+      "managementPrep": {
+        "mapping": [
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "VALE_FUNCIONARIO",
+            "expenseManagementClass": "PESSOAL_VALE",
+            "expenseManagementGroup": "TESOURARIA",
+            "impactsDRE": false,
+            "count": 108
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "EXTRA_FUNCIONARIO",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 30
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "FOLGUISTA",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 14
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "SALARIO",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 1
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "ADIANTAMENTO_SALARIAL",
+            "expenseManagementClass": "PESSOAL_VALE",
+            "expenseManagementGroup": "TESOURARIA",
+            "impactsDRE": false,
+            "count": 3
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "QUINZENA",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 3
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "HORA_EXTRA",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 3
+          }
+        ],
+        "recommendedTaxonomy": [
+          "PESSOAL",
+          "PESSOAL_VALE"
+        ]
+      },
+      "endpointProbe": {
+        "FUNCIONARIO_REDE": {
+          "path": "/INTEGRACAO/FUNCIONARIO_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "VALE_FUNCIONARIO_REDE": {
+          "path": "/INTEGRACAO/CONSULTAR_VALE_FUNCIONARIO_REDE",
+          "status": 200,
+          "rowCount": 0,
+          "sample": []
+        },
+        "VALE_FUNCIONARIO_REDE_ALT": {
+          "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "DESPESA_FUNCIONARIO": {
+          "path": "/INTEGRACAO/DESPESA_FUNCIONARIO",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "DESPESA_FUNCIONARIO_REDE": {
+          "path": "/INTEGRACAO/CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "CENTRO_CUSTO_REDE": {
+          "path": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "FORNECEDOR_REDE": {
+          "path": "/INTEGRACAO/FORNECEDOR_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        }
+      }
+    },
+    "30d": {
+      "window": "30d",
+      "periodo": {
+        "inicio": "2026-05-08",
+        "fim": "2026-06-07"
+      },
+      "elapsedSec": 64.5,
+      "discovery": {
+        "totalRecords": 1071,
+        "totalValor": 290112.95,
+        "bySource": {
+          "DESPESAS_REDE": 559,
+          "TITULO_PAGAR": 1,
+          "SCREEN_EXPENSES": 511
+        },
+        "topDescriptions": [
+          [
+            "VALE DE FUNCIONÁRIO REFERENTE A CONSOLIDAÇÃO DE CAIXA",
+            327
+          ],
+          [
+            "VALE DE FUNCIONÁRIO REFERENTE A CONSOLIDAÇÃO DE CAIXA VALE DE FUNCIONÁRIO REFERE",
+            284
+          ],
+          [
+            "REF DIARIA APOIO",
+            12
+          ],
+          [
+            "REF DIARIA",
+            12
+          ],
+          [
+            "REF DIARIA APOIO REF DIARIA APOIO",
+            12
+          ],
+          [
+            "REF DIARIA REF DIARIA",
+            12
+          ],
+          [
+            "DIARIA",
+            9
+          ],
+          [
+            "DIARIA DIARIA",
+            9
+          ],
+          [
+            "REF DIARIA CAMILLA",
+            7
+          ],
+          [
+            "REF DIARIA CAMILLA REF DIARIA CAMILLA",
+            7
+          ],
+          [
+            "RER DIARIA APOIO",
+            6
+          ],
+          [
+            "RER DIARIA APOIO RER DIARIA APOIO",
+            6
+          ],
+          [
+            "VALE AGUA CONSUMO",
+            5
+          ],
+          [
+            "REF A UMA DIARIA",
+            5
+          ],
+          [
+            "REF HORA EXTRA",
+            4
+          ],
+          [
+            "EXTRA",
+            4
+          ],
+          [
+            "VALE AGUA CONSUMO VALE AGUA CONSUMO",
+            4
+          ],
+          [
+            "REF HORA EXTRA REF HORA EXTRA",
+            4
+          ],
+          [
+            "EXTRA EXTRA",
+            4
+          ],
+          [
+            "REF A HR EXTRA",
+            3
+          ],
+          [
+            "HORA EXTRA",
+            3
+          ],
+          [
+            "FOLGUISTA KAUA",
+            3
+          ],
+          [
+            "REF DIARIA FOLGUISTA",
+            3
+          ],
+          [
+            "FOLGUISTA FAXINEIRA ANGELA",
+            3
+          ],
+          [
+            "FOLGUISTA EM TREINAMENTO GIDEÃO",
+            3
+          ],
+          [
+            "FOLGUISTA DA LIMPEZA",
+            3
+          ],
+          [
+            "REF AO SALARIO DE ARTHUR",
+            3
+          ],
+          [
+            "REF AO SALARIO/JUNIOR",
+            3
+          ],
+          [
+            "HORA EXTRA HORA EXTRA",
+            3
+          ],
+          [
+            "FOLGUISTA KAUA FOLGUISTA KAUA",
+            3
+          ]
+        ],
+        "withFuncionarioCodigo": 1,
+        "withNome": 0,
+        "withFornecedor": 41,
+        "withTitulo": 1,
+        "pctFuncionarioCodigo": 0.09,
+        "samples": [
+          {
+            "empresaCodigo": 11495,
+            "planoContaGerencialCodigo": 141278,
+            "descricaoDocumento": "ref pagamento neguinho adiantamento obra tanque",
+            "data": "2026-05-08",
+            "valor": 700.0,
+            "_source": "DESPESAS_REDE"
+          },
+          {
+            "empresaCodigo": 5333,
+            "planoContaGerencialCodigo": 48547,
+            "descricaoDocumento": "vale agua consumo",
+            "data": "2026-05-08",
+            "valor": 8.0,
+            "_source": "DESPESAS_REDE"
+          },
+          {
+            "empresaCodigo": 5256,
+            "planoContaGerencialCodigo": 29072,
+            "descricaoDocumento": "Vale de funcionário referente a consolidação de caixa",
+            "data": "2026-05-08",
+            "valor": 468.0,
+            "_source": "DESPESAS_REDE"
+          },
+          {
+            "empresaCodigo": 11495,
+            "planoContaGerencialCodigo": 29072,
+            "descricaoDocumento": "Vale de funcionário referente a consolidação de caixa",
+            "data": "2026-05-08",
+            "valor": 130.0,
+            "_source": "DESPESAS_REDE"
+          },
+          {
+            "empresaCodigo": 5555,
+            "planoContaGerencialCodigo": 29072,
+            "descricaoDocumento": "Vale de funcionário referente a consolidação de caixa",
+            "data": "2026-05-08",
+            "valor": 60.0,
+            "_source": "DESPESAS_REDE"
+          }
+        ]
+      },
+      "classification": {
+        "totalAdiantamentos": 511,
+        "byProvisionalType": {
+          "ADIANTAMENTO_SALARIAL": 13,
+          "OUTROS_FUNCIONARIO": 9,
+          "VALE_FUNCIONARIO": 311,
+          "EXTRA_FUNCIONARIO": 94,
+          "FOLGUISTA": 42,
+          "SALARIO": 2,
+          "HORA_EXTRA": 24,
+          "QUINZENA": 15,
+          "REEMBOLSO_FUNCIONARIO": 1
+        },
+        "valorByProvisionalType": {
+          "ADIANTAMENTO_SALARIAL": 4030.0,
+          "OUTROS_FUNCIONARIO": 1088.6,
+          "VALE_FUNCIONARIO": 100336.14,
+          "EXTRA_FUNCIONARIO": 9352.0,
+          "FOLGUISTA": 4022.0,
+          "SALARIO": 1753.5,
+          "HORA_EXTRA": 2198.48,
+          "QUINZENA": 10659.0,
+          "REEMBOLSO_FUNCIONARIO": 70.0
+        },
+        "pctByProvisionalType": {
+          "ADIANTAMENTO_SALARIAL": 2.54,
+          "OUTROS_FUNCIONARIO": 1.76,
+          "VALE_FUNCIONARIO": 60.86,
+          "EXTRA_FUNCIONARIO": 18.4,
+          "FOLGUISTA": 8.22,
+          "SALARIO": 0.39,
+          "HORA_EXTRA": 4.7,
+          "QUINZENA": 2.94,
+          "REEMBOLSO_FUNCIONARIO": 0.2
+        },
+        "avgConfidence": 89.9,
+        "unknownCount": 9,
+        "unknownPct": 1.76,
+        "samplesByType": {
+          "VALE_FUNCIONARIO": [
+            {
+              "provisionalType": "VALE_FUNCIONARIO",
+              "confidence": 95,
+              "reason": "semantic_subnature",
+              "valor": "468.00",
+              "descricao": "Vale de funcionário referente a consolidação de caixa",
+              "funcionarioCodigo": null,
+              "data": "2026-05-08"
+            },
+            {
+              "provisionalType": "VALE_FUNCIONARIO",
+              "confidence": 95,
+              "reason": "semantic_subnature",
+              "valor": "130.00",
+              "descricao": "Vale de funcionário referente a consolidação de caixa",
+              "funcionarioCodigo": null,
+              "data": "2026-05-08"
+            },
+            {
+              "provisionalType": "VALE_FUNCIONARIO",
+              "confidence": 95,
+              "reason": "semantic_subnature",
+              "valor": "60.00",
+              "descricao": "Vale de funcionário referente a consolidação de caixa",
+              "funcionarioCodigo": null,
+              "data": "2026-05-08"
+            }
+          ],
+          "QUINZENA": [
+            {
+              "provisionalType": "QUINZENA",
+              "confidence": 92,
+              "reason": "pattern:QUINZENA",
+              "valor": "400.00",
+              "descricao": "ref quinzena",
+              "funcionarioCodigo": null,
+              "data": "2026-05-15"
+            },
+            {
+              "provisionalType": "QUINZENA",
+              "confidence": 92,
+              "reason": "pattern:QUINZENA",
+              "valor": "400.00",
+              "descricao": "ref a quinzena de athur",
+              "funcionarioCodigo": null,
+              "data": "2026-05-15"
+            },
+            {
+              "provisionalType": "QUINZENA",
+              "confidence": 92,
+              "reason": "pattern:QUINZENA",
+              "valor": "1000.00",
+              "descricao": "ref a quinzena ana",
+              "funcionarioCodigo": null,
+              "data": "2026-05-15"
+            }
+          ],
+          "ADIANTAMENTO_SALARIAL": [
+            {
+              "provisionalType": "ADIANTAMENTO_SALARIAL",
+              "confidence": 82,
+              "reason": "pattern:\\bADIANTAMENTO\\b",
+              "valor": "700.00",
+              "descricao": "ref pagamento neguinho adiantamento obra tanque",
+              "funcionarioCodigo": null,
+              "data": "2026-05-08"
+            },
+            {
+              "provisionalType": "ADIANTAMENTO_SALARIAL",
+              "confidence": 82,
+              "reason": "pattern:\\bADIANTAMENTO\\b",
+              "valor": "100.00",
+              "descricao": "VALE ADIANTAMENTO PARA MANOEL",
+              "funcionarioCodigo": null,
+              "data": "2026-05-09"
+            },
+            {
+              "provisionalType": "ADIANTAMENTO_SALARIAL",
+              "confidence": 82,
+              "reason": "pattern:\\bADIANTAMENTO\\b",
+              "valor": "20.00",
+              "descricao": "ADIANTAMENTO PARA MANOEL",
+              "funcionarioCodigo": null,
+              "data": "2026-05-14"
+            }
+          ],
+          "SALARIO": [
+            {
+              "provisionalType": "SALARIO",
+              "confidence": 90,
+              "reason": "pattern:\\bFOLHA\\b",
+              "valor": "3.50",
+              "descricao": "copia folha",
+              "funcionarioCodigo": null,
+              "data": "2026-05-09"
+            },
+            {
+              "provisionalType": "SALARIO",
+              "confidence": 90,
+              "reason": "pattern:\\bSALAR",
+              "valor": "1750.00",
+              "descricao": "SALAR - ADMINISTRATIVO",
+              "funcionarioCodigo": null,
+              "data": "2026-06-02"
+            }
+          ],
+          "EXTRA_FUNCIONARIO": [
+            {
+              "provisionalType": "EXTRA_FUNCIONARIO",
+              "confidence": 80,
+              "reason": "pattern:DIARIA",
+              "valor": "90.00",
+              "descricao": "ref diaria camilla",
+              "funcionarioCodigo": null,
+              "data": "2026-05-08"
+            },
+            {
+              "provisionalType": "EXTRA_FUNCIONARIO",
+              "confidence": 80,
+              "reason": "pattern:DIARIA",
+              "valor": "50.00",
+              "descricao": "REF DIARIA APOIO",
+              "funcionarioCodigo": null,
+              "data": "2026-05-08"
+            },
+            {
+              "provisionalType": "EXTRA_FUNCIONARIO",
+              "confidence": 80,
+              "reason": "pattern:DIARIA",
+              "valor": "30.00",
+              "descricao": "DIARIA FOLGUESTA",
+              "funcionarioCodigo": null,
+              "data": "2026-05-08"
+            }
+          ],
+          "FOLGUISTA": [
+            {
+              "provisionalType": "FOLGUISTA",
+              "confidence": 88,
+              "reason": "pattern:FOLGUIST",
+              "valor": "120.00",
+              "descricao": "DIARIA FOLGUISTA JOSE CARLOS",
+              "funcionarioCodigo": null,
+              "data": "2026-05-08"
+            },
+            {
+              "provisionalType": "FOLGUISTA",
+              "confidence": 88,
+              "reason": "pattern:FOLGUIST",
+              "valor": "70.00",
+              "descricao": "FOLGUISTA KAUA",
+              "funcionarioCodigo": null,
+              "data": "2026-05-09"
+            },
+            {
+              "provisionalType": "FOLGUISTA",
+              "confidence": 88,
+              "reason": "pattern:FOLGUIST",
+              "valor": "122.00",
+              "descricao": "REF DIARIA FOLGUISTA",
+              "funcionarioCodigo": null,
+              "data": "2026-05-10"
+            }
+          ],
+          "HORA_EXTRA": [
+            {
+              "provisionalType": "HORA_EXTRA",
+              "confidence": 88,
+              "reason": "pattern:HORA\\s*EXTRA",
+              "valor": "100.00",
+              "descricao": "REF HORA EXTRA ARTHUR",
+              "funcionarioCodigo": null,
+              "data": "2026-05-09"
+            },
+            {
+              "provisionalType": "HORA_EXTRA",
+              "confidence": 88,
+              "reason": "pattern:\\bHR\\s*EXTRA",
+              "valor": "68.00",
+              "descricao": "ref a hr extra",
+              "funcionarioCodigo": null,
+              "data": "2026-05-09"
+            },
+            {
+              "provisionalType": "HORA_EXTRA",
+              "confidence": 88,
+              "reason": "pattern:\\bHR\\s*EXTRA",
+              "valor": "50.00",
+              "descricao": "REF HR EXTRA",
+              "funcionarioCodigo": null,
+              "data": "2026-05-09"
+            }
+          ],
+          "REEMBOLSO_FUNCIONARIO": [
+            {
+              "provisionalType": "REEMBOLSO_FUNCIONARIO",
+              "confidence": 90,
+              "reason": "pattern:REEMBOLSO",
+              "valor": "70.00",
+              "descricao": "reembolso dia 17/05",
+              "funcionarioCodigo": null,
+              "data": "2026-05-19"
+            }
+          ],
+          "OUTROS_FUNCIONARIO": [
+            {
+              "provisionalType": "OUTROS_FUNCIONARIO",
+              "confidence": 40,
+              "reason": "fallback",
+              "valor": "8.00",
+              "descricao": "vale agua consumo",
+              "funcionarioCodigo": null,
+              "data": "2026-05-08"
+            },
+            {
+              "provisionalType": "OUTROS_FUNCIONARIO",
+              "confidence": 40,
+              "reason": "fallback",
+              "valor": "8.00",
+              "descricao": "VALE AGUA CONSUMO",
+              "funcionarioCodigo": null,
+              "data": "2026-05-14"
+            },
+            {
+              "provisionalType": "OUTROS_FUNCIONARIO",
+              "confidence": 40,
+              "reason": "fallback",
+              "valor": "60.00",
+              "descricao": "funcionaria limpeza",
+              "funcionarioCodigo": null,
+              "data": "2026-05-16"
+            }
+          ]
+        }
+      },
+      "payrollCalendar": {
+        "byBucket": {
+          "dia_06_10": 76,
+          "dia_11_15": 61,
+          "dia_16_20": 107,
+          "dia_21_25": 67,
+          "dia_26_31": 62,
+          "dia_01_05": 138
+        },
+        "valorByBucket": {
+          "dia_06_10": 9496.98,
+          "dia_11_15": 14016.0,
+          "dia_16_20": 34077.5,
+          "dia_21_25": 8119.2,
+          "dia_26_31": 5436.13,
+          "dia_01_05": 62363.91
+        },
+        "pctByBucket": {
+          "dia_06_10": 14.87,
+          "dia_11_15": 11.94,
+          "dia_16_20": 20.94,
+          "dia_21_25": 13.11,
+          "dia_26_31": 12.13,
+          "dia_01_05": 27.01
+        },
+        "byDay": {
+          "1": 29,
+          "2": 25,
+          "3": 33,
+          "4": 30,
+          "5": 21,
+          "6": 13,
+          "7": 11,
+          "8": 15,
+          "9": 23,
+          "10": 14,
+          "11": 8,
+          "12": 9,
+          "13": 6,
+          "14": 13,
+          "15": 25,
+          "16": 45,
+          "17": 32,
+          "18": 9,
+          "19": 9,
+          "20": 12,
+          "21": 10,
+          "22": 13,
+          "23": 19,
+          "24": 20,
+          "25": 5,
+          "26": 6,
+          "27": 8,
+          "28": 6,
+          "29": 10,
+          "30": 16,
+          "31": 16
+        },
+        "concentrationDay15": 11.94,
+        "concentrationEndMonth": 12.13,
+        "quinzenalPattern": false,
+        "endMonthPattern": false,
+        "recurringFixedByEmployee": [],
+        "payrollPeriodCaptured": true
+      },
+      "employeeMatch": {
+        "totalWorkforce": 511,
+        "pctFuncionarioCodigo": 0.2,
+        "pctNome": 0.0,
+        "pctDescMatch": 0.0,
+        "pctTituloMatch": 8.02,
+        "pctUnlinked": 99.8,
+        "funcionariosCatalogo": 0,
+        "blockedEndpoints": [
+          "FUNCIONARIO_REDE",
+          "VALE_FUNCIONARIO_REDE_ALT",
+          "DESPESA_FUNCIONARIO",
+          "DESPESA_FUNCIONARIO_REDE",
+          "CENTRO_CUSTO_REDE",
+          "FORNECEDOR_REDE"
+        ],
+        "endpointProbe": {
+          "FUNCIONARIO_REDE": {
+            "path": "/INTEGRACAO/FUNCIONARIO_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "VALE_FUNCIONARIO_REDE": {
+            "path": "/INTEGRACAO/CONSULTAR_VALE_FUNCIONARIO_REDE",
+            "status": 200,
+            "rowCount": 0,
+            "sample": []
+          },
+          "VALE_FUNCIONARIO_REDE_ALT": {
+            "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "DESPESA_FUNCIONARIO": {
+            "path": "/INTEGRACAO/DESPESA_FUNCIONARIO",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "DESPESA_FUNCIONARIO_REDE": {
+            "path": "/INTEGRACAO/CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "CENTRO_CUSTO_REDE": {
+            "path": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "FORNECEDOR_REDE": {
+            "path": "/INTEGRACAO/FORNECEDOR_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          }
+        }
+      },
+      "cashLoss": {
+        "cashShortages": 61,
+        "totalShortageValor": 12227.86,
+        "semanticAjustes": 1,
+        "destinations": {
+          "TITULO_RECEBER_FUNCIONARIO": 14,
+          "DESPESA_FUNCIONARIO": 16,
+          "AJUSTE_TEMPORARIO": 24,
+          "PERDA_OPERACIONAL_EMPRESA": 7
+        },
+        "pctTraced": 100.0,
+        "pctUntraced": 0.0,
+        "generatesTituloReceber": 14,
+        "generatesDescontoFuncionario": 0,
+        "inDespesasRede": 23,
+        "onlyOperational": 24,
+        "samples": [
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4313170,
+            "funcionarioCodigo": 298670,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-05-09",
+            "valorDiferenca": 9.91,
+            "diferenca": -9.91
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4314109,
+            "funcionarioCodigo": 277311,
+            "pdvCodigo": 15880,
+            "turnoCodigo": 1,
+            "data": "2026-05-10",
+            "valorDiferenca": 7.46,
+            "diferenca": -7.46
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4314162,
+            "funcionarioCodigo": 213391,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-05-10",
+            "valorDiferenca": 63.2,
+            "diferenca": -63.2
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4315053,
+            "funcionarioCodigo": 277311,
+            "pdvCodigo": 15880,
+            "turnoCodigo": 1,
+            "data": "2026-05-11",
+            "valorDiferenca": 26.01,
+            "diferenca": -26.01
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4315067,
+            "funcionarioCodigo": 227386,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-05-11",
+            "valorDiferenca": 14.83,
+            "diferenca": -14.83
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4315911,
+            "funcionarioCodigo": 276288,
+            "pdvCodigo": 56764,
+            "turnoCodigo": 1,
+            "data": "2026-05-11",
+            "valorDiferenca": 57.48,
+            "diferenca": -57.48
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4315997,
+            "funcionarioCodigo": 213391,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-05-12",
+            "valorDiferenca": 11.54,
+            "diferenca": -11.54
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4316003,
+            "funcionarioCodigo": 277311,
+            "pdvCodigo": 15880,
+            "turnoCodigo": 1,
+            "data": "2026-05-12",
+            "valorDiferenca": 20.4,
+            "diferenca": -20.4
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4316903,
+            "funcionarioCodigo": 227386,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-05-12",
+            "valorDiferenca": 131.72,
+            "diferenca": -131.72
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4316917,
+            "funcionarioCodigo": 276288,
+            "pdvCodigo": 56764,
+            "turnoCodigo": 1,
+            "data": "2026-05-12",
+            "valorDiferenca": 59.31,
+            "diferenca": -59.31
+          }
+        ]
+      },
+      "financialImpact": {
+        "totalAdiantamentos": 511,
+        "valorVales": 100336.14,
+        "valorQuinzenas": 10659.0,
+        "valorSalarios": 1753.5,
+        "valorExtras": 11550.48,
+        "valorFolguistas": 4022.0,
+        "valorEmprestimos": 0,
+        "valorPerdasCaixa": 12227.86,
+        "valorPotencialDescontoFuncionario": 12227.86,
+        "valorAbsorvidoEmpresa": 0.0
+      },
+      "payrollSeparation": {
+        "despesaPessoal": [
+          "SALARIO",
+          "QUINZENA",
+          "FOLGUISTA",
+          "HORA_EXTRA",
+          "EXTRA_FUNCIONARIO",
+          "PREMIACAO"
+        ],
+        "adiantamento": [
+          "VALE_FUNCIONARIO",
+          "ADIANTAMENTO_SALARIAL",
+          "EMPRESTIMO_FUNCIONARIO"
+        ],
+        "contasReceberFuncionario": [
+          "EMPRESTIMO_FUNCIONARIO"
+        ],
+        "perdaOperacional": [
+          "PERDA_CAIXA_EMPRESA",
+          "PERDA_CAIXA_FUNCIONARIO"
+        ],
+        "impactsDRE": [
+          "SALARIO",
+          "QUINZENA",
+          "FOLGUISTA",
+          "SERVICOS_PESSOAL"
+        ],
+        "notImpactsDRE": [
+          "VALE_FUNCIONARIO",
+          "ADIANTAMENTO_SALARIAL",
+          "MOVIMENTACAO_CAIXA"
+        ],
+        "cashLossTracedPct": 100.0
+      },
+      "managementPrep": {
+        "mapping": [
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "ADIANTAMENTO_SALARIAL",
+            "expenseManagementClass": "PESSOAL_VALE",
+            "expenseManagementGroup": "TESOURARIA",
+            "impactsDRE": false,
+            "count": 13
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "OUTROS_FUNCIONARIO",
+            "expenseManagementClass": "OUTROS_FUNCIONARIO",
+            "expenseManagementGroup": "OPERACAO_CAIXA",
+            "impactsDRE": false,
+            "count": 9
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "VALE_FUNCIONARIO",
+            "expenseManagementClass": "PESSOAL_VALE",
+            "expenseManagementGroup": "TESOURARIA",
+            "impactsDRE": false,
+            "count": 311
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "EXTRA_FUNCIONARIO",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 94
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "FOLGUISTA",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 42
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "SALARIO",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 2
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "HORA_EXTRA",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 24
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "QUINZENA",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 15
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "REEMBOLSO_FUNCIONARIO",
+            "expenseManagementClass": "PESSOAL_REEMBOLSO",
+            "expenseManagementGroup": "ADMINISTRATIVO",
+            "impactsDRE": true,
+            "count": 1
+          }
+        ],
+        "recommendedTaxonomy": [
+          "PESSOAL",
+          "OUTROS_FUNCIONARIO",
+          "PESSOAL_REEMBOLSO",
+          "PESSOAL_VALE"
+        ]
+      },
+      "endpointProbe": {
+        "FUNCIONARIO_REDE": {
+          "path": "/INTEGRACAO/FUNCIONARIO_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "VALE_FUNCIONARIO_REDE": {
+          "path": "/INTEGRACAO/CONSULTAR_VALE_FUNCIONARIO_REDE",
+          "status": 200,
+          "rowCount": 0,
+          "sample": []
+        },
+        "VALE_FUNCIONARIO_REDE_ALT": {
+          "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "DESPESA_FUNCIONARIO": {
+          "path": "/INTEGRACAO/DESPESA_FUNCIONARIO",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "DESPESA_FUNCIONARIO_REDE": {
+          "path": "/INTEGRACAO/CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "CENTRO_CUSTO_REDE": {
+          "path": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "FORNECEDOR_REDE": {
+          "path": "/INTEGRACAO/FORNECEDOR_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        }
+      }
+    },
+    "90d": {
+      "window": "90d",
+      "periodo": {
+        "inicio": "2026-03-09",
+        "fim": "2026-06-07"
+      },
+      "elapsedSec": 94.2,
+      "discovery": {
+        "totalRecords": 3850,
+        "totalValor": 1229947.88,
+        "bySource": {
+          "DESPESAS_REDE": 2019,
+          "TITULO_PAGAR": 3,
+          "SCREEN_EXPENSES": 1828
+        },
+        "topDescriptions": [
+          [
+            "VALE DE FUNCIONÁRIO REFERENTE A CONSOLIDAÇÃO DE CAIXA",
+            1291
+          ],
+          [
+            "VALE DE FUNCIONÁRIO REFERENTE A CONSOLIDAÇÃO DE CAIXA VALE DE FUNCIONÁRIO REFERE",
+            1114
+          ],
+          [
+            "DIARIA",
+            35
+          ],
+          [
+            "DIARIA DIARIA",
+            35
+          ],
+          [
+            "REF DIARIA",
+            26
+          ],
+          [
+            "REF A HR EXTRA",
+            26
+          ],
+          [
+            "REF DIARIA REF DIARIA",
+            26
+          ],
+          [
+            "REF A HR EXTRA REF A HR EXTRA",
+            25
+          ],
+          [
+            "REF DIARIA APOIO",
+            20
+          ],
+          [
+            "REF DIARIA APOIO REF DIARIA APOIO",
+            20
+          ],
+          [
+            "DIARIA FOLGUISTA JOSE CARLOS",
+            16
+          ],
+          [
+            "DIARIA FOLGUISTA JOSE CARLOS DIARIA FOLGUISTA JOSE CARLOS",
+            16
+          ],
+          [
+            "REF A UMA DIARIA",
+            13
+          ],
+          [
+            "REF A DIARIA",
+            12
+          ],
+          [
+            "REF A DIARIA REF A DIARIA",
+            11
+          ],
+          [
+            "REF HORA EXTRA",
+            10
+          ],
+          [
+            "HORA EXTRA",
+            10
+          ],
+          [
+            "EXTRA",
+            10
+          ],
+          [
+            "RER DIARIA APOIO",
+            10
+          ],
+          [
+            "REF HORA EXTRA REF HORA EXTRA",
+            10
+          ],
+          [
+            "HORA EXTRA HORA EXTRA",
+            10
+          ],
+          [
+            "EXTRA EXTRA",
+            10
+          ],
+          [
+            "RER DIARIA APOIO RER DIARIA APOIO",
+            10
+          ],
+          [
+            "VALE AGUA CONSUMO",
+            9
+          ],
+          [
+            "HORA EXTRA MARCELO",
+            8
+          ],
+          [
+            "REF A UMA DIARIA REF A UMA DIARIA",
+            8
+          ],
+          [
+            "HORA EXTRA MARCELO HORA EXTRA MARCELO",
+            8
+          ],
+          [
+            "REF AO SALARIO DE ARTHUR",
+            7
+          ],
+          [
+            "REF DIARIA CAMILLA",
+            7
+          ],
+          [
+            "VALE AGUA CONSUMO VALE AGUA CONSUMO",
+            7
+          ]
+        ],
+        "withFuncionarioCodigo": 4,
+        "withNome": 0,
+        "withFornecedor": 164,
+        "withTitulo": 3,
+        "pctFuncionarioCodigo": 0.1,
+        "samples": [
+          {
+            "empresaCodigo": 5557,
+            "planoContaGerencialCodigo": 29057,
+            "descricaoDocumento": "2 BOTAS FUNCIONARIOS",
+            "data": "2026-03-09",
+            "valor": 140.0,
+            "_source": "DESPESAS_REDE"
+          },
+          {
+            "empresaCodigo": 5333,
+            "planoContaGerencialCodigo": 47952,
+            "descricaoDocumento": "VALE ALIMENTACAO LETO",
+            "data": "2026-03-09",
+            "valor": 225.0,
+            "_source": "DESPESAS_REDE"
+          },
+          {
+            "empresaCodigo": 46433,
+            "planoContaGerencialCodigo": 48547,
+            "descricaoDocumento": "DIARIA APOIO",
+            "data": "2026-03-09",
+            "valor": 120.0,
+            "_source": "DESPESAS_REDE"
+          },
+          {
+            "empresaCodigo": 5333,
+            "planoContaGerencialCodigo": 48547,
+            "descricaoDocumento": "VALE AGUA CONSUMO",
+            "data": "2026-03-09",
+            "valor": 8.0,
+            "_source": "DESPESAS_REDE"
+          },
+          {
+            "empresaCodigo": 46433,
+            "planoContaGerencialCodigo": 48547,
+            "descricaoDocumento": "REF A DIARIA",
+            "data": "2026-03-09",
+            "valor": 130.0,
+            "_source": "DESPESAS_REDE"
+          }
+        ]
+      },
+      "classification": {
+        "totalAdiantamentos": 1828,
+        "byProvisionalType": {
+          "OUTROS_FUNCIONARIO": 46,
+          "EXTRA_FUNCIONARIO": 260,
+          "VALE_FUNCIONARIO": 1215,
+          "EMPRESTIMO_FUNCIONARIO": 2,
+          "HORA_EXTRA": 97,
+          "QUINZENA": 50,
+          "ADIANTAMENTO_SALARIAL": 27,
+          "SALARIO": 9,
+          "FOLGUISTA": 119,
+          "PREMIACAO": 2,
+          "REEMBOLSO_FUNCIONARIO": 1
+        },
+        "valorByProvisionalType": {
+          "OUTROS_FUNCIONARIO": 8574.9,
+          "EXTRA_FUNCIONARIO": 27483.0,
+          "VALE_FUNCIONARIO": 407918.05,
+          "EMPRESTIMO_FUNCIONARIO": 3000.0,
+          "HORA_EXTRA": 7749.98,
+          "QUINZENA": 31245.0,
+          "ADIANTAMENTO_SALARIAL": 11310.0,
+          "SALARIO": 57693.0,
+          "FOLGUISTA": 11356.0,
+          "PREMIACAO": 1200.0,
+          "REEMBOLSO_FUNCIONARIO": 70.0
+        },
+        "pctByProvisionalType": {
+          "OUTROS_FUNCIONARIO": 2.52,
+          "EXTRA_FUNCIONARIO": 14.22,
+          "VALE_FUNCIONARIO": 66.47,
+          "EMPRESTIMO_FUNCIONARIO": 0.11,
+          "HORA_EXTRA": 5.31,
+          "QUINZENA": 2.74,
+          "ADIANTAMENTO_SALARIAL": 1.48,
+          "SALARIO": 0.49,
+          "FOLGUISTA": 6.51,
+          "PREMIACAO": 0.11,
+          "REEMBOLSO_FUNCIONARIO": 0.05
+        },
+        "avgConfidence": 90.3,
+        "unknownCount": 46,
+        "unknownPct": 2.52,
+        "samplesByType": {
+          "VALE_FUNCIONARIO": [
+            {
+              "provisionalType": "VALE_FUNCIONARIO",
+              "confidence": 95,
+              "reason": "semantic_subnature",
+              "valor": "19.00",
+              "descricao": "Vale de funcionário referente a consolidação de caixa",
+              "funcionarioCodigo": null,
+              "data": "2026-03-09"
+            },
+            {
+              "provisionalType": "VALE_FUNCIONARIO",
+              "confidence": 95,
+              "reason": "semantic_subnature",
+              "valor": "150.00",
+              "descricao": "Vale de funcionário referente a consolidação de caixa",
+              "funcionarioCodigo": null,
+              "data": "2026-03-09"
+            },
+            {
+              "provisionalType": "VALE_FUNCIONARIO",
+              "confidence": 95,
+              "reason": "semantic_subnature",
+              "valor": "40.00",
+              "descricao": "Vale de funcionário referente a consolidação de caixa",
+              "funcionarioCodigo": null,
+              "data": "2026-03-09"
+            }
+          ],
+          "QUINZENA": [
+            {
+              "provisionalType": "QUINZENA",
+              "confidence": 92,
+              "reason": "pattern:QUINZENA",
+              "valor": "300.00",
+              "descricao": "ref a quinzena/junior",
+              "funcionarioCodigo": null,
+              "data": "2026-03-15"
+            },
+            {
+              "provisionalType": "QUINZENA",
+              "confidence": 92,
+              "reason": "pattern:QUINZENA",
+              "valor": "426.00",
+              "descricao": "quinzena (carlos)",
+              "funcionarioCodigo": null,
+              "data": "2026-03-15"
+            },
+            {
+              "provisionalType": "QUINZENA",
+              "confidence": 92,
+              "reason": "pattern:QUINZENA",
+              "valor": "400.00",
+              "descricao": "ref a quinzena/ana",
+              "funcionarioCodigo": null,
+              "data": "2026-03-15"
+            }
+          ],
+          "ADIANTAMENTO_SALARIAL": [
+            {
+              "provisionalType": "ADIANTAMENTO_SALARIAL",
+              "confidence": 82,
+              "reason": "pattern:\\bADIANTAMENTO\\b",
+              "valor": "600.00",
+              "descricao": "adiantamento de salrio de dona midian",
+              "funcionarioCodigo": null,
+              "data": "2026-03-17"
+            },
+            {
+              "provisionalType": "ADIANTAMENTO_SALARIAL",
+              "confidence": 82,
+              "reason": "pattern:\\bADIANTAMENTO\\b",
+              "valor": "50.00",
+              "descricao": "ADIANTAMENTO PARA MANOEL",
+              "funcionarioCodigo": null,
+              "data": "2026-03-18"
+            },
+            {
+              "provisionalType": "ADIANTAMENTO_SALARIAL",
+              "confidence": 82,
+              "reason": "pattern:\\bADIANTAMENTO\\b",
+              "valor": "100.00",
+              "descricao": "ADIANTAMENTO PARA MANOEL",
+              "funcionarioCodigo": null,
+              "data": "2026-03-25"
+            }
+          ],
+          "SALARIO": [
+            {
+              "provisionalType": "SALARIO",
+              "confidence": 90,
+              "reason": "pattern:\\bSALAR",
+              "valor": "600.00",
+              "descricao": "adiantamento de salario de seu bio",
+              "funcionarioCodigo": null,
+              "data": "2026-03-17"
+            },
+            {
+              "provisionalType": "SALARIO",
+              "confidence": 90,
+              "reason": "pattern:\\bFOLHA\\b",
+              "valor": "40.00",
+              "descricao": "FOLHA A4 02 RESMA",
+              "funcionarioCodigo": null,
+              "data": "2026-03-25"
+            },
+            {
+              "provisionalType": "SALARIO",
+              "confidence": 90,
+              "reason": "pattern:\\bFOLHA\\b",
+              "valor": "60.00",
+              "descricao": "FOLHA A4 03 RESMA",
+              "funcionarioCodigo": null,
+              "data": "2026-03-25"
+            }
+          ],
+          "EXTRA_FUNCIONARIO": [
+            {
+              "provisionalType": "EXTRA_FUNCIONARIO",
+              "confidence": 80,
+              "reason": "pattern:DIARIA",
+              "valor": "120.00",
+              "descricao": "DIARIA APOIO",
+              "funcionarioCodigo": null,
+              "data": "2026-03-09"
+            },
+            {
+              "provisionalType": "EXTRA_FUNCIONARIO",
+              "confidence": 80,
+              "reason": "pattern:DIARIA",
+              "valor": "130.00",
+              "descricao": "REF A DIARIA",
+              "funcionarioCodigo": null,
+              "data": "2026-03-09"
+            },
+            {
+              "provisionalType": "EXTRA_FUNCIONARIO",
+              "confidence": 80,
+              "reason": "pattern:\\bEXTRA\\b",
+              "valor": "200.00",
+              "descricao": "EXTRA NO LUGAR DE ITALO TA DE ATESTADO",
+              "funcionarioCodigo": null,
+              "data": "2026-03-09"
+            }
+          ],
+          "FOLGUISTA": [
+            {
+              "provisionalType": "FOLGUISTA",
+              "confidence": 88,
+              "reason": "pattern:FOLGUIST",
+              "valor": "20.00",
+              "descricao": "PASSAGEM FOLGUISTA JUNIOR EM TREINAMENTO",
+              "funcionarioCodigo": null,
+              "data": "2026-03-18"
+            },
+            {
+              "provisionalType": "FOLGUISTA",
+              "confidence": 88,
+              "reason": "pattern:FOLGUIST",
+              "valor": "20.00",
+              "descricao": "PASSAGEM JUNIOR FOLGUISTA EM TREINAMENTO",
+              "funcionarioCodigo": null,
+              "data": "2026-03-19"
+            },
+            {
+              "provisionalType": "FOLGUISTA",
+              "confidence": 88,
+              "reason": "pattern:FOLGUIST",
+              "valor": "20.00",
+              "descricao": "PASSAGEM FOLGUISTA JUNIO EM TREINAMENTO",
+              "funcionarioCodigo": null,
+              "data": "2026-03-20"
+            }
+          ],
+          "HORA_EXTRA": [
+            {
+              "provisionalType": "HORA_EXTRA",
+              "confidence": 88,
+              "reason": "pattern:HORA\\s*EXTRA",
+              "valor": "80.00",
+              "descricao": "hora extra de seu ro",
+              "funcionarioCodigo": null,
+              "data": "2026-03-12"
+            },
+            {
+              "provisionalType": "HORA_EXTRA",
+              "confidence": 88,
+              "reason": "pattern:HORA\\s*EXTRA",
+              "valor": "68.00",
+              "descricao": "REF A HORA EXTRA",
+              "funcionarioCodigo": null,
+              "data": "2026-03-14"
+            },
+            {
+              "provisionalType": "HORA_EXTRA",
+              "confidence": 88,
+              "reason": "pattern:HORA\\s*EXTRA",
+              "valor": "50.00",
+              "descricao": "REF HORA EXTRA",
+              "funcionarioCodigo": null,
+              "data": "2026-03-14"
+            }
+          ],
+          "EMPRESTIMO_FUNCIONARIO": [
+            {
+              "provisionalType": "EMPRESTIMO_FUNCIONARIO",
+              "confidence": 90,
+              "reason": "pattern:EMPREST",
+              "valor": "1000.00",
+              "descricao": "EMPRESTIMO P MANOEL AUT SR MOISES",
+              "funcionarioCodigo": null,
+              "data": "2026-03-10"
+            },
+            {
+              "provisionalType": "EMPRESTIMO_FUNCIONARIO",
+              "confidence": 90,
+              "reason": "pattern:EMPREST",
+              "valor": "2000.00",
+              "descricao": "EMPRESTIMO JOELSON",
+              "funcionarioCodigo": null,
+              "data": "2026-05-04"
+            }
+          ],
+          "REEMBOLSO_FUNCIONARIO": [
+            {
+              "provisionalType": "REEMBOLSO_FUNCIONARIO",
+              "confidence": 90,
+              "reason": "pattern:REEMBOLSO",
+              "valor": "70.00",
+              "descricao": "reembolso dia 17/05",
+              "funcionarioCodigo": null,
+              "data": "2026-05-19"
+            }
+          ],
+          "PREMIACAO": [
+            {
+              "provisionalType": "PREMIACAO",
+              "confidence": 85,
+              "reason": "pattern:PREMI",
+              "valor": "950.00",
+              "descricao": "PREMIAÇAO",
+              "funcionarioCodigo": null,
+              "data": "2026-03-21"
+            },
+            {
+              "provisionalType": "PREMIACAO",
+              "confidence": 85,
+              "reason": "pattern:PREMI",
+              "valor": "250.00",
+              "descricao": "PREMIAÇÃO JÚNIOR",
+              "funcionarioCodigo": null,
+              "data": "2026-03-22"
+            }
+          ],
+          "OUTROS_FUNCIONARIO": [
+            {
+              "provisionalType": "OUTROS_FUNCIONARIO",
+              "confidence": 40,
+              "reason": "fallback",
+              "valor": "140.00",
+              "descricao": "2 BOTAS FUNCIONARIOS",
+              "funcionarioCodigo": null,
+              "data": "2026-03-09"
+            },
+            {
+              "provisionalType": "OUTROS_FUNCIONARIO",
+              "confidence": 40,
+              "reason": "fallback",
+              "valor": "225.00",
+              "descricao": "VALE ALIMENTACAO LETO",
+              "funcionarioCodigo": null,
+              "data": "2026-03-09"
+            },
+            {
+              "provisionalType": "OUTROS_FUNCIONARIO",
+              "confidence": 40,
+              "reason": "fallback",
+              "valor": "8.00",
+              "descricao": "VALE AGUA CONSUMO",
+              "funcionarioCodigo": null,
+              "data": "2026-03-09"
+            }
+          ]
+        }
+      },
+      "payrollCalendar": {
+        "byBucket": {
+          "dia_06_10": 200,
+          "dia_11_15": 247,
+          "dia_16_20": 385,
+          "dia_21_25": 236,
+          "dia_26_31": 223,
+          "dia_01_05": 537
+        },
+        "valorByBucket": {
+          "dia_06_10": 34881.09,
+          "dia_11_15": 56509.48,
+          "dia_16_20": 134361.97,
+          "dia_21_25": 29682.42,
+          "dia_26_31": 72108.6,
+          "dia_01_05": 240056.37
+        },
+        "pctByBucket": {
+          "dia_06_10": 10.94,
+          "dia_11_15": 13.51,
+          "dia_16_20": 21.06,
+          "dia_21_25": 12.91,
+          "dia_26_31": 12.2,
+          "dia_01_05": 29.38
+        },
+        "byDay": {
+          "1": 101,
+          "2": 145,
+          "3": 117,
+          "4": 91,
+          "5": 83,
+          "6": 48,
+          "7": 36,
+          "8": 26,
+          "9": 49,
+          "10": 41,
+          "11": 38,
+          "12": 53,
+          "13": 29,
+          "14": 46,
+          "15": 81,
+          "16": 112,
+          "17": 122,
+          "18": 64,
+          "19": 48,
+          "20": 39,
+          "21": 61,
+          "22": 47,
+          "23": 45,
+          "24": 40,
+          "25": 43,
+          "26": 40,
+          "27": 34,
+          "28": 42,
+          "29": 40,
+          "30": 42,
+          "31": 25
+        },
+        "concentrationDay15": 13.51,
+        "concentrationEndMonth": 12.2,
+        "quinzenalPattern": false,
+        "endMonthPattern": false,
+        "recurringFixedByEmployee": [],
+        "payrollPeriodCaptured": true
+      },
+      "employeeMatch": {
+        "totalWorkforce": 1828,
+        "pctFuncionarioCodigo": 0.22,
+        "pctNome": 0.0,
+        "pctDescMatch": 0.0,
+        "pctTituloMatch": 9.3,
+        "pctUnlinked": 99.78,
+        "funcionariosCatalogo": 0,
+        "blockedEndpoints": [
+          "FUNCIONARIO_REDE",
+          "VALE_FUNCIONARIO_REDE_ALT",
+          "DESPESA_FUNCIONARIO",
+          "DESPESA_FUNCIONARIO_REDE",
+          "CENTRO_CUSTO_REDE",
+          "FORNECEDOR_REDE"
+        ],
+        "endpointProbe": {
+          "FUNCIONARIO_REDE": {
+            "path": "/INTEGRACAO/FUNCIONARIO_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "VALE_FUNCIONARIO_REDE": {
+            "path": "/INTEGRACAO/CONSULTAR_VALE_FUNCIONARIO_REDE",
+            "status": 200,
+            "rowCount": 0,
+            "sample": []
+          },
+          "VALE_FUNCIONARIO_REDE_ALT": {
+            "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "DESPESA_FUNCIONARIO": {
+            "path": "/INTEGRACAO/DESPESA_FUNCIONARIO",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "DESPESA_FUNCIONARIO_REDE": {
+            "path": "/INTEGRACAO/CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "CENTRO_CUSTO_REDE": {
+            "path": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "FORNECEDOR_REDE": {
+            "path": "/INTEGRACAO/FORNECEDOR_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          }
+        }
+      },
+      "cashLoss": {
+        "cashShortages": 127,
+        "totalShortageValor": 11783.87,
+        "semanticAjustes": 6,
+        "destinations": {
+          "TITULO_RECEBER_FUNCIONARIO": 62,
+          "DESPESA_FUNCIONARIO": 44,
+          "AJUSTE_TEMPORARIO": 20,
+          "PERDA_OPERACIONAL_EMPRESA": 1
+        },
+        "pctTraced": 100.0,
+        "pctUntraced": 0.0,
+        "generatesTituloReceber": 62,
+        "generatesDescontoFuncionario": 0,
+        "inDespesasRede": 45,
+        "onlyOperational": 20,
+        "samples": [
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4255769,
+            "funcionarioCodigo": 227386,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-03-09",
+            "valorDiferenca": 4.52,
+            "diferenca": -4.52
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4255774,
+            "funcionarioCodigo": 276288,
+            "pdvCodigo": 56764,
+            "turnoCodigo": 1,
+            "data": "2026-03-09",
+            "valorDiferenca": 26.6,
+            "diferenca": -26.6
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4256755,
+            "funcionarioCodigo": 213391,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-03-11",
+            "valorDiferenca": 31.85,
+            "diferenca": -31.85
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4257726,
+            "funcionarioCodigo": 276288,
+            "pdvCodigo": 56764,
+            "turnoCodigo": 1,
+            "data": "2026-03-11",
+            "valorDiferenca": 5.52,
+            "diferenca": -5.52
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4257737,
+            "funcionarioCodigo": 227386,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-03-11",
+            "valorDiferenca": 35.97,
+            "diferenca": -35.97
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4258704,
+            "funcionarioCodigo": 178278,
+            "pdvCodigo": 56764,
+            "turnoCodigo": 1,
+            "data": "2026-03-12",
+            "valorDiferenca": 7.65,
+            "diferenca": -7.65
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4259767,
+            "funcionarioCodigo": 227385,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-03-13",
+            "valorDiferenca": 17.24,
+            "diferenca": -17.24
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4260651,
+            "funcionarioCodigo": 290148,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-03-15",
+            "valorDiferenca": 151.38,
+            "diferenca": -151.38
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4260664,
+            "funcionarioCodigo": 213391,
+            "pdvCodigo": 56764,
+            "turnoCodigo": 1,
+            "data": "2026-03-14",
+            "valorDiferenca": 50.84,
+            "diferenca": -50.84
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4261602,
+            "funcionarioCodigo": 178278,
+            "pdvCodigo": 56764,
+            "turnoCodigo": 1,
+            "data": "2026-03-15",
+            "valorDiferenca": 20.13,
+            "diferenca": -20.13
+          }
+        ]
+      },
+      "financialImpact": {
+        "totalAdiantamentos": 1828,
+        "valorVales": 407918.05,
+        "valorQuinzenas": 31245.0,
+        "valorSalarios": 57693.0,
+        "valorExtras": 35232.979999999996,
+        "valorFolguistas": 11356.0,
+        "valorEmprestimos": 3000.0,
+        "valorPerdasCaixa": 11783.87,
+        "valorPotencialDescontoFuncionario": 11783.87,
+        "valorAbsorvidoEmpresa": 0.0
+      },
+      "payrollSeparation": {
+        "despesaPessoal": [
+          "SALARIO",
+          "QUINZENA",
+          "FOLGUISTA",
+          "HORA_EXTRA",
+          "EXTRA_FUNCIONARIO",
+          "PREMIACAO"
+        ],
+        "adiantamento": [
+          "VALE_FUNCIONARIO",
+          "ADIANTAMENTO_SALARIAL",
+          "EMPRESTIMO_FUNCIONARIO"
+        ],
+        "contasReceberFuncionario": [
+          "EMPRESTIMO_FUNCIONARIO"
+        ],
+        "perdaOperacional": [
+          "PERDA_CAIXA_EMPRESA",
+          "PERDA_CAIXA_FUNCIONARIO"
+        ],
+        "impactsDRE": [
+          "SALARIO",
+          "QUINZENA",
+          "FOLGUISTA",
+          "SERVICOS_PESSOAL"
+        ],
+        "notImpactsDRE": [
+          "VALE_FUNCIONARIO",
+          "ADIANTAMENTO_SALARIAL",
+          "MOVIMENTACAO_CAIXA"
+        ],
+        "cashLossTracedPct": 100.0
+      },
+      "managementPrep": {
+        "mapping": [
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "OUTROS_FUNCIONARIO",
+            "expenseManagementClass": "OUTROS_FUNCIONARIO",
+            "expenseManagementGroup": "OPERACAO_CAIXA",
+            "impactsDRE": false,
+            "count": 46
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "EXTRA_FUNCIONARIO",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 260
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "VALE_FUNCIONARIO",
+            "expenseManagementClass": "PESSOAL_VALE",
+            "expenseManagementGroup": "TESOURARIA",
+            "impactsDRE": false,
+            "count": 1215
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "EMPRESTIMO_FUNCIONARIO",
+            "expenseManagementClass": "PESSOAL_VALE",
+            "expenseManagementGroup": "TESOURARIA",
+            "impactsDRE": false,
+            "count": 2
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "HORA_EXTRA",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 97
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "QUINZENA",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 50
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "ADIANTAMENTO_SALARIAL",
+            "expenseManagementClass": "PESSOAL_VALE",
+            "expenseManagementGroup": "TESOURARIA",
+            "impactsDRE": false,
+            "count": 27
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "SALARIO",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 9
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "FOLGUISTA",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 119
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "PREMIACAO",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 2
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "REEMBOLSO_FUNCIONARIO",
+            "expenseManagementClass": "PESSOAL_REEMBOLSO",
+            "expenseManagementGroup": "ADMINISTRATIVO",
+            "impactsDRE": true,
+            "count": 1
+          }
+        ],
+        "recommendedTaxonomy": [
+          "PESSOAL",
+          "PESSOAL_REEMBOLSO",
+          "OUTROS_FUNCIONARIO",
+          "PESSOAL_VALE"
+        ]
+      },
+      "endpointProbe": {
+        "FUNCIONARIO_REDE": {
+          "path": "/INTEGRACAO/FUNCIONARIO_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "VALE_FUNCIONARIO_REDE": {
+          "path": "/INTEGRACAO/CONSULTAR_VALE_FUNCIONARIO_REDE",
+          "status": 200,
+          "rowCount": 0,
+          "sample": []
+        },
+        "VALE_FUNCIONARIO_REDE_ALT": {
+          "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "DESPESA_FUNCIONARIO": {
+          "path": "/INTEGRACAO/DESPESA_FUNCIONARIO",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "DESPESA_FUNCIONARIO_REDE": {
+          "path": "/INTEGRACAO/CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "CENTRO_CUSTO_REDE": {
+          "path": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "FORNECEDOR_REDE": {
+          "path": "/INTEGRACAO/FORNECEDOR_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        }
+      }
+    }
+  },
+  "optionalWindows": {
+    "180d": {
+      "window": "180d",
+      "periodo": {
+        "inicio": "2025-12-09",
+        "fim": "2026-06-07"
+      },
+      "elapsedSec": 109.2,
+      "discovery": {
+        "totalRecords": 8279,
+        "totalValor": 2895993.94,
+        "bySource": {
+          "DESPESAS_REDE": 4367,
+          "TITULO_PAGAR": 9,
+          "SCREEN_EXPENSES": 3903
+        },
+        "topDescriptions": [
+          [
+            "VALE DE FUNCIONÁRIO REFERENTE A CONSOLIDAÇÃO DE CAIXA",
+            2911
+          ],
+          [
+            "VALE DE FUNCIONÁRIO REFERENTE A CONSOLIDAÇÃO DE CAIXA VALE DE FUNCIONÁRIO REFERE",
+            2479
+          ],
+          [
+            "DIARIA",
+            83
+          ],
+          [
+            "DIARIA DIARIA",
+            83
+          ],
+          [
+            "REF A HR EXTRA",
+            53
+          ],
+          [
+            "REF A HR EXTRA REF A HR EXTRA",
+            49
+          ],
+          [
+            "REF A HR EXTRA TRABALHADA",
+            32
+          ],
+          [
+            "HORA EXTRA DE SEU RO",
+            32
+          ],
+          [
+            "HORA EXTRA DE SEU RO HORA EXTRA DE SEU RO",
+            32
+          ],
+          [
+            "REF DIARIA",
+            30
+          ],
+          [
+            "REF DIARIA REF DIARIA",
+            30
+          ],
+          [
+            "REF HORA EXTRA",
+            26
+          ],
+          [
+            "REF HORA EXTRA REF HORA EXTRA",
+            26
+          ],
+          [
+            "REF A DIARIA DO APOIO",
+            25
+          ],
+          [
+            "REF DIARIA APOIO",
+            25
+          ],
+          [
+            "REF A HR EXTRA TRABALHADA REF A HR EXTRA TRABALHADA",
+            25
+          ],
+          [
+            "REF A DIARIA DO APOIO REF A DIARIA DO APOIO",
+            25
+          ],
+          [
+            "REF DIARIA APOIO REF DIARIA APOIO",
+            25
+          ],
+          [
+            "REFERENTE A DIARIA DE MARCOS",
+            21
+          ],
+          [
+            "REFERENTE A DIARIA DE MARCOS REFERENTE A DIARIA DE MARCOS",
+            21
+          ],
+          [
+            "HORA EXTRA",
+            18
+          ],
+          [
+            "HORA EXTRA HORA EXTRA",
+            18
+          ],
+          [
+            "REF A DIARIA",
+            17
+          ],
+          [
+            "DIARIA FOLGUISTA JOSE CARLOS",
+            16
+          ],
+          [
+            "REF A DIARIA REF A DIARIA",
+            16
+          ],
+          [
+            "DIARIA FOLGUISTA JOSE CARLOS DIARIA FOLGUISTA JOSE CARLOS",
+            16
+          ],
+          [
+            "EXTRA",
+            15
+          ],
+          [
+            "REF A UMA DIARIA",
+            15
+          ],
+          [
+            "EXTRA EXTRA",
+            15
+          ],
+          [
+            "REF A HORA EXTRA",
+            13
+          ]
+        ],
+        "withFuncionarioCodigo": 1,
+        "withNome": 0,
+        "withFornecedor": 293,
+        "withTitulo": 9,
+        "pctFuncionarioCodigo": 0.01,
+        "samples": [
+          {
+            "empresaCodigo": 5555,
+            "planoContaGerencialCodigo": 29072,
+            "descricaoDocumento": "Vale de funcionário referente a consolidação de caixa",
+            "data": "2025-12-09",
+            "valor": 42.0,
+            "_source": "DESPESAS_REDE"
+          },
+          {
+            "empresaCodigo": 5559,
+            "planoContaGerencialCodigo": 29072,
+            "descricaoDocumento": "salário (carlos)",
+            "data": "2025-12-09",
+            "valor": 251.0,
+            "_source": "DESPESAS_REDE"
+          },
+          {
+            "empresaCodigo": 11495,
+            "planoContaGerencialCodigo": 29072,
+            "descricaoDocumento": "Vale de funcionário referente a consolidação de caixa",
+            "data": "2025-12-09",
+            "valor": 120.0,
+            "_source": "DESPESAS_REDE"
+          },
+          {
+            "empresaCodigo": 5554,
+            "planoContaGerencialCodigo": 29072,
+            "descricaoDocumento": "Vale de funcionário referente a consolidação de caixa",
+            "data": "2025-12-09",
+            "valor": 25.0,
+            "_source": "DESPESAS_REDE"
+          },
+          {
+            "empresaCodigo": 5554,
+            "planoContaGerencialCodigo": 29072,
+            "descricaoDocumento": "Vale de funcionário referente a consolidação de caixa",
+            "data": "2025-12-09",
+            "valor": 80.0,
+            "_source": "DESPESAS_REDE"
+          }
+        ]
+      },
+      "classification": {
+        "totalAdiantamentos": 3903,
+        "byProvisionalType": {
+          "VALE_FUNCIONARIO": 2737,
+          "FOLGUISTA": 178,
+          "PREMIACAO": 7,
+          "SALARIO": 26,
+          "EXTRA_FUNCIONARIO": 438,
+          "HORA_EXTRA": 223,
+          "OUTROS_FUNCIONARIO": 103,
+          "QUINZENA": 139,
+          "ADIANTAMENTO_SALARIAL": 48,
+          "ACERTO_FUNCIONARIO": 1,
+          "EMPRESTIMO_FUNCIONARIO": 2,
+          "REEMBOLSO_FUNCIONARIO": 1
+        },
+        "valorByProvisionalType": {
+          "VALE_FUNCIONARIO": 980573.11,
+          "FOLGUISTA": 17526.0,
+          "PREMIACAO": 1201.04,
+          "SALARIO": 139263.53,
+          "EXTRA_FUNCIONARIO": 44948.5,
+          "HORA_EXTRA": 15928.98,
+          "OUTROS_FUNCIONARIO": 30254.75,
+          "QUINZENA": 83980.8,
+          "ADIANTAMENTO_SALARIAL": 19940.0,
+          "ACERTO_FUNCIONARIO": 7.5,
+          "EMPRESTIMO_FUNCIONARIO": 3000.0,
+          "REEMBOLSO_FUNCIONARIO": 70.0
+        },
+        "pctByProvisionalType": {
+          "VALE_FUNCIONARIO": 70.13,
+          "FOLGUISTA": 4.56,
+          "PREMIACAO": 0.18,
+          "SALARIO": 0.67,
+          "EXTRA_FUNCIONARIO": 11.22,
+          "HORA_EXTRA": 5.71,
+          "OUTROS_FUNCIONARIO": 2.64,
+          "QUINZENA": 3.56,
+          "ADIANTAMENTO_SALARIAL": 1.23,
+          "ACERTO_FUNCIONARIO": 0.03,
+          "EMPRESTIMO_FUNCIONARIO": 0.05,
+          "REEMBOLSO_FUNCIONARIO": 0.03
+        },
+        "avgConfidence": 90.8,
+        "unknownCount": 103,
+        "unknownPct": 2.64,
+        "samplesByType": {
+          "VALE_FUNCIONARIO": [
+            {
+              "provisionalType": "VALE_FUNCIONARIO",
+              "confidence": 95,
+              "reason": "semantic_subnature",
+              "valor": "42.00",
+              "descricao": "Vale de funcionário referente a consolidação de caixa",
+              "funcionarioCodigo": null,
+              "data": "2025-12-09"
+            },
+            {
+              "provisionalType": "VALE_FUNCIONARIO",
+              "confidence": 95,
+              "reason": "semantic_subnature",
+              "valor": "251.00",
+              "descricao": "salário (carlos)",
+              "funcionarioCodigo": null,
+              "data": "2025-12-09"
+            },
+            {
+              "provisionalType": "VALE_FUNCIONARIO",
+              "confidence": 95,
+              "reason": "semantic_subnature",
+              "valor": "120.00",
+              "descricao": "Vale de funcionário referente a consolidação de caixa",
+              "funcionarioCodigo": null,
+              "data": "2025-12-09"
+            }
+          ],
+          "QUINZENA": [
+            {
+              "provisionalType": "QUINZENA",
+              "confidence": 92,
+              "reason": "pattern:QUINZENA",
+              "valor": "1000.00",
+              "descricao": "ref a quinzena",
+              "funcionarioCodigo": null,
+              "data": "2025-12-15"
+            },
+            {
+              "provisionalType": "QUINZENA",
+              "confidence": 92,
+              "reason": "pattern:QUINZENA",
+              "valor": "850.00",
+              "descricao": "REF A QUINZENA",
+              "funcionarioCodigo": null,
+              "data": "2025-12-16"
+            },
+            {
+              "provisionalType": "QUINZENA",
+              "confidence": 92,
+              "reason": "pattern:QUINZENA",
+              "valor": "850.00",
+              "descricao": "REFE A QUINZENA",
+              "funcionarioCodigo": null,
+              "data": "2025-12-16"
+            }
+          ],
+          "ADIANTAMENTO_SALARIAL": [
+            {
+              "provisionalType": "ADIANTAMENTO_SALARIAL",
+              "confidence": 82,
+              "reason": "pattern:\\bADIANTAMENTO\\b",
+              "valor": "200.00",
+              "descricao": "ADIANTAMENTO LEONARDO SALES",
+              "funcionarioCodigo": null,
+              "data": "2025-12-17"
+            },
+            {
+              "provisionalType": "ADIANTAMENTO_SALARIAL",
+              "confidence": 82,
+              "reason": "pattern:\\bADIANTAMENTO\\b",
+              "valor": "80.00",
+              "descricao": "ADIANTAMENTO PARA LEONARDO SALES",
+              "funcionarioCodigo": null,
+              "data": "2025-12-17"
+            },
+            {
+              "provisionalType": "ADIANTAMENTO_SALARIAL",
+              "confidence": 82,
+              "reason": "pattern:\\bADIANTAMENTO\\b",
+              "valor": "600.00",
+              "descricao": "adiantamento de quisena dona midian",
+              "funcionarioCodigo": null,
+              "data": "2025-12-18"
+            }
+          ],
+          "SALARIO": [
+            {
+              "provisionalType": "SALARIO",
+              "confidence": 90,
+              "reason": "pattern:\\bFOLHA\\b",
+              "valor": "28.00",
+              "descricao": "XEROX-CÓPIA-COMBUSTIVEL FOLHA",
+              "funcionarioCodigo": null,
+              "data": "2025-12-12"
+            },
+            {
+              "provisionalType": "SALARIO",
+              "confidence": 90,
+              "reason": "pattern:\\bFOLHA\\b",
+              "valor": "32.50",
+              "descricao": "FOLHA A4",
+              "funcionarioCodigo": null,
+              "data": "2025-12-22"
+            },
+            {
+              "provisionalType": "SALARIO",
+              "confidence": 90,
+              "reason": "pattern:\\bSALAR",
+              "valor": "210.00",
+              "descricao": "REF AO ADIANTAMENTO SALARIO ALYSSON",
+              "funcionarioCodigo": null,
+              "data": "2026-01-02"
+            }
+          ],
+          "EXTRA_FUNCIONARIO": [
+            {
+              "provisionalType": "EXTRA_FUNCIONARIO",
+              "confidence": 80,
+              "reason": "pattern:DIARIA",
+              "valor": "80.00",
+              "descricao": "diaria maria",
+              "funcionarioCodigo": null,
+              "data": "2025-12-13"
+            },
+            {
+              "provisionalType": "EXTRA_FUNCIONARIO",
+              "confidence": 80,
+              "reason": "pattern:\\bEXTRA\\b",
+              "valor": "50.00",
+              "descricao": "ref extra de 8hr as 14hr",
+              "funcionarioCodigo": null,
+              "data": "2025-12-13"
+            },
+            {
+              "provisionalType": "EXTRA_FUNCIONARIO",
+              "confidence": 80,
+              "reason": "pattern:DIARIA",
+              "valor": "80.00",
+              "descricao": "REFENTE A DIARIA DE MARCOS",
+              "funcionarioCodigo": null,
+              "data": "2025-12-14"
+            }
+          ],
+          "FOLGUISTA": [
+            {
+              "provisionalType": "FOLGUISTA",
+              "confidence": 88,
+              "reason": "pattern:FOLGUIST",
+              "valor": "120.00",
+              "descricao": "pagamento folguista",
+              "funcionarioCodigo": null,
+              "data": "2025-12-09"
+            },
+            {
+              "provisionalType": "FOLGUISTA",
+              "confidence": 88,
+              "reason": "pattern:FOLGUIST",
+              "valor": "100.00",
+              "descricao": "pagamento folguista",
+              "funcionarioCodigo": null,
+              "data": "2025-12-13"
+            },
+            {
+              "provisionalType": "FOLGUISTA",
+              "confidence": 88,
+              "reason": "pattern:FOLGUIST",
+              "valor": "80.00",
+              "descricao": "pagamento ref ao folguista robson",
+              "funcionarioCodigo": null,
+              "data": "2025-12-14"
+            }
+          ],
+          "HORA_EXTRA": [
+            {
+              "provisionalType": "HORA_EXTRA",
+              "confidence": 88,
+              "reason": "pattern:HORA\\s*EXTRA",
+              "valor": "64.00",
+              "descricao": "REF HORA EXTRA",
+              "funcionarioCodigo": null,
+              "data": "2025-12-13"
+            },
+            {
+              "provisionalType": "HORA_EXTRA",
+              "confidence": 88,
+              "reason": "pattern:HORA\\s*EXTRA",
+              "valor": "64.00",
+              "descricao": "REF A HORA EXTRA",
+              "funcionarioCodigo": null,
+              "data": "2025-12-13"
+            },
+            {
+              "provisionalType": "HORA_EXTRA",
+              "confidence": 88,
+              "reason": "pattern:HORA\\s*EXTRA",
+              "valor": "40.00",
+              "descricao": "ref hora extra",
+              "funcionarioCodigo": null,
+              "data": "2025-12-13"
+            }
+          ],
+          "EMPRESTIMO_FUNCIONARIO": [
+            {
+              "provisionalType": "EMPRESTIMO_FUNCIONARIO",
+              "confidence": 90,
+              "reason": "pattern:EMPREST",
+              "valor": "1000.00",
+              "descricao": "EMPRESTIMO P MANOEL AUT SR MOISES",
+              "funcionarioCodigo": null,
+              "data": "2026-03-10"
+            },
+            {
+              "provisionalType": "EMPRESTIMO_FUNCIONARIO",
+              "confidence": 90,
+              "reason": "pattern:EMPREST",
+              "valor": "2000.00",
+              "descricao": "EMPRESTIMO JOELSON",
+              "funcionarioCodigo": null,
+              "data": "2026-05-04"
+            }
+          ],
+          "REEMBOLSO_FUNCIONARIO": [
+            {
+              "provisionalType": "REEMBOLSO_FUNCIONARIO",
+              "confidence": 90,
+              "reason": "pattern:REEMBOLSO",
+              "valor": "70.00",
+              "descricao": "reembolso dia 17/05",
+              "funcionarioCodigo": null,
+              "data": "2026-05-19"
+            }
+          ],
+          "PREMIACAO": [
+            {
+              "provisionalType": "PREMIACAO",
+              "confidence": 85,
+              "reason": "pattern:PREMI",
+              "valor": "0.01",
+              "descricao": "desconto premia 5,00",
+              "funcionarioCodigo": null,
+              "data": "2025-12-10"
+            },
+            {
+              "provisionalType": "PREMIACAO",
+              "confidence": 85,
+              "reason": "pattern:PREMI",
+              "valor": "0.01",
+              "descricao": "premia de 150",
+              "funcionarioCodigo": null,
+              "data": "2026-01-06"
+            },
+            {
+              "provisionalType": "PREMIACAO",
+              "confidence": 85,
+              "reason": "pattern:PREMI",
+              "valor": "0.01",
+              "descricao": "premia de 48",
+              "funcionarioCodigo": null,
+              "data": "2026-01-14"
+            }
+          ],
+          "ACERTO_FUNCIONARIO": [
+            {
+              "provisionalType": "ACERTO_FUNCIONARIO",
+              "confidence": 85,
+              "reason": "pattern:\\bACERTO\\b",
+              "valor": "7.50",
+              "descricao": "CAFÉ WANDERSON ACERTO RESCISÃO",
+              "funcionarioCodigo": null,
+              "data": "2026-01-20"
+            }
+          ],
+          "OUTROS_FUNCIONARIO": [
+            {
+              "provisionalType": "OUTROS_FUNCIONARIO",
+              "confidence": 40,
+              "reason": "fallback",
+              "valor": "110.00",
+              "descricao": "SACOLAS PARA SEXTA NATAL FUNCIONARIOS",
+              "funcionarioCodigo": null,
+              "data": "2025-12-15"
+            },
+            {
+              "provisionalType": "OUTROS_FUNCIONARIO",
+              "confidence": 40,
+              "reason": "fallback",
+              "valor": "100.00",
+              "descricao": "almoço-jeck funcionário",
+              "funcionarioCodigo": null,
+              "data": "2025-12-16"
+            },
+            {
+              "provisionalType": "OUTROS_FUNCIONARIO",
+              "confidence": 40,
+              "reason": "fallback",
+              "valor": "151.40",
+              "descricao": "PRODUTOS PARA CESTA NATAL FUNCIONARIOS",
+              "funcionarioCodigo": null,
+              "data": "2025-12-17"
+            }
+          ]
+        }
+      },
+      "payrollCalendar": {
+        "byBucket": {
+          "dia_06_10": 515,
+          "dia_11_15": 491,
+          "dia_16_20": 868,
+          "dia_21_25": 499,
+          "dia_26_31": 483,
+          "dia_01_05": 1047
+        },
+        "valorByBucket": {
+          "dia_06_10": 116101.65,
+          "dia_11_15": 110559.01,
+          "dia_16_20": 342762.41,
+          "dia_21_25": 72465.21,
+          "dia_26_31": 228118.84,
+          "dia_01_05": 466687.09
+        },
+        "pctByBucket": {
+          "dia_06_10": 13.19,
+          "dia_11_15": 12.58,
+          "dia_16_20": 22.24,
+          "dia_21_25": 12.79,
+          "dia_26_31": 12.38,
+          "dia_01_05": 26.83
+        },
+        "byDay": {
+          "1": 197,
+          "2": 255,
+          "3": 219,
+          "4": 195,
+          "5": 181,
+          "6": 142,
+          "7": 120,
+          "8": 80,
+          "9": 82,
+          "10": 91,
+          "11": 79,
+          "12": 82,
+          "13": 83,
+          "14": 104,
+          "15": 143,
+          "16": 234,
+          "17": 219,
+          "18": 162,
+          "19": 141,
+          "20": 112,
+          "21": 130,
+          "22": 102,
+          "23": 84,
+          "24": 95,
+          "25": 88,
+          "26": 71,
+          "27": 64,
+          "28": 94,
+          "29": 55,
+          "30": 76,
+          "31": 123
+        },
+        "concentrationDay15": 12.58,
+        "concentrationEndMonth": 12.38,
+        "quinzenalPattern": false,
+        "endMonthPattern": false,
+        "recurringFixedByEmployee": [],
+        "payrollPeriodCaptured": true
+      },
+      "employeeMatch": {
+        "totalWorkforce": 3903,
+        "pctFuncionarioCodigo": 0.03,
+        "pctNome": 0.0,
+        "pctDescMatch": 0.0,
+        "pctTituloMatch": 7.4,
+        "pctUnlinked": 99.97,
+        "funcionariosCatalogo": 0,
+        "blockedEndpoints": [
+          "FUNCIONARIO_REDE",
+          "VALE_FUNCIONARIO_REDE_ALT",
+          "DESPESA_FUNCIONARIO",
+          "DESPESA_FUNCIONARIO_REDE",
+          "CENTRO_CUSTO_REDE",
+          "FORNECEDOR_REDE"
+        ],
+        "endpointProbe": {
+          "FUNCIONARIO_REDE": {
+            "path": "/INTEGRACAO/FUNCIONARIO_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "VALE_FUNCIONARIO_REDE": {
+            "path": "/INTEGRACAO/CONSULTAR_VALE_FUNCIONARIO_REDE",
+            "status": 200,
+            "rowCount": 0,
+            "sample": []
+          },
+          "VALE_FUNCIONARIO_REDE_ALT": {
+            "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "DESPESA_FUNCIONARIO": {
+            "path": "/INTEGRACAO/DESPESA_FUNCIONARIO",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "DESPESA_FUNCIONARIO_REDE": {
+            "path": "/INTEGRACAO/CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "CENTRO_CUSTO_REDE": {
+            "path": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          },
+          "FORNECEDOR_REDE": {
+            "path": "/INTEGRACAO/FORNECEDOR_REDE",
+            "status": 401,
+            "rowCount": 0,
+            "sample": []
+          }
+        }
+      },
+      "cashLoss": {
+        "cashShortages": 128,
+        "totalShortageValor": 11887.88,
+        "semanticAjustes": 10,
+        "destinations": {
+          "DESPESA_FUNCIONARIO": 56,
+          "TITULO_RECEBER_FUNCIONARIO": 54,
+          "AJUSTE_TEMPORARIO": 15,
+          "PERDA_OPERACIONAL_EMPRESA": 3
+        },
+        "pctTraced": 100.0,
+        "pctUntraced": 0.0,
+        "generatesTituloReceber": 54,
+        "generatesDescontoFuncionario": 0,
+        "inDespesasRede": 59,
+        "onlyOperational": 15,
+        "samples": [
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4170561,
+            "funcionarioCodigo": 157960,
+            "pdvCodigo": 15880,
+            "turnoCodigo": 1,
+            "data": "2025-12-10",
+            "valorDiferenca": 5.91,
+            "diferenca": -5.91
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4171474,
+            "funcionarioCodigo": 276288,
+            "pdvCodigo": 56764,
+            "turnoCodigo": 1,
+            "data": "2025-12-10",
+            "valorDiferenca": 2.02,
+            "diferenca": -2.02
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4171485,
+            "funcionarioCodigo": 213391,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2025-12-11",
+            "valorDiferenca": 19.44,
+            "diferenca": -19.44
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4171528,
+            "funcionarioCodigo": 157960,
+            "pdvCodigo": 15880,
+            "turnoCodigo": 1,
+            "data": "2025-12-10",
+            "valorDiferenca": 3.1,
+            "diferenca": -3.1
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4172410,
+            "funcionarioCodigo": 157960,
+            "pdvCodigo": 15880,
+            "turnoCodigo": 1,
+            "data": "2025-12-11",
+            "valorDiferenca": 6.86,
+            "diferenca": -6.86
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4173399,
+            "funcionarioCodigo": 157960,
+            "pdvCodigo": 15880,
+            "turnoCodigo": 1,
+            "data": "2025-12-12",
+            "valorDiferenca": 5.24,
+            "diferenca": -5.24
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4173407,
+            "funcionarioCodigo": 276288,
+            "pdvCodigo": 56764,
+            "turnoCodigo": 1,
+            "data": "2025-12-12",
+            "valorDiferenca": 12.51,
+            "diferenca": -12.51
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4173411,
+            "funcionarioCodigo": 213391,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2025-12-13",
+            "valorDiferenca": 41.77,
+            "diferenca": -41.77
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4174341,
+            "funcionarioCodigo": 227386,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2025-12-14",
+            "valorDiferenca": 34.44,
+            "diferenca": -34.44
+          },
+          {
+            "empresaCodigo": 5555,
+            "caixaCodigo": 4174449,
+            "funcionarioCodigo": 157960,
+            "pdvCodigo": 15880,
+            "turnoCodigo": 1,
+            "data": "2025-12-13",
+            "valorDiferenca": 10.65,
+            "diferenca": -10.65
+          }
+        ]
+      },
+      "financialImpact": {
+        "totalAdiantamentos": 3903,
+        "valorVales": 980573.11,
+        "valorQuinzenas": 83980.8,
+        "valorSalarios": 139263.53,
+        "valorExtras": 60877.479999999996,
+        "valorFolguistas": 17526.0,
+        "valorEmprestimos": 3000.0,
+        "valorPerdasCaixa": 11887.88,
+        "valorPotencialDescontoFuncionario": 11887.88,
+        "valorAbsorvidoEmpresa": 0.0
+      },
+      "payrollSeparation": {
+        "despesaPessoal": [
+          "SALARIO",
+          "QUINZENA",
+          "FOLGUISTA",
+          "HORA_EXTRA",
+          "EXTRA_FUNCIONARIO",
+          "PREMIACAO"
+        ],
+        "adiantamento": [
+          "VALE_FUNCIONARIO",
+          "ADIANTAMENTO_SALARIAL",
+          "EMPRESTIMO_FUNCIONARIO"
+        ],
+        "contasReceberFuncionario": [
+          "EMPRESTIMO_FUNCIONARIO"
+        ],
+        "perdaOperacional": [
+          "PERDA_CAIXA_EMPRESA",
+          "PERDA_CAIXA_FUNCIONARIO"
+        ],
+        "impactsDRE": [
+          "SALARIO",
+          "QUINZENA",
+          "FOLGUISTA",
+          "SERVICOS_PESSOAL"
+        ],
+        "notImpactsDRE": [
+          "VALE_FUNCIONARIO",
+          "ADIANTAMENTO_SALARIAL",
+          "MOVIMENTACAO_CAIXA"
+        ],
+        "cashLossTracedPct": 100.0
+      },
+      "managementPrep": {
+        "mapping": [
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "VALE_FUNCIONARIO",
+            "expenseManagementClass": "PESSOAL_VALE",
+            "expenseManagementGroup": "TESOURARIA",
+            "impactsDRE": false,
+            "count": 2737
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "FOLGUISTA",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 178
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "PREMIACAO",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 7
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "SALARIO",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 26
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "EXTRA_FUNCIONARIO",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 438
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "HORA_EXTRA",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 223
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "OUTROS_FUNCIONARIO",
+            "expenseManagementClass": "OUTROS_FUNCIONARIO",
+            "expenseManagementGroup": "OPERACAO_CAIXA",
+            "impactsDRE": false,
+            "count": 103
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "QUINZENA",
+            "expenseManagementClass": "PESSOAL",
+            "expenseManagementGroup": "RH",
+            "impactsDRE": true,
+            "count": 139
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "ADIANTAMENTO_SALARIAL",
+            "expenseManagementClass": "PESSOAL_VALE",
+            "expenseManagementGroup": "TESOURARIA",
+            "impactsDRE": false,
+            "count": 48
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "ACERTO_FUNCIONARIO",
+            "expenseManagementClass": "OUTROS_FUNCIONARIO",
+            "expenseManagementGroup": "OPERACAO_CAIXA",
+            "impactsDRE": false,
+            "count": 1
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "EMPRESTIMO_FUNCIONARIO",
+            "expenseManagementClass": "PESSOAL_VALE",
+            "expenseManagementGroup": "TESOURARIA",
+            "impactsDRE": false,
+            "count": 2
+          },
+          {
+            "expenseNature": "ADIANTAMENTO",
+            "expenseSubNature": "REEMBOLSO_FUNCIONARIO",
+            "expenseManagementClass": "PESSOAL_REEMBOLSO",
+            "expenseManagementGroup": "ADMINISTRATIVO",
+            "impactsDRE": true,
+            "count": 1
+          }
+        ],
+        "recommendedTaxonomy": [
+          "PESSOAL",
+          "OUTROS_FUNCIONARIO",
+          "PESSOAL_REEMBOLSO",
+          "PESSOAL_VALE"
+        ]
+      },
+      "endpointProbe": {
+        "FUNCIONARIO_REDE": {
+          "path": "/INTEGRACAO/FUNCIONARIO_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "VALE_FUNCIONARIO_REDE": {
+          "path": "/INTEGRACAO/CONSULTAR_VALE_FUNCIONARIO_REDE",
+          "status": 200,
+          "rowCount": 0,
+          "sample": []
+        },
+        "VALE_FUNCIONARIO_REDE_ALT": {
+          "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "DESPESA_FUNCIONARIO": {
+          "path": "/INTEGRACAO/DESPESA_FUNCIONARIO",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "DESPESA_FUNCIONARIO_REDE": {
+          "path": "/INTEGRACAO/CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "CENTRO_CUSTO_REDE": {
+          "path": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        },
+        "FORNECEDOR_REDE": {
+          "path": "/INTEGRACAO/FORNECEDOR_REDE",
+          "status": 401,
+          "rowCount": 0,
+          "sample": []
+        }
+      }
+    }
+  },
+  "limitations": [
+    {
+      "window": "365d",
+      "reason": ""
+    }
+  ],
+  "endpointProbe": {
+    "FUNCIONARIO_REDE": {
+      "path": "/INTEGRACAO/FUNCIONARIO_REDE",
+      "status": 401,
+      "rowCount": 0,
+      "sample": []
+    },
+    "VALE_FUNCIONARIO_REDE": {
+      "path": "/INTEGRACAO/CONSULTAR_VALE_FUNCIONARIO_REDE",
+      "status": 200,
+      "rowCount": 0,
+      "sample": []
+    },
+    "VALE_FUNCIONARIO_REDE_ALT": {
+      "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+      "status": 401,
+      "rowCount": 0,
+      "sample": []
+    },
+    "DESPESA_FUNCIONARIO": {
+      "path": "/INTEGRACAO/DESPESA_FUNCIONARIO",
+      "status": 401,
+      "rowCount": 0,
+      "sample": []
+    },
+    "DESPESA_FUNCIONARIO_REDE": {
+      "path": "/INTEGRACAO/CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+      "status": 401,
+      "rowCount": 0,
+      "sample": []
+    },
+    "CENTRO_CUSTO_REDE": {
+      "path": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+      "status": 401,
+      "rowCount": 0,
+      "sample": []
+    },
+    "FORNECEDOR_REDE": {
+      "path": "/INTEGRACAO/FORNECEDOR_REDE",
+      "status": 401,
+      "rowCount": 0,
+      "sample": []
+    }
+  },
+  "qa": {
+    "cases": [
+      {
+        "label": "VALE FUNCIONARIO",
+        "count": 1215,
+        "samples": [
+          {
+            "provisionalType": "VALE_FUNCIONARIO",
+            "confidence": 95,
+            "reason": "semantic_subnature",
+            "valor": "19.00",
+            "descricao": "Vale de funcionário referente a consolidação de caixa",
+            "funcionarioCodigo": null,
+            "data": "2026-03-09"
+          },
+          {
+            "provisionalType": "VALE_FUNCIONARIO",
+            "confidence": 95,
+            "reason": "semantic_subnature",
+            "valor": "150.00",
+            "descricao": "Vale de funcionário referente a consolidação de caixa",
+            "funcionarioCodigo": null,
+            "data": "2026-03-09"
+          },
+          {
+            "provisionalType": "VALE_FUNCIONARIO",
+            "confidence": 95,
+            "reason": "semantic_subnature",
+            "valor": "40.00",
+            "descricao": "Vale de funcionário referente a consolidação de caixa",
+            "funcionarioCodigo": null,
+            "data": "2026-03-09"
+          }
+        ]
+      },
+      {
+        "label": "QUINZENA",
+        "count": 50,
+        "samples": [
+          {
+            "provisionalType": "QUINZENA",
+            "confidence": 92,
+            "reason": "pattern:QUINZENA",
+            "valor": "300.00",
+            "descricao": "ref a quinzena/junior",
+            "funcionarioCodigo": null,
+            "data": "2026-03-15"
+          },
+          {
+            "provisionalType": "QUINZENA",
+            "confidence": 92,
+            "reason": "pattern:QUINZENA",
+            "valor": "426.00",
+            "descricao": "quinzena (carlos)",
+            "funcionarioCodigo": null,
+            "data": "2026-03-15"
+          },
+          {
+            "provisionalType": "QUINZENA",
+            "confidence": 92,
+            "reason": "pattern:QUINZENA",
+            "valor": "400.00",
+            "descricao": "ref a quinzena/ana",
+            "funcionarioCodigo": null,
+            "data": "2026-03-15"
+          }
+        ]
+      },
+      {
+        "label": "SALARIO",
+        "count": 9,
+        "samples": [
+          {
+            "provisionalType": "SALARIO",
+            "confidence": 90,
+            "reason": "pattern:\\bSALAR",
+            "valor": "600.00",
+            "descricao": "adiantamento de salario de seu bio",
+            "funcionarioCodigo": null,
+            "data": "2026-03-17"
+          },
+          {
+            "provisionalType": "SALARIO",
+            "confidence": 90,
+            "reason": "pattern:\\bFOLHA\\b",
+            "valor": "40.00",
+            "descricao": "FOLHA A4 02 RESMA",
+            "funcionarioCodigo": null,
+            "data": "2026-03-25"
+          },
+          {
+            "provisionalType": "SALARIO",
+            "confidence": 90,
+            "reason": "pattern:\\bFOLHA\\b",
+            "valor": "60.00",
+            "descricao": "FOLHA A4 03 RESMA",
+            "funcionarioCodigo": null,
+            "data": "2026-03-25"
+          }
+        ]
+      },
+      {
+        "label": "FOLGUISTA",
+        "count": 119,
+        "samples": [
+          {
+            "provisionalType": "FOLGUISTA",
+            "confidence": 88,
+            "reason": "pattern:FOLGUIST",
+            "valor": "20.00",
+            "descricao": "PASSAGEM FOLGUISTA JUNIOR EM TREINAMENTO",
+            "funcionarioCodigo": null,
+            "data": "2026-03-18"
+          },
+          {
+            "provisionalType": "FOLGUISTA",
+            "confidence": 88,
+            "reason": "pattern:FOLGUIST",
+            "valor": "20.00",
+            "descricao": "PASSAGEM JUNIOR FOLGUISTA EM TREINAMENTO",
+            "funcionarioCodigo": null,
+            "data": "2026-03-19"
+          },
+          {
+            "provisionalType": "FOLGUISTA",
+            "confidence": 88,
+            "reason": "pattern:FOLGUIST",
+            "valor": "20.00",
+            "descricao": "PASSAGEM FOLGUISTA JUNIO EM TREINAMENTO",
+            "funcionarioCodigo": null,
+            "data": "2026-03-20"
+          }
+        ]
+      },
+      {
+        "label": "EXTRA",
+        "count": 260,
+        "samples": [
+          {
+            "provisionalType": "EXTRA_FUNCIONARIO",
+            "confidence": 80,
+            "reason": "pattern:DIARIA",
+            "valor": "120.00",
+            "descricao": "DIARIA APOIO",
+            "funcionarioCodigo": null,
+            "data": "2026-03-09"
+          },
+          {
+            "provisionalType": "EXTRA_FUNCIONARIO",
+            "confidence": 80,
+            "reason": "pattern:DIARIA",
+            "valor": "130.00",
+            "descricao": "REF A DIARIA",
+            "funcionarioCodigo": null,
+            "data": "2026-03-09"
+          },
+          {
+            "provisionalType": "EXTRA_FUNCIONARIO",
+            "confidence": 80,
+            "reason": "pattern:\\bEXTRA\\b",
+            "valor": "200.00",
+            "descricao": "EXTRA NO LUGAR DE ITALO TA DE ATESTADO",
+            "funcionarioCodigo": null,
+            "data": "2026-03-09"
+          }
+        ]
+      },
+      {
+        "label": "EMPRESTIMO",
+        "count": 2,
+        "samples": [
+          {
+            "provisionalType": "EMPRESTIMO_FUNCIONARIO",
+            "confidence": 90,
+            "reason": "pattern:EMPREST",
+            "valor": "1000.00",
+            "descricao": "EMPRESTIMO P MANOEL AUT SR MOISES",
+            "funcionarioCodigo": null,
+            "data": "2026-03-10"
+          },
+          {
+            "provisionalType": "EMPRESTIMO_FUNCIONARIO",
+            "confidence": 90,
+            "reason": "pattern:EMPREST",
+            "valor": "2000.00",
+            "descricao": "EMPRESTIMO JOELSON",
+            "funcionarioCodigo": null,
+            "data": "2026-05-04"
+          }
+        ]
+      },
+      {
+        "label": "FALTA DE CAIXA",
+        "count": 127,
+        "samples": [
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4255769,
+            "funcionarioCodigo": 227386,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-03-09",
+            "valorDiferenca": 4.52,
+            "diferenca": -4.52
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4255774,
+            "funcionarioCodigo": 276288,
+            "pdvCodigo": 56764,
+            "turnoCodigo": 1,
+            "data": "2026-03-09",
+            "valorDiferenca": 26.6,
+            "diferenca": -26.6
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4256755,
+            "funcionarioCodigo": 213391,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-03-11",
+            "valorDiferenca": 31.85,
+            "diferenca": -31.85
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4257726,
+            "funcionarioCodigo": 276288,
+            "pdvCodigo": 56764,
+            "turnoCodigo": 1,
+            "data": "2026-03-11",
+            "valorDiferenca": 5.52,
+            "diferenca": -5.52
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4257737,
+            "funcionarioCodigo": 227386,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-03-11",
+            "valorDiferenca": 35.97,
+            "diferenca": -35.97
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4258704,
+            "funcionarioCodigo": 178278,
+            "pdvCodigo": 56764,
+            "turnoCodigo": 1,
+            "data": "2026-03-12",
+            "valorDiferenca": 7.65,
+            "diferenca": -7.65
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4259767,
+            "funcionarioCodigo": 227385,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-03-13",
+            "valorDiferenca": 17.24,
+            "diferenca": -17.24
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4260651,
+            "funcionarioCodigo": 290148,
+            "pdvCodigo": 54193,
+            "turnoCodigo": 1,
+            "data": "2026-03-15",
+            "valorDiferenca": 151.38,
+            "diferenca": -151.38
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4260664,
+            "funcionarioCodigo": 213391,
+            "pdvCodigo": 56764,
+            "turnoCodigo": 1,
+            "data": "2026-03-14",
+            "valorDiferenca": 50.84,
+            "diferenca": -50.84
+          },
+          {
+            "empresaCodigo": 11495,
+            "caixaCodigo": 4261602,
+            "funcionarioCodigo": 178278,
+            "pdvCodigo": 56764,
+            "turnoCodigo": 1,
+            "data": "2026-03-15",
+            "valorDiferenca": 20.13,
+            "diferenca": -20.13
+          }
+        ]
+      }
+    ],
+    "paridadeJsonCsv": 0.0,
+    "paridadeOk": true,
+    "csvPath": "C:\\Users\\mlisb\\OneDrive\\ProjetosAntigravy\\LOGOS SPACE\\Api_WebPosto\\WebPosto_API\\scripts\\f03_2a_workforce_forensics.csv"
+  },
+  "executiveAnswers": {
+    "1_natureza_adiantamentos": "Majoritariamente VALE_FUNCIONARIO (consolidação de caixa), não salário formal",
+    "2_pct_vale": 66.47,
+    "3_pct_quinzena": 2.74,
+    "4_pct_salario": 0.49,
+    "5_pct_extra": 14.22,
+    "6_pct_folguista": 6.51,
+    "7_pct_emprestimo": 0.11,
+    "8_pct_reembolso": 0.05,
+    "9_payroll_period": true,
+    "10_pattern_day15": 13.51,
+    "11_pattern_end_month": 12.2,
+    "12_employee_identified": 0.22,
+    "13_titulo_financeiro": 9.3,
+    "14_cash_loss_desconto": 0,
+    "15_cash_loss_titulo_receber": 62,
+    "16_cash_loss_empresa": 20,
+    "17_pct_traced": 100.0,
+    "18_recommended_taxonomy": [
+      "PESSOAL",
+      "PESSOAL_REEMBOLSO",
+      "OUTROS_FUNCIONARIO",
+      "PESSOAL_VALE"
+    ],
+    "19_impacts_dre": [
+      "SALARIO",
+      "QUINZENA",
+      "FOLGUISTA",
+      "SERVICOS_PESSOAL"
+    ],
+    "20_not_impacts_dre": [
+      "VALE_FUNCIONARIO",
+      "ADIANTAMENTO_SALARIAL",
+      "MOVIMENTACAO_CAIXA"
+    ],
+    "21_dw_ready": true,
+    "22_ready_f033": true
+  }
+}

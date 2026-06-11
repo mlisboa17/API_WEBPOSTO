@@ -1,0 +1,3350 @@
+{
+  "generatedAt": "2026-06-09T17:35:12",
+  "windows": {
+    "7d": [
+      "2026-06-01",
+      "2026-06-07"
+    ],
+    "30d": [
+      "2026-05-08",
+      "2026-06-07"
+    ],
+    "90d": [
+      "2026-03-09",
+      "2026-06-07"
+    ],
+    "365d": [
+      "2025-06-08",
+      "2026-06-07"
+    ]
+  },
+  "readOnly": true,
+  "365dLimitation": "Omitida via --skip-365",
+  "windowAnalysis": {
+    "7d": {
+      "batch_summary": {
+        "CAIXA_REDE": {
+          "status": 200,
+          "count": 21
+        },
+        "CAIXA_APRESENTADO_REDE": {
+          "status": 200,
+          "count": 0
+        },
+        "CAIXA": {
+          "status": 200,
+          "count": 21
+        },
+        "CAIXA_APRESENTADO": {
+          "status": 200,
+          "count": 21
+        },
+        "MOVIMENTO_CONTA": {
+          "status": 200,
+          "count": 600
+        },
+        "TRANSFERENCIA_BANCARIA": {
+          "status": 408,
+          "count": 0
+        },
+        "DESPESAS_REDE": {
+          "status": 200,
+          "count": 1748
+        },
+        "TITULO_PAGAR": {
+          "status": 200,
+          "count": 210
+        },
+        "TITULO_RECEBER": {
+          "status": 200,
+          "count": 11
+        }
+      },
+      "timeline": [
+        {
+          "caixaCodigo": 4336819,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 158924,
+          "pdvCodigo": 15880,
+          "steps": [
+            {
+              "step": "Abertura",
+              "ts": "2026-06-02T00:01:33.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Suprimento",
+              "valor": 0.0
+            },
+            {
+              "step": "Movimentação apurado",
+              "valor": 19157.73
+            },
+            {
+              "step": "Despesas apurado",
+              "valor": 359.57
+            },
+            {
+              "step": "Vale apurado",
+              "valor": 1863.0
+            },
+            {
+              "step": "Empréstimo apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Transferência apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Fechamento",
+              "ts": "2026-06-03T00:00:49.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Diferença total",
+              "valor": -272.07
+            },
+            {
+              "step": "Diferença dinheiro",
+              "valor": -272.07
+            },
+            {
+              "step": "Transferências vinculadas",
+              "count": 0,
+              "soma": 0
+            }
+          ]
+        },
+        {
+          "caixaCodigo": 4340665,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 299151,
+          "pdvCodigo": 15880,
+          "steps": [
+            {
+              "step": "Abertura",
+              "ts": "2026-06-06T00:00:03.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Suprimento",
+              "valor": 0.0
+            },
+            {
+              "step": "Movimentação apurado",
+              "valor": 30631.61
+            },
+            {
+              "step": "Despesas apurado",
+              "valor": 190.0
+            },
+            {
+              "step": "Vale apurado",
+              "valor": 289.0
+            },
+            {
+              "step": "Empréstimo apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Transferência apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Fechamento",
+              "ts": "2026-06-08T07:26:53.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Diferença total",
+              "valor": -215.77
+            },
+            {
+              "step": "Diferença dinheiro",
+              "valor": -215.77
+            },
+            {
+              "step": "Transferências vinculadas",
+              "count": 0,
+              "soma": 0
+            }
+          ]
+        },
+        {
+          "caixaCodigo": 4337788,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 158924,
+          "pdvCodigo": 15880,
+          "steps": [
+            {
+              "step": "Abertura",
+              "ts": "2026-06-03T00:01:02.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Suprimento",
+              "valor": 0.0
+            },
+            {
+              "step": "Movimentação apurado",
+              "valor": 20946.95
+            },
+            {
+              "step": "Despesas apurado",
+              "valor": 482.38
+            },
+            {
+              "step": "Vale apurado",
+              "valor": 1367.0
+            },
+            {
+              "step": "Empréstimo apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Transferência apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Fechamento",
+              "ts": "2026-06-04T00:13:11.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Diferença total",
+              "valor": 208.96
+            },
+            {
+              "step": "Diferença dinheiro",
+              "valor": 208.96
+            },
+            {
+              "step": "Transferências vinculadas",
+              "count": 0,
+              "soma": 0
+            }
+          ]
+        },
+        {
+          "caixaCodigo": 4338777,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 294273,
+          "pdvCodigo": 54193,
+          "steps": [
+            {
+              "step": "Abertura",
+              "ts": "2026-06-04T00:04:10.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Suprimento",
+              "valor": 0.0
+            },
+            {
+              "step": "Movimentação apurado",
+              "valor": 37313.15
+            },
+            {
+              "step": "Despesas apurado",
+              "valor": 548.65
+            },
+            {
+              "step": "Vale apurado",
+              "valor": 5607.16
+            },
+            {
+              "step": "Empréstimo apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Transferência apurado",
+              "valor": 6601.42
+            },
+            {
+              "step": "Fechamento",
+              "ts": "2026-06-05T00:00:20.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Diferença total",
+              "valor": -194.36
+            },
+            {
+              "step": "Diferença dinheiro",
+              "valor": -194.36
+            },
+            {
+              "step": "Transferências vinculadas",
+              "count": 0,
+              "soma": 0
+            }
+          ]
+        },
+        {
+          "caixaCodigo": 4339655,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 299371,
+          "pdvCodigo": 54193,
+          "steps": [
+            {
+              "step": "Abertura",
+              "ts": "2026-06-05T00:00:29.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Suprimento",
+              "valor": 0.0
+            },
+            {
+              "step": "Movimentação apurado",
+              "valor": 34167.7
+            },
+            {
+              "step": "Despesas apurado",
+              "valor": 486.0
+            },
+            {
+              "step": "Vale apurado",
+              "valor": 260.0
+            },
+            {
+              "step": "Empréstimo apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Transferência apurado",
+              "valor": 9239.14
+            },
+            {
+              "step": "Fechamento",
+              "ts": "2026-06-06T00:02:27.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Diferença total",
+              "valor": -116.8
+            },
+            {
+              "step": "Diferença dinheiro",
+              "valor": -116.8
+            },
+            {
+              "step": "Transferências vinculadas",
+              "count": 0,
+              "soma": 0
+            }
+          ]
+        }
+      ],
+      "forensics": {
+        "evidenciasNaoZero": [
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 1045.09,
+            "caixaCodigo": 4335818
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 1045.09,
+            "caixaCodigo": 4335818
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4335818
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4335835
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 3476.0,
+            "caixaCodigo": 4335874
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 3476.0,
+            "caixaCodigo": 4335874
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4335874
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4336075
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4336768
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4336785
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 1863.0,
+            "caixaCodigo": 4336819
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 1863.0,
+            "caixaCodigo": 4336819
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4336819
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 5114.76,
+            "caixaCodigo": 4337730
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 5114.76,
+            "caixaCodigo": 4337730
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4337730
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4337731
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 1367.0,
+            "caixaCodigo": 4337788
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 1367.0,
+            "caixaCodigo": 4337788
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4337788
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4338701
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 70.0,
+            "caixaCodigo": 4338775
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 70.0,
+            "caixaCodigo": 4338775
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4338775
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 5607.16,
+            "caixaCodigo": 4338777
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 5607.16,
+            "caixaCodigo": 4338777
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4338777
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4339630
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 260.0,
+            "caixaCodigo": 4339655
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 260.0,
+            "caixaCodigo": 4339655
+          }
+        ],
+        "camposForenses": {
+          "ap_valeClienteApresentado": 21,
+          "ap_valeClienteApurado": 21,
+          "ap_valeClienteDiferenca": 21,
+          "ap_emprestimoApresentado": 21,
+          "ap_emprestimoApurado": 21,
+          "ap_emprestimoDiferenca": 21,
+          "ap_valeFunApresentado": 21,
+          "ap_valeFunApurado": 21,
+          "ap_valeFunDiferenca": 21,
+          "ap_fundoCxDebApresentado": 21,
+          "ap_fundoCxDebApurado": 21,
+          "ap_fundoCxDebDiferenca": 21,
+          "ap_valeCliente": 21,
+          "ap_suprimentoCaixa": 21,
+          "ap_chequeTroco": 21,
+          "ap_fundoCaixaCredito": 21
+        },
+        "sangriaExplicita": 0,
+        "suprimentoRegistros": 0,
+        "fundoCaixaRegistros": 0
+      },
+      "operators": {
+        "operadores": [
+          {
+            "n": 3,
+            "sum": -252.27,
+            "mean": -84.09,
+            "median": -46.53,
+            "stdev": 97.1,
+            "min": -194.36,
+            "max": -11.38,
+            "p95": -14.9,
+            "p99": -12.08,
+            "funcionarioCodigo": 294273,
+            "risco": "MÉDIO"
+          },
+          {
+            "n": 1,
+            "sum": -215.77,
+            "mean": -215.77,
+            "median": -215.77,
+            "stdev": 0.0,
+            "min": -215.77,
+            "max": -215.77,
+            "p95": -215.77,
+            "p99": -215.77,
+            "funcionarioCodigo": 299151,
+            "risco": "MÉDIO"
+          },
+          {
+            "n": 1,
+            "sum": -116.8,
+            "mean": -116.8,
+            "median": -116.8,
+            "stdev": 0.0,
+            "min": -116.8,
+            "max": -116.8,
+            "p95": -116.8,
+            "p99": -116.8,
+            "funcionarioCodigo": 299371,
+            "risco": "BAIXO"
+          },
+          {
+            "n": 3,
+            "sum": -110.54,
+            "mean": -36.85,
+            "median": -50.66,
+            "stdev": 29.86,
+            "min": -57.3,
+            "max": -2.58,
+            "p95": -7.39,
+            "p99": -3.54,
+            "funcionarioCodigo": 227386,
+            "risco": "MÉDIO"
+          },
+          {
+            "n": 5,
+            "sum": -94.08,
+            "mean": -18.82,
+            "median": -2.01,
+            "stdev": 171.0,
+            "min": -272.07,
+            "max": 208.96,
+            "p95": 167.81,
+            "p99": 200.73,
+            "funcionarioCodigo": 158924,
+            "risco": "ALTO"
+          },
+          {
+            "n": 6,
+            "sum": 17.81,
+            "mean": 2.97,
+            "median": -0.53,
+            "stdev": 14.82,
+            "min": -12.66,
+            "max": 28.86,
+            "p95": 24.15,
+            "p99": 27.92,
+            "funcionarioCodigo": 276288,
+            "risco": "MÉDIO"
+          },
+          {
+            "n": 2,
+            "sum": 2.79,
+            "mean": 1.4,
+            "median": 1.4,
+            "stdev": 1.1,
+            "min": 0.62,
+            "max": 2.17,
+            "p95": 2.09,
+            "p99": 2.15,
+            "funcionarioCodigo": 178278,
+            "risco": "BAIXO"
+          }
+        ],
+        "focus276288": {
+          "n": 6,
+          "sum": 17.81,
+          "mean": 2.97,
+          "median": -0.53,
+          "stdev": 14.82,
+          "min": -12.66,
+          "max": 28.86,
+          "p95": 24.15,
+          "p99": 27.92,
+          "funcionarioCodigo": 276288,
+          "risco": "MÉDIO"
+        },
+        "focus294273": {
+          "n": 3,
+          "sum": -252.27,
+          "mean": -84.09,
+          "median": -46.53,
+          "stdev": 97.1,
+          "min": -194.36,
+          "max": -11.38,
+          "p95": -14.9,
+          "p99": -12.08,
+          "funcionarioCodigo": 294273,
+          "risco": "MÉDIO"
+        }
+      },
+      "pdvs": {
+        "pdvs": [
+          {
+            "n": 7,
+            "sum": -479.61,
+            "mean": -68.52,
+            "median": -50.66,
+            "stdev": 66.72,
+            "min": -194.36,
+            "max": -2.58,
+            "p95": -5.22,
+            "p99": -3.11,
+            "pdvCodigo": 54193,
+            "recorrencia": 7,
+            "risco": "MÉDIO"
+          },
+          {
+            "n": 6,
+            "sum": -309.85,
+            "mean": -51.64,
+            "median": -17.1,
+            "stdev": 172.8,
+            "min": -272.07,
+            "max": 208.96,
+            "p95": 157.53,
+            "p99": 198.67,
+            "pdvCodigo": 15880,
+            "recorrencia": 6,
+            "risco": "ALTO"
+          },
+          {
+            "n": 8,
+            "sum": 20.6,
+            "mean": 2.57,
+            "median": 0.76,
+            "stdev": 12.56,
+            "min": -12.66,
+            "max": 28.86,
+            "p95": 22.26,
+            "p99": 27.54,
+            "pdvCodigo": 56764,
+            "recorrencia": 8,
+            "risco": "MÉDIO"
+          }
+        ],
+        "focus54193": {
+          "n": 7,
+          "sum": -479.61,
+          "mean": -68.52,
+          "median": -50.66,
+          "stdev": 66.72,
+          "min": -194.36,
+          "max": -2.58,
+          "p95": -5.22,
+          "p99": -3.11,
+          "pdvCodigo": 54193,
+          "recorrencia": 7,
+          "risco": "MÉDIO"
+        },
+        "focus15880": {
+          "n": 6,
+          "sum": -309.85,
+          "mean": -51.64,
+          "median": -17.1,
+          "stdev": 172.8,
+          "min": -272.07,
+          "max": 208.96,
+          "p95": 157.53,
+          "p99": 198.67,
+          "pdvCodigo": 15880,
+          "recorrencia": 6,
+          "risco": "ALTO"
+        }
+      },
+      "components": {
+        "componentes": [
+          {
+            "componente": "dinheiro",
+            "somaDiff": -768.86,
+            "absDiff": 1278.34,
+            "participacaoPct": 100.0,
+            "apuradoTotal": 75427.21
+          },
+          {
+            "componente": "cartao",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 240060.21
+          },
+          {
+            "componente": "cheque",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 0.0
+          },
+          {
+            "componente": "valeFun",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 19989.91
+          },
+          {
+            "componente": "emprestimo",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 0.0
+          },
+          {
+            "componente": "despesa",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 5079.67
+          },
+          {
+            "componente": "transfBanc",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 70598.94
+          },
+          {
+            "componente": "fundoCxDeb",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 0.0
+          },
+          {
+            "componente": "suprimentoCaixa",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 0
+          },
+          {
+            "componente": "fundoCaixaCredito",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 0
+          }
+        ],
+        "impactoTotalAbs": 1278.34
+      },
+      "shiftRisk": {
+        "porTurno": [
+          {
+            "turnoCodigo": 1,
+            "turno": "1º TURNO",
+            "fechamentos": 20,
+            "duracaoMediaHoras": 24.59,
+            "diffStats": {
+              "n": 20,
+              "sum": -766.9,
+              "mean": -38.34,
+              "median": -9.36,
+              "stdev": 101.72,
+              "min": -272.07,
+              "max": 208.96,
+              "p95": 37.87,
+              "p99": 174.74
+            }
+          },
+          {
+            "turnoCodigo": 2,
+            "turno": "2º TURNO",
+            "fechamentos": 1,
+            "duracaoMediaHoras": 18.06,
+            "diffStats": {
+              "n": 1,
+              "sum": -1.96,
+              "mean": -1.96,
+              "median": -1.96,
+              "stdev": 0.0,
+              "min": -1.96,
+              "max": -1.96,
+              "p95": -1.96,
+              "p99": -1.96
+            }
+          }
+        ],
+        "correlacaoDiffDuracao": -0.398
+      },
+      "heatmapTop20": [
+        {
+          "empresaCodigo": 5555,
+          "pdvCodigo": 15880,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 158924,
+          "fechamentos": 5,
+          "diffTotal": -94.08,
+          "diffAbs": 518.46
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 294273,
+          "fechamentos": 3,
+          "diffTotal": -252.27,
+          "diffAbs": 252.27
+        },
+        {
+          "empresaCodigo": 5555,
+          "pdvCodigo": 15880,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 299151,
+          "fechamentos": 1,
+          "diffTotal": -215.77,
+          "diffAbs": 215.77
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 299371,
+          "fechamentos": 1,
+          "diffTotal": -116.8,
+          "diffAbs": 116.8
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 227386,
+          "fechamentos": 3,
+          "diffTotal": -110.54,
+          "diffAbs": 110.54
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 56764,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 276288,
+          "fechamentos": 5,
+          "diffTotal": 19.77,
+          "diffAbs": 59.75
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 56764,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 178278,
+          "fechamentos": 2,
+          "diffTotal": 2.79,
+          "diffAbs": 2.79
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 56764,
+          "turnoCodigo": 2,
+          "funcionarioCodigo": 276288,
+          "fechamentos": 1,
+          "diffTotal": -1.96,
+          "diffAbs": 1.96
+        }
+      ]
+    },
+    "30d": {
+      "batch_summary": {
+        "CAIXA_REDE": {
+          "status": 200,
+          "count": 1116
+        },
+        "CAIXA_APRESENTADO_REDE": {
+          "status": 200,
+          "count": 0
+        },
+        "CAIXA": {
+          "status": 200,
+          "count": 1116
+        },
+        "CAIXA_APRESENTADO": {
+          "status": 200,
+          "count": 1116
+        },
+        "MOVIMENTO_CONTA": {
+          "status": 200,
+          "count": 400
+        },
+        "TRANSFERENCIA_BANCARIA": {
+          "status": 408,
+          "count": 0
+        },
+        "DESPESAS_REDE": {
+          "status": 408,
+          "count": 0
+        },
+        "TITULO_PAGAR": {
+          "status": 200,
+          "count": 400
+        },
+        "TITULO_RECEBER": {
+          "status": 200,
+          "count": 44
+        }
+      },
+      "timeline": [
+        {
+          "caixaCodigo": 4334613,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 299371,
+          "pdvCodigo": 54193,
+          "steps": [
+            {
+              "step": "Abertura",
+              "ts": "2026-05-30T09:15:08.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Suprimento",
+              "valor": 0.02
+            },
+            {
+              "step": "Movimentação apurado",
+              "valor": 55934.73
+            },
+            {
+              "step": "Despesas apurado",
+              "valor": 4148.0
+            },
+            {
+              "step": "Vale apurado",
+              "valor": 563.52
+            },
+            {
+              "step": "Empréstimo apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Transferência apurado",
+              "valor": 10173.6
+            },
+            {
+              "step": "Fechamento",
+              "ts": "2026-05-31T00:08:36.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Diferença total",
+              "valor": -7420.8
+            },
+            {
+              "step": "Diferença dinheiro",
+              "valor": -7420.8
+            },
+            {
+              "step": "Transferências vinculadas",
+              "count": 0,
+              "soma": 0
+            }
+          ]
+        },
+        {
+          "caixaCodigo": 4334613,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 299371,
+          "pdvCodigo": 54193,
+          "steps": [
+            {
+              "step": "Abertura",
+              "ts": "2026-05-30T09:15:08.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Suprimento",
+              "valor": 0.02
+            },
+            {
+              "step": "Movimentação apurado",
+              "valor": 55934.73
+            },
+            {
+              "step": "Despesas apurado",
+              "valor": 4148.0
+            },
+            {
+              "step": "Vale apurado",
+              "valor": 563.52
+            },
+            {
+              "step": "Empréstimo apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Transferência apurado",
+              "valor": 10173.6
+            },
+            {
+              "step": "Fechamento",
+              "ts": "2026-05-31T00:08:36.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Diferença total",
+              "valor": -7420.8
+            },
+            {
+              "step": "Diferença dinheiro",
+              "valor": -7420.8
+            },
+            {
+              "step": "Transferências vinculadas",
+              "count": 0,
+              "soma": 0
+            }
+          ]
+        },
+        {
+          "caixaCodigo": 4334613,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 299371,
+          "pdvCodigo": 54193,
+          "steps": [
+            {
+              "step": "Abertura",
+              "ts": "2026-05-30T09:15:08.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Suprimento",
+              "valor": 0.02
+            },
+            {
+              "step": "Movimentação apurado",
+              "valor": 55934.73
+            },
+            {
+              "step": "Despesas apurado",
+              "valor": 4148.0
+            },
+            {
+              "step": "Vale apurado",
+              "valor": 563.52
+            },
+            {
+              "step": "Empréstimo apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Transferência apurado",
+              "valor": 10173.6
+            },
+            {
+              "step": "Fechamento",
+              "ts": "2026-05-31T00:08:36.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Diferença total",
+              "valor": -7420.8
+            },
+            {
+              "step": "Diferença dinheiro",
+              "valor": -7420.8
+            },
+            {
+              "step": "Transferências vinculadas",
+              "count": 0,
+              "soma": 0
+            }
+          ]
+        },
+        {
+          "caixaCodigo": 4334613,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 299371,
+          "pdvCodigo": 54193,
+          "steps": [
+            {
+              "step": "Abertura",
+              "ts": "2026-05-30T09:15:08.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Suprimento",
+              "valor": 0.02
+            },
+            {
+              "step": "Movimentação apurado",
+              "valor": 55934.73
+            },
+            {
+              "step": "Despesas apurado",
+              "valor": 4148.0
+            },
+            {
+              "step": "Vale apurado",
+              "valor": 563.52
+            },
+            {
+              "step": "Empréstimo apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Transferência apurado",
+              "valor": 10173.6
+            },
+            {
+              "step": "Fechamento",
+              "ts": "2026-05-31T00:08:36.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Diferença total",
+              "valor": -7420.8
+            },
+            {
+              "step": "Diferença dinheiro",
+              "valor": -7420.8
+            },
+            {
+              "step": "Transferências vinculadas",
+              "count": 0,
+              "soma": 0
+            }
+          ]
+        },
+        {
+          "caixaCodigo": 4334613,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 299371,
+          "pdvCodigo": 54193,
+          "steps": [
+            {
+              "step": "Abertura",
+              "ts": "2026-05-30T09:15:08.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Suprimento",
+              "valor": 0.02
+            },
+            {
+              "step": "Movimentação apurado",
+              "valor": 55934.73
+            },
+            {
+              "step": "Despesas apurado",
+              "valor": 4148.0
+            },
+            {
+              "step": "Vale apurado",
+              "valor": 563.52
+            },
+            {
+              "step": "Empréstimo apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Transferência apurado",
+              "valor": 10173.6
+            },
+            {
+              "step": "Fechamento",
+              "ts": "2026-05-31T00:08:36.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Diferença total",
+              "valor": -7420.8
+            },
+            {
+              "step": "Diferença dinheiro",
+              "valor": -7420.8
+            },
+            {
+              "step": "Transferências vinculadas",
+              "count": 0,
+              "soma": 0
+            }
+          ]
+        }
+      ],
+      "forensics": {
+        "evidenciasNaoZero": [
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4313129
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 400.0,
+            "caixaCodigo": 4313170
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 400.0,
+            "caixaCodigo": 4313170
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4313170
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 150.0,
+            "caixaCodigo": 4313244
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 150.0,
+            "caixaCodigo": 4313244
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4313244
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4314084
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 322.0,
+            "caixaCodigo": 4314109
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 322.0,
+            "caixaCodigo": 4314109
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4314109
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 1496.0,
+            "caixaCodigo": 4314162
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 1496.0,
+            "caixaCodigo": 4314162
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4314162
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 444.0,
+            "caixaCodigo": 4315053
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 444.0,
+            "caixaCodigo": 4315053
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4315053
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 250.0,
+            "caixaCodigo": 4315067
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 250.0,
+            "caixaCodigo": 4315067
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4315067
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4315110
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4315911
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4315997
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 95.5,
+            "caixaCodigo": 4316003
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 95.5,
+            "caixaCodigo": 4316003
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4316003
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4316903
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 50.0,
+            "caixaCodigo": 4316917
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 50.0,
+            "caixaCodigo": 4316917
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4316917
+          }
+        ],
+        "camposForenses": {
+          "ap_valeClienteApresentado": 1116,
+          "ap_valeClienteApurado": 1116,
+          "ap_valeClienteDiferenca": 1116,
+          "ap_emprestimoApresentado": 1116,
+          "ap_emprestimoApurado": 1116,
+          "ap_emprestimoDiferenca": 1116,
+          "ap_valeFunApresentado": 1116,
+          "ap_valeFunApurado": 1116,
+          "ap_valeFunDiferenca": 1116,
+          "ap_fundoCxDebApresentado": 1116,
+          "ap_fundoCxDebApurado": 1116,
+          "ap_fundoCxDebDiferenca": 1116,
+          "ap_valeCliente": 1116,
+          "ap_suprimentoCaixa": 1116,
+          "ap_chequeTroco": 1116,
+          "ap_fundoCaixaCredito": 1116
+        },
+        "sangriaExplicita": 0,
+        "suprimentoRegistros": 24,
+        "fundoCaixaRegistros": 0
+      },
+      "operators": {
+        "operadores": [
+          {
+            "n": 24,
+            "sum": -90451.2,
+            "mean": -3768.8,
+            "median": -3768.8,
+            "stdev": 3730.55,
+            "min": -7420.8,
+            "max": -116.8,
+            "p95": -116.8,
+            "p99": -116.8,
+            "funcionarioCodigo": 299371,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 12,
+            "sum": 74033.88,
+            "mean": 6169.49,
+            "median": 6169.49,
+            "stdev": 0.0,
+            "min": 6169.49,
+            "max": 6169.49,
+            "p95": 6169.49,
+            "p99": 6169.49,
+            "funcionarioCodigo": 163694,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 216,
+            "sum": -10350.72,
+            "mean": -47.92,
+            "median": -31.18,
+            "stdev": 82.98,
+            "min": -236.21,
+            "max": 175.71,
+            "p95": 175.71,
+            "p99": 175.71,
+            "funcionarioCodigo": 277311,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 156,
+            "sum": -9531.6,
+            "mean": -61.1,
+            "median": -50.66,
+            "stdev": 62.21,
+            "min": -169.21,
+            "max": 19.85,
+            "p95": 19.85,
+            "p99": 19.85,
+            "funcionarioCodigo": 227386,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 300,
+            "sum": -9232.68,
+            "mean": -30.78,
+            "median": 1.16,
+            "stdev": 152.04,
+            "min": -764.01,
+            "max": 79.45,
+            "p95": 28.86,
+            "p99": 79.45,
+            "funcionarioCodigo": 276288,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 144,
+            "sum": -7552.8,
+            "mean": -52.45,
+            "median": -34.83,
+            "stdev": 64.72,
+            "min": -194.36,
+            "max": 51.69,
+            "p95": 51.69,
+            "p99": 51.69,
+            "funcionarioCodigo": 294273,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 72,
+            "sum": 7461.48,
+            "mean": 103.63,
+            "median": 1.77,
+            "stdev": 282.5,
+            "min": -109.38,
+            "max": 724.32,
+            "p95": 724.32,
+            "p99": 724.32,
+            "funcionarioCodigo": 178278,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 72,
+            "sum": -3298.92,
+            "mean": -45.82,
+            "median": -17.1,
+            "stdev": 153.19,
+            "min": -272.07,
+            "max": 208.96,
+            "p95": 208.96,
+            "p99": 208.96,
+            "funcionarioCodigo": 158924,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 12,
+            "sum": -2589.24,
+            "mean": -215.77,
+            "median": -215.77,
+            "stdev": 0.0,
+            "min": -215.77,
+            "max": -215.77,
+            "p95": -215.77,
+            "p99": -215.77,
+            "funcionarioCodigo": 299151,
+            "risco": "ALTO"
+          },
+          {
+            "n": 24,
+            "sum": -2211.24,
+            "mean": -92.13,
+            "median": -92.13,
+            "stdev": 63.43,
+            "min": -154.23,
+            "max": -30.04,
+            "p95": -30.04,
+            "p99": -30.04,
+            "funcionarioCodigo": 80203,
+            "risco": "ALTO"
+          },
+          {
+            "n": 12,
+            "sum": -905.16,
+            "mean": -75.43,
+            "median": -75.43,
+            "stdev": 0.0,
+            "min": -75.43,
+            "max": -75.43,
+            "p95": -75.43,
+            "p99": -75.43,
+            "funcionarioCodigo": 149304,
+            "risco": "ALTO"
+          },
+          {
+            "n": 24,
+            "sum": -896.88,
+            "mean": -37.37,
+            "median": -37.37,
+            "stdev": 26.39,
+            "min": -63.2,
+            "max": -11.54,
+            "p95": -11.54,
+            "p99": -11.54,
+            "funcionarioCodigo": 213391,
+            "risco": "ALTO"
+          },
+          {
+            "n": 12,
+            "sum": 123.96,
+            "mean": 10.33,
+            "median": 10.33,
+            "stdev": 0.0,
+            "min": 10.33,
+            "max": 10.33,
+            "p95": 10.33,
+            "p99": 10.33,
+            "funcionarioCodigo": 162738,
+            "risco": "ALTO"
+          },
+          {
+            "n": 12,
+            "sum": -118.92,
+            "mean": -9.91,
+            "median": -9.91,
+            "stdev": 0.0,
+            "min": -9.91,
+            "max": -9.91,
+            "p95": -9.91,
+            "p99": -9.91,
+            "funcionarioCodigo": 298670,
+            "risco": "ALTO"
+          },
+          {
+            "n": 12,
+            "sum": 81.84,
+            "mean": 6.82,
+            "median": 6.82,
+            "stdev": 0.0,
+            "min": 6.82,
+            "max": 6.82,
+            "p95": 6.82,
+            "p99": 6.82,
+            "funcionarioCodigo": 83139,
+            "risco": "ALTO"
+          },
+          {
+            "n": 12,
+            "sum": -70.8,
+            "mean": -5.9,
+            "median": -5.9,
+            "stdev": 0.0,
+            "min": -5.9,
+            "max": -5.9,
+            "p95": -5.9,
+            "p99": -5.9,
+            "funcionarioCodigo": 299152,
+            "risco": "ALTO"
+          }
+        ],
+        "focus276288": {
+          "n": 300,
+          "sum": -9232.68,
+          "mean": -30.78,
+          "median": 1.16,
+          "stdev": 152.04,
+          "min": -764.01,
+          "max": 79.45,
+          "p95": 28.86,
+          "p99": 79.45,
+          "funcionarioCodigo": 276288,
+          "risco": "CRÍTICO"
+        },
+        "focus294273": {
+          "n": 144,
+          "sum": -7552.8,
+          "mean": -52.45,
+          "median": -34.83,
+          "stdev": 64.72,
+          "min": -194.36,
+          "max": 51.69,
+          "p95": 51.69,
+          "p99": 51.69,
+          "funcionarioCodigo": 294273,
+          "risco": "CRÍTICO"
+        }
+      },
+      "pdvs": {
+        "pdvs": [
+          {
+            "n": 372,
+            "sum": -34517.52,
+            "mean": -92.79,
+            "median": -42.2,
+            "stdev": 1734.97,
+            "min": -7420.8,
+            "max": 6169.49,
+            "p95": 51.69,
+            "p99": 6169.49,
+            "pdvCodigo": 54193,
+            "recorrencia": 372,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 360,
+            "sum": -19344.24,
+            "mean": -53.73,
+            "median": -31.11,
+            "stdev": 101.23,
+            "min": -272.07,
+            "max": 208.96,
+            "p95": 175.71,
+            "p99": 208.96,
+            "pdvCodigo": 15880,
+            "recorrencia": 360,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 384,
+            "sum": -1647.24,
+            "mean": -4.29,
+            "median": 1.35,
+            "stdev": 188.64,
+            "min": -764.01,
+            "max": 724.32,
+            "p95": 79.45,
+            "p99": 724.32,
+            "pdvCodigo": 56764,
+            "recorrencia": 384,
+            "risco": "CRÍTICO"
+          }
+        ],
+        "focus54193": {
+          "n": 372,
+          "sum": -34517.52,
+          "mean": -92.79,
+          "median": -42.2,
+          "stdev": 1734.97,
+          "min": -7420.8,
+          "max": 6169.49,
+          "p95": 51.69,
+          "p99": 6169.49,
+          "pdvCodigo": 54193,
+          "recorrencia": 372,
+          "risco": "CRÍTICO"
+        },
+        "focus15880": {
+          "n": 360,
+          "sum": -19344.24,
+          "mean": -53.73,
+          "median": -31.11,
+          "stdev": 101.23,
+          "min": -272.07,
+          "max": 208.96,
+          "p95": 175.71,
+          "p99": 208.96,
+          "pdvCodigo": 15880,
+          "recorrencia": 360,
+          "risco": "CRÍTICO"
+        }
+      },
+      "components": {
+        "componentes": [
+          {
+            "componente": "dinheiro",
+            "somaDiff": -55509.0,
+            "absDiff": 237959.64,
+            "participacaoPct": 100.0,
+            "apuradoTotal": 4111070.64
+          },
+          {
+            "componente": "suprimentoCaixa",
+            "somaDiff": 0.36,
+            "absDiff": 0.36,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 0
+          },
+          {
+            "componente": "cartao",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 12614567.52
+          },
+          {
+            "componente": "cheque",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 0.0
+          },
+          {
+            "componente": "valeFun",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 628916.04
+          },
+          {
+            "componente": "emprestimo",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 0.0
+          },
+          {
+            "componente": "despesa",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 420154.32
+          },
+          {
+            "componente": "transfBanc",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 4316383.8
+          },
+          {
+            "componente": "fundoCxDeb",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 0.0
+          },
+          {
+            "componente": "fundoCaixaCredito",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 0
+          }
+        ],
+        "impactoTotalAbs": 237960.0
+      },
+      "shiftRisk": {
+        "porTurno": [
+          {
+            "turnoCodigo": 1,
+            "turno": "1º TURNO",
+            "fechamentos": 1092,
+            "duracaoMediaHoras": 24.31,
+            "diffStats": {
+              "n": 1092,
+              "sum": -55536.72,
+              "mean": -50.86,
+              "median": -14.83,
+              "stdev": 1020.19,
+              "min": -7420.8,
+              "max": 6169.49,
+              "p95": 79.45,
+              "p99": 6169.49
+            }
+          },
+          {
+            "turnoCodigo": 2,
+            "turno": "2º TURNO",
+            "fechamentos": 24,
+            "duracaoMediaHoras": 9.91,
+            "diffStats": {
+              "n": 24,
+              "sum": 27.72,
+              "mean": 1.15,
+              "median": 1.15,
+              "stdev": 3.18,
+              "min": -1.96,
+              "max": 4.27,
+              "p95": 4.27,
+              "p99": 4.27
+            }
+          }
+        ],
+        "correlacaoDiffDuracao": 0.248
+      },
+      "heatmapTop20": [
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 299371,
+          "fechamentos": 24,
+          "diffTotal": -90451.2,
+          "diffAbs": 90451.2
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 163694,
+          "fechamentos": 12,
+          "diffTotal": 74033.88,
+          "diffAbs": 74033.88
+        },
+        {
+          "empresaCodigo": 5555,
+          "pdvCodigo": 15880,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 277311,
+          "fechamentos": 216,
+          "diffTotal": -10350.72,
+          "diffAbs": 15125.04
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 56764,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 276288,
+          "fechamentos": 276,
+          "diffTotal": -9260.4,
+          "diffAbs": 13673.04
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 227386,
+          "fechamentos": 156,
+          "diffTotal": -9531.6,
+          "diffAbs": 10332.24
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 56764,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 178278,
+          "fechamentos": 72,
+          "diffTotal": 7461.48,
+          "diffAbs": 10086.6
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 294273,
+          "fechamentos": 144,
+          "diffTotal": -7552.8,
+          "diffAbs": 8793.36
+        },
+        {
+          "empresaCodigo": 5555,
+          "pdvCodigo": 15880,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 158924,
+          "fechamentos": 72,
+          "diffTotal": -3298.92,
+          "diffAbs": 8391.48
+        },
+        {
+          "empresaCodigo": 5555,
+          "pdvCodigo": 15880,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 299151,
+          "fechamentos": 12,
+          "diffTotal": -2589.24,
+          "diffAbs": 2589.24
+        },
+        {
+          "empresaCodigo": 5555,
+          "pdvCodigo": 15880,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 80203,
+          "fechamentos": 24,
+          "diffTotal": -2211.24,
+          "diffAbs": 2211.24
+        },
+        {
+          "empresaCodigo": 5555,
+          "pdvCodigo": 15880,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 149304,
+          "fechamentos": 12,
+          "diffTotal": -905.16,
+          "diffAbs": 905.16
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 213391,
+          "fechamentos": 24,
+          "diffTotal": -896.88,
+          "diffAbs": 896.88
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 56764,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 162738,
+          "fechamentos": 12,
+          "diffTotal": 123.96,
+          "diffAbs": 123.96
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 298670,
+          "fechamentos": 12,
+          "diffTotal": -118.92,
+          "diffAbs": 118.92
+        },
+        {
+          "empresaCodigo": 5555,
+          "pdvCodigo": 15880,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 83139,
+          "fechamentos": 12,
+          "diffTotal": 81.84,
+          "diffAbs": 81.84
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 56764,
+          "turnoCodigo": 2,
+          "funcionarioCodigo": 276288,
+          "fechamentos": 24,
+          "diffTotal": 27.72,
+          "diffAbs": 74.76
+        },
+        {
+          "empresaCodigo": 5555,
+          "pdvCodigo": 15880,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 299152,
+          "fechamentos": 12,
+          "diffTotal": -70.8,
+          "diffAbs": 70.8
+        }
+      ]
+    },
+    "90d": {
+      "batch_summary": {
+        "CAIXA_REDE": {
+          "status": 200,
+          "count": 3000
+        },
+        "CAIXA_APRESENTADO_REDE": {
+          "status": 200,
+          "count": 0
+        },
+        "CAIXA": {
+          "status": 200,
+          "count": 3000
+        },
+        "CAIXA_APRESENTADO": {
+          "status": 200,
+          "count": 3000
+        },
+        "MOVIMENTO_CONTA": {
+          "status": 408,
+          "count": 0
+        },
+        "TRANSFERENCIA_BANCARIA": {
+          "status": 408,
+          "count": 0
+        },
+        "DESPESAS_REDE": {
+          "status": 408,
+          "count": 0
+        },
+        "TITULO_PAGAR": {
+          "status": 200,
+          "count": 400
+        },
+        "TITULO_RECEBER": {
+          "status": 200,
+          "count": 400
+        }
+      },
+      "timeline": [
+        {
+          "caixaCodigo": 4268321,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 158924,
+          "pdvCodigo": 15880,
+          "steps": [
+            {
+              "step": "Abertura",
+              "ts": "2026-03-22T00:04:47.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Suprimento",
+              "valor": 0.0
+            },
+            {
+              "step": "Movimentação apurado",
+              "valor": 21163.87
+            },
+            {
+              "step": "Despesas apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Vale apurado",
+              "valor": 370.0
+            },
+            {
+              "step": "Empréstimo apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Transferência apurado",
+              "valor": 2494.33
+            },
+            {
+              "step": "Fechamento",
+              "ts": "2026-03-23T00:07:41.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Diferença total",
+              "valor": -4803.01
+            },
+            {
+              "step": "Diferença dinheiro",
+              "valor": -4803.01
+            },
+            {
+              "step": "Transferências vinculadas",
+              "count": 0,
+              "soma": 0
+            }
+          ]
+        },
+        {
+          "caixaCodigo": 4268321,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 158924,
+          "pdvCodigo": 15880,
+          "steps": [
+            {
+              "step": "Abertura",
+              "ts": "2026-03-22T00:04:47.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Suprimento",
+              "valor": 0.0
+            },
+            {
+              "step": "Movimentação apurado",
+              "valor": 21163.87
+            },
+            {
+              "step": "Despesas apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Vale apurado",
+              "valor": 370.0
+            },
+            {
+              "step": "Empréstimo apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Transferência apurado",
+              "valor": 2494.33
+            },
+            {
+              "step": "Fechamento",
+              "ts": "2026-03-23T00:07:41.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Diferença total",
+              "valor": -4803.01
+            },
+            {
+              "step": "Diferença dinheiro",
+              "valor": -4803.01
+            },
+            {
+              "step": "Transferências vinculadas",
+              "count": 0,
+              "soma": 0
+            }
+          ]
+        },
+        {
+          "caixaCodigo": 4268321,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 158924,
+          "pdvCodigo": 15880,
+          "steps": [
+            {
+              "step": "Abertura",
+              "ts": "2026-03-22T00:04:47.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Suprimento",
+              "valor": 0.0
+            },
+            {
+              "step": "Movimentação apurado",
+              "valor": 21163.87
+            },
+            {
+              "step": "Despesas apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Vale apurado",
+              "valor": 370.0
+            },
+            {
+              "step": "Empréstimo apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Transferência apurado",
+              "valor": 2494.33
+            },
+            {
+              "step": "Fechamento",
+              "ts": "2026-03-23T00:07:41.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Diferença total",
+              "valor": -4803.01
+            },
+            {
+              "step": "Diferença dinheiro",
+              "valor": -4803.01
+            },
+            {
+              "step": "Transferências vinculadas",
+              "count": 0,
+              "soma": 0
+            }
+          ]
+        },
+        {
+          "caixaCodigo": 4268321,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 158924,
+          "pdvCodigo": 15880,
+          "steps": [
+            {
+              "step": "Abertura",
+              "ts": "2026-03-22T00:04:47.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Suprimento",
+              "valor": 0.0
+            },
+            {
+              "step": "Movimentação apurado",
+              "valor": 21163.87
+            },
+            {
+              "step": "Despesas apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Vale apurado",
+              "valor": 370.0
+            },
+            {
+              "step": "Empréstimo apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Transferência apurado",
+              "valor": 2494.33
+            },
+            {
+              "step": "Fechamento",
+              "ts": "2026-03-23T00:07:41.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Diferença total",
+              "valor": -4803.01
+            },
+            {
+              "step": "Diferença dinheiro",
+              "valor": -4803.01
+            },
+            {
+              "step": "Transferências vinculadas",
+              "count": 0,
+              "soma": 0
+            }
+          ]
+        },
+        {
+          "caixaCodigo": 4268321,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 158924,
+          "pdvCodigo": 15880,
+          "steps": [
+            {
+              "step": "Abertura",
+              "ts": "2026-03-22T00:04:47.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Suprimento",
+              "valor": 0.0
+            },
+            {
+              "step": "Movimentação apurado",
+              "valor": 21163.87
+            },
+            {
+              "step": "Despesas apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Vale apurado",
+              "valor": 370.0
+            },
+            {
+              "step": "Empréstimo apurado",
+              "valor": 0.0
+            },
+            {
+              "step": "Transferência apurado",
+              "valor": 2494.33
+            },
+            {
+              "step": "Fechamento",
+              "ts": "2026-03-23T00:07:41.000-03:00",
+              "valor": null
+            },
+            {
+              "step": "Diferença total",
+              "valor": -4803.01
+            },
+            {
+              "step": "Diferença dinheiro",
+              "valor": -4803.01
+            },
+            {
+              "step": "Transferências vinculadas",
+              "count": 0,
+              "soma": 0
+            }
+          ]
+        }
+      ],
+      "forensics": {
+        "evidenciasNaoZero": [
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 178.0,
+            "caixaCodigo": 4255751
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 178.0,
+            "caixaCodigo": 4255751
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4255751
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 200.0,
+            "caixaCodigo": 4255769
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 200.0,
+            "caixaCodigo": 4255769
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4255769
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4255774
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 2080.0,
+            "caixaCodigo": 4256755
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 2080.0,
+            "caixaCodigo": 4256755
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4256755
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 171.0,
+            "caixaCodigo": 4256777
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 171.0,
+            "caixaCodigo": 4256777
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4256777
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4256826
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4257726
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 280.0,
+            "caixaCodigo": 4257737
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 280.0,
+            "caixaCodigo": 4257737
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4257737
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 116.0,
+            "caixaCodigo": 4257761
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 116.0,
+            "caixaCodigo": 4257761
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4257761
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 240.0,
+            "caixaCodigo": 4258704
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 240.0,
+            "caixaCodigo": 4258704
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4258704
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 437.0,
+            "caixaCodigo": 4258745
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 437.0,
+            "caixaCodigo": 4258745
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4258745
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApresentado",
+            "valor": 2600.0,
+            "caixaCodigo": 4258774
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_valeFunApurado",
+            "valor": 2600.0,
+            "caixaCodigo": 4258774
+          },
+          {
+            "fonte": "CAIXA_APRESENTADO",
+            "campo": "ap_suprimentoCaixa",
+            "valor": 0,
+            "caixaCodigo": 4258774
+          }
+        ],
+        "camposForenses": {
+          "ap_valeClienteApresentado": 3000,
+          "ap_valeClienteApurado": 3000,
+          "ap_valeClienteDiferenca": 3000,
+          "ap_emprestimoApresentado": 3000,
+          "ap_emprestimoApurado": 3000,
+          "ap_emprestimoDiferenca": 3000,
+          "ap_valeFunApresentado": 3000,
+          "ap_valeFunApurado": 3000,
+          "ap_valeFunDiferenca": 3000,
+          "ap_fundoCxDebApresentado": 3000,
+          "ap_fundoCxDebApurado": 3000,
+          "ap_fundoCxDebDiferenca": 3000,
+          "ap_valeCliente": 3000,
+          "ap_suprimentoCaixa": 3000,
+          "ap_chequeTroco": 3000,
+          "ap_fundoCaixaCredito": 3000
+        },
+        "sangriaExplicita": 0,
+        "suprimentoRegistros": 15,
+        "fundoCaixaRegistros": 0
+      },
+      "operators": {
+        "operadores": [
+          {
+            "n": 150,
+            "sum": -70389.6,
+            "mean": -469.26,
+            "median": -3.44,
+            "stdev": 1450.09,
+            "min": -4803.01,
+            "max": 110.07,
+            "p95": 110.07,
+            "p99": 110.07,
+            "funcionarioCodigo": 158924,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 390,
+            "sum": -24268.5,
+            "mean": -62.23,
+            "median": -43.89,
+            "stdev": 112.14,
+            "min": -560.8,
+            "max": 106.17,
+            "p95": 6.27,
+            "p99": 106.17,
+            "funcionarioCodigo": 213391,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 480,
+            "sum": -16008.0,
+            "mean": -33.35,
+            "median": -4.8,
+            "stdev": 213.95,
+            "min": -834.3,
+            "max": 759.37,
+            "p95": 29.23,
+            "p99": 759.37,
+            "funcionarioCodigo": 157960,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 405,
+            "sum": -15747.75,
+            "mean": -38.88,
+            "median": -14.83,
+            "stdev": 90.02,
+            "min": -426.69,
+            "max": 53.5,
+            "p95": 32.12,
+            "p99": 53.5,
+            "funcionarioCodigo": 227386,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 15,
+            "sum": -8578.95,
+            "mean": -571.93,
+            "median": -571.93,
+            "stdev": 0.0,
+            "min": -571.93,
+            "max": -571.93,
+            "p95": -571.93,
+            "p99": -571.93,
+            "funcionarioCodigo": 80203,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 75,
+            "sum": 7678.65,
+            "mean": 102.38,
+            "median": -5.56,
+            "stdev": 222.4,
+            "min": -18.9,
+            "max": 543.91,
+            "p95": 543.91,
+            "p99": 543.91,
+            "funcionarioCodigo": 160806,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 45,
+            "sum": -4757.55,
+            "mean": -105.72,
+            "median": -117.6,
+            "stdev": 39.46,
+            "min": -146.45,
+            "max": -53.12,
+            "p95": -53.12,
+            "p99": -53.12,
+            "funcionarioCodigo": 149304,
+            "risco": "ALTO"
+          },
+          {
+            "n": 240,
+            "sum": -3871.2,
+            "mean": -16.13,
+            "median": -5.01,
+            "stdev": 37.89,
+            "min": -152.93,
+            "max": 17.43,
+            "p95": 17.43,
+            "p99": 17.43,
+            "funcionarioCodigo": 277311,
+            "risco": "ALTO"
+          },
+          {
+            "n": 45,
+            "sum": -2515.5,
+            "mean": -55.9,
+            "median": -9.91,
+            "stdev": 67.69,
+            "min": -150.54,
+            "max": -7.25,
+            "p95": -7.25,
+            "p99": -7.25,
+            "funcionarioCodigo": 298670,
+            "risco": "ALTO"
+          },
+          {
+            "n": 15,
+            "sum": -2270.7,
+            "mean": -151.38,
+            "median": -151.38,
+            "stdev": 0.0,
+            "min": -151.38,
+            "max": -151.38,
+            "p95": -151.38,
+            "p99": -151.38,
+            "funcionarioCodigo": 290148,
+            "risco": "ALTO"
+          },
+          {
+            "n": 720,
+            "sum": -1267.35,
+            "mean": -1.76,
+            "median": 1.2,
+            "stdev": 16.0,
+            "min": -59.31,
+            "max": 27.07,
+            "p95": 13.85,
+            "p99": 27.07,
+            "funcionarioCodigo": 276288,
+            "risco": "ALTO"
+          },
+          {
+            "n": 45,
+            "sum": -846.3,
+            "mean": -18.81,
+            "median": -17.53,
+            "stdev": 11.02,
+            "min": -32.75,
+            "max": -6.14,
+            "p95": -6.14,
+            "p99": -6.14,
+            "funcionarioCodigo": 294273,
+            "risco": "ALTO"
+          },
+          {
+            "n": 30,
+            "sum": -681.6,
+            "mean": -22.72,
+            "median": -22.72,
+            "stdev": 20.23,
+            "min": -42.61,
+            "max": -2.83,
+            "p95": -2.83,
+            "p99": -2.83,
+            "funcionarioCodigo": 295816,
+            "risco": "ALTO"
+          },
+          {
+            "n": 15,
+            "sum": -645.3,
+            "mean": -43.02,
+            "median": -43.02,
+            "stdev": 0.0,
+            "min": -43.02,
+            "max": -43.02,
+            "p95": -43.02,
+            "p99": -43.02,
+            "funcionarioCodigo": 295399,
+            "risco": "ALTO"
+          },
+          {
+            "n": 135,
+            "sum": -576.3,
+            "mean": -4.27,
+            "median": -5.49,
+            "stdev": 9.38,
+            "min": -20.13,
+            "max": 10.12,
+            "p95": 10.12,
+            "p99": 10.12,
+            "funcionarioCodigo": 178278,
+            "risco": "ALTO"
+          },
+          {
+            "n": 75,
+            "sum": -321.45,
+            "mean": -4.29,
+            "median": 0.56,
+            "stdev": 14.82,
+            "min": -32.62,
+            "max": 9.5,
+            "p95": 9.5,
+            "p99": 9.5,
+            "funcionarioCodigo": 298738,
+            "risco": "ALTO"
+          },
+          {
+            "n": 30,
+            "sum": -304.05,
+            "mean": -10.13,
+            "median": -10.13,
+            "stdev": 20.13,
+            "min": -29.93,
+            "max": 9.66,
+            "p95": 9.66,
+            "p99": 9.66,
+            "funcionarioCodigo": 161863,
+            "risco": "ALTO"
+          },
+          {
+            "n": 15,
+            "sum": -258.6,
+            "mean": -17.24,
+            "median": -17.24,
+            "stdev": 0.0,
+            "min": -17.24,
+            "max": -17.24,
+            "p95": -17.24,
+            "p99": -17.24,
+            "funcionarioCodigo": 227385,
+            "risco": "ALTO"
+          },
+          {
+            "n": 15,
+            "sum": 231.0,
+            "mean": 15.4,
+            "median": 15.4,
+            "stdev": 0.0,
+            "min": 15.4,
+            "max": 15.4,
+            "p95": 15.4,
+            "p99": 15.4,
+            "funcionarioCodigo": 298451,
+            "risco": "ALTO"
+          },
+          {
+            "n": 15,
+            "sum": 154.95,
+            "mean": 10.33,
+            "median": 10.33,
+            "stdev": 0.0,
+            "min": 10.33,
+            "max": 10.33,
+            "p95": 10.33,
+            "p99": 10.33,
+            "funcionarioCodigo": 162738,
+            "risco": "ALTO"
+          },
+          {
+            "n": 15,
+            "sum": -59.1,
+            "mean": -3.94,
+            "median": -3.94,
+            "stdev": 0.0,
+            "min": -3.94,
+            "max": -3.94,
+            "p95": -3.94,
+            "p99": -3.94,
+            "funcionarioCodigo": 249526,
+            "risco": "ALTO"
+          },
+          {
+            "n": 30,
+            "sum": -22.5,
+            "mean": -0.75,
+            "median": -0.75,
+            "stdev": 1.82,
+            "min": -2.54,
+            "max": 1.04,
+            "p95": 1.04,
+            "p99": 1.04,
+            "funcionarioCodigo": 298720,
+            "risco": "ALTO"
+          }
+        ],
+        "focus276288": {
+          "n": 720,
+          "sum": -1267.35,
+          "mean": -1.76,
+          "median": 1.2,
+          "stdev": 16.0,
+          "min": -59.31,
+          "max": 27.07,
+          "p95": 13.85,
+          "p99": 27.07,
+          "funcionarioCodigo": 276288,
+          "risco": "ALTO"
+        },
+        "focus294273": {
+          "n": 45,
+          "sum": -846.3,
+          "mean": -18.81,
+          "median": -17.53,
+          "stdev": 11.02,
+          "min": -32.75,
+          "max": -6.14,
+          "p95": -6.14,
+          "p99": -6.14,
+          "funcionarioCodigo": 294273,
+          "risco": "ALTO"
+        }
+      },
+      "pdvs": {
+        "pdvs": [
+          {
+            "n": 1005,
+            "sum": -95926.65,
+            "mean": -95.45,
+            "median": -5.56,
+            "stdev": 607.04,
+            "min": -4803.01,
+            "max": 759.37,
+            "p95": 71.01,
+            "p99": 759.37,
+            "pdvCodigo": 15880,
+            "recorrencia": 1005,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 990,
+            "sum": -46544.7,
+            "mean": -47.01,
+            "median": -24.91,
+            "stdev": 94.58,
+            "min": -560.8,
+            "max": 106.17,
+            "p95": 21.59,
+            "p99": 106.17,
+            "pdvCodigo": 54193,
+            "recorrencia": 990,
+            "risco": "CRÍTICO"
+          },
+          {
+            "n": 1005,
+            "sum": -2854.35,
+            "mean": -2.84,
+            "median": 0.65,
+            "stdev": 15.81,
+            "min": -59.31,
+            "max": 27.07,
+            "p95": 13.17,
+            "p99": 27.07,
+            "pdvCodigo": 56764,
+            "recorrencia": 1005,
+            "risco": "ALTO"
+          }
+        ],
+        "focus54193": {
+          "n": 990,
+          "sum": -46544.7,
+          "mean": -47.01,
+          "median": -24.91,
+          "stdev": 94.58,
+          "min": -560.8,
+          "max": 106.17,
+          "p95": 21.59,
+          "p99": 106.17,
+          "pdvCodigo": 54193,
+          "recorrencia": 990,
+          "risco": "CRÍTICO"
+        },
+        "focus15880": {
+          "n": 1005,
+          "sum": -95926.65,
+          "mean": -95.45,
+          "median": -5.56,
+          "stdev": 607.04,
+          "min": -4803.01,
+          "max": 759.37,
+          "p95": 71.01,
+          "p99": 759.37,
+          "pdvCodigo": 15880,
+          "recorrencia": 1005,
+          "risco": "CRÍTICO"
+        }
+      },
+      "components": {
+        "componentes": [
+          {
+            "componente": "dinheiro",
+            "somaDiff": -145325.7,
+            "absDiff": 208190.4,
+            "participacaoPct": 100.0,
+            "apuradoTotal": 10702107.45
+          },
+          {
+            "componente": "suprimentoCaixa",
+            "somaDiff": 0.15,
+            "absDiff": 0.15,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 0
+          },
+          {
+            "componente": "cartao",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 30587125.5
+          },
+          {
+            "componente": "cheque",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 0.0
+          },
+          {
+            "componente": "valeFun",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 1737052.65
+          },
+          {
+            "componente": "emprestimo",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 0.0
+          },
+          {
+            "componente": "despesa",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 1362349.8
+          },
+          {
+            "componente": "transfBanc",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 13473413.55
+          },
+          {
+            "componente": "fundoCxDeb",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 0.0
+          },
+          {
+            "componente": "fundoCaixaCredito",
+            "somaDiff": 0.0,
+            "absDiff": 0.0,
+            "participacaoPct": 0.0,
+            "apuradoTotal": 0
+          }
+        ],
+        "impactoTotalAbs": 208190.55
+      },
+      "shiftRisk": {
+        "porTurno": [
+          {
+            "turnoCodigo": 1,
+            "turno": "1º TURNO",
+            "fechamentos": 2970,
+            "duracaoMediaHoras": 23.81,
+            "diffStats": {
+              "n": 2970,
+              "sum": -153484.65,
+              "mean": -51.68,
+              "median": -5.5,
+              "stdev": 356.84,
+              "min": -4803.01,
+              "max": 759.37,
+              "p95": 21.29,
+              "p99": 107.38
+            }
+          },
+          {
+            "turnoCodigo": 2,
+            "turno": "2º TURNO",
+            "fechamentos": 30,
+            "duracaoMediaHoras": 8.98,
+            "diffStats": {
+              "n": 30,
+              "sum": 8158.95,
+              "mean": 271.96,
+              "median": 271.96,
+              "stdev": 276.59,
+              "min": 0.02,
+              "max": 543.91,
+              "p95": 543.91,
+              "p99": 543.91
+            }
+          }
+        ],
+        "correlacaoDiffDuracao": -0.031
+      },
+      "heatmapTop20": [
+        {
+          "empresaCodigo": 5555,
+          "pdvCodigo": 15880,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 158924,
+          "fechamentos": 150,
+          "diffTotal": -70389.6,
+          "diffAbs": 76122.6
+        },
+        {
+          "empresaCodigo": 5555,
+          "pdvCodigo": 15880,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 157960,
+          "fechamentos": 480,
+          "diffTotal": -16008.0,
+          "diffAbs": 40227.0
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 213391,
+          "fechamentos": 375,
+          "diffTotal": -23505.9,
+          "diffAbs": 26908.8
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 227386,
+          "fechamentos": 405,
+          "diffTotal": -15747.75,
+          "diffAbs": 20757.15
+        },
+        {
+          "empresaCodigo": 5555,
+          "pdvCodigo": 15880,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 80203,
+          "fechamentos": 15,
+          "diffTotal": -8578.95,
+          "diffAbs": 8578.95
+        },
+        {
+          "empresaCodigo": 5555,
+          "pdvCodigo": 15880,
+          "turnoCodigo": 2,
+          "funcionarioCodigo": 160806,
+          "fechamentos": 15,
+          "diffTotal": 8158.65,
+          "diffAbs": 8158.65
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 56764,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 276288,
+          "fechamentos": 705,
+          "diffTotal": -1267.65,
+          "diffAbs": 6240.15
+        },
+        {
+          "empresaCodigo": 5555,
+          "pdvCodigo": 15880,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 277311,
+          "fechamentos": 240,
+          "diffTotal": -3871.2,
+          "diffAbs": 4881.9
+        },
+        {
+          "empresaCodigo": 5555,
+          "pdvCodigo": 15880,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 149304,
+          "fechamentos": 45,
+          "diffTotal": -4757.55,
+          "diffAbs": 4757.55
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 298670,
+          "fechamentos": 45,
+          "diffTotal": -2515.5,
+          "diffAbs": 2515.5
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 290148,
+          "fechamentos": 15,
+          "diffTotal": -2270.7,
+          "diffAbs": 2270.7
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 56764,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 178278,
+          "fechamentos": 135,
+          "diffTotal": -576.3,
+          "diffAbs": 1098.0
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 294273,
+          "fechamentos": 45,
+          "diffTotal": -846.3,
+          "diffAbs": 846.3
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 56764,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 213391,
+          "fechamentos": 15,
+          "diffTotal": -762.6,
+          "diffAbs": 762.6
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 56764,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 298738,
+          "fechamentos": 75,
+          "diffTotal": -321.45,
+          "diffAbs": 736.95
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 295816,
+          "fechamentos": 30,
+          "diffTotal": -681.6,
+          "diffAbs": 681.6
+        },
+        {
+          "empresaCodigo": 5555,
+          "pdvCodigo": 15880,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 160806,
+          "fechamentos": 60,
+          "diffTotal": -480.0,
+          "diffAbs": 649.2
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 295399,
+          "fechamentos": 15,
+          "diffTotal": -645.3,
+          "diffAbs": 645.3
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 161863,
+          "fechamentos": 30,
+          "diffTotal": -304.05,
+          "diffAbs": 593.85
+        },
+        {
+          "empresaCodigo": 11495,
+          "pdvCodigo": 54193,
+          "turnoCodigo": 1,
+          "funcionarioCodigo": 227385,
+          "fechamentos": 15,
+          "diffTotal": -258.6,
+          "diffAbs": 258.6
+        }
+      ]
+    }
+  },
+  "recovery": {
+    "7d": {
+      "perdaObservada": 1278.34,
+      "perdaDiaria": 182.62,
+      "recuperavel30pct": 383.5,
+      "projecaoAnual": 66656.3
+    },
+    "30d": {
+      "perdaObservada": 237959.64,
+      "perdaDiaria": 7931.99,
+      "recuperavel30pct": 71387.89,
+      "projecaoAnual": 2895175.62
+    },
+    "90d": {
+      "perdaObservada": 208190.4,
+      "perdaDiaria": 2313.23,
+      "recuperavel30pct": 62457.12,
+      "projecaoAnual": 844327.73
+    }
+  },
+  "rootCause": {
+    "hipotesePrincipal": "Erro de contagem de dinheiro físico no fechamento — 1º turno — PDV 54193/15880",
+    "formula": "diferenca_total ≈ dinheiroDiferenca (corr=1.0 no período 7d)",
+    "evidencia": "dinheiro participação 100.0% do impacto absoluto; cartão diff=0",
+    "amostra": [
+      {
+        "caixaCodigo": 4336819,
+        "empresaCodigo": 5555,
+        "funcionarioCodigo": 158924,
+        "pdvCodigo": 15880,
+        "steps": [
+          {
+            "step": "Abertura",
+            "ts": "2026-06-02T00:01:33.000-03:00",
+            "valor": null
+          },
+          {
+            "step": "Suprimento",
+            "valor": 0.0
+          },
+          {
+            "step": "Movimentação apurado",
+            "valor": 19157.73
+          },
+          {
+            "step": "Despesas apurado",
+            "valor": 359.57
+          },
+          {
+            "step": "Vale apurado",
+            "valor": 1863.0
+          },
+          {
+            "step": "Empréstimo apurado",
+            "valor": 0.0
+          },
+          {
+            "step": "Transferência apurado",
+            "valor": 0.0
+          },
+          {
+            "step": "Fechamento",
+            "ts": "2026-06-03T00:00:49.000-03:00",
+            "valor": null
+          },
+          {
+            "step": "Diferença total",
+            "valor": -272.07
+          },
+          {
+            "step": "Diferença dinheiro",
+            "valor": -272.07
+          },
+          {
+            "step": "Transferências vinculadas",
+            "count": 0,
+            "soma": 0
+          }
+        ]
+      }
+    ],
+    "periodo": [
+      "2026-06-01",
+      "2026-06-07"
+    ],
+    "concentracao": "CONCENTRADO",
+    "turnoCritico": {
+      "turnoCodigo": 1,
+      "turno": "1º TURNO",
+      "fechamentos": 20,
+      "duracaoMediaHoras": 24.59,
+      "diffStats": {
+        "n": 20,
+        "sum": -766.9,
+        "mean": -38.34,
+        "median": -9.36,
+        "stdev": 101.72,
+        "min": -272.07,
+        "max": 208.96,
+        "p95": 37.87,
+        "p99": 174.74
+      }
+    }
+  },
+  "qa": {
+    "merged7d": 21,
+    "turnosComDiff": 21,
+    "dinheiroMatchesTotal": true
+  }
+}

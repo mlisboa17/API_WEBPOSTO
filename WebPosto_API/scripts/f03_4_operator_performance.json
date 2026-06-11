@@ -1,0 +1,1918 @@
+{
+  "sprint": "F03.4",
+  "windows": {
+    "7d": {
+      "window": "7d",
+      "periodo": {
+        "inicio": "2026-06-01",
+        "fim": "2026-06-07"
+      },
+      "buildMs": 71238.1,
+      "snapshotHotMs": 0.0,
+      "summary": {
+        "operatorPerformanceScoreMedio": 40.48,
+        "operadoresClassificados": 7,
+        "pdvsClassificados": 3,
+        "turnosClassificados": 2,
+        "bandas": {
+          "Atencao": 1,
+          "Critico": 6
+        },
+        "criticos": 6,
+        "excelentes": 0,
+        "melhorOperador": {
+          "funcionarioCodigo": 276288,
+          "fechamentos": 6,
+          "volumeApurado": 22096.86,
+          "diferencaAcumulada": 17.81,
+          "diferencaMedia": 2.97,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 58.32,
+          "band": "Critico",
+          "monitoramentoPrioritario": true,
+          "componentDiferenca": 92.94,
+          "componentRecorrencia": 0.0,
+          "componentRisk": 58.32,
+          "componentCompensado": 100.0,
+          "saldoLedger": 17.81,
+          "compensadoAutomatico": 21.95,
+          "_rawScore": 62.781000000000006,
+          "componentEvolucao": 50.0,
+          "evolucaoDelta": 0.0,
+          "operatorPerformanceScore": 60.92,
+          "performanceScore": 60.92,
+          "performanceBand": "Atencao"
+        },
+        "piorOperador": {
+          "funcionarioCodigo": 294273,
+          "fechamentos": 3,
+          "volumeApurado": 108747.97,
+          "diferencaAcumulada": -252.27,
+          "diferencaMedia": -84.09,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 52.21,
+          "band": "Critico",
+          "monitoramentoPrioritario": true,
+          "componentDiferenca": 0.0,
+          "componentRecorrencia": 0.0,
+          "componentRisk": 52.21,
+          "componentCompensado": 0.0,
+          "saldoLedger": -252.27,
+          "compensadoAutomatico": 0.0,
+          "_rawScore": 10.442,
+          "componentEvolucao": 50.0,
+          "evolucaoDelta": 0.0,
+          "operatorPerformanceScore": 17.83,
+          "performanceScore": 17.83,
+          "performanceBand": "Critico"
+        },
+        "melhorPdv": {
+          "pdvCodigo": 56764,
+          "fechamentos": 8,
+          "diferencaAcumulada": 20.6,
+          "desvioPadrao": 11.75,
+          "diferencaMedia": 2.57,
+          "operadores": [
+            {
+              "funcionarioCodigo": 276288,
+              "fechamentos": 6
+            },
+            {
+              "funcionarioCodigo": 178278,
+              "fechamentos": 2
+            }
+          ],
+          "turnos": [
+            {
+              "turno": "1º TURNO",
+              "fechamentos": 7
+            },
+            {
+              "turno": "2º TURNO",
+              "fechamentos": 1
+            }
+          ],
+          "cashRiskScore": 64.1,
+          "band": "Atencao",
+          "vsMediaRede": -52.81,
+          "monitoramentoPrioritario": false,
+          "indiceRecorrencia": 0.03,
+          "componentDiferenca": 95.7,
+          "componentRecorrencia": 97.0,
+          "componentRisk": 64.1,
+          "componentCompensado": 50.0,
+          "_rawScore": 89.70500000000001,
+          "componentEvolucao": 50.0,
+          "evolucaoDelta": 0.0,
+          "operatorPerformanceScore": 82.14,
+          "performanceScore": 82.14,
+          "performanceBand": "Bom"
+        },
+        "piorPdv": {
+          "pdvCodigo": 54193,
+          "fechamentos": 7,
+          "diferencaAcumulada": -479.61,
+          "desvioPadrao": 61.77,
+          "diferencaMedia": -68.52,
+          "operadores": [
+            {
+              "funcionarioCodigo": 227386,
+              "fechamentos": 3
+            },
+            {
+              "funcionarioCodigo": 294273,
+              "fechamentos": 3
+            },
+            {
+              "funcionarioCodigo": 299371,
+              "fechamentos": 1
+            }
+          ],
+          "turnos": [
+            {
+              "turno": "1º TURNO",
+              "fechamentos": 7
+            }
+          ],
+          "cashRiskScore": 59.83,
+          "band": "Atencao",
+          "vsMediaRede": 7.64,
+          "monitoramentoPrioritario": true,
+          "indiceRecorrencia": 0.69,
+          "componentDiferenca": 0.0,
+          "componentRecorrencia": 31.0,
+          "componentRisk": 59.83,
+          "componentCompensado": 50.0,
+          "_rawScore": 19.716,
+          "componentEvolucao": 50.0,
+          "evolucaoDelta": 0.0,
+          "operatorPerformanceScore": 26.72,
+          "performanceScore": 26.72,
+          "performanceBand": "Critico"
+        },
+        "melhorTurno": {
+          "turnoCodigo": 2,
+          "turno": "2º TURNO",
+          "fechamentos": 1,
+          "volumeFinanceiro": 3043.54,
+          "participacaoVolumePct": 0.74,
+          "desvioAcumulado": -1.96,
+          "incidenciaQuebraPct": 100.0,
+          "matrizRisco": "Critico",
+          "diferencaAcumulada": -1.96,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 40,
+          "componentDiferenca": 99.74,
+          "componentRecorrencia": 0.0,
+          "componentRisk": 40.0,
+          "componentCompensado": 50.0,
+          "_rawScore": 62.857,
+          "componentEvolucao": 50.0,
+          "evolucaoDelta": 0.0,
+          "operatorPerformanceScore": 55.9,
+          "performanceScore": 55.9,
+          "performanceBand": "Critico"
+        },
+        "piorTurno": {
+          "turnoCodigo": 1,
+          "turno": "1º TURNO",
+          "fechamentos": 20,
+          "volumeFinanceiro": 408738.71,
+          "participacaoVolumePct": 99.26,
+          "desvioAcumulado": -766.9,
+          "incidenciaQuebraPct": 100.0,
+          "matrizRisco": "Critico",
+          "diferencaAcumulada": -766.9,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 40,
+          "componentDiferenca": 0.0,
+          "componentRecorrencia": 0.0,
+          "componentRisk": 40.0,
+          "componentCompensado": 50.0,
+          "_rawScore": 8.0,
+          "componentEvolucao": 50.0,
+          "evolucaoDelta": 0.0,
+          "operatorPerformanceScore": 16.0,
+          "performanceScore": 16.0,
+          "performanceBand": "Critico"
+        },
+        "melhoraOperacional90d": null
+      },
+      "operators": {
+        "total": 7,
+        "ranking": [
+          {
+            "funcionarioCodigo": 276288,
+            "fechamentos": 6,
+            "volumeApurado": 22096.86,
+            "diferencaAcumulada": 17.81,
+            "diferencaMedia": 2.97,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 58.32,
+            "band": "Critico",
+            "monitoramentoPrioritario": true,
+            "componentDiferenca": 92.94,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 58.32,
+            "componentCompensado": 100.0,
+            "saldoLedger": 17.81,
+            "compensadoAutomatico": 21.95,
+            "_rawScore": 62.781000000000006,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 60.92,
+            "performanceScore": 60.92,
+            "performanceBand": "Atencao"
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "fechamentos": 2,
+            "volumeApurado": 6455.8,
+            "diferencaAcumulada": 2.79,
+            "diferencaMedia": 1.4,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 57.38,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 98.89,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 57.38,
+            "componentCompensado": 50.0,
+            "saldoLedger": 2.79,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 65.86550000000001,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 58.16,
+            "performanceScore": 58.16,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 158924,
+            "fechamentos": 5,
+            "volumeApurado": 100395.92,
+            "diferencaAcumulada": -94.08,
+            "diferencaMedia": -18.82,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 45.68,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 62.71,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 45.68,
+            "componentCompensado": 69.28,
+            "saldoLedger": -94.08,
+            "compensadoAutomatico": 212.19,
+            "_rawScore": 43.62650000000001,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 43.86,
+            "performanceScore": 43.86,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "fechamentos": 3,
+            "volumeApurado": 109286.39,
+            "diferencaAcumulada": -110.54,
+            "diferencaMedia": -36.85,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 52.72,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 56.18,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 52.72,
+            "componentCompensado": 0.0,
+            "saldoLedger": -110.54,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 41.443,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 40.38,
+            "performanceScore": 40.38,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "fechamentos": 1,
+            "volumeApurado": 34167.7,
+            "diferencaAcumulada": -116.8,
+            "diferencaMedia": -116.8,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 52.7,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 53.7,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 52.7,
+            "componentCompensado": 0.0,
+            "saldoLedger": -116.8,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 40.075,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 39.39,
+            "performanceScore": 39.39,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "fechamentos": 1,
+            "volumeApurado": 30631.61,
+            "diferencaAcumulada": -215.77,
+            "diferencaMedia": -215.77,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 46.77,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 14.47,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 46.77,
+            "componentCompensado": 0.0,
+            "saldoLedger": -215.77,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 17.3125,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 22.8,
+            "performanceScore": 22.8,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "fechamentos": 3,
+            "volumeApurado": 108747.97,
+            "diferencaAcumulada": -252.27,
+            "diferencaMedia": -84.09,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 52.21,
+            "band": "Critico",
+            "monitoramentoPrioritario": true,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 52.21,
+            "componentCompensado": 0.0,
+            "saldoLedger": -252.27,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 10.442,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 17.83,
+            "performanceScore": 17.83,
+            "performanceBand": "Critico"
+          }
+        ],
+        "topMelhores": [
+          {
+            "funcionarioCodigo": 276288,
+            "fechamentos": 6,
+            "volumeApurado": 22096.86,
+            "diferencaAcumulada": 17.81,
+            "diferencaMedia": 2.97,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 58.32,
+            "band": "Critico",
+            "monitoramentoPrioritario": true,
+            "componentDiferenca": 92.94,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 58.32,
+            "componentCompensado": 100.0,
+            "saldoLedger": 17.81,
+            "compensadoAutomatico": 21.95,
+            "_rawScore": 62.781000000000006,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 60.92,
+            "performanceScore": 60.92,
+            "performanceBand": "Atencao"
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "fechamentos": 2,
+            "volumeApurado": 6455.8,
+            "diferencaAcumulada": 2.79,
+            "diferencaMedia": 1.4,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 57.38,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 98.89,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 57.38,
+            "componentCompensado": 50.0,
+            "saldoLedger": 2.79,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 65.86550000000001,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 58.16,
+            "performanceScore": 58.16,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 158924,
+            "fechamentos": 5,
+            "volumeApurado": 100395.92,
+            "diferencaAcumulada": -94.08,
+            "diferencaMedia": -18.82,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 45.68,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 62.71,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 45.68,
+            "componentCompensado": 69.28,
+            "saldoLedger": -94.08,
+            "compensadoAutomatico": 212.19,
+            "_rawScore": 43.62650000000001,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 43.86,
+            "performanceScore": 43.86,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "fechamentos": 3,
+            "volumeApurado": 109286.39,
+            "diferencaAcumulada": -110.54,
+            "diferencaMedia": -36.85,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 52.72,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 56.18,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 52.72,
+            "componentCompensado": 0.0,
+            "saldoLedger": -110.54,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 41.443,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 40.38,
+            "performanceScore": 40.38,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "fechamentos": 1,
+            "volumeApurado": 34167.7,
+            "diferencaAcumulada": -116.8,
+            "diferencaMedia": -116.8,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 52.7,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 53.7,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 52.7,
+            "componentCompensado": 0.0,
+            "saldoLedger": -116.8,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 40.075,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 39.39,
+            "performanceScore": 39.39,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "fechamentos": 1,
+            "volumeApurado": 30631.61,
+            "diferencaAcumulada": -215.77,
+            "diferencaMedia": -215.77,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 46.77,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 14.47,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 46.77,
+            "componentCompensado": 0.0,
+            "saldoLedger": -215.77,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 17.3125,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 22.8,
+            "performanceScore": 22.8,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "fechamentos": 3,
+            "volumeApurado": 108747.97,
+            "diferencaAcumulada": -252.27,
+            "diferencaMedia": -84.09,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 52.21,
+            "band": "Critico",
+            "monitoramentoPrioritario": true,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 52.21,
+            "componentCompensado": 0.0,
+            "saldoLedger": -252.27,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 10.442,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 17.83,
+            "performanceScore": 17.83,
+            "performanceBand": "Critico"
+          }
+        ],
+        "topPiores": [
+          {
+            "funcionarioCodigo": 294273,
+            "fechamentos": 3,
+            "volumeApurado": 108747.97,
+            "diferencaAcumulada": -252.27,
+            "diferencaMedia": -84.09,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 52.21,
+            "band": "Critico",
+            "monitoramentoPrioritario": true,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 52.21,
+            "componentCompensado": 0.0,
+            "saldoLedger": -252.27,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 10.442,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 17.83,
+            "performanceScore": 17.83,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "fechamentos": 1,
+            "volumeApurado": 30631.61,
+            "diferencaAcumulada": -215.77,
+            "diferencaMedia": -215.77,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 46.77,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 14.47,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 46.77,
+            "componentCompensado": 0.0,
+            "saldoLedger": -215.77,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 17.3125,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 22.8,
+            "performanceScore": 22.8,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "fechamentos": 1,
+            "volumeApurado": 34167.7,
+            "diferencaAcumulada": -116.8,
+            "diferencaMedia": -116.8,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 52.7,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 53.7,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 52.7,
+            "componentCompensado": 0.0,
+            "saldoLedger": -116.8,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 40.075,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 39.39,
+            "performanceScore": 39.39,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "fechamentos": 3,
+            "volumeApurado": 109286.39,
+            "diferencaAcumulada": -110.54,
+            "diferencaMedia": -36.85,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 52.72,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 56.18,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 52.72,
+            "componentCompensado": 0.0,
+            "saldoLedger": -110.54,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 41.443,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 40.38,
+            "performanceScore": 40.38,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 158924,
+            "fechamentos": 5,
+            "volumeApurado": 100395.92,
+            "diferencaAcumulada": -94.08,
+            "diferencaMedia": -18.82,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 45.68,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 62.71,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 45.68,
+            "componentCompensado": 69.28,
+            "saldoLedger": -94.08,
+            "compensadoAutomatico": 212.19,
+            "_rawScore": 43.62650000000001,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 43.86,
+            "performanceScore": 43.86,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "fechamentos": 2,
+            "volumeApurado": 6455.8,
+            "diferencaAcumulada": 2.79,
+            "diferencaMedia": 1.4,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 57.38,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 98.89,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 57.38,
+            "componentCompensado": 50.0,
+            "saldoLedger": 2.79,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 65.86550000000001,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 58.16,
+            "performanceScore": 58.16,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 276288,
+            "fechamentos": 6,
+            "volumeApurado": 22096.86,
+            "diferencaAcumulada": 17.81,
+            "diferencaMedia": 2.97,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 58.32,
+            "band": "Critico",
+            "monitoramentoPrioritario": true,
+            "componentDiferenca": 92.94,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 58.32,
+            "componentCompensado": 100.0,
+            "saldoLedger": 17.81,
+            "compensadoAutomatico": 21.95,
+            "_rawScore": 62.781000000000006,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 60.92,
+            "performanceScore": 60.92,
+            "performanceBand": "Atencao"
+          }
+        ],
+        "todos": [
+          {
+            "funcionarioCodigo": 276288,
+            "fechamentos": 6,
+            "volumeApurado": 22096.86,
+            "diferencaAcumulada": 17.81,
+            "diferencaMedia": 2.97,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 58.32,
+            "band": "Critico",
+            "monitoramentoPrioritario": true,
+            "componentDiferenca": 92.94,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 58.32,
+            "componentCompensado": 100.0,
+            "saldoLedger": 17.81,
+            "compensadoAutomatico": 21.95,
+            "_rawScore": 62.781000000000006,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 60.92,
+            "performanceScore": 60.92,
+            "performanceBand": "Atencao"
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "fechamentos": 2,
+            "volumeApurado": 6455.8,
+            "diferencaAcumulada": 2.79,
+            "diferencaMedia": 1.4,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 57.38,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 98.89,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 57.38,
+            "componentCompensado": 50.0,
+            "saldoLedger": 2.79,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 65.86550000000001,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 58.16,
+            "performanceScore": 58.16,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 158924,
+            "fechamentos": 5,
+            "volumeApurado": 100395.92,
+            "diferencaAcumulada": -94.08,
+            "diferencaMedia": -18.82,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 45.68,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 62.71,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 45.68,
+            "componentCompensado": 69.28,
+            "saldoLedger": -94.08,
+            "compensadoAutomatico": 212.19,
+            "_rawScore": 43.62650000000001,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 43.86,
+            "performanceScore": 43.86,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "fechamentos": 3,
+            "volumeApurado": 109286.39,
+            "diferencaAcumulada": -110.54,
+            "diferencaMedia": -36.85,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 52.72,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 56.18,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 52.72,
+            "componentCompensado": 0.0,
+            "saldoLedger": -110.54,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 41.443,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 40.38,
+            "performanceScore": 40.38,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "fechamentos": 1,
+            "volumeApurado": 34167.7,
+            "diferencaAcumulada": -116.8,
+            "diferencaMedia": -116.8,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 52.7,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 53.7,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 52.7,
+            "componentCompensado": 0.0,
+            "saldoLedger": -116.8,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 40.075,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 39.39,
+            "performanceScore": 39.39,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "fechamentos": 1,
+            "volumeApurado": 30631.61,
+            "diferencaAcumulada": -215.77,
+            "diferencaMedia": -215.77,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 46.77,
+            "band": "Critico",
+            "monitoramentoPrioritario": false,
+            "componentDiferenca": 14.47,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 46.77,
+            "componentCompensado": 0.0,
+            "saldoLedger": -215.77,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 17.3125,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 22.8,
+            "performanceScore": 22.8,
+            "performanceBand": "Critico"
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "fechamentos": 3,
+            "volumeApurado": 108747.97,
+            "diferencaAcumulada": -252.27,
+            "diferencaMedia": -84.09,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 52.21,
+            "band": "Critico",
+            "monitoramentoPrioritario": true,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 52.21,
+            "componentCompensado": 0.0,
+            "saldoLedger": -252.27,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 10.442,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 17.83,
+            "performanceScore": 17.83,
+            "performanceBand": "Critico"
+          }
+        ]
+      },
+      "pdvs": {
+        "total": 3,
+        "ranking": [
+          {
+            "pdvCodigo": 56764,
+            "fechamentos": 8,
+            "diferencaAcumulada": 20.6,
+            "desvioPadrao": 11.75,
+            "diferencaMedia": 2.57,
+            "operadores": [
+              {
+                "funcionarioCodigo": 276288,
+                "fechamentos": 6
+              },
+              {
+                "funcionarioCodigo": 178278,
+                "fechamentos": 2
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 7
+              },
+              {
+                "turno": "2º TURNO",
+                "fechamentos": 1
+              }
+            ],
+            "cashRiskScore": 64.1,
+            "band": "Atencao",
+            "vsMediaRede": -52.81,
+            "monitoramentoPrioritario": false,
+            "indiceRecorrencia": 0.03,
+            "componentDiferenca": 95.7,
+            "componentRecorrencia": 97.0,
+            "componentRisk": 64.1,
+            "componentCompensado": 50.0,
+            "_rawScore": 89.70500000000001,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 82.14,
+            "performanceScore": 82.14,
+            "performanceBand": "Bom"
+          },
+          {
+            "pdvCodigo": 15880,
+            "fechamentos": 6,
+            "diferencaAcumulada": -309.85,
+            "desvioPadrao": 157.74,
+            "diferencaMedia": -51.64,
+            "operadores": [
+              {
+                "funcionarioCodigo": 158924,
+                "fechamentos": 5
+              },
+              {
+                "funcionarioCodigo": 299151,
+                "fechamentos": 1
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 6
+              }
+            ],
+            "cashRiskScore": 54.25,
+            "band": "Critico",
+            "vsMediaRede": 61.5,
+            "monitoramentoPrioritario": true,
+            "indiceRecorrencia": 0.52,
+            "componentDiferenca": 35.4,
+            "componentRecorrencia": 48.0,
+            "componentRisk": 54.25,
+            "componentCompensado": 50.0,
+            "_rawScore": 42.32000000000001,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 44.3,
+            "performanceScore": 44.3,
+            "performanceBand": "Critico"
+          },
+          {
+            "pdvCodigo": 54193,
+            "fechamentos": 7,
+            "diferencaAcumulada": -479.61,
+            "desvioPadrao": 61.77,
+            "diferencaMedia": -68.52,
+            "operadores": [
+              {
+                "funcionarioCodigo": 227386,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 294273,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 299371,
+                "fechamentos": 1
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 7
+              }
+            ],
+            "cashRiskScore": 59.83,
+            "band": "Atencao",
+            "vsMediaRede": 7.64,
+            "monitoramentoPrioritario": true,
+            "indiceRecorrencia": 0.69,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 31.0,
+            "componentRisk": 59.83,
+            "componentCompensado": 50.0,
+            "_rawScore": 19.716,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 26.72,
+            "performanceScore": 26.72,
+            "performanceBand": "Critico"
+          }
+        ],
+        "topMelhores": [
+          {
+            "pdvCodigo": 56764,
+            "fechamentos": 8,
+            "diferencaAcumulada": 20.6,
+            "desvioPadrao": 11.75,
+            "diferencaMedia": 2.57,
+            "operadores": [
+              {
+                "funcionarioCodigo": 276288,
+                "fechamentos": 6
+              },
+              {
+                "funcionarioCodigo": 178278,
+                "fechamentos": 2
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 7
+              },
+              {
+                "turno": "2º TURNO",
+                "fechamentos": 1
+              }
+            ],
+            "cashRiskScore": 64.1,
+            "band": "Atencao",
+            "vsMediaRede": -52.81,
+            "monitoramentoPrioritario": false,
+            "indiceRecorrencia": 0.03,
+            "componentDiferenca": 95.7,
+            "componentRecorrencia": 97.0,
+            "componentRisk": 64.1,
+            "componentCompensado": 50.0,
+            "_rawScore": 89.70500000000001,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 82.14,
+            "performanceScore": 82.14,
+            "performanceBand": "Bom"
+          },
+          {
+            "pdvCodigo": 15880,
+            "fechamentos": 6,
+            "diferencaAcumulada": -309.85,
+            "desvioPadrao": 157.74,
+            "diferencaMedia": -51.64,
+            "operadores": [
+              {
+                "funcionarioCodigo": 158924,
+                "fechamentos": 5
+              },
+              {
+                "funcionarioCodigo": 299151,
+                "fechamentos": 1
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 6
+              }
+            ],
+            "cashRiskScore": 54.25,
+            "band": "Critico",
+            "vsMediaRede": 61.5,
+            "monitoramentoPrioritario": true,
+            "indiceRecorrencia": 0.52,
+            "componentDiferenca": 35.4,
+            "componentRecorrencia": 48.0,
+            "componentRisk": 54.25,
+            "componentCompensado": 50.0,
+            "_rawScore": 42.32000000000001,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 44.3,
+            "performanceScore": 44.3,
+            "performanceBand": "Critico"
+          },
+          {
+            "pdvCodigo": 54193,
+            "fechamentos": 7,
+            "diferencaAcumulada": -479.61,
+            "desvioPadrao": 61.77,
+            "diferencaMedia": -68.52,
+            "operadores": [
+              {
+                "funcionarioCodigo": 227386,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 294273,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 299371,
+                "fechamentos": 1
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 7
+              }
+            ],
+            "cashRiskScore": 59.83,
+            "band": "Atencao",
+            "vsMediaRede": 7.64,
+            "monitoramentoPrioritario": true,
+            "indiceRecorrencia": 0.69,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 31.0,
+            "componentRisk": 59.83,
+            "componentCompensado": 50.0,
+            "_rawScore": 19.716,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 26.72,
+            "performanceScore": 26.72,
+            "performanceBand": "Critico"
+          }
+        ],
+        "topPiores": [
+          {
+            "pdvCodigo": 54193,
+            "fechamentos": 7,
+            "diferencaAcumulada": -479.61,
+            "desvioPadrao": 61.77,
+            "diferencaMedia": -68.52,
+            "operadores": [
+              {
+                "funcionarioCodigo": 227386,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 294273,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 299371,
+                "fechamentos": 1
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 7
+              }
+            ],
+            "cashRiskScore": 59.83,
+            "band": "Atencao",
+            "vsMediaRede": 7.64,
+            "monitoramentoPrioritario": true,
+            "indiceRecorrencia": 0.69,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 31.0,
+            "componentRisk": 59.83,
+            "componentCompensado": 50.0,
+            "_rawScore": 19.716,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 26.72,
+            "performanceScore": 26.72,
+            "performanceBand": "Critico"
+          },
+          {
+            "pdvCodigo": 15880,
+            "fechamentos": 6,
+            "diferencaAcumulada": -309.85,
+            "desvioPadrao": 157.74,
+            "diferencaMedia": -51.64,
+            "operadores": [
+              {
+                "funcionarioCodigo": 158924,
+                "fechamentos": 5
+              },
+              {
+                "funcionarioCodigo": 299151,
+                "fechamentos": 1
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 6
+              }
+            ],
+            "cashRiskScore": 54.25,
+            "band": "Critico",
+            "vsMediaRede": 61.5,
+            "monitoramentoPrioritario": true,
+            "indiceRecorrencia": 0.52,
+            "componentDiferenca": 35.4,
+            "componentRecorrencia": 48.0,
+            "componentRisk": 54.25,
+            "componentCompensado": 50.0,
+            "_rawScore": 42.32000000000001,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 44.3,
+            "performanceScore": 44.3,
+            "performanceBand": "Critico"
+          },
+          {
+            "pdvCodigo": 56764,
+            "fechamentos": 8,
+            "diferencaAcumulada": 20.6,
+            "desvioPadrao": 11.75,
+            "diferencaMedia": 2.57,
+            "operadores": [
+              {
+                "funcionarioCodigo": 276288,
+                "fechamentos": 6
+              },
+              {
+                "funcionarioCodigo": 178278,
+                "fechamentos": 2
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 7
+              },
+              {
+                "turno": "2º TURNO",
+                "fechamentos": 1
+              }
+            ],
+            "cashRiskScore": 64.1,
+            "band": "Atencao",
+            "vsMediaRede": -52.81,
+            "monitoramentoPrioritario": false,
+            "indiceRecorrencia": 0.03,
+            "componentDiferenca": 95.7,
+            "componentRecorrencia": 97.0,
+            "componentRisk": 64.1,
+            "componentCompensado": 50.0,
+            "_rawScore": 89.70500000000001,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 82.14,
+            "performanceScore": 82.14,
+            "performanceBand": "Bom"
+          }
+        ],
+        "alvosCriticos": {
+          "operador276288": {
+            "funcionarioCodigo": 276288,
+            "fechamentos": 6,
+            "volumeApurado": 22096.86,
+            "diferencaAcumulada": 17.81,
+            "diferencaMedia": 2.97,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 58.32,
+            "band": "Critico",
+            "monitoramentoPrioritario": true,
+            "componentDiferenca": 92.94,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 58.32,
+            "componentCompensado": 100.0,
+            "saldoLedger": 17.81,
+            "compensadoAutomatico": 21.95,
+            "_rawScore": 62.781000000000006,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 60.92,
+            "performanceScore": 60.92,
+            "performanceBand": "Atencao"
+          },
+          "operador294273": {
+            "funcionarioCodigo": 294273,
+            "fechamentos": 3,
+            "volumeApurado": 108747.97,
+            "diferencaAcumulada": -252.27,
+            "diferencaMedia": -84.09,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 52.21,
+            "band": "Critico",
+            "monitoramentoPrioritario": true,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 52.21,
+            "componentCompensado": 0.0,
+            "saldoLedger": -252.27,
+            "compensadoAutomatico": 0.0,
+            "_rawScore": 10.442,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 17.83,
+            "performanceScore": 17.83,
+            "performanceBand": "Critico"
+          },
+          "pdv54193": {
+            "pdvCodigo": 54193,
+            "fechamentos": 7,
+            "diferencaAcumulada": -479.61,
+            "desvioPadrao": 61.77,
+            "diferencaMedia": -68.52,
+            "operadores": [
+              {
+                "funcionarioCodigo": 227386,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 294273,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 299371,
+                "fechamentos": 1
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 7
+              }
+            ],
+            "cashRiskScore": 59.83,
+            "band": "Atencao",
+            "vsMediaRede": 7.64,
+            "monitoramentoPrioritario": true,
+            "indiceRecorrencia": 0.69,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 31.0,
+            "componentRisk": 59.83,
+            "componentCompensado": 50.0,
+            "_rawScore": 19.716,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 26.72,
+            "performanceScore": 26.72,
+            "performanceBand": "Critico"
+          },
+          "pdv15880": {
+            "pdvCodigo": 15880,
+            "fechamentos": 6,
+            "diferencaAcumulada": -309.85,
+            "desvioPadrao": 157.74,
+            "diferencaMedia": -51.64,
+            "operadores": [
+              {
+                "funcionarioCodigo": 158924,
+                "fechamentos": 5
+              },
+              {
+                "funcionarioCodigo": 299151,
+                "fechamentos": 1
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 6
+              }
+            ],
+            "cashRiskScore": 54.25,
+            "band": "Critico",
+            "vsMediaRede": 61.5,
+            "monitoramentoPrioritario": true,
+            "indiceRecorrencia": 0.52,
+            "componentDiferenca": 35.4,
+            "componentRecorrencia": 48.0,
+            "componentRisk": 54.25,
+            "componentCompensado": 50.0,
+            "_rawScore": 42.32000000000001,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 44.3,
+            "performanceScore": 44.3,
+            "performanceBand": "Critico"
+          }
+        }
+      },
+      "turns": {
+        "total": 2,
+        "ranking": [
+          {
+            "turnoCodigo": 2,
+            "turno": "2º TURNO",
+            "fechamentos": 1,
+            "volumeFinanceiro": 3043.54,
+            "participacaoVolumePct": 0.74,
+            "desvioAcumulado": -1.96,
+            "incidenciaQuebraPct": 100.0,
+            "matrizRisco": "Critico",
+            "diferencaAcumulada": -1.96,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 40,
+            "componentDiferenca": 99.74,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 40.0,
+            "componentCompensado": 50.0,
+            "_rawScore": 62.857,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 55.9,
+            "performanceScore": 55.9,
+            "performanceBand": "Critico"
+          },
+          {
+            "turnoCodigo": 1,
+            "turno": "1º TURNO",
+            "fechamentos": 20,
+            "volumeFinanceiro": 408738.71,
+            "participacaoVolumePct": 99.26,
+            "desvioAcumulado": -766.9,
+            "incidenciaQuebraPct": 100.0,
+            "matrizRisco": "Critico",
+            "diferencaAcumulada": -766.9,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 40,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 40.0,
+            "componentCompensado": 50.0,
+            "_rawScore": 8.0,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 16.0,
+            "performanceScore": 16.0,
+            "performanceBand": "Critico"
+          }
+        ],
+        "topMelhores": [
+          {
+            "turnoCodigo": 2,
+            "turno": "2º TURNO",
+            "fechamentos": 1,
+            "volumeFinanceiro": 3043.54,
+            "participacaoVolumePct": 0.74,
+            "desvioAcumulado": -1.96,
+            "incidenciaQuebraPct": 100.0,
+            "matrizRisco": "Critico",
+            "diferencaAcumulada": -1.96,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 40,
+            "componentDiferenca": 99.74,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 40.0,
+            "componentCompensado": 50.0,
+            "_rawScore": 62.857,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 55.9,
+            "performanceScore": 55.9,
+            "performanceBand": "Critico"
+          },
+          {
+            "turnoCodigo": 1,
+            "turno": "1º TURNO",
+            "fechamentos": 20,
+            "volumeFinanceiro": 408738.71,
+            "participacaoVolumePct": 99.26,
+            "desvioAcumulado": -766.9,
+            "incidenciaQuebraPct": 100.0,
+            "matrizRisco": "Critico",
+            "diferencaAcumulada": -766.9,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 40,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 40.0,
+            "componentCompensado": 50.0,
+            "_rawScore": 8.0,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 16.0,
+            "performanceScore": 16.0,
+            "performanceBand": "Critico"
+          }
+        ],
+        "topPiores": [
+          {
+            "turnoCodigo": 1,
+            "turno": "1º TURNO",
+            "fechamentos": 20,
+            "volumeFinanceiro": 408738.71,
+            "participacaoVolumePct": 99.26,
+            "desvioAcumulado": -766.9,
+            "incidenciaQuebraPct": 100.0,
+            "matrizRisco": "Critico",
+            "diferencaAcumulada": -766.9,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 40,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 40.0,
+            "componentCompensado": 50.0,
+            "_rawScore": 8.0,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 16.0,
+            "performanceScore": 16.0,
+            "performanceBand": "Critico"
+          },
+          {
+            "turnoCodigo": 2,
+            "turno": "2º TURNO",
+            "fechamentos": 1,
+            "volumeFinanceiro": 3043.54,
+            "participacaoVolumePct": 0.74,
+            "desvioAcumulado": -1.96,
+            "incidenciaQuebraPct": 100.0,
+            "matrizRisco": "Critico",
+            "diferencaAcumulada": -1.96,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 40,
+            "componentDiferenca": 99.74,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 40.0,
+            "componentCompensado": 50.0,
+            "_rawScore": 62.857,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 55.9,
+            "performanceScore": 55.9,
+            "performanceBand": "Critico"
+          }
+        ]
+      },
+      "evolution": {},
+      "bestPractices": {
+        "padraoVencedor": {
+          "operadoresReferencia": [
+            276288,
+            178278,
+            158924,
+            227386,
+            299371
+          ],
+          "scoreMedioTop5": 48.54,
+          "recorrenciaMediaTop5": 1.0
+        },
+        "pdvsMenorRisco": [
+          {
+            "pdvCodigo": 56764,
+            "fechamentos": 8,
+            "diferencaAcumulada": 20.6,
+            "desvioPadrao": 11.75,
+            "diferencaMedia": 2.57,
+            "operadores": [
+              {
+                "funcionarioCodigo": 276288,
+                "fechamentos": 6
+              },
+              {
+                "funcionarioCodigo": 178278,
+                "fechamentos": 2
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 7
+              },
+              {
+                "turno": "2º TURNO",
+                "fechamentos": 1
+              }
+            ],
+            "cashRiskScore": 64.1,
+            "band": "Atencao",
+            "vsMediaRede": -52.81,
+            "monitoramentoPrioritario": false,
+            "indiceRecorrencia": 0.03,
+            "componentDiferenca": 95.7,
+            "componentRecorrencia": 97.0,
+            "componentRisk": 64.1,
+            "componentCompensado": 50.0,
+            "_rawScore": 89.70500000000001,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 82.14,
+            "performanceScore": 82.14,
+            "performanceBand": "Bom"
+          },
+          {
+            "pdvCodigo": 15880,
+            "fechamentos": 6,
+            "diferencaAcumulada": -309.85,
+            "desvioPadrao": 157.74,
+            "diferencaMedia": -51.64,
+            "operadores": [
+              {
+                "funcionarioCodigo": 158924,
+                "fechamentos": 5
+              },
+              {
+                "funcionarioCodigo": 299151,
+                "fechamentos": 1
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 6
+              }
+            ],
+            "cashRiskScore": 54.25,
+            "band": "Critico",
+            "vsMediaRede": 61.5,
+            "monitoramentoPrioritario": true,
+            "indiceRecorrencia": 0.52,
+            "componentDiferenca": 35.4,
+            "componentRecorrencia": 48.0,
+            "componentRisk": 54.25,
+            "componentCompensado": 50.0,
+            "_rawScore": 42.32000000000001,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 44.3,
+            "performanceScore": 44.3,
+            "performanceBand": "Critico"
+          },
+          {
+            "pdvCodigo": 54193,
+            "fechamentos": 7,
+            "diferencaAcumulada": -479.61,
+            "desvioPadrao": 61.77,
+            "diferencaMedia": -68.52,
+            "operadores": [
+              {
+                "funcionarioCodigo": 227386,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 294273,
+                "fechamentos": 3
+              },
+              {
+                "funcionarioCodigo": 299371,
+                "fechamentos": 1
+              }
+            ],
+            "turnos": [
+              {
+                "turno": "1º TURNO",
+                "fechamentos": 7
+              }
+            ],
+            "cashRiskScore": 59.83,
+            "band": "Atencao",
+            "vsMediaRede": 7.64,
+            "monitoramentoPrioritario": true,
+            "indiceRecorrencia": 0.69,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 31.0,
+            "componentRisk": 59.83,
+            "componentCompensado": 50.0,
+            "_rawScore": 19.716,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 26.72,
+            "performanceScore": 26.72,
+            "performanceBand": "Critico"
+          }
+        ],
+        "turnosMelhorResultado": [
+          {
+            "turnoCodigo": 2,
+            "turno": "2º TURNO",
+            "fechamentos": 1,
+            "volumeFinanceiro": 3043.54,
+            "participacaoVolumePct": 0.74,
+            "desvioAcumulado": -1.96,
+            "incidenciaQuebraPct": 100.0,
+            "matrizRisco": "Critico",
+            "diferencaAcumulada": -1.96,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 40,
+            "componentDiferenca": 99.74,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 40.0,
+            "componentCompensado": 50.0,
+            "_rawScore": 62.857,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 55.9,
+            "performanceScore": 55.9,
+            "performanceBand": "Critico"
+          },
+          {
+            "turnoCodigo": 1,
+            "turno": "1º TURNO",
+            "fechamentos": 20,
+            "volumeFinanceiro": 408738.71,
+            "participacaoVolumePct": 99.26,
+            "desvioAcumulado": -766.9,
+            "incidenciaQuebraPct": 100.0,
+            "matrizRisco": "Critico",
+            "diferencaAcumulada": -766.9,
+            "indiceRecorrencia": 1.0,
+            "cashRiskScore": 40,
+            "componentDiferenca": 0.0,
+            "componentRecorrencia": 0.0,
+            "componentRisk": 40.0,
+            "componentCompensado": 50.0,
+            "_rawScore": 8.0,
+            "componentEvolucao": 50.0,
+            "evolucaoDelta": 0.0,
+            "operatorPerformanceScore": 16.0,
+            "performanceScore": 16.0,
+            "performanceBand": "Critico"
+          }
+        ],
+        "insights": [
+          "Melhores operadores combinam baixa recorrência de quebra e alto índice de compensação por sobras.",
+          "PDVs saudáveis apresentam desvio padrão inferior à média da rede.",
+          "Turnos com menor incidência de quebra concentram volume financeiro estável."
+        ]
+      },
+      "criticalFocus": {
+        "operador276288": {
+          "funcionarioCodigo": 276288,
+          "fechamentos": 6,
+          "volumeApurado": 22096.86,
+          "diferencaAcumulada": 17.81,
+          "diferencaMedia": 2.97,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 58.32,
+          "band": "Critico",
+          "monitoramentoPrioritario": true,
+          "componentDiferenca": 92.94,
+          "componentRecorrencia": 0.0,
+          "componentRisk": 58.32,
+          "componentCompensado": 100.0,
+          "saldoLedger": 17.81,
+          "compensadoAutomatico": 21.95,
+          "_rawScore": 62.781000000000006,
+          "componentEvolucao": 50.0,
+          "evolucaoDelta": 0.0,
+          "operatorPerformanceScore": 60.92,
+          "performanceScore": 60.92,
+          "performanceBand": "Atencao"
+        },
+        "operador294273": {
+          "funcionarioCodigo": 294273,
+          "fechamentos": 3,
+          "volumeApurado": 108747.97,
+          "diferencaAcumulada": -252.27,
+          "diferencaMedia": -84.09,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 52.21,
+          "band": "Critico",
+          "monitoramentoPrioritario": true,
+          "componentDiferenca": 0.0,
+          "componentRecorrencia": 0.0,
+          "componentRisk": 52.21,
+          "componentCompensado": 0.0,
+          "saldoLedger": -252.27,
+          "compensadoAutomatico": 0.0,
+          "_rawScore": 10.442,
+          "componentEvolucao": 50.0,
+          "evolucaoDelta": 0.0,
+          "operatorPerformanceScore": 17.83,
+          "performanceScore": 17.83,
+          "performanceBand": "Critico"
+        },
+        "pdv54193": {
+          "pdvCodigo": 54193,
+          "fechamentos": 7,
+          "diferencaAcumulada": -479.61,
+          "desvioPadrao": 61.77,
+          "diferencaMedia": -68.52,
+          "operadores": [
+            {
+              "funcionarioCodigo": 227386,
+              "fechamentos": 3
+            },
+            {
+              "funcionarioCodigo": 294273,
+              "fechamentos": 3
+            },
+            {
+              "funcionarioCodigo": 299371,
+              "fechamentos": 1
+            }
+          ],
+          "turnos": [
+            {
+              "turno": "1º TURNO",
+              "fechamentos": 7
+            }
+          ],
+          "cashRiskScore": 59.83,
+          "band": "Atencao",
+          "vsMediaRede": 7.64,
+          "monitoramentoPrioritario": true,
+          "indiceRecorrencia": 0.69,
+          "componentDiferenca": 0.0,
+          "componentRecorrencia": 31.0,
+          "componentRisk": 59.83,
+          "componentCompensado": 50.0,
+          "_rawScore": 19.716,
+          "componentEvolucao": 50.0,
+          "evolucaoDelta": 0.0,
+          "operatorPerformanceScore": 26.72,
+          "performanceScore": 26.72,
+          "performanceBand": "Critico"
+        },
+        "pdv15880": {
+          "pdvCodigo": 15880,
+          "fechamentos": 6,
+          "diferencaAcumulada": -309.85,
+          "desvioPadrao": 157.74,
+          "diferencaMedia": -51.64,
+          "operadores": [
+            {
+              "funcionarioCodigo": 158924,
+              "fechamentos": 5
+            },
+            {
+              "funcionarioCodigo": 299151,
+              "fechamentos": 1
+            }
+          ],
+          "turnos": [
+            {
+              "turno": "1º TURNO",
+              "fechamentos": 6
+            }
+          ],
+          "cashRiskScore": 54.25,
+          "band": "Critico",
+          "vsMediaRede": 61.5,
+          "monitoramentoPrioritario": true,
+          "indiceRecorrencia": 0.52,
+          "componentDiferenca": 35.4,
+          "componentRecorrencia": 48.0,
+          "componentRisk": 54.25,
+          "componentCompensado": 50.0,
+          "_rawScore": 42.32000000000001,
+          "componentEvolucao": 50.0,
+          "evolucaoDelta": 0.0,
+          "operatorPerformanceScore": 44.3,
+          "performanceScore": 44.3,
+          "performanceBand": "Critico"
+        }
+      },
+      "formula": {
+        "pesos": {
+          "diferencaCaixa": 0.4,
+          "recorrencia": 0.25,
+          "cashRiskScore": 0.15,
+          "sobrasCompensadas": 0.1,
+          "evolucaoTemporal": 0.1
+        },
+        "bandas": [
+          [
+            90,
+            100,
+            "Excelente"
+          ],
+          [
+            75,
+            89,
+            "Bom"
+          ],
+          [
+            60,
+            74,
+            "Atencao"
+          ],
+          [
+            0,
+            59,
+            "Critico"
+          ]
+        ]
+      },
+      "performanceMs": {
+        "total": 71238.1
+      },
+      "qa": {
+        "paridadeScoreMedio": 0.0,
+        "paridadeOperadoresCount": 0.0,
+        "paridadeOpsTotal": 0.0,
+        "paridadeOk": true,
+        "snapshotHit": true,
+        "snapshotUnder500ms": true
+      },
+      "mandatoryCases": {
+        "operador276288": {
+          "score": 60.92,
+          "band": "Atencao",
+          "critico": false
+        },
+        "operador294273": {
+          "score": 17.83,
+          "band": "Critico",
+          "critico": true
+        },
+        "pdv54193": {
+          "score": 26.72,
+          "band": "Critico",
+          "critico": true
+        },
+        "pdv15880": {
+          "score": 44.3,
+          "band": "Critico",
+          "critico": true
+        }
+      }
+    }
+  },
+  "qa": {
+    "paridadeOk": true,
+    "snapshotUnder500ms": true,
+    "classificacao100pct": true
+  },
+  "executiveAnswers": {
+    "1_melhorOperador": 276288,
+    "2_piorOperador": 294273,
+    "3_maisMelhorou90d": null,
+    "4_maisPiorou": null,
+    "5_maiorSaldoDevedor": 294273,
+    "6_maiorSaldoCredor": 276288,
+    "7_melhorPdv": 56764,
+    "8_piorPdv": 54193,
+    "9_melhorTurno": 2,
+    "10_piorTurno": 1,
+    "11_operadoresCriticos": 6,
+    "12_operadoresExcelentes": 0,
+    "13_scoreMedioRede": 40.48,
+    "14_melhoraOperacional90d": null,
+    "15_pdv54193Critico": true,
+    "16_pdv15880Critico": true,
+    "17_operador276288Critico": false,
+    "18_operador294273Critico": true,
+    "19_snapshotSlaOk": true,
+    "20_prontoF04": true
+  }
+}

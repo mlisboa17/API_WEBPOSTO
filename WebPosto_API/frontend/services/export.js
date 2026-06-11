@@ -102,6 +102,24 @@ export function openPdfPreview(title, columns, rows, meta = {}) {
     )
     .join("");
 
+  const natureSummary = Array.isArray(meta.natureSummary) ? meta.natureSummary : meta.pdfNatureSummary;
+  const natureSummaryHtml = Array.isArray(natureSummary) && natureSummary.length
+    ? `
+        <h2 style="font-size:14px;margin:20px 0 8px;">Resumo por Natureza</h2>
+        <table style="margin-bottom:20px;width:auto;min-width:360px;">
+          <thead><tr><th>Natureza</th><th>Registros</th><th>Valor</th><th>%</th></tr></thead>
+          <tbody>
+            ${natureSummary
+              .map(
+                (row) =>
+                  `<tr><td>${formatMissing(row.natureza)}</td><td>${formatMissing(row.registros)}</td><td>${formatMissing(row.valor)}</td><td>${formatMissing(row.pct)}</td></tr>`
+              )
+              .join("")}
+          </tbody>
+        </table>
+      `
+    : "";
+
   popup.document.write(`
     <!doctype html>
     <html lang="pt-BR">
@@ -121,6 +139,7 @@ export function openPdfPreview(title, columns, rows, meta = {}) {
         <h1>${title}</h1>
         <div class="meta">${meta.subtitle || meta.description || "Exportação da visão atual"}</div>
         <div class="meta">Gerado em: ${new Date().toLocaleString("pt-BR")}</div>
+        ${natureSummaryHtml}
         <table>
           <thead><tr>${columns.map((column) => `<th>${column.label}</th>`).join("")}</tr></thead>
           <tbody>${rowsHtml}</tbody>

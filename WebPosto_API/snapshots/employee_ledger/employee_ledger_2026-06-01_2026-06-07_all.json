@@ -1,0 +1,80 @@
+{
+  "payload": {
+    "forensics": {
+      "faltasCount": 0,
+      "sobrasCount": 0,
+      "totalFaltas": 0.0,
+      "totalSobras": 0.0,
+      "saldoLiquidoRede": 0.0,
+      "pctFaltasRastreadas": 100.0,
+      "pctSobrasRastreadas": 100.0
+    },
+    "balanceSummary": {
+      "totalOperadores": 0,
+      "credoresCount": 0,
+      "devedoresCount": 0,
+      "neutrosCount": 0,
+      "saldoMedio": 0.0,
+      "saldoMaximo": 0.0,
+      "saldoMinimo": 0.0,
+      "topCredores": [],
+      "topDevedores": [],
+      "principalCredor": null,
+      "principalDevedor": null,
+      "criticalOperators": []
+    },
+    "managementSummary": {
+      "totalRecords": 444,
+      "byGroup": {
+        "FINANCEIRO": 292,
+        "ADMINISTRATIVO": 22,
+        "TESOURARIA": 111,
+        "OPERACIONAL": 19
+      },
+      "byClass": {
+        "OUTROS": 311,
+        "VALE": 108,
+        "AGUA": 18,
+        "ADIANTAMENTO": 3,
+        "TELEFONIA": 2,
+        "ENERGIA": 2
+      },
+      "valorByGroup": {
+        "FINANCEIRO": 74759.59,
+        "ADMINISTRATIVO": 1157.1,
+        "TESOURARIA": 54814.91,
+        "OPERACIONAL": 5079.67
+      },
+      "valorByClass": {
+        "OUTROS": 79839.26,
+        "TELEFONIA": 390.0,
+        "AGUA": 140.0,
+        "VALE": 54314.91,
+        "ADIANTAMENTO": 500.0,
+        "ENERGIA": 627.1
+      },
+      "pctByGroup": {
+        "OPERACIONAL": 4.28,
+        "TESOURARIA": 25.0,
+        "ADMINISTRATIVO": 4.95,
+        "FINANCEIRO": 65.77
+      },
+      "dreImpact": {
+        "PARCIAL": 311,
+        "SIM": 22,
+        "NAO": 111
+      },
+      "valorDreSim": 1157.1,
+      "valorDreNao": 54814.91,
+      "valorDreParcial": 79839.26,
+      "cashFlowImpact": {
+        "PARCIAL": 311,
+        "SIM": 133
+      },
+      "valorCashflowSim": 55972.01,
+      "employeeAccountabilityCount": 0,
+      "totalValor": 135811.27
+    }
+  },
+  "lastUpdated": "collect"
+}

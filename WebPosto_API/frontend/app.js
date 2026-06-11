@@ -23,6 +23,30 @@ import {
   fetchCashFlowSnapshot,
   postCashFlowRefresh,
   fetchCashFlow,
+  fetchCashOperationsSnapshot,
+  postCashOperationsRefresh,
+  fetchCashOperationsAll,
+  fetchOperatorPerformanceSnapshot,
+  postOperatorPerformanceRefresh,
+  fetchOperatorPerformanceAll,
+  fetchOperatorIntelligenceCockpit,
+  postOperatorIntelligenceRefresh,
+  fetchPeopleIntelligenceCockpit,
+  postPeopleIntelligenceRefresh,
+  fetchPeopleRoiCockpit,
+  postPeopleRoiRefresh,
+  fetchOperationRoiCockpit,
+  postOperationRoiRefresh,
+  fetchManagementActionCockpit,
+  postManagementActionRefresh,
+  fetchGoalsCampaignCockpit,
+  postGoalsCampaignRefresh,
+  fetchBenchmarkCockpit,
+  postBenchmarkRefresh,
+  fetchExecutiveScorecardCockpit,
+  postExecutiveScorecardRefresh,
+  fetchCorporateHubCockpit,
+  postCorporateHubRefresh,
 } from "./services/api.js";
 import { APP_CONFIG } from "./config.js";
 import { renderFilters, updateCompanyOptions } from "./components/filters.js";
@@ -36,6 +60,16 @@ import { renderExecutiveDashboard } from "./pages/executiveDashboard.js";
 import { renderFuelExecutiveDashboard } from "./pages/fuelExecutiveDashboard.js";
 import { renderFinanceCenter } from "./pages/financeCenter.js";
 import { renderCashFlow } from "./pages/cashFlow.js";
+import { renderCashOperations } from "./pages/cashOperations.js";
+import { renderOperatorPerformance } from "./pages/operatorPerformance.js";
+import { renderPeopleIntelligence } from "./pages/peopleIntelligence.js";
+import { renderPeopleRoi } from "./pages/peopleRoi.js";
+import { renderOperationRoi } from "./pages/operationRoi.js";
+import { renderManagementAction } from "./pages/managementAction.js";
+import { renderGoalsCampaign } from "./pages/goalsCampaign.js";
+import { renderBenchmark } from "./pages/benchmark.js";
+import { renderExecutiveScorecard } from "./pages/executiveScorecard.js";
+import { renderCorporateHub } from "./pages/corporateHub.js";
 import { renderCompanySwitcher } from "./components/CompanySwitcher.js";
 import { createTableState } from "./services/tableState.js";
 import {
@@ -51,18 +85,55 @@ const startDate = new Date(now.getTime() - 1000 * 60 * 60 * 24 * 5)
   .toISOString()
   .slice(0, 10);
 
-const MULTI_FILTER_KEYS = new Set(["empresaCodigo", "centroCusto", "tipoDespesa"]);
+const MULTI_FILTER_KEYS = new Set([
+  "empresaCodigo",
+  "centroCusto",
+  "tipoDespesa",
+  "expenseNature",
+  "expenseManagementGroup",
+  "expenseManagementClass",
+]);
 
 const VIEW_ALIASES = {
   "finance-center": "financeCenter",
   financecenter: "financeCenter",
   "cash-flow": "cashFlow",
   cashflow: "cashFlow",
+  "cash-operations": "cashOperations",
+  cashoperations: "cashOperations",
+  "operator-performance": "operatorPerformance",
+  operatorperformance: "operatorPerformance",
+  "people-intelligence": "peopleIntelligence",
+  peopleintelligence: "peopleIntelligence",
+  "people-roi": "peopleRoi",
+  peopleroi: "peopleRoi",
+  "operation-roi": "operationRoi",
+  operationroi: "operationRoi",
+  "management-action": "managementAction",
+  managementaction: "managementAction",
+  "goals-campaigns": "goalsCampaign",
+  goalscampaigns: "goalsCampaign",
+  benchmark: "benchmark",
+  "benchmark-intelligence": "benchmark",
+  "executive-scorecard": "executiveScorecard",
+  executivescorecard: "executiveScorecard",
+  "corporate-hub": "corporateHub",
+  corporatehub: "corporateHub",
 };
 
 const VIEW_URL_NAMES = {
   financeCenter: "finance-center",
   cashFlow: "cash-flow",
+  cashOperations: "cash-operations",
+  operatorPerformance: "operator-performance",
+  peopleIntelligence: "people-intelligence",
+  peopleRoi: "people-roi",
+  operationRoi: "operation-roi",
+  managementAction: "management-action",
+  goalsCampaign: "goals-campaigns",
+  benchmark: "benchmark",
+  executiveScorecard: "executive-scorecard",
+  corporateHub: "corporate-hub",
 };
 
 function normalizeViewId(view) {
@@ -209,6 +280,19 @@ function fromUrl() {
       tipoDespesa: parseUrlFilterValue("tipoDespesa", query.get("tipoDespesa") || ""),
       valorMin: query.get("valorMin") || "",
       valorMax: query.get("valorMax") || "",
+      origem: query.get("origem") || "",
+      texto: query.get("texto") || "",
+      expenseNature: parseUrlFilterValue("expenseNature", query.get("expenseNature") || ""),
+      expenseManagementGroup: parseUrlFilterValue(
+        "expenseManagementGroup",
+        query.get("expenseManagementGroup") || ""
+      ),
+      expenseManagementClass: parseUrlFilterValue(
+        "expenseManagementClass",
+        query.get("expenseManagementClass") || ""
+      ),
+      dreImpact: query.get("dreImpact") || "",
+      cashFlowImpact: query.get("cashFlowImpact") || "",
     },
   };
 }
@@ -314,6 +398,16 @@ const expensesNode = document.querySelector("#expensesView");
 const accountsNode = document.querySelector("#accountsView");
 const financeCenterNode = document.querySelector("#financeCenterView");
 const cashFlowNode = document.querySelector("#cashFlowView");
+const cashOperationsNode = document.querySelector("#cashOperationsView");
+const operatorPerformanceNode = document.querySelector("#operatorPerformanceView");
+const peopleIntelligenceNode = document.querySelector("#peopleIntelligenceView");
+const peopleRoiNode = document.querySelector("#peopleRoiView");
+const operationRoiNode = document.querySelector("#operationRoiView");
+const managementActionNode = document.querySelector("#managementActionView");
+const goalsCampaignNode = document.querySelector("#goalsCampaignView");
+const benchmarkNode = document.querySelector("#benchmarkView");
+const executiveScorecardNode = document.querySelector("#executiveScorecardView");
+const corporateHubNode = document.querySelector("#corporateHubView");
 const fuelsNode = document.querySelector("#fuelsView");
 const salesNode = document.querySelector("#salesView");
 const stockNode = document.querySelector("#stockView");
@@ -336,12 +430,23 @@ function setError(message) {
 function setView(view) {
   state.view = normalizeViewId(view);
   writeUrl(state);
+  mountFilters();
   executiveNode.classList.toggle("hidden", view !== "executive");
   dashboardNode.classList.toggle("hidden", view !== "dashboard");
   expensesNode.classList.toggle("hidden", view !== "expenses");
   accountsNode.classList.toggle("hidden", view !== "accounts");
   financeCenterNode.classList.toggle("hidden", view !== "financeCenter");
   cashFlowNode.classList.toggle("hidden", view !== "cashFlow");
+  cashOperationsNode.classList.toggle("hidden", view !== "cashOperations");
+  operatorPerformanceNode.classList.toggle("hidden", view !== "operatorPerformance");
+  peopleIntelligenceNode.classList.toggle("hidden", view !== "peopleIntelligence");
+  peopleRoiNode.classList.toggle("hidden", view !== "peopleRoi");
+  operationRoiNode.classList.toggle("hidden", view !== "operationRoi");
+  managementActionNode.classList.toggle("hidden", view !== "managementAction");
+  goalsCampaignNode.classList.toggle("hidden", view !== "goalsCampaign");
+  benchmarkNode.classList.toggle("hidden", view !== "benchmark");
+  executiveScorecardNode.classList.toggle("hidden", view !== "executiveScorecard");
+  corporateHubNode.classList.toggle("hidden", view !== "corporateHub");
   fuelsNode.classList.toggle("hidden", view !== "fuels");
   salesNode.classList.toggle("hidden", view !== "sales");
   stockNode.classList.toggle("hidden", view !== "stock");
@@ -360,6 +465,16 @@ function ensureDataDefaults() {
   if (!state.data.receivables) state.data.receivables = { resultados: [], data: [] };
   if (!state.data.financeCenter) state.data.financeCenter = null;
   if (!state.data.cashFlow) state.data.cashFlow = null;
+  if (!state.data.cashOperations) state.data.cashOperations = null;
+  if (!state.data.operatorPerformance) state.data.operatorPerformance = null;
+  if (!state.data.peopleIntelligence) state.data.peopleIntelligence = null;
+  if (!state.data.peopleRoi) state.data.peopleRoi = null;
+  if (!state.data.operationRoi) state.data.operationRoi = null;
+  if (!state.data.managementAction) state.data.managementAction = null;
+  if (!state.data.goalsCampaign) state.data.goalsCampaign = null;
+  if (!state.data.benchmark) state.data.benchmark = null;
+  if (!state.data.executiveScorecard) state.data.executiveScorecard = null;
+  if (!state.data.corporateHub) state.data.corporateHub = null;
 }
 
 function clearFilters() {
@@ -371,6 +486,13 @@ function clearFilters() {
     tipoDespesa: "",
     valorMin: "",
     valorMax: "",
+    origem: "",
+    texto: "",
+    expenseNature: "",
+    expenseManagementGroup: "",
+    expenseManagementClass: "",
+    dreImpact: "",
+    cashFlowImpact: "",
   };
   state.pageExpenses = 1;
   state.pageAccounts = 1;
@@ -384,6 +506,22 @@ function clearFilters() {
   state.tables.fuels = createTableState();
   state.tables.stock = createTableState();
   mountFilters();
+}
+
+function filterVisibleFieldsForView(view) {
+  const base = ["dataInicial", "dataFinal", "empresaCodigo", "centroCusto", "tipoDespesa", "texto", "valorMin", "valorMax"];
+  if (view === "expenses") {
+    return [
+      ...base,
+      "expenseNature",
+      "expenseManagementGroup",
+      "expenseManagementClass",
+      "dreImpact",
+      "cashFlowImpact",
+      "origem",
+    ];
+  }
+  return base;
 }
 
 function mountFilters() {
@@ -405,6 +543,7 @@ function mountFilters() {
       await refreshAll(false);
     },
     {
+      visibleFields: filterVisibleFieldsForView(state.view),
       onRefresh: async () => {
         state.cache.clear();
         await refreshAll(true);
@@ -629,6 +768,76 @@ function renderAll() {
     },
   });
 
+  renderCashOperations(cashOperationsNode, state.data.cashOperations, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
+  renderOperatorPerformance(operatorPerformanceNode, state.data.operatorPerformance, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
+  renderPeopleIntelligence(peopleIntelligenceNode, state.data.peopleIntelligence, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
+  renderPeopleRoi(peopleRoiNode, state.data.peopleRoi, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
+  renderOperationRoi(operationRoiNode, state.data.operationRoi, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
+  renderManagementAction(managementActionNode, state.data.managementAction, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
+  renderGoalsCampaign(goalsCampaignNode, state.data.goalsCampaign, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
+  renderBenchmark(benchmarkNode, state.data.benchmark, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
+  renderExecutiveScorecard(executiveScorecardNode, state.data.executiveScorecard, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
+  renderCorporateHub(corporateHubNode, state.data.corporateHub, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
   renderStock(
     stockNode,
     state.data.stock,
@@ -659,6 +868,279 @@ function renderAll() {
       exportName: `estoque_${state.filters.dataInicial}`,
     }
   );
+}
+
+async function loadCashOperationsWithSnapshotFirst(bypassCache = false) {
+  let snapshot = null;
+  try {
+    snapshot = await fetchCashOperationsSnapshot(state.filters);
+  } catch (error) {
+    console.warn("[cashOperations] falha ao carregar snapshot:", error);
+  }
+
+  if (snapshot?.operations) {
+    state.data.cashOperations = {
+      ...snapshot.operations,
+      fromSnapshot: snapshot.fromSnapshot,
+      lastUpdated: snapshot.lastUpdated,
+    };
+    if (snapshot.stale) {
+      postCashOperationsRefresh(state.filters).catch((error) => {
+        console.warn("[cashOperations] refresh em background falhou:", error);
+      });
+    }
+    return;
+  }
+
+  const payload = await getCached(
+    "cashOperations",
+    state.filters,
+    () => fetchCashOperationsAll(state.filters),
+    bypassCache
+  );
+  state.data.cashOperations = {
+    ...payload,
+    fromSnapshot: false,
+    lastUpdated: new Date().toISOString(),
+  };
+  postCashOperationsRefresh(state.filters).catch((error) => {
+    console.warn("[cashOperations] refresh em background falhou:", error);
+  });
+}
+
+async function loadOperatorPerformanceWithSnapshotFirst(bypassCache = false) {
+  let snapshot = null;
+  try {
+    snapshot = await fetchOperatorPerformanceSnapshot(state.filters);
+  } catch (error) {
+    console.warn("[operatorPerformance] falha ao carregar snapshot:", error);
+  }
+
+  const payload = snapshot?.payload || snapshot?.data?.payload;
+  if (payload) {
+    let intelligence = null;
+    try {
+      intelligence = await fetchOperatorIntelligenceCockpit(state.filters);
+    } catch (error) {
+      console.warn("[operatorPerformance] F04 cockpit indisponível:", error);
+    }
+    state.data.operatorPerformance = {
+      ...payload,
+      intelligence: intelligence?.cockpit,
+      executiveAnswers: intelligence?.executiveAnswers,
+      parecerFinal: intelligence?.parecerFinal,
+      fromSnapshot: snapshot?.fromSnapshot ?? snapshot?.data?.fromSnapshot ?? true,
+      lastUpdated: snapshot?.lastUpdated ?? snapshot?.data?.lastUpdated,
+    };
+    if (snapshot?.stale ?? snapshot?.data?.stale) {
+      postOperatorPerformanceRefresh(state.filters).catch((error) => {
+        console.warn("[operatorPerformance] refresh em background falhou:", error);
+      });
+    }
+    return;
+  }
+
+  const live = await getCached(
+    "operatorPerformance",
+    state.filters,
+    () => fetchOperatorPerformanceAll(state.filters),
+    bypassCache
+  );
+  let intelligence = null;
+  try {
+    intelligence = await fetchOperatorIntelligenceCockpit(state.filters);
+  } catch (error) {
+    console.warn("[operatorPerformance] F04 cockpit indisponível:", error);
+  }
+  state.data.operatorPerformance = {
+    ...live,
+    intelligence: intelligence?.cockpit,
+    executiveAnswers: intelligence?.executiveAnswers,
+    parecerFinal: intelligence?.parecerFinal,
+    fromSnapshot: false,
+    lastUpdated: new Date().toISOString(),
+  };
+  postOperatorPerformanceRefresh(state.filters).catch((error) => {
+    console.warn("[operatorPerformance] refresh em background falhou:", error);
+  });
+}
+
+async function loadPeopleIntelligenceWithSnapshotFirst(bypassCache = false) {
+  try {
+    const intel = await fetchPeopleIntelligenceCockpit(state.filters);
+    state.data.peopleIntelligence = {
+      cockpit: intel.cockpit,
+      executiveAnswers: intel.executiveAnswers,
+      parecerFinal: intel.parecerFinal,
+      classification: intel.classification,
+      fromSnapshot: intel.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (intel.snapshot?.stale) {
+      postPeopleIntelligenceRefresh(state.filters).catch((error) => {
+        console.warn("[peopleIntelligence] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[peopleIntelligence] falha ao carregar cockpit:", error);
+    state.data.peopleIntelligence = null;
+  }
+}
+
+async function loadOperationRoiWithSnapshotFirst(bypassCache = false) {
+  try {
+    const roi = await fetchOperationRoiCockpit(state.filters);
+    state.data.operationRoi = {
+      cockpit: roi.cockpit,
+      executiveAnswers: roi.executiveAnswers,
+      parecerFinal: roi.parecerFinal,
+      qa: roi.qa,
+      fromSnapshot: roi.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (roi.snapshot?.stale) {
+      postOperationRoiRefresh(state.filters).catch((error) => {
+        console.warn("[operationRoi] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[operationRoi] falha ao carregar cockpit:", error);
+    state.data.operationRoi = null;
+  }
+}
+
+async function loadGoalsCampaignWithSnapshotFirst(bypassCache = false) {
+  try {
+    const gc = await fetchGoalsCampaignCockpit(state.filters);
+    state.data.goalsCampaign = {
+      cockpit: gc.cockpit,
+      executiveAnswers: gc.executiveAnswers,
+      parecerFinal: gc.parecerFinal,
+      qa: gc.qa,
+      fromSnapshot: gc.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (gc.snapshot?.stale) {
+      postGoalsCampaignRefresh(state.filters).catch((error) => {
+        console.warn("[goalsCampaign] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[goalsCampaign] falha ao carregar cockpit:", error);
+    state.data.goalsCampaign = null;
+  }
+}
+
+async function loadBenchmarkWithSnapshotFirst(bypassCache = false) {
+  try {
+    const bm = await fetchBenchmarkCockpit(state.filters);
+    state.data.benchmark = {
+      cockpit: bm.cockpit,
+      executiveAnswers: bm.executiveAnswers,
+      parecerFinal: bm.parecerFinal,
+      qa: bm.qa,
+      fromSnapshot: bm.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (bm.snapshot?.stale) {
+      postBenchmarkRefresh(state.filters).catch((error) => {
+        console.warn("[benchmark] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[benchmark] falha ao carregar cockpit:", error);
+    state.data.benchmark = null;
+  }
+}
+
+async function loadExecutiveScorecardWithSnapshotFirst(bypassCache = false) {
+  try {
+    const sc = await fetchExecutiveScorecardCockpit(state.filters);
+    state.data.executiveScorecard = {
+      cockpit: sc.cockpit,
+      executiveAnswers: sc.executiveAnswers,
+      parecerFinal: sc.parecerFinal,
+      decisaoArquitetural: sc.decisaoArquitetural,
+      qa: sc.qa,
+      fromSnapshot: sc.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (sc.snapshot?.stale) {
+      postExecutiveScorecardRefresh(state.filters).catch((error) => {
+        console.warn("[executiveScorecard] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[executiveScorecard] falha ao carregar cockpit:", error);
+    state.data.executiveScorecard = null;
+  }
+}
+
+async function loadCorporateHubWithSnapshotFirst(bypassCache = false) {
+  try {
+    const hub = await fetchCorporateHubCockpit(state.filters);
+    state.data.corporateHub = {
+      cockpit: hub.cockpit,
+      executiveAnswers: hub.executiveAnswers,
+      parecerFinal: hub.parecerFinal,
+      decisaoArquitetural: hub.decisaoArquitetural,
+      qa: hub.qa,
+      fromSnapshot: hub.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (hub.snapshot?.stale) {
+      postCorporateHubRefresh(state.filters).catch((error) => {
+        console.warn("[corporateHub] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[corporateHub] falha ao carregar cockpit:", error);
+    state.data.corporateHub = null;
+  }
+}
+
+async function loadManagementActionWithSnapshotFirst(bypassCache = false) {
+  try {
+    const mac = await fetchManagementActionCockpit(state.filters);
+    state.data.managementAction = {
+      cockpit: mac.cockpit,
+      executiveAnswers: mac.executiveAnswers,
+      parecerFinal: mac.parecerFinal,
+      qa: mac.qa,
+      fromSnapshot: mac.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (mac.snapshot?.stale) {
+      postManagementActionRefresh(state.filters).catch((error) => {
+        console.warn("[managementAction] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[managementAction] falha ao carregar cockpit:", error);
+    state.data.managementAction = null;
+  }
+}
+
+async function loadPeopleRoiWithSnapshotFirst(bypassCache = false) {
+  try {
+    const roi = await fetchPeopleRoiCockpit(state.filters);
+    state.data.peopleRoi = {
+      cockpit: roi.cockpit,
+      executiveAnswers: roi.executiveAnswers,
+      parecerFinal: roi.parecerFinal,
+      qa: roi.qa,
+      fromSnapshot: roi.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (roi.snapshot?.stale) {
+      postPeopleRoiRefresh(state.filters).catch((error) => {
+        console.warn("[peopleRoi] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[peopleRoi] falha ao carregar cockpit:", error);
+    state.data.peopleRoi = null;
+  }
 }
 
 async function loadCashFlowWithSnapshotFirst(bypassCache = false) {
@@ -975,6 +1457,46 @@ async function refreshAll(bypassCache = false) {
 
     if (state.view === "cashFlow") {
       await loadCashFlowWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "cashOperations") {
+      await loadCashOperationsWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "operatorPerformance") {
+      await loadOperatorPerformanceWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "peopleIntelligence") {
+      await loadPeopleIntelligenceWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "peopleRoi") {
+      await loadPeopleRoiWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "operationRoi") {
+      await loadOperationRoiWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "managementAction") {
+      await loadManagementActionWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "goalsCampaign") {
+      await loadGoalsCampaignWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "benchmark") {
+      await loadBenchmarkWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "executiveScorecard") {
+      await loadExecutiveScorecardWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "corporateHub") {
+      await loadCorporateHubWithSnapshotFirst(bypassCache);
     }
 
     if (state.view === "stock") {

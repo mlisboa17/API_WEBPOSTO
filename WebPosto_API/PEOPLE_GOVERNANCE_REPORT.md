@@ -1,0 +1,10 @@
+# PEOPLE GOVERNANCE — F04.4 · Agente 2
+
+| Banda | Qtd |
+|-------|-----|
+| EMBAIXADOR | 0 |
+| ALTA_PERFORMANCE | 3 |
+| OPERADOR_PADRAO | 0 |
+| EM_OBSERVACAO | 5 |
+| EM_RECUPERACAO | 0 |
+| CRITICO | 5 |

@@ -1,0 +1,1086 @@
+{
+  "data": {
+    "sprint": "F04.3",
+    "periodo": {
+      "dataInicial": "2026-06-01",
+      "dataFinal": "2026-06-07"
+    },
+    "elapsedMs": 70915.7,
+    "baseF042": {
+      "parecerFinal": "[PARECER FINAL: APROVADO PARA F04.3]",
+      "paridadeDelta": 0.0
+    },
+    "pdvProfitabilityEngine": {
+      "pdvs": [
+        {
+          "pdvCodigo": null,
+          "receitaBruta": 4639.61,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 4639.61,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 94,
+          "resultadoLiquido": 4639.61,
+          "riscoEconomico": 1.0,
+          "roi": 4639.61,
+          "monitoramentoPrioritario": false
+        },
+        {
+          "pdvCodigo": 56764,
+          "receitaBruta": 1057.26,
+          "destruicaoMargem": 10.3,
+          "margemOperacional": 1046.96,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0,
+          "sobras": 20.6,
+          "perdasCaixa": 20.6,
+          "quantidadeVendas": 68,
+          "resultadoLiquido": 1046.96,
+          "riscoEconomico": 10.3,
+          "roi": 101.65,
+          "monitoramentoPrioritario": false
+        },
+        {
+          "pdvCodigo": 54193,
+          "receitaBruta": 1139.53,
+          "destruicaoMargem": 959.22,
+          "margemOperacional": 180.31,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 479.61,
+          "sobras": 0,
+          "perdasCaixa": 479.61,
+          "quantidadeVendas": 38,
+          "resultadoLiquido": 180.31,
+          "riscoEconomico": 959.22,
+          "roi": 0.19,
+          "monitoramentoPrioritario": true
+        }
+      ],
+      "totalReceita": 6836.4
+    },
+    "shiftProfitabilityEngine": {
+      "turnos": [
+        {
+          "turno": "Turno ?",
+          "turnoCodigo": null,
+          "receitaBruta": 4639.61,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 4639.61,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 94,
+          "resultadoLiquido": 4639.61,
+          "riscoEconomico": 1.0,
+          "roi": 4639.61,
+          "incidenciaQuebraPct": null
+        },
+        {
+          "turno": "1º Turno",
+          "turnoCodigo": 1,
+          "receitaBruta": 2196.79,
+          "destruicaoMargem": 1533.8,
+          "margemOperacional": 662.99,
+          "cancelamentos": 0.0,
+          "faltas": 766.9,
+          "sobras": 0,
+          "perdasCaixa": 766.9,
+          "quantidadeVendas": 106,
+          "resultadoLiquido": 662.99,
+          "riscoEconomico": 1533.8,
+          "roi": 0.43,
+          "incidenciaQuebraPct": 100.0
+        }
+      ]
+    },
+    "operationMatrixEngine": {
+      "cells": [
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "receitaBruta": 1645.82,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 1645.82,
+          "resultadoLiquido": 1645.82,
+          "quantidadeVendas": 29,
+          "operationScore": 100.0,
+          "operationBand": "EXCELENTE",
+          "riscoEconomico": 1.0,
+          "roi": 1645.82
+        },
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "receitaBruta": 1208.05,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 1208.05,
+          "resultadoLiquido": 1208.05,
+          "quantidadeVendas": 20,
+          "operationScore": 80.05,
+          "operationBand": "EXCELENTE",
+          "riscoEconomico": 1.0,
+          "roi": 1208.05
+        },
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "receitaBruta": 555.34,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 555.34,
+          "resultadoLiquido": 555.34,
+          "quantidadeVendas": 9,
+          "operationScore": 50.3,
+          "operationBand": "ATENÇÃO",
+          "riscoEconomico": 1.0,
+          "roi": 555.34
+        },
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "receitaBruta": 1015.15,
+          "destruicaoMargem": 0.85,
+          "margemOperacional": 1014.3,
+          "resultadoLiquido": 1014.3,
+          "quantidadeVendas": 25,
+          "operationScore": 49.99,
+          "operationBand": "ATENÇÃO",
+          "riscoEconomico": 1.0,
+          "roi": 1014.3
+        },
+        {
+          "pdvCodigo": 56764,
+          "turno": "1º Turno",
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "receitaBruta": 1057.26,
+          "destruicaoMargem": 1.4,
+          "margemOperacional": 1055.86,
+          "resultadoLiquido": 1055.86,
+          "quantidadeVendas": 68,
+          "operationScore": 48.15,
+          "operationBand": "ATENÇÃO",
+          "riscoEconomico": 1.4,
+          "roi": 754.19
+        },
+        {
+          "pdvCodigo": 54193,
+          "turno": "1º Turno",
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "receitaBruta": 1139.53,
+          "destruicaoMargem": 504.54,
+          "margemOperacional": 634.99,
+          "resultadoLiquido": 634.99,
+          "quantidadeVendas": 38,
+          "operationScore": 41.2,
+          "operationBand": "ATENÇÃO",
+          "riscoEconomico": 504.54,
+          "roi": 1.26
+        },
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "receitaBruta": 120.0,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 120.0,
+          "resultadoLiquido": 120.0,
+          "quantidadeVendas": 2,
+          "operationScore": 30.47,
+          "operationBand": "CRÍTICO",
+          "riscoEconomico": 1.0,
+          "roi": 120.0
+        },
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "receitaBruta": 95.25,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 95.25,
+          "resultadoLiquido": 95.25,
+          "quantidadeVendas": 9,
+          "operationScore": 29.34,
+          "operationBand": "CRÍTICO",
+          "riscoEconomico": 1.0,
+          "roi": 95.25
+        }
+      ],
+      "bands": {
+        "EXCELENTE": 2,
+        "ATENÇÃO": 4,
+        "CRÍTICO": 2
+      }
+    },
+    "criticalPdvForensics": {
+      "15880": {
+        "pdvCodigo": 15880,
+        "receitaBruta": 0,
+        "destruicaoMargem": 0,
+        "resultadoLiquido": 0,
+        "fechamentos": 6,
+        "diferencaAcumulada": -309.85,
+        "operadores": [],
+        "turnoMaiorImpacto": {},
+        "driverScores": {
+          "PDV": 309.85,
+          "OPERADOR": 0,
+          "TURNO": 0.0,
+          "PROCESSO": 309.85
+        },
+        "diagnosticoPrincipal": "PDV",
+        "problemaEstrutural": true
+      },
+      "54193": {
+        "pdvCodigo": 54193,
+        "receitaBruta": 1139.53,
+        "destruicaoMargem": 959.22,
+        "resultadoLiquido": 180.31,
+        "fechamentos": 7,
+        "diferencaAcumulada": -479.61,
+        "operadores": [
+          {
+            "pdvCodigo": 54193,
+            "turno": "1º Turno",
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "receitaBruta": 1139.53,
+            "destruicaoMargem": 504.54,
+            "margemOperacional": 634.99,
+            "resultadoLiquido": 634.99,
+            "quantidadeVendas": 38,
+            "operationScore": 41.2,
+            "operationBand": "ATENÇÃO",
+            "riscoEconomico": 504.54,
+            "roi": 1.26
+          }
+        ],
+        "turnoMaiorImpacto": "1º Turno",
+        "driverScores": {
+          "PDV": 479.61,
+          "OPERADOR": 504.54,
+          "TURNO": 1533.8,
+          "PROCESSO": 0
+        },
+        "diagnosticoPrincipal": "TURNO",
+        "problemaEstrutural": false
+      }
+    },
+    "shiftRiskEngine": {
+      "turnos": [
+        {
+          "turno": "1º Turno",
+          "turnoCodigo": 1,
+          "receitaBruta": 2196.79,
+          "destruicaoMargem": 1533.8,
+          "margemOperacional": 662.99,
+          "cancelamentos": 0.0,
+          "faltas": 766.9,
+          "sobras": 0,
+          "perdasCaixa": 766.9,
+          "quantidadeVendas": 106,
+          "resultadoLiquido": 662.99,
+          "riscoEconomico": 1533.8,
+          "roi": 0.43,
+          "incidenciaQuebraPct": 100.0,
+          "shiftRiskScore": 35.66,
+          "shiftRiskBand": "BOM"
+        },
+        {
+          "turno": "Turno ?",
+          "turnoCodigo": null,
+          "receitaBruta": 4639.61,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 4639.61,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 94,
+          "resultadoLiquido": 4639.61,
+          "riscoEconomico": 1.0,
+          "roi": 4639.61,
+          "incidenciaQuebraPct": null,
+          "shiftRiskScore": 31.7,
+          "shiftRiskBand": "BOM"
+        }
+      ]
+    },
+    "profitabilityAttribution": {
+      "consolidado": {
+        "riscoOperador": 506.79,
+        "riscoPdv": 969.52,
+        "riscoTurno": 1533.8,
+        "riscoOperadorPct": 16.84,
+        "riscoPdvPct": 32.21,
+        "riscoTurnoPct": 50.95
+      },
+      "porPdv": [
+        {
+          "pdvCodigo": null,
+          "riscoOperador": 0,
+          "riscoPdv": 0,
+          "riscoTurno": 0,
+          "riscoProcesso": 0,
+          "riscoOperadorPct": 0.0,
+          "riscoPdvPct": 0.0,
+          "riscoTurnoPct": 0.0
+        },
+        {
+          "pdvCodigo": 56764,
+          "riscoOperador": 0,
+          "riscoPdv": 0,
+          "riscoTurno": 0,
+          "riscoProcesso": 0,
+          "riscoOperadorPct": 0.0,
+          "riscoPdvPct": 0.0,
+          "riscoTurnoPct": 0.0
+        },
+        {
+          "pdvCodigo": 54193,
+          "riscoOperador": 504.54,
+          "riscoPdv": 479.61,
+          "riscoTurno": 1533.8,
+          "riscoProcesso": 0,
+          "riscoOperadorPct": 20.04,
+          "riscoPdvPct": 19.05,
+          "riscoTurnoPct": 60.91
+        }
+      ]
+    },
+    "managementDecisionEngineV2": {
+      "decisions": [
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "operationBand": "EXCELENTE",
+          "operationScore": 100.0,
+          "managementActions": [
+            "TREINAR",
+            "AUDITAR"
+          ],
+          "primaryAction": "TREINAR",
+          "resultadoLiquido": 1645.82,
+          "roi": 1645.82
+        },
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "operationBand": "EXCELENTE",
+          "operationScore": 80.05,
+          "managementActions": [
+            "TREINAR",
+            "AUDITAR"
+          ],
+          "primaryAction": "TREINAR",
+          "resultadoLiquido": 1208.05,
+          "roi": 1208.05
+        },
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "operationBand": "ATENÇÃO",
+          "operationScore": 50.3,
+          "managementActions": [
+            "TREINAR",
+            "AUDITAR"
+          ],
+          "primaryAction": "TREINAR",
+          "resultadoLiquido": 555.34,
+          "roi": 555.34
+        },
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "operationBand": "ATENÇÃO",
+          "operationScore": 49.99,
+          "managementActions": [
+            "TREINAR",
+            "AUDITAR"
+          ],
+          "primaryAction": "TREINAR",
+          "resultadoLiquido": 1014.3,
+          "roi": 1014.3
+        },
+        {
+          "pdvCodigo": 56764,
+          "turno": "1º Turno",
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "operationBand": "ATENÇÃO",
+          "operationScore": 48.15,
+          "managementActions": [
+            "TREINAR",
+            "AUDITAR"
+          ],
+          "primaryAction": "TREINAR",
+          "resultadoLiquido": 1055.86,
+          "roi": 754.19
+        },
+        {
+          "pdvCodigo": 54193,
+          "turno": "1º Turno",
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "operationBand": "ATENÇÃO",
+          "operationScore": 41.2,
+          "managementActions": [
+            "REESTRUTURAR_PDV",
+            "TREINAR",
+            "AUDITAR"
+          ],
+          "primaryAction": "REESTRUTURAR_PDV",
+          "resultadoLiquido": 634.99,
+          "roi": 1.26
+        },
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "operationBand": "CRÍTICO",
+          "operationScore": 30.47,
+          "managementActions": [
+            "TREINAR",
+            "AUDITAR"
+          ],
+          "primaryAction": "TREINAR",
+          "resultadoLiquido": 120.0,
+          "roi": 120.0
+        },
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "operationBand": "CRÍTICO",
+          "operationScore": 29.34,
+          "managementActions": [
+            "TREINAR",
+            "AUDITAR"
+          ],
+          "primaryAction": "TREINAR",
+          "resultadoLiquido": 95.25,
+          "roi": 95.25
+        }
+      ]
+    },
+    "operationalRoiEngine": {
+      "combinacoes": [
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "receitaBruta": 4639.61,
+          "resultadoLiquido": 4638.76,
+          "riscoEconomico": 6.0,
+          "roi": 773.13,
+          "celulas": 6
+        },
+        {
+          "pdvCodigo": 56764,
+          "turno": "1º Turno",
+          "receitaBruta": 1057.26,
+          "resultadoLiquido": 1055.86,
+          "riscoEconomico": 1.4,
+          "roi": 754.19,
+          "celulas": 1
+        },
+        {
+          "pdvCodigo": 54193,
+          "turno": "1º Turno",
+          "receitaBruta": 1139.53,
+          "resultadoLiquido": 634.99,
+          "riscoEconomico": 504.54,
+          "roi": 1.26,
+          "celulas": 1
+        }
+      ],
+      "maiorRoi": {
+        "pdvCodigo": null,
+        "turno": "Turno ?",
+        "receitaBruta": 4639.61,
+        "resultadoLiquido": 4638.76,
+        "riscoEconomico": 6.0,
+        "roi": 773.13,
+        "celulas": 6
+      },
+      "menorRoi": {
+        "pdvCodigo": 54193,
+        "turno": "1º Turno",
+        "receitaBruta": 1139.53,
+        "resultadoLiquido": 634.99,
+        "riscoEconomico": 504.54,
+        "roi": 1.26,
+        "celulas": 1
+      }
+    },
+    "cockpit": {
+      "topPdvs": [
+        {
+          "pdvCodigo": null,
+          "receitaBruta": 4639.61,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 4639.61,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 94,
+          "resultadoLiquido": 4639.61,
+          "riscoEconomico": 1.0,
+          "roi": 4639.61,
+          "monitoramentoPrioritario": false
+        },
+        {
+          "pdvCodigo": 56764,
+          "receitaBruta": 1057.26,
+          "destruicaoMargem": 10.3,
+          "margemOperacional": 1046.96,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0,
+          "sobras": 20.6,
+          "perdasCaixa": 20.6,
+          "quantidadeVendas": 68,
+          "resultadoLiquido": 1046.96,
+          "riscoEconomico": 10.3,
+          "roi": 101.65,
+          "monitoramentoPrioritario": false
+        },
+        {
+          "pdvCodigo": 54193,
+          "receitaBruta": 1139.53,
+          "destruicaoMargem": 959.22,
+          "margemOperacional": 180.31,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 479.61,
+          "sobras": 0,
+          "perdasCaixa": 479.61,
+          "quantidadeVendas": 38,
+          "resultadoLiquido": 180.31,
+          "riscoEconomico": 959.22,
+          "roi": 0.19,
+          "monitoramentoPrioritario": true
+        }
+      ],
+      "topTurnos": [
+        {
+          "turno": "Turno ?",
+          "turnoCodigo": null,
+          "receitaBruta": 4639.61,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 4639.61,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 94,
+          "resultadoLiquido": 4639.61,
+          "riscoEconomico": 1.0,
+          "roi": 4639.61,
+          "incidenciaQuebraPct": null
+        },
+        {
+          "turno": "1º Turno",
+          "turnoCodigo": 1,
+          "receitaBruta": 2196.79,
+          "destruicaoMargem": 1533.8,
+          "margemOperacional": 662.99,
+          "cancelamentos": 0.0,
+          "faltas": 766.9,
+          "sobras": 0,
+          "perdasCaixa": 766.9,
+          "quantidadeVendas": 106,
+          "resultadoLiquido": 662.99,
+          "riscoEconomico": 1533.8,
+          "roi": 0.43,
+          "incidenciaQuebraPct": 100.0
+        }
+      ],
+      "topOperadores": [
+        {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "receitaBruta": 1645.82,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 1645.82,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 29,
+          "profitabilityScore": 92.5,
+          "profitabilityBand": "GERA_LUCRO",
+          "accountabilityScore": 50.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 1645.82,
+          "profitabilityAdjustedScore": 92.5
+        },
+        {
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "receitaBruta": 1208.05,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 1208.05,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 20,
+          "profitabilityScore": 77.87,
+          "profitabilityBand": "GERA_LUCRO",
+          "accountabilityScore": 50.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 1208.05,
+          "profitabilityAdjustedScore": 77.87
+        },
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "receitaBruta": 1057.26,
+          "destruicaoMargem": 1.4,
+          "margemOperacional": 1055.86,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0,
+          "sobras": 2.79,
+          "perdasCaixa": 2.79,
+          "quantidadeVendas": 68,
+          "profitabilityScore": 80.27,
+          "profitabilityBand": "GERA_LUCRO",
+          "accountabilityScore": 100.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 1055.86,
+          "profitabilityAdjustedScore": 80.27
+        },
+        {
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "receitaBruta": 1015.15,
+          "destruicaoMargem": 0.85,
+          "margemOperacional": 1014.3,
+          "descontos": 0.85,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 25,
+          "profitabilityScore": 65.39,
+          "profitabilityBand": "NEUTRO",
+          "accountabilityScore": 50.0,
+          "complianceScore": 60.0,
+          "resultadoLiquido": 1014.3,
+          "profitabilityAdjustedScore": 65.39
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "receitaBruta": 1139.53,
+          "destruicaoMargem": 504.54,
+          "margemOperacional": 634.99,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 252.27,
+          "sobras": 0.0,
+          "perdasCaixa": 252.27,
+          "quantidadeVendas": 38,
+          "profitabilityScore": 49.92,
+          "profitabilityBand": "NEUTRO",
+          "accountabilityScore": 30.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 634.99,
+          "profitabilityAdjustedScore": 51.48
+        },
+        {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "receitaBruta": 555.34,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 555.34,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 9,
+          "profitabilityScore": 56.06,
+          "profitabilityBand": "NEUTRO",
+          "accountabilityScore": 50.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 555.34,
+          "profitabilityAdjustedScore": 56.06
+        },
+        {
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "receitaBruta": 120.0,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 120.0,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 2,
+          "profitabilityScore": 41.51,
+          "profitabilityBand": "NEUTRO",
+          "accountabilityScore": 50.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 120.0,
+          "profitabilityAdjustedScore": 41.51
+        },
+        {
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "receitaBruta": 95.25,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 95.25,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 9,
+          "profitabilityScore": 40.68,
+          "profitabilityBand": "NEUTRO",
+          "accountabilityScore": 50.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 95.25,
+          "profitabilityAdjustedScore": 40.68
+        }
+      ],
+      "pdvsCriticos": [
+        {
+          "pdvCodigo": 54193,
+          "receitaBruta": 1139.53,
+          "destruicaoMargem": 959.22,
+          "margemOperacional": 180.31,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 479.61,
+          "sobras": 0,
+          "perdasCaixa": 479.61,
+          "quantidadeVendas": 38,
+          "resultadoLiquido": 180.31,
+          "riscoEconomico": 959.22,
+          "roi": 0.19,
+          "monitoramentoPrioritario": true
+        }
+      ],
+      "turnosCriticos": [],
+      "roiOperacional": [
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "receitaBruta": 4639.61,
+          "resultadoLiquido": 4638.76,
+          "riscoEconomico": 6.0,
+          "roi": 773.13,
+          "celulas": 6
+        },
+        {
+          "pdvCodigo": 56764,
+          "turno": "1º Turno",
+          "receitaBruta": 1057.26,
+          "resultadoLiquido": 1055.86,
+          "riscoEconomico": 1.4,
+          "roi": 754.19,
+          "celulas": 1
+        },
+        {
+          "pdvCodigo": 54193,
+          "turno": "1º Turno",
+          "receitaBruta": 1139.53,
+          "resultadoLiquido": 634.99,
+          "riscoEconomico": 504.54,
+          "roi": 1.26,
+          "celulas": 1
+        }
+      ]
+    },
+    "executiveAnswers": {
+      "1_pdvMaiorReceita": {
+        "pdvCodigo": null,
+        "receitaBruta": 4639.61,
+        "destruicaoMargem": 0.0,
+        "margemOperacional": 4639.61,
+        "descontos": 0.0,
+        "cancelamentos": 0.0,
+        "faltas": 0.0,
+        "sobras": 0.0,
+        "perdasCaixa": 0.0,
+        "quantidadeVendas": 94,
+        "resultadoLiquido": 4639.61,
+        "riscoEconomico": 1.0,
+        "roi": 4639.61,
+        "monitoramentoPrioritario": false
+      },
+      "2_pdvMaiorLucro": {
+        "pdvCodigo": null,
+        "receitaBruta": 4639.61,
+        "destruicaoMargem": 0.0,
+        "margemOperacional": 4639.61,
+        "descontos": 0.0,
+        "cancelamentos": 0.0,
+        "faltas": 0.0,
+        "sobras": 0.0,
+        "perdasCaixa": 0.0,
+        "quantidadeVendas": 94,
+        "resultadoLiquido": 4639.61,
+        "riscoEconomico": 1.0,
+        "roi": 4639.61,
+        "monitoramentoPrioritario": false
+      },
+      "3_pdvDestróiMargem": {
+        "pdvCodigo": 54193,
+        "receitaBruta": 1139.53,
+        "destruicaoMargem": 959.22,
+        "margemOperacional": 180.31,
+        "descontos": 0.0,
+        "cancelamentos": 0.0,
+        "faltas": 479.61,
+        "sobras": 0,
+        "perdasCaixa": 479.61,
+        "quantidadeVendas": 38,
+        "resultadoLiquido": 180.31,
+        "riscoEconomico": 959.22,
+        "roi": 0.19,
+        "monitoramentoPrioritario": true
+      },
+      "4_turnoMaiorReceita": {
+        "turno": "Turno ?",
+        "turnoCodigo": null,
+        "receitaBruta": 4639.61,
+        "destruicaoMargem": 0.0,
+        "margemOperacional": 4639.61,
+        "cancelamentos": 0.0,
+        "faltas": 0.0,
+        "sobras": 0.0,
+        "perdasCaixa": 0.0,
+        "quantidadeVendas": 94,
+        "resultadoLiquido": 4639.61,
+        "riscoEconomico": 1.0,
+        "roi": 4639.61,
+        "incidenciaQuebraPct": null
+      },
+      "5_turnoMaiorLucro": {
+        "turno": "Turno ?",
+        "turnoCodigo": null,
+        "receitaBruta": 4639.61,
+        "destruicaoMargem": 0.0,
+        "margemOperacional": 4639.61,
+        "cancelamentos": 0.0,
+        "faltas": 0.0,
+        "sobras": 0.0,
+        "perdasCaixa": 0.0,
+        "quantidadeVendas": 94,
+        "resultadoLiquido": 4639.61,
+        "riscoEconomico": 1.0,
+        "roi": 4639.61,
+        "incidenciaQuebraPct": null
+      },
+      "6_turnoMaiorPerdas": {
+        "turno": "1º Turno",
+        "turnoCodigo": 1,
+        "receitaBruta": 2196.79,
+        "destruicaoMargem": 1533.8,
+        "margemOperacional": 662.99,
+        "cancelamentos": 0.0,
+        "faltas": 766.9,
+        "sobras": 0,
+        "perdasCaixa": 766.9,
+        "quantidadeVendas": 106,
+        "resultadoLiquido": 662.99,
+        "riscoEconomico": 1533.8,
+        "roi": 0.43,
+        "incidenciaQuebraPct": 100.0
+      },
+      "7_maiorRoiCombinacao": {
+        "pdvCodigo": null,
+        "turno": "Turno ?",
+        "receitaBruta": 4639.61,
+        "resultadoLiquido": 4638.76,
+        "riscoEconomico": 6.0,
+        "roi": 773.13,
+        "celulas": 6
+      },
+      "8_menorRoiCombinacao": {
+        "pdvCodigo": 54193,
+        "turno": "1º Turno",
+        "receitaBruta": 1139.53,
+        "resultadoLiquido": 634.99,
+        "riscoEconomico": 504.54,
+        "roi": 1.26,
+        "celulas": 1
+      },
+      "9_problemaEstruturalPdvsCriticos": true,
+      "10_problemaOperadorVsContexto": "CONTEXTO",
+      "11_operadoresContextoRuim": [
+        {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "profitabilityScore": 80.27,
+          "profitabilityAdjustedScore": 80.27,
+          "profitabilityBand": "GERA_LUCRO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextRiskPenalty": 0.0,
+          "multiContextBonus": 0.0,
+          "resultadoLiquido": 1055.86
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "profitabilityScore": 49.92,
+          "profitabilityAdjustedScore": 51.48,
+          "profitabilityBand": "NEUTRO",
+          "contextClassification": "DEPENDENTE_DO_PDV",
+          "contextRiskPenalty": -3.11,
+          "multiContextBonus": 0.0,
+          "resultadoLiquido": 634.99
+        }
+      ],
+      "12_operadoresContextoBom": [],
+      "13_pdvIntervencao": [
+        {
+          "pdvCodigo": 54193,
+          "turno": "1º Turno",
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "operationBand": "ATENÇÃO",
+          "operationScore": 41.2,
+          "managementActions": [
+            "REESTRUTURAR_PDV",
+            "TREINAR",
+            "AUDITAR"
+          ],
+          "primaryAction": "REESTRUTURAR_PDV",
+          "resultadoLiquido": 634.99,
+          "roi": 1.26
+        }
+      ],
+      "14_turnoIntervencao": [],
+      "15_combinacaoAuditoria": [
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "operationBand": "EXCELENTE",
+          "operationScore": 100.0,
+          "managementActions": [
+            "TREINAR",
+            "AUDITAR"
+          ],
+          "primaryAction": "TREINAR",
+          "resultadoLiquido": 1645.82,
+          "roi": 1645.82
+        },
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "funcionarioCodigo": 163694,
+          "employeeName": "MARINALDO RIBEIRO DA SILVA",
+          "operationBand": "EXCELENTE",
+          "operationScore": 80.05,
+          "managementActions": [
+            "TREINAR",
+            "AUDITAR"
+          ],
+          "primaryAction": "TREINAR",
+          "resultadoLiquido": 1208.05,
+          "roi": 1208.05
+        },
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "operationBand": "ATENÇÃO",
+          "operationScore": 50.3,
+          "managementActions": [
+            "TREINAR",
+            "AUDITAR"
+          ],
+          "primaryAction": "TREINAR",
+          "resultadoLiquido": 555.34,
+          "roi": 555.34
+        },
+        {
+          "pdvCodigo": null,
+          "turno": "Turno ?",
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "operationBand": "ATENÇÃO",
+          "operationScore": 49.99,
+          "managementActions": [
+            "TREINAR",
+            "AUDITAR"
+          ],
+          "primaryAction": "TREINAR",
+          "resultadoLiquido": 1014.3,
+          "roi": 1014.3
+        },
+        {
+          "pdvCodigo": 56764,
+          "turno": "1º Turno",
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "operationBand": "ATENÇÃO",
+          "operationScore": 48.15,
+          "managementActions": [
+            "TREINAR",
+            "AUDITAR"
+          ],
+          "primaryAction": "TREINAR",
+          "resultadoLiquido": 1055.86,
+          "roi": 754.19
+        }
+      ],
+      "16_combinacaoPromocao": [],
+      "17_lucroTop5Pdvs": 5866.88,
+      "18_riscoPdvsCriticos": 959.22,
+      "19_decisoesOperacionaisAutomaticas": true,
+      "20_aprovadoF044": true,
+      "paridadeDelta": 0.0,
+      "paridadeReceitaPdv": 6836.4,
+      "paridadeReceitaConsolidada": 6836.4
+    },
+    "qa": {
+      "roiPdvOk": true,
+      "roiTurnoOk": true,
+      "attributionOk": true,
+      "cockpitOk": true,
+      "paridadeZero": true
+    },
+    "parecerFinal": "[PARECER FINAL: APROVADO PARA F04.4]"
+  },
+  "lastUpdated": "2026-06-10T18:47:36"
+}

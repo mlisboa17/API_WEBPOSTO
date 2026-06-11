@@ -673,6 +673,75 @@ tfoot td {
   color: #0c6a58;
 }
 
+.expense-nature-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.expense-nature-card {
+  border: 1px solid #e7ddcf;
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  background: #fff;
+}
+
+.expense-nature-card__label {
+  font-size: 0.75rem;
+  color: #6b6257;
+  margin-bottom: 0.35rem;
+}
+
+.expense-nature-card__valor {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1f1a14;
+}
+
+.expense-nature-card__meta {
+  font-size: 0.72rem;
+  color: #8a8175;
+  margin-top: 0.25rem;
+}
+
+.expense-mgmt-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.expense-mgmt-card {
+  border: 1px solid #d4e4f7;
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  background: #f8fbff;
+}
+
+.expense-mgmt-card--balance {
+  border-color: #c9b8e8;
+  background: #faf7ff;
+}
+
+.expense-mgmt-card__label {
+  font-size: 0.75rem;
+  color: #4a5568;
+  margin-bottom: 0.35rem;
+}
+
+.expense-mgmt-card__valor {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a365d;
+}
+
+.expense-mgmt-card__meta {
+  font-size: 0.72rem;
+  color: #718096;
+  margin-top: 0.25rem;
+}
+
 .field--empresa {
   grid-column: 1 / -1;
 }

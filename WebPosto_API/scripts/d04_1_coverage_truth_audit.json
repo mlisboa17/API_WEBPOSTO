@@ -1,0 +1,596 @@
+{
+  "sprint": "D04.1",
+  "windows": {
+    "7d": {
+      "window": "7d",
+      "buildMs": 9.2,
+      "executiveAnswers": {
+        "1_d04ContinuaValido": true,
+        "2_trust100Real": false,
+        "3_trust100ApenasTecnico": true,
+        "4_coberturaRealNegocio": 55.78,
+        "5_coberturaRealPessoas": 66.67,
+        "6_coberturaRealFinanceira": 33.33,
+        "7_coberturaRealOperacional": 58.33,
+        "8_coberturaRealPrestacao": 97.5,
+        "9_camposOcultos": [
+          "funcionarioNome",
+          "participacaoIndividual",
+          "produtividadeFuncionario",
+          "metaFuncionario",
+          "fundoCaixa",
+          "layoutOperacionalTurno",
+          "autorizacaoGerencial"
+        ],
+        "10_indicadoresInferidos": [
+          "participacaoIndividual",
+          "produtividadeFuncionario",
+          "fundoCaixa (rótulo UI)",
+          "growthScore (F04.7 proxy)",
+          "goalPercentual parcial"
+        ],
+        "11_indicadoresComprovados": [
+          "Cash paridade Δ=0",
+          "Receita operacional F04.3",
+          "Join venda-operador D01",
+          "Finance center despesas/títulos snapshot",
+          "Employee ledger F03.3"
+        ],
+        "12_indicadoresRebaixados": [
+          "People Coverage D04",
+          "Sales Coverage D04",
+          "Financial Coverage D04",
+          "Corporate Trust D04 (executivo)"
+        ],
+        "13_indicadoresBloqueados": [
+          "metaFuncionario / Metas operacionais",
+          "participacaoIndividual oficial UI"
+        ],
+        "14_corporateScoreConfiavel": false,
+        "15_executiveScoreConfiavel": false,
+        "16_peopleScoreConfiavel": false,
+        "17_logosEnxerga100Operacao": false,
+        "18_logosEnxerga100Pessoas": false,
+        "19_prontoDecisoesAutomatizadas": false,
+        "20_d04ConfirmadoOuSuperestimado": "SUPERESTIMADO",
+        "authorizedFiliais": [
+          11495,
+          5555
+        ]
+      },
+      "trustScoreChallenge": {
+        "d04TrustCorporativo": 100.0,
+        "trustTecnico": 100.0,
+        "trustTecnicoBand": "CONFIAVEL",
+        "trustNegocio": 55.78,
+        "trustNegocioBand": "NAO_CONFIAVEL",
+        "trustExecutivo": 33.33,
+        "trustExecutivoBand": "NAO_CONFIAVEL",
+        "gapTecnicoVsNegocio": 44.22,
+        "d04Trust100IsTechnicalOnly": true,
+        "formula": "Trust Executivo = min(Negócio, Prestação confiança, Pessoas real, Financeiro real, Operacional real)"
+      },
+      "qaCertification": {
+        "d04SuperestimouCobertura": true,
+        "classificacaoD04": "REFUTADO",
+        "d04ValidoCamadaTecnica": true,
+        "d04ValidoCamadaNegocio": false,
+        "certificacao": "PARCIALMENTE CONFIRMADO",
+        "evidenciasRefutacao": {
+          "gapTrustTecnicoNegocio": 44.22,
+          "camposSemOrigemApi": 4.0,
+          "prestacaoAtinge100": false,
+          "d04ProntoDecisoesAutomatizadas": true
+        }
+      },
+      "parecerFinal": "[PARECER FINAL: D04 SUPERESTIMOU A COBERTURA]",
+      "technicalCoverageAudit": {
+        "totalEndpoints": 39,
+        "endpointsCatalogClient": 29,
+        "endpointsConsumidos": 20,
+        "endpointsIgnorados": 19,
+        "http200": 24,
+        "http401": 14,
+        "consumptionPct": 51.28,
+        "technicalReachPct": 61.54,
+        "blocked401Pct": 35.9,
+        "evidence": [
+          "webposto_network_probe_result.json",
+          "d01_operational_join_probe.json",
+          "d02_hidden_nominal_layer.json"
+        ]
+      },
+      "businessCoverageAudit": {
+        "matrix": [
+          {
+            "dominio": "Prestação de Contas",
+            "negocio": "UI completa",
+            "api": "97.5% campos",
+            "coberturaPct": 97.5
+          },
+          {
+            "dominio": "Movimento Caixa",
+            "negocio": "Tipos UI",
+            "api": "Parcial/agregado",
+            "coberturaPct": 33.333333333333336
+          },
+          {
+            "dominio": "Operações PDV",
+            "negocio": "Turno/PDV/cancel",
+            "api": "Join transacional",
+            "coberturaPct": 58.333333333333336
+          },
+          {
+            "dominio": "Metas",
+            "negocio": "metaFuncionario UI",
+            "api": "GRUPO_META isolado",
+            "coberturaPct": 0.0
+          },
+          {
+            "dominio": "Produtividade",
+            "negocio": "Oficial UI",
+            "api": "Proxy inferido",
+            "coberturaPct": 50.0
+          },
+          {
+            "dominio": "Participação",
+            "negocio": "Oficial UI",
+            "api": "Calculável/inferido",
+            "coberturaPct": 50.0
+          }
+        ],
+        "f034bApiCoveragePct": 69.57,
+        "d01ReconstructionPct": 87.5,
+        "d02PrestacaoPct": 97.5,
+        "businessCoveragePct": 55.78,
+        "evidence": [
+          "d01",
+          "d02",
+          "f03_4b",
+          "D00 catalogs"
+        ]
+      },
+      "prestacaoGapAudit": {
+        "fields": [
+          {
+            "campo": "funcionarioNome",
+            "equivalenteApi": true,
+            "proxy": false,
+            "inferencia": false,
+            "naoExiste": true,
+            "origem": "/INTEGRACAO/FUNCIONARIO.nome"
+          },
+          {
+            "campo": "participacaoIndividual",
+            "equivalenteApi": false,
+            "proxy": true,
+            "inferencia": true,
+            "naoExiste": true,
+            "origem": "calculavel_venda"
+          },
+          {
+            "campo": "produtividadeFuncionario",
+            "equivalenteApi": false,
+            "proxy": true,
+            "inferencia": true,
+            "naoExiste": true,
+            "origem": "proxy_venda_abastecimento"
+          },
+          {
+            "campo": "metaFuncionario",
+            "equivalenteApi": false,
+            "proxy": false,
+            "inferencia": false,
+            "naoExiste": true,
+            "origem": "grupo_meta_isolado"
+          },
+          {
+            "campo": "fundoCaixa",
+            "equivalenteApi": true,
+            "proxy": true,
+            "inferencia": true,
+            "naoExiste": true,
+            "origem": "caixa_abertura_parcial"
+          }
+        ],
+        "exclusivoPrestacao": [
+          "metaFuncionario",
+          "layoutOperacionalTurno"
+        ],
+        "calculaveis": [
+          "participacaoIndividual",
+          "produtividadeFuncionario",
+          "fundoCaixa"
+        ],
+        "inferiveis": [
+          "participacaoIndividual",
+          "produtividadeFuncionario",
+          "fundoCaixa"
+        ],
+        "inexistentesApi": [
+          "metaFuncionario",
+          "layoutOperacionalTurno"
+        ],
+        "coberturaD02Pct": 97.5,
+        "atinge100": false,
+        "naoAtinge100": true,
+        "evidence": [
+          "d02_hidden_nominal_layer.json",
+          "f03_4b_prestacao_contas.json"
+        ]
+      },
+      "peopleCoverageChallenge": {
+        "d04ClaimPct": 100.0,
+        "d04ClaimMeaning": "100% dos operadores presentes nos snapshots F04.1/F04.2 — não 100% da equipe nem métricas gerenciais UI",
+        "funcionariosCatalogo": 84,
+        "coberturaTecnicaPct": 100.0,
+        "coberturaOperacionalPct": 66.67,
+        "coberturaGerencialPct": 33.33,
+        "coberturaRealPct": 66.67,
+        "deltaVsD04": 33.33,
+        "produtividadeOficialApi": false,
+        "participacaoOficialApi": false,
+        "metaOperacionalApi": false
+      },
+      "financialGapAudit": {
+        "d04ClaimPct": 100.0,
+        "d04ClaimMeaning": "100% dos 6 campos finance_center snapshot — não 100% dos movimentos UI",
+        "gaps": [
+          {
+            "item": "Carta Frete",
+            "endpoint": "CAIXA_APRESENTADO.cartaFrete*",
+            "ui": "partial",
+            "logos": "partial",
+            "coberturaPct": 50.0
+          },
+          {
+            "item": "Serviços",
+            "endpoint": "VENDA (não tipado)",
+            "ui": "none",
+            "logos": "none",
+            "coberturaPct": 0.0
+          },
+          {
+            "item": "Trocas",
+            "endpoint": "VENDA.troco apenas",
+            "ui": "none",
+            "logos": "none",
+            "coberturaPct": 0.0
+          },
+          {
+            "item": "Suprimentos",
+            "endpoint": "MOVIMENTO_CONTA",
+            "ui": "partial",
+            "logos": "partial",
+            "coberturaPct": 50.0
+          },
+          {
+            "item": "Movimentos manuais",
+            "endpoint": "CAIXA_APRESENTADO",
+            "ui": "partial",
+            "logos": "partial",
+            "coberturaPct": 50.0
+          },
+          {
+            "item": "Despesas não conciliadas",
+            "endpoint": "DESPESAS_REDE + F03.2",
+            "ui": "partial",
+            "logos": "partial",
+            "coberturaPct": 50.0
+          }
+        ],
+        "coberturaRealPct": 33.33,
+        "deltaVsD04": 66.67,
+        "dreValidacaoOk": true
+      },
+      "operationalGapAudit": {
+        "d04ClaimPct": 100.0,
+        "d04ClaimMeaning": "100% células F04.3 com operador — não 100% eventos PDV/LMC/autorização",
+        "gaps": [
+          {
+            "item": "Cancelamentos",
+            "fonte": "VENDA.cancelada + NFCE",
+            "ui": "partial",
+            "logos": "partial",
+            "coberturaPct": 50.0
+          },
+          {
+            "item": "Autorizações",
+            "fonte": "—",
+            "ui": "none",
+            "logos": "none",
+            "coberturaPct": 0.0
+          },
+          {
+            "item": "LMC",
+            "fonte": "CONSULTAR_LMC_REDE",
+            "ui": "partial",
+            "logos": "partial",
+            "coberturaPct": 50.0
+          },
+          {
+            "item": "Operações PDV",
+            "fonte": "VENDA+CAIXA",
+            "ui": "yes",
+            "logos": "yes",
+            "coberturaPct": 100.0
+          },
+          {
+            "item": "Movimentos não tipados",
+            "fonte": "CAIXA_APRESENTADO",
+            "ui": "partial",
+            "logos": "partial",
+            "coberturaPct": 50.0
+          },
+          {
+            "item": "Eventos de turno",
+            "fonte": "CAIXA.turno",
+            "ui": "yes",
+            "logos": "yes",
+            "coberturaPct": 100.0
+          }
+        ],
+        "coberturaRealPct": 58.33,
+        "deltaVsD04": 41.67,
+        "vendasComOperador": 8,
+        "totalCelulas": 8
+      },
+      "hiddenEndpointDiscovery": {
+        "neverConsumed": [
+          {
+            "endpoint": "ContaRede",
+            "path": "/INTEGRACAO/CONTA",
+            "httpStatus": 200,
+            "registros": 17
+          },
+          {
+            "endpoint": "Produto",
+            "path": "/INTEGRACAO/PRODUTO",
+            "httpStatus": 200,
+            "registros": 200
+          },
+          {
+            "endpoint": "ProdutoEmpresa",
+            "path": "/INTEGRACAO/PRODUTO_EMPRESA",
+            "httpStatus": 200,
+            "registros": 200
+          },
+          {
+            "endpoint": "TanqueRede",
+            "path": "/INTEGRACAO/TANQUE",
+            "httpStatus": 200,
+            "registros": 6
+          },
+          {
+            "endpoint": "EstoquePeriodo",
+            "path": "/INTEGRACAO/ESTOQUE_PERIODO",
+            "httpStatus": 200,
+            "registros": 200
+          },
+          {
+            "endpoint": "LmcRede",
+            "path": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+            "httpStatus": 200,
+            "registros": 28
+          },
+          {
+            "endpoint": "PlanoContaGerencial",
+            "path": "/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+            "httpStatus": 200,
+            "registros": 200
+          }
+        ],
+        "partiallyConsumed": [
+          {
+            "endpoint": "VendasFormaPagamentoRede",
+            "path": "/INTEGRACAO/CONSULTAR_VENDA_FORMA_PAGAMENTO_REDE",
+            "httpStatus": 200,
+            "registros": 0
+          },
+          {
+            "endpoint": "AnaliseVendasCombustivel",
+            "path": "/INTEGRACAO/CONSULTAR_ANALISE_VENDAS_COMBUSTIVEL",
+            "httpStatus": 200,
+            "registros": 0
+          }
+        ],
+        "blocked401": [
+          {
+            "endpoint": "VendaItemRede",
+            "path": "/INTEGRACAO/CONSULTAR_VENDA_ITEM_REDE",
+            "httpStatus": 401,
+            "registros": 0
+          },
+          {
+            "endpoint": "ProdutoRede",
+            "path": "/INTEGRACAO/PRODUTO_REDE",
+            "httpStatus": 401,
+            "registros": 0
+          },
+          {
+            "endpoint": "ProdutoEmpresaRede",
+            "path": "/INTEGRACAO/PRODUTO_EMPRESA_REDE",
+            "httpStatus": 401,
+            "registros": 0
+          },
+          {
+            "endpoint": "ProdutoCombustivel",
+            "path": "/INTEGRACAO/PRODUTO_COMBUSTIVEL",
+            "httpStatus": 401,
+            "registros": 0
+          },
+          {
+            "endpoint": "LancamentoContabilItem",
+            "path": "/INTEGRACAO/LANCAMENTO_CONTABIL_ITEM",
+            "httpStatus": 401,
+            "registros": 0
+          },
+          {
+            "endpoint": "DuplicataRede",
+            "path": "/INTEGRACAO/DUPLICATA_REDE",
+            "httpStatus": 401,
+            "registros": 0
+          },
+          {
+            "endpoint": "ClienteRede",
+            "path": "/INTEGRACAO/CLIENTE_REDE",
+            "httpStatus": 401,
+            "registros": 0
+          },
+          {
+            "endpoint": "FornecedorRede",
+            "path": "/INTEGRACAO/FORNECEDOR_REDE",
+            "httpStatus": 401,
+            "registros": 0
+          },
+          {
+            "endpoint": "CentroCustoRede",
+            "path": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+            "httpStatus": 401,
+            "registros": 0
+          },
+          {
+            "endpoint": "FuncionarioRede",
+            "path": "/INTEGRACAO/FUNCIONARIO_REDE",
+            "httpStatus": 401,
+            "registros": 0
+          },
+          {
+            "endpoint": "BombaRede",
+            "path": "/INTEGRACAO/BOMBA_REDE",
+            "httpStatus": 401,
+            "registros": 0
+          },
+          {
+            "endpoint": "BicoRede",
+            "path": "/INTEGRACAO/BICO_REDE",
+            "httpStatus": 401,
+            "registros": 0
+          },
+          {
+            "endpoint": "LmcRedeBico",
+            "path": "/INTEGRACAO/CONSULTAR_LMC_REDE_BICO",
+            "httpStatus": 401,
+            "registros": 0
+          },
+          {
+            "endpoint": "LmcRedeTanque",
+            "path": "/INTEGRACAO/CONSULTAR_LMC_REDE_TANQUE",
+            "httpStatus": 401,
+            "registros": 0
+          },
+          {
+            "endpoint": "ConsultarFuncionario",
+            "path": "/INTEGRACAO/CONSULTAR_FUNCIONARIO",
+            "httpStatus": 401,
+            "registros": 0,
+            "source": "D02"
+          }
+        ],
+        "strategicPotential": [
+          {
+            "endpoint": "LancamentoContabil",
+            "path": "/INTEGRACAO/LANCAMENTO_CONTABIL",
+            "httpStatus": 200,
+            "registros": 0
+          },
+          {
+            "endpoint": "DRE",
+            "path": "/INTEGRACAO/DRE",
+            "httpStatus": 200,
+            "registros": 0
+          }
+        ],
+        "totals": {
+          "neverConsumed": 7,
+          "partiallyConsumed": 2,
+          "blocked401": 20,
+          "strategicPotential": 2
+        },
+        "evidence": [
+          "D00 webposto_network_probe",
+          "D01",
+          "D02"
+        ]
+      },
+      "oQueSabemos": {
+        "snapshotsHomologados": "Paridade Δ=0 · joins D01 comprovados · finance/cash/vendas nos snapshots",
+        "limites": "Trust D04 mede completude do pipeline capturado, não universo UI WebPosto"
+      },
+      "oQueAchamosQueSabemos": {
+        "people100": "Operadores no snapshot F04 — não equipe completa nem métricas gerenciais UI",
+        "prestacao975": "Campos mapeados — 2 exclusivos UI sem API · 3 inferidos"
+      },
+      "oQueNaoSabemos": {
+        "autorizacaoGerencial": "Sem endpoint token",
+        "lmcDetalhe": "LMC rede parcial/bloqueado",
+        "metaFuncionarioTurno": "GRUPO_META sem vínculo turno oficial",
+        "redeCompleta": "Escopo limitado filiais 11495/5555"
+      }
+    }
+  },
+  "executiveAnswers": {
+    "1_d04ContinuaValido": true,
+    "2_trust100Real": false,
+    "3_trust100ApenasTecnico": true,
+    "4_coberturaRealNegocio": 55.78,
+    "5_coberturaRealPessoas": 66.67,
+    "6_coberturaRealFinanceira": 33.33,
+    "7_coberturaRealOperacional": 58.33,
+    "8_coberturaRealPrestacao": 97.5,
+    "9_camposOcultos": [
+      "funcionarioNome",
+      "participacaoIndividual",
+      "produtividadeFuncionario",
+      "metaFuncionario",
+      "fundoCaixa",
+      "layoutOperacionalTurno",
+      "autorizacaoGerencial"
+    ],
+    "10_indicadoresInferidos": [
+      "participacaoIndividual",
+      "produtividadeFuncionario",
+      "fundoCaixa (rótulo UI)",
+      "growthScore (F04.7 proxy)",
+      "goalPercentual parcial"
+    ],
+    "11_indicadoresComprovados": [
+      "Cash paridade Δ=0",
+      "Receita operacional F04.3",
+      "Join venda-operador D01",
+      "Finance center despesas/títulos snapshot",
+      "Employee ledger F03.3"
+    ],
+    "12_indicadoresRebaixados": [
+      "People Coverage D04",
+      "Sales Coverage D04",
+      "Financial Coverage D04",
+      "Corporate Trust D04 (executivo)"
+    ],
+    "13_indicadoresBloqueados": [
+      "metaFuncionario / Metas operacionais",
+      "participacaoIndividual oficial UI"
+    ],
+    "14_corporateScoreConfiavel": false,
+    "15_executiveScoreConfiavel": false,
+    "16_peopleScoreConfiavel": false,
+    "17_logosEnxerga100Operacao": false,
+    "18_logosEnxerga100Pessoas": false,
+    "19_prontoDecisoesAutomatizadas": false,
+    "20_d04ConfirmadoOuSuperestimado": "SUPERESTIMADO",
+    "authorizedFiliais": [
+      11495,
+      5555
+    ]
+  },
+  "parecerFinal": "[PARECER FINAL: D04 SUPERESTIMOU A COBERTURA]",
+  "acceptance": {
+    "fonteWebPosto": false,
+    "adversarial": true,
+    "d04BaselineLoaded": true,
+    "gapTecnicoNegocioMin15": true,
+    "d04Superestimou": true,
+    "trustExecutivoMin75": false,
+    "respostas20": true
+  }
+}

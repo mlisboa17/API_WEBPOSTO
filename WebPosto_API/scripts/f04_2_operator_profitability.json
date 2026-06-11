@@ -1,0 +1,1223 @@
+{
+  "sprint": "F04.2",
+  "windows": {
+    "7d": {
+      "window": "7d",
+      "periodo": {
+        "inicio": "2026-06-01",
+        "fim": "2026-06-07"
+      },
+      "buildMs": 63132.0,
+      "executiveAnswers": {
+        "1_maiorReceita": {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "receitaBruta": 1645.82,
+          "receitaCombustivel": 721.0,
+          "receitaConveniencia": 7.0,
+          "ticketMedio": 56.75,
+          "volumeFinanceiro": 1645.82,
+          "quantidadeVendas": 29
+        },
+        "2_maiorMargem": {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "receitaBruta": 1645.82,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 1645.82,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 29,
+          "profitabilityScore": 92.5,
+          "profitabilityBand": "GERA_LUCRO",
+          "accountabilityScore": 50.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 1645.82,
+          "profitabilityAdjustedScore": 92.5
+        },
+        "3_destróiMargem": {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "receitaBruta": 1139.53,
+          "destruicaoMargem": 504.54,
+          "margemOperacional": 634.99,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 252.27,
+          "sobras": 0.0,
+          "perdasCaixa": 252.27,
+          "quantidadeVendas": 38,
+          "profitabilityScore": 49.92,
+          "profitabilityBand": "NEUTRO",
+          "accountabilityScore": 30.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 634.99,
+          "profitabilityAdjustedScore": 51.48
+        },
+        "4_maisDescontos": {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "receitaBruta": 1139.53,
+          "destruicaoMargem": 504.54,
+          "margemOperacional": 634.99,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 252.27,
+          "sobras": 0.0,
+          "perdasCaixa": 252.27,
+          "quantidadeVendas": 38,
+          "profitabilityScore": 49.92,
+          "profitabilityBand": "NEUTRO",
+          "accountabilityScore": 30.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 634.99,
+          "profitabilityAdjustedScore": 51.48
+        },
+        "5_maiorProfitabilityScore": {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "receitaBruta": 1645.82,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 1645.82,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 29,
+          "profitabilityScore": 92.5,
+          "profitabilityBand": "GERA_LUCRO",
+          "accountabilityScore": 50.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 1645.82,
+          "profitabilityAdjustedScore": 92.5
+        },
+        "6_menorProfitabilityScore": {
+          "funcionarioCodigo": 249526,
+          "employeeName": "THACIANNA RIBEIRO DA SILVA",
+          "receitaBruta": 95.25,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 95.25,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 9,
+          "profitabilityScore": 40.68,
+          "profitabilityBand": "NEUTRO",
+          "accountabilityScore": 50.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 95.25,
+          "profitabilityAdjustedScore": 40.68
+        },
+        "7_maiorRoi": {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "receitaBruta": 1645.82,
+          "resultadoLiquido": 1645.82,
+          "riscoEconomico": 1.0,
+          "roi": 1645.82,
+          "roiPct": 100.0,
+          "retornoPorVenda": 56.75,
+          "profitabilityScore": 92.5,
+          "profitabilityBand": "GERA_LUCRO"
+        },
+        "8_menorRoi": {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "receitaBruta": 1139.53,
+          "resultadoLiquido": 634.99,
+          "riscoEconomico": 504.54,
+          "roi": 1.26,
+          "roiPct": 55.72,
+          "retornoPorVenda": 16.71,
+          "profitabilityScore": 49.92,
+          "profitabilityBand": "NEUTRO"
+        },
+        "9_merecePromocao": [
+          {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "managementActions": [
+              "PROMOVER",
+              "BONIFICAR",
+              "TREINAR"
+            ],
+            "primaryAction": "PROMOVER",
+            "profitabilityScore": 80.27,
+            "profitabilityBand": "GERA_LUCRO",
+            "roi": 754.19,
+            "resultadoLiquido": 1055.86
+          }
+        ],
+        "10_mereceBonus": [
+          {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "managementActions": [
+              "PROMOVER",
+              "BONIFICAR",
+              "TREINAR"
+            ],
+            "primaryAction": "PROMOVER",
+            "profitabilityScore": 80.27,
+            "profitabilityBand": "GERA_LUCRO",
+            "roi": 754.19,
+            "resultadoLiquido": 1055.86
+          }
+        ],
+        "11_mereceTreinamento": [
+          {
+            "funcionarioCodigo": 251934,
+            "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "managementActions": [
+              "TREINAR",
+              "AUDITAR"
+            ],
+            "primaryAction": "TREINAR",
+            "profitabilityScore": 92.5,
+            "profitabilityBand": "GERA_LUCRO",
+            "roi": 1645.82,
+            "resultadoLiquido": 1645.82
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "managementActions": [
+              "PROMOVER",
+              "BONIFICAR",
+              "TREINAR"
+            ],
+            "primaryAction": "PROMOVER",
+            "profitabilityScore": 80.27,
+            "profitabilityBand": "GERA_LUCRO",
+            "roi": 754.19,
+            "resultadoLiquido": 1055.86
+          },
+          {
+            "funcionarioCodigo": 163694,
+            "employeeName": "MARINALDO RIBEIRO DA SILVA",
+            "managementActions": [
+              "TREINAR",
+              "MONITORAR",
+              "AUDITAR"
+            ],
+            "primaryAction": "TREINAR",
+            "profitabilityScore": 77.87,
+            "profitabilityBand": "GERA_LUCRO",
+            "roi": 1208.05,
+            "resultadoLiquido": 1208.05
+          },
+          {
+            "funcionarioCodigo": 80203,
+            "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+            "managementActions": [
+              "TREINAR",
+              "MONITORAR",
+              "AUDITAR"
+            ],
+            "primaryAction": "TREINAR",
+            "profitabilityScore": 65.39,
+            "profitabilityBand": "NEUTRO",
+            "roi": 1014.3,
+            "resultadoLiquido": 1014.3
+          },
+          {
+            "funcionarioCodigo": 252430,
+            "employeeName": "CLEYTON ALVES DA COSTA",
+            "managementActions": [
+              "TREINAR",
+              "MONITORAR",
+              "AUDITAR"
+            ],
+            "primaryAction": "TREINAR",
+            "profitabilityScore": 56.06,
+            "profitabilityBand": "NEUTRO",
+            "roi": 555.34,
+            "resultadoLiquido": 555.34
+          }
+        ],
+        "12_mereceAuditoria": [
+          {
+            "funcionarioCodigo": 251934,
+            "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "managementActions": [
+              "TREINAR",
+              "AUDITAR"
+            ],
+            "primaryAction": "TREINAR",
+            "profitabilityScore": 92.5,
+            "profitabilityBand": "GERA_LUCRO",
+            "roi": 1645.82,
+            "resultadoLiquido": 1645.82
+          },
+          {
+            "funcionarioCodigo": 163694,
+            "employeeName": "MARINALDO RIBEIRO DA SILVA",
+            "managementActions": [
+              "TREINAR",
+              "MONITORAR",
+              "AUDITAR"
+            ],
+            "primaryAction": "TREINAR",
+            "profitabilityScore": 77.87,
+            "profitabilityBand": "GERA_LUCRO",
+            "roi": 1208.05,
+            "resultadoLiquido": 1208.05
+          },
+          {
+            "funcionarioCodigo": 80203,
+            "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+            "managementActions": [
+              "TREINAR",
+              "MONITORAR",
+              "AUDITAR"
+            ],
+            "primaryAction": "TREINAR",
+            "profitabilityScore": 65.39,
+            "profitabilityBand": "NEUTRO",
+            "roi": 1014.3,
+            "resultadoLiquido": 1014.3
+          },
+          {
+            "funcionarioCodigo": 252430,
+            "employeeName": "CLEYTON ALVES DA COSTA",
+            "managementActions": [
+              "TREINAR",
+              "MONITORAR",
+              "AUDITAR"
+            ],
+            "primaryAction": "TREINAR",
+            "profitabilityScore": 56.06,
+            "profitabilityBand": "NEUTRO",
+            "roi": 555.34,
+            "resultadoLiquido": 555.34
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "managementActions": [
+              "TREINAR",
+              "AUDITAR"
+            ],
+            "primaryAction": "TREINAR",
+            "profitabilityScore": 49.92,
+            "profitabilityBand": "NEUTRO",
+            "roi": 1.26,
+            "resultadoLiquido": 634.99
+          }
+        ],
+        "13_lucroTop10": 6329.61,
+        "14_riscoCriticos": 0,
+        "15_melhorRetornoPorVenda": {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "receitaBruta": 555.34,
+          "resultadoLiquido": 555.34,
+          "riscoEconomico": 1.0,
+          "roi": 555.34,
+          "roiPct": 100.0,
+          "retornoPorVenda": 61.7,
+          "profitabilityScore": 56.06,
+          "profitabilityBand": "NEUTRO"
+        },
+        "16_melhorRetornoPdvCritico": [
+          {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "profitabilityScore": 80.27,
+            "profitabilityAdjustedScore": 80.27,
+            "profitabilityBand": "GERA_LUCRO",
+            "contextClassification": "DEPENDENTE_DO_PDV",
+            "contextRiskPenalty": 0.0,
+            "multiContextBonus": 0.0,
+            "resultadoLiquido": 1055.86
+          }
+        ],
+        "17_destróiValorEconomico": {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "receitaBruta": 1139.53,
+          "destruicaoMargem": 504.54,
+          "margemOperacional": 634.99,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 252.27,
+          "sobras": 0.0,
+          "perdasCaixa": 252.27,
+          "quantidadeVendas": 38,
+          "profitabilityScore": 49.92,
+          "profitabilityBand": "NEUTRO",
+          "accountabilityScore": 30.0,
+          "complianceScore": 100.0,
+          "resultadoLiquido": 634.99,
+          "profitabilityAdjustedScore": 51.48
+        },
+        "18_gestaoMeritocratica": true,
+        "19_remuneracaoVariavel": true,
+        "20_aprovadoF043": true,
+        "paridadeDelta": 0.0,
+        "paridadeReceitaOperador": 6836.4,
+        "paridadeReceitaConsolidada": 6836.4
+      },
+      "qa": {
+        "profitabilityScoreOk": true,
+        "roiOk": true,
+        "managementActionsOk": true,
+        "cockpitOk": true,
+        "paridadeZero": true
+      },
+      "parecerFinal": "[PARECER FINAL: APROVADO PARA F04.3]",
+      "paridadeDelta": 0.0,
+      "paridadeOk": false,
+      "paridadeReceitaOperador": 6836.4,
+      "paridadeReceitaConsolidada": 6836.4,
+      "profitabilityBands": {
+        "GERA_LUCRO": 3,
+        "NEUTRO": 5
+      },
+      "cockpit": {
+        "topRoi": [
+          {
+            "funcionarioCodigo": 251934,
+            "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "receitaBruta": 1645.82,
+            "resultadoLiquido": 1645.82,
+            "riscoEconomico": 1.0,
+            "roi": 1645.82,
+            "roiPct": 100.0,
+            "retornoPorVenda": 56.75,
+            "profitabilityScore": 92.5,
+            "profitabilityBand": "GERA_LUCRO"
+          },
+          {
+            "funcionarioCodigo": 163694,
+            "employeeName": "MARINALDO RIBEIRO DA SILVA",
+            "receitaBruta": 1208.05,
+            "resultadoLiquido": 1208.05,
+            "riscoEconomico": 1.0,
+            "roi": 1208.05,
+            "roiPct": 100.0,
+            "retornoPorVenda": 60.4,
+            "profitabilityScore": 77.87,
+            "profitabilityBand": "GERA_LUCRO"
+          },
+          {
+            "funcionarioCodigo": 80203,
+            "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+            "receitaBruta": 1015.15,
+            "resultadoLiquido": 1014.3,
+            "riscoEconomico": 1.0,
+            "roi": 1014.3,
+            "roiPct": 99.92,
+            "retornoPorVenda": 40.57,
+            "profitabilityScore": 65.39,
+            "profitabilityBand": "NEUTRO"
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "receitaBruta": 1057.26,
+            "resultadoLiquido": 1055.86,
+            "riscoEconomico": 1.4,
+            "roi": 754.19,
+            "roiPct": 99.87,
+            "retornoPorVenda": 15.53,
+            "profitabilityScore": 80.27,
+            "profitabilityBand": "GERA_LUCRO"
+          },
+          {
+            "funcionarioCodigo": 252430,
+            "employeeName": "CLEYTON ALVES DA COSTA",
+            "receitaBruta": 555.34,
+            "resultadoLiquido": 555.34,
+            "riscoEconomico": 1.0,
+            "roi": 555.34,
+            "roiPct": 100.0,
+            "retornoPorVenda": 61.7,
+            "profitabilityScore": 56.06,
+            "profitabilityBand": "NEUTRO"
+          },
+          {
+            "funcionarioCodigo": 63048,
+            "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+            "receitaBruta": 120.0,
+            "resultadoLiquido": 120.0,
+            "riscoEconomico": 1.0,
+            "roi": 120.0,
+            "roiPct": 100.0,
+            "retornoPorVenda": 60.0,
+            "profitabilityScore": 41.51,
+            "profitabilityBand": "NEUTRO"
+          },
+          {
+            "funcionarioCodigo": 249526,
+            "employeeName": "THACIANNA RIBEIRO DA SILVA",
+            "receitaBruta": 95.25,
+            "resultadoLiquido": 95.25,
+            "riscoEconomico": 1.0,
+            "roi": 95.25,
+            "roiPct": 100.0,
+            "retornoPorVenda": 10.58,
+            "profitabilityScore": 40.68,
+            "profitabilityBand": "NEUTRO"
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "receitaBruta": 1139.53,
+            "resultadoLiquido": 634.99,
+            "riscoEconomico": 504.54,
+            "roi": 1.26,
+            "roiPct": 55.72,
+            "retornoPorVenda": 16.71,
+            "profitabilityScore": 49.92,
+            "profitabilityBand": "NEUTRO"
+          }
+        ],
+        "topLucro": [
+          {
+            "funcionarioCodigo": 251934,
+            "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "receitaBruta": 1645.82,
+            "destruicaoMargem": 0.0,
+            "margemOperacional": 1645.82,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 0.0,
+            "sobras": 0.0,
+            "perdasCaixa": 0.0,
+            "quantidadeVendas": 29,
+            "profitabilityScore": 92.5,
+            "profitabilityBand": "GERA_LUCRO",
+            "accountabilityScore": 50.0,
+            "complianceScore": 100.0,
+            "resultadoLiquido": 1645.82,
+            "profitabilityAdjustedScore": 92.5
+          },
+          {
+            "funcionarioCodigo": 163694,
+            "employeeName": "MARINALDO RIBEIRO DA SILVA",
+            "receitaBruta": 1208.05,
+            "destruicaoMargem": 0.0,
+            "margemOperacional": 1208.05,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 0.0,
+            "sobras": 0.0,
+            "perdasCaixa": 0.0,
+            "quantidadeVendas": 20,
+            "profitabilityScore": 77.87,
+            "profitabilityBand": "GERA_LUCRO",
+            "accountabilityScore": 50.0,
+            "complianceScore": 100.0,
+            "resultadoLiquido": 1208.05,
+            "profitabilityAdjustedScore": 77.87
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "receitaBruta": 1057.26,
+            "destruicaoMargem": 1.4,
+            "margemOperacional": 1055.86,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 0,
+            "sobras": 2.79,
+            "perdasCaixa": 2.79,
+            "quantidadeVendas": 68,
+            "profitabilityScore": 80.27,
+            "profitabilityBand": "GERA_LUCRO",
+            "accountabilityScore": 100.0,
+            "complianceScore": 100.0,
+            "resultadoLiquido": 1055.86,
+            "profitabilityAdjustedScore": 80.27
+          },
+          {
+            "funcionarioCodigo": 80203,
+            "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+            "receitaBruta": 1015.15,
+            "destruicaoMargem": 0.85,
+            "margemOperacional": 1014.3,
+            "descontos": 0.85,
+            "cancelamentos": 0.0,
+            "faltas": 0.0,
+            "sobras": 0.0,
+            "perdasCaixa": 0.0,
+            "quantidadeVendas": 25,
+            "profitabilityScore": 65.39,
+            "profitabilityBand": "NEUTRO",
+            "accountabilityScore": 50.0,
+            "complianceScore": 60.0,
+            "resultadoLiquido": 1014.3,
+            "profitabilityAdjustedScore": 65.39
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "receitaBruta": 1139.53,
+            "destruicaoMargem": 504.54,
+            "margemOperacional": 634.99,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 252.27,
+            "sobras": 0.0,
+            "perdasCaixa": 252.27,
+            "quantidadeVendas": 38,
+            "profitabilityScore": 49.92,
+            "profitabilityBand": "NEUTRO",
+            "accountabilityScore": 30.0,
+            "complianceScore": 100.0,
+            "resultadoLiquido": 634.99,
+            "profitabilityAdjustedScore": 51.48
+          },
+          {
+            "funcionarioCodigo": 252430,
+            "employeeName": "CLEYTON ALVES DA COSTA",
+            "receitaBruta": 555.34,
+            "destruicaoMargem": 0.0,
+            "margemOperacional": 555.34,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 0.0,
+            "sobras": 0.0,
+            "perdasCaixa": 0.0,
+            "quantidadeVendas": 9,
+            "profitabilityScore": 56.06,
+            "profitabilityBand": "NEUTRO",
+            "accountabilityScore": 50.0,
+            "complianceScore": 100.0,
+            "resultadoLiquido": 555.34,
+            "profitabilityAdjustedScore": 56.06
+          },
+          {
+            "funcionarioCodigo": 63048,
+            "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+            "receitaBruta": 120.0,
+            "destruicaoMargem": 0.0,
+            "margemOperacional": 120.0,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 0.0,
+            "sobras": 0.0,
+            "perdasCaixa": 0.0,
+            "quantidadeVendas": 2,
+            "profitabilityScore": 41.51,
+            "profitabilityBand": "NEUTRO",
+            "accountabilityScore": 50.0,
+            "complianceScore": 100.0,
+            "resultadoLiquido": 120.0,
+            "profitabilityAdjustedScore": 41.51
+          },
+          {
+            "funcionarioCodigo": 249526,
+            "employeeName": "THACIANNA RIBEIRO DA SILVA",
+            "receitaBruta": 95.25,
+            "destruicaoMargem": 0.0,
+            "margemOperacional": 95.25,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 0.0,
+            "sobras": 0.0,
+            "perdasCaixa": 0.0,
+            "quantidadeVendas": 9,
+            "profitabilityScore": 40.68,
+            "profitabilityBand": "NEUTRO",
+            "accountabilityScore": 50.0,
+            "complianceScore": 100.0,
+            "resultadoLiquido": 95.25,
+            "profitabilityAdjustedScore": 40.68
+          }
+        ],
+        "topRisco": [
+          {
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "receitaBruta": 1139.53,
+            "destruicaoMargem": 504.54,
+            "margemOperacional": 634.99,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 252.27,
+            "sobras": 0.0,
+            "perdasCaixa": 252.27,
+            "quantidadeVendas": 38
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "receitaBruta": 1057.26,
+            "destruicaoMargem": 1.4,
+            "margemOperacional": 1055.86,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 0,
+            "sobras": 2.79,
+            "perdasCaixa": 2.79,
+            "quantidadeVendas": 68
+          },
+          {
+            "funcionarioCodigo": 80203,
+            "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+            "receitaBruta": 1015.15,
+            "destruicaoMargem": 0.85,
+            "margemOperacional": 1014.3,
+            "descontos": 0.85,
+            "cancelamentos": 0.0,
+            "faltas": 0.0,
+            "sobras": 0.0,
+            "perdasCaixa": 0.0,
+            "quantidadeVendas": 25
+          },
+          {
+            "funcionarioCodigo": 251934,
+            "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "receitaBruta": 1645.82,
+            "destruicaoMargem": 0.0,
+            "margemOperacional": 1645.82,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 0.0,
+            "sobras": 0.0,
+            "perdasCaixa": 0.0,
+            "quantidadeVendas": 29
+          },
+          {
+            "funcionarioCodigo": 163694,
+            "employeeName": "MARINALDO RIBEIRO DA SILVA",
+            "receitaBruta": 1208.05,
+            "destruicaoMargem": 0.0,
+            "margemOperacional": 1208.05,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 0.0,
+            "sobras": 0.0,
+            "perdasCaixa": 0.0,
+            "quantidadeVendas": 20
+          },
+          {
+            "funcionarioCodigo": 252430,
+            "employeeName": "CLEYTON ALVES DA COSTA",
+            "receitaBruta": 555.34,
+            "destruicaoMargem": 0.0,
+            "margemOperacional": 555.34,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 0.0,
+            "sobras": 0.0,
+            "perdasCaixa": 0.0,
+            "quantidadeVendas": 9
+          },
+          {
+            "funcionarioCodigo": 63048,
+            "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+            "receitaBruta": 120.0,
+            "destruicaoMargem": 0.0,
+            "margemOperacional": 120.0,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 0.0,
+            "sobras": 0.0,
+            "perdasCaixa": 0.0,
+            "quantidadeVendas": 2
+          },
+          {
+            "funcionarioCodigo": 249526,
+            "employeeName": "THACIANNA RIBEIRO DA SILVA",
+            "receitaBruta": 95.25,
+            "destruicaoMargem": 0.0,
+            "margemOperacional": 95.25,
+            "descontos": 0.0,
+            "cancelamentos": 0.0,
+            "faltas": 0.0,
+            "sobras": 0.0,
+            "perdasCaixa": 0.0,
+            "quantidadeVendas": 9
+          }
+        ],
+        "topBonus": [
+          {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "bonusCustoEstimado": 52.86,
+            "resultadoLiquido": 1055.86,
+            "bonusRoi": 19.97,
+            "bonusRecomendado": true,
+            "bonusEligibility": "Elegível"
+          }
+        ],
+        "topAuditoria": [
+          {
+            "funcionarioCodigo": 251934,
+            "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "managementActions": [
+              "TREINAR",
+              "AUDITAR"
+            ],
+            "primaryAction": "TREINAR",
+            "profitabilityScore": 92.5,
+            "profitabilityBand": "GERA_LUCRO",
+            "roi": 1645.82,
+            "resultadoLiquido": 1645.82
+          },
+          {
+            "funcionarioCodigo": 163694,
+            "employeeName": "MARINALDO RIBEIRO DA SILVA",
+            "managementActions": [
+              "TREINAR",
+              "MONITORAR",
+              "AUDITAR"
+            ],
+            "primaryAction": "TREINAR",
+            "profitabilityScore": 77.87,
+            "profitabilityBand": "GERA_LUCRO",
+            "roi": 1208.05,
+            "resultadoLiquido": 1208.05
+          },
+          {
+            "funcionarioCodigo": 80203,
+            "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+            "managementActions": [
+              "TREINAR",
+              "MONITORAR",
+              "AUDITAR"
+            ],
+            "primaryAction": "TREINAR",
+            "profitabilityScore": 65.39,
+            "profitabilityBand": "NEUTRO",
+            "roi": 1014.3,
+            "resultadoLiquido": 1014.3
+          },
+          {
+            "funcionarioCodigo": 252430,
+            "employeeName": "CLEYTON ALVES DA COSTA",
+            "managementActions": [
+              "TREINAR",
+              "MONITORAR",
+              "AUDITAR"
+            ],
+            "primaryAction": "TREINAR",
+            "profitabilityScore": 56.06,
+            "profitabilityBand": "NEUTRO",
+            "roi": 555.34,
+            "resultadoLiquido": 555.34
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "managementActions": [
+              "TREINAR",
+              "AUDITAR"
+            ],
+            "primaryAction": "TREINAR",
+            "profitabilityScore": 49.92,
+            "profitabilityBand": "NEUTRO",
+            "roi": 1.26,
+            "resultadoLiquido": 634.99
+          },
+          {
+            "funcionarioCodigo": 63048,
+            "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+            "managementActions": [
+              "TREINAR",
+              "MONITORAR",
+              "AUDITAR"
+            ],
+            "primaryAction": "TREINAR",
+            "profitabilityScore": 41.51,
+            "profitabilityBand": "NEUTRO",
+            "roi": 120.0,
+            "resultadoLiquido": 120.0
+          },
+          {
+            "funcionarioCodigo": 249526,
+            "employeeName": "THACIANNA RIBEIRO DA SILVA",
+            "managementActions": [
+              "TREINAR",
+              "MONITORAR",
+              "AUDITAR"
+            ],
+            "primaryAction": "TREINAR",
+            "profitabilityScore": 40.68,
+            "profitabilityBand": "NEUTRO",
+            "roi": 95.25,
+            "resultadoLiquido": 95.25
+          }
+        ],
+        "pdvsCriticos": [
+          15880,
+          54193
+        ]
+      }
+    }
+  },
+  "executiveAnswers": {
+    "1_maiorReceita": {
+      "funcionarioCodigo": 251934,
+      "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+      "receitaBruta": 1645.82,
+      "receitaCombustivel": 721.0,
+      "receitaConveniencia": 7.0,
+      "ticketMedio": 56.75,
+      "volumeFinanceiro": 1645.82,
+      "quantidadeVendas": 29
+    },
+    "2_maiorMargem": {
+      "funcionarioCodigo": 251934,
+      "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+      "receitaBruta": 1645.82,
+      "destruicaoMargem": 0.0,
+      "margemOperacional": 1645.82,
+      "descontos": 0.0,
+      "cancelamentos": 0.0,
+      "faltas": 0.0,
+      "sobras": 0.0,
+      "perdasCaixa": 0.0,
+      "quantidadeVendas": 29,
+      "profitabilityScore": 92.5,
+      "profitabilityBand": "GERA_LUCRO",
+      "accountabilityScore": 50.0,
+      "complianceScore": 100.0,
+      "resultadoLiquido": 1645.82,
+      "profitabilityAdjustedScore": 92.5
+    },
+    "3_destróiMargem": {
+      "funcionarioCodigo": 294273,
+      "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+      "receitaBruta": 1139.53,
+      "destruicaoMargem": 504.54,
+      "margemOperacional": 634.99,
+      "descontos": 0.0,
+      "cancelamentos": 0.0,
+      "faltas": 252.27,
+      "sobras": 0.0,
+      "perdasCaixa": 252.27,
+      "quantidadeVendas": 38,
+      "profitabilityScore": 49.92,
+      "profitabilityBand": "NEUTRO",
+      "accountabilityScore": 30.0,
+      "complianceScore": 100.0,
+      "resultadoLiquido": 634.99,
+      "profitabilityAdjustedScore": 51.48
+    },
+    "4_maisDescontos": {
+      "funcionarioCodigo": 294273,
+      "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+      "receitaBruta": 1139.53,
+      "destruicaoMargem": 504.54,
+      "margemOperacional": 634.99,
+      "descontos": 0.0,
+      "cancelamentos": 0.0,
+      "faltas": 252.27,
+      "sobras": 0.0,
+      "perdasCaixa": 252.27,
+      "quantidadeVendas": 38,
+      "profitabilityScore": 49.92,
+      "profitabilityBand": "NEUTRO",
+      "accountabilityScore": 30.0,
+      "complianceScore": 100.0,
+      "resultadoLiquido": 634.99,
+      "profitabilityAdjustedScore": 51.48
+    },
+    "5_maiorProfitabilityScore": {
+      "funcionarioCodigo": 251934,
+      "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+      "receitaBruta": 1645.82,
+      "destruicaoMargem": 0.0,
+      "margemOperacional": 1645.82,
+      "descontos": 0.0,
+      "cancelamentos": 0.0,
+      "faltas": 0.0,
+      "sobras": 0.0,
+      "perdasCaixa": 0.0,
+      "quantidadeVendas": 29,
+      "profitabilityScore": 92.5,
+      "profitabilityBand": "GERA_LUCRO",
+      "accountabilityScore": 50.0,
+      "complianceScore": 100.0,
+      "resultadoLiquido": 1645.82,
+      "profitabilityAdjustedScore": 92.5
+    },
+    "6_menorProfitabilityScore": {
+      "funcionarioCodigo": 249526,
+      "employeeName": "THACIANNA RIBEIRO DA SILVA",
+      "receitaBruta": 95.25,
+      "destruicaoMargem": 0.0,
+      "margemOperacional": 95.25,
+      "descontos": 0.0,
+      "cancelamentos": 0.0,
+      "faltas": 0.0,
+      "sobras": 0.0,
+      "perdasCaixa": 0.0,
+      "quantidadeVendas": 9,
+      "profitabilityScore": 40.68,
+      "profitabilityBand": "NEUTRO",
+      "accountabilityScore": 50.0,
+      "complianceScore": 100.0,
+      "resultadoLiquido": 95.25,
+      "profitabilityAdjustedScore": 40.68
+    },
+    "7_maiorRoi": {
+      "funcionarioCodigo": 251934,
+      "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+      "receitaBruta": 1645.82,
+      "resultadoLiquido": 1645.82,
+      "riscoEconomico": 1.0,
+      "roi": 1645.82,
+      "roiPct": 100.0,
+      "retornoPorVenda": 56.75,
+      "profitabilityScore": 92.5,
+      "profitabilityBand": "GERA_LUCRO"
+    },
+    "8_menorRoi": {
+      "funcionarioCodigo": 294273,
+      "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+      "receitaBruta": 1139.53,
+      "resultadoLiquido": 634.99,
+      "riscoEconomico": 504.54,
+      "roi": 1.26,
+      "roiPct": 55.72,
+      "retornoPorVenda": 16.71,
+      "profitabilityScore": 49.92,
+      "profitabilityBand": "NEUTRO"
+    },
+    "9_merecePromocao": [
+      {
+        "funcionarioCodigo": 178278,
+        "employeeName": "APOIO LOJA .",
+        "managementActions": [
+          "PROMOVER",
+          "BONIFICAR",
+          "TREINAR"
+        ],
+        "primaryAction": "PROMOVER",
+        "profitabilityScore": 80.27,
+        "profitabilityBand": "GERA_LUCRO",
+        "roi": 754.19,
+        "resultadoLiquido": 1055.86
+      }
+    ],
+    "10_mereceBonus": [
+      {
+        "funcionarioCodigo": 178278,
+        "employeeName": "APOIO LOJA .",
+        "managementActions": [
+          "PROMOVER",
+          "BONIFICAR",
+          "TREINAR"
+        ],
+        "primaryAction": "PROMOVER",
+        "profitabilityScore": 80.27,
+        "profitabilityBand": "GERA_LUCRO",
+        "roi": 754.19,
+        "resultadoLiquido": 1055.86
+      }
+    ],
+    "11_mereceTreinamento": [
+      {
+        "funcionarioCodigo": 251934,
+        "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+        "managementActions": [
+          "TREINAR",
+          "AUDITAR"
+        ],
+        "primaryAction": "TREINAR",
+        "profitabilityScore": 92.5,
+        "profitabilityBand": "GERA_LUCRO",
+        "roi": 1645.82,
+        "resultadoLiquido": 1645.82
+      },
+      {
+        "funcionarioCodigo": 178278,
+        "employeeName": "APOIO LOJA .",
+        "managementActions": [
+          "PROMOVER",
+          "BONIFICAR",
+          "TREINAR"
+        ],
+        "primaryAction": "PROMOVER",
+        "profitabilityScore": 80.27,
+        "profitabilityBand": "GERA_LUCRO",
+        "roi": 754.19,
+        "resultadoLiquido": 1055.86
+      },
+      {
+        "funcionarioCodigo": 163694,
+        "employeeName": "MARINALDO RIBEIRO DA SILVA",
+        "managementActions": [
+          "TREINAR",
+          "MONITORAR",
+          "AUDITAR"
+        ],
+        "primaryAction": "TREINAR",
+        "profitabilityScore": 77.87,
+        "profitabilityBand": "GERA_LUCRO",
+        "roi": 1208.05,
+        "resultadoLiquido": 1208.05
+      },
+      {
+        "funcionarioCodigo": 80203,
+        "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+        "managementActions": [
+          "TREINAR",
+          "MONITORAR",
+          "AUDITAR"
+        ],
+        "primaryAction": "TREINAR",
+        "profitabilityScore": 65.39,
+        "profitabilityBand": "NEUTRO",
+        "roi": 1014.3,
+        "resultadoLiquido": 1014.3
+      },
+      {
+        "funcionarioCodigo": 252430,
+        "employeeName": "CLEYTON ALVES DA COSTA",
+        "managementActions": [
+          "TREINAR",
+          "MONITORAR",
+          "AUDITAR"
+        ],
+        "primaryAction": "TREINAR",
+        "profitabilityScore": 56.06,
+        "profitabilityBand": "NEUTRO",
+        "roi": 555.34,
+        "resultadoLiquido": 555.34
+      }
+    ],
+    "12_mereceAuditoria": [
+      {
+        "funcionarioCodigo": 251934,
+        "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+        "managementActions": [
+          "TREINAR",
+          "AUDITAR"
+        ],
+        "primaryAction": "TREINAR",
+        "profitabilityScore": 92.5,
+        "profitabilityBand": "GERA_LUCRO",
+        "roi": 1645.82,
+        "resultadoLiquido": 1645.82
+      },
+      {
+        "funcionarioCodigo": 163694,
+        "employeeName": "MARINALDO RIBEIRO DA SILVA",
+        "managementActions": [
+          "TREINAR",
+          "MONITORAR",
+          "AUDITAR"
+        ],
+        "primaryAction": "TREINAR",
+        "profitabilityScore": 77.87,
+        "profitabilityBand": "GERA_LUCRO",
+        "roi": 1208.05,
+        "resultadoLiquido": 1208.05
+      },
+      {
+        "funcionarioCodigo": 80203,
+        "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+        "managementActions": [
+          "TREINAR",
+          "MONITORAR",
+          "AUDITAR"
+        ],
+        "primaryAction": "TREINAR",
+        "profitabilityScore": 65.39,
+        "profitabilityBand": "NEUTRO",
+        "roi": 1014.3,
+        "resultadoLiquido": 1014.3
+      },
+      {
+        "funcionarioCodigo": 252430,
+        "employeeName": "CLEYTON ALVES DA COSTA",
+        "managementActions": [
+          "TREINAR",
+          "MONITORAR",
+          "AUDITAR"
+        ],
+        "primaryAction": "TREINAR",
+        "profitabilityScore": 56.06,
+        "profitabilityBand": "NEUTRO",
+        "roi": 555.34,
+        "resultadoLiquido": 555.34
+      },
+      {
+        "funcionarioCodigo": 294273,
+        "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+        "managementActions": [
+          "TREINAR",
+          "AUDITAR"
+        ],
+        "primaryAction": "TREINAR",
+        "profitabilityScore": 49.92,
+        "profitabilityBand": "NEUTRO",
+        "roi": 1.26,
+        "resultadoLiquido": 634.99
+      }
+    ],
+    "13_lucroTop10": 6329.61,
+    "14_riscoCriticos": 0,
+    "15_melhorRetornoPorVenda": {
+      "funcionarioCodigo": 252430,
+      "employeeName": "CLEYTON ALVES DA COSTA",
+      "receitaBruta": 555.34,
+      "resultadoLiquido": 555.34,
+      "riscoEconomico": 1.0,
+      "roi": 555.34,
+      "roiPct": 100.0,
+      "retornoPorVenda": 61.7,
+      "profitabilityScore": 56.06,
+      "profitabilityBand": "NEUTRO"
+    },
+    "16_melhorRetornoPdvCritico": [
+      {
+        "funcionarioCodigo": 178278,
+        "employeeName": "APOIO LOJA .",
+        "profitabilityScore": 80.27,
+        "profitabilityAdjustedScore": 80.27,
+        "profitabilityBand": "GERA_LUCRO",
+        "contextClassification": "DEPENDENTE_DO_PDV",
+        "contextRiskPenalty": 0.0,
+        "multiContextBonus": 0.0,
+        "resultadoLiquido": 1055.86
+      }
+    ],
+    "17_destróiValorEconomico": {
+      "funcionarioCodigo": 294273,
+      "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+      "receitaBruta": 1139.53,
+      "destruicaoMargem": 504.54,
+      "margemOperacional": 634.99,
+      "descontos": 0.0,
+      "cancelamentos": 0.0,
+      "faltas": 252.27,
+      "sobras": 0.0,
+      "perdasCaixa": 252.27,
+      "quantidadeVendas": 38,
+      "profitabilityScore": 49.92,
+      "profitabilityBand": "NEUTRO",
+      "accountabilityScore": 30.0,
+      "complianceScore": 100.0,
+      "resultadoLiquido": 634.99,
+      "profitabilityAdjustedScore": 51.48
+    },
+    "18_gestaoMeritocratica": true,
+    "19_remuneracaoVariavel": true,
+    "20_aprovadoF043": true,
+    "paridadeDelta": 0.0,
+    "paridadeReceitaOperador": 6836.4,
+    "paridadeReceitaConsolidada": 6836.4
+  },
+  "parecerFinal": "[PARECER FINAL: APROVADO PARA F04.3]",
+  "acceptance": {
+    "profitabilityScore": true,
+    "roi": true,
+    "managementActions": true,
+    "cockpit": true,
+    "paridadeZero": true,
+    "aprovado": true
+  }
+}

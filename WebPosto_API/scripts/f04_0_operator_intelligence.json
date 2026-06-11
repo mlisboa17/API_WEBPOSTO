@@ -1,0 +1,787 @@
+{
+  "sprint": "F04.0",
+  "windows": {
+    "7d": {
+      "window": "7d",
+      "periodo": {
+        "inicio": "2026-06-01",
+        "fim": "2026-06-07"
+      },
+      "buildMs": 102214.2,
+      "dimEmployee": {
+        "total": 84,
+        "ativos": 43,
+        "nominalizacaoPct": 100.0
+      },
+      "salesOperators": 8,
+      "productivityBands": {
+        "NORMAL": 3,
+        "BAIXA": 3,
+        "CRITICA": 2
+      },
+      "discountTotal": 0.85,
+      "riskCriticos": 5,
+      "executiveAnswers": {
+        "1_operadoresAtivos": 43,
+        "2_quemMaisVende": {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "employeeReference": "00032",
+          "totalVendas": 1645.82,
+          "quantidadeVendas": 29,
+          "ticketMedio": 56.75,
+          "volumeCombustivel": 721.0,
+          "volumeConveniencia": 7.0,
+          "volumeFinanceiro": 1645.82,
+          "litrosCombustivel": 106.58
+        },
+        "3_quemVendeCombustivel": {
+          "funcionarioCodigo": 251934,
+          "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "litrosVendidos": 359.74,
+          "abastecimentos": 49,
+          "valorCombustivel": 2367.61,
+          "ticketCombustivel": 48.32
+        },
+        "4_quemVendeConveniencia": {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "employeeReference": "00017",
+          "totalVendas": 1057.26,
+          "quantidadeVendas": 68,
+          "ticketMedio": 15.55,
+          "volumeCombustivel": 0.0,
+          "volumeConveniencia": 1057.26,
+          "volumeFinanceiro": 1057.26,
+          "litrosCombustivel": 0.0
+        },
+        "5_quemMaisDescontos": {
+          "funcionarioCodigo": 80203,
+          "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+          "totalDesconto": 0.85
+        },
+        "6_maiorTicketMedio": {
+          "funcionarioCodigo": 252430,
+          "employeeName": "CLEYTON ALVES DA COSTA",
+          "employeeReference": "00033",
+          "totalVendas": 555.34,
+          "quantidadeVendas": 9,
+          "ticketMedio": 61.7,
+          "volumeCombustivel": 0.0,
+          "volumeConveniencia": 0.0,
+          "volumeFinanceiro": 555.34,
+          "litrosCombustivel": 0.0
+        },
+        "7_melhorProdutividade": {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "employeeReference": "00017",
+          "totalVendas": 1057.26,
+          "quantidadeVendas": 68,
+          "ticketMedio": 15.55,
+          "volumeCombustivel": 0.0,
+          "volumeConveniencia": 1057.26,
+          "volumeFinanceiro": 1057.26,
+          "litrosCombustivel": 0.0,
+          "abastecimentos": 0,
+          "itensVendidos": 124,
+          "productivityScore": 66.06,
+          "productivityBand": "NORMAL"
+        },
+        "8_maiorRiscoOperacional": {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "operatorRiskScore": 24.19,
+          "riskBand": "Critico",
+          "componentQuebraCaixa": 0.0,
+          "componentDescontos": 100.0,
+          "componentRecorrencia": 0.0,
+          "componentContexto": 20.94,
+          "monitoramentoPrioritario": true
+        },
+        "9_maiorSaldoDevedor": {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "saldoOperacional": -252.27,
+          "compensadoAutomatico": 0,
+          "diferencaAcumulada": -252.27,
+          "faltasProxy": -252.27,
+          "sobrasProxy": 0
+        },
+        "10_maiorSaldoCredor": {
+          "funcionarioCodigo": 276288,
+          "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "saldoOperacional": 17.81,
+          "compensadoAutomatico": 21.95,
+          "diferencaAcumulada": 17.81,
+          "faltasProxy": 0,
+          "sobrasProxy": 17.81
+        },
+        "11_maisFaltas": {
+          "funcionarioCodigo": 294273,
+          "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+          "saldoOperacional": -252.27,
+          "compensadoAutomatico": 0,
+          "diferencaAcumulada": -252.27,
+          "faltasProxy": -252.27,
+          "sobrasProxy": 0
+        },
+        "12_maisSobras": {
+          "funcionarioCodigo": 276288,
+          "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "saldoOperacional": 17.81,
+          "compensadoAutomatico": 21.95,
+          "diferencaAcumulada": 17.81,
+          "faltasProxy": 0,
+          "sobrasProxy": 17.81
+        },
+        "13_bomEmPdvCritico": [],
+        "14_dependenteContexto": [],
+        "15_operadorElite": {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "employeeReference": "00017",
+          "totalVendas": 1057.26,
+          "quantidadeVendas": 68,
+          "ticketMedio": 15.55,
+          "volumeCombustivel": 0.0,
+          "volumeConveniencia": 1057.26,
+          "volumeFinanceiro": 1057.26,
+          "litrosCombustivel": 0.0,
+          "abastecimentos": 0,
+          "itensVendidos": 124,
+          "productivityScore": 66.06,
+          "productivityBand": "NORMAL"
+        },
+        "16_operadorCritico": {
+          "funcionarioCodigo": 63048,
+          "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+          "employeeReference": "00005",
+          "totalVendas": 120.0,
+          "quantidadeVendas": 2,
+          "ticketMedio": 60.0,
+          "volumeCombustivel": 0.0,
+          "volumeConveniencia": 0.0,
+          "volumeFinanceiro": 120.0,
+          "litrosCombustivel": 0.0,
+          "abastecimentos": 8,
+          "itensVendidos": 0,
+          "productivityScore": 6.79,
+          "productivityBand": "CRITICA"
+        },
+        "17_operadoresEmRisco": 7,
+        "18_dinheiroOperadoresCriticos": 270.08,
+        "19_prontoGestaoPessoas": true,
+        "20_aprovadoF041": true,
+        "paridadeDelta": 0.0
+      },
+      "qa": {
+        "dimEmployeeOk": true,
+        "nominalizacaoCompleta": true,
+        "paridadeZero": true
+      },
+      "parecerFinal": "[PARECER FINAL: APROVADO PARA F04.1]",
+      "paridadeDelta": 0.0,
+      "paridadeOk": false,
+      "cockpit": {
+        "topOperadores": [
+          {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "employeeReference": "00017",
+            "totalVendas": 1057.26,
+            "quantidadeVendas": 68,
+            "ticketMedio": 15.55,
+            "volumeCombustivel": 0.0,
+            "volumeConveniencia": 1057.26,
+            "volumeFinanceiro": 1057.26,
+            "litrosCombustivel": 0.0,
+            "abastecimentos": 0,
+            "itensVendidos": 124,
+            "productivityScore": 66.06,
+            "productivityBand": "NORMAL"
+          },
+          {
+            "funcionarioCodigo": 251934,
+            "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "employeeReference": "00032",
+            "totalVendas": 1645.82,
+            "quantidadeVendas": 29,
+            "ticketMedio": 56.75,
+            "volumeCombustivel": 721.0,
+            "volumeConveniencia": 7.0,
+            "volumeFinanceiro": 1645.82,
+            "litrosCombustivel": 106.58,
+            "abastecimentos": 49,
+            "itensVendidos": 9,
+            "productivityScore": 64.25,
+            "productivityBand": "NORMAL"
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "employeeReference": "00044",
+            "totalVendas": 1139.53,
+            "quantidadeVendas": 38,
+            "ticketMedio": 29.99,
+            "volumeCombustivel": 1139.53,
+            "volumeConveniencia": 0.0,
+            "volumeFinanceiro": 1139.53,
+            "litrosCombustivel": 172.45,
+            "abastecimentos": 40,
+            "itensVendidos": 40,
+            "productivityScore": 60.93,
+            "productivityBand": "NORMAL"
+          },
+          {
+            "funcionarioCodigo": 163694,
+            "employeeName": "MARINALDO RIBEIRO DA SILVA",
+            "employeeReference": "00015",
+            "totalVendas": 1208.05,
+            "quantidadeVendas": 20,
+            "ticketMedio": 60.4,
+            "volumeCombustivel": 250.0,
+            "volumeConveniencia": 0.0,
+            "volumeFinanceiro": 1208.05,
+            "litrosCombustivel": 35.71,
+            "abastecimentos": 38,
+            "itensVendidos": 2,
+            "productivityScore": 46.88,
+            "productivityBand": "BAIXA"
+          },
+          {
+            "funcionarioCodigo": 80203,
+            "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+            "employeeReference": "00011",
+            "totalVendas": 1015.15,
+            "quantidadeVendas": 25,
+            "ticketMedio": 40.61,
+            "volumeCombustivel": 826.15,
+            "volumeConveniencia": 0.0,
+            "volumeFinanceiro": 1015.15,
+            "litrosCombustivel": 131.2,
+            "abastecimentos": 32,
+            "itensVendidos": 21,
+            "productivityScore": 46.16,
+            "productivityBand": "BAIXA"
+          },
+          {
+            "funcionarioCodigo": 252430,
+            "employeeName": "CLEYTON ALVES DA COSTA",
+            "employeeReference": "00033",
+            "totalVendas": 555.34,
+            "quantidadeVendas": 9,
+            "ticketMedio": 61.7,
+            "volumeCombustivel": 0.0,
+            "volumeConveniencia": 0.0,
+            "volumeFinanceiro": 555.34,
+            "litrosCombustivel": 0.0,
+            "abastecimentos": 33,
+            "itensVendidos": 0,
+            "productivityScore": 29.24,
+            "productivityBand": "BAIXA"
+          },
+          {
+            "funcionarioCodigo": 63048,
+            "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+            "employeeReference": "00005",
+            "totalVendas": 120.0,
+            "quantidadeVendas": 2,
+            "ticketMedio": 60.0,
+            "volumeCombustivel": 0.0,
+            "volumeConveniencia": 0.0,
+            "volumeFinanceiro": 120.0,
+            "litrosCombustivel": 0.0,
+            "abastecimentos": 8,
+            "itensVendidos": 0,
+            "productivityScore": 6.79,
+            "productivityBand": "CRITICA"
+          },
+          {
+            "funcionarioCodigo": 249526,
+            "employeeName": "THACIANNA RIBEIRO DA SILVA",
+            "employeeReference": "00031",
+            "totalVendas": 95.25,
+            "quantidadeVendas": 9,
+            "ticketMedio": 10.58,
+            "volumeCombustivel": 0.0,
+            "volumeConveniencia": 39.75,
+            "volumeFinanceiro": 95.25,
+            "litrosCombustivel": 0.0,
+            "abastecimentos": 0,
+            "itensVendidos": 4,
+            "productivityScore": 6.06,
+            "productivityBand": "CRITICA"
+          }
+        ],
+        "operadoresCriticos": [
+          {
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "operatorRiskScore": 24.19,
+            "riskBand": "Critico",
+            "componentQuebraCaixa": 0.0,
+            "componentDescontos": 100.0,
+            "componentRecorrencia": 0.0,
+            "componentContexto": 20.94,
+            "monitoramentoPrioritario": true
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "employeeName": "FABIANO RODRIGUES",
+            "operatorRiskScore": 31.85,
+            "riskBand": "Critico",
+            "componentQuebraCaixa": 14.47,
+            "componentDescontos": 100.0,
+            "componentRecorrencia": 0.0,
+            "componentContexto": 30.32,
+            "monitoramentoPrioritario": false
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "employeeName": "WILLY KLEBYSON DA SILVA",
+            "operatorRiskScore": 49.36,
+            "riskBand": "Critico",
+            "componentQuebraCaixa": 53.7,
+            "componentDescontos": 100.0,
+            "componentRecorrencia": 0.0,
+            "componentContexto": 39.39,
+            "monitoramentoPrioritario": false
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+            "operatorRiskScore": 50.55,
+            "riskBand": "Critico",
+            "componentQuebraCaixa": 56.18,
+            "componentDescontos": 100.0,
+            "componentRecorrencia": 0.0,
+            "componentContexto": 40.38,
+            "monitoramentoPrioritario": false
+          },
+          {
+            "funcionarioCodigo": 158924,
+            "employeeName": "JOÃO VICTOR APOIO",
+            "operatorRiskScore": 53.86,
+            "riskBand": "Critico",
+            "componentQuebraCaixa": 62.71,
+            "componentDescontos": 100.0,
+            "componentRecorrencia": 0.0,
+            "componentContexto": 43.86,
+            "monitoramentoPrioritario": false
+          }
+        ],
+        "vendas": [
+          {
+            "funcionarioCodigo": 251934,
+            "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "employeeReference": "00032",
+            "totalVendas": 1645.82,
+            "quantidadeVendas": 29,
+            "ticketMedio": 56.75,
+            "volumeCombustivel": 721.0,
+            "volumeConveniencia": 7.0,
+            "volumeFinanceiro": 1645.82,
+            "litrosCombustivel": 106.58
+          },
+          {
+            "funcionarioCodigo": 163694,
+            "employeeName": "MARINALDO RIBEIRO DA SILVA",
+            "employeeReference": "00015",
+            "totalVendas": 1208.05,
+            "quantidadeVendas": 20,
+            "ticketMedio": 60.4,
+            "volumeCombustivel": 250.0,
+            "volumeConveniencia": 0.0,
+            "volumeFinanceiro": 1208.05,
+            "litrosCombustivel": 35.71
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "employeeReference": "00044",
+            "totalVendas": 1139.53,
+            "quantidadeVendas": 38,
+            "ticketMedio": 29.99,
+            "volumeCombustivel": 1139.53,
+            "volumeConveniencia": 0.0,
+            "volumeFinanceiro": 1139.53,
+            "litrosCombustivel": 172.45
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "employeeReference": "00017",
+            "totalVendas": 1057.26,
+            "quantidadeVendas": 68,
+            "ticketMedio": 15.55,
+            "volumeCombustivel": 0.0,
+            "volumeConveniencia": 1057.26,
+            "volumeFinanceiro": 1057.26,
+            "litrosCombustivel": 0.0
+          },
+          {
+            "funcionarioCodigo": 80203,
+            "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+            "employeeReference": "00011",
+            "totalVendas": 1015.15,
+            "quantidadeVendas": 25,
+            "ticketMedio": 40.61,
+            "volumeCombustivel": 826.15,
+            "volumeConveniencia": 0.0,
+            "volumeFinanceiro": 1015.15,
+            "litrosCombustivel": 131.2
+          },
+          {
+            "funcionarioCodigo": 252430,
+            "employeeName": "CLEYTON ALVES DA COSTA",
+            "employeeReference": "00033",
+            "totalVendas": 555.34,
+            "quantidadeVendas": 9,
+            "ticketMedio": 61.7,
+            "volumeCombustivel": 0.0,
+            "volumeConveniencia": 0.0,
+            "volumeFinanceiro": 555.34,
+            "litrosCombustivel": 0.0
+          },
+          {
+            "funcionarioCodigo": 63048,
+            "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+            "employeeReference": "00005",
+            "totalVendas": 120.0,
+            "quantidadeVendas": 2,
+            "ticketMedio": 60.0,
+            "volumeCombustivel": 0.0,
+            "volumeConveniencia": 0.0,
+            "volumeFinanceiro": 120.0,
+            "litrosCombustivel": 0.0
+          },
+          {
+            "funcionarioCodigo": 249526,
+            "employeeName": "THACIANNA RIBEIRO DA SILVA",
+            "employeeReference": "00031",
+            "totalVendas": 95.25,
+            "quantidadeVendas": 9,
+            "ticketMedio": 10.58,
+            "volumeCombustivel": 0.0,
+            "volumeConveniencia": 39.75,
+            "volumeFinanceiro": 95.25,
+            "litrosCombustivel": 0.0
+          }
+        ],
+        "descontos": [
+          {
+            "funcionarioCodigo": 80203,
+            "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+            "totalDesconto": 0.85
+          }
+        ],
+        "risco": [
+          {
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "operatorRiskScore": 24.19,
+            "riskBand": "Critico",
+            "componentQuebraCaixa": 0.0,
+            "componentDescontos": 100.0,
+            "componentRecorrencia": 0.0,
+            "componentContexto": 20.94,
+            "monitoramentoPrioritario": true
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "employeeName": "FABIANO RODRIGUES",
+            "operatorRiskScore": 31.85,
+            "riskBand": "Critico",
+            "componentQuebraCaixa": 14.47,
+            "componentDescontos": 100.0,
+            "componentRecorrencia": 0.0,
+            "componentContexto": 30.32,
+            "monitoramentoPrioritario": false
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "employeeName": "WILLY KLEBYSON DA SILVA",
+            "operatorRiskScore": 49.36,
+            "riskBand": "Critico",
+            "componentQuebraCaixa": 53.7,
+            "componentDescontos": 100.0,
+            "componentRecorrencia": 0.0,
+            "componentContexto": 39.39,
+            "monitoramentoPrioritario": false
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+            "operatorRiskScore": 50.55,
+            "riskBand": "Critico",
+            "componentQuebraCaixa": 56.18,
+            "componentDescontos": 100.0,
+            "componentRecorrencia": 0.0,
+            "componentContexto": 40.38,
+            "monitoramentoPrioritario": false
+          },
+          {
+            "funcionarioCodigo": 158924,
+            "employeeName": "JOÃO VICTOR APOIO",
+            "operatorRiskScore": 53.86,
+            "riskBand": "Critico",
+            "componentQuebraCaixa": 62.71,
+            "componentDescontos": 100.0,
+            "componentRecorrencia": 0.0,
+            "componentContexto": 43.86,
+            "monitoramentoPrioritario": false
+          },
+          {
+            "funcionarioCodigo": 276288,
+            "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "operatorRiskScore": 69.36,
+            "riskBand": "Atencao",
+            "componentQuebraCaixa": 92.94,
+            "componentDescontos": 100.0,
+            "componentRecorrencia": 0.0,
+            "componentContexto": 60.92,
+            "monitoramentoPrioritario": true
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "operatorRiskScore": 71.19,
+            "riskBand": "Atencao",
+            "componentQuebraCaixa": 98.89,
+            "componentDescontos": 100.0,
+            "componentRecorrencia": 0.0,
+            "componentContexto": 58.16,
+            "monitoramentoPrioritario": false
+          }
+        ],
+        "accountability": [
+          {
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "saldoOperacional": -252.27,
+            "compensadoAutomatico": 0,
+            "diferencaAcumulada": -252.27,
+            "faltasProxy": -252.27,
+            "sobrasProxy": 0
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "employeeName": "FABIANO RODRIGUES",
+            "saldoOperacional": -215.77,
+            "compensadoAutomatico": 0,
+            "diferencaAcumulada": -215.77,
+            "faltasProxy": -215.77,
+            "sobrasProxy": 0
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "employeeName": "WILLY KLEBYSON DA SILVA",
+            "saldoOperacional": -116.8,
+            "compensadoAutomatico": 0,
+            "diferencaAcumulada": -116.8,
+            "faltasProxy": -116.8,
+            "sobrasProxy": 0
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+            "saldoOperacional": -110.54,
+            "compensadoAutomatico": 0,
+            "diferencaAcumulada": -110.54,
+            "faltasProxy": -110.54,
+            "sobrasProxy": 0
+          },
+          {
+            "funcionarioCodigo": 158924,
+            "employeeName": "JOÃO VICTOR APOIO",
+            "saldoOperacional": -94.08,
+            "compensadoAutomatico": 212.19,
+            "diferencaAcumulada": -94.08,
+            "faltasProxy": -94.08,
+            "sobrasProxy": 0
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "saldoOperacional": 2.79,
+            "compensadoAutomatico": 0,
+            "diferencaAcumulada": 2.79,
+            "faltasProxy": 0,
+            "sobrasProxy": 2.79
+          },
+          {
+            "funcionarioCodigo": 276288,
+            "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "saldoOperacional": 17.81,
+            "compensadoAutomatico": 21.95,
+            "diferencaAcumulada": 17.81,
+            "faltasProxy": 0,
+            "sobrasProxy": 17.81
+          }
+        ]
+      }
+    }
+  },
+  "executiveAnswers": {
+    "1_operadoresAtivos": 43,
+    "2_quemMaisVende": {
+      "funcionarioCodigo": 251934,
+      "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+      "employeeReference": "00032",
+      "totalVendas": 1645.82,
+      "quantidadeVendas": 29,
+      "ticketMedio": 56.75,
+      "volumeCombustivel": 721.0,
+      "volumeConveniencia": 7.0,
+      "volumeFinanceiro": 1645.82,
+      "litrosCombustivel": 106.58
+    },
+    "3_quemVendeCombustivel": {
+      "funcionarioCodigo": 251934,
+      "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+      "litrosVendidos": 359.74,
+      "abastecimentos": 49,
+      "valorCombustivel": 2367.61,
+      "ticketCombustivel": 48.32
+    },
+    "4_quemVendeConveniencia": {
+      "funcionarioCodigo": 178278,
+      "employeeName": "APOIO LOJA .",
+      "employeeReference": "00017",
+      "totalVendas": 1057.26,
+      "quantidadeVendas": 68,
+      "ticketMedio": 15.55,
+      "volumeCombustivel": 0.0,
+      "volumeConveniencia": 1057.26,
+      "volumeFinanceiro": 1057.26,
+      "litrosCombustivel": 0.0
+    },
+    "5_quemMaisDescontos": {
+      "funcionarioCodigo": 80203,
+      "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+      "totalDesconto": 0.85
+    },
+    "6_maiorTicketMedio": {
+      "funcionarioCodigo": 252430,
+      "employeeName": "CLEYTON ALVES DA COSTA",
+      "employeeReference": "00033",
+      "totalVendas": 555.34,
+      "quantidadeVendas": 9,
+      "ticketMedio": 61.7,
+      "volumeCombustivel": 0.0,
+      "volumeConveniencia": 0.0,
+      "volumeFinanceiro": 555.34,
+      "litrosCombustivel": 0.0
+    },
+    "7_melhorProdutividade": {
+      "funcionarioCodigo": 178278,
+      "employeeName": "APOIO LOJA .",
+      "employeeReference": "00017",
+      "totalVendas": 1057.26,
+      "quantidadeVendas": 68,
+      "ticketMedio": 15.55,
+      "volumeCombustivel": 0.0,
+      "volumeConveniencia": 1057.26,
+      "volumeFinanceiro": 1057.26,
+      "litrosCombustivel": 0.0,
+      "abastecimentos": 0,
+      "itensVendidos": 124,
+      "productivityScore": 66.06,
+      "productivityBand": "NORMAL"
+    },
+    "8_maiorRiscoOperacional": {
+      "funcionarioCodigo": 294273,
+      "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+      "operatorRiskScore": 24.19,
+      "riskBand": "Critico",
+      "componentQuebraCaixa": 0.0,
+      "componentDescontos": 100.0,
+      "componentRecorrencia": 0.0,
+      "componentContexto": 20.94,
+      "monitoramentoPrioritario": true
+    },
+    "9_maiorSaldoDevedor": {
+      "funcionarioCodigo": 294273,
+      "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+      "saldoOperacional": -252.27,
+      "compensadoAutomatico": 0,
+      "diferencaAcumulada": -252.27,
+      "faltasProxy": -252.27,
+      "sobrasProxy": 0
+    },
+    "10_maiorSaldoCredor": {
+      "funcionarioCodigo": 276288,
+      "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+      "saldoOperacional": 17.81,
+      "compensadoAutomatico": 21.95,
+      "diferencaAcumulada": 17.81,
+      "faltasProxy": 0,
+      "sobrasProxy": 17.81
+    },
+    "11_maisFaltas": {
+      "funcionarioCodigo": 294273,
+      "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+      "saldoOperacional": -252.27,
+      "compensadoAutomatico": 0,
+      "diferencaAcumulada": -252.27,
+      "faltasProxy": -252.27,
+      "sobrasProxy": 0
+    },
+    "12_maisSobras": {
+      "funcionarioCodigo": 276288,
+      "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+      "saldoOperacional": 17.81,
+      "compensadoAutomatico": 21.95,
+      "diferencaAcumulada": 17.81,
+      "faltasProxy": 0,
+      "sobrasProxy": 17.81
+    },
+    "13_bomEmPdvCritico": [],
+    "14_dependenteContexto": [],
+    "15_operadorElite": {
+      "funcionarioCodigo": 178278,
+      "employeeName": "APOIO LOJA .",
+      "employeeReference": "00017",
+      "totalVendas": 1057.26,
+      "quantidadeVendas": 68,
+      "ticketMedio": 15.55,
+      "volumeCombustivel": 0.0,
+      "volumeConveniencia": 1057.26,
+      "volumeFinanceiro": 1057.26,
+      "litrosCombustivel": 0.0,
+      "abastecimentos": 0,
+      "itensVendidos": 124,
+      "productivityScore": 66.06,
+      "productivityBand": "NORMAL"
+    },
+    "16_operadorCritico": {
+      "funcionarioCodigo": 63048,
+      "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+      "employeeReference": "00005",
+      "totalVendas": 120.0,
+      "quantidadeVendas": 2,
+      "ticketMedio": 60.0,
+      "volumeCombustivel": 0.0,
+      "volumeConveniencia": 0.0,
+      "volumeFinanceiro": 120.0,
+      "litrosCombustivel": 0.0,
+      "abastecimentos": 8,
+      "itensVendidos": 0,
+      "productivityScore": 6.79,
+      "productivityBand": "CRITICA"
+    },
+    "17_operadoresEmRisco": 7,
+    "18_dinheiroOperadoresCriticos": 270.08,
+    "19_prontoGestaoPessoas": true,
+    "20_aprovadoF041": true,
+    "paridadeDelta": 0.0
+  },
+  "parecerFinal": "[PARECER FINAL: APROVADO PARA F04.1]",
+  "acceptance": {
+    "dimEmployee": true,
+    "nominalizacao": true,
+    "paridadeZero": true,
+    "aprovado": true
+  }
+}

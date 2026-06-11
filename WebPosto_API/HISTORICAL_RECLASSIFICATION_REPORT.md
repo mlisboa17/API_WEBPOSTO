@@ -1,0 +1,19 @@
+# HISTORICAL RECLASSIFICATION — F03.2 · Agente 2
+
+## Evolução temporal
+
+| Janela | byNature |
+|--------|----------|
+| 7d | {'DESPESA_FINANCEIRA': 314, 'ADIANTAMENTO': 111, 'DESPESA_OPERACIONAL': 19} |
+| 30d | {'DESPESA_FINANCEIRA': 1333, 'ADIANTAMENTO': 324, 'DESPESA_OPERACIONAL': 84} |
+| 90d | {'DESPESA_FINANCEIRA': 4113, 'ADIANTAMENTO': 1245, 'MOVIMENTACAO_CAIXA': 1, 'DESPESA_OPERACIONAL': 178} |
+
+## 90 dias — quantidade e valor
+
+| Natureza | Qtd | % | Valor |
+|----------|-----|---|-------|
+| DESPESA_FINANCEIRA | 4113 | 74.28% | R$ 1.134.829,44 |
+| DESPESA_OPERACIONAL | 178 | 3.21% | R$ 90.553,32 |
+| MOVIMENTACAO_CAIXA | 1 | 0.02% | R$ 1.000,00 |
+| ADIANTAMENTO | 1245 | 22.49% | R$ 421.128,05 |
+| AJUSTE_OPERACIONAL | 0 | 0% | — |

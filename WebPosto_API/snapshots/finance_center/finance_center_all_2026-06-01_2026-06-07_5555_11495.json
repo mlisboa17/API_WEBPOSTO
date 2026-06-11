@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-08T17:34:22",
+  "lastUpdated": "2026-06-08T21:21:01",
   "center": {
     "summary": {
       "periodo": {
@@ -10,11 +10,12 @@
         "totalRegistros": 122,
         "totalValor": "32430.34",
         "porCategoriaLogos": {
-          "COMPRAS": "1097.74",
-          "FINANCEIRO": "30.50",
-          "OPERACIONAL": "343.00",
-          "OUTROS": "11917.19",
-          "PESSOAL": "19041.91"
+          "ADMINISTRATIVA": "945.00",
+          "COMPRAS": "3340.05",
+          "FINANCEIRO": "18872.41",
+          "OPERACIONAL": "6394.58",
+          "OUTROS": "1128.30",
+          "PESSOAL": "1750.00"
         },
         "porEmpresa": {
           "5555": "7383.63",
@@ -84,11 +85,11 @@
       "caixa": {
         "turnos": 21,
         "despesaCaixa": {
-          "apurado": "4949.67",
+          "apurado": "5079.67",
           "turnos": 21
         },
         "valeFuncionario": {
-          "apurado": "19879.91",
+          "apurado": "19989.91",
           "turnos": 21
         },
         "emprestimos": {
@@ -125,11 +126,11 @@
       "snapshotKey": "finance:center:summary:2026-06-01:2026-06-07:5555,11495",
       "performanceMs": {
         "despesas": 0,
-        "payables": 4877.9,
-        "receivables": 4420.2,
-        "bank": 23902.0,
-        "cash": 3501.7,
-        "total": 26889.3
+        "payables": 2150.1,
+        "receivables": 1893.5,
+        "bank": 15463.9,
+        "cash": 1453.8,
+        "total": 17507.8
       }
     },
     "expenses": {
@@ -140,11 +141,12 @@
         "totalRegistros": 122,
         "totalValor": "32430.34",
         "porCategoriaLogos": {
-          "COMPRAS": "1097.74",
-          "FINANCEIRO": "30.50",
-          "OPERACIONAL": "343.00",
-          "OUTROS": "11917.19",
-          "PESSOAL": "19041.91"
+          "ADMINISTRATIVA": "945.00",
+          "COMPRAS": "3340.05",
+          "FINANCEIRO": "18872.41",
+          "OPERACIONAL": "6394.58",
+          "OUTROS": "1128.30",
+          "PESSOAL": "1750.00"
         },
         "porEmpresa": {
           "5555": "7383.63",
@@ -159,7 +161,10 @@
           "planoConta": "pagamento alamoa",
           "planoContaCodigo": 29019,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceBand": "outros"
         },
         {
           "empresaCodigo": 11495,
@@ -168,7 +173,10 @@
           "planoConta": "ref troca da mangueira",
           "planoContaCodigo": 141278,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "MANUTENÇÃO",
+          "confidenceScore": 92,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -177,7 +185,10 @@
           "planoConta": "Copia chave benheiro",
           "planoContaCodigo": 141274,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "MANUTENÇÃO",
+          "confidenceScore": 92,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -186,7 +197,10 @@
           "planoConta": "ref pagamento da mangueira nova",
           "planoContaCodigo": 141275,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "MANUTENÇÃO",
+          "confidenceScore": 92,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -195,7 +209,10 @@
           "planoConta": "ref. compra 3 pedras de cloro",
           "planoContaCodigo": 29049,
           "centroCusto": "",
-          "categoriaLogos": "COMPRAS"
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -204,7 +221,10 @@
           "planoConta": "AGUA PARA CONSUMO",
           "planoContaCodigo": 29051,
           "centroCusto": "",
-          "categoriaLogos": "OPERACIONAL"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 5555,
@@ -213,7 +233,10 @@
           "planoConta": "REF A COMPRA DE UM CADEADO",
           "planoContaCodigo": 47656,
           "centroCusto": "",
-          "categoriaLogos": "COMPRAS"
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -222,79 +245,10 @@
           "planoConta": "pag ref apoio loja joao vitor",
           "planoContaCodigo": 47952,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
-        },
-        {
-          "empresaCodigo": 5555,
-          "data": "2026-06-01",
-          "valor": "40.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 5555,
-          "data": "2026-06-01",
-          "valor": "48.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 5555,
-          "data": "2026-06-01",
-          "valor": "600.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 5555,
-          "data": "2026-06-01",
-          "valor": "300.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 5555,
-          "data": "2026-06-01",
-          "valor": "27.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 5555,
-          "data": "2026-06-01",
-          "valor": "1000.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 5555,
-          "data": "2026-06-01",
-          "valor": "200.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 5555,
-          "data": "2026-06-01",
-          "valor": "18.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "ADMINISTRATIVA",
+          "categoriaLogosV2": "TECNOLOGIA",
+          "confidenceScore": 99,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
@@ -303,7 +257,10 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
@@ -312,7 +269,82 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "1000.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "18.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "200.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "300.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "27.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "40.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 11495,
@@ -321,7 +353,34 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "48.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-01",
+          "valor": "600.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 11495,
@@ -330,16 +389,10 @@
           "planoConta": "passagem josiane",
           "planoContaCodigo": 29073,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-02",
-          "valor": "143.52",
-          "planoConta": "REF NF:000039800 - NORDESTE COMERCIO E INDUSTRIA DE BEBIDAS E ALIMENTOS LTDA FI - NORDESTE COMERCIO E INDUSTRIA DE BEBIDAS E ALIMENTOS LTDA FI",
-          "planoContaCodigo": 29019,
-          "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceBand": "outros"
         },
         {
           "empresaCodigo": 11495,
@@ -348,34 +401,10 @@
           "planoConta": "REF NF:000075605 - CDD OLINDA - CDD OLINDA",
           "planoContaCodigo": 29019,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-02",
-          "valor": "871.32",
-          "planoConta": "REF NF:004272391 - SUAPE - SUAPE",
-          "planoContaCodigo": 29019,
-          "centroCusto": "",
-          "categoriaLogos": "OUTROS"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-02",
-          "valor": "323.10",
-          "planoConta": "REF NF:004271745 - SUAPE - SUAPE",
-          "planoContaCodigo": 29019,
-          "centroCusto": "",
-          "categoriaLogos": "OUTROS"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-02",
-          "valor": "474.06",
-          "planoConta": "REF NF:000008744 - PEPSICO DO BRASIL LTDA - PEPSICO DO BRASIL LTDA",
-          "planoContaCodigo": 29019,
-          "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -384,7 +413,58 @@
           "planoConta": "REF. PAG. JULI DÔCES",
           "planoContaCodigo": 29019,
           "centroCusto": "",
-          "categoriaLogos": "FINANCEIRO"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 96,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-02",
+          "valor": "143.52",
+          "planoConta": "REF NF:000039800 - NORDESTE COMERCIO E INDUSTRIA DE BEBIDAS E ALIMENTOS LTDA FI - NORDESTE COMERCIO E INDUSTRIA DE BEBIDAS E ALIMENTOS LTDA FI",
+          "planoContaCodigo": 29019,
+          "centroCusto": "",
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-02",
+          "valor": "323.10",
+          "planoConta": "REF NF:004271745 - SUAPE - SUAPE",
+          "planoContaCodigo": 29019,
+          "centroCusto": "",
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-02",
+          "valor": "871.32",
+          "planoConta": "REF NF:004272391 - SUAPE - SUAPE",
+          "planoContaCodigo": 29019,
+          "centroCusto": "",
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-02",
+          "valor": "474.06",
+          "planoConta": "REF NF:000008744 - PEPSICO DO BRASIL LTDA - PEPSICO DO BRASIL LTDA",
+          "planoContaCodigo": 29019,
+          "centroCusto": "",
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -393,52 +473,10 @@
           "planoConta": "REF NF:000064790 - SOLAR INOVE - PERNAMBUCO - SOLAR INOVE - PERNAMBUCO",
           "planoContaCodigo": 167278,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-02",
-          "valor": "10.40",
-          "planoConta": "(CASA CAIADA CARTAO E ARTHUR)COMERCIO EM AVIAMENTOS EM GERAL LTDA - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
-          "planoContaCodigo": 141274,
-          "centroCusto": "",
-          "categoriaLogos": "OUTROS"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-02",
-          "valor": "10.40",
-          "planoConta": "CARTAO ARTHUR - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
-          "planoContaCodigo": 141274,
-          "centroCusto": "",
-          "categoriaLogos": "OUTROS"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-02",
-          "valor": "135.75",
-          "planoConta": "CARTAO DE ARTHUR DECORAÇÃO - PARCELA 1 DE 2 - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
-          "planoContaCodigo": 141274,
-          "centroCusto": "",
-          "categoriaLogos": "OUTROS"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-02",
-          "valor": "153.55",
-          "planoConta": "REF NF:000001685 - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA - PARCELA 1 DE 2 - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
-          "planoContaCodigo": 141274,
-          "centroCusto": "",
-          "categoriaLogos": "OUTROS"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-02",
-          "valor": "48.90",
-          "planoConta": "CARTAO DE ARTHUR(LOJA CASA CAIADA) CE COMERCIO EM AVIAMENTOS EM GERAL LTDA - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
-          "planoContaCodigo": 141274,
-          "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "ENERGIA",
+          "confidenceScore": 100,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 11495,
@@ -447,7 +485,70 @@
           "planoConta": "REF NF:000001692 - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
           "planoContaCodigo": 141274,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-02",
+          "valor": "10.40",
+          "planoConta": "(CASA CAIADA CARTAO E ARTHUR)COMERCIO EM AVIAMENTOS EM GERAL LTDA - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
+          "planoContaCodigo": 141274,
+          "centroCusto": "",
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-02",
+          "valor": "48.90",
+          "planoConta": "CARTAO DE ARTHUR(LOJA CASA CAIADA) CE COMERCIO EM AVIAMENTOS EM GERAL LTDA - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
+          "planoContaCodigo": 141274,
+          "centroCusto": "",
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-02",
+          "valor": "153.55",
+          "planoConta": "REF NF:000001685 - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA - PARCELA 1 DE 2 - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
+          "planoContaCodigo": 141274,
+          "centroCusto": "",
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-02",
+          "valor": "135.75",
+          "planoConta": "CARTAO DE ARTHUR DECORAÇÃO - PARCELA 1 DE 2 - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
+          "planoContaCodigo": 141274,
+          "centroCusto": "",
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-02",
+          "valor": "10.40",
+          "planoConta": "CARTAO ARTHUR - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
+          "planoContaCodigo": 141274,
+          "centroCusto": "",
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -456,7 +557,10 @@
           "planoConta": "cafe da manha conagem",
           "planoContaCodigo": 29050,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 5555,
@@ -465,52 +569,22 @@
           "planoConta": "ref tomada",
           "planoContaCodigo": 47656,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceBand": "outros"
         },
         {
           "empresaCodigo": 5555,
           "data": "2026-06-02",
-          "valor": "50.00",
+          "valor": "150.00",
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 5555,
-          "data": "2026-06-02",
-          "valor": "100.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 5555,
-          "data": "2026-06-02",
-          "valor": "38.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 5555,
-          "data": "2026-06-02",
-          "valor": "18.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-02",
-          "valor": "1750.00",
-          "planoConta": "SALAR - ADMINISTRATIVO",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
@@ -519,7 +593,10 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
@@ -528,7 +605,10 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
@@ -537,16 +617,34 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-02",
+          "valor": "1750.00",
+          "planoConta": "SALAR - ADMINISTRATIVO",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
           "data": "2026-06-02",
-          "valor": "110.00",
+          "valor": "300.00",
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
@@ -555,25 +653,70 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
           "data": "2026-06-02",
-          "valor": "300.00",
+          "valor": "18.00",
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
           "data": "2026-06-02",
-          "valor": "150.00",
+          "valor": "50.00",
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-02",
+          "valor": "38.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-02",
+          "valor": "100.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-02",
+          "valor": "110.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
@@ -582,16 +725,10 @@
           "planoConta": "REF. UBER JULIA",
           "planoContaCodigo": 29073,
           "centroCusto": "",
-          "categoriaLogos": "OPERACIONAL"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-02",
-          "valor": "120.00",
-          "planoConta": "diaria camilla",
-          "planoContaCodigo": 29079,
-          "centroCusto": "",
-          "categoriaLogos": "OPERACIONAL"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -600,7 +737,22 @@
           "planoConta": "passagem josiane",
           "planoContaCodigo": 29079,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceBand": "outros"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-02",
+          "valor": "120.00",
+          "planoConta": "diaria camilla",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -609,7 +761,10 @@
           "planoConta": "compra de resma de oficio",
           "planoContaCodigo": 141274,
           "centroCusto": "",
-          "categoriaLogos": "COMPRAS"
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -618,16 +773,10 @@
           "planoConta": "agua consumo",
           "planoContaCodigo": 29050,
           "centroCusto": "",
-          "categoriaLogos": "OPERACIONAL"
-        },
-        {
-          "empresaCodigo": 5555,
-          "data": "2026-06-03",
-          "valor": "9.00",
-          "planoConta": "REF A AGUA PARA COSUMO",
-          "planoContaCodigo": 29051,
-          "centroCusto": "",
-          "categoriaLogos": "OPERACIONAL"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -636,7 +785,22 @@
           "planoConta": "ref. agua consumo",
           "planoContaCodigo": 29051,
           "centroCusto": "",
-          "categoriaLogos": "OPERACIONAL"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceBand": "alta"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "9.00",
+          "planoConta": "REF A AGUA PARA COSUMO",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 5555,
@@ -645,7 +809,10 @@
           "planoConta": "REF GASOLINA MOTO HENRIQUE",
           "planoContaCodigo": 29060,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "VEÍCULOS",
+          "confidenceScore": 93,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -654,7 +821,10 @@
           "planoConta": "ref material comercial bezerra",
           "planoContaCodigo": 47656,
           "centroCusto": "",
-          "categoriaLogos": "COMPRAS"
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -663,7 +833,10 @@
           "planoConta": "ref compra material electrico",
           "planoContaCodigo": 47656,
           "centroCusto": "",
-          "categoriaLogos": "COMPRAS"
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 5555,
@@ -672,7 +845,10 @@
           "planoConta": "REF SINDICADO",
           "planoContaCodigo": 49980,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceBand": "outros"
         },
         {
           "empresaCodigo": 5555,
@@ -681,79 +857,10 @@
           "planoConta": "REF. DESCONTO LISBOA+",
           "planoContaCodigo": 62800,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-03",
-          "valor": "1288.87",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-03",
-          "valor": "579.87",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-03",
-          "valor": "337.14",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-03",
-          "valor": "654.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-03",
-          "valor": "436.98",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-03",
-          "valor": "997.92",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-03",
-          "valor": "819.98",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 5555,
-          "data": "2026-06-03",
-          "valor": "26.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceBand": "outros"
         },
         {
           "empresaCodigo": 5555,
@@ -762,34 +869,10 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 5555,
-          "data": "2026-06-03",
-          "valor": "9.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 5555,
-          "data": "2026-06-03",
-          "valor": "21.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 5555,
-          "data": "2026-06-03",
-          "valor": "219.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
@@ -798,7 +881,106 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "9.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-03",
+          "valor": "1288.87",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-03",
+          "valor": "579.87",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-03",
+          "valor": "337.14",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-03",
+          "valor": "654.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-03",
+          "valor": "436.98",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-03",
+          "valor": "997.92",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-03",
+          "valor": "819.98",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
@@ -807,7 +989,10 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
@@ -816,7 +1001,10 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
@@ -825,16 +1013,46 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
-          "empresaCodigo": 11495,
+          "empresaCodigo": 5555,
           "data": "2026-06-03",
-          "valor": "15.00",
-          "planoConta": "ássagem josiane",
-          "planoContaCodigo": 29073,
+          "valor": "26.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "219.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 5555,
+          "data": "2026-06-03",
+          "valor": "21.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
@@ -843,7 +1061,22 @@
           "planoConta": "REF A UBER JULIA",
           "planoContaCodigo": 29073,
           "centroCusto": "",
-          "categoriaLogos": "OPERACIONAL"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceBand": "alta"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-03",
+          "valor": "15.00",
+          "planoConta": "ássagem josiane",
+          "planoContaCodigo": 29073,
+          "centroCusto": "",
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceBand": "outros"
         },
         {
           "empresaCodigo": 11495,
@@ -852,7 +1085,10 @@
           "planoConta": "ref a sanduiche natural",
           "planoContaCodigo": 29019,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceBand": "outros"
         },
         {
           "empresaCodigo": 5555,
@@ -861,7 +1097,10 @@
           "planoConta": "ref santa clara",
           "planoContaCodigo": 29020,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceBand": "outros"
         },
         {
           "empresaCodigo": 11495,
@@ -870,7 +1109,10 @@
           "planoConta": "COTA SR MOISES",
           "planoContaCodigo": 39370,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "ADMINISTRATIVA",
+          "categoriaLogosV2": "TECNOLOGIA",
+          "confidenceScore": 99,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 11495,
@@ -879,7 +1121,10 @@
           "planoConta": "AGUA CONSUMO",
           "planoContaCodigo": 29051,
           "centroCusto": "",
-          "categoriaLogos": "OPERACIONAL"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -888,7 +1133,10 @@
           "planoConta": "GASOLINA REF SERVIÇO POSTO",
           "planoContaCodigo": 29060,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "VEÍCULOS",
+          "confidenceScore": 93,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 5555,
@@ -897,7 +1145,10 @@
           "planoConta": "ref material encanaçao",
           "planoContaCodigo": 47656,
           "centroCusto": "",
-          "categoriaLogos": "COMPRAS"
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -906,16 +1157,22 @@
           "planoConta": "PULO BOMBA",
           "planoContaCodigo": 137578,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceBand": "outros"
         },
         {
-          "empresaCodigo": 11495,
+          "empresaCodigo": 5555,
           "data": "2026-06-04",
-          "valor": "943.16",
+          "valor": "9.00",
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
@@ -924,70 +1181,10 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 5555,
-          "data": "2026-06-04",
-          "valor": "9.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-04",
-          "valor": "819.92",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-04",
-          "valor": "672.95",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-04",
-          "valor": "229.98",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-04",
-          "valor": "777.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-04",
-          "valor": "322.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-04",
-          "valor": "1323.90",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 11495,
@@ -996,7 +1193,94 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-04",
+          "valor": "943.16",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-04",
+          "valor": "1323.90",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-04",
+          "valor": "322.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-04",
+          "valor": "819.92",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-04",
+          "valor": "672.95",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-04",
+          "valor": "229.98",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-04",
+          "valor": "777.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 11495,
@@ -1005,7 +1289,10 @@
           "planoConta": "REF AO ADIANTAMENTO DO ELETRICISTA",
           "planoContaCodigo": 141277,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "ENERGIA",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 11495,
@@ -1014,7 +1301,10 @@
           "planoConta": "PAGAMENTO CONSERTO DA AUTOMAÇÃO BOMBAS",
           "planoContaCodigo": 141278,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "MANUTENÇÃO",
+          "confidenceScore": 92,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -1023,7 +1313,10 @@
           "planoConta": "REF AO GESSO E PARAFUSO",
           "planoContaCodigo": 47656,
           "centroCusto": "",
-          "categoriaLogos": "COMPRAS"
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -1032,7 +1325,10 @@
           "planoConta": "pag ref a compra camisa do brasil",
           "planoContaCodigo": 47952,
           "centroCusto": "",
-          "categoriaLogos": "COMPRAS"
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 5555,
@@ -1041,7 +1337,10 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 11495,
@@ -1050,7 +1349,10 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 11495,
@@ -1059,7 +1361,10 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
@@ -1068,7 +1373,10 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
@@ -1077,7 +1385,10 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
@@ -1086,7 +1397,10 @@
           "planoConta": "REF UBER JULIA",
           "planoContaCodigo": 29073,
           "centroCusto": "",
-          "categoriaLogos": "OPERACIONAL"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -1095,7 +1409,10 @@
           "planoConta": "passagem josiane",
           "planoContaCodigo": 29073,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceBand": "outros"
         },
         {
           "empresaCodigo": 11495,
@@ -1104,7 +1421,10 @@
           "planoConta": "diaria camilla",
           "planoContaCodigo": 29079,
           "centroCusto": "",
-          "categoriaLogos": "OPERACIONAL"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -1113,16 +1433,10 @@
           "planoConta": "MATERIAL ELETRICO (TOMADAS, DIJUNTOR, ETC)",
           "planoContaCodigo": 141277,
           "centroCusto": "",
-          "categoriaLogos": "COMPRAS"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-06",
-          "valor": "7.00",
-          "planoConta": "agua para consumo",
-          "planoContaCodigo": 29051,
-          "centroCusto": "",
-          "categoriaLogos": "OPERACIONAL"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "ENERGIA",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 11495,
@@ -1131,7 +1445,22 @@
           "planoConta": "agua consumo",
           "planoContaCodigo": 29051,
           "centroCusto": "",
-          "categoriaLogos": "OPERACIONAL"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceBand": "alta"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-06",
+          "valor": "7.00",
+          "planoConta": "agua para consumo",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -1140,7 +1469,10 @@
           "planoConta": "ref gasolina denilson",
           "planoContaCodigo": 29060,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "VEÍCULOS",
+          "confidenceScore": 93,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -1149,7 +1481,10 @@
           "planoConta": "material da eletrica",
           "planoContaCodigo": 47656,
           "centroCusto": "",
-          "categoriaLogos": "COMPRAS"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "ENERGIA",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 11495,
@@ -1158,7 +1493,10 @@
           "planoConta": "PASSAGEM UBER SALGADOS",
           "planoContaCodigo": 47952,
           "centroCusto": "",
-          "categoriaLogos": "OPERACIONAL"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -1167,7 +1505,10 @@
           "planoConta": "REF PAG APOIO LOJA",
           "planoContaCodigo": 47952,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "ADMINISTRATIVA",
+          "categoriaLogosV2": "TECNOLOGIA",
+          "confidenceScore": 99,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 5555,
@@ -1176,7 +1517,10 @@
           "planoConta": "gasolina moto henrique",
           "planoContaCodigo": 48547,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "VEÍCULOS",
+          "confidenceScore": 93,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 5555,
@@ -1185,16 +1529,10 @@
           "planoConta": "ref gasolina bruno",
           "planoContaCodigo": 48547,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
-        },
-        {
-          "empresaCodigo": 11495,
-          "data": "2026-06-06",
-          "valor": "120.00",
-          "planoConta": "Vale de funcionário referente a consolidação de caixa",
-          "planoContaCodigo": 29072,
-          "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "VEÍCULOS",
+          "confidenceScore": 93,
+          "confidenceBand": "alta"
         },
         {
           "empresaCodigo": 11495,
@@ -1203,7 +1541,22 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
+        },
+        {
+          "empresaCodigo": 11495,
+          "data": "2026-06-06",
+          "valor": "120.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 11495,
@@ -1212,7 +1565,10 @@
           "planoConta": "PASSAGEM JOSIANE",
           "planoContaCodigo": 29073,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceBand": "outros"
         },
         {
           "empresaCodigo": 11495,
@@ -1221,7 +1577,10 @@
           "planoConta": "PAG REF A 35 GELOS",
           "planoContaCodigo": 29019,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceBand": "outros"
         },
         {
           "empresaCodigo": 11495,
@@ -1230,7 +1589,10 @@
           "planoConta": "ref pag apoio loja",
           "planoContaCodigo": 47952,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "ADMINISTRATIVA",
+          "categoriaLogosV2": "TECNOLOGIA",
+          "confidenceScore": 99,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 11495,
@@ -1239,7 +1601,10 @@
           "planoConta": "Vale de funcionário referente a consolidação de caixa",
           "planoContaCodigo": 29072,
           "centroCusto": "",
-          "categoriaLogos": "PESSOAL"
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceBand": "automatico"
         },
         {
           "empresaCodigo": 11495,
@@ -1248,12 +1613,15 @@
           "planoConta": "ref pag apoio loja",
           "planoContaCodigo": 61815,
           "centroCusto": "",
-          "categoriaLogos": "OUTROS"
+          "categoriaLogos": "ADMINISTRATIVA",
+          "categoriaLogosV2": "TECNOLOGIA",
+          "confidenceScore": 99,
+          "confidenceBand": "automatico"
         }
       ],
       "snapshotKey": "finance:center:expenses:2026-06-01:2026-06-07:5555,11495",
       "performanceMs": {
-        "despesas": 8302.7
+        "despesas": 3977.4
       }
     },
     "payables": {
@@ -1860,7 +2228,7 @@
       ],
       "snapshotKey": "finance:center:payables:2026-06-01:2026-06-07:5555,11495",
       "performanceMs": {
-        "payables": 6501.0
+        "payables": 3165.9
       }
     },
     "receivables": {
@@ -1995,7 +2363,7 @@
       ],
       "snapshotKey": "finance:center:receivables:2026-06-01:2026-06-07:5555,11495",
       "performanceMs": {
-        "receivables": 6062.1
+        "receivables": 2735.3
       }
     },
     "bank": {
@@ -6331,7 +6699,7 @@
       "paginacaoCompleta": 287,
       "snapshotKey": "finance:center:bank:2026-06-01:2026-06-07:5555,11495",
       "performanceMs": {
-        "bank": 25633.3
+        "bank": 16302.6
       }
     },
     "cash": {
@@ -6444,7 +6812,7 @@
             "empresaCodigo": 5555,
             "caixaCodigo": 4340665,
             "data": "2026-06-06",
-            "diferenca": "-17299.90"
+            "diferenca": "-215.77"
           },
           {
             "empresaCodigo": 11495,
@@ -6575,7 +6943,7 @@
             "empresaCodigo": 5555,
             "caixaCodigo": 4340665,
             "data": "2026-06-06",
-            "diferenca": "-17299.90"
+            "diferenca": "-215.77"
           },
           {
             "empresaCodigo": 11495,
@@ -6598,11 +6966,11 @@
         ]
       },
       "despesaCaixa": {
-        "apurado": "4949.67",
+        "apurado": "5079.67",
         "turnos": 21
       },
       "valeFuncionario": {
-        "apurado": "19879.91",
+        "apurado": "19989.91",
         "turnos": 21
       },
       "emprestimos": {
@@ -6615,7 +6983,7 @@
       },
       "snapshotKey": "finance:center:cash:2026-06-01:2026-06-07:5555,11495",
       "performanceMs": {
-        "cash": 5236.4
+        "cash": 2317.1
       },
       "warnings": [
         "fundoCaixa: campo não disponível na API WebPosto"

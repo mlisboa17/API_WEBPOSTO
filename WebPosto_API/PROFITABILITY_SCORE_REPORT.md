@@ -1,0 +1,9 @@
+# PROFITABILITY SCORE — F04.2 · Agente 3
+
+| Banda | Qtd |
+|-------|-----|
+| GERA_LUCRO | 3 |
+| NEUTRO | 5 |
+| DESTRUI_MARGEM | 0 |
+
+Maior score: WANDERSON GUILHERME DOS SANTOS OLIV (251934) · Menor: THACIANNA RIBEIRO DA SILVA (249526)

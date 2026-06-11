@@ -1,0 +1,2566 @@
+{
+  "sprint": "D01",
+  "windows": {
+    "7d": {
+      "window": "7d",
+      "periodo": {
+        "inicio": "2026-06-02",
+        "fim": "2026-06-08"
+      },
+      "elapsedSec": 41.03,
+      "truncatedAny": false,
+      "performance": {
+        "caixa": {
+          "key": "caixa",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 20,
+          "hasData": true,
+          "latencyMsAvg": 1052.11,
+          "latencyMsMax": 1052.11,
+          "elapsedSec": 1.05
+        },
+        "caixa_apresentado": {
+          "key": "caixa_apresentado",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 20,
+          "hasData": true,
+          "latencyMsAvg": 1042.17,
+          "latencyMsMax": 1042.17,
+          "elapsedSec": 1.04
+        },
+        "venda": {
+          "key": "venda",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 1482.57,
+          "latencyMsMax": 1482.57,
+          "elapsedSec": 1.48
+        },
+        "venda_item": {
+          "key": "venda_item",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 1178.71,
+          "latencyMsMax": 1178.71,
+          "elapsedSec": 1.18
+        },
+        "venda_forma_pagamento": {
+          "key": "venda_forma_pagamento",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 1390.29,
+          "latencyMsMax": 1390.29,
+          "elapsedSec": 1.39
+        },
+        "abastecimento": {
+          "key": "abastecimento",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 1166.29,
+          "latencyMsMax": 1166.29,
+          "elapsedSec": 1.17
+        },
+        "nfce": {
+          "key": "nfce",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 1034.8,
+          "latencyMsMax": 1034.8,
+          "elapsedSec": 1.03
+        },
+        "movimento_conta": {
+          "key": "movimento_conta",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 1469.91,
+          "latencyMsMax": 1469.91,
+          "elapsedSec": 1.47
+        },
+        "transferencia_bancaria": {
+          "key": "transferencia_bancaria",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 2435.55,
+          "latencyMsMax": 2435.55,
+          "elapsedSec": 2.44
+        }
+      },
+      "paymentFormDiscovery": {
+        "totalRows": 200,
+        "fields": {
+          "vendaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              355400910,
+              355400910,
+              355400938
+            ]
+          },
+          "caixaCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "turnoCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              1,
+              1,
+              1
+            ]
+          },
+          "empresaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              11495,
+              11495,
+              11495
+            ]
+          },
+          "formaPagamentoCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              20259,
+              59643,
+              20259
+            ]
+          },
+          "nomeFormaPagamento": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "DINHEIRO",
+              "PIX",
+              "DINHEIRO"
+            ]
+          },
+          "administradoraCodigo": {
+            "exists": true,
+            "coveragePct": 38.0,
+            "samples": [
+              106906,
+              94761,
+              134490
+            ]
+          },
+          "valorPagamento": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              18.0,
+              2.0,
+              4.4
+            ]
+          },
+          "dataMovimento": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "2026-06-02",
+              "2026-06-02",
+              "2026-06-02"
+            ]
+          },
+          "funcionarioCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "pdvCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          }
+        },
+        "allKeys": [
+          "administradoraCodigo",
+          "codigo",
+          "dataMovimento",
+          "empresaCodigo",
+          "formaPagamentoCodigo",
+          "nomeFormaPagamento",
+          "taxaPercentual",
+          "tipoFormaPagamento",
+          "turnoCodigo",
+          "valorPagamento",
+          "vencimento",
+          "vendaCodigo",
+          "vendaPrazoCodigo"
+        ],
+        "viaVenda": {
+          "caixaCodigo": {
+            "coveragePct": 100.0,
+            "exists": true
+          },
+          "funcionarioCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              227386,
+              227386,
+              276288
+            ]
+          },
+          "pdvCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              54193,
+              54193,
+              56764
+            ]
+          }
+        }
+      },
+      "saleDiscovery": {
+        "totalRows": 200,
+        "fields": {
+          "vendaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              355400910,
+              355400938,
+              355401002
+            ]
+          },
+          "caixaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              4336768,
+              4336785,
+              4336785
+            ]
+          },
+          "funcionarioCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              227386,
+              276288,
+              276288
+            ]
+          },
+          "empresaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              11495,
+              11495,
+              11495
+            ]
+          },
+          "pdvCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "dataMovimento": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "dataHora": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "2026-06-02T00:03:12.000-03:00",
+              "2026-06-02T00:03:57.000-03:00",
+              "2026-06-02T00:07:48.000-03:00"
+            ]
+          },
+          "cancelada": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "N",
+              "N",
+              "N"
+            ]
+          },
+          "troco": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              [],
+              [],
+              []
+            ]
+          },
+          "totalVenda": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              20.0,
+              4.4,
+              25.73
+            ]
+          }
+        },
+        "allKeys": [
+          "caixaCodigo",
+          "cancelada",
+          "centroCustoCodigo",
+          "centroCustoVeiculo",
+          "clienteCodigo",
+          "clienteCodigoExterno",
+          "clienteCpfCnpj",
+          "codigo",
+          "dataHora",
+          "destacaAcrescimoDesconto",
+          "empresaCodigo",
+          "formaPagamento",
+          "funcionarioCodigo",
+          "identificacaoFidelidade",
+          "itens",
+          "modeloDocumento",
+          "motoristaCodigo",
+          "notaChave",
+          "notaCodigo",
+          "notaNumero",
+          "notaSerie",
+          "placaVeiculo",
+          "totalVenda",
+          "troco",
+          "vendaCodigo",
+          "vendaUuid"
+        ],
+        "viaCaixa": {
+          "pdvCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              54193,
+              56764,
+              56764
+            ]
+          }
+        }
+      },
+      "saleItemDiscovery": {
+        "totalRows": 200,
+        "fields": {
+          "vendaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              355400910,
+              355400938,
+              355400938
+            ]
+          },
+          "produtoCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              1257884,
+              1802201,
+              1802201
+            ]
+          },
+          "funcionarioCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              227386,
+              276288,
+              276288
+            ]
+          },
+          "bicoCodigo": {
+            "exists": true,
+            "coveragePct": 42.0,
+            "samples": [
+              42902,
+              24988,
+              42910
+            ]
+          },
+          "totalDesconto": {
+            "exists": true,
+            "coveragePct": 2.0,
+            "samples": [
+              0.91,
+              1.0,
+              2.84
+            ]
+          },
+          "totalVenda": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              20.0,
+              2.2,
+              2.2
+            ]
+          },
+          "quantidade": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              2.837,
+              1.0,
+              1.0
+            ]
+          },
+          "tanqueCodigo": {
+            "exists": true,
+            "coveragePct": 42.0,
+            "samples": [
+              29880,
+              13577,
+              29880
+            ]
+          },
+          "produtoLmcCodigo": {
+            "exists": true,
+            "coveragePct": 42.0,
+            "samples": [
+              8297,
+              8297,
+              8297
+            ]
+          }
+        },
+        "allKeys": [
+          "aliquotaAdRemCbs",
+          "aliquotaAdRemIbs",
+          "aliquotaCbs",
+          "aliquotaCofins",
+          "aliquotaEfetivaCbs",
+          "aliquotaEfetivaIbs",
+          "aliquotaIbs",
+          "aliquotaPis",
+          "baseCofins",
+          "basePis",
+          "bcCbs",
+          "bcIbs",
+          "bicoCodigo",
+          "cfop",
+          "classTributariaCbs",
+          "classTributariaIbs",
+          "codigo",
+          "controleItem",
+          "cst",
+          "cstCbs",
+          "cstCofins",
+          "cstIbs",
+          "cstPis",
+          "dataMovimento",
+          "empresaCodigo",
+          "funcionarioCodigo",
+          "icmsAliquota",
+          "icmsBase",
+          "icmsValor",
+          "precoCusto",
+          "precoVenda",
+          "precoVendaBruto",
+          "produtoCodigo",
+          "produtoCodigoExterno",
+          "produtoKitCodigo",
+          "produtoLmcCodigo",
+          "quantidade",
+          "tanqueCodigo",
+          "totalAcrescimo",
+          "totalAcrescimoBruto",
+          "totalCusto",
+          "totalDesconto",
+          "totalDescontoBruto",
+          "totalVenda",
+          "totalVendaBruto",
+          "tributacaoAdRem",
+          "valorAdRemCbs",
+          "valorAdRemIbs",
+          "valorCbs",
+          "valorCofins",
+          "valorIbs",
+          "valorPis",
+          "valorTributacaoAdRem",
+          "vendaCodigo",
+          "vendaItemCodigo"
+        ]
+      },
+      "fuelingDiscovery": {
+        "totalRows": 200,
+        "fields": {
+          "abastecimentoCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              374838324,
+              374838474,
+              374838475
+            ]
+          },
+          "vendaItemCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              746425405,
+              746425598,
+              746425600
+            ]
+          },
+          "codigoFrentista": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              227386,
+              158924,
+              227386
+            ]
+          },
+          "codigoBico": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              42902,
+              24988,
+              42910
+            ]
+          },
+          "codigoProduto": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "1257884",
+              "1257884",
+              "1257884"
+            ]
+          },
+          "quantidade": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              2.837,
+              5.699,
+              9.791
+            ]
+          },
+          "valorTotal": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              20.0,
+              40.0,
+              69.02
+            ]
+          },
+          "encerrante": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              288797.95,
+              4777973.35,
+              1411553.53
+            ]
+          },
+          "empresaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              11495,
+              5555,
+              11495
+            ]
+          }
+        },
+        "allKeys": [
+          "abastecimentoCodigo",
+          "afericao",
+          "codigo",
+          "codigoBico",
+          "codigoFrentista",
+          "codigoProduto",
+          "dataFiscal",
+          "dataHoraAbastecimento",
+          "empresaCodigo",
+          "encerrante",
+          "horaFiscal",
+          "placa",
+          "precoCadastro",
+          "quantidade",
+          "stringFull",
+          "tabelaPrecoA",
+          "tabelaPrecoB",
+          "tabelaPrecoC",
+          "valorTotal",
+          "valorUnitario",
+          "vendaItemCodigo"
+        ]
+      },
+      "nfceDiscovery": {
+        "totalRows": 200,
+        "fields": {
+          "vendaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              355400910,
+              355400938,
+              355401002
+            ]
+          },
+          "nfceCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              227805639,
+              227805667,
+              227805731
+            ]
+          },
+          "situacao": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "Autorizada",
+              "Autorizada",
+              "Autorizada"
+            ]
+          },
+          "dataEmissao": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "2026-06-02",
+              "2026-06-02",
+              "2026-06-02"
+            ]
+          },
+          "empresaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              11495,
+              11495,
+              11495
+            ]
+          },
+          "numeroDocumento": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              27217,
+              221162,
+              221163
+            ]
+          },
+          "serieDocumento": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              49,
+              27,
+              27
+            ]
+          }
+        },
+        "allKeys": [
+          "chaveDocumento",
+          "codigo",
+          "dataEmissao",
+          "empresaCodigo",
+          "nfceCodigo",
+          "numeroDocumento",
+          "protocoloAutorizacao",
+          "protocoloCancelamento",
+          "protocoloInutilizacao",
+          "serieDocumento",
+          "situacao",
+          "vendaCodigo"
+        ]
+      },
+      "joinMatrix": [
+        {
+          "a": "VENDA_FORMA_PAGAMENTO",
+          "b": "VENDA",
+          "keys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "leftCount": 200,
+          "matched": 200,
+          "coveragePct": 100.0,
+          "confidence": "HIGH"
+        },
+        {
+          "a": "VENDA",
+          "b": "CAIXA",
+          "keys": [
+            "empresaCodigo",
+            "caixaCodigo"
+          ],
+          "leftCount": 200,
+          "matched": 200,
+          "coveragePct": 100.0,
+          "confidence": "HIGH"
+        },
+        {
+          "a": "VENDA_ITEM",
+          "b": "VENDA",
+          "keys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "leftCount": 200,
+          "matched": 200,
+          "coveragePct": 100.0,
+          "confidence": "HIGH"
+        },
+        {
+          "a": "ABASTECIMENTO",
+          "b": "VENDA_ITEM",
+          "keys": [
+            "empresaCodigo",
+            "vendaItemCodigo"
+          ],
+          "leftCount": 200,
+          "matched": 84,
+          "coveragePct": 42.0,
+          "confidence": "LOW"
+        },
+        {
+          "a": "NFCE",
+          "b": "VENDA",
+          "keys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "leftCount": 200,
+          "matched": 200,
+          "coveragePct": 100.0,
+          "confidence": "HIGH"
+        }
+      ],
+      "vfpToCaixaViaVendaPct": 100.0,
+      "prestacaoProbe": {
+        "targetEmpresa": 5555,
+        "targetDate": "2026-06-08",
+        "probeDateUsed": "2026-06-08",
+        "dateInWindow": true,
+        "caixaTurnos": 1,
+        "vendasDia": 21,
+        "vfpDia": 21,
+        "fetchDedicadoDia": true,
+        "byFormaPagamento": {
+          "DINHEIRO": 7627.270000000001
+        },
+        "byFuncionarioValor": {
+          "149304": 4358.760000000001,
+          "299152": 584.59,
+          "277311": 2583.92,
+          "63048": 50.0,
+          "299151": 50.0
+        },
+        "byPdvValor": {
+          "15880": 7627.270000000001
+        },
+        "participacaoPct": {
+          "149304": 0,
+          "299152": 0,
+          "277311": 0,
+          "63048": 0,
+          "299151": 0
+        },
+        "trocoTotal": 0.0,
+        "cancelamentos": 21,
+        "descontoTotal": 0.0,
+        "combustivelValor": 1479.38,
+        "produtoValor": 0.0,
+        "abastecimentosDia": 31,
+        "byFrentista": {
+          "149304": 1800.06,
+          "63048": 50.0,
+          "83139": 150.0
+        },
+        "reconstructionLayers": {
+          "formaPagamento": true,
+          "porFuncionario": true,
+          "porPdv": true,
+          "porTurno": true,
+          "combustivelProduto": true,
+          "trocoCancelamentos": true,
+          "descontos": false,
+          "participacaoPct": true
+        },
+        "reconstructionCoveragePct": 87.5
+      },
+      "operatorProductivity": {
+        "valorPorFuncionario": {
+          "149304": 4358.760000000001,
+          "299152": 584.59,
+          "277311": 2583.92,
+          "63048": 50.0,
+          "299151": 50.0
+        },
+        "abastecimentosPorFrentista": {
+          "149304": 29,
+          "63048": 1,
+          "83139": 1
+        },
+        "combustivelPorFrentista": {
+          "149304": 1800.06,
+          "63048": 50.0,
+          "83139": 150.0
+        },
+        "participacaoCalculada": {
+          "149304": 0,
+          "299152": 0,
+          "277311": 0,
+          "63048": 0,
+          "299151": 0
+        },
+        "participacaoPrestacaoDisponivel": false
+      },
+      "counts": {
+        "caixa": 20,
+        "venda": 200,
+        "venda_item": 200,
+        "vfp": 200,
+        "abastecimento": 200,
+        "nfce": 200
+      }
+    },
+    "30d": {
+      "window": "30d",
+      "periodo": {
+        "inicio": "2026-05-09",
+        "fim": "2026-06-08"
+      },
+      "elapsedSec": 76.15,
+      "truncatedAny": false,
+      "performance": {
+        "caixa": {
+          "key": "caixa",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 93,
+          "hasData": true,
+          "latencyMsAvg": 1093.07,
+          "latencyMsMax": 1093.07,
+          "elapsedSec": 1.09
+        },
+        "caixa_apresentado": {
+          "key": "caixa_apresentado",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 93,
+          "hasData": true,
+          "latencyMsAvg": 1131.79,
+          "latencyMsMax": 1131.79,
+          "elapsedSec": 1.13
+        },
+        "venda": {
+          "key": "venda",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 7733.55,
+          "latencyMsMax": 7733.55,
+          "elapsedSec": 7.73
+        },
+        "venda_item": {
+          "key": "venda_item",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 1915.09,
+          "latencyMsMax": 1915.09,
+          "elapsedSec": 1.92
+        },
+        "venda_forma_pagamento": {
+          "key": "venda_forma_pagamento",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 2082.54,
+          "latencyMsMax": 2082.54,
+          "elapsedSec": 2.08
+        },
+        "abastecimento": {
+          "key": "abastecimento",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 1722.29,
+          "latencyMsMax": 1722.29,
+          "elapsedSec": 1.72
+        },
+        "nfce": {
+          "key": "nfce",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 1796.8,
+          "latencyMsMax": 1796.8,
+          "elapsedSec": 1.8
+        },
+        "movimento_conta": {
+          "key": "movimento_conta",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 8537.32,
+          "latencyMsMax": 8537.32,
+          "elapsedSec": 8.54
+        },
+        "transferencia_bancaria": {
+          "key": "transferencia_bancaria",
+          "status": 500,
+          "error": "",
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 0,
+          "hasData": false,
+          "latencyMsAvg": 32161.91,
+          "latencyMsMax": 32161.91,
+          "elapsedSec": 32.16
+        }
+      },
+      "paymentFormDiscovery": {
+        "totalRows": 200,
+        "fields": {
+          "vendaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              351557808,
+              351557819,
+              351557964
+            ]
+          },
+          "caixaCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "turnoCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              1,
+              1,
+              1
+            ]
+          },
+          "empresaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              11495,
+              5555,
+              11495
+            ]
+          },
+          "formaPagamentoCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              59643,
+              20259,
+              59643
+            ]
+          },
+          "nomeFormaPagamento": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "PIX",
+              "DINHEIRO",
+              "PIX"
+            ]
+          },
+          "administradoraCodigo": {
+            "exists": true,
+            "coveragePct": 33.5,
+            "samples": [
+              106902,
+              94762,
+              94760
+            ]
+          },
+          "valorPagamento": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              23.0,
+              14.0,
+              14.25
+            ]
+          },
+          "dataMovimento": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "2026-05-09",
+              "2026-05-09",
+              "2026-05-09"
+            ]
+          },
+          "funcionarioCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "pdvCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          }
+        },
+        "allKeys": [
+          "administradoraCodigo",
+          "codigo",
+          "dataMovimento",
+          "empresaCodigo",
+          "formaPagamentoCodigo",
+          "nomeFormaPagamento",
+          "taxaPercentual",
+          "tipoFormaPagamento",
+          "turnoCodigo",
+          "valorPagamento",
+          "vencimento",
+          "vendaCodigo",
+          "vendaPrazoCodigo"
+        ],
+        "viaVenda": {
+          "caixaCodigo": {
+            "coveragePct": 100.0,
+            "exists": true
+          },
+          "funcionarioCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              276288,
+              277311,
+              276288
+            ]
+          },
+          "pdvCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              56764,
+              15880,
+              56764
+            ]
+          }
+        }
+      },
+      "saleDiscovery": {
+        "totalRows": 200,
+        "fields": {
+          "vendaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              351557808,
+              351557819,
+              351557964
+            ]
+          },
+          "caixaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              4314084,
+              4314109,
+              4314084
+            ]
+          },
+          "funcionarioCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              276288,
+              277311,
+              276288
+            ]
+          },
+          "empresaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              11495,
+              5555,
+              11495
+            ]
+          },
+          "pdvCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "dataMovimento": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "dataHora": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "2026-05-09T00:01:58.000-03:00",
+              "2026-05-09T00:03:26.000-03:00",
+              "2026-05-09T00:07:44.000-03:00"
+            ]
+          },
+          "cancelada": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "N",
+              "N",
+              "N"
+            ]
+          },
+          "troco": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              [],
+              [],
+              []
+            ]
+          },
+          "totalVenda": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              23.0,
+              14.0,
+              14.25
+            ]
+          }
+        },
+        "allKeys": [
+          "caixaCodigo",
+          "cancelada",
+          "centroCustoCodigo",
+          "centroCustoVeiculo",
+          "clienteCodigo",
+          "clienteCodigoExterno",
+          "clienteCpfCnpj",
+          "codigo",
+          "dataHora",
+          "destacaAcrescimoDesconto",
+          "empresaCodigo",
+          "formaPagamento",
+          "funcionarioCodigo",
+          "identificacaoFidelidade",
+          "itens",
+          "modeloDocumento",
+          "motoristaCodigo",
+          "notaChave",
+          "notaCodigo",
+          "notaNumero",
+          "notaSerie",
+          "placaVeiculo",
+          "totalVenda",
+          "troco",
+          "vendaCodigo",
+          "vendaUuid"
+        ],
+        "viaCaixa": {
+          "pdvCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              56764,
+              15880,
+              56764
+            ]
+          }
+        }
+      },
+      "saleItemDiscovery": {
+        "totalRows": 200,
+        "fields": {
+          "vendaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              351557808,
+              351557808,
+              351557808
+            ]
+          },
+          "produtoCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              1803364,
+              1803381,
+              1727011
+            ]
+          },
+          "funcionarioCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              276288,
+              276288,
+              276288
+            ]
+          },
+          "bicoCodigo": {
+            "exists": true,
+            "coveragePct": 48.5,
+            "samples": [
+              24983,
+              24987,
+              42910
+            ]
+          },
+          "totalDesconto": {
+            "exists": true,
+            "coveragePct": 1.5,
+            "samples": [
+              2.82,
+              2.86,
+              1.97
+            ]
+          },
+          "totalVenda": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              3.0,
+              2.5,
+              10.5
+            ]
+          },
+          "quantidade": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "tanqueCodigo": {
+            "exists": true,
+            "coveragePct": 48.5,
+            "samples": [
+              13578,
+              13578,
+              29880
+            ]
+          },
+          "produtoLmcCodigo": {
+            "exists": true,
+            "coveragePct": 48.5,
+            "samples": [
+              21497,
+              21497,
+              8297
+            ]
+          }
+        },
+        "allKeys": [
+          "aliquotaAdRemCbs",
+          "aliquotaAdRemIbs",
+          "aliquotaCbs",
+          "aliquotaCofins",
+          "aliquotaEfetivaCbs",
+          "aliquotaEfetivaIbs",
+          "aliquotaIbs",
+          "aliquotaPis",
+          "baseCofins",
+          "basePis",
+          "bcCbs",
+          "bcIbs",
+          "bicoCodigo",
+          "cfop",
+          "classTributariaCbs",
+          "classTributariaIbs",
+          "codigo",
+          "controleItem",
+          "cst",
+          "cstCbs",
+          "cstCofins",
+          "cstIbs",
+          "cstPis",
+          "dataMovimento",
+          "empresaCodigo",
+          "funcionarioCodigo",
+          "icmsAliquota",
+          "icmsBase",
+          "icmsValor",
+          "precoCusto",
+          "precoVenda",
+          "precoVendaBruto",
+          "produtoCodigo",
+          "produtoCodigoExterno",
+          "produtoKitCodigo",
+          "produtoLmcCodigo",
+          "quantidade",
+          "tanqueCodigo",
+          "totalAcrescimo",
+          "totalAcrescimoBruto",
+          "totalCusto",
+          "totalDesconto",
+          "totalDescontoBruto",
+          "totalVenda",
+          "totalVendaBruto",
+          "tributacaoAdRem",
+          "valorAdRemCbs",
+          "valorAdRemIbs",
+          "valorCbs",
+          "valorCofins",
+          "valorIbs",
+          "valorPis",
+          "valorTributacaoAdRem",
+          "vendaCodigo",
+          "vendaItemCodigo"
+        ]
+      },
+      "fuelingDiscovery": {
+        "totalRows": 200,
+        "fields": {
+          "abastecimentoCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              369074746,
+              369075387,
+              369075714
+            ]
+          },
+          "vendaItemCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              739885870,
+              739886687,
+              739887138
+            ]
+          },
+          "codigoFrentista": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              277311,
+              277311,
+              277311
+            ]
+          },
+          "codigoBico": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              24983,
+              24987,
+              24987
+            ]
+          },
+          "codigoProduto": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "1975728",
+              "1975728",
+              "1975728"
+            ]
+          },
+          "quantidade": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              2.5,
+              2.679,
+              17.858
+            ]
+          },
+          "valorTotal": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              14.0,
+              15.0,
+              100.0
+            ]
+          },
+          "encerrante": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              678734.12,
+              1521957.72,
+              1521975.58
+            ]
+          },
+          "empresaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              5555,
+              5555,
+              5555
+            ]
+          }
+        },
+        "allKeys": [
+          "abastecimentoCodigo",
+          "afericao",
+          "codigo",
+          "codigoBico",
+          "codigoFrentista",
+          "codigoProduto",
+          "dataFiscal",
+          "dataHoraAbastecimento",
+          "empresaCodigo",
+          "encerrante",
+          "horaFiscal",
+          "placa",
+          "precoCadastro",
+          "quantidade",
+          "stringFull",
+          "tabelaPrecoA",
+          "tabelaPrecoB",
+          "tabelaPrecoC",
+          "valorTotal",
+          "valorUnitario",
+          "vendaItemCodigo"
+        ]
+      },
+      "nfceDiscovery": {
+        "totalRows": 200,
+        "fields": {
+          "vendaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              351557808,
+              351557819,
+              351557964
+            ]
+          },
+          "nfceCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              224016141,
+              224016152,
+              224016285
+            ]
+          },
+          "situacao": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "Autorizada",
+              "Autorizada",
+              "Autorizada"
+            ]
+          },
+          "dataEmissao": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "2026-05-09",
+              "2026-05-09",
+              "2026-05-09"
+            ]
+          },
+          "empresaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              11495,
+              5555,
+              11495
+            ]
+          },
+          "numeroDocumento": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              215757,
+              69803,
+              215758
+            ]
+          },
+          "serieDocumento": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              27,
+              6,
+              27
+            ]
+          }
+        },
+        "allKeys": [
+          "chaveDocumento",
+          "codigo",
+          "dataEmissao",
+          "empresaCodigo",
+          "nfceCodigo",
+          "numeroDocumento",
+          "protocoloAutorizacao",
+          "protocoloCancelamento",
+          "protocoloInutilizacao",
+          "serieDocumento",
+          "situacao",
+          "vendaCodigo"
+        ]
+      },
+      "joinMatrix": [
+        {
+          "a": "VENDA_FORMA_PAGAMENTO",
+          "b": "VENDA",
+          "keys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "leftCount": 200,
+          "matched": 200,
+          "coveragePct": 100.0,
+          "confidence": "HIGH"
+        },
+        {
+          "a": "VENDA",
+          "b": "CAIXA",
+          "keys": [
+            "empresaCodigo",
+            "caixaCodigo"
+          ],
+          "leftCount": 200,
+          "matched": 200,
+          "coveragePct": 100.0,
+          "confidence": "HIGH"
+        },
+        {
+          "a": "VENDA_ITEM",
+          "b": "VENDA",
+          "keys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "leftCount": 200,
+          "matched": 199,
+          "coveragePct": 99.5,
+          "confidence": "HIGH"
+        },
+        {
+          "a": "ABASTECIMENTO",
+          "b": "VENDA_ITEM",
+          "keys": [
+            "empresaCodigo",
+            "vendaItemCodigo"
+          ],
+          "leftCount": 200,
+          "matched": 96,
+          "coveragePct": 48.0,
+          "confidence": "LOW"
+        },
+        {
+          "a": "NFCE",
+          "b": "VENDA",
+          "keys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "leftCount": 200,
+          "matched": 199,
+          "coveragePct": 99.5,
+          "confidence": "HIGH"
+        }
+      ],
+      "vfpToCaixaViaVendaPct": 100.0,
+      "prestacaoProbe": {
+        "targetEmpresa": 5555,
+        "targetDate": "2026-06-08",
+        "probeDateUsed": "2026-06-08",
+        "dateInWindow": true,
+        "caixaTurnos": 1,
+        "vendasDia": 21,
+        "vfpDia": 21,
+        "fetchDedicadoDia": true,
+        "byFormaPagamento": {
+          "DINHEIRO": 7627.270000000001
+        },
+        "byFuncionarioValor": {
+          "149304": 4358.760000000001,
+          "299152": 584.59,
+          "277311": 2583.92,
+          "63048": 50.0,
+          "299151": 50.0
+        },
+        "byPdvValor": {
+          "15880": 7627.270000000001
+        },
+        "participacaoPct": {
+          "149304": 0,
+          "299152": 0,
+          "277311": 0,
+          "63048": 0,
+          "299151": 0
+        },
+        "trocoTotal": 0.0,
+        "cancelamentos": 21,
+        "descontoTotal": 0.0,
+        "combustivelValor": 1479.38,
+        "produtoValor": 0.0,
+        "abastecimentosDia": 31,
+        "byFrentista": {
+          "149304": 1800.06,
+          "63048": 50.0,
+          "83139": 150.0
+        },
+        "reconstructionLayers": {
+          "formaPagamento": true,
+          "porFuncionario": true,
+          "porPdv": true,
+          "porTurno": true,
+          "combustivelProduto": true,
+          "trocoCancelamentos": true,
+          "descontos": false,
+          "participacaoPct": true
+        },
+        "reconstructionCoveragePct": 87.5
+      },
+      "operatorProductivity": {
+        "valorPorFuncionario": {
+          "149304": 4358.760000000001,
+          "299152": 584.59,
+          "277311": 2583.92,
+          "63048": 50.0,
+          "299151": 50.0
+        },
+        "abastecimentosPorFrentista": {
+          "149304": 29,
+          "63048": 1,
+          "83139": 1
+        },
+        "combustivelPorFrentista": {
+          "149304": 1800.06,
+          "63048": 50.0,
+          "83139": 150.0
+        },
+        "participacaoCalculada": {
+          "149304": 0,
+          "299152": 0,
+          "277311": 0,
+          "63048": 0,
+          "299151": 0
+        },
+        "participacaoPrestacaoDisponivel": false
+      },
+      "counts": {
+        "caixa": 93,
+        "venda": 200,
+        "venda_item": 200,
+        "vfp": 200,
+        "abastecimento": 200,
+        "nfce": 200
+      }
+    },
+    "90d": {
+      "window": "90d",
+      "periodo": {
+        "inicio": "2026-03-10",
+        "fim": "2026-06-08"
+      },
+      "elapsedSec": 180.82,
+      "truncatedAny": false,
+      "performance": {
+        "caixa": {
+          "key": "caixa",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 1074.51,
+          "latencyMsMax": 1074.51,
+          "elapsedSec": 1.07
+        },
+        "caixa_apresentado": {
+          "key": "caixa_apresentado",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 1181.92,
+          "latencyMsMax": 1181.92,
+          "elapsedSec": 1.18
+        },
+        "venda": {
+          "key": "venda",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 24227.87,
+          "latencyMsMax": 24227.87,
+          "elapsedSec": 24.23
+        },
+        "venda_item": {
+          "key": "venda_item",
+          "status": 500,
+          "error": "",
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 0,
+          "hasData": false,
+          "latencyMsAvg": 62021.0,
+          "latencyMsMax": 62021.0,
+          "elapsedSec": 62.02
+        },
+        "venda_forma_pagamento": {
+          "key": "venda_forma_pagamento",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 3078.33,
+          "latencyMsMax": 3078.33,
+          "elapsedSec": 3.08
+        },
+        "abastecimento": {
+          "key": "abastecimento",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 3937.87,
+          "latencyMsMax": 3937.87,
+          "elapsedSec": 3.94
+        },
+        "nfce": {
+          "key": "nfce",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 4853.39,
+          "latencyMsMax": 4853.39,
+          "elapsedSec": 4.85
+        },
+        "movimento_conta": {
+          "key": "movimento_conta",
+          "status": 200,
+          "error": null,
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 200,
+          "hasData": true,
+          "latencyMsAvg": 8560.47,
+          "latencyMsMax": 8560.47,
+          "elapsedSec": 8.56
+        },
+        "transferencia_bancaria": {
+          "key": "transferencia_bancaria",
+          "status": 500,
+          "error": "",
+          "timeout": false,
+          "truncated": false,
+          "pages": 1,
+          "count": 0,
+          "hasData": false,
+          "latencyMsAvg": 32204.85,
+          "latencyMsMax": 32204.85,
+          "elapsedSec": 32.2
+        }
+      },
+      "paymentFormDiscovery": {
+        "totalRows": 200,
+        "fields": {
+          "vendaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              342054258,
+              342054276,
+              342054281
+            ]
+          },
+          "caixaCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "turnoCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              1,
+              1,
+              1
+            ]
+          },
+          "empresaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              11495,
+              11495,
+              5555
+            ]
+          },
+          "formaPagamentoCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              20264,
+              59643,
+              59643
+            ]
+          },
+          "nomeFormaPagamento": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "CARTAO POS",
+              "PIX",
+              "PIX"
+            ]
+          },
+          "administradoraCodigo": {
+            "exists": true,
+            "coveragePct": 54.0,
+            "samples": [
+              94761,
+              106904,
+              94760
+            ]
+          },
+          "valorPagamento": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              100.0,
+              40.0,
+              30.0
+            ]
+          },
+          "dataMovimento": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "2026-03-10",
+              "2026-03-10",
+              "2026-03-10"
+            ]
+          },
+          "funcionarioCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "pdvCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          }
+        },
+        "allKeys": [
+          "administradoraCodigo",
+          "codigo",
+          "dataMovimento",
+          "empresaCodigo",
+          "formaPagamentoCodigo",
+          "nomeFormaPagamento",
+          "taxaPercentual",
+          "tipoFormaPagamento",
+          "turnoCodigo",
+          "valorPagamento",
+          "vencimento",
+          "vendaCodigo",
+          "vendaPrazoCodigo"
+        ],
+        "viaVenda": {
+          "caixaCodigo": {
+            "coveragePct": 100.0,
+            "exists": true
+          },
+          "funcionarioCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              227386,
+              227386,
+              157960
+            ]
+          },
+          "pdvCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              54193,
+              54193,
+              15880
+            ]
+          }
+        }
+      },
+      "saleDiscovery": {
+        "totalRows": 200,
+        "fields": {
+          "vendaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              342054258,
+              342054276,
+              342054281
+            ]
+          },
+          "caixaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              4256755,
+              4256755,
+              4256777
+            ]
+          },
+          "funcionarioCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              227386,
+              227386,
+              157960
+            ]
+          },
+          "empresaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              11495,
+              11495,
+              5555
+            ]
+          },
+          "pdvCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "dataMovimento": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "dataHora": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "2026-03-10T00:04:11.000-03:00",
+              "2026-03-10T00:05:51.000-03:00",
+              "2026-03-10T00:06:04.000-03:00"
+            ]
+          },
+          "cancelada": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "N",
+              "N",
+              "N"
+            ]
+          },
+          "troco": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              [],
+              [],
+              []
+            ]
+          },
+          "totalVenda": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              100.0,
+              40.0,
+              30.0
+            ]
+          }
+        },
+        "allKeys": [
+          "caixaCodigo",
+          "cancelada",
+          "centroCustoCodigo",
+          "centroCustoVeiculo",
+          "clienteCodigo",
+          "clienteCodigoExterno",
+          "clienteCpfCnpj",
+          "codigo",
+          "dataHora",
+          "destacaAcrescimoDesconto",
+          "empresaCodigo",
+          "formaPagamento",
+          "funcionarioCodigo",
+          "identificacaoFidelidade",
+          "itens",
+          "modeloDocumento",
+          "motoristaCodigo",
+          "notaChave",
+          "notaCodigo",
+          "notaNumero",
+          "notaSerie",
+          "placaVeiculo",
+          "totalVenda",
+          "troco",
+          "vendaCodigo",
+          "vendaUuid"
+        ],
+        "viaCaixa": {
+          "pdvCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              54193,
+              54193,
+              15880
+            ]
+          }
+        }
+      },
+      "saleItemDiscovery": {
+        "totalRows": 0,
+        "fields": {
+          "vendaCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "produtoCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "funcionarioCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "bicoCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "totalDesconto": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "totalVenda": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "quantidade": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "tanqueCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          },
+          "produtoLmcCodigo": {
+            "exists": false,
+            "coveragePct": 0.0,
+            "samples": []
+          }
+        },
+        "allKeys": []
+      },
+      "fuelingDiscovery": {
+        "totalRows": 200,
+        "fields": {
+          "abastecimentoCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              354518967,
+              354518984,
+              354518991
+            ]
+          },
+          "vendaItemCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              723416711,
+              723416731,
+              723416741
+            ]
+          },
+          "codigoFrentista": {
+            "exists": true,
+            "coveragePct": 98.5,
+            "samples": [
+              227386,
+              227386,
+              157960
+            ]
+          },
+          "codigoBico": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              42907,
+              42904,
+              24989
+            ]
+          },
+          "codigoProduto": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "1975728",
+              "1975728",
+              "1975728"
+            ]
+          },
+          "quantidade": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              19.231,
+              7.693,
+              5.826
+            ]
+          },
+          "valorTotal": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              100.0,
+              40.0,
+              30.0
+            ]
+          },
+          "encerrante": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              115042.66,
+              108023.64,
+              335617.15
+            ]
+          },
+          "empresaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              11495,
+              11495,
+              5555
+            ]
+          }
+        },
+        "allKeys": [
+          "abastecimentoCodigo",
+          "afericao",
+          "codigo",
+          "codigoBico",
+          "codigoFrentista",
+          "codigoProduto",
+          "dataFiscal",
+          "dataHoraAbastecimento",
+          "empresaCodigo",
+          "encerrante",
+          "horaFiscal",
+          "placa",
+          "precoCadastro",
+          "quantidade",
+          "stringFull",
+          "tabelaPrecoA",
+          "tabelaPrecoB",
+          "tabelaPrecoC",
+          "valorTotal",
+          "valorUnitario",
+          "vendaItemCodigo"
+        ]
+      },
+      "nfceDiscovery": {
+        "totalRows": 200,
+        "fields": {
+          "vendaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              342054258,
+              342054276,
+              342054281
+            ]
+          },
+          "nfceCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              214613494,
+              214613512,
+              214613517
+            ]
+          },
+          "situacao": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "Autorizada",
+              "Autorizada",
+              "Autorizada"
+            ]
+          },
+          "dataEmissao": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              "2026-03-10",
+              "2026-03-10",
+              "2026-03-10"
+            ]
+          },
+          "empresaCodigo": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              11495,
+              11495,
+              5555
+            ]
+          },
+          "numeroDocumento": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              12933,
+              12934,
+              66001
+            ]
+          },
+          "serieDocumento": {
+            "exists": true,
+            "coveragePct": 100.0,
+            "samples": [
+              55,
+              55,
+              5
+            ]
+          }
+        },
+        "allKeys": [
+          "chaveDocumento",
+          "codigo",
+          "dataEmissao",
+          "empresaCodigo",
+          "nfceCodigo",
+          "numeroDocumento",
+          "protocoloAutorizacao",
+          "protocoloCancelamento",
+          "protocoloInutilizacao",
+          "serieDocumento",
+          "situacao",
+          "vendaCodigo"
+        ]
+      },
+      "joinMatrix": [
+        {
+          "a": "VENDA_FORMA_PAGAMENTO",
+          "b": "VENDA",
+          "keys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "leftCount": 200,
+          "matched": 200,
+          "coveragePct": 100.0,
+          "confidence": "HIGH"
+        },
+        {
+          "a": "VENDA",
+          "b": "CAIXA",
+          "keys": [
+            "empresaCodigo",
+            "caixaCodigo"
+          ],
+          "leftCount": 200,
+          "matched": 200,
+          "coveragePct": 100.0,
+          "confidence": "HIGH"
+        },
+        {
+          "a": "VENDA_ITEM",
+          "b": "VENDA",
+          "keys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "leftCount": 0,
+          "matched": 0,
+          "coveragePct": 0.0,
+          "confidence": "LOW"
+        },
+        {
+          "a": "ABASTECIMENTO",
+          "b": "VENDA_ITEM",
+          "keys": [
+            "empresaCodigo",
+            "vendaItemCodigo"
+          ],
+          "leftCount": 200,
+          "matched": 0,
+          "coveragePct": 0.0,
+          "confidence": "LOW"
+        },
+        {
+          "a": "NFCE",
+          "b": "VENDA",
+          "keys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "leftCount": 200,
+          "matched": 200,
+          "coveragePct": 100.0,
+          "confidence": "HIGH"
+        }
+      ],
+      "vfpToCaixaViaVendaPct": 100.0,
+      "prestacaoProbe": {
+        "targetEmpresa": 5555,
+        "targetDate": "2026-06-08",
+        "probeDateUsed": "2026-06-08",
+        "dateInWindow": true,
+        "caixaTurnos": 1,
+        "vendasDia": 21,
+        "vfpDia": 21,
+        "fetchDedicadoDia": true,
+        "byFormaPagamento": {
+          "DINHEIRO": 7627.270000000001
+        },
+        "byFuncionarioValor": {
+          "149304": 4358.760000000001,
+          "299152": 584.59,
+          "277311": 2583.92,
+          "63048": 50.0,
+          "299151": 50.0
+        },
+        "byPdvValor": {
+          "None": 7627.270000000001
+        },
+        "participacaoPct": {
+          "149304": 0,
+          "299152": 0,
+          "277311": 0,
+          "63048": 0,
+          "299151": 0
+        },
+        "trocoTotal": 0.0,
+        "cancelamentos": 21,
+        "descontoTotal": 0.0,
+        "combustivelValor": 1479.38,
+        "produtoValor": 0.0,
+        "abastecimentosDia": 31,
+        "byFrentista": {
+          "149304": 1800.06,
+          "63048": 50.0,
+          "83139": 150.0
+        },
+        "reconstructionLayers": {
+          "formaPagamento": true,
+          "porFuncionario": true,
+          "porPdv": true,
+          "porTurno": true,
+          "combustivelProduto": true,
+          "trocoCancelamentos": true,
+          "descontos": false,
+          "participacaoPct": true
+        },
+        "reconstructionCoveragePct": 87.5
+      },
+      "operatorProductivity": {
+        "valorPorFuncionario": {
+          "149304": 4358.760000000001,
+          "299152": 584.59,
+          "277311": 2583.92,
+          "63048": 50.0,
+          "299151": 50.0
+        },
+        "abastecimentosPorFrentista": {
+          "149304": 29,
+          "63048": 1,
+          "83139": 1
+        },
+        "combustivelPorFrentista": {
+          "149304": 1800.06,
+          "63048": 50.0,
+          "83139": 150.0
+        },
+        "participacaoCalculada": {
+          "149304": 0,
+          "299152": 0,
+          "277311": 0,
+          "63048": 0,
+          "299151": 0
+        },
+        "participacaoPrestacaoDisponivel": false
+      },
+      "counts": {
+        "caixa": 200,
+        "venda": 200,
+        "venda_item": 0,
+        "vfp": 200,
+        "abastecimento": 200,
+        "nfce": 200
+      }
+    }
+  },
+  "executiveAnswers": {
+    "1_vfp_vendaCodigo": true,
+    "2_vfp_caixaCodigo": true,
+    "3_vfp_turnoCodigo": true,
+    "4_venda_funcionarioCodigo": true,
+    "5_venda_pdvCodigo": true,
+    "6_vendaItem_funcionarioCodigo": true,
+    "7_abast_codigoFrentista": true,
+    "8_abast_liga_venda": true,
+    "9_nfce_liga_venda": true,
+    "10_recon_forma_pagamento": true,
+    "11_recon_venda_funcionario": true,
+    "12_recon_produtividade": true,
+    "13_recon_combustivel_produto": true,
+    "14_recon_troco_cancel": true,
+    "15_pdf_necessario": true,
+    "16_campos_exclusivos_prestacao": [
+      "funcionarioNome",
+      "participacaoIndividual (oficial UI)",
+      "produtividadeFuncionario",
+      "fundoCaixa",
+      "layout nominal turno"
+    ],
+    "17_fontes_primarias_f04": [
+      "VENDA",
+      "VENDA_ITEM",
+      "VENDA_FORMA_PAGAMENTO",
+      "CAIXA",
+      "ABASTECIMENTO"
+    ],
+    "18_fontes_auxiliares_f04": [
+      "NFCE",
+      "MOVIMENTO_CONTA",
+      "CAIXA_APRESENTADO",
+      "DESPESAS_REDE"
+    ],
+    "19_cobertura_reconstrucao_pct": 87.5,
+    "20_f04_api_ou_parser": "API estruturada para transacional; parser/UI para nominal",
+    "joinProofOk": true
+  },
+  "parecerFinal": "[PARECER FINAL: PRESTACAO CONTAS/PARSER NECESSÁRIO PARA F04]",
+  "qa": {
+    "joinMatrixFilled": true,
+    "joinProofOk": true,
+    "reconstructionMeasured": true
+  }
+}

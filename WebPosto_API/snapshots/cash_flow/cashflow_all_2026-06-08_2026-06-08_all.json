@@ -1,0 +1,212 @@
+{
+  "lastUpdated": "2026-06-09T17:36:23",
+  "flow": {
+    "sources": [
+      "CAIXA_APRESENTADO",
+      "MOVIMENTO_CONTA",
+      "TITULO_PAGAR",
+      "TITULO_RECEBER"
+    ],
+    "forbiddenSourcesUsed": [],
+    "referenceDate": "2026-06-08",
+    "cards": {
+      "entradasPrevistas": "107618.25",
+      "saidasPrevistas": "12407.80",
+      "saldoProjetado": "95210.45",
+      "saldoAcumulado": "95210.45"
+    },
+    "daily": [
+      {
+        "periodo": "2026-06-08",
+        "entradasPrevistas": "107618.25",
+        "saidasPrevistas": "12407.80",
+        "saldoProjetado": "95210.45",
+        "saldoAcumulado": "95210.45"
+      }
+    ],
+    "weekly": [
+      {
+        "periodo": "2026-W24",
+        "entradasPrevistas": "107618.25",
+        "saidasPrevistas": "12407.80",
+        "saldoProjetado": "95210.45",
+        "saldoAcumulado": "95210.45"
+      }
+    ],
+    "monthly": [
+      {
+        "periodo": "2026-06",
+        "entradasPrevistas": "107618.25",
+        "saidasPrevistas": "12407.80",
+        "saldoProjetado": "95210.45",
+        "saldoAcumulado": "95210.45"
+      }
+    ],
+    "payablesAging": {
+      "vencido": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "hoje": {
+        "count": 2,
+        "valor": "1948.50"
+      },
+      "7d": {
+        "count": 2,
+        "valor": "30355.00"
+      },
+      "15d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "30d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "acima30": {
+        "count": 0,
+        "valor": "0.00"
+      }
+    },
+    "receivablesAging": {
+      "vencido": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "hoje": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "7d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "15d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "30d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "acima30": {
+        "count": 0,
+        "valor": "0.00"
+      }
+    },
+    "payablesFuture": [
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3080518,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-06-11",
+        "valor": "30055.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3080519,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-06-11",
+        "valor": "300.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3080936,
+        "descricao": "GALEGO DO GELO",
+        "vencimento": "2026-06-08",
+        "valor": "171.50",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3081720,
+        "descricao": "UNIFORDEX FIALHO FARDAS",
+        "vencimento": "2026-06-08",
+        "valor": "1777.00",
+        "aging": "hoje"
+      }
+    ],
+    "receivablesFuture": [],
+    "overdueEvents": [],
+    "treasury": {
+      "creditos": {
+        "count": 1018,
+        "valor": "107618.25"
+      },
+      "debitos": {
+        "count": 982,
+        "valor": "10459.30"
+      },
+      "tarifas": {
+        "count": 977,
+        "valor": "369.30"
+      },
+      "transferencias": {
+        "count": 977,
+        "valor": "53090.27"
+      }
+    },
+    "insights": {
+      "criticalDays": [
+        {
+          "periodo": "2026-06-08",
+          "entradasPrevistas": "107618.25",
+          "saidasPrevistas": "12407.80",
+          "saldoProjetado": "95210.45",
+          "saldoAcumulado": "95210.45"
+        }
+      ],
+      "payablesVencidoValor": "0.00",
+      "receivablesVencidoValor": "0.00",
+      "tarifasValor": "369.30",
+      "topOpportunities": [
+        {
+          "tipo": "TARIFA_BANCARIA",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:990269947 ",
+          "valor": "2.57",
+          "vencimento": "2026-06-08",
+          "acao": "Revisar tarifa evitável ou conta bancária"
+        },
+        {
+          "tipo": "TARIFA_BANCARIA",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:73545049299 ",
+          "valor": "2.38",
+          "vencimento": "2026-06-08",
+          "acao": "Revisar tarifa evitável ou conta bancária"
+        },
+        {
+          "tipo": "TARIFA_BANCARIA",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:4047 CONTA:20586815 ",
+          "valor": "2.28",
+          "vencimento": "2026-06-08",
+          "acao": "Revisar tarifa evitável ou conta bancária"
+        },
+        {
+          "tipo": "TARIFA_BANCARIA",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:86004463416 ",
+          "valor": "2.03",
+          "vencimento": "2026-06-08",
+          "acao": "Revisar tarifa evitável ou conta bancária"
+        }
+      ]
+    },
+    "snapshotKeys": {
+      "daily": "cashflow:daily:2026-06-08:2026-06-08:all",
+      "weekly": "cashflow:weekly:2026-06-08:2026-06-08:all",
+      "monthly": "cashflow:monthly:2026-06-08:2026-06-08:all"
+    },
+    "performanceMs": {
+      "payables": 1810.9,
+      "receivables": 1425.1,
+      "bank": 9197.3,
+      "caixaApresentado": 1018.5
+    }
+  },
+  "snapshotKey": "cashflow:all:2026-06-08:2026-06-08:all"
+}

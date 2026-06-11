@@ -1,0 +1,1291 @@
+{
+  "lastUpdated": "2026-06-09T18:03:20",
+  "operations": {
+    "periodo": {
+      "dataInicial": "2026-06-01",
+      "dataFinal": "2026-06-07"
+    },
+    "summary": {
+      "diferencaTotalRede": -768.86,
+      "impactoAbsoluto7d": 1278.34,
+      "impactoAbsoluto90d": 13858.79,
+      "perdaObservada90d": 13858.79,
+      "projecaoAnual": 76643.31,
+      "potencialRecuperavel30pct": 4157.64,
+      "estancamentoInicial7d": 191.75,
+      "fechamentos": 21,
+      "cashRiskScore": 53.18,
+      "cashRiskBand": "Critico",
+      "alertasAtivos": 21,
+      "operadoresCriticos": 7,
+      "pdvsCriticos": 2
+    },
+    "alerts": {
+      "total": 21,
+      "porNivel": {
+        "INFO": 0,
+        "ATENCAO": 0,
+        "ALTO": 0,
+        "CRITICO": 21,
+        "OK": 0
+      },
+      "ativos": [
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4336819,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 158924,
+          "pdvCodigo": 15880,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-02",
+          "diferenca": -272.07,
+          "diferencaAbsoluta": 272.07,
+          "consecutivasOperador": 5,
+          "quebrasPdv30d": 29,
+          "motivo": "diferenca >= R$ 100.00; 5 quebras consecutivas operador; 29 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4340665,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 299151,
+          "pdvCodigo": 15880,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-06",
+          "diferenca": -215.77,
+          "diferencaAbsoluta": 215.77,
+          "consecutivasOperador": 1,
+          "quebrasPdv30d": 29,
+          "motivo": "diferenca >= R$ 100.00; 29 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4337788,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 158924,
+          "pdvCodigo": 15880,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-03",
+          "diferenca": 208.96,
+          "diferencaAbsoluta": 208.96,
+          "consecutivasOperador": 5,
+          "quebrasPdv30d": 29,
+          "motivo": "diferenca >= R$ 100.00; 5 quebras consecutivas operador; 29 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4338777,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 294273,
+          "pdvCodigo": 54193,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-04",
+          "diferenca": -194.36,
+          "diferencaAbsoluta": 194.36,
+          "consecutivasOperador": 3,
+          "quebrasPdv30d": 30,
+          "motivo": "diferenca >= R$ 100.00; 3 quebras consecutivas operador; 30 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4339655,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 299371,
+          "pdvCodigo": 54193,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-05",
+          "diferenca": -116.8,
+          "diferencaAbsoluta": 116.8,
+          "consecutivasOperador": 1,
+          "quebrasPdv30d": 30,
+          "motivo": "diferenca >= R$ 100.00; 30 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4341557,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 227386,
+          "pdvCodigo": 54193,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-07",
+          "diferenca": -57.3,
+          "diferencaAbsoluta": 57.3,
+          "consecutivasOperador": 3,
+          "quebrasPdv30d": 30,
+          "motivo": "3 quebras consecutivas operador; 30 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4335818,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 227386,
+          "pdvCodigo": 54193,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-01",
+          "diferenca": -50.66,
+          "diferencaAbsoluta": 50.66,
+          "consecutivasOperador": 3,
+          "quebrasPdv30d": 30,
+          "motivo": "3 quebras consecutivas operador; 30 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4336768,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 294273,
+          "pdvCodigo": 54193,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-02",
+          "diferenca": -46.53,
+          "diferencaAbsoluta": 46.53,
+          "consecutivasOperador": 3,
+          "quebrasPdv30d": 30,
+          "motivo": "3 quebras consecutivas operador; 30 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4339720,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 158924,
+          "pdvCodigo": 15880,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-05",
+          "diferenca": -32.19,
+          "diferencaAbsoluta": 32.19,
+          "consecutivasOperador": 5,
+          "quebrasPdv30d": 29,
+          "motivo": "5 quebras consecutivas operador; 29 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4340637,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 276288,
+          "pdvCodigo": 56764,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-06",
+          "diferenca": 28.86,
+          "diferencaAbsoluta": 28.86,
+          "consecutivasOperador": 6,
+          "quebrasPdv30d": 31,
+          "motivo": "6 quebras consecutivas operador; 31 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4336785,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 276288,
+          "pdvCodigo": 56764,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-02",
+          "diferenca": -12.66,
+          "diferencaAbsoluta": 12.66,
+          "consecutivasOperador": 6,
+          "quebrasPdv30d": 31,
+          "motivo": "6 quebras consecutivas operador; 31 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4340691,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 294273,
+          "pdvCodigo": 54193,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-06",
+          "diferenca": -11.38,
+          "diferencaAbsoluta": 11.38,
+          "consecutivasOperador": 3,
+          "quebrasPdv30d": 30,
+          "motivo": "3 quebras consecutivas operador; 30 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4339630,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 276288,
+          "pdvCodigo": 56764,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-05",
+          "diferenca": 10.01,
+          "diferencaAbsoluta": 10.01,
+          "consecutivasOperador": 6,
+          "quebrasPdv30d": 31,
+          "motivo": "6 quebras consecutivas operador; 31 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4338701,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 276288,
+          "pdvCodigo": 56764,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-04",
+          "diferenca": -7.33,
+          "diferencaAbsoluta": 7.33,
+          "consecutivasOperador": 6,
+          "quebrasPdv30d": 31,
+          "motivo": "6 quebras consecutivas operador; 31 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4338775,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 158924,
+          "pdvCodigo": 15880,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-04",
+          "diferenca": 3.23,
+          "diferencaAbsoluta": 3.23,
+          "consecutivasOperador": 5,
+          "quebrasPdv30d": 29,
+          "motivo": "5 quebras consecutivas operador; 29 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4337730,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 227386,
+          "pdvCodigo": 54193,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-03",
+          "diferenca": -2.58,
+          "diferencaAbsoluta": 2.58,
+          "consecutivasOperador": 3,
+          "quebrasPdv30d": 30,
+          "motivo": "3 quebras consecutivas operador; 30 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4341596,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 178278,
+          "pdvCodigo": 56764,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-07",
+          "diferenca": 2.17,
+          "diferencaAbsoluta": 2.17,
+          "consecutivasOperador": 2,
+          "quebrasPdv30d": 31,
+          "motivo": "31 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4335874,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 158924,
+          "pdvCodigo": 15880,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-01",
+          "diferenca": -2.01,
+          "diferencaAbsoluta": 2.01,
+          "consecutivasOperador": 5,
+          "quebrasPdv30d": 29,
+          "motivo": "5 quebras consecutivas operador; 29 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4336075,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 276288,
+          "pdvCodigo": 56764,
+          "turno": "2º TURNO",
+          "turnoCodigo": 2,
+          "dataMovimento": "2026-06-01",
+          "diferenca": -1.96,
+          "diferencaAbsoluta": 1.96,
+          "consecutivasOperador": 6,
+          "quebrasPdv30d": 31,
+          "motivo": "6 quebras consecutivas operador; 31 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4337731,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 276288,
+          "pdvCodigo": 56764,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-03",
+          "diferenca": 0.89,
+          "diferencaAbsoluta": 0.89,
+          "consecutivasOperador": 6,
+          "quebrasPdv30d": 31,
+          "motivo": "6 quebras consecutivas operador; 31 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4335835,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 178278,
+          "pdvCodigo": 56764,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-01",
+          "diferenca": 0.62,
+          "diferencaAbsoluta": 0.62,
+          "consecutivasOperador": 2,
+          "quebrasPdv30d": 31,
+          "motivo": "31 quebras PDV em 30d"
+        }
+      ],
+      "criticos": [
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4336819,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 158924,
+          "pdvCodigo": 15880,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-02",
+          "diferenca": -272.07,
+          "diferencaAbsoluta": 272.07,
+          "consecutivasOperador": 5,
+          "quebrasPdv30d": 29,
+          "motivo": "diferenca >= R$ 100.00; 5 quebras consecutivas operador; 29 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4340665,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 299151,
+          "pdvCodigo": 15880,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-06",
+          "diferenca": -215.77,
+          "diferencaAbsoluta": 215.77,
+          "consecutivasOperador": 1,
+          "quebrasPdv30d": 29,
+          "motivo": "diferenca >= R$ 100.00; 29 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4337788,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 158924,
+          "pdvCodigo": 15880,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-03",
+          "diferenca": 208.96,
+          "diferencaAbsoluta": 208.96,
+          "consecutivasOperador": 5,
+          "quebrasPdv30d": 29,
+          "motivo": "diferenca >= R$ 100.00; 5 quebras consecutivas operador; 29 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4338777,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 294273,
+          "pdvCodigo": 54193,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-04",
+          "diferenca": -194.36,
+          "diferencaAbsoluta": 194.36,
+          "consecutivasOperador": 3,
+          "quebrasPdv30d": 30,
+          "motivo": "diferenca >= R$ 100.00; 3 quebras consecutivas operador; 30 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4339655,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 299371,
+          "pdvCodigo": 54193,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-05",
+          "diferenca": -116.8,
+          "diferencaAbsoluta": 116.8,
+          "consecutivasOperador": 1,
+          "quebrasPdv30d": 30,
+          "motivo": "diferenca >= R$ 100.00; 30 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4341557,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 227386,
+          "pdvCodigo": 54193,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-07",
+          "diferenca": -57.3,
+          "diferencaAbsoluta": 57.3,
+          "consecutivasOperador": 3,
+          "quebrasPdv30d": 30,
+          "motivo": "3 quebras consecutivas operador; 30 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4335818,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 227386,
+          "pdvCodigo": 54193,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-01",
+          "diferenca": -50.66,
+          "diferencaAbsoluta": 50.66,
+          "consecutivasOperador": 3,
+          "quebrasPdv30d": 30,
+          "motivo": "3 quebras consecutivas operador; 30 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4336768,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 294273,
+          "pdvCodigo": 54193,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-02",
+          "diferenca": -46.53,
+          "diferencaAbsoluta": 46.53,
+          "consecutivasOperador": 3,
+          "quebrasPdv30d": 30,
+          "motivo": "3 quebras consecutivas operador; 30 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4339720,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 158924,
+          "pdvCodigo": 15880,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-05",
+          "diferenca": -32.19,
+          "diferencaAbsoluta": 32.19,
+          "consecutivasOperador": 5,
+          "quebrasPdv30d": 29,
+          "motivo": "5 quebras consecutivas operador; 29 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4340637,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 276288,
+          "pdvCodigo": 56764,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-06",
+          "diferenca": 28.86,
+          "diferencaAbsoluta": 28.86,
+          "consecutivasOperador": 6,
+          "quebrasPdv30d": 31,
+          "motivo": "6 quebras consecutivas operador; 31 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4336785,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 276288,
+          "pdvCodigo": 56764,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-02",
+          "diferenca": -12.66,
+          "diferencaAbsoluta": 12.66,
+          "consecutivasOperador": 6,
+          "quebrasPdv30d": 31,
+          "motivo": "6 quebras consecutivas operador; 31 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4340691,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 294273,
+          "pdvCodigo": 54193,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-06",
+          "diferenca": -11.38,
+          "diferencaAbsoluta": 11.38,
+          "consecutivasOperador": 3,
+          "quebrasPdv30d": 30,
+          "motivo": "3 quebras consecutivas operador; 30 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4339630,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 276288,
+          "pdvCodigo": 56764,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-05",
+          "diferenca": 10.01,
+          "diferencaAbsoluta": 10.01,
+          "consecutivasOperador": 6,
+          "quebrasPdv30d": 31,
+          "motivo": "6 quebras consecutivas operador; 31 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4338701,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 276288,
+          "pdvCodigo": 56764,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-04",
+          "diferenca": -7.33,
+          "diferencaAbsoluta": 7.33,
+          "consecutivasOperador": 6,
+          "quebrasPdv30d": 31,
+          "motivo": "6 quebras consecutivas operador; 31 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4338775,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 158924,
+          "pdvCodigo": 15880,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-04",
+          "diferenca": 3.23,
+          "diferencaAbsoluta": 3.23,
+          "consecutivasOperador": 5,
+          "quebrasPdv30d": 29,
+          "motivo": "5 quebras consecutivas operador; 29 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4337730,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 227386,
+          "pdvCodigo": 54193,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-03",
+          "diferenca": -2.58,
+          "diferencaAbsoluta": 2.58,
+          "consecutivasOperador": 3,
+          "quebrasPdv30d": 30,
+          "motivo": "3 quebras consecutivas operador; 30 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4341596,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 178278,
+          "pdvCodigo": 56764,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-07",
+          "diferenca": 2.17,
+          "diferencaAbsoluta": 2.17,
+          "consecutivasOperador": 2,
+          "quebrasPdv30d": 31,
+          "motivo": "31 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4335874,
+          "empresaCodigo": 5555,
+          "funcionarioCodigo": 158924,
+          "pdvCodigo": 15880,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-01",
+          "diferenca": -2.01,
+          "diferencaAbsoluta": 2.01,
+          "consecutivasOperador": 5,
+          "quebrasPdv30d": 29,
+          "motivo": "5 quebras consecutivas operador; 29 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4336075,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 276288,
+          "pdvCodigo": 56764,
+          "turno": "2º TURNO",
+          "turnoCodigo": 2,
+          "dataMovimento": "2026-06-01",
+          "diferenca": -1.96,
+          "diferencaAbsoluta": 1.96,
+          "consecutivasOperador": 6,
+          "quebrasPdv30d": 31,
+          "motivo": "6 quebras consecutivas operador; 31 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4337731,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 276288,
+          "pdvCodigo": 56764,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-03",
+          "diferenca": 0.89,
+          "diferencaAbsoluta": 0.89,
+          "consecutivasOperador": 6,
+          "quebrasPdv30d": 31,
+          "motivo": "6 quebras consecutivas operador; 31 quebras PDV em 30d"
+        },
+        {
+          "nivel": "CRITICO",
+          "caixaCodigo": 4335835,
+          "empresaCodigo": 11495,
+          "funcionarioCodigo": 178278,
+          "pdvCodigo": 56764,
+          "turno": "1º TURNO",
+          "turnoCodigo": 1,
+          "dataMovimento": "2026-06-01",
+          "diferenca": 0.62,
+          "diferencaAbsoluta": 0.62,
+          "consecutivasOperador": 2,
+          "quebrasPdv30d": 31,
+          "motivo": "31 quebras PDV em 30d"
+        }
+      ],
+      "vermelhas": {
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "alertas": 20,
+            "diferencaAbsoluta": 1276.38
+          },
+          {
+            "turno": "2º TURNO",
+            "alertas": 1,
+            "diferencaAbsoluta": 1.96
+          }
+        ],
+        "pdvs": [
+          {
+            "pdvCodigo": 15880,
+            "alertas": 6,
+            "diferencaAbsoluta": 734.23,
+            "monitoramentoPrioritario": true
+          },
+          {
+            "pdvCodigo": 54193,
+            "alertas": 7,
+            "diferencaAbsoluta": 479.61,
+            "monitoramentoPrioritario": true
+          },
+          {
+            "pdvCodigo": 56764,
+            "alertas": 8,
+            "diferencaAbsoluta": 64.5,
+            "monitoramentoPrioritario": false
+          }
+        ],
+        "operadores": [
+          {
+            "funcionarioCodigo": 294273,
+            "alertas": 3,
+            "diferencaAbsoluta": 252.27,
+            "monitoramentoPrioritario": true
+          },
+          {
+            "funcionarioCodigo": 276288,
+            "alertas": 6,
+            "diferencaAbsoluta": 61.71,
+            "monitoramentoPrioritario": true
+          },
+          {
+            "funcionarioCodigo": 158924,
+            "alertas": 5,
+            "diferencaAbsoluta": 518.46,
+            "monitoramentoPrioritario": false
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "alertas": 1,
+            "diferencaAbsoluta": 215.77,
+            "monitoramentoPrioritario": false
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "alertas": 1,
+            "diferencaAbsoluta": 116.8,
+            "monitoramentoPrioritario": false
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "alertas": 3,
+            "diferencaAbsoluta": 110.54,
+            "monitoramentoPrioritario": false
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "alertas": 2,
+            "diferencaAbsoluta": 2.79,
+            "monitoramentoPrioritario": false
+          }
+        ]
+      }
+    },
+    "riskScore": {
+      "consolidado": 53.18,
+      "band": "Critico",
+      "pesos": {
+        "operador": 0.4,
+        "pdv": 0.25,
+        "turno": 0.2,
+        "historicoFilial": 0.15
+      },
+      "subScores": {
+        "operador": 43.36,
+        "pdv": 78.03,
+        "turno": 39.25,
+        "historicoFilial": 56.52
+      },
+      "operadoresCriticos": 7,
+      "pdvsCriticos": 2,
+      "operadores": [
+        {
+          "funcionarioCodigo": 158924,
+          "score": 45.68,
+          "band": "Critico",
+          "critico": false
+        },
+        {
+          "funcionarioCodigo": 299151,
+          "score": 46.77,
+          "band": "Critico",
+          "critico": false
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "score": 52.21,
+          "band": "Critico",
+          "critico": true
+        },
+        {
+          "funcionarioCodigo": 299371,
+          "score": 52.7,
+          "band": "Critico",
+          "critico": false
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "score": 52.72,
+          "band": "Critico",
+          "critico": false
+        },
+        {
+          "funcionarioCodigo": 178278,
+          "score": 57.38,
+          "band": "Critico",
+          "critico": false
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "score": 58.32,
+          "band": "Critico",
+          "critico": true
+        }
+      ],
+      "pdvs": [
+        {
+          "pdvCodigo": 15880,
+          "score": 54.25,
+          "band": "Critico",
+          "critico": true
+        },
+        {
+          "pdvCodigo": 54193,
+          "score": 59.83,
+          "band": "Atencao",
+          "critico": true
+        },
+        {
+          "pdvCodigo": 56764,
+          "score": 64.1,
+          "band": "Atencao",
+          "critico": false
+        }
+      ]
+    },
+    "operators": {
+      "totalOperadores": 7,
+      "rankingMelhores": [
+        {
+          "funcionarioCodigo": 276288,
+          "fechamentos": 6,
+          "volumeApurado": 22096.86,
+          "diferencaAcumulada": 17.81,
+          "diferencaMedia": 2.97,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 58.32,
+          "band": "Critico",
+          "monitoramentoPrioritario": true
+        },
+        {
+          "funcionarioCodigo": 178278,
+          "fechamentos": 2,
+          "volumeApurado": 6455.8,
+          "diferencaAcumulada": 2.79,
+          "diferencaMedia": 1.4,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 57.38,
+          "band": "Critico",
+          "monitoramentoPrioritario": false
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "fechamentos": 3,
+          "volumeApurado": 109286.39,
+          "diferencaAcumulada": -110.54,
+          "diferencaMedia": -36.85,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 52.72,
+          "band": "Critico",
+          "monitoramentoPrioritario": false
+        },
+        {
+          "funcionarioCodigo": 299371,
+          "fechamentos": 1,
+          "volumeApurado": 34167.7,
+          "diferencaAcumulada": -116.8,
+          "diferencaMedia": -116.8,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 52.7,
+          "band": "Critico",
+          "monitoramentoPrioritario": false
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "fechamentos": 3,
+          "volumeApurado": 108747.97,
+          "diferencaAcumulada": -252.27,
+          "diferencaMedia": -84.09,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 52.21,
+          "band": "Critico",
+          "monitoramentoPrioritario": true
+        },
+        {
+          "funcionarioCodigo": 299151,
+          "fechamentos": 1,
+          "volumeApurado": 30631.61,
+          "diferencaAcumulada": -215.77,
+          "diferencaMedia": -215.77,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 46.77,
+          "band": "Critico",
+          "monitoramentoPrioritario": false
+        },
+        {
+          "funcionarioCodigo": 158924,
+          "fechamentos": 5,
+          "volumeApurado": 100395.92,
+          "diferencaAcumulada": -94.08,
+          "diferencaMedia": -18.82,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 45.68,
+          "band": "Critico",
+          "monitoramentoPrioritario": false
+        }
+      ],
+      "rankingPiores": [
+        {
+          "funcionarioCodigo": 158924,
+          "fechamentos": 5,
+          "volumeApurado": 100395.92,
+          "diferencaAcumulada": -94.08,
+          "diferencaMedia": -18.82,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 45.68,
+          "band": "Critico",
+          "monitoramentoPrioritario": false
+        },
+        {
+          "funcionarioCodigo": 299151,
+          "fechamentos": 1,
+          "volumeApurado": 30631.61,
+          "diferencaAcumulada": -215.77,
+          "diferencaMedia": -215.77,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 46.77,
+          "band": "Critico",
+          "monitoramentoPrioritario": false
+        },
+        {
+          "funcionarioCodigo": 294273,
+          "fechamentos": 3,
+          "volumeApurado": 108747.97,
+          "diferencaAcumulada": -252.27,
+          "diferencaMedia": -84.09,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 52.21,
+          "band": "Critico",
+          "monitoramentoPrioritario": true
+        },
+        {
+          "funcionarioCodigo": 299371,
+          "fechamentos": 1,
+          "volumeApurado": 34167.7,
+          "diferencaAcumulada": -116.8,
+          "diferencaMedia": -116.8,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 52.7,
+          "band": "Critico",
+          "monitoramentoPrioritario": false
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "fechamentos": 3,
+          "volumeApurado": 109286.39,
+          "diferencaAcumulada": -110.54,
+          "diferencaMedia": -36.85,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 52.72,
+          "band": "Critico",
+          "monitoramentoPrioritario": false
+        },
+        {
+          "funcionarioCodigo": 178278,
+          "fechamentos": 2,
+          "volumeApurado": 6455.8,
+          "diferencaAcumulada": 2.79,
+          "diferencaMedia": 1.4,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 57.38,
+          "band": "Critico",
+          "monitoramentoPrioritario": false
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "fechamentos": 6,
+          "volumeApurado": 22096.86,
+          "diferencaAcumulada": 17.81,
+          "diferencaMedia": 2.97,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 58.32,
+          "band": "Critico",
+          "monitoramentoPrioritario": true
+        }
+      ],
+      "todos": [
+        {
+          "funcionarioCodigo": 294273,
+          "fechamentos": 3,
+          "volumeApurado": 108747.97,
+          "diferencaAcumulada": -252.27,
+          "diferencaMedia": -84.09,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 52.21,
+          "band": "Critico",
+          "monitoramentoPrioritario": true
+        },
+        {
+          "funcionarioCodigo": 299151,
+          "fechamentos": 1,
+          "volumeApurado": 30631.61,
+          "diferencaAcumulada": -215.77,
+          "diferencaMedia": -215.77,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 46.77,
+          "band": "Critico",
+          "monitoramentoPrioritario": false
+        },
+        {
+          "funcionarioCodigo": 299371,
+          "fechamentos": 1,
+          "volumeApurado": 34167.7,
+          "diferencaAcumulada": -116.8,
+          "diferencaMedia": -116.8,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 52.7,
+          "band": "Critico",
+          "monitoramentoPrioritario": false
+        },
+        {
+          "funcionarioCodigo": 227386,
+          "fechamentos": 3,
+          "volumeApurado": 109286.39,
+          "diferencaAcumulada": -110.54,
+          "diferencaMedia": -36.85,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 52.72,
+          "band": "Critico",
+          "monitoramentoPrioritario": false
+        },
+        {
+          "funcionarioCodigo": 158924,
+          "fechamentos": 5,
+          "volumeApurado": 100395.92,
+          "diferencaAcumulada": -94.08,
+          "diferencaMedia": -18.82,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 45.68,
+          "band": "Critico",
+          "monitoramentoPrioritario": false
+        },
+        {
+          "funcionarioCodigo": 178278,
+          "fechamentos": 2,
+          "volumeApurado": 6455.8,
+          "diferencaAcumulada": 2.79,
+          "diferencaMedia": 1.4,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 57.38,
+          "band": "Critico",
+          "monitoramentoPrioritario": false
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "fechamentos": 6,
+          "volumeApurado": 22096.86,
+          "diferencaAcumulada": 17.81,
+          "diferencaMedia": 2.97,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 58.32,
+          "band": "Critico",
+          "monitoramentoPrioritario": true
+        }
+      ]
+    },
+    "pdvs": {
+      "totalPdvs": 3,
+      "ranking": [
+        {
+          "pdvCodigo": 54193,
+          "fechamentos": 7,
+          "diferencaAcumulada": -479.61,
+          "desvioPadrao": 61.77,
+          "diferencaMedia": -68.52,
+          "operadores": [
+            {
+              "funcionarioCodigo": 227386,
+              "fechamentos": 3
+            },
+            {
+              "funcionarioCodigo": 294273,
+              "fechamentos": 3
+            },
+            {
+              "funcionarioCodigo": 299371,
+              "fechamentos": 1
+            }
+          ],
+          "turnos": [
+            {
+              "turno": "1º TURNO",
+              "fechamentos": 7
+            }
+          ],
+          "cashRiskScore": 59.83,
+          "band": "Atencao",
+          "vsMediaRede": 7.64,
+          "monitoramentoPrioritario": true
+        },
+        {
+          "pdvCodigo": 15880,
+          "fechamentos": 6,
+          "diferencaAcumulada": -309.85,
+          "desvioPadrao": 157.74,
+          "diferencaMedia": -51.64,
+          "operadores": [
+            {
+              "funcionarioCodigo": 158924,
+              "fechamentos": 5
+            },
+            {
+              "funcionarioCodigo": 299151,
+              "fechamentos": 1
+            }
+          ],
+          "turnos": [
+            {
+              "turno": "1º TURNO",
+              "fechamentos": 6
+            }
+          ],
+          "cashRiskScore": 54.25,
+          "band": "Critico",
+          "vsMediaRede": 61.5,
+          "monitoramentoPrioritario": true
+        },
+        {
+          "pdvCodigo": 56764,
+          "fechamentos": 8,
+          "diferencaAcumulada": 20.6,
+          "desvioPadrao": 11.75,
+          "diferencaMedia": 2.57,
+          "operadores": [
+            {
+              "funcionarioCodigo": 276288,
+              "fechamentos": 6
+            },
+            {
+              "funcionarioCodigo": 178278,
+              "fechamentos": 2
+            }
+          ],
+          "turnos": [
+            {
+              "turno": "1º TURNO",
+              "fechamentos": 7
+            },
+            {
+              "turno": "2º TURNO",
+              "fechamentos": 1
+            }
+          ],
+          "cashRiskScore": 64.1,
+          "band": "Atencao",
+          "vsMediaRede": -52.81,
+          "monitoramentoPrioritario": false
+        }
+      ],
+      "alvosCriticos": {
+        "54193": {
+          "pdvCodigo": 54193,
+          "fechamentos": 7,
+          "diferencaAcumulada": -479.61,
+          "desvioPadrao": 61.77,
+          "diferencaMedia": -68.52,
+          "operadores": [
+            {
+              "funcionarioCodigo": 227386,
+              "fechamentos": 3
+            },
+            {
+              "funcionarioCodigo": 294273,
+              "fechamentos": 3
+            },
+            {
+              "funcionarioCodigo": 299371,
+              "fechamentos": 1
+            }
+          ],
+          "turnos": [
+            {
+              "turno": "1º TURNO",
+              "fechamentos": 7
+            }
+          ],
+          "cashRiskScore": 59.83,
+          "band": "Atencao",
+          "vsMediaRede": 7.64,
+          "monitoramentoPrioritario": true
+        },
+        "15880": {
+          "pdvCodigo": 15880,
+          "fechamentos": 6,
+          "diferencaAcumulada": -309.85,
+          "desvioPadrao": 157.74,
+          "diferencaMedia": -51.64,
+          "operadores": [
+            {
+              "funcionarioCodigo": 158924,
+              "fechamentos": 5
+            },
+            {
+              "funcionarioCodigo": 299151,
+              "fechamentos": 1
+            }
+          ],
+          "turnos": [
+            {
+              "turno": "1º TURNO",
+              "fechamentos": 6
+            }
+          ],
+          "cashRiskScore": 54.25,
+          "band": "Critico",
+          "vsMediaRede": 61.5,
+          "monitoramentoPrioritario": true
+        },
+        "mediaGlobalQuebra": 60.87
+      }
+    },
+    "turns": {
+      "totalTurnos": 2,
+      "porTurno": [
+        {
+          "turnoCodigo": 1,
+          "turno": "1º TURNO",
+          "fechamentos": 20,
+          "volumeFinanceiro": 408738.71,
+          "participacaoVolumePct": 99.26,
+          "desvioAcumulado": -766.9,
+          "incidenciaQuebraPct": 100.0,
+          "matrizRisco": "Critico"
+        },
+        {
+          "turnoCodigo": 2,
+          "turno": "2º TURNO",
+          "fechamentos": 1,
+          "volumeFinanceiro": 3043.54,
+          "participacaoVolumePct": 0.74,
+          "desvioAcumulado": -1.96,
+          "incidenciaQuebraPct": 100.0,
+          "matrizRisco": "Critico"
+        }
+      ]
+    },
+    "heatmap": {
+      "turnos": [
+        "1º TURNO",
+        "2º TURNO"
+      ],
+      "pdvs": [
+        "15880",
+        "54193",
+        "56764"
+      ],
+      "cells": [
+        {
+          "turno": "1º TURNO",
+          "pdvCodigo": "15880",
+          "impactoAbsoluto": 734.23,
+          "fechamentos": 6
+        },
+        {
+          "turno": "1º TURNO",
+          "pdvCodigo": "54193",
+          "impactoAbsoluto": 479.61,
+          "fechamentos": 7
+        },
+        {
+          "turno": "1º TURNO",
+          "pdvCodigo": "56764",
+          "impactoAbsoluto": 62.54,
+          "fechamentos": 7
+        },
+        {
+          "turno": "2º TURNO",
+          "pdvCodigo": "56764",
+          "impactoAbsoluto": 1.96,
+          "fechamentos": 1
+        }
+      ]
+    },
+    "performanceMs": {
+      "fetch": 4085.8,
+      "total": 4148.9
+    },
+    "source": "CAIXA_REDE+CAIXA+CAIXA_APRESENTADO"
+  },
+  "snapshotKey": "cash:operations:all:2026-06-01:2026-06-07:all"
+}

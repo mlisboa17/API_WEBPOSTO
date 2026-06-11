@@ -1,0 +1,988 @@
+{
+  "sprint": "F04.5",
+  "windows": {
+    "7d": {
+      "window": "7d",
+      "buildMs": 4.8,
+      "executiveAnswers": {
+        "1_metasCriadas": 65,
+        "2_campanhasSimuladas": 5,
+        "3_bateramMeta": 23,
+        "4_abaixoMeta": 12,
+        "5_superaramMeta": 3,
+        "6_merecemBonus": 0,
+        "7_bonusSugerido": {
+          "funcionarioCodigo": 178278,
+          "employeeName": "APOIO LOJA .",
+          "elegivel": false,
+          "bonusSugerido": 52.79,
+          "roiEsperado": 1055.8,
+          "riscoBloqueante": false,
+          "evidence": {
+            "percentualMetas": 81.98,
+            "resultadoLiquido": 1055.86,
+            "recommendedActions": [
+              "BONIFICAR",
+              "REALOCACAO",
+              "REESTRUTURAR_PDV"
+            ]
+          }
+        },
+        "8_campanhaMaiorRoi": {
+          "id": "COMBUSTIVEL",
+          "name": "Campanha Venda Combustível",
+          "goalType": "VENDA",
+          "weight": 1.0,
+          "status": "ATIVA",
+          "participantes": 13,
+          "percentualMedio": 97.07,
+          "roiCampanha": 68.36
+        },
+        "9_operadorEvoluiu": {
+          "funcionarioCodigo": 276288,
+          "fechamentos": 6,
+          "volumeApurado": 22096.86,
+          "diferencaAcumulada": 17.81,
+          "diferencaMedia": 2.97,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 58.32,
+          "band": "Critico",
+          "monitoramentoPrioritario": true,
+          "componentDiferenca": 92.94,
+          "componentRecorrencia": 0.0,
+          "componentRisk": 58.32,
+          "componentCompensado": 100.0,
+          "saldoLedger": 17.81,
+          "compensadoAutomatico": 21.95,
+          "_rawScore": 62.781000000000006,
+          "componentEvolucao": 50.0,
+          "evolucaoDelta": 0.0,
+          "operatorPerformanceScore": 60.92,
+          "performanceScore": 60.92,
+          "performanceBand": "Atencao"
+        },
+        "10_operadorCaiu": {
+          "funcionarioCodigo": 294273,
+          "fechamentos": 3,
+          "volumeApurado": 108747.97,
+          "diferencaAcumulada": -252.27,
+          "diferencaMedia": -84.09,
+          "indiceRecorrencia": 1.0,
+          "cashRiskScore": 52.21,
+          "band": "Critico",
+          "monitoramentoPrioritario": true,
+          "componentDiferenca": 0.0,
+          "componentRecorrencia": 0.0,
+          "componentRisk": 52.21,
+          "componentCompensado": 0.0,
+          "saldoLedger": -252.27,
+          "compensadoAutomatico": 0.0,
+          "_rawScore": 10.442,
+          "componentEvolucao": 50.0,
+          "evolucaoDelta": 0.0,
+          "operatorPerformanceScore": 17.83,
+          "performanceScore": 17.83,
+          "performanceBand": "Critico"
+        },
+        "11_pdvPerformou": {
+          "pdvCodigo": null,
+          "receitaBruta": 4639.61,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 4639.61,
+          "descontos": 0.0,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 94,
+          "resultadoLiquido": 4639.61,
+          "riscoEconomico": 1.0,
+          "roi": 4639.61,
+          "monitoramentoPrioritario": false
+        },
+        "12_turnoPerformou": {
+          "turno": "Turno ?",
+          "turnoCodigo": null,
+          "receitaBruta": 4639.61,
+          "destruicaoMargem": 0.0,
+          "margemOperacional": 4639.61,
+          "cancelamentos": 0.0,
+          "faltas": 0.0,
+          "sobras": 0.0,
+          "perdasCaixa": 0.0,
+          "quantidadeVendas": 94,
+          "resultadoLiquido": 4639.61,
+          "riscoEconomico": 1.0,
+          "roi": 4639.61,
+          "incidenciaQuebraPct": null
+        },
+        "13_alertasGerados": 45,
+        "14_impactoFinanceiroEsperado": 0,
+        "15_prontoF046": true,
+        "paridadeDelta": 0.0
+      },
+      "qa": {
+        "paridadeDelta": 0.0,
+        "paridadeZero": true,
+        "metasCalculadasOk": true,
+        "bonusSemEvidencia": 0,
+        "bonusComEvidencia": true,
+        "rbacAplicado": true,
+        "evidenciaCompleta": true
+      },
+      "parecerFinal": "[PARECER FINAL: APROVADO PARA F04.6]",
+      "paridadeDelta": 0.0,
+      "cockpit": {
+        "metasAtivas": [
+          {
+            "goalId": "178278:VENDA",
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "goalType": "VENDA",
+            "scope": "OPERADOR",
+            "targetValue": 1110.12,
+            "unit": "BRL",
+            "higherIsBetter": true
+          },
+          {
+            "goalId": "178278:TICKET_MEDIO",
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "goalType": "TICKET_MEDIO",
+            "scope": "OPERADOR",
+            "targetValue": 16.02,
+            "unit": "BRL",
+            "higherIsBetter": true
+          },
+          {
+            "goalId": "178278:PRODUTIVIDADE",
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "goalType": "PRODUTIVIDADE",
+            "scope": "OPERADOR",
+            "targetValue": 86.98,
+            "unit": "SCORE",
+            "higherIsBetter": true
+          },
+          {
+            "goalId": "178278:ACCOUNTABILITY",
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "goalType": "ACCOUNTABILITY",
+            "scope": "OPERADOR",
+            "targetValue": 80.0,
+            "unit": "SCORE",
+            "higherIsBetter": true
+          },
+          {
+            "goalId": "178278:REDUCAO_PERDAS",
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "goalType": "REDUCAO_PERDAS",
+            "scope": "OPERADOR",
+            "targetValue": 0.98,
+            "unit": "BRL",
+            "higherIsBetter": false
+          },
+          {
+            "goalId": "294273:VENDA",
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "goalType": "VENDA",
+            "scope": "OPERADOR",
+            "targetValue": 1196.51,
+            "unit": "BRL",
+            "higherIsBetter": true
+          },
+          {
+            "goalId": "294273:TICKET_MEDIO",
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "goalType": "TICKET_MEDIO",
+            "scope": "OPERADOR",
+            "targetValue": 30.89,
+            "unit": "BRL",
+            "higherIsBetter": true
+          },
+          {
+            "goalId": "294273:PRODUTIVIDADE",
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "goalType": "PRODUTIVIDADE",
+            "scope": "OPERADOR",
+            "targetValue": 67.26,
+            "unit": "SCORE",
+            "higherIsBetter": true
+          },
+          {
+            "goalId": "294273:ACCOUNTABILITY",
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "goalType": "ACCOUNTABILITY",
+            "scope": "OPERADOR",
+            "targetValue": 80.0,
+            "unit": "SCORE",
+            "higherIsBetter": true
+          },
+          {
+            "goalId": "294273:REDUCAO_PERDAS",
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "goalType": "REDUCAO_PERDAS",
+            "scope": "OPERADOR",
+            "targetValue": 353.18,
+            "unit": "BRL",
+            "higherIsBetter": false
+          },
+          {
+            "goalId": "251934:VENDA",
+            "funcionarioCodigo": 251934,
+            "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "goalType": "VENDA",
+            "scope": "OPERADOR",
+            "targetValue": 1728.11,
+            "unit": "BRL",
+            "higherIsBetter": true
+          },
+          {
+            "goalId": "251934:TICKET_MEDIO",
+            "funcionarioCodigo": 251934,
+            "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "goalType": "TICKET_MEDIO",
+            "scope": "OPERADOR",
+            "targetValue": 58.45,
+            "unit": "BRL",
+            "higherIsBetter": true
+          },
+          {
+            "goalId": "251934:PRODUTIVIDADE",
+            "funcionarioCodigo": 251934,
+            "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "goalType": "PRODUTIVIDADE",
+            "scope": "OPERADOR",
+            "targetValue": 61.81,
+            "unit": "SCORE",
+            "higherIsBetter": true
+          },
+          {
+            "goalId": "251934:ACCOUNTABILITY",
+            "funcionarioCodigo": 251934,
+            "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "goalType": "ACCOUNTABILITY",
+            "scope": "OPERADOR",
+            "targetValue": 80.0,
+            "unit": "SCORE",
+            "higherIsBetter": true
+          },
+          {
+            "goalId": "251934:REDUCAO_PERDAS",
+            "funcionarioCodigo": 251934,
+            "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "goalType": "REDUCAO_PERDAS",
+            "scope": "OPERADOR",
+            "targetValue": 0.0,
+            "unit": "BRL",
+            "higherIsBetter": false
+          }
+        ],
+        "campanhas": [
+          {
+            "id": "COMBUSTIVEL",
+            "name": "Campanha Venda Combustível",
+            "goalType": "VENDA",
+            "weight": 1.0,
+            "status": "ATIVA",
+            "participantes": 13,
+            "percentualMedio": 97.07,
+            "roiCampanha": 68.36
+          },
+          {
+            "id": "CONVENIENCIA",
+            "name": "Campanha Conveniência",
+            "goalType": "VENDA",
+            "weight": 0.85,
+            "status": "ATIVA",
+            "participantes": 13,
+            "percentualMedio": 97.07,
+            "roiCampanha": 58.11
+          },
+          {
+            "id": "REDUCAO_FALTAS",
+            "name": "Campanha Redução de Faltas",
+            "goalType": "REDUCAO_PERDAS",
+            "weight": 1.0,
+            "status": "ATIVA",
+            "participantes": 13,
+            "percentualMedio": 76.92,
+            "roiCampanha": 5.07
+          },
+          {
+            "id": "TICKET_MEDIO",
+            "name": "Campanha Ticket Médio",
+            "goalType": "TICKET_MEDIO",
+            "weight": 0.9,
+            "status": "ATIVA",
+            "participantes": 13,
+            "percentualMedio": 98.2,
+            "roiCampanha": 3.02
+          },
+          {
+            "id": "SEM_QUEBRA",
+            "name": "Campanha Sem Quebra de Caixa",
+            "goalType": "ACCOUNTABILITY",
+            "weight": 1.0,
+            "status": "ATIVA",
+            "participantes": 13,
+            "percentualMedio": 76.3,
+            "roiCampanha": 7.94
+          }
+        ],
+        "ranking": [
+          {
+            "goalId": "178278:ACCOUNTABILITY",
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "goalType": "ACCOUNTABILITY",
+            "scope": "OPERADOR",
+            "targetValue": 80.0,
+            "unit": "SCORE",
+            "higherIsBetter": true,
+            "realizado": 100.0,
+            "meta": 80.0,
+            "percentualAtingido": 125.0,
+            "gap": -20.0,
+            "tendencia": "ESTAVEL",
+            "status": "SUPEROU"
+          },
+          {
+            "goalId": "276288:ACCOUNTABILITY",
+            "funcionarioCodigo": 276288,
+            "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "goalType": "ACCOUNTABILITY",
+            "scope": "OPERADOR",
+            "targetValue": 80.0,
+            "unit": "SCORE",
+            "higherIsBetter": true,
+            "realizado": 100.0,
+            "meta": 80.0,
+            "percentualAtingido": 125.0,
+            "gap": -20.0,
+            "tendencia": "ESTAVEL",
+            "status": "SUPEROU"
+          },
+          {
+            "goalId": "158924:ACCOUNTABILITY",
+            "funcionarioCodigo": 158924,
+            "employeeName": "JOÃO VICTOR APOIO",
+            "goalType": "ACCOUNTABILITY",
+            "scope": "OPERADOR",
+            "targetValue": 80.0,
+            "unit": "SCORE",
+            "higherIsBetter": true,
+            "realizado": 86.51,
+            "meta": 80.0,
+            "percentualAtingido": 108.14,
+            "gap": -6.51,
+            "tendencia": "ESTAVEL",
+            "status": "SUPEROU"
+          },
+          {
+            "goalId": "251934:REDUCAO_PERDAS",
+            "funcionarioCodigo": 251934,
+            "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "goalType": "REDUCAO_PERDAS",
+            "scope": "OPERADOR",
+            "targetValue": 0.0,
+            "unit": "BRL",
+            "higherIsBetter": false,
+            "realizado": 0.0,
+            "meta": 0.0,
+            "percentualAtingido": 100.0,
+            "gap": 0.0,
+            "tendencia": "ESTAVEL",
+            "status": "ATINGIU"
+          },
+          {
+            "goalId": "163694:REDUCAO_PERDAS",
+            "funcionarioCodigo": 163694,
+            "employeeName": "MARINALDO RIBEIRO DA SILVA",
+            "goalType": "REDUCAO_PERDAS",
+            "scope": "OPERADOR",
+            "targetValue": 0.0,
+            "unit": "BRL",
+            "higherIsBetter": false,
+            "realizado": 0.0,
+            "meta": 0.0,
+            "percentualAtingido": 100.0,
+            "gap": 0.0,
+            "tendencia": "ESTAVEL",
+            "status": "ATINGIU"
+          },
+          {
+            "goalId": "252430:REDUCAO_PERDAS",
+            "funcionarioCodigo": 252430,
+            "employeeName": "CLEYTON ALVES DA COSTA",
+            "goalType": "REDUCAO_PERDAS",
+            "scope": "OPERADOR",
+            "targetValue": 0.0,
+            "unit": "BRL",
+            "higherIsBetter": false,
+            "realizado": 0.0,
+            "meta": 0.0,
+            "percentualAtingido": 100.0,
+            "gap": 0.0,
+            "tendencia": "ESTAVEL",
+            "status": "ATINGIU"
+          },
+          {
+            "goalId": "63048:REDUCAO_PERDAS",
+            "funcionarioCodigo": 63048,
+            "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+            "goalType": "REDUCAO_PERDAS",
+            "scope": "OPERADOR",
+            "targetValue": 0.0,
+            "unit": "BRL",
+            "higherIsBetter": false,
+            "realizado": 0.0,
+            "meta": 0.0,
+            "percentualAtingido": 100.0,
+            "gap": 0.0,
+            "tendencia": "ESTAVEL",
+            "status": "ATINGIU"
+          },
+          {
+            "goalId": "249526:REDUCAO_PERDAS",
+            "funcionarioCodigo": 249526,
+            "employeeName": "THACIANNA RIBEIRO DA SILVA",
+            "goalType": "REDUCAO_PERDAS",
+            "scope": "OPERADOR",
+            "targetValue": 0.0,
+            "unit": "BRL",
+            "higherIsBetter": false,
+            "realizado": 0.0,
+            "meta": 0.0,
+            "percentualAtingido": 100.0,
+            "gap": 0.0,
+            "tendencia": "ESTAVEL",
+            "status": "ATINGIU"
+          },
+          {
+            "goalId": "276288:VENDA",
+            "funcionarioCodigo": 276288,
+            "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "goalType": "VENDA",
+            "scope": "OPERADOR",
+            "targetValue": 0.0,
+            "unit": "BRL",
+            "higherIsBetter": true,
+            "realizado": 0.0,
+            "meta": 0.0,
+            "percentualAtingido": 100.0,
+            "gap": 0.0,
+            "tendencia": "ESTAVEL",
+            "status": "ATINGIU"
+          },
+          {
+            "goalId": "276288:TICKET_MEDIO",
+            "funcionarioCodigo": 276288,
+            "employeeName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "goalType": "TICKET_MEDIO",
+            "scope": "OPERADOR",
+            "targetValue": 0,
+            "unit": "BRL",
+            "higherIsBetter": true,
+            "realizado": 0.0,
+            "meta": 0.0,
+            "percentualAtingido": 100.0,
+            "gap": 0.0,
+            "tendencia": "ESTAVEL",
+            "status": "ATINGIU"
+          }
+        ],
+        "bonusProjetado": [
+          {
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "elegivel": false,
+            "bonusSugerido": 52.79,
+            "roiEsperado": 1055.8,
+            "riscoBloqueante": false,
+            "evidence": {
+              "percentualMetas": 81.98,
+              "resultadoLiquido": 1055.86,
+              "recommendedActions": [
+                "BONIFICAR",
+                "REALOCACAO",
+                "REESTRUTURAR_PDV"
+              ]
+            }
+          },
+          {
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "elegivel": false,
+            "bonusSugerido": 0.0,
+            "roiEsperado": 635.0,
+            "riscoBloqueante": true,
+            "evidence": {
+              "percentualMetas": 64.49,
+              "resultadoLiquido": 634.99,
+              "recommendedActions": [
+                "TREINAR",
+                "AUDITAR",
+                "REESTRUTURAR_PDV"
+              ]
+            }
+          },
+          {
+            "funcionarioCodigo": 158924,
+            "employeeName": "JOÃO VICTOR APOIO",
+            "elegivel": false,
+            "bonusSugerido": 0.0,
+            "roiEsperado": 0.0,
+            "riscoBloqueante": true,
+            "evidence": {
+              "percentualMetas": 100.15,
+              "resultadoLiquido": 0.0,
+              "recommendedActions": [
+                "AUDITAR",
+                "REESTRUTURAR_PDV"
+              ]
+            }
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "employeeName": "VINICIUS JOSÉ ALVES DA SILVA",
+            "elegivel": false,
+            "bonusSugerido": 0.0,
+            "roiEsperado": 0.0,
+            "riscoBloqueante": true,
+            "evidence": {
+              "percentualMetas": 95.85,
+              "resultadoLiquido": 0.0,
+              "recommendedActions": [
+                "TREINAR",
+                "AUDITAR",
+                "REESTRUTURAR_PDV"
+              ]
+            }
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "employeeName": "WILLY KLEBYSON DA SILVA",
+            "elegivel": false,
+            "bonusSugerido": 0.0,
+            "roiEsperado": 0.0,
+            "riscoBloqueante": true,
+            "evidence": {
+              "percentualMetas": 95.42,
+              "resultadoLiquido": 0.0,
+              "recommendedActions": [
+                "TREINAR",
+                "AUDITAR",
+                "REESTRUTURAR_PDV"
+              ]
+            }
+          },
+          {
+            "funcionarioCodigo": 299151,
+            "employeeName": "FABIANO RODRIGUES",
+            "elegivel": false,
+            "bonusSugerido": 0.0,
+            "roiEsperado": 0.0,
+            "riscoBloqueante": true,
+            "evidence": {
+              "percentualMetas": 88.55,
+              "resultadoLiquido": 0.0,
+              "recommendedActions": [
+                "TREINAR",
+                "AUDITAR",
+                "REESTRUTURAR_PDV"
+              ]
+            }
+          }
+        ],
+        "operadoresAbaixoMeta": [
+          {
+            "goalId": "178278:REDUCAO_PERDAS",
+            "funcionarioCodigo": 178278,
+            "employeeName": "APOIO LOJA .",
+            "goalType": "REDUCAO_PERDAS",
+            "scope": "OPERADOR",
+            "targetValue": 0.98,
+            "unit": "BRL",
+            "higherIsBetter": false,
+            "realizado": 1.4,
+            "meta": 0.98,
+            "percentualAtingido": 0.0,
+            "gap": 0.42,
+            "tendencia": "ESTAVEL",
+            "status": "ABAIXO"
+          },
+          {
+            "goalId": "294273:ACCOUNTABILITY",
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "goalType": "ACCOUNTABILITY",
+            "scope": "OPERADOR",
+            "targetValue": 80.0,
+            "unit": "SCORE",
+            "higherIsBetter": true,
+            "realizado": 30.0,
+            "meta": 80.0,
+            "percentualAtingido": 37.5,
+            "gap": 50.0,
+            "tendencia": "ESTAVEL",
+            "status": "ABAIXO"
+          },
+          {
+            "goalId": "294273:REDUCAO_PERDAS",
+            "funcionarioCodigo": 294273,
+            "employeeName": "RICART ABEL DE PAIVA RIBEIRO",
+            "goalType": "REDUCAO_PERDAS",
+            "scope": "OPERADOR",
+            "targetValue": 353.18,
+            "unit": "BRL",
+            "higherIsBetter": false,
+            "realizado": 504.54,
+            "meta": 353.18,
+            "percentualAtingido": 0.0,
+            "gap": 151.36,
+            "tendencia": "ESTAVEL",
+            "status": "ABAIXO"
+          },
+          {
+            "goalId": "251934:ACCOUNTABILITY",
+            "funcionarioCodigo": 251934,
+            "employeeName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "goalType": "ACCOUNTABILITY",
+            "scope": "OPERADOR",
+            "targetValue": 80.0,
+            "unit": "SCORE",
+            "higherIsBetter": true,
+            "realizado": 50.0,
+            "meta": 80.0,
+            "percentualAtingido": 62.5,
+            "gap": 30.0,
+            "tendencia": "ESTAVEL",
+            "status": "ABAIXO"
+          },
+          {
+            "goalId": "163694:ACCOUNTABILITY",
+            "funcionarioCodigo": 163694,
+            "employeeName": "MARINALDO RIBEIRO DA SILVA",
+            "goalType": "ACCOUNTABILITY",
+            "scope": "OPERADOR",
+            "targetValue": 80.0,
+            "unit": "SCORE",
+            "higherIsBetter": true,
+            "realizado": 50.0,
+            "meta": 80.0,
+            "percentualAtingido": 62.5,
+            "gap": 30.0,
+            "tendencia": "ESTAVEL",
+            "status": "ABAIXO"
+          },
+          {
+            "goalId": "252430:ACCOUNTABILITY",
+            "funcionarioCodigo": 252430,
+            "employeeName": "CLEYTON ALVES DA COSTA",
+            "goalType": "ACCOUNTABILITY",
+            "scope": "OPERADOR",
+            "targetValue": 80.0,
+            "unit": "SCORE",
+            "higherIsBetter": true,
+            "realizado": 50.0,
+            "meta": 80.0,
+            "percentualAtingido": 62.5,
+            "gap": 30.0,
+            "tendencia": "ESTAVEL",
+            "status": "ABAIXO"
+          },
+          {
+            "goalId": "80203:ACCOUNTABILITY",
+            "funcionarioCodigo": 80203,
+            "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+            "goalType": "ACCOUNTABILITY",
+            "scope": "OPERADOR",
+            "targetValue": 80.0,
+            "unit": "SCORE",
+            "higherIsBetter": true,
+            "realizado": 50.0,
+            "meta": 80.0,
+            "percentualAtingido": 62.5,
+            "gap": 30.0,
+            "tendencia": "ESTAVEL",
+            "status": "ABAIXO"
+          },
+          {
+            "goalId": "80203:REDUCAO_PERDAS",
+            "funcionarioCodigo": 80203,
+            "employeeName": "LUCIANO PEREIRA DA SILVA JUNIOR",
+            "goalType": "REDUCAO_PERDAS",
+            "scope": "OPERADOR",
+            "targetValue": 0.59,
+            "unit": "BRL",
+            "higherIsBetter": false,
+            "realizado": 0.85,
+            "meta": 0.59,
+            "percentualAtingido": 0.0,
+            "gap": 0.26,
+            "tendencia": "ESTAVEL",
+            "status": "ABAIXO"
+          },
+          {
+            "goalId": "63048:ACCOUNTABILITY",
+            "funcionarioCodigo": 63048,
+            "employeeName": "HENRIQUE DO ESPIRITO SANTOS SILVA",
+            "goalType": "ACCOUNTABILITY",
+            "scope": "OPERADOR",
+            "targetValue": 80.0,
+            "unit": "SCORE",
+            "higherIsBetter": true,
+            "realizado": 50.0,
+            "meta": 80.0,
+            "percentualAtingido": 62.5,
+            "gap": 30.0,
+            "tendencia": "ESTAVEL",
+            "status": "ABAIXO"
+          },
+          {
+            "goalId": "249526:ACCOUNTABILITY",
+            "funcionarioCodigo": 249526,
+            "employeeName": "THACIANNA RIBEIRO DA SILVA",
+            "goalType": "ACCOUNTABILITY",
+            "scope": "OPERADOR",
+            "targetValue": 80.0,
+            "unit": "SCORE",
+            "higherIsBetter": true,
+            "realizado": 50.0,
+            "meta": 80.0,
+            "percentualAtingido": 62.5,
+            "gap": 30.0,
+            "tendencia": "ESTAVEL",
+            "status": "ABAIXO"
+          }
+        ],
+        "alertas": [
+          {
+            "tipo": "RISCO_NAO_BATER",
+            "goalId": "178278:VENDA",
+            "operador": "APOIO LOJA .",
+            "pct": 95.24
+          },
+          {
+            "tipo": "RISCO_NAO_BATER",
+            "goalId": "178278:TICKET_MEDIO",
+            "operador": "APOIO LOJA .",
+            "pct": 97.07
+          },
+          {
+            "tipo": "RISCO_NAO_BATER",
+            "goalId": "178278:PRODUTIVIDADE",
+            "operador": "APOIO LOJA .",
+            "pct": 92.6
+          },
+          {
+            "tipo": "SUPERACAO",
+            "goalId": "178278:ACCOUNTABILITY",
+            "operador": "APOIO LOJA .",
+            "pct": 125.0
+          },
+          {
+            "tipo": "ABAIXO_META",
+            "goalId": "178278:REDUCAO_PERDAS",
+            "operador": "APOIO LOJA .",
+            "pct": 0.0
+          },
+          {
+            "tipo": "RISCO_NAO_BATER",
+            "goalId": "294273:VENDA",
+            "operador": "RICART ABEL DE PAIVA RIBEIRO",
+            "pct": 95.24
+          },
+          {
+            "tipo": "RISCO_NAO_BATER",
+            "goalId": "294273:TICKET_MEDIO",
+            "operador": "RICART ABEL DE PAIVA RIBEIRO",
+            "pct": 97.09
+          },
+          {
+            "tipo": "RISCO_NAO_BATER",
+            "goalId": "294273:PRODUTIVIDADE",
+            "operador": "RICART ABEL DE PAIVA RIBEIRO",
+            "pct": 92.6
+          },
+          {
+            "tipo": "ABAIXO_META",
+            "goalId": "294273:ACCOUNTABILITY",
+            "operador": "RICART ABEL DE PAIVA RIBEIRO",
+            "pct": 37.5
+          },
+          {
+            "tipo": "ABAIXO_META",
+            "goalId": "294273:REDUCAO_PERDAS",
+            "operador": "RICART ABEL DE PAIVA RIBEIRO",
+            "pct": 0.0
+          },
+          {
+            "tipo": "RISCO_NAO_BATER",
+            "goalId": "251934:VENDA",
+            "operador": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "pct": 95.24
+          },
+          {
+            "tipo": "RISCO_NAO_BATER",
+            "goalId": "251934:TICKET_MEDIO",
+            "operador": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "pct": 97.09
+          },
+          {
+            "tipo": "RISCO_NAO_BATER",
+            "goalId": "251934:PRODUTIVIDADE",
+            "operador": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "pct": 92.59
+          },
+          {
+            "tipo": "ABAIXO_META",
+            "goalId": "251934:ACCOUNTABILITY",
+            "operador": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "pct": 62.5
+          },
+          {
+            "tipo": "RISCO_NAO_BATER",
+            "goalId": "163694:VENDA",
+            "operador": "MARINALDO RIBEIRO DA SILVA",
+            "pct": 95.24
+          }
+        ]
+      }
+    }
+  },
+  "executiveAnswers": {
+    "1_metasCriadas": 65,
+    "2_campanhasSimuladas": 5,
+    "3_bateramMeta": 23,
+    "4_abaixoMeta": 12,
+    "5_superaramMeta": 3,
+    "6_merecemBonus": 0,
+    "7_bonusSugerido": {
+      "funcionarioCodigo": 178278,
+      "employeeName": "APOIO LOJA .",
+      "elegivel": false,
+      "bonusSugerido": 52.79,
+      "roiEsperado": 1055.8,
+      "riscoBloqueante": false,
+      "evidence": {
+        "percentualMetas": 81.98,
+        "resultadoLiquido": 1055.86,
+        "recommendedActions": [
+          "BONIFICAR",
+          "REALOCACAO",
+          "REESTRUTURAR_PDV"
+        ]
+      }
+    },
+    "8_campanhaMaiorRoi": {
+      "id": "COMBUSTIVEL",
+      "name": "Campanha Venda Combustível",
+      "goalType": "VENDA",
+      "weight": 1.0,
+      "status": "ATIVA",
+      "participantes": 13,
+      "percentualMedio": 97.07,
+      "roiCampanha": 68.36
+    },
+    "9_operadorEvoluiu": {
+      "funcionarioCodigo": 276288,
+      "fechamentos": 6,
+      "volumeApurado": 22096.86,
+      "diferencaAcumulada": 17.81,
+      "diferencaMedia": 2.97,
+      "indiceRecorrencia": 1.0,
+      "cashRiskScore": 58.32,
+      "band": "Critico",
+      "monitoramentoPrioritario": true,
+      "componentDiferenca": 92.94,
+      "componentRecorrencia": 0.0,
+      "componentRisk": 58.32,
+      "componentCompensado": 100.0,
+      "saldoLedger": 17.81,
+      "compensadoAutomatico": 21.95,
+      "_rawScore": 62.781000000000006,
+      "componentEvolucao": 50.0,
+      "evolucaoDelta": 0.0,
+      "operatorPerformanceScore": 60.92,
+      "performanceScore": 60.92,
+      "performanceBand": "Atencao"
+    },
+    "10_operadorCaiu": {
+      "funcionarioCodigo": 294273,
+      "fechamentos": 3,
+      "volumeApurado": 108747.97,
+      "diferencaAcumulada": -252.27,
+      "diferencaMedia": -84.09,
+      "indiceRecorrencia": 1.0,
+      "cashRiskScore": 52.21,
+      "band": "Critico",
+      "monitoramentoPrioritario": true,
+      "componentDiferenca": 0.0,
+      "componentRecorrencia": 0.0,
+      "componentRisk": 52.21,
+      "componentCompensado": 0.0,
+      "saldoLedger": -252.27,
+      "compensadoAutomatico": 0.0,
+      "_rawScore": 10.442,
+      "componentEvolucao": 50.0,
+      "evolucaoDelta": 0.0,
+      "operatorPerformanceScore": 17.83,
+      "performanceScore": 17.83,
+      "performanceBand": "Critico"
+    },
+    "11_pdvPerformou": {
+      "pdvCodigo": null,
+      "receitaBruta": 4639.61,
+      "destruicaoMargem": 0.0,
+      "margemOperacional": 4639.61,
+      "descontos": 0.0,
+      "cancelamentos": 0.0,
+      "faltas": 0.0,
+      "sobras": 0.0,
+      "perdasCaixa": 0.0,
+      "quantidadeVendas": 94,
+      "resultadoLiquido": 4639.61,
+      "riscoEconomico": 1.0,
+      "roi": 4639.61,
+      "monitoramentoPrioritario": false
+    },
+    "12_turnoPerformou": {
+      "turno": "Turno ?",
+      "turnoCodigo": null,
+      "receitaBruta": 4639.61,
+      "destruicaoMargem": 0.0,
+      "margemOperacional": 4639.61,
+      "cancelamentos": 0.0,
+      "faltas": 0.0,
+      "sobras": 0.0,
+      "perdasCaixa": 0.0,
+      "quantidadeVendas": 94,
+      "resultadoLiquido": 4639.61,
+      "riscoEconomico": 1.0,
+      "roi": 4639.61,
+      "incidenciaQuebraPct": null
+    },
+    "13_alertasGerados": 45,
+    "14_impactoFinanceiroEsperado": 0,
+    "15_prontoF046": true,
+    "paridadeDelta": 0.0
+  },
+  "parecerFinal": "[PARECER FINAL: APROVADO PARA F04.6]",
+  "acceptance": {
+    "goalEngine": true,
+    "campaignEngine": true,
+    "cockpit": true,
+    "paridadeZero": true,
+    "evidenciaCompleta": true,
+    "aprovado": true
+  }
+}
