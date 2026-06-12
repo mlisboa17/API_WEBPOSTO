@@ -20,6 +20,7 @@ import {
   BarChart3Icon,
   ClipboardCheckIcon,
   FuelIcon,
+  LandmarkIcon,
   LayoutGridIcon,
   PackageIcon,
   Settings2Icon,
@@ -28,6 +29,7 @@ import {
 
 const navMain = [
   { title: "Painel", url: "/dashboard", icon: LayoutGridIcon },
+  { title: "Extratos", url: "/dashboard/statements", icon: LandmarkIcon },
   { title: "Abastecimento", url: "/abastecimento", icon: FuelIcon },
   { title: "Vendas", url: "/vendas", icon: ShoppingCartIcon },
   { title: "Produtos", url: "/produtos", icon: PackageIcon },
@@ -70,7 +72,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenu>
             {navMain.map((item) => {
               const Icon = item.icon;
-              const active = pathname === item.url;
+              const active =
+                pathname === item.url ||
+                (item.url !== "/dashboard" && pathname.startsWith(`${item.url}/`));
               return (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
