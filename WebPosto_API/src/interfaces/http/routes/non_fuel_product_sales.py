@@ -3,11 +3,11 @@ from __future__ import annotations
 from fastapi import APIRouter, Query
 
 from src.services.non_fuel_product_sales_snapshot_service import NonFuelProductSalesSnapshotService
-from src.services.product_master_optimization_service import ProductMasterOptimizationService
+from src.services.produtos_vendidos_performance_service import ProdutosVendidosPerformanceService
 
-router = APIRouter(prefix="/api/v1/non-fuel-products", tags=["Produtos Vendidos F07.3"])
+router = APIRouter(prefix="/api/v1/non-fuel-products", tags=["Produtos Vendidos F07.4"])
 
-_service = ProductMasterOptimizationService()
+_service = ProdutosVendidosPerformanceService()
 _snapshot = NonFuelProductSalesSnapshotService(_service)
 
 
@@ -35,6 +35,10 @@ async def non_fuel_products_cockpit(
         "productCacheStrategy": payload.get("productCacheStrategy"),
         "departmentRefinement": payload.get("departmentRefinement"),
         "multiBranchProductScale": payload.get("multiBranchProductScale"),
+        "opportunityEngine": payload.get("opportunityEngine"),
+        "productSalesPerformance": payload.get("productSalesPerformance"),
+        "marginIntelligence": payload.get("marginIntelligence"),
+        "mixHealthCommercial": payload.get("mixHealthCommercial"),
         "productPerformanceBenchmark": payload.get("productPerformanceBenchmark"),
         "departmentIntelligence": payload.get("departmentIntelligence"),
         "productRevenueIntelligence": payload.get("productRevenueIntelligence"),

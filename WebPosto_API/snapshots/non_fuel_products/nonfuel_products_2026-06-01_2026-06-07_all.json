@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-06-12T20:48:44.262721",
+  "lastUpdated": "2026-06-12T21:42:36.991036",
   "data": {
-    "sprint": "F07.3",
+    "sprint": "F07.4",
     "periodo": {
       "dataInicial": "2026-06-01",
       "dataFinal": "2026-06-07"
     },
     "empresaCodigoFiltro": null,
-    "elapsedMs": 24449.7,
+    "elapsedMs": 28670.7,
     "fonte": {
       "webPostoLive": true,
       "modo": "webposto_live",
@@ -139,7 +139,7 @@
               "precoVendaB": 0.0,
               "precoVendaC": 0.0,
               "precoCusto": 4.31904,
-              "estoqueQtde": 4582.537,
+              "estoqueQtde": 4376.461,
               "estoqueMin": 0.0,
               "ultimaAlteracao": "2026-06-11T07:51:12.732-03:00",
               "ultimoUsuarioAlteracao": "JOSÉ ARTHUR MAIA GIRAO",
@@ -1169,7 +1169,7 @@
           "pages": 1,
           "count": 200,
           "error": null,
-          "elapsedSec": 1.11
+          "elapsedSec": 2.26
         },
         "11495": {
           "key": "produto_empresa",
@@ -1177,7 +1177,7 @@
           "pages": 1,
           "count": 200,
           "error": null,
-          "elapsedSec": 1.61
+          "elapsedSec": 2.27
         }
       },
       "produtoRedeMeta": {
@@ -1196,7 +1196,7 @@
         "duplicatasRemovidas": 0,
         "semPerdaPorPagina": true,
         "error": null,
-        "elapsedSec": 17.76
+        "elapsedSec": 17.47
       },
       "vendaItem": {
         "key": "venda_item",
@@ -1208,7 +1208,7 @@
         "duplicatasRemovidas": 0,
         "semPerdaPorPagina": true,
         "error": null,
-        "elapsedSec": 1.44
+        "elapsedSec": 1.86
       },
       "nfce": {
         "key": "nfce",
@@ -1220,7 +1220,7 @@
         "duplicatasRemovidas": 0,
         "semPerdaPorPagina": true,
         "error": null,
-        "elapsedSec": 1.14
+        "elapsedSec": 2.05
       }
     },
     "productCatalogCompleteness": {
@@ -2439,7 +2439,142 @@
       "cacheHitRatePct": 100.0,
       "departamentosRefinados": 100,
       "residualSku": 1975728,
-      "residualClassificacao": "RESOLVIDO"
+      "residualClassificacao": "RESOLVIDO",
+      "topProdutosVolume": [
+        {
+          "produtoCodigo": 1841747,
+          "qtd": 17.0,
+          "receita": 148.75,
+          "margem": 25.160000000000004,
+          "nome": "Produto 1841747"
+        },
+        {
+          "produtoCodigo": 1803621,
+          "qtd": 11.0,
+          "receita": 71.5,
+          "margem": 25.189999999999998,
+          "nome": "Produto 1803621"
+        },
+        {
+          "produtoCodigo": 1803587,
+          "qtd": 11.0,
+          "receita": 99.0,
+          "margem": 33.38,
+          "nome": "Produto 1803587"
+        },
+        {
+          "produtoCodigo": 1803580,
+          "qtd": 8.0,
+          "receita": 39.92,
+          "margem": 13.77,
+          "nome": "Produto 1803580"
+        },
+        {
+          "produtoCodigo": 1803055,
+          "qtd": 7.0,
+          "receita": 38.43,
+          "margem": 14.3,
+          "nome": "Produto 1803055"
+        }
+      ],
+      "topProdutosReceita": [
+        {
+          "produtoCodigo": 1841747,
+          "qtd": 17.0,
+          "receita": 148.75,
+          "margem": 25.160000000000004,
+          "nome": "Produto 1841747"
+        },
+        {
+          "produtoCodigo": 1803587,
+          "qtd": 11.0,
+          "receita": 99.0,
+          "margem": 33.38,
+          "nome": "Produto 1803587"
+        },
+        {
+          "produtoCodigo": 1803621,
+          "qtd": 11.0,
+          "receita": 71.5,
+          "margem": 25.189999999999998,
+          "nome": "Produto 1803621"
+        },
+        {
+          "produtoCodigo": 1803580,
+          "qtd": 8.0,
+          "receita": 39.92,
+          "margem": 13.77,
+          "nome": "Produto 1803580"
+        },
+        {
+          "produtoCodigo": 1803055,
+          "qtd": 7.0,
+          "receita": 38.43,
+          "margem": 14.3,
+          "nome": "Produto 1803055"
+        }
+      ],
+      "margemBrutaTotal": 350.94,
+      "margemBrutaPct": 31.79,
+      "filialDestaque": {
+        "empresaCodigo": 11495,
+        "empresaNome": "POSTO VIP",
+        "filial": "POSTO VIP",
+        "receita": 1104.01,
+        "margemBruta": 350.94,
+        "margemPct": 31.79
+      },
+      "mixSaudavel": true,
+      "filialMixSaudavel": {
+        "empresaCodigo": 11495,
+        "empresaNome": "POSTO VIP",
+        "filial": "POSTO VIP",
+        "mixCombustivelPct": 65.66,
+        "mixProdutosVendidosPct": 34.34,
+        "mixLubrificantesPct": 0.0,
+        "mixServicosPct": 0.0,
+        "mixAcessoriosPct": 0.0,
+        "mixOutrosDepartamentos": {
+          "PRODUTOS_DE_LOJA": 1104.01
+        },
+        "dependenciaCombustivelPct": 65.66,
+        "mixSaudavelScore": 34.34,
+        "lineage": [
+          {
+            "origem": "F07.2",
+            "snapshot": "branch_product_mix",
+            "api": "/INTEGRACAO/VENDA_ITEM",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "oportunidades": [
+        {
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "prioridade": "ALTA",
+          "descricao": "Produtos Vendidos com 27.32% do faturamento — meta 35%+",
+          "impactoEstimadoReceita": 165.6
+        },
+        {
+          "tipo": "EXPANDIR_TOP_PRODUTO",
+          "prioridade": "MEDIA",
+          "descricao": "Replicar sucesso do produto 1841747 em outras filiais",
+          "produtoCodigo": 1841747
+        },
+        {
+          "tipo": "FOCO_DEPARTAMENTO",
+          "prioridade": "MEDIA",
+          "descricao": "Priorizar departamento PRODUTOS_DE_LOJA (margem 31.79%)",
+          "departamento": "PRODUTOS_DE_LOJA"
+        },
+        {
+          "tipo": "DESENVOLVER_FILIAL",
+          "prioridade": "ALTA",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 5555",
+          "empresaCodigo": 5555
+        }
+      ]
     },
     "executiveAnswers": {
       "1_produtosExistem": 488,
@@ -2485,7 +2620,26 @@
       "17_dwAprovado": true,
       "18_performanceAprovada": true,
       "19_qaAprovado": true,
-      "20_aprovadoF074": true
+      "20_aprovadoF074": true,
+      "1_produtoMaisVendidoVolume": 1841747,
+      "2_produtoMaiorReceita": 1841747,
+      "3_filialMelhorPerformance": 11495,
+      "4_receitaProdutosVendidos": 1104.01,
+      "5_margemBrutaTotal": 350.94,
+      "6_margemBrutaPct": 31.79,
+      "7_mixSaudavel": true,
+      "8_filialMixSaudavel": 11495,
+      "9_departamentoMargemLider": "PRODUTOS_DE_LOJA",
+      "10_oportunidadesIdentificadas": 4,
+      "11_existeOportunidadeCrescimento": true,
+      "12_participacaoProdutosVendidos": 27.32,
+      "13_coberturaCatalogoPreservada": 100.0,
+      "14_termoConveniencia": false,
+      "15_empresaCodigoObrigatorio": true,
+      "16_cockpitComercialAprovado": true,
+      "17_gestaoComercialConfiavel": true,
+      "18_margemComEvidenciaVendaItem": true,
+      "20_aprovadoF075": true
     },
     "qa": {
       "semProdutoInventado": true,
@@ -2504,9 +2658,10 @@
       "empresaCodigoObrigatorio": true,
       "residualSkuResolvidoOuIsolado": true,
       "performanceAprovada": true,
-      "cacheImplementado": true
+      "cacheImplementado": true,
+      "margemComEvidenciaVendaItem": true
     },
-    "parecerFinal": "[PARECER FINAL: APROVADO PARA F07.4]",
+    "parecerFinal": "[PARECER FINAL: APROVADO PARA F07.5]",
     "governanceRules": {
       "empresaCodigoObrigatorio": true,
       "nomenclaturaProdutosVendidos": true,
@@ -6040,13 +6195,13 @@
       "dimProductDepartment": [
         "FILTROS",
         "LUBRIFICANTES",
+        "PRODUTOS_DE_LOJA",
         "COMBUSTIVEL",
-        "ADITIVOS",
-        "PRODUTOS_DE_LOJA"
+        "ADITIVOS"
       ],
       "factProductSales": [
         {
-          "saleItemId": "SI-15385CEE",
+          "saleItemId": "SI-74F3224A",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229941,
@@ -6076,7 +6231,7 @@
           ]
         },
         {
-          "saleItemId": "SI-551A6784",
+          "saleItemId": "SI-D8C17A30",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229941,
@@ -6106,7 +6261,7 @@
           ]
         },
         {
-          "saleItemId": "SI-28F85B31",
+          "saleItemId": "SI-A1D902A5",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229991,
@@ -6136,7 +6291,7 @@
           ]
         },
         {
-          "saleItemId": "SI-AA1D72EB",
+          "saleItemId": "SI-24894C02",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229991,
@@ -6166,7 +6321,7 @@
           ]
         },
         {
-          "saleItemId": "SI-0B614A43",
+          "saleItemId": "SI-D31A3563",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230009,
@@ -6196,7 +6351,7 @@
           ]
         },
         {
-          "saleItemId": "SI-29C95C10",
+          "saleItemId": "SI-4AD88BB4",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -6226,7 +6381,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E7178B9C",
+          "saleItemId": "SI-CF47888D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -6256,7 +6411,7 @@
           ]
         },
         {
-          "saleItemId": "SI-A130E3BF",
+          "saleItemId": "SI-1E557C4D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -6286,7 +6441,7 @@
           ]
         },
         {
-          "saleItemId": "SI-B518BD48",
+          "saleItemId": "SI-ACFDFE13",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -6316,7 +6471,7 @@
           ]
         },
         {
-          "saleItemId": "SI-A2D7B36A",
+          "saleItemId": "SI-E1D55E00",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -6346,7 +6501,7 @@
           ]
         },
         {
-          "saleItemId": "SI-1A1F471F",
+          "saleItemId": "SI-1BED3A58",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -6376,7 +6531,7 @@
           ]
         },
         {
-          "saleItemId": "SI-001E1830",
+          "saleItemId": "SI-34C0BF0D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -6406,7 +6561,7 @@
           ]
         },
         {
-          "saleItemId": "SI-D26F415C",
+          "saleItemId": "SI-18F5AA95",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -6436,7 +6591,7 @@
           ]
         },
         {
-          "saleItemId": "SI-92361F6B",
+          "saleItemId": "SI-69F31723",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230276,
@@ -6466,7 +6621,7 @@
           ]
         },
         {
-          "saleItemId": "SI-2EDC2956",
+          "saleItemId": "SI-2A8B72F7",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230425,
@@ -6496,7 +6651,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E15AFBA5",
+          "saleItemId": "SI-D105FD19",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230425,
@@ -6526,7 +6681,7 @@
           ]
         },
         {
-          "saleItemId": "SI-BE2189C6",
+          "saleItemId": "SI-7E10A039",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230425,
@@ -6556,7 +6711,7 @@
           ]
         },
         {
-          "saleItemId": "SI-A7D99F77",
+          "saleItemId": "SI-6E25F5F8",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230435,
@@ -6586,7 +6741,7 @@
           ]
         },
         {
-          "saleItemId": "SI-70C50933",
+          "saleItemId": "SI-0649D7E2",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230494,
@@ -6616,7 +6771,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E6027B2D",
+          "saleItemId": "SI-4F63C37B",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230494,
@@ -6646,7 +6801,7 @@
           ]
         },
         {
-          "saleItemId": "SI-EDE4AE1E",
+          "saleItemId": "SI-30F5517E",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230494,
@@ -6676,7 +6831,7 @@
           ]
         },
         {
-          "saleItemId": "SI-60EB99E2",
+          "saleItemId": "SI-663602D3",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230570,
@@ -6706,7 +6861,7 @@
           ]
         },
         {
-          "saleItemId": "SI-C5045209",
+          "saleItemId": "SI-CC1D45FF",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230570,
@@ -6736,7 +6891,7 @@
           ]
         },
         {
-          "saleItemId": "SI-6F76C23A",
+          "saleItemId": "SI-0572D514",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230586,
@@ -6766,7 +6921,7 @@
           ]
         },
         {
-          "saleItemId": "SI-65E29EAA",
+          "saleItemId": "SI-BB14C0A0",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230586,
@@ -6796,7 +6951,7 @@
           ]
         },
         {
-          "saleItemId": "SI-64BAB93E",
+          "saleItemId": "SI-E32482E7",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230600,
@@ -6826,7 +6981,7 @@
           ]
         },
         {
-          "saleItemId": "SI-295C21B1",
+          "saleItemId": "SI-D4C92FE7",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230600,
@@ -6856,7 +7011,7 @@
           ]
         },
         {
-          "saleItemId": "SI-0D5767A1",
+          "saleItemId": "SI-26217F9D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -6886,7 +7041,7 @@
           ]
         },
         {
-          "saleItemId": "SI-54526DDA",
+          "saleItemId": "SI-DB59C18C",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -6916,7 +7071,7 @@
           ]
         },
         {
-          "saleItemId": "SI-33D77B5F",
+          "saleItemId": "SI-4D7CBCBD",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -6946,7 +7101,7 @@
           ]
         },
         {
-          "saleItemId": "SI-44CD7A1E",
+          "saleItemId": "SI-707FD471",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -6976,7 +7131,7 @@
           ]
         },
         {
-          "saleItemId": "SI-697F7D2C",
+          "saleItemId": "SI-793577EC",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230641,
@@ -7006,7 +7161,7 @@
           ]
         },
         {
-          "saleItemId": "SI-4D87B6E1",
+          "saleItemId": "SI-C592BD34",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230685,
@@ -7036,7 +7191,7 @@
           ]
         },
         {
-          "saleItemId": "SI-3082AC03",
+          "saleItemId": "SI-B95AFD33",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230685,
@@ -7066,7 +7221,7 @@
           ]
         },
         {
-          "saleItemId": "SI-698DB252",
+          "saleItemId": "SI-04B24D82",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230685,
@@ -7096,7 +7251,7 @@
           ]
         },
         {
-          "saleItemId": "SI-2FF41070",
+          "saleItemId": "SI-BA6724EA",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230772,
@@ -7126,7 +7281,7 @@
           ]
         },
         {
-          "saleItemId": "SI-77A10BC4",
+          "saleItemId": "SI-35D2E8AE",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230772,
@@ -7156,7 +7311,7 @@
           ]
         },
         {
-          "saleItemId": "SI-36CC7B6F",
+          "saleItemId": "SI-8ED51448",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230827,
@@ -7186,7 +7341,7 @@
           ]
         },
         {
-          "saleItemId": "SI-43BE0581",
+          "saleItemId": "SI-9EE5817F",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230865,
@@ -7216,7 +7371,7 @@
           ]
         },
         {
-          "saleItemId": "SI-250EB3BB",
+          "saleItemId": "SI-E1D79FDB",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230865,
@@ -7246,7 +7401,7 @@
           ]
         },
         {
-          "saleItemId": "SI-3420E563",
+          "saleItemId": "SI-AF50395D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230865,
@@ -7276,7 +7431,7 @@
           ]
         },
         {
-          "saleItemId": "SI-6AD241B6",
+          "saleItemId": "SI-87C289F1",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230970,
@@ -7306,7 +7461,7 @@
           ]
         },
         {
-          "saleItemId": "SI-EAA2864D",
+          "saleItemId": "SI-6CD4B705",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230970,
@@ -7336,7 +7491,7 @@
           ]
         },
         {
-          "saleItemId": "SI-88311BB9",
+          "saleItemId": "SI-94474964",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230980,
@@ -7366,7 +7521,7 @@
           ]
         },
         {
-          "saleItemId": "SI-75CD9FEA",
+          "saleItemId": "SI-E11A11F9",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231010,
@@ -7396,7 +7551,7 @@
           ]
         },
         {
-          "saleItemId": "SI-21ADA3EC",
+          "saleItemId": "SI-6B6EE7CF",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231042,
@@ -7426,7 +7581,7 @@
           ]
         },
         {
-          "saleItemId": "SI-4377A8BD",
+          "saleItemId": "SI-A5214611",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231042,
@@ -7456,7 +7611,7 @@
           ]
         },
         {
-          "saleItemId": "SI-AC79A64E",
+          "saleItemId": "SI-219CDD4E",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231050,
@@ -7486,7 +7641,7 @@
           ]
         },
         {
-          "saleItemId": "SI-597022C9",
+          "saleItemId": "SI-70DF0F79",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231050,
@@ -7516,7 +7671,7 @@
           ]
         },
         {
-          "saleItemId": "SI-17F9D4D2",
+          "saleItemId": "SI-8DA25844",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231068,
@@ -7687,7 +7842,7 @@
           "nomeProduto": "Produto 1801810",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857618+00:00",
+          "lastSeen": "2026-06-12T21:42:19.896045+00:00",
           "confidence": "MEDIA",
           "evidence": null
         },
@@ -7697,7 +7852,7 @@
           "nomeProduto": "COXINHA DE FRANGO CHIC",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857391+00:00",
+          "lastSeen": "2026-06-12T21:42:19.895604+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7710,7 +7865,7 @@
           "nomeProduto": "REFRIGERANTE FANTA UVA LATA 350ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.858014+00:00",
+          "lastSeen": "2026-06-12T21:42:19.896486+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7723,7 +7878,7 @@
           "nomeProduto": "FREEGELLS MELÃO",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857712+00:00",
+          "lastSeen": "2026-06-12T21:42:19.896172+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7736,7 +7891,7 @@
           "nomeProduto": "PITU LATÃO 473ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857216+00:00",
+          "lastSeen": "2026-06-12T21:42:19.893282+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7749,7 +7904,7 @@
           "nomeProduto": "PAÇOQUERO GG (PAÇOCAO) 50G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857101+00:00",
+          "lastSeen": "2026-06-12T21:42:19.892541+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7762,7 +7917,7 @@
           "nomeProduto": "FINI TUBES MORANGO NATA AZEDINHO 80G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857494+00:00",
+          "lastSeen": "2026-06-12T21:42:19.895818+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7775,7 +7930,7 @@
           "nomeProduto": "CHEETOS LUA 34 G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857694+00:00",
+          "lastSeen": "2026-06-12T21:42:19.896151+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7788,7 +7943,7 @@
           "nomeProduto": "FREEGELLS CEREJA",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857992+00:00",
+          "lastSeen": "2026-06-12T21:42:19.896467+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7801,7 +7956,7 @@
           "nomeProduto": "REFRIGERANTE SUKITA LARANJA LT 350ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857791+00:00",
+          "lastSeen": "2026-06-12T21:42:19.896279+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7814,7 +7969,7 @@
           "nomeProduto": "BISCOITO TRELOSO MORANGO 120G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857302+00:00",
+          "lastSeen": "2026-06-12T21:42:19.893434+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7827,7 +7982,7 @@
           "nomeProduto": "MENTOS MINT 37,5G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857644+00:00",
+          "lastSeen": "2026-06-12T21:42:19.896088+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7840,7 +7995,7 @@
           "nomeProduto": "PIPPOS ANIME CEBOLA E SALSA 60G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857674+00:00",
+          "lastSeen": "2026-06-12T21:42:19.896130+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7853,7 +8008,7 @@
           "nomeProduto": "SKINKA LARANJA",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857241+00:00",
+          "lastSeen": "2026-06-12T21:42:19.893325+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7866,7 +8021,7 @@
           "nomeProduto": "BISCOITO PASSATEMPO  RECH 130G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857278+00:00",
+          "lastSeen": "2026-06-12T21:42:19.893392+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7879,7 +8034,7 @@
           "nomeProduto": "BISCOITO BONO MORANGO 90G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857266+00:00",
+          "lastSeen": "2026-06-12T21:42:19.893372+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7892,7 +8047,7 @@
           "nomeProduto": "LUCKY STRIKE FRESH DOUBLE ICE",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857656+00:00",
+          "lastSeen": "2026-06-12T21:42:19.896109+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7905,7 +8060,7 @@
           "nomeProduto": "REFRIGERANTE PEPSI COLA 200ML PET",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857591+00:00",
+          "lastSeen": "2026-06-12T21:42:19.895996+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7918,7 +8073,7 @@
           "nomeProduto": "REFRIGERANTE COCA ZERO 1L",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857049+00:00",
+          "lastSeen": "2026-06-12T21:42:19.892422+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7931,7 +8086,7 @@
           "nomeProduto": "AGUA MINERAL CRYSTAL 1,5L",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857578+00:00",
+          "lastSeen": "2026-06-12T21:42:19.895969+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7944,7 +8099,7 @@
           "nomeProduto": "REFRIGERANTE GUARANA ANTARTICA 200ML PET",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857326+00:00",
+          "lastSeen": "2026-06-12T21:42:19.893482+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7957,7 +8112,7 @@
           "nomeProduto": "MARLBORO GOLD SELECTION BOX",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857077+00:00",
+          "lastSeen": "2026-06-12T21:42:19.892495+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7970,7 +8125,7 @@
           "nomeProduto": "REFRIGERANTE PEPSI TWISTER 2L",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857508+00:00",
+          "lastSeen": "2026-06-12T21:42:19.895840+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7983,7 +8138,7 @@
           "nomeProduto": "PITU LATA 350 ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857180+00:00",
+          "lastSeen": "2026-06-12T21:42:19.893179+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7996,7 +8151,7 @@
           "nomeProduto": "BISC RECH TRELOSO 120G CHOC",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857853+00:00",
+          "lastSeen": "2026-06-12T21:42:19.896341+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8009,7 +8164,7 @@
           "nomeProduto": "CERVEJA BUDWEISER LONG 330ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857379+00:00",
+          "lastSeen": "2026-06-12T21:42:19.895543+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8022,7 +8177,7 @@
           "nomeProduto": "BEM CASADO DOCES LABANCA/ BAKERY",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857925+00:00",
+          "lastSeen": "2026-06-12T21:42:19.896398+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8035,7 +8190,7 @@
           "nomeProduto": "CERVEJA DEVASSA 473.",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857404+00:00",
+          "lastSeen": "2026-06-12T21:42:19.895636+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8048,7 +8203,7 @@
           "nomeProduto": "ICE LEAO PESSEGO 300ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857771+00:00",
+          "lastSeen": "2026-06-12T21:42:19.896255+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8061,7 +8216,7 @@
           "nomeProduto": "DUNHILL RED (CARLTON)",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857428+00:00",
+          "lastSeen": "2026-06-12T21:42:19.895685+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8074,7 +8229,7 @@
           "nomeProduto": "ROTHMANS BLUE KS",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857961+00:00",
+          "lastSeen": "2026-06-12T21:42:19.896447+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8087,7 +8242,7 @@
           "nomeProduto": "ENERGETICO MONSTER 473 ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857456+00:00",
+          "lastSeen": "2026-06-12T21:42:19.895744+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8100,7 +8255,7 @@
           "nomeProduto": "REFRIGERANTE COCA 350ML LT",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857531+00:00",
+          "lastSeen": "2026-06-12T21:42:19.895881+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8113,7 +8268,7 @@
           "nomeProduto": "REFRIGERANTE COCA COLA 2L.",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857519+00:00",
+          "lastSeen": "2026-06-12T21:42:19.895861+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8126,7 +8281,7 @@
           "nomeProduto": "SANDUICHE NATURAL LEVE FRANCO\\RICOTA",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857482+00:00",
+          "lastSeen": "2026-06-12T21:42:19.895795+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8139,7 +8294,7 @@
           "nomeProduto": "CERVEJA HEINEKEN 600ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857943+00:00",
+          "lastSeen": "2026-06-12T21:42:19.896426+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8152,7 +8307,7 @@
           "nomeProduto": "ROTHMANS GLOBAL RED",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857089+00:00",
+          "lastSeen": "2026-06-12T21:42:19.892519+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8165,7 +8320,7 @@
           "nomeProduto": "REFRIGERANTE COCA COLA 1L",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857156+00:00",
+          "lastSeen": "2026-06-12T21:42:19.892621+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8178,7 +8333,7 @@
           "nomeProduto": "CERVEJA SCHIN LATÃO",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857440+00:00",
+          "lastSeen": "2026-06-12T21:42:19.895708+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8191,7 +8346,7 @@
           "nomeProduto": "MARLBORO RED SELECTION BOX",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.856902+00:00",
+          "lastSeen": "2026-06-12T21:42:19.892196+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8204,7 +8359,7 @@
           "nomeProduto": "VINHO CARRETEIRO 900ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857731+00:00",
+          "lastSeen": "2026-06-12T21:42:19.896200+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8217,7 +8372,7 @@
           "nomeProduto": "ROTHMANS RED BOX",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857034+00:00",
+          "lastSeen": "2026-06-12T21:42:19.892393+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8230,7 +8385,7 @@
           "nomeProduto": "REFRIGERANTE SODA 350ML LT",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857168+00:00",
+          "lastSeen": "2026-06-12T21:42:19.892644+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8243,7 +8398,7 @@
           "nomeProduto": "Produto 1803587",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857469+00:00",
+          "lastSeen": "2026-06-12T21:42:19.895767+00:00",
           "confidence": "MEDIA",
           "evidence": null
         },
@@ -8253,7 +8408,7 @@
           "nomeProduto": "Produto 1803673",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857204+00:00",
+          "lastSeen": "2026-06-12T21:42:19.893254+00:00",
           "confidence": "MEDIA",
           "evidence": null
         },
@@ -8263,7 +8418,7 @@
           "nomeProduto": "LUCKY STRIKE PATTERSON RED BOX",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857064+00:00",
+          "lastSeen": "2026-06-12T21:42:19.892469+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8276,7 +8431,7 @@
           "nomeProduto": "CERVEJA BRAHMA CHOPP 473ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857873+00:00",
+          "lastSeen": "2026-06-12T21:42:19.896360+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8289,7 +8444,7 @@
           "nomeProduto": "ENROLADINHO CHIC",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857365+00:00",
+          "lastSeen": "2026-06-12T21:42:19.893558+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8302,7 +8457,7 @@
           "nomeProduto": "PASTEL DE FRANGO (CASA DO SALGADO)",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857416+00:00",
+          "lastSeen": "2026-06-12T21:42:19.895662+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8315,7 +8470,7 @@
           "nomeProduto": "PIRULITO POP OREO",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T20:48:37.857605+00:00",
+          "lastSeen": "2026-06-12T21:42:19.896019+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8402,7 +8557,7 @@
                 "precoVendaB": 0.0,
                 "precoVendaC": 0.0,
                 "precoCusto": 4.31904,
-                "estoqueQtde": 4582.537,
+                "estoqueQtde": 4376.461,
                 "estoqueMin": 0.0,
                 "ultimaAlteracao": "2026-06-11T07:51:12.732-03:00",
                 "ultimoUsuarioAlteracao": "JOSÉ ARTHUR MAIA GIRAO",
@@ -8433,6 +8588,2142 @@
               "webPosto": false
             }
           ]
+        }
+      ],
+      "factProductSalesWithMargin": [
+        {
+          "saleItemId": "SI-57E954B0",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355229941,
+          "vendaItemCodigo": 746134989,
+          "produtoCodigo": 1841747,
+          "produtoNome": "Produto 1841747",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 8.75,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 7.27,
+          "margemBruta": 1.48,
+          "margemBrutaPct": 16.91,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-65790E63",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355229941,
+          "vendaItemCodigo": 746134990,
+          "produtoCodigo": 1803670,
+          "produtoNome": "Produto 1803670",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 2.57,
+          "margemBruta": 1.42,
+          "margemBrutaPct": 35.59,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-AA1413E3",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355229991,
+          "vendaItemCodigo": 746135074,
+          "produtoCodigo": 1803593,
+          "produtoNome": "Produto 1803593",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 5.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 3.35,
+          "margemBruta": 2.64,
+          "margemBrutaPct": 44.07,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-CC4FC156",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355229991,
+          "vendaItemCodigo": 746135075,
+          "produtoCodigo": 1801812,
+          "produtoNome": "Produto 1801812",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 2.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 1.87,
+          "margemBruta": 1.12,
+          "margemBrutaPct": 37.46,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-94B26CB7",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230009,
+          "vendaItemCodigo": 746135104,
+          "produtoCodigo": 1802688,
+          "produtoNome": "Produto 1802688",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 14.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 10.77,
+          "margemBruta": 4.22,
+          "margemBrutaPct": 28.15,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-C7DB7E2B",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230229,
+          "vendaItemCodigo": 746135416,
+          "produtoCodigo": 1803533,
+          "produtoNome": "Produto 1803533",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 8.75,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 7.27,
+          "margemBruta": 1.48,
+          "margemBrutaPct": 16.91,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-78E95DC2",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230229,
+          "vendaItemCodigo": 746135417,
+          "produtoCodigo": 1803621,
+          "produtoNome": "Produto 1803621",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 6.5,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 4.21,
+          "margemBruta": 2.29,
+          "margemBrutaPct": 35.23,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-721D87D6",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230229,
+          "vendaItemCodigo": 746135418,
+          "produtoCodigo": 1803621,
+          "produtoNome": "Produto 1803621",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 6.5,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 4.21,
+          "margemBruta": 2.29,
+          "margemBrutaPct": 35.23,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-DD913674",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230229,
+          "vendaItemCodigo": 746135419,
+          "produtoCodigo": 2387407,
+          "produtoNome": "Produto 2387407",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 2.0,
+          "valorTotal": 1.0,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 0.68,
+          "margemBruta": 0.32,
+          "margemBrutaPct": 32.0,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-231E4618",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230231,
+          "vendaItemCodigo": 746135421,
+          "produtoCodigo": 1802381,
+          "produtoNome": "Produto 1802381",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 1.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 0.96,
+          "margemBruta": 1.03,
+          "margemBrutaPct": 51.76,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-545986E4",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230231,
+          "vendaItemCodigo": 746135422,
+          "produtoCodigo": 1802381,
+          "produtoNome": "Produto 1802381",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 1.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 0.96,
+          "margemBruta": 1.03,
+          "margemBrutaPct": 51.76,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-C19DE350",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230231,
+          "vendaItemCodigo": 746135423,
+          "produtoCodigo": 1802381,
+          "produtoNome": "Produto 1802381",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 1.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 0.96,
+          "margemBruta": 1.03,
+          "margemBrutaPct": 51.76,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-D03ED32E",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230231,
+          "vendaItemCodigo": 746135424,
+          "produtoCodigo": 1802207,
+          "produtoNome": "Produto 1802207",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 2.6,
+          "margemBruta": 1.39,
+          "margemBrutaPct": 34.84,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-848C766A",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230276,
+          "vendaItemCodigo": 746135548,
+          "produtoCodigo": 1727011,
+          "produtoNome": "Produto 1727011",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 10.5,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 8.91,
+          "margemBruta": 1.59,
+          "margemBrutaPct": 15.14,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-57508FD4",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230425,
+          "vendaItemCodigo": 746135764,
+          "produtoCodigo": 2189991,
+          "produtoNome": "Produto 2189991",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 7.0,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 4.04,
+          "margemBruta": 2.96,
+          "margemBrutaPct": 42.29,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-17A662D5",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230425,
+          "vendaItemCodigo": 746135765,
+          "produtoCodigo": 1802831,
+          "produtoNome": "Produto 1802831",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 6.0,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 3.11,
+          "margemBruta": 2.89,
+          "margemBrutaPct": 48.17,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-B6B32FC8",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230425,
+          "vendaItemCodigo": 746135766,
+          "produtoCodigo": 1802200,
+          "produtoNome": "Produto 1802200",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 1.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 0.97,
+          "margemBruta": 1.02,
+          "margemBrutaPct": 51.26,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-6182B04E",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230435,
+          "vendaItemCodigo": 746135777,
+          "produtoCodigo": 2039836,
+          "produtoNome": "Produto 2039836",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.8,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 2.5,
+          "margemBruta": 1.3,
+          "margemBrutaPct": 34.21,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-A4C510C7",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230494,
+          "vendaItemCodigo": 746135902,
+          "produtoCodigo": 1822404,
+          "produtoNome": "Produto 1822404",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 9.0,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 6.0,
+          "margemBruta": 3.0,
+          "margemBrutaPct": 33.33,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-632F8913",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230494,
+          "vendaItemCodigo": 746135903,
+          "produtoCodigo": 1887871,
+          "produtoNome": "Produto 1887871",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 5.0,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 2.99,
+          "margemBruta": 2.01,
+          "margemBrutaPct": 40.2,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-F20EF15E",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230494,
+          "vendaItemCodigo": 746135904,
+          "produtoCodigo": 2155814,
+          "produtoNome": "Produto 2155814",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 2.0,
+          "valorTotal": 14.98,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 7.1,
+          "margemBruta": 7.88,
+          "margemBrutaPct": 52.6,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-76F23FDC",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230570,
+          "vendaItemCodigo": 746136008,
+          "produtoCodigo": 2191502,
+          "produtoNome": "Produto 2191502",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 2.0,
+          "valorTotal": 17.96,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 11.66,
+          "margemBruta": 6.3,
+          "margemBrutaPct": 35.08,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-8DB80044",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230570,
+          "vendaItemCodigo": 746136009,
+          "produtoCodigo": 1801337,
+          "produtoNome": "Produto 1801337",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 5.5,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 3.33,
+          "margemBruta": 2.17,
+          "margemBrutaPct": 39.45,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-AE4A1FCD",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230586,
+          "vendaItemCodigo": 746136026,
+          "produtoCodigo": 1803621,
+          "produtoNome": "Produto 1803621",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 4.0,
+          "valorTotal": 26.0,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 16.84,
+          "margemBruta": 9.16,
+          "margemBrutaPct": 35.23,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-6BCCCB77",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230586,
+          "vendaItemCodigo": 746136027,
+          "produtoCodigo": 1803592,
+          "produtoNome": "Produto 1803592",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 15.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 10.77,
+          "margemBruta": 5.22,
+          "margemBrutaPct": 32.65,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-77933C2B",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230600,
+          "vendaItemCodigo": 746136052,
+          "produtoCodigo": 1803474,
+          "produtoNome": "Produto 1803474",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 14.0,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 12.19,
+          "margemBruta": 1.81,
+          "margemBrutaPct": 12.93,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-ED964BF8",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230600,
+          "vendaItemCodigo": 746136053,
+          "produtoCodigo": 1801758,
+          "produtoNome": "Produto 1801758",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 2.49,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 1.37,
+          "margemBruta": 1.12,
+          "margemBrutaPct": 44.98,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-EF3A9C60",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230640,
+          "vendaItemCodigo": 746136111,
+          "produtoCodigo": 2323122,
+          "produtoNome": "Produto 2323122",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 7.98,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 5.01,
+          "margemBruta": 2.97,
+          "margemBrutaPct": 37.22,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-D11CD1AD",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230640,
+          "vendaItemCodigo": 746136112,
+          "produtoCodigo": 1802397,
+          "produtoNome": "Produto 1802397",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 2.31,
+          "margemBruta": 1.68,
+          "margemBrutaPct": 42.11,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-C3D66882",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230640,
+          "vendaItemCodigo": 746136113,
+          "produtoCodigo": 2048588,
+          "produtoNome": "Produto 2048588",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 6.49,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 4.5,
+          "margemBruta": 1.99,
+          "margemBrutaPct": 30.66,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-E7EA5ED7",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230640,
+          "vendaItemCodigo": 746136114,
+          "produtoCodigo": 1803364,
+          "produtoNome": "Produto 1803364",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.5,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 1.64,
+          "margemBruta": 1.86,
+          "margemBrutaPct": 53.14,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-78E45D10",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230641,
+          "vendaItemCodigo": 746136115,
+          "produtoCodigo": 1841747,
+          "produtoNome": "Produto 1841747",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 8.75,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 7.27,
+          "margemBruta": 1.48,
+          "margemBrutaPct": 16.91,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-5277D222",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230685,
+          "vendaItemCodigo": 746136163,
+          "produtoCodigo": 1803530,
+          "produtoNome": "Produto 1803530",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 8.75,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 7.27,
+          "margemBruta": 1.48,
+          "margemBrutaPct": 16.91,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-226E92C9",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230685,
+          "vendaItemCodigo": 746136164,
+          "produtoCodigo": 1803344,
+          "produtoNome": "Produto 1803344",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 2.48,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 1.62,
+          "margemBruta": 0.86,
+          "margemBrutaPct": 34.68,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-FFABAB15",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230685,
+          "vendaItemCodigo": 746136165,
+          "produtoCodigo": 1802031,
+          "produtoNome": "Produto 1802031",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 6.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 3.3,
+          "margemBruta": 3.69,
+          "margemBrutaPct": 52.79,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-46C9E63F",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230772,
+          "vendaItemCodigo": 746136270,
+          "produtoCodigo": 1803664,
+          "produtoNome": "Produto 1803664",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 9.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 6.97,
+          "margemBruta": 3.02,
+          "margemBrutaPct": 30.23,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-69A5DF84",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230772,
+          "vendaItemCodigo": 746136271,
+          "produtoCodigo": 1920399,
+          "produtoNome": "Produto 1920399",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 6.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 4.64,
+          "margemBruta": 2.35,
+          "margemBrutaPct": 33.62,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-9207C771",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230827,
+          "vendaItemCodigo": 746136350,
+          "produtoCodigo": 1841747,
+          "produtoNome": "Produto 1841747",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 8.75,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 7.27,
+          "margemBruta": 1.48,
+          "margemBrutaPct": 16.91,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-7732C711",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230865,
+          "vendaItemCodigo": 746136396,
+          "produtoCodigo": 1803229,
+          "produtoNome": "Produto 1803229",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 5.5,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 3.47,
+          "margemBruta": 2.03,
+          "margemBrutaPct": 36.91,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-CD423526",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230865,
+          "vendaItemCodigo": 746136397,
+          "produtoCodigo": 1802730,
+          "produtoNome": "Produto 1802730",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.75,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 2.5,
+          "margemBruta": 1.25,
+          "margemBrutaPct": 33.33,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-4A0EAB42",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230865,
+          "vendaItemCodigo": 746136398,
+          "produtoCodigo": 2155820,
+          "produtoNome": "Produto 2155820",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 5.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 3.1,
+          "margemBruta": 2.89,
+          "margemBrutaPct": 48.25,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-2B709A89",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230970,
+          "vendaItemCodigo": 746136549,
+          "produtoCodigo": 1841747,
+          "produtoNome": "Produto 1841747",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 8.75,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 7.27,
+          "margemBruta": 1.48,
+          "margemBrutaPct": 16.91,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-246D594F",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230970,
+          "vendaItemCodigo": 746136550,
+          "produtoCodigo": 1802831,
+          "produtoNome": "Produto 1802831",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 6.0,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 3.11,
+          "margemBruta": 2.89,
+          "margemBrutaPct": 48.17,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-81E8C177",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355230980,
+          "vendaItemCodigo": 746136589,
+          "produtoCodigo": 1803499,
+          "produtoNome": "Produto 1803499",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 10.5,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 8.91,
+          "margemBruta": 1.59,
+          "margemBrutaPct": 15.14,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-E23AAB48",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355231010,
+          "vendaItemCodigo": 746136676,
+          "produtoCodigo": 2008580,
+          "produtoNome": "Produto 2008580",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 7.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 5.86,
+          "margemBruta": 2.13,
+          "margemBrutaPct": 26.66,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-A668EFDB",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355231042,
+          "vendaItemCodigo": 746136716,
+          "produtoCodigo": 1803739,
+          "produtoNome": "Produto 1803739",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 9.0,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 4.25,
+          "margemBruta": 4.75,
+          "margemBrutaPct": 52.78,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-F3379F2D",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355231042,
+          "vendaItemCodigo": 746136717,
+          "produtoCodigo": 1802775,
+          "produtoNome": "Produto 1802775",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 7.5,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 4.48,
+          "margemBruta": 3.02,
+          "margemBrutaPct": 40.27,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-BA4DE30B",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355231050,
+          "vendaItemCodigo": 746136725,
+          "produtoCodigo": 1841747,
+          "produtoNome": "Produto 1841747",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 8.75,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 7.27,
+          "margemBruta": 1.48,
+          "margemBrutaPct": 16.91,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-6DC18DC3",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355231050,
+          "vendaItemCodigo": 746136726,
+          "produtoCodigo": 2407138,
+          "produtoNome": "Produto 2407138",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 8.0,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 5.23,
+          "margemBruta": 2.77,
+          "margemBrutaPct": 34.62,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-8A6DE777",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355231068,
+          "vendaItemCodigo": 746136758,
+          "produtoCodigo": 1803402,
+          "produtoNome": "Produto 1803402",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 9.75,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-01",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "custoTotal": 7.82,
+          "margemBruta": 1.93,
+          "margemBrutaPct": 19.79,
+          "lineageMargem": [
+            {
+              "origem": "F07.4",
+              "snapshot": "margin",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "factProductMargin": [
+        {
+          "departamento": "PRODUTOS_DE_LOJA",
+          "receita": 1104.01,
+          "margemBruta": 350.94,
+          "margemPct": 31.79
+        }
+      ],
+      "factCommercialOpportunity": [
+        {
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "prioridade": "ALTA",
+          "descricao": "Produtos Vendidos com 27.32% do faturamento — meta 35%+",
+          "impactoEstimadoReceita": 165.6
+        },
+        {
+          "tipo": "EXPANDIR_TOP_PRODUTO",
+          "prioridade": "MEDIA",
+          "descricao": "Replicar sucesso do produto 1841747 em outras filiais",
+          "produtoCodigo": 1841747
+        },
+        {
+          "tipo": "FOCO_DEPARTAMENTO",
+          "prioridade": "MEDIA",
+          "descricao": "Priorizar departamento PRODUTOS_DE_LOJA (margem 31.79%)",
+          "departamento": "PRODUTOS_DE_LOJA"
+        },
+        {
+          "tipo": "DESENVOLVER_FILIAL",
+          "prioridade": "ALTA",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 5555",
+          "empresaCodigo": 5555
         }
       ]
     },
@@ -8490,7 +10781,7 @@
             "precoVendaB": 0.0,
             "precoVendaC": 0.0,
             "precoCusto": 4.31904,
-            "estoqueQtde": 4582.537,
+            "estoqueQtde": 4376.461,
             "estoqueMin": 0.0,
             "ultimaAlteracao": "2026-06-11T07:51:12.732-03:00",
             "ultimoUsuarioAlteracao": "JOSÉ ARTHUR MAIA GIRAO",
@@ -8636,6 +10927,415 @@
           "origem": "F07.3",
           "snapshot": "performance_benchmark",
           "api": "product_master_cache",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "productSalesPerformance": {
+      "topProdutoVolume": {
+        "produtoCodigo": 1841747,
+        "qtd": 17.0,
+        "receita": 148.75,
+        "margem": 25.160000000000004,
+        "nome": "Produto 1841747"
+      },
+      "topProdutoReceita": {
+        "produtoCodigo": 1841747,
+        "qtd": 17.0,
+        "receita": 148.75,
+        "margem": 25.160000000000004,
+        "nome": "Produto 1841747"
+      },
+      "rankingVolume": [
+        {
+          "produtoCodigo": 1841747,
+          "qtd": 17.0,
+          "receita": 148.75,
+          "margem": 25.160000000000004,
+          "nome": "Produto 1841747"
+        },
+        {
+          "produtoCodigo": 1803621,
+          "qtd": 11.0,
+          "receita": 71.5,
+          "margem": 25.189999999999998,
+          "nome": "Produto 1803621"
+        },
+        {
+          "produtoCodigo": 1803587,
+          "qtd": 11.0,
+          "receita": 99.0,
+          "margem": 33.38,
+          "nome": "Produto 1803587"
+        },
+        {
+          "produtoCodigo": 1803580,
+          "qtd": 8.0,
+          "receita": 39.92,
+          "margem": 13.77,
+          "nome": "Produto 1803580"
+        },
+        {
+          "produtoCodigo": 1803055,
+          "qtd": 7.0,
+          "receita": 38.43,
+          "margem": 14.3,
+          "nome": "Produto 1803055"
+        },
+        {
+          "produtoCodigo": 1802730,
+          "qtd": 6.0,
+          "receita": 22.5,
+          "margem": 7.5,
+          "nome": "Produto 1802730"
+        },
+        {
+          "produtoCodigo": 1802831,
+          "qtd": 5.0,
+          "receita": 30.0,
+          "margem": 14.45,
+          "nome": "Produto 1802831"
+        },
+        {
+          "produtoCodigo": 2114922,
+          "qtd": 5.0,
+          "receita": 37.45,
+          "margem": 14.71,
+          "nome": "Produto 2114922"
+        },
+        {
+          "produtoCodigo": 1803530,
+          "qtd": 4.0,
+          "receita": 35.0,
+          "margem": 5.92,
+          "nome": "Produto 1803530"
+        },
+        {
+          "produtoCodigo": 1802381,
+          "qtd": 3.0,
+          "receita": 5.97,
+          "margem": 3.09,
+          "nome": "Produto 1802381"
+        },
+        {
+          "produtoCodigo": 2191502,
+          "qtd": 3.0,
+          "receita": 26.94,
+          "margem": 9.45,
+          "nome": "Produto 2191502"
+        },
+        {
+          "produtoCodigo": 1801758,
+          "qtd": 3.0,
+          "receita": 7.470000000000001,
+          "margem": 3.3600000000000003,
+          "nome": "Produto 1801758"
+        },
+        {
+          "produtoCodigo": 1802031,
+          "qtd": 3.0,
+          "receita": 20.98,
+          "margem": 11.08,
+          "nome": "Produto 1802031"
+        },
+        {
+          "produtoCodigo": 1803593,
+          "qtd": 2.0,
+          "receita": 11.98,
+          "margem": 5.28,
+          "nome": "Produto 1803593"
+        },
+        {
+          "produtoCodigo": 1803533,
+          "qtd": 2.0,
+          "receita": 17.5,
+          "margem": 2.96,
+          "nome": "Produto 1803533"
+        }
+      ],
+      "rankingReceita": [
+        {
+          "produtoCodigo": 1841747,
+          "qtd": 17.0,
+          "receita": 148.75,
+          "margem": 25.160000000000004,
+          "nome": "Produto 1841747"
+        },
+        {
+          "produtoCodigo": 1803587,
+          "qtd": 11.0,
+          "receita": 99.0,
+          "margem": 33.38,
+          "nome": "Produto 1803587"
+        },
+        {
+          "produtoCodigo": 1803621,
+          "qtd": 11.0,
+          "receita": 71.5,
+          "margem": 25.189999999999998,
+          "nome": "Produto 1803621"
+        },
+        {
+          "produtoCodigo": 1803580,
+          "qtd": 8.0,
+          "receita": 39.92,
+          "margem": 13.77,
+          "nome": "Produto 1803580"
+        },
+        {
+          "produtoCodigo": 1803055,
+          "qtd": 7.0,
+          "receita": 38.43,
+          "margem": 14.3,
+          "nome": "Produto 1803055"
+        },
+        {
+          "produtoCodigo": 2114922,
+          "qtd": 5.0,
+          "receita": 37.45,
+          "margem": 14.71,
+          "nome": "Produto 2114922"
+        },
+        {
+          "produtoCodigo": 1803530,
+          "qtd": 4.0,
+          "receita": 35.0,
+          "margem": 5.92,
+          "nome": "Produto 1803530"
+        },
+        {
+          "produtoCodigo": 1802831,
+          "qtd": 5.0,
+          "receita": 30.0,
+          "margem": 14.45,
+          "nome": "Produto 1802831"
+        },
+        {
+          "produtoCodigo": 2191502,
+          "qtd": 3.0,
+          "receita": 26.94,
+          "margem": 9.45,
+          "nome": "Produto 2191502"
+        },
+        {
+          "produtoCodigo": 1802730,
+          "qtd": 6.0,
+          "receita": 22.5,
+          "margem": 7.5,
+          "nome": "Produto 1802730"
+        },
+        {
+          "produtoCodigo": 1727011,
+          "qtd": 2.0,
+          "receita": 21.0,
+          "margem": 3.18,
+          "nome": "Produto 1727011"
+        },
+        {
+          "produtoCodigo": 1802031,
+          "qtd": 3.0,
+          "receita": 20.98,
+          "margem": 11.08,
+          "nome": "Produto 1802031"
+        },
+        {
+          "produtoCodigo": 1803520,
+          "qtd": 2.0,
+          "receita": 19.5,
+          "margem": 3.4,
+          "nome": "Produto 1803520"
+        },
+        {
+          "produtoCodigo": 1822404,
+          "qtd": 2.0,
+          "receita": 18.0,
+          "margem": 6.0,
+          "nome": "Produto 1822404"
+        },
+        {
+          "produtoCodigo": 1803533,
+          "qtd": 2.0,
+          "receita": 17.5,
+          "margem": 2.96,
+          "nome": "Produto 1803533"
+        }
+      ],
+      "lineage": [
+        {
+          "origem": "F07.4",
+          "snapshot": "sales_performance",
+          "api": "/INTEGRACAO/VENDA_ITEM",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "marginIntelligence": {
+      "receitaProdutosVendidos": 1104.01,
+      "margemBrutaTotal": 350.94,
+      "margemBrutaPct": 31.79,
+      "topDepartamentoMargem": {
+        "departamento": "PRODUTOS_DE_LOJA",
+        "receita": 1104.01,
+        "margemBruta": 350.94,
+        "margemPct": 31.79
+      },
+      "porDepartamento": [
+        {
+          "departamento": "PRODUTOS_DE_LOJA",
+          "receita": 1104.01,
+          "margemBruta": 350.94,
+          "margemPct": 31.79
+        }
+      ],
+      "porFilial": [
+        {
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "filial": "POSTO VIP",
+          "receita": 1104.01,
+          "margemBruta": 350.94,
+          "margemPct": 31.79
+        }
+      ],
+      "topProdutoMargem": {
+        "produtoCodigo": 2114922,
+        "nome": "Produto 2114922",
+        "margemBruta": 14.71,
+        "margemPct": 39.28
+      },
+      "lineage": [
+        {
+          "origem": "F07.4",
+          "snapshot": "margin_intelligence",
+          "api": "/INTEGRACAO/VENDA_ITEM",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "mixHealthCommercial": {
+      "participacaoProdutosVendidosPct": 27.32,
+      "margemMediaPct": 31.79,
+      "mixSaudavel": true,
+      "filialMixMaisSaudavel": {
+        "empresaCodigo": 11495,
+        "empresaNome": "POSTO VIP",
+        "filial": "POSTO VIP",
+        "mixCombustivelPct": 65.66,
+        "mixProdutosVendidosPct": 34.34,
+        "mixLubrificantesPct": 0.0,
+        "mixServicosPct": 0.0,
+        "mixAcessoriosPct": 0.0,
+        "mixOutrosDepartamentos": {
+          "PRODUTOS_DE_LOJA": 1104.01
+        },
+        "dependenciaCombustivelPct": 65.66,
+        "mixSaudavelScore": 34.34,
+        "lineage": [
+          {
+            "origem": "F07.2",
+            "snapshot": "branch_product_mix",
+            "api": "/INTEGRACAO/VENDA_ITEM",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "filiais": [
+        {
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "filial": "POSTO VIP",
+          "mixCombustivelPct": 65.66,
+          "mixProdutosVendidosPct": 34.34,
+          "mixLubrificantesPct": 0.0,
+          "mixServicosPct": 0.0,
+          "mixAcessoriosPct": 0.0,
+          "mixOutrosDepartamentos": {
+            "PRODUTOS_DE_LOJA": 1104.01
+          },
+          "dependenciaCombustivelPct": 65.66,
+          "mixSaudavelScore": 34.34,
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "branch_product_mix",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 5555,
+          "empresaNome": "AP CASA CAIADA",
+          "filial": "AP CASA CAIADA",
+          "mixCombustivelPct": 100.0,
+          "mixProdutosVendidosPct": 0.0,
+          "mixLubrificantesPct": 0.0,
+          "mixServicosPct": 0.0,
+          "mixAcessoriosPct": 0.0,
+          "mixOutrosDepartamentos": {},
+          "dependenciaCombustivelPct": 100.0,
+          "mixSaudavelScore": 0.0,
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "branch_product_mix",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "lineage": [
+        {
+          "origem": "F07.4",
+          "snapshot": "mix_health",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "opportunityEngine": {
+      "oportunidades": [
+        {
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "prioridade": "ALTA",
+          "descricao": "Produtos Vendidos com 27.32% do faturamento — meta 35%+",
+          "impactoEstimadoReceita": 165.6
+        },
+        {
+          "tipo": "EXPANDIR_TOP_PRODUTO",
+          "prioridade": "MEDIA",
+          "descricao": "Replicar sucesso do produto 1841747 em outras filiais",
+          "produtoCodigo": 1841747
+        },
+        {
+          "tipo": "FOCO_DEPARTAMENTO",
+          "prioridade": "MEDIA",
+          "descricao": "Priorizar departamento PRODUTOS_DE_LOJA (margem 31.79%)",
+          "departamento": "PRODUTOS_DE_LOJA"
+        },
+        {
+          "tipo": "DESENVOLVER_FILIAL",
+          "prioridade": "ALTA",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 5555",
+          "empresaCodigo": 5555
+        }
+      ],
+      "totalOportunidades": 4,
+      "existeOportunidadeCrescimento": true,
+      "receitaAtualProdutosVendidos": 1104.01,
+      "lineage": [
+        {
+          "origem": "F07.4",
+          "snapshot": "opportunity_engine",
+          "api": "/api/v1/non-fuel-products/cockpit",
           "cockpit": "non-fuel-products",
           "webPosto": false
         }

@@ -50,13 +50,21 @@ export function renderNonFuelProducts(node, payload, filters, options = {}) {
   const benchmark = payload.productPerformanceBenchmark || {};
   const forensics = payload.residualSkuForensics || {};
   const cache = payload.productCacheStrategy || {};
+  const performance = payload.productSalesPerformance || {};
+  const margin = payload.marginIntelligence || {};
+  const mixHealth = payload.mixHealthCommercial || {};
+  const opportunities = payload.opportunityEngine || {};
+  const topVol = performance.rankingVolume || cockpit.topProdutosVolume || [];
+  const topRev = performance.rankingReceita || cockpit.topProdutosReceita || [];
+  const filialDestaque = cockpit.filialDestaque || (margin.porFilial || [])[0] || {};
+  const oportunidades = opportunities.oportunidades || cockpit.oportunidades || [];
   const parecer = payload.parecerFinal || "";
 
   node.innerHTML = `
     <header class="view-header">
       <div>
         <h2>Produtos Vendidos</h2>
-        <p class="muted">F07.3 · Otimização catálogo · empresaCodigo · ${filters?.dataInicial || ""} → ${filters?.dataFinal || ""}</p>
+        <p class="muted">F07.4 · Gestão comercial · empresaCodigo · ${filters?.dataInicial || ""} → ${filters?.dataFinal || ""}</p>
         ${parecer ? `<p class="parecer">${parecer}</p>` : ""}
       </div>
       <div class="view-actions">
@@ -65,21 +73,46 @@ export function renderNonFuelProducts(node, payload, filters, options = {}) {
       </div>
     </header>
     <div class="kpi-grid">
-      <article class="kpi-card kpi-card--highlight"><span class="kpi-label">Receita Produtos Vendidos</span><strong>R$ ${exec["10_receitaProdutosVendidos"] ?? cockpit.receitaProdutosVendidos ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Recuperados</span><strong>${recovery.produtosRecuperados ?? cockpit.produtosRecuperados ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Pendentes</span><strong>${cockpit.produtosPendentes ?? exec["3_produtosSemCadastroRestantes"] ?? recovery.depoisSemMatch ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Cobertura catálogo</span><strong>${coverage.coberturaCatalogoFinalPct ?? cockpit.coberturaCatalogoFinalPct ?? exec["4_coberturaCatalogoFinal"] ?? "—"}%</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Lookup</span><strong>${cockpit.performanceLookupSec ?? benchmark.tempoTotalLookupDepoisSec ?? "—"}s</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Cache hit</span><strong>${cockpit.cacheHitRatePct ?? cache.cacheHitRatePct ?? exec["9_cacheHitRate"] ?? "—"}%</strong></article>
-      <article class="kpi-card"><span class="kpi-label">SKU residual</span><strong>${forensics.classificacaoFinal ?? cockpit.residualClassificacao ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Redução lookup</span><strong>${benchmark.reducaoPercentual ?? exec["7_reducaoPercentual"] ?? "—"}%</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Aprovado F07.4</span><strong>${exec["20_aprovadoF074"] ? "Sim" : "Não"}</strong></article>
+      <article class="kpi-card kpi-card--highlight"><span class="kpi-label">Receita Produtos Vendidos</span><strong>R$ ${exec["4_receitaProdutosVendidos"] ?? margin.receitaProdutosVendidos ?? cockpit.receitaProdutosVendidos ?? "—"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Margem bruta</span><strong>R$ ${exec["5_margemBrutaTotal"] ?? margin.margemBrutaTotal ?? "—"} (${exec["6_margemBrutaPct"] ?? margin.margemBrutaPct ?? "—"}%)</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Top receita</span><strong>${exec["2_produtoMaiorReceita"] ?? performance.topProdutoReceita?.produtoCodigo ?? "—"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Top volume</span><strong>${exec["1_produtoMaisVendidoVolume"] ?? performance.topProdutoVolume?.produtoCodigo ?? "—"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Filial destaque</span><strong>${exec["3_filialMelhorPerformance"] ?? filialDestaque.empresaCodigo ?? "—"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Mix saudável</span><strong>${exec["7_mixSaudavel"] ?? mixHealth.mixSaudavel ?? cockpit.mixSaudavel ? "Sim" : "Não"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Participação PV</span><strong>${exec["12_participacaoProdutosVendidos"] ?? mixHealth.participacaoProdutosVendidosPct ?? "—"}%</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Oportunidades</span><strong>${exec["10_oportunidadesIdentificadas"] ?? opportunities.totalOportunidades ?? "—"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Cobertura catálogo</span><strong>${exec["13_coberturaCatalogoPreservada"] ?? coverage.coberturaCatalogoFinalPct ?? "—"}%</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Aprovado F07.5</span><strong>${exec["20_aprovadoF075"] ? "Sim" : "Não"}</strong></article>
     </div>
-    ${renderTable("Top produtos", ranking.slice(0, 8), [
+    ${renderTable("Top produtos por volume", topVol.slice(0, 8), [
       { key: "produtoCodigo", label: "Produto" },
       { key: "nome", label: "Nome" },
       { key: "qtd", label: "Qtd" },
-      { key: "valor", label: "Valor R$", render: (r) => (r.valor != null ? Number(r.valor).toFixed(2) : "—") },
+      { key: "receita", label: "Receita R$", render: (r) => (r.receita != null ? Number(r.receita).toFixed(2) : "—") },
+    ])}
+    ${renderTable("Top produtos por receita", topRev.slice(0, 8), [
+      { key: "produtoCodigo", label: "Produto" },
+      { key: "nome", label: "Nome" },
+      { key: "receita", label: "Receita R$", render: (r) => (r.receita != null ? Number(r.receita).toFixed(2) : "—") },
+      { key: "margem", label: "Margem R$", render: (r) => (r.margem != null ? Number(r.margem).toFixed(2) : "—") },
+    ])}
+    ${renderTable("Margem por departamento", (margin.porDepartamento || []).slice(0, 8), [
+      { key: "departamento", label: "Departamento" },
+      { key: "receita", label: "Receita R$", render: (r) => (r.receita != null ? Number(r.receita).toFixed(2) : "—") },
+      { key: "margemBruta", label: "Margem R$", render: (r) => (r.margemBruta != null ? Number(r.margemBruta).toFixed(2) : "—") },
+      { key: "margemPct", label: "Margem %", render: (r) => `${r.margemPct ?? "—"}%` },
+    ])}
+    ${renderTable("Performance por filial", (margin.porFilial || []).slice(0, 8), [
+      { key: "empresaCodigo", label: "Filial" },
+      { key: "empresaNome", label: "Nome" },
+      { key: "receita", label: "Receita R$", render: (r) => (r.receita != null ? Number(r.receita).toFixed(2) : "—") },
+      { key: "margemBruta", label: "Margem R$", render: (r) => (r.margemBruta != null ? Number(r.margemBruta).toFixed(2) : "—") },
+      { key: "margemPct", label: "Margem %", render: (r) => `${r.margemPct ?? "—"}%` },
+    ])}
+    ${renderTable("Oportunidades comerciais", oportunidades.slice(0, 6), [
+      { key: "tipo", label: "Tipo" },
+      { key: "prioridade", label: "Prioridade" },
+      { key: "descricao", label: "Descrição" },
     ])}
     ${renderTable("Departamentos refinados", depts.slice(0, 8), [
       { key: "departamento", label: "Departamento", render: (r) => r.departamento ?? r.nome ?? "—" },
@@ -102,6 +135,6 @@ export function renderNonFuelProducts(node, payload, filters, options = {}) {
 
   node.querySelector("#nonFuelRefresh")?.addEventListener("click", () => options.onRefresh?.());
   node.querySelector("#nonFuelExport")?.addEventListener("click", () => {
-    downloadCsv("produtos-vendidos-ranking.csv", ranking);
+    downloadCsv("produtos-vendidos-receita.csv", topRev.length ? topRev : ranking);
   });
 }
