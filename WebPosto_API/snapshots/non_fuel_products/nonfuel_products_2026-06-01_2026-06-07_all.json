@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-06-12T21:54:01.653861",
+  "lastUpdated": "2026-06-12T22:24:23.317717",
   "data": {
-    "sprint": "F07.5",
+    "sprint": "F07.6",
     "periodo": {
       "dataInicial": "2026-06-01",
       "dataFinal": "2026-06-07"
     },
     "empresaCodigoFiltro": null,
-    "elapsedMs": 52314.7,
+    "elapsedMs": 30516.4,
     "fonte": {
       "webPostoLive": true,
       "modo": "webposto_live",
@@ -67,7 +67,7 @@
         "targetedLookups": 0,
         "errors": 0,
         "timeouts": 0,
-        "tempoTotalLookupSec": 0.01,
+        "tempoTotalLookupSec": 0.0,
         "fuelCatalogRecovered": 0,
         "cacheRecovered": 71
       },
@@ -139,7 +139,7 @@
               "precoVendaB": 0.0,
               "precoVendaC": 0.0,
               "precoCusto": 4.31904,
-              "estoqueQtde": 4376.461,
+              "estoqueQtde": 4322.724,
               "estoqueMin": 0.0,
               "ultimaAlteracao": "2026-06-11T07:51:12.732-03:00",
               "ultimoUsuarioAlteracao": "JOSÉ ARTHUR MAIA GIRAO",
@@ -1169,7 +1169,7 @@
           "pages": 1,
           "count": 200,
           "error": null,
-          "elapsedSec": 5.04
+          "elapsedSec": 1.99
         },
         "11495": {
           "key": "produto_empresa",
@@ -1177,7 +1177,7 @@
           "pages": 1,
           "count": 200,
           "error": null,
-          "elapsedSec": 6.4
+          "elapsedSec": 3.09
         }
       },
       "produtoRedeMeta": {
@@ -1196,7 +1196,7 @@
         "duplicatasRemovidas": 0,
         "semPerdaPorPagina": true,
         "error": null,
-        "elapsedSec": 22.47
+        "elapsedSec": 17.44
       },
       "vendaItem": {
         "key": "venda_item",
@@ -1208,7 +1208,7 @@
         "duplicatasRemovidas": 0,
         "semPerdaPorPagina": true,
         "error": null,
-        "elapsedSec": 6.08
+        "elapsedSec": 3.16
       },
       "nfce": {
         "key": "nfce",
@@ -1220,7 +1220,7 @@
         "duplicatasRemovidas": 0,
         "semPerdaPorPagina": true,
         "error": null,
-        "elapsedSec": 6.48
+        "elapsedSec": 2.12
       }
     },
     "productCatalogCompleteness": {
@@ -2575,7 +2575,7 @@
           "empresaCodigo": 5555
         }
       ],
-      "subtitulo": "Decisão comercial · sortimento e oportunidade",
+      "subtitulo": "Commercial Action Center · execução comercial",
       "topMargem": [
         {
           "produtoCodigo": 2008579,
@@ -2945,7 +2945,745 @@
           ],
           "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
         }
-      ]
+      ],
+      "acoesComerciais": [
+        {
+          "id": "PV-OPP-8D202137",
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "titulo": "AUMENTAR PARTICIPACAO",
+          "descricao": "Produtos Vendidos com 27.32% do faturamento — meta 35%+",
+          "produtoCodigo": null,
+          "empresaCodigo": null,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 165.6,
+          "impactoEstimadoMargem": 49.68,
+          "evidencia": {
+            "tipo": "AUMENTAR_PARTICIPACAO",
+            "prioridade": "ALTA",
+            "descricao": "Produtos Vendidos com 27.32% do faturamento — meta 35%+",
+            "impactoEstimadoReceita": 165.6
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-OPP-D4BDF385",
+          "tipo": "DESENVOLVER_FILIAL",
+          "titulo": "DESENVOLVER FILIAL",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 5555",
+          "produtoCodigo": null,
+          "empresaCodigo": 5555,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 110.40100000000001,
+          "impactoEstimadoMargem": 33.12,
+          "evidencia": {
+            "tipo": "DESENVOLVER_FILIAL",
+            "prioridade": "ALTA",
+            "descricao": "Desenvolver mix Produtos Vendidos na filial 5555",
+            "empresaCodigo": 5555
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MIX-F5FDFDEB",
+          "tipo": "DESENVOLVER_MIX_FILIAL",
+          "titulo": "Desenvolver mix PV — filial 5555",
+          "descricao": "Mix PV 0.0% vs benchmark 17.17%",
+          "empresaCodigo": 5555,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "APROVADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 88.32,
+          "impactoEstimadoMargem": 26.5,
+          "impactoPctReceitaPv": 8.0,
+          "evidencia": {
+            "gapBenchmarkPct": 17.17,
+            "dependenciaCombustivelPct": 100.0
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "branch_mix_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-9436DDB1",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1841747",
+          "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
+          "produtoCodigo": 1841747,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 17.85,
+          "impactoEstimadoMargem": 4.46,
+          "impactoPctReceitaPv": 12.0,
+          "evidencia": {
+            "quantidade": 17.0,
+            "gapMargemPct": 14.88,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-3A3974A6",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1803364",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1803364,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "APROVADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.66,
+          "impactoPctReceitaPv": 142.86,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 53.14,
+            "receita": 3.5,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-137E0A2B",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 2008579",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 2008579,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "APROVADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 3.67,
+          "impactoPctReceitaPv": 125.31,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 73.43,
+            "receita": 3.99,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-460B6D28",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1940573",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1940573,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "APROVADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.69,
+          "impactoPctReceitaPv": 41.7,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 53.88,
+            "receita": 11.99,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-D90E47B9",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1802654",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1802654,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.65,
+          "impactoPctReceitaPv": 111.36,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 53.01,
+            "receita": 4.49,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-E2B4738F",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1802532",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1802532,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.64,
+          "impactoPctReceitaPv": 142.86,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 52.86,
+            "receita": 3.5,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-27EDA580",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1803530",
+          "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
+          "produtoCodigo": 1803530,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.25,
+          "impactoPctReceitaPv": 14.29,
+          "evidencia": {
+            "quantidade": 4.0,
+            "gapMargemPct": 14.88,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-115F7648",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1727011",
+          "descricao": "Alto volume com margem 15.14% abaixo do benchmark",
+          "produtoCodigo": 1727011,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.25,
+          "impactoPctReceitaPv": 23.81,
+          "evidencia": {
+            "quantidade": 2.0,
+            "gapMargemPct": 16.65,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-FC8A2598",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1803533",
+          "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
+          "produtoCodigo": 1803533,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.25,
+          "impactoPctReceitaPv": 28.57,
+          "evidencia": {
+            "quantidade": 2.0,
+            "gapMargemPct": 14.88,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "acoesAltaPrioridade": [
+        {
+          "id": "PV-OPP-8D202137",
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "titulo": "AUMENTAR PARTICIPACAO",
+          "descricao": "Produtos Vendidos com 27.32% do faturamento — meta 35%+",
+          "produtoCodigo": null,
+          "empresaCodigo": null,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 165.6,
+          "impactoEstimadoMargem": 49.68,
+          "evidencia": {
+            "tipo": "AUMENTAR_PARTICIPACAO",
+            "prioridade": "ALTA",
+            "descricao": "Produtos Vendidos com 27.32% do faturamento — meta 35%+",
+            "impactoEstimadoReceita": 165.6
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-OPP-D4BDF385",
+          "tipo": "DESENVOLVER_FILIAL",
+          "titulo": "DESENVOLVER FILIAL",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 5555",
+          "produtoCodigo": null,
+          "empresaCodigo": 5555,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 110.40100000000001,
+          "impactoEstimadoMargem": 33.12,
+          "evidencia": {
+            "tipo": "DESENVOLVER_FILIAL",
+            "prioridade": "ALTA",
+            "descricao": "Desenvolver mix Produtos Vendidos na filial 5555",
+            "empresaCodigo": 5555
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MIX-F5FDFDEB",
+          "tipo": "DESENVOLVER_MIX_FILIAL",
+          "titulo": "Desenvolver mix PV — filial 5555",
+          "descricao": "Mix PV 0.0% vs benchmark 17.17%",
+          "empresaCodigo": 5555,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "APROVADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 88.32,
+          "impactoEstimadoMargem": 26.5,
+          "impactoPctReceitaPv": 8.0,
+          "evidencia": {
+            "gapBenchmarkPct": 17.17,
+            "dependenciaCombustivelPct": 100.0
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "branch_mix_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-9436DDB1",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1841747",
+          "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
+          "produtoCodigo": 1841747,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 17.85,
+          "impactoEstimadoMargem": 4.46,
+          "impactoPctReceitaPv": 12.0,
+          "evidencia": {
+            "quantidade": 17.0,
+            "gapMargemPct": 14.88,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-3A3974A6",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1803364",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1803364,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "APROVADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.66,
+          "impactoPctReceitaPv": 142.86,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 53.14,
+            "receita": 3.5,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-137E0A2B",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 2008579",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 2008579,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "APROVADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 3.67,
+          "impactoPctReceitaPv": 125.31,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 73.43,
+            "receita": 3.99,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-460B6D28",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1940573",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1940573,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "APROVADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.69,
+          "impactoPctReceitaPv": 41.7,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 53.88,
+            "receita": 11.99,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-D90E47B9",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1802654",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1802654,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.65,
+          "impactoPctReceitaPv": 111.36,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 53.01,
+            "receita": 4.49,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "impactoTotalReceita": 861.02,
+      "impactoTotalMargem": 290.92,
+      "totalAcoes": 45
     },
     "executiveAnswers": {
       "1_produtosExistem": 488,
@@ -3026,7 +3764,23 @@
       "16_cockpitDecisaoAprovado": true,
       "17_assortmentConfiavel": true,
       "18_motorDecisaoComercial": true,
-      "20_aprovadoF076": true
+      "20_aprovadoF076": true,
+      "1_totalAcoesComerciais": 45,
+      "2_acoesAltaPrioridade": 17,
+      "3_impactoTotalReceita": 861.02,
+      "4_impactoTotalMargem": 290.92,
+      "5_acaoPrioritaria": "PV-OPP-8D202137",
+      "6_tipoAcaoPrioritaria": "AUMENTAR_PARTICIPACAO",
+      "7_responsavelAcaoTop": "JOÃO RYVISON DE ANDRADE SOUZA",
+      "8_acoesComEvidencia": 45,
+      "9_acoesComResponsavel": 45,
+      "10_r04Track": "COMMERCIAL_ACTION_CENTER",
+      "11_r04GateAprovado": true,
+      "12_statusMaisFrequente": "RECOMENDADA",
+      "16_actionCenterAprovado": true,
+      "17_execucaoComercialConfiavel": true,
+      "18_r04MargemConfiavel": 100.0,
+      "20_aprovadoF077": true
     },
     "qa": {
       "semProdutoInventado": true,
@@ -3049,9 +3803,13 @@
       "margemComEvidenciaVendaItem": true,
       "assortmentComLineage": true,
       "focoComercialQuantificado": true,
-      "motorDecisaoComercial": true
+      "motorDecisaoComercial": true,
+      "todasAcoesComResponsavel": true,
+      "todasAcoesComEvidencia": true,
+      "todasAcoesComLineage": true,
+      "actionCenterAuditavel": true
     },
-    "parecerFinal": "[PARECER FINAL: APROVADO PARA F07.6]",
+    "parecerFinal": "[PARECER FINAL: APROVADO PARA F07.7]",
     "governanceRules": {
       "empresaCodigoObrigatorio": true,
       "nomenclaturaProdutosVendidos": true,
@@ -6583,15 +7341,15 @@
         }
       ],
       "dimProductDepartment": [
-        "LUBRIFICANTES",
-        "PRODUTOS_DE_LOJA",
-        "FILTROS",
         "ADITIVOS",
-        "COMBUSTIVEL"
+        "FILTROS",
+        "PRODUTOS_DE_LOJA",
+        "COMBUSTIVEL",
+        "LUBRIFICANTES"
       ],
       "factProductSales": [
         {
-          "saleItemId": "SI-28177694",
+          "saleItemId": "SI-B528E421",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229941,
@@ -6621,7 +7379,7 @@
           ]
         },
         {
-          "saleItemId": "SI-DE7270F3",
+          "saleItemId": "SI-708F37AB",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229941,
@@ -6651,7 +7409,7 @@
           ]
         },
         {
-          "saleItemId": "SI-942FAFBF",
+          "saleItemId": "SI-31943D36",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229991,
@@ -6681,7 +7439,7 @@
           ]
         },
         {
-          "saleItemId": "SI-958C1B06",
+          "saleItemId": "SI-CE881362",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229991,
@@ -6711,7 +7469,7 @@
           ]
         },
         {
-          "saleItemId": "SI-49B98D1B",
+          "saleItemId": "SI-38A7F613",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230009,
@@ -6741,7 +7499,7 @@
           ]
         },
         {
-          "saleItemId": "SI-239D175A",
+          "saleItemId": "SI-37E7978A",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -6771,7 +7529,7 @@
           ]
         },
         {
-          "saleItemId": "SI-91C3548C",
+          "saleItemId": "SI-6D2FD707",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -6801,7 +7559,7 @@
           ]
         },
         {
-          "saleItemId": "SI-3B2036E0",
+          "saleItemId": "SI-D410B32F",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -6831,7 +7589,7 @@
           ]
         },
         {
-          "saleItemId": "SI-5D5F932A",
+          "saleItemId": "SI-D9767243",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -6861,7 +7619,7 @@
           ]
         },
         {
-          "saleItemId": "SI-FBABB3D6",
+          "saleItemId": "SI-0E0F3C47",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -6891,7 +7649,7 @@
           ]
         },
         {
-          "saleItemId": "SI-7F0C003A",
+          "saleItemId": "SI-8B536684",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -6921,7 +7679,7 @@
           ]
         },
         {
-          "saleItemId": "SI-7F3B929D",
+          "saleItemId": "SI-5D6FFDD9",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -6951,7 +7709,7 @@
           ]
         },
         {
-          "saleItemId": "SI-664B93A1",
+          "saleItemId": "SI-0C6859E6",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -6981,7 +7739,7 @@
           ]
         },
         {
-          "saleItemId": "SI-4A0DF41F",
+          "saleItemId": "SI-77B9C3DF",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230276,
@@ -7011,7 +7769,7 @@
           ]
         },
         {
-          "saleItemId": "SI-595EFC69",
+          "saleItemId": "SI-1F16A718",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230425,
@@ -7041,7 +7799,7 @@
           ]
         },
         {
-          "saleItemId": "SI-6A9EA6C8",
+          "saleItemId": "SI-E9685120",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230425,
@@ -7071,7 +7829,7 @@
           ]
         },
         {
-          "saleItemId": "SI-1C24AE0E",
+          "saleItemId": "SI-F5AC2D79",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230425,
@@ -7101,7 +7859,7 @@
           ]
         },
         {
-          "saleItemId": "SI-7268FDA9",
+          "saleItemId": "SI-5BD01523",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230435,
@@ -7131,7 +7889,7 @@
           ]
         },
         {
-          "saleItemId": "SI-54886AA6",
+          "saleItemId": "SI-0DFA5BB2",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230494,
@@ -7161,7 +7919,7 @@
           ]
         },
         {
-          "saleItemId": "SI-4ADC681B",
+          "saleItemId": "SI-E803751A",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230494,
@@ -7191,7 +7949,7 @@
           ]
         },
         {
-          "saleItemId": "SI-914F9997",
+          "saleItemId": "SI-50325D8A",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230494,
@@ -7221,7 +7979,7 @@
           ]
         },
         {
-          "saleItemId": "SI-BC46D51B",
+          "saleItemId": "SI-BF8D682C",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230570,
@@ -7251,7 +8009,7 @@
           ]
         },
         {
-          "saleItemId": "SI-DC28C75D",
+          "saleItemId": "SI-FCF9609B",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230570,
@@ -7281,7 +8039,7 @@
           ]
         },
         {
-          "saleItemId": "SI-CA3EDDE9",
+          "saleItemId": "SI-DC3E72E4",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230586,
@@ -7311,7 +8069,7 @@
           ]
         },
         {
-          "saleItemId": "SI-788B4BE9",
+          "saleItemId": "SI-DEDDD28F",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230586,
@@ -7341,7 +8099,7 @@
           ]
         },
         {
-          "saleItemId": "SI-5E66BCB4",
+          "saleItemId": "SI-5A7BBD62",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230600,
@@ -7371,7 +8129,7 @@
           ]
         },
         {
-          "saleItemId": "SI-728CDB3C",
+          "saleItemId": "SI-811D0245",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230600,
@@ -7401,7 +8159,7 @@
           ]
         },
         {
-          "saleItemId": "SI-72912FEC",
+          "saleItemId": "SI-AF2BA28F",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -7431,7 +8189,7 @@
           ]
         },
         {
-          "saleItemId": "SI-93F3BBE0",
+          "saleItemId": "SI-50B06E9D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -7461,7 +8219,7 @@
           ]
         },
         {
-          "saleItemId": "SI-1F1C4830",
+          "saleItemId": "SI-206073FF",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -7491,7 +8249,7 @@
           ]
         },
         {
-          "saleItemId": "SI-CE218AFE",
+          "saleItemId": "SI-0AD2A24F",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -7521,7 +8279,7 @@
           ]
         },
         {
-          "saleItemId": "SI-D793E1F1",
+          "saleItemId": "SI-B377192F",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230641,
@@ -7551,7 +8309,7 @@
           ]
         },
         {
-          "saleItemId": "SI-BDEE7FAC",
+          "saleItemId": "SI-D5D9EB7A",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230685,
@@ -7581,7 +8339,7 @@
           ]
         },
         {
-          "saleItemId": "SI-AD60DAF0",
+          "saleItemId": "SI-B8636DD8",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230685,
@@ -7611,7 +8369,7 @@
           ]
         },
         {
-          "saleItemId": "SI-F743CDA0",
+          "saleItemId": "SI-8AFE7F91",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230685,
@@ -7641,7 +8399,7 @@
           ]
         },
         {
-          "saleItemId": "SI-A1EEA37C",
+          "saleItemId": "SI-01D99A63",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230772,
@@ -7671,7 +8429,7 @@
           ]
         },
         {
-          "saleItemId": "SI-8DA22601",
+          "saleItemId": "SI-B8B63202",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230772,
@@ -7701,7 +8459,7 @@
           ]
         },
         {
-          "saleItemId": "SI-78A6B450",
+          "saleItemId": "SI-E6B9E1FD",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230827,
@@ -7731,7 +8489,7 @@
           ]
         },
         {
-          "saleItemId": "SI-1A90A6B1",
+          "saleItemId": "SI-1FB21C29",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230865,
@@ -7761,7 +8519,7 @@
           ]
         },
         {
-          "saleItemId": "SI-B80DA66A",
+          "saleItemId": "SI-FE11AF04",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230865,
@@ -7791,7 +8549,7 @@
           ]
         },
         {
-          "saleItemId": "SI-D7342BEF",
+          "saleItemId": "SI-F4D6F79B",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230865,
@@ -7821,7 +8579,7 @@
           ]
         },
         {
-          "saleItemId": "SI-D8B62448",
+          "saleItemId": "SI-628B898B",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230970,
@@ -7851,7 +8609,7 @@
           ]
         },
         {
-          "saleItemId": "SI-47B060E8",
+          "saleItemId": "SI-D4E7450D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230970,
@@ -7881,7 +8639,7 @@
           ]
         },
         {
-          "saleItemId": "SI-B6DE82FC",
+          "saleItemId": "SI-317CDF43",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230980,
@@ -7911,7 +8669,7 @@
           ]
         },
         {
-          "saleItemId": "SI-710713C9",
+          "saleItemId": "SI-8EFCBF30",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231010,
@@ -7941,7 +8699,7 @@
           ]
         },
         {
-          "saleItemId": "SI-137FAB49",
+          "saleItemId": "SI-E3DD69D8",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231042,
@@ -7971,7 +8729,7 @@
           ]
         },
         {
-          "saleItemId": "SI-B45AD352",
+          "saleItemId": "SI-2E7A5A72",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231042,
@@ -8001,7 +8759,7 @@
           ]
         },
         {
-          "saleItemId": "SI-ED4DB079",
+          "saleItemId": "SI-723A2BF3",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231050,
@@ -8031,7 +8789,7 @@
           ]
         },
         {
-          "saleItemId": "SI-8E57024B",
+          "saleItemId": "SI-125B62BD",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231050,
@@ -8061,7 +8819,7 @@
           ]
         },
         {
-          "saleItemId": "SI-0C3768F5",
+          "saleItemId": "SI-49B0579B",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231068,
@@ -8232,7 +8990,7 @@
           "nomeProduto": "Produto 1801810",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885297+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463961+00:00",
           "confidence": "MEDIA",
           "evidence": null
         },
@@ -8242,7 +9000,7 @@
           "nomeProduto": "COXINHA DE FRANGO CHIC",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.884873+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463550+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8255,7 +9013,7 @@
           "nomeProduto": "REFRIGERANTE FANTA UVA LATA 350ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885841+00:00",
+          "lastSeen": "2026-06-12T22:24:07.464363+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8268,7 +9026,7 @@
           "nomeProduto": "FREEGELLS MELÃO",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885530+00:00",
+          "lastSeen": "2026-06-12T22:24:07.464082+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8281,7 +9039,7 @@
           "nomeProduto": "PITU LATÃO 473ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.884517+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463227+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8294,7 +9052,7 @@
           "nomeProduto": "PAÇOQUERO GG (PAÇOCAO) 50G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.879985+00:00",
+          "lastSeen": "2026-06-12T22:24:07.461473+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8307,7 +9065,7 @@
           "nomeProduto": "FINI TUBES MORANGO NATA AZEDINHO 80G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885072+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463729+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8320,7 +9078,7 @@
           "nomeProduto": "CHEETOS LUA 34 G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885468+00:00",
+          "lastSeen": "2026-06-12T22:24:07.464063+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8333,7 +9091,7 @@
           "nomeProduto": "FREEGELLS CEREJA",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885821+00:00",
+          "lastSeen": "2026-06-12T22:24:07.464343+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8346,7 +9104,7 @@
           "nomeProduto": "REFRIGERANTE SUKITA LARANJA LT 350ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885627+00:00",
+          "lastSeen": "2026-06-12T22:24:07.464165+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8359,7 +9117,7 @@
           "nomeProduto": "BISCOITO TRELOSO MORANGO 120G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.884710+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463387+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8372,7 +9130,7 @@
           "nomeProduto": "MENTOS MINT 37,5G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885397+00:00",
+          "lastSeen": "2026-06-12T22:24:07.464000+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8385,7 +9143,7 @@
           "nomeProduto": "PIPPOS ANIME CEBOLA E SALSA 60G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885446+00:00",
+          "lastSeen": "2026-06-12T22:24:07.464043+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8398,7 +9156,7 @@
           "nomeProduto": "SKINKA LARANJA",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.884584+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463280+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8411,7 +9169,7 @@
           "nomeProduto": "BISCOITO PASSATEMPO  RECH 130G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.884660+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463344+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8424,7 +9182,7 @@
           "nomeProduto": "BISCOITO BONO MORANGO 90G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.884635+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463323+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8437,7 +9195,7 @@
           "nomeProduto": "LUCKY STRIKE FRESH DOUBLE ICE",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885417+00:00",
+          "lastSeen": "2026-06-12T22:24:07.464020+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8450,7 +9208,7 @@
           "nomeProduto": "REFRIGERANTE PEPSI COLA 200ML PET",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885253+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463917+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8463,7 +9221,7 @@
           "nomeProduto": "REFRIGERANTE COCA ZERO 1L",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.879887+00:00",
+          "lastSeen": "2026-06-12T22:24:07.461358+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8476,7 +9234,7 @@
           "nomeProduto": "AGUA MINERAL CRYSTAL 1,5L",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885226+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463893+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8489,7 +9247,7 @@
           "nomeProduto": "REFRIGERANTE GUARANA ANTARTICA 200ML PET",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.884754+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463428+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8502,7 +9260,7 @@
           "nomeProduto": "MARLBORO GOLD SELECTION BOX",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.879941+00:00",
+          "lastSeen": "2026-06-12T22:24:07.461419+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8515,7 +9273,7 @@
           "nomeProduto": "REFRIGERANTE PEPSI TWISTER 2L",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885094+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463770+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8528,7 +9286,7 @@
           "nomeProduto": "PITU LATA 350 ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.884444+00:00",
+          "lastSeen": "2026-06-12T22:24:07.461577+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8541,7 +9299,7 @@
           "nomeProduto": "BISC RECH TRELOSO 120G CHOC",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885688+00:00",
+          "lastSeen": "2026-06-12T22:24:07.464225+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8554,7 +9312,7 @@
           "nomeProduto": "CERVEJA BUDWEISER LONG 330ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.884853+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463529+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8567,7 +9325,7 @@
           "nomeProduto": "BEM CASADO DOCES LABANCA/ BAKERY",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885761+00:00",
+          "lastSeen": "2026-06-12T22:24:07.464284+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8580,7 +9338,7 @@
           "nomeProduto": "CERVEJA DEVASSA 473.",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.884895+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463573+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8593,7 +9351,7 @@
           "nomeProduto": "ICE LEAO PESSEGO 300ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885605+00:00",
+          "lastSeen": "2026-06-12T22:24:07.464144+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8606,7 +9364,7 @@
           "nomeProduto": "DUNHILL RED (CARLTON)",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.884958+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463613+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8619,7 +9377,7 @@
           "nomeProduto": "ROTHMANS BLUE KS",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885801+00:00",
+          "lastSeen": "2026-06-12T22:24:07.464324+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8632,7 +9390,7 @@
           "nomeProduto": "ENERGETICO MONSTER 473 ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885002+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463662+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8645,7 +9403,7 @@
           "nomeProduto": "REFRIGERANTE COCA 350ML LT",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885136+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463813+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8658,7 +9416,7 @@
           "nomeProduto": "REFRIGERANTE COCA COLA 2L.",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885115+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463792+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8671,7 +9429,7 @@
           "nomeProduto": "SANDUICHE NATURAL LEVE FRANCO\\RICOTA",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885049+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463708+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8684,7 +9442,7 @@
           "nomeProduto": "CERVEJA HEINEKEN 600ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885781+00:00",
+          "lastSeen": "2026-06-12T22:24:07.464304+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8697,7 +9455,7 @@
           "nomeProduto": "ROTHMANS GLOBAL RED",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.879963+00:00",
+          "lastSeen": "2026-06-12T22:24:07.461452+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8710,7 +9468,7 @@
           "nomeProduto": "REFRIGERANTE COCA COLA 1L",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.884350+00:00",
+          "lastSeen": "2026-06-12T22:24:07.461536+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8723,7 +9481,7 @@
           "nomeProduto": "CERVEJA SCHIN LATÃO",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.884981+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463634+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8736,7 +9494,7 @@
           "nomeProduto": "MARLBORO RED SELECTION BOX",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.879639+00:00",
+          "lastSeen": "2026-06-12T22:24:07.461151+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8749,7 +9507,7 @@
           "nomeProduto": "VINHO CARRETEIRO 900ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885561+00:00",
+          "lastSeen": "2026-06-12T22:24:07.464102+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8762,7 +9520,7 @@
           "nomeProduto": "ROTHMANS RED BOX",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.879858+00:00",
+          "lastSeen": "2026-06-12T22:24:07.461330+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8775,7 +9533,7 @@
           "nomeProduto": "REFRIGERANTE SODA 350ML LT",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.884414+00:00",
+          "lastSeen": "2026-06-12T22:24:07.461557+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8788,7 +9546,7 @@
           "nomeProduto": "Produto 1803587",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885023+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463687+00:00",
           "confidence": "MEDIA",
           "evidence": null
         },
@@ -8798,7 +9556,7 @@
           "nomeProduto": "Produto 1803673",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.884493+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463180+00:00",
           "confidence": "MEDIA",
           "evidence": null
         },
@@ -8808,7 +9566,7 @@
           "nomeProduto": "LUCKY STRIKE PATTERSON RED BOX",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.879917+00:00",
+          "lastSeen": "2026-06-12T22:24:07.461384+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8821,7 +9579,7 @@
           "nomeProduto": "CERVEJA BRAHMA CHOPP 473ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885714+00:00",
+          "lastSeen": "2026-06-12T22:24:07.464245+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8834,7 +9592,7 @@
           "nomeProduto": "ENROLADINHO CHIC",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.884830+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463508+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8847,7 +9605,7 @@
           "nomeProduto": "PASTEL DE FRANGO (CASA DO SALGADO)",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.884934+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463593+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8860,7 +9618,7 @@
           "nomeProduto": "PIRULITO POP OREO",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:53:47.885276+00:00",
+          "lastSeen": "2026-06-12T22:24:07.463942+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8947,7 +9705,7 @@
                 "precoVendaB": 0.0,
                 "precoVendaC": 0.0,
                 "precoCusto": 4.31904,
-                "estoqueQtde": 4376.461,
+                "estoqueQtde": 4322.724,
                 "estoqueMin": 0.0,
                 "ultimaAlteracao": "2026-06-11T07:51:12.732-03:00",
                 "ultimoUsuarioAlteracao": "JOSÉ ARTHUR MAIA GIRAO",
@@ -8982,7 +9740,7 @@
       ],
       "factProductSalesWithMargin": [
         {
-          "saleItemId": "SI-E3BB36AF",
+          "saleItemId": "SI-75B39D50",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229941,
@@ -9024,7 +9782,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E542B9C4",
+          "saleItemId": "SI-F17920BE",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229941,
@@ -9066,7 +9824,7 @@
           ]
         },
         {
-          "saleItemId": "SI-462AA8C1",
+          "saleItemId": "SI-04AF1277",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229991,
@@ -9108,7 +9866,7 @@
           ]
         },
         {
-          "saleItemId": "SI-557A44BB",
+          "saleItemId": "SI-A0EE71A5",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229991,
@@ -9150,7 +9908,7 @@
           ]
         },
         {
-          "saleItemId": "SI-5288BAAE",
+          "saleItemId": "SI-B2E501F8",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230009,
@@ -9192,7 +9950,7 @@
           ]
         },
         {
-          "saleItemId": "SI-BFF03CE3",
+          "saleItemId": "SI-3126E0FA",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -9234,7 +9992,7 @@
           ]
         },
         {
-          "saleItemId": "SI-7197C1F2",
+          "saleItemId": "SI-4BD5C6C0",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -9276,7 +10034,7 @@
           ]
         },
         {
-          "saleItemId": "SI-F49E3765",
+          "saleItemId": "SI-260FA70B",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -9318,7 +10076,7 @@
           ]
         },
         {
-          "saleItemId": "SI-983A2F73",
+          "saleItemId": "SI-508C9107",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -9360,7 +10118,7 @@
           ]
         },
         {
-          "saleItemId": "SI-7BFC4080",
+          "saleItemId": "SI-53B85A43",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -9402,7 +10160,7 @@
           ]
         },
         {
-          "saleItemId": "SI-699A797B",
+          "saleItemId": "SI-840DD6CA",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -9444,7 +10202,7 @@
           ]
         },
         {
-          "saleItemId": "SI-8D23EB1E",
+          "saleItemId": "SI-10312D5E",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -9486,7 +10244,7 @@
           ]
         },
         {
-          "saleItemId": "SI-67FB574B",
+          "saleItemId": "SI-C2D86656",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -9528,7 +10286,7 @@
           ]
         },
         {
-          "saleItemId": "SI-3F6E7BB7",
+          "saleItemId": "SI-326DE1C3",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230276,
@@ -9570,7 +10328,7 @@
           ]
         },
         {
-          "saleItemId": "SI-FF06A79C",
+          "saleItemId": "SI-C3A5EA70",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230425,
@@ -9612,7 +10370,7 @@
           ]
         },
         {
-          "saleItemId": "SI-97111472",
+          "saleItemId": "SI-2DCDD63D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230425,
@@ -9654,7 +10412,7 @@
           ]
         },
         {
-          "saleItemId": "SI-C73C09AD",
+          "saleItemId": "SI-C0244D02",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230425,
@@ -9696,7 +10454,7 @@
           ]
         },
         {
-          "saleItemId": "SI-D975B1C0",
+          "saleItemId": "SI-C1104F0B",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230435,
@@ -9738,7 +10496,7 @@
           ]
         },
         {
-          "saleItemId": "SI-C73B81D8",
+          "saleItemId": "SI-326F7E83",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230494,
@@ -9780,7 +10538,7 @@
           ]
         },
         {
-          "saleItemId": "SI-79783F04",
+          "saleItemId": "SI-D552CE48",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230494,
@@ -9822,7 +10580,7 @@
           ]
         },
         {
-          "saleItemId": "SI-EC3BA179",
+          "saleItemId": "SI-F4BFF353",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230494,
@@ -9864,7 +10622,7 @@
           ]
         },
         {
-          "saleItemId": "SI-17A13D9F",
+          "saleItemId": "SI-215CCD49",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230570,
@@ -9906,7 +10664,7 @@
           ]
         },
         {
-          "saleItemId": "SI-FBECFA96",
+          "saleItemId": "SI-BDAFF365",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230570,
@@ -9948,7 +10706,7 @@
           ]
         },
         {
-          "saleItemId": "SI-DBDA8CEA",
+          "saleItemId": "SI-2DC1DAE1",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230586,
@@ -9990,7 +10748,7 @@
           ]
         },
         {
-          "saleItemId": "SI-06FEBDE4",
+          "saleItemId": "SI-A85145F3",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230586,
@@ -10032,7 +10790,7 @@
           ]
         },
         {
-          "saleItemId": "SI-72F7026A",
+          "saleItemId": "SI-A1133390",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230600,
@@ -10074,7 +10832,7 @@
           ]
         },
         {
-          "saleItemId": "SI-B838E0F1",
+          "saleItemId": "SI-53BBD576",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230600,
@@ -10116,7 +10874,7 @@
           ]
         },
         {
-          "saleItemId": "SI-4212CFC7",
+          "saleItemId": "SI-29DBDA10",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -10158,7 +10916,7 @@
           ]
         },
         {
-          "saleItemId": "SI-6CC48DEB",
+          "saleItemId": "SI-839BB79A",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -10200,7 +10958,7 @@
           ]
         },
         {
-          "saleItemId": "SI-052D33E0",
+          "saleItemId": "SI-AA19E44F",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -10242,7 +11000,7 @@
           ]
         },
         {
-          "saleItemId": "SI-0D443B7E",
+          "saleItemId": "SI-750DB3CB",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -10284,7 +11042,7 @@
           ]
         },
         {
-          "saleItemId": "SI-7328AFB7",
+          "saleItemId": "SI-1FB361E0",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230641,
@@ -10326,7 +11084,7 @@
           ]
         },
         {
-          "saleItemId": "SI-2117C61B",
+          "saleItemId": "SI-CA947FF6",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230685,
@@ -10368,7 +11126,7 @@
           ]
         },
         {
-          "saleItemId": "SI-15E9F822",
+          "saleItemId": "SI-F80FD632",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230685,
@@ -10410,7 +11168,7 @@
           ]
         },
         {
-          "saleItemId": "SI-2C4DB601",
+          "saleItemId": "SI-EA5E1A8D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230685,
@@ -10452,7 +11210,7 @@
           ]
         },
         {
-          "saleItemId": "SI-AAB31C65",
+          "saleItemId": "SI-E12017C4",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230772,
@@ -10494,7 +11252,7 @@
           ]
         },
         {
-          "saleItemId": "SI-8699B6BF",
+          "saleItemId": "SI-38254CF0",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230772,
@@ -10536,7 +11294,7 @@
           ]
         },
         {
-          "saleItemId": "SI-8B545A67",
+          "saleItemId": "SI-1BC15869",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230827,
@@ -10578,7 +11336,7 @@
           ]
         },
         {
-          "saleItemId": "SI-755CF739",
+          "saleItemId": "SI-172533F1",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230865,
@@ -10620,7 +11378,7 @@
           ]
         },
         {
-          "saleItemId": "SI-D04DF5DB",
+          "saleItemId": "SI-95EB6695",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230865,
@@ -10662,7 +11420,7 @@
           ]
         },
         {
-          "saleItemId": "SI-FD6A9850",
+          "saleItemId": "SI-F43C5AA8",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230865,
@@ -10704,7 +11462,7 @@
           ]
         },
         {
-          "saleItemId": "SI-8D165E9E",
+          "saleItemId": "SI-15311205",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230970,
@@ -10746,7 +11504,7 @@
           ]
         },
         {
-          "saleItemId": "SI-5020EDD4",
+          "saleItemId": "SI-B22E5BD8",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230970,
@@ -10788,7 +11546,7 @@
           ]
         },
         {
-          "saleItemId": "SI-47461255",
+          "saleItemId": "SI-CD0FA749",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230980,
@@ -10830,7 +11588,7 @@
           ]
         },
         {
-          "saleItemId": "SI-650B2EA6",
+          "saleItemId": "SI-B9F51AE8",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231010,
@@ -10872,7 +11630,7 @@
           ]
         },
         {
-          "saleItemId": "SI-17146275",
+          "saleItemId": "SI-98CA9F0A",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231042,
@@ -10914,7 +11672,7 @@
           ]
         },
         {
-          "saleItemId": "SI-83AFEBDF",
+          "saleItemId": "SI-60C27456",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231042,
@@ -10956,7 +11714,7 @@
           ]
         },
         {
-          "saleItemId": "SI-77D2ED15",
+          "saleItemId": "SI-49DF8706",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231050,
@@ -10998,7 +11756,7 @@
           ]
         },
         {
-          "saleItemId": "SI-DD09CD31",
+          "saleItemId": "SI-422C14C5",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231050,
@@ -11040,7 +11798,7 @@
           ]
         },
         {
-          "saleItemId": "SI-970AF4FE",
+          "saleItemId": "SI-C4AC7708",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231068,
@@ -12084,6 +12842,1624 @@
           ],
           "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
         }
+      ],
+      "factCommercialAction": [
+        {
+          "id": "PV-OPP-8D202137",
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "titulo": "AUMENTAR PARTICIPACAO",
+          "descricao": "Produtos Vendidos com 27.32% do faturamento — meta 35%+",
+          "produtoCodigo": null,
+          "empresaCodigo": null,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 165.6,
+          "impactoEstimadoMargem": 49.68,
+          "evidencia": {
+            "tipo": "AUMENTAR_PARTICIPACAO",
+            "prioridade": "ALTA",
+            "descricao": "Produtos Vendidos com 27.32% do faturamento — meta 35%+",
+            "impactoEstimadoReceita": 165.6
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-OPP-D4BDF385",
+          "tipo": "DESENVOLVER_FILIAL",
+          "titulo": "DESENVOLVER FILIAL",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 5555",
+          "produtoCodigo": null,
+          "empresaCodigo": 5555,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 110.40100000000001,
+          "impactoEstimadoMargem": 33.12,
+          "evidencia": {
+            "tipo": "DESENVOLVER_FILIAL",
+            "prioridade": "ALTA",
+            "descricao": "Desenvolver mix Produtos Vendidos na filial 5555",
+            "empresaCodigo": 5555
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MIX-F5FDFDEB",
+          "tipo": "DESENVOLVER_MIX_FILIAL",
+          "titulo": "Desenvolver mix PV — filial 5555",
+          "descricao": "Mix PV 0.0% vs benchmark 17.17%",
+          "empresaCodigo": 5555,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "APROVADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 88.32,
+          "impactoEstimadoMargem": 26.5,
+          "impactoPctReceitaPv": 8.0,
+          "evidencia": {
+            "gapBenchmarkPct": 17.17,
+            "dependenciaCombustivelPct": 100.0
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "branch_mix_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-9436DDB1",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1841747",
+          "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
+          "produtoCodigo": 1841747,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 17.85,
+          "impactoEstimadoMargem": 4.46,
+          "impactoPctReceitaPv": 12.0,
+          "evidencia": {
+            "quantidade": 17.0,
+            "gapMargemPct": 14.88,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-3A3974A6",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1803364",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1803364,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "APROVADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.66,
+          "impactoPctReceitaPv": 142.86,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 53.14,
+            "receita": 3.5,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-137E0A2B",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 2008579",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 2008579,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "APROVADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 3.67,
+          "impactoPctReceitaPv": 125.31,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 73.43,
+            "receita": 3.99,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-460B6D28",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1940573",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1940573,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "APROVADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.69,
+          "impactoPctReceitaPv": 41.7,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 53.88,
+            "receita": 11.99,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-D90E47B9",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1802654",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1802654,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.65,
+          "impactoPctReceitaPv": 111.36,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 53.01,
+            "receita": 4.49,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-E2B4738F",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1802532",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1802532,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.64,
+          "impactoPctReceitaPv": 142.86,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 52.86,
+            "receita": 3.5,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-27EDA580",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1803530",
+          "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
+          "produtoCodigo": 1803530,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.25,
+          "impactoPctReceitaPv": 14.29,
+          "evidencia": {
+            "quantidade": 4.0,
+            "gapMargemPct": 14.88,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-115F7648",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1727011",
+          "descricao": "Alto volume com margem 15.14% abaixo do benchmark",
+          "produtoCodigo": 1727011,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.25,
+          "impactoPctReceitaPv": 23.81,
+          "evidencia": {
+            "quantidade": 2.0,
+            "gapMargemPct": 16.65,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-FC8A2598",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1803533",
+          "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
+          "produtoCodigo": 1803533,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.25,
+          "impactoPctReceitaPv": 28.57,
+          "evidencia": {
+            "quantidade": 2.0,
+            "gapMargemPct": 14.88,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-61F373F9",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1862860",
+          "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
+          "produtoCodigo": 1862860,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.25,
+          "impactoPctReceitaPv": 28.57,
+          "evidencia": {
+            "quantidade": 2.0,
+            "gapMargemPct": 14.88,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-8C1ACD73",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1803520",
+          "descricao": "Alto volume com margem 17.44% abaixo do benchmark",
+          "produtoCodigo": 1803520,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.25,
+          "impactoPctReceitaPv": 25.64,
+          "evidencia": {
+            "quantidade": 2.0,
+            "gapMargemPct": 14.35,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-88B24460",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 2008580",
+          "descricao": "Alto volume com margem 26.66% abaixo do benchmark",
+          "produtoCodigo": 2008580,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.33,
+          "impactoPctReceitaPv": 31.29,
+          "evidencia": {
+            "quantidade": 2.0,
+            "gapMargemPct": 5.13,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-057EA128",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1801804",
+          "descricao": "Alto volume com margem 28.5% abaixo do benchmark",
+          "produtoCodigo": 1801804,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.43,
+          "impactoPctReceitaPv": 250.0,
+          "evidencia": {
+            "quantidade": 2.0,
+            "gapMargemPct": 3.29,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-F4CE8F62",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 2048588",
+          "descricao": "Alto volume com margem 30.66% abaixo do benchmark",
+          "produtoCodigo": 2048588,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.53,
+          "impactoPctReceitaPv": 38.52,
+          "evidencia": {
+            "quantidade": 2.0,
+            "gapMargemPct": 1.13,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-OPP-5A9C6419",
+          "tipo": "EXPANDIR_TOP_PRODUTO",
+          "titulo": "EXPANDIR TOP PRODUTO",
+          "descricao": "Replicar sucesso do produto 1841747 em outras filiais",
+          "produtoCodigo": 1841747,
+          "empresaCodigo": null,
+          "departamento": null,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 110.40100000000001,
+          "impactoEstimadoMargem": 33.12,
+          "evidencia": {
+            "tipo": "EXPANDIR_TOP_PRODUTO",
+            "prioridade": "MEDIA",
+            "descricao": "Replicar sucesso do produto 1841747 em outras filiais",
+            "produtoCodigo": 1841747
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-OPP-FE4CE10B",
+          "tipo": "FOCO_DEPARTAMENTO",
+          "titulo": "FOCO DEPARTAMENTO",
+          "descricao": "Priorizar departamento PRODUTOS_DE_LOJA (margem 31.79%)",
+          "produtoCodigo": null,
+          "empresaCodigo": null,
+          "departamento": "PRODUTOS_DE_LOJA",
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 110.40100000000001,
+          "impactoEstimadoMargem": 33.12,
+          "evidencia": {
+            "tipo": "FOCO_DEPARTAMENTO",
+            "prioridade": "MEDIA",
+            "descricao": "Priorizar departamento PRODUTOS_DE_LOJA (margem 31.79%)",
+            "departamento": "PRODUTOS_DE_LOJA"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-COMB-364FDD93",
+          "tipo": "REDUZIR_DEPENDENCIA_COMBUSTIVEL",
+          "titulo": "Reduzir dependência combustível — filial 5555",
+          "descricao": "Dependência 100.0% — ampliar Produtos Vendidos",
+          "empresaCodigo": 5555,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+60",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 55.2,
+          "impactoEstimadoMargem": 19.32,
+          "impactoPctReceitaPv": 5.0,
+          "evidencia": {
+            "mixProdutosVendidosPct": 0.0,
+            "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "fuel_dependency_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-C9C3BC17",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1841747",
+          "descricao": "Executar: REVISAR_PRECO_OU_CUSTO, PRIORIDADE_RECEITA",
+          "produtoCodigo": 1841747,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 17.85,
+          "impactoEstimadoMargem": 4.46,
+          "impactoPctReceitaPv": 12.0,
+          "evidencia": {
+            "focoComercialScore": 39.88,
+            "margemPct": 16.91,
+            "receita": 148.75,
+            "acoesRecomendadas": [
+              "REVISAR_PRECO_OU_CUSTO",
+              "PRIORIDADE_RECEITA"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-89DCE050",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1802831",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO, PRIORIDADE_RECEITA",
+          "produtoCodigo": 1802831,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.41,
+          "impactoPctReceitaPv": 16.67,
+          "evidencia": {
+            "focoComercialScore": 38.0,
+            "margemPct": 48.17,
+            "receita": 30.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO",
+              "PRIORIDADE_RECEITA"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-B24704CC",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1802031",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO, PRIORIDADE_RECEITA",
+          "produtoCodigo": 1802031,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.64,
+          "impactoPctReceitaPv": 23.83,
+          "evidencia": {
+            "focoComercialScore": 37.1,
+            "margemPct": 52.81,
+            "receita": 20.98,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO",
+              "PRIORIDADE_RECEITA"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-617419BF",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1802381",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1802381,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.59,
+          "impactoPctReceitaPv": 83.75,
+          "evidencia": {
+            "focoComercialScore": 35.0,
+            "margemPct": 51.76,
+            "receita": 5.97,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-6A75B5BE",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1802200",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1802200,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.56,
+          "impactoPctReceitaPv": 251.26,
+          "evidencia": {
+            "focoComercialScore": 35.0,
+            "margemPct": 51.26,
+            "receita": 1.99,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-E0AA49A1",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 2155814",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 2155814,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.63,
+          "impactoPctReceitaPv": 33.38,
+          "evidencia": {
+            "focoComercialScore": 35.0,
+            "margemPct": 52.6,
+            "receita": 14.98,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-B3408C2A",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 2155820",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 2155820,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.41,
+          "impactoPctReceitaPv": 83.47,
+          "evidencia": {
+            "focoComercialScore": 35.0,
+            "margemPct": 48.25,
+            "receita": 5.99,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-EEC33230",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1803739",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1803739,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.64,
+          "impactoPctReceitaPv": 55.56,
+          "evidencia": {
+            "focoComercialScore": 35.0,
+            "margemPct": 52.78,
+            "receita": 9.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-D87FC7D0",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1802530",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1802530,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.48,
+          "impactoPctReceitaPv": 50.0,
+          "evidencia": {
+            "focoComercialScore": 35.0,
+            "margemPct": 49.7,
+            "receita": 10.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-6D07A674",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1801810",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1801810,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.36,
+          "impactoPctReceitaPv": 200.0,
+          "evidencia": {
+            "focoComercialScore": 35.0,
+            "margemPct": 47.2,
+            "receita": 2.5,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-8B6973A5",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 2008579",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 2008579,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 3.67,
+          "impactoPctReceitaPv": 125.31,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 36.75
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-2F7A0668",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1940573",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1940573,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.69,
+          "impactoPctReceitaPv": 41.7,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 27.06
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-EE2A49FA",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1803364",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1803364,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.66,
+          "impactoPctReceitaPv": 142.86,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 26.61
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-5335D371",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1802031",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1802031,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.64,
+          "impactoPctReceitaPv": 23.83,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 26.61
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-E3D5A707",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1802654",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1802654,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.65,
+          "impactoPctReceitaPv": 111.36,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 26.55
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-5E642653",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1803739",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1803739,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.64,
+          "impactoPctReceitaPv": 55.56,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 26.48
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-48D28D3A",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1802532",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1802532,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.64,
+          "impactoPctReceitaPv": 142.86,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 26.46
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-AFBFF2C7",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 2155814",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 2155814,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.63,
+          "impactoPctReceitaPv": 33.38,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 26.45
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-4B12FB9F",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1802381",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1802381,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.59,
+          "impactoPctReceitaPv": 83.75,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 25.94
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-74FD9D40",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1802200",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1802200,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.56,
+          "impactoPctReceitaPv": 251.26,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 25.65
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-B46CFAC7",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1802483",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1802483,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.54,
+          "impactoPctReceitaPv": 251.26,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 25.39
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-C8235815",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1802530",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1802530,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.48,
+          "impactoPctReceitaPv": 50.0,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 24.95
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-9B8C90DB",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1802831",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1802831,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.41,
+          "impactoPctReceitaPv": 16.67,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 24.39
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-28E25CA1",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 2155820",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 2155820,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.41,
+          "impactoPctReceitaPv": 83.47,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 24.18
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-80847313",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1801810",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1801810,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.36,
+          "impactoPctReceitaPv": 200.0,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 23.62
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "factCommercialActionSummary": [
+        {
+          "totalAcoes": 45,
+          "porStatus": {
+            "RECOMENDADA": 41,
+            "APROVADA": 4
+          },
+          "porPrioridade": {
+            "ALTA": 17,
+            "MEDIA": 28
+          },
+          "impactoTotalReceita": 861.02,
+          "impactoTotalMargem": 290.92,
+          "acoesAltaPrioridade": 17,
+          "acoesComResponsavel": 45,
+          "acoesComEvidencia": 45,
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "action_center_summary",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
       ]
     },
     "residualSkuForensics": {
@@ -12140,7 +14516,7 @@
             "precoVendaB": 0.0,
             "precoVendaC": 0.0,
             "precoCusto": 4.31904,
-            "estoqueQtde": 4376.461,
+            "estoqueQtde": 4322.724,
             "estoqueMin": 0.0,
             "ultimaAlteracao": "2026-06-11T07:51:12.732-03:00",
             "ultimoUsuarioAlteracao": "JOSÉ ARTHUR MAIA GIRAO",
@@ -14682,6 +17058,1638 @@
         {
           "origem": "F07.5",
           "snapshot": "assortment_intelligence",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "commercialActionCenter": {
+      "actions": [
+        {
+          "id": "PV-OPP-8D202137",
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "titulo": "AUMENTAR PARTICIPACAO",
+          "descricao": "Produtos Vendidos com 27.32% do faturamento — meta 35%+",
+          "produtoCodigo": null,
+          "empresaCodigo": null,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 165.6,
+          "impactoEstimadoMargem": 49.68,
+          "evidencia": {
+            "tipo": "AUMENTAR_PARTICIPACAO",
+            "prioridade": "ALTA",
+            "descricao": "Produtos Vendidos com 27.32% do faturamento — meta 35%+",
+            "impactoEstimadoReceita": 165.6
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-OPP-D4BDF385",
+          "tipo": "DESENVOLVER_FILIAL",
+          "titulo": "DESENVOLVER FILIAL",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 5555",
+          "produtoCodigo": null,
+          "empresaCodigo": 5555,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 110.40100000000001,
+          "impactoEstimadoMargem": 33.12,
+          "evidencia": {
+            "tipo": "DESENVOLVER_FILIAL",
+            "prioridade": "ALTA",
+            "descricao": "Desenvolver mix Produtos Vendidos na filial 5555",
+            "empresaCodigo": 5555
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MIX-F5FDFDEB",
+          "tipo": "DESENVOLVER_MIX_FILIAL",
+          "titulo": "Desenvolver mix PV — filial 5555",
+          "descricao": "Mix PV 0.0% vs benchmark 17.17%",
+          "empresaCodigo": 5555,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "APROVADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 88.32,
+          "impactoEstimadoMargem": 26.5,
+          "impactoPctReceitaPv": 8.0,
+          "evidencia": {
+            "gapBenchmarkPct": 17.17,
+            "dependenciaCombustivelPct": 100.0
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "branch_mix_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-9436DDB1",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1841747",
+          "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
+          "produtoCodigo": 1841747,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 17.85,
+          "impactoEstimadoMargem": 4.46,
+          "impactoPctReceitaPv": 12.0,
+          "evidencia": {
+            "quantidade": 17.0,
+            "gapMargemPct": 14.88,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-3A3974A6",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1803364",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1803364,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "APROVADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.66,
+          "impactoPctReceitaPv": 142.86,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 53.14,
+            "receita": 3.5,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-137E0A2B",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 2008579",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 2008579,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "APROVADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 3.67,
+          "impactoPctReceitaPv": 125.31,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 73.43,
+            "receita": 3.99,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-460B6D28",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1940573",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1940573,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "APROVADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.69,
+          "impactoPctReceitaPv": 41.7,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 53.88,
+            "receita": 11.99,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-D90E47B9",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1802654",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1802654,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.65,
+          "impactoPctReceitaPv": 111.36,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 53.01,
+            "receita": 4.49,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-E2B4738F",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1802532",
+          "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1802532,
+          "empresaCodigo": 11495,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.64,
+          "impactoPctReceitaPv": 142.86,
+          "evidencia": {
+            "focoComercialScore": 65.0,
+            "margemPct": 52.86,
+            "receita": 3.5,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-27EDA580",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1803530",
+          "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
+          "produtoCodigo": 1803530,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.25,
+          "impactoPctReceitaPv": 14.29,
+          "evidencia": {
+            "quantidade": 4.0,
+            "gapMargemPct": 14.88,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-115F7648",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1727011",
+          "descricao": "Alto volume com margem 15.14% abaixo do benchmark",
+          "produtoCodigo": 1727011,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.25,
+          "impactoPctReceitaPv": 23.81,
+          "evidencia": {
+            "quantidade": 2.0,
+            "gapMargemPct": 16.65,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-FC8A2598",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1803533",
+          "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
+          "produtoCodigo": 1803533,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.25,
+          "impactoPctReceitaPv": 28.57,
+          "evidencia": {
+            "quantidade": 2.0,
+            "gapMargemPct": 14.88,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-61F373F9",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1862860",
+          "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
+          "produtoCodigo": 1862860,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.25,
+          "impactoPctReceitaPv": 28.57,
+          "evidencia": {
+            "quantidade": 2.0,
+            "gapMargemPct": 14.88,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-8C1ACD73",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1803520",
+          "descricao": "Alto volume com margem 17.44% abaixo do benchmark",
+          "produtoCodigo": 1803520,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.25,
+          "impactoPctReceitaPv": 25.64,
+          "evidencia": {
+            "quantidade": 2.0,
+            "gapMargemPct": 14.35,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-88B24460",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 2008580",
+          "descricao": "Alto volume com margem 26.66% abaixo do benchmark",
+          "produtoCodigo": 2008580,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.33,
+          "impactoPctReceitaPv": 31.29,
+          "evidencia": {
+            "quantidade": 2.0,
+            "gapMargemPct": 5.13,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-057EA128",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 1801804",
+          "descricao": "Alto volume com margem 28.5% abaixo do benchmark",
+          "produtoCodigo": 1801804,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.43,
+          "impactoPctReceitaPv": 250.0,
+          "evidencia": {
+            "quantidade": 2.0,
+            "gapMargemPct": 3.29,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-MARGEM-F4CE8F62",
+          "tipo": "REVISAR_MARGEM",
+          "titulo": "Revisar margem — produto 2048588",
+          "descricao": "Alto volume com margem 30.66% abaixo do benchmark",
+          "produtoCodigo": 2048588,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+15",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 1.53,
+          "impactoPctReceitaPv": 38.52,
+          "evidencia": {
+            "quantidade": 2.0,
+            "gapMargemPct": 1.13,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "margin_review_action",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-OPP-5A9C6419",
+          "tipo": "EXPANDIR_TOP_PRODUTO",
+          "titulo": "EXPANDIR TOP PRODUTO",
+          "descricao": "Replicar sucesso do produto 1841747 em outras filiais",
+          "produtoCodigo": 1841747,
+          "empresaCodigo": null,
+          "departamento": null,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 110.40100000000001,
+          "impactoEstimadoMargem": 33.12,
+          "evidencia": {
+            "tipo": "EXPANDIR_TOP_PRODUTO",
+            "prioridade": "MEDIA",
+            "descricao": "Replicar sucesso do produto 1841747 em outras filiais",
+            "produtoCodigo": 1841747
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-OPP-FE4CE10B",
+          "tipo": "FOCO_DEPARTAMENTO",
+          "titulo": "FOCO DEPARTAMENTO",
+          "descricao": "Priorizar departamento PRODUTOS_DE_LOJA (margem 31.79%)",
+          "produtoCodigo": null,
+          "empresaCodigo": null,
+          "departamento": "PRODUTOS_DE_LOJA",
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 110.40100000000001,
+          "impactoEstimadoMargem": 33.12,
+          "evidencia": {
+            "tipo": "FOCO_DEPARTAMENTO",
+            "prioridade": "MEDIA",
+            "descricao": "Priorizar departamento PRODUTOS_DE_LOJA (margem 31.79%)",
+            "departamento": "PRODUTOS_DE_LOJA"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-COMB-364FDD93",
+          "tipo": "REDUZIR_DEPENDENCIA_COMBUSTIVEL",
+          "titulo": "Reduzir dependência combustível — filial 5555",
+          "descricao": "Dependência 100.0% — ampliar Produtos Vendidos",
+          "empresaCodigo": 5555,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+60",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 55.2,
+          "impactoEstimadoMargem": 19.32,
+          "impactoPctReceitaPv": 5.0,
+          "evidencia": {
+            "mixProdutosVendidosPct": 0.0,
+            "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "fuel_dependency_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-C9C3BC17",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1841747",
+          "descricao": "Executar: REVISAR_PRECO_OU_CUSTO, PRIORIDADE_RECEITA",
+          "produtoCodigo": 1841747,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 17.85,
+          "impactoEstimadoMargem": 4.46,
+          "impactoPctReceitaPv": 12.0,
+          "evidencia": {
+            "focoComercialScore": 39.88,
+            "margemPct": 16.91,
+            "receita": 148.75,
+            "acoesRecomendadas": [
+              "REVISAR_PRECO_OU_CUSTO",
+              "PRIORIDADE_RECEITA"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-89DCE050",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1802831",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO, PRIORIDADE_RECEITA",
+          "produtoCodigo": 1802831,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.41,
+          "impactoPctReceitaPv": 16.67,
+          "evidencia": {
+            "focoComercialScore": 38.0,
+            "margemPct": 48.17,
+            "receita": 30.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO",
+              "PRIORIDADE_RECEITA"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-B24704CC",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1802031",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO, PRIORIDADE_RECEITA",
+          "produtoCodigo": 1802031,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.64,
+          "impactoPctReceitaPv": 23.83,
+          "evidencia": {
+            "focoComercialScore": 37.1,
+            "margemPct": 52.81,
+            "receita": 20.98,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO",
+              "PRIORIDADE_RECEITA"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-617419BF",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1802381",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1802381,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.59,
+          "impactoPctReceitaPv": 83.75,
+          "evidencia": {
+            "focoComercialScore": 35.0,
+            "margemPct": 51.76,
+            "receita": 5.97,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-6A75B5BE",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1802200",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1802200,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.56,
+          "impactoPctReceitaPv": 251.26,
+          "evidencia": {
+            "focoComercialScore": 35.0,
+            "margemPct": 51.26,
+            "receita": 1.99,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-E0AA49A1",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 2155814",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 2155814,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.63,
+          "impactoPctReceitaPv": 33.38,
+          "evidencia": {
+            "focoComercialScore": 35.0,
+            "margemPct": 52.6,
+            "receita": 14.98,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-B3408C2A",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 2155820",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 2155820,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.41,
+          "impactoPctReceitaPv": 83.47,
+          "evidencia": {
+            "focoComercialScore": 35.0,
+            "margemPct": 48.25,
+            "receita": 5.99,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-EEC33230",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1803739",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1803739,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.64,
+          "impactoPctReceitaPv": 55.56,
+          "evidencia": {
+            "focoComercialScore": 35.0,
+            "margemPct": 52.78,
+            "receita": 9.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-D87FC7D0",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1802530",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1802530,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.48,
+          "impactoPctReceitaPv": 50.0,
+          "evidencia": {
+            "focoComercialScore": 35.0,
+            "margemPct": 49.7,
+            "receita": 10.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-FOCO-6D07A674",
+          "tipo": "FOCO_COMERCIAL",
+          "titulo": "Foco comercial — produto 1801810",
+          "descricao": "Executar: EXPANDIR_SORTIMENTO",
+          "produtoCodigo": 1801810,
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.36,
+          "impactoPctReceitaPv": 200.0,
+          "evidencia": {
+            "focoComercialScore": 35.0,
+            "margemPct": 47.2,
+            "receita": 2.5,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "commercial_focus_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-8B6973A5",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 2008579",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 2008579,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 3.67,
+          "impactoPctReceitaPv": 125.31,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 36.75
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-2F7A0668",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1940573",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1940573,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.69,
+          "impactoPctReceitaPv": 41.7,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 27.06
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-EE2A49FA",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1803364",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1803364,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.66,
+          "impactoPctReceitaPv": 142.86,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 26.61
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-5335D371",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1802031",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1802031,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.64,
+          "impactoPctReceitaPv": 23.83,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 26.61
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-E3D5A707",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1802654",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1802654,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.65,
+          "impactoPctReceitaPv": 111.36,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 26.55
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-5E642653",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1803739",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1803739,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.64,
+          "impactoPctReceitaPv": 55.56,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 26.48
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-48D28D3A",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1802532",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1802532,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.64,
+          "impactoPctReceitaPv": 142.86,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 26.46
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-AFBFF2C7",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 2155814",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 2155814,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.63,
+          "impactoPctReceitaPv": 33.38,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 26.45
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-4B12FB9F",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1802381",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1802381,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.59,
+          "impactoPctReceitaPv": 83.75,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 25.94
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-74FD9D40",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1802200",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1802200,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.56,
+          "impactoPctReceitaPv": 251.26,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 25.65
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-B46CFAC7",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1802483",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1802483,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.54,
+          "impactoPctReceitaPv": 251.26,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 25.39
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-C8235815",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1802530",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1802530,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.48,
+          "impactoPctReceitaPv": 50.0,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 24.95
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-9B8C90DB",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1802831",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1802831,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.41,
+          "impactoPctReceitaPv": 16.67,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 24.39
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-28E25CA1",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 2155820",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 2155820,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.41,
+          "impactoPctReceitaPv": 83.47,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 24.18
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-EXP-80847313",
+          "tipo": "EXPANDIR_SORTIMENTO",
+          "titulo": "Expandir sortimento — produto 1801810",
+          "descricao": "Expandir para 1 filiais",
+          "produtoCodigo": 1801810,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+45",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 5.0,
+          "impactoEstimadoMargem": 2.36,
+          "impactoPctReceitaPv": 200.0,
+          "evidencia": {
+            "coberturaFiliaisPct": 50.0,
+            "potencialExpansaoScore": 23.62
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "expansion_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "totalAcoes": 45,
+        "porStatus": {
+          "RECOMENDADA": 41,
+          "APROVADA": 4
+        },
+        "porPrioridade": {
+          "ALTA": 17,
+          "MEDIA": 28
+        },
+        "impactoTotalReceita": 861.02,
+        "impactoTotalMargem": 290.92,
+        "acoesAltaPrioridade": 17,
+        "acoesComResponsavel": 45,
+        "acoesComEvidencia": 45,
+        "lineage": [
+          {
+            "origem": "F07.6",
+            "snapshot": "action_center_summary",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "r04Gate": {
+        "track": "COMMERCIAL_ACTION_CENTER",
+        "confiabilidadeMargemPct": 100.0,
+        "parecerR04": "[PARECER FINAL: F07.6 = COMMERCIAL ACTION CENTER]"
+      },
+      "lineage": [
+        {
+          "origem": "F07.6",
+          "snapshot": "commercial_action_center",
           "api": "/api/v1/non-fuel-products/cockpit",
           "cockpit": "non-fuel-products",
           "webPosto": false
