@@ -1,0 +1,83 @@
+{
+  "sprint": "R04",
+  "readOnly": true,
+  "fonteWebPostoLive": true,
+  "homologatedBaseline": "F07.5",
+  "buildMs": 38294.2,
+  "window": {
+    "dataInicial": "2026-06-01",
+    "dataFinal": "2026-06-07"
+  },
+  "marginReliabilityAudit": {
+    "itensProdutosVendidos": 129,
+    "receitaProdutosVendidos": 1104.01,
+    "coberturaCampoCustoPct": 100.0,
+    "coberturaLineageMargemPct": 100.0,
+    "margemCoerentePct": 100.0,
+    "receitaComMargemConfiavelPct": 100.0,
+    "confiabilidadeMargemPct": 100.0,
+    "itensSemCustoVendaItem": 0,
+    "itensMargemSuspeita": 0,
+    "amostraSemCusto": [],
+    "amostraMargemSuspeita": [],
+    "lineage": [
+      {
+        "origem": "R04",
+        "snapshot": "margin_reliability",
+        "api": "/INTEGRACAO/VENDA_ITEM"
+      }
+    ]
+  },
+  "baselineCrosscheck": {
+    "f074MargemComEvidencia": true,
+    "f075MotorDecisaoComercial": true,
+    "f075ProdutosFocoComercial": 31,
+    "f075AlertasBaixaMargem": 9,
+    "parecerF075": "[PARECER FINAL: APROVADO PARA F07.6]"
+  },
+  "executiveRecommendation": {
+    "decisao": "F07.6 = Commercial Action Center",
+    "f076Track": "COMMERCIAL_ACTION_CENTER",
+    "motivo": "Confiabilidade custo/margem 100.0% ≥ 90.0%",
+    "gateAprovado": true,
+    "bloquearAcaoComercialF075": false
+  },
+  "qa": {
+    "readOnly": true,
+    "semAlteracaoRuntime": true,
+    "semImplementacaoF076": true,
+    "semDashboardsNovos": true,
+    "gateObrigatorioAntesF076": true,
+    "baselineSomenteAudits": true,
+    "aprovado": true
+  },
+  "executiveAnswers": {
+    "1_confiabilidadeMargemPct": 100.0,
+    "2_coberturaCampoCustoPct": 100.0,
+    "3_receitaComMargemConfiavelPct": 100.0,
+    "4_itensSemCustoVendaItem": 0,
+    "5_itensMargemSuspeita": 0,
+    "6_receitaProdutosVendidos": 1104.01,
+    "7_itensProdutosVendidos": 129,
+    "8_f075ProdutosFocoComercial": 31,
+    "9_f075AlertasBaixaMargem": 9,
+    "10_thresholdGatePct": 90.0,
+    "11_gateAprovado": true,
+    "12_bloquearAcaoComercialF075": false,
+    "13_f076Track": "COMMERCIAL_ACTION_CENTER",
+    "14_decisaoF076": "F07.6 = Commercial Action Center",
+    "15_motorDecisaoF075Ativo": true,
+    "16_margemComEvidenciaF074": true,
+    "17_termoConveniencia": false,
+    "18_empresaCodigoObrigatorio": true,
+    "19_qaAprovado": true,
+    "20_autorizarPlanejamentoF076": true,
+    "trustExecutivo": 88.69
+  },
+  "parecerFinal": "[PARECER FINAL: F07.6 = COMMERCIAL ACTION CENTER]",
+  "fonte": {
+    "webPostoLive": true,
+    "modo": "webposto_live",
+    "segregacaoPorEmpresaCodigo": true
+  }
+}
