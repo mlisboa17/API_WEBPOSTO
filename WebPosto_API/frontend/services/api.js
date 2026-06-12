@@ -1266,3 +1266,34 @@ export async function postNonFuelProductsRefresh(filters) {
   return raw?.data || raw;
 }
 
+export async function fetchCommercialExecutionCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/commercial-execution/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    governanceRules: body?.governanceRules,
+    commercialAssignmentEngine: body?.commercialAssignmentEngine,
+    commercialExecutionTracking: body?.commercialExecutionTracking,
+    commercialEvidenceEngine: body?.commercialEvidenceEngine,
+    commercialOutcomeMeasurement: body?.commercialOutcomeMeasurement,
+    revenueLiftTracking: body?.revenueLiftTracking,
+    marginImprovementTracking: body?.marginImprovementTracking,
+    commercialPerformance: body?.commercialPerformance,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postCommercialExecutionRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/commercial-execution/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+

@@ -70,6 +70,8 @@ import {
   postFuelGovernanceRefresh,
   fetchNonFuelProductsCockpit,
   postNonFuelProductsRefresh,
+  fetchCommercialExecutionCockpit,
+  postCommercialExecutionRefresh,
 } from "./services/api.js";
 import { APP_CONFIG } from "./config.js";
 import { renderFilters, updateCompanyOptions } from "./components/filters.js";
@@ -104,6 +106,7 @@ import { renderFiscalIntelligence } from "./pages/fiscalIntelligence.js";
 import { renderFiscalReconciliation } from "./pages/fiscalReconciliation.js";
 import { renderFuelGovernance } from "./pages/fuelGovernance.js";
 import { renderNonFuelProducts } from "./pages/nonFuelProducts.js";
+import { renderCommercialExecution } from "./pages/commercialExecution.js";
 import { renderCompanySwitcher } from "./components/CompanySwitcher.js";
 import { createTableState } from "./services/tableState.js";
 import {
@@ -185,6 +188,9 @@ const VIEW_ALIASES = {
   nonFuelProducts: "nonFuelProducts",
   "non-fuel-products": "nonFuelProducts",
   nonfuelproducts: "nonFuelProducts",
+  commercialExecution: "commercialExecution",
+  "commercial-execution": "commercialExecution",
+  commercialexecution: "commercialExecution",
 };
 
 const VIEW_URL_NAMES = {
@@ -211,6 +217,7 @@ const VIEW_URL_NAMES = {
   fiscalReconciliation: "fiscal-reconciliation",
   fuelGovernance: "fuel-governance",
   nonFuelProducts: "non-fuel-products",
+  commercialExecution: "commercial-execution",
 };
 
 function normalizeViewId(view) {
@@ -496,6 +503,7 @@ const fiscalIntelligenceNode = document.querySelector("#fiscalIntelligenceView")
 const fiscalReconciliationNode = document.querySelector("#fiscalReconciliationView");
 const fuelGovernanceNode = document.querySelector("#fuelGovernanceView");
 const nonFuelProductsNode = document.querySelector("#nonFuelProductsView");
+const commercialExecutionNode = document.querySelector("#commercialExecutionView");
 const fuelsNode = document.querySelector("#fuelsView");
 const salesNode = document.querySelector("#salesView");
 const stockNode = document.querySelector("#stockView");
@@ -546,6 +554,7 @@ function setView(view) {
   fiscalReconciliationNode.classList.toggle("hidden", view !== "fiscalReconciliation");
   fuelGovernanceNode.classList.toggle("hidden", view !== "fuelGovernance");
   nonFuelProductsNode.classList.toggle("hidden", view !== "nonFuelProducts");
+  commercialExecutionNode.classList.toggle("hidden", view !== "commercialExecution");
   fuelsNode.classList.toggle("hidden", view !== "fuels");
   salesNode.classList.toggle("hidden", view !== "sales");
   stockNode.classList.toggle("hidden", view !== "stock");
@@ -585,6 +594,7 @@ function ensureDataDefaults() {
   if (!state.data.fiscalReconciliation) state.data.fiscalReconciliation = null;
   if (!state.data.fuelGovernance) state.data.fuelGovernance = null;
   if (!state.data.nonFuelProducts) state.data.nonFuelProducts = null;
+  if (!state.data.commercialExecution) state.data.commercialExecution = null;
 }
 
 function clearFilters() {
@@ -1020,6 +1030,13 @@ function renderAll() {
   });
 
   renderNonFuelProducts(nonFuelProductsNode, state.data.nonFuelProducts, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
+  renderCommercialExecution(commercialExecutionNode, state.data.commercialExecution, state.filters, {
     onRefresh: async () => {
       state.cache.clear();
       await refreshAll(true);
@@ -1570,6 +1587,36 @@ async function loadNonFuelProductsWithSnapshotFirst(bypassCache = false) {
   }
 }
 
+async function loadCommercialExecutionWithSnapshotFirst(bypassCache = false) {
+  try {
+    const ce = await fetchCommercialExecutionCockpit(state.filters);
+    state.data.commercialExecution = {
+      cockpit: ce.cockpit,
+      executiveAnswers: ce.executiveAnswers,
+      parecerFinal: ce.parecerFinal,
+      qa: ce.qa,
+      governanceRules: ce.governanceRules,
+      commercialAssignmentEngine: ce.commercialAssignmentEngine,
+      commercialExecutionTracking: ce.commercialExecutionTracking,
+      commercialEvidenceEngine: ce.commercialEvidenceEngine,
+      commercialOutcomeMeasurement: ce.commercialOutcomeMeasurement,
+      revenueLiftTracking: ce.revenueLiftTracking,
+      marginImprovementTracking: ce.marginImprovementTracking,
+      commercialPerformance: ce.commercialPerformance,
+      fromSnapshot: ce.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (ce.snapshot?.stale) {
+      postCommercialExecutionRefresh(state.filters).catch((error) => {
+        console.warn("[commercialExecution] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[commercialExecution] falha ao carregar cockpit:", error);
+    state.data.commercialExecution = null;
+  }
+}
+
 async function loadExecutiveDecisionWithSnapshotFirst(bypassCache = false) {
   try {
     const decision = await fetchExecutiveDecisionCockpit(state.filters);
@@ -2036,6 +2083,10 @@ async function refreshAll(bypassCache = false) {
 
     if (state.view === "nonFuelProducts") {
       await loadNonFuelProductsWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "commercialExecution") {
+      await loadCommercialExecutionWithSnapshotFirst(bypassCache);
     }
 
     if (state.view === "stock") {
