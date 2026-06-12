@@ -60,6 +60,12 @@ import {
   postClosedLoopLearningRefresh,
   fetchNfceIntelligenceCockpit,
   postNfceIntelligenceRefresh,
+  fetchLmcIntelligenceCockpit,
+  postLmcIntelligenceRefresh,
+  fetchFiscalIntelligenceCockpit,
+  postFiscalIntelligenceRefresh,
+  fetchFiscalReconciliationCockpit,
+  postFiscalReconciliationRefresh,
 } from "./services/api.js";
 import { APP_CONFIG } from "./config.js";
 import { renderFilters, updateCompanyOptions } from "./components/filters.js";
@@ -89,6 +95,9 @@ import { renderExecutiveCopilot } from "./pages/executiveCopilot.js";
 import { renderRecommendations } from "./pages/recommendations.js";
 import { renderLearning } from "./pages/learning.js";
 import { renderNfceIntelligence } from "./pages/nfceIntelligence.js";
+import { renderLmcIntelligence } from "./pages/lmcIntelligence.js";
+import { renderFiscalIntelligence } from "./pages/fiscalIntelligence.js";
+import { renderFiscalReconciliation } from "./pages/fiscalReconciliation.js";
 import { renderCompanySwitcher } from "./components/CompanySwitcher.js";
 import { createTableState } from "./services/tableState.js";
 import {
@@ -155,6 +164,15 @@ const VIEW_ALIASES = {
   nfceIntelligence: "nfceIntelligence",
   "nfce-intelligence": "nfceIntelligence",
   nfceintelligence: "nfceIntelligence",
+  lmcIntelligence: "lmcIntelligence",
+  "lmc-intelligence": "lmcIntelligence",
+  lmcintelligence: "lmcIntelligence",
+  fiscalIntelligence: "fiscalIntelligence",
+  "fiscal-intelligence": "fiscalIntelligence",
+  fiscalintelligence: "fiscalIntelligence",
+  fiscalReconciliation: "fiscalReconciliation",
+  "fiscal-reconciliation": "fiscalReconciliation",
+  fiscalreconciliation: "fiscalReconciliation",
 };
 
 const VIEW_URL_NAMES = {
@@ -176,6 +194,9 @@ const VIEW_URL_NAMES = {
   recommendations: "recommendations",
   learning: "learning",
   nfceIntelligence: "nfce-intelligence",
+  lmcIntelligence: "lmc-intelligence",
+  fiscalIntelligence: "fiscal-intelligence",
+  fiscalReconciliation: "fiscal-reconciliation",
 };
 
 function normalizeViewId(view) {
@@ -456,6 +477,9 @@ const executiveCopilotNode = document.querySelector("#executiveCopilotView");
 const recommendationsNode = document.querySelector("#recommendationsView");
 const learningNode = document.querySelector("#learningView");
 const nfceIntelligenceNode = document.querySelector("#nfceIntelligenceView");
+const lmcIntelligenceNode = document.querySelector("#lmcIntelligenceView");
+const fiscalIntelligenceNode = document.querySelector("#fiscalIntelligenceView");
+const fiscalReconciliationNode = document.querySelector("#fiscalReconciliationView");
 const fuelsNode = document.querySelector("#fuelsView");
 const salesNode = document.querySelector("#salesView");
 const stockNode = document.querySelector("#stockView");
@@ -501,6 +525,9 @@ function setView(view) {
   recommendationsNode.classList.toggle("hidden", view !== "recommendations");
   learningNode.classList.toggle("hidden", view !== "learning");
   nfceIntelligenceNode.classList.toggle("hidden", view !== "nfceIntelligence");
+  lmcIntelligenceNode.classList.toggle("hidden", view !== "lmcIntelligence");
+  fiscalIntelligenceNode.classList.toggle("hidden", view !== "fiscalIntelligence");
+  fiscalReconciliationNode.classList.toggle("hidden", view !== "fiscalReconciliation");
   fuelsNode.classList.toggle("hidden", view !== "fuels");
   salesNode.classList.toggle("hidden", view !== "sales");
   stockNode.classList.toggle("hidden", view !== "stock");
@@ -535,6 +562,9 @@ function ensureDataDefaults() {
   if (!state.data.recommendations) state.data.recommendations = null;
   if (!state.data.learning) state.data.learning = null;
   if (!state.data.nfceIntelligence) state.data.nfceIntelligence = null;
+  if (!state.data.lmcIntelligence) state.data.lmcIntelligence = null;
+  if (!state.data.fiscalIntelligence) state.data.fiscalIntelligence = null;
+  if (!state.data.fiscalReconciliation) state.data.fiscalReconciliation = null;
 }
 
 function clearFilters() {
@@ -941,6 +971,27 @@ function renderAll() {
     },
   });
 
+  renderLmcIntelligence(lmcIntelligenceNode, state.data.lmcIntelligence, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
+  renderFiscalIntelligence(fiscalIntelligenceNode, state.data.fiscalIntelligence, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
+  renderFiscalReconciliation(fiscalReconciliationNode, state.data.fiscalReconciliation, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
   renderStock(
     stockNode,
     state.data.stock,
@@ -1325,6 +1376,93 @@ async function loadNfceIntelligenceWithSnapshotFirst(bypassCache = false) {
   } catch (error) {
     console.warn("[nfceIntelligence] falha ao carregar cockpit:", error);
     state.data.nfceIntelligence = null;
+  }
+}
+
+async function loadLmcIntelligenceWithSnapshotFirst(bypassCache = false) {
+  try {
+    const lmc = await fetchLmcIntelligenceCockpit(state.filters);
+    state.data.lmcIntelligence = {
+      cockpit: lmc.cockpit,
+      executiveAnswers: lmc.executiveAnswers,
+      parecerFinal: lmc.parecerFinal,
+      qa: lmc.qa,
+      governanceRules: lmc.governanceRules,
+      lmcCatalogEngine: lmc.lmcCatalogEngine,
+      fuelReconciliationEngine: lmc.fuelReconciliationEngine,
+      lossSurplusEngine: lmc.lossSurplusEngine,
+      tankIntelligence: lmc.tankIntelligence,
+      pumpIntelligence: lmc.pumpIntelligence,
+      lmcExecutiveIntelligence: lmc.lmcExecutiveIntelligence,
+      fromSnapshot: lmc.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (lmc.snapshot?.stale) {
+      postLmcIntelligenceRefresh(state.filters).catch((error) => {
+        console.warn("[lmcIntelligence] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[lmcIntelligence] falha ao carregar cockpit:", error);
+    state.data.lmcIntelligence = null;
+  }
+}
+
+async function loadFiscalIntelligenceWithSnapshotFirst(bypassCache = false) {
+  try {
+    const fiscal = await fetchFiscalIntelligenceCockpit(state.filters);
+    state.data.fiscalIntelligence = {
+      cockpit: fiscal.cockpit,
+      executiveAnswers: fiscal.executiveAnswers,
+      parecerFinal: fiscal.parecerFinal,
+      qa: fiscal.qa,
+      governanceRules: fiscal.governanceRules,
+      productFiscalCatalogEngine: fiscal.productFiscalCatalogEngine,
+      ncmIntelligenceEngine: fiscal.ncmIntelligenceEngine,
+      taxClassificationEngine: fiscal.taxClassificationEngine,
+      financialClassificationEngine: fiscal.financialClassificationEngine,
+      fiscalRiskEngine: fiscal.fiscalRiskEngine,
+      executiveFiscalIntelligence: fiscal.executiveFiscalIntelligence,
+      fromSnapshot: fiscal.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (fiscal.snapshot?.stale) {
+      postFiscalIntelligenceRefresh(state.filters).catch((error) => {
+        console.warn("[fiscalIntelligence] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[fiscalIntelligence] falha ao carregar cockpit:", error);
+    state.data.fiscalIntelligence = null;
+  }
+}
+
+async function loadFiscalReconciliationWithSnapshotFirst(bypassCache = false) {
+  try {
+    const hub = await fetchFiscalReconciliationCockpit(state.filters);
+    state.data.fiscalReconciliation = {
+      cockpit: hub.cockpit,
+      executiveAnswers: hub.executiveAnswers,
+      parecerFinal: hub.parecerFinal,
+      qa: hub.qa,
+      governanceRules: hub.governanceRules,
+      fiscalLineageEngine: hub.fiscalLineageEngine,
+      nfceVendaReconciliation: hub.nfceVendaReconciliation,
+      productSalesReconciliation: hub.productSalesReconciliation,
+      lmcSalesReconciliation: hub.lmcSalesReconciliation,
+      fiscalFinancialBridge: hub.fiscalFinancialBridge,
+      fiscalRiskConsolidation: hub.fiscalRiskConsolidation,
+      fromSnapshot: hub.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (hub.snapshot?.stale) {
+      postFiscalReconciliationRefresh(state.filters).catch((error) => {
+        console.warn("[fiscalReconciliation] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[fiscalReconciliation] falha ao carregar cockpit:", error);
+    state.data.fiscalReconciliation = null;
   }
 }
 
@@ -1774,6 +1912,18 @@ async function refreshAll(bypassCache = false) {
 
     if (state.view === "nfceIntelligence") {
       await loadNfceIntelligenceWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "lmcIntelligence") {
+      await loadLmcIntelligenceWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "fiscalIntelligence") {
+      await loadFiscalIntelligenceWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "fiscalReconciliation") {
+      await loadFiscalReconciliationWithSnapshotFirst(bypassCache);
     }
 
     if (state.view === "stock") {

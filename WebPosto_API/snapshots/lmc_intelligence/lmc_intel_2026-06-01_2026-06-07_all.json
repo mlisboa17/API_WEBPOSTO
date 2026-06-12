@@ -1,0 +1,1283 @@
+{
+  "lastUpdated": "2026-06-11T22:46:45.691499",
+  "data": {
+    "sprint": "F06.2",
+    "periodo": {
+      "dataInicial": "2026-06-01",
+      "dataFinal": "2026-06-07"
+    },
+    "elapsedMs": 2.6,
+    "fonte": {
+      "webPostoLive": false,
+      "endpointHomologado": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+      "snapshotsHomologados": [
+        "snapshots/fuel",
+        "fuel_network_audit_result.json",
+        "d01_operational_join_probe",
+        "d05_executive_coverage_recovery",
+        "f06_0_fiscal_intelligence_discovery",
+        "cash_operations_qa"
+      ]
+    },
+    "lmcCatalogEngine": {
+      "entradas": 0.0,
+      "saidas": 2958.2,
+      "perdas": 27.16,
+      "sobras": 9.96,
+      "movimentacoes": 52,
+      "registrosLmcEvidenciados": 5,
+      "registrosLmcHomologados": 28,
+      "coverage": "PARCIAL",
+      "lineage": [
+        {
+          "origem": "F06.2",
+          "snapshot": "snapshots/fuel",
+          "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+          "cockpit": "lmc-intelligence",
+          "webPosto": false,
+          "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+        }
+      ]
+    },
+    "fuelReconciliationEngine": {
+      "abastecimentoTotal": 200,
+      "abastecimentoMatched": 84,
+      "lmcRegistros": 28,
+      "vendaLitros": 57725.9,
+      "lmcSaidaLitros": 2958.2,
+      "coverageAbastVendaItemPct": 42.0,
+      "diferencaAbastLmc": 54767.7,
+      "divergentes": 22,
+      "confiavel": true,
+      "joinKeys": [
+        "empresaCodigo",
+        "vendaItemCodigo"
+      ],
+      "items": [
+        {
+          "tipo": "DIFERENCA_LITROS",
+          "quantidade": 54767.7
+        },
+        {
+          "tipo": "FALHA_JOIN_ABAST",
+          "quantidade": 116
+        },
+        {
+          "tipo": "DIVERGENCIA_CAIXA",
+          "quantidade": 21
+        }
+      ],
+      "lineage": [
+        {
+          "origem": "D01+D05",
+          "snapshot": "d01_operational_join_probe",
+          "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+          "cockpit": "lmc-intelligence",
+          "webPosto": false,
+          "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+        }
+      ]
+    },
+    "lossSurplusEngine": {
+      "perdaOperacional": 27.16,
+      "sobraOperacional": 9.96,
+      "indicePerda": 1.25,
+      "banda": "ALTA",
+      "filiais": [
+        {
+          "empresaCodigo": 11495,
+          "perdaOperacional": 27.16,
+          "sobraOperacional": 9.96,
+          "indicePerda": 1.25,
+          "banda": "ALTA",
+          "lineage": [
+            {
+              "origem": "F06.2",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ]
+    },
+    "tankIntelligence": {
+      "tanquesCriticos": [
+        {
+          "tanqueCodigo": 29882,
+          "empresaCodigo": 11495,
+          "perda": 24.64,
+          "sobra": 0.0,
+          "movimentos": 1,
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "tanqueCodigo": 29881,
+          "empresaCodigo": 11495,
+          "perda": 0.0,
+          "sobra": 9.96,
+          "movimentos": 2,
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "tanqueCodigo": 29879,
+          "empresaCodigo": 11495,
+          "perda": 2.52,
+          "sobra": 0.0,
+          "movimentos": 2,
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ],
+      "tanquesEstaveis": [],
+      "maiorPerda": {
+        "tanqueCodigo": 29882,
+        "empresaCodigo": 11495,
+        "perda": 24.64,
+        "sobra": 0.0,
+        "movimentos": 1,
+        "lineage": [
+          {
+            "origem": "fuel_network_audit",
+            "snapshot": "fuel_network_audit_result.json",
+            "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+            "cockpit": "lmc-intelligence",
+            "webPosto": false,
+            "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+          }
+        ]
+      },
+      "maiorSobra": {
+        "tanqueCodigo": 29881,
+        "empresaCodigo": 11495,
+        "perda": 0.0,
+        "sobra": 9.96,
+        "movimentos": 2,
+        "lineage": [
+          {
+            "origem": "fuel_network_audit",
+            "snapshot": "fuel_network_audit_result.json",
+            "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+            "cockpit": "lmc-intelligence",
+            "webPosto": false,
+            "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+          }
+        ]
+      },
+      "totalTanques": 3,
+      "endpointTanque401": true
+    },
+    "pumpIntelligence": {
+      "endpointDedicado401": true,
+      "classificacaoEndpointDedicado": "NÃO DISPONÍVEL",
+      "fonteNestedLmcRede": true,
+      "bicosCriticos": [
+        {
+          "bicoCodigo": 46763,
+          "empresaCodigo": 11495,
+          "tanqueCodigo": 29879,
+          "vendaLitros": 0.0,
+          "afericaoLitros": 0.0,
+          "classificacaoEndpoint": "NÃO DISPONÍVEL",
+          "fonte": "LMC_REDE_NESTED",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ],
+          "status": "CRÍTICO"
+        },
+        {
+          "bicoCodigo": 46764,
+          "empresaCodigo": 11495,
+          "tanqueCodigo": 29879,
+          "vendaLitros": 0.0,
+          "afericaoLitros": 0.0,
+          "classificacaoEndpoint": "NÃO DISPONÍVEL",
+          "fonte": "LMC_REDE_NESTED",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ],
+          "status": "CRÍTICO"
+        },
+        {
+          "bicoCodigo": 46697,
+          "empresaCodigo": 11495,
+          "tanqueCodigo": 29881,
+          "vendaLitros": 0.0,
+          "afericaoLitros": 0.0,
+          "classificacaoEndpoint": "NÃO DISPONÍVEL",
+          "fonte": "LMC_REDE_NESTED",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ],
+          "status": "CRÍTICO"
+        },
+        {
+          "bicoCodigo": 46665,
+          "empresaCodigo": 11495,
+          "tanqueCodigo": 29882,
+          "vendaLitros": 0.0,
+          "afericaoLitros": 0.0,
+          "classificacaoEndpoint": "NÃO DISPONÍVEL",
+          "fonte": "LMC_REDE_NESTED",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ],
+          "status": "CRÍTICO"
+        }
+      ],
+      "bicosSuspeitos": [],
+      "bicosEficientes": [
+        {
+          "bicoCodigo": 42908,
+          "empresaCodigo": 11495,
+          "tanqueCodigo": 29882,
+          "vendaLitros": 681.7,
+          "afericaoLitros": 0.0,
+          "classificacaoEndpoint": "NÃO DISPONÍVEL",
+          "fonte": "LMC_REDE_NESTED",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ],
+          "status": "EFICIENTE"
+        },
+        {
+          "bicoCodigo": 42907,
+          "empresaCodigo": 11495,
+          "tanqueCodigo": 29882,
+          "vendaLitros": 592.38,
+          "afericaoLitros": 0.0,
+          "classificacaoEndpoint": "NÃO DISPONÍVEL",
+          "fonte": "LMC_REDE_NESTED",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ],
+          "status": "EFICIENTE"
+        },
+        {
+          "bicoCodigo": 46698,
+          "empresaCodigo": 11495,
+          "tanqueCodigo": 29881,
+          "vendaLitros": 476.04,
+          "afericaoLitros": 0.0,
+          "classificacaoEndpoint": "NÃO DISPONÍVEL",
+          "fonte": "LMC_REDE_NESTED",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ],
+          "status": "EFICIENTE"
+        },
+        {
+          "bicoCodigo": 42911,
+          "empresaCodigo": 11495,
+          "tanqueCodigo": 29882,
+          "vendaLitros": 452.56,
+          "afericaoLitros": 0.0,
+          "classificacaoEndpoint": "NÃO DISPONÍVEL",
+          "fonte": "LMC_REDE_NESTED",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ],
+          "status": "EFICIENTE"
+        },
+        {
+          "bicoCodigo": 42903,
+          "empresaCodigo": 11495,
+          "tanqueCodigo": 29879,
+          "vendaLitros": 186.72,
+          "afericaoLitros": 0.0,
+          "classificacaoEndpoint": "NÃO DISPONÍVEL",
+          "fonte": "LMC_REDE_NESTED",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ],
+          "status": "EFICIENTE"
+        }
+      ],
+      "totalBicos": 14
+    },
+    "lmcExecutiveIntelligence": {
+      "filialMaisPerda": {
+        "empresaCodigo": 11495,
+        "perdaOperacional": 27.16,
+        "sobraOperacional": 9.96,
+        "indicePerda": 1.25,
+        "banda": "ALTA",
+        "lineage": [
+          {
+            "origem": "F06.2",
+            "snapshot": "fuel_network_audit_result.json",
+            "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+            "cockpit": "lmc-intelligence",
+            "webPosto": false,
+            "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+          }
+        ]
+      },
+      "filialMaisEficiente": {
+        "empresaCodigo": 11495,
+        "perdaOperacional": 27.16,
+        "sobraOperacional": 9.96,
+        "indicePerda": 1.25,
+        "banda": "ALTA",
+        "lineage": [
+          {
+            "origem": "F06.2",
+            "snapshot": "fuel_network_audit_result.json",
+            "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+            "cockpit": "lmc-intelligence",
+            "webPosto": false,
+            "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+          }
+        ]
+      },
+      "pdvMaiorRisco": {
+        "pdvCodigo": 56764,
+        "ocorrencias": 8
+      },
+      "tanqueMaisPerdas": {
+        "tanqueCodigo": 29882,
+        "empresaCodigo": 11495,
+        "perda": 24.64,
+        "sobra": 0.0,
+        "movimentos": 1,
+        "lineage": [
+          {
+            "origem": "fuel_network_audit",
+            "snapshot": "fuel_network_audit_result.json",
+            "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+            "cockpit": "lmc-intelligence",
+            "webPosto": false,
+            "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+          }
+        ]
+      },
+      "tanqueMaisEficiente": null,
+      "bicoMaisCritico": {
+        "bicoCodigo": 46763,
+        "empresaCodigo": 11495,
+        "tanqueCodigo": 29879,
+        "vendaLitros": 0.0,
+        "afericaoLitros": 0.0,
+        "classificacaoEndpoint": "NÃO DISPONÍVEL",
+        "fonte": "LMC_REDE_NESTED",
+        "lineage": [
+          {
+            "origem": "fuel_network_audit",
+            "snapshot": "fuel_network_audit_result.json",
+            "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+            "cockpit": "lmc-intelligence",
+            "webPosto": false,
+            "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+          }
+        ],
+        "status": "CRÍTICO"
+      },
+      "bicoMaisEficiente": {
+        "bicoCodigo": 42908,
+        "empresaCodigo": 11495,
+        "tanqueCodigo": 29882,
+        "vendaLitros": 681.7,
+        "afericaoLitros": 0.0,
+        "classificacaoEndpoint": "NÃO DISPONÍVEL",
+        "fonte": "LMC_REDE_NESTED",
+        "lineage": [
+          {
+            "origem": "fuel_network_audit",
+            "snapshot": "fuel_network_audit_result.json",
+            "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+            "cockpit": "lmc-intelligence",
+            "webPosto": false,
+            "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+          }
+        ],
+        "status": "EFICIENTE"
+      },
+      "maiorOportunidadeRecuperacao": 46.28,
+      "reconciliacaoConfiavel": true
+    },
+    "cockpit": {
+      "perdas": 27.16,
+      "sobras": 9.96,
+      "riscoCombustivel": "ALTA",
+      "topTanques": [
+        {
+          "tanqueCodigo": 29882,
+          "empresaCodigo": 11495,
+          "perda": 24.64,
+          "sobra": 0.0,
+          "movimentos": 1,
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "tanqueCodigo": 29881,
+          "empresaCodigo": 11495,
+          "perda": 0.0,
+          "sobra": 9.96,
+          "movimentos": 2,
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "tanqueCodigo": 29879,
+          "empresaCodigo": 11495,
+          "perda": 2.52,
+          "sobra": 0.0,
+          "movimentos": 2,
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ],
+      "topDivergencias": [
+        {
+          "tipo": "DIFERENCA_LITROS",
+          "quantidade": 54767.7
+        },
+        {
+          "tipo": "FALHA_JOIN_ABAST",
+          "quantidade": 116
+        },
+        {
+          "tipo": "DIVERGENCIA_CAIXA",
+          "quantidade": 21
+        }
+      ],
+      "indicePerda": 1.25,
+      "reconciliacao": {
+        "abastecimentoTotal": 200,
+        "abastecimentoMatched": 84,
+        "lmcRegistros": 28,
+        "vendaLitros": 57725.9,
+        "lmcSaidaLitros": 2958.2,
+        "coverageAbastVendaItemPct": 42.0,
+        "diferencaAbastLmc": 54767.7,
+        "divergentes": 22,
+        "confiavel": true,
+        "joinKeys": [
+          "empresaCodigo",
+          "vendaItemCodigo"
+        ],
+        "items": [
+          {
+            "tipo": "DIFERENCA_LITROS",
+            "quantidade": 54767.7
+          },
+          {
+            "tipo": "FALHA_JOIN_ABAST",
+            "quantidade": 116
+          },
+          {
+            "tipo": "DIVERGENCIA_CAIXA",
+            "quantidade": 21
+          }
+        ],
+        "lineage": [
+          {
+            "origem": "D01+D05",
+            "snapshot": "d01_operational_join_probe",
+            "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+            "cockpit": "lmc-intelligence",
+            "webPosto": false,
+            "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+          }
+        ]
+      },
+      "catalog": {
+        "entradas": 0.0,
+        "saidas": 2958.2,
+        "perdas": 27.16,
+        "sobras": 9.96,
+        "movimentacoes": 52,
+        "registrosLmcEvidenciados": 5,
+        "registrosLmcHomologados": 28,
+        "coverage": "PARCIAL",
+        "lineage": [
+          {
+            "origem": "F06.2",
+            "snapshot": "snapshots/fuel",
+            "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+            "cockpit": "lmc-intelligence",
+            "webPosto": false,
+            "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+          }
+        ]
+      },
+      "pumpSummary": {
+        "endpointDedicado": "NÃO DISPONÍVEL",
+        "bicosMapeados": 14
+      },
+      "executiveIntelligence": {
+        "filialMaisPerda": {
+          "empresaCodigo": 11495,
+          "perdaOperacional": 27.16,
+          "sobraOperacional": 9.96,
+          "indicePerda": 1.25,
+          "banda": "ALTA",
+          "lineage": [
+            {
+              "origem": "F06.2",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        "filialMaisEficiente": {
+          "empresaCodigo": 11495,
+          "perdaOperacional": 27.16,
+          "sobraOperacional": 9.96,
+          "indicePerda": 1.25,
+          "banda": "ALTA",
+          "lineage": [
+            {
+              "origem": "F06.2",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        "pdvMaiorRisco": {
+          "pdvCodigo": 56764,
+          "ocorrencias": 8
+        },
+        "tanqueMaisPerdas": {
+          "tanqueCodigo": 29882,
+          "empresaCodigo": 11495,
+          "perda": 24.64,
+          "sobra": 0.0,
+          "movimentos": 1,
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        "tanqueMaisEficiente": null,
+        "bicoMaisCritico": {
+          "bicoCodigo": 46763,
+          "empresaCodigo": 11495,
+          "tanqueCodigo": 29879,
+          "vendaLitros": 0.0,
+          "afericaoLitros": 0.0,
+          "classificacaoEndpoint": "NÃO DISPONÍVEL",
+          "fonte": "LMC_REDE_NESTED",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ],
+          "status": "CRÍTICO"
+        },
+        "bicoMaisEficiente": {
+          "bicoCodigo": 42908,
+          "empresaCodigo": 11495,
+          "tanqueCodigo": 29882,
+          "vendaLitros": 681.7,
+          "afericaoLitros": 0.0,
+          "classificacaoEndpoint": "NÃO DISPONÍVEL",
+          "fonte": "LMC_REDE_NESTED",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ],
+          "status": "EFICIENTE"
+        },
+        "maiorOportunidadeRecuperacao": 46.28,
+        "reconciliacaoConfiavel": true
+      },
+      "trustExecutivo": 88.69
+    },
+    "executiveAnswers": {
+      "1_totalMovimentado": 2958.2,
+      "2_totalVendido": 57725.9,
+      "3_totalConciliado": 42.0,
+      "4_perdaTotal": 27.16,
+      "5_sobraTotal": 9.96,
+      "6_indicePerda": 1.25,
+      "7_filialMaisCritica": 11495,
+      "8_filialMaisEficiente": 11495,
+      "9_tanqueMaisCritico": 29882,
+      "10_tanqueMaisEficiente": null,
+      "11_bicoMaisCritico": 46763,
+      "12_bicoMaisEficiente": 42908,
+      "13_maiorRisco": "ALTA",
+      "14_maiorOportunidade": 46.28,
+      "15_reconciliacaoConfiavel": true,
+      "16_motorAuditavel": true,
+      "17_lineageCompleto": true,
+      "18_crossTenant": false,
+      "19_lmcIntelligenceViavel": true,
+      "20_aprovadoF063": true,
+      "trustExecutivo": 88.69,
+      "endpointBicoDedicado": "NÃO DISPONÍVEL"
+    },
+    "qa": {
+      "fonteWebPostoLive": false,
+      "snapshotsHomologados": true,
+      "semCrossTenant": true,
+      "semCalculoSemOrigem": true,
+      "semPerdaSemEvidencia": true,
+      "semReconciliacaoSemLineage": true,
+      "lineageCompleto": true,
+      "motorAuditavel": true
+    },
+    "parecerFinal": "[PARECER FINAL: APROVADO PARA F06.3]",
+    "governanceRules": {
+      "lineageObrigatorio": true,
+      "confidenceObrigatorio": true,
+      "webPostoLiveProibido": true,
+      "endpointBico401SemInventar": true
+    },
+    "dwLayer": {
+      "factLmc": [
+        {
+          "empresaCodigo": 11495,
+          "lmcCodigo": 6864916,
+          "produtoCodigo": [
+            1257885
+          ],
+          "dataMovimento": "2026-06-01",
+          "abertura": 2713.0,
+          "entrada": 0.0,
+          "saida": 206.26,
+          "perdaSobra": 1.26,
+          "escritural": 2506.74,
+          "fechamento": 2508.0,
+          "disponivel": 2713.0,
+          "ultimoUsuarioAlteracao": "MARCIO",
+          "saldo": 7.6837,
+          "precoCusto": 6.0982,
+          "produtoLmcCodigo": 8298,
+          "codigo": 6864916,
+          "lmcTanque": [
+            {
+              "lmcTanqueCodigo": 7641469,
+              "tanqueCodigo": 29879,
+              "abertura": 2713.0,
+              "escritural": 2506.74,
+              "fechamento": 2508.0
+            }
+          ],
+          "lmcBico": [
+            {
+              "lmcBicoCodigo": 19805311,
+              "bicoCodigo": 42903,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 30089,
+              "abertura": 42045.01,
+              "fechamento": 42138.37,
+              "afericao": 0.0,
+              "venda": 93.36
+            },
+            {
+              "lmcBicoCodigo": 19805312,
+              "bicoCodigo": 42906,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 30089,
+              "abertura": 23173.68,
+              "fechamento": 23200.95,
+              "afericao": 0.0,
+              "venda": 27.27
+            },
+            {
+              "lmcBicoCodigo": 19805313,
+              "bicoCodigo": 42909,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 30090,
+              "abertura": 843384.91,
+              "fechamento": 843438.76,
+              "afericao": 0.0,
+              "venda": 53.85
+            },
+            {
+              "lmcBicoCodigo": 19805314,
+              "bicoCodigo": 42912,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 30090,
+              "abertura": 799590.04,
+              "fechamento": 799621.82,
+              "afericao": 0.0,
+              "venda": 31.78
+            },
+            {
+              "lmcBicoCodigo": 19805315,
+              "bicoCodigo": 46763,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 33455,
+              "abertura": 219.35,
+              "fechamento": 219.35,
+              "afericao": 0.0,
+              "venda": 0.0
+            },
+            {
+              "lmcBicoCodigo": 19805316,
+              "bicoCodigo": 46764,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 33455,
+              "abertura": 3470.41,
+              "fechamento": 3470.41,
+              "afericao": 0.0,
+              "venda": 0.0
+            }
+          ],
+          "lmcNota": [],
+          "lmcId": "LMC-8AA00A6C",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "empresaCodigo": 11495,
+          "lmcCodigo": 6864916,
+          "produtoCodigo": [
+            1320666
+          ],
+          "dataMovimento": "2026-06-01",
+          "abertura": 2713.0,
+          "entrada": 0.0,
+          "saida": 206.26,
+          "perdaSobra": 1.26,
+          "escritural": 2506.74,
+          "fechamento": 2508.0,
+          "disponivel": 2713.0,
+          "ultimoUsuarioAlteracao": "MARCIO",
+          "saldo": 0.0,
+          "precoCusto": 0.0,
+          "produtoLmcCodigo": 8298,
+          "codigo": 6864916,
+          "lmcTanque": [
+            {
+              "lmcTanqueCodigo": 7641469,
+              "tanqueCodigo": 29879,
+              "abertura": 2713.0,
+              "escritural": 2506.74,
+              "fechamento": 2508.0
+            }
+          ],
+          "lmcBico": [
+            {
+              "lmcBicoCodigo": 19805311,
+              "bicoCodigo": 42903,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 30089,
+              "abertura": 42045.01,
+              "fechamento": 42138.37,
+              "afericao": 0.0,
+              "venda": 93.36
+            },
+            {
+              "lmcBicoCodigo": 19805312,
+              "bicoCodigo": 42906,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 30089,
+              "abertura": 23173.68,
+              "fechamento": 23200.95,
+              "afericao": 0.0,
+              "venda": 27.27
+            },
+            {
+              "lmcBicoCodigo": 19805313,
+              "bicoCodigo": 42909,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 30090,
+              "abertura": 843384.91,
+              "fechamento": 843438.76,
+              "afericao": 0.0,
+              "venda": 53.85
+            },
+            {
+              "lmcBicoCodigo": 19805314,
+              "bicoCodigo": 42912,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 30090,
+              "abertura": 799590.04,
+              "fechamento": 799621.82,
+              "afericao": 0.0,
+              "venda": 31.78
+            },
+            {
+              "lmcBicoCodigo": 19805315,
+              "bicoCodigo": 46763,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 33455,
+              "abertura": 219.35,
+              "fechamento": 219.35,
+              "afericao": 0.0,
+              "venda": 0.0
+            },
+            {
+              "lmcBicoCodigo": 19805316,
+              "bicoCodigo": 46764,
+              "tanqueCodigo": 29879,
+              "bombaCodigo": 33455,
+              "abertura": 3470.41,
+              "fechamento": 3470.41,
+              "afericao": 0.0,
+              "venda": 0.0
+            }
+          ],
+          "lmcNota": [],
+          "lmcId": "LMC-794B033A",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "empresaCodigo": 11495,
+          "lmcCodigo": 6864918,
+          "produtoCodigo": [
+            1260803
+          ],
+          "dataMovimento": "2026-06-01",
+          "abertura": 2687.0,
+          "entrada": 0.0,
+          "saida": 238.02,
+          "perdaSobra": -4.98,
+          "escritural": 2448.98,
+          "fechamento": 2444.0,
+          "disponivel": 2687.0,
+          "ultimoUsuarioAlteracao": "MARCIO",
+          "saldo": -32.7281,
+          "precoCusto": 6.5719,
+          "produtoLmcCodigo": 8528,
+          "codigo": 6864918,
+          "lmcTanque": [
+            {
+              "lmcTanqueCodigo": 7641471,
+              "tanqueCodigo": 29881,
+              "abertura": 2687.0,
+              "escritural": 2448.98,
+              "fechamento": 2444.0
+            }
+          ],
+          "lmcBico": [
+            {
+              "lmcBicoCodigo": 19805323,
+              "bicoCodigo": 46697,
+              "tanqueCodigo": 29881,
+              "bombaCodigo": 33455,
+              "abertura": 88.97,
+              "fechamento": 88.97,
+              "afericao": 0.0,
+              "venda": 0.0
+            },
+            {
+              "lmcBicoCodigo": 19805324,
+              "bicoCodigo": 46698,
+              "tanqueCodigo": 29881,
+              "bombaCodigo": 33455,
+              "abertura": 124968.88,
+              "fechamento": 125206.9,
+              "afericao": 0.0,
+              "venda": 238.02
+            }
+          ],
+          "lmcNota": [],
+          "lmcId": "LMC-E42C4E9F",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "empresaCodigo": 11495,
+          "lmcCodigo": 6864918,
+          "produtoCodigo": [
+            1320665
+          ],
+          "dataMovimento": "2026-06-01",
+          "abertura": 2687.0,
+          "entrada": 0.0,
+          "saida": 238.02,
+          "perdaSobra": -4.98,
+          "escritural": 2448.98,
+          "fechamento": 2444.0,
+          "disponivel": 2687.0,
+          "ultimoUsuarioAlteracao": "MARCIO",
+          "saldo": 0.0,
+          "precoCusto": 0.0,
+          "produtoLmcCodigo": 8528,
+          "codigo": 6864918,
+          "lmcTanque": [
+            {
+              "lmcTanqueCodigo": 7641471,
+              "tanqueCodigo": 29881,
+              "abertura": 2687.0,
+              "escritural": 2448.98,
+              "fechamento": 2444.0
+            }
+          ],
+          "lmcBico": [
+            {
+              "lmcBicoCodigo": 19805323,
+              "bicoCodigo": 46697,
+              "tanqueCodigo": 29881,
+              "bombaCodigo": 33455,
+              "abertura": 88.97,
+              "fechamento": 88.97,
+              "afericao": 0.0,
+              "venda": 0.0
+            },
+            {
+              "lmcBicoCodigo": 19805324,
+              "bicoCodigo": 46698,
+              "tanqueCodigo": 29881,
+              "bombaCodigo": 33455,
+              "abertura": 124968.88,
+              "fechamento": 125206.9,
+              "afericao": 0.0,
+              "venda": 238.02
+            }
+          ],
+          "lmcNota": [],
+          "lmcId": "LMC-621D914D",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "empresaCodigo": 11495,
+          "lmcCodigo": 6864919,
+          "produtoCodigo": [
+            1975728
+          ],
+          "dataMovimento": "2026-06-01",
+          "abertura": 4480.0,
+          "entrada": 0.0,
+          "saida": 2069.64,
+          "perdaSobra": 24.64,
+          "escritural": 2410.36,
+          "fechamento": 2435.0,
+          "disponivel": 4480.0,
+          "ultimoUsuarioAlteracao": "MARCIO",
+          "saldo": 107.6596,
+          "precoCusto": 4.3693,
+          "produtoLmcCodigo": 21497,
+          "codigo": 6864919,
+          "lmcTanque": [
+            {
+              "lmcTanqueCodigo": 7641472,
+              "tanqueCodigo": 29882,
+              "abertura": 4480.0,
+              "escritural": 2410.36,
+              "fechamento": 2435.0
+            }
+          ],
+          "lmcBico": [
+            {
+              "lmcBicoCodigo": 19805325,
+              "bicoCodigo": 42904,
+              "tanqueCodigo": 29882,
+              "bombaCodigo": 30089,
+              "abertura": 145749.85,
+              "fechamento": 145930.58,
+              "afericao": 0.0,
+              "venda": 180.73
+            },
+            {
+              "lmcBicoCodigo": 19805326,
+              "bicoCodigo": 42907,
+              "tanqueCodigo": 29882,
+              "bombaCodigo": 30089,
+              "abertura": 156867.81,
+              "fechamento": 157460.19,
+              "afericao": 0.0,
+              "venda": 592.38
+            },
+            {
+              "lmcBicoCodigo": 19805327,
+              "bicoCodigo": 42908,
+              "tanqueCodigo": 29882,
+              "bombaCodigo": 30090,
+              "abertura": 1530718.71,
+              "fechamento": 1531400.41,
+              "afericao": 0.0,
+              "venda": 681.7
+            },
+            {
+              "lmcBicoCodigo": 19805328,
+              "bicoCodigo": 42911,
+              "tanqueCodigo": 29882,
+              "bombaCodigo": 30090,
+              "abertura": 1147528.22,
+              "fechamento": 1147980.78,
+              "afericao": 0.0,
+              "venda": 452.56
+            },
+            {
+              "lmcBicoCodigo": 19805329,
+              "bicoCodigo": 46664,
+              "tanqueCodigo": 29882,
+              "bombaCodigo": 33455,
+              "abertura": 31277.81,
+              "fechamento": 31440.08,
+              "afericao": 0.0,
+              "venda": 162.27
+            },
+            {
+              "lmcBicoCodigo": 19805330,
+              "bicoCodigo": 46665,
+              "tanqueCodigo": 29882,
+              "bombaCodigo": 33455,
+              "abertura": 427.57,
+              "fechamento": 427.57,
+              "afericao": 0.0,
+              "venda": 0.0
+            }
+          ],
+          "lmcNota": [],
+          "lmcId": "LMC-F3F60F50",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        }
+      ],
+      "factLmcLoss": [
+        {
+          "empresaCodigo": 11495,
+          "perdaOperacional": 27.16,
+          "sobraOperacional": 9.96,
+          "indicePerda": 1.25,
+          "banda": "ALTA",
+          "lineage": [
+            {
+              "origem": "F06.2",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ],
+      "factLmcSurplus": [
+        {
+          "sobraTotal": 9.96,
+          "banda": "ALTA"
+        }
+      ],
+      "factLmcReconciliation": [
+        {
+          "abastecimentoTotal": 200,
+          "abastecimentoMatched": 84,
+          "lmcRegistros": 28,
+          "vendaLitros": 57725.9,
+          "lmcSaidaLitros": 2958.2,
+          "coverageAbastVendaItemPct": 42.0,
+          "diferencaAbastLmc": 54767.7,
+          "divergentes": 22,
+          "confiavel": true,
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaItemCodigo"
+          ],
+          "items": [
+            {
+              "tipo": "DIFERENCA_LITROS",
+              "quantidade": 54767.7
+            },
+            {
+              "tipo": "FALHA_JOIN_ABAST",
+              "quantidade": 116
+            },
+            {
+              "tipo": "DIVERGENCIA_CAIXA",
+              "quantidade": 21
+            }
+          ],
+          "lineage": [
+            {
+              "origem": "D01+D05",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

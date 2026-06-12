@@ -1104,3 +1104,93 @@ export async function postNfceIntelligenceRefresh(filters) {
   return raw?.data || raw;
 }
 
+export async function fetchLmcIntelligenceCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/lmc-intelligence/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    governanceRules: body?.governanceRules,
+    lmcCatalogEngine: body?.lmcCatalogEngine,
+    fuelReconciliationEngine: body?.fuelReconciliationEngine,
+    lossSurplusEngine: body?.lossSurplusEngine,
+    tankIntelligence: body?.tankIntelligence,
+    pumpIntelligence: body?.pumpIntelligence,
+    lmcExecutiveIntelligence: body?.lmcExecutiveIntelligence,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postLmcIntelligenceRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/lmc-intelligence/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchFiscalIntelligenceCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/fiscal-intelligence/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    governanceRules: body?.governanceRules,
+    productFiscalCatalogEngine: body?.productFiscalCatalogEngine,
+    ncmIntelligenceEngine: body?.ncmIntelligenceEngine,
+    taxClassificationEngine: body?.taxClassificationEngine,
+    financialClassificationEngine: body?.financialClassificationEngine,
+    fiscalRiskEngine: body?.fiscalRiskEngine,
+    executiveFiscalIntelligence: body?.executiveFiscalIntelligence,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postFiscalIntelligenceRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/fiscal-intelligence/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchFiscalReconciliationCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/fiscal-reconciliation/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    governanceRules: body?.governanceRules,
+    fiscalLineageEngine: body?.fiscalLineageEngine,
+    nfceVendaReconciliation: body?.nfceVendaReconciliation,
+    productSalesReconciliation: body?.productSalesReconciliation,
+    lmcSalesReconciliation: body?.lmcSalesReconciliation,
+    fiscalFinancialBridge: body?.fiscalFinancialBridge,
+    fiscalRiskConsolidation: body?.fiscalRiskConsolidation,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postFiscalReconciliationRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/fiscal-reconciliation/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
