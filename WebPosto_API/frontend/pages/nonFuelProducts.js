@@ -69,15 +69,17 @@ export function renderNonFuelProducts(node, payload, filters, options = {}) {
   const filiaisAbaixo = benchmarkGap.filiaisAbaixoBenchmark || cockpit.filiaisAbaixoBenchmark || [];
   const produtosFoco = commercialFocus.produtosFoco || cockpit.produtosFocoComercial || [];
   const dependenciaComb = fuelRisk.filiaisRisco || cockpit.dependenciaCombustivel || [];
-  const filialDestaque = cockpit.filialDestaque || (margin.porFilial || [])[0] || {};
-  const oportunidades = opportunities.oportunidades || cockpit.oportunidades || [];
+  const actionCenter = payload.commercialActionCenter || {};
+  const acSummary = actionCenter.summary || {};
+  const acoes = actionCenter.actions || cockpit.acoesComerciais || cockpit.acoesAltaPrioridade || [];
+  const acoesAlta = cockpit.acoesAltaPrioridade || acoes.filter((a) => a.prioridade === "ALTA").slice(0, 8);
   const parecer = payload.parecerFinal || "";
 
   node.innerHTML = `
     <header class="view-header">
       <div>
         <h2>Produtos Vendidos</h2>
-        <p class="muted">F07.5 · Decisão comercial · sortimento e oportunidade · ${filters?.dataInicial || ""} → ${filters?.dataFinal || ""}</p>
+        <p class="muted">F07.6 · Commercial Action Center · ${filters?.dataInicial || ""} → ${filters?.dataFinal || ""}</p>
         ${parecer ? `<p class="parecer">${parecer}</p>` : ""}
       </div>
       <div class="view-actions">
@@ -86,55 +88,31 @@ export function renderNonFuelProducts(node, payload, filters, options = {}) {
       </div>
     </header>
     <div class="kpi-grid">
-      <article class="kpi-card"><span class="kpi-label">Top margem</span><strong>${exec["1_produtoMaiorMargemPct"] ?? topMargem[0]?.produtoCodigo ?? "—"} (${exec["2_margemPctLider"] ?? topMargem[0]?.margemPct ?? "—"}%)</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Alertas baixa margem</span><strong>${exec["3_produtosAltoVolumeBaixaMargem"] ?? lowMargin.totalAlertas ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Potencial expansão</span><strong>${exec["5_produtosPotencialExpansao"] ?? expansion.totalPotencial ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Filiais abaixo benchmark</span><strong>${exec["7_filiaisAbaixoBenchmarkMix"] ?? benchmarkGap.totalAbaixoBenchmark ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Foco comercial</span><strong>${exec["9_produtosFocoComercial"] ?? commercialFocus.totalFoco ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Dep. combustível</span><strong>${exec["11_filiaisDependenciaCombustivel"] ?? fuelRisk.totalFiliaisRisco ?? "—"} filiais</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Receita PV</span><strong>R$ ${exec["4_receitaProdutosVendidos"] ?? margin.receitaProdutosVendidos ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Margem bruta</span><strong>${exec["6_margemBrutaPct"] ?? margin.margemBrutaPct ?? "—"}%</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Aprovado F07.6</span><strong>${exec["20_aprovadoF076"] ? "Sim" : "Não"}</strong></article>
+      <article class="kpi-card kpi-card--highlight"><span class="kpi-label">Ações comerciais</span><strong>${exec["1_totalAcoesComerciais"] ?? acSummary.totalAcoes ?? cockpit.totalAcoes ?? "—"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Alta prioridade</span><strong>${exec["2_acoesAltaPrioridade"] ?? acSummary.acoesAltaPrioridade ?? "—"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Impacto receita</span><strong>R$ ${exec["3_impactoTotalReceita"] ?? acSummary.impactoTotalReceita ?? cockpit.impactoTotalReceita ?? "—"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Impacto margem</span><strong>R$ ${exec["4_impactoTotalMargem"] ?? acSummary.impactoTotalMargem ?? cockpit.impactoTotalMargem ?? "—"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Com responsável</span><strong>${exec["9_acoesComResponsavel"] ?? acSummary.acoesComResponsavel ?? "—"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Com evidência</span><strong>${exec["8_acoesComEvidencia"] ?? acSummary.acoesComEvidencia ?? "—"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">R04 margem</span><strong>${exec["18_r04MargemConfiavel"] ?? actionCenter.r04Gate?.confiabilidadeMargemPct ?? "—"}%</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Aprovado F07.7</span><strong>${exec["20_aprovadoF077"] ? "Sim" : "Não"}</strong></article>
     </div>
-    ${renderTable("Maior margem — priorizar proteção", topMargem.slice(0, 8), [
-      { key: "produtoCodigo", label: "Produto" },
-      { key: "nome", label: "Nome" },
-      { key: "margemPct", label: "Margem %", render: (r) => `${r.margemPct ?? "—"}%` },
-      { key: "margemBruta", label: "Margem R$", render: (r) => (r.margemBruta != null ? Number(r.margemBruta).toFixed(2) : "—") },
-      { key: "receita", label: "Receita R$", render: (r) => (r.receita != null ? Number(r.receita).toFixed(2) : "—") },
+    ${renderTable("Plano de ação comercial", acoes.slice(0, 12), [
+      { key: "id", label: "ID" },
+      { key: "tipo", label: "Tipo" },
+      { key: "titulo", label: "Ação" },
+      { key: "prioridade", label: "Prioridade" },
+      { key: "status", label: "Status" },
+      { key: "responsavel", label: "Responsável", render: (r) => r.responsavel?.ownerName ?? "—" },
+      { key: "impactoEstimadoReceita", label: "Impacto R$", render: (r) => (r.impactoEstimadoReceita != null ? Number(r.impactoEstimadoReceita).toFixed(2) : "—") },
+      { key: "prazo", label: "Prazo" },
     ])}
-    ${renderTable("Alto volume · baixa margem — revisar", alertasMargem.slice(0, 8), [
+    ${renderTable("Alta prioridade", acoesAlta.slice(0, 8), [
+      { key: "tipo", label: "Tipo" },
+      { key: "descricao", label: "Descrição" },
       { key: "produtoCodigo", label: "Produto" },
-      { key: "nome", label: "Nome" },
-      { key: "quantidade", label: "Qtd" },
-      { key: "margemPct", label: "Margem %", render: (r) => `${r.margemPct ?? "—"}%` },
-      { key: "gapMargemPct", label: "Gap %", render: (r) => `${r.gapMargemPct ?? "—"}%` },
-    ])}
-    ${renderTable("Potencial de expansão", potencialExpansao.slice(0, 8), [
-      { key: "produtoCodigo", label: "Produto" },
-      { key: "nome", label: "Nome" },
-      { key: "qtdFiliais", label: "Filiais ativas" },
-      { key: "coberturaFiliaisPct", label: "Cobertura %", render: (r) => `${r.coberturaFiliaisPct ?? "—"}%` },
-      { key: "recomendacao", label: "Ação" },
-    ])}
-    ${renderTable("Filiais abaixo do benchmark de mix", filiaisAbaixo.slice(0, 8), [
       { key: "empresaCodigo", label: "Filial" },
-      { key: "empresaNome", label: "Nome", render: (r) => r.empresaNome ?? r.filial ?? "—" },
-      { key: "mixProdutosVendidosPct", label: "Mix PV %" },
-      { key: "benchmarkMixPvPct", label: "Benchmark %" },
-      { key: "gapBenchmarkPct", label: "Gap %" },
-    ])}
-    ${renderTable("Foco comercial recomendado", produtosFoco.slice(0, 8), [
-      { key: "produtoCodigo", label: "Produto" },
-      { key: "nome", label: "Nome" },
-      { key: "focoComercialScore", label: "Score" },
-      { key: "acoesRecomendadas", label: "Ações", render: (r) => (r.acoesRecomendadas || []).join(", ") || "—" },
-    ])}
-    ${renderTable("Dependência excessiva de combustível", dependenciaComb.slice(0, 8), [
-      { key: "empresaCodigo", label: "Filial" },
-      { key: "empresaNome", label: "Nome", render: (r) => r.empresaNome ?? r.filial ?? "—" },
-      { key: "dependenciaCombustivelPct", label: "Dep. comb. %" },
-      { key: "mixProdutosVendidosPct", label: "Mix PV %" },
+      { key: "status", label: "Status" },
     ])}
     ${renderTable("Departamentos refinados", depts.slice(0, 8), [
       { key: "departamento", label: "Departamento", render: (r) => r.departamento ?? r.nome ?? "—" },
@@ -157,6 +135,6 @@ export function renderNonFuelProducts(node, payload, filters, options = {}) {
 
   node.querySelector("#nonFuelRefresh")?.addEventListener("click", () => options.onRefresh?.());
   node.querySelector("#nonFuelExport")?.addEventListener("click", () => {
-    downloadCsv("produtos-vendidos-foco-comercial.csv", produtosFoco.length ? produtosFoco : topRev.length ? topRev : ranking);
+    downloadCsv("produtos-vendidos-acoes-comerciais.csv", acoes.length ? acoes : produtosFoco);
   });
 }

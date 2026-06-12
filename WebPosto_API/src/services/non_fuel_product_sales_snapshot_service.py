@@ -1,12 +1,12 @@
-"""Snapshot F07.5 — Produtos Vendidos decisão comercial."""
+"""Snapshot F07.6 — Commercial Action Center Produtos Vendidos."""
 from __future__ import annotations
 
 import asyncio
 from datetime import datetime
 from typing import Any
 
+from src.services.commercial_action_center_service import CommercialActionCenterService
 from src.services.multiselect_utils import empresa_snapshot_suffix
-from src.services.product_opportunity_assortment_service import ProductOpportunityAssortmentService
 from src.services.snapshot_store import SnapshotStore
 
 NON_FUEL_TTL = 300.0
@@ -15,11 +15,11 @@ NON_FUEL_TTL = 300.0
 class NonFuelProductSalesSnapshotService:
     def __init__(
         self,
-        service: ProductOpportunityAssortmentService | None = None,
+        service: CommercialActionCenterService | None = None,
         output_dir: str = "snapshots/non_fuel_products",
         ttl_seconds: float = NON_FUEL_TTL,
     ) -> None:
-        self._service = service or ProductOpportunityAssortmentService()
+        self._service = service or CommercialActionCenterService()
         self._store = SnapshotStore(output_dir, ttl_seconds)
         self._running: set[str] = set()
         self._lock = asyncio.Lock()
