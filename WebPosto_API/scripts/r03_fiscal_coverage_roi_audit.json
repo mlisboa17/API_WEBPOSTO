@@ -1,0 +1,439 @@
+{
+  "sprint": "R03",
+  "readOnly": true,
+  "fonteWebPostoLive": false,
+  "homologatedBaseline": "F06.4",
+  "fiscalCoverageAudit": {
+    "dimensions": [
+      {
+        "dimensao": "NFCE",
+        "peso": 0.2,
+        "coberturaAtualPct": 100.0,
+        "coberturaMaximaPct": 100.0,
+        "gapPct": 0.0
+      },
+      {
+        "dimensao": "LMC",
+        "peso": 0.25,
+        "coberturaAtualPct": 5.12,
+        "coberturaMaximaPct": 95.0,
+        "gapPct": 89.88
+      },
+      {
+        "dimensao": "Produto",
+        "peso": 0.15,
+        "coberturaAtualPct": 42.0,
+        "coberturaMaximaPct": 100.0,
+        "gapPct": 58.0
+      },
+      {
+        "dimensao": "NCM",
+        "peso": 0.15,
+        "coberturaAtualPct": 7.14,
+        "coberturaMaximaPct": 85.0,
+        "gapPct": 77.86
+      },
+      {
+        "dimensao": "Tributação",
+        "peso": 0.15,
+        "coberturaAtualPct": 50.0,
+        "coberturaMaximaPct": 80.0,
+        "gapPct": 30.0
+      },
+      {
+        "dimensao": "Plano de Contas",
+        "peso": 0.1,
+        "coberturaAtualPct": 65.0,
+        "coberturaMaximaPct": 80.0,
+        "gapPct": 15.0
+      }
+    ],
+    "coberturaFiscalAtualPct": 42.65,
+    "coberturaFiscalMaximaPct": 91.5,
+    "gapFiscalPct": 48.85,
+    "nfcePct": 100.0,
+    "lmcPct": 5.12,
+    "produtoPct": 42.0,
+    "ncmPct": 7.14,
+    "tributacaoStatus": "PARCIAL",
+    "planoContasStatus": "PARCIAL"
+  },
+  "lmcGapAudit": {
+    "litrosVendidos": 57725.899999999994,
+    "litrosConciliados": 2958.2,
+    "litrosNaoConciliados": 54767.7,
+    "coberturaLmcPct": 5.12,
+    "abastecimentoJoinPct": 42.0,
+    "lmcRegistrosHomologados": 28,
+    "perdaTotal": 27.16,
+    "sobraTotal": 9.96,
+    "motivoPrincipal": "Desalinhamento volume vendido (ABASTECIMENTO) vs saídas LMC homologadas (28 registros / 2.958 L)",
+    "fonteFaltante": "CONSULTAR_LMC_REDE expandido + join ABAST 100% + token bico/tanque",
+    "causas": [
+      {
+        "causa": "Join ABASTECIMENTO×VENDA_ITEM incompleto",
+        "evidencia": "84/200 (42.0%)",
+        "impactoLitros": "indireto — 116 abastecimentos sem item",
+        "fonte": "d01_operational_join_probe.json"
+      },
+      {
+        "causa": "LMC snapshot subdimensionado vs volume vendido",
+        "evidencia": "28 registros LMC vs 57,725.9 L vendidos",
+        "impactoLitros": "54,767.7 L sem conciliação LMC",
+        "fonte": "fuel_network_audit_result.json + F06.4"
+      },
+      {
+        "causa": "Endpoints bico/tanque bloqueados (401)",
+        "evidencia": "CONSULTAR_LMC_REDE_BICO, CONSULTAR_LMC_REDE_TANQUE, BICO_REDE",
+        "impactoLitros": "granularidade tanque/bico indisponível",
+        "fonte": "f06_0_fiscal_intelligence_discovery.json"
+      },
+      {
+        "causa": "VENDA_ITEM_REDE bloqueado (401)",
+        "evidencia": "/INTEGRACAO/CONSULTAR_VENDA_ITEM_REDE",
+        "impactoLitros": "join alternativo rede indisponível",
+        "fonte": "d04_1_coverage_truth_audit.json"
+      }
+    ]
+  },
+  "fuelCoverageAudit": {
+    "items": [
+      {
+        "entidade": "ABASTECIMENTO",
+        "status": "PARCIAL",
+        "coberturaPct": 42.0,
+        "registros": 200,
+        "fonte": "D01 join"
+      },
+      {
+        "entidade": "LMC",
+        "status": "PARCIAL",
+        "coberturaPct": 14.0,
+        "registros": 28,
+        "fonte": "fuel_network_audit"
+      },
+      {
+        "entidade": "TANQUE",
+        "status": "PARCIAL",
+        "coberturaPct": 60.0,
+        "registros": 6,
+        "fonte": "D04.1 /INTEGRACAO/TANQUE"
+      },
+      {
+        "entidade": "BICO",
+        "status": "AUSENTE",
+        "coberturaPct": 0,
+        "registros": 0,
+        "fonte": "401 CONSULTAR_LMC_REDE_BICO"
+      },
+      {
+        "entidade": "VENDA_ITEM",
+        "status": "COMPLETO",
+        "coberturaPct": 100,
+        "registros": 200,
+        "fonte": "D01"
+      }
+    ],
+    "completos": 1,
+    "parciais": 3,
+    "ausentes": 1
+  },
+  "fiscalRoiAudit": [
+    {
+      "id": "B",
+      "frente": "Fuel Governance",
+      "impactoFiscal": 85,
+      "impactoOperacional": 95,
+      "impactoFinanceiro": 70,
+      "viabilidadeTecnica": 65,
+      "coberturaLeverage": 92,
+      "nota": "54,767.7 L (94.88%) sem LMC",
+      "roiScore": 83.8,
+      "rank": 1
+    },
+    {
+      "id": "D",
+      "frente": "LMC Deep Coverage",
+      "impactoFiscal": 90,
+      "impactoOperacional": 90,
+      "impactoFinanceiro": 55,
+      "viabilidadeTecnica": 55,
+      "coberturaLeverage": 88,
+      "nota": "Subset de Fuel Governance; 401 bico/tanque",
+      "roiScore": 79.2,
+      "rank": 2
+    },
+    {
+      "id": "C",
+      "frente": "Tax Intelligence",
+      "impactoFiscal": 80,
+      "impactoOperacional": 30,
+      "impactoFinanceiro": 75,
+      "viabilidadeTecnica": 70,
+      "coberturaLeverage": 55,
+      "nota": "NCM 7.14% evidenciado; tributação PARCIAL",
+      "roiScore": 59.0,
+      "rank": 3
+    },
+    {
+      "id": "A",
+      "frente": "Fiscal Copilot",
+      "impactoFiscal": 55,
+      "impactoOperacional": 25,
+      "impactoFinanceiro": 60,
+      "viabilidadeTecnica": 90,
+      "coberturaLeverage": 40,
+      "nota": "F06.1–4 prontos; G03 trust 93.76; não fecha gap LMC 94.9%",
+      "roiScore": 49.75,
+      "rank": 4
+    },
+    {
+      "id": "E",
+      "frente": "Compliance Intelligence",
+      "impactoFiscal": 40,
+      "impactoOperacional": 20,
+      "impactoFinanceiro": 35,
+      "viabilidadeTecnica": 85,
+      "coberturaLeverage": 15,
+      "nota": "NFCE gap 0; compliance já homologado F06.1",
+      "roiScore": 36.25,
+      "rank": 5
+    }
+  ],
+  "hiddenEndpointAudit": {
+    "http200Utilizado": [
+      "/INTEGRACAO/NFCE",
+      "/INTEGRACAO/VENDA",
+      "/INTEGRACAO/VENDA_ITEM",
+      "/INTEGRACAO/ABASTECIMENTO"
+    ],
+    "http200NaoUtilizado": [
+      "/INTEGRACAO/CONTA",
+      "/INTEGRACAO/PRODUTO",
+      "/INTEGRACAO/PRODUTO_EMPRESA",
+      "/INTEGRACAO/TANQUE",
+      "/INTEGRACAO/ESTOQUE_PERIODO",
+      "/INTEGRACAO/CONSULTAR_LMC_REDE",
+      "/INTEGRACAO/PLANO_CONTA_GERENCIAL"
+    ],
+    "bloqueados401": [
+      "/INTEGRACAO/PRODUTO_REDE",
+      "/INTEGRACAO/PRODUTO_EMPRESA_REDE",
+      "/INTEGRACAO/PRODUTO_COMBUSTIVEL",
+      "/INTEGRACAO/BICO_REDE",
+      "/INTEGRACAO/CONSULTAR_LMC_REDE_BICO",
+      "/INTEGRACAO/CONSULTAR_LMC_REDE_TANQUE"
+    ],
+    "nuncaExplorado": [
+      "NFE",
+      "SPED",
+      "Tributação",
+      "LMC bico/tanque",
+      "Conciliação fiscal",
+      "Fiscalização"
+    ],
+    "top10Roi": [
+      {
+        "path": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+        "httpStatus": 200,
+        "registros": 28,
+        "categoria": "200 não utilizado",
+        "roiPrioridade": 95
+      },
+      {
+        "path": "/INTEGRACAO/CONSULTAR_LMC_REDE_BICO",
+        "httpStatus": 401,
+        "registros": 0,
+        "categoria": "401 bloqueado",
+        "roiPrioridade": 92
+      },
+      {
+        "path": "/INTEGRACAO/CONSULTAR_LMC_REDE_TANQUE",
+        "httpStatus": 401,
+        "registros": 0,
+        "categoria": "401 bloqueado",
+        "roiPrioridade": 90
+      },
+      {
+        "path": "/INTEGRACAO/TANQUE",
+        "httpStatus": 200,
+        "registros": 6,
+        "categoria": "200 não utilizado",
+        "roiPrioridade": 88
+      },
+      {
+        "path": "/INTEGRACAO/BICO_REDE",
+        "httpStatus": 401,
+        "registros": 0,
+        "categoria": "401 bloqueado",
+        "roiPrioridade": 85
+      },
+      {
+        "path": "/INTEGRACAO/PRODUTO_COMBUSTIVEL",
+        "httpStatus": 401,
+        "registros": 0,
+        "categoria": "401 bloqueado",
+        "roiPrioridade": 80
+      },
+      {
+        "path": "/INTEGRACAO/CONSULTAR_ANALISE_VENDAS_COMBUSTIVEL",
+        "httpStatus": 200,
+        "registros": 0,
+        "categoria": "200 não utilizado",
+        "roiPrioridade": 78
+      },
+      {
+        "path": "/INTEGRACAO/PRODUTO",
+        "httpStatus": 200,
+        "registros": 200,
+        "categoria": "200 não utilizado",
+        "roiPrioridade": 75
+      },
+      {
+        "path": "/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+        "httpStatus": 200,
+        "registros": 200,
+        "categoria": "200 não utilizado",
+        "roiPrioridade": 60
+      },
+      {
+        "path": "/INTEGRACAO/CONTA",
+        "httpStatus": 200,
+        "registros": 17,
+        "categoria": "200 não utilizado",
+        "roiPrioridade": 55
+      }
+    ],
+    "endpointMaisValioso": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+    "endpointMaisNegligenciado": "/INTEGRACAO/CONSULTAR_ANALISE_VENDAS_COMBUSTIVEL",
+    "f060BlockedFiscal": [
+      "/INTEGRACAO/CONSULTAR_LMC_REDE_TANQUE",
+      "/INTEGRACAO/BOMBA_REDE",
+      "/INTEGRACAO/PRODUTO_REDE",
+      "/INTEGRACAO/LANCAMENTO_CONTABIL_ITEM",
+      "/INTEGRACAO/CENTRO_CUSTO_REDE",
+      "/INTEGRACAO/CONSULTAR_LMC_REDE_BICO",
+      "/INTEGRACAO/PRODUTO_COMBUSTIVEL",
+      "/INTEGRACAO/BICO_REDE",
+      "/INTEGRACAO/PRODUTO_EMPRESA_REDE"
+    ]
+  },
+  "opportunityRanking": [
+    {
+      "rank": "#1",
+      "frente": "Fuel Governance",
+      "roiScore": 83.8,
+      "nota": "54,767.7 L (94.88%) sem LMC"
+    },
+    {
+      "rank": "#2",
+      "frente": "LMC Deep Coverage",
+      "roiScore": 79.2,
+      "nota": "Subset de Fuel Governance; 401 bico/tanque"
+    },
+    {
+      "rank": "#3",
+      "frente": "Tax Intelligence",
+      "roiScore": 59.0,
+      "nota": "NCM 7.14% evidenciado; tributação PARCIAL"
+    },
+    {
+      "rank": "#4",
+      "frente": "Fiscal Copilot",
+      "roiScore": 49.75,
+      "nota": "F06.1–4 prontos; G03 trust 93.76; não fecha gap LMC 94.9%"
+    },
+    {
+      "rank": "#5",
+      "frente": "Compliance Intelligence",
+      "roiScore": 36.25,
+      "nota": "NFCE gap 0; compliance já homologado F06.1"
+    }
+  ],
+  "riskRanking": [
+    {
+      "categoria": "Operacional",
+      "risco": "CRÍTICO",
+      "descricao": "54,767.7 L sem LMC (5.12% cobertura)",
+      "score": 95
+    },
+    {
+      "categoria": "Fiscal",
+      "risco": "CRÍTICO",
+      "descricao": "Perda/sobra LMC + NCM evidenciado 7%",
+      "score": 85
+    },
+    {
+      "categoria": "Dados",
+      "risco": "ALTO",
+      "descricao": "Join ABAST 42.0% + endpoints 401",
+      "score": 80
+    },
+    {
+      "categoria": "Governança",
+      "risco": "MÉDIO",
+      "descricao": "Centro custo 401 bloqueado",
+      "score": 60
+    },
+    {
+      "categoria": "Financeiro",
+      "risco": "MÉDIO",
+      "descricao": "Gap fiscal 48.85%",
+      "score": 55
+    }
+  ],
+  "executiveRecommendation": {
+    "decisao": "F06.5 = Fuel Governance Intelligence",
+    "justificativa": "NFCE já 100% (200 vendas). Gap dominante: 54,767.7 L (94.88%) sem LMC. ROI score Fuel Governance 83.8 vs Fiscal Copilot 49.75. Copilot fiscal sem cobertura combustível permanece PARCIAL (G03 Q02).",
+    "nfceCompleto": true,
+    "litrosGapPct": 94.88,
+    "roiVencedor": "Fuel Governance",
+    "roiVencedorScore": 83.8,
+    "alternativaCopilotScore": 49.75
+  },
+  "qa": {
+    "readOnly": true,
+    "semAlteracaoRuntime": true,
+    "semAlteracaoF06": true,
+    "semDashboardsNovos": true,
+    "semScoreNovo": true,
+    "semIaNova": true,
+    "fontesSomenteAudits": [
+      "f064",
+      "f063",
+      "f062",
+      "f061",
+      "f060",
+      "d01",
+      "d041",
+      "d05",
+      "g03",
+      "fuel"
+    ],
+    "aprovado": true
+  },
+  "executiveAnswers": {
+    "1_coberturaFiscalAtual": 42.65,
+    "2_coberturaFiscalMaxima": 91.5,
+    "3_gapFiscalRestante": 48.85,
+    "4_coberturaLmcReal": 5.12,
+    "5_litrosConciliados": 2958.2,
+    "6_litrosNaoConciliados": 54767.7,
+    "7_motivoPrincipalGap": "Desalinhamento volume vendido (ABASTECIMENTO) vs saídas LMC homologadas (28 registros / 2.958 L)",
+    "8_endpointMaisValioso": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+    "9_endpointMaisNegligenciado": "/INTEGRACAO/CONSULTAR_ANALISE_VENDAS_COMBUSTIVEL",
+    "10_melhorOportunidadeFiscal": "Tax Intelligence",
+    "11_melhorOportunidadeOperacional": "Fuel Governance",
+    "12_melhorOportunidadeFinanceira": "Tax Intelligence + Plano Contas",
+    "13_maiorRiscoAtual": "54,767.7 L sem LMC (5.12% cobertura)",
+    "14_maiorGargalo": "ABASTECIMENTO×LMC volume (94.9% litros)",
+    "15_roiFiscalCopilot": 49.75,
+    "16_roiFuelGovernance": 83.8,
+    "17_roiTaxIntelligence": 59.0,
+    "18_geraMaisValor": "Fuel Governance",
+    "19_proximaSprintRecomendada": "F06.5 = Fuel Governance Intelligence",
+    "20_aprovarF065": true,
+    "trustExecutivo": 88.69
+  },
+  "parecerFinal": "[PARECER FINAL: ROADMAP DEFINIDO POR EVIDÊNCIA]"
+}

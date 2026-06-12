@@ -1194,3 +1194,75 @@ export async function postFiscalReconciliationRefresh(filters) {
   return raw?.data || raw;
 }
 
+export async function fetchFuelGovernanceCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/fuel-governance/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    governanceRules: body?.governanceRules,
+    lmcComplianceAudit: body?.lmcComplianceAudit,
+    routineAdherenceAudit: body?.routineAdherenceAudit,
+    operationalDisciplineAudit: body?.operationalDisciplineAudit,
+    delayAnalysisEngine: body?.delayAnalysisEngine,
+    branchComplianceRanking: body?.branchComplianceRanking,
+    fuelGovernanceIntelligence: body?.fuelGovernanceIntelligence,
+    processoOperacionalSuficiente: body?.processoOperacionalSuficiente,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postFuelGovernanceRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/fuel-governance/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchNonFuelProductsCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/non-fuel-products/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    governanceRules: body?.governanceRules,
+    multiTenantScalabilityEngine: body?.multiTenantScalabilityEngine,
+    productDepartmentDiscovery: body?.productDepartmentDiscovery,
+    productPerformanceBenchmark: body?.productPerformanceBenchmark,
+    residualSkuForensics: body?.residualSkuForensics,
+    productLookupOptimization: body?.productLookupOptimization,
+    departmentRefinement: body?.departmentRefinement,
+    multiBranchProductScale: body?.multiBranchProductScale,
+    productMasterCoverage: body?.productMasterCoverage,
+    productMatchRecovery: body?.productMatchRecovery,
+    departmentIntelligence: body?.departmentIntelligence,
+    productRevenueIntelligence: body?.productRevenueIntelligence,
+    branchProductMix: body?.branchProductMix,
+    salesCoverageReconciliation: body?.salesCoverageReconciliation,
+    nonFuelSalesEngine: body?.nonFuelSalesEngine,
+    productRankingEngine: body?.productRankingEngine,
+    branchDepartmentAnalytics: body?.branchDepartmentAnalytics,
+    productSalesLineage: body?.productSalesLineage,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postNonFuelProductsRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/non-fuel-products/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+

@@ -66,6 +66,10 @@ import {
   postFiscalIntelligenceRefresh,
   fetchFiscalReconciliationCockpit,
   postFiscalReconciliationRefresh,
+  fetchFuelGovernanceCockpit,
+  postFuelGovernanceRefresh,
+  fetchNonFuelProductsCockpit,
+  postNonFuelProductsRefresh,
 } from "./services/api.js";
 import { APP_CONFIG } from "./config.js";
 import { renderFilters, updateCompanyOptions } from "./components/filters.js";
@@ -98,6 +102,8 @@ import { renderNfceIntelligence } from "./pages/nfceIntelligence.js";
 import { renderLmcIntelligence } from "./pages/lmcIntelligence.js";
 import { renderFiscalIntelligence } from "./pages/fiscalIntelligence.js";
 import { renderFiscalReconciliation } from "./pages/fiscalReconciliation.js";
+import { renderFuelGovernance } from "./pages/fuelGovernance.js";
+import { renderNonFuelProducts } from "./pages/nonFuelProducts.js";
 import { renderCompanySwitcher } from "./components/CompanySwitcher.js";
 import { createTableState } from "./services/tableState.js";
 import {
@@ -173,6 +179,12 @@ const VIEW_ALIASES = {
   fiscalReconciliation: "fiscalReconciliation",
   "fiscal-reconciliation": "fiscalReconciliation",
   fiscalreconciliation: "fiscalReconciliation",
+  fuelGovernance: "fuelGovernance",
+  "fuel-governance": "fuelGovernance",
+  fuelgovernance: "fuelGovernance",
+  nonFuelProducts: "nonFuelProducts",
+  "non-fuel-products": "nonFuelProducts",
+  nonfuelproducts: "nonFuelProducts",
 };
 
 const VIEW_URL_NAMES = {
@@ -197,6 +209,8 @@ const VIEW_URL_NAMES = {
   lmcIntelligence: "lmc-intelligence",
   fiscalIntelligence: "fiscal-intelligence",
   fiscalReconciliation: "fiscal-reconciliation",
+  fuelGovernance: "fuel-governance",
+  nonFuelProducts: "non-fuel-products",
 };
 
 function normalizeViewId(view) {
@@ -480,6 +494,8 @@ const nfceIntelligenceNode = document.querySelector("#nfceIntelligenceView");
 const lmcIntelligenceNode = document.querySelector("#lmcIntelligenceView");
 const fiscalIntelligenceNode = document.querySelector("#fiscalIntelligenceView");
 const fiscalReconciliationNode = document.querySelector("#fiscalReconciliationView");
+const fuelGovernanceNode = document.querySelector("#fuelGovernanceView");
+const nonFuelProductsNode = document.querySelector("#nonFuelProductsView");
 const fuelsNode = document.querySelector("#fuelsView");
 const salesNode = document.querySelector("#salesView");
 const stockNode = document.querySelector("#stockView");
@@ -528,6 +544,8 @@ function setView(view) {
   lmcIntelligenceNode.classList.toggle("hidden", view !== "lmcIntelligence");
   fiscalIntelligenceNode.classList.toggle("hidden", view !== "fiscalIntelligence");
   fiscalReconciliationNode.classList.toggle("hidden", view !== "fiscalReconciliation");
+  fuelGovernanceNode.classList.toggle("hidden", view !== "fuelGovernance");
+  nonFuelProductsNode.classList.toggle("hidden", view !== "nonFuelProducts");
   fuelsNode.classList.toggle("hidden", view !== "fuels");
   salesNode.classList.toggle("hidden", view !== "sales");
   stockNode.classList.toggle("hidden", view !== "stock");
@@ -565,6 +583,8 @@ function ensureDataDefaults() {
   if (!state.data.lmcIntelligence) state.data.lmcIntelligence = null;
   if (!state.data.fiscalIntelligence) state.data.fiscalIntelligence = null;
   if (!state.data.fiscalReconciliation) state.data.fiscalReconciliation = null;
+  if (!state.data.fuelGovernance) state.data.fuelGovernance = null;
+  if (!state.data.nonFuelProducts) state.data.nonFuelProducts = null;
 }
 
 function clearFilters() {
@@ -986,6 +1006,20 @@ function renderAll() {
   });
 
   renderFiscalReconciliation(fiscalReconciliationNode, state.data.fiscalReconciliation, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
+  renderFuelGovernance(fuelGovernanceNode, state.data.fuelGovernance, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
+  renderNonFuelProducts(nonFuelProductsNode, state.data.nonFuelProducts, state.filters, {
     onRefresh: async () => {
       state.cache.clear();
       await refreshAll(true);
@@ -1466,6 +1500,76 @@ async function loadFiscalReconciliationWithSnapshotFirst(bypassCache = false) {
   }
 }
 
+async function loadFuelGovernanceWithSnapshotFirst(bypassCache = false) {
+  try {
+    const gov = await fetchFuelGovernanceCockpit(state.filters);
+    state.data.fuelGovernance = {
+      cockpit: gov.cockpit,
+      executiveAnswers: gov.executiveAnswers,
+      parecerFinal: gov.parecerFinal,
+      qa: gov.qa,
+      governanceRules: gov.governanceRules,
+      lmcComplianceAudit: gov.lmcComplianceAudit,
+      routineAdherenceAudit: gov.routineAdherenceAudit,
+      operationalDisciplineAudit: gov.operationalDisciplineAudit,
+      delayAnalysisEngine: gov.delayAnalysisEngine,
+      branchComplianceRanking: gov.branchComplianceRanking,
+      fuelGovernanceIntelligence: gov.fuelGovernanceIntelligence,
+      processoOperacionalSuficiente: gov.processoOperacionalSuficiente,
+      fromSnapshot: gov.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (gov.snapshot?.stale) {
+      postFuelGovernanceRefresh(state.filters).catch((error) => {
+        console.warn("[fuelGovernance] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[fuelGovernance] falha ao carregar cockpit:", error);
+    state.data.fuelGovernance = null;
+  }
+}
+
+async function loadNonFuelProductsWithSnapshotFirst(bypassCache = false) {
+  try {
+    const nf = await fetchNonFuelProductsCockpit(state.filters);
+    state.data.nonFuelProducts = {
+      cockpit: nf.cockpit,
+      executiveAnswers: nf.executiveAnswers,
+      parecerFinal: nf.parecerFinal,
+      qa: nf.qa,
+      governanceRules: nf.governanceRules,
+      multiTenantScalabilityEngine: nf.multiTenantScalabilityEngine,
+      productDepartmentDiscovery: nf.productDepartmentDiscovery,
+      productPerformanceBenchmark: nf.productPerformanceBenchmark,
+      residualSkuForensics: nf.residualSkuForensics,
+      productLookupOptimization: nf.productLookupOptimization,
+      departmentRefinement: nf.departmentRefinement,
+      multiBranchProductScale: nf.multiBranchProductScale,
+      productMasterCoverage: nf.productMasterCoverage,
+      productMatchRecovery: nf.productMatchRecovery,
+      departmentIntelligence: nf.departmentIntelligence,
+      productRevenueIntelligence: nf.productRevenueIntelligence,
+      branchProductMix: nf.branchProductMix,
+      salesCoverageReconciliation: nf.salesCoverageReconciliation,
+      nonFuelSalesEngine: nf.nonFuelSalesEngine,
+      productRankingEngine: nf.productRankingEngine,
+      branchDepartmentAnalytics: nf.branchDepartmentAnalytics,
+      productSalesLineage: nf.productSalesLineage,
+      fromSnapshot: nf.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (nf.snapshot?.stale) {
+      postNonFuelProductsRefresh(state.filters).catch((error) => {
+        console.warn("[nonFuelProducts] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[nonFuelProducts] falha ao carregar cockpit:", error);
+    state.data.nonFuelProducts = null;
+  }
+}
+
 async function loadExecutiveDecisionWithSnapshotFirst(bypassCache = false) {
   try {
     const decision = await fetchExecutiveDecisionCockpit(state.filters);
@@ -1924,6 +2028,14 @@ async function refreshAll(bypassCache = false) {
 
     if (state.view === "fiscalReconciliation") {
       await loadFiscalReconciliationWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "fuelGovernance") {
+      await loadFuelGovernanceWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "nonFuelProducts") {
+      await loadNonFuelProductsWithSnapshotFirst(bypassCache);
     }
 
     if (state.view === "stock") {

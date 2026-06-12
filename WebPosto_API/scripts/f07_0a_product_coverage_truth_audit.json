@@ -1,0 +1,576 @@
+{
+  "sprint": "F07.0A",
+  "windows": {
+    "7d": {
+      "window": "7d",
+      "buildMs": 20254.1,
+      "fonteDados": "webposto_live",
+      "liveFetch": {
+        "produtoCount": 200,
+        "vendaItemCount": 200,
+        "nfceCount": 200,
+        "truncated": false
+      },
+      "executiveAnswers": {
+        "1_produtosNoCadastro": 200,
+        "2_produtosEmVendaItem": 76,
+        "3_produtosNuncaVendidos": 197,
+        "4_receitaNaoCombustivelLive": 1104.01,
+        "5_receitaNaoCombustivelF070": 462.84,
+        "6_gapReceita": 641.17,
+        "7_representaTodaVendaNaoCombustivel": false,
+        "8_produtosDistintosNaoCombustivelLive": 72,
+        "9_produtosNaoCombustivelF070": 1,
+        "10_existeLoja": false,
+        "11_existeConveniencia": false,
+        "12_existeLubrificante": false,
+        "13_existeServico": false,
+        "14_vereditoReceita": "PARCIAL_SUBESTIMADO",
+        "15_vereditoExecutivo": "F07.0 SUBESTIMA DIVERSIDADE",
+        "16_coberturaCadastroPct": 3.95,
+        "17_paginacaoTruncada": false
+      },
+      "productCatalogAudit": {
+        "produtosNoCadastro": 200,
+        "produtosEmVendaItem": 76,
+        "produtosNuncaVendidos": 197,
+        "produtosVendidosSemCadastro": 73,
+        "amostraNuncaVendidos": [
+          1257886,
+          1257889,
+          1257890,
+          1257891,
+          1257892,
+          1257893,
+          1257894,
+          1257895,
+          1257896,
+          1257897,
+          1257898,
+          1257899,
+          1257900,
+          1257901,
+          1257902
+        ],
+        "amostraVendidosSemCadastro": [
+          1727011,
+          1801337,
+          1801758,
+          1801804,
+          1801810,
+          1801812,
+          1802031,
+          1802182,
+          1802196,
+          1802198,
+          1802200,
+          1802207,
+          1802381,
+          1802397,
+          1802483
+        ],
+        "coberturaCadastroPct": 3.95,
+        "lineage": [
+          {
+            "origem": "IA-1",
+            "fonte": "PRODUTO+VENDA_ITEM",
+            "api": "/INTEGRACAO/PRODUTO",
+            "webPostoLive": false
+          }
+        ]
+      },
+      "categoryDiscovery": {
+        "categoriasDescobertas": {
+          "COMBUSTIVEL": 9,
+          "LOJA": 181,
+          "LUBRIFICANTES": 10
+        },
+        "categoriasVendidas": {
+          "COMBUSTIVEL": 71,
+          "NAO_CLASSIFICADO": 129
+        },
+        "receitaPorCategoria": {
+          "COMBUSTIVEL": 2936.68,
+          "NAO_CLASSIFICADO": 1104.01
+        },
+        "amostraClassificacao": [
+          {
+            "produtoCodigo": 1257884,
+            "nome": "GASOLINA COMUM.",
+            "categoria": "COMBUSTIVEL",
+            "confidence": "ALTA",
+            "evidence": [
+              "PRODUTO.combustivel=true"
+            ],
+            "totalVenda": 50.0
+          },
+          {
+            "produtoCodigo": 1975728,
+            "nome": "",
+            "categoria": "COMBUSTIVEL",
+            "confidence": "ALTA",
+            "evidence": [
+              "FUEL_CATALOG"
+            ],
+            "totalVenda": 22.7
+          },
+          {
+            "produtoCodigo": 1841747,
+            "nome": "Produto 1841747",
+            "categoria": "NAO_CLASSIFICADO",
+            "confidence": "BAIXA",
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ],
+            "totalVenda": 8.75
+          },
+          {
+            "produtoCodigo": 1803670,
+            "nome": "Produto 1803670",
+            "categoria": "NAO_CLASSIFICADO",
+            "confidence": "BAIXA",
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ],
+            "totalVenda": 3.99
+          },
+          {
+            "produtoCodigo": 1257884,
+            "nome": "GASOLINA COMUM.",
+            "categoria": "COMBUSTIVEL",
+            "confidence": "ALTA",
+            "evidence": [
+              "PRODUTO.combustivel=true"
+            ],
+            "totalVenda": 20.0
+          },
+          {
+            "produtoCodigo": 1803593,
+            "nome": "Produto 1803593",
+            "categoria": "NAO_CLASSIFICADO",
+            "confidence": "BAIXA",
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ],
+            "totalVenda": 5.99
+          },
+          {
+            "produtoCodigo": 1801812,
+            "nome": "Produto 1801812",
+            "categoria": "NAO_CLASSIFICADO",
+            "confidence": "BAIXA",
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ],
+            "totalVenda": 2.99
+          },
+          {
+            "produtoCodigo": 1802688,
+            "nome": "Produto 1802688",
+            "categoria": "NAO_CLASSIFICADO",
+            "confidence": "BAIXA",
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ],
+            "totalVenda": 14.99
+          },
+          {
+            "produtoCodigo": 1257884,
+            "nome": "GASOLINA COMUM.",
+            "categoria": "COMBUSTIVEL",
+            "confidence": "ALTA",
+            "evidence": [
+              "PRODUTO.combustivel=true"
+            ],
+            "totalVenda": 30.0
+          },
+          {
+            "produtoCodigo": 1257884,
+            "nome": "GASOLINA COMUM.",
+            "categoria": "COMBUSTIVEL",
+            "confidence": "ALTA",
+            "evidence": [
+              "PRODUTO.combustivel=true"
+            ],
+            "totalVenda": 50.0
+          },
+          {
+            "produtoCodigo": 1803533,
+            "nome": "Produto 1803533",
+            "categoria": "NAO_CLASSIFICADO",
+            "confidence": "BAIXA",
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ],
+            "totalVenda": 8.75
+          },
+          {
+            "produtoCodigo": 1803621,
+            "nome": "Produto 1803621",
+            "categoria": "NAO_CLASSIFICADO",
+            "confidence": "BAIXA",
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ],
+            "totalVenda": 6.5
+          },
+          {
+            "produtoCodigo": 1803621,
+            "nome": "Produto 1803621",
+            "categoria": "NAO_CLASSIFICADO",
+            "confidence": "BAIXA",
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ],
+            "totalVenda": 6.5
+          },
+          {
+            "produtoCodigo": 2387407,
+            "nome": "Produto 2387407",
+            "categoria": "NAO_CLASSIFICADO",
+            "confidence": "BAIXA",
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ],
+            "totalVenda": 1.0
+          },
+          {
+            "produtoCodigo": 1802381,
+            "nome": "Produto 1802381",
+            "categoria": "NAO_CLASSIFICADO",
+            "confidence": "BAIXA",
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ],
+            "totalVenda": 1.99
+          },
+          {
+            "produtoCodigo": 1802381,
+            "nome": "Produto 1802381",
+            "categoria": "NAO_CLASSIFICADO",
+            "confidence": "BAIXA",
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ],
+            "totalVenda": 1.99
+          },
+          {
+            "produtoCodigo": 1802381,
+            "nome": "Produto 1802381",
+            "categoria": "NAO_CLASSIFICADO",
+            "confidence": "BAIXA",
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ],
+            "totalVenda": 1.99
+          },
+          {
+            "produtoCodigo": 1802207,
+            "nome": "Produto 1802207",
+            "categoria": "NAO_CLASSIFICADO",
+            "confidence": "BAIXA",
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ],
+            "totalVenda": 3.99
+          },
+          {
+            "produtoCodigo": 1257884,
+            "nome": "GASOLINA COMUM.",
+            "categoria": "COMBUSTIVEL",
+            "confidence": "ALTA",
+            "evidence": [
+              "PRODUTO.combustivel=true"
+            ],
+            "totalVenda": 10.0
+          },
+          {
+            "produtoCodigo": 1727011,
+            "nome": "Produto 1727011",
+            "categoria": "NAO_CLASSIFICADO",
+            "confidence": "BAIXA",
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ],
+            "totalVenda": 10.5
+          },
+          {
+            "produtoCodigo": 1975728,
+            "nome": "",
+            "categoria": "COMBUSTIVEL",
+            "confidence": "ALTA",
+            "evidence": [
+              "FUEL_CATALOG"
+            ],
+            "totalVenda": 100.0
+          },
+          {
+            "produtoCodigo": 1975728,
+            "nome": "",
+            "categoria": "COMBUSTIVEL",
+            "confidence": "ALTA",
+            "evidence": [
+              "FUEL_CATALOG"
+            ],
+            "totalVenda": 50.0
+          },
+          {
+            "produtoCodigo": 2189991,
+            "nome": "Produto 2189991",
+            "categoria": "NAO_CLASSIFICADO",
+            "confidence": "BAIXA",
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ],
+            "totalVenda": 7.0
+          },
+          {
+            "produtoCodigo": 1802831,
+            "nome": "Produto 1802831",
+            "categoria": "NAO_CLASSIFICADO",
+            "confidence": "BAIXA",
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ],
+            "totalVenda": 6.0
+          },
+          {
+            "produtoCodigo": 1802200,
+            "nome": "Produto 1802200",
+            "categoria": "NAO_CLASSIFICADO",
+            "confidence": "BAIXA",
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ],
+            "totalVenda": 1.99
+          }
+        ],
+        "semCategoriasPresumidas": true,
+        "lineage": [
+          {
+            "origem": "IA-2",
+            "fonte": "classificacao_evidenciada",
+            "api": "/INTEGRACAO/PRODUTO",
+            "webPostoLive": false
+          }
+        ]
+      },
+      "productCoverageAudit": {
+        "registrosProduto": 200,
+        "registrosVendaItem": 200,
+        "registrosNfce": 200,
+        "vendasComNfce": 142,
+        "vendasSemNfce": 0,
+        "nfceCoveragePct": 100.0,
+        "produtosDistintosVendaItem": 76,
+        "lineage": [
+          {
+            "origem": "IA-3",
+            "fonte": "PRODUTO+VENDA_ITEM+NFCE",
+            "api": "/INTEGRACAO/NFCE",
+            "webPostoLive": false
+          }
+        ]
+      },
+      "missingProductDetection": {
+        "itensSemClassificacao": 129,
+        "produtosDistintosSemClassificacao": 72,
+        "itensBaixaConfianca": 0,
+        "amostraSemClassificacao": [
+          {
+            "produtoCodigo": 1841747,
+            "vendaItemCodigo": 746134989,
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1803670,
+            "vendaItemCodigo": 746134990,
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1803593,
+            "vendaItemCodigo": 746135074,
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1801812,
+            "vendaItemCodigo": 746135075,
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1802688,
+            "vendaItemCodigo": 746135104,
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1803533,
+            "vendaItemCodigo": 746135416,
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1803621,
+            "vendaItemCodigo": 746135417,
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1803621,
+            "vendaItemCodigo": 746135418,
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ]
+          },
+          {
+            "produtoCodigo": 2387407,
+            "vendaItemCodigo": 746135419,
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1802381,
+            "vendaItemCodigo": 746135421,
+            "evidence": [
+              "produto ausente no cadastro PRODUTO"
+            ]
+          }
+        ],
+        "amostraBaixaConfianca": [],
+        "lineage": [
+          {
+            "origem": "IA-4",
+            "fonte": "missing_classification",
+            "api": "/INTEGRACAO/VENDA_ITEM",
+            "webPostoLive": false
+          }
+        ]
+      },
+      "revenueCoverageAudit": {
+        "receitaNaoCombustivelLive": 1104.01,
+        "receitaCombustivelLive": 2936.68,
+        "receitaTotalLive": 4040.69,
+        "receitaNaoCombustivelF070": 462.84,
+        "gapReceita": 641.17,
+        "gapPct": 58.08,
+        "itensNaoCombustivelLive": 129,
+        "produtosDistintosNaoCombustivelLive": 72,
+        "representaTodaVendaNaoCombustivel": false,
+        "veredito": "PARCIAL_SUBESTIMADO",
+        "nota": "R$ 462,84 reflete modelo F07.0 (116 itens × 1 produto evidenciado), não necessariamente 100% das vendas não combustível da rede.",
+        "lineage": [
+          {
+            "origem": "IA-5",
+            "fonte": "f07_0_non_fuel_product_sales.json",
+            "api": "/INTEGRACAO/VENDA_ITEM",
+            "webPostoLive": false
+          }
+        ]
+      },
+      "storeSalesDiscovery": {
+        "existeConveniencia": false,
+        "existeLoja": false,
+        "existeLubrificante": false,
+        "existeServico": false,
+        "existeAcessorio": false,
+        "itensConveniencia": 0,
+        "itensLoja": 0,
+        "itensLubrificantes": 0,
+        "itensServicos": 0,
+        "receitaLoja": 0,
+        "receitaConveniencia": 0,
+        "lineage": [
+          {
+            "origem": "IA-6",
+            "fonte": "category_discovery",
+            "api": "/INTEGRACAO/VENDA_ITEM",
+            "webPostoLive": false
+          }
+        ]
+      },
+      "executiveChallenge": {
+        "pergunta": "Temos 1 produto não combustível ou apenas fração do catálogo?",
+        "respostaExecutiva": "F07.0 modela 1 produto(s) NF; live evidencia 72 distintos.",
+        "veredito": "F07.0 SUBESTIMA DIVERSIDADE",
+        "produtosNaoCombustivelF070": 1,
+        "produtosDistintosNaoCombustivelLive": 72,
+        "produtosNoCadastro": 200,
+        "fracaoCatalogoVendidoPct": 36.0,
+        "paginacaoTruncada": false,
+        "lineage": [
+          {
+            "origem": "IA-7",
+            "fonte": "executive_challenge",
+            "api": "f07_0_non_fuel_product_sales.json",
+            "webPostoLive": false
+          }
+        ]
+      },
+      "dwCoverage": {
+        "tabelasAlvo": [
+          "dim_product_department",
+          "dim_product_category",
+          "fact_non_fuel_sales",
+          "fact_product_department_sales",
+          "fact_product_ranking"
+        ],
+        "coberturaCadastroPct": 3.95,
+        "produtosNuncaVendidos": 197,
+        "categoriasComEvidencia": [
+          "COMBUSTIVEL",
+          "NAO_CLASSIFICADO"
+        ],
+        "lacunaDw": "Catálogo completo exige paginação PRODUTO/PRODUTO_REDE além da amostra 200",
+        "lineage": [
+          {
+            "origem": "IA-8",
+            "fonte": "dw/ddl/fact_non_fuel_product_sales.sql",
+            "api": "DW",
+            "webPostoLive": false
+          }
+        ]
+      },
+      "qa": {
+        "semClassificacaoInventada": true,
+        "semCategoriasPresumidas": true,
+        "tudoBaseadoEvidencia": true,
+        "produtosSemClassificacao": 72,
+        "itensBaixaConfianca": 0,
+        "motorAuditavel": true
+      },
+      "parecerFinal": "[PARECER FINAL: COBERTURA PARCIAL CONFIRMADA — F07.0 REFLETE AMOSTRA, NÃO CATÁLOGO COMPLETO]"
+    }
+  },
+  "executiveAnswers": {
+    "1_produtosNoCadastro": 200,
+    "2_produtosEmVendaItem": 76,
+    "3_produtosNuncaVendidos": 197,
+    "4_receitaNaoCombustivelLive": 1104.01,
+    "5_receitaNaoCombustivelF070": 462.84,
+    "6_gapReceita": 641.17,
+    "7_representaTodaVendaNaoCombustivel": false,
+    "8_produtosDistintosNaoCombustivelLive": 72,
+    "9_produtosNaoCombustivelF070": 1,
+    "10_existeLoja": false,
+    "11_existeConveniencia": false,
+    "12_existeLubrificante": false,
+    "13_existeServico": false,
+    "14_vereditoReceita": "PARCIAL_SUBESTIMADO",
+    "15_vereditoExecutivo": "F07.0 SUBESTIMA DIVERSIDADE",
+    "16_coberturaCadastroPct": 3.95,
+    "17_paginacaoTruncada": false
+  },
+  "parecerFinal": "[PARECER FINAL: COBERTURA PARCIAL CONFIRMADA — F07.0 REFLETE AMOSTRA, NÃO CATÁLOGO COMPLETO]"
+}

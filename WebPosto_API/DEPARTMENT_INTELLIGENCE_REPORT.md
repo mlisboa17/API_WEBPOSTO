@@ -1,0 +1,6 @@
+# IA-4 — Department Intelligence
+
+- **PRODUTOS_DE_LOJA**: R$ 1104.01 · 129 itens
+
+Top: **PRODUTOS_DE_LOJA**
+Sem venda: **['LUBRIFICANTES', 'FILTROS', 'ADITIVOS', 'ACESSORIOS', 'SERVICOS', 'OUTROS', 'NAO_CLASSIFICADO']**

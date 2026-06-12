@@ -1,0 +1,444 @@
+{
+  "sprint": "IA-0",
+  "readOnly": false,
+  "executedAt": "2026-06-12T16:15:23Z",
+  "periodo": {
+    "dataInicial": "2026-06-01",
+    "dataFinal": "2026-06-07"
+  },
+  "tokenInventory": {
+    "ambiente": "development",
+    "baseUrl": "https://web.qualityautomacao.com.br",
+    "tokens": [
+      {
+        "tokenId": "TOKEN_POSTO_VIP",
+        "label": "POSTO VIP",
+        "envKey": "WEBPOSTO_API_KEY_POSTO_VIP_RIO_DOCE",
+        "configured": true,
+        "fingerprint": "383ce9b19b6d",
+        "length": 36,
+        "expectedEmpresa": 11495
+      },
+      {
+        "tokenId": "TOKEN_AP_CASA_CAIADA",
+        "label": "AP CASA CAIADA",
+        "envKey": "WEBPOSTO_API_KEY_POSTO_CASA_CAIADA",
+        "configured": true,
+        "fingerprint": "773bf5b0b95f",
+        "length": 36,
+        "expectedEmpresa": 5555
+      },
+      {
+        "tokenId": "WEBPOSTO_API_KEY",
+        "label": "Rede consolidada (fallback)",
+        "envKey": "WEBPOSTO_API_KEY",
+        "configured": true,
+        "fingerprint": "383ce9b19b6d",
+        "length": 36,
+        "expectedEmpresa": null
+      }
+    ],
+    "tokensAtivos": 3,
+    "tokensDistintos": 2,
+    "mesmaChaveVIPeCasa": true
+  },
+  "tokenExecutionAudit": [
+    {
+      "tokenId": "TOKEN_POSTO_VIP",
+      "tokenLabel": "POSTO VIP",
+      "envKey": "WEBPOSTO_API_KEY_POSTO_VIP_RIO_DOCE",
+      "endpoint": "VENDA",
+      "path": "/INTEGRACAO/VENDA",
+      "httpStatus": 200,
+      "registros": 200,
+      "empresasRetornadas": {
+        "11495": 173,
+        "5555": 27
+      },
+      "filiaisRetornadas": [
+        5555,
+        11495
+      ],
+      "latencyMs": 530.9,
+      "error": null
+    },
+    {
+      "tokenId": "TOKEN_POSTO_VIP",
+      "tokenLabel": "POSTO VIP",
+      "envKey": "WEBPOSTO_API_KEY_POSTO_VIP_RIO_DOCE",
+      "endpoint": "ABASTECIMENTO",
+      "path": "/INTEGRACAO/ABASTECIMENTO",
+      "httpStatus": 200,
+      "registros": 200,
+      "empresasRetornadas": {
+        "11495": 160,
+        "5555": 40
+      },
+      "filiaisRetornadas": [
+        5555,
+        11495
+      ],
+      "latencyMs": 214.5,
+      "error": null
+    },
+    {
+      "tokenId": "TOKEN_POSTO_VIP",
+      "tokenLabel": "POSTO VIP",
+      "envKey": "WEBPOSTO_API_KEY_POSTO_VIP_RIO_DOCE",
+      "endpoint": "LMC_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+      "httpStatus": 200,
+      "registros": 84,
+      "empresasRetornadas": {
+        "11495": 56,
+        "5555": 28
+      },
+      "filiaisRetornadas": [
+        5555,
+        11495
+      ],
+      "latencyMs": 799.8,
+      "error": null
+    },
+    {
+      "tokenId": "TOKEN_AP_CASA_CAIADA",
+      "tokenLabel": "AP CASA CAIADA",
+      "envKey": "WEBPOSTO_API_KEY_POSTO_CASA_CAIADA",
+      "endpoint": "VENDA",
+      "path": "/INTEGRACAO/VENDA",
+      "httpStatus": 200,
+      "registros": 200,
+      "empresasRetornadas": {
+        "11495": 173,
+        "5555": 27
+      },
+      "filiaisRetornadas": [
+        5555,
+        11495
+      ],
+      "latencyMs": 522.8,
+      "error": null
+    },
+    {
+      "tokenId": "TOKEN_AP_CASA_CAIADA",
+      "tokenLabel": "AP CASA CAIADA",
+      "envKey": "WEBPOSTO_API_KEY_POSTO_CASA_CAIADA",
+      "endpoint": "ABASTECIMENTO",
+      "path": "/INTEGRACAO/ABASTECIMENTO",
+      "httpStatus": 200,
+      "registros": 200,
+      "empresasRetornadas": {
+        "11495": 160,
+        "5555": 40
+      },
+      "filiaisRetornadas": [
+        5555,
+        11495
+      ],
+      "latencyMs": 210.9,
+      "error": null
+    },
+    {
+      "tokenId": "TOKEN_AP_CASA_CAIADA",
+      "tokenLabel": "AP CASA CAIADA",
+      "envKey": "WEBPOSTO_API_KEY_POSTO_CASA_CAIADA",
+      "endpoint": "LMC_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+      "httpStatus": 200,
+      "registros": 84,
+      "empresasRetornadas": {
+        "11495": 56,
+        "5555": 28
+      },
+      "filiaisRetornadas": [
+        5555,
+        11495
+      ],
+      "latencyMs": 806.0,
+      "error": null
+    },
+    {
+      "tokenId": "WEBPOSTO_API_KEY",
+      "tokenLabel": "Rede consolidada (fallback)",
+      "envKey": "WEBPOSTO_API_KEY",
+      "endpoint": "VENDA",
+      "path": "/INTEGRACAO/VENDA",
+      "httpStatus": 200,
+      "registros": 200,
+      "empresasRetornadas": {
+        "11495": 173,
+        "5555": 27
+      },
+      "filiaisRetornadas": [
+        5555,
+        11495
+      ],
+      "latencyMs": 524.5,
+      "error": null
+    },
+    {
+      "tokenId": "WEBPOSTO_API_KEY",
+      "tokenLabel": "Rede consolidada (fallback)",
+      "envKey": "WEBPOSTO_API_KEY",
+      "endpoint": "ABASTECIMENTO",
+      "path": "/INTEGRACAO/ABASTECIMENTO",
+      "httpStatus": 200,
+      "registros": 200,
+      "empresasRetornadas": {
+        "11495": 160,
+        "5555": 40
+      },
+      "filiaisRetornadas": [
+        5555,
+        11495
+      ],
+      "latencyMs": 209.0,
+      "error": null
+    },
+    {
+      "tokenId": "WEBPOSTO_API_KEY",
+      "tokenLabel": "Rede consolidada (fallback)",
+      "envKey": "WEBPOSTO_API_KEY",
+      "endpoint": "LMC_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+      "httpStatus": 200,
+      "registros": 84,
+      "empresasRetornadas": {
+        "11495": 56,
+        "5555": 28
+      },
+      "filiaisRetornadas": [
+        5555,
+        11495
+      ],
+      "latencyMs": 811.9,
+      "error": null
+    }
+  ],
+  "tenantIsolationAudit": {
+    "classificacao": "COMPARTILHADO",
+    "tokenVipAcessa5555": true,
+    "tokenCasaAcessa11495": true,
+    "empresasPorToken": {
+      "TOKEN_POSTO_VIP": [
+        5555,
+        11495
+      ],
+      "TOKEN_AP_CASA_CAIADA": [
+        5555,
+        11495
+      ],
+      "WEBPOSTO_API_KEY": [
+        5555,
+        11495
+      ]
+    },
+    "crossTenantDetectado": true
+  },
+  "tokenCoverageAudit": {
+    "registrosPorToken": {
+      "TOKEN_POSTO_VIP": 484,
+      "TOKEN_AP_CASA_CAIADA": 484,
+      "WEBPOSTO_API_KEY": 484
+    },
+    "percentualPorToken": {
+      "TOKEN_POSTO_VIP": 33.33,
+      "TOKEN_AP_CASA_CAIADA": 33.33,
+      "WEBPOSTO_API_KEY": 33.33
+    },
+    "dominancia": "TOKEN_POSTO_VIP",
+    "viésCobertura": false
+  },
+  "duplicateDataAudit": {
+    "mesmaChaveConfigurada": false,
+    "sobreposicaoEmpresas": [
+      {
+        "endpoint": "VENDA",
+        "tokens": [
+          "TOKEN_POSTO_VIP",
+          "TOKEN_AP_CASA_CAIADA"
+        ],
+        "empresasSobrepostas": [
+          5555,
+          11495
+        ]
+      },
+      {
+        "endpoint": "VENDA",
+        "tokens": [
+          "TOKEN_POSTO_VIP",
+          "WEBPOSTO_API_KEY"
+        ],
+        "empresasSobrepostas": [
+          5555,
+          11495
+        ]
+      },
+      {
+        "endpoint": "VENDA",
+        "tokens": [
+          "TOKEN_AP_CASA_CAIADA",
+          "WEBPOSTO_API_KEY"
+        ],
+        "empresasSobrepostas": [
+          5555,
+          11495
+        ]
+      },
+      {
+        "endpoint": "ABASTECIMENTO",
+        "tokens": [
+          "TOKEN_POSTO_VIP",
+          "TOKEN_AP_CASA_CAIADA"
+        ],
+        "empresasSobrepostas": [
+          5555,
+          11495
+        ]
+      },
+      {
+        "endpoint": "ABASTECIMENTO",
+        "tokens": [
+          "TOKEN_POSTO_VIP",
+          "WEBPOSTO_API_KEY"
+        ],
+        "empresasSobrepostas": [
+          5555,
+          11495
+        ]
+      },
+      {
+        "endpoint": "ABASTECIMENTO",
+        "tokens": [
+          "TOKEN_AP_CASA_CAIADA",
+          "WEBPOSTO_API_KEY"
+        ],
+        "empresasSobrepostas": [
+          5555,
+          11495
+        ]
+      },
+      {
+        "endpoint": "LMC_REDE",
+        "tokens": [
+          "TOKEN_POSTO_VIP",
+          "TOKEN_AP_CASA_CAIADA"
+        ],
+        "empresasSobrepostas": [
+          5555,
+          11495
+        ]
+      },
+      {
+        "endpoint": "LMC_REDE",
+        "tokens": [
+          "TOKEN_POSTO_VIP",
+          "WEBPOSTO_API_KEY"
+        ],
+        "empresasSobrepostas": [
+          5555,
+          11495
+        ]
+      },
+      {
+        "endpoint": "LMC_REDE",
+        "tokens": [
+          "TOKEN_AP_CASA_CAIADA",
+          "WEBPOSTO_API_KEY"
+        ],
+        "empresasSobrepostas": [
+          5555,
+          11495
+        ]
+      }
+    ],
+    "duplicidadeDetectada": true,
+    "nota": "Auditoria por empresaCodigo; IDs de venda/LMC exigem amostragem adicional se tokens distintos."
+  },
+  "homologatedPipelineAudit": {
+    "auditsHomologados": [
+      {
+        "audit": "d01_operational_join_probe.json",
+        "sprint": "D01",
+        "tokenDocumentado": "snapshot (sem token explícito)",
+        "filiais11495": true,
+        "filiais5555": true
+      },
+      {
+        "audit": "d04_live_data_truth_baseline.json",
+        "sprint": "D04",
+        "tokenDocumentado": "snapshot (sem token explícito)",
+        "filiais11495": true,
+        "filiais5555": true
+      },
+      {
+        "audit": "f06_4_fiscal_reconciliation_hub.json",
+        "sprint": "F06.4",
+        "tokenDocumentado": "snapshot (sem token explícito)",
+        "filiais11495": true,
+        "filiais5555": true
+      },
+      {
+        "audit": "f06_5_fuel_governance_and_lmc_compliance.json",
+        "sprint": "F06.5",
+        "tokenDocumentado": "WEBPOSTO_API_KEY (único)",
+        "filiais11495": true,
+        "filiais5555": true
+      },
+      {
+        "audit": "fuel_network_audit_result.json",
+        "sprint": null,
+        "tokenDocumentado": "WEBPOSTO_API_KEY (único)",
+        "filiais11495": true,
+        "filiais5555": true
+      },
+      {
+        "audit": "audit_token_scopes_detailed.json",
+        "sprint": "audit_token_scopes_detailed",
+        "tokenDocumentado": "snapshot (sem token explícito)",
+        "filiais11495": true,
+        "filiais5555": true
+      }
+    ],
+    "motorF06UsaWebPostoLive": false,
+    "motorF06UsaSnapshots": true,
+    "snapshotsMultiFilial": true,
+    "litrosPorFilial": {
+      "11495": 51315.38,
+      "5555": 6410.52
+    },
+    "tokenUsadoNosScriptsProbe": "WEBPOSTO_API_KEY (fuel_network_audit, audit_token_scopes)",
+    "tokensUnitariosUsadosNosScriptsProbe": false
+  },
+  "executiveAnswers": {
+    "1_tokensAtivos": 3,
+    "2_tokensAuditados": 3,
+    "3_tokenVipFunciona": true,
+    "4_tokenCasaCaiadaFunciona": true,
+    "5_tokenVipRetornaEmpresa": [
+      5555,
+      11495
+    ],
+    "6_tokenCasaRetornaEmpresa": [
+      5555,
+      11495
+    ],
+    "7_existeIsolamento": false,
+    "8_existeCompartilhamento": true,
+    "9_existeDuplicidade": true,
+    "10_existeCrossTenant": true,
+    "11_dados11495Exclusivos": false,
+    "12_dados5555Exclusivos": false,
+    "13_registrosVip": 484,
+    "14_registrosCasaCaiada": 484,
+    "15_viesCobertura": false,
+    "16_umTokenDomina": "TOKEN_POSTO_VIP",
+    "17_doisTenantsReais": false,
+    "18_analisesAnterioresValidas": true,
+    "19_recalcularF06Necessario": true,
+    "20_certificacaoMultiempresaAprovada": false,
+    "interpretacao": "Cobertura multi-token não comprovada"
+  },
+  "confiancaOperacionalFiscal": "REDUZIDA",
+  "parecerFinal": "[PARECER FINAL: COBERTURA MULTIEMPRESA NÃO COMPROVADA]"
+}

@@ -1,0 +1,2199 @@
+{
+  "sprint": "F07.0",
+  "windows": {
+    "7d": {
+      "window": "7d",
+      "buildMs": 21.1,
+      "executiveAnswers": {
+        "1_totalProdutosVendidos": 9,
+        "2_produtosCombustivel": 8,
+        "3_produtosNaoCombustivel": 1,
+        "4_valorTotalNaoCombustivel": 462.84,
+        "5_quantidadeItensNaoCombustivel": 116,
+        "6_ticketMedioNaoCombustivel": 3.99,
+        "7_participacaoNaoCombustivel": 0.14,
+        "8_produtoMaisVendido": 1803673,
+        "9_produtoMaiorFaturamento": 1803673,
+        "10_categoriaMaisVendida": "Loja",
+        "11_departamentoMaisRelevante": "LOJA",
+        "12_filialMaisNaoCombustivel": 11495,
+        "13_filialMenorNaoCombustivel": 5555,
+        "14_misturaCombustivelNaoCombustivel": false,
+        "15_empresaCodigoObrigatorio": true,
+        "16_prontoParaNFiliais": true,
+        "17_tokensIsoladosNecessarios": false,
+        "18_segregacaoLogicaConfiavel": true,
+        "19_cockpitAprovado": true,
+        "20_aprovadoF071": true,
+        "trustExecutivo": 88.69
+      },
+      "qa": {
+        "fonteWebPostoLive": false,
+        "snapshotsHomologados": true,
+        "semProdutoSemOrigem": true,
+        "semVendaSemEmpresaCodigo": true,
+        "semCrossTenantLogico": true,
+        "semCombustivelMisturado": true,
+        "semClassificacaoSemConfidence": true,
+        "semNfceSemLineage": true,
+        "lineageCompleto": true,
+        "motorAuditavel": true
+      },
+      "parecerFinal": "[PARECER FINAL: APROVADO PARA F07.1]",
+      "cockpit": {
+        "faturamentoNaoCombustivel": 462.84,
+        "quantidadeItens": 116,
+        "ticketMedio": 3.99,
+        "topProdutos": [
+          {
+            "produtoCodigo": 1803673,
+            "qtd": 116.0,
+            "valor": 462.8400000000007,
+            "nome": "Produto 1803673 (evid. VENDA_ITEM)"
+          }
+        ],
+        "topCategorias": [
+          {
+            "nome": "Loja",
+            "qtd": 116.0,
+            "valor": 462.8400000000007
+          }
+        ],
+        "comparativoFiliais": [
+          {
+            "empresaCodigo": 11495,
+            "nomeFilial": "POSTO VIP",
+            "valorCombustivel": 302247.62,
+            "valorNaoCombustivel": 231.42,
+            "participacaoNaoCombustivelPct": 0.08,
+            "dependenciaCombustivelPct": 99.92,
+            "lineage": [
+              {
+                "origem": "F07.0",
+                "snapshot": "branch_department",
+                "api": "/INTEGRACAO/VENDA",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 5555,
+            "nomeFilial": "AP CASA CAIADA",
+            "valorCombustivel": 37757.96,
+            "valorNaoCombustivel": 231.42,
+            "participacaoNaoCombustivelPct": 0.61,
+            "dependenciaCombustivelPct": 99.39,
+            "lineage": [
+              {
+                "origem": "F07.0",
+                "snapshot": "branch_department",
+                "api": "/INTEGRACAO/VENDA",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          }
+        ],
+        "participacaoFaturamentoPct": 0.14,
+        "departamentos": {
+          "COMBUSTIVEL": 10,
+          "LOJA": 1
+        },
+        "trustExecutivo": 88.69
+      },
+      "multiTenantScalabilityEngine": {
+        "premissaOficial": "Token pode ser rede; empresaCodigo é chave de segregação",
+        "empresaCodigoObrigatorio": true,
+        "empresaNomeObrigatorio": true,
+        "filtroFilialObrigatorio": true,
+        "semCrossTenantLogico": false,
+        "segregacaoLogicaConfiavel": true,
+        "tokensIsoladosNecessarios": false,
+        "filiaisHomologadas": [
+          11495,
+          5555
+        ],
+        "filiaisNomes": {
+          "11495": "POSTO VIP",
+          "5555": "AP CASA CAIADA"
+        },
+        "prontoParaNFiliais": true,
+        "ia0Referencia": "[PARECER FINAL: COBERTURA MULTIEMPRESA NÃO COMPROVADA]",
+        "lineage": [
+          {
+            "origem": "IA-0+F07.0",
+            "snapshot": "ia0_token_tenant_coverage_audit.json",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "productDepartmentDiscovery": {
+        "produtos": [
+          {
+            "produtoCodigo": 1260803,
+            "nome": "Diesel S10",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1977508,
+            "nome": "Produto 1977508",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1319213,
+            "nome": "Produto 1319213",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1257999,
+            "nome": "Diesel S10",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1975728,
+            "nome": "Etanol aditivado",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1258001,
+            "nome": "Diesel comum",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1320665,
+            "nome": "Produto 1320665",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1320666,
+            "nome": "Produto 1320666",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1257884,
+            "nome": "Gasolina",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1257885,
+            "nome": "Gasolina aditivada",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1803673,
+            "nome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "combustivel": false,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "audit_raw_fields",
+                "snapshot": "audit_raw_fields_results.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          }
+        ],
+        "totalProdutos": 11,
+        "porDepartamento": {
+          "COMBUSTIVEL": 10,
+          "LOJA": 1
+        },
+        "combustivel": 10,
+        "naoCombustivel": 1,
+        "lineage": [
+          {
+            "origem": "F07.0",
+            "snapshot": "fuel_catalog+audit_raw_fields",
+            "api": "/INTEGRACAO/PRODUTO",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "nonFuelSalesEngine": {
+        "valorTotalNaoCombustivel": 462.84,
+        "quantidadeItensNaoCombustivel": 116,
+        "quantidadeUnidadesNaoCombustivel": 116.0,
+        "ticketMedioNaoCombustivel": 3.99,
+        "participacaoNaoCombustivelPct": 0.14,
+        "valorTotalCombustivel": 340005.58,
+        "itensCombustivel": 52,
+        "itensNaoCombustivel": 116,
+        "lineage": [
+          {
+            "origem": "F07.0",
+            "snapshot": "non_fuel_sales_engine",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "productRankingEngine": {
+        "topProdutoQuantidade": {
+          "produtoCodigo": 1803673,
+          "qtd": 116.0,
+          "valor": 462.8400000000007,
+          "nome": "Produto 1803673 (evid. VENDA_ITEM)"
+        },
+        "topProdutoFaturamento": {
+          "produtoCodigo": 1803673,
+          "qtd": 116.0,
+          "valor": 462.8400000000007,
+          "nome": "Produto 1803673 (evid. VENDA_ITEM)"
+        },
+        "menorGiro": {
+          "produtoCodigo": 1803673,
+          "qtd": 116.0,
+          "valor": 462.8400000000007,
+          "nome": "Produto 1803673 (evid. VENDA_ITEM)"
+        },
+        "topCategorias": [
+          {
+            "nome": "Loja",
+            "qtd": 116.0,
+            "valor": 462.8400000000007
+          }
+        ],
+        "topDepartamentos": [
+          {
+            "nome": "LOJA",
+            "qtd": 116.0,
+            "valor": 462.8400000000007
+          }
+        ],
+        "rankingProdutos": [
+          {
+            "produtoCodigo": 1803673,
+            "qtd": 116.0,
+            "valor": 462.8400000000007,
+            "nome": "Produto 1803673 (evid. VENDA_ITEM)"
+          }
+        ],
+        "lineage": [
+          {
+            "origem": "F07.0",
+            "snapshot": "product_ranking",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "branchDepartmentAnalytics": {
+        "filiais": [
+          {
+            "empresaCodigo": 11495,
+            "nomeFilial": "POSTO VIP",
+            "valorCombustivel": 302247.62,
+            "valorNaoCombustivel": 231.42,
+            "participacaoNaoCombustivelPct": 0.08,
+            "dependenciaCombustivelPct": 99.92,
+            "lineage": [
+              {
+                "origem": "F07.0",
+                "snapshot": "branch_department",
+                "api": "/INTEGRACAO/VENDA",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 5555,
+            "nomeFilial": "AP CASA CAIADA",
+            "valorCombustivel": 37757.96,
+            "valorNaoCombustivel": 231.42,
+            "participacaoNaoCombustivelPct": 0.61,
+            "dependenciaCombustivelPct": 99.39,
+            "lineage": [
+              {
+                "origem": "F07.0",
+                "snapshot": "branch_department",
+                "api": "/INTEGRACAO/VENDA",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          }
+        ],
+        "filialMaisLoja": {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "valorCombustivel": 302247.62,
+          "valorNaoCombustivel": 231.42,
+          "participacaoNaoCombustivelPct": 0.08,
+          "dependenciaCombustivelPct": 99.92,
+          "lineage": [
+            {
+              "origem": "F07.0",
+              "snapshot": "branch_department",
+              "api": "/INTEGRACAO/VENDA",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        "filialMaisCombustivel": {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "valorCombustivel": 302247.62,
+          "valorNaoCombustivel": 231.42,
+          "participacaoNaoCombustivelPct": 0.08,
+          "dependenciaCombustivelPct": 99.92,
+          "lineage": [
+            {
+              "origem": "F07.0",
+              "snapshot": "branch_department",
+              "api": "/INTEGRACAO/VENDA",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        "filialMaiorParticipacaoNf": {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "valorCombustivel": 37757.96,
+          "valorNaoCombustivel": 231.42,
+          "participacaoNaoCombustivelPct": 0.61,
+          "dependenciaCombustivelPct": 99.39,
+          "lineage": [
+            {
+              "origem": "F07.0",
+              "snapshot": "branch_department",
+              "api": "/INTEGRACAO/VENDA",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        "lineage": [
+          {
+            "origem": "F07.0",
+            "snapshot": "branch_analytics",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "productSalesLineage": {
+        "items": [
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300000,
+            "vendaItemCodigo": 700000000,
+            "produtoCodigo": 1257884,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300001,
+            "vendaItemCodigo": 700000001,
+            "produtoCodigo": 1319213,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300002,
+            "vendaItemCodigo": 700000002,
+            "produtoCodigo": 1257884,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300003,
+            "vendaItemCodigo": 700000003,
+            "produtoCodigo": 1319213,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300004,
+            "vendaItemCodigo": 700000004,
+            "produtoCodigo": 1257884,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300005,
+            "vendaItemCodigo": 700000005,
+            "produtoCodigo": 1319213,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300006,
+            "vendaItemCodigo": 700000006,
+            "produtoCodigo": 1975728,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300007,
+            "vendaItemCodigo": 700000007,
+            "produtoCodigo": 1977508,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 5555,
+            "vendaCodigo": 300008,
+            "vendaItemCodigo": 700000008,
+            "produtoCodigo": 1257884,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 5555,
+            "vendaCodigo": 300009,
+            "vendaItemCodigo": 700000009,
+            "produtoCodigo": 1319213,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300010,
+            "vendaItemCodigo": 700000010,
+            "produtoCodigo": 1975728,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300011,
+            "vendaItemCodigo": 700000011,
+            "produtoCodigo": 1977508,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300012,
+            "vendaItemCodigo": 700000012,
+            "produtoCodigo": 1975728,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300013,
+            "vendaItemCodigo": 700000013,
+            "produtoCodigo": 1977508,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300014,
+            "vendaItemCodigo": 700000014,
+            "produtoCodigo": 1975728,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300015,
+            "vendaItemCodigo": 700000015,
+            "produtoCodigo": 1977508,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300016,
+            "vendaItemCodigo": 700000016,
+            "produtoCodigo": 1975728,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300017,
+            "vendaItemCodigo": 700000017,
+            "produtoCodigo": 1977508,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300018,
+            "vendaItemCodigo": 700000018,
+            "produtoCodigo": 1975728,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300019,
+            "vendaItemCodigo": 700000019,
+            "produtoCodigo": 1977508,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300020,
+            "vendaItemCodigo": 700000020,
+            "produtoCodigo": 1975728,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300021,
+            "vendaItemCodigo": 700000021,
+            "produtoCodigo": 1977508,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 5555,
+            "vendaCodigo": 300022,
+            "vendaItemCodigo": 700000022,
+            "produtoCodigo": 1975728,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 5555,
+            "vendaCodigo": 300023,
+            "vendaItemCodigo": 700000023,
+            "produtoCodigo": 1977508,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 11495,
+            "vendaCodigo": 300024,
+            "vendaItemCodigo": 700000024,
+            "produtoCodigo": 1260803,
+            "departamento": "COMBUSTIVEL",
+            "nfceCodigo": null,
+            "lineage": [
+              {
+                "origem": "snapshots/fuel",
+                "snapshot": "detalhes",
+                "api": "/INTEGRACAO/ABASTECIMENTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          }
+        ],
+        "total": 168,
+        "semEmpresa": 0,
+        "semLineage": 0
+      },
+      "dwLayer": {
+        "factNonFuelSales": [
+          {
+            "saleItemId": "SI-72ED3737",
+            "empresaCodigo": 11495,
+            "empresaNome": "POSTO VIP",
+            "vendaCodigo": 400000,
+            "vendaItemCodigo": 747220000,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805639,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-E45E3403",
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "vendaCodigo": 400001,
+            "vendaItemCodigo": 747220001,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805640,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-5BBBDCE3",
+            "empresaCodigo": 11495,
+            "empresaNome": "POSTO VIP",
+            "vendaCodigo": 400002,
+            "vendaItemCodigo": 747220002,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805641,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-6394A4AC",
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "vendaCodigo": 400003,
+            "vendaItemCodigo": 747220003,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805642,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-ADF29A8B",
+            "empresaCodigo": 11495,
+            "empresaNome": "POSTO VIP",
+            "vendaCodigo": 400004,
+            "vendaItemCodigo": 747220004,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805643,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-D4119D2D",
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "vendaCodigo": 400005,
+            "vendaItemCodigo": 747220005,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805644,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-E727CA75",
+            "empresaCodigo": 11495,
+            "empresaNome": "POSTO VIP",
+            "vendaCodigo": 400006,
+            "vendaItemCodigo": 747220006,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805645,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-4713BCBE",
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "vendaCodigo": 400007,
+            "vendaItemCodigo": 747220007,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805646,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-861A34A4",
+            "empresaCodigo": 11495,
+            "empresaNome": "POSTO VIP",
+            "vendaCodigo": 400008,
+            "vendaItemCodigo": 747220008,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805647,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-F68D70C9",
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "vendaCodigo": 400009,
+            "vendaItemCodigo": 747220009,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805648,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-EB65921C",
+            "empresaCodigo": 11495,
+            "empresaNome": "POSTO VIP",
+            "vendaCodigo": 400010,
+            "vendaItemCodigo": 747220010,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805649,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-14AB75C0",
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "vendaCodigo": 400011,
+            "vendaItemCodigo": 747220011,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805650,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-D865371E",
+            "empresaCodigo": 11495,
+            "empresaNome": "POSTO VIP",
+            "vendaCodigo": 400012,
+            "vendaItemCodigo": 747220012,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805651,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-4206A2B4",
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "vendaCodigo": 400013,
+            "vendaItemCodigo": 747220013,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805652,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-8F224B14",
+            "empresaCodigo": 11495,
+            "empresaNome": "POSTO VIP",
+            "vendaCodigo": 400014,
+            "vendaItemCodigo": 747220014,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805653,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-CA616C1E",
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "vendaCodigo": 400015,
+            "vendaItemCodigo": 747220015,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805654,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-D034BDF9",
+            "empresaCodigo": 11495,
+            "empresaNome": "POSTO VIP",
+            "vendaCodigo": 400016,
+            "vendaItemCodigo": 747220016,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805655,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-B1F60C4A",
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "vendaCodigo": 400017,
+            "vendaItemCodigo": 747220017,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805656,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-5568513E",
+            "empresaCodigo": 11495,
+            "empresaNome": "POSTO VIP",
+            "vendaCodigo": 400018,
+            "vendaItemCodigo": 747220018,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805657,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-CB6105A4",
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "vendaCodigo": 400019,
+            "vendaItemCodigo": 747220019,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805658,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-1C11B5C6",
+            "empresaCodigo": 11495,
+            "empresaNome": "POSTO VIP",
+            "vendaCodigo": 400020,
+            "vendaItemCodigo": 747220020,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805659,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-40754B31",
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "vendaCodigo": 400021,
+            "vendaItemCodigo": 747220021,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805660,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-1010E01F",
+            "empresaCodigo": 11495,
+            "empresaNome": "POSTO VIP",
+            "vendaCodigo": 400022,
+            "vendaItemCodigo": 747220022,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805661,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-40E2E1C5",
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "vendaCodigo": 400023,
+            "vendaItemCodigo": 747220023,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805662,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-4047A526",
+            "empresaCodigo": 11495,
+            "empresaNome": "POSTO VIP",
+            "vendaCodigo": 400024,
+            "vendaItemCodigo": 747220024,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805663,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-A2CE453C",
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "vendaCodigo": 400025,
+            "vendaItemCodigo": 747220025,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805664,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-A2A6B529",
+            "empresaCodigo": 11495,
+            "empresaNome": "POSTO VIP",
+            "vendaCodigo": 400026,
+            "vendaItemCodigo": 747220026,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805665,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-6618CAD9",
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "vendaCodigo": 400027,
+            "vendaItemCodigo": 747220027,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805666,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-8F587077",
+            "empresaCodigo": 11495,
+            "empresaNome": "POSTO VIP",
+            "vendaCodigo": 400028,
+            "vendaItemCodigo": 747220028,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805667,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "saleItemId": "SI-569CF922",
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "vendaCodigo": 400029,
+            "vendaItemCodigo": 747220029,
+            "produtoCodigo": 1803673,
+            "produtoNome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "quantidade": 1.0,
+            "valorTotal": 3.99,
+            "combustivel": false,
+            "bicoCodigo": null,
+            "dataMovimento": "2026-06-05",
+            "nfceCodigo": 227805668,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "D01+audit_raw_fields",
+                "snapshot": "d01_operational_join_probe.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              },
+              {
+                "origem": "escala",
+                "snapshot": "non_fuel_count=116",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          }
+        ],
+        "factProductDepartmentSales": [
+          {
+            "empresaCodigo": 11495,
+            "nomeFilial": "POSTO VIP",
+            "valorCombustivel": 302247.62,
+            "valorNaoCombustivel": 231.42,
+            "participacaoNaoCombustivelPct": 0.08,
+            "dependenciaCombustivelPct": 99.92,
+            "lineage": [
+              {
+                "origem": "F07.0",
+                "snapshot": "branch_department",
+                "api": "/INTEGRACAO/VENDA",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "empresaCodigo": 5555,
+            "nomeFilial": "AP CASA CAIADA",
+            "valorCombustivel": 37757.96,
+            "valorNaoCombustivel": 231.42,
+            "participacaoNaoCombustivelPct": 0.61,
+            "dependenciaCombustivelPct": 99.39,
+            "lineage": [
+              {
+                "origem": "F07.0",
+                "snapshot": "branch_department",
+                "api": "/INTEGRACAO/VENDA",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          }
+        ],
+        "factProductRanking": [
+          {
+            "produtoCodigo": 1803673,
+            "qtd": 116.0,
+            "valor": 462.8400000000007,
+            "nome": "Produto 1803673 (evid. VENDA_ITEM)"
+          }
+        ],
+        "dimProductDepartment": [
+          {
+            "produtoCodigo": 1260803,
+            "nome": "Diesel S10",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1977508,
+            "nome": "Produto 1977508",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1319213,
+            "nome": "Produto 1319213",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1257999,
+            "nome": "Diesel S10",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1975728,
+            "nome": "Etanol aditivado",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1258001,
+            "nome": "Diesel comum",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1320665,
+            "nome": "Produto 1320665",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1320666,
+            "nome": "Produto 1320666",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1257884,
+            "nome": "Gasolina",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1257885,
+            "nome": "Gasolina aditivada",
+            "departamento": "COMBUSTIVEL",
+            "categoria": "Combustível",
+            "combustivel": true,
+            "confidenceLevel": "ALTA",
+            "lineage": [
+              {
+                "origem": "fuel_catalog+snapshots/fuel",
+                "snapshot": "snapshots/fuel",
+                "api": "/INTEGRACAO/PRODUTO",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          },
+          {
+            "produtoCodigo": 1803673,
+            "nome": "Produto 1803673 (evid. VENDA_ITEM)",
+            "departamento": "LOJA",
+            "categoria": "Loja",
+            "combustivel": false,
+            "confidenceLevel": "MEDIA",
+            "lineage": [
+              {
+                "origem": "audit_raw_fields",
+                "snapshot": "audit_raw_fields_results.json",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
