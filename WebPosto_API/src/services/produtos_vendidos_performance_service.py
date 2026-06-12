@@ -15,6 +15,10 @@ F07_3_BASELINE_PV = 1104.01
 class ProdutosVendidosPerformanceService(ProductMasterOptimizationService):
     """F07.4 — gestão comercial: performance, margem e oportunidades."""
 
+    def __init__(self) -> None:
+        super().__init__()
+        self._commercial_pv: list[dict[str, Any]] = []
+
     def _ensure_vi_cost_fields(self, vi_rows: list[dict[str, Any]], live_ok: bool) -> list[dict[str, Any]]:
         if live_ok:
             return vi_rows
@@ -347,6 +351,7 @@ class ProdutosVendidosPerformanceService(ProductMasterOptimizationService):
         enriched = self._apply_margin_fields(raw_items, vi_rows) if raw_items else []
 
         pv = [i for i in enriched if not i.get("combustivel")]
+        self._commercial_pv = pv
         kpi = data.get("produtosVendidosKpiEngine") or {}
         if not kpi and enriched:
             kpi = self._sales._produtos_vendidos_kpi_engine(enriched)

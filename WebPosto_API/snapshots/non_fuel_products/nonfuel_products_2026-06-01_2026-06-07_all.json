@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-06-12T21:42:36.991036",
+  "lastUpdated": "2026-06-12T21:54:01.653861",
   "data": {
-    "sprint": "F07.4",
+    "sprint": "F07.5",
     "periodo": {
       "dataInicial": "2026-06-01",
       "dataFinal": "2026-06-07"
     },
     "empresaCodigoFiltro": null,
-    "elapsedMs": 28670.7,
+    "elapsedMs": 52314.7,
     "fonte": {
       "webPostoLive": true,
       "modo": "webposto_live",
@@ -67,7 +67,7 @@
         "targetedLookups": 0,
         "errors": 0,
         "timeouts": 0,
-        "tempoTotalLookupSec": 0.0,
+        "tempoTotalLookupSec": 0.01,
         "fuelCatalogRecovered": 0,
         "cacheRecovered": 71
       },
@@ -1169,7 +1169,7 @@
           "pages": 1,
           "count": 200,
           "error": null,
-          "elapsedSec": 2.26
+          "elapsedSec": 5.04
         },
         "11495": {
           "key": "produto_empresa",
@@ -1177,7 +1177,7 @@
           "pages": 1,
           "count": 200,
           "error": null,
-          "elapsedSec": 2.27
+          "elapsedSec": 6.4
         }
       },
       "produtoRedeMeta": {
@@ -1196,7 +1196,7 @@
         "duplicatasRemovidas": 0,
         "semPerdaPorPagina": true,
         "error": null,
-        "elapsedSec": 17.47
+        "elapsedSec": 22.47
       },
       "vendaItem": {
         "key": "venda_item",
@@ -1208,7 +1208,7 @@
         "duplicatasRemovidas": 0,
         "semPerdaPorPagina": true,
         "error": null,
-        "elapsedSec": 1.86
+        "elapsedSec": 6.08
       },
       "nfce": {
         "key": "nfce",
@@ -1220,7 +1220,7 @@
         "duplicatasRemovidas": 0,
         "semPerdaPorPagina": true,
         "error": null,
-        "elapsedSec": 2.05
+        "elapsedSec": 6.48
       }
     },
     "productCatalogCompleteness": {
@@ -2574,6 +2574,377 @@
           "descricao": "Desenvolver mix Produtos Vendidos na filial 5555",
           "empresaCodigo": 5555
         }
+      ],
+      "subtitulo": "Decisão comercial · sortimento e oportunidade",
+      "topMargem": [
+        {
+          "produtoCodigo": 2008579,
+          "nome": "Produto 2008579",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.99,
+          "margemBruta": 2.93,
+          "margemPct": 73.43,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1940573,
+          "nome": "Produto 1940573",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 11.99,
+          "margemBruta": 6.46,
+          "margemPct": 53.88,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1803364,
+          "nome": "Produto 1803364",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.5,
+          "margemBruta": 1.86,
+          "margemPct": 53.14,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1802654,
+          "nome": "Produto 1802654",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 4.49,
+          "margemBruta": 2.38,
+          "margemPct": 53.01,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1802532,
+          "nome": "Produto 1802532",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.5,
+          "margemBruta": 1.85,
+          "margemPct": 52.86,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        }
+      ],
+      "alertasBaixaMargem": [
+        {
+          "produtoCodigo": 1841747,
+          "nome": "Produto 1841747",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 17.0,
+          "receita": 148.75,
+          "margemBruta": 25.16,
+          "margemPct": 16.91,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+          "gapMargemPct": 14.88
+        },
+        {
+          "produtoCodigo": 1803530,
+          "nome": "Produto 1803530",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 4.0,
+          "receita": 35.0,
+          "margemBruta": 5.92,
+          "margemPct": 16.91,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+          "gapMargemPct": 14.88
+        },
+        {
+          "produtoCodigo": 1727011,
+          "nome": "Produto 1727011",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 21.0,
+          "margemBruta": 3.18,
+          "margemPct": 15.14,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+          "gapMargemPct": 16.65
+        },
+        {
+          "produtoCodigo": 1803533,
+          "nome": "Produto 1803533",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 17.5,
+          "margemBruta": 2.96,
+          "margemPct": 16.91,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+          "gapMargemPct": 14.88
+        },
+        {
+          "produtoCodigo": 1862860,
+          "nome": "Produto 1862860",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 17.5,
+          "margemBruta": 2.96,
+          "margemPct": 16.91,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+          "gapMargemPct": 14.88
+        }
+      ],
+      "potencialExpansao": [
+        {
+          "produtoCodigo": 2008579,
+          "nome": "Produto 2008579",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.99,
+          "margemBruta": 2.93,
+          "margemPct": 73.43,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "potencialExpansaoScore": 36.75,
+          "coberturaFiliaisPct": 50.0,
+          "recomendacao": "Expandir para 1 filiais"
+        },
+        {
+          "produtoCodigo": 1940573,
+          "nome": "Produto 1940573",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 11.99,
+          "margemBruta": 6.46,
+          "margemPct": 53.88,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "potencialExpansaoScore": 27.06,
+          "coberturaFiliaisPct": 50.0,
+          "recomendacao": "Expandir para 1 filiais"
+        },
+        {
+          "produtoCodigo": 1803364,
+          "nome": "Produto 1803364",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.5,
+          "margemBruta": 1.86,
+          "margemPct": 53.14,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "potencialExpansaoScore": 26.61,
+          "coberturaFiliaisPct": 50.0,
+          "recomendacao": "Expandir para 1 filiais"
+        },
+        {
+          "produtoCodigo": 1802031,
+          "nome": "Produto 1802031",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 3.0,
+          "receita": 20.98,
+          "margemBruta": 11.08,
+          "margemPct": 52.81,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "potencialExpansaoScore": 26.61,
+          "coberturaFiliaisPct": 50.0,
+          "recomendacao": "Expandir para 1 filiais"
+        },
+        {
+          "produtoCodigo": 1802654,
+          "nome": "Produto 1802654",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 4.49,
+          "margemBruta": 2.38,
+          "margemPct": 53.01,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "potencialExpansaoScore": 26.55,
+          "coberturaFiliaisPct": 50.0,
+          "recomendacao": "Expandir para 1 filiais"
+        }
+      ],
+      "filiaisAbaixoBenchmark": [
+        {
+          "empresaCodigo": 5555,
+          "empresaNome": "AP CASA CAIADA",
+          "filial": "AP CASA CAIADA",
+          "mixCombustivelPct": 100.0,
+          "mixProdutosVendidosPct": 0.0,
+          "mixLubrificantesPct": 0.0,
+          "mixServicosPct": 0.0,
+          "mixAcessoriosPct": 0.0,
+          "mixOutrosDepartamentos": {},
+          "dependenciaCombustivelPct": 100.0,
+          "mixSaudavelScore": 0.0,
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "branch_product_mix",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "benchmarkMixPvPct": 17.17,
+          "gapBenchmarkPct": 17.17,
+          "status": "ABAIXO_BENCHMARK"
+        }
+      ],
+      "produtosFocoComercial": [
+        {
+          "produtoCodigo": 1803364,
+          "nome": "Produto 1803364",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.5,
+          "margemBruta": 1.86,
+          "margemPct": 53.14,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 65.0,
+          "acoesRecomendadas": [
+            "PROTEGER_MARGEM",
+            "EXPANDIR_SORTIMENTO"
+          ]
+        },
+        {
+          "produtoCodigo": 2008579,
+          "nome": "Produto 2008579",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.99,
+          "margemBruta": 2.93,
+          "margemPct": 73.43,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 65.0,
+          "acoesRecomendadas": [
+            "PROTEGER_MARGEM",
+            "EXPANDIR_SORTIMENTO"
+          ]
+        },
+        {
+          "produtoCodigo": 1940573,
+          "nome": "Produto 1940573",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 11.99,
+          "margemBruta": 6.46,
+          "margemPct": 53.88,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 65.0,
+          "acoesRecomendadas": [
+            "PROTEGER_MARGEM",
+            "EXPANDIR_SORTIMENTO"
+          ]
+        },
+        {
+          "produtoCodigo": 1802654,
+          "nome": "Produto 1802654",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 4.49,
+          "margemBruta": 2.38,
+          "margemPct": 53.01,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 65.0,
+          "acoesRecomendadas": [
+            "PROTEGER_MARGEM",
+            "EXPANDIR_SORTIMENTO"
+          ]
+        },
+        {
+          "produtoCodigo": 1802532,
+          "nome": "Produto 1802532",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.5,
+          "margemBruta": 1.85,
+          "margemPct": 52.86,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 65.0,
+          "acoesRecomendadas": [
+            "PROTEGER_MARGEM",
+            "EXPANDIR_SORTIMENTO"
+          ]
+        }
+      ],
+      "dependenciaCombustivel": [
+        {
+          "empresaCodigo": 5555,
+          "empresaNome": "AP CASA CAIADA",
+          "filial": "AP CASA CAIADA",
+          "mixCombustivelPct": 100.0,
+          "mixProdutosVendidosPct": 0.0,
+          "mixLubrificantesPct": 0.0,
+          "mixServicosPct": 0.0,
+          "mixAcessoriosPct": 0.0,
+          "mixOutrosDepartamentos": {},
+          "dependenciaCombustivelPct": 100.0,
+          "mixSaudavelScore": 0.0,
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "branch_product_mix",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
+        }
       ]
     },
     "executiveAnswers": {
@@ -2639,7 +3010,23 @@
       "16_cockpitComercialAprovado": true,
       "17_gestaoComercialConfiavel": true,
       "18_margemComEvidenciaVendaItem": true,
-      "20_aprovadoF075": true
+      "20_aprovadoF075": true,
+      "1_produtoMaiorMargemPct": 2008579,
+      "2_margemPctLider": 73.43,
+      "3_produtosAltoVolumeBaixaMargem": 9,
+      "4_produtoAlertaMargemTop": 1841747,
+      "5_produtosPotencialExpansao": 54,
+      "6_produtoExpansaoTop": 2008579,
+      "7_filiaisAbaixoBenchmarkMix": 1,
+      "8_benchmarkMixProdutosVendidosPct": 17.17,
+      "9_produtosFocoComercial": 31,
+      "10_produtoFocoPrioritario": 1803364,
+      "11_filiaisDependenciaCombustivel": 1,
+      "12_dependenciaRedeExcessiva": false,
+      "16_cockpitDecisaoAprovado": true,
+      "17_assortmentConfiavel": true,
+      "18_motorDecisaoComercial": true,
+      "20_aprovadoF076": true
     },
     "qa": {
       "semProdutoInventado": true,
@@ -2659,9 +3046,12 @@
       "residualSkuResolvidoOuIsolado": true,
       "performanceAprovada": true,
       "cacheImplementado": true,
-      "margemComEvidenciaVendaItem": true
+      "margemComEvidenciaVendaItem": true,
+      "assortmentComLineage": true,
+      "focoComercialQuantificado": true,
+      "motorDecisaoComercial": true
     },
-    "parecerFinal": "[PARECER FINAL: APROVADO PARA F07.5]",
+    "parecerFinal": "[PARECER FINAL: APROVADO PARA F07.6]",
     "governanceRules": {
       "empresaCodigoObrigatorio": true,
       "nomenclaturaProdutosVendidos": true,
@@ -6193,15 +6583,15 @@
         }
       ],
       "dimProductDepartment": [
-        "FILTROS",
         "LUBRIFICANTES",
         "PRODUTOS_DE_LOJA",
-        "COMBUSTIVEL",
-        "ADITIVOS"
+        "FILTROS",
+        "ADITIVOS",
+        "COMBUSTIVEL"
       ],
       "factProductSales": [
         {
-          "saleItemId": "SI-74F3224A",
+          "saleItemId": "SI-28177694",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229941,
@@ -6231,7 +6621,7 @@
           ]
         },
         {
-          "saleItemId": "SI-D8C17A30",
+          "saleItemId": "SI-DE7270F3",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229941,
@@ -6261,7 +6651,7 @@
           ]
         },
         {
-          "saleItemId": "SI-A1D902A5",
+          "saleItemId": "SI-942FAFBF",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229991,
@@ -6291,7 +6681,7 @@
           ]
         },
         {
-          "saleItemId": "SI-24894C02",
+          "saleItemId": "SI-958C1B06",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229991,
@@ -6321,7 +6711,7 @@
           ]
         },
         {
-          "saleItemId": "SI-D31A3563",
+          "saleItemId": "SI-49B98D1B",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230009,
@@ -6351,7 +6741,7 @@
           ]
         },
         {
-          "saleItemId": "SI-4AD88BB4",
+          "saleItemId": "SI-239D175A",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -6381,7 +6771,7 @@
           ]
         },
         {
-          "saleItemId": "SI-CF47888D",
+          "saleItemId": "SI-91C3548C",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -6411,7 +6801,7 @@
           ]
         },
         {
-          "saleItemId": "SI-1E557C4D",
+          "saleItemId": "SI-3B2036E0",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -6441,7 +6831,7 @@
           ]
         },
         {
-          "saleItemId": "SI-ACFDFE13",
+          "saleItemId": "SI-5D5F932A",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -6471,7 +6861,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E1D55E00",
+          "saleItemId": "SI-FBABB3D6",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -6501,7 +6891,7 @@
           ]
         },
         {
-          "saleItemId": "SI-1BED3A58",
+          "saleItemId": "SI-7F0C003A",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -6531,7 +6921,7 @@
           ]
         },
         {
-          "saleItemId": "SI-34C0BF0D",
+          "saleItemId": "SI-7F3B929D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -6561,7 +6951,7 @@
           ]
         },
         {
-          "saleItemId": "SI-18F5AA95",
+          "saleItemId": "SI-664B93A1",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -6591,7 +6981,7 @@
           ]
         },
         {
-          "saleItemId": "SI-69F31723",
+          "saleItemId": "SI-4A0DF41F",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230276,
@@ -6621,7 +7011,7 @@
           ]
         },
         {
-          "saleItemId": "SI-2A8B72F7",
+          "saleItemId": "SI-595EFC69",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230425,
@@ -6651,7 +7041,7 @@
           ]
         },
         {
-          "saleItemId": "SI-D105FD19",
+          "saleItemId": "SI-6A9EA6C8",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230425,
@@ -6681,7 +7071,7 @@
           ]
         },
         {
-          "saleItemId": "SI-7E10A039",
+          "saleItemId": "SI-1C24AE0E",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230425,
@@ -6711,7 +7101,7 @@
           ]
         },
         {
-          "saleItemId": "SI-6E25F5F8",
+          "saleItemId": "SI-7268FDA9",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230435,
@@ -6741,7 +7131,7 @@
           ]
         },
         {
-          "saleItemId": "SI-0649D7E2",
+          "saleItemId": "SI-54886AA6",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230494,
@@ -6771,7 +7161,7 @@
           ]
         },
         {
-          "saleItemId": "SI-4F63C37B",
+          "saleItemId": "SI-4ADC681B",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230494,
@@ -6801,7 +7191,7 @@
           ]
         },
         {
-          "saleItemId": "SI-30F5517E",
+          "saleItemId": "SI-914F9997",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230494,
@@ -6831,7 +7221,7 @@
           ]
         },
         {
-          "saleItemId": "SI-663602D3",
+          "saleItemId": "SI-BC46D51B",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230570,
@@ -6861,7 +7251,7 @@
           ]
         },
         {
-          "saleItemId": "SI-CC1D45FF",
+          "saleItemId": "SI-DC28C75D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230570,
@@ -6891,7 +7281,7 @@
           ]
         },
         {
-          "saleItemId": "SI-0572D514",
+          "saleItemId": "SI-CA3EDDE9",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230586,
@@ -6921,7 +7311,7 @@
           ]
         },
         {
-          "saleItemId": "SI-BB14C0A0",
+          "saleItemId": "SI-788B4BE9",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230586,
@@ -6951,7 +7341,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E32482E7",
+          "saleItemId": "SI-5E66BCB4",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230600,
@@ -6981,7 +7371,7 @@
           ]
         },
         {
-          "saleItemId": "SI-D4C92FE7",
+          "saleItemId": "SI-728CDB3C",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230600,
@@ -7011,7 +7401,7 @@
           ]
         },
         {
-          "saleItemId": "SI-26217F9D",
+          "saleItemId": "SI-72912FEC",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -7041,7 +7431,7 @@
           ]
         },
         {
-          "saleItemId": "SI-DB59C18C",
+          "saleItemId": "SI-93F3BBE0",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -7071,7 +7461,7 @@
           ]
         },
         {
-          "saleItemId": "SI-4D7CBCBD",
+          "saleItemId": "SI-1F1C4830",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -7101,7 +7491,7 @@
           ]
         },
         {
-          "saleItemId": "SI-707FD471",
+          "saleItemId": "SI-CE218AFE",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -7131,7 +7521,7 @@
           ]
         },
         {
-          "saleItemId": "SI-793577EC",
+          "saleItemId": "SI-D793E1F1",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230641,
@@ -7161,7 +7551,7 @@
           ]
         },
         {
-          "saleItemId": "SI-C592BD34",
+          "saleItemId": "SI-BDEE7FAC",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230685,
@@ -7191,7 +7581,7 @@
           ]
         },
         {
-          "saleItemId": "SI-B95AFD33",
+          "saleItemId": "SI-AD60DAF0",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230685,
@@ -7221,7 +7611,7 @@
           ]
         },
         {
-          "saleItemId": "SI-04B24D82",
+          "saleItemId": "SI-F743CDA0",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230685,
@@ -7251,7 +7641,7 @@
           ]
         },
         {
-          "saleItemId": "SI-BA6724EA",
+          "saleItemId": "SI-A1EEA37C",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230772,
@@ -7281,7 +7671,7 @@
           ]
         },
         {
-          "saleItemId": "SI-35D2E8AE",
+          "saleItemId": "SI-8DA22601",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230772,
@@ -7311,7 +7701,7 @@
           ]
         },
         {
-          "saleItemId": "SI-8ED51448",
+          "saleItemId": "SI-78A6B450",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230827,
@@ -7341,7 +7731,7 @@
           ]
         },
         {
-          "saleItemId": "SI-9EE5817F",
+          "saleItemId": "SI-1A90A6B1",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230865,
@@ -7371,7 +7761,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E1D79FDB",
+          "saleItemId": "SI-B80DA66A",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230865,
@@ -7401,7 +7791,7 @@
           ]
         },
         {
-          "saleItemId": "SI-AF50395D",
+          "saleItemId": "SI-D7342BEF",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230865,
@@ -7431,7 +7821,7 @@
           ]
         },
         {
-          "saleItemId": "SI-87C289F1",
+          "saleItemId": "SI-D8B62448",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230970,
@@ -7461,7 +7851,7 @@
           ]
         },
         {
-          "saleItemId": "SI-6CD4B705",
+          "saleItemId": "SI-47B060E8",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230970,
@@ -7491,7 +7881,7 @@
           ]
         },
         {
-          "saleItemId": "SI-94474964",
+          "saleItemId": "SI-B6DE82FC",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230980,
@@ -7521,7 +7911,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E11A11F9",
+          "saleItemId": "SI-710713C9",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231010,
@@ -7551,7 +7941,7 @@
           ]
         },
         {
-          "saleItemId": "SI-6B6EE7CF",
+          "saleItemId": "SI-137FAB49",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231042,
@@ -7581,7 +7971,7 @@
           ]
         },
         {
-          "saleItemId": "SI-A5214611",
+          "saleItemId": "SI-B45AD352",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231042,
@@ -7611,7 +8001,7 @@
           ]
         },
         {
-          "saleItemId": "SI-219CDD4E",
+          "saleItemId": "SI-ED4DB079",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231050,
@@ -7641,7 +8031,7 @@
           ]
         },
         {
-          "saleItemId": "SI-70DF0F79",
+          "saleItemId": "SI-8E57024B",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231050,
@@ -7671,7 +8061,7 @@
           ]
         },
         {
-          "saleItemId": "SI-8DA25844",
+          "saleItemId": "SI-0C3768F5",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231068,
@@ -7842,7 +8232,7 @@
           "nomeProduto": "Produto 1801810",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.896045+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885297+00:00",
           "confidence": "MEDIA",
           "evidence": null
         },
@@ -7852,7 +8242,7 @@
           "nomeProduto": "COXINHA DE FRANGO CHIC",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.895604+00:00",
+          "lastSeen": "2026-06-12T21:53:47.884873+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7865,7 +8255,7 @@
           "nomeProduto": "REFRIGERANTE FANTA UVA LATA 350ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.896486+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885841+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7878,7 +8268,7 @@
           "nomeProduto": "FREEGELLS MELÃO",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.896172+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885530+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7891,7 +8281,7 @@
           "nomeProduto": "PITU LATÃO 473ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.893282+00:00",
+          "lastSeen": "2026-06-12T21:53:47.884517+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7904,7 +8294,7 @@
           "nomeProduto": "PAÇOQUERO GG (PAÇOCAO) 50G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.892541+00:00",
+          "lastSeen": "2026-06-12T21:53:47.879985+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7917,7 +8307,7 @@
           "nomeProduto": "FINI TUBES MORANGO NATA AZEDINHO 80G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.895818+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885072+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7930,7 +8320,7 @@
           "nomeProduto": "CHEETOS LUA 34 G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.896151+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885468+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7943,7 +8333,7 @@
           "nomeProduto": "FREEGELLS CEREJA",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.896467+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885821+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7956,7 +8346,7 @@
           "nomeProduto": "REFRIGERANTE SUKITA LARANJA LT 350ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.896279+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885627+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7969,7 +8359,7 @@
           "nomeProduto": "BISCOITO TRELOSO MORANGO 120G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.893434+00:00",
+          "lastSeen": "2026-06-12T21:53:47.884710+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7982,7 +8372,7 @@
           "nomeProduto": "MENTOS MINT 37,5G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.896088+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885397+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -7995,7 +8385,7 @@
           "nomeProduto": "PIPPOS ANIME CEBOLA E SALSA 60G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.896130+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885446+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8008,7 +8398,7 @@
           "nomeProduto": "SKINKA LARANJA",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.893325+00:00",
+          "lastSeen": "2026-06-12T21:53:47.884584+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8021,7 +8411,7 @@
           "nomeProduto": "BISCOITO PASSATEMPO  RECH 130G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.893392+00:00",
+          "lastSeen": "2026-06-12T21:53:47.884660+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8034,7 +8424,7 @@
           "nomeProduto": "BISCOITO BONO MORANGO 90G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.893372+00:00",
+          "lastSeen": "2026-06-12T21:53:47.884635+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8047,7 +8437,7 @@
           "nomeProduto": "LUCKY STRIKE FRESH DOUBLE ICE",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.896109+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885417+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8060,7 +8450,7 @@
           "nomeProduto": "REFRIGERANTE PEPSI COLA 200ML PET",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.895996+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885253+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8073,7 +8463,7 @@
           "nomeProduto": "REFRIGERANTE COCA ZERO 1L",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.892422+00:00",
+          "lastSeen": "2026-06-12T21:53:47.879887+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8086,7 +8476,7 @@
           "nomeProduto": "AGUA MINERAL CRYSTAL 1,5L",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.895969+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885226+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8099,7 +8489,7 @@
           "nomeProduto": "REFRIGERANTE GUARANA ANTARTICA 200ML PET",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.893482+00:00",
+          "lastSeen": "2026-06-12T21:53:47.884754+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8112,7 +8502,7 @@
           "nomeProduto": "MARLBORO GOLD SELECTION BOX",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.892495+00:00",
+          "lastSeen": "2026-06-12T21:53:47.879941+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8125,7 +8515,7 @@
           "nomeProduto": "REFRIGERANTE PEPSI TWISTER 2L",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.895840+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885094+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8138,7 +8528,7 @@
           "nomeProduto": "PITU LATA 350 ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.893179+00:00",
+          "lastSeen": "2026-06-12T21:53:47.884444+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8151,7 +8541,7 @@
           "nomeProduto": "BISC RECH TRELOSO 120G CHOC",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.896341+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885688+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8164,7 +8554,7 @@
           "nomeProduto": "CERVEJA BUDWEISER LONG 330ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.895543+00:00",
+          "lastSeen": "2026-06-12T21:53:47.884853+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8177,7 +8567,7 @@
           "nomeProduto": "BEM CASADO DOCES LABANCA/ BAKERY",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.896398+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885761+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8190,7 +8580,7 @@
           "nomeProduto": "CERVEJA DEVASSA 473.",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.895636+00:00",
+          "lastSeen": "2026-06-12T21:53:47.884895+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8203,7 +8593,7 @@
           "nomeProduto": "ICE LEAO PESSEGO 300ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.896255+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885605+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8216,7 +8606,7 @@
           "nomeProduto": "DUNHILL RED (CARLTON)",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.895685+00:00",
+          "lastSeen": "2026-06-12T21:53:47.884958+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8229,7 +8619,7 @@
           "nomeProduto": "ROTHMANS BLUE KS",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.896447+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885801+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8242,7 +8632,7 @@
           "nomeProduto": "ENERGETICO MONSTER 473 ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.895744+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885002+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8255,7 +8645,7 @@
           "nomeProduto": "REFRIGERANTE COCA 350ML LT",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.895881+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885136+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8268,7 +8658,7 @@
           "nomeProduto": "REFRIGERANTE COCA COLA 2L.",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.895861+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885115+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8281,7 +8671,7 @@
           "nomeProduto": "SANDUICHE NATURAL LEVE FRANCO\\RICOTA",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.895795+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885049+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8294,7 +8684,7 @@
           "nomeProduto": "CERVEJA HEINEKEN 600ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.896426+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885781+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8307,7 +8697,7 @@
           "nomeProduto": "ROTHMANS GLOBAL RED",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.892519+00:00",
+          "lastSeen": "2026-06-12T21:53:47.879963+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8320,7 +8710,7 @@
           "nomeProduto": "REFRIGERANTE COCA COLA 1L",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.892621+00:00",
+          "lastSeen": "2026-06-12T21:53:47.884350+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8333,7 +8723,7 @@
           "nomeProduto": "CERVEJA SCHIN LATÃO",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.895708+00:00",
+          "lastSeen": "2026-06-12T21:53:47.884981+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8346,7 +8736,7 @@
           "nomeProduto": "MARLBORO RED SELECTION BOX",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.892196+00:00",
+          "lastSeen": "2026-06-12T21:53:47.879639+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8359,7 +8749,7 @@
           "nomeProduto": "VINHO CARRETEIRO 900ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.896200+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885561+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8372,7 +8762,7 @@
           "nomeProduto": "ROTHMANS RED BOX",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.892393+00:00",
+          "lastSeen": "2026-06-12T21:53:47.879858+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8385,7 +8775,7 @@
           "nomeProduto": "REFRIGERANTE SODA 350ML LT",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.892644+00:00",
+          "lastSeen": "2026-06-12T21:53:47.884414+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8398,7 +8788,7 @@
           "nomeProduto": "Produto 1803587",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.895767+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885023+00:00",
           "confidence": "MEDIA",
           "evidence": null
         },
@@ -8408,7 +8798,7 @@
           "nomeProduto": "Produto 1803673",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.893254+00:00",
+          "lastSeen": "2026-06-12T21:53:47.884493+00:00",
           "confidence": "MEDIA",
           "evidence": null
         },
@@ -8418,7 +8808,7 @@
           "nomeProduto": "LUCKY STRIKE PATTERSON RED BOX",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.892469+00:00",
+          "lastSeen": "2026-06-12T21:53:47.879917+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8431,7 +8821,7 @@
           "nomeProduto": "CERVEJA BRAHMA CHOPP 473ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.896360+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885714+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8444,7 +8834,7 @@
           "nomeProduto": "ENROLADINHO CHIC",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.893558+00:00",
+          "lastSeen": "2026-06-12T21:53:47.884830+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8457,7 +8847,7 @@
           "nomeProduto": "PASTEL DE FRANGO (CASA DO SALGADO)",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.895662+00:00",
+          "lastSeen": "2026-06-12T21:53:47.884934+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8470,7 +8860,7 @@
           "nomeProduto": "PIRULITO POP OREO",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-12T21:42:19.896019+00:00",
+          "lastSeen": "2026-06-12T21:53:47.885276+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -8592,7 +8982,7 @@
       ],
       "factProductSalesWithMargin": [
         {
-          "saleItemId": "SI-57E954B0",
+          "saleItemId": "SI-E3BB36AF",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229941,
@@ -8634,7 +9024,7 @@
           ]
         },
         {
-          "saleItemId": "SI-65790E63",
+          "saleItemId": "SI-E542B9C4",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229941,
@@ -8676,7 +9066,7 @@
           ]
         },
         {
-          "saleItemId": "SI-AA1413E3",
+          "saleItemId": "SI-462AA8C1",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229991,
@@ -8718,7 +9108,7 @@
           ]
         },
         {
-          "saleItemId": "SI-CC4FC156",
+          "saleItemId": "SI-557A44BB",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355229991,
@@ -8760,7 +9150,7 @@
           ]
         },
         {
-          "saleItemId": "SI-94B26CB7",
+          "saleItemId": "SI-5288BAAE",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230009,
@@ -8802,7 +9192,7 @@
           ]
         },
         {
-          "saleItemId": "SI-C7DB7E2B",
+          "saleItemId": "SI-BFF03CE3",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -8844,7 +9234,7 @@
           ]
         },
         {
-          "saleItemId": "SI-78E95DC2",
+          "saleItemId": "SI-7197C1F2",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -8886,7 +9276,7 @@
           ]
         },
         {
-          "saleItemId": "SI-721D87D6",
+          "saleItemId": "SI-F49E3765",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -8928,7 +9318,7 @@
           ]
         },
         {
-          "saleItemId": "SI-DD913674",
+          "saleItemId": "SI-983A2F73",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230229,
@@ -8970,7 +9360,7 @@
           ]
         },
         {
-          "saleItemId": "SI-231E4618",
+          "saleItemId": "SI-7BFC4080",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -9012,7 +9402,7 @@
           ]
         },
         {
-          "saleItemId": "SI-545986E4",
+          "saleItemId": "SI-699A797B",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -9054,7 +9444,7 @@
           ]
         },
         {
-          "saleItemId": "SI-C19DE350",
+          "saleItemId": "SI-8D23EB1E",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -9096,7 +9486,7 @@
           ]
         },
         {
-          "saleItemId": "SI-D03ED32E",
+          "saleItemId": "SI-67FB574B",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230231,
@@ -9138,7 +9528,7 @@
           ]
         },
         {
-          "saleItemId": "SI-848C766A",
+          "saleItemId": "SI-3F6E7BB7",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230276,
@@ -9180,7 +9570,7 @@
           ]
         },
         {
-          "saleItemId": "SI-57508FD4",
+          "saleItemId": "SI-FF06A79C",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230425,
@@ -9222,7 +9612,7 @@
           ]
         },
         {
-          "saleItemId": "SI-17A662D5",
+          "saleItemId": "SI-97111472",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230425,
@@ -9264,7 +9654,7 @@
           ]
         },
         {
-          "saleItemId": "SI-B6B32FC8",
+          "saleItemId": "SI-C73C09AD",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230425,
@@ -9306,7 +9696,7 @@
           ]
         },
         {
-          "saleItemId": "SI-6182B04E",
+          "saleItemId": "SI-D975B1C0",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230435,
@@ -9348,7 +9738,7 @@
           ]
         },
         {
-          "saleItemId": "SI-A4C510C7",
+          "saleItemId": "SI-C73B81D8",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230494,
@@ -9390,7 +9780,7 @@
           ]
         },
         {
-          "saleItemId": "SI-632F8913",
+          "saleItemId": "SI-79783F04",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230494,
@@ -9432,7 +9822,7 @@
           ]
         },
         {
-          "saleItemId": "SI-F20EF15E",
+          "saleItemId": "SI-EC3BA179",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230494,
@@ -9474,7 +9864,7 @@
           ]
         },
         {
-          "saleItemId": "SI-76F23FDC",
+          "saleItemId": "SI-17A13D9F",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230570,
@@ -9516,7 +9906,7 @@
           ]
         },
         {
-          "saleItemId": "SI-8DB80044",
+          "saleItemId": "SI-FBECFA96",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230570,
@@ -9558,7 +9948,7 @@
           ]
         },
         {
-          "saleItemId": "SI-AE4A1FCD",
+          "saleItemId": "SI-DBDA8CEA",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230586,
@@ -9600,7 +9990,7 @@
           ]
         },
         {
-          "saleItemId": "SI-6BCCCB77",
+          "saleItemId": "SI-06FEBDE4",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230586,
@@ -9642,7 +10032,7 @@
           ]
         },
         {
-          "saleItemId": "SI-77933C2B",
+          "saleItemId": "SI-72F7026A",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230600,
@@ -9684,7 +10074,7 @@
           ]
         },
         {
-          "saleItemId": "SI-ED964BF8",
+          "saleItemId": "SI-B838E0F1",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230600,
@@ -9726,7 +10116,7 @@
           ]
         },
         {
-          "saleItemId": "SI-EF3A9C60",
+          "saleItemId": "SI-4212CFC7",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -9768,7 +10158,7 @@
           ]
         },
         {
-          "saleItemId": "SI-D11CD1AD",
+          "saleItemId": "SI-6CC48DEB",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -9810,7 +10200,7 @@
           ]
         },
         {
-          "saleItemId": "SI-C3D66882",
+          "saleItemId": "SI-052D33E0",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -9852,7 +10242,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E7EA5ED7",
+          "saleItemId": "SI-0D443B7E",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230640,
@@ -9894,7 +10284,7 @@
           ]
         },
         {
-          "saleItemId": "SI-78E45D10",
+          "saleItemId": "SI-7328AFB7",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230641,
@@ -9936,7 +10326,7 @@
           ]
         },
         {
-          "saleItemId": "SI-5277D222",
+          "saleItemId": "SI-2117C61B",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230685,
@@ -9978,7 +10368,7 @@
           ]
         },
         {
-          "saleItemId": "SI-226E92C9",
+          "saleItemId": "SI-15E9F822",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230685,
@@ -10020,7 +10410,7 @@
           ]
         },
         {
-          "saleItemId": "SI-FFABAB15",
+          "saleItemId": "SI-2C4DB601",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230685,
@@ -10062,7 +10452,7 @@
           ]
         },
         {
-          "saleItemId": "SI-46C9E63F",
+          "saleItemId": "SI-AAB31C65",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230772,
@@ -10104,7 +10494,7 @@
           ]
         },
         {
-          "saleItemId": "SI-69A5DF84",
+          "saleItemId": "SI-8699B6BF",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230772,
@@ -10146,7 +10536,7 @@
           ]
         },
         {
-          "saleItemId": "SI-9207C771",
+          "saleItemId": "SI-8B545A67",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230827,
@@ -10188,7 +10578,7 @@
           ]
         },
         {
-          "saleItemId": "SI-7732C711",
+          "saleItemId": "SI-755CF739",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230865,
@@ -10230,7 +10620,7 @@
           ]
         },
         {
-          "saleItemId": "SI-CD423526",
+          "saleItemId": "SI-D04DF5DB",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230865,
@@ -10272,7 +10662,7 @@
           ]
         },
         {
-          "saleItemId": "SI-4A0EAB42",
+          "saleItemId": "SI-FD6A9850",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230865,
@@ -10314,7 +10704,7 @@
           ]
         },
         {
-          "saleItemId": "SI-2B709A89",
+          "saleItemId": "SI-8D165E9E",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230970,
@@ -10356,7 +10746,7 @@
           ]
         },
         {
-          "saleItemId": "SI-246D594F",
+          "saleItemId": "SI-5020EDD4",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230970,
@@ -10398,7 +10788,7 @@
           ]
         },
         {
-          "saleItemId": "SI-81E8C177",
+          "saleItemId": "SI-47461255",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355230980,
@@ -10440,7 +10830,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E23AAB48",
+          "saleItemId": "SI-650B2EA6",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231010,
@@ -10482,7 +10872,7 @@
           ]
         },
         {
-          "saleItemId": "SI-A668EFDB",
+          "saleItemId": "SI-17146275",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231042,
@@ -10524,7 +10914,7 @@
           ]
         },
         {
-          "saleItemId": "SI-F3379F2D",
+          "saleItemId": "SI-83AFEBDF",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231042,
@@ -10566,7 +10956,7 @@
           ]
         },
         {
-          "saleItemId": "SI-BA4DE30B",
+          "saleItemId": "SI-77D2ED15",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231050,
@@ -10608,7 +10998,7 @@
           ]
         },
         {
-          "saleItemId": "SI-6DC18DC3",
+          "saleItemId": "SI-DD09CD31",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231050,
@@ -10650,7 +11040,7 @@
           ]
         },
         {
-          "saleItemId": "SI-8A6DE777",
+          "saleItemId": "SI-970AF4FE",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 355231068,
@@ -10724,6 +11114,975 @@
           "prioridade": "ALTA",
           "descricao": "Desenvolver mix Produtos Vendidos na filial 5555",
           "empresaCodigo": 5555
+        }
+      ],
+      "factProductAssortmentRollup": [
+        {
+          "produtoCodigo": 1841747,
+          "nome": "Produto 1841747",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 17.0,
+          "receita": 148.75,
+          "margemBruta": 25.16,
+          "margemPct": 16.91,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1803670,
+          "nome": "Produto 1803670",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.99,
+          "margemBruta": 1.42,
+          "margemPct": 35.59,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1803593,
+          "nome": "Produto 1803593",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 11.98,
+          "margemBruta": 5.28,
+          "margemPct": 44.07,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1801812,
+          "nome": "Produto 1801812",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 2.99,
+          "margemBruta": 1.12,
+          "margemPct": 37.46,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1802688,
+          "nome": "Produto 1802688",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 14.99,
+          "margemBruta": 4.22,
+          "margemPct": 28.15,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1803533,
+          "nome": "Produto 1803533",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 17.5,
+          "margemBruta": 2.96,
+          "margemPct": 16.91,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1803621,
+          "nome": "Produto 1803621",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 11.0,
+          "receita": 71.5,
+          "margemBruta": 25.19,
+          "margemPct": 35.23,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 2387407,
+          "nome": "Produto 2387407",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 1.0,
+          "margemBruta": 0.32,
+          "margemPct": 32.0,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1802381,
+          "nome": "Produto 1802381",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 3.0,
+          "receita": 5.97,
+          "margemBruta": 3.09,
+          "margemPct": 51.76,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1802207,
+          "nome": "Produto 1802207",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.99,
+          "margemBruta": 1.39,
+          "margemPct": 34.84,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1727011,
+          "nome": "Produto 1727011",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 21.0,
+          "margemBruta": 3.18,
+          "margemPct": 15.14,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 2189991,
+          "nome": "Produto 2189991",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 14.0,
+          "margemBruta": 5.92,
+          "margemPct": 42.29,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1802831,
+          "nome": "Produto 1802831",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 5.0,
+          "receita": 30.0,
+          "margemBruta": 14.45,
+          "margemPct": 48.17,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1802200,
+          "nome": "Produto 1802200",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 1.99,
+          "margemBruta": 1.02,
+          "margemPct": 51.26,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 2039836,
+          "nome": "Produto 2039836",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.8,
+          "margemBruta": 1.3,
+          "margemPct": 34.21,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1822404,
+          "nome": "Produto 1822404",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 18.0,
+          "margemBruta": 6.0,
+          "margemPct": 33.33,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1887871,
+          "nome": "Produto 1887871",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 5.0,
+          "margemBruta": 2.01,
+          "margemPct": 40.2,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 2155814,
+          "nome": "Produto 2155814",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 14.98,
+          "margemBruta": 7.88,
+          "margemPct": 52.6,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 2191502,
+          "nome": "Produto 2191502",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 3.0,
+          "receita": 26.94,
+          "margemBruta": 9.45,
+          "margemPct": 35.08,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1801337,
+          "nome": "Produto 1801337",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 5.5,
+          "margemBruta": 2.17,
+          "margemPct": 39.45,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1803592,
+          "nome": "Produto 1803592",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 15.99,
+          "margemBruta": 5.22,
+          "margemPct": 32.65,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1803474,
+          "nome": "Produto 1803474",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 14.0,
+          "margemBruta": 1.81,
+          "margemPct": 12.93,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1801758,
+          "nome": "Produto 1801758",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 3.0,
+          "receita": 7.47,
+          "margemBruta": 3.36,
+          "margemPct": 44.98,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 2323122,
+          "nome": "Produto 2323122",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 7.98,
+          "margemBruta": 2.97,
+          "margemPct": 37.22,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1802397,
+          "nome": "Produto 1802397",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.99,
+          "margemBruta": 1.68,
+          "margemPct": 42.11,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 2048588,
+          "nome": "Produto 2048588",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 12.98,
+          "margemBruta": 3.98,
+          "margemPct": 30.66,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1803364,
+          "nome": "Produto 1803364",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.5,
+          "margemBruta": 1.86,
+          "margemPct": 53.14,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1803530,
+          "nome": "Produto 1803530",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 4.0,
+          "receita": 35.0,
+          "margemBruta": 5.92,
+          "margemPct": 16.91,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1803344,
+          "nome": "Produto 1803344",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 2.48,
+          "margemBruta": 0.86,
+          "margemPct": 34.68,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1802031,
+          "nome": "Produto 1802031",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 3.0,
+          "receita": 20.98,
+          "margemBruta": 11.08,
+          "margemPct": 52.81,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1803664,
+          "nome": "Produto 1803664",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 9.99,
+          "margemBruta": 3.02,
+          "margemPct": 30.23,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1920399,
+          "nome": "Produto 1920399",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 6.99,
+          "margemBruta": 2.35,
+          "margemPct": 33.62,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1803229,
+          "nome": "Produto 1803229",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 5.5,
+          "margemBruta": 2.03,
+          "margemPct": 36.91,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1802730,
+          "nome": "Produto 1802730",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 6.0,
+          "receita": 22.5,
+          "margemBruta": 7.5,
+          "margemPct": 33.33,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 2155820,
+          "nome": "Produto 2155820",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 5.99,
+          "margemBruta": 2.89,
+          "margemPct": 48.25,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1803499,
+          "nome": "Produto 1803499",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 10.5,
+          "margemBruta": 1.59,
+          "margemPct": 15.14,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 2008580,
+          "nome": "Produto 2008580",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 15.98,
+          "margemBruta": 4.26,
+          "margemPct": 26.66,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1803739,
+          "nome": "Produto 1803739",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 9.0,
+          "margemBruta": 4.75,
+          "margemPct": 52.78,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1802775,
+          "nome": "Produto 1802775",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 15.0,
+          "margemBruta": 6.04,
+          "margemPct": 40.27,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 2407138,
+          "nome": "Produto 2407138",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 8.0,
+          "margemBruta": 2.77,
+          "margemPct": 34.62,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1803402,
+          "nome": "Produto 1803402",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 9.75,
+          "margemBruta": 1.93,
+          "margemPct": 19.79,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 2008579,
+          "nome": "Produto 2008579",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.99,
+          "margemBruta": 2.93,
+          "margemPct": 73.43,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 2175768,
+          "nome": "Produto 2175768",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 2.5,
+          "margemBruta": 0.93,
+          "margemPct": 37.2,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1940573,
+          "nome": "Produto 1940573",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 11.99,
+          "margemBruta": 6.46,
+          "margemPct": 53.88,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1862860,
+          "nome": "Produto 1862860",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 17.5,
+          "margemBruta": 2.96,
+          "margemPct": 16.91,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1802182,
+          "nome": "Produto 1802182",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 8.0,
+          "margemBruta": 2.77,
+          "margemPct": 34.62,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1801804,
+          "nome": "Produto 1801804",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 2.0,
+          "margemBruta": 0.57,
+          "margemPct": 28.5,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1802530,
+          "nome": "Produto 1802530",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 10.0,
+          "margemBruta": 4.97,
+          "margemPct": 49.7,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1803520,
+          "nome": "Produto 1803520",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 19.5,
+          "margemBruta": 3.4,
+          "margemPct": 17.44,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        {
+          "produtoCodigo": 1803580,
+          "nome": "Produto 1803580",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 8.0,
+          "receita": 39.92,
+          "margemBruta": 13.77,
+          "margemPct": 34.49,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        }
+      ],
+      "factCommercialFocus": [
+        {
+          "produtoCodigo": 1803364,
+          "nome": "Produto 1803364",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.5,
+          "margemBruta": 1.86,
+          "margemPct": 53.14,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 65.0,
+          "acoesRecomendadas": [
+            "PROTEGER_MARGEM",
+            "EXPANDIR_SORTIMENTO"
+          ]
+        },
+        {
+          "produtoCodigo": 2008579,
+          "nome": "Produto 2008579",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.99,
+          "margemBruta": 2.93,
+          "margemPct": 73.43,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 65.0,
+          "acoesRecomendadas": [
+            "PROTEGER_MARGEM",
+            "EXPANDIR_SORTIMENTO"
+          ]
+        },
+        {
+          "produtoCodigo": 1940573,
+          "nome": "Produto 1940573",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 11.99,
+          "margemBruta": 6.46,
+          "margemPct": 53.88,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 65.0,
+          "acoesRecomendadas": [
+            "PROTEGER_MARGEM",
+            "EXPANDIR_SORTIMENTO"
+          ]
+        },
+        {
+          "produtoCodigo": 1802654,
+          "nome": "Produto 1802654",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 4.49,
+          "margemBruta": 2.38,
+          "margemPct": 53.01,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 65.0,
+          "acoesRecomendadas": [
+            "PROTEGER_MARGEM",
+            "EXPANDIR_SORTIMENTO"
+          ]
+        },
+        {
+          "produtoCodigo": 1802532,
+          "nome": "Produto 1802532",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.5,
+          "margemBruta": 1.85,
+          "margemPct": 52.86,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 65.0,
+          "acoesRecomendadas": [
+            "PROTEGER_MARGEM",
+            "EXPANDIR_SORTIMENTO"
+          ]
+        },
+        {
+          "produtoCodigo": 1841747,
+          "nome": "Produto 1841747",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 17.0,
+          "receita": 148.75,
+          "margemBruta": 25.16,
+          "margemPct": 16.91,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 39.88,
+          "acoesRecomendadas": [
+            "REVISAR_PRECO_OU_CUSTO",
+            "PRIORIDADE_RECEITA"
+          ]
+        },
+        {
+          "produtoCodigo": 1802831,
+          "nome": "Produto 1802831",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 5.0,
+          "receita": 30.0,
+          "margemBruta": 14.45,
+          "margemPct": 48.17,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 38.0,
+          "acoesRecomendadas": [
+            "EXPANDIR_SORTIMENTO",
+            "PRIORIDADE_RECEITA"
+          ]
+        },
+        {
+          "produtoCodigo": 1802031,
+          "nome": "Produto 1802031",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 3.0,
+          "receita": 20.98,
+          "margemBruta": 11.08,
+          "margemPct": 52.81,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 37.1,
+          "acoesRecomendadas": [
+            "EXPANDIR_SORTIMENTO",
+            "PRIORIDADE_RECEITA"
+          ]
+        },
+        {
+          "produtoCodigo": 1802381,
+          "nome": "Produto 1802381",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 3.0,
+          "receita": 5.97,
+          "margemBruta": 3.09,
+          "margemPct": 51.76,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 35.0,
+          "acoesRecomendadas": [
+            "EXPANDIR_SORTIMENTO"
+          ]
+        },
+        {
+          "produtoCodigo": 1802200,
+          "nome": "Produto 1802200",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 1.99,
+          "margemBruta": 1.02,
+          "margemPct": 51.26,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 35.0,
+          "acoesRecomendadas": [
+            "EXPANDIR_SORTIMENTO"
+          ]
+        },
+        {
+          "produtoCodigo": 2155814,
+          "nome": "Produto 2155814",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 14.98,
+          "margemBruta": 7.88,
+          "margemPct": 52.6,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 35.0,
+          "acoesRecomendadas": [
+            "EXPANDIR_SORTIMENTO"
+          ]
+        },
+        {
+          "produtoCodigo": 2155820,
+          "nome": "Produto 2155820",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 5.99,
+          "margemBruta": 2.89,
+          "margemPct": 48.25,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 35.0,
+          "acoesRecomendadas": [
+            "EXPANDIR_SORTIMENTO"
+          ]
+        },
+        {
+          "produtoCodigo": 1803739,
+          "nome": "Produto 1803739",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 9.0,
+          "margemBruta": 4.75,
+          "margemPct": 52.78,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 35.0,
+          "acoesRecomendadas": [
+            "EXPANDIR_SORTIMENTO"
+          ]
+        },
+        {
+          "produtoCodigo": 1802530,
+          "nome": "Produto 1802530",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 2.0,
+          "receita": 10.0,
+          "margemBruta": 4.97,
+          "margemPct": 49.7,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 35.0,
+          "acoesRecomendadas": [
+            "EXPANDIR_SORTIMENTO"
+          ]
+        },
+        {
+          "produtoCodigo": 1801810,
+          "nome": "Produto 1801810",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 2.5,
+          "margemBruta": 1.18,
+          "margemPct": 47.2,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1,
+          "focoComercialScore": 35.0,
+          "acoesRecomendadas": [
+            "EXPANDIR_SORTIMENTO"
+          ]
+        }
+      ],
+      "factBranchBenchmarkGap": [
+        {
+          "empresaCodigo": 5555,
+          "empresaNome": "AP CASA CAIADA",
+          "filial": "AP CASA CAIADA",
+          "mixCombustivelPct": 100.0,
+          "mixProdutosVendidosPct": 0.0,
+          "mixLubrificantesPct": 0.0,
+          "mixServicosPct": 0.0,
+          "mixAcessoriosPct": 0.0,
+          "mixOutrosDepartamentos": {},
+          "dependenciaCombustivelPct": 100.0,
+          "mixSaudavelScore": 0.0,
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "branch_product_mix",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "benchmarkMixPvPct": 17.17,
+          "gapBenchmarkPct": 17.17,
+          "status": "ABAIXO_BENCHMARK"
+        }
+      ],
+      "factFuelDependencyRisk": [
+        {
+          "empresaCodigo": 5555,
+          "empresaNome": "AP CASA CAIADA",
+          "filial": "AP CASA CAIADA",
+          "mixCombustivelPct": 100.0,
+          "mixProdutosVendidosPct": 0.0,
+          "mixLubrificantesPct": 0.0,
+          "mixServicosPct": 0.0,
+          "mixAcessoriosPct": 0.0,
+          "mixOutrosDepartamentos": {},
+          "dependenciaCombustivelPct": 100.0,
+          "mixSaudavelScore": 0.0,
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "branch_product_mix",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
         }
       ]
     },
@@ -11335,6 +12694,1994 @@
         {
           "origem": "F07.4",
           "snapshot": "opportunity_engine",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "productOpportunityAssortment": {
+      "marginLeaders": {
+        "topProdutoMargemPct": {
+          "produtoCodigo": 2008579,
+          "nome": "Produto 2008579",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.99,
+          "margemBruta": 2.93,
+          "margemPct": 73.43,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        "rankingMargemPct": [
+          {
+            "produtoCodigo": 2008579,
+            "nome": "Produto 2008579",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.99,
+            "margemBruta": 2.93,
+            "margemPct": 73.43,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1940573,
+            "nome": "Produto 1940573",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 11.99,
+            "margemBruta": 6.46,
+            "margemPct": 53.88,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1803364,
+            "nome": "Produto 1803364",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.5,
+            "margemBruta": 1.86,
+            "margemPct": 53.14,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1802654,
+            "nome": "Produto 1802654",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 4.49,
+            "margemBruta": 2.38,
+            "margemPct": 53.01,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1802532,
+            "nome": "Produto 1802532",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.5,
+            "margemBruta": 1.85,
+            "margemPct": 52.86,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1802031,
+            "nome": "Produto 1802031",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 3.0,
+            "receita": 20.98,
+            "margemBruta": 11.08,
+            "margemPct": 52.81,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1803739,
+            "nome": "Produto 1803739",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 9.0,
+            "margemBruta": 4.75,
+            "margemPct": 52.78,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 2155814,
+            "nome": "Produto 2155814",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 14.98,
+            "margemBruta": 7.88,
+            "margemPct": 52.6,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1802381,
+            "nome": "Produto 1802381",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 3.0,
+            "receita": 5.97,
+            "margemBruta": 3.09,
+            "margemPct": 51.76,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1802200,
+            "nome": "Produto 1802200",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 1.99,
+            "margemBruta": 1.02,
+            "margemPct": 51.26,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1802483,
+            "nome": "Produto 1802483",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 1.99,
+            "margemBruta": 1.01,
+            "margemPct": 50.75,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1802530,
+            "nome": "Produto 1802530",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 10.0,
+            "margemBruta": 4.97,
+            "margemPct": 49.7,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 2155820,
+            "nome": "Produto 2155820",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 5.99,
+            "margemBruta": 2.89,
+            "margemPct": 48.25,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1802831,
+            "nome": "Produto 1802831",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 5.0,
+            "receita": 30.0,
+            "margemBruta": 14.45,
+            "margemPct": 48.17,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1801810,
+            "nome": "Produto 1801810",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 2.5,
+            "margemBruta": 1.18,
+            "margemPct": 47.2,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          }
+        ],
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "margin_leaders",
+            "api": "/INTEGRACAO/VENDA_ITEM",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "highVolumeLowMargin": {
+        "benchmarkMargemPct": 31.79,
+        "volumeThreshold": 2.0,
+        "produtos": [
+          {
+            "produtoCodigo": 1841747,
+            "nome": "Produto 1841747",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 17.0,
+            "receita": 148.75,
+            "margemBruta": 25.16,
+            "margemPct": 16.91,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 14.88
+          },
+          {
+            "produtoCodigo": 1803530,
+            "nome": "Produto 1803530",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 4.0,
+            "receita": 35.0,
+            "margemBruta": 5.92,
+            "margemPct": 16.91,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 14.88
+          },
+          {
+            "produtoCodigo": 1727011,
+            "nome": "Produto 1727011",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 21.0,
+            "margemBruta": 3.18,
+            "margemPct": 15.14,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 16.65
+          },
+          {
+            "produtoCodigo": 1803533,
+            "nome": "Produto 1803533",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 17.5,
+            "margemBruta": 2.96,
+            "margemPct": 16.91,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 14.88
+          },
+          {
+            "produtoCodigo": 1862860,
+            "nome": "Produto 1862860",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 17.5,
+            "margemBruta": 2.96,
+            "margemPct": 16.91,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 14.88
+          },
+          {
+            "produtoCodigo": 1803520,
+            "nome": "Produto 1803520",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 19.5,
+            "margemBruta": 3.4,
+            "margemPct": 17.44,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 14.35
+          },
+          {
+            "produtoCodigo": 2008580,
+            "nome": "Produto 2008580",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 15.98,
+            "margemBruta": 4.26,
+            "margemPct": 26.66,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 5.13
+          },
+          {
+            "produtoCodigo": 1801804,
+            "nome": "Produto 1801804",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 2.0,
+            "margemBruta": 0.57,
+            "margemPct": 28.5,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 3.29
+          },
+          {
+            "produtoCodigo": 2048588,
+            "nome": "Produto 2048588",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 12.98,
+            "margemBruta": 3.98,
+            "margemPct": 30.66,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 1.13
+          }
+        ],
+        "totalAlertas": 9,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "high_volume_low_margin",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "expansionPotential": {
+        "produtos": [
+          {
+            "produtoCodigo": 2008579,
+            "nome": "Produto 2008579",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.99,
+            "margemBruta": 2.93,
+            "margemPct": 73.43,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 36.75,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1940573,
+            "nome": "Produto 1940573",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 11.99,
+            "margemBruta": 6.46,
+            "margemPct": 53.88,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 27.06,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1803364,
+            "nome": "Produto 1803364",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.5,
+            "margemBruta": 1.86,
+            "margemPct": 53.14,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 26.61,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1802031,
+            "nome": "Produto 1802031",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 3.0,
+            "receita": 20.98,
+            "margemBruta": 11.08,
+            "margemPct": 52.81,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 26.61,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1802654,
+            "nome": "Produto 1802654",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 4.49,
+            "margemBruta": 2.38,
+            "margemPct": 53.01,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 26.55,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1803739,
+            "nome": "Produto 1803739",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 9.0,
+            "margemBruta": 4.75,
+            "margemPct": 52.78,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 26.48,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1802532,
+            "nome": "Produto 1802532",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.5,
+            "margemBruta": 1.85,
+            "margemPct": 52.86,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 26.46,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 2155814,
+            "nome": "Produto 2155814",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 14.98,
+            "margemBruta": 7.88,
+            "margemPct": 52.6,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 26.45,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1802381,
+            "nome": "Produto 1802381",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 3.0,
+            "receita": 5.97,
+            "margemBruta": 3.09,
+            "margemPct": 51.76,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 25.94,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1802200,
+            "nome": "Produto 1802200",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 1.99,
+            "margemBruta": 1.02,
+            "margemPct": 51.26,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 25.65,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1802483,
+            "nome": "Produto 1802483",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 1.99,
+            "margemBruta": 1.01,
+            "margemPct": 50.75,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 25.39,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1802530,
+            "nome": "Produto 1802530",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 10.0,
+            "margemBruta": 4.97,
+            "margemPct": 49.7,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 24.95,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1802831,
+            "nome": "Produto 1802831",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 5.0,
+            "receita": 30.0,
+            "margemBruta": 14.45,
+            "margemPct": 48.17,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 24.39,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 2155820,
+            "nome": "Produto 2155820",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 5.99,
+            "margemBruta": 2.89,
+            "margemPct": 48.25,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 24.18,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1801810,
+            "nome": "Produto 1801810",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 2.5,
+            "margemBruta": 1.18,
+            "margemPct": 47.2,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 23.62,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          }
+        ],
+        "totalPotencial": 54,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "expansion_potential",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "branchBenchmarkGap": {
+        "benchmarkMixProdutosVendidosPct": 17.17,
+        "filiaisAbaixoBenchmark": [
+          {
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "filial": "AP CASA CAIADA",
+            "mixCombustivelPct": 100.0,
+            "mixProdutosVendidosPct": 0.0,
+            "mixLubrificantesPct": 0.0,
+            "mixServicosPct": 0.0,
+            "mixAcessoriosPct": 0.0,
+            "mixOutrosDepartamentos": {},
+            "dependenciaCombustivelPct": 100.0,
+            "mixSaudavelScore": 0.0,
+            "lineage": [
+              {
+                "origem": "F07.2",
+                "snapshot": "branch_product_mix",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ],
+            "benchmarkMixPvPct": 17.17,
+            "gapBenchmarkPct": 17.17,
+            "status": "ABAIXO_BENCHMARK"
+          }
+        ],
+        "totalAbaixoBenchmark": 1,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "branch_benchmark_gap",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "commercialFocus": {
+        "produtosFoco": [
+          {
+            "produtoCodigo": 1803364,
+            "nome": "Produto 1803364",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.5,
+            "margemBruta": 1.86,
+            "margemPct": 53.14,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 65.0,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 2008579,
+            "nome": "Produto 2008579",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.99,
+            "margemBruta": 2.93,
+            "margemPct": 73.43,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 65.0,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1940573,
+            "nome": "Produto 1940573",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 11.99,
+            "margemBruta": 6.46,
+            "margemPct": 53.88,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 65.0,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1802654,
+            "nome": "Produto 1802654",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 4.49,
+            "margemBruta": 2.38,
+            "margemPct": 53.01,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 65.0,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1802532,
+            "nome": "Produto 1802532",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.5,
+            "margemBruta": 1.85,
+            "margemPct": 52.86,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 65.0,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1841747,
+            "nome": "Produto 1841747",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 17.0,
+            "receita": 148.75,
+            "margemBruta": 25.16,
+            "margemPct": 16.91,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 39.88,
+            "acoesRecomendadas": [
+              "REVISAR_PRECO_OU_CUSTO",
+              "PRIORIDADE_RECEITA"
+            ]
+          },
+          {
+            "produtoCodigo": 1802831,
+            "nome": "Produto 1802831",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 5.0,
+            "receita": 30.0,
+            "margemBruta": 14.45,
+            "margemPct": 48.17,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 38.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO",
+              "PRIORIDADE_RECEITA"
+            ]
+          },
+          {
+            "produtoCodigo": 1802031,
+            "nome": "Produto 1802031",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 3.0,
+            "receita": 20.98,
+            "margemBruta": 11.08,
+            "margemPct": 52.81,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 37.1,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO",
+              "PRIORIDADE_RECEITA"
+            ]
+          },
+          {
+            "produtoCodigo": 1802381,
+            "nome": "Produto 1802381",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 3.0,
+            "receita": 5.97,
+            "margemBruta": 3.09,
+            "margemPct": 51.76,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 35.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1802200,
+            "nome": "Produto 1802200",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 1.99,
+            "margemBruta": 1.02,
+            "margemPct": 51.26,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 35.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 2155814,
+            "nome": "Produto 2155814",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 14.98,
+            "margemBruta": 7.88,
+            "margemPct": 52.6,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 35.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 2155820,
+            "nome": "Produto 2155820",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 5.99,
+            "margemBruta": 2.89,
+            "margemPct": 48.25,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 35.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1803739,
+            "nome": "Produto 1803739",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 9.0,
+            "margemBruta": 4.75,
+            "margemPct": 52.78,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 35.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1802530,
+            "nome": "Produto 1802530",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 10.0,
+            "margemBruta": 4.97,
+            "margemPct": 49.7,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 35.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1801810,
+            "nome": "Produto 1801810",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 2.5,
+            "margemBruta": 1.18,
+            "margemPct": 47.2,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 35.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          }
+        ],
+        "totalFoco": 31,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "commercial_focus",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "fuelDependencyRisk": {
+        "thresholdDependenciaPct": 70.0,
+        "filiaisRisco": [
+          {
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "filial": "AP CASA CAIADA",
+            "mixCombustivelPct": 100.0,
+            "mixProdutosVendidosPct": 0.0,
+            "mixLubrificantesPct": 0.0,
+            "mixServicosPct": 0.0,
+            "mixAcessoriosPct": 0.0,
+            "mixOutrosDepartamentos": {},
+            "dependenciaCombustivelPct": 100.0,
+            "mixSaudavelScore": 0.0,
+            "lineage": [
+              {
+                "origem": "F07.2",
+                "snapshot": "branch_product_mix",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ],
+            "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
+          }
+        ],
+        "totalFiliaisRisco": 1,
+        "dependenciaRedeExcessiva": false,
+        "participacaoProdutosVendidosPct": 27.32,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "fuel_dependency",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "lineage": [
+        {
+          "origem": "F07.5",
+          "snapshot": "assortment_intelligence",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "assortmentIntelligence": {
+      "marginLeaders": {
+        "topProdutoMargemPct": {
+          "produtoCodigo": 2008579,
+          "nome": "Produto 2008579",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "quantidade": 1.0,
+          "receita": 3.99,
+          "margemBruta": 2.93,
+          "margemPct": 73.43,
+          "filiaisAtivas": [
+            11495
+          ],
+          "qtdFiliais": 1
+        },
+        "rankingMargemPct": [
+          {
+            "produtoCodigo": 2008579,
+            "nome": "Produto 2008579",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.99,
+            "margemBruta": 2.93,
+            "margemPct": 73.43,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1940573,
+            "nome": "Produto 1940573",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 11.99,
+            "margemBruta": 6.46,
+            "margemPct": 53.88,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1803364,
+            "nome": "Produto 1803364",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.5,
+            "margemBruta": 1.86,
+            "margemPct": 53.14,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1802654,
+            "nome": "Produto 1802654",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 4.49,
+            "margemBruta": 2.38,
+            "margemPct": 53.01,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1802532,
+            "nome": "Produto 1802532",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.5,
+            "margemBruta": 1.85,
+            "margemPct": 52.86,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1802031,
+            "nome": "Produto 1802031",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 3.0,
+            "receita": 20.98,
+            "margemBruta": 11.08,
+            "margemPct": 52.81,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1803739,
+            "nome": "Produto 1803739",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 9.0,
+            "margemBruta": 4.75,
+            "margemPct": 52.78,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 2155814,
+            "nome": "Produto 2155814",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 14.98,
+            "margemBruta": 7.88,
+            "margemPct": 52.6,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1802381,
+            "nome": "Produto 1802381",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 3.0,
+            "receita": 5.97,
+            "margemBruta": 3.09,
+            "margemPct": 51.76,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1802200,
+            "nome": "Produto 1802200",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 1.99,
+            "margemBruta": 1.02,
+            "margemPct": 51.26,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1802483,
+            "nome": "Produto 1802483",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 1.99,
+            "margemBruta": 1.01,
+            "margemPct": 50.75,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1802530,
+            "nome": "Produto 1802530",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 10.0,
+            "margemBruta": 4.97,
+            "margemPct": 49.7,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 2155820,
+            "nome": "Produto 2155820",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 5.99,
+            "margemBruta": 2.89,
+            "margemPct": 48.25,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1802831,
+            "nome": "Produto 1802831",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 5.0,
+            "receita": 30.0,
+            "margemBruta": 14.45,
+            "margemPct": 48.17,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          },
+          {
+            "produtoCodigo": 1801810,
+            "nome": "Produto 1801810",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 2.5,
+            "margemBruta": 1.18,
+            "margemPct": 47.2,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1
+          }
+        ],
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "margin_leaders",
+            "api": "/INTEGRACAO/VENDA_ITEM",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "highVolumeLowMargin": {
+        "benchmarkMargemPct": 31.79,
+        "volumeThreshold": 2.0,
+        "produtos": [
+          {
+            "produtoCodigo": 1841747,
+            "nome": "Produto 1841747",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 17.0,
+            "receita": 148.75,
+            "margemBruta": 25.16,
+            "margemPct": 16.91,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 14.88
+          },
+          {
+            "produtoCodigo": 1803530,
+            "nome": "Produto 1803530",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 4.0,
+            "receita": 35.0,
+            "margemBruta": 5.92,
+            "margemPct": 16.91,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 14.88
+          },
+          {
+            "produtoCodigo": 1727011,
+            "nome": "Produto 1727011",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 21.0,
+            "margemBruta": 3.18,
+            "margemPct": 15.14,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 16.65
+          },
+          {
+            "produtoCodigo": 1803533,
+            "nome": "Produto 1803533",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 17.5,
+            "margemBruta": 2.96,
+            "margemPct": 16.91,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 14.88
+          },
+          {
+            "produtoCodigo": 1862860,
+            "nome": "Produto 1862860",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 17.5,
+            "margemBruta": 2.96,
+            "margemPct": 16.91,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 14.88
+          },
+          {
+            "produtoCodigo": 1803520,
+            "nome": "Produto 1803520",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 19.5,
+            "margemBruta": 3.4,
+            "margemPct": 17.44,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 14.35
+          },
+          {
+            "produtoCodigo": 2008580,
+            "nome": "Produto 2008580",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 15.98,
+            "margemBruta": 4.26,
+            "margemPct": 26.66,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 5.13
+          },
+          {
+            "produtoCodigo": 1801804,
+            "nome": "Produto 1801804",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 2.0,
+            "margemBruta": 0.57,
+            "margemPct": 28.5,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 3.29
+          },
+          {
+            "produtoCodigo": 2048588,
+            "nome": "Produto 2048588",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 12.98,
+            "margemBruta": 3.98,
+            "margemPct": 30.66,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "alerta": "ALTO_VOLUME_BAIXA_MARGEM",
+            "gapMargemPct": 1.13
+          }
+        ],
+        "totalAlertas": 9,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "high_volume_low_margin",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "expansionPotential": {
+        "produtos": [
+          {
+            "produtoCodigo": 2008579,
+            "nome": "Produto 2008579",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.99,
+            "margemBruta": 2.93,
+            "margemPct": 73.43,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 36.75,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1940573,
+            "nome": "Produto 1940573",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 11.99,
+            "margemBruta": 6.46,
+            "margemPct": 53.88,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 27.06,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1803364,
+            "nome": "Produto 1803364",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.5,
+            "margemBruta": 1.86,
+            "margemPct": 53.14,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 26.61,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1802031,
+            "nome": "Produto 1802031",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 3.0,
+            "receita": 20.98,
+            "margemBruta": 11.08,
+            "margemPct": 52.81,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 26.61,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1802654,
+            "nome": "Produto 1802654",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 4.49,
+            "margemBruta": 2.38,
+            "margemPct": 53.01,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 26.55,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1803739,
+            "nome": "Produto 1803739",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 9.0,
+            "margemBruta": 4.75,
+            "margemPct": 52.78,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 26.48,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1802532,
+            "nome": "Produto 1802532",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.5,
+            "margemBruta": 1.85,
+            "margemPct": 52.86,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 26.46,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 2155814,
+            "nome": "Produto 2155814",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 14.98,
+            "margemBruta": 7.88,
+            "margemPct": 52.6,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 26.45,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1802381,
+            "nome": "Produto 1802381",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 3.0,
+            "receita": 5.97,
+            "margemBruta": 3.09,
+            "margemPct": 51.76,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 25.94,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1802200,
+            "nome": "Produto 1802200",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 1.99,
+            "margemBruta": 1.02,
+            "margemPct": 51.26,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 25.65,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1802483,
+            "nome": "Produto 1802483",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 1.99,
+            "margemBruta": 1.01,
+            "margemPct": 50.75,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 25.39,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1802530,
+            "nome": "Produto 1802530",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 10.0,
+            "margemBruta": 4.97,
+            "margemPct": 49.7,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 24.95,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1802831,
+            "nome": "Produto 1802831",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 5.0,
+            "receita": 30.0,
+            "margemBruta": 14.45,
+            "margemPct": 48.17,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 24.39,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 2155820,
+            "nome": "Produto 2155820",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 5.99,
+            "margemBruta": 2.89,
+            "margemPct": 48.25,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 24.18,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          },
+          {
+            "produtoCodigo": 1801810,
+            "nome": "Produto 1801810",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 2.5,
+            "margemBruta": 1.18,
+            "margemPct": 47.2,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "potencialExpansaoScore": 23.62,
+            "coberturaFiliaisPct": 50.0,
+            "recomendacao": "Expandir para 1 filiais"
+          }
+        ],
+        "totalPotencial": 54,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "expansion_potential",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "branchBenchmarkGap": {
+        "benchmarkMixProdutosVendidosPct": 17.17,
+        "filiaisAbaixoBenchmark": [
+          {
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "filial": "AP CASA CAIADA",
+            "mixCombustivelPct": 100.0,
+            "mixProdutosVendidosPct": 0.0,
+            "mixLubrificantesPct": 0.0,
+            "mixServicosPct": 0.0,
+            "mixAcessoriosPct": 0.0,
+            "mixOutrosDepartamentos": {},
+            "dependenciaCombustivelPct": 100.0,
+            "mixSaudavelScore": 0.0,
+            "lineage": [
+              {
+                "origem": "F07.2",
+                "snapshot": "branch_product_mix",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ],
+            "benchmarkMixPvPct": 17.17,
+            "gapBenchmarkPct": 17.17,
+            "status": "ABAIXO_BENCHMARK"
+          }
+        ],
+        "totalAbaixoBenchmark": 1,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "branch_benchmark_gap",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "commercialFocus": {
+        "produtosFoco": [
+          {
+            "produtoCodigo": 1803364,
+            "nome": "Produto 1803364",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.5,
+            "margemBruta": 1.86,
+            "margemPct": 53.14,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 65.0,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 2008579,
+            "nome": "Produto 2008579",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.99,
+            "margemBruta": 2.93,
+            "margemPct": 73.43,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 65.0,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1940573,
+            "nome": "Produto 1940573",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 11.99,
+            "margemBruta": 6.46,
+            "margemPct": 53.88,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 65.0,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1802654,
+            "nome": "Produto 1802654",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 4.49,
+            "margemBruta": 2.38,
+            "margemPct": 53.01,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 65.0,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1802532,
+            "nome": "Produto 1802532",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 3.5,
+            "margemBruta": 1.85,
+            "margemPct": 52.86,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 65.0,
+            "acoesRecomendadas": [
+              "PROTEGER_MARGEM",
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1841747,
+            "nome": "Produto 1841747",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 17.0,
+            "receita": 148.75,
+            "margemBruta": 25.16,
+            "margemPct": 16.91,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 39.88,
+            "acoesRecomendadas": [
+              "REVISAR_PRECO_OU_CUSTO",
+              "PRIORIDADE_RECEITA"
+            ]
+          },
+          {
+            "produtoCodigo": 1802831,
+            "nome": "Produto 1802831",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 5.0,
+            "receita": 30.0,
+            "margemBruta": 14.45,
+            "margemPct": 48.17,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 38.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO",
+              "PRIORIDADE_RECEITA"
+            ]
+          },
+          {
+            "produtoCodigo": 1802031,
+            "nome": "Produto 1802031",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 3.0,
+            "receita": 20.98,
+            "margemBruta": 11.08,
+            "margemPct": 52.81,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 37.1,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO",
+              "PRIORIDADE_RECEITA"
+            ]
+          },
+          {
+            "produtoCodigo": 1802381,
+            "nome": "Produto 1802381",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 3.0,
+            "receita": 5.97,
+            "margemBruta": 3.09,
+            "margemPct": 51.76,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 35.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1802200,
+            "nome": "Produto 1802200",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 1.99,
+            "margemBruta": 1.02,
+            "margemPct": 51.26,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 35.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 2155814,
+            "nome": "Produto 2155814",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 14.98,
+            "margemBruta": 7.88,
+            "margemPct": 52.6,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 35.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 2155820,
+            "nome": "Produto 2155820",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 5.99,
+            "margemBruta": 2.89,
+            "margemPct": 48.25,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 35.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1803739,
+            "nome": "Produto 1803739",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 9.0,
+            "margemBruta": 4.75,
+            "margemPct": 52.78,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 35.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1802530,
+            "nome": "Produto 1802530",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 2.0,
+            "receita": 10.0,
+            "margemBruta": 4.97,
+            "margemPct": 49.7,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 35.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          },
+          {
+            "produtoCodigo": 1801810,
+            "nome": "Produto 1801810",
+            "departamento": "PRODUTOS_DE_LOJA",
+            "quantidade": 1.0,
+            "receita": 2.5,
+            "margemBruta": 1.18,
+            "margemPct": 47.2,
+            "filiaisAtivas": [
+              11495
+            ],
+            "qtdFiliais": 1,
+            "focoComercialScore": 35.0,
+            "acoesRecomendadas": [
+              "EXPANDIR_SORTIMENTO"
+            ]
+          }
+        ],
+        "totalFoco": 31,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "commercial_focus",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "fuelDependencyRisk": {
+        "thresholdDependenciaPct": 70.0,
+        "filiaisRisco": [
+          {
+            "empresaCodigo": 5555,
+            "empresaNome": "AP CASA CAIADA",
+            "filial": "AP CASA CAIADA",
+            "mixCombustivelPct": 100.0,
+            "mixProdutosVendidosPct": 0.0,
+            "mixLubrificantesPct": 0.0,
+            "mixServicosPct": 0.0,
+            "mixAcessoriosPct": 0.0,
+            "mixOutrosDepartamentos": {},
+            "dependenciaCombustivelPct": 100.0,
+            "mixSaudavelScore": 0.0,
+            "lineage": [
+              {
+                "origem": "F07.2",
+                "snapshot": "branch_product_mix",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ],
+            "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
+          }
+        ],
+        "totalFiliaisRisco": 1,
+        "dependenciaRedeExcessiva": false,
+        "participacaoProdutosVendidosPct": 27.32,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "fuel_dependency",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "lineage": [
+        {
+          "origem": "F07.5",
+          "snapshot": "assortment_intelligence",
           "api": "/api/v1/non-fuel-products/cockpit",
           "cockpit": "non-fuel-products",
           "webPosto": false

@@ -54,8 +54,21 @@ export function renderNonFuelProducts(node, payload, filters, options = {}) {
   const margin = payload.marginIntelligence || {};
   const mixHealth = payload.mixHealthCommercial || {};
   const opportunities = payload.opportunityEngine || {};
+  const assortment = payload.productOpportunityAssortment || payload.assortmentIntelligence || {};
+  const marginLeaders = assortment.marginLeaders || {};
+  const lowMargin = assortment.highVolumeLowMargin || {};
+  const expansion = assortment.expansionPotential || {};
+  const benchmarkGap = assortment.branchBenchmarkGap || {};
+  const commercialFocus = assortment.commercialFocus || {};
+  const fuelRisk = assortment.fuelDependencyRisk || {};
   const topVol = performance.rankingVolume || cockpit.topProdutosVolume || [];
   const topRev = performance.rankingReceita || cockpit.topProdutosReceita || [];
+  const topMargem = marginLeaders.rankingMargemPct || cockpit.topMargem || [];
+  const alertasMargem = lowMargin.produtos || cockpit.alertasBaixaMargem || [];
+  const potencialExpansao = expansion.produtos || cockpit.potencialExpansao || [];
+  const filiaisAbaixo = benchmarkGap.filiaisAbaixoBenchmark || cockpit.filiaisAbaixoBenchmark || [];
+  const produtosFoco = commercialFocus.produtosFoco || cockpit.produtosFocoComercial || [];
+  const dependenciaComb = fuelRisk.filiaisRisco || cockpit.dependenciaCombustivel || [];
   const filialDestaque = cockpit.filialDestaque || (margin.porFilial || [])[0] || {};
   const oportunidades = opportunities.oportunidades || cockpit.oportunidades || [];
   const parecer = payload.parecerFinal || "";
@@ -64,7 +77,7 @@ export function renderNonFuelProducts(node, payload, filters, options = {}) {
     <header class="view-header">
       <div>
         <h2>Produtos Vendidos</h2>
-        <p class="muted">F07.4 · Gestão comercial · empresaCodigo · ${filters?.dataInicial || ""} → ${filters?.dataFinal || ""}</p>
+        <p class="muted">F07.5 · Decisão comercial · sortimento e oportunidade · ${filters?.dataInicial || ""} → ${filters?.dataFinal || ""}</p>
         ${parecer ? `<p class="parecer">${parecer}</p>` : ""}
       </div>
       <div class="view-actions">
@@ -73,46 +86,55 @@ export function renderNonFuelProducts(node, payload, filters, options = {}) {
       </div>
     </header>
     <div class="kpi-grid">
-      <article class="kpi-card kpi-card--highlight"><span class="kpi-label">Receita Produtos Vendidos</span><strong>R$ ${exec["4_receitaProdutosVendidos"] ?? margin.receitaProdutosVendidos ?? cockpit.receitaProdutosVendidos ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Margem bruta</span><strong>R$ ${exec["5_margemBrutaTotal"] ?? margin.margemBrutaTotal ?? "—"} (${exec["6_margemBrutaPct"] ?? margin.margemBrutaPct ?? "—"}%)</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Top receita</span><strong>${exec["2_produtoMaiorReceita"] ?? performance.topProdutoReceita?.produtoCodigo ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Top volume</span><strong>${exec["1_produtoMaisVendidoVolume"] ?? performance.topProdutoVolume?.produtoCodigo ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Filial destaque</span><strong>${exec["3_filialMelhorPerformance"] ?? filialDestaque.empresaCodigo ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Mix saudável</span><strong>${exec["7_mixSaudavel"] ?? mixHealth.mixSaudavel ?? cockpit.mixSaudavel ? "Sim" : "Não"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Participação PV</span><strong>${exec["12_participacaoProdutosVendidos"] ?? mixHealth.participacaoProdutosVendidosPct ?? "—"}%</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Oportunidades</span><strong>${exec["10_oportunidadesIdentificadas"] ?? opportunities.totalOportunidades ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Cobertura catálogo</span><strong>${exec["13_coberturaCatalogoPreservada"] ?? coverage.coberturaCatalogoFinalPct ?? "—"}%</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Aprovado F07.5</span><strong>${exec["20_aprovadoF075"] ? "Sim" : "Não"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Top margem</span><strong>${exec["1_produtoMaiorMargemPct"] ?? topMargem[0]?.produtoCodigo ?? "—"} (${exec["2_margemPctLider"] ?? topMargem[0]?.margemPct ?? "—"}%)</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Alertas baixa margem</span><strong>${exec["3_produtosAltoVolumeBaixaMargem"] ?? lowMargin.totalAlertas ?? "—"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Potencial expansão</span><strong>${exec["5_produtosPotencialExpansao"] ?? expansion.totalPotencial ?? "—"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Filiais abaixo benchmark</span><strong>${exec["7_filiaisAbaixoBenchmarkMix"] ?? benchmarkGap.totalAbaixoBenchmark ?? "—"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Foco comercial</span><strong>${exec["9_produtosFocoComercial"] ?? commercialFocus.totalFoco ?? "—"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Dep. combustível</span><strong>${exec["11_filiaisDependenciaCombustivel"] ?? fuelRisk.totalFiliaisRisco ?? "—"} filiais</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Receita PV</span><strong>R$ ${exec["4_receitaProdutosVendidos"] ?? margin.receitaProdutosVendidos ?? "—"}</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Margem bruta</span><strong>${exec["6_margemBrutaPct"] ?? margin.margemBrutaPct ?? "—"}%</strong></article>
+      <article class="kpi-card"><span class="kpi-label">Aprovado F07.6</span><strong>${exec["20_aprovadoF076"] ? "Sim" : "Não"}</strong></article>
     </div>
-    ${renderTable("Top produtos por volume", topVol.slice(0, 8), [
+    ${renderTable("Maior margem — priorizar proteção", topMargem.slice(0, 8), [
       { key: "produtoCodigo", label: "Produto" },
       { key: "nome", label: "Nome" },
-      { key: "qtd", label: "Qtd" },
-      { key: "receita", label: "Receita R$", render: (r) => (r.receita != null ? Number(r.receita).toFixed(2) : "—") },
-    ])}
-    ${renderTable("Top produtos por receita", topRev.slice(0, 8), [
-      { key: "produtoCodigo", label: "Produto" },
-      { key: "nome", label: "Nome" },
-      { key: "receita", label: "Receita R$", render: (r) => (r.receita != null ? Number(r.receita).toFixed(2) : "—") },
-      { key: "margem", label: "Margem R$", render: (r) => (r.margem != null ? Number(r.margem).toFixed(2) : "—") },
-    ])}
-    ${renderTable("Margem por departamento", (margin.porDepartamento || []).slice(0, 8), [
-      { key: "departamento", label: "Departamento" },
-      { key: "receita", label: "Receita R$", render: (r) => (r.receita != null ? Number(r.receita).toFixed(2) : "—") },
-      { key: "margemBruta", label: "Margem R$", render: (r) => (r.margemBruta != null ? Number(r.margemBruta).toFixed(2) : "—") },
       { key: "margemPct", label: "Margem %", render: (r) => `${r.margemPct ?? "—"}%` },
+      { key: "margemBruta", label: "Margem R$", render: (r) => (r.margemBruta != null ? Number(r.margemBruta).toFixed(2) : "—") },
+      { key: "receita", label: "Receita R$", render: (r) => (r.receita != null ? Number(r.receita).toFixed(2) : "—") },
     ])}
-    ${renderTable("Performance por filial", (margin.porFilial || []).slice(0, 8), [
+    ${renderTable("Alto volume · baixa margem — revisar", alertasMargem.slice(0, 8), [
+      { key: "produtoCodigo", label: "Produto" },
+      { key: "nome", label: "Nome" },
+      { key: "quantidade", label: "Qtd" },
+      { key: "margemPct", label: "Margem %", render: (r) => `${r.margemPct ?? "—"}%` },
+      { key: "gapMargemPct", label: "Gap %", render: (r) => `${r.gapMargemPct ?? "—"}%` },
+    ])}
+    ${renderTable("Potencial de expansão", potencialExpansao.slice(0, 8), [
+      { key: "produtoCodigo", label: "Produto" },
+      { key: "nome", label: "Nome" },
+      { key: "qtdFiliais", label: "Filiais ativas" },
+      { key: "coberturaFiliaisPct", label: "Cobertura %", render: (r) => `${r.coberturaFiliaisPct ?? "—"}%` },
+      { key: "recomendacao", label: "Ação" },
+    ])}
+    ${renderTable("Filiais abaixo do benchmark de mix", filiaisAbaixo.slice(0, 8), [
       { key: "empresaCodigo", label: "Filial" },
-      { key: "empresaNome", label: "Nome" },
-      { key: "receita", label: "Receita R$", render: (r) => (r.receita != null ? Number(r.receita).toFixed(2) : "—") },
-      { key: "margemBruta", label: "Margem R$", render: (r) => (r.margemBruta != null ? Number(r.margemBruta).toFixed(2) : "—") },
-      { key: "margemPct", label: "Margem %", render: (r) => `${r.margemPct ?? "—"}%` },
+      { key: "empresaNome", label: "Nome", render: (r) => r.empresaNome ?? r.filial ?? "—" },
+      { key: "mixProdutosVendidosPct", label: "Mix PV %" },
+      { key: "benchmarkMixPvPct", label: "Benchmark %" },
+      { key: "gapBenchmarkPct", label: "Gap %" },
     ])}
-    ${renderTable("Oportunidades comerciais", oportunidades.slice(0, 6), [
-      { key: "tipo", label: "Tipo" },
-      { key: "prioridade", label: "Prioridade" },
-      { key: "descricao", label: "Descrição" },
+    ${renderTable("Foco comercial recomendado", produtosFoco.slice(0, 8), [
+      { key: "produtoCodigo", label: "Produto" },
+      { key: "nome", label: "Nome" },
+      { key: "focoComercialScore", label: "Score" },
+      { key: "acoesRecomendadas", label: "Ações", render: (r) => (r.acoesRecomendadas || []).join(", ") || "—" },
+    ])}
+    ${renderTable("Dependência excessiva de combustível", dependenciaComb.slice(0, 8), [
+      { key: "empresaCodigo", label: "Filial" },
+      { key: "empresaNome", label: "Nome", render: (r) => r.empresaNome ?? r.filial ?? "—" },
+      { key: "dependenciaCombustivelPct", label: "Dep. comb. %" },
+      { key: "mixProdutosVendidosPct", label: "Mix PV %" },
     ])}
     ${renderTable("Departamentos refinados", depts.slice(0, 8), [
       { key: "departamento", label: "Departamento", render: (r) => r.departamento ?? r.nome ?? "—" },
@@ -135,6 +157,6 @@ export function renderNonFuelProducts(node, payload, filters, options = {}) {
 
   node.querySelector("#nonFuelRefresh")?.addEventListener("click", () => options.onRefresh?.());
   node.querySelector("#nonFuelExport")?.addEventListener("click", () => {
-    downloadCsv("produtos-vendidos-receita.csv", topRev.length ? topRev : ranking);
+    downloadCsv("produtos-vendidos-foco-comercial.csv", produtosFoco.length ? produtosFoco : topRev.length ? topRev : ranking);
   });
 }
