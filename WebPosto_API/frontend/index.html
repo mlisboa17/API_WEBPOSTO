@@ -8,169 +8,122 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>WebPosto Integracao</title>
+    <title>LOGOS SPACE</title>
 
-    <link rel="stylesheet" href="/frontend/styles.css?v=f01-2-cf" />
+    <link rel="stylesheet" href="/frontend/styles.css?v=ux-01-ia" />
 
   </head>
 
   <body>
 
-    <header class="topbar">
+    <div class="app-shell">
 
-      <div>
+      <aside id="sidebarNav" class="sidebar" aria-label="Áreas de negócio"></aside>
 
-        <h1>Painel Financeiro</h1>
+      <div class="app-main">
 
-        <p>Modulo integrado WebPosto: financas, vendas e estoque</p>
+        <header class="topbar">
+
+          <div>
+
+            <h1>LOGOS SPACE</h1>
+
+            <p>Cockpit corporativo — finanças, combustíveis, produtos vendidos e fiscal</p>
+
+          </div>
+
+          <button id="refreshBtn" class="btn-primary" type="button">Atualizar</button>
+
+        </header>
+
+        <section class="filters" id="filtersContainer"></section>
+
+        <nav id="areaTabs" class="area-tabs" aria-label="Abas da área"></nav>
+
+        <div id="motorStrip"></div>
+
+        <main class="content-grid">
+
+          <section id="loading" class="state hidden">Carregando...</section>
+
+          <section id="error" class="state error hidden"></section>
+
+          <section id="executiveView" class="view hidden"></section>
+
+          <section id="dashboardView" class="view hidden"></section>
+
+          <section id="expensesView" class="view hidden"></section>
+
+          <section id="accountsView" class="view hidden"></section>
+
+          <section id="financeCenterView" class="view hidden"></section>
+
+          <section id="cashFlowView" class="view hidden"></section>
+
+          <section id="cashOperationsView" class="view hidden"></section>
+
+          <section id="operatorPerformanceView" class="view hidden"></section>
+
+          <section id="peopleIntelligenceView" class="view hidden"></section>
+
+          <section id="peopleRoiView" class="view hidden"></section>
+
+          <section id="operationRoiView" class="view hidden"></section>
+
+          <section id="managementActionView" class="view hidden"></section>
+
+          <section id="goalsCampaignView" class="view hidden"></section>
+
+          <section id="benchmarkView" class="view hidden"></section>
+
+          <section id="executiveScorecardView" class="view hidden"></section>
+
+          <section id="corporateHubView" class="view hidden"></section>
+
+          <section id="executiveDecisionView" class="view hidden"></section>
+
+          <section id="actionCenterView" class="view hidden"></section>
+
+          <section id="executiveCopilotView" class="view hidden"></section>
+
+          <section id="recommendationsView" class="view hidden"></section>
+
+          <section id="learningView" class="view hidden"></section>
+
+          <section id="nfceIntelligenceView" class="view hidden"></section>
+
+          <section id="lmcIntelligenceView" class="view hidden"></section>
+
+          <section id="fiscalIntelligenceView" class="view hidden"></section>
+
+          <section id="fiscalReconciliationView" class="view hidden"></section>
+
+          <section id="fuelGovernanceView" class="view hidden"></section>
+
+          <section id="nonFuelProductsView" class="view hidden"></section>
+
+          <section id="commercialExecutionView" class="view hidden"></section>
+
+          <section id="commercialLearningView" class="view hidden"></section>
+
+          <section id="commercialCopilotView" class="view hidden"></section>
+
+          <section id="administrationView" class="view hidden"></section>
+
+          <section id="fuelsView" class="view hidden"></section>
+
+          <section id="salesView" class="view hidden"></section>
+
+          <section id="stockView" class="view hidden"></section>
+
+        </main>
 
       </div>
 
-      <button id="refreshBtn" class="btn-primary" type="button">Atualizar</button>
+    </div>
 
-    </header>
-
-
-
-    <section class="filters" id="filtersContainer"></section>
-
-
-
-    <nav class="tabs" id="tabs">
-
-      <section class="tab-domain" aria-label="Executive">
-
-        <h2 class="tab-domain__title">Executive</h2>
-
-        <div class="tab-domain__items">
-
-          <button class="tab" data-view="executive" type="button">Executive</button>
-
-          <button class="tab active" data-view="dashboard" type="button">Dashboard</button>
-
-        </div>
-
-      </section>
-
-
-
-      <section class="tab-domain" aria-label="Financial">
-
-        <h2 class="tab-domain__title">Financial</h2>
-
-        <div class="tab-domain__items">
-
-          <button class="tab" data-view="expenses" type="button">Expenses</button>
-
-          <button class="tab" data-view="accounts" type="button">Accounts</button>
-
-          <button class="tab" data-view="financeCenter" type="button">Finance Center</button>
-          <button class="tab" data-view="cashFlow" type="button">Cash Flow</button>
-          <button class="tab" data-view="cashOperations" type="button">Cash Operations</button>
-          <button class="tab" data-view="operatorPerformance" type="button">Operator Performance</button>
-          <button class="tab" data-view="peopleIntelligence" type="button">People Intelligence</button>
-          <button class="tab" data-view="peopleRoi" type="button">People ROI</button>
-          <button class="tab" data-view="operationRoi" type="button">Operation ROI</button>
-          <button class="tab" data-view="managementAction" type="button">Management Action</button>
-          <button class="tab" data-view="goalsCampaign" type="button">Goals & Campaigns</button>
-          <button class="tab" data-view="benchmark" type="button">Benchmark</button>
-          <button class="tab" data-view="executiveScorecard" type="button">Executive Scorecard</button>
-          <button class="tab" data-view="corporateHub" type="button">Corporate Hub</button>
-          <button class="tab" data-view="executiveDecision" type="button">Decision Engine</button>
-          <button class="tab" data-view="actionCenter" type="button">Action Center</button>
-          <button class="tab" data-view="executiveCopilot" type="button">Executive Copilot</button>
-          <button class="tab" data-view="recommendations" type="button">Recommendations</button>
-          <button class="tab" data-view="learning" type="button">Learning</button>
-          <button class="tab" data-view="nfceIntelligence" type="button">NFCE Intelligence</button>
-          <button class="tab" data-view="lmcIntelligence" type="button">LMC Intelligence</button>
-          <button class="tab" data-view="fiscalIntelligence" type="button">Fiscal Intelligence</button>
-          <button class="tab" data-view="fiscalReconciliation" type="button">Fiscal Reconciliation</button>
-          <button class="tab" data-view="fuelGovernance" type="button">Fuel Governance</button>
-          <button class="tab" data-view="nonFuelProducts" type="button">Produtos Vendidos</button>
-          <button class="tab" data-view="commercialExecution" type="button">Execução Comercial</button>
-          <button class="tab" data-view="commercialLearning" type="button">Aprendizado Comercial</button>
-
-        </div>
-
-      </section>
-
-
-
-      <section class="tab-domain" aria-label="Operacional">
-
-        <h2 class="tab-domain__title">Operacional</h2>
-
-        <div class="tab-domain__items">
-
-          <button class="tab" data-view="fuels" type="button">Fuels</button>
-
-          <button class="tab" data-view="sales" type="button">Sales</button>
-
-          <button class="tab" data-view="stock" type="button">Stock</button>
-
-        </div>
-
-      </section>
-
-    </nav>
-
-
-
-    <main>
-
-      <section id="loading" class="state hidden">Carregando...</section>
-
-      <section id="error" class="state error hidden"></section>
-
-
-
-      <section id="executiveView" class="view hidden"></section>
-
-      <section id="dashboardView" class="view"></section>
-
-      <section id="expensesView" class="view hidden"></section>
-
-      <section id="accountsView" class="view hidden"></section>
-
-      <section id="financeCenterView" class="view hidden"></section>
-      <section id="cashFlowView" class="view hidden"></section>
-      <section id="cashOperationsView" class="view hidden"></section>
-      <section id="operatorPerformanceView" class="view hidden"></section>
-      <section id="peopleIntelligenceView" class="view hidden"></section>
-      <section id="peopleRoiView" class="view hidden"></section>
-      <section id="operationRoiView" class="view hidden"></section>
-      <section id="managementActionView" class="view hidden"></section>
-      <section id="goalsCampaignView" class="view hidden"></section>
-      <section id="benchmarkView" class="view hidden"></section>
-      <section id="executiveScorecardView" class="view hidden"></section>
-      <section id="corporateHubView" class="view hidden"></section>
-      <section id="executiveDecisionView" class="view hidden"></section>
-      <section id="actionCenterView" class="view hidden"></section>
-      <section id="executiveCopilotView" class="view hidden"></section>
-      <section id="recommendationsView" class="view hidden"></section>
-      <section id="learningView" class="view hidden"></section>
-      <section id="nfceIntelligenceView" class="view hidden"></section>
-      <section id="lmcIntelligenceView" class="view hidden"></section>
-      <section id="fiscalIntelligenceView" class="view hidden"></section>
-      <section id="fiscalReconciliationView" class="view hidden"></section>
-      <section id="fuelGovernanceView" class="view hidden"></section>
-      <section id="nonFuelProductsView" class="view hidden"></section>
-      <section id="commercialExecutionView" class="view hidden"></section>
-      <section id="commercialLearningView" class="view hidden"></section>
-
-      <section id="fuelsView" class="view hidden"></section>
-
-      <section id="salesView" class="view hidden"></section>
-
-      <section id="stockView" class="view hidden"></section>
-
-    </main>
-
-
-
-    <script type="module" src="/frontend/app.js?v=f01-2-cf"></script>
+    <script type="module" src="/frontend/app.js?v=ux-01-ia"></script>
 
   </body>
 
 </html>
-

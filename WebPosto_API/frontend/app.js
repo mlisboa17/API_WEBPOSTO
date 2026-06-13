@@ -74,6 +74,9 @@ import {
   postCommercialExecutionRefresh,
   fetchCommercialLearningCockpit,
   postCommercialLearningRefresh,
+  fetchCommercialCopilotCockpit,
+  postCommercialCopilotRefresh,
+  postCommercialCopilotAsk,
 } from "./services/api.js";
 import { APP_CONFIG } from "./config.js";
 import { renderFilters, updateCompanyOptions } from "./components/filters.js";
@@ -110,6 +113,10 @@ import { renderFuelGovernance } from "./pages/fuelGovernance.js";
 import { renderNonFuelProducts } from "./pages/nonFuelProducts.js";
 import { renderCommercialExecution } from "./pages/commercialExecution.js";
 import { renderCommercialLearning } from "./pages/commercialLearning.js";
+import { renderCommercialCopilot } from "./pages/commercialCopilot.js";
+import { renderAdministration } from "./pages/administration.js";
+import { getDefaultViewForArea, resolveAreaForView } from "./config/navigation.js";
+import { mountNavigationShell } from "./components/navigationShell.js";
 import { renderCompanySwitcher } from "./components/CompanySwitcher.js";
 import { createTableState } from "./services/tableState.js";
 import {
@@ -197,6 +204,11 @@ const VIEW_ALIASES = {
   commercialLearning: "commercialLearning",
   "commercial-learning": "commercialLearning",
   commerciallearning: "commercialLearning",
+  commercialCopilot: "commercialCopilot",
+  "commercial-copilot": "commercialCopilot",
+  commercialcopilot: "commercialCopilot",
+  administration: "administration",
+  admin: "administration",
 };
 
 const VIEW_URL_NAMES = {
@@ -225,6 +237,8 @@ const VIEW_URL_NAMES = {
   nonFuelProducts: "non-fuel-products",
   commercialExecution: "commercial-execution",
   commercialLearning: "commercial-learning",
+  commercialCopilot: "commercial-copilot",
+  administration: "administration",
 };
 
 function normalizeViewId(view) {
@@ -452,8 +466,12 @@ function logRedeValidation(payloads) {
   payloads.forEach(({ endpoint, payload }) => logEndpointDiagnostics(endpoint, payload, baseCodigos));
 }
 
+const initialUrlState = fromUrl();
+
 const state = {
-  ...fromUrl(),
+  ...initialUrlState,
+  area: resolveAreaForView(initialUrlState.view),
+  adminSection: "filiais",
   limitExpenses: 50,
   limitAccounts: 50,
   limitSales: 50,
@@ -512,6 +530,8 @@ const fuelGovernanceNode = document.querySelector("#fuelGovernanceView");
 const nonFuelProductsNode = document.querySelector("#nonFuelProductsView");
 const commercialExecutionNode = document.querySelector("#commercialExecutionView");
 const commercialLearningNode = document.querySelector("#commercialLearningView");
+const commercialCopilotNode = document.querySelector("#commercialCopilotView");
+const administrationNode = document.querySelector("#administrationView");
 const fuelsNode = document.querySelector("#fuelsView");
 const salesNode = document.querySelector("#salesView");
 const stockNode = document.querySelector("#stockView");
@@ -531,45 +551,79 @@ function setError(message) {
   errorNode.classList.remove("hidden");
 }
 
-function setView(view) {
+function setView(view, options = {}) {
   state.view = normalizeViewId(view);
+  state.area = resolveAreaForView(state.view);
+  if (options.adminSection) {
+    state.adminSection = options.adminSection;
+  }
   writeUrl(state);
   mountFilters();
-  executiveNode.classList.toggle("hidden", view !== "executive");
-  dashboardNode.classList.toggle("hidden", view !== "dashboard");
-  expensesNode.classList.toggle("hidden", view !== "expenses");
-  accountsNode.classList.toggle("hidden", view !== "accounts");
-  financeCenterNode.classList.toggle("hidden", view !== "financeCenter");
-  cashFlowNode.classList.toggle("hidden", view !== "cashFlow");
-  cashOperationsNode.classList.toggle("hidden", view !== "cashOperations");
-  operatorPerformanceNode.classList.toggle("hidden", view !== "operatorPerformance");
-  peopleIntelligenceNode.classList.toggle("hidden", view !== "peopleIntelligence");
-  peopleRoiNode.classList.toggle("hidden", view !== "peopleRoi");
-  operationRoiNode.classList.toggle("hidden", view !== "operationRoi");
-  managementActionNode.classList.toggle("hidden", view !== "managementAction");
-  goalsCampaignNode.classList.toggle("hidden", view !== "goalsCampaign");
-  benchmarkNode.classList.toggle("hidden", view !== "benchmark");
-  executiveScorecardNode.classList.toggle("hidden", view !== "executiveScorecard");
-  corporateHubNode.classList.toggle("hidden", view !== "corporateHub");
-  executiveDecisionNode.classList.toggle("hidden", view !== "executiveDecision");
-  actionCenterNode.classList.toggle("hidden", view !== "actionCenter");
-  executiveCopilotNode.classList.toggle("hidden", view !== "executiveCopilot");
-  recommendationsNode.classList.toggle("hidden", view !== "recommendations");
-  learningNode.classList.toggle("hidden", view !== "learning");
-  nfceIntelligenceNode.classList.toggle("hidden", view !== "nfceIntelligence");
-  lmcIntelligenceNode.classList.toggle("hidden", view !== "lmcIntelligence");
-  fiscalIntelligenceNode.classList.toggle("hidden", view !== "fiscalIntelligence");
-  fiscalReconciliationNode.classList.toggle("hidden", view !== "fiscalReconciliation");
-  fuelGovernanceNode.classList.toggle("hidden", view !== "fuelGovernance");
-  nonFuelProductsNode.classList.toggle("hidden", view !== "nonFuelProducts");
-  commercialExecutionNode.classList.toggle("hidden", view !== "commercialExecution");
-  commercialLearningNode.classList.toggle("hidden", view !== "commercialLearning");
-  fuelsNode.classList.toggle("hidden", view !== "fuels");
-  salesNode.classList.toggle("hidden", view !== "sales");
-  stockNode.classList.toggle("hidden", view !== "stock");
+  mountNavigation();
+  const activeView = state.view;
 
-  document.querySelectorAll(".tab").forEach((tab) => {
-    tab.classList.toggle("active", tab.dataset.view === view);
+  executiveNode.classList.toggle("hidden", activeView !== "executive");
+  dashboardNode.classList.toggle("hidden", activeView !== "dashboard");
+  expensesNode.classList.toggle("hidden", activeView !== "expenses");
+  accountsNode.classList.toggle("hidden", activeView !== "accounts");
+  financeCenterNode.classList.toggle("hidden", activeView !== "financeCenter");
+  cashFlowNode.classList.toggle("hidden", activeView !== "cashFlow");
+  cashOperationsNode.classList.toggle("hidden", activeView !== "cashOperations");
+  operatorPerformanceNode.classList.toggle("hidden", activeView !== "operatorPerformance");
+  peopleIntelligenceNode.classList.toggle("hidden", activeView !== "peopleIntelligence");
+  peopleRoiNode.classList.toggle("hidden", activeView !== "peopleRoi");
+  operationRoiNode.classList.toggle("hidden", activeView !== "operationRoi");
+  managementActionNode.classList.toggle("hidden", activeView !== "managementAction");
+  goalsCampaignNode.classList.toggle("hidden", activeView !== "goalsCampaign");
+  benchmarkNode.classList.toggle("hidden", activeView !== "benchmark");
+  executiveScorecardNode.classList.toggle("hidden", activeView !== "executiveScorecard");
+  corporateHubNode.classList.toggle("hidden", activeView !== "corporateHub");
+  executiveDecisionNode.classList.toggle("hidden", activeView !== "executiveDecision");
+  actionCenterNode.classList.toggle("hidden", activeView !== "actionCenter");
+  executiveCopilotNode.classList.toggle("hidden", activeView !== "executiveCopilot");
+  recommendationsNode.classList.toggle("hidden", activeView !== "recommendations");
+  learningNode.classList.toggle("hidden", activeView !== "learning");
+  nfceIntelligenceNode.classList.toggle("hidden", activeView !== "nfceIntelligence");
+  lmcIntelligenceNode.classList.toggle("hidden", activeView !== "lmcIntelligence");
+  fiscalIntelligenceNode.classList.toggle("hidden", activeView !== "fiscalIntelligence");
+  fiscalReconciliationNode.classList.toggle("hidden", activeView !== "fiscalReconciliation");
+  fuelGovernanceNode.classList.toggle("hidden", activeView !== "fuelGovernance");
+  nonFuelProductsNode.classList.toggle("hidden", activeView !== "nonFuelProducts");
+  commercialExecutionNode.classList.toggle("hidden", activeView !== "commercialExecution");
+  commercialLearningNode.classList.toggle("hidden", activeView !== "commercialLearning");
+  commercialCopilotNode.classList.toggle("hidden", activeView !== "commercialCopilot");
+  administrationNode.classList.toggle("hidden", activeView !== "administration");
+  fuelsNode.classList.toggle("hidden", activeView !== "fuels");
+  salesNode.classList.toggle("hidden", activeView !== "sales");
+  stockNode.classList.toggle("hidden", activeView !== "stock");
+}
+
+function mountNavigation() {
+  mountNavigationShell({
+    areaId: state.area,
+    view: state.view,
+    onAreaChange: async (areaId) => {
+      state.area = areaId;
+      const nextView = getDefaultViewForArea(areaId);
+      if (areaId === "administracao") {
+        setView("administration", { adminSection: "filiais" });
+      } else {
+        setView(nextView);
+      }
+      await refreshAll(false);
+    },
+    onTabChange: async (view, tabId) => {
+      if (state.area === "administracao") {
+        setView("administration", { adminSection: tabId || "filiais" });
+      } else {
+        setView(view);
+      }
+      await refreshAll(false);
+    },
+    onMotorChange: async (view) => {
+      setView(view);
+      await refreshAll(false);
+    },
   });
 }
 
@@ -605,6 +659,7 @@ function ensureDataDefaults() {
   if (!state.data.nonFuelProducts) state.data.nonFuelProducts = null;
   if (!state.data.commercialExecution) state.data.commercialExecution = null;
   if (!state.data.commercialLearning) state.data.commercialLearning = null;
+  if (!state.data.commercialCopilot) state.data.commercialCopilot = null;
 }
 
 function clearFilters() {
@@ -1058,6 +1113,18 @@ function renderAll() {
       state.cache.clear();
       await refreshAll(true);
     },
+  });
+
+  renderCommercialCopilot(commercialCopilotNode, state.data.commercialCopilot, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+    onAsk: async (question) => postCommercialCopilotAsk(state.filters, question),
+  });
+
+  renderAdministration(administrationNode, null, state.filters, {
+    section: state.adminSection,
   });
 
   renderStock(
@@ -1663,6 +1730,35 @@ async function loadCommercialLearningWithSnapshotFirst(bypassCache = false) {
   }
 }
 
+async function loadCommercialCopilotWithSnapshotFirst(bypassCache = false) {
+  try {
+    const cc = await fetchCommercialCopilotCockpit(state.filters);
+    state.data.commercialCopilot = {
+      cockpit: cc.cockpit,
+      executiveAnswers: cc.executiveAnswers,
+      parecerFinal: cc.parecerFinal,
+      qa: cc.qa,
+      governanceRules: cc.governanceRules,
+      commercialKnowledgeEngine: cc.commercialKnowledgeEngine,
+      commercialReasoningEngine: cc.commercialReasoningEngine,
+      commercialRecommendationEngine: cc.commercialRecommendationEngine,
+      commercialActionCenterIntegration: cc.commercialActionCenterIntegration,
+      commercialConversationLayer: cc.commercialConversationLayer,
+      commercialGovernanceLayer: cc.commercialGovernanceLayer,
+      fromSnapshot: cc.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (cc.snapshot?.stale) {
+      postCommercialCopilotRefresh(state.filters).catch((error) => {
+        console.warn("[commercialCopilot] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[commercialCopilot] falha ao carregar cockpit:", error);
+    state.data.commercialCopilot = null;
+  }
+}
+
 async function loadExecutiveDecisionWithSnapshotFirst(bypassCache = false) {
   try {
     const decision = await fetchExecutiveDecisionCockpit(state.filters);
@@ -1976,6 +2072,17 @@ async function refreshOperationalDataInBackground(bypassCache = false) {
 }
 
 async function refreshAll(bypassCache = false) {
+  if (state.view === "administration") {
+    setError("");
+    setLoading(true);
+    try {
+      renderAll();
+    } finally {
+      setLoading(false);
+    }
+    return;
+  }
+
   if (state.view === "executive") {
     await refreshExecutiveFirst(bypassCache);
     refreshOperationalDataInBackground(bypassCache);
@@ -2139,6 +2246,10 @@ async function refreshAll(bypassCache = false) {
       await loadCommercialLearningWithSnapshotFirst(bypassCache);
     }
 
+    if (state.view === "commercialCopilot") {
+      await loadCommercialCopilotWithSnapshotFirst(bypassCache);
+    }
+
     if (state.view === "stock") {
       state.data.stock = await getCached(
         "stock",
@@ -2249,13 +2360,6 @@ mountFilters();
 document.querySelector("#refreshBtn")?.addEventListener("click", async () => {
   state.cache.clear();
   await refreshAll(true);
-});
-
-document.querySelectorAll(".tab").forEach((tab) => {
-  tab.addEventListener("click", async () => {
-    setView(tab.dataset.view);
-    await refreshAll(false);
-  });
 });
 
 setView(state.view);
