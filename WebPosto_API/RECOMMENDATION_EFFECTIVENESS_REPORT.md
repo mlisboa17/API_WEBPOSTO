@@ -1,6 +1,4 @@
-# Recommendation Effectiveness
+# IA-1 — Recommendation Effectiveness
 
-- Recomendações avaliadas: **29**
-- Efetivas: **1**
-- Inefetivas: **2**
-- Taxa de sucesso: **33.33%**
+- Tipos: **9**
+- Top tipo ROI: **AUMENTAR_PARTICIPACAO**

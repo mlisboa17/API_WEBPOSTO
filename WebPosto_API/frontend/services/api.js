@@ -1297,3 +1297,33 @@ export async function postCommercialExecutionRefresh(filters) {
   return raw?.data || raw;
 }
 
+export async function fetchCommercialLearningCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/commercial-learning/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    governanceRules: body?.governanceRules,
+    recommendationEffectivenessEngine: body?.recommendationEffectivenessEngine,
+    responsiblePerformanceEngine: body?.responsiblePerformanceEngine,
+    branchLearningEngine: body?.branchLearningEngine,
+    recommendationCalibrationEngine: body?.recommendationCalibrationEngine,
+    outcomeLearningEngine: body?.outcomeLearningEngine,
+    executiveLearningReport: body?.executiveLearningReport,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postCommercialLearningRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/commercial-learning/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+

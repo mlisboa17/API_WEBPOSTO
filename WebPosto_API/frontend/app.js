@@ -72,6 +72,8 @@ import {
   postNonFuelProductsRefresh,
   fetchCommercialExecutionCockpit,
   postCommercialExecutionRefresh,
+  fetchCommercialLearningCockpit,
+  postCommercialLearningRefresh,
 } from "./services/api.js";
 import { APP_CONFIG } from "./config.js";
 import { renderFilters, updateCompanyOptions } from "./components/filters.js";
@@ -107,6 +109,7 @@ import { renderFiscalReconciliation } from "./pages/fiscalReconciliation.js";
 import { renderFuelGovernance } from "./pages/fuelGovernance.js";
 import { renderNonFuelProducts } from "./pages/nonFuelProducts.js";
 import { renderCommercialExecution } from "./pages/commercialExecution.js";
+import { renderCommercialLearning } from "./pages/commercialLearning.js";
 import { renderCompanySwitcher } from "./components/CompanySwitcher.js";
 import { createTableState } from "./services/tableState.js";
 import {
@@ -191,6 +194,9 @@ const VIEW_ALIASES = {
   commercialExecution: "commercialExecution",
   "commercial-execution": "commercialExecution",
   commercialexecution: "commercialExecution",
+  commercialLearning: "commercialLearning",
+  "commercial-learning": "commercialLearning",
+  commerciallearning: "commercialLearning",
 };
 
 const VIEW_URL_NAMES = {
@@ -218,6 +224,7 @@ const VIEW_URL_NAMES = {
   fuelGovernance: "fuel-governance",
   nonFuelProducts: "non-fuel-products",
   commercialExecution: "commercial-execution",
+  commercialLearning: "commercial-learning",
 };
 
 function normalizeViewId(view) {
@@ -504,6 +511,7 @@ const fiscalReconciliationNode = document.querySelector("#fiscalReconciliationVi
 const fuelGovernanceNode = document.querySelector("#fuelGovernanceView");
 const nonFuelProductsNode = document.querySelector("#nonFuelProductsView");
 const commercialExecutionNode = document.querySelector("#commercialExecutionView");
+const commercialLearningNode = document.querySelector("#commercialLearningView");
 const fuelsNode = document.querySelector("#fuelsView");
 const salesNode = document.querySelector("#salesView");
 const stockNode = document.querySelector("#stockView");
@@ -555,6 +563,7 @@ function setView(view) {
   fuelGovernanceNode.classList.toggle("hidden", view !== "fuelGovernance");
   nonFuelProductsNode.classList.toggle("hidden", view !== "nonFuelProducts");
   commercialExecutionNode.classList.toggle("hidden", view !== "commercialExecution");
+  commercialLearningNode.classList.toggle("hidden", view !== "commercialLearning");
   fuelsNode.classList.toggle("hidden", view !== "fuels");
   salesNode.classList.toggle("hidden", view !== "sales");
   stockNode.classList.toggle("hidden", view !== "stock");
@@ -595,6 +604,7 @@ function ensureDataDefaults() {
   if (!state.data.fuelGovernance) state.data.fuelGovernance = null;
   if (!state.data.nonFuelProducts) state.data.nonFuelProducts = null;
   if (!state.data.commercialExecution) state.data.commercialExecution = null;
+  if (!state.data.commercialLearning) state.data.commercialLearning = null;
 }
 
 function clearFilters() {
@@ -1037,6 +1047,13 @@ function renderAll() {
   });
 
   renderCommercialExecution(commercialExecutionNode, state.data.commercialExecution, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+  });
+
+  renderCommercialLearning(commercialLearningNode, state.data.commercialLearning, state.filters, {
     onRefresh: async () => {
       state.cache.clear();
       await refreshAll(true);
@@ -1617,6 +1634,35 @@ async function loadCommercialExecutionWithSnapshotFirst(bypassCache = false) {
   }
 }
 
+async function loadCommercialLearningWithSnapshotFirst(bypassCache = false) {
+  try {
+    const cl = await fetchCommercialLearningCockpit(state.filters);
+    state.data.commercialLearning = {
+      cockpit: cl.cockpit,
+      executiveAnswers: cl.executiveAnswers,
+      parecerFinal: cl.parecerFinal,
+      qa: cl.qa,
+      governanceRules: cl.governanceRules,
+      recommendationEffectivenessEngine: cl.recommendationEffectivenessEngine,
+      responsiblePerformanceEngine: cl.responsiblePerformanceEngine,
+      branchLearningEngine: cl.branchLearningEngine,
+      recommendationCalibrationEngine: cl.recommendationCalibrationEngine,
+      outcomeLearningEngine: cl.outcomeLearningEngine,
+      executiveLearningReport: cl.executiveLearningReport,
+      fromSnapshot: cl.snapshot?.hit,
+      lastUpdated: new Date().toISOString(),
+    };
+    if (cl.snapshot?.stale) {
+      postCommercialLearningRefresh(state.filters).catch((error) => {
+        console.warn("[commercialLearning] refresh em background falhou:", error);
+      });
+    }
+  } catch (error) {
+    console.warn("[commercialLearning] falha ao carregar cockpit:", error);
+    state.data.commercialLearning = null;
+  }
+}
+
 async function loadExecutiveDecisionWithSnapshotFirst(bypassCache = false) {
   try {
     const decision = await fetchExecutiveDecisionCockpit(state.filters);
@@ -2087,6 +2133,10 @@ async function refreshAll(bypassCache = false) {
 
     if (state.view === "commercialExecution") {
       await loadCommercialExecutionWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "commercialLearning") {
+      await loadCommercialLearningWithSnapshotFirst(bypassCache);
     }
 
     if (state.view === "stock") {

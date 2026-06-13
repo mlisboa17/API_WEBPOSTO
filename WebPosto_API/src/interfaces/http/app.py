@@ -37,6 +37,7 @@ from src.interfaces.http.routes import fiscal_reconciliation_hub
 from src.interfaces.http.routes import fuel_governance
 from src.interfaces.http.routes import non_fuel_product_sales
 from src.interfaces.http.routes import commercial_execution
+from src.interfaces.http.routes import commercial_learning
 from src.interfaces.http.routes import statements
 from src.interfaces.http.routes import data_trust_baseline
 from src.interfaces.http.routes import prestacao_contas
@@ -101,6 +102,7 @@ def create_app() -> FastAPI:
     app.include_router(fuel_governance.router)
     app.include_router(non_fuel_product_sales.router)
     app.include_router(commercial_execution.router)
+    app.include_router(commercial_learning.router)
     app.include_router(statements.router)
     app.include_router(data_trust_baseline.router)
     app.include_router(prestacao_contas.router)
