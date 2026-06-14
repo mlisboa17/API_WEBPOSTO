@@ -47,6 +47,7 @@ from src.interfaces.http.routes import admin_circuit_breaker
 from src.interfaces.http.routes import financial_snapshot_health
 from src.interfaces.http.routes import financial_operations
 from src.interfaces.http.routes import financial_operations_center
+from src.interfaces.http.routes import financial_intelligence_center
 from src.services.financial_snapshot_scheduler import get_financial_scheduler
 from src.shared.logger import setup_logging
 
@@ -118,6 +119,7 @@ def create_app() -> FastAPI:
     app.include_router(financial_snapshot_health.router)
     app.include_router(financial_operations.router)
     app.include_router(financial_operations_center.router)
+    app.include_router(financial_intelligence_center.router)
 
     root = Path(__file__).resolve().parents[3]
     frontend_dir = root / "frontend"

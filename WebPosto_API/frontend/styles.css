@@ -1549,3 +1549,66 @@ label.empresa-ms__row {
   margin-bottom: 0.35rem;
 }
 
+.fin-intel-section {
+  margin-bottom: 1.25rem;
+}
+
+.fin-intel-section h3 {
+  margin: 0 0 0.75rem;
+}
+
+.fin-intel-hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.fin-intel-score {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 180px;
+}
+
+.fin-intel-score-value {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.fin-intel-breakdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.82rem;
+  color: var(--muted, #64748b);
+}
+
+.fin-intel-risk,
+.fin-intel-trend {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.fin-intel-risk--baixo,
+.fin-intel-trend--estabilidade { background: #dbeafe; color: #1e40af; }
+.fin-intel-risk--moderado,
+.fin-intel-trend--indeterminado { background: #fde68a; color: #92400e; }
+.fin-intel-risk--alto,
+.fin-intel-trend--queda { background: #fecaca; color: #991b1b; }
+.fin-intel-risk--critico { background: #7f1d1d; color: #fff; }
+.fin-intel-trend--crescimento { background: #bbf7d0; color: #166534; }
+
+.fin-intel-score--excelente { border-left: 3px solid #16a34a; padding-left: 0.75rem; }
+.fin-intel-score--bom { border-left: 3px solid #2563eb; padding-left: 0.75rem; }
+.fin-intel-score--atencao { border-left: 3px solid #ca8a04; padding-left: 0.75rem; }
+.fin-intel-score--critico { border-left: 3px solid #dc2626; padding-left: 0.75rem; }
+

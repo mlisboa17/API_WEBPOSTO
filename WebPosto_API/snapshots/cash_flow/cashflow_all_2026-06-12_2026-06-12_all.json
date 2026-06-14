@@ -1,0 +1,258 @@
+{
+  "lastUpdated": "2026-06-13T21:13:27",
+  "flow": {
+    "sources": [
+      "CAIXA_APRESENTADO",
+      "MOVIMENTO_CONTA",
+      "TITULO_PAGAR",
+      "TITULO_RECEBER"
+    ],
+    "forbiddenSourcesUsed": [],
+    "referenceDate": "2026-06-12",
+    "cards": {
+      "entradasPrevistas": "72176.15",
+      "saidasPrevistas": "57401.85",
+      "saldoProjetado": "14774.30",
+      "saldoAcumulado": "14774.30"
+    },
+    "daily": [
+      {
+        "periodo": "2026-06-12",
+        "entradasPrevistas": "72176.15",
+        "saidasPrevistas": "57401.85",
+        "saldoProjetado": "14774.30",
+        "saldoAcumulado": "14774.30"
+      }
+    ],
+    "weekly": [
+      {
+        "periodo": "2026-W24",
+        "entradasPrevistas": "72176.15",
+        "saidasPrevistas": "57401.85",
+        "saldoProjetado": "14774.30",
+        "saldoAcumulado": "14774.30"
+      }
+    ],
+    "monthly": [
+      {
+        "periodo": "2026-06",
+        "entradasPrevistas": "72176.15",
+        "saidasPrevistas": "57401.85",
+        "saldoProjetado": "14774.30",
+        "saldoAcumulado": "14774.30"
+      }
+    ],
+    "payablesAging": {
+      "vencido": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "hoje": {
+        "count": 2,
+        "valor": "369.05"
+      },
+      "7d": {
+        "count": 4,
+        "valor": "32252.64"
+      },
+      "15d": {
+        "count": 1,
+        "valor": "111.62"
+      },
+      "30d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "acima30": {
+        "count": 0,
+        "valor": "0.00"
+      }
+    },
+    "receivablesAging": {
+      "vencido": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "hoje": {
+        "count": 2,
+        "valor": "23.49"
+      },
+      "7d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "15d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "30d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "acima30": {
+        "count": 0,
+        "valor": "0.00"
+      }
+    },
+    "payablesFuture": [
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3086104,
+        "descricao": "TBLL TABACARIA",
+        "vencimento": "2026-06-18",
+        "valor": "1186.90",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3086110,
+        "descricao": "DELUTTI SUCOS",
+        "vencimento": "2026-06-12",
+        "valor": "124.80",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3086120,
+        "descricao": "INDUSTRIA DE BEBIDAS IGARASSU LTDA",
+        "vencimento": "2026-06-17",
+        "valor": "635.24",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3086167,
+        "descricao": "GRIFOS COMERCIO DE ALIMENTOS LTDA",
+        "vencimento": "2026-06-12",
+        "valor": "244.25",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3086746,
+        "descricao": "SOUZA DISTRIBUIDORA",
+        "vencimento": "2026-06-25",
+        "valor": "111.62",
+        "aging": "15d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3087094,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-06-15",
+        "valor": "30130.50",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3087095,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-06-15",
+        "valor": "300.00",
+        "aging": "7d"
+      }
+    ],
+    "receivablesFuture": [
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20805998,
+        "descricao": "DESPERDICIO",
+        "vencimento": "2026-06-12",
+        "valor": "8.00",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20813697,
+        "descricao": "VALE JOSIANE",
+        "vencimento": "2026-06-12",
+        "valor": "15.49",
+        "aging": "hoje"
+      }
+    ],
+    "overdueEvents": [],
+    "treasury": {
+      "creditos": {
+        "count": 1018,
+        "valor": "72152.66"
+      },
+      "debitos": {
+        "count": 982,
+        "valor": "57032.80"
+      },
+      "tarifas": {
+        "count": 974,
+        "valor": "384.59"
+      },
+      "transferencias": {
+        "count": 974,
+        "valor": "55241.83"
+      }
+    },
+    "insights": {
+      "criticalDays": [
+        {
+          "periodo": "2026-06-12",
+          "entradasPrevistas": "72176.15",
+          "saidasPrevistas": "57401.85",
+          "saldoProjetado": "14774.30",
+          "saldoAcumulado": "14774.30"
+        }
+      ],
+      "payablesVencidoValor": "0.00",
+      "receivablesVencidoValor": "0.00",
+      "tarifasValor": "384.59",
+      "topOpportunities": [
+        {
+          "tipo": "TARIFA_BANCARIA",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:877 CONTA:00658773 ",
+          "valor": "10.08",
+          "vencimento": "2026-06-12",
+          "acao": "Revisar tarifa evitável ou conta bancária"
+        },
+        {
+          "tipo": "TARIFA_BANCARIA",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:3122 CONTA:12880000009856861891 ",
+          "valor": "9.49",
+          "vencimento": "2026-06-12",
+          "acao": "Revisar tarifa evitável ou conta bancária"
+        },
+        {
+          "tipo": "TARIFA_BANCARIA",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "valor": "6.11",
+          "vencimento": "2026-06-12",
+          "acao": "Revisar tarifa evitável ou conta bancária"
+        },
+        {
+          "tipo": "TARIFA_BANCARIA",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:46 CONTA:12920000005704710189 ",
+          "valor": "4.35",
+          "vencimento": "2026-06-12",
+          "acao": "Revisar tarifa evitável ou conta bancária"
+        }
+      ]
+    },
+    "snapshotKeys": {
+      "daily": "cashflow:daily:2026-06-12:2026-06-12:all",
+      "weekly": "cashflow:weekly:2026-06-12:2026-06-12:all",
+      "monthly": "cashflow:monthly:2026-06-12:2026-06-12:all"
+    },
+    "performanceMs": {
+      "payables": 3788.4,
+      "receivables": 4472.9,
+      "bank": 44612.8,
+      "caixaApresentado": 2705.8
+    }
+  },
+  "snapshotKey": "cashflow:all:2026-06-12:2026-06-12:all"
+}

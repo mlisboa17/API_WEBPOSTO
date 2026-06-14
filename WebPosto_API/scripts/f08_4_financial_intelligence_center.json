@@ -1,0 +1,12 @@
+{
+  "feature": "F08.4",
+  "approved": false,
+  "errors": [
+    "pytest falhou:\nERROR: usage: python.exe -m pytest [options] [file_or_dir] [file_or_dir] [...]\npython.exe -m pytest: error: unrecognized arguments: --cov=src --cov-report=html --cov-report=term-missing --no-cov\n  inifile: C:\\Users\\mlisb\\OneDrive\\ProjetosAntigravy\\LOGOS SPACE\\Api_WebPosto\\WebPosto_API\\pytest.ini\n  rootdir: C:\\Users\\mlisb\\OneDrive\\ProjetosAntigravy\\LOGOS SPACE\\Api_WebPosto\\WebPosto_API\n\n"
+  ],
+  "http_endpoints_ok": 4,
+  "period": [
+    "2026-06-01",
+    "2026-06-07"
+  ]
+}

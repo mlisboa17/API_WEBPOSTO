@@ -80,6 +80,7 @@ import {
   fetchFinancialSnapshotHealthCockpit,
   fetchFinancialOperationsStatus,
   fetchFinancialOperationsCenterCockpit,
+  fetchFinancialIntelligenceCockpit,
   runFinancialOperationsNow,
 } from "./services/api.js";
 import { APP_CONFIG } from "./config.js";
@@ -125,6 +126,7 @@ import { renderAdministration } from "./pages/administration.js";
 import { renderFinancialMonitoring } from "./pages/financialMonitoring.js";
 import { renderFinancialOperations } from "./pages/financialOperations.js";
 import { renderFinancialOperationsCenter } from "./pages/financialOperationsCenter.js";
+import { renderFinancialIntelligence } from "./pages/financialIntelligence.js";
 import { getDefaultViewForArea, resolveAreaForView } from "./config/navigation.js";
 import { mountNavigationShell } from "./components/navigationShell.js";
 import { renderCompanySwitcher } from "./components/CompanySwitcher.js";
@@ -231,6 +233,9 @@ const VIEW_ALIASES = {
   financialOperationsCenter: "financialOperationsCenter",
   "financial-operations-center": "financialOperationsCenter",
   financialoperationscenter: "financialOperationsCenter",
+  financialIntelligence: "financialIntelligence",
+  "financial-intelligence": "financialIntelligence",
+  financialintelligence: "financialIntelligence",
 };
 
 const VIEW_URL_NAMES = {
@@ -265,6 +270,7 @@ const VIEW_URL_NAMES = {
   financialMonitoring: "financial-operations-center",
   financialOperations: "financial-operations-center",
   financialOperationsCenter: "financial-operations-center",
+  financialIntelligence: "financial-intelligence",
 };
 
 function normalizeViewId(view) {
@@ -562,6 +568,7 @@ const administrationNode = document.querySelector("#administrationView");
 const financialMonitoringNode = document.querySelector("#financialMonitoringView");
 const financialOperationsNode = document.querySelector("#financialOperationsView");
 const financialOperationsCenterNode = document.querySelector("#financialOperationsCenterView");
+const financialIntelligenceNode = document.querySelector("#financialIntelligenceView");
 const fuelsNode = document.querySelector("#fuelsView");
 const salesNode = document.querySelector("#salesView");
 const stockNode = document.querySelector("#stockView");
@@ -627,6 +634,7 @@ function setView(view, options = {}) {
   financialMonitoringNode.classList.toggle("hidden", activeView !== "financialMonitoring");
   financialOperationsNode.classList.toggle("hidden", activeView !== "financialOperations");
   financialOperationsCenterNode.classList.toggle("hidden", activeView !== "financialOperationsCenter");
+  financialIntelligenceNode.classList.toggle("hidden", activeView !== "financialIntelligence");
   fuelsNode.classList.toggle("hidden", activeView !== "fuels");
   salesNode.classList.toggle("hidden", activeView !== "sales");
   stockNode.classList.toggle("hidden", activeView !== "stock");
@@ -699,6 +707,7 @@ function ensureDataDefaults() {
   if (!state.data.financialMonitoring) state.data.financialMonitoring = null;
   if (!state.data.financialOperations) state.data.financialOperations = null;
   if (!state.data.financialOperationsCenter) state.data.financialOperationsCenter = null;
+  if (!state.data.financialIntelligence) state.data.financialIntelligence = null;
 }
 
 function clearFilters() {
@@ -1203,6 +1212,13 @@ function renderAll() {
     onRefresh: async () => {
       state.cache.clear();
       await refreshFinancialOperationsCenterOnly(true);
+    },
+  });
+
+  renderFinancialIntelligence(financialIntelligenceNode, state.data.financialIntelligence, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshFinancialIntelligenceOnly(true);
     },
   });
 
@@ -2389,6 +2405,10 @@ async function refreshAll(bypassCache = false) {
       await refreshFinancialOperationsCenterOnly(bypassCache);
     }
 
+    if (state.view === "financialIntelligence") {
+      await refreshFinancialIntelligenceOnly(bypassCache);
+    }
+
     if (state.view === "stock") {
       state.data.stock = await getCached(
         "stock",
@@ -2418,6 +2438,17 @@ async function refreshFinancialMonitoringOnly(bypassCache = false) {
     bypassCache
   );
   state.data.financialMonitoring = raw?.data ? raw : { data: raw?.data ?? raw };
+  renderAll();
+}
+
+async function refreshFinancialIntelligenceOnly(bypassCache = false) {
+  const raw = await getCached(
+    "financialIntelligence",
+    state.filters,
+    () => fetchFinancialIntelligenceCockpit(state.filters),
+    bypassCache
+  );
+  state.data.financialIntelligence = raw?.data ? raw : { data: raw?.data ?? raw };
   renderAll();
 }
 

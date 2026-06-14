@@ -1438,3 +1438,9 @@ export function fetchFinancialOperationsCenterExecutions(filters, limit = 50) {
   });
 }
 
+export function fetchFinancialIntelligenceCockpit(filters) {
+  return apiClient.get("/api/v1/financial/intelligence-center/cockpit", {
+    params: baseFilterParams(filters),
+  });
+}
+

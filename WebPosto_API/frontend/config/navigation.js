@@ -37,6 +37,7 @@ export const NAV_AREAS = [
       { id: "extratos", label: "Extratos", view: "cashOperations" },
       { id: "conciliacao", label: "Conciliação", view: "financeCenter" },
       { id: "operations_center", label: "Operations Center", view: "financialOperationsCenter" },
+      { id: "intelligence", label: "Intelligence", view: "financialIntelligence" },
     ],
     motors: [
       "dashboard",
@@ -46,6 +47,7 @@ export const NAV_AREAS = [
       "cashFlow",
       "cashOperations",
       "financialOperationsCenter",
+      "financialIntelligence",
       "operatorPerformance",
       "peopleIntelligence",
       "peopleRoi",

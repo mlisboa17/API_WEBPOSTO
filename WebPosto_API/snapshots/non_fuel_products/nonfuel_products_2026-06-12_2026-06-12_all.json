@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-13T20:19:23.615485",
+  "lastUpdated": "2026-06-14T00:12:35.624284",
   "data": {
     "sprint": "F07.6",
     "periodo": {
@@ -7,7 +7,7 @@
       "dataFinal": "2026-06-12"
     },
     "empresaCodigoFiltro": null,
-    "elapsedMs": 71440.4,
+    "elapsedMs": 79993.7,
     "fonte": {
       "webPostoLive": true,
       "modo": "webposto_live",
@@ -67,7 +67,7 @@
         "targetedLookups": 0,
         "errors": 0,
         "timeouts": 0,
-        "tempoTotalLookupSec": 0.05,
+        "tempoTotalLookupSec": 0.0,
         "fuelCatalogRecovered": 0,
         "cacheRecovered": 49
       },
@@ -139,7 +139,7 @@
               "precoVendaB": 5.299,
               "precoVendaC": 0.0,
               "precoCusto": 4.30904,
-              "estoqueQtde": 2448.509,
+              "estoqueQtde": 2275.433,
               "estoqueMin": 0.0,
               "ultimaAlteracao": "2026-06-08T14:31:19.344-03:00",
               "ultimoUsuarioAlteracao": "CAMILY",
@@ -1169,7 +1169,7 @@
           "pages": 1,
           "count": 200,
           "error": null,
-          "elapsedSec": 6.12
+          "elapsedSec": 10.75
         },
         "11495": {
           "key": "produto_empresa",
@@ -1177,7 +1177,7 @@
           "pages": 1,
           "count": 200,
           "error": null,
-          "elapsedSec": 22.55
+          "elapsedSec": 8.24
         }
       },
       "produtoRedeMeta": {
@@ -1196,7 +1196,7 @@
         "duplicatasRemovidas": 0,
         "semPerdaPorPagina": true,
         "error": null,
-        "elapsedSec": 28.01
+        "elapsedSec": 23.48
       },
       "vendaItem": {
         "key": "venda_item",
@@ -1208,7 +1208,7 @@
         "duplicatasRemovidas": 0,
         "semPerdaPorPagina": true,
         "error": null,
-        "elapsedSec": 3.85
+        "elapsedSec": 19.33
       },
       "nfce": {
         "key": "nfce",
@@ -1220,7 +1220,7 @@
         "duplicatasRemovidas": 0,
         "semPerdaPorPagina": true,
         "error": null,
-        "elapsedSec": 2.56
+        "elapsedSec": 8.51
       }
     },
     "productCatalogCompleteness": {
@@ -2435,7 +2435,7 @@
       "faturamentoNaoCombustivel": 637.72,
       "quantidadeItens": 79,
       "produtosPendentes": 0,
-      "performanceLookupSec": 0.05,
+      "performanceLookupSec": 0.01,
       "cacheHitRatePct": 100.0,
       "departamentosRefinados": 100,
       "residualSku": 1975728,
@@ -2974,7 +2974,7 @@
       ],
       "acoesComerciais": [
         {
-          "id": "PV-OPP-F9612CB1",
+          "id": "PV-OPP-63042F7F",
           "tipo": "AUMENTAR_PARTICIPACAO",
           "titulo": "AUMENTAR PARTICIPACAO",
           "descricao": "Produtos Vendidos com 9.85% do faturamento — meta 35%+",
@@ -3010,7 +3010,7 @@
           ]
         },
         {
-          "id": "PV-OPP-8EAB6B4C",
+          "id": "PV-OPP-B0668843",
           "tipo": "DESENVOLVER_FILIAL",
           "titulo": "DESENVOLVER FILIAL",
           "descricao": "Desenvolver mix Produtos Vendidos na filial 5555",
@@ -3046,7 +3046,7 @@
           ]
         },
         {
-          "id": "PV-MIX-06B6311C",
+          "id": "PV-MIX-72B51D01",
           "tipo": "DESENVOLVER_MIX_FILIAL",
           "titulo": "Desenvolver mix PV — filial 5555",
           "descricao": "Mix PV 0.0% vs benchmark 5.39%",
@@ -3079,7 +3079,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-F3F59387",
+          "id": "PV-MARGEM-5913BFEA",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 1841747",
           "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
@@ -3113,7 +3113,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-8A08901F",
+          "id": "PV-FOCO-67604BDD",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1803739",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO, PRIORIDADE_RECEITA",
@@ -3153,7 +3153,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-E4EB03F9",
+          "id": "PV-MARGEM-D46876CB",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 1803530",
           "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
@@ -3187,7 +3187,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-923E868F",
+          "id": "PV-FOCO-F4D18456",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1802031",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
@@ -3226,7 +3226,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-8829CFA4",
+          "id": "PV-FOCO-1FE35CE8",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1803802",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
@@ -3265,7 +3265,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-0D1F56AD",
+          "id": "PV-FOCO-091B223C",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1802381",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
@@ -3304,7 +3304,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-A1898CA3",
+          "id": "PV-FOCO-2A119E5F",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1803809",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
@@ -3343,7 +3343,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-825DDF76",
+          "id": "PV-MARGEM-8F457BA9",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 1727011",
           "descricao": "Alto volume com margem 15.14% abaixo do benchmark",
@@ -3377,7 +3377,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-5A309F59",
+          "id": "PV-MARGEM-E0B909B9",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 1803474",
           "descricao": "Alto volume com margem 12.93% abaixo do benchmark",
@@ -3413,7 +3413,7 @@
       ],
       "acoesAltaPrioridade": [
         {
-          "id": "PV-OPP-F9612CB1",
+          "id": "PV-OPP-63042F7F",
           "tipo": "AUMENTAR_PARTICIPACAO",
           "titulo": "AUMENTAR PARTICIPACAO",
           "descricao": "Produtos Vendidos com 9.85% do faturamento — meta 35%+",
@@ -3449,7 +3449,7 @@
           ]
         },
         {
-          "id": "PV-OPP-8EAB6B4C",
+          "id": "PV-OPP-B0668843",
           "tipo": "DESENVOLVER_FILIAL",
           "titulo": "DESENVOLVER FILIAL",
           "descricao": "Desenvolver mix Produtos Vendidos na filial 5555",
@@ -3485,7 +3485,7 @@
           ]
         },
         {
-          "id": "PV-MIX-06B6311C",
+          "id": "PV-MIX-72B51D01",
           "tipo": "DESENVOLVER_MIX_FILIAL",
           "titulo": "Desenvolver mix PV — filial 5555",
           "descricao": "Mix PV 0.0% vs benchmark 5.39%",
@@ -3518,7 +3518,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-F3F59387",
+          "id": "PV-MARGEM-5913BFEA",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 1841747",
           "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
@@ -3552,7 +3552,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-8A08901F",
+          "id": "PV-FOCO-67604BDD",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1803739",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO, PRIORIDADE_RECEITA",
@@ -3592,7 +3592,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-E4EB03F9",
+          "id": "PV-MARGEM-D46876CB",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 1803530",
           "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
@@ -3626,7 +3626,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-923E868F",
+          "id": "PV-FOCO-F4D18456",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1802031",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
@@ -3665,7 +3665,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-8829CFA4",
+          "id": "PV-FOCO-1FE35CE8",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1803802",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
@@ -3738,8 +3738,8 @@
       "3_produtosSemCadastroRestantes": 0,
       "4_coberturaCatalogoFinal": 100.0,
       "5_tempoLookupAntes": 68.15,
-      "6_tempoLookupDepois": 0.05,
-      "7_reducaoPercentual": 99.93,
+      "6_tempoLookupDepois": 0.01,
+      "7_reducaoPercentual": 99.99,
       "8_cacheImplementado": true,
       "9_cacheHitRate": 100.0,
       "10_departamentosRefinados": 100,
@@ -3792,7 +3792,7 @@
       "2_acoesAltaPrioridade": 14,
       "3_impactoTotalReceita": 657.28,
       "4_impactoTotalMargem": 228.01,
-      "5_acaoPrioritaria": "PV-OPP-F9612CB1",
+      "5_acaoPrioritaria": "PV-OPP-63042F7F",
       "6_tipoAcaoPrioritaria": "AUMENTAR_PARTICIPACAO",
       "7_responsavelAcaoTop": "JOÃO RYVISON DE ANDRADE SOUZA",
       "8_acoesComEvidencia": 43,
@@ -7364,15 +7364,15 @@
         }
       ],
       "dimProductDepartment": [
+        "COMBUSTIVEL",
+        "PRODUTOS_DE_LOJA",
         "ADITIVOS",
         "FILTROS",
-        "COMBUSTIVEL",
-        "LUBRIFICANTES",
-        "PRODUTOS_DE_LOJA"
+        "LUBRIFICANTES"
       ],
       "factProductSales": [
         {
-          "saleItemId": "SI-25B59347",
+          "saleItemId": "SI-0DFBD301",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357002812,
@@ -7402,7 +7402,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E375FC86",
+          "saleItemId": "SI-2F5014D5",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357002812,
@@ -7432,7 +7432,7 @@
           ]
         },
         {
-          "saleItemId": "SI-211E607C",
+          "saleItemId": "SI-B5CD1EDC",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357002853,
@@ -7462,7 +7462,7 @@
           ]
         },
         {
-          "saleItemId": "SI-05DE25BC",
+          "saleItemId": "SI-3FC394E0",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357002906,
@@ -7492,7 +7492,7 @@
           ]
         },
         {
-          "saleItemId": "SI-F656324B",
+          "saleItemId": "SI-8BF31E90",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003070,
@@ -7522,7 +7522,7 @@
           ]
         },
         {
-          "saleItemId": "SI-97A27090",
+          "saleItemId": "SI-80D5DF0E",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003188,
@@ -7552,7 +7552,7 @@
           ]
         },
         {
-          "saleItemId": "SI-7473FFB9",
+          "saleItemId": "SI-77BF695D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003303,
@@ -7582,7 +7582,7 @@
           ]
         },
         {
-          "saleItemId": "SI-6399A964",
+          "saleItemId": "SI-BC6E0D15",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003303,
@@ -7612,7 +7612,7 @@
           ]
         },
         {
-          "saleItemId": "SI-4C286E8C",
+          "saleItemId": "SI-9E9EDF3D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003303,
@@ -7642,7 +7642,7 @@
           ]
         },
         {
-          "saleItemId": "SI-076110BE",
+          "saleItemId": "SI-9B759853",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003303,
@@ -7672,7 +7672,7 @@
           ]
         },
         {
-          "saleItemId": "SI-505B3A35",
+          "saleItemId": "SI-0F81E134",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003303,
@@ -7702,7 +7702,7 @@
           ]
         },
         {
-          "saleItemId": "SI-89F73E42",
+          "saleItemId": "SI-5705C8F9",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003304,
@@ -7732,7 +7732,7 @@
           ]
         },
         {
-          "saleItemId": "SI-721739B7",
+          "saleItemId": "SI-30E99EA2",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003304,
@@ -7762,7 +7762,7 @@
           ]
         },
         {
-          "saleItemId": "SI-7F282CE7",
+          "saleItemId": "SI-162065F6",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003320,
@@ -7792,7 +7792,7 @@
           ]
         },
         {
-          "saleItemId": "SI-4031F710",
+          "saleItemId": "SI-D0409E9E",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003320,
@@ -7822,7 +7822,7 @@
           ]
         },
         {
-          "saleItemId": "SI-133D6497",
+          "saleItemId": "SI-66D69E1F",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003361,
@@ -7852,7 +7852,7 @@
           ]
         },
         {
-          "saleItemId": "SI-769C06F4",
+          "saleItemId": "SI-C2811035",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003361,
@@ -7882,7 +7882,7 @@
           ]
         },
         {
-          "saleItemId": "SI-78479C82",
+          "saleItemId": "SI-877250AE",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003402,
@@ -7912,7 +7912,7 @@
           ]
         },
         {
-          "saleItemId": "SI-235FC09E",
+          "saleItemId": "SI-F7A0F673",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003414,
@@ -7942,7 +7942,7 @@
           ]
         },
         {
-          "saleItemId": "SI-F0D30917",
+          "saleItemId": "SI-78157ACB",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003512,
@@ -7972,7 +7972,7 @@
           ]
         },
         {
-          "saleItemId": "SI-1A1237FE",
+          "saleItemId": "SI-2A3A781B",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003650,
@@ -8002,7 +8002,7 @@
           ]
         },
         {
-          "saleItemId": "SI-C351460F",
+          "saleItemId": "SI-6F8CD47E",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003749,
@@ -8032,7 +8032,7 @@
           ]
         },
         {
-          "saleItemId": "SI-A970A653",
+          "saleItemId": "SI-4FCB181C",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003807,
@@ -8062,7 +8062,7 @@
           ]
         },
         {
-          "saleItemId": "SI-AA82566A",
+          "saleItemId": "SI-D77D2C9E",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003807,
@@ -8092,7 +8092,7 @@
           ]
         },
         {
-          "saleItemId": "SI-1545E882",
+          "saleItemId": "SI-FD93E4A5",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003864,
@@ -8122,7 +8122,7 @@
           ]
         },
         {
-          "saleItemId": "SI-BC460B9F",
+          "saleItemId": "SI-620D13B1",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003864,
@@ -8152,7 +8152,7 @@
           ]
         },
         {
-          "saleItemId": "SI-3C695601",
+          "saleItemId": "SI-BB42D4E2",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003864,
@@ -8182,7 +8182,7 @@
           ]
         },
         {
-          "saleItemId": "SI-78626F55",
+          "saleItemId": "SI-650D89F0",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003864,
@@ -8212,7 +8212,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E0343ADD",
+          "saleItemId": "SI-9000DAB1",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004239,
@@ -8242,7 +8242,7 @@
           ]
         },
         {
-          "saleItemId": "SI-BF24CE59",
+          "saleItemId": "SI-4C0B81E7",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004245,
@@ -8272,7 +8272,7 @@
           ]
         },
         {
-          "saleItemId": "SI-D2691AE9",
+          "saleItemId": "SI-FB356CEE",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004245,
@@ -8302,7 +8302,7 @@
           ]
         },
         {
-          "saleItemId": "SI-30B66D8C",
+          "saleItemId": "SI-0A2D9A93",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004277,
@@ -8332,7 +8332,7 @@
           ]
         },
         {
-          "saleItemId": "SI-9F55DD14",
+          "saleItemId": "SI-F977A0C6",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004277,
@@ -8362,7 +8362,7 @@
           ]
         },
         {
-          "saleItemId": "SI-ABD5904C",
+          "saleItemId": "SI-81268F32",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004277,
@@ -8392,7 +8392,7 @@
           ]
         },
         {
-          "saleItemId": "SI-5EDF9543",
+          "saleItemId": "SI-86D96061",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004412,
@@ -8422,7 +8422,7 @@
           ]
         },
         {
-          "saleItemId": "SI-AD4C43DC",
+          "saleItemId": "SI-57E5CD97",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004440,
@@ -8452,7 +8452,7 @@
           ]
         },
         {
-          "saleItemId": "SI-7E6FA7DD",
+          "saleItemId": "SI-9EB6D28D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004568,
@@ -8482,7 +8482,7 @@
           ]
         },
         {
-          "saleItemId": "SI-4CD8448B",
+          "saleItemId": "SI-BFE0F27D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004627,
@@ -8512,7 +8512,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E2A3ED3F",
+          "saleItemId": "SI-7DAE3C2C",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004674,
@@ -8542,7 +8542,7 @@
           ]
         },
         {
-          "saleItemId": "SI-9B6BDDF3",
+          "saleItemId": "SI-7BA89CD2",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004807,
@@ -8572,7 +8572,7 @@
           ]
         },
         {
-          "saleItemId": "SI-A3CC7EE7",
+          "saleItemId": "SI-735EAD02",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004807,
@@ -8602,7 +8602,7 @@
           ]
         },
         {
-          "saleItemId": "SI-5C07ED1C",
+          "saleItemId": "SI-A33EE908",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004813,
@@ -8632,7 +8632,7 @@
           ]
         },
         {
-          "saleItemId": "SI-743C826D",
+          "saleItemId": "SI-C3844CCE",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004814,
@@ -8662,7 +8662,7 @@
           ]
         },
         {
-          "saleItemId": "SI-479EAB13",
+          "saleItemId": "SI-0515A496",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004881,
@@ -8692,7 +8692,7 @@
           ]
         },
         {
-          "saleItemId": "SI-1AA9AE09",
+          "saleItemId": "SI-B577E471",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004881,
@@ -8722,7 +8722,7 @@
           ]
         },
         {
-          "saleItemId": "SI-85812ED0",
+          "saleItemId": "SI-340E734A",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004881,
@@ -8752,7 +8752,7 @@
           ]
         },
         {
-          "saleItemId": "SI-8B6C4E04",
+          "saleItemId": "SI-35B5D8F7",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004951,
@@ -8782,7 +8782,7 @@
           ]
         },
         {
-          "saleItemId": "SI-6F5DBCB7",
+          "saleItemId": "SI-28FE0F0C",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004951,
@@ -8812,7 +8812,7 @@
           ]
         },
         {
-          "saleItemId": "SI-2F030655",
+          "saleItemId": "SI-DD2607D1",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357005289,
@@ -8842,7 +8842,7 @@
           ]
         },
         {
-          "saleItemId": "SI-FA9EEE9A",
+          "saleItemId": "SI-636A6AED",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357005289,
@@ -9023,7 +9023,7 @@
           "nomeProduto": "COXINHA DE FRANGO CHIC",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-13T20:18:27.539360+00:00",
+          "lastSeen": "2026-06-14T00:12:01.662926+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -9062,7 +9062,7 @@
           "nomeProduto": "PITU LATÃO 473ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-13T20:18:27.525629+00:00",
+          "lastSeen": "2026-06-14T00:12:01.662886+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -9075,7 +9075,7 @@
           "nomeProduto": "PAÇOQUERO GG (PAÇOCAO) 50G",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-13T20:18:27.521470+00:00",
+          "lastSeen": "2026-06-14T00:12:01.662860+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -9218,7 +9218,7 @@
           "nomeProduto": "LUCKY STRIKE FRESH DOUBLE ICE",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-13T20:18:27.555710+00:00",
+          "lastSeen": "2026-06-14T00:12:01.663174+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -9231,7 +9231,7 @@
           "nomeProduto": "REFRIGERANTE PEPSI COLA 200ML PET",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-13T20:18:27.552613+00:00",
+          "lastSeen": "2026-06-14T00:12:01.663148+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -9348,7 +9348,7 @@
           "nomeProduto": "BEM CASADO DOCES LABANCA/ BAKERY",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-13T20:18:27.560281+00:00",
+          "lastSeen": "2026-06-14T00:12:01.663318+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -9413,7 +9413,7 @@
           "nomeProduto": "ENERGETICO MONSTER 473 ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-13T20:18:27.540577+00:00",
+          "lastSeen": "2026-06-14T00:12:01.662945+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -9439,7 +9439,7 @@
           "nomeProduto": "REFRIGERANTE COCA COLA 2L.",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-13T20:18:27.543921+00:00",
+          "lastSeen": "2026-06-14T00:12:01.662955+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -9504,7 +9504,7 @@
           "nomeProduto": "CERVEJA SCHIN LATÃO",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-13T20:18:27.540485+00:00",
+          "lastSeen": "2026-06-14T00:12:01.662942+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -9530,7 +9530,7 @@
           "nomeProduto": "VINHO CARRETEIRO 900ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-13T20:18:27.555740+00:00",
+          "lastSeen": "2026-06-14T00:12:01.663177+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -9543,7 +9543,7 @@
           "nomeProduto": "ROTHMANS RED BOX",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-13T20:18:27.511133+00:00",
+          "lastSeen": "2026-06-14T00:12:01.662821+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -9589,7 +9589,7 @@
           "nomeProduto": "LUCKY STRIKE PATTERSON RED BOX",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-13T20:18:27.519593+00:00",
+          "lastSeen": "2026-06-14T00:12:01.662852+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -9602,7 +9602,7 @@
           "nomeProduto": "CERVEJA BRAHMA CHOPP 473ML",
           "departamento": "PRODUTOS_DE_LOJA",
           "fonte": "PRODUTO_TARGETED",
-          "lastSeen": "2026-06-13T20:18:27.555766+00:00",
+          "lastSeen": "2026-06-14T00:12:01.663296+00:00",
           "confidence": "MEDIA",
           "evidence": [
             "PRODUTO.combustivel=false ou tipo≠C",
@@ -9652,10 +9652,10 @@
       "factProductLookupPerformance": [
         {
           "tempoTotalLookupAntesSec": 68.15,
-          "tempoTotalLookupDepoisSec": 0.05,
-          "reducaoPercentual": 99.93,
+          "tempoTotalLookupDepoisSec": 0.01,
+          "reducaoPercentual": 99.99,
           "lookupsExecutados": 0,
-          "cacheHits": 49,
+          "cacheHits": 98,
           "cacheMisses": 0,
           "cacheHitRatePct": 100.0,
           "timeouts": 0,
@@ -9728,7 +9728,7 @@
                 "precoVendaB": 5.299,
                 "precoVendaC": 0.0,
                 "precoCusto": 4.30904,
-                "estoqueQtde": 2448.509,
+                "estoqueQtde": 2275.433,
                 "estoqueMin": 0.0,
                 "ultimaAlteracao": "2026-06-08T14:31:19.344-03:00",
                 "ultimoUsuarioAlteracao": "CAMILY",
@@ -9763,7 +9763,7 @@
       ],
       "factProductSalesWithMargin": [
         {
-          "saleItemId": "SI-EA9379A0",
+          "saleItemId": "SI-079F74D4",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357002812,
@@ -9805,7 +9805,7 @@
           ]
         },
         {
-          "saleItemId": "SI-BA9AC97B",
+          "saleItemId": "SI-F48AF50D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357002812,
@@ -9847,7 +9847,7 @@
           ]
         },
         {
-          "saleItemId": "SI-F70A835F",
+          "saleItemId": "SI-7236A87A",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357002853,
@@ -9889,7 +9889,7 @@
           ]
         },
         {
-          "saleItemId": "SI-85C6D7E1",
+          "saleItemId": "SI-BA02382F",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357002906,
@@ -9931,7 +9931,7 @@
           ]
         },
         {
-          "saleItemId": "SI-2F5F5270",
+          "saleItemId": "SI-02797808",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003070,
@@ -9973,7 +9973,7 @@
           ]
         },
         {
-          "saleItemId": "SI-0B8BE48D",
+          "saleItemId": "SI-6879C4DD",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003188,
@@ -10015,7 +10015,7 @@
           ]
         },
         {
-          "saleItemId": "SI-B9B63B43",
+          "saleItemId": "SI-91A11B4D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003303,
@@ -10057,7 +10057,7 @@
           ]
         },
         {
-          "saleItemId": "SI-52677C5B",
+          "saleItemId": "SI-AFD4496C",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003303,
@@ -10099,7 +10099,7 @@
           ]
         },
         {
-          "saleItemId": "SI-997D1C5C",
+          "saleItemId": "SI-2BAB3821",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003303,
@@ -10141,7 +10141,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E21FE052",
+          "saleItemId": "SI-4EF73C51",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003303,
@@ -10183,7 +10183,7 @@
           ]
         },
         {
-          "saleItemId": "SI-6CFC67E2",
+          "saleItemId": "SI-43F03F2C",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003303,
@@ -10225,7 +10225,7 @@
           ]
         },
         {
-          "saleItemId": "SI-EB53E6D0",
+          "saleItemId": "SI-19F9A930",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003304,
@@ -10267,7 +10267,7 @@
           ]
         },
         {
-          "saleItemId": "SI-AD492258",
+          "saleItemId": "SI-15C48DB5",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003304,
@@ -10309,7 +10309,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E536A557",
+          "saleItemId": "SI-6908D56F",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003320,
@@ -10351,7 +10351,7 @@
           ]
         },
         {
-          "saleItemId": "SI-DED98666",
+          "saleItemId": "SI-D1649029",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003320,
@@ -10393,7 +10393,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E6BECEA9",
+          "saleItemId": "SI-D6A80A9F",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003361,
@@ -10435,7 +10435,7 @@
           ]
         },
         {
-          "saleItemId": "SI-C3D5FB47",
+          "saleItemId": "SI-8A6E534C",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003361,
@@ -10477,7 +10477,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E41D05DB",
+          "saleItemId": "SI-C7271916",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003402,
@@ -10519,7 +10519,7 @@
           ]
         },
         {
-          "saleItemId": "SI-278C92CB",
+          "saleItemId": "SI-5D1DF171",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003414,
@@ -10561,7 +10561,7 @@
           ]
         },
         {
-          "saleItemId": "SI-0D61FB9E",
+          "saleItemId": "SI-B167CBCC",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003512,
@@ -10603,7 +10603,7 @@
           ]
         },
         {
-          "saleItemId": "SI-084D22E2",
+          "saleItemId": "SI-0896C9F3",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003650,
@@ -10645,7 +10645,7 @@
           ]
         },
         {
-          "saleItemId": "SI-8FDA8AB8",
+          "saleItemId": "SI-3EB439AD",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003749,
@@ -10687,7 +10687,7 @@
           ]
         },
         {
-          "saleItemId": "SI-FFB0D042",
+          "saleItemId": "SI-B9EBF140",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003807,
@@ -10729,7 +10729,7 @@
           ]
         },
         {
-          "saleItemId": "SI-F9F3D340",
+          "saleItemId": "SI-DC06091D",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003807,
@@ -10771,7 +10771,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E2A92213",
+          "saleItemId": "SI-01F7B865",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003864,
@@ -10813,7 +10813,7 @@
           ]
         },
         {
-          "saleItemId": "SI-D270A9D5",
+          "saleItemId": "SI-464822EE",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003864,
@@ -10855,7 +10855,7 @@
           ]
         },
         {
-          "saleItemId": "SI-C57594AC",
+          "saleItemId": "SI-92F145B1",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003864,
@@ -10897,7 +10897,7 @@
           ]
         },
         {
-          "saleItemId": "SI-AF52DCDC",
+          "saleItemId": "SI-37B0CEE6",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357003864,
@@ -10939,7 +10939,7 @@
           ]
         },
         {
-          "saleItemId": "SI-ABC0226D",
+          "saleItemId": "SI-1171E1D2",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004239,
@@ -10981,7 +10981,7 @@
           ]
         },
         {
-          "saleItemId": "SI-99A63107",
+          "saleItemId": "SI-C628510C",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004245,
@@ -11023,7 +11023,7 @@
           ]
         },
         {
-          "saleItemId": "SI-E0BC2FE1",
+          "saleItemId": "SI-C3D181FB",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004245,
@@ -11065,7 +11065,7 @@
           ]
         },
         {
-          "saleItemId": "SI-F02C4198",
+          "saleItemId": "SI-BDE737B0",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004277,
@@ -11107,7 +11107,7 @@
           ]
         },
         {
-          "saleItemId": "SI-8A3DE9A0",
+          "saleItemId": "SI-A989B2CC",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004277,
@@ -11149,7 +11149,7 @@
           ]
         },
         {
-          "saleItemId": "SI-B695A04B",
+          "saleItemId": "SI-13A23214",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004277,
@@ -11191,7 +11191,7 @@
           ]
         },
         {
-          "saleItemId": "SI-3458D897",
+          "saleItemId": "SI-D09FBA34",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004412,
@@ -11233,7 +11233,7 @@
           ]
         },
         {
-          "saleItemId": "SI-1ECB63DF",
+          "saleItemId": "SI-6C825CDA",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004440,
@@ -11275,7 +11275,7 @@
           ]
         },
         {
-          "saleItemId": "SI-DAD2A888",
+          "saleItemId": "SI-1A0EE8C1",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004568,
@@ -11317,7 +11317,7 @@
           ]
         },
         {
-          "saleItemId": "SI-058455C3",
+          "saleItemId": "SI-3B207934",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004627,
@@ -11359,7 +11359,7 @@
           ]
         },
         {
-          "saleItemId": "SI-7E6533F5",
+          "saleItemId": "SI-502D9DFD",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004674,
@@ -11401,7 +11401,7 @@
           ]
         },
         {
-          "saleItemId": "SI-953A64E8",
+          "saleItemId": "SI-19A2B285",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004807,
@@ -11443,7 +11443,7 @@
           ]
         },
         {
-          "saleItemId": "SI-40F81E44",
+          "saleItemId": "SI-29A7E9DF",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004807,
@@ -11485,7 +11485,7 @@
           ]
         },
         {
-          "saleItemId": "SI-449158B2",
+          "saleItemId": "SI-6C9D8C80",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004813,
@@ -11527,7 +11527,7 @@
           ]
         },
         {
-          "saleItemId": "SI-F02EE881",
+          "saleItemId": "SI-5D024D73",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004814,
@@ -11569,7 +11569,7 @@
           ]
         },
         {
-          "saleItemId": "SI-6D2BE883",
+          "saleItemId": "SI-7A099365",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004881,
@@ -11611,7 +11611,7 @@
           ]
         },
         {
-          "saleItemId": "SI-97FC279F",
+          "saleItemId": "SI-5A072D69",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004881,
@@ -11653,7 +11653,7 @@
           ]
         },
         {
-          "saleItemId": "SI-C486CA43",
+          "saleItemId": "SI-7983AACE",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004881,
@@ -11695,7 +11695,7 @@
           ]
         },
         {
-          "saleItemId": "SI-35B5EF06",
+          "saleItemId": "SI-9768F0DE",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004951,
@@ -11737,7 +11737,7 @@
           ]
         },
         {
-          "saleItemId": "SI-95B45DF7",
+          "saleItemId": "SI-C1F6E933",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357004951,
@@ -11779,7 +11779,7 @@
           ]
         },
         {
-          "saleItemId": "SI-2B1845A9",
+          "saleItemId": "SI-457DDCE8",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357005289,
@@ -11821,7 +11821,7 @@
           ]
         },
         {
-          "saleItemId": "SI-9063DD5A",
+          "saleItemId": "SI-A7D92606",
           "empresaCodigo": 11495,
           "empresaNome": "POSTO VIP",
           "vendaCodigo": 357005289,
@@ -12891,7 +12891,7 @@
       ],
       "factCommercialAction": [
         {
-          "id": "PV-OPP-F9612CB1",
+          "id": "PV-OPP-63042F7F",
           "tipo": "AUMENTAR_PARTICIPACAO",
           "titulo": "AUMENTAR PARTICIPACAO",
           "descricao": "Produtos Vendidos com 9.85% do faturamento — meta 35%+",
@@ -12927,7 +12927,7 @@
           ]
         },
         {
-          "id": "PV-OPP-8EAB6B4C",
+          "id": "PV-OPP-B0668843",
           "tipo": "DESENVOLVER_FILIAL",
           "titulo": "DESENVOLVER FILIAL",
           "descricao": "Desenvolver mix Produtos Vendidos na filial 5555",
@@ -12963,7 +12963,7 @@
           ]
         },
         {
-          "id": "PV-MIX-06B6311C",
+          "id": "PV-MIX-72B51D01",
           "tipo": "DESENVOLVER_MIX_FILIAL",
           "titulo": "Desenvolver mix PV — filial 5555",
           "descricao": "Mix PV 0.0% vs benchmark 5.39%",
@@ -12996,7 +12996,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-F3F59387",
+          "id": "PV-MARGEM-5913BFEA",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 1841747",
           "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
@@ -13030,7 +13030,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-8A08901F",
+          "id": "PV-FOCO-67604BDD",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1803739",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO, PRIORIDADE_RECEITA",
@@ -13070,7 +13070,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-E4EB03F9",
+          "id": "PV-MARGEM-D46876CB",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 1803530",
           "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
@@ -13104,7 +13104,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-923E868F",
+          "id": "PV-FOCO-F4D18456",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1802031",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
@@ -13143,7 +13143,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-8829CFA4",
+          "id": "PV-FOCO-1FE35CE8",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1803802",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
@@ -13182,7 +13182,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-0D1F56AD",
+          "id": "PV-FOCO-091B223C",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1802381",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
@@ -13221,7 +13221,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-A1898CA3",
+          "id": "PV-FOCO-2A119E5F",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1803809",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
@@ -13260,7 +13260,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-825DDF76",
+          "id": "PV-MARGEM-8F457BA9",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 1727011",
           "descricao": "Alto volume com margem 15.14% abaixo do benchmark",
@@ -13294,7 +13294,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-5A309F59",
+          "id": "PV-MARGEM-E0B909B9",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 1803474",
           "descricao": "Alto volume com margem 12.93% abaixo do benchmark",
@@ -13328,7 +13328,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-0ED2B2B1",
+          "id": "PV-MARGEM-23E19AA1",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 1803525",
           "descricao": "Alto volume com margem 15.14% abaixo do benchmark",
@@ -13362,7 +13362,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-CB8F9CFD",
+          "id": "PV-MARGEM-3989059D",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 2342192",
           "descricao": "Alto volume com margem 18.51% abaixo do benchmark",
@@ -13396,7 +13396,7 @@
           ]
         },
         {
-          "id": "PV-OPP-07EFFC0E",
+          "id": "PV-OPP-78C6FCD0",
           "tipo": "EXPANDIR_TOP_PRODUTO",
           "titulo": "EXPANDIR TOP PRODUTO",
           "descricao": "Replicar sucesso do produto 1841747 em outras filiais",
@@ -13432,7 +13432,7 @@
           ]
         },
         {
-          "id": "PV-OPP-16AADEFF",
+          "id": "PV-OPP-1887455C",
           "tipo": "FOCO_DEPARTAMENTO",
           "titulo": "FOCO DEPARTAMENTO",
           "descricao": "Priorizar departamento PRODUTOS_DE_LOJA (margem 30.29%)",
@@ -13468,7 +13468,7 @@
           ]
         },
         {
-          "id": "PV-COMB-6D2970E6",
+          "id": "PV-COMB-C1688AA2",
           "tipo": "REDUZIR_DEPENDENCIA_COMBUSTIVEL",
           "titulo": "Reduzir dependência combustível — filial 5555",
           "descricao": "Dependência 100.0% — ampliar Produtos Vendidos",
@@ -13501,7 +13501,7 @@
           ]
         },
         {
-          "id": "PV-COMB-6F7B0DF7",
+          "id": "PV-COMB-260B9636",
           "tipo": "REDUZIR_DEPENDENCIA_COMBUSTIVEL",
           "titulo": "Reduzir dependência combustível — filial 11495",
           "descricao": "Dependência 89.21% — ampliar Produtos Vendidos",
@@ -13534,7 +13534,7 @@
           ]
         },
         {
-          "id": "PV-EXP-F01FC7ED",
+          "id": "PV-EXP-E4DB313E",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1803739",
           "descricao": "Expandir para 1 filiais",
@@ -13567,7 +13567,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-4BF5CF6E",
+          "id": "PV-FOCO-01AE08D3",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1802688",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -13605,7 +13605,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-ED700C37",
+          "id": "PV-FOCO-FE87847B",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1803755",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -13643,7 +13643,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-0404A2DF",
+          "id": "PV-FOCO-D9AED51A",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1802510",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -13681,7 +13681,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-8EFD0806",
+          "id": "PV-FOCO-D360700B",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 2155819",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -13719,7 +13719,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-DE8A9C93",
+          "id": "PV-FOCO-E57BB157",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1803659",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -13757,7 +13757,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-AA31005E",
+          "id": "PV-FOCO-6503207C",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1802343",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -13795,7 +13795,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-B2342A0E",
+          "id": "PV-FOCO-E908D595",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1841740",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -13833,7 +13833,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-DBEAA56E",
+          "id": "PV-FOCO-E8A608C3",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1802630",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -13871,7 +13871,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-1879ECEB",
+          "id": "PV-FOCO-9A63D3D5",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1822349",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -13909,7 +13909,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-002297C1",
+          "id": "PV-FOCO-FB6E0388",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1801758",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -13947,7 +13947,7 @@
           ]
         },
         {
-          "id": "PV-EXP-24F0F640",
+          "id": "PV-EXP-223DA4BB",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1803809",
           "descricao": "Expandir para 1 filiais",
@@ -13980,7 +13980,7 @@
           ]
         },
         {
-          "id": "PV-EXP-57674346",
+          "id": "PV-EXP-AD7E7AAF",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1803802",
           "descricao": "Expandir para 1 filiais",
@@ -14013,7 +14013,7 @@
           ]
         },
         {
-          "id": "PV-EXP-7FD40DED",
+          "id": "PV-EXP-3C2018D4",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1802031",
           "descricao": "Expandir para 1 filiais",
@@ -14046,7 +14046,7 @@
           ]
         },
         {
-          "id": "PV-EXP-05F9BAB1",
+          "id": "PV-EXP-46D44A3B",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1802381",
           "descricao": "Expandir para 1 filiais",
@@ -14079,7 +14079,7 @@
           ]
         },
         {
-          "id": "PV-EXP-888A356F",
+          "id": "PV-EXP-96875BA2",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1802343",
           "descricao": "Expandir para 1 filiais",
@@ -14112,7 +14112,7 @@
           ]
         },
         {
-          "id": "PV-EXP-8BF0557A",
+          "id": "PV-EXP-0F031C79",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1802630",
           "descricao": "Expandir para 1 filiais",
@@ -14145,7 +14145,7 @@
           ]
         },
         {
-          "id": "PV-EXP-7C35FC48",
+          "id": "PV-EXP-E461E43C",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 2155819",
           "descricao": "Expandir para 1 filiais",
@@ -14178,7 +14178,7 @@
           ]
         },
         {
-          "id": "PV-EXP-31DC61C7",
+          "id": "PV-EXP-EE3E790F",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1802510",
           "descricao": "Expandir para 1 filiais",
@@ -14211,7 +14211,7 @@
           ]
         },
         {
-          "id": "PV-EXP-CE93C770",
+          "id": "PV-EXP-0FFAE0D4",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1841740",
           "descricao": "Expandir para 1 filiais",
@@ -14244,7 +14244,7 @@
           ]
         },
         {
-          "id": "PV-EXP-9047292C",
+          "id": "PV-EXP-4E46A176",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1801758",
           "descricao": "Expandir para 1 filiais",
@@ -14277,7 +14277,7 @@
           ]
         },
         {
-          "id": "PV-EXP-0960CE64",
+          "id": "PV-EXP-D644DC0A",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1822349",
           "descricao": "Expandir para 1 filiais",
@@ -14310,7 +14310,7 @@
           ]
         },
         {
-          "id": "PV-EXP-712773B8",
+          "id": "PV-EXP-4596A52E",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1802688",
           "descricao": "Expandir para 1 filiais",
@@ -14343,7 +14343,7 @@
           ]
         },
         {
-          "id": "PV-EXP-0CDE8217",
+          "id": "PV-EXP-E0C99C4C",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1803659",
           "descricao": "Expandir para 1 filiais",
@@ -14376,7 +14376,7 @@
           ]
         },
         {
-          "id": "PV-EXP-D2DD243B",
+          "id": "PV-EXP-4C6E3729",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1803755",
           "descricao": "Expandir para 1 filiais",
@@ -14491,7 +14491,7 @@
             "precoVendaB": 5.299,
             "precoVendaC": 0.0,
             "precoCusto": 4.30904,
-            "estoqueQtde": 2448.509,
+            "estoqueQtde": 2275.433,
             "estoqueMin": 0.0,
             "ultimaAlteracao": "2026-06-08T14:31:19.344-03:00",
             "ultimoUsuarioAlteracao": "CAMILY",
@@ -14540,7 +14540,7 @@
       ]
     },
     "productCacheStrategy": {
-      "cacheHits": 49,
+      "cacheHits": 98,
       "cacheMisses": 0,
       "cacheWrites": 0,
       "cacheHitRatePct": 100.0,
@@ -14622,10 +14622,10 @@
     },
     "productPerformanceBenchmark": {
       "tempoTotalLookupAntesSec": 68.15,
-      "tempoTotalLookupDepoisSec": 0.05,
-      "reducaoPercentual": 99.93,
+      "tempoTotalLookupDepoisSec": 0.01,
+      "reducaoPercentual": 99.99,
       "lookupsExecutados": 0,
-      "cacheHits": 49,
+      "cacheHits": 98,
       "cacheMisses": 0,
       "cacheHitRatePct": 100.0,
       "timeouts": 0,
@@ -16998,7 +16998,7 @@
     "commercialActionCenter": {
       "actions": [
         {
-          "id": "PV-OPP-F9612CB1",
+          "id": "PV-OPP-63042F7F",
           "tipo": "AUMENTAR_PARTICIPACAO",
           "titulo": "AUMENTAR PARTICIPACAO",
           "descricao": "Produtos Vendidos com 9.85% do faturamento — meta 35%+",
@@ -17034,7 +17034,7 @@
           ]
         },
         {
-          "id": "PV-OPP-8EAB6B4C",
+          "id": "PV-OPP-B0668843",
           "tipo": "DESENVOLVER_FILIAL",
           "titulo": "DESENVOLVER FILIAL",
           "descricao": "Desenvolver mix Produtos Vendidos na filial 5555",
@@ -17070,7 +17070,7 @@
           ]
         },
         {
-          "id": "PV-MIX-06B6311C",
+          "id": "PV-MIX-72B51D01",
           "tipo": "DESENVOLVER_MIX_FILIAL",
           "titulo": "Desenvolver mix PV — filial 5555",
           "descricao": "Mix PV 0.0% vs benchmark 5.39%",
@@ -17103,7 +17103,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-F3F59387",
+          "id": "PV-MARGEM-5913BFEA",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 1841747",
           "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
@@ -17137,7 +17137,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-8A08901F",
+          "id": "PV-FOCO-67604BDD",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1803739",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO, PRIORIDADE_RECEITA",
@@ -17177,7 +17177,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-E4EB03F9",
+          "id": "PV-MARGEM-D46876CB",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 1803530",
           "descricao": "Alto volume com margem 16.91% abaixo do benchmark",
@@ -17211,7 +17211,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-923E868F",
+          "id": "PV-FOCO-F4D18456",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1802031",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
@@ -17250,7 +17250,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-8829CFA4",
+          "id": "PV-FOCO-1FE35CE8",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1803802",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
@@ -17289,7 +17289,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-0D1F56AD",
+          "id": "PV-FOCO-091B223C",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1802381",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
@@ -17328,7 +17328,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-A1898CA3",
+          "id": "PV-FOCO-2A119E5F",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1803809",
           "descricao": "Executar: PROTEGER_MARGEM, EXPANDIR_SORTIMENTO",
@@ -17367,7 +17367,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-825DDF76",
+          "id": "PV-MARGEM-8F457BA9",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 1727011",
           "descricao": "Alto volume com margem 15.14% abaixo do benchmark",
@@ -17401,7 +17401,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-5A309F59",
+          "id": "PV-MARGEM-E0B909B9",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 1803474",
           "descricao": "Alto volume com margem 12.93% abaixo do benchmark",
@@ -17435,7 +17435,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-0ED2B2B1",
+          "id": "PV-MARGEM-23E19AA1",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 1803525",
           "descricao": "Alto volume com margem 15.14% abaixo do benchmark",
@@ -17469,7 +17469,7 @@
           ]
         },
         {
-          "id": "PV-MARGEM-CB8F9CFD",
+          "id": "PV-MARGEM-3989059D",
           "tipo": "REVISAR_MARGEM",
           "titulo": "Revisar margem — produto 2342192",
           "descricao": "Alto volume com margem 18.51% abaixo do benchmark",
@@ -17503,7 +17503,7 @@
           ]
         },
         {
-          "id": "PV-OPP-07EFFC0E",
+          "id": "PV-OPP-78C6FCD0",
           "tipo": "EXPANDIR_TOP_PRODUTO",
           "titulo": "EXPANDIR TOP PRODUTO",
           "descricao": "Replicar sucesso do produto 1841747 em outras filiais",
@@ -17539,7 +17539,7 @@
           ]
         },
         {
-          "id": "PV-OPP-16AADEFF",
+          "id": "PV-OPP-1887455C",
           "tipo": "FOCO_DEPARTAMENTO",
           "titulo": "FOCO DEPARTAMENTO",
           "descricao": "Priorizar departamento PRODUTOS_DE_LOJA (margem 30.29%)",
@@ -17575,7 +17575,7 @@
           ]
         },
         {
-          "id": "PV-COMB-6D2970E6",
+          "id": "PV-COMB-C1688AA2",
           "tipo": "REDUZIR_DEPENDENCIA_COMBUSTIVEL",
           "titulo": "Reduzir dependência combustível — filial 5555",
           "descricao": "Dependência 100.0% — ampliar Produtos Vendidos",
@@ -17608,7 +17608,7 @@
           ]
         },
         {
-          "id": "PV-COMB-6F7B0DF7",
+          "id": "PV-COMB-260B9636",
           "tipo": "REDUZIR_DEPENDENCIA_COMBUSTIVEL",
           "titulo": "Reduzir dependência combustível — filial 11495",
           "descricao": "Dependência 89.21% — ampliar Produtos Vendidos",
@@ -17641,7 +17641,7 @@
           ]
         },
         {
-          "id": "PV-EXP-F01FC7ED",
+          "id": "PV-EXP-E4DB313E",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1803739",
           "descricao": "Expandir para 1 filiais",
@@ -17674,7 +17674,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-4BF5CF6E",
+          "id": "PV-FOCO-01AE08D3",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1802688",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -17712,7 +17712,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-ED700C37",
+          "id": "PV-FOCO-FE87847B",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1803755",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -17750,7 +17750,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-0404A2DF",
+          "id": "PV-FOCO-D9AED51A",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1802510",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -17788,7 +17788,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-8EFD0806",
+          "id": "PV-FOCO-D360700B",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 2155819",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -17826,7 +17826,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-DE8A9C93",
+          "id": "PV-FOCO-E57BB157",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1803659",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -17864,7 +17864,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-AA31005E",
+          "id": "PV-FOCO-6503207C",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1802343",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -17902,7 +17902,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-B2342A0E",
+          "id": "PV-FOCO-E908D595",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1841740",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -17940,7 +17940,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-DBEAA56E",
+          "id": "PV-FOCO-E8A608C3",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1802630",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -17978,7 +17978,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-1879ECEB",
+          "id": "PV-FOCO-9A63D3D5",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1822349",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -18016,7 +18016,7 @@
           ]
         },
         {
-          "id": "PV-FOCO-002297C1",
+          "id": "PV-FOCO-FB6E0388",
           "tipo": "FOCO_COMERCIAL",
           "titulo": "Foco comercial — produto 1801758",
           "descricao": "Executar: EXPANDIR_SORTIMENTO",
@@ -18054,7 +18054,7 @@
           ]
         },
         {
-          "id": "PV-EXP-24F0F640",
+          "id": "PV-EXP-223DA4BB",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1803809",
           "descricao": "Expandir para 1 filiais",
@@ -18087,7 +18087,7 @@
           ]
         },
         {
-          "id": "PV-EXP-57674346",
+          "id": "PV-EXP-AD7E7AAF",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1803802",
           "descricao": "Expandir para 1 filiais",
@@ -18120,7 +18120,7 @@
           ]
         },
         {
-          "id": "PV-EXP-7FD40DED",
+          "id": "PV-EXP-3C2018D4",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1802031",
           "descricao": "Expandir para 1 filiais",
@@ -18153,7 +18153,7 @@
           ]
         },
         {
-          "id": "PV-EXP-05F9BAB1",
+          "id": "PV-EXP-46D44A3B",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1802381",
           "descricao": "Expandir para 1 filiais",
@@ -18186,7 +18186,7 @@
           ]
         },
         {
-          "id": "PV-EXP-888A356F",
+          "id": "PV-EXP-96875BA2",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1802343",
           "descricao": "Expandir para 1 filiais",
@@ -18219,7 +18219,7 @@
           ]
         },
         {
-          "id": "PV-EXP-8BF0557A",
+          "id": "PV-EXP-0F031C79",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1802630",
           "descricao": "Expandir para 1 filiais",
@@ -18252,7 +18252,7 @@
           ]
         },
         {
-          "id": "PV-EXP-7C35FC48",
+          "id": "PV-EXP-E461E43C",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 2155819",
           "descricao": "Expandir para 1 filiais",
@@ -18285,7 +18285,7 @@
           ]
         },
         {
-          "id": "PV-EXP-31DC61C7",
+          "id": "PV-EXP-EE3E790F",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1802510",
           "descricao": "Expandir para 1 filiais",
@@ -18318,7 +18318,7 @@
           ]
         },
         {
-          "id": "PV-EXP-CE93C770",
+          "id": "PV-EXP-0FFAE0D4",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1841740",
           "descricao": "Expandir para 1 filiais",
@@ -18351,7 +18351,7 @@
           ]
         },
         {
-          "id": "PV-EXP-9047292C",
+          "id": "PV-EXP-4E46A176",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1801758",
           "descricao": "Expandir para 1 filiais",
@@ -18384,7 +18384,7 @@
           ]
         },
         {
-          "id": "PV-EXP-0960CE64",
+          "id": "PV-EXP-D644DC0A",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1822349",
           "descricao": "Expandir para 1 filiais",
@@ -18417,7 +18417,7 @@
           ]
         },
         {
-          "id": "PV-EXP-712773B8",
+          "id": "PV-EXP-4596A52E",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1802688",
           "descricao": "Expandir para 1 filiais",
@@ -18450,7 +18450,7 @@
           ]
         },
         {
-          "id": "PV-EXP-0CDE8217",
+          "id": "PV-EXP-E0C99C4C",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1803659",
           "descricao": "Expandir para 1 filiais",
@@ -18483,7 +18483,7 @@
           ]
         },
         {
-          "id": "PV-EXP-D2DD243B",
+          "id": "PV-EXP-4C6E3729",
           "tipo": "EXPANDIR_SORTIMENTO",
           "titulo": "Expandir sortimento — produto 1803755",
           "descricao": "Expandir para 1 filiais",
