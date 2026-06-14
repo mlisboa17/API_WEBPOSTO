@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-13T20:38:21",
+  "scheduler": {
+    "status": "ENABLED",
+    "enabled": true,
+    "intervalSeconds": 3600,
+    "lastRunAt": null,
+    "nextRunAt": "2026-06-13T21:38:20",
+    "lastPeriod": null,
+    "activeSnapshotKey": null,
+    "lastResult": null,
+    "snapshotKinds": [
+      "financial_overview",
+      "financial_expenses",
+      "financial_receivables",
+      "financial_payables"
+    ]
+  },
+  "recovery": {
+    "enabled": true,
+    "intervalSeconds": 900,
+    "circuitStatus": "CLOSED",
+    "lastCycleAt": null,
+    "pendingCount": 0,
+    "recoveredCount": 0,
+    "jobs": [],
+    "lastSimulation": null
+  },
+  "alertsTotal": 2,
+  "expiredCandidates": 0,
+  "period": {
+    "dataInicial": "2026-06-01",
+    "dataFinal": "2026-06-07"
+  }
+}

@@ -269,3 +269,30 @@ class WebPostoClient:
         return WebPostoResponse.fail(
             WebPostoError(endpoint=path, status=status, type="UPSTREAM_ERROR", message=response.text[:220])
         )
+
+    def get_circuit_status(self, endpoint_keys: set[str] | None = None) -> dict[str, str]:
+        from src.gateway.circuit_domains import CIRCUIT_SCOPES
+
+        keys = endpoint_keys or set(ENDPOINTS.keys())
+        status = self.breaker.snapshot_status(keys)
+        return {
+            "endpoints": status,
+            "summary": {
+                scope: {
+                    "OPEN": sum(1 for k in keys_set if status.get(k) == "OPEN"),
+                    "HALF_OPEN": sum(1 for k in keys_set if status.get(k) == "HALF_OPEN"),
+                    "CLOSED": sum(1 for k in keys_set if status.get(k) == "CLOSED"),
+                }
+                for scope, keys_set in CIRCUIT_SCOPES.items()
+            },
+        }
+
+    def reset_circuit(self, scope: str = "global") -> dict[str, Any]:
+        from src.gateway.circuit_domains import CIRCUIT_SCOPES
+
+        normalized = (scope or "global").strip().lower()
+        keys = CIRCUIT_SCOPES.get(normalized)
+        if keys is None:
+            return {"scope": normalized, "reset": False, "error": "Escopo invalido"}
+        self.breaker.reset_many(set(keys))
+        return {"scope": normalized, "reset": True, "endpoints": sorted(keys)}

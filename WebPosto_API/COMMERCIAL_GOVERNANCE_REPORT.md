@@ -1,5 +1,6 @@
-# IA-8 — Commercial Governance
+# IA-6 — Governance Layer
 
-- Termo conveniência: **False**
-- empresaCodigo obrigatório: **True**
-- Gate aprovado: **True**
+- Lineage obrigatório: **True**
+- Evidence obrigatório: **True**
+- Cross-tenant: **True**
+- Trust: **88.69**

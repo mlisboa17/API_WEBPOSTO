@@ -59,6 +59,14 @@ class Settings(BaseSettings):
     circuit_breaker_threshold: int = 5
     circuit_breaker_timeout: int = 60
 
+    # F08.2 — Financial Auto-Recovery & Snapshot Scheduling
+    financial_scheduler_enabled: bool = True
+    financial_snapshot_refresh_interval_seconds: int = 3600
+    financial_snapshot_retention_days: int = 30
+    financial_snapshot_rolling_days: int = 7
+    financial_auto_recovery_enabled: bool = True
+    financial_auto_recovery_interval_seconds: int = 900
+
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"

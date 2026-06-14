@@ -5,13 +5,14 @@ export const NAV_AREAS = [
     icon: "📊",
     label: "Executivo",
     tabs: [
-      { id: "resumo", label: "Resumo", view: "executive" },
+      { id: "resumo", label: "Resumo", view: "executiveWorkspace" },
       { id: "indicadores", label: "Indicadores", view: "executiveScorecard" },
       { id: "alertas", label: "Alertas", view: "actionCenter" },
       { id: "metas", label: "Metas", view: "goalsCampaign" },
     ],
     motors: [
       "executive",
+      "executiveWorkspace",
       "dashboard",
       "executiveScorecard",
       "benchmark",
@@ -35,6 +36,7 @@ export const NAV_AREAS = [
       { id: "fluxo", label: "Fluxo de Caixa", view: "cashFlow" },
       { id: "extratos", label: "Extratos", view: "cashOperations" },
       { id: "conciliacao", label: "Conciliação", view: "financeCenter" },
+      { id: "operations_center", label: "Operations Center", view: "financialOperationsCenter" },
     ],
     motors: [
       "dashboard",
@@ -43,6 +45,7 @@ export const NAV_AREAS = [
       "financeCenter",
       "cashFlow",
       "cashOperations",
+      "financialOperationsCenter",
       "operatorPerformance",
       "peopleIntelligence",
       "peopleRoi",
@@ -100,7 +103,7 @@ export const NAV_AREAS = [
       { id: "integracoes", label: "Integrações", view: "administration" },
       { id: "configuracoes", label: "Configurações", view: "administration" },
     ],
-    motors: ["administration"],
+    motors: ["administration", "financialOperationsCenter"],
   },
 ];
 

@@ -77,12 +77,18 @@ import {
   fetchCommercialCopilotCockpit,
   postCommercialCopilotRefresh,
   postCommercialCopilotAsk,
+  fetchFinancialSnapshotHealthCockpit,
+  fetchFinancialOperationsStatus,
+  fetchFinancialOperationsCenterCockpit,
+  runFinancialOperationsNow,
 } from "./services/api.js";
 import { APP_CONFIG } from "./config.js";
 import { renderFilters, updateCompanyOptions } from "./components/filters.js";
 import { FILIAIS, getFiliaisBaseCodWebSet, hydrateFiliaisCodigoMap, mergeFiliais } from "./components/filiais.js";
 import { renderDashboard } from "./pages/dashboard.js";
+import { renderFinancialOverview } from "./pages/financialOverview.js";
 import { renderExpenses } from "./pages/expenses.js";
+import { renderFinancialExpenses } from "./pages/financialExpenses.js";
 import { renderAccountsPayable } from "./pages/accountsPayable.js";
 import { renderSales } from "./pages/sales.js";
 import { renderStock } from "./pages/stock.js";
@@ -114,7 +120,11 @@ import { renderNonFuelProducts } from "./pages/nonFuelProducts.js";
 import { renderCommercialExecution } from "./pages/commercialExecution.js";
 import { renderCommercialLearning } from "./pages/commercialLearning.js";
 import { renderCommercialCopilot } from "./pages/commercialCopilot.js";
+import { renderExecutiveWorkspace } from "./pages/executiveWorkspace.js";
 import { renderAdministration } from "./pages/administration.js";
+import { renderFinancialMonitoring } from "./pages/financialMonitoring.js";
+import { renderFinancialOperations } from "./pages/financialOperations.js";
+import { renderFinancialOperationsCenter } from "./pages/financialOperationsCenter.js";
 import { getDefaultViewForArea, resolveAreaForView } from "./config/navigation.js";
 import { mountNavigationShell } from "./components/navigationShell.js";
 import { renderCompanySwitcher } from "./components/CompanySwitcher.js";
@@ -209,6 +219,18 @@ const VIEW_ALIASES = {
   commercialcopilot: "commercialCopilot",
   administration: "administration",
   admin: "administration",
+  executiveWorkspace: "executiveWorkspace",
+  workspace: "executiveWorkspace",
+  home: "executiveWorkspace",
+  financialMonitoring: "financialOperationsCenter",
+  "financial-monitoring": "financialOperationsCenter",
+  financialmonitoring: "financialOperationsCenter",
+  financialOperations: "financialOperationsCenter",
+  "financial-operations": "financialOperationsCenter",
+  financialoperations: "financialOperationsCenter",
+  financialOperationsCenter: "financialOperationsCenter",
+  "financial-operations-center": "financialOperationsCenter",
+  financialoperationscenter: "financialOperationsCenter",
 };
 
 const VIEW_URL_NAMES = {
@@ -239,6 +261,10 @@ const VIEW_URL_NAMES = {
   commercialLearning: "commercial-learning",
   commercialCopilot: "commercial-copilot",
   administration: "administration",
+  executiveWorkspace: "executive-workspace",
+  financialMonitoring: "financial-operations-center",
+  financialOperations: "financial-operations-center",
+  financialOperationsCenter: "financial-operations-center",
 };
 
 function normalizeViewId(view) {
@@ -368,7 +394,7 @@ async function fetchDatasetAcrossCompanies(fetcher, filters, displayLimit) {
 
 function fromUrl() {
   const query = new URLSearchParams(window.location.search);
-  const viewRaw = query.get("view") || "executive";
+  const viewRaw = query.get("view") || "executiveWorkspace";
   const viewNormalized = viewRaw === "fuel" ? "fuels" : normalizeViewId(viewRaw);
   return {
     view: viewNormalized,
@@ -502,6 +528,7 @@ const state = {
 const loadingNode = document.querySelector("#loading");
 const errorNode = document.querySelector("#error");
 const executiveNode = document.querySelector("#executiveView");
+const executiveWorkspaceNode = document.querySelector("#executiveWorkspaceView");
 const dashboardNode = document.querySelector("#dashboardView");
 const expensesNode = document.querySelector("#expensesView");
 const accountsNode = document.querySelector("#accountsView");
@@ -532,6 +559,9 @@ const commercialExecutionNode = document.querySelector("#commercialExecutionView
 const commercialLearningNode = document.querySelector("#commercialLearningView");
 const commercialCopilotNode = document.querySelector("#commercialCopilotView");
 const administrationNode = document.querySelector("#administrationView");
+const financialMonitoringNode = document.querySelector("#financialMonitoringView");
+const financialOperationsNode = document.querySelector("#financialOperationsView");
+const financialOperationsCenterNode = document.querySelector("#financialOperationsCenterView");
 const fuelsNode = document.querySelector("#fuelsView");
 const salesNode = document.querySelector("#salesView");
 const stockNode = document.querySelector("#stockView");
@@ -563,6 +593,7 @@ function setView(view, options = {}) {
   const activeView = state.view;
 
   executiveNode.classList.toggle("hidden", activeView !== "executive");
+  executiveWorkspaceNode.classList.toggle("hidden", activeView !== "executiveWorkspace");
   dashboardNode.classList.toggle("hidden", activeView !== "dashboard");
   expensesNode.classList.toggle("hidden", activeView !== "expenses");
   accountsNode.classList.toggle("hidden", activeView !== "accounts");
@@ -593,6 +624,9 @@ function setView(view, options = {}) {
   commercialLearningNode.classList.toggle("hidden", activeView !== "commercialLearning");
   commercialCopilotNode.classList.toggle("hidden", activeView !== "commercialCopilot");
   administrationNode.classList.toggle("hidden", activeView !== "administration");
+  financialMonitoringNode.classList.toggle("hidden", activeView !== "financialMonitoring");
+  financialOperationsNode.classList.toggle("hidden", activeView !== "financialOperations");
+  financialOperationsCenterNode.classList.toggle("hidden", activeView !== "financialOperationsCenter");
   fuelsNode.classList.toggle("hidden", activeView !== "fuels");
   salesNode.classList.toggle("hidden", activeView !== "sales");
   stockNode.classList.toggle("hidden", activeView !== "stock");
@@ -613,7 +647,7 @@ function mountNavigation() {
       await refreshAll(false);
     },
     onTabChange: async (view, tabId) => {
-      if (state.area === "administracao") {
+      if (state.area === "administracao" && view !== "financialOperationsCenter") {
         setView("administration", { adminSection: tabId || "filiais" });
       } else {
         setView(view);
@@ -629,7 +663,9 @@ function mountNavigation() {
 
 function ensureDataDefaults() {
   if (!state.data.overview) state.data.overview = null;
+  if (state.data.overviewResilience === undefined) state.data.overviewResilience = null;
   if (!state.data.expenses) state.data.expenses = { resultados: [], data: [] };
+  if (state.data.expensesResilience === undefined) state.data.expensesResilience = null;
   if (!state.data.accounts) state.data.accounts = { resultados: [], data: [] };
   if (!state.data.sales) state.data.sales = { resultados: [], data: [] };
   if (!state.data.stock) state.data.stock = { resultados: [], data: [] };
@@ -660,6 +696,9 @@ function ensureDataDefaults() {
   if (!state.data.commercialExecution) state.data.commercialExecution = null;
   if (!state.data.commercialLearning) state.data.commercialLearning = null;
   if (!state.data.commercialCopilot) state.data.commercialCopilot = null;
+  if (!state.data.financialMonitoring) state.data.financialMonitoring = null;
+  if (!state.data.financialOperations) state.data.financialOperations = null;
+  if (!state.data.financialOperationsCenter) state.data.financialOperationsCenter = null;
 }
 
 function clearFilters() {
@@ -798,8 +837,22 @@ async function refreshCompanies(bypassCache = false) {
 
 function renderAll() {
   renderExecutiveDashboard(executiveNode, state.data, state.filters);
+
+  renderExecutiveWorkspace(executiveWorkspaceNode, buildWorkspaceDataPayload(), state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshAll(true);
+    },
+    onNavigate: async (view) => {
+      setView(view);
+      await refreshAll(false);
+    },
+  });
   
-  renderDashboard(dashboardNode, state.data.overview, {
+  renderFinancialOverview(
+    dashboardNode,
+    { data: state.data.overview, resilience: state.data.overviewResilience },
+    {
     tableState: state.tables.dashboard,
     onSearchChange: (search) => {
       state.tables.dashboard.search = search;
@@ -820,9 +873,9 @@ function renderAll() {
     },
     exportName: `dashboard_financeiro_${state.filters.dataInicial}`,
   });
-  renderExpenses(
+  renderFinancialExpenses(
     expensesNode,
-    state.data.expenses,
+    { data: state.data.expenses, resilience: state.data.expensesResilience },
     async (nextPage) => {
       state.pageExpenses = nextPage;
       writeUrl(state);
@@ -1127,6 +1180,32 @@ function renderAll() {
     section: state.adminSection,
   });
 
+  renderFinancialMonitoring(financialMonitoringNode, state.data.financialMonitoring, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshFinancialMonitoringOnly(true);
+    },
+  });
+
+  renderFinancialOperations(financialOperationsNode, state.data.financialOperations, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshFinancialOperationsOnly(true);
+    },
+    onRunNow: async () => {
+      await runFinancialOperationsNow(state.filters);
+      state.cache.clear();
+      await refreshFinancialOperationsOnly(true);
+    },
+  });
+
+  renderFinancialOperationsCenter(financialOperationsCenterNode, state.data.financialOperationsCenter, state.filters, {
+    onRefresh: async () => {
+      state.cache.clear();
+      await refreshFinancialOperationsCenterOnly(true);
+    },
+  });
+
   renderStock(
     stockNode,
     state.data.stock,
@@ -1340,6 +1419,33 @@ async function loadBenchmarkWithSnapshotFirst(bypassCache = false) {
     console.warn("[benchmark] falha ao carregar cockpit:", error);
     state.data.benchmark = null;
   }
+}
+
+async function loadExecutiveWorkspaceBundle(bypassCache = false) {
+  ensureDataDefaults();
+  await Promise.all([
+    loadExecutiveScorecardWithSnapshotFirst(bypassCache),
+    loadActionCenterWithSnapshotFirst(bypassCache),
+    loadCommercialExecutionWithSnapshotFirst(bypassCache),
+    loadCommercialLearningWithSnapshotFirst(bypassCache),
+    loadFuelGovernanceWithSnapshotFirst(bypassCache),
+    loadNfceIntelligenceWithSnapshotFirst(bypassCache),
+    loadNonFuelProductsWithSnapshotFirst(bypassCache),
+    loadBenchmarkWithSnapshotFirst(bypassCache),
+  ]);
+}
+
+function buildWorkspaceDataPayload() {
+  return {
+    executiveScorecard: state.data.executiveScorecard,
+    actionCenter: state.data.actionCenter,
+    commercialExecution: state.data.commercialExecution,
+    commercialLearning: state.data.commercialLearning,
+    fuelGovernance: state.data.fuelGovernance,
+    nfceIntelligence: state.data.nfceIntelligence,
+    nonFuelProducts: state.data.nonFuelProducts,
+    benchmark: state.data.benchmark,
+  };
 }
 
 async function loadExecutiveScorecardWithSnapshotFirst(bypassCache = false) {
@@ -1994,8 +2100,8 @@ async function refreshOperationalDataInBackground(bypassCache = false) {
       getCached("overview", state.filters, () => fetchFinancialOverview(state.filters), bypassCache),
       getCached(
         "expenses",
-        { ...state.filters, scope: "all" },
-        () => fetchDatasetAcrossCompanies(fetchFinancialExpenses, state.filters, state.limitExpenses),
+        { ...state.filters, page: 1, limit: 500 },
+        () => fetchFinancialExpenses(state.filters, 1, 500),
         bypassCache
       ),
       getCached(
@@ -2047,8 +2153,10 @@ async function refreshOperationalDataInBackground(bypassCache = false) {
       return;
     }
 
-    state.data.overview = overview;
-    state.data.expenses = expenses;
+    state.data.overview = overview?.data ?? overview;
+    state.data.overviewResilience = overview?.resilience ?? null;
+    state.data.expenses = expenses?.data ?? expenses;
+    state.data.expensesResilience = expenses?.resilience ?? null;
     state.data.accounts = accounts;
     state.data.sales = sales;
     state.data.stock = stock;
@@ -2083,6 +2191,21 @@ async function refreshAll(bypassCache = false) {
     return;
   }
 
+  if (state.view === "executiveWorkspace") {
+    setError("");
+    setLoading(true);
+    try {
+      await refreshCompanies(bypassCache);
+      await loadExecutiveWorkspaceBundle(bypassCache);
+      renderAll();
+    } catch (error) {
+      setError(error.message || String(error));
+    } finally {
+      setLoading(false);
+    }
+    return;
+  }
+
   if (state.view === "executive") {
     await refreshExecutiveFirst(bypassCache);
     refreshOperationalDataInBackground(bypassCache);
@@ -2105,16 +2228,20 @@ async function refreshAll(bypassCache = false) {
     ensureDataDefaults();
 
     if (state.view === "dashboard") {
-      state.data.overview = await getCached("overview", state.filters, () => fetchFinancialOverview(state.filters), bypassCache);
+      const overviewResult = await getCached("overview", state.filters, () => fetchFinancialOverview(state.filters), bypassCache);
+      state.data.overview = overviewResult?.data ?? overviewResult;
+      state.data.overviewResilience = overviewResult?.resilience ?? null;
     }
 
     if (state.view === "expenses") {
-      state.data.expenses = await getCached(
+      const expensesResult = await getCached(
         "expenses",
-        { ...state.filters, scope: "all" },
-        () => fetchDatasetAcrossCompanies(fetchFinancialExpenses, state.filters, state.limitExpenses),
+        { ...state.filters, page: state.pageExpenses, limit: state.limitExpenses },
+        () => fetchFinancialExpenses(state.filters, state.pageExpenses, state.limitExpenses),
         bypassCache
       );
+      state.data.expenses = expensesResult?.data ?? expensesResult;
+      state.data.expensesResilience = expensesResult?.resilience ?? null;
     }
 
     if (state.view === "accounts") {
@@ -2250,6 +2377,18 @@ async function refreshAll(bypassCache = false) {
       await loadCommercialCopilotWithSnapshotFirst(bypassCache);
     }
 
+    if (state.view === "financialMonitoring") {
+      await refreshFinancialOperationsCenterOnly(bypassCache);
+    }
+
+    if (state.view === "financialOperations") {
+      await refreshFinancialOperationsCenterOnly(bypassCache);
+    }
+
+    if (state.view === "financialOperationsCenter") {
+      await refreshFinancialOperationsCenterOnly(bypassCache);
+    }
+
     if (state.view === "stock") {
       state.data.stock = await getCached(
         "stock",
@@ -2271,17 +2410,51 @@ async function refreshAll(bypassCache = false) {
   }
 }
 
+async function refreshFinancialMonitoringOnly(bypassCache = false) {
+  const raw = await getCached(
+    "financialMonitoring",
+    state.filters,
+    () => fetchFinancialSnapshotHealthCockpit(state.filters),
+    bypassCache
+  );
+  state.data.financialMonitoring = raw?.data ? raw : { data: raw?.data ?? raw };
+  renderAll();
+}
+
+async function refreshFinancialOperationsCenterOnly(bypassCache = false) {
+  const raw = await getCached(
+    "financialOperationsCenter",
+    state.filters,
+    () => fetchFinancialOperationsCenterCockpit(state.filters),
+    bypassCache
+  );
+  state.data.financialOperationsCenter = raw?.data ? raw : { data: raw?.data ?? raw };
+  renderAll();
+}
+
+async function refreshFinancialOperationsOnly(bypassCache = false) {
+  const raw = await getCached(
+    "financialOperations",
+    state.filters,
+    () => fetchFinancialOperationsStatus(state.filters),
+    bypassCache
+  );
+  state.data.financialOperations = raw?.data ? raw : { data: raw?.data ?? raw };
+  renderAll();
+}
+
 async function refreshExpensesOnly(bypassCache = false) {
   setError("");
   setLoading(true);
   try {
-    const expenses = await getCached(
+    const expensesResult = await getCached(
       "expenses",
-      { ...state.filters, scope: "all" },
-      () => fetchDatasetAcrossCompanies(fetchFinancialExpenses, state.filters, state.limitExpenses),
+      { ...state.filters, page: state.pageExpenses, limit: state.limitExpenses },
+      () => fetchFinancialExpenses(state.filters, state.pageExpenses, state.limitExpenses),
       bypassCache
     );
-    state.data.expenses = expenses;
+    state.data.expenses = expensesResult?.data ?? expensesResult;
+    state.data.expensesResilience = expensesResult?.resilience ?? null;
     renderAll();
   } catch (error) {
     setError(error.message || "Falha ao carregar despesas");

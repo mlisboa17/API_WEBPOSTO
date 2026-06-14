@@ -228,12 +228,14 @@ function toResultadosEnvelope(data, extras = {}) {
   };
 }
 
-export function fetchFinancialOverview(filters) {
-  return get("/v1/financial/overview", baseFilterParams(filters));
+export async function fetchFinancialOverview(filters) {
+  const raw = await apiClient.get("/v1/financial/overview", { params: baseFilterParams(filters) });
+  return { data: raw.data, resilience: raw.resilience, success: raw.success !== false };
 }
 
-export function fetchFinancialExpenses(filters, page, limit) {
-  return get("/v1/financial/expenses", withPaging(filters, page, limit));
+export async function fetchFinancialExpenses(filters, page, limit) {
+  const raw = await apiClient.get("/v1/financial/expenses", { params: withPaging(filters, page, limit) });
+  return { data: raw.data, resilience: raw.resilience, success: raw.success !== false };
 }
 
 export function fetchAccountsPayable(filters, page, limit) {
@@ -1325,5 +1327,114 @@ export async function postCommercialLearningRefresh(filters) {
     timeout: REFRESH_TIMEOUT_MS,
   });
   return raw?.data || raw;
+}
+
+export async function fetchCommercialCopilotCockpit(filters) {
+  const raw = await apiClient.get("/api/v1/commercial-copilot/cockpit", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  const body = raw?.data || raw || {};
+  return {
+    cockpit: body?.data || body?.cockpit,
+    executiveAnswers: body?.executiveAnswers,
+    parecerFinal: body?.parecerFinal,
+    qa: body?.qa,
+    governanceRules: body?.governanceRules,
+    commercialKnowledgeEngine: body?.commercialKnowledgeEngine,
+    commercialReasoningEngine: body?.commercialReasoningEngine,
+    commercialRecommendationEngine: body?.commercialRecommendationEngine,
+    commercialActionCenterIntegration: body?.commercialActionCenterIntegration,
+    commercialConversationLayer: body?.commercialConversationLayer,
+    commercialGovernanceLayer: body?.commercialGovernanceLayer,
+    snapshot: body?.snapshot,
+  };
+}
+
+export async function postCommercialCopilotRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/commercial-copilot/refresh", null, {
+    params: performanceParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function postCommercialCopilotAsk(filters, question) {
+  const raw = await apiClient.post(
+    "/api/v1/commercial-copilot/ask",
+    { question },
+    {
+      params: performanceParams(filters),
+      timeout: ANALYTICS_TIMEOUT_MS,
+    }
+  );
+  const body = raw?.data || raw || {};
+  return body?.data || body;
+}
+
+export function fetchCircuitBreakerStatus() {
+  return apiClient.get("/api/v1/admin/circuit-breaker/status");
+}
+
+export function resetCircuitBreaker(scope = "global") {
+  return apiClient.post("/api/v1/admin/circuit-breaker/reset", { scope });
+}
+
+export function fetchFinancialSnapshotHealthCockpit(filters) {
+  return apiClient.get("/api/v1/financial/snapshot-health/cockpit", {
+    params: baseFilterParams(filters),
+  });
+}
+
+export function fetchFinancialSnapshotHealthInventory() {
+  return apiClient.get("/api/v1/financial/snapshot-health/inventory");
+}
+
+export function fetchFinancialSnapshotHealthAssessment(filters) {
+  return apiClient.get("/api/v1/financial/snapshot-health/assessment", {
+    params: baseFilterParams(filters),
+  });
+}
+
+export function fetchFinancialOperationsStatus(filters) {
+  return apiClient.get("/api/v1/financial/operations/status", {
+    params: baseFilterParams(filters),
+  });
+}
+
+export function runFinancialOperationsNow(filters) {
+  return apiClient.post("/api/v1/financial/operations/run-now", null, {
+    params: baseFilterParams(filters),
+  });
+}
+
+export function fetchFinancialOperationsCenterCockpit(filters) {
+  return apiClient.get("/api/v1/financial/operations-center/cockpit", {
+    params: baseFilterParams(filters),
+  });
+}
+
+export function fetchFinancialOperationsCenterSummary(filters) {
+  return apiClient.get("/api/v1/financial/operations-center/summary", {
+    params: baseFilterParams(filters),
+  });
+}
+
+export function fetchFinancialOperationsCenterStatus(filters) {
+  return apiClient.get("/api/v1/financial/operations-center/status", {
+    params: baseFilterParams(filters),
+  });
+}
+
+export function fetchFinancialOperationsCenterAlerts(filters) {
+  return apiClient.get("/api/v1/financial/operations-center/alerts", {
+    params: baseFilterParams(filters),
+  });
+}
+
+export function fetchFinancialOperationsCenterExecutions(filters, limit = 50) {
+  return apiClient.get("/api/v1/financial/operations-center/executions", {
+    params: { ...baseFilterParams(filters), limit },
+  });
 }
 

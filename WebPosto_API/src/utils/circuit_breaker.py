@@ -20,6 +20,29 @@ class SimpleCircuitBreaker:
             return False
         return True
 
+    def get_status(self, endpoint_key: str) -> str:
+        if self.is_blocked(endpoint_key):
+            return "OPEN"
+        if self._failures.get(endpoint_key, 0) > 0:
+            return "HALF_OPEN"
+        return "CLOSED"
+
+    def reset(self, endpoint_key: str | None = None) -> None:
+        if endpoint_key is None:
+            self._failures.clear()
+            self._blocked_until.clear()
+            return
+        self._failures.pop(endpoint_key, None)
+        self._blocked_until.pop(endpoint_key, None)
+
+    def reset_many(self, endpoint_keys: set[str]) -> None:
+        for key in endpoint_keys:
+            self.reset(key)
+
+    def snapshot_status(self, endpoint_keys: set[str] | None = None) -> dict[str, str]:
+        keys = endpoint_keys or set(self._failures.keys()) | set(self._blocked_until.keys())
+        return {key: self.get_status(key) for key in sorted(keys)}
+
     def record_success(self, endpoint_key: str) -> None:
         self._failures[endpoint_key] = 0
         self._blocked_until.pop(endpoint_key, None)

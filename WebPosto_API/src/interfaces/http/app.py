@@ -37,11 +37,17 @@ from src.interfaces.http.routes import fiscal_reconciliation_hub
 from src.interfaces.http.routes import fuel_governance
 from src.interfaces.http.routes import non_fuel_product_sales
 from src.interfaces.http.routes import commercial_execution
+from src.interfaces.http.routes import commercial_copilot
 from src.interfaces.http.routes import commercial_learning
 from src.interfaces.http.routes import statements
 from src.interfaces.http.routes import data_trust_baseline
 from src.interfaces.http.routes import prestacao_contas
 from src.interfaces.http.routes import financial_intelligence
+from src.interfaces.http.routes import admin_circuit_breaker
+from src.interfaces.http.routes import financial_snapshot_health
+from src.interfaces.http.routes import financial_operations
+from src.interfaces.http.routes import financial_operations_center
+from src.services.financial_snapshot_scheduler import get_financial_scheduler
 from src.shared.logger import setup_logging
 
 
@@ -103,10 +109,15 @@ def create_app() -> FastAPI:
     app.include_router(non_fuel_product_sales.router)
     app.include_router(commercial_execution.router)
     app.include_router(commercial_learning.router)
+    app.include_router(commercial_copilot.router)
     app.include_router(statements.router)
     app.include_router(data_trust_baseline.router)
     app.include_router(prestacao_contas.router)
     app.include_router(financial_intelligence.router)
+    app.include_router(admin_circuit_breaker.router)
+    app.include_router(financial_snapshot_health.router)
+    app.include_router(financial_operations.router)
+    app.include_router(financial_operations_center.router)
 
     root = Path(__file__).resolve().parents[3]
     frontend_dir = root / "frontend"
@@ -123,6 +134,7 @@ def create_app() -> FastAPI:
         """Executado ao iniciar a aplicação."""
         await init_db()
         await init_gateway_db()
+        get_financial_scheduler().schedule_next_run()
 
     # Shutdown event
     @app.on_event("shutdown")

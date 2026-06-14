@@ -4,7 +4,7 @@ from decimal import Decimal
 
 from fastapi import APIRouter, Header, Query
 
-from src.gateway.webposto_client import WebPostoClient
+from src.gateway.shared_client import get_webposto_client
 from src.metrics.collector import get_metrics_snapshot
 from src.services.abastecimento_service import AbastecimentoService
 from src.services.caixa_service import CaixaService
@@ -16,12 +16,13 @@ from src.services.expense_lineage_snapshot_service import ExpenseLineageSnapshot
 from src.services.employee_ledger_snapshot_service import EmployeeLedgerSnapshotService
 from src.services.expense_semantic_snapshot_service import ExpenseSemanticSnapshotService
 from src.services.network_financial_overview_service import FinancialOverviewFilters, NetworkFinancialOverviewService
+from src.services.financial_resilience_service import FinancialResilienceService
 from src.services.operacao_inteligente_service import OperacaoInteligenteService
 from src.services.vendas_combustivel_service import VendasCombustivelService
 
 router = APIRouter(prefix="/v1", tags=["WebPosto Enterprise"])
 
-_client = WebPostoClient()
+_client = get_webposto_client()
 _abastecimento = AbastecimentoService(_client)
 _financeiro = FinanceiroService(_client)
 _caixa = CaixaService(_client)
@@ -35,6 +36,7 @@ _operacao_inteligente = OperacaoInteligenteService(
     vendas_combustivel_service=_vendas_combustivel,
 )
 _network_financial_overview = NetworkFinancialOverviewService(_client)
+_financial_resilience = FinancialResilienceService(_network_financial_overview, client=_client)
 _expense_lineage_snapshot = ExpenseLineageSnapshotService(_network_financial_overview)
 _expense_semantic_snapshot = ExpenseSemanticSnapshotService(_network_financial_overview)
 _employee_ledger_snapshot = EmployeeLedgerSnapshotService(_network_financial_overview)
@@ -176,8 +178,8 @@ async def financial_overview(
         valor_max=valorMax,
         origem=origem,
     )
-    resp = await _network_financial_overview.get_financial_overview_only(filters)
-    return resp.to_dict()
+    resp = await _financial_resilience.get_financial_overview(filters)
+    return resp
 
 
 
@@ -234,8 +236,8 @@ async def financial_expenses(
         dre_impact=dreImpact.strip().upper() if dreImpact and dreImpact.strip() else None,
         cashflow_impact=cashFlowImpact.strip().upper() if cashFlowImpact and cashFlowImpact.strip() else None,
     )
-    resp = await _network_financial_overview.get_financial_expenses(filters, page=page, limit=limit)
-    return resp.to_dict()
+    resp = await _financial_resilience.get_financial_expenses(filters, page=page, limit=limit)
+    return resp
 
 
 @router.get("/financial/employee-ledger/snapshot")
