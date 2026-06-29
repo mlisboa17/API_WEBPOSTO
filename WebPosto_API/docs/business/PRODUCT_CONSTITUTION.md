@@ -36,6 +36,7 @@ Esta constituição estabelece os princípios fundamentais que orientam todas as
 14. [Toda Tela Termina em uma Decisão](#princípio-14--toda-tela-termina-em-uma-decisão) *(PRODUCT-04)*
 15. [LOGOS Investiga Automaticamente](#princípio-15--logos-investiga-automaticamente) *(PRODUCT-04)*
 16. [Impacto Financeiro como Métrica de Sucesso](#princípio-16--impacto-financeiro-como-métrica-de-sucesso) *(PRODUCT-05)*
+17. [Valor Comprovado](#princípio-17--valor-comprovado) *(EXEC-01)*
 
 ---
 
@@ -523,6 +524,122 @@ Se não gerou → Entender por quê e ajustar.
 
 ---
 
+## PRINCÍPIO 17 — VALOR COMPROVADO *(EXEC-01)*
+
+### Declaração
+
+> **"O LOGOS nunca reivindica resultados que não possam ser comprovados. Toda economia, recuperação ou aumento de receita apresentado ao cliente deve ser classificado como estimado, confirmado ou em validação, com rastreabilidade completa."**
+
+### Regra de Ouro
+
+**É PROIBIDO:**
+- ❌ "O LOGOS recuperou R$ 20.000"
+- ❌ "Economia de R$ 5.000"
+- ❌ "ROI de 15x" (sem distinção)
+
+**É OBRIGATÓRIO:**
+- ✅ "O LOGOS identificou oportunidade **ESTIMADA** em R$ 20.000"
+- ✅ "Recuperação **CONFIRMADA**: R$ 18.450"
+- ✅ "Economia **EM VALIDAÇÃO**: R$ 5.000"
+
+### Estados do Valor
+
+| Estado | Descrição | Quando Usar | Exemplo |
+|--------|-----------|-------------|---------|
+| **ESTIMADO** | Projeção baseada em análise de dados | Quando decisão é gerada | "Estimado: R$ 20.000" |
+| **CONFIRMADO** | Valor verificado após execução | Quando owner confirma resultado | "Confirmado: R$ 18.450" |
+| **EM VALIDAÇÃO** | Aguardando confirmação | Quando ação foi executada mas resultado não confirmado | "Em validação: R$ 5.000" |
+| **PARCIAL** | Parte do valor confirmado | Quando ação foi parcialmente concluída | "Parcial: R$ 10.000 (60%)" |
+
+### Separação Estrita
+
+```
+ANTES (ERRADO):
+┌────────────────────────────────────┐
+│  IMPACTO: R$ 20.000                │
+│  (mistura estimado + confirmado)   │
+└────────────────────────────────────┘
+
+DEPOIS (CERTO):
+┌────────────────────────────────────┐
+│  ESTIMADO: R$ 20.000              │
+│  CONFIRMADO: R$ 18.450 (92%)      │
+│  Variância: -7.75%                 │
+└────────────────────────────────────┘
+```
+
+### Rastreabilidade
+
+Todo valor CONFIRMADO deve possuir:
+- [ ] ID da decisão
+- [ ] ID da execução
+- [ ] ID da confirmação
+- [ ] Usuário que confirmou
+- [ ] Método de verificação
+- [ ] IDs de evidências
+- [ ] Timestamp
+
+### Exemplos de Evidência
+
+| Tipo de Valor | Evidência Aceita |
+|---------------|------------------|
+| Recuperado | Boleto pago, Comprovante PIX, NF |
+| Economizado | Fatura com desconto, Acordo assinado |
+| Adicional | Registro de venda, Fechamento de caixa |
+| Evitado | Registro de ação tomada, Antes/depois |
+
+### UX: Display de Valor
+
+```
+┌────────────────────────────────────┐
+│  💰 IMPACTO FINANCEIRO              │
+├────────────────────────────────────┤
+│                                     │
+│  Estimado:      R$ 87.300          │
+│  Confirmado:    R$ 82.450 (94%)    │
+│  Em Validação:  R$ 4.850           │
+│                                     │
+│  [Ver Detalhes →]                   │
+│                                     │
+└────────────────────────────────────┘
+```
+
+### Honestidade Técnica
+
+**Se não houver confirmação:**
+- Mostrar apenas ESTIMADO
+- Label: "Aguardando Confirmação"
+- Não incluir em "Impacto Confirmado"
+
+**Se confirmação for PARCIAL:**
+- Separar: CONFIRMADO + EM VALIDAÇÃO
+- Mostrar progresso percentual
+- Permitir follow-up
+
+**Se confirmação for NÃO:**
+- Zerar valor confirmado
+- Registrar motivo
+- Aprender para próxima
+
+### Checklist de Validação
+
+- [ ] Todo valor estimado está claramente marcado como ESTIMADO?
+- [ ] Todo valor confirmado possui evidência?
+- [ ] Não há mistura de estimado e confirmado na mesma linha?
+- [ ] O usuário pode distinguir claramente o que é projeção vs fato?
+- [ ] Cada valor confirmado é rastreável até uma decisão específica?
+- [ ] Variance entre estimado e confirmado é calculado e exibido?
+
+### Consequências de Violação
+
+**Se um valor for apresentado como CONFIRMADO sem evidência:**
+1. BUG CRÍTICO: Issue P0 criada automaticamente
+2. Correção obrigatória em 24h
+3. Revisão de todos os valores exibidos
+4. Comunicação ao cliente se valor incorreto foi mostrado
+
+---
+
 ## 🏛️ Product Constitution Gate
 
 ### Aplicação
@@ -544,6 +661,7 @@ Ver `PRODUCT_CONSTITUTION_GATE_[SPRINT].md` em cada sprint.
 | 1.0 | 2026-06-28 | GOVERNANCE-01 | 12 princípios originais |
 | 2.0 | 2026-06-29 | PRODUCT-04 | + Princípios 14 e 15 (Owner Operating System) |
 | 3.0 | 2026-06-29 | PRODUCT-05 | + Princípio 16 (LOGOS Impact System) |
+| 4.0 | 2026-06-29 | EXEC-01 | + Princípio 17 (Valor Comprovado) |
 
 ---
 
@@ -560,6 +678,6 @@ Para adicionar um novo princípio:
 
 ---
 
-**[PRODUCT CONSTITUTION — LOGOS Impact System]**
+**[PRODUCT CONSTITUTION — LOGOS Decision Execution Platform]**
 
-*Version: 3.0 | Principles: 16 | Status: OFFICIAL*
+*Version: 4.0 | Principles: 17 | Status: OFFICIAL*

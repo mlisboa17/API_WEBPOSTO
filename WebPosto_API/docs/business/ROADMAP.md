@@ -1,14 +1,14 @@
 ---
-# 🗺️ ROADMAP | LOGOS — LOGOS Impact System
+# 🗺️ ROADMAP | LOGOS — Decision Execution Platform
 # Type: ROADMAP
-# Version: 3.0
+# Version: 4.0
 # Updated: 2026-06-29
 # Status: ACTIVE
 ---
 
-# LOGOS Roadmap — LOGOS Impact System
+# LOGOS Roadmap — Decision Execution Platform
 
-> **Transformação de Dashboard Financeiro para Sistema de Impacto Financeiro Mensurável**
+> **Transformação de Dashboard Financeiro para Plataforma de Execução de Decisões**
 
 ---
 
@@ -16,13 +16,13 @@
 
 O LOGOS deixa de ser um **Dashboard Financeiro**.
 
-O LOGOS passa a ser um **Owner Operating System** — um Assistente Executivo que orienta diariamente o proprietário do posto.
+O LOGOS passa a ser uma **Decision Execution Platform** — um sistema que não apenas detecta oportunidades, mas acompanha execução e mede resultados.
 
 **Pergunta Central:**
 > *"O que devo fazer hoje para ganhar mais dinheiro, evitar perdas e economizar tempo?"*
 
 **Métrica de Sucesso:**
-> *"Quanto dinheiro o LOGOS já gerou para mim?"*
+> *"Quanto dinheiro o LOGOS já gerou para mim — e posso PROVAR isso?"*
 
 ---
 
@@ -63,58 +63,58 @@ O LOGOS passa a ser um **Owner Operating System** — um Assistente Executivo qu
 
 ---
 
-### FASE 3: DECIDIR ⭐ (CURRENT)
+### FASE 3: DECIDIR ⭐ (COMPLETE)
 **O LOGOS prioriza.**
 
 | Sprint | Status | Entregáveis |
 |--------|--------|-------------|
 | **PRODUCT-03** | ✅ | Owner Intelligence Engine, 4 Motors |
 | **PRODUCT-04** | ✅ | Owner Operating System, Sales Investigation |
-| **PRODUCT-05** | 🔄 | LOGOS Impact System, Momento Zero, Execution Flow |
+| **PRODUCT-05** | ✅ | LOGOS Impact System, Momento Zero |
 
-**Entregáveis Atuais:**
+**Entregáveis:**
 - ✅ **Motor 1:** Money At Risk (7 detectores de risco)
 - ✅ **Motor 2:** Recoverable Money (7 tipos de recuperação)
 - ✅ **Motor 3:** Growth Opportunities (7 oportunidades)
 - ✅ **Motor 4:** Daily Decisions (Top 5 priorizadas)
 - ✅ **Motor 5:** Sales Investigation Engine (investigação automática)
 - ✅ **Owner Success Score:** Métrica de impacto do LOGOS
-- 🔄 **LOGOS Impact Score:** Impacto financeiro mensurável
-- 🔄 **Momento Zero:** 10 segundos para decisão
-- 🔄 **Decision Execution Flow:** Ciclo completo Detectar→Aprender
-- 🔄 **Decision History:** Histórico auditável
-- 🔄 **Decision Effectiveness:** Métricas de eficácia
-
-**Resultado:**
-- Identifica riscos financeiros automaticamente
-- Descobre dinheiro recuperável
-- Encontra oportunidades de crescimento
-- Gera decisões priorizadas diariamente
-- Investiga quedas de vendas em profundidade
+- ✅ **Momento Zero:** 10 segundos para decisão
+- ✅ **Decision Execution Flow:** Ciclo completo documentado
 
 ---
 
-### FASE 4: EXECUTAR ▶️ (NEXT)
-**O proprietário confirma execução.**
+### FASE 4: EXECUTAR ▶️ (CURRENT)
+**O proprietário executa e o LOGOS acompanha.**
 
 | Sprint | Status | Entregáveis |
 |--------|--------|-------------|
-| Action Execution | ⏳ | Botão "Executar Agora", tracking |
-| Progress Tracking | ⏳ | Acompanhamento de execução |
-| Result Confirmation | ⏳ | Confirmação de resultados |
-| Mobile App | ⏳ | App nativo para execução rápida |
+| **EXEC-01** | 🔄 | Decision Execution Platform |
+| EXEC-02 | ⏳ | API Endpoints + Frontend |
+| EXEC-03 | ⏳ | Persistência + Integração |
 
-**Planejado:**
-- Botão "Executar Agora" em cada decisão
-- Tracking completo de execução
-- Confirmação de resultados pelo proprietário
-- Notificações push para ações urgentes
-- App mobile para execução em qualquer lugar
+**Entregáveis Atuais (EXEC-01):**
+- ✅ **Decision Status Machine:** 9 estados, 11 transições
+- ✅ **Execution Service:** Orquestração de execução
+- ✅ **Result Confirmation:** SIM/PARCIAL/NÃO com rastreabilidade
+- ✅ **Decision Timeline:** Audit trail completo
+- ✅ **Impact Separation:** Estimado vs Confirmado estritamente separados
+- ✅ **Execution Metrics:** Taxas, tempos, impacto
+- ⏳ **API Endpoints:** REST endpoints
+- ⏳ **Frontend:** Botões, telas de confirmação
+- ⏳ **Persistência:** PostgreSQL schema
+
+**Próximos:**
+- Botão "Executar Agora" funcional
+- Tela de confirmação (SIM/PARCIAL/NÃO)
+- Dashboard de métricas de execução
+- Integração com Owner Intelligence Engine
 
 **Resultado Esperado:**
 - Proprietário executa direto da plataforma
 - LOGOS acompanha progresso
-- Ciclo fechado: detectar → decidir → executar → confirmar
+- Impacto confirmado separado de estimado
+- Ciclo fechado: detectar → decidir → executar → confirmar → medir
 
 ---
 
@@ -201,9 +201,11 @@ O LOGOS passa a ser um **Owner Operating System** — um Assistente Executivo qu
 │
 ├── Q3 (CURRENT → NEXT)
 │   ├── PRODUCT-03: Owner Intelligence ✅
-│   ├── PRODUCT-04: Owner Operating System 🔄
-│   ├── Action Execution ⏳
-│   └── Mobile App ⏳
+│   ├── PRODUCT-04: Owner Operating System ✅
+│   ├── PRODUCT-05: LOGOS Impact System ✅
+│   ├── EXEC-01: Decision Execution Platform 🔄
+│   ├── EXEC-02: API + Frontend ⏳
+│   └── EXEC-03: Integration ⏳
 │
 ├── Q4 (FUTURE)
 │   ├── Behavior Learning 🔮
@@ -230,41 +232,36 @@ O LOGOS passa a ser um **Owner Operating System** — um Assistente Executivo qu
 |-----------|-------------|--------|
 | **FASE 1: VER** — Data Collection | Q2 2026 | ✅ COMPLETE |
 | **FASE 2: ENTENDER** — Analysis | Q2 2026 | ✅ COMPLETE |
-| **FASE 3: DECIDIR** — Decision Engine | Q3 2026 | 🔄 IN PROGRESS |
-| **FASE 4: EXECUTAR** — Execution | Q3 2026 | ⏳ PLANNED |
-| **FASE 5: APRENDER** — Learning | Q4 2026 | 🔮 FUTURE |
+| **FASE 3: DECIDIR** — Decision Engine | Q3 2026 | ✅ COMPLETE |
+| **FASE 4: EXECUTAR** — Execution Platform | Q3 2026 | 🔄 IN PROGRESS |
+| **FASE 5: APRENDER** — Learning | Q4 2026 | ⏳ PLANNED |
 | **FASE 6: ANTECIPAR** — Prediction | Q4 2026 | 🔮 FUTURE |
 | **FASE 7: AI EXECUTIVE** — Autonomous | 2027 | 🔮 VISION |
 
 ---
 
-## 📋 Current Sprint (PRODUCT-04)
+## 📋 Current Sprint (EXEC-01)
 
 ### Objetivo
-Transformar LOGOS oficialmente em **Owner Operating System**.
+Implementar a primeira versão da plataforma de execução das decisões.
 
 ### Entregáveis
 
-#### Motors (Owner Action Center)
-- ✅ Motor 1: Money At Risk — 7 detectores
-- ✅ Motor 2: Recoverable Money — 7 tipos
-- ✅ Motor 3: Growth Opportunities — 7 oportunidades
-- ✅ Motor 4: Daily Decisions — Top 5 priorizadas
-- 🔄 Motor 5: Sales Investigation Engine — especificado
+#### Implementado (Backend)
+- ✅ Decision Status Machine (9 estados, 11 transições)
+- ✅ Execution Service
+- ✅ Result Confirmation (SIM/PARCIAL/NÃO)
+- ✅ Decision Timeline
+- ✅ Execution Metrics
+- ✅ Impact Separation (Estimado vs Confirmado)
 
-#### Metrics
-- 🔄 Owner Success Score — definido
+#### Em Progresso
+- ⏳ API Endpoints (FastAPI)
+- ⏳ Persistência (PostgreSQL)
+- ⏳ Frontend (React)
 
-#### Documentation
-- 🔄 Owner Operating System — definido
-- 🔄 ROADMAP atualizado — este documento
-- ⏳ CURRENT_STATE atualizar
-- ⏳ SPRINT_HISTORY atualizar
-- ⏳ DECISION_LOG atualizar
-
-#### Product Constitution
-- ⏳ Princípio 14: Toda tela termina em decisão
-- ⏳ Princípio 15: LOGOS investiga automaticamente
+### Princípio 17 — Valor Comprovado
+> O LOGOS nunca reivindica resultados que não possam ser comprovados.
 
 ---
 
@@ -274,11 +271,10 @@ Transformar LOGOS oficialmente em **Owner Operating System**.
 
 | Metric | Target | Current |
 |--------|--------|---------|
-| Decisions generated/month | 30+ | TBD |
-| Execution rate | 70%+ | TBD |
-| Money at risk detected | R$ 50k+/mo | TBD |
-| Money recovered | R$ 20k+/mo | TBD |
-| ROI | 10x+ | TBD |
+| Decisions generated/month | 30+ | ✅ |
+| Execution rate | 70%+ | ⏳ |
+| Money at risk detected | R$ 50k+/mo | ✅ |
+| Money recovered | R$ 20k+/mo | ⏳ |
 
 ### Phase 4: EXECUTAR (Next)
 
@@ -288,15 +284,7 @@ Transformar LOGOS oficialmente em **Owner Operating System**.
 | Time to execute | < 5 min avg |
 | Owner satisfaction | 4.5+/5 |
 | Mobile adoption | 60%+ |
-
-### Phase 7: AI EXECUTIVE (Vision)
-
-| Metric | Target |
-|--------|--------|
-| Decisions pre-loaded by 6am | 100% |
-| Voice command execution | 50%+ |
-| Owner time saved/day | 2h+ |
-| Strategic vs operational ratio | 80/20 |
+| Confirmed vs Estimated accuracy | > 80% |
 
 ---
 
@@ -325,29 +313,14 @@ Transformar LOGOS oficialmente em **Owner Operating System**.
 
 | Document | Purpose | Location |
 |----------|---------|----------|
-| OWNER_OPERATING_SYSTEM.md | Product vision | docs/business/ |
-| OWNER_ACTION_CENTER.md | Feature spec | docs/business/ |
-| OWNER_SUCCESS_SCORE.md | Metrics | docs/business/ |
-| SALES_INVESTIGATION_ENGINE.md | Architecture | docs/architecture/ |
-| OWNER_INTELLIGENCE_ENGINE.md | Technical spec | docs/architecture/ |
+| DECISION_EXECUTION_PLATFORM.md | Product vision | docs/business/ |
+| DECISION_STATUS_MACHINE.md | State machine spec | docs/architecture/ |
+| LOGOS_IMPACT_SYSTEM.md | Impact metrics | docs/business/ |
+| MOMENTO_ZERO.md | 10-second concept | docs/business/ |
 | ROADMAP.md | This document | docs/business/ |
 
 ---
 
-## 🤝 Contributing
+**[ROADMAP — LOGOS Decision Execution Platform]**
 
-See [CONTRIBUTING.md](../../CONTRIBUTING.md) for how to propose changes to this roadmap.
-
----
-
-## 📞 Contact
-
-For roadmap questions or suggestions:
-- Create an issue with label `roadmap`
-- Tag with relevant sprint number
-
----
-
-**[ROADMAP — LOGOS Owner Operating System]**
-
-*Status: ACTIVE | Phase: 3/7 (DECIDIR) | Next: 4/7 (EXECUTAR) | Vision: 7/7 (AI EXECUTIVE)*
+*Status: ACTIVE | Phase: 4/7 (EXECUTAR) | Next: 5/7 (APRENDER) | Vision: 7/7 (AI EXECUTIVE)*

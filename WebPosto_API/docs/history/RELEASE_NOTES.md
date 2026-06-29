@@ -25,6 +25,71 @@ Formato: `PHASE.MAJOR.MINOR` (ex: `3.3.0` = FASE 3, PRODUCT-03, base)
 
 ## 🚀 Releases
 
+### v4.0.0 — Decision Execution Platform (EXEC-01)
+**Data:** 2026-06-29  
+**Branch:** `feature/decision-execution-platform`  
+**Status:** 🔄 IN DEVELOPMENT
+
+#### 🎯 Visão
+O LOGOS deixa de apenas **detectar** decisões. Agora ele **acompanha execução e resultado**.
+
+> "Uma decisão só terá valor quando existir evidência de que foi executada e qual resultado produziu."
+
+#### ✨ Novidades
+
+##### Novo Princípio (Constituição v4.0)
+- **Princípio 17:** Valor Comprovado — O LOGOS nunca reivindica resultados sem comprovação
+
+##### Decision Status Machine
+- **9 estados oficiais**: NEW → READY → EXECUTING → [COMPLETED | NOT_COMPLETED | PARTIAL] → ARCHIVED
+- **11 transições validadas** com timestamps
+- **Auto-expiração**: 7 dias em READY
+- **Auto-arquivamento**: 30 dias após terminal
+
+##### Backend Implementado
+- **1.500+ linhas** de código Python
+- `DecisionStatusMachine`: Gerenciamento de estados
+- `ExecutionService`: Orquestração de execução
+- `ResultConfirmation`: SIM/PARCIAL/NÃO com rastreabilidade
+- `DecisionTimeline`: Audit trail completo
+- `MetricsCalculator`: Análise de eficácia
+
+##### Strict Separation: Estimado vs Confirmado
+- ✅ **PROIBIDO**: Misturar projeções com fatos
+- ✅ **OBRIGATÓRIO**: Labels ESTIMADO / CONFIRMADO
+- ✅ **MANDATÓRIO**: Rastreabilidade completa
+
+##### Decision Timeline
+- Eventos com timestamp, actor, action
+- Duração: tempo até execução, tempo de resolução
+- Histórico completo desde detecção até aprendizado
+
+##### Execution Metrics
+- Taxa de execução, conclusão, sucesso
+- Tempo médio até execução e resolução
+- Impacto estimado vs confirmado
+- Variância calculada e exibida
+
+##### Documentação
+- DECISION_EXECUTION_PLATFORM.md
+- DECISION_STATUS_MACHINE.md (architecture)
+- PRODUCT_CONSTITUTION.md v4.0
+
+#### 🔄 Mudanças
+- FASE 3 (DECIDIR) → FASE 4 (EXECUTAR)
+- Backend implementado, frontend em progresso
+- Honestidade técnica: strict separation obrigatória
+
+#### 📋 Breaking Changes
+- Estados de decisão agora obrigatórios
+- Confirmação de resultado obrigatória
+
+#### ⚠️ Known Issues
+- POSTO VIP dataset: PARTIAL (10/28 dias)
+- Frontend não implementado
+
+---
+
 ### v3.5.0 — LOGOS Impact System (PRODUCT-05)
 **Data:** 2026-06-29  
 **Branch:** `feature/logos-impact-system`  

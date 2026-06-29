@@ -1,14 +1,14 @@
 ---
 # 📍 CURRENT_STATE.md | LOGOS
 # Type: CURRENT_STATE
-# Version: 1.5
+# Version: 1.6
 # Updated: 2026-06-29
-# Sprint: PRODUCT-05
+# Sprint: EXEC-01
 ---
 
 # LOGOS — Current State
 
-> **Status: SPRINT PRODUCT-05 — LOGOS Impact System**
+> **Status: SPRINT EXEC-01 — Decision Execution Platform**
 
 ## 🎯 Posicionamento Atual
 
@@ -23,10 +23,12 @@ Owner Action Center
          ↓
 Owner Operating System
          ↓
-LOGOS Impact System  ← VOCÊ ESTÁ AQUI
+LOGOS Impact System
+         ↓
+Decision Execution Platform  ← VOCÊ ESTÁ AQUI
 ```
 
-**Status:** 🔄 **PRODUCT-05** — Medindo Sucesso por Impacto Financeiro
+**Status:** 🔄 **EXEC-01** — Implementando Plataforma de Execução
 
 ---
 
@@ -51,233 +53,208 @@ LOGOS Impact System  ← VOCÊ ESTÁ AQUI
 | **Owner Intelligence Engine** | ✅ | PRODUCT-03 |
 | **API Owner Action Center** | ✅ | PRODUCT-03 |
 
-### 🔄 Em Especificação (DEFINED)
+### ✅ Especificado/Documentado (DEFINED)
 
 | Componente | Status | Sprint |
 |------------|--------|--------|
-| **Sales Investigation Engine** | 🔄 | PRODUCT-04 |
-| **Owner Success Score** | 🔄 | PRODUCT-04 |
-| **Owner Operating System** | 🔄 | PRODUCT-04 |
-| **LOGOS Impact Score** | 🔄 | PRODUCT-05 |
-| **Momento Zero** | 🔄 | PRODUCT-05 |
-| **Decision Execution Flow** | 🔄 | PRODUCT-05 |
-| **Decision History** | 🔄 | PRODUCT-05 |
-| **Decision Effectiveness** | 🔄 | PRODUCT-05 |
+| **Sales Investigation Engine** | ✅ | PRODUCT-04 |
+| **Owner Success Score** | ✅ | PRODUCT-04 |
+| **Owner Operating System** | ✅ | PRODUCT-04 |
+| **LOGOS Impact Score** | ✅ | PRODUCT-05 |
+| **Momento Zero** | ✅ | PRODUCT-05 |
+| **Decision Execution Flow** | ✅ | PRODUCT-05 |
+| **Decision History** | ✅ | PRODUCT-05 |
+| **Decision Effectiveness** | ✅ | PRODUCT-05 |
 
-### ⏳ Planejado (PLANNED)
+### 🔄 Em Implementação (EXEC-01)
 
 | Componente | Status | Sprint |
 |------------|--------|--------|
-| **Execution Framework** | ⏳ | FASE 4 |
-| **Mobile App** | ⏳ | FASE 4 |
-| **Behavior Learning** | ⏳ | FASE 5 |
-| **Predictive Alerts** | ⏳ | FASE 6 |
-| **Autonomous Executive** | 🔮 | FASE 7 |
+| **Decision Status Machine** | ✅ Backend | EXEC-01 |
+| **Execution Service** | ✅ Backend | EXEC-01 |
+| **Result Confirmation** | ✅ Backend | EXEC-01 |
+| **Decision Timeline** | ✅ Backend | EXEC-01 |
+| **Execution Metrics** | ✅ Backend | EXEC-01 |
+| **Impact Separation** | ✅ Backend | EXEC-01 |
+| **API Endpoints** | ⏳ Pending | EXEC-01 |
+| **Frontend Buttons** | ⏳ Pending | EXEC-01 |
+| **Confirmation UI** | ⏳ Pending | EXEC-01 |
 
 ---
 
-## 🏗️ Arquitetura Atual
+## 🎯 Foco Atual (EXEC-01)
 
-### Backend (WebPosto_API)
+### Objetivo
+Transformar o LOGOS de "sistema que detecta" para "sistema que acompanha execução e resultado".
 
-```
-src/
-├── interfaces/http/routes/
-│   ├── owner_action_center.py     ✅ PRODUCT-03
-│   ├── financial_overview.py    ✅
-│   └── ...
-│
-└── services/
-    ├── owner_intelligence/        ✅ PRODUCT-03
-    │   ├── money_at_risk.py      ✅ Motor 1
-    │   ├── recoverable_money.py  ✅ Motor 2
-    │   ├── growth_opportunities.py ✅ Motor 3
-    │   ├── daily_actions.py      ✅ Motor 4
-    │   ├── priority_engine.py    ✅
-    │   └── owner_intelligence_engine.py ✅
-    │
-    ├── daily_decisions/           ✅ PRODUCT-02
-    ├── trust/                     ✅ TRUST-01
-    ├── validation/                ✅ VALIDATION-01
-    └── webposto/                  ✅ Foundation
-```
+### Entregáveis Implementados
 
-### Documentação (PRODUCT-04)
+#### Backend (Python/FastAPI)
 
 ```
-docs/
-├── business/
-│   ├── OWNER_OPERATING_SYSTEM.md     🔄 NEW
-│   ├── OWNER_ACTION_CENTER.md        ✅ PRODUCT-03
-│   ├── OWNER_SUCCESS_SCORE.md        🔄 NEW
-│   ├── PRODUCT_CONSTITUTION.md       🔄 UPDATED (v2.0)
-│   └── ROADMAP.md                    🔄 UPDATED
-│
-├── architecture/
-│   ├── SALES_INVESTIGATION_ENGINE.md 🔄 NEW
-│   ├── OWNER_INTELLIGENCE_ENGINE.md  ✅ PRODUCT-03
-│   └── ...
-│
-└── history/
-    ├── PRODUCT_03_REPORT.md          ✅ PRODUCT-03
-    ├── PRODUCT_04_REPORT.md          ⏳ PENDING
-    └── ...
+src/services/decision_execution/
+├── __init__.py              ✅ Exports
+├── models.py                 ✅ Pydantic models
+│   ├── DecisionStatus        ✅ 9 states
+│   ├── ExecutionRecord       ✅ Full lifecycle
+│   ├── ResultConfirmation  ✅ SIM/PARCIAL/NÃO
+│   ├── TimelineEvent         ✅ Audit trail
+│   ├── EstimatedImpact       ✅ Projections
+│   └── ConfirmedImpact       ✅ Verified facts
+├── status_machine.py         ✅ State transitions
+│   ├── DecisionStatusMachine
+│   ├── TransitionRule
+│   └── StatusTransitionError
+├── execution_service.py      ✅ Execution orchestration
+│   ├── ExecutionService
+│   ├── create_decision()
+│   ├── execute_decision()
+│   └── confirm_result()
+└── metrics_calculator.py     ✅ Metrics calculation
+    ├── ExecutionMetrics
+    └── ExecutionSummary
 ```
+
+### Features Implementadas
+
+| Feature | Status | Arquivo |
+|---------|--------|---------|
+| **9 Estados** | ✅ | `status_machine.py` |
+| **11 Transições** | ✅ | `status_machine.py` |
+| **Auto-expiração** | ✅ | `status_machine.py` |
+| **Auto-arquivamento** | ✅ | `status_machine.py` |
+| **Timeline** | ✅ | `models.py` |
+| **Separação Estimado/Confirmado** | ✅ | `models.py` |
+| **Confirmação SIM/PARCIAL/NÃO** | ✅ | `execution_service.py` |
+| **Métricas de Execução** | ✅ | `metrics_calculator.py` |
+| **Contexto Pré-carregado** | ✅ | `execution_service.py` |
 
 ---
 
-## 🎓 5 Motores do Owner Action Center
+## 🏗️ Arquitetura EXEC-01
 
-| # | Motor | Status | Sprint | Descrição |
-|---|-------|--------|--------|-----------|
-| 1 | **Money At Risk** | ✅ | PRODUCT-03 | Detecta 7 tipos de riscos financeiros |
-| 2 | **Recoverable Money** | ✅ | PRODUCT-03 | Encontra 7 tipos de dinheiro recuperável |
-| 3 | **Growth Opportunities** | ✅ | PRODUCT-03 | Descobre 7 oportunidades de crescimento |
-| 4 | **Daily Decisions** | ✅ | PRODUCT-03 | Gera Top 5 decisões priorizadas |
-| 5 | **Sales Investigation** | 🔄 | PRODUCT-04 | Investiga automaticamente quedas de vendas |
+```
+src/services/decision_execution/
+├── __init__.py
+├── models.py              ← Pydantic models
+├── status_machine.py      ← State management
+├── execution_service.py   ← Business logic
+└── metrics_calculator.py  ← Analytics
+
+Princípios:
+- Strict separation: estimated vs confirmed
+- Complete audit trail
+- No execution without tracking
+- No impact claim without evidence
+```
 
 ---
 
 ## 📈 Métricas
 
-### Motores Implementados
+### Implementação
 
-| Motor | Detectores/Oportunidades | Baselines Calculados |
-|-------|--------------------------|---------------------|
-| Money At Risk | 7 | ✅ Automático |
-| Recoverable Money | 7 | ✅ Automático |
-| Growth Opportunities | 7 | ✅ Automático |
-| Daily Decisions | 5 | ✅ Automático |
-| Sales Investigation | 6 dimensões | 🔄 Especificado |
+| Componente | Linhas | Testes | Status |
+|------------|--------|--------|--------|
+| models.py | ~600 | ⏳ | ✅ |
+| status_machine.py | ~300 | ⏳ | ✅ |
+| execution_service.py | ~400 | ⏳ | ✅ |
+| metrics_calculator.py | ~200 | ⏳ | ✅ |
+| **Total** | **~1.500** | **⏳** | **✅** |
 
 ### Qualidade
 
 | Métrica | Valor | Target |
 |---------|-------|--------|
-| Confidence Score (média) | TBD | ≥ 85% |
-| Decision Score (média) | TBD | ≥ 70 |
-| Truth Score | BLOCKED | ≥ 95 |
-| Owner Success Score | TBD | ≥ 10x ROI |
+| Decision Status Machine | 9 states | 9 |
+| Transições | 11 | 11 |
+| Auto-transitions | 2 | 2 |
+| Impact Separation | Strict | Strict |
 
 ---
 
-## 🔒 Trust & Validation
+## 🔒 Princípio 17 — Valor Comprovado
 
-| Componente | Status | Score |
-|------------|--------|-------|
-| **Trust Engine** | ✅ | Implemented |
-| **Confidence Calculator** | ✅ | Implemented |
-| **Data Certification** | ✅ | Implemented |
-| **Endpoint Auditor** | ✅ | Implemented |
-| **Business Truth Auditor** | ✅ | Implemented |
-| **Business Discovery** | ✅ | Implemented |
-| **Truth Score** | ⚠️ | BLOCKED (VIP partial data) |
+### Implementação
 
-**Nota:** Dataset Completeness Report indica POSTO VIP como PARTIAL (10 dias de 28). Truth Score consolidado bloqueado até obtenção de dados completos.
+```python
+# STRICT SEPARATION
+class ExecutionRecord:
+    estimated_impact: EstimatedImpact   # Always labeled "ESTIMADO"
+    confirmed_impact: Optional[ConfirmedImpact]  # Only after confirmation
 
----
+class ConfirmedImpact:
+    display_label: str = "CONFIRMADO"   # Never remove
+    verification_method: str            # How verified
+    evidence_ids: List[str]             # Proof
+```
 
-## 🎯 Foco Atual (PRODUCT-04)
+### Labels Obrigatórios
 
-### Objetivo
-Transformar oficialmente o LOGOS em **Owner Operating System**.
-
-### Entregáveis
-
-#### Documentation
-- [x] OWNER_OPERATING_SYSTEM.md — Visão do produto
-- [x] SALES_INVESTIGATION_ENGINE.md — Especificação do Motor 5
-- [x] OWNER_SUCCESS_SCORE.md — Métrica de impacto
-- [x] ROADMAP.md — Atualizado com FASES 1-7
-- [x] PRODUCT_CONSTITUTION.md — + Princípios 14 e 15
-
-#### GitHub
-- [ ] Commits incrementais
-- [ ] Branch `feature/owner-operating-system`
-
-#### Product Constitution Gate
-- [ ] PCG ≥ 95/100
+| Tipo | Label | Onde |
+|------|-------|------|
+| Estimado | "ESTIMADO" | Antes da execução |
+| Confirmado | "CONFIRMADO" | Após SIM |
+| Parcial | "PARCIALMENTE CONFIRMADO" | Após PARCIAL |
+| Em Validação | "EM VALIDAÇÃO" | Durante execução |
 
 ---
 
 ## 🚀 Próximos Passos
 
-### Curto Prazo (Q3 2026)
+### Curto Prazo (EXEC-01 Continuação)
 
-1. **Completar PRODUCT-04**
-   - Finalizar documentação
-   - Commit no GitHub
-   - PCG ≥ 95/100
+1. **API Endpoints**
+   - POST /api/v1/decisions/{id}/execute
+   - POST /api/v1/decisions/{id}/confirm
+   - GET /api/v1/decisions/{id}/timeline
+   - GET /api/v1/execution-metrics
 
-2. **Preparar FASE 4: EXECUTAR**
-   - Framework de execução de decisões
-   - Tracking de resultados
-   - Confirmação por proprietário
+2. **Persistência**
+   - Repository pattern
+   - PostgreSQL schema
+   - Migration scripts
 
-### Médio Prazo (Q4 2026)
+3. **Frontend**
+   - Botões de execução
+   - Tela de confirmação
+   - Timeline visual
+   - Dashboard de métricas
 
-1. **FASE 4: EXECUTAR**
-   - Botão "Executar Agora"
-   - Mobile app MVP
-   - Gamificação básica
+### Médio Prazo (Q3 2026)
 
-2. **FASE 5: APRENDER**
-   - Behavior tracking
+1. **Integração Completa**
+   - Owner Intelligence → Decision Execution
+   - LOGOS Impact Score real-time update
+   - Decision History integration
+
+2. **Gamificação**
+   - Conquistas por execução
+   - Streaks de uso
+   - Leaderboards
+
+### Longo Prazo (Q4 2026+)
+
+1. **FASE 5: APRENDER**
+   - Behavior learning
    - Efficacy analytics
-
-### Longo Prazo (2027+)
-
-1. **FASE 6: ANTECIPAR**
-   - Predictive alerts
-   - Prevenção proativa
-
-2. **FASE 7: AUTONOMOUS EXECUTIVE**
-   - Morning briefing
-   - Voice interface
-   - AI executive
 
 ---
 
 ## 📚 Documentação
 
-### Essencial
+### Nova (EXEC-01)
 
-| Documento | Propósito | Status |
-|-----------|-----------|--------|
-| OWNER_OPERATING_SYSTEM.md | Visão do produto | 🔄 NEW |
-| OWNER_ACTION_CENTER.md | Especificação do Owner Action Center | ✅ PRODUCT-03 |
-| OWNER_SUCCESS_SCORE.md | Métrica de impacto do LOGOS | 🔄 NEW |
-| SALES_INVESTIGATION_ENGINE.md | Especificação Motor 5 | 🔄 NEW |
-| ROADMAP.md | Evolução FASES 1-7 | 🔄 UPDATED |
-| PRODUCT_CONSTITUTION.md | 15 princípios | 🔄 UPDATED |
+| Documento | Status |
+|-----------|--------|
+| DECISION_EXECUTION_PLATFORM.md | ✅ |
+| DECISION_STATUS_MACHINE.md | ✅ |
 
-### Complementar
+### Atualizada
 
-| Documento | Propósito | Status |
-|-----------|-----------|--------|
-| OWNER_INTELLIGENCE_ENGINE.md | Arquitetura técnica | ✅ PRODUCT-03 |
-| OWNER_DECISIONS.md | Regras de negócio | ✅ PRODUCT-03 |
-| DECISION_TRACE.md | Arquitetura de Trust | ✅ TRUST-01 |
-| BUSINESS_TRUTH_REPORT.md | Validação | ✅ VALIDATION-01 |
-
----
-
-## 🏆 Conquistas
-
-### PRODUCT-03
-- ✅ Score: 92.5/100 (EXCELENTE)
-- ✅ 4 motores implementados
-- ✅ 28 detectores/oportunidades
-- ✅ API REST completa
-- ✅ Zero mocks
-- ✅ 100% dados reais
-
-### Histórico
-- ✅ 10+ sprints completadas
-- ✅ 3 tenants validados
-- ✅ Trust Engine operacional
-- ✅ Baseline engine operacional
-- ✅ Validação framework estabelecida
+| Documento | Atualização |
+|-----------|-------------|
+| PRODUCT_CONSTITUTION.md | Princípio 17 |
 
 ---
 
@@ -285,21 +262,12 @@ Transformar oficialmente o LOGOS em **Owner Operating System**.
 
 | Risco | Status | Mitigação |
 |-------|--------|-----------|
-| **VIP Data Incomplete** | ⚠️ ACTIVE | Aguardando 01-28/06/2026 |
-| **Truth Score Blocked** | ⚠️ IMPACT | Dataset completeness < 100% |
-| **Frontend Integration** | ⚠️ PENDING | Após backend estável |
-| **Mobile App** | ⏳ FUTURE | FASE 4 |
+| **Frontend Delay** | ⏳ Monitorar | Priorizar core flows |
+| **Data Migration** | ⏳ Future | Design for backward compatibility |
+| **User Adoption** | ⏳ Future | Onboarding, notifications |
 
 ---
 
-## 📞 Contato
+**[CURRENT_STATE — LOGOS Decision Execution Platform]**
 
-- **Repositório:** https://github.com/mlisboa17/NewWebLogos
-- **Branch Atual:** `feature/owner-operating-system`
-- **Última Sprint:** PRODUCT-04
-
----
-
-**[CURRENT_STATE — LOGOS Owner Operating System]**
-
-*Phase: 3/7 (DECIDIR) | Sprint: PRODUCT-04 | Status: DEFINING | Next: EXECUTAR*
+*Phase: 3/7 (DECIDIR→EXECUTAR) | Sprint: EXEC-01 | Status: IMPLEMENTING | Next: API + Frontend*
