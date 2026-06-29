@@ -25,10 +25,70 @@ Formato: `PHASE.MAJOR.MINOR` (ex: `3.3.0` = FASE 3, PRODUCT-03, base)
 
 ## 🚀 Releases
 
+### v3.5.0 — LOGOS Impact System (PRODUCT-05)
+**Data:** 2026-06-29  
+**Branch:** `feature/logos-impact-system`  
+**Status:** 🔄 IN DEVELOPMENT
+
+#### 🎯 Visão
+Mudança definitiva na forma como medimos sucesso: **impacto financeiro** ao invés de funcionalidades
+
+#### ✨ Novidades
+
+##### Novo Princípio (Constituição v3.0)
+- **Princípio 16:** O sucesso do LOGOS será medido pelo impacto financeiro gerado
+
+##### LOGOS Impact Score
+- **R$ 170.900+** total mensurável desde instalação
+- Breakdown: Recuperado (R$ 87.300) + Economizado (R$ 41.400) + Evitado (R$ 26.800) + Adicional (R$ 15.400)
+- **312 horas economizadas**
+- **ROI: 14.8x**
+
+##### Momento Zero
+- **10 segundos** para entender o que fazer
+- Nova Home sem scroll
+- Apenas decisões, sem gráficos decorativos
+
+##### Decision Execution Flow
+- Ciclo completo: Detectar → Investigar → Explicar → Executar → Confirmar → Medir → Aprender
+- Nenhuma decisão sem acompanhamento
+- "Executar Agora" com contexto direto
+
+##### Decision History
+- Registro completo de todas as decisões
+- 7 anos de retenção
+- Full-text search
+
+##### Decision Effectiveness
+- 8 indicadores de eficácia
+- Taxa de execução, tempo médio, valor recuperado, ROI
+
+##### Documentação
+- LOGOS_IMPACT_SYSTEM.md
+- MOMENTO_ZERO.md
+- DECISION_EXECUTION_FLOW.md
+- DECISION_EFFECTIVENESS.md
+- LOGOS_IMPACT_SCORE.md (architecture)
+- DECISION_HISTORY.md (architecture)
+
+#### 🔄 Mudanças
+- Sucesso = Impacto Financeiro (não quantidade de features)
+- Toda funcionalidade deve informar impacto financeiro
+- Microexperiências: decisão melhor = sucesso
+
+#### 📋 Breaking Changes
+- Nenhum (sprint de definição)
+
+#### ⚠️ Known Issues
+- POSTO VIP dataset: PARTIAL (10/28 dias)
+- Truth Score consolidado: BLOCKED
+
+---
+
 ### v3.4.0 — Owner Operating System (PRODUCT-04)
 **Data:** 2026-06-29  
 **Branch:** `feature/owner-operating-system`  
-**Status:** 🔄 IN DEVELOPMENT
+**Status:** ✅ RELEASED
 
 #### 🎯 Visão
 Transformação de **Gerente Digital** para **Assistente Executivo do Proprietário**

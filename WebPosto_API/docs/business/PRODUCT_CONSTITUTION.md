@@ -1,7 +1,7 @@
 ---
 # 📜 PRODUCT_CONSTITUTION.md | LOGOS
 # Type: PRODUCT_PRINCIPLES
-# Version: 2.0
+# Version: 3.0
 # Updated: 2026-06-29
 # Status: OFFICIAL
 ---
@@ -10,7 +10,7 @@
 
 > **Documento Oficial de Princípios do Produto**
 >
-> *Atualizado para Owner Operating System (PRODUCT-04)*
+> *Atualizado para LOGOS Impact System (PRODUCT-05)*
 
 Esta constituição estabelece os princípios fundamentais que orientam todas as decisões de arquitetura, produto, UX e desenvolvimento do LOGOS.
 
@@ -35,6 +35,7 @@ Esta constituição estabelece os princípios fundamentais que orientam todas as
 13. [LOGOS Entrega Decisões, Não Dados](#princípio-13--logos-entrega-decisões-não-dados) *(PRODUCT-03)*
 14. [Toda Tela Termina em uma Decisão](#princípio-14--toda-tela-termina-em-uma-decisão) *(PRODUCT-04)*
 15. [LOGOS Investiga Automaticamente](#princípio-15--logos-investiga-automaticamente) *(PRODUCT-04)*
+16. [Impacto Financeiro como Métrica de Sucesso](#princípio-16--impacto-financeiro-como-métrica-de-sucesso) *(PRODUCT-05)*
 
 ---
 
@@ -396,6 +397,132 @@ O Sales Investigation Engine deve investigar automaticamente:
 
 ---
 
+## PRINCÍPIO 16 — IMPACTO FINANCEIRO COMO MÉTRICA DE SUCESSO *(PRODUCT-05)*
+
+### Declaração
+
+> **"O sucesso do LOGOS será medido pelo impacto financeiro que gera para o proprietário, e não pela quantidade de funcionalidades entregues."**
+
+### Regra de Ouro
+
+Toda nova funcionalidade deverá informar qual **impacto financeiro** pretende produzir.
+
+Caso não exista **impacto mensurável**, a funcionalidade deverá ser **reavaliada** antes de entrar no roadmap.
+
+### O Que Medimos
+
+| Métrica | Descrição | Exemplo |
+|---------|-----------|---------|
+| **Receita Recuperada** | Dinheiro recuperado graças às decisões do LOGOS | R$ 87.300 |
+| **Economias Obtidas** | Despesas reduzidas ou negociadas | R$ 41.200 |
+| **Perdas Evitadas** | Prejuízos identificados e prevenidos | R$ 26.800 |
+| **Receita Adicional** | Novas oportunidades capturadas | R$ 15.400 |
+| **Tempo Economizado** | Horas do proprietário salvas | 312 horas |
+| **ROI do LOGOS** | Retorno sobre investimento | 14,8x |
+
+### O Que NÃO Medimos
+
+| ❌ NÃO Medimos | Por quê? |
+|----------------|----------|
+| Quantidade de dashboards | Não gera valor direto |
+| Quantidade de gráficos | Visualização ≠ Resultado |
+| Quantidade de funcionalidades | Mais ≠ Melhor |
+| Número de telas | Foco em ação, não navegação |
+| Downloads do app | Métrica de vaidade |
+| Tempo no app | Quanto menos tempo, melhor (Momento Zero) |
+
+### Pergunta Obrigatória
+
+Antes de qualquer nova funcionalidade:
+
+> **"Qual impacto financeiro esta funcionalidade produz para o proprietário?"**
+
+Se esse impacto não puder ser **explicado** e posteriormente **medido**, a funcionalidade não deverá entrar no roadmap.
+
+### Processo de Validação
+
+```
+Nova Feature Proposta
+        ↓
+┌─────────────────┐
+│ Qual o impacto  │
+│ financeiro?     │
+└────────┬────────┘
+         │
+    ┌────┴────┐
+    │         │
+    ▼         ▼
+┌───────┐ ┌────────┐
+│ Claro │ │ Nebuloso│
+│ Mensu-│ │ ou Nenhum
+│ rável │ │         │
+└───┬───┘ └───┬────┘
+    │         │
+    ▼         ▼
+┌────────┐ ┌─────────────┐
+│APROVADO│ │REAVALIAÇÃO  │
+│para    │ │ou REJEITADO │
+│roadmap │ │             │
+└────────┘ └─────────────┘
+```
+
+### Exemplos
+
+#### ✅ Funcionalidade Aprovada
+```
+Feature: Alerta de Cliente Inadimplente
+
+Impacto Financeiro:
+• Clientes inadimplentes são identificados automaticamente
+• Proprietário é notificado em 24h (vs 15 dias manual)
+• Taxa de recuperação: 75% quando notificado cedo
+• Valor médio recuperado: R$ 5.000/caso
+• Previsão: 10 casos/mês = R$ 50.000 recuperados
+
+Medição:
+• Decisões geradas: track
+• Taxa de execução: track
+• Valor recuperado: confirmado pelo owner
+
+✅ APROVADO para roadmap
+```
+
+#### ❌ Funcionalidade Reavaliada
+```
+Feature: Novo tema de cores para o dashboard
+
+Impacto Financeiro:
+• "Deixa o sistema mais bonito"
+• "Melhora a experiência do usuário"
+• Impacto financeiro direto: ???
+
+Medição:
+• Não mensurável em R$
+• Satisfaction score: possível, mas não financeiro
+
+❌ REAVALIAR — Qual o impacto financeiro tangível?
+```
+
+### Checklist de Validação
+
+- [ ] Qual o impacto financeiro estimado?
+- [ ] Como será medido?
+- [ ] Qual a confiança na estimativa?
+- [ ] Qual o timeframe para mensuração?
+- [ ] Existe baseline para comparação?
+- [ ] O owner pode confirmar o valor?
+
+### Microexperiência
+
+> **"Quando o proprietário fechar o LOGOS hoje, ele tomou uma decisão melhor por causa do sistema?"**
+
+Se a resposta for **SIM**, verificamos se gerou **impacto financeiro**.
+
+Se gerou impacto → Sucesso.
+Se não gerou → Entender por quê e ajustar.
+
+---
+
 ## 🏛️ Product Constitution Gate
 
 ### Aplicação
@@ -416,6 +543,7 @@ Ver `PRODUCT_CONSTITUTION_GATE_[SPRINT].md` em cada sprint.
 |--------|------|--------|----------|
 | 1.0 | 2026-06-28 | GOVERNANCE-01 | 12 princípios originais |
 | 2.0 | 2026-06-29 | PRODUCT-04 | + Princípios 14 e 15 (Owner Operating System) |
+| 3.0 | 2026-06-29 | PRODUCT-05 | + Princípio 16 (LOGOS Impact System) |
 
 ---
 
@@ -432,6 +560,6 @@ Para adicionar um novo princípio:
 
 ---
 
-**[PRODUCT CONSTITUTION — LOGOS Owner Operating System]**
+**[PRODUCT CONSTITUTION — LOGOS Impact System]**
 
-*Version: 2.0 | Principles: 15 | Status: OFFICIAL*
+*Version: 3.0 | Principles: 16 | Status: OFFICIAL*

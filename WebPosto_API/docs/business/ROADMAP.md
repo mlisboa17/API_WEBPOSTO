@@ -1,14 +1,14 @@
 ---
-# 🗺️ ROADMAP | LOGOS — Owner Operating System
+# 🗺️ ROADMAP | LOGOS — LOGOS Impact System
 # Type: ROADMAP
-# Version: 2.0
+# Version: 3.0
 # Updated: 2026-06-29
 # Status: ACTIVE
 ---
 
-# LOGOS Roadmap — Owner Operating System
+# LOGOS Roadmap — LOGOS Impact System
 
-> **Transformação de Dashboard Financeiro para Assistente Executivo do Proprietário**
+> **Transformação de Dashboard Financeiro para Sistema de Impacto Financeiro Mensurável**
 
 ---
 
@@ -20,6 +20,9 @@ O LOGOS passa a ser um **Owner Operating System** — um Assistente Executivo qu
 
 **Pergunta Central:**
 > *"O que devo fazer hoje para ganhar mais dinheiro, evitar perdas e economizar tempo?"*
+
+**Métrica de Sucesso:**
+> *"Quanto dinheiro o LOGOS já gerou para mim?"*
 
 ---
 
@@ -66,15 +69,21 @@ O LOGOS passa a ser um **Owner Operating System** — um Assistente Executivo qu
 | Sprint | Status | Entregáveis |
 |--------|--------|-------------|
 | **PRODUCT-03** | ✅ | Owner Intelligence Engine, 4 Motors |
-| **PRODUCT-04** | 🔄 | Owner Operating System, Sales Investigation |
+| **PRODUCT-04** | ✅ | Owner Operating System, Sales Investigation |
+| **PRODUCT-05** | 🔄 | LOGOS Impact System, Momento Zero, Execution Flow |
 
 **Entregáveis Atuais:**
 - ✅ **Motor 1:** Money At Risk (7 detectores de risco)
 - ✅ **Motor 2:** Recoverable Money (7 tipos de recuperação)
 - ✅ **Motor 3:** Growth Opportunities (7 oportunidades)
 - ✅ **Motor 4:** Daily Decisions (Top 5 priorizadas)
-- 🔄 **Motor 5:** Sales Investigation Engine (investigação automática)
-- 🔄 **Owner Success Score:** Métrica de impacto do LOGOS
+- ✅ **Motor 5:** Sales Investigation Engine (investigação automática)
+- ✅ **Owner Success Score:** Métrica de impacto do LOGOS
+- 🔄 **LOGOS Impact Score:** Impacto financeiro mensurável
+- 🔄 **Momento Zero:** 10 segundos para decisão
+- 🔄 **Decision Execution Flow:** Ciclo completo Detectar→Aprender
+- 🔄 **Decision History:** Histórico auditável
+- 🔄 **Decision Effectiveness:** Métricas de eficácia
 
 **Resultado:**
 - Identifica riscos financeiros automaticamente

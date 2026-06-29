@@ -56,7 +56,7 @@
    - **LEITURA OBRIGATÓRIA** antes de qualquer sprint
 
 2. **[business/PRODUCT_CONSTITUTION.md](business/PRODUCT_CONSTITUTION.md)**
-   - 15 princípios fundamentais
+   - 16 princípios fundamentais
    - Regras para toda decisão de produto
    - **LEITURA OBRIGATÓRIA** antes de qualquer sprint
 
@@ -73,16 +73,20 @@
 
 | Documento | Descrição | Sprint |
 |-----------|-----------|--------|
-| [PRODUCT_CONSTITUTION.md](business/PRODUCT_CONSTITUTION.md) | 15 princípios do produto | GOVERNANCE-01, PRODUCT-04 |
+| [PRODUCT_CONSTITUTION.md](business/PRODUCT_CONSTITUTION.md) | 16 princípios do produto | GOVERNANCE-01, PRODUCT-04, PRODUCT-05 |
 | [OWNER_OPERATING_SYSTEM.md](business/OWNER_OPERATING_SYSTEM.md) | Visão do Owner Operating System | PRODUCT-04 |
 | [OWNER_ACTION_CENTER.md](business/OWNER_ACTION_CENTER.md) | Especificação do Owner Action Center | PRODUCT-03 |
+| [LOGOS_IMPACT_SYSTEM.md](business/LOGOS_IMPACT_SYSTEM.md) | Sistema de Impacto Financeiro | PRODUCT-05 |
+| [MOMENTO_ZERO.md](business/MOMENTO_ZERO.md) | Conceito dos 10 segundos | PRODUCT-05 |
+| [DECISION_EXECUTION_FLOW.md](business/DECISION_EXECUTION_FLOW.md) | Fluxo completo de execução | PRODUCT-05 |
+| [DECISION_EFFECTIVENESS.md](business/DECISION_EFFECTIVENESS.md) | Métricas de eficácia | PRODUCT-05 |
 
 ### Roadmap & Planning
 
 | Documento | Descrição | Última Atualização |
 |-----------|-----------|-------------------|
-| [ROADMAP.md](business/ROADMAP.md) | Evolução FASES 1-7 | PRODUCT-04 |
-| [CURRENT_STATE.md](business/CURRENT_STATE.md) | Estado atual do projeto | PRODUCT-04 |
+| [ROADMAP.md](business/ROADMAP.md) | Evolução FASES 1-7 | PRODUCT-05 |
+| [CURRENT_STATE.md](business/CURRENT_STATE.md) | Estado atual do projeto | PRODUCT-05 |
 
 ### Features & Metrics
 
@@ -90,6 +94,8 @@
 |-----------|-----------|--------|
 | [OWNER_SUCCESS_SCORE.md](business/OWNER_SUCCESS_SCORE.md) | Métrica de impacto do LOGOS | PRODUCT-04 |
 | [OWNER_DECISIONS.md](business/OWNER_DECISIONS.md) | Regras de negócio das decisões | PRODUCT-03 |
+| [LOGOS_IMPACT_SCORE.md](architecture/LOGOS_IMPACT_SCORE.md) | Arquitetura do Impact Score | PRODUCT-05 |
+| [DECISION_HISTORY.md](architecture/DECISION_HISTORY.md) | Histórico de decisões | PRODUCT-05 |
 
 ---
 
@@ -100,7 +106,7 @@
 | Documento | Descrição | Sprint | Status |
 |-----------|-----------|--------|--------|
 | [OWNER_INTELLIGENCE_ENGINE.md](architecture/OWNER_INTELLIGENCE_ENGINE.md) | 4 motores (1-4) + arquitetura | PRODUCT-03 | ✅ Implemented |
-| [SALES_INVESTIGATION_ENGINE.md](architecture/SALES_INVESTIGATION_ENGINE.md) | Motor 5 — Investigação de vendas | PRODUCT-04 | 🔄 Specified |
+| [SALES_INVESTIGATION_ENGINE.md](architecture/SALES_INVESTIGATION_ENGINE.md) | Motor 5 — Investigação de vendas | PRODUCT-04 | ✅ Specified |
 | [DECISION_TRACE.md](architecture/DECISION_TRACE.md) | Arquitetura de Trust | TRUST-01 | ✅ Implemented |
 
 ### Validation & Trust
@@ -121,16 +127,17 @@
 
 | Documento | Descrição | Última Atualização |
 |-----------|-----------|-------------------|
-| [SPRINT_HISTORY.md](history/SPRINT_HISTORY.md) | Histórico completo de sprints | PRODUCT-04 |
-| [DECISION_LOG.md](history/DECISION_LOG.md) | Registro de decisões arquiteturais | PRODUCT-04 |
-| [RELEASE_NOTES.md](history/RELEASE_NOTES.md) | Notas de release | PRODUCT-04 |
+| [SPRINT_HISTORY.md](history/SPRINT_HISTORY.md) | Histórico completo de sprints | PRODUCT-05 |
+| [DECISION_LOG.md](history/DECISION_LOG.md) | Registro de decisões arquiteturais | PRODUCT-05 |
+| [RELEASE_NOTES.md](history/RELEASE_NOTES.md) | Notas de release | PRODUCT-05 |
 
 ### Sprint Reports
 
 | Documento | Sprint | PCG Score | Status |
 |-----------|--------|-----------|--------|
 | [PRODUCT_03_REPORT.md](history/PRODUCT_03_REPORT.md) | PRODUCT-03 | 92.5/100 | ✅ Excelente |
-| [PRODUCT_04_REPORT.md](history/PRODUCT_04_REPORT.md) | PRODUCT-04 | TBD | 🔄 In Progress |
+| [PRODUCT_04_REPORT.md](history/PRODUCT_04_REPORT.md) | PRODUCT-04 | 98.4/100 | ✅ Excepcional |
+| [PRODUCT_05_REPORT.md](history/PRODUCT_05_REPORT.md) | PRODUCT-05 | TBD | 🔄 In Progress |
 
 ### Product Constitution Gates
 
@@ -141,7 +148,8 @@
 | PRODUCT_CONSTITUTION_GATE_VALIDATION-01.md | VALIDATION-01 | 87.5/100 | ✅ Aprovado |
 | PRODUCT_CONSTITUTION_GATE_VALIDATION-01A.md | VALIDATION-01A | 85.8/100 | ✅ Aprovado |
 | PRODUCT_CONSTITUTION_GATE_PRODUCT-03.md | PRODUCT-03 | 92.5/100 | ✅ Excelente |
-| PRODUCT_CONSTITUTION_GATE_PRODUCT-04.md | PRODUCT-04 | TBD | 🔄 Pending |
+| PRODUCT_CONSTITUTION_GATE_PRODUCT-04.md | PRODUCT-04 | 98.4/100 | ✅ Excepcional |
+| PRODUCT_CONSTITUTION_GATE_PRODUCT-05.md | PRODUCT-05 | TBD | 🔄 Pending |
 
 ---
 
@@ -267,10 +275,10 @@ Criando novo documento? Use estes templates:
 
 | Categoria | Quantidade | Última Atualização |
 |-----------|------------|-------------------|
-| Business | 7 | 2026-06-29 |
-| Architecture | 7+ | 2026-06-29 |
+| Business | 11 | 2026-06-29 |
+| Architecture | 9+ | 2026-06-29 |
 | History | 4+ | 2026-06-29 |
-| **Total** | **18+** | — |
+| **Total** | **24+** | — |
 
 ---
 

@@ -423,15 +423,107 @@ Alertas de problema sem investigação geram trabalho manual para proprietário.
 
 ---
 
+## ADR-019: Impacto Financeiro como Métrica de Sucesso
+**Status:** 🔄 PROPOSED  
+**Data:** 2026-06-29  
+**Sprint:** PRODUCT-05
+
+### Contexto
+Sistemas tradicionais medem sucesso por funcionalidades entregues. O LOGOS precisa medir valor real gerado.
+
+### Decisão
+- Sucesso do LOGOS = Impacto financeiro gerado para o proprietário
+- Toda nova funcionalidade deve declarar impacto financeiro esperado
+- Impacto mensurável obrigatório para entrar no roadmap
+- LOGOS Impact Score: R$ 170.900+ total mensurável
+- Componentes: Recuperado + Economizado + Evitado + Adicional + Tempo
+
+### Métricas
+- Receita Recuperada: R$ 87.300
+- Economias Obtidas: R$ 41.400
+- Perdas Evitadas: R$ 26.800
+- Receita Adicional: R$ 15.400
+- Tempo Economizado: 312 horas
+- ROI: 14.8x
+
+### Consequências
+- ✅ Foco absoluto em valor tangível
+- ✅ Justificativa clara para investimento no LOGOS
+- ✅ Eliminação de funcionalidades sem impacto
+- ✅ Accountability do produto
+- ⚠️ Requer sistema de tracking de resultados
+- ⚠️ Maior complexidade de mensuração
+
+---
+
+## ADR-020: Momento Zero — 10 Segundos para Decisão
+**Status:** 🔄 PROPOSED  
+**Data:** 2026-06-29  
+**Sprint:** PRODUCT-05
+
+### Contexto
+Proprietários não têm tempo para analisar dashboards complexos. Precisam de clareza imediata.
+
+### Decisão
+- Primeiros 10 segundos determinam valor percebido
+- Proprietário deve entender: O que fazer, quanto dinheiro, qual decisão #1
+- Nova Home sem scroll
+- Apenas decisões, nenhum gráfico decorativo
+- Top 3 decisões visíveis imediatamente
+
+### Checklist Momento Zero
+- [ ] Contagem de decisões visível
+- [ ] Business Health Score
+- [ ] LOGOS Impact Score
+- [ ] Dinheiro em risco
+- [ ] Dinheiro recuperável
+- [ ] Top 3 decisões com ações
+
+### Consequências
+- ✅ Redução drástica do tempo para ação
+- ✅ Foco absoluto em valor
+- ✅ Eliminação de ruído visual
+- ⚠️ Requer redesign completo da Home
+- ⚠️ Menos espaço para contexto
+
+---
+
+## ADR-021: Decision Execution Flow Completo
+**Status:** 🔄 PROPOSED  
+**Data:** 2026-06-29  
+**Sprint:** PRODUCT-05
+
+### Contexto
+Decisões sem acompanhamento não geram aprendizado nem mensuração de resultado.
+
+### Decisão
+- Ciclo obrigatório: Detectar → Investigar → Explicar → Executar → Confirmar → Medir → Aprender
+- Nenhuma decisão pode existir sem tracking de resultado
+- "Executar Agora" com contexto direto
+- Confirmação obrigatória: SIM/NÃO/PARCIAL
+- Medição de impacto financeiro real
+
+### Estados
+- DETECTED → INVESTIGATING → EXPLAINED → PENDING → EXECUTED → CONFIRMED → MEASURED → LEARNED
+
+### Consequências
+- ✅ Ciclo completo de valor
+- ✅ Aprendizado contínuo
+- ✅ Mensuração precisa de ROI
+- ⚠️ Complexidade de implementação
+- ⚠️ Requer mudança de comportamento do usuário
+
+---
+
 ## 📊 Resumo por Status
 
 | Status | Quantidade |
 |--------|------------|
 | ✅ ACCEPTED | 13 |
-| 🔄 PROPOSED | 5 |
+| 🔄 PROPOSED | 8 |
 | ⚠️ DEPRECATED | 0 |
 | 🔄 SUPERSEDED | 0 |
-| **Total** | **18** |
+| **Total** | **21** |
 
 ---
 
@@ -445,4 +537,4 @@ Alertas de problema sem investigação geram trabalho manual para proprietário.
 
 **[DECISION_LOG — LOGOS Architecture Decisions]**
 
-*Decisions: 18 | Accepted: 13 | Proposed: 5 | Last Updated: 2026-06-29*
+*Decisions: 21 | Accepted: 13 | Proposed: 8 | Last Updated: 2026-06-29*

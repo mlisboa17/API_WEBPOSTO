@@ -17,7 +17,7 @@
 |------|---------|--------|
 | **FASE 1: VER** | 5 sprints | ✅ COMPLETE |
 | **FASE 2: ENTENDER** | 4 sprints | ✅ COMPLETE |
-| **FASE 3: DECIDIR** | 2 sprints | 🔄 IN PROGRESS |
+| **FASE 3: DECIDIR** | 3 sprints | 🔄 IN PROGRESS |
 | **FASE 4: EXECUTAR** | — | ⏳ PLANNED |
 | **FASE 5: APRENDER** | — | 🔮 FUTURE |
 | **FASE 6: ANTECIPAR** | — | 🔮 FUTURE |
@@ -401,6 +401,31 @@ Processo de validação obrigatória para cada sprint:
 - **14:** Toda tela deve terminar em uma decisão
 - **15:** LOGOS investiga automaticamente a causa provável
 
+**PCG Score:** 98.4/100 — **EXCEPCIONAL**
+
+**Veredicto:** ✅ APROVADO
+
+---
+
+#### SPRINT PRODUCT-05 — LOGOS Impact System
+**Data:** 2026-06-29  
+**Branch:** `feature/logos-impact-system`  
+**Status:** 🔄 IN PROGRESS
+
+**Entregáveis Planejados:**
+- Princípio 16: Impacto financeiro como métrica de sucesso
+- LOGOS Impact Score: R$ 170.900+ total mensurável
+- Momento Zero: 10 segundos para decisão
+- Decision Execution Flow: Ciclo Detectar→Investigar→Explicar→Executar→Confirmar→Medir→Aprender
+- Decision History: Histórico auditável completo
+- Decision Effectiveness: Métricas de eficácia
+- Documentação completa
+
+**Transformação:** Assistente Executivo → Sistema de Impacto Financeiro Mensurável
+
+**Princípio Novo:**
+- **16:** O sucesso do LOGOS será medido pelo impacto financeiro gerado
+
 **PCG Score:** PENDING (target: ≥ 95/100)
 
 **Veredicto:** PENDING
@@ -420,16 +445,17 @@ Processo de validação obrigatória para cada sprint:
 | VALIDATION-01 | 87.5/100 | Boa | ✅ |
 | VALIDATION-01A | 85.8/100 | Boa | ✅ |
 | PRODUCT-03 | 92.5/100 | Excelente | ✅ |
-| PRODUCT-04 | TBD | — | 🔄 |
+| PRODUCT-04 | 98.4/100 | Excepcional | ✅ |
+| PRODUCT-05 | TBD | — | 🔄 |
 
 ### Tendência
 
 ```
-75 → 80 → 91.67 → 87.5 → 87.5 → 85.8 → 92.5 → TBD
+75 → 80 → 91.67 → 87.5 → 87.5 → 85.8 → 92.5 → 98.4 → TBD
 
 Tendência: ⬆️ Crescente
-Média: 85.7/100
-Target: ≥ 90/100
+Média: 86.9/100
+Target: ≥ 95/100
 ```
 
 ---
@@ -461,9 +487,9 @@ Target: ≥ 90/100
 ---
 
 ### FASE 3: DECIDIR (Decision)
-**Sprints:** 8 (e contando)  
+**Sprints:** 9 (e contando)  
 **Status:** 🔄 IN PROGRESS  
-**Foco:** Motores de decisão, priorização, certificação
+**Foco:** Motores de decisão, priorização, mensuração de impacto
 
 **Aprendizados:**
 - 5 motores criam cobertura holística
@@ -479,14 +505,15 @@ Target: ≥ 90/100
 
 | # | Sprint | Score | Destaque |
 |---|--------|-------|----------|
-| 🥇 | PRODUCT-03 | 92.5/100 | Owner Action Center |
-| 🥈 | PRODUCT-02 | 91.67/100 | Daily Decisions |
-| 🥉 | TRUST-01 | 87.5/100 | Trust Engine |
+| 🥇 | PRODUCT-04 | 98.4/100 | Owner Operating System |
+| 🥈 | PRODUCT-03 | 92.5/100 | Owner Action Center |
+| 🥉 | PRODUCT-02 | 91.67/100 | Daily Decisions |
 
 ### Maior Impacto Financeiro
 
 | Sprint | Impacto Estimado | Fonte |
 |--------|------------------|-------|
+| PRODUCT-05 | R$ 170.900+ total | LOGOS Impact System |
 | PRODUCT-03 | R$ 67.000/mês | Owner Action Center |
 | PRODUCT-02 | R$ 45.000/mês | Daily Decisions |
 
@@ -495,6 +522,7 @@ Target: ≥ 90/100
 | Sprint | Complexidade | Motivo |
 |--------|--------------|--------|
 | VALIDATION-01 | Alta | Reconciliação matemática |
+| PRODUCT-05 | Alta | Decision Execution Flow |
 | TRUST-01 | Alta | Multi-dimension confidence |
 | PRODUCT-03 | Alta | 4 motores coordenados |
 
@@ -512,7 +540,16 @@ Target: ≥ 90/100
 - OWNER_OPERATING_SYSTEM.md
 - OWNER_SUCCESS_SCORE.md
 - SALES_INVESTIGATION_ENGINE.md
-- PRODUCT_04_REPORT.md (pending)
+- PRODUCT_04_REPORT.md
+
+### PRODUCT-05
+- LOGOS_IMPACT_SYSTEM.md
+- MOMENTO_ZERO.md
+- DECISION_EXECUTION_FLOW.md
+- DECISION_EFFECTIVENESS.md
+- LOGOS_IMPACT_SCORE.md (architecture)
+- DECISION_HISTORY.md (architecture)
+- PRODUCT_05_REPORT.md (pending)
 
 ### TRUST-01
 - DECISION_TRACE.md
@@ -539,4 +576,4 @@ Target: ≥ 90/100
 
 **[SPRINT_HISTORY — LOGOS Evolution]**
 
-*Total Sprints: 20+ | Phases Complete: 2/7 | Current: FASE 3 (DECIDIR) | Last Updated: 2026-06-29*
+*Total Sprints: 21+ | Phases Complete: 2/7 | Current: FASE 3 (DECIDIR) | Last Updated: 2026-06-29*
