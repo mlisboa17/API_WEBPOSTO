@@ -1,14 +1,14 @@
 ---
-# 🗺️ ROADMAP | LOGOS — Decision Execution Platform
+# 🗺️ ROADMAP | LOGOS — Momento Zero Experience
 # Type: ROADMAP
-# Version: 4.0
+# Version: 4.1
 # Updated: 2026-06-29
 # Status: ACTIVE
 ---
 
-# LOGOS Roadmap — Decision Execution Platform
+# LOGOS Roadmap — Momento Zero Experience
 
-> **Transformação de Dashboard Financeiro para Plataforma de Execução de Decisões**
+> **Transformação de Dashboard Financeiro para Executive Experience Platform**
 
 ---
 
@@ -89,24 +89,35 @@ O LOGOS passa a ser uma **Decision Execution Platform** — um sistema que não 
 
 | Sprint | Status | Entregáveis |
 |--------|--------|-------------|
-| **EXEC-01** | 🔄 | Decision Execution Platform |
-| EXEC-02 | ⏳ | API Endpoints + Frontend |
+| **EXEC-01** | ✅ | Decision Execution Platform (Backend) |
+| **UX-01** | ✅ | Momento Zero & Executive Experience (Design) |
+| EXEC-02 | ⏳ | API Endpoints + Frontend Implementation |
 | EXEC-03 | ⏳ | Persistência + Integração |
 
-**Entregáveis Atuais (EXEC-01):**
+**Entregáveis Completos:**
+
+**EXEC-01 (Backend):**
 - ✅ **Decision Status Machine:** 9 estados, 11 transições
 - ✅ **Execution Service:** Orquestração de execução
 - ✅ **Result Confirmation:** SIM/PARCIAL/NÃO com rastreabilidade
 - ✅ **Decision Timeline:** Audit trail completo
-- ✅ **Impact Separation:** Estimado vs Confirmado estritamente separados
+- ✅ **Impact Separation:** Estimado vs Confirmado
 - ✅ **Execution Metrics:** Taxas, tempos, impacto
-- ⏳ **API Endpoints:** REST endpoints
-- ⏳ **Frontend:** Botões, telas de confirmação
-- ⏳ **Persistência:** PostgreSQL schema
+- ✅ **Princípio 17:** Valor Comprovado
 
-**Próximos:**
-- Botão "Executar Agora" funcional
-- Tela de confirmação (SIM/PARCIAL/NÃO)
+**UX-01 (Design):**
+- ✅ **Momento Zero:** 10 segundos para clareza
+- ✅ **Daily Ritual:** Conceito de início/fim de dia
+- ✅ **Executive Experience:** Premium feel guidelines
+- ✅ **Ten Second Rule:** Protocolo de teste
+- ✅ **Home IA:** Information Architecture
+- ✅ **Design System V4:** Tokens completos
+- ✅ **Princípio 18:** Clareza acima de Complexidade
+
+**Próximos (EXEC-02):**
+- Implementação Next.js da Nova Home
+- Botões "Executar Agora" funcionais
+- Telas de confirmação (SIM/PARCIAL/NÃO)
 - Dashboard de métricas de execução
 - Integração com Owner Intelligence Engine
 
