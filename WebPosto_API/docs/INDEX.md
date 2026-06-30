@@ -1,7 +1,7 @@
 ---
 # 📚 INDEX.md | LOGOS Documentation
 # Type: INDEX
-# Version: 1.0
+# Version: 1.1
 # Updated: 2026-06-29
 ---
 
@@ -56,7 +56,7 @@
    - **LEITURA OBRIGATÓRIA** antes de qualquer sprint
 
 2. **[business/PRODUCT_CONSTITUTION.md](business/PRODUCT_CONSTITUTION.md)**
-   - 16 princípios fundamentais
+   - 18 princípios fundamentais
    - Regras para toda decisão de produto
    - **LEITURA OBRIGATÓRIA** antes de qualquer sprint
 
@@ -73,11 +73,15 @@
 
 | Documento | Descrição | Sprint |
 |-----------|-----------|--------|
-| [PRODUCT_CONSTITUTION.md](business/PRODUCT_CONSTITUTION.md) | 17 princípios do produto | GOVERNANCE-01, PRODUCT-04, PRODUCT-05, EXEC-01 |
+| [PRODUCT_CONSTITUTION.md](business/PRODUCT_CONSTITUTION.md) | 18 princípios do produto | GOVERNANCE-01, PRODUCT-04, PRODUCT-05, EXEC-01, UX-01 |
 | [OWNER_OPERATING_SYSTEM.md](business/OWNER_OPERATING_SYSTEM.md) | Visão do Owner Operating System | PRODUCT-04 |
 | [OWNER_ACTION_CENTER.md](business/OWNER_ACTION_CENTER.md) | Especificação do Owner Action Center | PRODUCT-03 |
 | [LOGOS_IMPACT_SYSTEM.md](business/LOGOS_IMPACT_SYSTEM.md) | Sistema de Impacto Financeiro | PRODUCT-05 |
 | [MOMENTO_ZERO.md](business/MOMENTO_ZERO.md) | Conceito dos 10 segundos | PRODUCT-05 |
+| [MOMENTO_ZERO_UX.md](business/MOMENTO_ZERO_UX.md) | Especificação de UX para clareza em 10s | UX-01 |
+| [DAILY_RITUAL.md](business/DAILY_RITUAL.md) | Conceito de ritual diário (manhã/tarde/noite) | UX-01 |
+| [EXECUTIVE_EXPERIENCE.md](business/EXECUTIVE_EXPERIENCE.md) | Princípios de design premium | UX-01 |
+| [TEN_SECOND_RULE.md](business/TEN_SECOND_RULE.md) | Protocolo oficial de teste de usabilidade | UX-01 |
 | [DECISION_EXECUTION_FLOW.md](business/DECISION_EXECUTION_FLOW.md) | Fluxo completo de execução | PRODUCT-05 |
 | [DECISION_EFFECTIVENESS.md](business/DECISION_EFFECTIVENESS.md) | Métricas de eficácia | PRODUCT-05 |
 | [DECISION_EXECUTION_PLATFORM.md](business/DECISION_EXECUTION_PLATFORM.md) | Plataforma de execução | EXEC-01 |
@@ -98,6 +102,8 @@
 | [LOGOS_IMPACT_SCORE.md](architecture/LOGOS_IMPACT_SCORE.md) | Arquitetura do Impact Score | PRODUCT-05 |
 | [DECISION_HISTORY.md](architecture/DECISION_HISTORY.md) | Histórico de decisões | PRODUCT-05 |
 | [DECISION_STATUS_MACHINE.md](architecture/DECISION_STATUS_MACHINE.md) | Máquina de estados | EXEC-01 |
+| [HOME_INFORMATION_ARCHITECTURE.md](architecture/HOME_INFORMATION_ARCHITECTURE.md) | Organização lógica da Home | UX-01 |
+| [DESIGN_SYSTEM_V4.md](architecture/DESIGN_SYSTEM_V4.md) | Design tokens e sistema visual | UX-01 |
 
 ---
 
@@ -141,6 +147,7 @@
 | [PRODUCT_04_REPORT.md](history/PRODUCT_04_REPORT.md) | PRODUCT-04 | 98.4/100 | ✅ Excepcional |
 | [PRODUCT_05_REPORT.md](history/PRODUCT_05_REPORT.md) | PRODUCT-05 | 98.9/100 | ✅ Excepcional |
 | [EXEC_01_REPORT.md](history/EXEC_01_REPORT.md) | EXEC-01 | TBD | 🔄 In Progress |
+| [UX_01_REPORT.md](history/UX_01_REPORT.md) | UX-01 | TBD | 🔄 In Progress |
 
 ### Product Constitution Gates
 
@@ -152,7 +159,8 @@
 | PRODUCT_CONSTITUTION_GATE_VALIDATION-01A.md | VALIDATION-01A | 85.8/100 | ✅ Aprovado |
 | PRODUCT_CONSTITUTION_GATE_PRODUCT-03.md | PRODUCT-03 | 92.5/100 | ✅ Excelente |
 | PRODUCT_CONSTITUTION_GATE_PRODUCT-04.md | PRODUCT-04 | 98.4/100 | ✅ Excepcional |
-| PRODUCT_CONSTITUTION_GATE_PRODUCT-05.md | PRODUCT-05 | TBD | 🔄 Pending |
+| PRODUCT_CONSTITUTION_GATE_PRODUCT-05.md | PRODUCT-05 | 98.9/100 | ✅ Excepcional |
+| PRODUCT_CONSTITUTION_GATE_UX-01.md | UX-01 | TBD | 🔄 Pending |
 
 ---
 
@@ -278,10 +286,10 @@ Criando novo documento? Use estes templates:
 
 | Categoria | Quantidade | Última Atualização |
 |-----------|------------|-------------------|
-| Business | 12 | 2026-06-29 |
-| Architecture | 10+ | 2026-06-29 |
-| History | 4+ | 2026-06-29 |
-| **Total** | **26+** | — |
+| Business | 16 | 2026-06-29 |
+| Architecture | 12+ | 2026-06-29 |
+| History | 6+ | 2026-06-29 |
+| **Total** | **34+** | — |
 
 ---
 
@@ -329,4 +337,4 @@ Estes documentos **devem** ser atualizados a cada sprint:
 
 **[INDEX — LOGOS Documentation]**
 
-*Total Documents: 18+ | Last Updated: 2026-06-29 | Current Sprint: PRODUCT-04*
+*Total Documents: 34+ | Last Updated: 2026-06-29 | Current Sprint: UX-01*
