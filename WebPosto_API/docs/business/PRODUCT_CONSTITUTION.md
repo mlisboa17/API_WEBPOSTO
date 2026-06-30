@@ -37,6 +37,7 @@ Esta constituição estabelece os princípios fundamentais que orientam todas as
 15. [LOGOS Investiga Automaticamente](#princípio-15--logos-investiga-automaticamente) *(PRODUCT-04)*
 16. [Impacto Financeiro como Métrica de Sucesso](#princípio-16--impacto-financeiro-como-métrica-de-sucesso) *(PRODUCT-05)*
 17. [Valor Comprovado](#princípio-17--valor-comprovado) *(EXEC-01)*
+18. [Clareza Acima de Complexidade](#princípio-18--clareza-acima-de-complexidade) *(UX-01)*
 
 ---
 
@@ -640,6 +641,111 @@ Todo valor CONFIRMADO deve possuir:
 
 ---
 
+## PRINCÍPIO 18 — CLAREZA ACIMA DE COMPLEXIDADE *(UX-01)*
+
+### Declaração
+
+> **"O proprietário deve entender a tela principal em menos de 10 segundos. Qualquer elemento que não contribua diretamente para uma decisão deve ser removido."**
+
+### Regra de Ouro
+
+Todo design de tela deve responder positivamente a estas 3 perguntas em **10 segundos**:
+
+1. **O que devo fazer?** — Ação clara e imediata
+2. **Por que devo fazer?** — Valor/impacto financeiro óbvio
+3. **Como começo?** — Botão de ação visível
+
+Se o proprietário precisar de mais de 10 segundos para responder qualquer uma dessas perguntas, **a tela falhou**.
+
+### Aplicação
+
+#### ✅ Permite-se:
+- Máximo 7 elementos interativos por tela
+- Máximo 3 decisões na Home
+- Scroll apenas se absolutamente necessário (máx 2× viewport em mobile)
+- Gráficos apenas se gerarem ação imediata
+- Números apenas se envolverem dinheiro ou tempo
+- Cores apenas para comunicar status/urgência
+
+#### ❌ Proíbe-se:
+- Dashboards tradicionais com múltiplos KPIs
+- Gráficos decorativos ou "por completude"
+- Tabelas sem ação associada
+- Widgets de informação contextual
+- Menus complexos com múltiplos níveis
+- Elementos que não levam a decisão
+- "Informar" sem "provocar ação"
+
+### Teste de Validação
+
+**Protocolo de 10 Segundos** (ver `TEN_SECOND_RULE.md`):
+
+1. Mostrar tela para proprietário que nunca viu o LOGOS
+2. Após 10 segundos, ocultar tela
+3. Perguntar: "O que você deve fazer hoje?"
+4. Perguntar: "Quanto dinheiro está envolvido?"
+5. Perguntar: "Qual é a decisão mais importante?"
+
+**Critério de aprovação**: ≥ 80% de respostas corretas
+
+### Exemplo
+
+```
+❌ ERRADO (Dashboard tradicional):
+
+┌────────────────────────────────────────────┐
+│ [25 KPIs] [10 gráficos] [5 tabelas]       │
+│ [Filtros complexos] [Drill-downs]          │
+│ [Menus multinível] [Configurações]         │
+└────────────────────────────────────────────┘
+
+Tempo para entender: 5+ minutos
+Ação clara: Não
+
+
+✅ CORRETO (Momento Zero):
+
+┌────────────────────────────────────────────┐
+│  Bom dia, João.                            │
+│  Hoje existem 3 decisões importantes.      │
+│  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│                                            │
+│  🔴 Cobrar Cliente XPTO                    │
+│     R$ 8.500                               │
+│     [Executar Agora]                       │
+│                                            │
+└────────────────────────────────────────────┘
+
+Tempo para entender: 10 segundos
+Ação clara: Sim
+```
+
+### Checklist por Tela
+
+Antes de aprovar qualquer design:
+
+- [ ] Proprietário entende em < 10 segundos?
+- [ ] Apenas 1 prioridade clara?
+- [ ] Toda informação leva a ação?
+- [ ] Interface transmite calma (não caos)?
+- [ ] Parece produto premium?
+- [ ] Nenhum elemento apenas por estética?
+- [ ] Dados 100% rastreáveis?
+- [ ] Passou no teste de 10 segundos?
+
+### Consequências de Violação
+
+Se uma tela **não** passa no teste de 10 segundos:
+
+1. **Redesign obrigatório** antes de implementar
+2. **Documentação do motivo** da complexidade
+3. **Aprovação explícita** do Product Lead
+4. **Re-teste** após redesign
+
+**Exceção**: Telas de configuração/administração (não são Home/decisão).
+
+---
+
 ## 🏛️ Product Constitution Gate
 
 ### Aplicação
@@ -662,6 +768,7 @@ Ver `PRODUCT_CONSTITUTION_GATE_[SPRINT].md` em cada sprint.
 | 2.0 | 2026-06-29 | PRODUCT-04 | + Princípios 14 e 15 (Owner Operating System) |
 | 3.0 | 2026-06-29 | PRODUCT-05 | + Princípio 16 (LOGOS Impact System) |
 | 4.0 | 2026-06-29 | EXEC-01 | + Princípio 17 (Valor Comprovado) |
+| 5.0 | 2026-06-29 | UX-01 | + Princípio 18 (Clareza Acima de Complexidade) |
 
 ---
 
@@ -678,6 +785,6 @@ Para adicionar um novo princípio:
 
 ---
 
-**[PRODUCT CONSTITUTION — LOGOS Decision Execution Platform]**
+**[PRODUCT CONSTITUTION — LOGOS Momento Zero]**
 
-*Version: 4.0 | Principles: 17 | Status: OFFICIAL*
+*Version: 5.0 | Principles: 18 | Status: OFFICIAL*
