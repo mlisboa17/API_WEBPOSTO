@@ -1,7 +1,7 @@
 ---
 # 📚 SPRINT_HISTORY.md | LOGOS
 # Type: SPRINT_HISTORY
-# Version: 1.0
+# Version: 1.7
 # Updated: 2026-06-29
 ---
 
@@ -17,8 +17,8 @@
 |------|---------|--------|
 | **FASE 1: VER** | 5 sprints | ✅ COMPLETE |
 | **FASE 2: ENTENDER** | 4 sprints | ✅ COMPLETE |
-| **FASE 3: DECIDIR** | 3 sprints | 🔄 IN PROGRESS |
-| **FASE 4: EXECUTAR** | — | ⏳ PLANNED |
+| **FASE 3: DECIDIR** | 10 sprints | ✅ COMPLETE |
+| **FASE 4: EXECUTAR** | 2 sprints | 🔄 IN PROGRESS |
 | **FASE 5: APRENDER** | — | 🔮 FUTURE |
 | **FASE 6: ANTECIPAR** | — | 🔮 FUTURE |
 | **FASE 7: AUTONOMOUS EXECUTIVE** | — | 🔮 VISION |
@@ -474,6 +474,56 @@ src/services/decision_execution/
 
 ---
 
+#### SPRINT UX-01 — Momento Zero & Executive Experience
+**Data:** 2026-06-29  
+**Branch:** `feature/ux-momento-zero`  
+**Status:** ✅ DESIGN COMPLETE
+
+**Missão:**
+Transformar a inteligência existente em uma experiência simples, elegante e extremamente rápida. O proprietário deve entender o que fazer em menos de 10 segundos.
+
+**Objetivo:**
+O proprietário abre o LOGOS e em 10 segundos responde:
+- O que devo fazer agora?
+- Quanto dinheiro está envolvido?
+- Qual decisão devo executar primeiro?
+
+**Entregáveis de Design:**
+- ✅ Momento Zero UX: Home redesenhada para clareza imediata
+- ✅ Daily Ritual: Conceito de ritual diário (manhã/tarde/noite)
+- ✅ Executive Experience: Princípios de design premium
+- ✅ Ten Second Rule: Protocolo oficial de teste de usabilidade
+- ✅ Home Information Architecture: Organização lógica da Home
+- ✅ Design System V4: Tokens, cores, tipografia, espaçamento, animações
+- ✅ Princípio 18: "Clareza acima de Complexidade"
+- ⏳ Implementação Next.js: EXEC-02
+
+**Documentação Criada:**
+- `docs/business/MOMENTO_ZERO_UX.md`
+- `docs/business/DAILY_RITUAL.md`
+- `docs/business/EXECUTIVE_EXPERIENCE.md`
+- `docs/business/TEN_SECOND_RULE.md`
+- `docs/architecture/HOME_INFORMATION_ARCHITECTURE.md`
+- `docs/architecture/DESIGN_SYSTEM_V4.md`
+
+**Transformação:** Plataforma de Execução → Momento Zero Experience
+
+**Princípio Novo:**
+- **18:** Clareza acima de Complexidade
+
+**Filosofia:**
+- Home: uma tela, sem scroll
+- Top 3 decisões + ação imediata
+- Business Health discreto
+- LOGOS Impact separando estimado vs confirmado
+- Ritual Diário: preparar (manhã), check-in (tarde), fechar (noite)
+
+**PCG Score:** TBD (target: ≥ 95/100)
+
+**Veredicto:** PENDING
+
+---
+
 ## 📊 Métricas de Sprint
 
 ### Scores PCG
@@ -490,6 +540,7 @@ src/services/decision_execution/
 | PRODUCT-04 | 98.4/100 | Excepcional | ✅ |
 | PRODUCT-05 | 98.9/100 | Excepcional | ✅ |
 | EXEC-01 | TBD | — | 🔄 |
+| UX-01 | TBD | — | 🔄 |
 
 ### Tendência
 
@@ -601,6 +652,15 @@ Target: ≥ 95/100
 - PRODUCT_CONSTITUTION.md (v4.0, Princípio 17)
 - EXEC_01_REPORT.md (pending)
 
+### UX-01
+- MOMENTO_ZERO_UX.md
+- DAILY_RITUAL.md
+- EXECUTIVE_EXPERIENCE.md
+- TEN_SECOND_RULE.md
+- HOME_INFORMATION_ARCHITECTURE.md (architecture)
+- DESIGN_SYSTEM_V4.md (architecture)
+- PRODUCT_CONSTITUTION.md (v5.0, Princípio 18)
+
 ### TRUST-01
 - DECISION_TRACE.md
 
@@ -626,4 +686,4 @@ Target: ≥ 95/100
 
 **[SPRINT_HISTORY — LOGOS Evolution]**
 
-*Total Sprints: 21+ | Phases Complete: 2/7 | Current: FASE 3 (DECIDIR) | Last Updated: 2026-06-29*
+*Total Sprints: 22+ | Phases Complete: 3/7 | Current: FASE 4 (EXECUTAR) | Last Updated: 2026-06-29*

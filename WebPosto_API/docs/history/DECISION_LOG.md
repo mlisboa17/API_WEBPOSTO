@@ -1,7 +1,7 @@
 ---
 # 📝 DECISION_LOG.md | LOGOS
 # Type: DECISION_LOG
-# Version: 1.1
+# Version: 1.2
 # Updated: 2026-06-29
 ---
 
@@ -104,15 +104,137 @@ EXECUTING → PARTIAL (confirmation.result == PARTIAL)
 
 ---
 
+## ADR-025: Momento Zero — 10-Second Clarity
+**Status:** 🔄 PROPOSED  
+**Data:** 2026-06-29  
+**Sprint:** UX-01
+
+### Contexto
+A Home do LOGOS estava se tornando complexa, com múltiplos widgets, gráficos, tabelas. O proprietário gastava muito tempo procurando informação.
+
+### Decisão
+- Redesenhar a Home para clareza imediata em ≤10 segundos
+- Uma tela, sem scroll, sem widgets secundários
+- Top 3 decisões + ação imediata
+- Business Health discreto (não protagonista)
+- LOGOS Impact separando estimado vs confirmado
+- Protocolo oficial: "Ten Second Rule"
+
+### Implementação
+- MOMENTO_ZERO_UX.md: especificação completa
+- TEN_SECOND_RULE.md: protocolo de teste
+- HOME_INFORMATION_ARCHITECTURE.md: estrutura lógica
+- DESIGN_SYSTEM_V4.md: tokens atualizados
+
+### Consequências
+- ✅ Clareza imediata
+- ✅ Experiência premium
+- ✅ Redução de fricção cognitiva
+- ✅ Foco em decisões, não em dados
+- ⚠️ Requer implementação Next.js completa
+- ⚠️ Mudança drástica na UX atual
+
+---
+
+## ADR-026: Princípio 18 — Clareza acima de Complexidade
+**Status:** 🔄 PROPOSED  
+**Data:** 2026-06-29  
+**Sprint:** UX-01
+
+### Contexto
+A Product Constitution tinha 17 princípios focados em dados, decisões e impacto, mas nenhum sobre UX e clareza.
+
+### Decisão
+Adicionar Princípio 18: "O proprietário deve entender a tela principal em menos de 10 segundos. Qualquer elemento que não contribua diretamente para uma decisão deve ser removido."
+
+### Implementação
+- Atualizar PRODUCT_CONSTITUTION.md para versão 5.0
+- Adicionar Princípio 18 com:
+  - Declaração
+  - Rule of thumb
+  - Exemplos de aplicação
+  - Checklist
+  - Consequências de violação
+
+### Consequências
+- ✅ Formalizaço da clareza como princípio obrigatório
+- ✅ Critério objetivo para simplificação de interfaces
+- ✅ Alinhamento com "Momento Zero"
+- ✅ Garantia de experiência premium
+- ⚠️ Requer revisão de todas as telas futuras
+
+---
+
+## ADR-027: Daily Ritual Concept
+**Status:** 🔄 PROPOSED  
+**Data:** 2026-06-29  
+**Sprint:** UX-01
+
+### Contexto
+O LOGOS era apenas uma ferramenta. Queríamos transformá-lo em parte do ritual diário do proprietário.
+
+### Decisão
+- Definir "Daily Ritual" com 3 momentos: manhã (preparar), tarde (check-in), noite (fechar dia)
+- Mensagem "Dia Concluído" ao final
+- Sensação de progresso diário
+- Notificações inteligentes
+
+### Implementação
+- DAILY_RITUAL.md: conceito completo
+- MOMENTO_ZERO_UX.md: greeting + closure messages
+- EXECUTIVE_EXPERIENCE.md: microinterações para ritual
+
+### Consequências
+- ✅ LOGOS como parte da rotina
+- ✅ Engagement aumentado
+- ✅ Sensação de progresso e closure
+- ⚠️ Depende de notificações inteligentes
+- ⚠️ Requer implementação de scheduling
+
+---
+
+## ADR-028: Design System V4 — Premium Executive Experience
+**Status:** 🔄 PROPOSED  
+**Data:** 2026-06-29  
+**Sprint:** UX-01
+
+### Contexto
+O Design System V3 estava funcional, mas não transmitia experiência premium de produto executivo.
+
+### Decisão
+- Atualizar para Design System V4 com:
+  - Semantic color tokens (light/dark)
+  - Tipografia modular (Inter/JetBrains Mono)
+  - Espaçamento 8px-based
+  - Shadows/elevations premium
+  - Microinterações discretas
+  - Dark mode como first-class citizen
+- Inspiração: Apple, Stripe, Linear, Arc, Raycast, Vercel
+
+### Implementação
+- DESIGN_SYSTEM_V4.md: tokens completos
+- EXECUTIVE_EXPERIENCE.md: princípios de design
+- HOME_INFORMATION_ARCHITECTURE.md: aplicação prática
+
+### Consequências
+- ✅ Experiência visualmente premium
+- ✅ Consistência entre light/dark
+- ✅ Performance percebida (animações otimizadas)
+- ✅ Acessibilidade (WCAG AA)
+- ⚠️ Requer refatoração de componentes existentes
+- ⚠️ Curva de aprendizado para implementadores
+
+---
+
 ## 📊 Resumo por Status
 
 | Status | Quantidade |
 |--------|------------|
 | ✅ ACCEPTED | 13 |
-| 🔄 PROPOSED | 11 |
+| 🔄 PROPOSED | 15 |
 | ⚠️ DEPRECATED | 0 |
 | 🔄 SUPERSEDED | 0 |
-| **Total** | **24** |
+| **Total** | **28** |
 
 ---
 
@@ -126,4 +248,4 @@ EXECUTING → PARTIAL (confirmation.result == PARTIAL)
 
 **[DECISION_LOG — LOGOS Architecture Decisions]**
 
-*Decisions: 24 | Accepted: 13 | Proposed: 11 | Last Updated: 2026-06-29*
+*Decisions: 28 | Accepted: 13 | Proposed: 15 | Last Updated: 2026-06-29*

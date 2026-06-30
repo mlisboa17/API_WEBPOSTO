@@ -1,7 +1,7 @@
 ---
 # 📝 RELEASE_NOTES.md | LOGOS
 # Type: RELEASE_NOTES
-# Version: 1.0
+# Version: 1.1
 # Updated: 2026-06-29
 ---
 
@@ -24,6 +24,92 @@ Formato: `PHASE.MAJOR.MINOR` (ex: `3.3.0` = FASE 3, PRODUCT-03, base)
 ---
 
 ## 🚀 Releases
+
+### v4.1.0 — Momento Zero & Executive Experience (UX-01)
+**Data:** 2026-06-29  
+**Branch:** `feature/ux-momento-zero`  
+**Tipo:** Design & Experience Sprint  
+**Fase:** 4 — EXECUTAR  
+
+#### 🎨 Novos Conceitos
+
+**Momento Zero:**
+- Clareza em 10 segundos
+- Nova Home sem scroll
+- Top 3 decisões apenas
+- Business Health discreto
+- LOGOS Impact visível
+
+**Daily Ritual:**
+- Conceito de início do dia
+- Check-in durante o dia
+- Fechamento com progresso
+- Senso de conquista diário
+
+**Executive Experience:**
+- Inspirado em Apple, Stripe, Linear
+- Muito espaço em branco
+- Tipografia forte
+- Performance < 100ms
+- Dark mode premium
+
+**Ten Second Rule:**
+- Protocolo oficial de teste
+- 3 perguntas obrigatórias
+- Score mínimo: 80%
+- 10 participantes mínimo
+
+#### 📐 Design System V4
+
+**Novos Tokens:**
+- Color palette refinada
+- Typography scale (modular 1.25)
+- Spacing 8px base
+- Shadows & elevations
+- Transitions & animations
+- Responsive breakpoints
+
+**Componentes:**
+- Greeting component
+- Business Health indicator
+- LOGOS Impact display
+- Decision Card
+- Action Button
+- Empty states
+- Loading states
+
+#### 📚 Nova Documentação
+
+**Business:**
+- `MOMENTO_ZERO_UX.md` — UX specification
+- `DAILY_RITUAL.md` — Ritual diário
+- `EXECUTIVE_EXPERIENCE.md` — Premium feel
+- `TEN_SECOND_RULE.md` — Protocolo de teste
+
+**Architecture:**
+- `HOME_INFORMATION_ARCHITECTURE.md` — IA structure
+- `DESIGN_SYSTEM_V4.md` — Design tokens
+
+#### 🎯 Novo Princípio
+
+**Princípio 18 — Clareza Acima de Complexidade:**
+> "O proprietário deve entender a tela principal em menos de 10 segundos. Qualquer elemento que não contribua diretamente para uma decisão deve ser removido."
+
+**Product Constitution:** Version 5.0 (18 princípios)
+
+#### ⏸️ Não Implementado (Spec apenas)
+
+Esta release é focada em **especificação e design**.  
+Implementação de código está planejada para **EXEC-02**.
+
+#### 📊 Métricas de Qualidade
+
+- **PCG Score:** TBD (target ≥ 95/100)
+- **Princípios atendidos:** 18/18
+- **Documentos criados:** 6
+- **Documentos atualizados:** 8+
+
+---
 
 ### v4.0.0 — Decision Execution Platform (EXEC-01)
 **Data:** 2026-06-29  
