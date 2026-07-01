@@ -1,6 +1,8 @@
 import { formatCurrency } from "../services/format.js";
-
 import { downloadCsv, openPdfPreview } from "../services/export.js";
+import { renderExecutiveCockpitPage } from "../services/executiveCockpitAdapter.js";
+import { buildFourQuestionBrief } from "../services/executiveBrief.js";
+import { moneyKpi } from "../services/executiveKpis.js";
 
 
 
@@ -440,87 +442,123 @@ export function renderFinanceCenter(container, data, filters, options = {}) {
 
 
 
-  container.innerHTML = `
-
-    <div class="finance-center" data-testid="finance-center-root">
-
-      <div class="fc-header">
-
-        <div>
-
-          <h2>Centro Financeiro Corporativo</h2>
-
-          <p class="small">Fontes separadas — sem total financeiro único. ${fromSnapshot} · ${lastUpdated}</p>
-
-        </div>
-
-        <div class="fc-actions">
-
-          ${
-
-            options.onRefresh
-
-              ? '<button type="button" id="fcRefresh" class="btn-primary">Atualizar Centro</button>'
-
-              : ""
-
-          }
-
-          <button type="button" id="fcExportCsv" data-testid="fc-export-csv">Exportar CSV</button>
-
-          <button type="button" id="fcExportPdf" data-testid="fc-export-pdf">Exportar PDF</button>
-
-        </div>
-
-      </div>
-
-      ${warningsHtml}
-
-
-
-      <div class="fc-cards">
-
-        <article class="fc-card"><h3>Despesas Gerenciais</h3><p class="fc-val">${despesas.totalRegistros ?? 0}</p><span class="small">${fmtMoney(despesas.totalValor)}</span></article>
-
-        <article class="fc-card"><h3>Contas a Pagar</h3><p class="fc-val">${cp.emAberto?.count ?? 0} aberto</p><span class="small">${fmtMoney(cp.emAberto?.valor)}</span></article>
-
-        <article class="fc-card"><h3>Contas a Receber</h3><p class="fc-val">${cr.pendente?.count ?? 0} pendente</p><span class="small">${fmtMoney(cr.pendente?.valor)}</span></article>
-
-        <article class="fc-card"><h3>Movimento Bancário</h3><p class="fc-val">${bankResumo.totalRegistros ?? bank.paginacaoCompleta ?? 0}</p><span class="small">Líq. ${fmtMoney(bankResumo.saldoMovimentado?.liquido)}</span></article>
-
-        <article class="fc-card"><h3>Operação de Caixa</h3><p class="fc-val">${caixa.turnos ?? cash.turnos?.count ?? 0} turnos</p><span class="small">Vale ${fmtMoney((caixa.valeFuncionario || cash.valeFuncionario)?.apurado)}</span></article>
-
-      </div>
-
-
-
-      <div class="fc-grid">
-
-        <section class="panel" data-testid="fc-aging-payables"><h3>Aging Contas a Pagar</h3>${renderBucketTable(cp, PAYABLE_AGING_KEYS)}</section>
-
-        <section class="panel" data-testid="fc-aging-receivables"><h3>Aging Contas a Receber</h3>${renderBucketTable(cr, RECEIVABLE_AGING_KEYS)}</section>
-
-        <section class="panel" data-testid="fc-treasury"><h3>Tesouraria</h3>${renderTreasury(bankResumo)}</section>
-
-        <section class="panel" data-testid="fc-logos"><h3>Classificação LOGOS (Despesas)</h3>${renderCategoryTable(despesas.porCategoriaLogos)}</section>
-
-        <section class="panel" data-testid="fc-cash"><h3>Operação de Caixa</h3>${renderCashSection(cash)}</section>
-
-        ${intelligenceHtml}
-
-      </div>
-
-    </div>
-
-  `;
-
-
-
   const exportRows = buildFinanceCenterExportRows(data);
 
+  const anomalyCount = (advanced.anomalies || []).length;
 
 
-  container.querySelector("#fcRefresh")?.addEventListener("click", () => options.onRefresh?.());
+
+  renderExecutiveCockpitPage(container, { cockpit: {}, executiveAnswers: {}, ...data }, filters, {
+
+    title: "Centro Financeiro Corporativo",
+
+    actionsHtml: `
+
+      ${options.onRefresh ? '<button type="button" id="fcRefresh" class="btn-primary">Atualizar Centro</button>' : ""}
+
+      <button type="button" id="fcExportCsv" data-testid="fc-export-csv">Exportar CSV</button>
+
+      <button type="button" id="fcExportPdf" data-testid="fc-export-pdf">Exportar PDF</button>
+
+    `,
+
+    kpiOverrides: [
+
+      { label: "Despesas", value: moneyKpi(despesas.totalValor), trendPct: null, status: "warn" },
+
+      { label: "A Pagar", value: moneyKpi(cp.emAberto?.valor), trendPct: null, status: "warn" },
+
+      { label: "A Receber", value: moneyKpi(cr.pendente?.valor), trendPct: null, status: "ok" },
+
+      {
+
+        label: "Health",
+
+        value: String(health.networkScore ?? "—"),
+
+        trendPct: null,
+
+        status: anomalyCount > 0 ? "crit" : "ok",
+
+      },
+
+    ],
+
+    brief: buildFourQuestionBrief({
+
+      what: `Despesas ${moneyKpi(despesas.totalValor)} · a pagar ${moneyKpi(cp.emAberto?.valor)} · a receber ${moneyKpi(cr.pendente?.valor)}.`,
+
+      why:
+
+        warnings.length > 0
+
+          ? `${warnings.length} aviso(s) operacional(is).`
+
+          : anomalyCount > 0
+
+            ? `${anomalyCount} anomalia(s) financeira(s) detectada(s).`
+
+            : "Blocos financeiros dentro do padrão esperado.",
+
+      where: critical?.empresaCodigo ? `Filial ${critical.empresaCodigo} crítica` : healthiest?.empresaCodigo ? `Filial ${healthiest.empresaCodigo} saudável` : "Rede consolidada",
+
+      actionNow: anomalyCount > 0 ? "Revisar alertas financeiros e aging." : "Monitorar tesouraria e caixa.",
+
+    }),
+
+    detailBuilder: () => `
+
+      <div class="finance-center" data-testid="finance-center-root">
+
+        <p class="small muted">Fontes separadas — sem total financeiro único. ${fromSnapshot} · ${lastUpdated}</p>
+
+        ${warningsHtml}
+
+        <div class="fc-cards">
+
+          <article class="fc-card"><h3>Despesas Gerenciais</h3><p class="fc-val">${despesas.totalRegistros ?? 0}</p><span class="small">${fmtMoney(despesas.totalValor)}</span></article>
+
+          <article class="fc-card"><h3>Contas a Pagar</h3><p class="fc-val">${cp.emAberto?.count ?? 0} aberto</p><span class="small">${fmtMoney(cp.emAberto?.valor)}</span></article>
+
+          <article class="fc-card"><h3>Contas a Receber</h3><p class="fc-val">${cr.pendente?.count ?? 0} pendente</p><span class="small">${fmtMoney(cr.pendente?.valor)}</span></article>
+
+          <article class="fc-card"><h3>Movimento Bancário</h3><p class="fc-val">${bankResumo.totalRegistros ?? bank.paginacaoCompleta ?? 0}</p><span class="small">Líq. ${fmtMoney(bankResumo.saldoMovimentado?.liquido)}</span></article>
+
+          <article class="fc-card"><h3>Operação de Caixa</h3><p class="fc-val">${caixa.turnos ?? cash.turnos?.count ?? 0} turnos</p><span class="small">Vale ${fmtMoney((caixa.valeFuncionario || cash.valeFuncionario)?.apurado)}</span></article>
+
+        </div>
+
+        <div class="fc-grid">
+
+          <section class="panel" data-testid="fc-aging-payables"><h3>Aging Contas a Pagar</h3>${renderBucketTable(cp, PAYABLE_AGING_KEYS)}</section>
+
+          <section class="panel" data-testid="fc-aging-receivables"><h3>Aging Contas a Receber</h3>${renderBucketTable(cr, RECEIVABLE_AGING_KEYS)}</section>
+
+          <section class="panel" data-testid="fc-treasury"><h3>Tesouraria</h3>${renderTreasury(bankResumo)}</section>
+
+          <section class="panel" data-testid="fc-logos"><h3>Classificação LOGOS (Despesas)</h3>${renderCategoryTable(despesas.porCategoriaLogos)}</section>
+
+          <section class="panel" data-testid="fc-cash"><h3>Operação de Caixa</h3>${renderCashSection(cash)}</section>
+
+          ${intelligenceHtml}
+
+        </div>
+
+      </div>`,
+
+    detailSummary: "Aging, tesouraria e inteligência financeira",
+
+    refreshButtonId: "fcRefresh",
+
+    defaultView: "financeCenter",
+
+    onRefresh: options.onRefresh,
+
+    onNavigate: options.onNavigate,
+
+  });
+
+
 
   container.querySelector("#fcExportCsv")?.addEventListener("click", () => {
 

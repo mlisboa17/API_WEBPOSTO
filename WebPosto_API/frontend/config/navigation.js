@@ -1,144 +1,222 @@
-/** UX-01 — Arquitetura de informação (6 macro áreas). */
+/** UX-01 + RT-03B + RT-07 + RT-07.2 — Navegação executiva simplificada. */
+
+
+
 export const NAV_AREAS = [
+
   {
+
     id: "executivo",
+
     icon: "📊",
+
     label: "Executivo",
+
     tabs: [
+
+      { id: "presidente", label: "Presidente", view: "presidentDashboard" },
+
       { id: "resumo", label: "Resumo", view: "executiveWorkspace" },
+
       { id: "indicadores", label: "Indicadores", view: "executiveScorecard" },
+
       { id: "alertas", label: "Alertas", view: "actionCenter" },
-      { id: "metas", label: "Metas", view: "goalsCampaign" },
+
     ],
-    motors: [
-      "executive",
-      "executiveWorkspace",
-      "dashboard",
-      "executiveScorecard",
-      "benchmark",
-      "corporateHub",
-      "executiveDecision",
-      "actionCenter",
-      "executiveCopilot",
-      "recommendations",
-      "learning",
-      "goalsCampaign",
-    ],
+
+    motors: [],
+
   },
+
   {
+
     id: "financeiro",
+
     icon: "💰",
+
     label: "Financeiro",
+
     tabs: [
-      { id: "receitas", label: "Receitas", view: "dashboard" },
-      { id: "despesas", label: "Despesas", view: "expenses" },
-      { id: "contas", label: "Contas", view: "accounts" },
-      { id: "fluxo", label: "Fluxo de Caixa", view: "cashFlow" },
-      { id: "extratos", label: "Extratos", view: "cashOperations" },
-      { id: "conciliacao", label: "Conciliação", view: "financeCenter" },
-      { id: "operations_center", label: "Operations Center", view: "financialOperationsCenter" },
-      { id: "intelligence", label: "Intelligence", view: "financialIntelligence" },
+
+      { id: "visao", label: "Visão Financeira", view: "financialHub" },
+
+      { id: "inteligencia", label: "Inteligência", view: "financialIntelligence" },
+
+      { id: "tesouraria", label: "Tesouraria", view: "treasuryHub" },
+
     ],
-    motors: [
-      "dashboard",
-      "expenses",
-      "accounts",
-      "financeCenter",
-      "cashFlow",
-      "cashOperations",
-      "financialOperationsCenter",
-      "financialIntelligence",
-      "operatorPerformance",
-      "peopleIntelligence",
-      "peopleRoi",
-      "operationRoi",
-      "managementAction",
-    ],
+
+    motors: [],
+
   },
+
   {
+
     id: "combustiveis",
+
     icon: "⛽",
+
     label: "Combustíveis",
+
     tabs: [
+
       { id: "vendas", label: "Vendas", view: "sales" },
-      { id: "tanques", label: "Tanques", view: "stock" },
-      { id: "bombas", label: "Bombas", view: "fuels" },
-      { id: "lmc", label: "LMC", view: "lmcIntelligence" },
+
+      { id: "estoque", label: "Estoque", view: "stock" },
+
       { id: "governanca", label: "Governança", view: "fuelGovernance" },
+
     ],
-    motors: ["sales", "stock", "fuels", "fuelExecutive", "lmcIntelligence", "fuelGovernance"],
+
+    motors: [],
+
   },
+
   {
+
     id: "produtos_vendidos",
+
     icon: "🛒",
+
     label: "Produtos Vendidos",
-    tabs: [
-      { id: "vendas", label: "Vendas", view: "nonFuelProducts" },
-      { id: "margem", label: "Margem", view: "nonFuelProducts" },
-      { id: "mix", label: "Mix", view: "nonFuelProducts" },
-      { id: "oportunidades", label: "Oportunidades", view: "commercialCopilot" },
-      { id: "acoes", label: "Ações", view: "commercialExecution" },
-      { id: "resultados", label: "Resultados", view: "commercialLearning" },
-    ],
-    motors: ["nonFuelProducts", "commercialExecution", "commercialLearning", "commercialCopilot"],
+
+    tabs: [{ id: "produtos", label: "Produtos Vendidos", view: "productsHub" }],
+
+    motors: [],
+
   },
+
   {
+
     id: "fiscal",
+
     icon: "📑",
+
     label: "Fiscal",
+
     tabs: [
+
       { id: "nfce", label: "NFCE", view: "nfceIntelligence" },
+
       { id: "conciliacao", label: "Conciliação", view: "fiscalReconciliation" },
+
       { id: "tributacao", label: "Tributação", view: "fiscalIntelligence" },
-      { id: "riscos", label: "Riscos", view: "fiscalIntelligence" },
+
     ],
-    motors: ["nfceIntelligence", "fiscalIntelligence", "fiscalReconciliation"],
+
+    motors: [],
+
   },
+
   {
+
     id: "administracao",
+
     icon: "⚙️",
+
     label: "Administração",
+
     tabs: [
-      { id: "filiais", label: "Filiais", view: "administration" },
-      { id: "usuarios", label: "Usuários", view: "administration" },
-      { id: "permissoes", label: "Permissões", view: "administration" },
-      { id: "integracoes", label: "Integrações", view: "administration" },
-      { id: "configuracoes", label: "Configurações", view: "administration" },
+
+      { id: "sistema", label: "Sistema", view: "administration" },
+
+      { id: "diagnostico", label: "Diagnóstico Técnico", view: "financialOperationsCenter" },
+
     ],
-    motors: ["administration", "financialOperationsCenter"],
+
+    motors: ["operatorPerformance", "peopleIntelligence", "learning", "executiveCopilot", "recommendations"],
+
   },
+
 ];
 
-/** Mapa view → área (para deep links ?view=). */
+
+
 export const VIEW_TO_AREA = {};
+
+
+
 NAV_AREAS.forEach((area) => {
+
   area.tabs.forEach((tab) => {
+
     VIEW_TO_AREA[tab.view] = area.id;
+
   });
+
   area.motors.forEach((view) => {
+
     if (!VIEW_TO_AREA[view]) {
+
       VIEW_TO_AREA[view] = area.id;
+
     }
+
   });
+
 });
 
+
+
+const ADMIN_VIEWS = new Set(["financialOperationsCenter", "financialMonitoring", "financialOperations"]);
+
+
+
+VIEW_TO_AREA.financialOperationsCenter = "administracao";
+
+VIEW_TO_AREA.financialMonitoring = "administracao";
+
+VIEW_TO_AREA.financialOperations = "administracao";
+
+
+
+VIEW_TO_AREA.financialHub = "financeiro";
+
+VIEW_TO_AREA.treasuryHub = "financeiro";
+
+VIEW_TO_AREA.productsHub = "produtos_vendidos";
+
+
+
 export function resolveAreaForView(view) {
+
+  if (ADMIN_VIEWS.has(view)) return "administracao";
+
   return VIEW_TO_AREA[view] || "executivo";
+
 }
+
+
 
 export function getAreaById(areaId) {
+
   return NAV_AREAS.find((area) => area.id === areaId) || NAV_AREAS[0];
+
 }
+
+
 
 export function getDefaultViewForArea(areaId) {
+
   const area = getAreaById(areaId);
-  return area.tabs[0]?.view || "executive";
+
+  return area.tabs[0]?.view || "executiveWorkspace";
+
 }
+
+
 
 export function countLegacyVisibleModules() {
-  return 30;
+
+  return NAV_AREAS.reduce((sum, area) => sum + area.tabs.length, 0);
+
 }
 
+
+
 export function countVisibleMacroAreas() {
+
   return NAV_AREAS.length;
+
 }
+

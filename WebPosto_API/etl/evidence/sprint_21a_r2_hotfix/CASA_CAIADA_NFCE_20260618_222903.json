@@ -1,0 +1,41 @@
+{
+  "tenant": "CASA_CAIADA",
+  "endpoint": "NFCE",
+  "base_url": "https://web.qualityautomacao.com.br",
+  "path": "/INTEGRACAO/NFCE",
+  "url_masked": "https://web.qualityautomacao.com.br/INTEGRACAO/NFCE?CHAVE=eabd1f99...53a8&...",
+  "timestamp": "2026-06-18T22:29:03.808353",
+  "http_status": 200,
+  "success": true,
+  "records_count": 200,
+  "sample_payload": {
+    "empresaCodigo": 11495,
+    "nfceCodigo": 229223323,
+    "vendaCodigo": 356835732,
+    "numeroDocumento": 223049,
+    "serieDocumento": 27,
+    "dataEmissao": "2026-06-11",
+    "situacao": "Autorizada",
+    "chaveDocumento": "26260603008754000186650270002230491004280560",
+    "protocoloAutorizacao": "226260531966198",
+    "protocoloCancelamento": null,
+    "protocoloInutilizacao": null,
+    "codigo": 229223323
+  },
+  "error": null,
+  "fields_detected": [
+    "empresaCodigo",
+    "nfceCodigo",
+    "vendaCodigo",
+    "numeroDocumento",
+    "serieDocumento",
+    "dataEmissao",
+    "situacao",
+    "chaveDocumento",
+    "protocoloAutorizacao",
+    "protocoloCancelamento",
+    "protocoloInutilizacao",
+    "codigo"
+  ],
+  "is_expected_401": false
+}

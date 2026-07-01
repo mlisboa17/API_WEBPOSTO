@@ -1,0 +1,27 @@
+{
+  "tenant": "POSTO_VIP",
+  "endpoint": "CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+  "base_url": "https://web.qualityautomacao.com.br",
+  "path": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+  "url_masked": "https://web.qualityautomacao.com.br/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE?CHAVE=4d6bbe21...8fd7&...",
+  "timestamp": "2026-06-18T22:28:54.971105",
+  "http_status": 200,
+  "success": true,
+  "records_count": 434,
+  "sample_payload": {
+    "empresaCodigo": 5556,
+    "planoContaGerencialCodigo": 29019,
+    "descricaoDocumento": "ref a compra da loja",
+    "data": "2026-06-11",
+    "valor": 21.94
+  },
+  "error": null,
+  "fields_detected": [
+    "empresaCodigo",
+    "planoContaGerencialCodigo",
+    "descricaoDocumento",
+    "data",
+    "valor"
+  ],
+  "is_expected_401": false
+}

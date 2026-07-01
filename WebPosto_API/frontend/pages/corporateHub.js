@@ -1,5 +1,5 @@
 import { formatCurrency } from "../services/format.js";
-import { downloadCsv } from "../services/export.js";
+import { renderExecutiveCockpitPage } from "../services/executiveCockpitAdapter.js";
 
 function fmtMoney(v) {
   if (v === null || v === undefined) return "—";
@@ -34,63 +34,47 @@ function renderTable(title, items, columns) {
 }
 
 export function renderCorporateHub(node, payload, filters, options = {}) {
-  if (!node) return;
-  if (!payload) {
-    node.innerHTML = `<p class="muted">Carregando Corporate Intelligence Hub…</p>`;
-    return;
-  }
+  const cockpit = payload?.cockpit || {};
 
-  const cockpit = payload.cockpit || {};
-  const exec = payload.executiveAnswers || {};
-  const parecer = payload.parecerFinal || "";
-  const decisao = payload.decisaoArquitetural || {};
-
-  node.innerHTML = `
-    <header class="view-header">
-      <div>
-        <h2>Corporate Intelligence Hub</h2>
-        <p class="muted">F05.0 · ${filters?.dataInicial || ""} → ${filters?.dataFinal || ""}</p>
+  renderExecutiveCockpitPage(node, payload, filters, {
+    title: "Corporate Intelligence Hub",
+    actionsHtml: `
+      <button type="button" id="corporateHubRefresh" class="btn-secondary">Atualizar</button>
+      <button type="button" id="corporateHubExport" class="btn-secondary">Exportar CSV</button>
+    `,
+    detailBuilder: (cockpitDetail, payloadDetail) => {
+      const parecer = payloadDetail.parecerFinal || "";
+      const decisao = payloadDetail.decisaoArquitetural || {};
+      return `
         ${parecer ? `<p class="parecer">${parecer}</p>` : ""}
         ${decisao.justificativa ? `<p class="muted">${decisao.justificativa}</p>` : ""}
-      </div>
-      <div class="view-actions">
-        <button type="button" id="corporateHubRefresh" class="btn-secondary">Atualizar</button>
-        <button type="button" id="corporateHubExport" class="btn-secondary">Exportar CSV</button>
-      </div>
-    </header>
-    <div class="kpi-grid">
-      <article class="kpi-card kpi-card--highlight"><span class="kpi-label">Corporate Score</span><strong>${cockpit.corporateScore ?? exec["1_corporateScore"] ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Executive</span><strong>${cockpit.executiveScore ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Financial</span><strong>${cockpit.financialScore ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">People</span><strong>${cockpit.peopleScore ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Operations</span><strong>${cockpit.operationsScore ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Recuperável</span><strong>${fmtMoney(exec["14_podeRecuperar"])}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Paridade Δ</span><strong>${exec.paridadeDelta ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Hub Confiável</span><strong>${exec["18_hubConfiavel"] ? "Sim" : "Não"}</strong></article>
-    </div>
-    ${renderTable("Top Oportunidades", cockpit.topOportunidades, [
-      { key: "prioridade", label: "Prioridade" },
-      { key: "title", label: "Oportunidade" },
-      { key: "impactoEstimado", label: "Impacto", money: true },
-    ])}
-    ${renderTable("Top Riscos", cockpit.topRiscos, [
-      { key: "severity", label: "Severidade" },
-      { key: "riskType", label: "Tipo" },
-      { key: "message", label: "Mensagem" },
-    ])}
-    ${renderTable("Top Operadores", cockpit.topOperadores, [
-      { key: "employeeName", label: "Operador", render: (r) => label(r) },
-      { key: "benchmarkScore", label: "Score" },
-    ])}
-    ${renderTable("Alertas Corporativos", cockpit.alertasCorporativos, [
-      { key: "severity", label: "Severidade" },
-      { key: "category", label: "Categoria" },
-      { key: "message", label: "Mensagem" },
-    ])}
-  `;
-
-  node.querySelector("#corporateHubRefresh")?.addEventListener("click", () => options.onRefresh?.());
-  node.querySelector("#corporateHubExport")?.addEventListener("click", () => {
-    downloadCsv("corporate-hub.csv", cockpit.topOportunidades || []);
+        ${renderTable("Top Oportunidades", cockpitDetail.topOportunidades, [
+          { key: "prioridade", label: "Prioridade" },
+          { key: "title", label: "Oportunidade" },
+          { key: "impactoEstimado", label: "Impacto", money: true },
+        ])}
+        ${renderTable("Top Riscos", cockpitDetail.topRiscos, [
+          { key: "severity", label: "Severidade" },
+          { key: "riskType", label: "Tipo" },
+          { key: "message", label: "Mensagem" },
+        ])}
+        ${renderTable("Top Operadores", cockpitDetail.topOperadores, [
+          { key: "employeeName", label: "Operador", render: (r) => label(r) },
+          { key: "benchmarkScore", label: "Score" },
+        ])}
+        ${renderTable("Alertas Corporativos", cockpitDetail.alertasCorporativos, [
+          { key: "severity", label: "Severidade" },
+          { key: "category", label: "Categoria" },
+          { key: "message", label: "Mensagem" },
+        ])}
+      `;
+    },
+    refreshButtonId: "corporateHubRefresh",
+    exportButtonId: "corporateHubExport",
+    exportData: cockpit.topOportunidades || [],
+    exportFileName: "corporate-hub.csv",
+    defaultView: "corporateHub",
+    onRefresh: options.onRefresh,
+    onNavigate: options.onNavigate,
   });
 }

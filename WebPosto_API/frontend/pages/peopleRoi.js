@@ -1,5 +1,8 @@
 import { formatCurrency } from "../services/format.js";
 import { downloadCsv } from "../services/export.js";
+import { renderExecutiveCockpitPage } from "../services/executiveCockpitAdapter.js";
+import { buildFourQuestionBrief } from "../services/executiveBrief.js";
+import { moneyKpi } from "../services/executiveKpis.js";
 
 function fmtMoney(value) {
   if (value === null || value === undefined || value === "") return "—";
@@ -43,14 +46,10 @@ function renderTable(title, items, columns) {
 
 export function renderPeopleRoi(node, payload, filters, options = {}) {
   if (!node) return;
-  if (!payload) {
-    node.innerHTML = `<p class="muted">Carregando People ROI…</p>`;
-    return;
-  }
 
-  const cockpit = payload.cockpit || {};
-  const exec = payload.executiveAnswers || {};
-  const parecer = payload.parecerFinal || "";
+  const cockpit = payload?.cockpit || {};
+  const exec = payload?.executiveAnswers || {};
+  const parecer = payload?.parecerFinal || "";
 
   const cols = [
     { key: "employeeName", label: "Operador" },
@@ -61,47 +60,66 @@ export function renderPeopleRoi(node, payload, filters, options = {}) {
     { key: "profitabilityBand", label: "Banda", band: true },
   ];
 
-  node.innerHTML = `
-    <header class="view-header">
-      <div>
-        <h2>People ROI</h2>
-        <p class="muted">F04.2 — Profitability & Management Decision · ${filters?.dataInicial || ""} → ${filters?.dataFinal || ""}</p>
-        ${parecer ? `<p class="parecer">${parecer}</p>` : ""}
+  renderExecutiveCockpitPage(node, payload, filters, {
+    title: "People ROI",
+    actionsHtml: `
+      <button type="button" id="roiRefresh" class="btn-secondary">Atualizar</button>
+      <button type="button" id="roiExport" class="btn-secondary">Exportar CSV</button>
+    `,
+    kpiOverrides: [
+      { label: "Lucro Top 10", value: moneyKpi(exec["13_lucroTop10"]), trendPct: null, status: "ok" },
+      { label: "Risco Críticos", value: moneyKpi(exec["14_riscoCriticos"]), trendPct: null, status: "crit" },
+      { label: "Paridade Δ", value: String(exec.paridadeDelta ?? "—"), trendPct: null, status: "ok" },
+      {
+        label: "Meritocracia",
+        value: exec["18_gestaoMeritocratica"] ? "Sim" : "Não",
+        trendPct: null,
+        status: exec["18_gestaoMeritocratica"] ? "ok" : "warn",
+      },
+    ],
+    brief: buildFourQuestionBrief({
+      what: `Lucro top 10: ${moneyKpi(exec["13_lucroTop10"])} · risco críticos ${moneyKpi(exec["14_riscoCriticos"])}.`,
+      why: parecer ? parecer.slice(0, 120) : "Rentabilidade por operador consolidada no período.",
+      where: (cockpit.topRisco || [])[0]?.employeeName || "Rede consolidada",
+      actionNow: exec["18_gestaoMeritocratica"]
+        ? "Revisar top ROI e auditoria de margem."
+        : "Ativar gestão meritocrática e corrigir destruição de margem.",
+    }),
+    detailBuilder: (cockpitDetail) => `
+      ${parecer ? `<p class="parecer">${parecer}</p>` : ""}
+      <p class="muted">F04.2 — Profitability & Management Decision</p>
+      <div class="kpi-grid">
+        <article class="kpi-card"><span class="kpi-label">Lucro Top 10</span><strong>${fmtMoney(exec["13_lucroTop10"])}</strong></article>
+        <article class="kpi-card"><span class="kpi-label">Risco Críticos</span><strong>${fmtMoney(exec["14_riscoCriticos"])}</strong></article>
+        <article class="kpi-card"><span class="kpi-label">Paridade Δ</span><strong>${exec.paridadeDelta ?? "—"}</strong></article>
+        <article class="kpi-card"><span class="kpi-label">Meritocracia</span><strong>${exec["18_gestaoMeritocratica"] ? "Sim" : "Não"}</strong></article>
       </div>
-      <div class="view-actions">
-        <button type="button" id="roiRefresh" class="btn-secondary">Atualizar</button>
-        <button type="button" id="roiExport" class="btn-secondary">Exportar CSV</button>
-      </div>
-    </header>
-    <div class="kpi-grid">
-      <article class="kpi-card"><span class="kpi-label">Lucro Top 10</span><strong>${fmtMoney(exec["13_lucroTop10"])}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Risco Críticos</span><strong>${fmtMoney(exec["14_riscoCriticos"])}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Paridade Δ</span><strong>${exec.paridadeDelta ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Meritocracia</span><strong>${exec["18_gestaoMeritocratica"] ? "Sim" : "Não"}</strong></article>
-    </div>
-    ${renderTable("Top ROI", cockpit.topRoi, cols)}
-    ${renderTable("Top Lucro", cockpit.topLucro, cols)}
-    ${renderTable("Top Risco Econômico", cockpit.topRisco, [
-      { key: "employeeName", label: "Operador" },
-      { key: "destruicaoMargem", label: "Destruição", money: true },
-      { key: "descontos", label: "Descontos", money: true },
-      { key: "faltas", label: "Faltas", money: true },
-    ])}
-    ${renderTable("Top Bônus (ROI)", cockpit.topBonus, [
-      { key: "employeeName", label: "Operador" },
-      { key: "bonusRoi", label: "Bonus ROI" },
-      { key: "bonusCustoEstimado", label: "Custo Est.", money: true },
-      { key: "resultadoLiquido", label: "Resultado", money: true },
-    ])}
-    ${renderTable("Top Auditoria", cockpit.topAuditoria, [
-      { key: "employeeName", label: "Operador" },
-      { key: "primaryAction", label: "Ação" },
-      { key: "profitabilityBand", label: "Banda", band: true },
-      { key: "resultadoLiquido", label: "Resultado", money: true },
-    ])}`;
-
-  node.querySelector("#roiRefresh")?.addEventListener("click", () => options.onRefresh?.());
-  node.querySelector("#roiExport")?.addEventListener("click", () => {
-    downloadCsv(cockpit.topRoi || [], `people_roi_${filters?.dataInicial}_${filters?.dataFinal}`);
+      ${renderTable("Top ROI", cockpitDetail.topRoi, cols)}
+      ${renderTable("Top Lucro", cockpitDetail.topLucro, cols)}
+      ${renderTable("Top Risco Econômico", cockpitDetail.topRisco, [
+        { key: "employeeName", label: "Operador" },
+        { key: "destruicaoMargem", label: "Destruição", money: true },
+        { key: "descontos", label: "Descontos", money: true },
+        { key: "faltas", label: "Faltas", money: true },
+      ])}
+      ${renderTable("Top Bônus (ROI)", cockpitDetail.topBonus, [
+        { key: "employeeName", label: "Operador" },
+        { key: "bonusRoi", label: "Bonus ROI" },
+        { key: "bonusCustoEstimado", label: "Custo Est.", money: true },
+        { key: "resultadoLiquido", label: "Resultado", money: true },
+      ])}
+      ${renderTable("Top Auditoria", cockpitDetail.topAuditoria, [
+        { key: "employeeName", label: "Operador" },
+        { key: "primaryAction", label: "Ação" },
+        { key: "profitabilityBand", label: "Banda", band: true },
+        { key: "resultadoLiquido", label: "Resultado", money: true },
+      ])}`,
+    refreshButtonId: "roiRefresh",
+    exportButtonId: "roiExport",
+    exportData: cockpit.topRoi || [],
+    exportFileName: `people_roi_${filters?.dataInicial}_${filters?.dataFinal}.csv`,
+    defaultView: "peopleRoi",
+    onRefresh: options.onRefresh,
+    onNavigate: options.onNavigate,
   });
 }

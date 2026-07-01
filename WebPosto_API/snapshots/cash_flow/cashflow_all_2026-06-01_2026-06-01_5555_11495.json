@@ -1,0 +1,146 @@
+{
+  "lastUpdated": "2026-06-15T10:17:14",
+  "flow": {
+    "sources": [
+      "CAIXA_APRESENTADO",
+      "MOVIMENTO_CONTA",
+      "TITULO_PAGAR",
+      "TITULO_RECEBER"
+    ],
+    "forbiddenSourcesUsed": [],
+    "referenceDate": "2026-06-01",
+    "cards": {
+      "entradasPrevistas": "0.00",
+      "saidasPrevistas": "0.00",
+      "saldoProjetado": "0.00",
+      "saldoAcumulado": "0.00"
+    },
+    "daily": [
+      {
+        "periodo": "2026-06-01",
+        "entradasPrevistas": "0.00",
+        "saidasPrevistas": "0.00",
+        "saldoProjetado": "0.00",
+        "saldoAcumulado": "0.00"
+      }
+    ],
+    "weekly": [
+      {
+        "periodo": "2026-W23",
+        "entradasPrevistas": "0.00",
+        "saidasPrevistas": "0.00",
+        "saldoProjetado": "0.00",
+        "saldoAcumulado": "0.00"
+      }
+    ],
+    "monthly": [
+      {
+        "periodo": "2026-06",
+        "entradasPrevistas": "0.00",
+        "saidasPrevistas": "0.00",
+        "saldoProjetado": "0.00",
+        "saldoAcumulado": "0.00"
+      }
+    ],
+    "payablesAging": {
+      "vencido": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "hoje": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "7d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "15d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "30d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "acima30": {
+        "count": 0,
+        "valor": "0.00"
+      }
+    },
+    "receivablesAging": {
+      "vencido": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "hoje": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "7d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "15d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "30d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "acima30": {
+        "count": 0,
+        "valor": "0.00"
+      }
+    },
+    "payablesFuture": [],
+    "receivablesFuture": [],
+    "overdueEvents": [],
+    "treasury": {
+      "creditos": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "debitos": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "tarifas": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "transferencias": {
+        "count": 0,
+        "valor": "0.00"
+      }
+    },
+    "insights": {
+      "criticalDays": [
+        {
+          "periodo": "2026-06-01",
+          "entradasPrevistas": "0.00",
+          "saidasPrevistas": "0.00",
+          "saldoProjetado": "0.00",
+          "saldoAcumulado": "0.00"
+        }
+      ],
+      "payablesVencidoValor": "0.00",
+      "receivablesVencidoValor": "0.00",
+      "tarifasValor": "0.00",
+      "topOpportunities": []
+    },
+    "snapshotKeys": {
+      "daily": "cashflow:daily:2026-06-01:2026-06-01:5555,11495",
+      "weekly": "cashflow:weekly:2026-06-01:2026-06-01:5555,11495",
+      "monthly": "cashflow:monthly:2026-06-01:2026-06-01:5555,11495"
+    },
+    "performanceMs": {
+      "payables": 0.0,
+      "receivables": 0.0,
+      "bank": 0.0,
+      "caixaApresentado": 0.5
+    }
+  },
+  "snapshotKey": "cashflow:all:2026-06-01:2026-06-01:5555,11495"
+}

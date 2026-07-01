@@ -1,5 +1,8 @@
 import { renderTable } from "../components/table.js";
 import { formatDate, formatMissing, formatNumber } from "../services/format.js";
+import { renderExecutiveCockpitPage } from "../services/executiveCockpitAdapter.js";
+import { buildFourQuestionBrief, enrichAlert } from "../services/executiveBrief.js";
+import { buildChartBars } from "../services/executiveKpis.js";
 
 function toNumber(value) {
   const n = Number(value || 0);
@@ -82,19 +85,15 @@ function buildPie(combustiveis) {
   `;
 }
 
-export function renderFuelExecutiveDashboard(container, payload, options = {}) {
-  const data = payload || {};
+function buildFuelDetail(data, partialCoverage) {
   const kpis = data.kpis || {};
   const combustiveis = data.combustiveis || [];
   const filiais = data.filiais || [];
-  const detalhes = data.detalhes || [];
-  const coverageCodes = filiais.map((item) => Number(item.empresaCodigo)).filter((v) => Number.isFinite(v));
-  const partialCoverage = coverageCodes.length > 0 && coverageCodes.every((v) => v === 5555 || v === 11495);
   const coverageWarning = partialCoverage
     ? `<section class="state" style="margin-bottom:12px;border-color:#f6d9a5;background:#fff8ea;color:#7a4c06;">Cobertura parcial: dados disponíveis apenas para AP CASA CAIADA e POSTO VIP.</section>`
     : "";
 
-  container.innerHTML = `
+  return `
     ${coverageWarning}
     <section class="cards" style="margin-bottom:14px;">
       <article class="card"><div class="label">Litros vendidos</div><div class="value">${litros(kpis.litrosVendidos || data.litrosTotal || 0)}</div></article>
@@ -104,7 +103,6 @@ export function renderFuelExecutiveDashboard(container, payload, options = {}) {
       <article class="card"><div class="label">Participacao Gasolina</div><div class="value">${pct(kpis.participacaoGasolina)}</div></article>
       <article class="card"><div class="label">Participacao Etanol</div><div class="value">${pct(kpis.participacaoEtanol)}</div></article>
     </section>
-
     <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-bottom:14px;">
       <article class="card">
         <div class="label" style="margin-bottom:10px;">Volume por combustivel</div>
@@ -119,13 +117,74 @@ export function renderFuelExecutiveDashboard(container, payload, options = {}) {
         ${buildPie(combustiveis)}
       </article>
     </section>
+    <section><div id="fuelExecutiveTable"></div></section>`;
+}
 
-    <section>
-      <div id="fuelExecutiveTable"></div>
-    </section>
-  `;
+export function renderFuelExecutiveDashboard(container, payload, options = {}) {
+  const data = payload || {};
+  const filters = options.filters || {};
+  const kpis = data.kpis || {};
+  const combustiveis = data.combustiveis || [];
+  const filiais = data.filiais || [];
+  const detalhes = data.detalhes || [];
+  const coverageCodes = filiais.map((item) => Number(item.empresaCodigo)).filter((v) => Number.isFinite(v));
+  const partialCoverage = coverageCodes.length > 0 && coverageCodes.every((v) => v === 5555 || v === 11495);
+  const totalLitros = kpis.litrosVendidos || data.litrosTotal || 0;
+
+  renderExecutiveCockpitPage(container, { cockpit: {}, executiveAnswers: {}, ...data }, filters, {
+    title: "Combustíveis — Visão Executiva",
+    kpiOverrides: [
+      { label: "Litros", value: litros(totalLitros), trendPct: null, status: "ok" },
+      {
+        label: "Líder",
+        value: formatMissing(kpis.combustivelLider?.nome).slice(0, 12),
+        trendPct: null,
+        status: "ok",
+      },
+      {
+        label: "Filial Top",
+        value: formatMissing(kpis.filialLider?.nomeFilial).slice(0, 14),
+        trendPct: null,
+        status: "ok",
+      },
+      {
+        label: "Alertas",
+        value: partialCoverage ? "Parcial" : "OK",
+        trendPct: null,
+        status: partialCoverage ? "warn" : "ok",
+      },
+    ],
+    brief: buildFourQuestionBrief({
+      what: `${litros(totalLitros)} vendidos · líder ${formatMissing(kpis.combustivelLider?.nome)}.`,
+      why: partialCoverage ? "Cobertura parcial em filiais selecionadas." : `Mix: Diesel ${pct(kpis.participacaoDiesel)} · Gasolina ${pct(kpis.participacaoGasolina)}.`,
+      where: formatMissing(kpis.filialLider?.nomeFilial) || "Rede consolidada",
+      actionNow: partialCoverage ? "Expandir cobertura de filiais no painel." : "Analisar detalhe filial × combustível.",
+    }),
+    chartBars: buildChartBars(filiais, { labelKey: "nomeFilial", valueKey: "litros", max: 7 }),
+    chartTitle: "Volume por filial",
+    alerts: partialCoverage
+      ? [
+          enrichAlert(
+            {
+              severity: "MÉDIO",
+              title: "Cobertura parcial",
+              detail: "AP CASA CAIADA e POSTO VIP",
+              view: "fuelExecutiveDashboard",
+              origin: "Combustível",
+            },
+            { why: "Dados limitados ao subset de filiais", where: "2 filiais", actionNow: "Validar escopo do período" }
+          ),
+        ]
+      : [],
+    detailBuilder: () => buildFuelDetail(data, partialCoverage),
+    detailSummary: "Gráficos e detalhamento por filial",
+    defaultView: "fuelExecutiveDashboard",
+    onNavigate: options.onNavigate,
+  });
 
   const tableNode = container.querySelector("#fuelExecutiveTable");
+  if (!tableNode) return;
+
   const tableRows = detalhes.map((item) => ({
     filial: item.nomeFilial,
     combustivel: item.combustivelDisplay || item.combustivel,

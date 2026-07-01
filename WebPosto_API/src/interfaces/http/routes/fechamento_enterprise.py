@@ -17,6 +17,8 @@ from src.services.employee_ledger_snapshot_service import EmployeeLedgerSnapshot
 from src.services.expense_semantic_snapshot_service import ExpenseSemanticSnapshotService
 from src.services.network_financial_overview_service import FinancialOverviewFilters, NetworkFinancialOverviewService
 from src.services.financial_resilience_service import FinancialResilienceService
+from src.services.sales_resilience_service import SalesResilienceService
+from src.services.stock_resilience_service import StockResilienceService
 from src.services.operacao_inteligente_service import OperacaoInteligenteService
 from src.services.vendas_combustivel_service import VendasCombustivelService
 
@@ -37,6 +39,8 @@ _operacao_inteligente = OperacaoInteligenteService(
 )
 _network_financial_overview = NetworkFinancialOverviewService(_client)
 _financial_resilience = FinancialResilienceService(_network_financial_overview, client=_client)
+_sales_resilience = SalesResilienceService(_network_financial_overview, client=_client)
+_stock_resilience = StockResilienceService(_network_financial_overview, client=_client)
 _expense_lineage_snapshot = ExpenseLineageSnapshotService(_network_financial_overview)
 _expense_semantic_snapshot = ExpenseSemanticSnapshotService(_network_financial_overview)
 _employee_ledger_snapshot = EmployeeLedgerSnapshotService(_network_financial_overview)
@@ -383,8 +387,8 @@ async def sales(
         empresa_codigo=base.empresa_codigo,
         empresa_codigos=base.empresa_codigos,
     )
-    resp = await _network_financial_overview.get_sales(filters, page=page, limit=limit)
-    return resp.to_dict()
+    resp = await _sales_resilience.get_sales(filters, page=page, limit=limit)
+    return resp
 
 
 @router.get("/stock")
@@ -402,5 +406,5 @@ async def stock(
         empresa_codigo=base.empresa_codigo,
         empresa_codigos=base.empresa_codigos,
     )
-    resp = await _network_financial_overview.get_stock(filters, page=page, limit=limit)
-    return resp.to_dict()
+    resp = await _stock_resilience.get_stock(filters, page=page, limit=limit)
+    return resp

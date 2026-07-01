@@ -11,6 +11,9 @@ class Settings(BaseSettings):
     # webPosto API
     webposto_base_url: str = "http://web.qualityautomacao.com.br"
     webposto_api_key: str = ""
+    webposto_api_key_posto_vip_rio_doce: str = ""
+    webposto_api_key_posto_casa_caiada: str = ""
+    webposto_api_key_posto_doze_filial_ii: str = ""
     webposto_vip_posto_id: str = "VIP"
     webposto_vip_posto_nome: str = "POSTO_VIP"
     webposto_sync_interval_seconds: int = 3600
@@ -66,6 +69,11 @@ class Settings(BaseSettings):
     financial_snapshot_rolling_days: int = 7
     financial_auto_recovery_enabled: bool = True
     financial_auto_recovery_interval_seconds: int = 900
+    financial_live_budget_seconds: int = 22
+    sales_live_timeout_seconds: int = 8
+    sales_total_budget_seconds: int = 22
+    stock_live_timeout_seconds: int = 8
+    stock_total_budget_seconds: int = 22
 
     class Config:
         env_file = ".env"

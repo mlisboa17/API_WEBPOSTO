@@ -1,0 +1,31 @@
+{
+  "tenant": "CASA_CAIADA",
+  "endpoint": "PLANO_CONTA_GERENCIAL",
+  "base_url": "https://web.qualityautomacao.com.br",
+  "path": "/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+  "url_masked": "https://web.qualityautomacao.com.br/INTEGRACAO/PLANO_CONTA_GERENCIAL?CHAVE=eabd1f99...53a8&...",
+  "timestamp": "2026-06-18T22:29:01.317064",
+  "http_status": 200,
+  "success": true,
+  "records_count": 200,
+  "sample_payload": {
+    "planoContaCodigo": 29008,
+    "descricao": "RECEBIMENTO",
+    "hierarquia": "1",
+    "apuraDre": true,
+    "natureza": "C",
+    "tipo": "Nenhum",
+    "codigo": 29008
+  },
+  "error": null,
+  "fields_detected": [
+    "planoContaCodigo",
+    "descricao",
+    "hierarquia",
+    "apuraDre",
+    "natureza",
+    "tipo",
+    "codigo"
+  ],
+  "is_expected_401": false
+}

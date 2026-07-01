@@ -39,7 +39,7 @@ function toQuery(params) {
 import { apiClient } from './apiClient.js';
 import { validateResponse, SCHEMAS } from './validation.js';
 
-async function get(path, params = {}) {
+async function get(path, params = {}, options = {}) {
   if (ENABLE_AUDIT_MODE) {
     const page = Number(params.page || 1);
     const limit = Number(params.limit || 50);
@@ -83,7 +83,7 @@ async function get(path, params = {}) {
     }
   }
 
-  const data = await apiClient.get(path, { params });
+  const data = await apiClient.get(path, { params, ...options });
   return data?.data || data;
 }
 
@@ -234,7 +234,10 @@ export async function fetchFinancialOverview(filters) {
 }
 
 export async function fetchFinancialExpenses(filters, page, limit) {
-  const raw = await apiClient.get("/v1/financial/expenses", { params: withPaging(filters, page, limit) });
+  const raw = await apiClient.get("/v1/financial/expenses", {
+    params: withPaging(filters, page, limit),
+    timeout: 45000,
+  });
   return { data: raw.data, resilience: raw.resilience, success: raw.success !== false };
 }
 
@@ -246,8 +249,22 @@ export function fetchAccountsReceivable(filters, page, limit) {
   return get("/v1/financial/accounts-receivable", withPaging(filters, page, limit));
 }
 
-export function fetchSales(filters, page, limit) {
-  return get("/v1/sales", withPaging(filters, page, limit));
+const SALES_REQUEST_TIMEOUT_MS = 45000;
+
+export async function fetchSales(filters, page, limit) {
+  const raw = await apiClient.get("/v1/sales", {
+    params: withPaging(filters, page, limit),
+    timeout: SALES_REQUEST_TIMEOUT_MS,
+    allowDegraded: true,
+  });
+  const payload = raw?.data || raw;
+  return {
+    ...(payload || {}),
+    degraded: Boolean(raw?.degraded),
+    resilience: raw?.resilience,
+    success: raw?.success !== false,
+    source: raw?.source,
+  };
 }
 
 export function fetchStock(filters, page, limit) {
@@ -259,13 +276,13 @@ export function fetchCompanies(dataInicial, dataFinal) {
 }
 
 export function fetchSalesByPayment(filters, page = 1, limit = 50, ultimoCodigo) {
-  return get("/v1/sales", withCursor(filters, page, limit, ultimoCodigo)).then((data) =>
+  return get("/v1/sales", withCursor(filters, page, limit, ultimoCodigo), { timeout: SALES_REQUEST_TIMEOUT_MS }).then((data) =>
     toResultadosEnvelope(data, { consolidado: data?.consolidado || null })
   );
 }
 
 export function fetchSalesByItem(filters, page = 1, limit = 50, ultimoCodigo) {
-  return get("/v1/sales", withCursor(filters, page, limit, ultimoCodigo)).then((data) =>
+  return get("/v1/sales", withCursor(filters, page, limit, ultimoCodigo), { timeout: SALES_REQUEST_TIMEOUT_MS }).then((data) =>
     toResultadosEnvelope(data, { consolidado: data?.consolidado || null })
   );
 }

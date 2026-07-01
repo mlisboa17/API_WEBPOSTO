@@ -1,4 +1,26 @@
 import { downloadCsv } from "../services/export.js";
+import { bindExecutiveNav, renderExecutiveEmptyState } from "../components/executiveFirstFold.js";
+import { buildExecutivePageHtml } from "../components/executiveInsightDetail.js";
+import { buildChartBars, countKpi } from "../services/executiveKpis.js";
+import {
+  buildFourQuestionBrief,
+  enrichAlert,
+  mapCriticalBranches,
+  mapPriorityActions,
+  mapRisks,
+} from "../services/executiveBrief.js";
+
+const FISCAL_EMPTY_MSG = "Não foi possível montar esta visão no período selecionado.";
+
+function panelText(value, fallback = "Não informado") {
+  if (value == null || value === "" || value === "—") return fallback;
+  return value;
+}
+
+function cellText(value) {
+  if (value == null || value === "" || value === "—") return "Não informado";
+  return value;
+}
 
 function renderTable(title, items, columns) {
   if (!items?.length) return "";
@@ -9,7 +31,7 @@ function renderTable(title, items, columns) {
       const cells = columns
         .map((c) => {
           const val = c.render ? c.render(item) : item[c.key];
-          return `<td>${val ?? "—"}</td>`;
+          return `<td>${cellText(val)}</td>`;
         })
         .join("");
       return `<tr>${cells}</tr>`;
@@ -21,7 +43,11 @@ function renderTable(title, items, columns) {
 export function renderFiscalIntelligence(node, payload, filters, options = {}) {
   if (!node) return;
   if (!payload) {
-    node.innerHTML = `<p class="muted">Carregando Fiscal Intelligence…</p>`;
+    node.innerHTML = renderExecutiveEmptyState({
+      title: options.pageTitle || "Tributação",
+      message: FISCAL_EMPTY_MSG,
+      chartTitle: "Principais riscos",
+    });
     return;
   }
 
@@ -29,37 +55,89 @@ export function renderFiscalIntelligence(node, payload, filters, options = {}) {
   const exec = payload.executiveAnswers || {};
   const tax = payload.taxClassificationEngine || cockpit.taxClassification || {};
   const risks = payload.fiscalRiskEngine?.risks || cockpit.topRiscos || [];
-  const parecer = payload.parecerFinal || "";
 
-  node.innerHTML = `
-    <header class="view-header">
-      <div>
-        <h2>Fiscal Intelligence</h2>
-        <p class="muted">F06.3 · ${filters?.dataInicial || ""} → ${filters?.dataFinal || ""}</p>
-        ${parecer ? `<p class="parecer">${parecer}</p>` : ""}
-      </div>
-      <div class="view-actions">
-        <button type="button" id="fiscalIntelRefresh" class="btn-secondary">Atualizar</button>
-        <button type="button" id="fiscalIntelExport" class="btn-secondary">Exportar CSV</button>
-      </div>
-    </header>
-    <div class="kpi-grid">
-      <article class="kpi-card kpi-card--highlight"><span class="kpi-label">Produtos</span><strong>${exec["1_totalProdutos"] ?? cockpit.produtos ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Com NCM (evid.)</span><strong>${exec["2_comNcm"] ?? cockpit.ncmComEvidencia ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Sem NCM (evid.)</span><strong>${exec["3_semNcm"] ?? cockpit.ncmSemEvidencia ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Cobertura Fiscal</span><strong>${exec["4_coberturaFiscalAtual"] ?? cockpit.coberturaFiscal ?? "—"}%</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Tributação</span><strong>${exec["5_coberturaTributaria"] ?? cockpit.classificacaoTributaria ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Riscos</span><strong>${exec["6_riscosFiscais"] ?? cockpit.riscosFiscais ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Maior Risco</span><strong>${exec["7_maiorRisco"] ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">DRE Possível</span><strong>${exec["10_drePossivel"] ? "Sim" : "Não"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Aprovado F06.4</span><strong>${exec["20_aprovadoF064"] ? "Sim" : "Não"}</strong></article>
+  const comNcm = exec["2_comNcm"] ?? cockpit.ncmComEvidencia ?? 0;
+  const semNcm = exec["3_semNcm"] ?? cockpit.ncmSemEvidencia ?? 0;
+  const cobertura = exec["4_coberturaFiscalAtual"] ?? cockpit.coberturaFiscal ?? null;
+  const riscosCount = exec["6_riscosFiscais"] ?? risks.length ?? 0;
+  const hasData = Number(comNcm) > 0 || risks.length > 0;
+
+  if (!hasData) {
+    node.innerHTML = renderExecutiveEmptyState({
+      title: options.pageTitle || "Tributação",
+      message: FISCAL_EMPTY_MSG,
+      chartTitle: "Principais riscos",
+    });
+    return;
+  }
+
+  const kpis = [
+    { label: "Com NCM", value: countKpi(comNcm), trendPct: null, status: "ok" },
+    { label: "Sem NCM", value: countKpi(semNcm), trendPct: null, status: Number(semNcm) > 0 ? "warn" : "ok" },
+    {
+      label: "Cobertura",
+      value: cobertura != null ? `${cobertura}%` : "Dados indisponíveis",
+      trendPct: null,
+      status: Number(cobertura) >= 80 ? "ok" : "warn",
+    },
+    {
+      label: "Alertas",
+      value: String(riscosCount),
+      trendPct: null,
+      status: Number(riscosCount) > 0 ? "crit" : "ok",
+    },
+  ];
+
+  const topRisk = risks[0];
+  const brief = buildFourQuestionBrief({
+    what: `${comNcm} produtos com NCM evidenciado; cobertura ${cobertura != null ? `${cobertura}%` : "indisponível"}.`,
+    why:
+      Number(semNcm) > 0
+        ? `${semNcm} produto(s) sem NCM com evidência.`
+        : topRisk
+          ? `Risco ${panelText(topRisk.risco)} em ${panelText(topRisk.nome || topRisk.produtoCodigo)}.`
+          : "Cadastro tributário consistente.",
+    where: topRisk?.produtoCodigo
+      ? `Produto ${topRisk.produtoCodigo}${topRisk.segmento ? ` · ${topRisk.segmento}` : ""}`
+      : "Catálogo consolidado",
+    actionNow: topRisk
+      ? `Regularizar tributação de ${panelText(topRisk.nome || topRisk.produtoCodigo)} hoje.`
+      : "Revisar novos produtos antes da venda.",
+  });
+
+  const chartBars = buildChartBars(
+    risks.slice(0, 7).map((r) => ({ nome: r.nome || r.produtoCodigo, valor: Number(r.risco) || 1 })),
+    { labelKey: "nome", valueKey: "valor", max: 7 }
+  );
+
+  const alerts = risks.slice(0, 3).map((r) =>
+    enrichAlert(
+      {
+        severity: r.risco || "ALTO",
+        title: panelText(r.nome || r.produtoCodigo, "Risco fiscal"),
+        detail: [r.segmento, r.tipo].filter(Boolean).join(" · "),
+        view: "",
+        origin: "Fiscal",
+      },
+      {
+        why: panelText(r.tipo, "Classificação tributária incompleta"),
+        where: r.produtoCodigo ? `Produto ${r.produtoCodigo}` : "Catálogo",
+        actionNow: "Completar NCM e evidência fiscal",
+      }
+    )
+  );
+
+  const detail = `
+    <div class="exec-detail-toolbar">
+      <button type="button" id="fiscalIntelRefresh" class="btn-secondary">Atualizar</button>
+      <button type="button" id="fiscalIntelExport" class="btn-secondary">Exportar CSV</button>
     </div>
-    ${renderTable("Classificação Tributária", tax.items || [], [
+    ${renderTable("Classificação tributária", tax.items || [], [
       { key: "tributo", label: "Tributo" },
       { key: "classificacao", label: "Status" },
       { key: "evidencia", label: "Evidência" },
     ])}
-    ${renderTable("Top Riscos Fiscais", risks.slice(0, 8), [
+    ${renderTable("Principais riscos", risks.slice(0, 8), [
       { key: "produtoCodigo", label: "Produto" },
       { key: "nome", label: "Nome" },
       { key: "segmento", label: "Segmento" },
@@ -68,8 +146,37 @@ export function renderFiscalIntelligence(node, payload, filters, options = {}) {
     ])}
   `;
 
+  node.innerHTML = buildExecutivePageHtml({
+    title: options.pageTitle || "Tributação",
+    actionsHtml: "",
+    kpis,
+    brief,
+    chartBars,
+    chartTitle: "Principais riscos fiscais",
+    criticalBranches: mapCriticalBranches(
+      risks.slice(0, 3).map((r) => ({
+        name: panelText(r.nome || r.produtoCodigo),
+        metric: panelText(r.risco, "Dados indisponíveis"),
+        tag: panelText(r.segmento, "Produto"),
+        view: "",
+      }))
+    ),
+    priorityActions: mapPriorityActions(
+      alerts.map((a) => ({ title: a.title, detail: a.actionNow, view: a.view }))
+    ),
+    risks: mapRisks(risks),
+    opportunities:
+      Number(comNcm) > Number(semNcm)
+        ? [{ title: "Ampliar produtos com NCM evidenciado", impact: `${comNcm} OK · ${semNcm} pendentes`, view: "" }]
+        : [],
+    alerts,
+    detailHtml: detail,
+    detailSummary: "Detalhamento tributário",
+  });
+
   node.querySelector("#fiscalIntelRefresh")?.addEventListener("click", () => options.onRefresh?.());
   node.querySelector("#fiscalIntelExport")?.addEventListener("click", () => {
-    downloadCsv("fiscal-intelligence-risks.csv", risks);
+    downloadCsv("tributacao-riscos.csv", risks);
   });
+  bindExecutiveNav(node, options.onNavigate);
 }

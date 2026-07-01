@@ -1,3 +1,7 @@
+import { renderExecutiveCockpitPage } from "../services/executiveCockpitAdapter.js";
+import { buildFourQuestionBrief, enrichAlert } from "../services/executiveBrief.js";
+import { countKpi } from "../services/executiveKpis.js";
+
 function healthClass(classification) {
   const key = String(classification || "ATENÇÃO").toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
   return `fin-ops-health fin-ops-health--${key}`;
@@ -41,30 +45,30 @@ function renderExecutiveCards(node, cards, health) {
   node.innerHTML = `
     <div class="fin-ops-center-hero card">
       <div class="${healthClass(health?.classification)}">
-        <span>Financial Health Score</span>
+        <span>Saúde financeira operacional</span>
         <strong class="fin-ops-score">${health?.score ?? "—"}</strong>
         <em>${health?.classification || "—"}</em>
       </div>
       <ul class="fin-ops-score-breakdown">
-        <li>Snapshot ${health?.components?.snapshotHealth ?? "—"}</li>
-        <li>Scheduler ${health?.components?.scheduler ?? "—"}</li>
-        <li>Recovery ${health?.components?.recovery ?? "—"}</li>
+        <li>Dados ${health?.components?.snapshotHealth ?? "—"}</li>
+        <li>Agendamento ${health?.components?.scheduler ?? "—"}</li>
+        <li>Recuperação ${health?.components?.recovery ?? "—"}</li>
         <li>Alertas ${health?.components?.alerts ?? "—"}</li>
-        <li>Circuits ${health?.components?.circuits ?? "—"}</li>
+        <li>Proteção ${health?.components?.circuits ?? "—"}</li>
       </ul>
     </div>
     <div class="fin-ops-grid fin-ops-grid--cards">
       <article class="card fin-ops-card">
-        <span>Snapshot Coverage</span>
+        <span>Cobertura de dados</span>
         <strong>${coverage.complete ? "Completa" : "Lacunas"}</strong>
         <small>${coverage.total ?? 0}/${coverage.expected ?? 4}</small>
       </article>
       <article class="card fin-ops-card">
-        <span>Recovery Status</span>
+        <span>Recuperação automática</span>
         <strong>${cards?.recoveryStatus?.pendingCount ? `${cards.recoveryStatus.pendingCount} pendente(s)` : "OK"}</strong>
       </article>
       <article class="card fin-ops-card">
-        <span>Scheduler Status</span>
+        <span>Agendamento</span>
         <strong>${cards?.schedulerStatus?.status || "—"}</strong>
       </article>
       <article class="card fin-ops-card">
@@ -73,15 +77,15 @@ function renderExecutiveCards(node, cards, health) {
         <small>C:${alerts.CRITICAL || 0} W:${alerts.WARNING || 0}</small>
       </article>
       <article class="card fin-ops-card">
-        <span>Última Execução</span>
+        <span>Última atualização</span>
         <strong>${formatDateTime(cards?.lastExecution)}</strong>
       </article>
       <article class="card fin-ops-card">
-        <span>Próxima Execução</span>
+        <span>Próxima atualização</span>
         <strong>${formatDateTime(cards?.nextExecution)}</strong>
       </article>
       <article class="card fin-ops-card">
-        <span>Circuit Status</span>
+        <span>Proteção de integração</span>
         <strong>${circuitBadge(cards?.circuitStatus)}</strong>
       </article>
     </div>
@@ -98,24 +102,24 @@ function renderOperationalStatus(node, data) {
   node.innerHTML = `
     <div class="fin-ops-grid">
       <article class="card fin-ops-card">
-        <span>Scheduler</span>
+        <span>Agendamento</span>
         <strong>${scheduler.status || "—"}</strong>
         <small>Próximo: ${formatDateTime(scheduler.nextRunAt)}</small>
       </article>
       <article class="card fin-ops-card">
-        <span>Recovery</span>
+        <span>Recuperação</span>
         <strong>${recovery.enabled ? "Ativo" : "Off"} · ${recovery.pendingCount ?? 0} pend.</strong>
       </article>
       <article class="card fin-ops-card">
-        <span>Snapshot Health</span>
+        <span>Saúde dos dados</span>
         <strong>${health.overallStatus || "—"} · score ${health.averageHealthScore ?? "—"}</strong>
       </article>
       <article class="card fin-ops-card">
-        <span>Retention</span>
+        <span>Retenção</span>
         <strong>${retention.policyDays ?? 30}d · ${retention.expiredCandidates ?? 0} candidatos</strong>
       </article>
       <article class="card fin-ops-card">
-        <span>Circuit Breaker</span>
+        <span>Proteção de integração</span>
         <strong>${circuitBadge(circuit.status)}</strong>
         <small>${circuit.financialEndpoint || "—"}</small>
       </article>
@@ -210,46 +214,32 @@ function renderExecutions(node, executions) {
   `;
 }
 
-export function renderFinancialOperationsCenter(node, payload, filters, options = {}) {
-  if (!node) return;
-  const data = payload?.data || payload || {};
+function mountFinancialOperationsCenterDetail(node, data, filters) {
   const cards = data.cards || {};
   const health = data.executiveHealthScore || cards.financialHealthScore || {};
 
   node.innerHTML = `
-    <header class="view-header">
-      <div>
-        <h2>Financial Operations Center</h2>
-        <p class="muted">F08.3 — cockpit unificado: health, scheduler, recovery, circuits, alertas e timeline.</p>
-      </div>
-      <div class="fin-ops-actions">
-        <button type="button" class="btn-secondary" id="finOpsCenterRefresh">Atualizar</button>
-      </div>
-    </header>
     <p class="fin-monitor-meta muted">
-      Período: ${filters?.dataInicial || data.period?.dataInicial || "—"} →
+      Painel técnico — saúde da plataforma, alertas e histórico operacional.
+      · Período: ${filters?.dataInicial || data.period?.dataInicial || "—"} →
       ${filters?.dataFinal || data.period?.dataFinal || "—"}
-      · Snapshot-first · Live opcional
-      · Gerado em ${formatDateTime(data.generatedAt)}
+      · Atualizado em ${formatDateTime(data.generatedAt)}
     </p>
-
     <section class="fin-ops-center-section">
-      <h3>1. Visão Executiva</h3>
+      <h3>Visão geral técnica</h3>
       <div id="finOpsCenterExecutive"></div>
     </section>
-
     <section class="fin-ops-center-section card">
-      <h3>2. Status Operacional</h3>
+      <h3>Status operacional</h3>
       <div id="finOpsCenterStatus"></div>
     </section>
-
     <section class="fin-ops-center-section card">
-      <h3>3. Timeline &amp; Detalhes</h3>
-      <h4>Timeline Operacional</h4>
+      <h3>Histórico e alertas</h3>
+      <h4>Linha do tempo</h4>
       <div id="finOpsCenterTimeline"></div>
       <h4>Alertas</h4>
       <div id="finOpsCenterAlerts"></div>
-      <h4>Execuções</h4>
+      <h4>Execuções recentes</h4>
       <div id="finOpsCenterExecutions"></div>
     </section>
   `;
@@ -259,6 +249,65 @@ export function renderFinancialOperationsCenter(node, payload, filters, options 
   renderTimeline(node.querySelector("#finOpsCenterTimeline"), data.timeline);
   renderAlerts(node.querySelector("#finOpsCenterAlerts"), data.alerts, data.alertCounts);
   renderExecutions(node.querySelector("#finOpsCenterExecutions"), data.executions);
+}
 
-  node.querySelector("#finOpsCenterRefresh")?.addEventListener("click", () => options.onRefresh?.());
+export function renderFinancialOperationsCenter(node, payload, filters, options = {}) {
+  if (!node) return;
+  const data = payload?.data || payload || {};
+  const cards = data.cards || {};
+  const health = data.executiveHealthScore || cards.financialHealthScore || {};
+  const alerts = cards.activeAlerts || {};
+  const criticalCount = alerts.CRITICAL || 0;
+
+  renderExecutiveCockpitPage(node, { cockpit: {}, executiveAnswers: {}, ...data }, filters, {
+    title: "Diagnóstico Financeiro",
+    actionsHtml: `<button type="button" class="btn-secondary" id="finOpsCenterRefresh">Atualizar</button>`,
+    kpiOverrides: [
+      { label: "Saúde", value: String(health.score ?? "—"), trendPct: null, status: health.classification === "CRÍTICO" ? "crit" : "ok" },
+      {
+        label: "Cobertura",
+        value: cards.snapshotCoverage?.complete ? "OK" : "Lacunas",
+        trendPct: null,
+        status: cards.snapshotCoverage?.complete ? "ok" : "warn",
+      },
+      {
+        label: "Alertas",
+        value: countKpi((alerts.CRITICAL || 0) + (alerts.WARNING || 0) + (alerts.INFO || 0)),
+        trendPct: null,
+        status: criticalCount > 0 ? "crit" : "ok",
+      },
+      {
+        label: "Circuit",
+        value: String(cards.circuitStatus || "—").slice(0, 8),
+        trendPct: null,
+        status: cards.circuitStatus === "OPEN" ? "crit" : "ok",
+      },
+    ],
+    brief: buildFourQuestionBrief({
+      what: `Score operacional ${health.score ?? "—"} (${health.classification || "—"}).`,
+      why: criticalCount > 0 ? `${criticalCount} alerta(s) crítico(s) ativo(s).` : "Plataforma financeira autônoma estável.",
+      where: cards.snapshotCoverage?.complete ? "Cobertura completa" : "Lacunas de snapshot",
+      actionNow: criticalCount > 0 ? "Abrir linha do tempo e alertas." : "Monitorar próxima execução agendada.",
+    }),
+    alerts: (data.alerts || [])
+      .filter((a) => a.severity === "CRITICAL")
+      .slice(0, 3)
+      .map((a) =>
+        enrichAlert(
+          { severity: "ALTO", title: a.code || "Alerta", detail: a.message || "", view: "financialOperationsCenter", origin: "Diagnóstico" },
+          { why: a.message || "", where: a.origin || "—", actionNow: "Ver detalhamento técnico" }
+        )
+      ),
+    detailBuilder: () => `<div id="finOpsCenterDetailRoot"></div>`,
+    detailSummary: "Diagnóstico técnico completo",
+    refreshButtonId: "finOpsCenterRefresh",
+    defaultView: "financialOperationsCenter",
+    onRefresh: options.onRefresh,
+    onNavigate: options.onNavigate,
+  });
+
+  const detailRoot = node.querySelector("#finOpsCenterDetailRoot");
+  if (detailRoot) {
+    mountFinancialOperationsCenterDetail(detailRoot, data, filters);
+  }
 }

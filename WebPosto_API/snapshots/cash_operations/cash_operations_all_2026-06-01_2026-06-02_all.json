@@ -1,0 +1,91 @@
+{
+  "lastUpdated": "2026-06-15T10:53:49",
+  "operations": {
+    "periodo": {
+      "dataInicial": "2026-06-01",
+      "dataFinal": "2026-06-02"
+    },
+    "summary": {
+      "diferencaTotalRede": 0,
+      "impactoAbsoluto7d": 0,
+      "impactoAbsoluto90d": 0,
+      "perdaObservada90d": 0,
+      "projecaoAnual": 0.0,
+      "potencialRecuperavel30pct": 0.0,
+      "estancamentoInicial7d": 0.0,
+      "fechamentos": 0,
+      "cashRiskScore": 100.0,
+      "cashRiskBand": "Excelente",
+      "alertasAtivos": 0,
+      "operadoresCriticos": 0,
+      "pdvsCriticos": 0
+    },
+    "alerts": {
+      "total": 0,
+      "porNivel": {
+        "INFO": 0,
+        "ATENCAO": 0,
+        "ALTO": 0,
+        "CRITICO": 0,
+        "OK": 0
+      },
+      "ativos": [],
+      "criticos": [],
+      "vermelhas": {
+        "turnos": [],
+        "pdvs": [],
+        "operadores": []
+      }
+    },
+    "riskScore": {
+      "consolidado": 100.0,
+      "band": "Excelente",
+      "pesos": {
+        "operador": 0.4,
+        "pdv": 0.25,
+        "turno": 0.2,
+        "historicoFilial": 0.15
+      },
+      "subScores": {
+        "operador": 100.0,
+        "pdv": 100.0,
+        "turno": 100.0,
+        "historicoFilial": 100.0
+      },
+      "operadoresCriticos": 0,
+      "pdvsCriticos": 0,
+      "operadores": [],
+      "pdvs": []
+    },
+    "operators": {
+      "totalOperadores": 0,
+      "rankingMelhores": [],
+      "rankingPiores": [],
+      "todos": []
+    },
+    "pdvs": {
+      "totalPdvs": 0,
+      "ranking": [],
+      "alvosCriticos": {
+        "54193": null,
+        "15880": null,
+        "mediaGlobalQuebra": 0.0
+      }
+    },
+    "turns": {
+      "totalTurnos": 0,
+      "porTurno": []
+    },
+    "heatmap": {
+      "turnos": [],
+      "pdvs": [],
+      "cells": []
+    },
+    "performanceMs": {
+      "fetch": 1.5,
+      "total": 2.4
+    },
+    "source": "CAIXA_REDE+CAIXA+CAIXA_APRESENTADO"
+  },
+  "snapshotKey": "cash:operations:all:2026-06-01:2026-06-02:all"
+}

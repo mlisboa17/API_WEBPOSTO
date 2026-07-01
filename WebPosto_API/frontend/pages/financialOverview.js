@@ -1,20 +1,25 @@
 import { renderDashboard } from "./dashboard.js";
-import { renderFinancialResilienceBanner } from "../components/financialResilienceBanner.js";
 
 export function renderFinancialOverview(container, payload, options = {}) {
   if (!container) return;
   const overview = payload?.data ?? payload;
-  const resilience = payload?.resilience ?? options.resilience;
+  const resilience = payload?.resilience;
 
   container.innerHTML = "";
-  renderFinancialResilienceBanner(container, resilience);
-  const body = document.createElement("div");
-  container.appendChild(body);
 
-  if (!overview || (resilience?.source === "degraded" && !overview?.postos?.length)) {
-    body.innerHTML = `<p class="muted">${resilience?.banner || "Dados financeiros indisponíveis no momento."}</p>`;
+  if (!overview) {
+    container.innerHTML = `<p class="muted">Dados financeiros indisponíveis no momento.</p>`;
     return;
   }
 
-  renderDashboard(body, overview, options);
+  const postos = overview?.postos || [];
+  if (resilience?.source === "degraded" && postos.length === 0) {
+    const hint =
+      resilience?.banner ||
+      "Sem dados consolidados para este período. Tente outro intervalo ou clique em Atualizar.";
+    container.innerHTML = `<p class="muted">${hint}</p>`;
+    return;
+  }
+
+  renderDashboard(container, overview, { ...options, resilience });
 }

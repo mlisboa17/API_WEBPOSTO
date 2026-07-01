@@ -1,0 +1,98 @@
+{
+  "loaded": 0,
+  "failed": 1530,
+  "tables": {
+    "casa_caiada.dim_empresa": {
+      "loaded": 0,
+      "failed": 2
+    },
+    "casa_caiada.dim_produto": {
+      "loaded": 0,
+      "failed": 100
+    },
+    "casa_caiada.dim_cliente": {
+      "loaded": 0,
+      "failed": 100
+    },
+    "casa_caiada.dim_fornecedor": {
+      "loaded": 0,
+      "failed": 100
+    },
+    "casa_caiada.fact_caixa": {
+      "loaded": 0,
+      "failed": 92
+    },
+    "casa_caiada.fact_receber": {
+      "loaded": 0,
+      "failed": 71
+    },
+    "casa_caiada.fact_venda": {
+      "loaded": 0,
+      "failed": 100
+    },
+    "casa_caiada.fact_venda_item": {
+      "loaded": 0,
+      "failed": 100
+    },
+    "casa_caiada.fact_abastecimento": {
+      "loaded": 0,
+      "failed": 100
+    },
+    "posto_vip.dim_empresa": {
+      "loaded": 0,
+      "failed": 2
+    },
+    "posto_vip.dim_produto": {
+      "loaded": 0,
+      "failed": 100
+    },
+    "posto_vip.dim_cliente": {
+      "loaded": 0,
+      "failed": 100
+    },
+    "posto_vip.dim_fornecedor": {
+      "loaded": 0,
+      "failed": 100
+    },
+    "posto_vip.fact_caixa": {
+      "loaded": 0,
+      "failed": 92
+    },
+    "posto_vip.fact_receber": {
+      "loaded": 0,
+      "failed": 71
+    },
+    "posto_vip.fact_venda": {
+      "loaded": 0,
+      "failed": 100
+    },
+    "posto_vip.fact_venda_item": {
+      "loaded": 0,
+      "failed": 100
+    },
+    "posto_vip.fact_abastecimento": {
+      "loaded": 0,
+      "failed": 100
+    }
+  },
+  "errors": [
+    "Table logos_dw.dim_empresa not found in schema cache",
+    "Table logos_dw.dim_produto not found in schema cache",
+    "Table logos_dw.dim_cliente not found in schema cache",
+    "Table logos_dw.dim_fornecedor not found in schema cache",
+    "Table logos_dw.fact_caixa not found in schema cache",
+    "Table logos_dw.fact_receber not found in schema cache",
+    "Table logos_dw.fact_venda not found in schema cache",
+    "Table logos_dw.fact_venda_item not found in schema cache",
+    "Table logos_dw.fact_abastecimento not found in schema cache",
+    "Table logos_dw.dim_empresa not found in schema cache",
+    "Table logos_dw.dim_produto not found in schema cache",
+    "Table logos_dw.dim_cliente not found in schema cache",
+    "Table logos_dw.dim_fornecedor not found in schema cache",
+    "Table logos_dw.fact_caixa not found in schema cache",
+    "Table logos_dw.fact_receber not found in schema cache",
+    "Table logos_dw.fact_venda not found in schema cache",
+    "Table logos_dw.fact_venda_item not found in schema cache",
+    "Table logos_dw.fact_abastecimento not found in schema cache"
+  ]
+}

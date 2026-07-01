@@ -1,17 +1,17 @@
 {
-  "lastUpdated": "2026-06-08T18:13:44",
+  "lastUpdated": "2026-06-14T21:37:41",
   "kpis": {
     "faturamento": "27033.06",
-    "despesasTotais": "127858.10",
-    "despesas": "127858.10",
-    "resultadoOperacional": "-100825.04",
-    "resultado": "-100825.04",
-    "margemPct": "-372.97",
-    "margem": "-372.97",
+    "despesasTotais": "136050.27",
+    "despesas": "136050.27",
+    "resultadoOperacional": "-109017.21",
+    "resultado": "-109017.21",
+    "margemPct": "-403.27",
+    "margem": "-403.27",
     "ticketMedio": "67.58265",
     "qtdVendas": 400,
     "qtdClientes": 0,
-    "estoqueTotal": "0",
+    "estoqueTotal": "17.00",
     "periodoInicial": "2026-06-01",
     "periodoFinal": "2026-06-07",
     "filtros": {
@@ -45,12 +45,12 @@
     "receitas": "27033.06",
     "custosProduto": "399.00",
     "custos": "399.00",
-    "outrasDespesas": "127459.10",
-    "despesas": "127459.10",
-    "resultadoOperacional": "-100825.04",
-    "resultado": "-100825.04",
-    "margemPct": "-372.97",
-    "margemPercentual": "-372.97",
+    "outrasDespesas": "135651.27",
+    "despesas": "135651.27",
+    "resultadoOperacional": "-109017.21",
+    "resultado": "-109017.21",
+    "margemPct": "-403.27",
+    "margemPercentual": "-403.27",
     "validacaoOk": true,
     "divergencia": "0.00",
     "periodoInicial": "2026-06-01",
@@ -58,7 +58,7 @@
     "agrupamento": [
       {
         "planoConta": "Vale de funcionário referente a consolidação de caixa",
-        "valor": "40208.91"
+        "valor": "40497.91"
       },
       {
         "planoConta": "REF NF:000064790 - SOLAR INOVE - PERNAMBUCO - SOLAR INOVE - PERNAMBUCO",
@@ -81,6 +81,10 @@
         "valor": "2200.00"
       },
       {
+        "planoConta": "Despesa turno 1º TURNO · PDV 54193",
+        "valor": "1806.14"
+      },
+      {
         "planoConta": "SALAR - ADMINISTRATIVO",
         "valor": "1750.00"
       },
@@ -97,6 +101,10 @@
         "valor": "1584.00"
       },
       {
+        "planoConta": "Despesa turno 1º TURNO · PDV 56764",
+        "valor": "1546.00"
+      },
+      {
         "planoConta": "QUINZENA CRISTIANE",
         "valor": "1500.00"
       },
@@ -107,6 +115,10 @@
       {
         "planoConta": "SERVÇOS",
         "valor": "1420.00"
+      },
+      {
+        "planoConta": "Despesa turno 1º TURNO · PDV 15880",
+        "valor": "1357.53"
       },
       {
         "planoConta": "salario josinaldo",
@@ -153,15 +165,15 @@
         "valor": "1037.00"
       },
       {
+        "planoConta": "pagamento pedreiro",
+        "valor": "1000.00"
+      },
+      {
         "planoConta": "sr moises (BMW)",
         "valor": "1000.00"
       },
       {
         "planoConta": "REF DONA PAULINHA",
-        "valor": "1000.00"
-      },
-      {
-        "planoConta": "pagamento pedreiro",
         "valor": "1000.00"
       },
       {
@@ -171,6 +183,14 @@
       {
         "planoConta": "ref pneus bmw sr.moises",
         "valor": "950.00"
+      },
+      {
+        "planoConta": "SALARIO JEYMERSON",
+        "valor": "895.00"
+      },
+      {
+        "planoConta": "Desconto referente à duplicata 000000000000253",
+        "valor": "880.80"
       },
       {
         "planoConta": "QUINZENA CAIO",
@@ -225,6 +245,10 @@
         "valor": "690.00"
       },
       {
+        "planoConta": "ALELO PISTA",
+        "valor": "675.00"
+      },
+      {
         "planoConta": "PARA SR MOISES",
         "valor": "630.00"
       },
@@ -267,6 +291,10 @@
       {
         "planoConta": "REF NF:000008744 - PEPSICO DO BRASIL LTDA - PEPSICO DO BRASIL LTDA",
         "valor": "474.06"
+      },
+      {
+        "planoConta": "ALELO JUNIOR",
+        "valor": "452.70"
       },
       {
         "planoConta": "ref ao salario de caio",
@@ -321,11 +349,11 @@
         "valor": "300.00"
       },
       {
-        "planoConta": "ref pagamento da mangueira nova",
+        "planoConta": "01 gas completo",
         "valor": "300.00"
       },
       {
-        "planoConta": "01 gas completo",
+        "planoConta": "ref pagamento da mangueira nova",
         "valor": "300.00"
       },
       {
@@ -342,6 +370,10 @@
       },
       {
         "planoConta": "folguista joao",
+        "valor": "260.00"
+      },
+      {
+        "planoConta": "pag ref apoio loja joao vitor",
         "valor": "260.00"
       },
       {
@@ -457,6 +489,10 @@
         "valor": "193.30"
       },
       {
+        "planoConta": "ref a sanduiche natural",
+        "valor": "192.00"
+      },
+      {
         "planoConta": "neguinho",
         "valor": "185.00"
       },
@@ -485,7 +521,7 @@
         "valor": "150.00"
       },
       {
-        "planoConta": "FRETE DE GONDOLAS PARA POSTO 12",
+        "planoConta": "extra referente ás férias de Lenilson",
         "valor": "150.00"
       },
       {
@@ -494,10 +530,6 @@
       },
       {
         "planoConta": "hora extra marcelo",
-        "valor": "150.00"
-      },
-      {
-        "planoConta": "extra referente ás férias de Lenilson",
         "valor": "150.00"
       },
       {
@@ -561,10 +593,6 @@
         "valor": "130.00"
       },
       {
-        "planoConta": "pag ref apoio loja joao vitor",
-        "valor": "130.00"
-      },
-      {
         "planoConta": "REF FOLHUISTA",
         "valor": "122.00"
       },
@@ -581,11 +609,15 @@
         "valor": "120.00"
       },
       {
-        "planoConta": "REF PAG APOIO LOJA",
+        "planoConta": "SR. MOISES",
         "valor": "120.00"
       },
       {
         "planoConta": "ref diaria",
+        "valor": "120.00"
+      },
+      {
+        "planoConta": "REF PAG APOIO LOJA",
         "valor": "120.00"
       },
       {
@@ -603,6 +635,10 @@
       {
         "planoConta": "DESPESA POSTO",
         "valor": "119.90"
+      },
+      {
+        "planoConta": "REF A COMPRA DE UM CADEADO",
+        "valor": "118.00"
       },
       {
         "planoConta": "desinsetizaçao e desratizaçao",
@@ -685,18 +721,6 @@
         "valor": "100.00"
       },
       {
-        "planoConta": "MOISES( CARLOS ALBERTO)",
-        "valor": "100.00"
-      },
-      {
-        "planoConta": "REF (SEU MOISES PALMEIRA)",
-        "valor": "100.00"
-      },
-      {
-        "planoConta": "ABASTECIMENTO SR MOISES",
-        "valor": "100.00"
-      },
-      {
         "planoConta": "abastecimento sr moises",
         "valor": "100.00"
       },
@@ -705,8 +729,16 @@
         "valor": "100.00"
       },
       {
-        "planoConta": "ref a sanduiche natural",
-        "valor": "96.00"
+        "planoConta": "ABASTECIMENTO SR MOISES",
+        "valor": "100.00"
+      },
+      {
+        "planoConta": "REF (SEU MOISES PALMEIRA)",
+        "valor": "100.00"
+      },
+      {
+        "planoConta": "MOISES( CARLOS ALBERTO)",
+        "valor": "100.00"
       },
       {
         "planoConta": "REF NF:000075605 - CDD OLINDA - CDD OLINDA",
@@ -743,6 +775,10 @@
       {
         "planoConta": "ref a folga de vitor",
         "valor": "90.00"
+      },
+      {
+        "planoConta": "Despesa turno 2º TURNO · PDV 56764",
+        "valor": "85.00"
       },
       {
         "planoConta": "ref a (banheiro)",
@@ -801,11 +837,11 @@
         "valor": "70.00"
       },
       {
-        "planoConta": "ref a 4 horas extras trabalhadas",
+        "planoConta": "ref a 4 hora trabalhada",
         "valor": "68.00"
       },
       {
-        "planoConta": "ref a 4 hora trabalhada",
+        "planoConta": "ref a 4 horas extras trabalhadas",
         "valor": "68.00"
       },
       {
@@ -847,10 +883,6 @@
       {
         "planoConta": "relogio mangueira para fogão",
         "valor": "59.90"
-      },
-      {
-        "planoConta": "REF A COMPRA DE UM CADEADO",
-        "valor": "59.00"
       },
       {
         "planoConta": "REF SR MOISES ; CARDAPIO CP",
@@ -949,10 +981,6 @@
         "valor": "30.00"
       },
       {
-        "planoConta": "pag ref a compra camisa do brasil",
-        "valor": "30.00"
-      },
-      {
         "planoConta": "REF GASOLINA MOTO HENRIQUE",
         "valor": "30.00"
       },
@@ -971,10 +999,6 @@
       {
         "planoConta": "GEOVANE ALMOÇO",
         "valor": "25.00"
-      },
-      {
-        "planoConta": "POSTO",
-        "valor": "24.00"
       },
       {
         "planoConta": "ABASTEBIMENTO NEGUINHO",
@@ -1001,15 +1025,11 @@
         "valor": "20.00"
       },
       {
-        "planoConta": "PASSAGEM UBER SALGADOS",
+        "planoConta": "ref frete coroa de flores",
         "valor": "20.00"
       },
       {
         "planoConta": "ref a uber danilo",
-        "valor": "20.00"
-      },
-      {
-        "planoConta": "ref frete coroa de flores",
         "valor": "20.00"
       },
       {
@@ -1035,6 +1055,10 @@
       {
         "planoConta": "autorizado sr moises",
         "valor": "20.00"
+      },
+      {
+        "planoConta": "POSTO",
+        "valor": "18.00"
       },
       {
         "planoConta": "LIMPEZA DA CAMERA FRIA",
@@ -1097,15 +1121,15 @@
         "valor": "11.99"
       },
       {
+        "planoConta": "(CASA CAIADA CARTAO E ARTHUR)COMERCIO EM AVIAMENTOS EM GERAL LTDA - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
+        "valor": "10.40"
+      },
+      {
         "planoConta": "CARTAO ARTHUR - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
         "valor": "10.40"
       },
       {
         "planoConta": "REF NF:000001692 - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
-        "valor": "10.40"
-      },
-      {
-        "planoConta": "(CASA CAIADA CARTAO E ARTHUR)COMERCIO EM AVIAMENTOS EM GERAL LTDA - CE COMERCIO EM AVIAMENTOS EM GERAL LTDA",
         "valor": "10.40"
       },
       {
@@ -1166,6 +1190,10 @@
       },
       {
         "planoConta": "AGUA CONSUMO LOJA",
+        "valor": "6.00"
+      },
+      {
+        "planoConta": "AGUA POSTO",
         "valor": "6.00"
       },
       {
@@ -1280,7 +1308,7 @@
           "estado": "PE",
           "latitude": -7.955013199999999,
           "longitude": -34.851076,
-          "ultimoUsuarioAlteracao": "JOSÉ ARTHUR MAIA GIRAO",
+          "ultimoUsuarioAlteracao": "MARCIO",
           "centroCustoPrincipal": 7295,
           "empresaCodigoExterno": null,
           "sigla": null,
@@ -1570,15 +1598,15 @@
     ]
   },
   "dataQuality": {
-    "score": 71.85,
+    "score": 72.13,
     "status": "danger",
     "summary": {
-      "totalRegistros": 1421,
-      "validos": 1021,
-      "invalidos": 400
+      "totalRegistros": 1446,
+      "validos": 1043,
+      "invalidos": 403
     },
     "issues": {
-      "duplicados": 0,
+      "duplicados": 3,
       "filiaisNaoMapeadas": 0,
       "empresasNaoMapeadas": 0,
       "produtosNaoMapeados": 0,
@@ -1589,10 +1617,10 @@
       "formasPagamentoNaoMapeadas": 400,
       "contasPagarSemVencimento": 0
     },
-    "totalRegistros": 1421,
-    "validos": 1021,
-    "invalidos": 400,
-    "duplicados": 0,
+    "totalRegistros": 1446,
+    "validos": 1043,
+    "invalidos": 403,
+    "duplicados": 3,
     "filiaisNaoMapeadas": 0,
     "empresasNaoMapeadas": 0,
     "produtosNaoMapeados": 0,
@@ -1612,77 +1640,77 @@
   "fuel": {
     "success": true,
     "data": {
-      "litrosTotal": 57725.9,
+      "litrosTotal": 115044.54,
       "filiais": [
         {
           "empresaCodigo": 11495,
           "nomeFilial": "POSTO VIP",
-          "litros": 51315.38,
-          "participacao": 88.89
+          "litros": 77350.76,
+          "participacao": 67.24
         },
         {
           "empresaCodigo": 5555,
           "nomeFilial": "AP CASA CAIADA",
-          "litros": 6410.52,
-          "participacao": 11.11
+          "litros": 37693.78,
+          "participacao": 32.76
         }
       ],
       "combustiveis": [
         {
-          "produtoCodigo": 1975728,
-          "combustivel": "Produto 1975728",
-          "categoria": "Outros",
-          "litros": 14488.81,
-          "participacao": 25.1
-        },
-        {
-          "produtoCodigo": 1977508,
-          "combustivel": "Produto 1977508",
-          "categoria": "Outros",
-          "litros": 14488.81,
-          "participacao": 25.1
-        },
-        {
           "produtoCodigo": 1257884,
           "combustivel": "GASOLINA COMUM.",
           "categoria": "Gasolina",
-          "litros": 11996.93,
-          "participacao": 20.78
+          "litros": 35479.191,
+          "participacao": 30.84
         },
         {
           "produtoCodigo": 1319213,
           "combustivel": "GASOLINA COMUM.",
           "categoria": "Gasolina",
-          "litros": 11996.93,
-          "participacao": 20.78
+          "litros": 35479.191,
+          "participacao": 30.84
+        },
+        {
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "categoria": "Outros",
+          "litros": 19665.869,
+          "participacao": 17.09
+        },
+        {
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "categoria": "Outros",
+          "litros": 19665.869,
+          "participacao": 17.09
         },
         {
           "produtoCodigo": 1257885,
           "combustivel": "GASOLINA ADITIVADA GRID",
           "categoria": "Gasolina",
           "litros": 1346.18,
-          "participacao": 2.33
+          "participacao": 1.17
         },
         {
           "produtoCodigo": 1320666,
           "combustivel": "GASOLINA ADITIVADA GRID",
           "categoria": "Gasolina",
           "litros": 1346.18,
-          "participacao": 2.33
+          "participacao": 1.17
         },
         {
           "produtoCodigo": 1260803,
           "combustivel": "DIESEL S10 COMUM",
           "categoria": "Diesel S10",
           "litros": 1031.03,
-          "participacao": 1.79
+          "participacao": 0.9
         },
         {
           "produtoCodigo": 1320665,
           "combustivel": "DIESEL S10 COMUM",
           "categoria": "Diesel S10",
           "litros": 1031.03,
-          "participacao": 1.79
+          "participacao": 0.9
         }
       ],
       "ranking": [
@@ -1690,15 +1718,15 @@
           "posicao": 1,
           "empresaCodigo": 11495,
           "nomeFilial": "POSTO VIP",
-          "litros": 51315.38,
-          "participacao": 88.89
+          "litros": 77350.76,
+          "participacao": 67.24
         },
         {
           "posicao": 2,
           "empresaCodigo": 5555,
           "nomeFilial": "AP CASA CAIADA",
-          "litros": 6410.52,
-          "participacao": 11.11
+          "litros": 37693.78,
+          "participacao": 32.76
         }
       ],
       "detalhes": [
@@ -1709,7 +1737,7 @@
           "combustivel": "GASOLINA COMUM.",
           "data": "2026-06-01",
           "litros": 3619.2,
-          "participacao": 6.27
+          "participacao": 3.15
         },
         {
           "empresaCodigo": 11495,
@@ -1718,7 +1746,61 @@
           "combustivel": "GASOLINA COMUM.",
           "data": "2026-06-01",
           "litros": 3619.2,
-          "participacao": 6.27
+          "participacao": 3.15
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257884,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-04",
+          "litros": 3361.26,
+          "participacao": 2.92
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1319213,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-04",
+          "litros": 3361.26,
+          "participacao": 2.92
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257884,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-07",
+          "litros": 3307.76,
+          "participacao": 2.88
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1319213,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-07",
+          "litros": 3307.76,
+          "participacao": 2.88
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257884,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-06",
+          "litros": 3186.53,
+          "participacao": 2.77
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1319213,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-06",
+          "litros": 3186.53,
+          "participacao": 2.77
         },
         {
           "empresaCodigo": 11495,
@@ -1727,7 +1809,7 @@
           "combustivel": "GASOLINA COMUM.",
           "data": "2026-06-03",
           "litros": 3186.22,
-          "participacao": 5.52
+          "participacao": 2.77
         },
         {
           "empresaCodigo": 11495,
@@ -1736,7 +1818,25 @@
           "combustivel": "GASOLINA COMUM.",
           "data": "2026-06-03",
           "litros": 3186.22,
-          "participacao": 5.52
+          "participacao": 2.77
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1257884,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-05",
+          "litros": 3162.14,
+          "participacao": 2.75
+        },
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "produtoCodigo": 1319213,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-05",
+          "litros": 3162.14,
+          "participacao": 2.75
         },
         {
           "empresaCodigo": 11495,
@@ -1745,7 +1845,7 @@
           "combustivel": "GASOLINA COMUM.",
           "data": "2026-06-02",
           "litros": 2891.04,
-          "participacao": 5.01
+          "participacao": 2.51
         },
         {
           "empresaCodigo": 11495,
@@ -1754,7 +1854,7 @@
           "combustivel": "GASOLINA COMUM.",
           "data": "2026-06-02",
           "litros": 2891.04,
-          "participacao": 5.01
+          "participacao": 2.51
         },
         {
           "empresaCodigo": 11495,
@@ -1763,7 +1863,7 @@
           "combustivel": "Produto 1975728",
           "data": "2026-06-06",
           "litros": 2339.36,
-          "participacao": 4.05
+          "participacao": 2.03
         },
         {
           "empresaCodigo": 11495,
@@ -1772,7 +1872,7 @@
           "combustivel": "Produto 1977508",
           "data": "2026-06-06",
           "litros": 2339.36,
-          "participacao": 4.05
+          "participacao": 2.03
         },
         {
           "empresaCodigo": 5555,
@@ -1781,7 +1881,7 @@
           "combustivel": "GASOLINA COMUM.",
           "data": "2026-06-01",
           "litros": 2300.47,
-          "participacao": 3.99
+          "participacao": 2.0
         },
         {
           "empresaCodigo": 5555,
@@ -1790,7 +1890,43 @@
           "combustivel": "GASOLINA COMUM.",
           "data": "2026-06-01",
           "litros": 2300.47,
-          "participacao": 3.99
+          "participacao": 2.0
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1257884,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-05",
+          "litros": 2279.68,
+          "participacao": 1.98
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1319213,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-05",
+          "litros": 2279.68,
+          "participacao": 1.98
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1257884,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-03",
+          "litros": 2184.426,
+          "participacao": 1.9
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1319213,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-03",
+          "litros": 2184.426,
+          "participacao": 1.9
         },
         {
           "empresaCodigo": 11495,
@@ -1799,7 +1935,7 @@
           "combustivel": "Produto 1975728",
           "data": "2026-06-01",
           "litros": 2069.64,
-          "participacao": 3.59
+          "participacao": 1.8
         },
         {
           "empresaCodigo": 11495,
@@ -1808,7 +1944,7 @@
           "combustivel": "Produto 1977508",
           "data": "2026-06-01",
           "litros": 2069.64,
-          "participacao": 3.59
+          "participacao": 1.8
         },
         {
           "empresaCodigo": 11495,
@@ -1817,7 +1953,7 @@
           "combustivel": "Produto 1975728",
           "data": "2026-06-02",
           "litros": 2059.36,
-          "participacao": 3.57
+          "participacao": 1.79
         },
         {
           "empresaCodigo": 11495,
@@ -1826,7 +1962,43 @@
           "combustivel": "Produto 1977508",
           "data": "2026-06-02",
           "litros": 2059.36,
-          "participacao": 3.57
+          "participacao": 1.79
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1257884,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-04",
+          "litros": 1871.934,
+          "participacao": 1.63
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1319213,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-04",
+          "litros": 1871.934,
+          "participacao": 1.63
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1257884,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-02",
+          "litros": 1852.39,
+          "participacao": 1.61
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1319213,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-02",
+          "litros": 1852.39,
+          "participacao": 1.61
         },
         {
           "empresaCodigo": 11495,
@@ -1835,7 +2007,7 @@
           "combustivel": "Produto 1975728",
           "data": "2026-06-04",
           "litros": 1846.54,
-          "participacao": 3.2
+          "participacao": 1.61
         },
         {
           "empresaCodigo": 11495,
@@ -1844,7 +2016,7 @@
           "combustivel": "Produto 1977508",
           "data": "2026-06-04",
           "litros": 1846.54,
-          "participacao": 3.2
+          "participacao": 1.61
         },
         {
           "empresaCodigo": 11495,
@@ -1853,7 +2025,7 @@
           "combustivel": "Produto 1975728",
           "data": "2026-06-05",
           "litros": 1827.0,
-          "participacao": 3.16
+          "participacao": 1.59
         },
         {
           "empresaCodigo": 11495,
@@ -1862,7 +2034,7 @@
           "combustivel": "Produto 1977508",
           "data": "2026-06-05",
           "litros": 1827.0,
-          "participacao": 3.16
+          "participacao": 1.59
         },
         {
           "empresaCodigo": 11495,
@@ -1871,7 +2043,7 @@
           "combustivel": "Produto 1975728",
           "data": "2026-06-07",
           "litros": 1770.78,
-          "participacao": 3.07
+          "participacao": 1.54
         },
         {
           "empresaCodigo": 11495,
@@ -1880,7 +2052,7 @@
           "combustivel": "Produto 1977508",
           "data": "2026-06-07",
           "litros": 1770.78,
-          "participacao": 3.07
+          "participacao": 1.54
         },
         {
           "empresaCodigo": 11495,
@@ -1889,7 +2061,7 @@
           "combustivel": "Produto 1975728",
           "data": "2026-06-03",
           "litros": 1671.34,
-          "participacao": 2.9
+          "participacao": 1.45
         },
         {
           "empresaCodigo": 11495,
@@ -1898,7 +2070,79 @@
           "combustivel": "Produto 1977508",
           "data": "2026-06-03",
           "litros": 1671.34,
-          "participacao": 2.9
+          "participacao": 1.45
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1257884,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-06",
+          "litros": 1453.037,
+          "participacao": 1.26
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1319213,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-06",
+          "litros": 1453.037,
+          "participacao": 1.26
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "data": "2026-06-02",
+          "litros": 1108.55,
+          "participacao": 0.96
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "data": "2026-06-02",
+          "litros": 1108.55,
+          "participacao": 0.96
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "data": "2026-06-05",
+          "litros": 1042.92,
+          "participacao": 0.91
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "data": "2026-06-05",
+          "litros": 1042.92,
+          "participacao": 0.91
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "data": "2026-06-03",
+          "litros": 983.984,
+          "participacao": 0.86
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "data": "2026-06-03",
+          "litros": 983.984,
+          "participacao": 0.86
         },
         {
           "empresaCodigo": 5555,
@@ -1907,7 +2151,7 @@
           "combustivel": "Produto 1975728",
           "data": "2026-06-01",
           "litros": 904.79,
-          "participacao": 1.57
+          "participacao": 0.79
         },
         {
           "empresaCodigo": 5555,
@@ -1916,7 +2160,79 @@
           "combustivel": "Produto 1977508",
           "data": "2026-06-01",
           "litros": 904.79,
-          "participacao": 1.57
+          "participacao": 0.79
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "data": "2026-06-06",
+          "litros": 836.61,
+          "participacao": 0.73
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "data": "2026-06-06",
+          "litros": 836.61,
+          "participacao": 0.73
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1257884,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-07",
+          "litros": 823.104,
+          "participacao": 0.72
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1319213,
+          "combustivel": "GASOLINA COMUM.",
+          "data": "2026-06-07",
+          "litros": 823.104,
+          "participacao": 0.72
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "data": "2026-06-04",
+          "litros": 769.076,
+          "participacao": 0.67
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "data": "2026-06-04",
+          "litros": 769.076,
+          "participacao": 0.67
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1975728,
+          "combustivel": "Produto 1975728",
+          "data": "2026-06-07",
+          "litros": 435.919,
+          "participacao": 0.38
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": "AP CASA CAIADA",
+          "produtoCodigo": 1977508,
+          "combustivel": "Produto 1977508",
+          "data": "2026-06-07",
+          "litros": 435.919,
+          "participacao": 0.38
         },
         {
           "empresaCodigo": 11495,
@@ -1925,7 +2241,7 @@
           "combustivel": "DIESEL S10 COMUM",
           "data": "2026-06-04",
           "litros": 316.73,
-          "participacao": 0.55
+          "participacao": 0.28
         },
         {
           "empresaCodigo": 11495,
@@ -1934,7 +2250,7 @@
           "combustivel": "DIESEL S10 COMUM",
           "data": "2026-06-04",
           "litros": 316.73,
-          "participacao": 0.55
+          "participacao": 0.28
         },
         {
           "empresaCodigo": 11495,
@@ -1943,7 +2259,7 @@
           "combustivel": "DIESEL S10 COMUM",
           "data": "2026-06-01",
           "litros": 238.02,
-          "participacao": 0.41
+          "participacao": 0.21
         },
         {
           "empresaCodigo": 11495,
@@ -1952,7 +2268,7 @@
           "combustivel": "DIESEL S10 COMUM",
           "data": "2026-06-01",
           "litros": 238.02,
-          "participacao": 0.41
+          "participacao": 0.21
         },
         {
           "empresaCodigo": 11495,
@@ -1961,7 +2277,7 @@
           "combustivel": "GASOLINA ADITIVADA GRID",
           "data": "2026-06-03",
           "litros": 231.71,
-          "participacao": 0.4
+          "participacao": 0.2
         },
         {
           "empresaCodigo": 11495,
@@ -1970,7 +2286,7 @@
           "combustivel": "GASOLINA ADITIVADA GRID",
           "data": "2026-06-03",
           "litros": 231.71,
-          "participacao": 0.4
+          "participacao": 0.2
         },
         {
           "empresaCodigo": 11495,
@@ -1979,7 +2295,7 @@
           "combustivel": "GASOLINA ADITIVADA GRID",
           "data": "2026-06-07",
           "litros": 213.92,
-          "participacao": 0.37
+          "participacao": 0.19
         },
         {
           "empresaCodigo": 11495,
@@ -1988,7 +2304,7 @@
           "combustivel": "GASOLINA ADITIVADA GRID",
           "data": "2026-06-07",
           "litros": 213.92,
-          "participacao": 0.37
+          "participacao": 0.19
         },
         {
           "empresaCodigo": 11495,
@@ -1997,7 +2313,7 @@
           "combustivel": "GASOLINA ADITIVADA GRID",
           "data": "2026-06-01",
           "litros": 206.26,
-          "participacao": 0.36
+          "participacao": 0.18
         },
         {
           "empresaCodigo": 11495,
@@ -2006,7 +2322,7 @@
           "combustivel": "GASOLINA ADITIVADA GRID",
           "data": "2026-06-01",
           "litros": 206.26,
-          "participacao": 0.36
+          "participacao": 0.18
         },
         {
           "empresaCodigo": 11495,
@@ -2015,7 +2331,7 @@
           "combustivel": "GASOLINA ADITIVADA GRID",
           "data": "2026-06-05",
           "litros": 192.07,
-          "participacao": 0.33
+          "participacao": 0.17
         },
         {
           "empresaCodigo": 11495,
@@ -2024,7 +2340,7 @@
           "combustivel": "GASOLINA ADITIVADA GRID",
           "data": "2026-06-05",
           "litros": 192.07,
-          "participacao": 0.33
+          "participacao": 0.17
         },
         {
           "empresaCodigo": 11495,
@@ -2033,7 +2349,7 @@
           "combustivel": "GASOLINA ADITIVADA GRID",
           "data": "2026-06-04",
           "litros": 181.13,
-          "participacao": 0.31
+          "participacao": 0.16
         },
         {
           "empresaCodigo": 11495,
@@ -2042,7 +2358,7 @@
           "combustivel": "GASOLINA ADITIVADA GRID",
           "data": "2026-06-04",
           "litros": 181.13,
-          "participacao": 0.31
+          "participacao": 0.16
         },
         {
           "empresaCodigo": 11495,
@@ -2051,7 +2367,7 @@
           "combustivel": "GASOLINA ADITIVADA GRID",
           "data": "2026-06-02",
           "litros": 163.79,
-          "participacao": 0.28
+          "participacao": 0.14
         },
         {
           "empresaCodigo": 11495,
@@ -2060,7 +2376,7 @@
           "combustivel": "GASOLINA ADITIVADA GRID",
           "data": "2026-06-02",
           "litros": 163.79,
-          "participacao": 0.28
+          "participacao": 0.14
         },
         {
           "empresaCodigo": 11495,
@@ -2069,7 +2385,7 @@
           "combustivel": "GASOLINA ADITIVADA GRID",
           "data": "2026-06-06",
           "litros": 157.3,
-          "participacao": 0.27
+          "participacao": 0.14
         },
         {
           "empresaCodigo": 11495,
@@ -2078,7 +2394,7 @@
           "combustivel": "GASOLINA ADITIVADA GRID",
           "data": "2026-06-06",
           "litros": 157.3,
-          "participacao": 0.27
+          "participacao": 0.14
         },
         {
           "empresaCodigo": 11495,
@@ -2087,7 +2403,7 @@
           "combustivel": "DIESEL S10 COMUM",
           "data": "2026-06-03",
           "litros": 136.86,
-          "participacao": 0.24
+          "participacao": 0.12
         },
         {
           "empresaCodigo": 11495,
@@ -2096,7 +2412,7 @@
           "combustivel": "DIESEL S10 COMUM",
           "data": "2026-06-03",
           "litros": 136.86,
-          "participacao": 0.24
+          "participacao": 0.12
         },
         {
           "empresaCodigo": 11495,
@@ -2105,7 +2421,7 @@
           "combustivel": "DIESEL S10 COMUM",
           "data": "2026-06-06",
           "litros": 130.93,
-          "participacao": 0.23
+          "participacao": 0.11
         },
         {
           "empresaCodigo": 11495,
@@ -2114,7 +2430,7 @@
           "combustivel": "DIESEL S10 COMUM",
           "data": "2026-06-06",
           "litros": 130.93,
-          "participacao": 0.23
+          "participacao": 0.11
         },
         {
           "empresaCodigo": 11495,
@@ -2123,7 +2439,7 @@
           "combustivel": "DIESEL S10 COMUM",
           "data": "2026-06-02",
           "litros": 118.19,
-          "participacao": 0.2
+          "participacao": 0.1
         },
         {
           "empresaCodigo": 11495,
@@ -2132,7 +2448,7 @@
           "combustivel": "DIESEL S10 COMUM",
           "data": "2026-06-02",
           "litros": 118.19,
-          "participacao": 0.2
+          "participacao": 0.1
         },
         {
           "empresaCodigo": 11495,
@@ -2141,7 +2457,7 @@
           "combustivel": "DIESEL S10 COMUM",
           "data": "2026-06-05",
           "litros": 74.57,
-          "participacao": 0.13
+          "participacao": 0.06
         },
         {
           "empresaCodigo": 11495,
@@ -2150,7 +2466,7 @@
           "combustivel": "DIESEL S10 COMUM",
           "data": "2026-06-05",
           "litros": 74.57,
-          "participacao": 0.13
+          "participacao": 0.06
         },
         {
           "empresaCodigo": 11495,
@@ -2159,7 +2475,7 @@
           "combustivel": "DIESEL S10 COMUM",
           "data": "2026-06-07",
           "litros": 15.73,
-          "participacao": 0.03
+          "participacao": 0.01
         },
         {
           "empresaCodigo": 11495,
@@ -2168,7 +2484,7 @@
           "combustivel": "DIESEL S10 COMUM",
           "data": "2026-06-07",
           "litros": 15.73,
-          "participacao": 0.03
+          "participacao": 0.01
         }
       ],
       "agrupamento": {
@@ -2177,22 +2493,22 @@
         "data": true
       },
       "consistencia": {
-        "somaCombustiveis": 57725.9,
-        "somaFiliais": 57725.9
+        "somaCombustiveis": 115044.54,
+        "somaFiliais": 115044.54
       },
       "kpis": {
-        "litrosVendidos": 57725.9,
+        "litrosVendidos": 115044.54,
         "combustivelLider": {
-          "nome": "Produto 1975728",
-          "litros": 14488.81
+          "nome": "GASOLINA COMUM.",
+          "litros": 35479.191
         },
         "filialLider": {
           "empresaCodigo": 11495,
           "nomeFilial": "POSTO VIP",
-          "litros": 51315.38
+          "litros": 77350.76
         },
-        "participacaoDiesel": 3.57,
-        "participacaoGasolina": 46.23,
+        "participacaoDiesel": 1.79,
+        "participacaoGasolina": 64.02,
         "participacaoEtanol": 0.0
       }
     },

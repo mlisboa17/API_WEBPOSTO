@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import asyncio
+import json
 from datetime import date
+from hashlib import sha256
 from time import perf_counter
 from typing import Any
 
@@ -9,9 +11,11 @@ import httpx
 
 from src.core.config import CoreConfig, load_core_config
 from src.core.logger import get_logger, log_structured
+from src.gateway.webposto_endpoint_contracts import endpoint_requires_dates
 from src.metrics.collector import metrics_collector
 from src.models.error_model import WebPostoError
 from src.models.response_model import WebPostoResponse
+from src.services.date_range_resolver import DateRangeResolver
 from src.utils.circuit_breaker import SimpleCircuitBreaker
 from src.utils.permission_cache import get_permissions, is_cache_fresh, set_permissions
 from src.utils.retry import retry_async
@@ -79,15 +83,38 @@ class WebPostoClient:
     def _discovery_params(self, endpoint_key: str) -> dict[str, str] | None:
         # Endpoint analitico pode retornar payload muito grande com filtro diario.
         # Probe sem datas reduz risco de timeout e valida permissao real.
+        # IMPORTANTE: despesas_financeiro_rede EXIGE dataInicial/dataFinal (retorna 400 sem eles)
         if endpoint_key in {"analise_vendas_combustivel", "empresas"}:
             return None
         return self._date_params()
 
-    def _with_key(self, params: dict[str, Any] | None) -> dict[str, Any]:
-        final = {"CHAVE": self.config.webposto_api_key}
+    @property
+    def _api_keys(self) -> tuple[str, ...]:
+        return self.config.webposto_api_keys or (
+            (self.config.webposto_api_key,) if self.config.webposto_api_key else ()
+        )
+
+    @staticmethod
+    def _fingerprint(api_key: str) -> str:
+        return sha256(api_key.encode("utf-8")).hexdigest()[:12]
+
+    def _with_key(self, params: dict[str, Any] | None, api_key: str) -> dict[str, Any]:
+        final = {"CHAVE": api_key}
         if params:
             final.update({k: v for k, v in params.items() if v is not None})
         return final
+
+    @staticmethod
+    def _dedupe_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        seen: set[str] = set()
+        unique: list[dict[str, Any]] = []
+        for row in rows:
+            marker = json.dumps(row, sort_keys=True, ensure_ascii=False, default=str)
+            if marker in seen:
+                continue
+            seen.add(marker)
+            unique.append(row)
+        return unique
 
     def _endpoint_timeout(self, endpoint_key: str) -> httpx.Timeout:
         base = self.config.timeout_seconds
@@ -125,15 +152,15 @@ class WebPostoClient:
 
             permissions: dict[str, bool] = {}
 
-            async def _probe_permission(client: httpx.AsyncClient, key: str, path: str):
-                params = self._with_key(self._discovery_params(key))
+            async def _probe_permission(client: httpx.AsyncClient, key: str, path: str, api_key: str):
+                params = self._with_key(self._discovery_params(key), api_key)
                 started = perf_counter()
                 try:
                     response = await client.get(path, params=params)
                     latency_ms = (perf_counter() - started) * 1000
                     # Alguns endpoints validam payload e retornam 400/422 mesmo com chave autorizada.
                     allowed = response.status_code not in {401, 403}
-                    permissions[key] = allowed
+                    permissions[key] = permissions.get(key, False) or allowed
                     metrics_collector.record(path, response.status_code, latency_ms)
                     log_structured(
                         self.logger,
@@ -145,10 +172,11 @@ class WebPostoClient:
                             "has_data": allowed,
                             "synthetic": False,
                             "check": "permission_discovery",
+                            "token": self._fingerprint(api_key),
                         },
                     )
                 except Exception as exc:
-                    permissions[key] = False
+                    permissions.setdefault(key, False)
                     log_structured(
                         self.logger,
                         {
@@ -159,15 +187,23 @@ class WebPostoClient:
                             "has_data": False,
                             "synthetic": False,
                             "check": "permission_discovery",
+                            "token": self._fingerprint(api_key),
                             "error": str(exc)[:220],
                         },
                     )
+
+            if not self._api_keys:
+                return {key: False for key in ENDPOINTS}
 
             async with httpx.AsyncClient(
                 base_url=self.config.webposto_base_url,
                 timeout=httpx.Timeout(max(20.0, self.config.timeout_seconds), connect=min(5.0, max(20.0, self.config.timeout_seconds))),
             ) as client:
-                tasks = [_probe_permission(client, key, path) for key, path in ENDPOINTS.items()]
+                tasks = [
+                    _probe_permission(client, key, path, api_key)
+                    for api_key in self._api_keys
+                    for key, path in ENDPOINTS.items()
+                ]
                 await asyncio.gather(*tasks)
 
             set_permissions(permissions)
@@ -209,10 +245,25 @@ class WebPostoClient:
                 WebPostoError(endpoint=path, status=503, type="CIRCUIT_OPEN", message="Endpoint bloqueado temporariamente")
             )
 
-        final_params = self._with_key(params)
+        # Aplicar datas obrigatórias automaticamente
+        if endpoint_requires_dates(endpoint_key):
+            params = DateRangeResolver.ensure_date_params(params)
+            log_structured(
+                self.logger,
+                {
+                    "system": "webposto",
+                    "endpoint": path,
+                    "event": "date_params_ensured",
+                    "dataInicial": params.get("dataInicial"),
+                    "dataFinal": params.get("dataFinal"),
+                    "synthetic": False,
+                },
+            )
+
         timeout = self._endpoint_timeout(endpoint_key)
 
-        async with httpx.AsyncClient(base_url=self.config.webposto_base_url, timeout=timeout) as client:
+        async def _call_with_key(client: httpx.AsyncClient, api_key: str) -> tuple[str, httpx.Response | None, float, Exception | None]:
+            final_params = self._with_key(params, api_key)
             async def _do() -> httpx.Response:
                 return await client.get(path, params=final_params)
 
@@ -220,19 +271,88 @@ class WebPostoClient:
                 started = perf_counter()
                 response = await retry_async(_do, attempts=3)
                 latency_ms = (perf_counter() - started) * 1000
+                return api_key, response, latency_ms, None
             except Exception as exc:
-                self.breaker.record_failure(endpoint_key)
-                metrics_collector.record(path, 500, 0.0)
-                return WebPostoResponse.fail(
-                    WebPostoError(endpoint=path, status=500, type="NETWORK_ERROR", message=str(exc)[:220])
-                )
+                return api_key, None, 0.0, exc
 
-        status = response.status_code
-        metrics_collector.record(path, status, latency_ms)
-        if status == 200:
-            self.breaker.record_success(endpoint_key)
-            payload = response.json()
-            rows = self._extract_rows(payload)
+        if not self._api_keys:
+            return WebPostoResponse.fail(
+                WebPostoError(
+                    endpoint=path,
+                    status=401,
+                    type="AUTHORIZATION_ERROR",
+                    message="Nenhum token oficial WebPosto configurado",
+                )
+            )
+
+        async with httpx.AsyncClient(base_url=self.config.webposto_base_url, timeout=timeout) as client:
+            results = await asyncio.gather(*[_call_with_key(client, api_key) for api_key in self._api_keys])
+
+        ok_payloads: list[Any] = []
+        ok_rows: list[dict[str, Any]] = []
+        auth_errors = 0
+        last_error: WebPostoError | None = None
+
+        for api_key, response, latency_ms, exc in results:
+            if exc is not None:
+                metrics_collector.record(path, 500, 0.0)
+                last_error = WebPostoError(endpoint=path, status=500, type="NETWORK_ERROR", message=str(exc)[:220])
+                log_structured(
+                    self.logger,
+                    {
+                        "system": "webposto",
+                        "endpoint": path,
+                        "status": 500,
+                        "latency_ms": 0,
+                        "has_data": False,
+                        "synthetic": False,
+                        "token": self._fingerprint(api_key),
+                        "error": str(exc)[:220],
+                    },
+                )
+                continue
+
+            if response is None:
+                continue
+
+            status = response.status_code
+            metrics_collector.record(path, status, latency_ms)
+            if status == 200:
+                payload = response.json()
+                rows = self._extract_rows(payload)
+                ok_payloads.append(payload)
+                ok_rows.extend(rows)
+                log_structured(
+                    self.logger,
+                    {
+                        "system": "webposto",
+                        "endpoint": path,
+                        "status": status,
+                        "latency_ms": round(latency_ms, 2),
+                        "has_data": bool(rows),
+                        "synthetic": False,
+                        "token": self._fingerprint(api_key),
+                    },
+                )
+                continue
+
+            if status == 401:
+                auth_errors += 1
+                log_structured(
+                    self.logger,
+                    {
+                        "system": "webposto",
+                        "endpoint": path,
+                        "status": status,
+                        "latency_ms": round(latency_ms, 2),
+                        "has_data": False,
+                        "synthetic": False,
+                        "token": self._fingerprint(api_key),
+                    },
+                )
+                continue
+
+            last_error = WebPostoError(endpoint=path, status=status, type="UPSTREAM_ERROR", message=response.text[:220])
             log_structured(
                 self.logger,
                 {
@@ -240,13 +360,25 @@ class WebPostoClient:
                     "endpoint": path,
                     "status": status,
                     "latency_ms": round(latency_ms, 2),
-                    "has_data": bool(rows),
+                    "has_data": False,
                     "synthetic": False,
+                    "token": self._fingerprint(api_key),
                 },
             )
-            return WebPostoResponse.ok(payload)
 
-        if status == 401:
+        if ok_payloads:
+            self.breaker.record_success(endpoint_key)
+            if len(ok_payloads) == 1:
+                return WebPostoResponse.ok(ok_payloads[0])
+            return WebPostoResponse.ok(
+                {
+                    "resultados": self._dedupe_rows(ok_rows),
+                    "tokensConsultados": len(ok_payloads),
+                    "synthetic": False,
+                }
+            )
+
+        if auth_errors and auth_errors == len(self._api_keys):
             permissions[endpoint_key] = False
             set_permissions(permissions)
             self.breaker.block_endpoint(endpoint_key, duration_seconds=self.config.circuit_block_seconds)
@@ -255,19 +387,8 @@ class WebPostoClient:
             )
 
         self.breaker.record_failure(endpoint_key)
-        log_structured(
-            self.logger,
-            {
-                "system": "webposto",
-                "endpoint": path,
-                "status": status,
-                "latency_ms": round(latency_ms, 2),
-                "has_data": False,
-                "synthetic": False,
-            },
-        )
         return WebPostoResponse.fail(
-            WebPostoError(endpoint=path, status=status, type="UPSTREAM_ERROR", message=response.text[:220])
+            last_error or WebPostoError(endpoint=path, status=500, type="NETWORK_ERROR", message="Falha ao consultar tokens oficiais")
         )
 
     def get_circuit_status(self, endpoint_keys: set[str] | None = None) -> dict[str, str]:

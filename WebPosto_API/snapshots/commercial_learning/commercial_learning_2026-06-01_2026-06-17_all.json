@@ -1,0 +1,587 @@
+{
+  "lastUpdated": "2026-06-17T10:03:32.085829",
+  "data": {
+    "sprint": "F07.8",
+    "fonte": {
+      "modo": "homologated_snapshot_f077",
+      "webPostoLive": false,
+      "baselineF076": true,
+      "baselineF077": true,
+      "segregacaoPorEmpresaCodigo": true
+    },
+    "governanceRules": {
+      "proibidoConveniencia": true,
+      "proibidoWebPostoLiveDecisao": true,
+      "proibidoScoreExecutivoNovo": true,
+      "proibidoIAGenerativa": true,
+      "somenteSnapshotHomologado": true
+    },
+    "recommendationEffectivenessEngine": {
+      "porTipo": [
+        {
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "quantidade": 1,
+          "executadas": 1,
+          "validadas": 1,
+          "receitaPrevista": 165.6,
+          "receitaRealizada": 152.35,
+          "margemPrevista": 49.68,
+          "margemRealizada": 45.71,
+          "roiPrevisto": 165.6,
+          "roiReal": 152.35,
+          "taxaAcertoPct": 92.0,
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "recommendation_effectiveness",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        },
+        {
+          "tipo": "DESENVOLVER_FILIAL",
+          "quantidade": 1,
+          "executadas": 0,
+          "validadas": 0,
+          "receitaPrevista": 46.28,
+          "receitaRealizada": 0.0,
+          "margemPrevista": 13.89,
+          "margemRealizada": 0.0,
+          "roiPrevisto": 46.28,
+          "roiReal": 0.0,
+          "taxaAcertoPct": 0.0,
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "recommendation_effectiveness",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        },
+        {
+          "tipo": "REDUZIR_DEPENDENCIA_COMBUSTIVEL",
+          "quantidade": 1,
+          "executadas": 0,
+          "validadas": 0,
+          "receitaPrevista": 23.14,
+          "receitaRealizada": 0.0,
+          "margemPrevista": 8.1,
+          "margemRealizada": 0.0,
+          "roiPrevisto": 23.14,
+          "roiReal": 0.0,
+          "taxaAcertoPct": 0.0,
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "recommendation_effectiveness",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        }
+      ],
+      "totalTipos": 3,
+      "lineage": [
+        {
+          "origem": "F07.8",
+          "snapshot": "effectiveness_engine",
+          "api": "/api/v1/commercial-learning/cockpit",
+          "cockpit": "commercial-learning"
+        }
+      ]
+    },
+    "responsiblePerformanceEngine": {
+      "porResponsavel": [
+        {
+          "responsavel": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "acoesRecebidas": 2,
+          "acoesExecutadas": 1,
+          "acoesValidadas": 1,
+          "receitaGerada": 152.35,
+          "margemGerada": 45.71,
+          "roiMedio": 152.35,
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "responsible_performance",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        },
+        {
+          "responsavel": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "acoesRecebidas": 1,
+          "acoesExecutadas": 0,
+          "acoesValidadas": 0,
+          "receitaGerada": 0.0,
+          "margemGerada": 0.0,
+          "roiMedio": 0.0,
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "responsible_performance",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        }
+      ],
+      "melhorResponsavel": {
+        "responsavel": "JOÃO RYVISON DE ANDRADE SOUZA",
+        "acoesRecebidas": 2,
+        "acoesExecutadas": 1,
+        "acoesValidadas": 1,
+        "receitaGerada": 152.35,
+        "margemGerada": 45.71,
+        "roiMedio": 152.35,
+        "lineage": [
+          {
+            "origem": "F07.8",
+            "snapshot": "responsible_performance",
+            "api": "/api/v1/commercial-learning/cockpit",
+            "cockpit": "commercial-learning"
+          }
+        ]
+      },
+      "lineage": [
+        {
+          "origem": "F07.8",
+          "snapshot": "responsible_performance_engine",
+          "api": "/api/v1/commercial-learning/cockpit",
+          "cockpit": "commercial-learning"
+        }
+      ]
+    },
+    "branchLearningEngine": {
+      "porFilial": [
+        {
+          "empresaCodigo": 11495,
+          "totalAcoes": 3,
+          "executadas": 1,
+          "validadas": 1,
+          "receitaIncremental": 152.35,
+          "margemIncremental": 45.71,
+          "roiReal": 152.35,
+          "taxaExecucaoPct": 33.33,
+          "taxaValidacaoPct": 33.33,
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "branch_learning",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        }
+      ],
+      "melhorFilial": {
+        "empresaCodigo": 11495,
+        "totalAcoes": 3,
+        "executadas": 1,
+        "validadas": 1,
+        "receitaIncremental": 152.35,
+        "margemIncremental": 45.71,
+        "roiReal": 152.35,
+        "taxaExecucaoPct": 33.33,
+        "taxaValidacaoPct": 33.33,
+        "lineage": [
+          {
+            "origem": "F07.8",
+            "snapshot": "branch_learning",
+            "api": "/api/v1/commercial-learning/cockpit",
+            "cockpit": "commercial-learning"
+          }
+        ]
+      },
+      "filiaisSemExecucao": [],
+      "lineage": [
+        {
+          "origem": "F07.8",
+          "snapshot": "branch_learning_engine",
+          "api": "/api/v1/commercial-learning/cockpit",
+          "cockpit": "commercial-learning"
+        }
+      ]
+    },
+    "recommendationCalibrationEngine": {
+      "calibrations": [
+        {
+          "actionId": "PV-OPP-C674973B",
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "empresaCodigo": 11495,
+          "roiPrevisto": 165.6,
+          "roiReal": 152.35,
+          "erroPct": 8.0,
+          "confidenceLevel": "ALTA",
+          "executionId": "EX-PV-OPP-C674973B-2026-06-14",
+          "outcomeId": "OC-PV-OPP-C674973B",
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "recommendation_calibration",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        }
+      ],
+      "totalCalibradas": 1,
+      "erroMedioPct": 8.0,
+      "lineage": [
+        {
+          "origem": "F07.8",
+          "snapshot": "calibration_engine",
+          "api": "/api/v1/commercial-learning/cockpit",
+          "cockpit": "commercial-learning"
+        }
+      ]
+    },
+    "outcomeLearningEngine": {
+      "sistemaAprendendo": true,
+      "erroMedioReceita": 13.25,
+      "erroAbsolutoMedio": 13.25,
+      "acuraciaMediaPct": 92.0,
+      "melhoraAoLongoDoTempoPct": 0.0,
+      "acoesObservadas": 1,
+      "lineage": [
+        {
+          "origem": "F07.8",
+          "snapshot": "outcome_learning",
+          "api": "/api/v1/commercial-learning/cockpit",
+          "cockpit": "commercial-learning"
+        }
+      ]
+    },
+    "executiveLearningReport": {
+      "melhorAcaoResultado": "AUMENTAR_PARTICIPACAO",
+      "melhorAcaoMargem": "AUMENTAR_PARTICIPACAO",
+      "piorAcao": "AUMENTAR_PARTICIPACAO",
+      "melhorResponsavel": "JOÃO RYVISON DE ANDRADE SOUZA",
+      "melhorFilial": 11495,
+      "confidenceDistribuicao": {
+        "ALTA": 1,
+        "MEDIA": 0,
+        "BAIXA": 0
+      },
+      "lineage": [
+        {
+          "origem": "F07.8",
+          "snapshot": "executive_learning_report",
+          "api": "/api/v1/commercial-learning/cockpit",
+          "cockpit": "commercial-learning"
+        }
+      ]
+    },
+    "cockpit": {
+      "tituloVisual": "Aprendizado Comercial Produtos Vendidos",
+      "subtitulo": "F07.8 · Efetividade · Calibração · ROI Previsto vs Real",
+      "roiPrevisto": 165.6,
+      "roiRealizado": 152.35,
+      "taxaAcertoPct": 92.0,
+      "melhoresAcoes": [
+        {
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "quantidade": 1,
+          "executadas": 1,
+          "validadas": 1,
+          "receitaPrevista": 165.6,
+          "receitaRealizada": 152.35,
+          "margemPrevista": 49.68,
+          "margemRealizada": 45.71,
+          "roiPrevisto": 165.6,
+          "roiReal": 152.35,
+          "taxaAcertoPct": 92.0,
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "recommendation_effectiveness",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        },
+        {
+          "tipo": "DESENVOLVER_FILIAL",
+          "quantidade": 1,
+          "executadas": 0,
+          "validadas": 0,
+          "receitaPrevista": 46.28,
+          "receitaRealizada": 0.0,
+          "margemPrevista": 13.89,
+          "margemRealizada": 0.0,
+          "roiPrevisto": 46.28,
+          "roiReal": 0.0,
+          "taxaAcertoPct": 0.0,
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "recommendation_effectiveness",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        },
+        {
+          "tipo": "REDUZIR_DEPENDENCIA_COMBUSTIVEL",
+          "quantidade": 1,
+          "executadas": 0,
+          "validadas": 0,
+          "receitaPrevista": 23.14,
+          "receitaRealizada": 0.0,
+          "margemPrevista": 8.1,
+          "margemRealizada": 0.0,
+          "roiPrevisto": 23.14,
+          "roiReal": 0.0,
+          "taxaAcertoPct": 0.0,
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "recommendation_effectiveness",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        }
+      ],
+      "pioresAcoes": [
+        {
+          "tipo": "DESENVOLVER_FILIAL",
+          "quantidade": 1,
+          "executadas": 0,
+          "validadas": 0,
+          "receitaPrevista": 46.28,
+          "receitaRealizada": 0.0,
+          "margemPrevista": 13.89,
+          "margemRealizada": 0.0,
+          "roiPrevisto": 46.28,
+          "roiReal": 0.0,
+          "taxaAcertoPct": 0.0,
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "recommendation_effectiveness",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        },
+        {
+          "tipo": "REDUZIR_DEPENDENCIA_COMBUSTIVEL",
+          "quantidade": 1,
+          "executadas": 0,
+          "validadas": 0,
+          "receitaPrevista": 23.14,
+          "receitaRealizada": 0.0,
+          "margemPrevista": 8.1,
+          "margemRealizada": 0.0,
+          "roiPrevisto": 23.14,
+          "roiReal": 0.0,
+          "taxaAcertoPct": 0.0,
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "recommendation_effectiveness",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        },
+        {
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "quantidade": 1,
+          "executadas": 1,
+          "validadas": 1,
+          "receitaPrevista": 165.6,
+          "receitaRealizada": 152.35,
+          "margemPrevista": 49.68,
+          "margemRealizada": 45.71,
+          "roiPrevisto": 165.6,
+          "roiReal": 152.35,
+          "taxaAcertoPct": 92.0,
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "recommendation_effectiveness",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        }
+      ],
+      "melhoresFiliais": [
+        {
+          "empresaCodigo": 11495,
+          "totalAcoes": 3,
+          "executadas": 1,
+          "validadas": 1,
+          "receitaIncremental": 152.35,
+          "margemIncremental": 45.71,
+          "roiReal": 152.35,
+          "taxaExecucaoPct": 33.33,
+          "taxaValidacaoPct": 33.33,
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "branch_learning",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        }
+      ],
+      "melhoresResponsaveis": [
+        {
+          "responsavel": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "acoesRecebidas": 2,
+          "acoesExecutadas": 1,
+          "acoesValidadas": 1,
+          "receitaGerada": 152.35,
+          "margemGerada": 45.71,
+          "roiMedio": 152.35,
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "responsible_performance",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        },
+        {
+          "responsavel": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "acoesRecebidas": 1,
+          "acoesExecutadas": 0,
+          "acoesValidadas": 0,
+          "receitaGerada": 0.0,
+          "margemGerada": 0.0,
+          "roiMedio": 0.0,
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "responsible_performance",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        }
+      ],
+      "calibrations": [
+        {
+          "actionId": "PV-OPP-C674973B",
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "empresaCodigo": 11495,
+          "roiPrevisto": 165.6,
+          "roiReal": 152.35,
+          "erroPct": 8.0,
+          "confidenceLevel": "ALTA",
+          "executionId": "EX-PV-OPP-C674973B-2026-06-14",
+          "outcomeId": "OC-PV-OPP-C674973B",
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "recommendation_calibration",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        }
+      ],
+      "outcomeLearning": {
+        "sistemaAprendendo": true,
+        "erroMedioReceita": 13.25,
+        "erroAbsolutoMedio": 13.25,
+        "acuraciaMediaPct": 92.0,
+        "melhoraAoLongoDoTempoPct": 0.0,
+        "acoesObservadas": 1,
+        "lineage": [
+          {
+            "origem": "F07.8",
+            "snapshot": "outcome_learning",
+            "api": "/api/v1/commercial-learning/cockpit",
+            "cockpit": "commercial-learning"
+          }
+        ]
+      }
+    },
+    "executiveAnswers": {
+      "1_acoesAvaliadas": 3,
+      "2_acoesExecutadas": 1,
+      "3_acoesValidadas": 1,
+      "4_taxaExecucaoPct": 33.33,
+      "5_taxaValidacaoPct": 33.33,
+      "6_melhorAcao": "AUMENTAR_PARTICIPACAO",
+      "7_piorAcao": "AUMENTAR_PARTICIPACAO",
+      "8_melhorResponsavel": "JOÃO RYVISON DE ANDRADE SOUZA",
+      "9_melhorFilial": 11495,
+      "10_receitaPrevista": 165.6,
+      "11_receitaRealizada": 152.35,
+      "12_margemPrevista": 49.68,
+      "13_margemRealizada": 45.71,
+      "14_roiPrevisto": 165.6,
+      "15_roiRealizado": 152.35,
+      "16_taxaAcertoPct": 92.0,
+      "17_sistemaAprendeu": true,
+      "18_learningEngineAuditavel": true,
+      "19_cockpitAprovado": true,
+      "20_aprovadoF079": true
+    },
+    "qa": {
+      "zeroAcaoSemLineage": true,
+      "zeroAprendizadoSemEvidencia": true,
+      "zeroRoiSemOrigem": true,
+      "semCrossTenantLogico": true,
+      "zeroRecomendacaoInventada": true,
+      "semTermoConveniencia": true,
+      "empresaCodigoObrigatorio": true,
+      "motorAuditavel": true
+    },
+    "parecerFinal": "[PARECER FINAL: APROVADO PARA F07.9]",
+    "dwLayer": {
+      "factCommercialLearning": [
+        {
+          "actionId": "PV-OPP-C674973B",
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "empresaCodigo": 11495,
+          "roiPrevisto": 165.6,
+          "roiReal": 152.35,
+          "erroPct": 8.0,
+          "confidenceLevel": "ALTA",
+          "executionId": "EX-PV-OPP-C674973B-2026-06-14",
+          "outcomeId": "OC-PV-OPP-C674973B",
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "recommendation_calibration",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        }
+      ],
+      "factRecommendationCalibration": [
+        {
+          "actionId": "PV-OPP-C674973B",
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "empresaCodigo": 11495,
+          "roiPrevisto": 165.6,
+          "roiReal": 152.35,
+          "erroPct": 8.0,
+          "confidenceLevel": "ALTA",
+          "executionId": "EX-PV-OPP-C674973B-2026-06-14",
+          "outcomeId": "OC-PV-OPP-C674973B",
+          "lineage": [
+            {
+              "origem": "F07.8",
+              "snapshot": "recommendation_calibration",
+              "api": "/api/v1/commercial-learning/cockpit",
+              "cockpit": "commercial-learning"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

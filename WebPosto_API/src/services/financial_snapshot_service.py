@@ -15,7 +15,14 @@ ROOT = Path(__file__).resolve().parents[2]
 FINANCIAL_DIR = ROOT / "snapshots" / "financial"
 HOMOLOGATED_TTL = 30 * 24 * 3600.0
 
-SNAPSHOT_KINDS = ("financial_overview", "financial_expenses", "financial_receivables", "financial_payables")
+SNAPSHOT_KINDS = (
+    "financial_overview",
+    "financial_expenses",
+    "financial_receivables",
+    "financial_payables",
+    "financial_sales",
+    "financial_stock",
+)
 
 
 def _kind_filename(kind: str, key: str) -> str:
@@ -69,6 +76,60 @@ class FinancialSnapshotService:
         return [kind for kind in SNAPSHOT_KINDS if self.load_kind(kind, key)]
 
     @staticmethod
+    def normalize_period(data_inicial: str, data_final: str) -> tuple[str, str]:
+        di = str(data_inicial or "")[:10]
+        df = str(data_final or "")[:10]
+        if di and df and di > df:
+            di, df = df, di
+        return di, df
+
+    @staticmethod
+    def filter_rows_by_date(
+        rows: list[dict[str, Any]],
+        data_inicial: str,
+        data_final: str,
+    ) -> list[dict[str, Any]]:
+        di, df = FinancialSnapshotService.normalize_period(data_inicial, data_final)
+        if not di or not df:
+            return list(rows)
+        return [
+            row
+            for row in rows
+            if isinstance(row, dict)
+            and di <= str(row.get("data") or "")[:10] <= df
+        ]
+
+    def build_overview_from_expense_rows(self, rows: list[dict[str, Any]]) -> dict[str, Any]:
+        by_empresa: dict[Any, list[dict[str, Any]]] = defaultdict(list)
+        for row in rows:
+            by_empresa[row.get("empresaCodigo")].append(row)
+
+        postos: list[dict[str, Any]] = []
+        total_despesas = Decimal("0")
+        for empresa_codigo, empresa_rows in by_empresa.items():
+            subtotal = self._sum_decimal(empresa_rows)
+            total_despesas += subtotal
+            postos.append(
+                {
+                    "empresaCodigo": empresa_codigo,
+                    "nome": f"Filial {empresa_codigo}",
+                    "total_despesas": str(subtotal.quantize(Decimal("0.01"))),
+                    "total_a_pagar": "0",
+                    "synthetic": False,
+                    "fromHomologatedSnapshot": True,
+                }
+            )
+
+        return {
+            "postos": postos,
+            "consolidado": {
+                "total_despesas": str(total_despesas.quantize(Decimal("0.01"))),
+                "total_a_pagar": "0",
+                "synthetic": False,
+            },
+        }
+
+    @staticmethod
     def _sum_decimal(rows: list[dict[str, Any]], field: str = "valor") -> Decimal:
         total = Decimal("0")
         for row in rows:
@@ -97,43 +158,12 @@ class FinancialSnapshotService:
         if not rows:
             return False
 
-        filtered = [
-            r
-            for r in rows
-            if str(r.get("data") or "")[:10] >= data_inicial[:10]
-            and str(r.get("data") or "")[:10] <= data_final[:10]
-        ]
+        di, df = self.normalize_period(data_inicial, data_final)
+        filtered = self.filter_rows_by_date(rows, di, df)
         if not filtered:
-            filtered = rows[:500]
+            return False
 
-        by_empresa: dict[Any, list[dict[str, Any]]] = defaultdict(list)
-        for row in filtered:
-            by_empresa[row.get("empresaCodigo")].append(row)
-
-        postos: list[dict[str, Any]] = []
-        total_despesas = Decimal("0")
-        for empresa_codigo, empresa_rows in by_empresa.items():
-            subtotal = self._sum_decimal(empresa_rows)
-            total_despesas += subtotal
-            postos.append(
-                {
-                    "empresaCodigo": empresa_codigo,
-                    "nome": f"Filial {empresa_codigo}",
-                    "total_despesas": str(subtotal.quantize(Decimal("0.01"))),
-                    "total_a_pagar": "0",
-                    "synthetic": False,
-                    "fromHomologatedSnapshot": True,
-                }
-            )
-
-        overview = {
-            "postos": postos,
-            "consolidado": {
-                "total_despesas": str(total_despesas.quantize(Decimal("0.01"))),
-                "total_a_pagar": "0",
-                "synthetic": False,
-            },
-        }
+        overview = self.build_overview_from_expense_rows(filtered)
         expenses = {
             "page": 1,
             "limit": min(len(filtered), 500),

@@ -1,5 +1,5 @@
 import { formatCurrency } from "../services/format.js";
-import { downloadCsv } from "../services/export.js";
+import { renderExecutiveCockpitPage } from "../services/executiveCockpitAdapter.js";
 
 function fmtMoney(v) {
   if (v === null || v === undefined) return "—";
@@ -32,64 +32,49 @@ function renderTable(title, items, columns) {
 }
 
 export function renderBenchmark(node, payload, filters, options = {}) {
-  if (!node) return;
-  if (!payload) {
-    node.innerHTML = `<p class="muted">Carregando Benchmark Intelligence…</p>`;
-    return;
-  }
+  const cockpit = payload?.cockpit || {};
 
-  const cockpit = payload.cockpit || {};
-  const exec = payload.executiveAnswers || {};
-  const qa = payload.qa || {};
-  const parecer = payload.parecerFinal || "";
-
-  node.innerHTML = `
-    <header class="view-header">
-      <div>
-        <h2>Benchmark Intelligence</h2>
-        <p class="muted">F04.6 · ${filters?.dataInicial || ""} → ${filters?.dataFinal || ""}</p>
+  renderExecutiveCockpitPage(node, payload, filters, {
+    title: "Benchmark Intelligence",
+    actionsHtml: `
+      <button type="button" id="benchmarkRefresh" class="btn-secondary">Atualizar</button>
+      <button type="button" id="benchmarkExport" class="btn-secondary">Exportar CSV</button>
+    `,
+    detailBuilder: (cockpitDetail, payloadDetail) => {
+      const parecer = payloadDetail.parecerFinal || "";
+      return `
         ${parecer ? `<p class="parecer">${parecer}</p>` : ""}
-      </div>
-      <div class="view-actions">
-        <button type="button" id="benchmarkRefresh" class="btn-secondary">Atualizar</button>
-        <button type="button" id="benchmarkExport" class="btn-secondary">Exportar CSV</button>
-      </div>
-    </header>
-    <div class="kpi-grid">
-      <article class="kpi-card"><span class="kpi-label">Melhor Filial</span><strong>${label(exec["1_melhorFilial"], "nomeFilial", "empresaCodigo")}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Melhor Operador</span><strong>${label(exec["3_melhorOperador"])}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Melhor PDV</span><strong>${label(exec["5_melhorPdv"], "pdvCodigo", "pdvCodigo")}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Potencial Capturável</span><strong>${fmtMoney(exec["15_potencialCapturavel"])}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Paridade Δ</span><strong>${exec.paridadeDelta ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Benchmark Confiável</span><strong>${exec["18_benchmarkConfiavel"] ? "Sim" : "Não"}</strong></article>
-    </div>
-    ${renderTable("Ranking Filiais", cockpit.rankingFiliais, [
-      { key: "nomeFilial", label: "Filial" },
-      { key: "receita", label: "Receita", money: true },
-      { key: "roi", label: "ROI %" },
-    ])}
-    ${renderTable("Top Operadores", cockpit.rankingOperadores, [
-      { key: "employeeName", label: "Operador", render: (r) => label(r) },
-      { key: "benchmarkScore", label: "Score" },
-      { key: "resultadoLiquido", label: "Lucro", money: true },
-    ])}
-    ${renderTable("Ranking PDVs", cockpit.rankingPdvs, [
-      { key: "pdvCodigo", label: "PDV" },
-      { key: "resultadoLiquido", label: "Resultado", money: true },
-      { key: "roi", label: "ROI" },
-    ])}
-    ${renderTable("Gaps", cockpit.gaps, [
-      { key: "tipo", label: "Tipo" },
-      { key: "gap", label: "Gap" },
-    ])}
-    ${renderTable("Best Practices", cockpit.bestPractices, [
-      { key: "padrao", label: "Padrão" },
-      { key: "acao", label: "Ação" },
-    ])}
-  `;
-
-  node.querySelector("#benchmarkRefresh")?.addEventListener("click", () => options.onRefresh?.());
-  node.querySelector("#benchmarkExport")?.addEventListener("click", () => {
-    downloadCsv("benchmark-intelligence.csv", cockpit.rankingOperadores || []);
+        ${renderTable("Ranking Filiais", cockpitDetail.rankingFiliais, [
+          { key: "nomeFilial", label: "Filial" },
+          { key: "receita", label: "Receita", money: true },
+          { key: "roi", label: "ROI %" },
+        ])}
+        ${renderTable("Top Operadores", cockpitDetail.rankingOperadores, [
+          { key: "employeeName", label: "Operador", render: (r) => label(r) },
+          { key: "benchmarkScore", label: "Score" },
+          { key: "resultadoLiquido", label: "Lucro", money: true },
+        ])}
+        ${renderTable("Ranking PDVs", cockpitDetail.rankingPdvs, [
+          { key: "pdvCodigo", label: "PDV" },
+          { key: "resultadoLiquido", label: "Resultado", money: true },
+          { key: "roi", label: "ROI" },
+        ])}
+        ${renderTable("Gaps", cockpitDetail.gaps, [
+          { key: "tipo", label: "Tipo" },
+          { key: "gap", label: "Gap" },
+        ])}
+        ${renderTable("Best Practices", cockpitDetail.bestPractices, [
+          { key: "padrao", label: "Padrão" },
+          { key: "acao", label: "Ação" },
+        ])}
+      `;
+    },
+    refreshButtonId: "benchmarkRefresh",
+    exportButtonId: "benchmarkExport",
+    exportData: cockpit.rankingOperadores || [],
+    exportFileName: "benchmark-intelligence.csv",
+    defaultView: "benchmark",
+    onRefresh: options.onRefresh,
+    onNavigate: options.onNavigate,
   });
 }

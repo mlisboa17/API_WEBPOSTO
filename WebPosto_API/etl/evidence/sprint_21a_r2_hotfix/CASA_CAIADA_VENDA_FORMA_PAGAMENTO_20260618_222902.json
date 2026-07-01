@@ -1,0 +1,43 @@
+{
+  "tenant": "CASA_CAIADA",
+  "endpoint": "VENDA_FORMA_PAGAMENTO",
+  "base_url": "https://web.qualityautomacao.com.br",
+  "path": "/INTEGRACAO/VENDA_FORMA_PAGAMENTO",
+  "url_masked": "https://web.qualityautomacao.com.br/INTEGRACAO/VENDA_FORMA_PAGAMENTO?CHAVE=eabd1f99...53a8&...",
+  "timestamp": "2026-06-18T22:29:02.149991",
+  "http_status": 200,
+  "success": true,
+  "records_count": 200,
+  "sample_payload": {
+    "empresaCodigo": 11495,
+    "vendaCodigo": 356835732,
+    "vendaPrazoCodigo": 378707121,
+    "dataMovimento": "2026-06-11",
+    "vencimento": null,
+    "valorPagamento": 10.5,
+    "taxaPercentual": null,
+    "formaPagamentoCodigo": 20259,
+    "administradoraCodigo": null,
+    "turnoCodigo": 1,
+    "tipoFormaPagamento": "D",
+    "nomeFormaPagamento": "DINHEIRO",
+    "codigo": 356835732
+  },
+  "error": null,
+  "fields_detected": [
+    "empresaCodigo",
+    "vendaCodigo",
+    "vendaPrazoCodigo",
+    "dataMovimento",
+    "vencimento",
+    "valorPagamento",
+    "taxaPercentual",
+    "formaPagamentoCodigo",
+    "administradoraCodigo",
+    "turnoCodigo",
+    "tipoFormaPagamento",
+    "nomeFormaPagamento",
+    "codigo"
+  ],
+  "is_expected_401": false
+}

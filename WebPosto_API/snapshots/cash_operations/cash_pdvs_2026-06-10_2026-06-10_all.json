@@ -1,0 +1,127 @@
+{
+  "lastUpdated": "2026-06-14T18:41:36",
+  "data": {
+    "totalPdvs": 3,
+    "ranking": [
+      {
+        "pdvCodigo": 54193,
+        "fechamentos": 1,
+        "diferencaAcumulada": -105.01,
+        "desvioPadrao": 105.01,
+        "diferencaMedia": -105.01,
+        "operadores": [
+          {
+            "funcionarioCodigo": 294273,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 1
+          }
+        ],
+        "cashRiskScore": 61.88,
+        "band": "Atencao",
+        "vsMediaRede": 55.73,
+        "monitoramentoPrioritario": true
+      },
+      {
+        "pdvCodigo": 15880,
+        "fechamentos": 1,
+        "diferencaAcumulada": -42.24,
+        "desvioPadrao": 42.24,
+        "diferencaMedia": -42.24,
+        "operadores": [
+          {
+            "funcionarioCodigo": 299152,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 1
+          }
+        ],
+        "cashRiskScore": 65.96,
+        "band": "Atencao",
+        "vsMediaRede": -7.04,
+        "monitoramentoPrioritario": true
+      },
+      {
+        "pdvCodigo": 56764,
+        "fechamentos": 1,
+        "diferencaAcumulada": -0.6,
+        "desvioPadrao": 0.6,
+        "diferencaMedia": -0.6,
+        "operadores": [
+          {
+            "funcionarioCodigo": 276288,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 1
+          }
+        ],
+        "cashRiskScore": 68.66,
+        "band": "Atencao",
+        "vsMediaRede": -48.68,
+        "monitoramentoPrioritario": false
+      }
+    ],
+    "alvosCriticos": {
+      "54193": {
+        "pdvCodigo": 54193,
+        "fechamentos": 1,
+        "diferencaAcumulada": -105.01,
+        "desvioPadrao": 105.01,
+        "diferencaMedia": -105.01,
+        "operadores": [
+          {
+            "funcionarioCodigo": 294273,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 1
+          }
+        ],
+        "cashRiskScore": 61.88,
+        "band": "Atencao",
+        "vsMediaRede": 55.73,
+        "monitoramentoPrioritario": true
+      },
+      "15880": {
+        "pdvCodigo": 15880,
+        "fechamentos": 1,
+        "diferencaAcumulada": -42.24,
+        "desvioPadrao": 42.24,
+        "diferencaMedia": -42.24,
+        "operadores": [
+          {
+            "funcionarioCodigo": 299152,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 1
+          }
+        ],
+        "cashRiskScore": 65.96,
+        "band": "Atencao",
+        "vsMediaRede": -7.04,
+        "monitoramentoPrioritario": true
+      },
+      "mediaGlobalQuebra": 49.28
+    }
+  },
+  "snapshotKey": "cash:pdvs:2026-06-10:2026-06-10:all"
+}

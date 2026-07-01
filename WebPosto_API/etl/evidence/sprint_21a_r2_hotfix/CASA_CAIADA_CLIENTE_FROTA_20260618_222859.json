@@ -1,0 +1,25 @@
+{
+  "tenant": "CASA_CAIADA",
+  "endpoint": "CLIENTE_FROTA",
+  "base_url": "https://web.qualityautomacao.com.br",
+  "path": "/INTEGRACAO/CLIENTE_FROTA",
+  "url_masked": "https://web.qualityautomacao.com.br/INTEGRACAO/CLIENTE_FROTA?CHAVE=eabd1f99...53a8&...",
+  "timestamp": "2026-06-18T22:28:59.850342",
+  "http_status": 200,
+  "success": true,
+  "records_count": 200,
+  "sample_payload": {
+    "clienteCodigo": 546586,
+    "veiculos": [],
+    "motoristas": [],
+    "codigo": 546586
+  },
+  "error": null,
+  "fields_detected": [
+    "clienteCodigo",
+    "veiculos",
+    "motoristas",
+    "codigo"
+  ],
+  "is_expected_401": false
+}

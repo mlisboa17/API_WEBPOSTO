@@ -1,4 +1,25 @@
 import { downloadCsv } from "../services/export.js";
+import { bindExecutiveNav } from "../components/executiveFirstFold.js";
+import { buildExecutivePageHtml } from "../components/executiveInsightDetail.js";
+import { buildChartBars, countKpi, moneyKpi } from "../services/executiveKpis.js";
+import {
+  buildFourQuestionBrief,
+  enrichAlert,
+  mapCriticalBranches,
+  mapOpportunities,
+  mapPriorityActions,
+  mapRisks,
+} from "../services/executiveBrief.js";
+
+function fmtCount(v) {
+  if (v == null || v === "") return "Dados indisponíveis";
+  return String(v);
+}
+
+function fmtPct(v) {
+  if (v == null || v === "") return "Dados indisponíveis";
+  return `${v}%`;
+}
 
 function renderTable(title, items, columns) {
   if (!items?.length) return "";
@@ -9,7 +30,7 @@ function renderTable(title, items, columns) {
       const cells = columns
         .map((c) => {
           const val = c.render ? c.render(item) : item[c.key];
-          return `<td>${val ?? "—"}</td>`;
+          return `<td>${val ?? "Dados indisponíveis"}</td>`;
         })
         .join("");
       return `<tr>${cells}</tr>`;
@@ -21,7 +42,7 @@ function renderTable(title, items, columns) {
 export function renderCommercialLearning(node, payload, filters, options = {}) {
   if (!node) return;
   if (!payload) {
-    node.innerHTML = `<p class="muted">Carregando Aprendizado Comercial…</p>`;
+    node.innerHTML = `<p class="muted">Dados indisponíveis para este período.</p>`;
     return;
   }
 
@@ -33,77 +54,160 @@ export function renderCommercialLearning(node, payload, filters, options = {}) {
   const calibration = payload.recommendationCalibrationEngine || {};
   const outcome = payload.outcomeLearningEngine || {};
   const execReport = payload.executiveLearningReport || {};
+
   const tipos = effectiveness.porTipo || cockpit.melhoresAcoes || [];
   const owners = responsible.porResponsavel || cockpit.melhoresResponsaveis || [];
   const filiais = branch.porFilial || cockpit.melhoresFiliais || [];
   const calibrations = calibration.calibrations || cockpit.calibrations || [];
   const parecer = payload.parecerFinal || "";
 
-  node.innerHTML = `
-    <header class="view-header">
-      <div>
-        <h2>Aprendizado Comercial Produtos Vendidos</h2>
-        <p class="muted">F07.8 · Calibração · Efetividade · ROI Previsto vs Real · ${filters?.dataInicial || ""} → ${filters?.dataFinal || ""}</p>
-        ${parecer ? `<p class="parecer">${parecer}</p>` : ""}
-      </div>
-      <div class="view-actions">
-        <button type="button" id="commercialLearningRefresh" class="btn-secondary">Atualizar</button>
-        <button type="button" id="commercialLearningExport" class="btn-secondary">Exportar CSV</button>
-      </div>
-    </header>
-    <div class="kpi-grid">
-      <article class="kpi-card kpi-card--highlight"><span class="kpi-label">Ações avaliadas</span><strong>${exec["1_acoesAvaliadas"] ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Validadas</span><strong>${exec["3_acoesValidadas"] ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">ROI previsto</span><strong>R$ ${exec["14_roiPrevisto"] ?? cockpit.roiPrevisto ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">ROI realizado</span><strong>R$ ${exec["15_roiRealizado"] ?? cockpit.roiRealizado ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Taxa acerto</span><strong>${exec["16_taxaAcertoPct"] ?? cockpit.taxaAcertoPct ?? "—"}%</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Sistema aprendeu</span><strong>${exec["17_sistemaAprendeu"] ? "Sim" : "Não"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Calibradas</span><strong>${calibration.totalCalibradas ?? calibrations.length ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Aprovado F07.9</span><strong>${exec["20_aprovadoF079"] ? "Sim" : "Não"}</strong></article>
+  const totalValidadas = tipos.reduce((sum, row) => sum + Number(row.validadas || 0), 0);
+  const taxaAcertoMedia =
+    tipos.length > 0
+      ? Math.round(
+          tipos.reduce((sum, row) => sum + Number(row.taxaAcertoPct || 0), 0) / tipos.length
+        )
+      : null;
+  const roiRealTotal = tipos.reduce((sum, row) => sum + Number(row.roiReal || 0), 0);
+  const desvios = calibrations.filter((c) => Number(c.erroPct || 0) > 20);
+
+  const kpis = [
+    { label: "Ações validadas", value: countKpi(totalValidadas || null), trendPct: null, status: "ok" },
+    { label: "Taxa de acerto", value: taxaAcertoMedia != null ? fmtPct(taxaAcertoMedia) : "Dados indisponíveis", trendPct: null, status: "ok" },
+    {
+      label: "ROI realizado",
+      value: roiRealTotal > 0 ? moneyKpi(roiRealTotal) : countKpi(exec["10_roiRealCitavel"]),
+      trendPct: null,
+      status: "ok",
+    },
+    {
+      label: "Alertas",
+      value: fmtCount(desvios.length || tipos.length || 0),
+      trendPct: null,
+      status: desvios.length > 0 ? "warn" : "ok",
+    },
+  ];
+
+  const topTipo = [...tipos].sort((a, b) => Number(b.roiReal || 0) - Number(a.roiReal || 0))[0];
+  const topDesvio = [...calibrations].sort((a, b) => Number(b.erroPct || 0) - Number(a.erroPct || 0))[0];
+
+  const brief = buildFourQuestionBrief({
+    what: `${countKpi(totalValidadas)} ação(ões) validada(s) com taxa média de ${taxaAcertoMedia != null ? `${taxaAcertoMedia}%` : "Dados indisponíveis"}.`,
+    why: topTipo
+      ? `${topTipo.tipo || "Tipo dominante"} lidera resultado com ROI ${moneyKpi(topTipo.roiReal)}.`
+      : "Evolução comercial em consolidação.",
+    where: filiais[0]?.empresaCodigo ? `Filial ${filiais[0].empresaCodigo}` : "Rede consolidada",
+    actionNow: topDesvio
+      ? `Revisar desvio de ROI em ${topDesvio.tipo || "ação comercial"}.`
+      : "Replicar ações com melhor taxa de acerto.",
+  });
+
+  const chartBars = buildChartBars(tipos.slice(0, 7), {
+    labelKey: "tipo",
+    valueKey: "roiReal",
+    max: 7,
+  });
+
+  const alertSource = desvios.length ? desvios : calibrations;
+  const alerts = alertSource.slice(0, 3).map((c) =>
+    enrichAlert(
+      {
+        severity: Number(c.erroPct || 0) > 30 ? "ALTO" : "MÉDIO",
+        title: `Desvio de ROI — ${c.tipo || "Ação comercial"}`,
+        detail: c.erroPct != null ? `Erro ${c.erroPct}%` : "",
+        view: "",
+        origin: "Comercial",
+      },
+      {
+        why: "ROI realizado abaixo do previsto",
+        where: c.empresaCodigo ? `Filial ${c.empresaCodigo}` : "Rede",
+        actionNow: "Ajustar meta e replanejar ação",
+      }
+    )
+  );
+
+  const detail = `
+    <div class="exec-detail-toolbar">
+      <button type="button" id="commercialLearningRefresh" class="btn-secondary">Atualizar</button>
+      <button type="button" id="commercialLearningExport" class="btn-secondary">Exportar CSV</button>
     </div>
+    ${parecer ? `<p class="parecer">${parecer}</p>` : ""}
     ${renderTable("Efetividade por tipo de ação", tipos.slice(0, 10), [
       { key: "tipo", label: "Tipo" },
       { key: "validadas", label: "Validadas" },
-      { key: "roiReal", label: "ROI real", render: (r) => `R$ ${r.roiReal ?? "—"}` },
-      { key: "taxaAcertoPct", label: "Taxa acerto", render: (r) => `${r.taxaAcertoPct ?? "—"}%` },
+      { key: "roiReal", label: "ROI real", render: (r) => moneyKpi(r.roiReal) },
+      { key: "taxaAcertoPct", label: "Taxa acerto", render: (r) => fmtPct(r.taxaAcertoPct) },
     ])}
-    ${renderTable("Calibração ROI previsto vs real", calibrations.slice(0, 10), [
-      { key: "actionId", label: "Ação" },
+    ${renderTable("ROI previsto vs realizado", calibrations.slice(0, 10), [
       { key: "tipo", label: "Tipo" },
-      { key: "roiPrevisto", label: "Previsto", render: (r) => `R$ ${r.roiPrevisto ?? "—"}` },
-      { key: "roiReal", label: "Real", render: (r) => `R$ ${r.roiReal ?? "—"}` },
-      { key: "erroPct", label: "Erro %", render: (r) => `${r.erroPct ?? "—"}%` },
+      { key: "roiPrevisto", label: "Previsto", render: (r) => moneyKpi(r.roiPrevisto) },
+      { key: "roiReal", label: "Realizado", render: (r) => moneyKpi(r.roiReal) },
+      { key: "erroPct", label: "Desvio %", render: (r) => fmtPct(r.erroPct) },
       { key: "confidenceLevel", label: "Confiança" },
     ])}
     ${renderTable("Melhores responsáveis", owners.slice(0, 8), [
       { key: "responsavel", label: "Responsável" },
       { key: "acoesValidadas", label: "Validadas" },
-      { key: "receitaGerada", label: "Receita", render: (r) => `R$ ${r.receitaGerada ?? "—"}` },
-      { key: "roiMedio", label: "ROI médio", render: (r) => `R$ ${r.roiMedio ?? "—"}` },
+      { key: "receitaGerada", label: "Receita", render: (r) => moneyKpi(r.receitaGerada) },
+      { key: "roiMedio", label: "ROI médio", render: (r) => moneyKpi(r.roiMedio) },
     ])}
-    ${renderTable("Aprendizado por filial", filiais.slice(0, 8), [
+    ${renderTable("Desempenho por filial", filiais.slice(0, 8), [
       { key: "empresaCodigo", label: "Filial" },
-      { key: "taxaExecucaoPct", label: "Execução %", render: (r) => `${r.taxaExecucaoPct ?? "—"}%` },
-      { key: "taxaValidacaoPct", label: "Validação %", render: (r) => `${r.taxaValidacaoPct ?? "—"}%` },
-      { key: "roiReal", label: "ROI real", render: (r) => `R$ ${r.roiReal ?? "—"}` },
+      { key: "taxaExecucaoPct", label: "Execução %", render: (r) => fmtPct(r.taxaExecucaoPct) },
+      { key: "taxaValidacaoPct", label: "Validação %", render: (r) => fmtPct(r.taxaValidacaoPct) },
+      { key: "roiReal", label: "ROI real", render: (r) => moneyKpi(r.roiReal) },
     ])}
     <section class="panel">
-      <h3>Outcome Learning</h3>
-      <p class="muted">Melhor ação resultado: <strong>${execReport.melhorAcaoResultado ?? exec["6_melhorAcao"] ?? "—"}</strong> · Pior: <strong>${execReport.piorAcao ?? exec["7_piorAcao"] ?? "—"}</strong></p>
-      <p class="muted">Erro médio receita: R$ ${outcome.erroMedioReceita ?? "—"} · Melhora temporal: ${outcome.melhoraAoLongoDoTempoPct ?? "—"}%</p>
+      <h3>Resultados das ações</h3>
+      <p class="muted">Melhor resultado: <strong>${execReport.melhorAcaoResultado ?? exec["6_melhorAcao"] ?? "Dados indisponíveis"}</strong> · Pior: <strong>${execReport.piorAcao ?? exec["7_piorAcao"] ?? "Dados indisponíveis"}</strong></p>
+      <p class="muted">Desvio médio de receita: ${moneyKpi(outcome.erroMedioReceita)} · Evolução no período: ${outcome.melhoraAoLongoDoTempoPct != null ? `${outcome.melhoraAoLongoDoTempoPct}%` : "Dados indisponíveis"}</p>
     </section>
   `;
 
+  node.innerHTML = buildExecutivePageHtml({
+    title: options.pageTitle || "Evolução",
+    actionsHtml: "",
+    kpis,
+    brief,
+    chartBars,
+    chartTitle: "ROI realizado por tipo de ação",
+    criticalBranches: mapCriticalBranches(
+      filiais.slice(0, 3).map((f) => ({
+        name: f.empresaCodigo ? `Filial ${f.empresaCodigo}` : "Rede",
+        metric: fmtPct(f.taxaValidacaoPct),
+        tag: "Validação",
+        view: "",
+      }))
+    ),
+    priorityActions: mapPriorityActions(
+      tipos.slice(0, 3).map((t) => ({
+        title: t.tipo || "Ação comercial",
+        detail: moneyKpi(t.roiReal),
+        view: "",
+      }))
+    ),
+    risks: mapRisks(
+      desvios.slice(0, 3).map((c) => ({
+        title: `Desvio — ${c.tipo || "ação"}`,
+        detail: fmtPct(c.erroPct),
+        severity: Number(c.erroPct) > 30 ? "ALTO" : "MÉDIO",
+      }))
+    ),
+    opportunities: mapOpportunities(
+      owners.slice(0, 3).map((o) => ({
+        title: o.responsavel || "Responsável",
+        impact: moneyKpi(o.receitaGerada),
+        view: "",
+      }))
+    ),
+    alerts,
+    detailHtml: detail,
+    detailSummary: "Detalhamento de evolução comercial",
+  });
+
+  bindExecutiveNav(node, options.onNavigate);
   node.querySelector("#commercialLearningRefresh")?.addEventListener("click", () => options.onRefresh?.());
   node.querySelector("#commercialLearningExport")?.addEventListener("click", () => {
-    downloadCsv("commercial_learning.csv", calibrations, [
-      "actionId",
-      "tipo",
-      "empresaCodigo",
-      "roiPrevisto",
-      "roiReal",
-      "erroPct",
-      "confidenceLevel",
-    ]);
+    downloadCsv("evolucao-comercial.csv", calibrations);
   });
 }

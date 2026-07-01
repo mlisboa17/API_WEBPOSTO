@@ -6,6 +6,7 @@ import {
   fetchEmpresasRede,
   fetchFinancialExpenses,
   fetchFinancialOverview,
+  fetchKpis,
   fetchSales,
   fetchSalesByItem,
   fetchSalesByPayment,
@@ -86,18 +87,9 @@ import {
 import { APP_CONFIG } from "./config.js";
 import { renderFilters, updateCompanyOptions } from "./components/filters.js";
 import { FILIAIS, getFiliaisBaseCodWebSet, hydrateFiliaisCodigoMap, mergeFiliais } from "./components/filiais.js";
-import { renderDashboard } from "./pages/dashboard.js";
-import { renderFinancialOverview } from "./pages/financialOverview.js";
-import { renderExpenses } from "./pages/expenses.js";
-import { renderFinancialExpenses } from "./pages/financialExpenses.js";
-import { renderAccountsPayable } from "./pages/accountsPayable.js";
 import { renderSales } from "./pages/sales.js";
 import { renderStock } from "./pages/stock.js";
-import { renderExecutiveDashboard } from "./pages/executiveDashboard.js";
 import { renderFuelExecutiveDashboard } from "./pages/fuelExecutiveDashboard.js";
-import { renderFinanceCenter } from "./pages/financeCenter.js";
-import { renderCashFlow } from "./pages/cashFlow.js";
-import { renderCashOperations } from "./pages/cashOperations.js";
 import { renderOperatorPerformance } from "./pages/operatorPerformance.js";
 import { renderPeopleIntelligence } from "./pages/peopleIntelligence.js";
 import { renderPeopleRoi } from "./pages/peopleRoi.js";
@@ -117,16 +109,18 @@ import { renderLmcIntelligence } from "./pages/lmcIntelligence.js";
 import { renderFiscalIntelligence } from "./pages/fiscalIntelligence.js";
 import { renderFiscalReconciliation } from "./pages/fiscalReconciliation.js";
 import { renderFuelGovernance } from "./pages/fuelGovernance.js";
-import { renderNonFuelProducts } from "./pages/nonFuelProducts.js";
 import { renderCommercialExecution } from "./pages/commercialExecution.js";
-import { renderCommercialLearning } from "./pages/commercialLearning.js";
-import { renderCommercialCopilot } from "./pages/commercialCopilot.js";
 import { renderExecutiveWorkspace } from "./pages/executiveWorkspace.js";
+import { renderPresidentDashboard } from "./pages/presidentDashboard.js";
 import { renderAdministration } from "./pages/administration.js";
 import { renderFinancialMonitoring } from "./pages/financialMonitoring.js";
 import { renderFinancialOperations } from "./pages/financialOperations.js";
 import { renderFinancialOperationsCenter } from "./pages/financialOperationsCenter.js";
 import { renderFinancialIntelligence } from "./pages/financialIntelligence.js";
+import { renderFinancialHub } from "./pages/financialHub.js";
+import { renderTreasuryHub } from "./pages/treasuryHub.js";
+import { renderProductsHub } from "./pages/productsHub.js";
+import { resolveViewRoute, HUB_VIEWS } from "./services/viewRouting.js";
 import { getDefaultViewForArea, resolveAreaForView } from "./config/navigation.js";
 import { mountNavigationShell } from "./components/navigationShell.js";
 import { renderCompanySwitcher } from "./components/CompanySwitcher.js";
@@ -137,12 +131,70 @@ import {
   enrichFuelSummary,
   enrichStockRows,
 } from "./services/productCatalog.js";
+import { buildPresidentDashboardData } from "./services/strategicAnalytics.js";
+import { fetchPresidentSnapshotBundle } from "./services/presidentSnapshots.js";
 
 const now = new Date();
-const end = now.toISOString().slice(0, 10);
-const startDate = new Date(now.getTime() - 1000 * 60 * 60 * 24 * 5)
-  .toISOString()
-  .slice(0, 10);
+
+function toLocalIsoDate(d) {
+  const pad = (n) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}
+
+const end = toLocalIsoDate(now);
+const startDate = toLocalIsoDate(new Date(now.getFullYear(), now.getMonth(), 1));
+
+function resolveRevenueFromSales(salesResult) {
+  if (!salesResult) return null;
+  const raw = salesResult?.consolidado?.total_vendas;
+  if (raw != null && raw !== "") {
+    const total = Number(raw);
+    if (!Number.isNaN(total)) return total;
+  }
+  const rows = salesResult?.data || [];
+  if (!rows.length) return null;
+  return rows.reduce((acc, row) => acc + Number(row?.totalVenda || 0), 0);
+}
+
+async function loadRevenueTotal(filters, bypassCache) {
+  let salesResult = null;
+  try {
+    salesResult = await getCached(
+      "sales_revenue_hub",
+      filters,
+      () => fetchSales(filters, 1, 1),
+      bypassCache
+    );
+  } catch (error) {
+    console.warn("[revenue] vendas indisponível:", error);
+  }
+
+  const fromSales = resolveRevenueFromSales(salesResult);
+  const salesDegraded =
+    Boolean(salesResult?.degraded) ||
+    salesResult?.source === "degraded" ||
+    salesResult?.success === false;
+
+  if (fromSales != null && !(fromSales === 0 && salesDegraded)) {
+    return fromSales;
+  }
+
+  try {
+    const kpis = await getCached(
+      "kpis_revenue_hub",
+      filters,
+      () => fetchKpis(filters),
+      bypassCache
+    );
+    const fat = Number(kpis?.faturamento);
+    if (!Number.isNaN(fat)) return fat;
+  } catch (error) {
+    console.warn("[revenue] fallback KPI indisponível:", error);
+  }
+
+  if (fromSales === 0 && salesDegraded) return null;
+  return fromSales;
+}
 
 const MULTI_FILTER_KEYS = new Set([
   "empresaCodigo",
@@ -210,6 +262,10 @@ const VIEW_ALIASES = {
   nonFuelProducts: "nonFuelProducts",
   "non-fuel-products": "nonFuelProducts",
   nonfuelproducts: "nonFuelProducts",
+  presidentDashboard: "presidentDashboard",
+  "president-dashboard": "presidentDashboard",
+  presidentdashboard: "presidentDashboard",
+  presidente: "presidentDashboard",
   commercialExecution: "commercialExecution",
   "commercial-execution": "commercialExecution",
   commercialexecution: "commercialExecution",
@@ -222,6 +278,8 @@ const VIEW_ALIASES = {
   administration: "administration",
   admin: "administration",
   executiveWorkspace: "executiveWorkspace",
+  "executive-workspace": "executiveWorkspace",
+  executiveworkspace: "executiveWorkspace",
   workspace: "executiveWorkspace",
   home: "executiveWorkspace",
   financialMonitoring: "financialOperationsCenter",
@@ -236,6 +294,15 @@ const VIEW_ALIASES = {
   financialIntelligence: "financialIntelligence",
   "financial-intelligence": "financialIntelligence",
   financialintelligence: "financialIntelligence",
+  financialHub: "financialHub",
+  "visao-financeira": "financialHub",
+  visaofinanceira: "financialHub",
+  treasuryHub: "treasuryHub",
+  tesouraria: "treasuryHub",
+  productsHub: "productsHub",
+  "produtos-vendidos": "productsHub",
+  "produtos-vendidos-hub": "productsHub",
+  produtosvendidos: "productsHub",
 };
 
 const VIEW_URL_NAMES = {
@@ -262,6 +329,7 @@ const VIEW_URL_NAMES = {
   fiscalReconciliation: "fiscal-reconciliation",
   fuelGovernance: "fuel-governance",
   nonFuelProducts: "non-fuel-products",
+  presidentDashboard: "president-dashboard",
   commercialExecution: "commercial-execution",
   commercialLearning: "commercial-learning",
   commercialCopilot: "commercial-copilot",
@@ -271,11 +339,18 @@ const VIEW_URL_NAMES = {
   financialOperations: "financial-operations-center",
   financialOperationsCenter: "financial-operations-center",
   financialIntelligence: "financial-intelligence",
+  financialHub: "visao-financeira",
+  treasuryHub: "tesouraria",
+  productsHub: "produtos-vendidos",
 };
 
 function normalizeViewId(view) {
-  const raw = String(view || "executive").trim();
+  const raw = String(view || "presidentDashboard").trim();
   return VIEW_ALIASES[raw.toLowerCase()] || raw;
+}
+
+function applyViewRoute(view, hubTab = "") {
+  return resolveViewRoute(normalizeViewId(view), hubTab);
 }
 
 function viewForUrl(view) {
@@ -400,10 +475,13 @@ async function fetchDatasetAcrossCompanies(fetcher, filters, displayLimit) {
 
 function fromUrl() {
   const query = new URLSearchParams(window.location.search);
-  const viewRaw = query.get("view") || "executiveWorkspace";
+  const viewRaw = query.get("view") || "presidentDashboard";
+  const hubTab = query.get("hubTab") || "";
   const viewNormalized = viewRaw === "fuel" ? "fuels" : normalizeViewId(viewRaw);
+  const route = applyViewRoute(viewNormalized, hubTab);
   return {
-    view: viewNormalized,
+    view: route.view,
+    hubTab: route.hubTab,
     pageExpenses: Number(query.get("pageExpenses") || 1),
     pageAccounts: Number(query.get("pageAccounts") || 1),
     pageSales: Number(query.get("pageSales") || 1),
@@ -442,6 +520,10 @@ function writeUrl(state) {
   query.set("pageSales", String(state.pageSales));
   query.set("pageFuels", String(state.pageFuels));
   query.set("pageStock", String(state.pageStock));
+
+  if (state.hubTab && HUB_VIEWS.has(state.view)) {
+    query.set("hubTab", state.hubTab);
+  }
 
   Object.entries(state.filters).forEach(([key, value]) => {
     const serialized = serializeUrlFilterValue(key, value);
@@ -503,6 +585,7 @@ const initialUrlState = fromUrl();
 const state = {
   ...initialUrlState,
   area: resolveAreaForView(initialUrlState.view),
+  hubTab: initialUrlState.hubTab || "",
   adminSection: "filiais",
   limitExpenses: 50,
   limitAccounts: 50,
@@ -517,6 +600,7 @@ const state = {
     receivables: null,
     fuelSummary: null,
     fuelExecutive: null,
+    presidentDashboard: null,
   },
   companies: [],
   productCatalog: null,
@@ -533,8 +617,11 @@ const state = {
 
 const loadingNode = document.querySelector("#loading");
 const errorNode = document.querySelector("#error");
-const executiveNode = document.querySelector("#executiveView");
+const presidentDashboardNode = document.querySelector("#presidentDashboardView");
 const executiveWorkspaceNode = document.querySelector("#executiveWorkspaceView");
+const financialHubNode = document.querySelector("#financialHubView");
+const treasuryHubNode = document.querySelector("#treasuryHubView");
+const productsHubNode = document.querySelector("#productsHubView");
 const dashboardNode = document.querySelector("#dashboardView");
 const expensesNode = document.querySelector("#expensesView");
 const accountsNode = document.querySelector("#accountsView");
@@ -572,7 +659,7 @@ const financialIntelligenceNode = document.querySelector("#financialIntelligence
 const fuelsNode = document.querySelector("#fuelsView");
 const salesNode = document.querySelector("#salesView");
 const stockNode = document.querySelector("#stockView");
-const filtersNode = document.querySelector("#filtersContainer");
+const filtersNode = document.querySelector("#primaryFiltersHost");
 
 function setLoading(flag) {
   loadingNode.classList.toggle("hidden", !flag);
@@ -589,7 +676,18 @@ function setError(message) {
 }
 
 function setView(view, options = {}) {
-  state.view = normalizeViewId(view);
+  const normalized = normalizeViewId(view);
+  let hubTab = options.hubTab;
+  if (hubTab === undefined) {
+    if (HUB_VIEWS.has(normalized)) {
+      hubTab = state.view === normalized && state.hubTab ? state.hubTab : "";
+    } else {
+      hubTab = "";
+    }
+  }
+  const route = applyViewRoute(normalized, hubTab);
+  state.view = route.view;
+  state.hubTab = route.hubTab;
   state.area = resolveAreaForView(state.view);
   if (options.adminSection) {
     state.adminSection = options.adminSection;
@@ -599,9 +697,12 @@ function setView(view, options = {}) {
   mountNavigation();
   const activeView = state.view;
 
-  executiveNode.classList.toggle("hidden", activeView !== "executive");
-  executiveWorkspaceNode.classList.toggle("hidden", activeView !== "executiveWorkspace");
-  dashboardNode.classList.toggle("hidden", activeView !== "dashboard");
+  presidentDashboardNode?.classList.toggle("hidden", activeView !== "presidentDashboard");
+  executiveWorkspaceNode?.classList.toggle("hidden", activeView !== "executiveWorkspace");
+  financialHubNode?.classList.toggle("hidden", activeView !== "financialHub");
+  treasuryHubNode?.classList.toggle("hidden", activeView !== "treasuryHub");
+  productsHubNode?.classList.toggle("hidden", activeView !== "productsHub");
+  dashboardNode?.classList.toggle("hidden", activeView !== "dashboard");
   expensesNode.classList.toggle("hidden", activeView !== "expenses");
   accountsNode.classList.toggle("hidden", activeView !== "accounts");
   financeCenterNode.classList.toggle("hidden", activeView !== "financeCenter");
@@ -674,6 +775,8 @@ function ensureDataDefaults() {
   if (state.data.overviewResilience === undefined) state.data.overviewResilience = null;
   if (!state.data.expenses) state.data.expenses = { resultados: [], data: [] };
   if (state.data.expensesResilience === undefined) state.data.expensesResilience = null;
+  if (state.data.receivablesTotal === undefined) state.data.receivablesTotal = null;
+  if (state.data.revenueTotal === undefined) state.data.revenueTotal = null;
   if (!state.data.accounts) state.data.accounts = { resultados: [], data: [] };
   if (!state.data.sales) state.data.sales = { resultados: [], data: [] };
   if (!state.data.stock) state.data.stock = { resultados: [], data: [] };
@@ -742,7 +845,7 @@ function clearFilters() {
 }
 
 function filterVisibleFieldsForView(view) {
-  const base = ["dataInicial", "dataFinal", "empresaCodigo", "centroCusto", "tipoDespesa", "texto", "valorMin", "valorMax"];
+  const base = ["periodo", "empresaCodigo", "centroCusto", "tipoDespesa", "texto", "valorMin", "valorMax"];
   if (view === "expenses") {
     return [
       ...base,
@@ -844,414 +947,546 @@ async function refreshCompanies(bypassCache = false) {
   refreshCompaniesFromApiInBackground(bypassCache);
 }
 
+async function navigateToView(view) {
+  const route = applyViewRoute(view);
+  setView(route.view, { hubTab: route.hubTab });
+  await refreshAll(false);
+}
+
 function renderAll() {
-  renderExecutiveDashboard(executiveNode, state.data, state.filters);
+  const activeView = state.view;
 
-  renderExecutiveWorkspace(executiveWorkspaceNode, buildWorkspaceDataPayload(), state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-    onNavigate: async (view) => {
-      setView(view);
-      await refreshAll(false);
-    },
-  });
-  
-  renderFinancialOverview(
-    dashboardNode,
-    { data: state.data.overview, resilience: state.data.overviewResilience },
-    {
-    tableState: state.tables.dashboard,
-    onSearchChange: (search) => {
-      state.tables.dashboard.search = search;
-      renderAll();
-    },
-    onSortChange: (sort) => {
-      state.tables.dashboard.sort = sort;
-      renderAll();
-    },
-    onClearFilters: async () => {
-      clearFilters();
-      writeUrl(state);
-      await refreshAll(false);
-    },
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-    exportName: `dashboard_financeiro_${state.filters.dataInicial}`,
-  });
-  renderFinancialExpenses(
-    expensesNode,
-    { data: state.data.expenses, resilience: state.data.expensesResilience },
-    async (nextPage) => {
-      state.pageExpenses = nextPage;
-      writeUrl(state);
-      await refreshExpensesOnly(false);
-    },
-    {
-      tableState: state.tables.expenses,
-      onSearchChange: (search) => {
-        state.tables.expenses.search = search;
-        renderAll();
-      },
-      onSortChange: (sort) => {
-        state.tables.expenses.sort = sort;
-        renderAll();
-      },
-      onClearFilters: async () => {
-        clearFilters();
-        writeUrl(state);
-        await refreshAll(false);
-      },
+  if (activeView === "presidentDashboard") {
+    renderPresidentDashboard(presidentDashboardNode, state.data.presidentDashboard, state.filters, {
       onRefresh: async () => {
         state.cache.clear();
         await refreshAll(true);
       },
-      exportName: `despesas_${state.filters.dataInicial}`,
-    }
-  );
-  renderAccountsPayable(
-    accountsNode,
-    state.data.accounts,
-    async (nextPage) => {
-      state.pageAccounts = nextPage;
-      writeUrl(state);
-      await refreshAccountsOnly(false);
-    },
-    {
-      tableState: state.tables.accounts,
-      onSearchChange: (search) => {
-        state.tables.accounts.search = search;
-        renderAll();
-      },
-      onSortChange: (sort) => {
-        state.tables.accounts.sort = sort;
-        renderAll();
-      },
-      onClearFilters: async () => {
-        clearFilters();
-        writeUrl(state);
-        await refreshAll(false);
-      },
+      onNavigate: navigateToView,
+    });
+  }
+
+  if (activeView === "executiveWorkspace") {
+    renderExecutiveWorkspace(executiveWorkspaceNode, buildWorkspaceDataPayload(), state.filters, {
       onRefresh: async () => {
         state.cache.clear();
         await refreshAll(true);
       },
-      exportName: `contas_pagar_${state.filters.dataInicial}`,
-    }
-  );
+      onNavigate: navigateToView,
+      companies: state.companies,
+    });
+  }
 
-  renderSales(
-    salesNode,
-    state.data.sales,
-    async (nextPage) => {
-      state.pageSales = nextPage;
-      writeUrl(state);
-      await refreshSalesOnly(false);
-    },
-    {
-      fuelSummary: state.data.fuelSummary,
-      tableState: state.tables.sales,
-      onSearchChange: (search) => {
-        state.tables.sales.search = search;
-        renderAll();
+  if (activeView === "financialHub") {
+    renderFinancialHub(financialHubNode, {
+      activeTab: state.hubTab || "receitas",
+      data: {
+        overview: state.data.overview,
+        overviewResilience: state.data.overviewResilience,
+        expenses: state.data.expenses,
+        expensesResilience: state.data.expensesResilience,
+        revenueTotal: state.data.revenueTotal,
       },
-      onSortChange: (sort) => {
-        state.tables.sales.sort = sort;
-        renderAll();
+      filters: state.filters,
+      companies: state.companies,
+      options: {
+        onTabChange: async (tab) => {
+          state.hubTab = tab;
+          writeUrl(state);
+          await refreshAll(false);
+        },
+        onPageChange: async (nextPage) => {
+          state.pageExpenses = nextPage;
+          writeUrl(state);
+          await refreshExpensesOnly(false);
+        },
+        receitas: {
+          tableState: state.tables.dashboard,
+          onNavigate: navigateToView,
+          onSearchChange: (search) => {
+            state.tables.dashboard.search = search;
+            renderAll();
+          },
+          onSortChange: (sort) => {
+            state.tables.dashboard.sort = sort;
+            renderAll();
+          },
+          onClearFilters: async () => {
+            clearFilters();
+            writeUrl(state);
+            await refreshAll(false);
+          },
+          onRefresh: async () => {
+            state.cache.clear();
+            await refreshAll(true);
+          },
+          exportName: `dashboard_financeiro_${state.filters.dataInicial}`,
+        },
+        despesas: {
+          tableState: state.tables.expenses,
+          onSearchChange: (search) => {
+            state.tables.expenses.search = search;
+            renderAll();
+          },
+          onSortChange: (sort) => {
+            state.tables.expenses.sort = sort;
+            renderAll();
+          },
+          onClearFilters: async () => {
+            clearFilters();
+            writeUrl(state);
+            await refreshAll(false);
+          },
+          onRefresh: async () => {
+            state.cache.clear();
+            await refreshAll(true);
+          },
+          exportName: `despesas_${state.filters.dataInicial}`,
+        },
       },
-      onClearFilters: async () => {
-        clearFilters();
+    });
+  }
+
+  if (activeView === "treasuryHub") {
+    renderTreasuryHub(treasuryHubNode, {
+      activeTab: state.hubTab || "fluxo",
+      data: {
+        cashFlow: state.data.cashFlow,
+        accounts: state.data.accounts,
+        cashOperations: state.data.cashOperations,
+        financeCenter: state.data.financeCenter,
+      },
+      filters: state.filters,
+      companies: state.companies,
+      options: {
+        onTabChange: async (tab) => {
+          state.hubTab = tab;
+          writeUrl(state);
+          await refreshAll(false);
+        },
+        onAccountsPageChange: async (nextPage) => {
+          state.pageAccounts = nextPage;
+          writeUrl(state);
+          await refreshAccountsOnly(false);
+        },
+        fluxo: {
+          onRefresh: async () => {
+            state.cache.clear();
+            await refreshAll(true);
+          },
+        },
+        extratos: {
+          onRefresh: async () => {
+            state.cache.clear();
+            await refreshAll(true);
+          },
+        },
+        conciliacao: {
+          onRefresh: async () => {
+            state.cache.clear();
+            await refreshAll(true);
+          },
+        },
+        accounts: {
+          tableState: state.tables.accounts,
+          onSearchChange: (search) => {
+            state.tables.accounts.search = search;
+            renderAll();
+          },
+          onSortChange: (sort) => {
+            state.tables.accounts.sort = sort;
+            renderAll();
+          },
+          onClearFilters: async () => {
+            clearFilters();
+            writeUrl(state);
+            await refreshAll(false);
+          },
+          onRefresh: async () => {
+            state.cache.clear();
+            await refreshAll(true);
+          },
+          exportName: `contas_pagar_${state.filters.dataInicial}`,
+        },
+      },
+    });
+  }
+
+  if (activeView === "productsHub") {
+    renderProductsHub(productsHubNode, {
+      activeTab: state.hubTab || "mix",
+      data: {
+        nonFuelProducts: state.data.nonFuelProducts,
+        commercialCopilot: state.data.commercialCopilot,
+        commercialLearning: state.data.commercialLearning,
+      },
+      filters: state.filters,
+      companies: state.companies,
+      options: {
+        onTabChange: async (tab) => {
+          state.hubTab = tab;
+          writeUrl(state);
+          await refreshAll(false);
+        },
+        onNavigate: navigateToView,
+        onCopilotAsk: async (question) => postCommercialCopilotAsk(state.filters, question),
+        mix: {
+          onRefresh: async () => {
+            state.cache.clear();
+            await refreshAll(true);
+          },
+        },
+        oportunidades: {
+          onRefresh: async () => {
+            state.cache.clear();
+            await refreshAll(true);
+          },
+        },
+        performance: {
+          onRefresh: async () => {
+            state.cache.clear();
+            await refreshAll(true);
+          },
+        },
+      },
+    });
+  }
+
+  if (activeView === "sales") {
+    renderSales(
+      salesNode,
+      state.data.sales,
+      async (nextPage) => {
+        state.pageSales = nextPage;
         writeUrl(state);
-        await refreshAll(false);
+        await refreshSalesOnly(false);
       },
+      {
+        filters: state.filters,
+        companies: state.companies,
+        fuelSummary: state.data.fuelSummary,
+        tableState: state.tables.sales,
+        onSearchChange: (search) => {
+          state.tables.sales.search = search;
+          renderAll();
+        },
+        onSortChange: (sort) => {
+          state.tables.sales.sort = sort;
+          renderAll();
+        },
+        onClearFilters: async () => {
+          clearFilters();
+          writeUrl(state);
+          await refreshAll(false);
+        },
+        onRefresh: async () => {
+          state.cache.clear();
+          await refreshAll(true);
+        },
+        exportName: `vendas_${state.filters.dataInicial}`,
+      }
+    );
+  }
+
+  if (activeView === "fuels") {
+    renderFuelExecutiveDashboard(
+      fuelsNode,
+      state.data.fuelExecutive,
+      {
+        tableState: state.tables.fuels,
+        companies: state.companies,
+        onSearchChange: (search) => {
+          state.tables.fuels.search = search;
+          renderAll();
+        },
+        onSortChange: (sort) => {
+          state.tables.fuels.sort = sort;
+          renderAll();
+        },
+        onClearFilters: async () => {
+          clearFilters();
+          writeUrl(state);
+          await refreshAll(false);
+        },
+        onRefresh: async () => {
+          state.cache.clear();
+          await refreshAll(true);
+        },
+        exportName: `executivo_combustiveis_${state.filters.dataInicial}`,
+      }
+    );
+  }
+
+  if (activeView === "operatorPerformance") {
+    renderOperatorPerformance(operatorPerformanceNode, state.data.operatorPerformance, state.filters, {
       onRefresh: async () => {
         state.cache.clear();
         await refreshAll(true);
       },
-      exportName: `vendas_${state.filters.dataInicial}`,
-    }
-  );
+    });
+  }
 
-  renderFuelExecutiveDashboard(
-    fuelsNode,
-    state.data.fuelExecutive,
-    {
-      tableState: state.tables.fuels,
-      onSearchChange: (search) => {
-        state.tables.fuels.search = search;
-        renderAll();
-      },
-      onSortChange: (sort) => {
-        state.tables.fuels.sort = sort;
-        renderAll();
-      },
-      onClearFilters: async () => {
-        clearFilters();
-        writeUrl(state);
-        await refreshAll(false);
-      },
+  if (activeView === "peopleIntelligence") {
+    renderPeopleIntelligence(peopleIntelligenceNode, state.data.peopleIntelligence, state.filters, {
       onRefresh: async () => {
         state.cache.clear();
         await refreshAll(true);
       },
-      exportName: `executivo_combustiveis_${state.filters.dataInicial}`,
-    }
-  );
+    });
+  }
 
-  renderFinanceCenter(financeCenterNode, state.data.financeCenter, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderCashFlow(cashFlowNode, state.data.cashFlow, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderCashOperations(cashOperationsNode, state.data.cashOperations, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderOperatorPerformance(operatorPerformanceNode, state.data.operatorPerformance, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderPeopleIntelligence(peopleIntelligenceNode, state.data.peopleIntelligence, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderPeopleRoi(peopleRoiNode, state.data.peopleRoi, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderOperationRoi(operationRoiNode, state.data.operationRoi, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderManagementAction(managementActionNode, state.data.managementAction, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderGoalsCampaign(goalsCampaignNode, state.data.goalsCampaign, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderBenchmark(benchmarkNode, state.data.benchmark, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderExecutiveScorecard(executiveScorecardNode, state.data.executiveScorecard, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderCorporateHub(corporateHubNode, state.data.corporateHub, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderExecutiveDecision(executiveDecisionNode, state.data.executiveDecision, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderActionCenter(actionCenterNode, state.data.actionCenter, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderExecutiveCopilot(executiveCopilotNode, state.data.executiveCopilot, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-    onAsk: async (pergunta) => postExecutiveCopilotAsk(state.filters, pergunta),
-  });
-
-  renderRecommendations(recommendationsNode, state.data.recommendations, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderLearning(learningNode, state.data.learning, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderNfceIntelligence(nfceIntelligenceNode, state.data.nfceIntelligence, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderLmcIntelligence(lmcIntelligenceNode, state.data.lmcIntelligence, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderFiscalIntelligence(fiscalIntelligenceNode, state.data.fiscalIntelligence, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderFiscalReconciliation(fiscalReconciliationNode, state.data.fiscalReconciliation, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderFuelGovernance(fuelGovernanceNode, state.data.fuelGovernance, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderNonFuelProducts(nonFuelProductsNode, state.data.nonFuelProducts, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderCommercialExecution(commercialExecutionNode, state.data.commercialExecution, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderCommercialLearning(commercialLearningNode, state.data.commercialLearning, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-  });
-
-  renderCommercialCopilot(commercialCopilotNode, state.data.commercialCopilot, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshAll(true);
-    },
-    onAsk: async (question) => postCommercialCopilotAsk(state.filters, question),
-  });
-
-  renderAdministration(administrationNode, null, state.filters, {
-    section: state.adminSection,
-  });
-
-  renderFinancialMonitoring(financialMonitoringNode, state.data.financialMonitoring, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshFinancialMonitoringOnly(true);
-    },
-  });
-
-  renderFinancialOperations(financialOperationsNode, state.data.financialOperations, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshFinancialOperationsOnly(true);
-    },
-    onRunNow: async () => {
-      await runFinancialOperationsNow(state.filters);
-      state.cache.clear();
-      await refreshFinancialOperationsOnly(true);
-    },
-  });
-
-  renderFinancialOperationsCenter(financialOperationsCenterNode, state.data.financialOperationsCenter, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshFinancialOperationsCenterOnly(true);
-    },
-  });
-
-  renderFinancialIntelligence(financialIntelligenceNode, state.data.financialIntelligence, state.filters, {
-    onRefresh: async () => {
-      state.cache.clear();
-      await refreshFinancialIntelligenceOnly(true);
-    },
-  });
-
-  renderStock(
-    stockNode,
-    state.data.stock,
-    async (nextPage) => {
-      state.pageStock = nextPage;
-      writeUrl(state);
-      await refreshStockOnly(false);
-    },
-    {
-      tableState: state.tables.stock,
-      onSearchChange: (search) => {
-        state.tables.stock.search = search;
-        renderAll();
-      },
-      onSortChange: (sort) => {
-        state.tables.stock.sort = sort;
-        renderAll();
-      },
-      onClearFilters: async () => {
-        clearFilters();
-        writeUrl(state);
-        await refreshAll(false);
-      },
+  if (activeView === "peopleRoi") {
+    renderPeopleRoi(peopleRoiNode, state.data.peopleRoi, state.filters, {
       onRefresh: async () => {
         state.cache.clear();
         await refreshAll(true);
       },
-      exportName: `estoque_${state.filters.dataInicial}`,
-    }
-  );
+    });
+  }
+
+  if (activeView === "operationRoi") {
+    renderOperationRoi(operationRoiNode, state.data.operationRoi, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshAll(true);
+      },
+    });
+  }
+
+  if (activeView === "managementAction") {
+    renderManagementAction(managementActionNode, state.data.managementAction, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshAll(true);
+      },
+    });
+  }
+
+  if (activeView === "goalsCampaign") {
+    renderGoalsCampaign(goalsCampaignNode, state.data.goalsCampaign, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshAll(true);
+      },
+    });
+  }
+
+  if (activeView === "benchmark") {
+    renderBenchmark(benchmarkNode, state.data.benchmark, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshAll(true);
+      },
+      companies: state.companies,
+    });
+  }
+
+  if (activeView === "executiveScorecard") {
+    renderExecutiveScorecard(executiveScorecardNode, state.data.executiveScorecard, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshAll(true);
+      },
+      companies: state.companies,
+    });
+  }
+
+  if (activeView === "corporateHub") {
+    renderCorporateHub(corporateHubNode, state.data.corporateHub, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshAll(true);
+      },
+      companies: state.companies,
+    });
+  }
+
+  if (activeView === "executiveDecision") {
+    renderExecutiveDecision(executiveDecisionNode, state.data.executiveDecision, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshAll(true);
+      },
+      companies: state.companies,
+    });
+  }
+
+  if (activeView === "actionCenter") {
+    renderActionCenter(actionCenterNode, state.data.actionCenter, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshAll(true);
+      },
+      companies: state.companies,
+    });
+  }
+
+  if (activeView === "executiveCopilot") {
+    renderExecutiveCopilot(executiveCopilotNode, state.data.executiveCopilot, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshAll(true);
+      },
+      onAsk: async (pergunta) => postExecutiveCopilotAsk(state.filters, pergunta),
+      companies: state.companies,
+    });
+  }
+
+  if (activeView === "recommendations") {
+    renderRecommendations(recommendationsNode, state.data.recommendations, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshAll(true);
+      },
+      companies: state.companies,
+    });
+  }
+
+  if (activeView === "learning") {
+    renderLearning(learningNode, state.data.learning, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshAll(true);
+      },
+      companies: state.companies,
+    });
+  }
+
+  if (activeView === "nfceIntelligence") {
+    renderNfceIntelligence(nfceIntelligenceNode, state.data.nfceIntelligence, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshAll(true);
+      },
+      onNavigate: navigateToView,
+      companies: state.companies,
+    });
+  }
+
+  if (activeView === "lmcIntelligence") {
+    renderLmcIntelligence(lmcIntelligenceNode, state.data.lmcIntelligence, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshAll(true);
+      },
+      companies: state.companies,
+    });
+  }
+
+  if (activeView === "fiscalIntelligence") {
+    renderFiscalIntelligence(fiscalIntelligenceNode, state.data.fiscalIntelligence, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshAll(true);
+      },
+      onNavigate: navigateToView,
+      companies: state.companies,
+    });
+  }
+
+  if (activeView === "fiscalReconciliation") {
+    renderFiscalReconciliation(fiscalReconciliationNode, state.data.fiscalReconciliation, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshAll(true);
+      },
+      onNavigate: navigateToView,
+      companies: state.companies,
+    });
+  }
+
+  if (activeView === "fuelGovernance") {
+    renderFuelGovernance(fuelGovernanceNode, state.data.fuelGovernance, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshAll(true);
+      },
+      companies: state.companies,
+    });
+  }
+
+  if (activeView === "administration") {
+    renderAdministration(administrationNode, null, state.filters, {
+      section: state.adminSection,
+    });
+  }
+
+  if (activeView === "financialMonitoring") {
+    renderFinancialMonitoring(financialMonitoringNode, state.data.financialMonitoring, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshFinancialMonitoringOnly(true);
+      },
+    });
+  }
+
+  if (activeView === "financialOperations") {
+    renderFinancialOperations(financialOperationsNode, state.data.financialOperations, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshFinancialOperationsOnly(true);
+      },
+      onRunNow: async () => {
+        await runFinancialOperationsNow(state.filters);
+        state.cache.clear();
+        await refreshFinancialOperationsOnly(true);
+      },
+    });
+  }
+
+  if (activeView === "financialOperationsCenter") {
+    renderFinancialOperationsCenter(financialOperationsCenterNode, state.data.financialOperationsCenter, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshFinancialOperationsCenterOnly(true);
+      },
+    });
+  }
+
+  if (activeView === "financialIntelligence") {
+    renderFinancialIntelligence(financialIntelligenceNode, state.data.financialIntelligence, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshFinancialIntelligenceOnly(true);
+      },
+      companies: state.companies,
+    });
+  }
+
+  if (activeView === "stock") {
+    renderStock(
+      stockNode,
+      state.data.stock,
+      async (nextPage) => {
+        state.pageStock = nextPage;
+        writeUrl(state);
+        await refreshStockOnly(false);
+      },
+      {
+        filters: state.filters,
+        companies: state.companies,
+        tableState: state.tables.stock,
+        onSearchChange: (search) => {
+          state.tables.stock.search = search;
+          renderAll();
+        },
+        onSortChange: (sort) => {
+          state.tables.stock.sort = sort;
+          renderAll();
+        },
+        onClearFilters: async () => {
+          clearFilters();
+          writeUrl(state);
+          await refreshAll(false);
+        },
+        onRefresh: async () => {
+          state.cache.clear();
+          await refreshAll(true);
+        },
+        exportName: `estoque_${state.filters.dataInicial}`,
+      }
+    );
+  }
 }
 
 async function loadCashOperationsWithSnapshotFirst(bypassCache = false) {
@@ -2195,12 +2430,134 @@ async function refreshOperationalDataInBackground(bypassCache = false) {
   }
 }
 
+function previousPeriodFilters(filters) {
+  const start = new Date(`${filters.dataInicial}T00:00:00`);
+  const endDate = new Date(`${filters.dataFinal}T00:00:00`);
+  if (Number.isNaN(start.getTime()) || Number.isNaN(endDate.getTime())) return null;
+  const days = Math.max(1, Math.round((endDate - start) / 86400000) + 1);
+  const previousEnd = new Date(start);
+  previousEnd.setDate(previousEnd.getDate() - 1);
+  const previousStart = new Date(previousEnd);
+  previousStart.setDate(previousStart.getDate() - days + 1);
+  return {
+    ...filters,
+    dataInicial: toLocalIsoDate(previousStart),
+    dataFinal: toLocalIsoDate(previousEnd),
+  };
+}
+
+async function safeLoad(loader) {
+  try {
+    return await loader();
+  } catch (error) {
+    console.warn("[president] bloco indisponivel:", error);
+    return null;
+  }
+}
+
+async function loadPresidentDashboard(bypassCache = false) {
+  const snapshotBundle = await fetchPresidentSnapshotBundle(state.filters);
+  if (snapshotBundle.hit) {
+    state.data.presidentDashboard = buildPresidentDashboardData({
+      overview: snapshotBundle.overview?.data ?? snapshotBundle.overview,
+      expenses: snapshotBundle.expenses?.data ?? snapshotBundle.expenses,
+      sales: snapshotBundle.sales?.data ?? snapshotBundle.sales,
+      stock: snapshotBundle.stock?.data ?? snapshotBundle.stock,
+      scorecard: snapshotBundle.scorecard?.data ?? snapshotBundle.scorecard,
+      fuelGovernance: snapshotBundle.fuelGovernance?.data ?? snapshotBundle.fuelGovernance,
+      products: snapshotBundle.products?.data ?? snapshotBundle.products,
+      snapshotHit: true,
+    });
+    return;
+  }
+
+  const previousFilters = previousPeriodFilters(state.filters);
+  const [
+    kpis,
+    previousKpis,
+    overview,
+    previousOverview,
+    expenses,
+    sales,
+    stock,
+    fuelSummary,
+    scorecard,
+  ] = await Promise.all([
+    safeLoad(() => getCached("president_kpis", state.filters, () => fetchKpis(state.filters), bypassCache)),
+    previousFilters
+      ? safeLoad(() => getCached("president_previous_kpis", previousFilters, () => fetchKpis(previousFilters), bypassCache))
+      : null,
+    safeLoad(() => getCached("president_overview", state.filters, () => fetchFinancialOverview(state.filters), bypassCache)),
+    previousFilters
+      ? safeLoad(() => getCached("president_previous_overview", previousFilters, () => fetchFinancialOverview(previousFilters), bypassCache))
+      : null,
+    safeLoad(() =>
+      getCached(
+        "president_expenses",
+        { ...state.filters, page: 1, limit: 500 },
+        () => fetchFinancialExpenses(state.filters, 1, 500),
+        bypassCache
+      )
+    ),
+    safeLoad(() =>
+      getCached(
+        "president_sales",
+        { ...state.filters, scope: "all" },
+        () => fetchDatasetAcrossCompanies(fetchSales, state.filters, state.limitSales),
+        bypassCache
+      )
+    ),
+    safeLoad(() =>
+      getCached(
+        "president_stock",
+        { ...state.filters, scope: "all" },
+        () => fetchDatasetAcrossCompanies(fetchStock, state.filters, state.limitStock),
+        bypassCache
+      )
+    ),
+    safeLoad(() => getCached("president_fuel_summary", state.filters, () => fetchFuelSummary(state.filters), bypassCache)),
+    safeLoad(() =>
+      getCached("president_scorecard", state.filters, () => fetchExecutiveScorecardCockpit(state.filters), bypassCache)
+    ),
+  ]);
+
+  state.data.presidentDashboard = buildPresidentDashboardData({
+    kpis,
+    previousKpis,
+    overview: overview?.data ?? overview,
+    previousOverview: previousOverview?.data ?? previousOverview,
+    expenses: expenses?.data ?? expenses,
+    sales,
+    stock,
+    fuelSummary: enrichFuelSummary(
+      state.productCatalog,
+      Array.isArray(fuelSummary) ? fuelSummary : Array.isArray(fuelSummary?.data) ? fuelSummary.data : []
+    ),
+    scorecard: scorecard?.data ?? scorecard,
+  });
+}
+
 async function refreshAll(bypassCache = false) {
   if (state.view === "administration") {
     setError("");
     setLoading(true);
     try {
       renderAll();
+    } finally {
+      setLoading(false);
+    }
+    return;
+  }
+
+  if (state.view === "presidentDashboard") {
+    setError("");
+    setLoading(true);
+    try {
+      await refreshCompanies(bypassCache);
+      await loadPresidentDashboard(bypassCache);
+      renderAll();
+    } catch (error) {
+      setError(error.message || String(error));
     } finally {
       setLoading(false);
     }
@@ -2223,8 +2580,8 @@ async function refreshAll(bypassCache = false) {
   }
 
   if (state.view === "executive") {
-    await refreshExecutiveFirst(bypassCache);
-    refreshOperationalDataInBackground(bypassCache);
+    setView("executiveWorkspace");
+    await refreshAll(bypassCache);
     return;
   }
 
@@ -2243,10 +2600,31 @@ async function refreshAll(bypassCache = false) {
 
     ensureDataDefaults();
 
+    if (state.view === "financialHub") {
+      const overviewResult = await getCached("overview", state.filters, () => fetchFinancialOverview(state.filters), bypassCache);
+      state.data.overview = overviewResult?.data ?? overviewResult;
+      state.data.overviewResilience = overviewResult?.resilience ?? null;
+      const hubTab = state.hubTab || "receitas";
+      if (hubTab === "receitas") {
+        state.data.revenueTotal = await loadRevenueTotal(state.filters, bypassCache);
+      } else {
+        state.data.revenueTotal = null;
+      }
+      const expensesResult = await getCached(
+        "expenses",
+        { ...state.filters, page: state.pageExpenses, limit: state.limitExpenses },
+        () => fetchFinancialExpenses(state.filters, state.pageExpenses, state.limitExpenses),
+        bypassCache
+      );
+      state.data.expenses = expensesResult?.data ?? expensesResult;
+      state.data.expensesResilience = expensesResult?.resilience ?? null;
+    }
+
     if (state.view === "dashboard") {
       const overviewResult = await getCached("overview", state.filters, () => fetchFinancialOverview(state.filters), bypassCache);
       state.data.overview = overviewResult?.data ?? overviewResult;
       state.data.overviewResilience = overviewResult?.resilience ?? null;
+      state.data.revenueTotal = await loadRevenueTotal(state.filters, bypassCache);
     }
 
     if (state.view === "expenses") {
@@ -2260,6 +2638,24 @@ async function refreshAll(bypassCache = false) {
       state.data.expensesResilience = expensesResult?.resilience ?? null;
     }
 
+    if (state.view === "treasuryHub") {
+      const tab = state.hubTab || "fluxo";
+      if (tab === "contas") {
+        state.data.accounts = await getCached(
+          "accounts",
+          { ...state.filters, scope: "all" },
+          () => fetchDatasetAcrossCompanies(fetchAccountsPayable, state.filters, state.limitAccounts),
+          bypassCache
+        );
+      } else if (tab === "extratos") {
+        await loadCashOperationsWithSnapshotFirst(bypassCache);
+      } else if (tab === "conciliacao") {
+        await loadFinanceCenterWithSnapshotFirst(bypassCache);
+      } else {
+        await loadCashFlowWithSnapshotFirst(bypassCache);
+      }
+    }
+
     if (state.view === "accounts") {
       state.data.accounts = await getCached(
         "accounts",
@@ -2270,19 +2666,29 @@ async function refreshAll(bypassCache = false) {
     }
 
     if (state.view === "sales") {
-      state.data.sales = await getCached(
-        "sales",
-        { ...state.filters, scope: "all" },
-        () => fetchDatasetAcrossCompanies(fetchSales, state.filters, state.limitSales),
-        bypassCache
-      );
-      state.data.fuelSummary = await getCached(
-        "fuelSummary",
-        state.filters,
-        () => fetchFuelSummary(state.filters),
-        bypassCache
-      );
-      state.data.fuelSummary = enrichFuelSummary(state.productCatalog, state.data.fuelSummary || []);
+      try {
+        state.data.sales = await getCached(
+          "sales",
+          { ...state.filters, scope: "all" },
+          () => fetchDatasetAcrossCompanies(fetchSales, state.filters, state.limitSales),
+          bypassCache
+        );
+      } catch (error) {
+        console.warn("[sales] falha ao carregar vendas:", error);
+        state.data.sales = { data: [], page: 1, limit: state.limitSales, total: 0 };
+      }
+      try {
+        state.data.fuelSummary = await getCached(
+          "fuelSummary",
+          state.filters,
+          () => fetchFuelSummary(state.filters),
+          bypassCache
+        );
+        state.data.fuelSummary = enrichFuelSummary(state.productCatalog, state.data.fuelSummary || []);
+      } catch (error) {
+        console.warn("[sales] falha ao carregar resumo de combustíveis:", error);
+        state.data.fuelSummary = [];
+      }
     }
 
     if (state.view === "fuels") {
@@ -2375,6 +2781,17 @@ async function refreshAll(bypassCache = false) {
 
     if (state.view === "fuelGovernance") {
       await loadFuelGovernanceWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "productsHub") {
+      const tab = state.hubTab || "mix";
+      if (tab === "oportunidades") {
+        await loadCommercialCopilotWithSnapshotFirst(bypassCache);
+      } else if (tab === "performance") {
+        await loadCommercialLearningWithSnapshotFirst(bypassCache);
+      } else {
+        await loadNonFuelProductsWithSnapshotFirst(bypassCache);
+      }
     }
 
     if (state.view === "nonFuelProducts") {
@@ -2517,20 +2934,29 @@ async function refreshSalesOnly(bypassCache = false) {
   setError("");
   setLoading(true);
   try {
-    const sales = await getCached(
-      "sales",
-      { ...state.filters, scope: "all" },
-      () => fetchDatasetAcrossCompanies(fetchSales, state.filters, state.limitSales),
-      bypassCache
-    );
-    state.data.sales = sales;
-
-    state.data.fuelSummary = await getCached(
-      "fuelSummary",
-      state.filters,
-      () => fetchFuelSummary(state.filters),
-      bypassCache
-    );
+    try {
+      state.data.sales = await getCached(
+        "sales",
+        { ...state.filters, scope: "all" },
+        () => fetchDatasetAcrossCompanies(fetchSales, state.filters, state.limitSales),
+        bypassCache
+      );
+    } catch (error) {
+      console.warn("[sales] falha ao carregar vendas:", error);
+      state.data.sales = { data: [], page: 1, limit: state.limitSales, total: 0 };
+    }
+    try {
+      state.data.fuelSummary = await getCached(
+        "fuelSummary",
+        state.filters,
+        () => fetchFuelSummary(state.filters),
+        bypassCache
+      );
+      state.data.fuelSummary = enrichFuelSummary(state.productCatalog, state.data.fuelSummary || []);
+    } catch (error) {
+      console.warn("[sales] falha ao carregar resumo de combustíveis:", error);
+      state.data.fuelSummary = [];
+    }
 
     renderAll();
   } catch (error) {
@@ -2559,13 +2985,29 @@ async function refreshStockOnly(bypassCache = false) {
   }
 }
 
-mountFilters();
+function markAppReady() {
+  window.__LOGOS_APP_READY = true;
+  document.querySelector("#bootStatus")?.remove();
+}
 
-document.querySelector("#refreshBtn")?.addEventListener("click", async () => {
-  state.cache.clear();
-  await refreshAll(true);
-});
+try {
+  mountFilters();
 
-setView(state.view);
-writeUrl(state);
-refreshAll(false);
+  document.querySelector("#refreshBtn")?.addEventListener("click", async () => {
+    state.cache.clear();
+    await refreshAll(true);
+  });
+
+  setView(state.view);
+  writeUrl(state);
+  refreshAll(false);
+  markAppReady();
+} catch (error) {
+  const bootStatus = document.querySelector("#bootStatus");
+  if (bootStatus) {
+    bootStatus.className = "state error";
+    bootStatus.textContent = `Falha ao iniciar a interface: ${error?.message || error}`;
+  } else {
+    throw error;
+  }
+}

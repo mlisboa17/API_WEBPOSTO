@@ -1,0 +1,4025 @@
+{
+  "lastUpdated": "2026-06-16T13:41:53.678340",
+  "data": {
+    "sprint": "F06.4",
+    "periodo": {
+      "dataInicial": "2026-06-01",
+      "dataFinal": "2026-06-16"
+    },
+    "elapsedMs": 141.9,
+    "fonte": {
+      "webPostoLive": false,
+      "sped": false,
+      "motores": [
+        "F06.1 NFCE",
+        "F06.2 LMC",
+        "F06.3 Tax/Product"
+      ],
+      "snapshotsHomologados": true
+    },
+    "fiscalLineageEngine": {
+      "items": [
+        {
+          "lineageId": "FL-57E79FFE",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100000,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805639,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-5C78B45E",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100001,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805640,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-97EBFFFD",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100002,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805641,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-9C158A4D",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100003,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805642,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-80C42D04",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100004,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805643,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-0AE64AF7",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100005,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805644,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-11EE8313",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100006,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805645,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-ADB60A7A",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100007,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805646,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-237D128F",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100008,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805647,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-447CF966",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100009,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805648,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-803E0BC8",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100010,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805649,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-5674B251",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100011,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805650,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-A0305C71",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100012,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805651,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-D41401EE",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100013,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805652,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-38679F1C",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100014,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805653,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-2750E662",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100015,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805654,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-19E68E73",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100016,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805655,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-1217D176",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100017,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805656,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-A7FA942D",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100018,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805657,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-B94EB49B",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100019,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805658,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-DE58BBC9",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100020,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805659,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-F6321CE9",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100021,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805660,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-7C4D6435",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100022,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805661,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-26297CA9",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100023,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805662,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-A2A1DE5D",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100024,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805663,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-EB6E8319",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100025,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805664,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-448B15DC",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100026,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805665,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-EED62DEC",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100027,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805666,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-1EB4A4BE",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100028,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805667,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-07130717",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100029,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805668,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-4A99B7C5",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100030,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805669,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-91AA2808",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100031,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805670,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-6F5215BC",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100032,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805671,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-56161668",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100033,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805672,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-0272DEB3",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100034,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805673,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-EDFF3B33",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100035,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805674,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-620C5BC9",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100036,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805675,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-51D7E0D1",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100037,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805676,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-AFDFB5FC",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100038,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805677,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-D898A4EB",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100039,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805678,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-5EFFEFC9",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100040,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805679,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-491C958E",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100041,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805680,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-9784B737",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100042,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805681,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-E29424F2",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100043,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805682,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-25222A01",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100044,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805683,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-30C31605",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100045,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805684,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-795A4615",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100046,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805685,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-FF39EF3B",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100047,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805686,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-F103FE2A",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100048,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805687,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-171C4B0C",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100049,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805688,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "total": 50,
+      "coverage": "PARCIAL"
+    },
+    "nfceVendaReconciliation": {
+      "vendasTotal": 200,
+      "nfceMatched": 200,
+      "coveragePct": 100.0,
+      "vendaSemNfce": 0,
+      "nfceSemVenda": 0,
+      "nfceDivergente": 0,
+      "cancelamentos": 0,
+      "items": [
+        {
+          "tipo": "SEM_NOTA",
+          "quantidade": 0
+        },
+        {
+          "tipo": "DUPLICADA",
+          "quantidade": 0
+        },
+        {
+          "tipo": "CANCELADA",
+          "quantidade": 0
+        },
+        {
+          "tipo": "DIVERGENTE",
+          "quantidade": 0
+        }
+      ],
+      "lineage": [
+        {
+          "origem": "F06.1",
+          "snapshot": "nfce_intelligence",
+          "api": "/INTEGRACAO/NFCE",
+          "cockpit": "fiscal-reconciliation",
+          "webPosto": false
+        }
+      ]
+    },
+    "productSalesReconciliation": {
+      "itensConciliados": 84,
+      "itensTotal": 200,
+      "coveragePct": 42.0,
+      "produtosComNcm": 1,
+      "produtoSemNcm": 8,
+      "itemSemProduto": 116,
+      "produtoSemClassificacao": 0,
+      "ncmAusente": 8,
+      "produtoCodigoAmostra": 1803673,
+      "lineage": [
+        {
+          "origem": "F06.3",
+          "snapshot": "tax_product_fiscal_intelligence",
+          "api": "/INTEGRACAO/PRODUTO",
+          "cockpit": "fiscal-reconciliation",
+          "webPosto": false
+        }
+      ]
+    },
+    "lmcSalesReconciliation": {
+      "litrosVendidos": 0.0,
+      "litrosLmc": 2958.2,
+      "litrosConciliados": 0.0,
+      "litrosSemLmc": 0,
+      "lmcSemVenda": 2958.2,
+      "perdaNaoConciliada": 27.16,
+      "sobraNaoConciliada": 9.96,
+      "abastecimentoMatched": 84,
+      "lineage": [
+        {
+          "origem": "F06.2",
+          "snapshot": "lmc_intelligence",
+          "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+          "cockpit": "fiscal-reconciliation",
+          "webPosto": false
+        }
+      ]
+    },
+    "fiscalFinancialBridge": {
+      "dreFiscalViavel": true,
+      "classificacaoGerencialViavel": true,
+      "centroCustoDisponivel": false,
+      "centroCustoBlocked401": true,
+      "contaRegistros": 17,
+      "planoContaRegistros": 200,
+      "lineage": [
+        {
+          "origem": "F06.3",
+          "snapshot": "f06_0+network_probe",
+          "api": "/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+          "cockpit": "fiscal-reconciliation",
+          "webPosto": false
+        }
+      ]
+    },
+    "fiscalRiskConsolidation": {
+      "risks": [
+        {
+          "tipo": "CENTRO_CUSTO_401",
+          "risco": "ALTO",
+          "descricao": "Centro de custo rede bloqueado",
+          "lineage": [
+            {
+              "origem": "F06.3",
+              "snapshot": "f06_0_fiscal_intelligence_discovery",
+              "api": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 1,
+          "nome": "Gasolina Comum",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 2,
+          "nome": "Gasolina Aditivada",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 3,
+          "nome": "Etanol Hidratado",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 4,
+          "nome": "Diesel S10",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 1260803,
+          "nome": "Gasolina aditivada",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 1975728,
+          "nome": "Etanol",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 1257999,
+          "nome": "Diesel S10",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 1258001,
+          "nome": "Diesel comum",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "tipo": "PLANO_SEM_RUNTIME",
+          "risco": "MÉDIO",
+          "descricao": "Plano gerencial sem service runtime",
+          "lineage": [
+            {
+              "origem": "F06.3",
+              "snapshot": "f06_0",
+              "api": "/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "empresaCodigo": 11495,
+          "risco": "BAIXO",
+          "cancelamentos": 0,
+          "ausencias": 0,
+          "divergencias": 0,
+          "lineage": [
+            {
+              "origem": "F06.1",
+              "snapshot": "nfce_intelligence_engine",
+              "api": "/api/v1/nfce-intelligence/cockpit",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "dominio": "NFCE"
+        },
+        {
+          "empresaCodigo": 5555,
+          "risco": "BAIXO",
+          "cancelamentos": 0,
+          "ausencias": 0,
+          "divergencias": 0,
+          "lineage": [
+            {
+              "origem": "F06.1",
+              "snapshot": "nfce_intelligence_engine",
+              "api": "/api/v1/nfce-intelligence/cockpit",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "dominio": "NFCE"
+        },
+        {
+          "produtoCodigo": 1257884,
+          "nome": "GASOLINA COMUM.",
+          "segmento": "Combustível",
+          "risco": "BAIXO",
+          "semNcm": false,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "audit_raw_fields",
+              "snapshot": "audit_raw_fields_results.json",
+              "api": "/INTEGRACAO/PRODUTO",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "dominio": "LMC",
+          "empresaCodigo": 11495,
+          "risco": "ALTA",
+          "indicePerda": 1.25,
+          "lineage": [
+            {
+              "origem": "F06.2",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ],
+      "total": 14
+    },
+    "cockpit": {
+      "lineageFiscal": [
+        {
+          "lineageId": "FL-57E79FFE",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100000,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805639,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-5C78B45E",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100001,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805640,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-97EBFFFD",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100002,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805641,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-9C158A4D",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100003,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805642,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-80C42D04",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100004,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805643,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-0AE64AF7",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100005,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805644,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-11EE8313",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100006,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805645,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-ADB60A7A",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100007,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805646,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-237D128F",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100008,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805647,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-447CF966",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100009,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805648,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-803E0BC8",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100010,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805649,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-5674B251",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100011,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805650,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-A0305C71",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100012,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805651,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-D41401EE",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100013,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805652,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-38679F1C",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100014,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805653,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-2750E662",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100015,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805654,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-19E68E73",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100016,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805655,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-1217D176",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100017,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805656,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-A7FA942D",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100018,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805657,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-B94EB49B",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100019,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805658,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-DE58BBC9",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100020,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805659,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-F6321CE9",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100021,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805660,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-7C4D6435",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100022,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805661,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-26297CA9",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100023,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805662,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-A2A1DE5D",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100024,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805663,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-EB6E8319",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100025,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805664,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-448B15DC",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100026,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805665,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-EED62DEC",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100027,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805666,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-1EB4A4BE",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100028,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805667,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-07130717",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100029,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805668,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-4A99B7C5",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100030,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805669,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-91AA2808",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100031,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805670,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-6F5215BC",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100032,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805671,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-56161668",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100033,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805672,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-0272DEB3",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100034,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805673,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-EDFF3B33",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100035,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805674,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-620C5BC9",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100036,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805675,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-51D7E0D1",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100037,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805676,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-AFDFB5FC",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100038,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805677,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-D898A4EB",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100039,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805678,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-5EFFEFC9",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100040,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805679,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-491C958E",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100041,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805680,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-9784B737",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100042,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805681,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-E29424F2",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100043,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805682,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-25222A01",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100044,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805683,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-30C31605",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100045,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805684,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-795A4615",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100046,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805685,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-FF39EF3B",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100047,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805686,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-F103FE2A",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100048,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805687,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-171C4B0C",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100049,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805688,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "divergenciasNfce": [
+        {
+          "tipo": "SEM_NOTA",
+          "quantidade": 0
+        },
+        {
+          "tipo": "DUPLICADA",
+          "quantidade": 0
+        },
+        {
+          "tipo": "CANCELADA",
+          "quantidade": 0
+        },
+        {
+          "tipo": "DIVERGENTE",
+          "quantidade": 0
+        }
+      ],
+      "divergenciasLmc": [
+        {
+          "tipo": "LITROS_SEM_LMC",
+          "quantidade": 0
+        },
+        {
+          "tipo": "PERDA_NAO_CONCILIADA",
+          "quantidade": 27.16
+        }
+      ],
+      "produtosCriticos": 8,
+      "riscoFiscalConsolidado": [
+        {
+          "tipo": "CENTRO_CUSTO_401",
+          "risco": "ALTO",
+          "descricao": "Centro de custo rede bloqueado",
+          "lineage": [
+            {
+              "origem": "F06.3",
+              "snapshot": "f06_0_fiscal_intelligence_discovery",
+              "api": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 1,
+          "nome": "Gasolina Comum",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 2,
+          "nome": "Gasolina Aditivada",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 3,
+          "nome": "Etanol Hidratado",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 4,
+          "nome": "Diesel S10",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 1260803,
+          "nome": "Gasolina aditivada",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 1975728,
+          "nome": "Etanol",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 1257999,
+          "nome": "Diesel S10",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        }
+      ],
+      "nfceReconciliation": {
+        "vendasTotal": 200,
+        "nfceMatched": 200,
+        "coveragePct": 100.0,
+        "vendaSemNfce": 0,
+        "nfceSemVenda": 0,
+        "nfceDivergente": 0,
+        "cancelamentos": 0,
+        "items": [
+          {
+            "tipo": "SEM_NOTA",
+            "quantidade": 0
+          },
+          {
+            "tipo": "DUPLICADA",
+            "quantidade": 0
+          },
+          {
+            "tipo": "CANCELADA",
+            "quantidade": 0
+          },
+          {
+            "tipo": "DIVERGENTE",
+            "quantidade": 0
+          }
+        ],
+        "lineage": [
+          {
+            "origem": "F06.1",
+            "snapshot": "nfce_intelligence",
+            "api": "/INTEGRACAO/NFCE",
+            "cockpit": "fiscal-reconciliation",
+            "webPosto": false
+          }
+        ]
+      },
+      "lmcReconciliation": {
+        "litrosVendidos": 0.0,
+        "litrosLmc": 2958.2,
+        "litrosConciliados": 0.0,
+        "litrosSemLmc": 0,
+        "lmcSemVenda": 2958.2,
+        "perdaNaoConciliada": 27.16,
+        "sobraNaoConciliada": 9.96,
+        "abastecimentoMatched": 84,
+        "lineage": [
+          {
+            "origem": "F06.2",
+            "snapshot": "lmc_intelligence",
+            "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+            "cockpit": "fiscal-reconciliation",
+            "webPosto": false
+          }
+        ]
+      },
+      "productReconciliation": {
+        "itensConciliados": 84,
+        "itensTotal": 200,
+        "coveragePct": 42.0,
+        "produtosComNcm": 1,
+        "produtoSemNcm": 8,
+        "itemSemProduto": 116,
+        "produtoSemClassificacao": 0,
+        "ncmAusente": 8,
+        "produtoCodigoAmostra": 1803673,
+        "lineage": [
+          {
+            "origem": "F06.3",
+            "snapshot": "tax_product_fiscal_intelligence",
+            "api": "/INTEGRACAO/PRODUTO",
+            "cockpit": "fiscal-reconciliation",
+            "webPosto": false
+          }
+        ]
+      },
+      "fiscalFinancialBridge": {
+        "dreFiscalViavel": true,
+        "classificacaoGerencialViavel": true,
+        "centroCustoDisponivel": false,
+        "centroCustoBlocked401": true,
+        "contaRegistros": 17,
+        "planoContaRegistros": 200,
+        "lineage": [
+          {
+            "origem": "F06.3",
+            "snapshot": "f06_0+network_probe",
+            "api": "/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+            "cockpit": "fiscal-reconciliation",
+            "webPosto": false
+          }
+        ]
+      },
+      "trustExecutivo": 88.69
+    },
+    "executiveAnswers": {
+      "1_vendasConciliadasNfce": 200,
+      "2_vendasSemNfce": 0,
+      "3_itensConciliadosProduto": 84,
+      "4_produtosComNcm": 1,
+      "5_litrosConciliadosLmc": 0.0,
+      "6_litrosSemLmc": 0,
+      "7_maiorDivergenciaFiscal": 0,
+      "8_maiorDivergenciaOperacional": 0,
+      "9_maiorRiscoConsolidado": "ALTO",
+      "10_filialMaisCritica": 11495,
+      "11_produtoMaisCritico": 1,
+      "12_tanqueBicoMaisCritico": 29882,
+      "13_dreFiscalViavel": true,
+      "14_classificacaoFinanceiraViavel": true,
+      "15_centroCustoDisponivel": false,
+      "16_lineageCompleto": true,
+      "17_motorAuditavel": true,
+      "18_crossTenant": false,
+      "19_fiscalHubAprovado": true,
+      "20_aprovadoF065": true,
+      "trustExecutivo": 88.69
+    },
+    "qa": {
+      "fonteWebPostoLive": false,
+      "snapshotsHomologados": true,
+      "semCrossTenant": true,
+      "semLineageSemOrigem": true,
+      "semConciliacaoSemEvidencia": true,
+      "semProdutoNcmInventado": true,
+      "semLmcSemFonte": true,
+      "semNfceSemFonte": true,
+      "lineageCompleto": true,
+      "motorAuditavel": true
+    },
+    "parecerFinal": "[PARECER FINAL: APROVADO PARA F06.5]",
+    "governanceRules": {
+      "lineageObrigatorio": true,
+      "webPostoLiveProibido": true,
+      "semDadoInventado": true,
+      "semSped": true
+    },
+    "dwLayer": {
+      "factFiscalReconciliation": [
+        {
+          "vendasTotal": 200,
+          "nfceMatched": 200,
+          "coveragePct": 100.0,
+          "vendaSemNfce": 0,
+          "nfceSemVenda": 0,
+          "nfceDivergente": 0,
+          "cancelamentos": 0,
+          "items": [
+            {
+              "tipo": "SEM_NOTA",
+              "quantidade": 0
+            },
+            {
+              "tipo": "DUPLICADA",
+              "quantidade": 0
+            },
+            {
+              "tipo": "CANCELADA",
+              "quantidade": 0
+            },
+            {
+              "tipo": "DIVERGENTE",
+              "quantidade": 0
+            }
+          ],
+          "lineage": [
+            {
+              "origem": "F06.1",
+              "snapshot": "nfce_intelligence",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "itensConciliados": 84,
+          "itensTotal": 200,
+          "coveragePct": 42.0,
+          "produtosComNcm": 1,
+          "produtoSemNcm": 8,
+          "itemSemProduto": 116,
+          "produtoSemClassificacao": 0,
+          "ncmAusente": 8,
+          "produtoCodigoAmostra": 1803673,
+          "lineage": [
+            {
+              "origem": "F06.3",
+              "snapshot": "tax_product_fiscal_intelligence",
+              "api": "/INTEGRACAO/PRODUTO",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "litrosVendidos": 0.0,
+          "litrosLmc": 2958.2,
+          "litrosConciliados": 0.0,
+          "litrosSemLmc": 0,
+          "lmcSemVenda": 2958.2,
+          "perdaNaoConciliada": 27.16,
+          "sobraNaoConciliada": 9.96,
+          "abastecimentoMatched": 84,
+          "lineage": [
+            {
+              "origem": "F06.2",
+              "snapshot": "lmc_intelligence",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "factFiscalLineage": [
+        {
+          "lineageId": "FL-57E79FFE",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100000,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805639,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-5C78B45E",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100001,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805640,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-97EBFFFD",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100002,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805641,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-9C158A4D",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100003,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805642,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-80C42D04",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100004,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805643,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-0AE64AF7",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100005,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805644,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-11EE8313",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100006,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805645,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-ADB60A7A",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100007,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805646,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-237D128F",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100008,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805647,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-447CF966",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100009,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805648,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-803E0BC8",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100010,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805649,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-5674B251",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100011,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805650,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-A0305C71",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100012,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805651,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-D41401EE",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100013,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805652,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-38679F1C",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100014,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805653,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-2750E662",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100015,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805654,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-19E68E73",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100016,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805655,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-1217D176",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100017,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805656,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-A7FA942D",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100018,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805657,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-B94EB49B",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100019,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805658,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-DE58BBC9",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100020,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805659,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-F6321CE9",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100021,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805660,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-7C4D6435",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100022,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805661,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-26297CA9",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100023,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805662,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-A2A1DE5D",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100024,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805663,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-EB6E8319",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100025,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805664,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-448B15DC",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100026,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805665,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-EED62DEC",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100027,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805666,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-1EB4A4BE",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100028,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805667,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-07130717",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100029,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805668,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-4A99B7C5",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100030,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805669,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-91AA2808",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100031,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805670,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-6F5215BC",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100032,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805671,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-56161668",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100033,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805672,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-0272DEB3",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100034,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805673,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-EDFF3B33",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100035,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805674,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-620C5BC9",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100036,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805675,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-51D7E0D1",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100037,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805676,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-AFDFB5FC",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100038,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805677,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-D898A4EB",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100039,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805678,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-5EFFEFC9",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100040,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805679,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-491C958E",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100041,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805680,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-9784B737",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100042,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805681,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-E29424F2",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100043,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805682,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-25222A01",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100044,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805683,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-30C31605",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100045,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805684,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-795A4615",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100046,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805685,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-FF39EF3B",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100047,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805686,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-F103FE2A",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100048,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805687,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "lineageId": "FL-171C4B0C",
+          "empresaCodigo": 11495,
+          "vendaCodigo": 100049,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1803673,
+          "nfceCodigo": 227805688,
+          "lmcCodigo": null,
+          "contaCodigo": null,
+          "planoContaGerencialCodigo": null,
+          "lineage": [
+            {
+              "origem": "F06.4",
+              "snapshot": "d01+nfce+lmc+tax",
+              "api": "/api/v1/fiscal-reconciliation/cockpit",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "factFiscalRiskConsolidated": [
+        {
+          "tipo": "CENTRO_CUSTO_401",
+          "risco": "ALTO",
+          "descricao": "Centro de custo rede bloqueado",
+          "lineage": [
+            {
+              "origem": "F06.3",
+              "snapshot": "f06_0_fiscal_intelligence_discovery",
+              "api": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 1,
+          "nome": "Gasolina Comum",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 2,
+          "nome": "Gasolina Aditivada",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 3,
+          "nome": "Etanol Hidratado",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 4,
+          "nome": "Diesel S10",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 1260803,
+          "nome": "Gasolina aditivada",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 1975728,
+          "nome": "Etanol",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 1257999,
+          "nome": "Diesel S10",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "produtoCodigo": 1258001,
+          "nome": "Diesel comum",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "tipo": "PLANO_SEM_RUNTIME",
+          "risco": "MÉDIO",
+          "descricao": "Plano gerencial sem service runtime",
+          "lineage": [
+            {
+              "origem": "F06.3",
+              "snapshot": "f06_0",
+              "api": "/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "empresaCodigo": 11495,
+          "risco": "BAIXO",
+          "cancelamentos": 0,
+          "ausencias": 0,
+          "divergencias": 0,
+          "lineage": [
+            {
+              "origem": "F06.1",
+              "snapshot": "nfce_intelligence_engine",
+              "api": "/api/v1/nfce-intelligence/cockpit",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "dominio": "NFCE"
+        },
+        {
+          "empresaCodigo": 5555,
+          "risco": "BAIXO",
+          "cancelamentos": 0,
+          "ausencias": 0,
+          "divergencias": 0,
+          "lineage": [
+            {
+              "origem": "F06.1",
+              "snapshot": "nfce_intelligence_engine",
+              "api": "/api/v1/nfce-intelligence/cockpit",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "dominio": "NFCE"
+        },
+        {
+          "produtoCodigo": 1257884,
+          "nome": "GASOLINA COMUM.",
+          "segmento": "Combustível",
+          "risco": "BAIXO",
+          "semNcm": false,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "audit_raw_fields",
+              "snapshot": "audit_raw_fields_results.json",
+              "api": "/INTEGRACAO/PRODUTO",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "dominio": "PRODUTO_NCM"
+        },
+        {
+          "dominio": "LMC",
+          "empresaCodigo": 11495,
+          "risco": "ALTA",
+          "indicePerda": 1.25,
+          "lineage": [
+            {
+              "origem": "F06.2",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "lmc-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ],
+      "factFiscalFinancialBridge": [
+        {
+          "dreFiscalViavel": true,
+          "classificacaoGerencialViavel": true,
+          "centroCustoDisponivel": false,
+          "centroCustoBlocked401": true,
+          "contaRegistros": 17,
+          "planoContaRegistros": 200,
+          "lineage": [
+            {
+              "origem": "F06.3",
+              "snapshot": "f06_0+network_probe",
+              "api": "/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+              "cockpit": "fiscal-reconciliation",
+              "webPosto": false
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1123 @@
+{
+  "lastUpdated": "2026-06-16T13:42:00.143386",
+  "data": {
+    "sprint": "F06.3",
+    "periodo": {
+      "dataInicial": "2026-06-01",
+      "dataFinal": "2026-06-16"
+    },
+    "elapsedMs": 5.9,
+    "fonte": {
+      "webPostoLive": false,
+      "endpointsHomologados": [
+        "/INTEGRACAO/PRODUTO",
+        "/INTEGRACAO/PRODUTO_EMPRESA",
+        "/INTEGRACAO/VENDA_ITEM",
+        "/INTEGRACAO/CONTA",
+        "/INTEGRACAO/PLANO_CONTA_GERENCIAL"
+      ],
+      "snapshotsHomologados": [
+        "audit_raw_fields_results.json",
+        "webposto_network_probe_result.json",
+        "snapshots/fuel",
+        "f06_0_fiscal_intelligence_discovery",
+        "src/domain/adelaide/fiscal_catalog.py"
+      ]
+    },
+    "productFiscalCatalogEngine": {
+      "totalProdutos": 200,
+      "produtosEvidenciados": 9,
+      "ativosEvidenciados": 9,
+      "semClassificacao": 0,
+      "porSegmento": {
+        "Combustível": 9
+      },
+      "combustivel": 9,
+      "loja": 0,
+      "servicos": 0,
+      "coverage": "PARCIAL",
+      "lineage": [
+        {
+          "origem": "F06.3",
+          "snapshot": "audit_raw_fields+fuel+fiscal_catalog",
+          "api": "/INTEGRACAO/PRODUTO",
+          "cockpit": "fiscal-intelligence",
+          "webPosto": false
+        }
+      ]
+    },
+    "ncmIntelligenceEngine": {
+      "comNcmEvidenciado": 1,
+      "semNcmEvidenciado": 8,
+      "ncmFieldNoCatalogo": true,
+      "duplicados": [],
+      "inconsistentes": [],
+      "ausentes": [
+        {
+          "produtoCodigo": 1,
+          "nome": "Gasolina Comum"
+        },
+        {
+          "produtoCodigo": 2,
+          "nome": "Gasolina Aditivada"
+        },
+        {
+          "produtoCodigo": 3,
+          "nome": "Etanol Hidratado"
+        },
+        {
+          "produtoCodigo": 4,
+          "nome": "Diesel S10"
+        },
+        {
+          "produtoCodigo": 1260803,
+          "nome": "Gasolina aditivada"
+        },
+        {
+          "produtoCodigo": 1975728,
+          "nome": "Etanol"
+        },
+        {
+          "produtoCodigo": 1257999,
+          "nome": "Diesel S10"
+        },
+        {
+          "produtoCodigo": 1258001,
+          "nome": "Diesel comum"
+        }
+      ],
+      "lineage": [
+        {
+          "origem": "F06.3",
+          "snapshot": "audit_raw_fields_results.json",
+          "api": "/INTEGRACAO/PRODUTO",
+          "cockpit": "fiscal-intelligence",
+          "webPosto": false
+        }
+      ]
+    },
+    "taxClassificationEngine": {
+      "items": [
+        {
+          "tributo": "ICMS",
+          "classificacao": "PARCIAL",
+          "evidencia": "VENDA_ITEM+fiscal_catalog"
+        },
+        {
+          "tributo": "PIS",
+          "classificacao": "PARCIAL",
+          "evidencia": "VENDA_ITEM.cstPis"
+        },
+        {
+          "tributo": "COFINS",
+          "classificacao": "PARCIAL",
+          "evidencia": "VENDA_ITEM.cstCofins"
+        },
+        {
+          "tributo": "CFOP",
+          "classificacao": "PARCIAL",
+          "evidencia": "VENDA_ITEM.cfop"
+        },
+        {
+          "tributo": "CST",
+          "classificacao": "PARCIAL",
+          "evidencia": "VENDA_ITEM.cst+fiscal_catalog"
+        }
+      ],
+      "coberturaTributaria": "PARCIAL",
+      "tributacaoIntegrada": false,
+      "cfopSped": "NULA",
+      "lineage": [
+        {
+          "origem": "F06.3",
+          "snapshot": "audit_raw_fields+VENDA_ITEM",
+          "api": "/INTEGRACAO/VENDA_ITEM",
+          "cockpit": "fiscal-intelligence",
+          "webPosto": false
+        }
+      ]
+    },
+    "financialClassificationEngine": {
+      "contaRegistros": 17,
+      "planoContaRegistros": 200,
+      "contaCoverage": "PARCIAL",
+      "planoCoverage": "PARCIAL",
+      "estruturaContabilExiste": true,
+      "drePossivel": true,
+      "centroCustoPossivel": false,
+      "centroCustoBlocked401": true,
+      "classificacaoGerencialPossivel": true,
+      "runtimePlanoService": false,
+      "lineage": [
+        {
+          "origem": "F06.3",
+          "snapshot": "webposto_network_probe+f06_0",
+          "api": "/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+          "cockpit": "fiscal-intelligence",
+          "webPosto": false
+        }
+      ]
+    },
+    "fiscalRiskEngine": {
+      "risks": [
+        {
+          "tipo": "CENTRO_CUSTO_401",
+          "risco": "ALTO",
+          "descricao": "Centro de custo rede bloqueado",
+          "lineage": [
+            {
+              "origem": "F06.3",
+              "snapshot": "f06_0_fiscal_intelligence_discovery",
+              "api": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1,
+          "nome": "Gasolina Comum",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 2,
+          "nome": "Gasolina Aditivada",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 3,
+          "nome": "Etanol Hidratado",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 4,
+          "nome": "Diesel S10",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1260803,
+          "nome": "Gasolina aditivada",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1975728,
+          "nome": "Etanol",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1257999,
+          "nome": "Diesel S10",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1258001,
+          "nome": "Diesel comum",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "tipo": "PLANO_SEM_RUNTIME",
+          "risco": "MÉDIO",
+          "descricao": "Plano gerencial sem service runtime",
+          "lineage": [
+            {
+              "origem": "F06.3",
+              "snapshot": "f06_0",
+              "api": "/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1257884,
+          "nome": "GASOLINA COMUM.",
+          "segmento": "Combustível",
+          "risco": "BAIXO",
+          "semNcm": false,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "audit_raw_fields",
+              "snapshot": "audit_raw_fields_results.json",
+              "api": "/INTEGRACAO/PRODUTO",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "total": 11
+    },
+    "executiveFiscalIntelligence": {
+      "maiorRiscoFiscal": {
+        "produtoCodigo": 1,
+        "nome": "Gasolina Comum",
+        "segmento": "Combustível",
+        "risco": "MÉDIO",
+        "semNcm": true,
+        "semClassificacao": false,
+        "lineage": [
+          {
+            "origem": "fiscal_catalog",
+            "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+            "api": "STATIC",
+            "cockpit": "fiscal-intelligence",
+            "webPosto": false
+          }
+        ]
+      },
+      "maiorOportunidadeFiscal": "Join tributário PRODUTO×VENDA_ITEM + motor ICMS/PIS runtime",
+      "produtoMaisCritico": {
+        "produtoCodigo": 1,
+        "nome": "Gasolina Comum",
+        "segmento": "Combustível",
+        "risco": "MÉDIO",
+        "semNcm": true,
+        "semClassificacao": false,
+        "lineage": [
+          {
+            "origem": "fiscal_catalog",
+            "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+            "api": "STATIC",
+            "cockpit": "fiscal-intelligence",
+            "webPosto": false
+          }
+        ]
+      },
+      "categoriaMaisCritica": "Combustível",
+      "coberturaFiscalAtual": 16.67
+    },
+    "cockpit": {
+      "produtos": 200,
+      "produtosEvidenciados": 9,
+      "ncmComEvidencia": 1,
+      "ncmSemEvidencia": 8,
+      "classificacaoTributaria": "PARCIAL",
+      "riscosFiscais": 11,
+      "topRiscos": [
+        {
+          "tipo": "CENTRO_CUSTO_401",
+          "risco": "ALTO",
+          "descricao": "Centro de custo rede bloqueado",
+          "lineage": [
+            {
+              "origem": "F06.3",
+              "snapshot": "f06_0_fiscal_intelligence_discovery",
+              "api": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1,
+          "nome": "Gasolina Comum",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 2,
+          "nome": "Gasolina Aditivada",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 3,
+          "nome": "Etanol Hidratado",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 4,
+          "nome": "Diesel S10",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "coberturaFiscal": 16.67,
+      "estruturaContabil": true,
+      "catalog": {
+        "totalProdutos": 200,
+        "produtosEvidenciados": 9,
+        "ativosEvidenciados": 9,
+        "semClassificacao": 0,
+        "porSegmento": {
+          "Combustível": 9
+        },
+        "combustivel": 9,
+        "loja": 0,
+        "servicos": 0,
+        "coverage": "PARCIAL",
+        "lineage": [
+          {
+            "origem": "F06.3",
+            "snapshot": "audit_raw_fields+fuel+fiscal_catalog",
+            "api": "/INTEGRACAO/PRODUTO",
+            "cockpit": "fiscal-intelligence",
+            "webPosto": false
+          }
+        ]
+      },
+      "taxClassification": {
+        "items": [
+          {
+            "tributo": "ICMS",
+            "classificacao": "PARCIAL",
+            "evidencia": "VENDA_ITEM+fiscal_catalog"
+          },
+          {
+            "tributo": "PIS",
+            "classificacao": "PARCIAL",
+            "evidencia": "VENDA_ITEM.cstPis"
+          },
+          {
+            "tributo": "COFINS",
+            "classificacao": "PARCIAL",
+            "evidencia": "VENDA_ITEM.cstCofins"
+          },
+          {
+            "tributo": "CFOP",
+            "classificacao": "PARCIAL",
+            "evidencia": "VENDA_ITEM.cfop"
+          },
+          {
+            "tributo": "CST",
+            "classificacao": "PARCIAL",
+            "evidencia": "VENDA_ITEM.cst+fiscal_catalog"
+          }
+        ],
+        "coberturaTributaria": "PARCIAL",
+        "tributacaoIntegrada": false,
+        "cfopSped": "NULA",
+        "lineage": [
+          {
+            "origem": "F06.3",
+            "snapshot": "audit_raw_fields+VENDA_ITEM",
+            "api": "/INTEGRACAO/VENDA_ITEM",
+            "cockpit": "fiscal-intelligence",
+            "webPosto": false
+          }
+        ]
+      },
+      "financialClassification": {
+        "contaRegistros": 17,
+        "planoContaRegistros": 200,
+        "contaCoverage": "PARCIAL",
+        "planoCoverage": "PARCIAL",
+        "estruturaContabilExiste": true,
+        "drePossivel": true,
+        "centroCustoPossivel": false,
+        "centroCustoBlocked401": true,
+        "classificacaoGerencialPossivel": true,
+        "runtimePlanoService": false,
+        "lineage": [
+          {
+            "origem": "F06.3",
+            "snapshot": "webposto_network_probe+f06_0",
+            "api": "/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+            "cockpit": "fiscal-intelligence",
+            "webPosto": false
+          }
+        ]
+      },
+      "executiveIntelligence": {
+        "maiorRiscoFiscal": {
+          "produtoCodigo": 1,
+          "nome": "Gasolina Comum",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        "maiorOportunidadeFiscal": "Join tributário PRODUTO×VENDA_ITEM + motor ICMS/PIS runtime",
+        "produtoMaisCritico": {
+          "produtoCodigo": 1,
+          "nome": "Gasolina Comum",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        "categoriaMaisCritica": "Combustível",
+        "coberturaFiscalAtual": 16.67
+      },
+      "trustExecutivo": 88.69
+    },
+    "executiveAnswers": {
+      "1_totalProdutos": 200,
+      "2_comNcm": 1,
+      "3_semNcm": 8,
+      "4_coberturaTributaria": "PARCIAL",
+      "5_coberturaFinanceira": "PARCIAL",
+      "6_riscosFiscais": 11,
+      "7_maiorRisco": "ALTO",
+      "8_maiorOportunidade": "Join tributário PRODUTO×VENDA_ITEM + motor ICMS/PIS runtime",
+      "9_dreViavel": true,
+      "10_centroCustoViavel": false,
+      "11_estruturaGerencialViavel": true,
+      "12_produtoMaisCritico": 1,
+      "13_categoriaMaisCritica": "Combustível",
+      "14_ncmInconsistentes": 0,
+      "15_produtosSemClassificacao": 0,
+      "16_motorAuditavel": true,
+      "17_lineageCompleto": true,
+      "18_crossTenant": false,
+      "19_fiscalIntelligenceMadura": true,
+      "20_aprovadoF064": true,
+      "coberturaFiscalAtual": 16.67,
+      "trustExecutivo": 88.69
+    },
+    "qa": {
+      "fonteWebPostoLive": false,
+      "snapshotsHomologados": true,
+      "semCrossTenant": true,
+      "semProdutoSemOrigem": true,
+      "semNcmInventado": true,
+      "semClassificacaoInventada": true,
+      "semProdutoSemLineage": true,
+      "semCalculoFiscalSemOrigem": true,
+      "lineageCompleto": true,
+      "motorAuditavel": true
+    },
+    "parecerFinal": "[PARECER FINAL: APROVADO PARA F06.4]",
+    "governanceRules": {
+      "lineageObrigatorio": true,
+      "semNcmInventado": true,
+      "semSped": true,
+      "webPostoLiveProibido": true
+    },
+    "dwLayer": {
+      "factFiscalProduct": [
+        {
+          "produtoCodigo": 1257884,
+          "nome": "GASOLINA COMUM.",
+          "ncm": "27101259",
+          "cest": "0600201",
+          "grupoCodigo": 24554,
+          "subGrupo1Codigo": null,
+          "tipoProduto": "C",
+          "combustivel": true,
+          "ativo": true,
+          "codigoAnp": "320102001",
+          "segmento": "Combustível",
+          "lineage": [
+            {
+              "origem": "audit_raw_fields",
+              "snapshot": "audit_raw_fields_results.json",
+              "api": "/INTEGRACAO/PRODUTO",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true,
+          "fiscalProductId": "FP-CB66E24C",
+          "cstEstatico": "060",
+          "monofasico": true
+        },
+        {
+          "produtoCodigo": 1,
+          "nome": "Gasolina Comum",
+          "ncm": null,
+          "tipoProduto": "C",
+          "combustivel": true,
+          "ativo": true,
+          "segmento": "Combustível",
+          "cstEstatico": "060",
+          "monofasico": true,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "confidenceLevel": "MÉDIA",
+          "homologado": true,
+          "fiscalProductId": "FP-B8D41376"
+        },
+        {
+          "produtoCodigo": 2,
+          "nome": "Gasolina Aditivada",
+          "ncm": null,
+          "tipoProduto": "C",
+          "combustivel": true,
+          "ativo": true,
+          "segmento": "Combustível",
+          "cstEstatico": "060",
+          "monofasico": true,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "confidenceLevel": "MÉDIA",
+          "homologado": true,
+          "fiscalProductId": "FP-8F1946E6"
+        },
+        {
+          "produtoCodigo": 3,
+          "nome": "Etanol Hidratado",
+          "ncm": null,
+          "tipoProduto": "C",
+          "combustivel": true,
+          "ativo": true,
+          "segmento": "Combustível",
+          "cstEstatico": "000",
+          "monofasico": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "confidenceLevel": "MÉDIA",
+          "homologado": true,
+          "fiscalProductId": "FP-5AB21F2B"
+        },
+        {
+          "produtoCodigo": 4,
+          "nome": "Diesel S10",
+          "ncm": null,
+          "tipoProduto": "C",
+          "combustivel": true,
+          "ativo": true,
+          "segmento": "Combustível",
+          "cstEstatico": "060",
+          "monofasico": true,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "confidenceLevel": "MÉDIA",
+          "homologado": true,
+          "fiscalProductId": "FP-15DCF5EE"
+        },
+        {
+          "produtoCodigo": 1260803,
+          "nome": "Gasolina aditivada",
+          "ncm": null,
+          "tipoProduto": "C",
+          "combustivel": true,
+          "ativo": true,
+          "segmento": "Combustível",
+          "cstEstatico": "060",
+          "monofasico": true,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "confidenceLevel": "MÉDIA",
+          "homologado": true,
+          "fiscalProductId": "FP-02F6F9D8"
+        },
+        {
+          "produtoCodigo": 1975728,
+          "nome": "Etanol",
+          "ncm": null,
+          "tipoProduto": "C",
+          "combustivel": true,
+          "ativo": true,
+          "segmento": "Combustível",
+          "cstEstatico": "000",
+          "monofasico": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "confidenceLevel": "MÉDIA",
+          "homologado": true,
+          "fiscalProductId": "FP-BDEF3B39"
+        },
+        {
+          "produtoCodigo": 1257999,
+          "nome": "Diesel S10",
+          "ncm": null,
+          "tipoProduto": "C",
+          "combustivel": true,
+          "ativo": true,
+          "segmento": "Combustível",
+          "cstEstatico": "060",
+          "monofasico": true,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "confidenceLevel": "MÉDIA",
+          "homologado": true,
+          "fiscalProductId": "FP-129D75CF"
+        },
+        {
+          "produtoCodigo": 1258001,
+          "nome": "Diesel comum",
+          "ncm": null,
+          "tipoProduto": "C",
+          "combustivel": true,
+          "ativo": true,
+          "segmento": "Combustível",
+          "cstEstatico": "060",
+          "monofasico": true,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ],
+          "confidenceLevel": "MÉDIA",
+          "homologado": true,
+          "fiscalProductId": "FP-A5D65DBD"
+        }
+      ],
+      "factFiscalNcm": {
+        "comNcmEvidenciado": 1,
+        "semNcmEvidenciado": 8,
+        "ncmFieldNoCatalogo": true,
+        "duplicados": [],
+        "inconsistentes": [],
+        "ausentes": [
+          {
+            "produtoCodigo": 1,
+            "nome": "Gasolina Comum"
+          },
+          {
+            "produtoCodigo": 2,
+            "nome": "Gasolina Aditivada"
+          },
+          {
+            "produtoCodigo": 3,
+            "nome": "Etanol Hidratado"
+          },
+          {
+            "produtoCodigo": 4,
+            "nome": "Diesel S10"
+          },
+          {
+            "produtoCodigo": 1260803,
+            "nome": "Gasolina aditivada"
+          },
+          {
+            "produtoCodigo": 1975728,
+            "nome": "Etanol"
+          },
+          {
+            "produtoCodigo": 1257999,
+            "nome": "Diesel S10"
+          },
+          {
+            "produtoCodigo": 1258001,
+            "nome": "Diesel comum"
+          }
+        ],
+        "lineage": [
+          {
+            "origem": "F06.3",
+            "snapshot": "audit_raw_fields_results.json",
+            "api": "/INTEGRACAO/PRODUTO",
+            "cockpit": "fiscal-intelligence",
+            "webPosto": false
+          }
+        ]
+      },
+      "factFiscalRisk": [
+        {
+          "tipo": "CENTRO_CUSTO_401",
+          "risco": "ALTO",
+          "descricao": "Centro de custo rede bloqueado",
+          "lineage": [
+            {
+              "origem": "F06.3",
+              "snapshot": "f06_0_fiscal_intelligence_discovery",
+              "api": "/INTEGRACAO/CENTRO_CUSTO_REDE",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1,
+          "nome": "Gasolina Comum",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 2,
+          "nome": "Gasolina Aditivada",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 3,
+          "nome": "Etanol Hidratado",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 4,
+          "nome": "Diesel S10",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1260803,
+          "nome": "Gasolina aditivada",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1975728,
+          "nome": "Etanol",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1257999,
+          "nome": "Diesel S10",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1258001,
+          "nome": "Diesel comum",
+          "segmento": "Combustível",
+          "risco": "MÉDIO",
+          "semNcm": true,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "fiscal_catalog",
+              "snapshot": "src/domain/adelaide/fiscal_catalog.py",
+              "api": "STATIC",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "tipo": "PLANO_SEM_RUNTIME",
+          "risco": "MÉDIO",
+          "descricao": "Plano gerencial sem service runtime",
+          "lineage": [
+            {
+              "origem": "F06.3",
+              "snapshot": "f06_0",
+              "api": "/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1257884,
+          "nome": "GASOLINA COMUM.",
+          "segmento": "Combustível",
+          "risco": "BAIXO",
+          "semNcm": false,
+          "semClassificacao": false,
+          "lineage": [
+            {
+              "origem": "audit_raw_fields",
+              "snapshot": "audit_raw_fields_results.json",
+              "api": "/INTEGRACAO/PRODUTO",
+              "cockpit": "fiscal-intelligence",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "factFiscalClassification": [
+        {
+          "tributo": "ICMS",
+          "classificacao": "PARCIAL",
+          "evidencia": "VENDA_ITEM+fiscal_catalog"
+        },
+        {
+          "tributo": "PIS",
+          "classificacao": "PARCIAL",
+          "evidencia": "VENDA_ITEM.cstPis"
+        },
+        {
+          "tributo": "COFINS",
+          "classificacao": "PARCIAL",
+          "evidencia": "VENDA_ITEM.cstCofins"
+        },
+        {
+          "tributo": "CFOP",
+          "classificacao": "PARCIAL",
+          "evidencia": "VENDA_ITEM.cfop"
+        },
+        {
+          "tributo": "CST",
+          "classificacao": "PARCIAL",
+          "evidencia": "VENDA_ITEM.cst+fiscal_catalog"
+        }
+      ]
+    }
+  }
+}

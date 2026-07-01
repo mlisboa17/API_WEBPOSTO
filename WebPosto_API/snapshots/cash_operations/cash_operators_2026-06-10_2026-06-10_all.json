@@ -1,0 +1,112 @@
+{
+  "lastUpdated": "2026-06-14T18:41:36",
+  "data": {
+    "totalOperadores": 3,
+    "rankingMelhores": [
+      {
+        "funcionarioCodigo": 276288,
+        "fechamentos": 1,
+        "volumeApurado": 3168.53,
+        "diferencaAcumulada": -0.6,
+        "diferencaMedia": -0.6,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 61.61,
+        "band": "Atencao",
+        "monitoramentoPrioritario": true
+      },
+      {
+        "funcionarioCodigo": 299152,
+        "fechamentos": 1,
+        "volumeApurado": 21140.68,
+        "diferencaAcumulada": -42.24,
+        "diferencaMedia": -42.24,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 58.75,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 294273,
+        "fechamentos": 1,
+        "volumeApurado": 37943.53,
+        "diferencaAcumulada": -105.01,
+        "diferencaMedia": -105.01,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 54.45,
+        "band": "Critico",
+        "monitoramentoPrioritario": true
+      }
+    ],
+    "rankingPiores": [
+      {
+        "funcionarioCodigo": 294273,
+        "fechamentos": 1,
+        "volumeApurado": 37943.53,
+        "diferencaAcumulada": -105.01,
+        "diferencaMedia": -105.01,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 54.45,
+        "band": "Critico",
+        "monitoramentoPrioritario": true
+      },
+      {
+        "funcionarioCodigo": 299152,
+        "fechamentos": 1,
+        "volumeApurado": 21140.68,
+        "diferencaAcumulada": -42.24,
+        "diferencaMedia": -42.24,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 58.75,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 276288,
+        "fechamentos": 1,
+        "volumeApurado": 3168.53,
+        "diferencaAcumulada": -0.6,
+        "diferencaMedia": -0.6,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 61.61,
+        "band": "Atencao",
+        "monitoramentoPrioritario": true
+      }
+    ],
+    "todos": [
+      {
+        "funcionarioCodigo": 294273,
+        "fechamentos": 1,
+        "volumeApurado": 37943.53,
+        "diferencaAcumulada": -105.01,
+        "diferencaMedia": -105.01,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 54.45,
+        "band": "Critico",
+        "monitoramentoPrioritario": true
+      },
+      {
+        "funcionarioCodigo": 299152,
+        "fechamentos": 1,
+        "volumeApurado": 21140.68,
+        "diferencaAcumulada": -42.24,
+        "diferencaMedia": -42.24,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 58.75,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 276288,
+        "fechamentos": 1,
+        "volumeApurado": 3168.53,
+        "diferencaAcumulada": -0.6,
+        "diferencaMedia": -0.6,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 61.61,
+        "band": "Atencao",
+        "monitoramentoPrioritario": true
+      }
+    ]
+  },
+  "snapshotKey": "cash:operators:2026-06-10:2026-06-10:all"
+}

@@ -1,0 +1,41 @@
+{
+  "tenant": "POSTO_VIP",
+  "endpoint": "GRUPO_CLIENTE",
+  "base_url": "https://web.qualityautomacao.com.br",
+  "path": "/INTEGRACAO/GRUPO_CLIENTE",
+  "url_masked": "https://web.qualityautomacao.com.br/INTEGRACAO/GRUPO_CLIENTE?CHAVE=4d6bbe21...8fd7&...",
+  "timestamp": "2026-06-18T22:28:41.575992",
+  "http_status": 200,
+  "success": true,
+  "records_count": 2,
+  "sample_payload": {
+    "grupoCodigo": 6007,
+    "grupoCodigoExterno": null,
+    "descricao": "COLABORADORES",
+    "usaLimiteLitros": false,
+    "limiteLitros": 0.0,
+    "limiteLitrosDisponivel": 0.0,
+    "usaLimiteReais": false,
+    "limiteReais": 0.0,
+    "limiteReaisDisponivel": 0.0,
+    "bloqueadoFinanceiroVencido": false,
+    "diasTolerancia": null,
+    "codigo": 6007
+  },
+  "error": null,
+  "fields_detected": [
+    "grupoCodigo",
+    "grupoCodigoExterno",
+    "descricao",
+    "usaLimiteLitros",
+    "limiteLitros",
+    "limiteLitrosDisponivel",
+    "usaLimiteReais",
+    "limiteReais",
+    "limiteReaisDisponivel",
+    "bloqueadoFinanceiroVencido",
+    "diasTolerancia",
+    "codigo"
+  ],
+  "is_expected_401": false
+}

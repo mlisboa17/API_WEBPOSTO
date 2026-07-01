@@ -1,4 +1,35 @@
 import { downloadCsv } from "../services/export.js";
+import { bindExecutiveNav, renderExecutiveEmptyState } from "../components/executiveFirstFold.js";
+import { buildExecutivePageHtml } from "../components/executiveInsightDetail.js";
+import { buildChartBars, moneyKpi } from "../services/executiveKpis.js";
+import {
+  buildFourQuestionBrief,
+  enrichAlert,
+  mapCriticalBranches,
+  mapOpportunities,
+  mapPriorityActions,
+  mapRisks,
+} from "../services/executiveBrief.js";
+
+function panelText(value, fallback = "Não informado") {
+  if (value == null || value === "" || value === "—") return fallback;
+  return value;
+}
+
+function panelMetric(value) {
+  if (value == null || value === "" || value === "—") return "Dados indisponíveis";
+  return value;
+}
+
+function cellText(value) {
+  if (value == null || value === "" || value === "—") return "Não informado";
+  return value;
+}
+
+function cellMetric(value) {
+  if (value == null || value === "" || value === "—") return "Vazio";
+  return value;
+}
 
 function renderTable(title, items, columns) {
   if (!items?.length) return "";
@@ -9,7 +40,8 @@ function renderTable(title, items, columns) {
       const cells = columns
         .map((c) => {
           const val = c.render ? c.render(item) : item[c.key];
-          return `<td>${val ?? "—"}</td>`;
+          const display = c.metric ? cellMetric(val) : cellText(val);
+          return `<td>${display}</td>`;
         })
         .join("");
       return `<tr>${cells}</tr>`;
@@ -18,123 +50,173 @@ function renderTable(title, items, columns) {
   return `<section class="panel"><h3>${title}</h3><table class="data-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></section>`;
 }
 
+function kpiMoney(value, hasContext) {
+  if (value == null || value === "" || value === "—") return "Dados indisponíveis";
+  if (!hasContext && Number(value) === 0) return "Dados indisponíveis";
+  return moneyKpi(value);
+}
+
+function branchLabel(row) {
+  return row?.empresaNome || row?.nomeFilial || (row?.empresaCodigo ? `Filial ${row.empresaCodigo}` : "Rede");
+}
+
 export function renderNonFuelProducts(node, payload, filters, options = {}) {
   if (!node) return;
   if (!payload) {
-    node.innerHTML = `<p class="muted">Carregando Produtos Vendidos…</p>`;
+    node.innerHTML = renderExecutiveEmptyState({
+      title: options.pageTitle || "Mix & Vendas",
+      message: "Não foi possível montar esta visão no período selecionado.",
+      chartTitle: "Top produtos por receita (Pareto)",
+    });
     return;
   }
 
   const cockpit = payload.cockpit || {};
   const exec = payload.executiveAnswers || {};
-  const ranking = payload.productRankingEngine?.rankingProdutos || cockpit.topProdutos || [];
+  const pareto = payload.productRevenueIntelligence?.pareto || cockpit.pareto8020 || [];
+  const actionCenter = payload.commercialActionCenter || {};
+  const acSummary = actionCenter.summary || {};
+  const acoes = actionCenter.actions || cockpit.acoesComerciais || cockpit.acoesAltaPrioridade || [];
+  const acoesAlta = cockpit.acoesAltaPrioridade || acoes.filter((a) => a.prioridade === "ALTA").slice(0, 8);
+  const branch = payload.branchProductMix?.filiais || cockpit.mixPorFilial || [];
   const depts =
     payload.departmentRefinement?.porDepartamento
       ? Object.entries(payload.departmentRefinement.porDepartamento).map(([departamento, qtd]) => ({
           departamento,
           itens: qtd,
         }))
-      : payload.departmentIntelligence?.receitaPorDepartamento ||
-        payload.productRankingEngine?.topDepartamentos ||
-        cockpit.topDepartamentos ||
-        [];
-  const branch =
-    payload.branchProductMix?.filiais ||
-    payload.multiBranchProductScale?.catalogoPorFilial ||
-    payload.branchProductAnalytics?.filiais ||
-    cockpit.mixPorFilial ||
-    [];
-  const recovery = payload.productMatchRecovery || {};
-  const coverage = payload.productMasterCoverage || payload.productCatalogCompleteness || {};
-  const pareto = payload.productRevenueIntelligence?.pareto || cockpit.pareto8020 || [];
-  const benchmark = payload.productPerformanceBenchmark || {};
-  const forensics = payload.residualSkuForensics || {};
-  const cache = payload.productCacheStrategy || {};
-  const performance = payload.productSalesPerformance || {};
-  const margin = payload.marginIntelligence || {};
-  const mixHealth = payload.mixHealthCommercial || {};
-  const opportunities = payload.opportunityEngine || {};
-  const assortment = payload.productOpportunityAssortment || payload.assortmentIntelligence || {};
-  const marginLeaders = assortment.marginLeaders || {};
-  const lowMargin = assortment.highVolumeLowMargin || {};
-  const expansion = assortment.expansionPotential || {};
-  const benchmarkGap = assortment.branchBenchmarkGap || {};
-  const commercialFocus = assortment.commercialFocus || {};
-  const fuelRisk = assortment.fuelDependencyRisk || {};
-  const topVol = performance.rankingVolume || cockpit.topProdutosVolume || [];
-  const topRev = performance.rankingReceita || cockpit.topProdutosReceita || [];
-  const topMargem = marginLeaders.rankingMargemPct || cockpit.topMargem || [];
-  const alertasMargem = lowMargin.produtos || cockpit.alertasBaixaMargem || [];
-  const potencialExpansao = expansion.produtos || cockpit.potencialExpansao || [];
-  const filiaisAbaixo = benchmarkGap.filiaisAbaixoBenchmark || cockpit.filiaisAbaixoBenchmark || [];
-  const produtosFoco = commercialFocus.produtosFoco || cockpit.produtosFocoComercial || [];
-  const dependenciaComb = fuelRisk.filiaisRisco || cockpit.dependenciaCombustivel || [];
-  const actionCenter = payload.commercialActionCenter || {};
-  const acSummary = actionCenter.summary || {};
-  const acoes = actionCenter.actions || cockpit.acoesComerciais || cockpit.acoesAltaPrioridade || [];
-  const acoesAlta = cockpit.acoesAltaPrioridade || acoes.filter((a) => a.prioridade === "ALTA").slice(0, 8);
-  const parecer = payload.parecerFinal || "";
+      : payload.departmentIntelligence?.receitaPorDepartamento || cockpit.topDepartamentos || [];
+  const alertasMargem = payload.opportunityEngine?.highVolumeLowMargin?.produtos || cockpit.alertasBaixaMargem || [];
 
-  node.innerHTML = `
-    <header class="view-header">
-      <div>
-        <h2>Produtos Vendidos</h2>
-        <p class="muted">F07.6 · Commercial Action Center · ${filters?.dataInicial || ""} → ${filters?.dataFinal || ""}</p>
-        ${parecer ? `<p class="parecer">${parecer}</p>` : ""}
-      </div>
-      <div class="view-actions">
-        <button type="button" id="nonFuelRefresh" class="btn-secondary">Atualizar</button>
-        <button type="button" id="nonFuelExport" class="btn-secondary">Exportar CSV</button>
-      </div>
-    </header>
-    <div class="kpi-grid">
-      <article class="kpi-card kpi-card--highlight"><span class="kpi-label">Ações comerciais</span><strong>${exec["1_totalAcoesComerciais"] ?? acSummary.totalAcoes ?? cockpit.totalAcoes ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Alta prioridade</span><strong>${exec["2_acoesAltaPrioridade"] ?? acSummary.acoesAltaPrioridade ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Impacto receita</span><strong>R$ ${exec["3_impactoTotalReceita"] ?? acSummary.impactoTotalReceita ?? cockpit.impactoTotalReceita ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Impacto margem</span><strong>R$ ${exec["4_impactoTotalMargem"] ?? acSummary.impactoTotalMargem ?? cockpit.impactoTotalMargem ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Com responsável</span><strong>${exec["9_acoesComResponsavel"] ?? acSummary.acoesComResponsavel ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Com evidência</span><strong>${exec["8_acoesComEvidencia"] ?? acSummary.acoesComEvidencia ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">R04 margem</span><strong>${exec["18_r04MargemConfiavel"] ?? actionCenter.r04Gate?.confiabilidadeMargemPct ?? "—"}%</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Aprovado F07.7</span><strong>${exec["20_aprovadoF077"] ? "Sim" : "Não"}</strong></article>
-    </div>
+  const receitaVal = exec["1_receitaProdutosVendidos"] ?? cockpit.receitaTotal;
+  const margemVal = exec["9_margemRealizada"] ?? cockpit.margemRealizada ?? cockpit.margemBruta;
+  const hasProductData = Boolean(pareto.length || branch.length || depts.length);
+  const receitaKpi = kpiMoney(receitaVal, hasProductData);
+  const margemKpi = kpiMoney(margemVal, hasProductData && margemVal != null);
+  const alertasCount = acoesAlta.length || alertasMargem.length;
+
+  const kpis = [
+    { label: "Receita", value: receitaKpi, trendPct: null, status: "ok" },
+    { label: "Despesa", value: "Dados indisponíveis", trendPct: null, status: "ok" },
+    { label: "Margem", value: margemKpi, trendPct: null, status: "ok" },
+    {
+      label: "Alertas",
+      value: String(alertasCount || 0),
+      trendPct: null,
+      status: alertasCount > 0 ? "crit" : "ok",
+    },
+  ];
+
+  const topProduct = pareto[0];
+  const topBranch = [...branch].sort(
+    (a, b) => Number(b.mixProdutosVendidosPct || 0) - Number(a.mixProdutosVendidosPct || 0)
+  )[0];
+  const lowMargin = alertasMargem[0];
+
+  const brief = buildFourQuestionBrief({
+    what:
+      receitaKpi !== "Dados indisponíveis"
+        ? `Produtos vendidos geraram ${receitaKpi} com margem ${margemKpi}.`
+        : "Dados de produtos vendidos indisponíveis para este período.",
+    why: topProduct
+      ? `${topProduct.nome || "Top produto"} lidera receita — ${lowMargin ? "com alerta de margem baixa" : "mix saudável"}.`
+      : "Receita concentrada em poucos SKUs.",
+    where: topBranch ? `${branchLabel(topBranch)} destaca no mix.` : "Distribuição entre filiais a validar.",
+    actionNow: acoesAlta[0]
+      ? `Executar: ${acoesAlta[0].titulo || acoesAlta[0].tipo || "ação comercial prioritária"}.`
+      : "Revisar produtos de alto volume e baixa margem.",
+  });
+
+  const chartBars = buildChartBars(pareto, { labelKey: "nome", valueKey: "valor", max: 7 });
+  const alertSource = acoesAlta.length ? acoesAlta : alertasMargem;
+  const alerts = alertSource.slice(0, 3).map((a) => {
+    const isMarginAlert = !a.titulo && !a.tipo && (a.nome || a.produto);
+    return enrichAlert(
+      {
+        severity: a.prioridade || "ALTO",
+        title: isMarginAlert
+          ? `Margem baixa — ${a.nome || a.produto}`
+          : a.titulo || a.descricao || a.tipo || "Ação comercial",
+        detail: isMarginAlert ? a.motivo || "Alto volume, margem comprimida" : a.empresaCodigo ? `Filial ${a.empresaCodigo}` : "",
+        view: "commercialExecution",
+        origin: "Comercial",
+      },
+      {
+        why: isMarginAlert
+          ? a.motivo || "Alto volume com margem comprimida"
+          : a.tipo || "Oportunidade de receita incremental",
+        where: a.empresaCodigo ? `Filial ${a.empresaCodigo}` : branchLabel(a) || "Rede",
+        actionNow: isMarginAlert ? "Revisar precificação e mix do produto" : "Abrir plano de ação comercial",
+      }
+    );
+  });
+
+  const detail = `
     ${renderTable("Plano de ação comercial", acoes.slice(0, 12), [
-      { key: "id", label: "ID" },
       { key: "tipo", label: "Tipo" },
       { key: "titulo", label: "Ação" },
       { key: "prioridade", label: "Prioridade" },
       { key: "status", label: "Status" },
-      { key: "responsavel", label: "Responsável", render: (r) => r.responsavel?.ownerName ?? "—" },
-      { key: "impactoEstimadoReceita", label: "Impacto R$", render: (r) => (r.impactoEstimadoReceita != null ? Number(r.impactoEstimadoReceita).toFixed(2) : "—") },
-      { key: "prazo", label: "Prazo" },
-    ])}
-    ${renderTable("Alta prioridade", acoesAlta.slice(0, 8), [
-      { key: "tipo", label: "Tipo" },
-      { key: "descricao", label: "Descrição" },
-      { key: "produtoCodigo", label: "Produto" },
-      { key: "empresaCodigo", label: "Filial" },
-      { key: "status", label: "Status" },
-    ])}
-    ${renderTable("Departamentos refinados", depts.slice(0, 8), [
-      { key: "departamento", label: "Departamento", render: (r) => r.departamento ?? r.nome ?? "—" },
-      { key: "itens", label: "Produtos", render: (r) => r.itens ?? r.qtd ?? "—" },
-      { key: "receita", label: "Receita R$", render: (r) => (r.receita ?? r.valor) != null ? Number(r.receita ?? r.valor).toFixed(2) : "—" },
-    ])}
-    ${renderTable("Pareto 80/20", pareto.slice(0, 8), [
-      { key: "produtoCodigo", label: "Produto" },
-      { key: "nome", label: "Nome" },
-      { key: "valor", label: "Receita R$", render: (r) => (r.valor != null ? Number(r.valor).toFixed(2) : "—") },
-      { key: "cumPct", label: "Acum. %", render: (r) => `${r.cumPct ?? "—"}%` },
+      { key: "responsavel", label: "Responsável", render: (r) => cellText(r.responsavel?.ownerName) },
     ])}
     ${renderTable("Mix por filial", branch, [
-      { key: "empresaCodigo", label: "Filial" },
-      { key: "empresaNome", label: "Nome", render: (r) => r.empresaNome ?? r.nomeFilial ?? r.filial ?? "—" },
-      { key: "mixProdutosVendidosPct", label: "Mix PV %", render: (r) => r.mixProdutosVendidosPct ?? "—" },
-      { key: "dependenciaCombustivelPct", label: "Dep. comb. %" },
+      { key: "empresaCodigo", label: "Filial", render: (r) => cellText(r.empresaCodigo) },
+      { key: "empresaNome", label: "Nome", render: (r) => cellText(r.empresaNome ?? r.nomeFilial) },
+      { key: "mixProdutosVendidosPct", label: "Mix PV %", metric: true, render: (r) => (r.mixProdutosVendidosPct != null ? `${r.mixProdutosVendidosPct}%` : null) },
+    ])}
+    ${renderTable("Departamentos", depts.slice(0, 8), [
+      { key: "departamento", label: "Departamento", render: (r) => cellText(r.departamento ?? r.nome) },
+      {
+        key: "receita",
+        label: "Receita R$",
+        metric: true,
+        render: (r) => ((r.receita ?? r.valor) != null ? Number(r.receita ?? r.valor).toFixed(2) : null),
+      },
     ])}
   `;
 
+  node.innerHTML = buildExecutivePageHtml({
+    title: options.pageTitle || "Mix & Vendas",
+    actionsHtml: "",
+    kpis,
+    brief,
+    chartBars,
+    chartTitle: "Top produtos por receita (Pareto)",
+    criticalBranches: mapCriticalBranches(
+      branch
+        .slice()
+        .sort((a, b) => Number(a.mixProdutosVendidosPct || 0) - Number(b.mixProdutosVendidosPct || 0))
+        .slice(0, 3)
+        .map((b) => ({
+          name: panelText(b.empresaNome || (b.empresaCodigo ? `Filial ${b.empresaCodigo}` : null)),
+          metric: b.mixProdutosVendidosPct != null ? `${b.mixProdutosVendidosPct}% mix` : "Dados indisponíveis",
+          tag: "Mix baixo",
+          view: "nonFuelProducts",
+        }))
+    ),
+    priorityActions: mapPriorityActions(acoesAlta, { defaultView: "commercialExecution" }),
+    risks: mapRisks(
+      alertasMargem.slice(0, 3).map((p) => ({
+        title: p.nome || p.produto || "Margem baixa",
+        detail: p.motivo || "Alto volume, margem comprimida",
+        severity: "ALTO",
+      }))
+    ),
+    opportunities: mapOpportunities(
+      acoes.slice(0, 3).map((a) => ({
+        title: panelText(a.titulo || a.tipo, "Oportunidade comercial"),
+        impact: a.empresaCodigo ? `Filial ${a.empresaCodigo}` : "Não informado",
+        view: "commercialExecution",
+      }))
+    ),
+    alerts,
+    detailHtml: detail,
+    detailSummary: "Detalhamento comercial",
+  });
+
   node.querySelector("#nonFuelRefresh")?.addEventListener("click", () => options.onRefresh?.());
   node.querySelector("#nonFuelExport")?.addEventListener("click", () => {
-    downloadCsv("produtos-vendidos-acoes-comerciais.csv", acoes.length ? acoes : produtosFoco);
+    downloadCsv("produtos-vendidos-acoes-comerciais.csv", acoes.length ? acoes : acoesAlta);
   });
+  bindExecutiveNav(node, options.onNavigate);
 }

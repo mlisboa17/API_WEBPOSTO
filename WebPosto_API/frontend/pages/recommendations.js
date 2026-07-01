@@ -1,5 +1,5 @@
 import { formatCurrency } from "../services/format.js";
-import { downloadCsv } from "../services/export.js";
+import { renderExecutiveCockpitPage } from "../services/executiveCockpitAdapter.js";
 
 function fmtMoney(v) {
   if (v === null || v === undefined) return "—";
@@ -51,49 +51,32 @@ const REC_COLUMNS = [
 ];
 
 export function renderRecommendations(node, payload, filters, options = {}) {
-  if (!node) return;
-  if (!payload) {
-    node.innerHTML = `<p class="muted">Carregando Recommendation Engine…</p>`;
-    return;
-  }
+  const cockpit = payload?.cockpit || {};
 
-  const cockpit = payload.cockpit || {};
-  const exec = payload.executiveAnswers || {};
-  const feed = cockpit.executiveFeed || payload.executiveFeedEngine?.items || [];
-  const parecer = payload.parecerFinal || "";
-
-  node.innerHTML = `
-    <header class="view-header">
-      <div>
-        <h2>Autonomous Recommendation Engine</h2>
-        <p class="muted">F05.4 · ${filters?.dataInicial || ""} → ${filters?.dataFinal || ""}</p>
+  renderExecutiveCockpitPage(node, payload, filters, {
+    title: "Autonomous Recommendation Engine",
+    actionsHtml: `
+      <button type="button" id="recommendationsRefresh" class="btn-secondary">Atualizar</button>
+      <button type="button" id="recommendationsExport" class="btn-secondary">Exportar CSV</button>
+    `,
+    detailBuilder: (cockpitDetail, payloadDetail) => {
+      const feed = cockpitDetail.executiveFeed || payloadDetail.executiveFeedEngine?.items || [];
+      const parecer = payloadDetail.parecerFinal || "";
+      return `
         ${parecer ? `<p class="parecer">${parecer}</p>` : ""}
-      </div>
-      <div class="view-actions">
-        <button type="button" id="recommendationsRefresh" class="btn-secondary">Atualizar</button>
-        <button type="button" id="recommendationsExport" class="btn-secondary">Exportar CSV</button>
-      </div>
-    </header>
-    <div class="kpi-grid">
-      <article class="kpi-card kpi-card--highlight"><span class="kpi-label">Recomendações</span><strong>${exec["1_totalRecomendacoes"] ?? cockpit.totalRecomendacoes ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Oportunidades</span><strong>${exec["2_oportunidadesDetectadas"] ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Riscos</span><strong>${exec["3_riscosDetectados"] ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">P1</span><strong>${exec["4_prioridadeP1"] ?? (cockpit.prioridade1 || []).length ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">P2</span><strong>${exec["5_prioridadeP2"] ?? (cockpit.prioridade2 || []).length ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">P3</span><strong>${exec["6_prioridadeP3"] ?? (cockpit.prioridade3 || []).length ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">ROI Previsto Total</span><strong>${fmtMoney(cockpit.roiPrevistoTotal)}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Auditável</span><strong>${exec["19_motorAuditavel"] ? "Sim" : "Não"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Aprovado F05.5</span><strong>${exec["20_aprovadoF055"] ? "Sim" : "Não"}</strong></article>
-    </div>
-    ${renderFeed(feed)}
-    ${renderTable("Top Recomendações", cockpit.topRecomendacoes, REC_COLUMNS)}
-    ${renderTable("Top Oportunidades", cockpit.topOportunidades, REC_COLUMNS)}
-    ${renderTable("Top Riscos", cockpit.topRiscos, REC_COLUMNS)}
-    ${renderTable("Prioridade P1", cockpit.prioridade1, REC_COLUMNS)}
-  `;
-
-  node.querySelector("#recommendationsRefresh")?.addEventListener("click", () => options.onRefresh?.());
-  node.querySelector("#recommendationsExport")?.addEventListener("click", () => {
-    downloadCsv("recommendations.csv", cockpit.topRecomendacoes || []);
+        ${renderFeed(feed)}
+        ${renderTable("Top Recomendações", cockpitDetail.topRecomendacoes, REC_COLUMNS)}
+        ${renderTable("Top Oportunidades", cockpitDetail.topOportunidades, REC_COLUMNS)}
+        ${renderTable("Top Riscos", cockpitDetail.topRiscos, REC_COLUMNS)}
+        ${renderTable("Prioridade P1", cockpitDetail.prioridade1, REC_COLUMNS)}
+      `;
+    },
+    refreshButtonId: "recommendationsRefresh",
+    exportButtonId: "recommendationsExport",
+    exportData: cockpit.topRecomendacoes || [],
+    exportFileName: "recommendations.csv",
+    defaultView: "recommendations",
+    onRefresh: options.onRefresh,
+    onNavigate: options.onNavigate,
   });
 }

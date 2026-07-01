@@ -1,23 +1,39 @@
 import { formatCurrency } from "../services/format.js";
 import { downloadCsv } from "../services/export.js";
+import { bindExecutiveNav } from "../components/executiveFirstFold.js";
+import { buildExecutivePageHtml } from "../components/executiveInsightDetail.js";
+import { buildChartBars, countKpi } from "../services/executiveKpis.js";
+import {
+  buildFourQuestionBrief,
+  enrichAlert,
+  mapOpportunities,
+  mapPriorityActions,
+  mapRisks,
+} from "../services/executiveBrief.js";
 
 function fmtMoney(v) {
-  if (v === null || v === undefined) return "—";
+  if (v === null || v === undefined) return "Dados indisponíveis";
   return formatCurrency(v);
+}
+
+function fmtCount(v) {
+  if (v == null || v === "") return "Dados indisponíveis";
+  return String(v);
 }
 
 function renderAnswerCard(item) {
   const labels = (item.labels || []).map((l) => `<span class="tag">${l}</span>`).join(" ");
-  const lineage = (item.lineage || [])
-    .slice(0, 2)
-    .map((l) => `${l.origem}/${l.snapshot}`)
-    .join(" · ");
+  const sourceHint = (item.lineage || [])
+    .slice(0, 1)
+    .map((l) => l.origem)
+    .filter(Boolean)
+    .join("");
   return `
-    <article class="panel copilot-answer">
-      <p><strong>${item.answer || "—"}</strong></p>
-      <p class="muted">Confiança: ${item.confidenceLevel || "—"} ${labels}</p>
-      ${lineage ? `<p class="muted">Lineage: ${lineage}</p>` : ""}
-      ${item.blocked ? `<p class="warn">Resposta bloqueada — NÃO RESPONDÍVEL</p>` : ""}
+    <article class="panel commercial-answer">
+      <p><strong>${item.answer || "Dados indisponíveis"}</strong></p>
+      <p class="muted">Nível de confiança: ${item.confidenceLevel || "Dados indisponíveis"} ${labels}</p>
+      ${sourceHint ? `<p class="muted">Fonte: ${sourceHint}</p>` : ""}
+      ${item.blocked ? `<p class="warn">Informação não disponível para decisão neste recorte.</p>` : ""}
     </article>
   `;
 }
@@ -32,7 +48,7 @@ function renderTable(title, items, columns) {
         .map((c) => {
           const val = c.render ? c.render(item) : item[c.key];
           if (c.money) return `<td>${fmtMoney(val)}</td>`;
-          return `<td>${val ?? "—"}</td>`;
+          return `<td>${val ?? "Dados indisponíveis"}</td>`;
         })
         .join("");
       return `<tr>${cells}</tr>`;
@@ -44,7 +60,7 @@ function renderTable(title, items, columns) {
 export function renderCommercialCopilot(node, payload, filters, options = {}) {
   if (!node) return;
   if (!payload) {
-    node.innerHTML = `<p class="muted">Carregando Commercial Copilot…</p>`;
+    node.innerHTML = `<p class="muted">Dados indisponíveis para este período.</p>`;
     return;
   }
 
@@ -54,71 +70,143 @@ export function renderCommercialCopilot(node, payload, filters, options = {}) {
   const recs = payload.commercialRecommendationEngine?.recommendations || cockpit.recomendacoes || [];
   const ac = payload.commercialActionCenterIntegration || {};
   const parecer = payload.parecerFinal || "";
-  const kpis = cockpit.kpis || {};
 
-  node.innerHTML = `
-    <header class="view-header">
-      <div>
-        <h2>Commercial Copilot</h2>
-        <p class="muted">F07.9 · ${filters?.dataInicial || ""} → ${filters?.dataFinal || ""}</p>
-        ${parecer ? `<p class="parecer">${parecer}</p>` : ""}
-      </div>
-      <div class="view-actions">
-        <button type="button" id="commercialCopilotRefresh" class="btn-secondary">Atualizar</button>
-        <button type="button" id="commercialCopilotExport" class="btn-secondary">Exportar CSV</button>
-      </div>
-    </header>
-    <div class="kpi-grid">
-      <article class="kpi-card kpi-card--highlight"><span class="kpi-label">Perguntas Homologadas</span><strong>${exec["5_perguntasHomologadas"] ?? faq.length ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Recomendações</span><strong>${exec["6_totalRecomendacoes"] ?? recs.length ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Ações Validadas</span><strong>${exec["9_acoesValidadas"] ?? ac.acoesValidadas ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">ROI Real</span><strong>${exec["10_roiRealCitavel"] ?? ac.acoesComRoiReal ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Trust</span><strong>${exec.trustExecutivo ?? kpis.trustExecutivo ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Auditável</span><strong>${exec["16_auditavel"] ? "Sim" : "Não"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Aprovado F08.0</span><strong>${exec["20_aprovadoF080"] ? "Sim" : "Não"}</strong></article>
+  const oportunidades = exec["6_totalRecomendacoes"] ?? recs.length;
+  const validadas = exec["9_acoesValidadas"] ?? ac.acoesValidadas;
+  const roiReal = exec["10_roiRealCitavel"] ?? ac.acoesComRoiReal;
+  const alertasCount = recs.filter((r) => /alta|crit/i.test(String(r.classificacao || r.prioridade || ""))).length || recs.length;
+
+  const kpis = [
+    { label: "Oportunidades", value: countKpi(oportunidades), trendPct: null, status: "ok" },
+    { label: "Ações validadas", value: countKpi(validadas), trendPct: null, status: "ok" },
+    { label: "ROI realizado", value: countKpi(roiReal), trendPct: null, status: "ok" },
+    {
+      label: "Alertas",
+      value: fmtCount(alertasCount),
+      trendPct: null,
+      status: alertasCount > 0 ? "warn" : "ok",
+    },
+  ];
+
+  const topRec = recs[0];
+  const brief = buildFourQuestionBrief({
+    what: `${countKpi(oportunidades)} oportunidade(s) comercial(is) identificada(s) no período.`,
+    why: topRec
+      ? `${topRec.titulo || topRec.tipo || "Ação prioritária"} — ${topRec.classificacao || "prioridade comercial"}.`
+      : "Sem recomendações dominantes no recorte.",
+    where: topRec?.empresaCodigo ? `Filial ${topRec.empresaCodigo}` : "Rede consolidada",
+    actionNow: topRec
+      ? `Validar: ${topRec.titulo || topRec.tipo || "ação comercial"}.`
+      : "Revisar oportunidades pendentes de validação.",
+  });
+
+  const chartBars = buildChartBars(recs.slice(0, 7), {
+    labelKey: "titulo",
+    valueKey: "roiEstimado",
+    max: 7,
+  });
+
+  const alerts = recs.slice(0, 3).map((r) =>
+    enrichAlert(
+      {
+        severity: /alta|crit/i.test(String(r.classificacao || "")) ? "ALTO" : "MÉDIO",
+        title: r.titulo || r.tipo || "Oportunidade comercial",
+        detail: fmtMoney(r.roiEstimado),
+        view: "commercialExecution",
+        origin: "Comercial",
+      },
+      {
+        why: r.classificacao || r.tipo || "Potencial de receita incremental",
+        where: r.empresaCodigo ? `Filial ${r.empresaCodigo}` : "Rede",
+        actionNow: "Validar e executar plano comercial",
+      }
+    )
+  );
+
+  const detail = `
+    <div class="exec-detail-toolbar">
+      <button type="button" id="commercialCopilotRefresh" class="btn-secondary">Atualizar</button>
+      <button type="button" id="commercialCopilotExport" class="btn-secondary">Exportar CSV</button>
     </div>
+    ${parecer ? `<p class="parecer">${parecer}</p>` : ""}
     <section class="panel">
-      <h3>Perguntar ao Copiloto Comercial</h3>
-      <div class="copilot-ask-row">
-        <input type="text" id="commercialCopilotQuestionInput" placeholder="Ex.: Qual produto gera mais receita?" class="copilot-input" />
-        <button type="button" id="commercialCopilotAskBtn" class="btn-primary">Perguntar</button>
+      <h3>Consulta comercial</h3>
+      <div class="commercial-ask-row">
+        <input type="text" id="commercialCopilotQuestionInput" placeholder="Ex.: Qual produto gera mais receita?" class="commercial-input" />
+        <button type="button" id="commercialCopilotAskBtn" class="btn-primary">Consultar</button>
       </div>
       <div id="commercialCopilotAskResult"></div>
     </section>
-    <section class="panel"><h3>Perguntas Homologadas (F07.9)</h3><div class="copilot-faq">${faq.slice(0, 6).map(renderAnswerCard).join("")}</div></section>
-    ${renderTable("Recomendações Comerciais", recs.slice(0, 8), [
-      { key: "classificacao", label: "Classificação" },
+    <section class="panel"><h3>Perguntas frequentes</h3><div class="commercial-faq">${faq.slice(0, 6).map(renderAnswerCard).join("")}</div></section>
+    ${renderTable("Recomendações comerciais", recs.slice(0, 8), [
+      { key: "classificacao", label: "Prioridade" },
       { key: "tipo", label: "Tipo" },
       { key: "titulo", label: "Ação" },
-      { key: "actionId", label: "actionId" },
-      { key: "roiEstimado", label: "ROI Est.", money: true },
+      { key: "roiEstimado", label: "ROI estimado", money: true },
       { key: "confidenceLevel", label: "Confiança" },
     ])}
-    ${renderTable("Action Center (READ ONLY)", ac.listagem || [], [
-      { key: "actionId", label: "actionId" },
+    ${renderTable("Ações em acompanhamento", ac.listagem || [], [
       { key: "tipo", label: "Tipo" },
       { key: "status", label: "Status" },
-      { key: "roiReal", label: "ROI Real", money: true },
+      { key: "roiReal", label: "ROI realizado", money: true },
       { key: "empresaCodigo", label: "Filial" },
     ])}
   `;
 
+  node.innerHTML = buildExecutivePageHtml({
+    title: options.pageTitle || "Ações comerciais",
+    actionsHtml: "",
+    kpis,
+    brief,
+    chartBars,
+    chartTitle: "Oportunidades por ROI estimado",
+    criticalBranches: [],
+    priorityActions: mapPriorityActions(
+      recs.slice(0, 3).map((r) => ({
+        title: r.titulo || r.tipo,
+        detail: r.classificacao || "",
+        view: "commercialExecution",
+      }))
+    ),
+    risks: mapRisks(
+      recs
+        .filter((r) => /alta|crit/i.test(String(r.classificacao || "")))
+        .slice(0, 3)
+        .map((r) => ({
+          title: r.titulo || r.tipo || "Oportunidade prioritária",
+          detail: fmtMoney(r.roiEstimado),
+          severity: "ALTO",
+        }))
+    ),
+    opportunities: mapOpportunities(
+      recs.slice(0, 3).map((r) => ({
+        title: r.titulo || r.tipo,
+        impact: fmtMoney(r.roiEstimado),
+        view: "commercialExecution",
+      }))
+    ),
+    alerts,
+    detailHtml: detail,
+    detailSummary: "Detalhamento comercial",
+  });
+
   node.querySelector("#commercialCopilotRefresh")?.addEventListener("click", () => options.onRefresh?.());
   node.querySelector("#commercialCopilotExport")?.addEventListener("click", () => {
-    downloadCsv("commercial-copilot.csv", recs);
+    downloadCsv("acoes-comerciais.csv", recs);
   });
   node.querySelector("#commercialCopilotAskBtn")?.addEventListener("click", async () => {
     const input = node.querySelector("#commercialCopilotQuestionInput");
     const resultNode = node.querySelector("#commercialCopilotAskResult");
     const q = input?.value?.trim();
     if (!q || !options.onAsk) return;
-    resultNode.innerHTML = `<p class="muted">Processando…</p>`;
+    resultNode.innerHTML = `<p class="muted">Consultando…</p>`;
     try {
       const data = await options.onAsk(q);
       const resp = data?.answer || data?.resposta || data;
       resultNode.innerHTML = renderAnswerCard(resp);
     } catch (err) {
-      resultNode.innerHTML = `<p class="warn">Erro: ${err.message || err}</p>`;
+      resultNode.innerHTML = `<p class="warn">Não foi possível obter resposta: ${err.message || err}</p>`;
     }
   });
+  bindExecutiveNav(node, options.onNavigate);
 }

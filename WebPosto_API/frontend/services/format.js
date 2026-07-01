@@ -12,6 +12,50 @@ const dateFormatter = new Intl.DateTimeFormat("pt-BR", {
   timeZone: "UTC",
 });
 
+/** Converte ISO (yyyy-mm-dd) para exibição dd/mm/aaaa. */
+export function isoDateToBr(value) {
+  if (!value) return "";
+  const raw = String(value).trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) {
+    const [year, month, day] = raw.split("-");
+    return `${day}/${month}/${year}`;
+  }
+  return raw;
+}
+
+/** Converte dd/mm/aaaa (ou yyyy-mm-dd) para ISO yyyy-mm-dd. */
+export function parseBrDateToIso(value) {
+  if (!value) return "";
+  const raw = String(value).trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
+
+  const match = raw.match(/^(\d{2})[/.-](\d{2})[/.-](\d{4})$/);
+  if (!match) return "";
+
+  const [, day, month, year] = match;
+  const dayNum = Number(day);
+  const monthNum = Number(month);
+  const yearNum = Number(year);
+  if (monthNum < 1 || monthNum > 12 || dayNum < 1 || dayNum > 31) return "";
+
+  const iso = `${year}-${month}-${day}`;
+  const check = new Date(Date.UTC(yearNum, monthNum - 1, dayNum));
+  if (
+    check.getUTCFullYear() !== yearNum ||
+    check.getUTCMonth() !== monthNum - 1 ||
+    check.getUTCDate() !== dayNum
+  ) {
+    return "";
+  }
+  return iso;
+}
+
+export function formatPeriodBr(dataInicial, dataFinal) {
+  const ini = isoDateToBr(dataInicial) || "—";
+  const fin = isoDateToBr(dataFinal) || "—";
+  return `${ini} → ${fin}`;
+}
+
 export function formatCurrency(value) {
   if (value === null || value === undefined || value === "") return "sem dados";
   const number = Number(String(value).replace(",", "."));

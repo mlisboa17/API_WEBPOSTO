@@ -41,9 +41,9 @@ ENDPOINTS: dict[str, str] = {
 }
 
 TOKEN_ENV_KEYS: tuple[str, ...] = (
-    "WEBPOSTO_API_KEY",
     "WEBPOSTO_API_KEY_POSTO_VIP_RIO_DOCE",
     "WEBPOSTO_API_KEY_POSTO_CASA_CAIADA",
+    "WEBPOSTO_API_KEY_POSTO_DOZE_FILIAL_II",
 )
 
 RETRYABLE_STATUS = frozenset({429, 500, 502, 503, 504})
@@ -76,7 +76,7 @@ def resolve_api_key(explicit: str | None = None) -> str:
         if value:
             return value
     raise WebPostoDataError(
-        "Nenhuma chave WebPosto configurada (WEBPOSTO_API_KEY ou variantes por filial).",
+        "Nenhuma chave WebPosto oficial configurada para VIP, Casa Caiada ou Posto Doze Filial.",
         endpoint="config",
         status=400,
     )

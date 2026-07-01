@@ -40,9 +40,30 @@ FISCAL_ENDPOINT_KEYS = frozenset(
     }
 )
 
+SALES_ENDPOINT_KEYS = frozenset(
+    {
+        "venda",
+        "venda_item",
+        "venda_item_rede",
+        "venda_forma_pagamento",
+        "venda_forma_pagamento_rede",
+    }
+)
+
+STOCK_ENDPOINT_KEYS = frozenset(
+    {
+        "produto_estoque",
+        "produto",
+        "tanque",
+        "estoque_periodo",
+    }
+)
+
 CIRCUIT_SCOPES = {
     "financial": FINANCIAL_ENDPOINT_KEYS,
     "fuel": FUEL_ENDPOINT_KEYS,
     "fiscal": FISCAL_ENDPOINT_KEYS,
-    "global": FINANCIAL_ENDPOINT_KEYS | FUEL_ENDPOINT_KEYS | FISCAL_ENDPOINT_KEYS,
+    "sales": SALES_ENDPOINT_KEYS,
+    "stock": STOCK_ENDPOINT_KEYS,
+    "global": FINANCIAL_ENDPOINT_KEYS | FUEL_ENDPOINT_KEYS | FISCAL_ENDPOINT_KEYS | SALES_ENDPOINT_KEYS | STOCK_ENDPOINT_KEYS,
 }

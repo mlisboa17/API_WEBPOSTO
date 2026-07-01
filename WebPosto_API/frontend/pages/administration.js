@@ -1,3 +1,11 @@
+import {
+  renderExecutiveFirstFold,
+  wrapExecutiveDetail,
+  bindExecutiveNav,
+} from "../components/executiveFirstFold.js";
+import { buildFourQuestionBrief } from "../services/executiveBrief.js";
+import { periodSubtitle } from "../services/executiveKpis.js";
+
 const ADMIN_SECTIONS = {
   filiais: {
     title: "Filiais",
@@ -13,7 +21,7 @@ const ADMIN_SECTIONS = {
   },
   integracoes: {
     title: "Integrações",
-    body: "Gateway WebPosto + resiliência F08.0 — circuit breaker e snapshot financeiro.",
+    body: "Integração WebPosto e proteção automática de falhas.",
   },
   configuracoes: {
     title: "Configurações",
@@ -37,11 +45,11 @@ async function mountCircuitPanel(node) {
     const endpoints = data.endpoints || {};
     const financial = summary.financial || {};
     panel.innerHTML = `
-      <h3>Circuit Status (F08.0)</h3>
+      <h3>Proteção de integração</h3>
       <div class="circuit-summary">
-        <article><span>Financeiro OPEN</span><strong>${financial.OPEN ?? 0}</strong></article>
-        <article><span>HALF_OPEN</span><strong>${financial.HALF_OPEN ?? 0}</strong></article>
-        <article><span>CLOSED</span><strong>${financial.CLOSED ?? 0}</strong></article>
+        <article><span>Financeiro aberto</span><strong>${financial.OPEN ?? 0}</strong></article>
+        <article><span>Em recuperação</span><strong>${financial.HALF_OPEN ?? 0}</strong></article>
+        <article><span>Operacional</span><strong>${financial.CLOSED ?? 0}</strong></article>
       </div>
       <div class="circuit-actions">
         <button type="button" data-reset="financial" class="btn-secondary">Reset financeiro</button>
@@ -67,24 +75,17 @@ async function mountCircuitPanel(node) {
       });
     });
   } catch (error) {
-    panel.innerHTML = `<p class="muted">Falha ao carregar circuit status: ${error.message}</p>`;
+    panel.innerHTML = `<p class="muted">Falha ao carregar status de integração: ${error.message}</p>`;
   }
 }
 
-export function renderAdministration(node, _payload, _filters, options = {}) {
-  if (!node) return;
-  const section = options.section || "filiais";
-  const meta = ADMIN_SECTIONS[section] || ADMIN_SECTIONS.filiais;
+function buildAdminDetail(section, meta) {
   const circuitBlock =
     section === "integracoes"
-      ? `<article class="card admin-card"><div id="circuitPanel">Carregando circuit status…</div></article>`
+      ? `<article class="card admin-card"><div id="circuitPanel">Carregando status de integração…</div></article>`
       : "";
-  node.innerHTML = `
+  return `
     <section class="admin-panel card">
-      <header class="section-header">
-        <h2>⚙️ Administração — ${meta.title}</h2>
-        <p>Configuração do ecossistema (F08.0 resiliência financeira).</p>
-      </header>
       <div class="admin-grid">
         <article class="card admin-card">
           <h3>${meta.title}</h3>
@@ -92,16 +93,55 @@ export function renderAdministration(node, _payload, _filters, options = {}) {
         </article>
         ${circuitBlock}
         <article class="card admin-card">
-          <h3>Artefatos</h3>
+          <h3>Referência técnica</h3>
           <ul class="admin-list">
-            <li>src/services/financial_resilience_service.py</li>
-            <li>src/services/financial_snapshot_service.py</li>
-            <li>snapshots/financial/</li>
+            <li>Módulo de resiliência financeira</li>
+            <li>Serviço de dados consolidados</li>
+            <li>Armazenamento de histórico financeiro</li>
           </ul>
         </article>
       </div>
-    </section>
-  `;
+    </section>`;
+}
+
+export function renderAdministration(node, _payload, filters, options = {}) {
+  if (!node) return;
+  const section = options.section || "filiais";
+  const meta = ADMIN_SECTIONS[section] || ADMIN_SECTIONS.filiais;
+
+  const brief = buildFourQuestionBrief({
+    what: `Administração — ${meta.title}.`,
+    why: "Configuração e governança do ecossistema LOGOS SPACE.",
+    where: section === "integracoes" ? "Integrações WebPosto" : meta.title,
+    actionNow:
+      section === "integracoes"
+        ? "Verificar proteção de integração e circuit breakers."
+        : `Revisar configuração de ${meta.title.toLowerCase()}.`,
+  });
+
+  const firstFold = renderExecutiveFirstFold({
+    title: "Administração",
+    subtitle: periodSubtitle(filters),
+    actionsHtml: "",
+    kpis: [
+      { label: "Módulo", value: meta.title.slice(0, 12), trendPct: null, status: "ok" },
+      { label: "Escopo", value: section, trendPct: null, status: "ok" },
+      { label: "API", value: "Local", trendPct: null, status: "ok" },
+      { label: "Alertas", value: section === "integracoes" ? "Monitor" : "—", trendPct: null, status: "ok" },
+    ],
+    brief,
+    chartBars: [],
+    chartTitle: "Governança",
+    criticalBranches: [],
+    priorityActions: [],
+    risks: [],
+    opportunities: [],
+    alerts: [],
+  });
+
+  node.innerHTML = `${firstFold}${wrapExecutiveDetail(buildAdminDetail(section, meta), "Configuração e referências")}`;
+  bindExecutiveNav(node, options.onNavigate);
+
   if (section === "integracoes") {
     mountCircuitPanel(node);
   }

@@ -1,3 +1,7 @@
+import { renderExecutiveCockpitPage } from "../services/executiveCockpitAdapter.js";
+import { buildFourQuestionBrief, enrichAlert } from "../services/executiveBrief.js";
+import { countKpi } from "../services/executiveKpis.js";
+
 function healthBadge(status) {
   const key = String(status || "UNKNOWN").toLowerCase();
   return `<span class="fin-health-badge fin-health-badge--${key}">${status || "—"}</span>`;
@@ -144,25 +148,16 @@ function renderInventoryTable(node, inventory) {
   `;
 }
 
-export function renderFinancialMonitoring(node, payload, filters, options = {}) {
-  if (!node) return;
-  const data = payload?.data || payload || {};
+function mountFinancialMonitoringDetail(node, data, filters, generatedAt) {
   const assessment = data.assessment || {};
   const summary = assessment.summary || null;
   const snapshots = assessment.snapshots || [];
   const inventory = data.inventory || [];
-  const generatedAt = data.generatedAt || new Date().toISOString();
 
   node.innerHTML = `
-    <header class="view-header">
-      <div>
-        <h2>Monitoramento de Snapshots Financeiros</h2>
-        <p class="muted">F08.1 — saúde, freshness, cobertura e confiança (sem WebPosto live).</p>
-      </div>
-      <button type="button" class="btn-secondary" id="finMonitorRefresh">Atualizar</button>
-    </header>
     <p class="fin-monitor-meta muted">
-      Período: ${filters?.dataInicial || "—"} → ${filters?.dataFinal || "—"}
+      F08.1 — saúde, freshness, cobertura e confiança (sem WebPosto live).
+      · Período: ${filters?.dataInicial || "—"} → ${filters?.dataFinal || "—"}
       · Gerado em ${generatedAt}
     </p>
     <section id="finMonitorSummary"></section>
@@ -178,9 +173,67 @@ export function renderFinancialMonitoring(node, payload, filters, options = {}) 
   renderSummary(node.querySelector("#finMonitorSummary"), summary);
   renderSnapshotsTable(node.querySelector("#finMonitorSnapshots"), snapshots);
   renderInventoryTable(node.querySelector("#finMonitorInventory"), inventory);
+}
 
-  const refreshBtn = node.querySelector("#finMonitorRefresh");
-  if (refreshBtn && typeof options.onRefresh === "function") {
-    refreshBtn.addEventListener("click", () => options.onRefresh());
+export function renderFinancialMonitoring(node, payload, filters, options = {}) {
+  if (!node) return;
+  const data = payload?.data || payload || {};
+  const assessment = data.assessment || {};
+  const summary = assessment.summary || {};
+  const generatedAt = data.generatedAt || new Date().toISOString();
+  const critical = summary.critical ?? 0;
+  const healthy = summary.healthy ?? 0;
+
+  renderExecutiveCockpitPage(node, { cockpit: {}, executiveAnswers: {}, ...data }, filters, {
+    title: "Monitoramento de Snapshots",
+    actionsHtml: `<button type="button" class="btn-secondary" id="finMonitorRefresh">Atualizar</button>`,
+    kpiOverrides: [
+      { label: "Status", value: String(summary.overallStatus || "—").slice(0, 10), trendPct: null, status: critical > 0 ? "crit" : "ok" },
+      {
+        label: "Snapshots",
+        value: `${summary.totalSnapshots ?? 0}/${summary.expectedSnapshots ?? 4}`,
+        trendPct: null,
+        status: summary.coverageComplete ? "ok" : "warn",
+      },
+      { label: "Saudáveis", value: countKpi(healthy), trendPct: null, status: "ok" },
+      { label: "Críticos", value: countKpi(critical), trendPct: null, status: critical > 0 ? "crit" : "ok" },
+    ],
+    brief: buildFourQuestionBrief({
+      what: `Saúde ${summary.overallStatus || "—"} · score médio ${summary.averageHealthScore ?? "—"}.`,
+      why:
+        critical > 0
+          ? `${critical} snapshot(s) crítico(s) no período.`
+          : summary.coverageGaps?.length
+            ? `Lacunas: ${summary.coverageGaps.join(", ")}.`
+            : "Cobertura e freshness dentro do esperado.",
+      where: summary.coverageComplete ? "Cobertura completa" : "Lacunas de cobertura",
+      actionNow: critical > 0 ? "Investigar snapshots críticos hoje." : "Validar inventário global.",
+    }),
+    alerts: (assessment.snapshots || [])
+      .filter((s) => String(s.healthStatus || "").toUpperCase().includes("CRIT"))
+      .slice(0, 3)
+      .map((s) =>
+        enrichAlert(
+          {
+            severity: "ALTO",
+            title: s.label || s.snapshotType || "Snapshot crítico",
+            detail: formatAge(s.snapshotAgeHours),
+            view: "financialMonitoring",
+            origin: "Admin",
+          },
+          { why: s.healthStatus || "Status crítico", where: s.source || "—", actionNow: "Regenerar snapshot" }
+        )
+      ),
+    detailBuilder: () => `<div id="finMonitorDetailRoot"></div>`,
+    detailSummary: "Inventário técnico e lineage",
+    refreshButtonId: "finMonitorRefresh",
+    defaultView: "financialMonitoring",
+    onRefresh: options.onRefresh,
+    onNavigate: options.onNavigate,
+  });
+
+  const detailRoot = node.querySelector("#finMonitorDetailRoot");
+  if (detailRoot) {
+    mountFinancialMonitoringDetail(detailRoot, data, filters, generatedAt);
   }
 }

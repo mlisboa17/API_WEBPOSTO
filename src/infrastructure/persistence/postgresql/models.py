@@ -206,3 +206,7 @@ class AdelaideTaxMatrixORM(Base):
     __table_args__ = (
         Index("ix_adelaide_matrix_lookup", "uf", "cnae", "ncm"),
     )
+
+
+# Import TMS models so Base.metadata includes the MVP schema on create_all.
+from src.infrastructure.persistence.postgresql import tms_models  # noqa: E402,F401

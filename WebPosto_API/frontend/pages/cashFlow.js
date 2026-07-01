@@ -1,5 +1,8 @@
 import { formatCurrency } from "../services/format.js";
 import { downloadCsv, openPdfPreview } from "../services/export.js";
+import { renderExecutiveCockpitPage } from "../services/executiveCockpitAdapter.js";
+import { buildFourQuestionBrief, enrichAlert } from "../services/executiveBrief.js";
+import { buildChartBars, moneyKpi } from "../services/executiveKpis.js";
 
 function fmtMoney(value) {
   if (value === null || value === undefined || value === "") return "—";
@@ -43,54 +46,6 @@ function renderTable(rows, columns) {
   return `<table class="table-compact cf-table-export"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
 }
 
-export function renderCashFlow(container, data, filters, options = {}) {
-  const flow = data || {};
-  const cards = flow.cards || {};
-  const fromSnapshot = flow.fromSnapshot ? "Snapshot" : "Live";
-  const lastUpdated = flow.lastUpdated || "—";
-
-  container.innerHTML = `
-    <div class="cash-flow" data-testid="cash-flow-root">
-      <div class="fc-header">
-        <div>
-          <h2>Fluxo de Caixa Corporativo</h2>
-          <p class="small">Fatos WebPosto — TITULO_PAGAR · TITULO_RECEBER · MOVIMENTO_CONTA · CAIXA_APRESENTADO. ${fromSnapshot} · ${lastUpdated}</p>
-        </div>
-        <div class="fc-actions">
-          <button type="button" id="cfExportCsv" data-testid="cf-export-csv">Exportar CSV</button>
-          <button type="button" id="cfExportPdf" data-testid="cf-export-pdf">Exportar PDF</button>
-        </div>
-      </div>
-      <div class="fc-cards">
-        <article class="fc-card"><h3>Entradas Previstas</h3><p class="fc-val">${fmtMoney(cards.entradasPrevistas)}</p></article>
-        <article class="fc-card"><h3>Saídas Previstas</h3><p class="fc-val">${fmtMoney(cards.saidasPrevistas)}</p></article>
-        <article class="fc-card"><h3>Saldo Projetado</h3><p class="fc-val">${fmtMoney(cards.saldoProjetado)}</p></article>
-        <article class="fc-card"><h3>Saldo Acumulado</h3><p class="fc-val">${fmtMoney(cards.saldoAcumulado)}</p></article>
-      </div>
-      <section class="panel"><h3>Linha temporal diária</h3>${renderSparkline(flow.daily)}${renderTable(flow.daily, EXPORT_COLUMNS)}</section>
-      <div class="fc-grid">
-        <section class="panel" data-testid="cf-weekly"><h3>Fluxo semanal</h3>${renderTable(flow.weekly, EXPORT_COLUMNS)}</section>
-        <section class="panel" data-testid="cf-monthly"><h3>Fluxo mensal</h3>${renderTable(flow.monthly, EXPORT_COLUMNS)}</section>
-        <section class="panel"><h3>Recebimentos futuros</h3>${renderFutureTable(flow.receivablesFuture)}</section>
-        <section class="panel"><h3>Pagamentos futuros</h3>${renderFutureTable(flow.payablesFuture)}</section>
-        <section class="panel"><h3>Eventos vencidos</h3>${renderFutureTable(flow.overdueEvents)}</section>
-        <section class="panel"><h3>Tesouraria</h3>${renderTreasury(flow.treasury)}</section>
-      </div>
-    </div>
-  `;
-
-  const exportRows = buildCashFlowExportRows(flow);
-  container.querySelector("#cfExportCsv")?.addEventListener("click", () => {
-    downloadCsv(`fluxo_caixa_${filters.dataInicial}_${filters.dataFinal}`, EXPORT_COLUMNS, exportRows);
-  });
-  container.querySelector("#cfExportPdf")?.addEventListener("click", () => {
-    openPdfPreview(`Fluxo de Caixa ${filters.dataInicial} — ${filters.dataFinal}`, EXPORT_COLUMNS, exportRows, {
-      subtitle: "LOGOS SPACE — projeção rastreável, sem estimativas artificiais",
-      description: "LOGOS SPACE — projeção rastreável, sem estimativas artificiais",
-    });
-  });
-}
-
 function renderFutureTable(items) {
   if (!items?.length) return '<p class="small">Sem dados.</p>';
   const rows = items
@@ -111,4 +66,87 @@ function renderTreasury(t) {
     <li>Tarifas: ${t.tarifas?.count ?? 0} · ${fmtMoney(t.tarifas?.valor)}</li>
     <li>Transferências: ${t.transferencias?.count ?? 0} · ${fmtMoney(t.transferencias?.valor)}</li>
   </ul>`;
+}
+
+function buildCashFlowDetail(flow) {
+  const fromSnapshot = flow.fromSnapshot ? "Snapshot" : "Live";
+  const lastUpdated = flow.lastUpdated || "—";
+  return `
+    <div class="cash-flow" data-testid="cash-flow-root">
+      <p class="small muted">Fatos WebPosto — TITULO_PAGAR · TITULO_RECEBER · MOVIMENTO_CONTA · CAIXA_APRESENTADO · ${fromSnapshot} · ${lastUpdated}</p>
+      <section class="panel"><h3>Linha temporal diária</h3>${renderSparkline(flow.daily)}${renderTable(flow.daily, EXPORT_COLUMNS)}</section>
+      <div class="fc-grid">
+        <section class="panel" data-testid="cf-weekly"><h3>Fluxo semanal</h3>${renderTable(flow.weekly, EXPORT_COLUMNS)}</section>
+        <section class="panel" data-testid="cf-monthly"><h3>Fluxo mensal</h3>${renderTable(flow.monthly, EXPORT_COLUMNS)}</section>
+        <section class="panel"><h3>Recebimentos futuros</h3>${renderFutureTable(flow.receivablesFuture)}</section>
+        <section class="panel"><h3>Pagamentos futuros</h3>${renderFutureTable(flow.payablesFuture)}</section>
+        <section class="panel"><h3>Eventos vencidos</h3>${renderFutureTable(flow.overdueEvents)}</section>
+        <section class="panel"><h3>Tesouraria</h3>${renderTreasury(flow.treasury)}</section>
+      </div>
+    </div>`;
+}
+
+export function renderCashFlow(container, data, filters, options = {}) {
+  const flow = data || {};
+  const cards = flow.cards || {};
+  const exportRows = buildCashFlowExportRows(flow);
+  const saldoPressionado = Number(cards.saldoProjetado) < 0 || Number(cards.saldoAcumulado) < 0;
+  const overdueCount = (flow.overdueEvents || []).length;
+
+  renderExecutiveCockpitPage(container, { cockpit: {}, executiveAnswers: {}, ...flow }, filters, {
+    title: "Fluxo de Caixa Corporativo",
+    actionsHtml: `
+      <button type="button" id="cfExportCsv" data-testid="cf-export-csv">Exportar CSV</button>
+      <button type="button" id="cfExportPdf" data-testid="cf-export-pdf">Exportar PDF</button>
+    `,
+    kpiOverrides: [
+      { label: "Entradas", value: moneyKpi(cards.entradasPrevistas), trendPct: null, status: "ok" },
+      { label: "Saídas", value: moneyKpi(cards.saidasPrevistas), trendPct: null, status: "warn" },
+      {
+        label: "Saldo Proj.",
+        value: moneyKpi(cards.saldoProjetado),
+        trendPct: null,
+        status: saldoPressionado ? "crit" : "ok",
+      },
+      { label: "Acumulado", value: moneyKpi(cards.saldoAcumulado), trendPct: null, status: "ok" },
+    ],
+    brief: buildFourQuestionBrief({
+      what: `Projeção de caixa: entradas ${moneyKpi(cards.entradasPrevistas)} e saídas ${moneyKpi(cards.saidasPrevistas)}.`,
+      why: saldoPressionado
+        ? "Saldo projetado ou acumulado sob pressão no período."
+        : overdueCount > 0
+          ? `${overdueCount} evento(s) vencido(s) impactam a projeção.`
+          : "Fluxo projetado dentro da capacidade operacional.",
+      where: overdueCount > 0 ? `${overdueCount} vencimento(s) pendente(s)` : "Rede consolidada",
+      actionNow: overdueCount > 0 ? "Priorizar regularização de eventos vencidos." : "Acompanhar linha temporal e tesouraria.",
+    }),
+    chartBars: buildChartBars(flow.daily || [], { labelKey: "periodo", valueKey: "saldoAcumulado", max: 7 }),
+    chartTitle: "Saldo acumulado diário",
+    alerts: (flow.overdueEvents || []).slice(0, 3).map((ev) =>
+      enrichAlert(
+        {
+          severity: "ALTO",
+          title: ev.descricao || "Evento vencido",
+          detail: fmtMoney(ev.valor),
+          view: "cashFlow",
+          origin: "Caixa",
+        },
+        { why: ev.aging || "Vencimento em atraso", where: ev.vencimento || "—", actionNow: "Regularizar hoje" }
+      )
+    ),
+    detailBuilder: () => buildCashFlowDetail(flow),
+    detailSummary: "Projeção, aging e tesouraria",
+    defaultView: "cashFlow",
+    onNavigate: options.onNavigate,
+  });
+
+  container.querySelector("#cfExportCsv")?.addEventListener("click", () => {
+    downloadCsv(`fluxo_caixa_${filters.dataInicial}_${filters.dataFinal}`, EXPORT_COLUMNS, exportRows);
+  });
+  container.querySelector("#cfExportPdf")?.addEventListener("click", () => {
+    openPdfPreview(`Fluxo de Caixa ${filters.dataInicial} — ${filters.dataFinal}`, EXPORT_COLUMNS, exportRows, {
+      subtitle: "LOGOS SPACE — projeção rastreável, sem estimativas artificiais",
+      description: "LOGOS SPACE — projeção rastreável, sem estimativas artificiais",
+    });
+  });
 }

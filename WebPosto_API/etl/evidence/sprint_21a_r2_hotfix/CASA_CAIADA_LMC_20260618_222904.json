@@ -1,0 +1,106 @@
+{
+  "tenant": "CASA_CAIADA",
+  "endpoint": "LMC",
+  "base_url": "https://web.qualityautomacao.com.br",
+  "path": "/INTEGRACAO/LMC",
+  "url_masked": "https://web.qualityautomacao.com.br/INTEGRACAO/LMC?CHAVE=eabd1f99...53a8&...",
+  "timestamp": "2026-06-18T22:29:03.966814",
+  "http_status": 200,
+  "success": true,
+  "records_count": 64,
+  "sample_payload": {
+    "empresaCodigo": 5555,
+    "lmcCodigo": 6889501,
+    "produtoCodigo": [
+      1257884
+    ],
+    "dataMovimento": "2026-06-11",
+    "abertura": 8794.0,
+    "entrada": 0.0,
+    "saida": 2310.99,
+    "perdaSobra": -17.01,
+    "escritural": 6483.01,
+    "fechamento": 6466.0,
+    "disponivel": 8794.0,
+    "ultimoUsuarioAlteracao": "MARCIO",
+    "saldo": -104.5452,
+    "precoCusto": 6.1461,
+    "produtoLmcCodigo": 8297,
+    "codigo": 6889501,
+    "lmcTanque": [
+      {
+        "lmcTanqueCodigo": 7668662,
+        "tanqueCodigo": 13577,
+        "abertura": 8794.0,
+        "escritural": 6483.01,
+        "fechamento": 6466.0
+      }
+    ],
+    "lmcBico": [
+      {
+        "lmcBicoCodigo": 19882989,
+        "bicoCodigo": 24984,
+        "tanqueCodigo": 13577,
+        "bombaCodigo": 13028,
+        "abertura": 1713290.81,
+        "fechamento": 1714113.81,
+        "afericao": 0.0,
+        "venda": 823.0
+      },
+      {
+        "lmcBicoCodigo": 19882990,
+        "bicoCodigo": 24986,
+        "tanqueCodigo": 13577,
+        "bombaCodigo": 13061,
+        "abertura": 1896761.35,
+        "fechamento": 1897217.83,
+        "afericao": 0.0,
+        "venda": 456.48
+      },
+      {
+        "lmcBicoCodigo": 19882991,
+        "bicoCodigo": 24988,
+        "tanqueCodigo": 13577,
+        "bombaCodigo": 13061,
+        "abertura": 4784673.07,
+        "fechamento": 4785487.48,
+        "afericao": 0.0,
+        "venda": 814.41
+      },
+      {
+        "lmcBicoCodigo": 19882992,
+        "bicoCodigo": 24990,
+        "tanqueCodigo": 13577,
+        "bombaCodigo": 13028,
+        "abertura": 1025083.41,
+        "fechamento": 1025300.51,
+        "afericao": 0.0,
+        "venda": 217.1
+      }
+    ],
+    "lmcNota": []
+  },
+  "error": null,
+  "fields_detected": [
+    "empresaCodigo",
+    "lmcCodigo",
+    "produtoCodigo",
+    "dataMovimento",
+    "abertura",
+    "entrada",
+    "saida",
+    "perdaSobra",
+    "escritural",
+    "fechamento",
+    "disponivel",
+    "ultimoUsuarioAlteracao",
+    "saldo",
+    "precoCusto",
+    "produtoLmcCodigo",
+    "codigo",
+    "lmcTanque",
+    "lmcBico",
+    "lmcNota"
+  ],
+  "is_expected_401": false
+}

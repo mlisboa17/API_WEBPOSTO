@@ -1,93 +1,96 @@
 {
   "kind": "financial_overview",
   "key": "2026-06-01:2026-06-07:all",
-  "lastUpdated": "2026-06-13T20:29:00",
+  "lastUpdated": "2026-06-14T16:20:52",
   "homologated": true,
-  "source": "scheduler",
+  "source": "expense_semantic_homologated",
   "data": {
     "postos": [
       {
         "empresaCodigo": 11495,
-        "nome": "POSTO VIP",
-        "total_despesas": "24996.71",
-        "total_a_pagar": "21602.69",
-        "synthetic": false
-      },
-      {
-        "empresaCodigo": 5555,
-        "nome": "AP CASA CAIADA",
-        "total_despesas": "8800.33",
-        "total_a_pagar": "3951.80",
-        "synthetic": false
-      },
-      {
-        "empresaCodigo": 5256,
-        "nome": "POSTO BR SHOPPING",
-        "total_despesas": "14597.00",
+        "nome": "Filial 11495",
+        "total_despesas": "28709.85",
         "total_a_pagar": "0",
-        "synthetic": false
-      },
-      {
-        "empresaCodigo": 5333,
-        "nome": "POSTO JANGA",
-        "total_despesas": "1133.51",
-        "total_a_pagar": "0",
-        "synthetic": false
-      },
-      {
-        "empresaCodigo": 5556,
-        "nome": "POSTO CIDADE PATRIMONIO",
-        "total_despesas": "7208.68",
-        "total_a_pagar": "0",
-        "synthetic": false
-      },
-      {
-        "empresaCodigo": 5557,
-        "nome": "POSTO ENSEADA DO NORTE",
-        "total_despesas": "18136.27",
-        "total_a_pagar": "0",
-        "synthetic": false
-      },
-      {
-        "empresaCodigo": 5558,
-        "nome": "POSTO REAL",
-        "total_despesas": "0",
-        "total_a_pagar": "0",
-        "synthetic": false
-      },
-      {
-        "empresaCodigo": 5559,
-        "nome": "POSTO RJ",
-        "total_despesas": "12276.50",
-        "total_a_pagar": "0",
-        "synthetic": false
-      },
-      {
-        "empresaCodigo": 5560,
-        "nome": "POSTO SERTÃ",
-        "total_despesas": "7258.80",
-        "total_a_pagar": "0",
-        "synthetic": false
+        "synthetic": false,
+        "fromHomologatedSnapshot": true
       },
       {
         "empresaCodigo": 46433,
-        "nome": "POSTO DOZE",
+        "nome": "Filial 46433",
         "total_despesas": "20685.80",
         "total_a_pagar": "0",
-        "synthetic": false
+        "synthetic": false,
+        "fromHomologatedSnapshot": true
+      },
+      {
+        "empresaCodigo": 5557,
+        "nome": "Filial 5557",
+        "total_despesas": "18136.27",
+        "total_a_pagar": "0",
+        "synthetic": false,
+        "fromHomologatedSnapshot": true
+      },
+      {
+        "empresaCodigo": 5556,
+        "nome": "Filial 5556",
+        "total_despesas": "7208.68",
+        "total_a_pagar": "0",
+        "synthetic": false,
+        "fromHomologatedSnapshot": true
       },
       {
         "empresaCodigo": 74014,
-        "nome": "POSTO DOZE FILIAL II",
+        "nome": "Filial 74014",
         "total_despesas": "15877.00",
         "total_a_pagar": "0",
-        "synthetic": false
+        "synthetic": false,
+        "fromHomologatedSnapshot": true
+      },
+      {
+        "empresaCodigo": 5555,
+        "nome": "Filial 5555",
+        "total_despesas": "9927.86",
+        "total_a_pagar": "0",
+        "synthetic": false,
+        "fromHomologatedSnapshot": true
+      },
+      {
+        "empresaCodigo": 5333,
+        "nome": "Filial 5333",
+        "total_despesas": "1133.51",
+        "total_a_pagar": "0",
+        "synthetic": false,
+        "fromHomologatedSnapshot": true
+      },
+      {
+        "empresaCodigo": 5256,
+        "nome": "Filial 5256",
+        "total_despesas": "14597.00",
+        "total_a_pagar": "0",
+        "synthetic": false,
+        "fromHomologatedSnapshot": true
+      },
+      {
+        "empresaCodigo": 5560,
+        "nome": "Filial 5560",
+        "total_despesas": "7258.80",
+        "total_a_pagar": "0",
+        "synthetic": false,
+        "fromHomologatedSnapshot": true
+      },
+      {
+        "empresaCodigo": 5559,
+        "nome": "Filial 5559",
+        "total_despesas": "12276.50",
+        "total_a_pagar": "0",
+        "synthetic": false,
+        "fromHomologatedSnapshot": true
       }
     ],
     "consolidado": {
-      "total_despesas": "130970.60",
-      "total_a_pagar": "25554.49"
-    },
-    "synthetic": false
+      "total_despesas": "135811.27",
+      "total_a_pagar": "0",
+      "synthetic": false
+    }
   }
 }

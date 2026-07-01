@@ -8,6 +8,7 @@ function num(value, fallback = 0) {
 }
 
 function money(value) {
+  if (value === "INTEGRATION_PROTECTED") return "Integração protegida";
   if (value === null || value === undefined || value === "") return "—";
   return formatCurrency(num(value));
 }

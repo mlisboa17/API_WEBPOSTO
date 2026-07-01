@@ -24,6 +24,7 @@ from src.infrastructure.tax_api.repository import SqlAlchemyTaxMatrixRepository
 from src.infrastructure.webposto.client import WebPostoClient
 from src.infrastructure.events.outbox_processor import OutboxProcessor
 from src.infrastructure.sse import router as sse_router, publish_job_event
+from src.api.tms_routes import router as tms_router
 
 logger = logging.getLogger(__name__)
 
@@ -402,5 +403,6 @@ def criar_app(
         allow_headers=["*"],
     )
     app.include_router(sse_router)
+    app.include_router(tms_router)
     
     return app

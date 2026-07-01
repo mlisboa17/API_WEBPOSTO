@@ -1,0 +1,92 @@
+{
+  "lastUpdated": "2026-06-14T14:09:22",
+  "data": {
+    "consolidado": 30.34,
+    "band": "Critico",
+    "pesos": {
+      "operador": 0.4,
+      "pdv": 0.25,
+      "turno": 0.2,
+      "historicoFilial": 0.15
+    },
+    "subScores": {
+      "operador": 49.36,
+      "pdv": 27.27,
+      "turno": 18.89,
+      "historicoFilial": 0.0
+    },
+    "operadoresCriticos": 8,
+    "pdvsCriticos": 3,
+    "operadores": [
+      {
+        "funcionarioCodigo": 158924,
+        "score": 17.78,
+        "band": "Critico",
+        "critico": false
+      },
+      {
+        "funcionarioCodigo": 299152,
+        "score": 22.75,
+        "band": "Critico",
+        "critico": false
+      },
+      {
+        "funcionarioCodigo": 227386,
+        "score": 25.59,
+        "band": "Critico",
+        "critico": false
+      },
+      {
+        "funcionarioCodigo": 276288,
+        "score": 26.67,
+        "band": "Critico",
+        "critico": true
+      },
+      {
+        "funcionarioCodigo": 294273,
+        "score": 28.81,
+        "band": "Critico",
+        "critico": true
+      },
+      {
+        "funcionarioCodigo": 213391,
+        "score": 29.43,
+        "band": "Critico",
+        "critico": false
+      },
+      {
+        "funcionarioCodigo": 178278,
+        "score": 35.03,
+        "band": "Critico",
+        "critico": false
+      },
+      {
+        "funcionarioCodigo": 299371,
+        "score": 51.54,
+        "band": "Critico",
+        "critico": false
+      }
+    ],
+    "pdvs": [
+      {
+        "pdvCodigo": 15880,
+        "score": 25.92,
+        "band": "Critico",
+        "critico": true
+      },
+      {
+        "pdvCodigo": 56764,
+        "score": 30.88,
+        "band": "Critico",
+        "critico": false
+      },
+      {
+        "pdvCodigo": 54193,
+        "score": 31.92,
+        "band": "Critico",
+        "critico": true
+      }
+    ]
+  },
+  "snapshotKey": "cash:risk:2026-06-09:2026-06-14:all"
+}

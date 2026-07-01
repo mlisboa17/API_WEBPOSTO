@@ -1,0 +1,412 @@
+{
+  "lastUpdated": "2026-06-15T11:17:33",
+  "flow": {
+    "sources": [
+      "CAIXA_APRESENTADO",
+      "MOVIMENTO_CONTA",
+      "TITULO_PAGAR",
+      "TITULO_RECEBER"
+    ],
+    "forbiddenSourcesUsed": [],
+    "referenceDate": "2026-06-02",
+    "cards": {
+      "entradasPrevistas": "113783.97",
+      "saidasPrevistas": "6034.19",
+      "saldoProjetado": "107749.78",
+      "saldoAcumulado": "107749.78"
+    },
+    "daily": [
+      {
+        "periodo": "2026-06-01",
+        "entradasPrevistas": "113783.97",
+        "saidasPrevistas": "3417.39",
+        "saldoProjetado": "110366.58",
+        "saldoAcumulado": "110366.58"
+      },
+      {
+        "periodo": "2026-06-02",
+        "entradasPrevistas": "0.00",
+        "saidasPrevistas": "2616.80",
+        "saldoProjetado": "-2616.80",
+        "saldoAcumulado": "107749.78"
+      }
+    ],
+    "weekly": [
+      {
+        "periodo": "2026-W23",
+        "entradasPrevistas": "113783.97",
+        "saidasPrevistas": "6034.19",
+        "saldoProjetado": "107749.78",
+        "saldoAcumulado": "107749.78"
+      }
+    ],
+    "monthly": [
+      {
+        "periodo": "2026-06",
+        "entradasPrevistas": "113783.97",
+        "saidasPrevistas": "6034.19",
+        "saldoProjetado": "107749.78",
+        "saldoAcumulado": "107749.78"
+      }
+    ],
+    "payablesAging": {
+      "vencido": {
+        "count": 1,
+        "valor": "6.90"
+      },
+      "hoje": {
+        "count": 5,
+        "valor": "2616.80"
+      },
+      "7d": {
+        "count": 4,
+        "valor": "1436.00"
+      },
+      "15d": {
+        "count": 1,
+        "valor": "100.04"
+      },
+      "30d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "acima30": {
+        "count": 0,
+        "valor": "0.00"
+      }
+    },
+    "receivablesAging": {
+      "vencido": {
+        "count": 4,
+        "valor": "64.63"
+      },
+      "hoje": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "7d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "15d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "30d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "acima30": {
+        "count": 0,
+        "valor": "0.00"
+      }
+    },
+    "payablesFuture": [
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 2796802,
+        "descricao": "ALELO",
+        "vencimento": "2026-06-02",
+        "valor": "1800.00",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3073237,
+        "descricao": "COMERCIAL BEZERRA  FILIAL 01",
+        "vencimento": "2026-06-01",
+        "valor": "6.90",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3075001,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-06-04",
+        "valor": "300.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3075375,
+        "descricao": "SOUZA DISTRIBUIDORA",
+        "vencimento": "2026-06-15",
+        "valor": "100.04",
+        "aging": "15d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3075379,
+        "descricao": "CHIC FABRICACAO DE DOCES E SALGADOS LTDA",
+        "vencimento": "2026-06-09",
+        "valor": "536.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3075457,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-06-05",
+        "valor": "300.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3075461,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-06-05",
+        "valor": "300.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3075462,
+        "descricao": "CRISTIANO SOARES DA SILVA",
+        "vencimento": "2026-06-02",
+        "valor": "299.00",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3077029,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-06-02",
+        "valor": "250.00",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3077720,
+        "descricao": "MILAGRES GAS E AGUA",
+        "vencimento": "2026-06-02",
+        "valor": "60.00",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3077732,
+        "descricao": "MILAGRES GAS E AGUA",
+        "vencimento": "2026-06-02",
+        "valor": "207.80",
+        "aging": "hoje"
+      }
+    ],
+    "receivablesFuture": [
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20713424,
+        "descricao": "DESPERDICIO",
+        "vencimento": "2026-06-01",
+        "valor": "29.94",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20715113,
+        "descricao": "PRODUTOS TROCA/AVARIADO",
+        "vencimento": "2026-06-01",
+        "valor": "6.50",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20723253,
+        "descricao": "DESPERDICIO",
+        "vencimento": "2026-06-01",
+        "valor": "7.99",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20723684,
+        "descricao": "VALE CINTHIA FERNANDES GADELHA",
+        "vencimento": "2026-06-01",
+        "valor": "20.20",
+        "aging": "vencido"
+      }
+    ],
+    "overdueEvents": [
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3073237,
+        "descricao": "COMERCIAL BEZERRA  FILIAL 01",
+        "vencimento": "2026-06-01",
+        "valor": "6.90",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20713424,
+        "descricao": "DESPERDICIO",
+        "vencimento": "2026-06-01",
+        "valor": "29.94",
+        "aging": "vencido",
+        "direcao": "entrada"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20715113,
+        "descricao": "PRODUTOS TROCA/AVARIADO",
+        "vencimento": "2026-06-01",
+        "valor": "6.50",
+        "aging": "vencido",
+        "direcao": "entrada"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20723253,
+        "descricao": "DESPERDICIO",
+        "vencimento": "2026-06-01",
+        "valor": "7.99",
+        "aging": "vencido",
+        "direcao": "entrada"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20723684,
+        "descricao": "VALE CINTHIA FERNANDES GADELHA",
+        "vencimento": "2026-06-01",
+        "valor": "20.20",
+        "aging": "vencido",
+        "direcao": "entrada"
+      }
+    ],
+    "treasury": {
+      "creditos": {
+        "count": 1021,
+        "valor": "113719.34"
+      },
+      "debitos": {
+        "count": 979,
+        "valor": "3410.49"
+      },
+      "tarifas": {
+        "count": 977,
+        "valor": "390.49"
+      },
+      "transferencias": {
+        "count": 978,
+        "valor": "58401.27"
+      }
+    },
+    "insights": {
+      "criticalDays": [
+        {
+          "periodo": "2026-06-02",
+          "entradasPrevistas": "0.00",
+          "saidasPrevistas": "2616.80",
+          "saldoProjetado": "-2616.80",
+          "saldoAcumulado": "107749.78"
+        },
+        {
+          "periodo": "2026-06-01",
+          "entradasPrevistas": "113783.97",
+          "saidasPrevistas": "3417.39",
+          "saldoProjetado": "110366.58",
+          "saldoAcumulado": "110366.58"
+        }
+      ],
+      "payablesVencidoValor": "6.90",
+      "receivablesVencidoValor": "64.63",
+      "tarifasValor": "390.49",
+      "topOpportunities": [
+        {
+          "tipo": "COBRANCA_VENCIDA",
+          "descricao": "DESPERDICIO",
+          "valor": "29.94",
+          "vencimento": "2026-06-01",
+          "acao": "Priorizar recebimento de título vencido"
+        },
+        {
+          "tipo": "COBRANCA_VENCIDA",
+          "descricao": "VALE CINTHIA FERNANDES GADELHA",
+          "valor": "20.20",
+          "vencimento": "2026-06-01",
+          "acao": "Priorizar recebimento de título vencido"
+        },
+        {
+          "tipo": "COBRANCA_VENCIDA",
+          "descricao": "DESPERDICIO",
+          "valor": "7.99",
+          "vencimento": "2026-06-01",
+          "acao": "Priorizar recebimento de título vencido"
+        },
+        {
+          "tipo": "COBRANCA_VENCIDA",
+          "descricao": "PRODUTOS TROCA/AVARIADO",
+          "valor": "6.50",
+          "vencimento": "2026-06-01",
+          "acao": "Priorizar recebimento de título vencido"
+        },
+        {
+          "tipo": "RENEGOCIACAO_CP",
+          "descricao": "COMERCIAL BEZERRA  FILIAL 01",
+          "valor": "6.90",
+          "vencimento": "2026-06-01",
+          "acao": "Renegociar ou programar pagamento vencido"
+        },
+        {
+          "tipo": "TARIFA_BANCARIA",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "valor": "5.16",
+          "vencimento": "2026-06-01",
+          "acao": "Revisar tarifa evitável ou conta bancária"
+        },
+        {
+          "tipo": "TARIFA_BANCARIA",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:345234340 ",
+          "valor": "3.34",
+          "vencimento": "2026-06-01",
+          "acao": "Revisar tarifa evitável ou conta bancária"
+        },
+        {
+          "tipo": "TARIFA_BANCARIA",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:187792937 ",
+          "valor": "3.25",
+          "vencimento": "2026-06-01",
+          "acao": "Revisar tarifa evitável ou conta bancária"
+        },
+        {
+          "tipo": "TARIFA_BANCARIA",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:7227 CONTA:998346 ",
+          "valor": "2.45",
+          "vencimento": "2026-06-01",
+          "acao": "Revisar tarifa evitável ou conta bancária"
+        }
+      ]
+    },
+    "snapshotKeys": {
+      "daily": "cashflow:daily:2026-06-01:2026-06-02:all",
+      "weekly": "cashflow:weekly:2026-06-01:2026-06-02:all",
+      "monthly": "cashflow:monthly:2026-06-01:2026-06-02:all"
+    },
+    "performanceMs": {
+      "payables": 991.7,
+      "receivables": 1013.1,
+      "bank": 12375.6,
+      "caixaApresentado": 2403.2
+    }
+  },
+  "snapshotKey": "cashflow:all:2026-06-01:2026-06-02:all"
+}

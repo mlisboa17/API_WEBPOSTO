@@ -1,0 +1,144 @@
+{
+  "generated_at": "2026-06-14T16:23:03.509387",
+  "period": "2026-06-01 → 2026-06-07",
+  "primary": [
+    {
+      "name": "health",
+      "path": "/health",
+      "status": 200,
+      "elapsed_s": 0.02,
+      "budget_s": 3.0,
+      "ok": true,
+      "source": null,
+      "mode": null,
+      "reason": null,
+      "has_lineage": false,
+      "synthetic": false
+    },
+    {
+      "name": "overview",
+      "path": "/v1/financial/overview?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.02,
+      "budget_s": 3.0,
+      "ok": true,
+      "source": "snapshot",
+      "mode": "snapshot_first",
+      "reason": "homologated_snapshot",
+      "has_lineage": true,
+      "synthetic": false
+    },
+    {
+      "name": "expenses",
+      "path": "/v1/financial/expenses?dataInicial=2026-06-01&dataFinal=2026-06-07&page=1&limit=10",
+      "status": 200,
+      "elapsed_s": 0.01,
+      "budget_s": 3.0,
+      "ok": true,
+      "source": "snapshot",
+      "mode": "snapshot_first",
+      "reason": "homologated_snapshot",
+      "has_lineage": true,
+      "synthetic": false
+    },
+    {
+      "name": "stock",
+      "path": "/v1/stock?dataInicial=2026-06-01&dataFinal=2026-06-07&page=1&limit=10",
+      "status": 200,
+      "elapsed_s": 0.02,
+      "budget_s": 8.0,
+      "ok": true,
+      "source": "snapshot",
+      "mode": "snapshot_first",
+      "reason": "homologated_snapshot",
+      "has_lineage": true,
+      "synthetic": false
+    },
+    {
+      "name": "sales",
+      "path": "/v1/sales?dataInicial=2026-06-01&dataFinal=2026-06-07&page=1&limit=10",
+      "status": 200,
+      "elapsed_s": 8.02,
+      "budget_s": 9.0,
+      "ok": true,
+      "source": "snapshot",
+      "mode": "snapshot_fallback",
+      "reason": "live_timeout",
+      "has_lineage": true,
+      "synthetic": false
+    }
+  ],
+  "regression": [
+    {
+      "name": "f08_ops",
+      "path": "/api/v1/financial/operations-center/cockpit?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.55,
+      "budget_s": 3.0,
+      "ok": true,
+      "source": null,
+      "mode": null,
+      "reason": null,
+      "has_lineage": false,
+      "synthetic": false
+    },
+    {
+      "name": "f08_int",
+      "path": "/api/v1/financial/intelligence-center/cockpit?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.62,
+      "budget_s": 3.0,
+      "ok": true,
+      "source": null,
+      "mode": null,
+      "reason": null,
+      "has_lineage": false,
+      "synthetic": false
+    },
+    {
+      "name": "f07",
+      "path": "/api/v1/non-fuel-products/cockpit?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.02,
+      "budget_s": 3.0,
+      "ok": true,
+      "source": null,
+      "mode": null,
+      "reason": null,
+      "has_lineage": false,
+      "synthetic": false
+    },
+    {
+      "name": "fiscal",
+      "path": "/api/v1/nfce-intelligence/cockpit?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.01,
+      "budget_s": 3.0,
+      "ok": true,
+      "source": null,
+      "mode": null,
+      "reason": null,
+      "has_lineage": false,
+      "synthetic": false
+    },
+    {
+      "name": "executive",
+      "path": "/api/v1/executive-scorecard/cockpit?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.01,
+      "budget_s": 3.0,
+      "ok": true,
+      "source": null,
+      "mode": null,
+      "reason": null,
+      "has_lineage": false,
+      "synthetic": false
+    }
+  ],
+  "summary": {
+    "primary_ok": 5,
+    "primary_total": 5,
+    "regression_ok": 5,
+    "regression_total": 5
+  }
+}

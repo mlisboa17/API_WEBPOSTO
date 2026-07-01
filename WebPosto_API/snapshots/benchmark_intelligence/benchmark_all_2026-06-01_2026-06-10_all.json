@@ -1,0 +1,397 @@
+{
+  "lastUpdated": "2026-06-15T00:25:39.073851",
+  "data": {
+    "sprint": "F04.6",
+    "periodo": {
+      "dataInicial": "2026-06-01",
+      "dataFinal": "2026-06-10"
+    },
+    "elapsedMs": 3.1,
+    "fonte": {
+      "f045Audit": "f04_5_goals_campaign_engine.json",
+      "webPosto": false
+    },
+    "companyBenchmark": {
+      "filiais": [
+        {
+          "empresaCodigo": 5333,
+          "nomeFilial": "FILIAL 5333",
+          "receita": 0.0,
+          "lucro": -1133.51,
+          "roi": 0.0,
+          "perdas": 0.0,
+          "metas": 0,
+          "alertas": 0,
+          "scoreMedio": null,
+          "participacao": 0.0,
+          "crescimentoProxy": 0.0
+        }
+      ],
+      "ranking": [
+        {
+          "empresaCodigo": 5333,
+          "nomeFilial": "FILIAL 5333",
+          "receita": 0.0,
+          "lucro": -1133.51,
+          "roi": 0.0,
+          "perdas": 0.0,
+          "metas": 0,
+          "alertas": 0,
+          "scoreMedio": null,
+          "participacao": 0.0,
+          "crescimentoProxy": 0.0
+        }
+      ],
+      "melhorFilial": {
+        "empresaCodigo": 5333,
+        "nomeFilial": "FILIAL 5333",
+        "receita": 0.0,
+        "lucro": -1133.51,
+        "roi": 0.0,
+        "perdas": 0.0,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 0.0,
+        "crescimentoProxy": 0.0
+      },
+      "piorFilial": {
+        "empresaCodigo": 5333,
+        "nomeFilial": "FILIAL 5333",
+        "receita": 0.0,
+        "lucro": -1133.51,
+        "roi": 0.0,
+        "perdas": 0.0,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 0.0,
+        "crescimentoProxy": 0.0
+      },
+      "maiorRoi": {
+        "empresaCodigo": 5333,
+        "nomeFilial": "FILIAL 5333",
+        "receita": 0.0,
+        "lucro": -1133.51,
+        "roi": 0.0,
+        "perdas": 0.0,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 0.0,
+        "crescimentoProxy": 0.0
+      },
+      "maiorPerda": {
+        "empresaCodigo": 5333,
+        "nomeFilial": "FILIAL 5333",
+        "receita": 0.0,
+        "lucro": -1133.51,
+        "roi": 0.0,
+        "perdas": 0.0,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 0.0,
+        "crescimentoProxy": 0.0
+      },
+      "maiorCrescimento": {
+        "empresaCodigo": 5333,
+        "nomeFilial": "FILIAL 5333",
+        "receita": 0.0,
+        "lucro": -1133.51,
+        "roi": 0.0,
+        "perdas": 0.0,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 0.0,
+        "crescimentoProxy": 0.0
+      },
+      "maiorRisco": {
+        "empresaCodigo": 5333,
+        "nomeFilial": "FILIAL 5333",
+        "receita": 0.0,
+        "lucro": -1133.51,
+        "roi": 0.0,
+        "perdas": 0.0,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 0.0,
+        "crescimentoProxy": 0.0
+      },
+      "paridadeDelta": 0.0
+    },
+    "operatorBenchmark": {
+      "operators": [],
+      "top20": [],
+      "bottom20": [],
+      "maiorRoi": null,
+      "maiorAccountability": null,
+      "maiorRisco": null,
+      "maiorEvolucao": null,
+      "maiorQueda": null,
+      "melhorOperador": null,
+      "piorOperador": null
+    },
+    "pdvBenchmark": {
+      "pdvs": [],
+      "turnos": [],
+      "rankingPdvs": [],
+      "rankingTurnos": [],
+      "melhorPdv": null,
+      "piorPdv": null,
+      "melhorTurno": null,
+      "piorTurno": null,
+      "maiorRisco": null,
+      "maiorOportunidade": null,
+      "diferencaRede": 0.0
+    },
+    "shiftBenchmark": {
+      "turnos": [],
+      "ranking": [],
+      "melhor": null,
+      "pior": null
+    },
+    "gapEngine": {
+      "filiaisAbaixoMedia": [],
+      "operadoresAbaixoMedia": [],
+      "pdvsAbaixoMedia": [],
+      "turnosAbaixoMedia": [],
+      "maiorGap": null,
+      "gaps": [],
+      "medias": {
+        "receitaFilial": 0.0,
+        "benchmarkOperador": 0.0,
+        "resultadoPdv": 0.0,
+        "resultadoTurno": 0.0
+      }
+    },
+    "bestPracticesEngine": {
+      "vencedores": [
+        {
+          "padrao": "Alto benchmark operador",
+          "referencia": null,
+          "acao": "Replicar mix vendas + accountability"
+        },
+        {
+          "padrao": "PDV com margem preservada",
+          "referencia": null,
+          "acao": "Padronizar fechamento e mix PDV"
+        },
+        {
+          "padrao": "Filial líder receita",
+          "referencia": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          },
+          "acao": "Expandir playbook comercial"
+        }
+      ],
+      "perdedores": [
+        {
+          "padrao": "Operador abaixo da média",
+          "referencia": null,
+          "acao": "Treinamento + metas F04.5"
+        },
+        {
+          "padrao": "PDV destruição de margem",
+          "referencia": null,
+          "acao": "Auditoria caixa + redução faltas"
+        }
+      ],
+      "acoesReplicaveis": [
+        "Replicar mix vendas + accountability",
+        "Padronizar fechamento e mix PDV",
+        "Expandir playbook comercial"
+      ],
+      "acoesCorretivas": [
+        "Treinamento + metas F04.5",
+        "Auditoria caixa + redução faltas"
+      ],
+      "melhorPratica": {
+        "padrao": "Alto benchmark operador",
+        "referencia": null,
+        "acao": "Replicar mix vendas + accountability"
+      },
+      "piorPratica": {
+        "padrao": "PDV destruição de margem",
+        "referencia": null,
+        "acao": "Auditoria caixa + redução faltas"
+      }
+    },
+    "cockpit": {
+      "rankingFiliais": [
+        {
+          "empresaCodigo": 5333,
+          "nomeFilial": "FILIAL 5333",
+          "receita": 0.0,
+          "lucro": -1133.51,
+          "roi": 0.0,
+          "perdas": 0.0,
+          "metas": 0,
+          "alertas": 0,
+          "scoreMedio": null,
+          "participacao": 0.0,
+          "crescimentoProxy": 0.0
+        }
+      ],
+      "rankingOperadores": [],
+      "rankingPdvs": [],
+      "rankingTurnos": [],
+      "gaps": [],
+      "bestPractices": [
+        {
+          "padrao": "Alto benchmark operador",
+          "referencia": null,
+          "acao": "Replicar mix vendas + accountability"
+        },
+        {
+          "padrao": "PDV com margem preservada",
+          "referencia": null,
+          "acao": "Padronizar fechamento e mix PDV"
+        },
+        {
+          "padrao": "Filial líder receita",
+          "referencia": {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          },
+          "acao": "Expandir playbook comercial"
+        }
+      ]
+    },
+    "executiveAnswers": {
+      "1_melhorFilial": {
+        "empresaCodigo": 5333,
+        "nomeFilial": "FILIAL 5333",
+        "receita": 0.0,
+        "lucro": -1133.51,
+        "roi": 0.0,
+        "perdas": 0.0,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 0.0,
+        "crescimentoProxy": 0.0
+      },
+      "2_piorFilial": {
+        "empresaCodigo": 5333,
+        "nomeFilial": "FILIAL 5333",
+        "receita": 0.0,
+        "lucro": -1133.51,
+        "roi": 0.0,
+        "perdas": 0.0,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 0.0,
+        "crescimentoProxy": 0.0
+      },
+      "3_melhorOperador": null,
+      "4_piorOperador": null,
+      "5_melhorPdv": null,
+      "6_piorPdv": null,
+      "7_melhorTurno": null,
+      "8_piorTurno": null,
+      "9_maiorRoi": {
+        "empresaCodigo": 5333,
+        "nomeFilial": "FILIAL 5333",
+        "receita": 0.0,
+        "lucro": -1133.51,
+        "roi": 0.0,
+        "perdas": 0.0,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 0.0,
+        "crescimentoProxy": 0.0
+      },
+      "10_maiorRisco": {
+        "empresaCodigo": 5333,
+        "nomeFilial": "FILIAL 5333",
+        "receita": 0.0,
+        "lucro": -1133.51,
+        "roi": 0.0,
+        "perdas": 0.0,
+        "metas": 0,
+        "alertas": 0,
+        "scoreMedio": null,
+        "participacao": 0.0,
+        "crescimentoProxy": 0.0
+      },
+      "11_maiorOportunidade": null,
+      "12_maiorGap": null,
+      "13_melhorPratica": {
+        "padrao": "Alto benchmark operador",
+        "referencia": null,
+        "acao": "Replicar mix vendas + accountability"
+      },
+      "14_piorPratica": {
+        "padrao": "PDV destruição de margem",
+        "referencia": null,
+        "acao": "Auditoria caixa + redução faltas"
+      },
+      "15_potencialCapturavel": 0.0,
+      "16_potencialPerdido": 0.0,
+      "17_rankingExecutivo": {
+        "filiais": [
+          {
+            "empresaCodigo": 5333,
+            "nomeFilial": "FILIAL 5333",
+            "receita": 0.0,
+            "lucro": -1133.51,
+            "roi": 0.0,
+            "perdas": 0.0,
+            "metas": 0,
+            "alertas": 0,
+            "scoreMedio": null,
+            "participacao": 0.0,
+            "crescimentoProxy": 0.0
+          }
+        ],
+        "operadores": [],
+        "pdvs": [],
+        "turnos": []
+      },
+      "18_benchmarkConfiavel": true,
+      "19_prontoScorecard": false,
+      "20_aprovadoF047": false,
+      "paridadeDelta": 0.0
+    },
+    "qa": {
+      "paridadeDelta": 0.0,
+      "paridadeZero": true,
+      "crossTenant": false,
+      "semCrossTenant": true,
+      "duplicidade": 0,
+      "semDuplicidade": true,
+      "metricasOrfas": 0,
+      "semMetricasOrfas": true,
+      "operadoresIndexados": 0,
+      "filiaisIndexadas": 1,
+      "fonteWebPosto": false,
+      "fonteF045": true,
+      "evidenciaCompleta": true
+    },
+    "parecerFinal": "[PARECER FINAL: RETIDO COM JUSTIFICATIVA QUANTITATIVA]"
+  }
+}

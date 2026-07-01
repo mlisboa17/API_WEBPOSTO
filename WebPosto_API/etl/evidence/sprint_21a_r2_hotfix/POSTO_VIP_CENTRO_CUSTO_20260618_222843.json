@@ -1,0 +1,27 @@
+{
+  "tenant": "POSTO_VIP",
+  "endpoint": "CENTRO_CUSTO",
+  "base_url": "https://web.qualityautomacao.com.br",
+  "path": "/INTEGRACAO/CENTRO_CUSTO",
+  "url_masked": "https://web.qualityautomacao.com.br/INTEGRACAO/CENTRO_CUSTO?CHAVE=4d6bbe21...8fd7&...",
+  "timestamp": "2026-06-18T22:28:43.369133",
+  "http_status": 200,
+  "success": true,
+  "records_count": 9,
+  "sample_payload": {
+    "centroCustoCodigo": 7295,
+    "descricao": "PISTA",
+    "centroCustoCodigoExterno": null,
+    "tipoCentroCusto": "Pista",
+    "codigo": 7295
+  },
+  "error": null,
+  "fields_detected": [
+    "centroCustoCodigo",
+    "descricao",
+    "centroCustoCodigoExterno",
+    "tipoCentroCusto",
+    "codigo"
+  ],
+  "is_expected_401": false
+}

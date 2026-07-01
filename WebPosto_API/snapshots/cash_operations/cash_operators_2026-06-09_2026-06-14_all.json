@@ -1,0 +1,277 @@
+{
+  "lastUpdated": "2026-06-14T14:09:22",
+  "data": {
+    "totalOperadores": 8,
+    "rankingMelhores": [
+      {
+        "funcionarioCodigo": 299371,
+        "fechamentos": 1,
+        "volumeApurado": 0.0,
+        "diferencaAcumulada": 0.0,
+        "diferencaMedia": 0.0,
+        "indiceRecorrencia": 0.0,
+        "cashRiskScore": 51.54,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 178278,
+        "fechamentos": 2,
+        "volumeApurado": 7850.92,
+        "diferencaAcumulada": -1242.97,
+        "diferencaMedia": -621.49,
+        "indiceRecorrencia": 0.5,
+        "cashRiskScore": 35.03,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 213391,
+        "fechamentos": 1,
+        "volumeApurado": 36215.62,
+        "diferencaAcumulada": -31.01,
+        "diferencaMedia": -31.01,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 29.43,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 294273,
+        "fechamentos": 2,
+        "volumeApurado": 76333.8,
+        "diferencaAcumulada": -204.11,
+        "diferencaMedia": -102.06,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 28.81,
+        "band": "Critico",
+        "monitoramentoPrioritario": true
+      },
+      {
+        "funcionarioCodigo": 276288,
+        "fechamentos": 4,
+        "volumeApurado": 13911.41,
+        "diferencaAcumulada": -507.01,
+        "diferencaMedia": -126.75,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 26.67,
+        "band": "Critico",
+        "monitoramentoPrioritario": true
+      },
+      {
+        "funcionarioCodigo": 227386,
+        "fechamentos": 2,
+        "volumeApurado": 83497.32,
+        "diferencaAcumulada": -1097.85,
+        "diferencaMedia": -548.92,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 25.59,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 299152,
+        "fechamentos": 3,
+        "volumeApurado": 43908.71,
+        "diferencaAcumulada": -219.46,
+        "diferencaMedia": -73.15,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 22.75,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 158924,
+        "fechamentos": 4,
+        "volumeApurado": 53466.6,
+        "diferencaAcumulada": -3516.08,
+        "diferencaMedia": -879.02,
+        "indiceRecorrencia": 0.75,
+        "cashRiskScore": 17.78,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      }
+    ],
+    "rankingPiores": [
+      {
+        "funcionarioCodigo": 158924,
+        "fechamentos": 4,
+        "volumeApurado": 53466.6,
+        "diferencaAcumulada": -3516.08,
+        "diferencaMedia": -879.02,
+        "indiceRecorrencia": 0.75,
+        "cashRiskScore": 17.78,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 299152,
+        "fechamentos": 3,
+        "volumeApurado": 43908.71,
+        "diferencaAcumulada": -219.46,
+        "diferencaMedia": -73.15,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 22.75,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 227386,
+        "fechamentos": 2,
+        "volumeApurado": 83497.32,
+        "diferencaAcumulada": -1097.85,
+        "diferencaMedia": -548.92,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 25.59,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 276288,
+        "fechamentos": 4,
+        "volumeApurado": 13911.41,
+        "diferencaAcumulada": -507.01,
+        "diferencaMedia": -126.75,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 26.67,
+        "band": "Critico",
+        "monitoramentoPrioritario": true
+      },
+      {
+        "funcionarioCodigo": 294273,
+        "fechamentos": 2,
+        "volumeApurado": 76333.8,
+        "diferencaAcumulada": -204.11,
+        "diferencaMedia": -102.06,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 28.81,
+        "band": "Critico",
+        "monitoramentoPrioritario": true
+      },
+      {
+        "funcionarioCodigo": 213391,
+        "fechamentos": 1,
+        "volumeApurado": 36215.62,
+        "diferencaAcumulada": -31.01,
+        "diferencaMedia": -31.01,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 29.43,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 178278,
+        "fechamentos": 2,
+        "volumeApurado": 7850.92,
+        "diferencaAcumulada": -1242.97,
+        "diferencaMedia": -621.49,
+        "indiceRecorrencia": 0.5,
+        "cashRiskScore": 35.03,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 299371,
+        "fechamentos": 1,
+        "volumeApurado": 0.0,
+        "diferencaAcumulada": 0.0,
+        "diferencaMedia": 0.0,
+        "indiceRecorrencia": 0.0,
+        "cashRiskScore": 51.54,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      }
+    ],
+    "todos": [
+      {
+        "funcionarioCodigo": 158924,
+        "fechamentos": 4,
+        "volumeApurado": 53466.6,
+        "diferencaAcumulada": -3516.08,
+        "diferencaMedia": -879.02,
+        "indiceRecorrencia": 0.75,
+        "cashRiskScore": 17.78,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 178278,
+        "fechamentos": 2,
+        "volumeApurado": 7850.92,
+        "diferencaAcumulada": -1242.97,
+        "diferencaMedia": -621.49,
+        "indiceRecorrencia": 0.5,
+        "cashRiskScore": 35.03,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 227386,
+        "fechamentos": 2,
+        "volumeApurado": 83497.32,
+        "diferencaAcumulada": -1097.85,
+        "diferencaMedia": -548.92,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 25.59,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 276288,
+        "fechamentos": 4,
+        "volumeApurado": 13911.41,
+        "diferencaAcumulada": -507.01,
+        "diferencaMedia": -126.75,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 26.67,
+        "band": "Critico",
+        "monitoramentoPrioritario": true
+      },
+      {
+        "funcionarioCodigo": 299152,
+        "fechamentos": 3,
+        "volumeApurado": 43908.71,
+        "diferencaAcumulada": -219.46,
+        "diferencaMedia": -73.15,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 22.75,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 294273,
+        "fechamentos": 2,
+        "volumeApurado": 76333.8,
+        "diferencaAcumulada": -204.11,
+        "diferencaMedia": -102.06,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 28.81,
+        "band": "Critico",
+        "monitoramentoPrioritario": true
+      },
+      {
+        "funcionarioCodigo": 213391,
+        "fechamentos": 1,
+        "volumeApurado": 36215.62,
+        "diferencaAcumulada": -31.01,
+        "diferencaMedia": -31.01,
+        "indiceRecorrencia": 1.0,
+        "cashRiskScore": 29.43,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      },
+      {
+        "funcionarioCodigo": 299371,
+        "fechamentos": 1,
+        "volumeApurado": 0.0,
+        "diferencaAcumulada": 0.0,
+        "diferencaMedia": 0.0,
+        "indiceRecorrencia": 0.0,
+        "cashRiskScore": 51.54,
+        "band": "Critico",
+        "monitoramentoPrioritario": false
+      }
+    ]
+  },
+  "snapshotKey": "cash:operators:2026-06-09:2026-06-14:all"
+}

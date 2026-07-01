@@ -1,0 +1,41 @@
+{
+  "tenant": "POSTO_VIP",
+  "endpoint": "TANQUE",
+  "base_url": "https://web.qualityautomacao.com.br",
+  "path": "/INTEGRACAO/TANQUE",
+  "url_masked": "https://web.qualityautomacao.com.br/INTEGRACAO/TANQUE?CHAVE=4d6bbe21...8fd7&...",
+  "timestamp": "2026-06-18T22:28:43.647895",
+  "http_status": 200,
+  "success": true,
+  "records_count": 6,
+  "sample_payload": {
+    "empresaCodigo": 5555,
+    "tanqueCodigo": 13577,
+    "tanqueCodigoExterno": null,
+    "nome": "001-GASOLINA COMUM",
+    "produtoCodigo": 1257884,
+    "capacidade": 15000.0,
+    "ultimoUsuarioAlteracao": "PETROSYSTEM",
+    "lastro": 0.0,
+    "estoqueEscritural": 3295.229,
+    "produtoLmcCodigo": null,
+    "dataHoraMedidor": "2026-06-18T22:27:48.613-03:00",
+    "codigo": 13577
+  },
+  "error": null,
+  "fields_detected": [
+    "empresaCodigo",
+    "tanqueCodigo",
+    "tanqueCodigoExterno",
+    "nome",
+    "produtoCodigo",
+    "capacidade",
+    "ultimoUsuarioAlteracao",
+    "lastro",
+    "estoqueEscritural",
+    "produtoLmcCodigo",
+    "dataHoraMedidor",
+    "codigo"
+  ],
+  "is_expected_401": false
+}

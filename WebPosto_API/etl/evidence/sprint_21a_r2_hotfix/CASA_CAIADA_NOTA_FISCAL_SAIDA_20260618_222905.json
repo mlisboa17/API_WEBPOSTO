@@ -1,0 +1,15 @@
+{
+  "tenant": "CASA_CAIADA",
+  "endpoint": "NOTA_FISCAL_SAIDA",
+  "base_url": "https://web.qualityautomacao.com.br",
+  "path": "/INTEGRACAO/NOTA_FISCAL_SAIDA",
+  "url_masked": "https://web.qualityautomacao.com.br/INTEGRACAO/NOTA_FISCAL_SAIDA?CHAVE=eabd1f99...53a8&...",
+  "timestamp": "2026-06-18T22:29:05.842237",
+  "http_status": 401,
+  "success": false,
+  "records_count": 0,
+  "sample_payload": null,
+  "error": "Unauthorized - Invalid or expired API key",
+  "fields_detected": [],
+  "is_expected_401": true
+}

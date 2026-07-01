@@ -1,5 +1,5 @@
 import { formatCurrency } from "../services/format.js";
-import { downloadCsv } from "../services/export.js";
+import { renderExecutiveCockpitPage } from "../services/executiveCockpitAdapter.js";
 
 function fmtMoney(v) {
   if (v === null || v === undefined) return "—";
@@ -37,74 +37,59 @@ function renderTable(title, items, columns) {
 }
 
 export function renderExecutiveCopilot(node, payload, filters, options = {}) {
-  if (!node) return;
-  if (!payload) {
-    node.innerHTML = `<p class="muted">Carregando Executive Copilot…</p>`;
-    return;
-  }
+  const cockpit = payload?.cockpit || {};
+  const recs = payload?.recommendationEngine?.recommendations || cockpit.acoesRecomendadas || [];
 
-  const cockpit = payload.cockpit || {};
-  const exec = payload.executiveAnswers || {};
-  const faq = payload.conversationLayer?.frequentQuestions || [];
-  const recs = payload.recommendationEngine?.recommendations || cockpit.acoesRecomendadas || [];
-  const answers = cockpit.perguntasFrequentes || [];
-  const parecer = payload.parecerFinal || "";
-  const kpis = cockpit.kpis || {};
-
-  node.innerHTML = `
-    <header class="view-header">
-      <div>
-        <h2>Executive Copilot</h2>
-        <p class="muted">F05.3 · ${filters?.dataInicial || ""} → ${filters?.dataFinal || ""}</p>
+  renderExecutiveCockpitPage(node, payload, filters, {
+    title: "Executive Copilot",
+    actionsHtml: `
+      <button type="button" id="copilotRefresh" class="btn-secondary">Atualizar</button>
+      <button type="button" id="copilotExport" class="btn-secondary">Exportar CSV</button>
+    `,
+    detailBuilder: (cockpitDetail, payloadDetail) => {
+      const answers = cockpitDetail.perguntasFrequentes || [];
+      const parecer = payloadDetail.parecerFinal || "";
+      const recsDetail = payloadDetail.recommendationEngine?.recommendations || cockpitDetail.acoesRecomendadas || [];
+      return `
         ${parecer ? `<p class="parecer">${parecer}</p>` : ""}
-      </div>
-      <div class="view-actions">
-        <button type="button" id="copilotRefresh" class="btn-secondary">Atualizar</button>
-        <button type="button" id="copilotExport" class="btn-secondary">Exportar CSV</button>
-      </div>
-    </header>
-    <div class="kpi-grid">
-      <article class="kpi-card kpi-card--highlight"><span class="kpi-label">Perguntas Homologadas</span><strong>${exec["5_perguntasHomologadas"] ?? faq.length ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Recomendações</span><strong>${exec["6_totalRecomendacoes"] ?? recs.length ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Com Evidência</span><strong>${exec["7_recomendacoesComEvidencia"] ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Trust Executivo</span><strong>${exec.trustExecutivo ?? kpis.trustExecutivo ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">ROI Realizado</span><strong>${exec["9_roiRealizado"] ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Auditável</span><strong>${exec["16_auditavel"] ? "Sim" : "Não"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Aprovado F05.4</span><strong>${exec["20_aprovadoF054"] ? "Sim" : "Não"}</strong></article>
-    </div>
-    <section class="panel">
-      <h3>Perguntar ao Copilot</h3>
-      <div class="copilot-ask-row">
-        <input type="text" id="copilotQuestionInput" placeholder="Ex.: Onde estamos perdendo dinheiro?" class="copilot-input" />
-        <button type="button" id="copilotAskBtn" class="btn-primary">Perguntar</button>
-      </div>
-      <div id="copilotAskResult"></div>
-    </section>
-    <section class="panel"><h3>Perguntas Frequentes (catálogo G02)</h3><div class="copilot-faq">${answers.slice(0, 6).map(renderAnswerCard).join("")}</div></section>
-    ${renderTable("Ações Recomendadas", recs.slice(0, 8), [
-      { key: "classificacao", label: "Classificação" },
-      { key: "acao", label: "Ação" },
-      { key: "responsavel", label: "Responsável" },
-      { key: "roiEstimado", label: "ROI Est.", money: true },
-      { key: "confidenceLevel", label: "Confiança" },
-      { key: "labels", label: "Labels", render: (r) => (r.labels || []).join(", ") },
-    ])}
-    ${renderTable("Prioridades (Action Center)", cockpit.prioridades || [], [
-      { key: "acao", label: "Ação" },
-      { key: "status", label: "Status" },
-      { key: "ownerName", label: "Responsável" },
-      { key: "roiLabel", label: "ROI" },
-    ])}
-    ${renderTable("Riscos", cockpit.riscos || [], [
-      { key: "title", label: "Risco", render: (r) => r.title || r.nome || r.tipo },
-      { key: "severidade", label: "Severidade", render: (r) => r.severidade || r.nivel },
-    ])}
-  `;
-
-  node.querySelector("#copilotRefresh")?.addEventListener("click", () => options.onRefresh?.());
-  node.querySelector("#copilotExport")?.addEventListener("click", () => {
-    downloadCsv("executive-copilot.csv", recs);
+        <section class="panel">
+          <h3>Perguntar ao Copilot</h3>
+          <div class="copilot-ask-row">
+            <input type="text" id="copilotQuestionInput" placeholder="Ex.: Onde estamos perdendo dinheiro?" class="copilot-input" />
+            <button type="button" id="copilotAskBtn" class="btn-primary">Perguntar</button>
+          </div>
+          <div id="copilotAskResult"></div>
+        </section>
+        <section class="panel"><h3>Perguntas Frequentes (catálogo G02)</h3><div class="copilot-faq">${answers.slice(0, 6).map(renderAnswerCard).join("")}</div></section>
+        ${renderTable("Ações Recomendadas", recsDetail.slice(0, 8), [
+          { key: "classificacao", label: "Classificação" },
+          { key: "acao", label: "Ação" },
+          { key: "responsavel", label: "Responsável" },
+          { key: "roiEstimado", label: "ROI Est.", money: true },
+          { key: "confidenceLevel", label: "Confiança" },
+          { key: "labels", label: "Labels", render: (r) => (r.labels || []).join(", ") },
+        ])}
+        ${renderTable("Prioridades (Action Center)", cockpitDetail.prioridades || [], [
+          { key: "acao", label: "Ação" },
+          { key: "status", label: "Status" },
+          { key: "ownerName", label: "Responsável" },
+          { key: "roiLabel", label: "ROI" },
+        ])}
+        ${renderTable("Riscos", cockpitDetail.riscos || [], [
+          { key: "title", label: "Risco", render: (r) => r.title || r.nome || r.tipo },
+          { key: "severidade", label: "Severidade", render: (r) => r.severidade || r.nivel },
+        ])}
+      `;
+    },
+    refreshButtonId: "copilotRefresh",
+    exportButtonId: "copilotExport",
+    exportData: recs,
+    exportFileName: "executive-copilot.csv",
+    defaultView: "executiveCopilot",
+    onRefresh: options.onRefresh,
+    onNavigate: options.onNavigate,
   });
+
   node.querySelector("#copilotAskBtn")?.addEventListener("click", async () => {
     const input = node.querySelector("#copilotQuestionInput");
     const resultNode = node.querySelector("#copilotAskResult");

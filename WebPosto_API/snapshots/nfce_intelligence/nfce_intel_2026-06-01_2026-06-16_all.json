@@ -1,0 +1,2684 @@
+{
+  "lastUpdated": "2026-06-17T06:16:33.301080",
+  "data": {
+    "sprint": "F06.1",
+    "periodo": {
+      "dataInicial": "2026-06-01",
+      "dataFinal": "2026-06-16"
+    },
+    "elapsedMs": 76.3,
+    "fonte": {
+      "webPostoLive": false,
+      "endpointHomologado": "/INTEGRACAO/NFCE",
+      "snapshotsHomologados": [
+        "d01_operational_join_probe",
+        "people_intelligence",
+        "operator_intelligence",
+        "cash_operations_qa",
+        "f06_0_fiscal_intelligence_discovery"
+      ]
+    },
+    "nfceCatalogEngine": {
+      "emitidas": 200,
+      "canceladas": 0,
+      "inutilizadas": 0,
+      "pendentes": 0,
+      "total": 200,
+      "coverage": "PARCIAL"
+    },
+    "nfceLineageEngine": {
+      "items": [
+        {
+          "vendaCodigo": 100000,
+          "nfceCodigo": 227805639,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100001,
+          "nfceCodigo": 227805640,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100002,
+          "nfceCodigo": 227805641,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100003,
+          "nfceCodigo": 227805642,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100004,
+          "nfceCodigo": 227805643,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100005,
+          "nfceCodigo": 227805644,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100006,
+          "nfceCodigo": 227805645,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100007,
+          "nfceCodigo": 227805646,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100008,
+          "nfceCodigo": 227805647,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100009,
+          "nfceCodigo": 227805648,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100010,
+          "nfceCodigo": 227805649,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100011,
+          "nfceCodigo": 227805650,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100012,
+          "nfceCodigo": 227805651,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100013,
+          "nfceCodigo": 227805652,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100014,
+          "nfceCodigo": 227805653,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100015,
+          "nfceCodigo": 227805654,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100016,
+          "nfceCodigo": 227805655,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100017,
+          "nfceCodigo": 227805656,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100018,
+          "nfceCodigo": 227805657,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100019,
+          "nfceCodigo": 227805658,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100020,
+          "nfceCodigo": 227805659,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100021,
+          "nfceCodigo": 227805660,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100022,
+          "nfceCodigo": 227805661,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100023,
+          "nfceCodigo": 227805662,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100024,
+          "nfceCodigo": 227805663,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100025,
+          "nfceCodigo": 227805664,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100026,
+          "nfceCodigo": 227805665,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100027,
+          "nfceCodigo": 227805666,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100028,
+          "nfceCodigo": 227805667,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100029,
+          "nfceCodigo": 227805668,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100030,
+          "nfceCodigo": 227805669,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100031,
+          "nfceCodigo": 227805670,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100032,
+          "nfceCodigo": 227805671,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100033,
+          "nfceCodigo": 227805672,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100034,
+          "nfceCodigo": 227805673,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100035,
+          "nfceCodigo": 227805674,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100036,
+          "nfceCodigo": 227805675,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100037,
+          "nfceCodigo": 227805676,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100038,
+          "nfceCodigo": 227805677,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100039,
+          "nfceCodigo": 227805678,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100040,
+          "nfceCodigo": 227805679,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100041,
+          "nfceCodigo": 227805680,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100042,
+          "nfceCodigo": 227805681,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100043,
+          "nfceCodigo": 227805682,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100044,
+          "nfceCodigo": 227805683,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100045,
+          "nfceCodigo": 227805684,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100046,
+          "nfceCodigo": 227805685,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100047,
+          "nfceCodigo": 227805686,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100048,
+          "nfceCodigo": 227805687,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100049,
+          "nfceCodigo": 227805688,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        }
+      ],
+      "total": 50
+    },
+    "nfceReconciliationEngine": {
+      "vendasTotal": 200,
+      "nfceEmitidasTotal": 200,
+      "matched": 200,
+      "coveragePct": 100.0,
+      "semNota": 0,
+      "duplicadas": 0,
+      "canceladas": 0,
+      "divergentes": 0,
+      "items": [
+        {
+          "tipo": "SEM_NOTA",
+          "quantidade": 0
+        },
+        {
+          "tipo": "DUPLICADA",
+          "quantidade": 0
+        },
+        {
+          "tipo": "CANCELADA",
+          "quantidade": 0
+        },
+        {
+          "tipo": "DIVERGENTE",
+          "quantidade": 0
+        }
+      ]
+    },
+    "nfceRiskEngine": {
+      "risks": [
+        {
+          "empresaCodigo": 11495,
+          "risco": "BAIXO",
+          "cancelamentos": 0,
+          "ausencias": 0,
+          "divergencias": 0,
+          "lineage": [
+            {
+              "origem": "F06.1",
+              "snapshot": "nfce_intelligence_engine",
+              "api": "/api/v1/nfce-intelligence/cockpit",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 5555,
+          "risco": "BAIXO",
+          "cancelamentos": 0,
+          "ausencias": 0,
+          "divergencias": 0,
+          "lineage": [
+            {
+              "origem": "F06.1",
+              "snapshot": "nfce_intelligence_engine",
+              "api": "/api/v1/nfce-intelligence/cockpit",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        }
+      ],
+      "total": 2
+    },
+    "nfceAnomalyEngine": {
+      "patterns": [],
+      "total": 0
+    },
+    "nfceExecutiveIntelligence": {
+      "filialMaiorRisco": {
+        "empresaCodigo": 11495,
+        "risco": "BAIXO",
+        "cancelamentos": 0,
+        "ausencias": 0,
+        "divergencias": 0,
+        "lineage": [
+          {
+            "origem": "F06.1",
+            "snapshot": "nfce_intelligence_engine",
+            "api": "/api/v1/nfce-intelligence/cockpit",
+            "cockpit": "nfce-intelligence",
+            "webPosto": false,
+            "endpoint": "/INTEGRACAO/NFCE"
+          }
+        ]
+      },
+      "pdvMaiorDivergencia": {
+        "pdvCodigo": null,
+        "ocorrencias": 0
+      },
+      "operadorMaisOcorrencias": {},
+      "reconciliacaoCoveragePct": 100.0
+    },
+    "cockpit": {
+      "nfceEmitidas": 200,
+      "nfceCanceladas": 0,
+      "riscoFiscal": [
+        {
+          "empresaCodigo": 11495,
+          "risco": "BAIXO",
+          "cancelamentos": 0,
+          "ausencias": 0,
+          "divergencias": 0,
+          "lineage": [
+            {
+              "origem": "F06.1",
+              "snapshot": "nfce_intelligence_engine",
+              "api": "/api/v1/nfce-intelligence/cockpit",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 5555,
+          "risco": "BAIXO",
+          "cancelamentos": 0,
+          "ausencias": 0,
+          "divergencias": 0,
+          "lineage": [
+            {
+              "origem": "F06.1",
+              "snapshot": "nfce_intelligence_engine",
+              "api": "/api/v1/nfce-intelligence/cockpit",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        }
+      ],
+      "divergencias": 0,
+      "topOcorrencias": [],
+      "reconciliacao": {
+        "vendasTotal": 200,
+        "nfceEmitidasTotal": 200,
+        "matched": 200,
+        "coveragePct": 100.0,
+        "semNota": 0,
+        "duplicadas": 0,
+        "canceladas": 0,
+        "divergentes": 0,
+        "items": [
+          {
+            "tipo": "SEM_NOTA",
+            "quantidade": 0
+          },
+          {
+            "tipo": "DUPLICADA",
+            "quantidade": 0
+          },
+          {
+            "tipo": "CANCELADA",
+            "quantidade": 0
+          },
+          {
+            "tipo": "DIVERGENTE",
+            "quantidade": 0
+          }
+        ]
+      },
+      "catalog": {
+        "emitidas": 200,
+        "canceladas": 0,
+        "inutilizadas": 0,
+        "pendentes": 0,
+        "total": 200,
+        "coverage": "PARCIAL"
+      },
+      "executiveIntelligence": {
+        "filialMaiorRisco": {
+          "empresaCodigo": 11495,
+          "risco": "BAIXO",
+          "cancelamentos": 0,
+          "ausencias": 0,
+          "divergencias": 0,
+          "lineage": [
+            {
+              "origem": "F06.1",
+              "snapshot": "nfce_intelligence_engine",
+              "api": "/api/v1/nfce-intelligence/cockpit",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        "pdvMaiorDivergencia": {
+          "pdvCodigo": null,
+          "ocorrencias": 0
+        },
+        "operadorMaisOcorrencias": {},
+        "reconciliacaoCoveragePct": 100.0
+      },
+      "trustExecutivo": 88.69
+    },
+    "executiveAnswers": {
+      "1_totalNfceHomologadas": 200,
+      "2_emitidas": 200,
+      "3_canceladas": 0,
+      "4_inutilizadas": 0,
+      "5_pendentes": 0,
+      "6_coberturaReconciliacao": 100.0,
+      "7_semNota": 0,
+      "8_divergencias": 0,
+      "9_riscoMaximo": "BAIXO",
+      "10_filialMaiorRisco": 11495,
+      "11_pdvMaiorDivergencia": null,
+      "12_operadorMaisOcorrencias": null,
+      "13_joinNfceVendaPct": 100.0,
+      "14_ausenciaNfce": false,
+      "15_motorAuditavel": true,
+      "16_lineageCompleto": true,
+      "17_crossTenant": false,
+      "18_cockpitAprovado": true,
+      "19_fiscalIntelligenceViavel": true,
+      "20_aprovadoF062": true,
+      "trustExecutivo": 88.69
+    },
+    "qa": {
+      "fonteWebPostoLive": false,
+      "snapshotsHomologados": true,
+      "semCrossTenant": true,
+      "lineageCompleto": true,
+      "motorAuditavel": true,
+      "execucaoAutomatica": false
+    },
+    "parecerFinal": "[PARECER FINAL: APROVADO PARA F06.2]",
+    "governanceRules": {
+      "lineageObrigatorio": true,
+      "confidenceObrigatorio": true,
+      "webPostoLiveProibido": true
+    },
+    "dwLayer": {
+      "factNfceCatalog": [
+        {
+          "nfceId": "NFC-F7341CE4",
+          "nfceCodigo": 227805639,
+          "vendaCodigo": 100000,
+          "empresaCodigo": 11495,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-5D64F0D5",
+          "nfceCodigo": 227805640,
+          "vendaCodigo": 100001,
+          "empresaCodigo": 5555,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-92B21EF9",
+          "nfceCodigo": 227805641,
+          "vendaCodigo": 100002,
+          "empresaCodigo": 11495,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-21B484E8",
+          "nfceCodigo": 227805642,
+          "vendaCodigo": 100003,
+          "empresaCodigo": 5555,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-123BBED1",
+          "nfceCodigo": 227805643,
+          "vendaCodigo": 100004,
+          "empresaCodigo": 11495,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-30C18C21",
+          "nfceCodigo": 227805644,
+          "vendaCodigo": 100005,
+          "empresaCodigo": 5555,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-84D58BF8",
+          "nfceCodigo": 227805645,
+          "vendaCodigo": 100006,
+          "empresaCodigo": 11495,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-DF92BE33",
+          "nfceCodigo": 227805646,
+          "vendaCodigo": 100007,
+          "empresaCodigo": 5555,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-A5D22FD9",
+          "nfceCodigo": 227805647,
+          "vendaCodigo": 100008,
+          "empresaCodigo": 11495,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-0E29019B",
+          "nfceCodigo": 227805648,
+          "vendaCodigo": 100009,
+          "empresaCodigo": 5555,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-4370F720",
+          "nfceCodigo": 227805649,
+          "vendaCodigo": 100010,
+          "empresaCodigo": 11495,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-88F9BF59",
+          "nfceCodigo": 227805650,
+          "vendaCodigo": 100011,
+          "empresaCodigo": 5555,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-12AD7390",
+          "nfceCodigo": 227805651,
+          "vendaCodigo": 100012,
+          "empresaCodigo": 11495,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-EF7B70E2",
+          "nfceCodigo": 227805652,
+          "vendaCodigo": 100013,
+          "empresaCodigo": 5555,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-86B6823A",
+          "nfceCodigo": 227805653,
+          "vendaCodigo": 100014,
+          "empresaCodigo": 11495,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-13F90D18",
+          "nfceCodigo": 227805654,
+          "vendaCodigo": 100015,
+          "empresaCodigo": 5555,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-B90A8E2E",
+          "nfceCodigo": 227805655,
+          "vendaCodigo": 100016,
+          "empresaCodigo": 11495,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-53CC92C7",
+          "nfceCodigo": 227805656,
+          "vendaCodigo": 100017,
+          "empresaCodigo": 5555,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-6C127600",
+          "nfceCodigo": 227805657,
+          "vendaCodigo": 100018,
+          "empresaCodigo": 11495,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-A3E00CB9",
+          "nfceCodigo": 227805658,
+          "vendaCodigo": 100019,
+          "empresaCodigo": 5555,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-7EAA5538",
+          "nfceCodigo": 227805659,
+          "vendaCodigo": 100020,
+          "empresaCodigo": 11495,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-DC032FFD",
+          "nfceCodigo": 227805660,
+          "vendaCodigo": 100021,
+          "empresaCodigo": 5555,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-B027F17F",
+          "nfceCodigo": 227805661,
+          "vendaCodigo": 100022,
+          "empresaCodigo": 11495,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-696769DE",
+          "nfceCodigo": 227805662,
+          "vendaCodigo": 100023,
+          "empresaCodigo": 5555,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-A1234D3E",
+          "nfceCodigo": 227805663,
+          "vendaCodigo": 100024,
+          "empresaCodigo": 11495,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-C68F5A41",
+          "nfceCodigo": 227805664,
+          "vendaCodigo": 100025,
+          "empresaCodigo": 5555,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-444D431C",
+          "nfceCodigo": 227805665,
+          "vendaCodigo": 100026,
+          "empresaCodigo": 11495,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-D1B6D79B",
+          "nfceCodigo": 227805666,
+          "vendaCodigo": 100027,
+          "empresaCodigo": 5555,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-C51B7709",
+          "nfceCodigo": 227805667,
+          "vendaCodigo": 100028,
+          "empresaCodigo": 11495,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        },
+        {
+          "nfceId": "NFC-6A7D5421",
+          "nfceCodigo": 227805668,
+          "vendaCodigo": 100029,
+          "empresaCodigo": 5555,
+          "situacaoFiscal": "Emitida",
+          "situacaoOriginal": "Autorizada",
+          "dataEmissao": "2026-06-02",
+          "protocoloInutilizacao": null,
+          "protocoloCancelamento": null,
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ],
+          "confidenceLevel": "ALTA",
+          "homologado": true
+        }
+      ],
+      "factNfceLineage": [
+        {
+          "vendaCodigo": 100000,
+          "nfceCodigo": 227805639,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100001,
+          "nfceCodigo": 227805640,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100002,
+          "nfceCodigo": 227805641,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100003,
+          "nfceCodigo": 227805642,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100004,
+          "nfceCodigo": 227805643,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100005,
+          "nfceCodigo": 227805644,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100006,
+          "nfceCodigo": 227805645,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100007,
+          "nfceCodigo": 227805646,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100008,
+          "nfceCodigo": 227805647,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100009,
+          "nfceCodigo": 227805648,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100010,
+          "nfceCodigo": 227805649,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100011,
+          "nfceCodigo": 227805650,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100012,
+          "nfceCodigo": 227805651,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100013,
+          "nfceCodigo": 227805652,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100014,
+          "nfceCodigo": 227805653,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100015,
+          "nfceCodigo": 227805654,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100016,
+          "nfceCodigo": 227805655,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100017,
+          "nfceCodigo": 227805656,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100018,
+          "nfceCodigo": 227805657,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100019,
+          "nfceCodigo": 227805658,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100020,
+          "nfceCodigo": 227805659,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100021,
+          "nfceCodigo": 227805660,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100022,
+          "nfceCodigo": 227805661,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100023,
+          "nfceCodigo": 227805662,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100024,
+          "nfceCodigo": 227805663,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100025,
+          "nfceCodigo": 227805664,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100026,
+          "nfceCodigo": 227805665,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100027,
+          "nfceCodigo": 227805666,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100028,
+          "nfceCodigo": 227805667,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "vendaCodigo": 100029,
+          "nfceCodigo": 227805668,
+          "situacaoFiscal": "Emitida",
+          "joinKeys": [
+            "empresaCodigo",
+            "vendaCodigo"
+          ],
+          "joinCoveragePct": 100.0,
+          "joinConfidence": "HIGH",
+          "lineage": [
+            {
+              "origem": "D01",
+              "snapshot": "d01_operational_join_probe",
+              "api": "/INTEGRACAO/NFCE",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        }
+      ],
+      "factNfceRisk": [
+        {
+          "empresaCodigo": 11495,
+          "risco": "BAIXO",
+          "cancelamentos": 0,
+          "ausencias": 0,
+          "divergencias": 0,
+          "lineage": [
+            {
+              "origem": "F06.1",
+              "snapshot": "nfce_intelligence_engine",
+              "api": "/api/v1/nfce-intelligence/cockpit",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 5555,
+          "risco": "BAIXO",
+          "cancelamentos": 0,
+          "ausencias": 0,
+          "divergencias": 0,
+          "lineage": [
+            {
+              "origem": "F06.1",
+              "snapshot": "nfce_intelligence_engine",
+              "api": "/api/v1/nfce-intelligence/cockpit",
+              "cockpit": "nfce-intelligence",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/NFCE"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

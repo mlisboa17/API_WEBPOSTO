@@ -103,6 +103,8 @@ class FinancialSnapshotScheduler:
                 resp = await self._overview.get_accounts_receivable(filters, page=1, limit=500)
             elif kind == "financial_payables":
                 resp = await self._overview.get_accounts_payable(filters, page=1, limit=500)
+            elif kind == "financial_sales":
+                resp = await self._overview.get_sales(filters, page=1, limit=500)
             else:
                 raise ValueError(f"kind desconhecido: {kind}")
 

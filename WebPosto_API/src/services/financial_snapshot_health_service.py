@@ -13,6 +13,7 @@ KIND_LABELS = {
     "financial_expenses": "Despesas",
     "financial_receivables": "Contas a receber",
     "financial_payables": "Contas a pagar",
+    "financial_sales": "Vendas",
 }
 
 

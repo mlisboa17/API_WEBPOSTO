@@ -38,7 +38,7 @@ export function buildQueryString(params = {}) {
  */
 export const apiClient = {
   async request(method, path, options = {}) {
-    const { params, body, headers, timeout = 30000 } = options;
+    const { params, body, headers, timeout = 30000, allowDegraded = false } = options;
     const url = `${API_BASE}${path}${buildQueryString(params)}`;
 
     const fetchOptions = {
@@ -72,7 +72,7 @@ export const apiClient = {
       throw new Error(`Falha ao processar resposta da API para ${path}`);
     }
 
-    if (!response.ok || (data && data.success === false)) {
+    if (!response.ok || (data && data.success === false && !allowDegraded && !data?.degraded)) {
       const msg = data?.error?.message || data?.detail || `Falha na requisicao ${method} ${path}`;
       throw new Error(msg);
     }

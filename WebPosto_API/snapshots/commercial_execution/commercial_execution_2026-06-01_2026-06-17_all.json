@@ -1,0 +1,933 @@
+{
+  "lastUpdated": "2026-06-17T10:03:32.000903",
+  "data": {
+    "sprint": "F07.7",
+    "fonte": {
+      "modo": "homologated_snapshot",
+      "webPostoLive": false,
+      "baselineF076": true,
+      "r04Gate": "COMMERCIAL_ACTION_CENTER",
+      "segregacaoPorEmpresaCodigo": true
+    },
+    "governanceRules": {
+      "proibidoConveniencia": true,
+      "empresaCodigoObrigatorio": true,
+      "somenteSnapshotHomologado": true,
+      "proibidoWebPostoLiveDecisao": true
+    },
+    "commercialAssignmentEngine": {
+      "actions": [
+        {
+          "id": "PV-OPP-C674973B",
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "titulo": "AUMENTAR PARTICIPACAO",
+          "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+          "produtoCodigo": null,
+          "empresaCodigo": 11495,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 165.6,
+          "impactoEstimadoMargem": 49.68,
+          "evidencia": {
+            "tipo": "AUMENTAR_PARTICIPACAO",
+            "prioridade": "ALTA",
+            "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+            "impactoEstimadoReceita": 165.6
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "actionId": "PV-OPP-C674973B",
+          "responsavelNome": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "responsavelId": 276288,
+          "lifecycleStatus": "VALIDADA",
+          "dataCriacao": "2026-06-10",
+          "dataExecucao": "2026-06-14"
+        },
+        {
+          "id": "PV-OPP-9DF6A31E",
+          "tipo": "DESENVOLVER_FILIAL",
+          "titulo": "DESENVOLVER FILIAL",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+          "produtoCodigo": null,
+          "empresaCodigo": 11495,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 46.284,
+          "impactoEstimadoMargem": 13.89,
+          "evidencia": {
+            "tipo": "DESENVOLVER_FILIAL",
+            "prioridade": "ALTA",
+            "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+            "empresaCodigo": 11495
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "actionId": "PV-OPP-9DF6A31E",
+          "responsavelNome": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "responsavelId": 276288,
+          "lifecycleStatus": "RECOMENDADA",
+          "dataCriacao": "2026-06-09",
+          "dataExecucao": null
+        },
+        {
+          "id": "PV-COMB-FF4879B7",
+          "tipo": "REDUZIR_DEPENDENCIA_COMBUSTIVEL",
+          "titulo": "Reduzir dependência combustível — filial 11495",
+          "descricao": "Dependência 78.4% — ampliar Produtos Vendidos",
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+60",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 23.14,
+          "impactoEstimadoMargem": 8.1,
+          "impactoPctReceitaPv": 5.0,
+          "evidencia": {
+            "mixProdutosVendidosPct": 21.6,
+            "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "fuel_dependency_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "actionId": "PV-COMB-FF4879B7",
+          "responsavelNome": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "responsavelId": 251934,
+          "lifecycleStatus": "RECOMENDADA",
+          "dataCriacao": "2026-06-08",
+          "dataExecucao": null
+        }
+      ],
+      "totalAtribuidas": 3,
+      "porStatus": {
+        "RECOMENDADA": 2,
+        "APROVADA": 0,
+        "EM_ANDAMENTO": 0,
+        "CONCLUIDA": 0,
+        "VALIDADA": 1,
+        "CANCELADA": 0
+      },
+      "lineage": [
+        {
+          "origem": "F07.7",
+          "snapshot": "assignment_engine",
+          "api": "/api/v1/commercial-execution/cockpit",
+          "cockpit": "commercial-execution"
+        }
+      ]
+    },
+    "commercialExecutionTracking": {
+      "events": [
+        {
+          "actionId": "PV-OPP-C674973B",
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "empresaCodigo": 11495,
+          "filial": 11495,
+          "responsavel": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "responsavelId": 276288,
+          "dataExecucao": "2026-06-14",
+          "lifecycleStatus": "VALIDADA",
+          "lineage": [
+            {
+              "origem": "F07.7",
+              "snapshot": "execution_event",
+              "api": "/api/v1/commercial-execution/cockpit",
+              "cockpit": "commercial-execution"
+            }
+          ]
+        }
+      ],
+      "totalEventos": 1,
+      "executadas": 1,
+      "lineage": [
+        {
+          "origem": "F07.7",
+          "snapshot": "execution_tracking",
+          "api": "/api/v1/commercial-execution/cockpit",
+          "cockpit": "commercial-execution"
+        }
+      ]
+    },
+    "commercialEvidenceEngine": {
+      "evidences": [
+        {
+          "evidenceId": "CEV-3C33A1B3B0",
+          "actionId": "PV-OPP-C674973B",
+          "executionEvidence": true,
+          "executionDate": "2026-06-17",
+          "executionUser": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "executionUserId": 276288,
+          "executionComment": "Execução homologada F07.7 — AUMENTAR_PARTICIPACAO",
+          "resultado": "EXECUCAO_REGISTRADA",
+          "lineage": [
+            {
+              "origem": "F07.7",
+              "snapshot": "execution_evidence",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "commercial-execution"
+            }
+          ]
+        }
+      ],
+      "total": 1
+    },
+    "commercialOutcomeMeasurement": {
+      "antes": {
+        "receitaProdutosVendidos": 462.84,
+        "margemBruta": 0.0,
+        "mixProdutosVendidosPct": 21.6,
+        "dependenciaCombustivelPct": 78.4
+      },
+      "depois": {
+        "receitaProdutosVendidos": 615.19,
+        "margemBruta": 45.71,
+        "mixProdutosVendidosPct": 26.6,
+        "dependenciaCombustivelPct": 74.99
+      },
+      "delta": {
+        "receita": 152.35,
+        "margem": 45.71,
+        "mixProdutosVendidosPct": 5.0,
+        "dependenciaCombustivelPct": -3.41
+      },
+      "lineage": [
+        {
+          "origem": "F07.7",
+          "snapshot": "outcome_measurement",
+          "api": "/api/v1/commercial-execution/cockpit",
+          "cockpit": "commercial-execution"
+        }
+      ]
+    },
+    "revenueLiftTracking": {
+      "receitaPrevista": 165.6,
+      "receitaRealizada": 152.35,
+      "deltaReceita": -13.25,
+      "acuraciaMediaPct": 92.0,
+      "acoesValidadas": 1,
+      "lineage": [
+        {
+          "origem": "F07.7",
+          "snapshot": "revenue_lift",
+          "api": "/api/v1/commercial-execution/cockpit",
+          "cockpit": "commercial-execution"
+        }
+      ]
+    },
+    "marginImprovementTracking": {
+      "margemPrevista": 49.68,
+      "margemRealizada": 45.71,
+      "deltaMargem": -3.97,
+      "produtosImpactados": 0,
+      "lineage": [
+        {
+          "origem": "F07.7",
+          "snapshot": "margin_improvement",
+          "api": "/api/v1/commercial-execution/cockpit",
+          "cockpit": "commercial-execution"
+        }
+      ]
+    },
+    "commercialPerformance": {
+      "porResponsavel": [
+        {
+          "responsavel": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "executadas": 1,
+          "validadas": 1,
+          "receitaRealizada": 152.35,
+          "margemRealizada": 45.71
+        },
+        {
+          "responsavel": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "executadas": 0,
+          "validadas": 0,
+          "receitaRealizada": 0.0,
+          "margemRealizada": 0.0
+        }
+      ],
+      "porFilial": [
+        {
+          "empresaCodigo": 11495,
+          "executadas": 1,
+          "validadas": 1,
+          "receitaRealizada": 152.35,
+          "margemRealizada": 45.71
+        }
+      ],
+      "melhorResponsavel": {
+        "responsavel": "JOÃO RYVISON DE ANDRADE SOUZA",
+        "executadas": 1,
+        "validadas": 1,
+        "receitaRealizada": 152.35,
+        "margemRealizada": 45.71
+      },
+      "melhorFilial": {
+        "empresaCodigo": 11495,
+        "executadas": 1,
+        "validadas": 1,
+        "receitaRealizada": 152.35,
+        "margemRealizada": 45.71
+      },
+      "filiaisSemExecucao": [],
+      "lineage": [
+        {
+          "origem": "F07.7",
+          "snapshot": "commercial_performance",
+          "api": "/api/v1/commercial-execution/cockpit",
+          "cockpit": "commercial-execution"
+        }
+      ]
+    },
+    "commercialActionCenter": {
+      "actions": [
+        {
+          "id": "PV-OPP-C674973B",
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "titulo": "AUMENTAR PARTICIPACAO",
+          "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+          "produtoCodigo": null,
+          "empresaCodigo": null,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 165.6,
+          "impactoEstimadoMargem": 49.68,
+          "evidencia": {
+            "tipo": "AUMENTAR_PARTICIPACAO",
+            "prioridade": "ALTA",
+            "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+            "impactoEstimadoReceita": 165.6
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-OPP-9DF6A31E",
+          "tipo": "DESENVOLVER_FILIAL",
+          "titulo": "DESENVOLVER FILIAL",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+          "produtoCodigo": null,
+          "empresaCodigo": 11495,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 46.284,
+          "impactoEstimadoMargem": 13.89,
+          "evidencia": {
+            "tipo": "DESENVOLVER_FILIAL",
+            "prioridade": "ALTA",
+            "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+            "empresaCodigo": 11495
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-COMB-FF4879B7",
+          "tipo": "REDUZIR_DEPENDENCIA_COMBUSTIVEL",
+          "titulo": "Reduzir dependência combustível — filial 11495",
+          "descricao": "Dependência 78.4% — ampliar Produtos Vendidos",
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+60",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 23.14,
+          "impactoEstimadoMargem": 8.1,
+          "impactoPctReceitaPv": 5.0,
+          "evidencia": {
+            "mixProdutosVendidosPct": 21.6,
+            "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "fuel_dependency_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "totalAcoes": 3,
+        "porStatus": {
+          "RECOMENDADA": 3
+        },
+        "porPrioridade": {
+          "ALTA": 2,
+          "MEDIA": 1
+        },
+        "impactoTotalReceita": 235.02,
+        "impactoTotalMargem": 71.67,
+        "acoesAltaPrioridade": 2,
+        "acoesComResponsavel": 3,
+        "acoesComEvidencia": 3,
+        "lineage": [
+          {
+            "origem": "F07.6",
+            "snapshot": "action_center_summary",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "r04Gate": {
+        "track": "COMMERCIAL_ACTION_CENTER",
+        "confiabilidadeMargemPct": 100.0,
+        "parecerR04": "[PARECER FINAL: F07.6 = COMMERCIAL ACTION CENTER]"
+      },
+      "lineage": [
+        {
+          "origem": "F07.6",
+          "snapshot": "commercial_action_center",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "cockpit": {
+      "tituloVisual": "Execução Comercial Produtos Vendidos",
+      "subtitulo": "F07.7 · Execução · Evidência · Outcome · ROI Real",
+      "totalAcoes": 3,
+      "acoesExecutadas": 1,
+      "receitaRealizada": 152.35,
+      "margemRealizada": 45.71,
+      "deltaReceita": -13.25,
+      "acoesValidadas": 1,
+      "planoAcao": [
+        {
+          "id": "PV-OPP-C674973B",
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "titulo": "AUMENTAR PARTICIPACAO",
+          "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+          "produtoCodigo": null,
+          "empresaCodigo": 11495,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 165.6,
+          "impactoEstimadoMargem": 49.68,
+          "evidencia": {
+            "tipo": "AUMENTAR_PARTICIPACAO",
+            "prioridade": "ALTA",
+            "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+            "impactoEstimadoReceita": 165.6
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "actionId": "PV-OPP-C674973B",
+          "responsavelNome": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "responsavelId": 276288,
+          "lifecycleStatus": "VALIDADA",
+          "dataCriacao": "2026-06-10",
+          "dataExecucao": "2026-06-14",
+          "executionEvidence": {
+            "evidenceId": "CEV-3C33A1B3B0",
+            "actionId": "PV-OPP-C674973B",
+            "executionEvidence": true,
+            "executionDate": "2026-06-17",
+            "executionUser": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "executionUserId": 276288,
+            "executionComment": "Execução homologada F07.7 — AUMENTAR_PARTICIPACAO",
+            "resultado": "EXECUCAO_REGISTRADA",
+            "lineage": [
+              {
+                "origem": "F07.7",
+                "snapshot": "execution_evidence",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "commercial-execution"
+              }
+            ]
+          },
+          "hasExecutionEvidence": true,
+          "receitaPrevista": 165.6,
+          "margemPrevista": 49.68,
+          "receitaRealizada": 152.35,
+          "margemRealizada": 45.71,
+          "receitaDelta": -13.25,
+          "margemDelta": -3.97,
+          "acuraciaReceitaPct": 92.0,
+          "roiReal": 152.35,
+          "roiRealCalculavel": true
+        },
+        {
+          "id": "PV-OPP-9DF6A31E",
+          "tipo": "DESENVOLVER_FILIAL",
+          "titulo": "DESENVOLVER FILIAL",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+          "produtoCodigo": null,
+          "empresaCodigo": 11495,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 46.284,
+          "impactoEstimadoMargem": 13.89,
+          "evidencia": {
+            "tipo": "DESENVOLVER_FILIAL",
+            "prioridade": "ALTA",
+            "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+            "empresaCodigo": 11495
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "actionId": "PV-OPP-9DF6A31E",
+          "responsavelNome": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "responsavelId": 276288,
+          "lifecycleStatus": "RECOMENDADA",
+          "dataCriacao": "2026-06-09",
+          "dataExecucao": null,
+          "hasExecutionEvidence": false,
+          "receitaPrevista": 46.28,
+          "margemPrevista": 13.89,
+          "receitaRealizada": 0.0,
+          "margemRealizada": 0.0,
+          "receitaDelta": -46.28,
+          "margemDelta": -13.89,
+          "acuraciaReceitaPct": 0.0,
+          "roiReal": 0.0,
+          "roiRealCalculavel": false
+        },
+        {
+          "id": "PV-COMB-FF4879B7",
+          "tipo": "REDUZIR_DEPENDENCIA_COMBUSTIVEL",
+          "titulo": "Reduzir dependência combustível — filial 11495",
+          "descricao": "Dependência 78.4% — ampliar Produtos Vendidos",
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+60",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 23.14,
+          "impactoEstimadoMargem": 8.1,
+          "impactoPctReceitaPv": 5.0,
+          "evidencia": {
+            "mixProdutosVendidosPct": 21.6,
+            "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "fuel_dependency_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "actionId": "PV-COMB-FF4879B7",
+          "responsavelNome": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "responsavelId": 251934,
+          "lifecycleStatus": "RECOMENDADA",
+          "dataCriacao": "2026-06-08",
+          "dataExecucao": null,
+          "hasExecutionEvidence": false,
+          "receitaPrevista": 23.14,
+          "margemPrevista": 8.1,
+          "receitaRealizada": 0.0,
+          "margemRealizada": 0.0,
+          "receitaDelta": -23.14,
+          "margemDelta": -8.1,
+          "acuraciaReceitaPct": 0.0,
+          "roiReal": 0.0,
+          "roiRealCalculavel": false
+        }
+      ],
+      "outcomeAntesDepois": {
+        "antes": {
+          "receitaProdutosVendidos": 462.84,
+          "margemBruta": 0.0,
+          "mixProdutosVendidosPct": 21.6,
+          "dependenciaCombustivelPct": 78.4
+        },
+        "depois": {
+          "receitaProdutosVendidos": 615.19,
+          "margemBruta": 45.71,
+          "mixProdutosVendidosPct": 26.6,
+          "dependenciaCombustivelPct": 74.99
+        },
+        "delta": {
+          "receita": 152.35,
+          "margem": 45.71,
+          "mixProdutosVendidosPct": 5.0,
+          "dependenciaCombustivelPct": -3.41
+        },
+        "lineage": [
+          {
+            "origem": "F07.7",
+            "snapshot": "outcome_measurement",
+            "api": "/api/v1/commercial-execution/cockpit",
+            "cockpit": "commercial-execution"
+          }
+        ]
+      },
+      "topResponsavel": {
+        "responsavel": "JOÃO RYVISON DE ANDRADE SOUZA",
+        "executadas": 1,
+        "validadas": 1,
+        "receitaRealizada": 152.35,
+        "margemRealizada": 45.71
+      },
+      "topFilial": {
+        "empresaCodigo": 11495,
+        "executadas": 1,
+        "validadas": 1,
+        "receitaRealizada": 152.35,
+        "margemRealizada": 45.71
+      }
+    },
+    "executiveAnswers": {
+      "1_totalAcoes": 3,
+      "2_acoesExecutadas": 1,
+      "3_acoesValidadas": 1,
+      "4_acoesCanceladas": 0,
+      "5_receitaPrevista": 165.6,
+      "6_receitaRealizada": 152.35,
+      "7_deltaReceita": -13.25,
+      "8_margemPrevista": 49.68,
+      "9_margemRealizada": 45.71,
+      "10_deltaMargem": -3.97,
+      "11_melhorAcao": "PV-OPP-C674973B",
+      "12_piorAcao": "PV-OPP-9DF6A31E",
+      "13_melhorResponsavel": "JOÃO RYVISON DE ANDRADE SOUZA",
+      "14_melhorFilial": 11495,
+      "15_taxaExecucaoPct": 33.33,
+      "16_taxaValidacaoPct": 33.33,
+      "17_roiRealCalculavel": true,
+      "18_sistemaAuditavel": true,
+      "19_cicloComercialFechado": true,
+      "20_aprovadoF078": true
+    },
+    "qa": {
+      "zeroAcaoSemResponsavel": true,
+      "zeroValidadaSemEvidencia": true,
+      "zeroRoiRealSemExecucao": true,
+      "semCrossTenantLogico": true,
+      "semKpiSemLineage": true,
+      "semTermoConveniencia": true,
+      "empresaCodigoObrigatorio": true,
+      "motorAuditavel": true
+    },
+    "parecerFinal": "[PARECER FINAL: APROVADO PARA F07.8]",
+    "dwLayer": {
+      "factCommercialExecution": [
+        {
+          "id": "PV-OPP-C674973B",
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "titulo": "AUMENTAR PARTICIPACAO",
+          "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+          "produtoCodigo": null,
+          "empresaCodigo": 11495,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 165.6,
+          "impactoEstimadoMargem": 49.68,
+          "evidencia": {
+            "tipo": "AUMENTAR_PARTICIPACAO",
+            "prioridade": "ALTA",
+            "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+            "impactoEstimadoReceita": 165.6
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "actionId": "PV-OPP-C674973B",
+          "responsavelNome": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "responsavelId": 276288,
+          "lifecycleStatus": "VALIDADA",
+          "dataCriacao": "2026-06-10",
+          "dataExecucao": "2026-06-14",
+          "executionEvidence": {
+            "evidenceId": "CEV-3C33A1B3B0",
+            "actionId": "PV-OPP-C674973B",
+            "executionEvidence": true,
+            "executionDate": "2026-06-17",
+            "executionUser": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "executionUserId": 276288,
+            "executionComment": "Execução homologada F07.7 — AUMENTAR_PARTICIPACAO",
+            "resultado": "EXECUCAO_REGISTRADA",
+            "lineage": [
+              {
+                "origem": "F07.7",
+                "snapshot": "execution_evidence",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "commercial-execution"
+              }
+            ]
+          },
+          "hasExecutionEvidence": true,
+          "receitaPrevista": 165.6,
+          "margemPrevista": 49.68,
+          "receitaRealizada": 152.35,
+          "margemRealizada": 45.71,
+          "receitaDelta": -13.25,
+          "margemDelta": -3.97,
+          "acuraciaReceitaPct": 92.0,
+          "roiReal": 152.35,
+          "roiRealCalculavel": true
+        },
+        {
+          "id": "PV-OPP-9DF6A31E",
+          "tipo": "DESENVOLVER_FILIAL",
+          "titulo": "DESENVOLVER FILIAL",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+          "produtoCodigo": null,
+          "empresaCodigo": 11495,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 46.284,
+          "impactoEstimadoMargem": 13.89,
+          "evidencia": {
+            "tipo": "DESENVOLVER_FILIAL",
+            "prioridade": "ALTA",
+            "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+            "empresaCodigo": 11495
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "actionId": "PV-OPP-9DF6A31E",
+          "responsavelNome": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "responsavelId": 276288,
+          "lifecycleStatus": "RECOMENDADA",
+          "dataCriacao": "2026-06-09",
+          "dataExecucao": null,
+          "hasExecutionEvidence": false,
+          "receitaPrevista": 46.28,
+          "margemPrevista": 13.89,
+          "receitaRealizada": 0.0,
+          "margemRealizada": 0.0,
+          "receitaDelta": -46.28,
+          "margemDelta": -13.89,
+          "acuraciaReceitaPct": 0.0,
+          "roiReal": 0.0,
+          "roiRealCalculavel": false
+        },
+        {
+          "id": "PV-COMB-FF4879B7",
+          "tipo": "REDUZIR_DEPENDENCIA_COMBUSTIVEL",
+          "titulo": "Reduzir dependência combustível — filial 11495",
+          "descricao": "Dependência 78.4% — ampliar Produtos Vendidos",
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+60",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 23.14,
+          "impactoEstimadoMargem": 8.1,
+          "impactoPctReceitaPv": 5.0,
+          "evidencia": {
+            "mixProdutosVendidosPct": 21.6,
+            "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "fuel_dependency_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "actionId": "PV-COMB-FF4879B7",
+          "responsavelNome": "WANDERSON GUILHERME DOS SANTOS OLIV",
+          "responsavelId": 251934,
+          "lifecycleStatus": "RECOMENDADA",
+          "dataCriacao": "2026-06-08",
+          "dataExecucao": null,
+          "hasExecutionEvidence": false,
+          "receitaPrevista": 23.14,
+          "margemPrevista": 8.1,
+          "receitaRealizada": 0.0,
+          "margemRealizada": 0.0,
+          "receitaDelta": -23.14,
+          "margemDelta": -8.1,
+          "acuraciaReceitaPct": 0.0,
+          "roiReal": 0.0,
+          "roiRealCalculavel": false
+        }
+      ],
+      "factCommercialOutcome": [
+        {
+          "receitaProdutosVendidos": 615.19,
+          "margemBruta": 45.71,
+          "mixProdutosVendidosPct": 26.6,
+          "dependenciaCombustivelPct": 74.99
+        }
+      ],
+      "factCommercialEvidence": [
+        {
+          "evidenceId": "CEV-3C33A1B3B0",
+          "actionId": "PV-OPP-C674973B",
+          "executionEvidence": true,
+          "executionDate": "2026-06-17",
+          "executionUser": "JOÃO RYVISON DE ANDRADE SOUZA",
+          "executionUserId": 276288,
+          "executionComment": "Execução homologada F07.7 — AUMENTAR_PARTICIPACAO",
+          "resultado": "EXECUCAO_REGISTRADA",
+          "lineage": [
+            {
+              "origem": "F07.7",
+              "snapshot": "execution_evidence",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "commercial-execution"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

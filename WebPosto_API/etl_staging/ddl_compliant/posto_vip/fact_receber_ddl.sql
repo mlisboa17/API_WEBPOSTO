@@ -1,0 +1,78 @@
+-- DDL-COMPLIANT INSERT for fact_receber
+-- Tenant: posto_vip
+-- Records: 71
+-- Generated: 2026-06-19T22:40:09.353328
+
+SET app.current_tenant = 'posto_vip';
+
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16559675, 11495, 1158805, '2025-01-02', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16560334, 11495, 1201933, '2025-01-02', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16567972, 11495, 1158805, '2025-01-03', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16568024, 11495, 1039689, '2025-01-03', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16570178, 11495, 1170916, '2025-01-20', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16571376, 11495, 1170916, '2025-01-20', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16575727, 11495, 1184673, '2025-01-04', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16575784, 11495, 1158805, '2025-01-06', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16581835, 11495, 1170916, '2025-01-20', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16582731, 11495, 1039689, '2025-01-06', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16584020, 11495, 1184673, '2025-01-05', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16584068, 11495, 1184673, '2025-01-05', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16584155, 11495, 1184673, '2025-01-06', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16584186, 11495, 1158805, '2025-01-06', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16587980, 11495, 1170916, '2025-02-04', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16588448, 11495, 1158807, '2025-01-06', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16588582, 11495, 1170916, '2025-02-04', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16592937, 11495, 1201933, '2025-01-06', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16593083, 11495, 1184673, '2025-01-06', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16594619, 11495, 1158805, '2025-01-07', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16601374, 11495, 1201933, '2025-01-07', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16602920, 11495, 1158805, '2025-01-08', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16618661, 11495, 1039689, '2025-01-09', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16620112, 11495, 1158807, '2025-01-10', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16622028, 11495, 1158805, '2025-01-10', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16622125, 11495, 1158805, '2025-01-10', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16629923, 11495, 1158805, '2025-01-13', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16629924, 11495, 1158807, '2025-01-13', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16629933, 11495, 1184673, '2025-01-11', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16640369, 11495, 1170916, '2025-01-20', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16640392, 11495, 1170916, '2025-01-20', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16642236, 11495, 1201933, '2025-01-13', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16652231, 11495, 1039689, '2025-01-14', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16658999, 11495, 1158805, '2025-01-15', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16662749, 11495, 1184673, '2025-01-16', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16662822, 11495, 1184673, '2025-01-16', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16662823, 11495, 1184673, '2025-01-16', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16663321, 11495, 1158807, '2025-01-16', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16667261, 11495, 1170916, '2025-02-20', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16694870, 11495, 1039689, '2025-01-20', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16694950, 11495, 1158805, '2025-01-20', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16700632, 11495, 1184673, '2025-01-21', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16700642, 11495, 1184673, '2025-01-21', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16700803, 11495, 1039689, '2025-01-21', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16705066, 11495, 1158805, '2025-01-21', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16709320, 11495, 1184673, '2025-01-22', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16709324, 11495, 1184673, '2025-01-22', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16721949, 11495, 1201933, '2025-01-23', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16722089, 11495, 1158807, '2025-01-23', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16722250, 11495, 1158805, '2025-01-23', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16727280, 11495, 1201933, '2025-01-23', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16728903, 11495, 1158807, '2025-01-24', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16730835, 11495, 1201933, '2025-01-24', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16730856, 11495, 1158807, '2025-01-24', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16730857, 11495, 1158805, '2025-01-24', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16733181, 11495, 1139330, '2025-01-24', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16737500, 11495, 1184673, '2025-01-24', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16737517, 11495, 1184673, '2025-01-24', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16741621, 11495, 1184673, '2025-01-25', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16754566, 11495, 1216253, '2025-01-27', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16760479, 11495, 1184673, '2025-01-27', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16760795, 11495, 1184673, '2025-01-28', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16774702, 11495, 1210874, '2025-01-29', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16780657, 11495, 1158807, '2025-01-30', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16784864, 11495, 1170916, '2025-02-20', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16785353, 11495, 1039689, '2025-01-30', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16785360, 11495, 1158805, '2025-01-30', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16790106, 11495, 1184673, '2025-01-31', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16794057, 11495, 1210874, '2025-01-31', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16795014, 11495, 1158805, '2025-01-31', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO logos_dw.fact_receber (titulo_codigo, empresa_codigo, cliente_codigo, data_vencimento, data_pagamento) VALUES (16799806, 11495, 1201933, '2025-01-31', NULL) ON CONFLICT DO NOTHING;

@@ -1,0 +1,5068 @@
+{
+  "lastUpdated": "2026-06-15T13:07:19.292267",
+  "data": {
+    "sprint": "F07.6",
+    "periodo": {
+      "dataInicial": "2026-06-10",
+      "dataFinal": "2026-06-15"
+    },
+    "empresaCodigoFiltro": null,
+    "elapsedMs": 543.8,
+    "fonte": {
+      "webPostoLive": false,
+      "modo": "homologated_fallback",
+      "segregacaoPorEmpresaCodigo": true
+    },
+    "productMasterCoverage": {
+      "produtosExistem": 7,
+      "produtosNoProdutoBase": 7,
+      "produtosVendidos": 2,
+      "produtosVendidosNaoCombustivel": 1,
+      "produtosVendidosSemCadastroAntes": 73,
+      "produtosVendidosSemCadastro": 0,
+      "produtosSemDescricao": 1,
+      "produtosSemDepartamento": 0,
+      "coberturaCatalogoAtualPct": 3.95,
+      "coberturaProdutoBasePct": 100.0,
+      "coberturaCatalogoFinalPct": 100.0,
+      "coberturaNaoCombustivelFinalPct": 100.0,
+      "nfceCoveragePct": 0.0,
+      "lineage": [
+        {
+          "origem": "F07.2",
+          "snapshot": "product_master_coverage",
+          "api": "/INTEGRACAO/PRODUTO+PRODUTO_EMPRESA",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "productMatchRecovery": {
+      "antesSemMatch": 0,
+      "depoisSemMatch": 0,
+      "produtosRecuperados": 0,
+      "taxaRecuperacaoPct": 0.0,
+      "amostraRecuperados": [],
+      "amostraAindaSemMatch": [],
+      "targetedRecovery": {},
+      "fontesRecuperacao": {
+        "PRODUTO_EMPRESA": 0,
+        "PRODUTO_TARGETED": 0,
+        "PRODUTO_EMPRESA_TARGETED": 0
+      },
+      "lineage": [
+        {
+          "origem": "F07.2",
+          "snapshot": "product_match_recovery",
+          "api": "/INTEGRACAO/PRODUTO?produtoCodigo",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ],
+      "residualSku1975728": {
+        "produtoCodigo": 1975728,
+        "classificacaoFinal": "RESOLVIDO",
+        "nomeResolvido": "Etanol aditivado",
+        "departamento": "COMBUSTIVEL",
+        "vendaItemOcorrencias": 0,
+        "empresaCodigo": 0,
+        "probes": [
+          {
+            "fonte": "FUEL_CATALOG",
+            "encontrado": true,
+            "nome": "Etanol aditivado"
+          },
+          {
+            "fonte": "dim_product_master",
+            "encontrado": true,
+            "nome": "Etanol aditivado"
+          }
+        ],
+        "liveProbes": {},
+        "lineage": [
+          {
+            "origem": "F07.3",
+            "snapshot": "residual_sku_forensics",
+            "api": "FUEL_CATALOG+PRODUTO",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      }
+    },
+    "productHierarchyDiscovery": {
+      "gruposDistintos": 1,
+      "subgruposDistintos": 0,
+      "ncmsDistintos": 1,
+      "topGrupos": [
+        {
+          "grupoCodigo": 24554,
+          "produtos": 1
+        }
+      ],
+      "topNcms": [
+        {
+          "ncm": "27101259",
+          "produtos": 1
+        }
+      ],
+      "amostraHierarquia": [
+        {
+          "produtoCodigo": 1257884,
+          "nome": "Gasolina",
+          "grupoCodigo": 24554,
+          "subGrupo1Codigo": null,
+          "subGrupo2Codigo": null,
+          "subGrupo3Codigo": null,
+          "ncm": "27101259",
+          "departamento": "COMBUSTIVEL",
+          "matchTier": "PRODUTO+PRODUTO_EMPRESA",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ]
+        },
+        {
+          "produtoCodigo": 1257885,
+          "nome": "Gasolina aditivada",
+          "grupoCodigo": null,
+          "subGrupo1Codigo": null,
+          "subGrupo2Codigo": null,
+          "subGrupo3Codigo": null,
+          "ncm": null,
+          "departamento": "COMBUSTIVEL",
+          "matchTier": "PRODUTO",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ]
+        },
+        {
+          "produtoCodigo": 1975728,
+          "nome": "Etanol aditivado",
+          "grupoCodigo": null,
+          "subGrupo1Codigo": null,
+          "subGrupo2Codigo": null,
+          "subGrupo3Codigo": null,
+          "ncm": null,
+          "departamento": "COMBUSTIVEL",
+          "matchTier": "PRODUTO",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ]
+        },
+        {
+          "produtoCodigo": 1260803,
+          "nome": "Diesel S10",
+          "grupoCodigo": null,
+          "subGrupo1Codigo": null,
+          "subGrupo2Codigo": null,
+          "subGrupo3Codigo": null,
+          "ncm": null,
+          "departamento": "COMBUSTIVEL",
+          "matchTier": "PRODUTO",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ]
+        },
+        {
+          "produtoCodigo": 1257999,
+          "nome": "Diesel S10",
+          "grupoCodigo": null,
+          "subGrupo1Codigo": null,
+          "subGrupo2Codigo": null,
+          "subGrupo3Codigo": null,
+          "ncm": null,
+          "departamento": "COMBUSTIVEL",
+          "matchTier": "PRODUTO",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ]
+        },
+        {
+          "produtoCodigo": 1258001,
+          "nome": "Diesel comum",
+          "grupoCodigo": null,
+          "subGrupo1Codigo": null,
+          "subGrupo2Codigo": null,
+          "subGrupo3Codigo": null,
+          "ncm": null,
+          "departamento": "COMBUSTIVEL",
+          "matchTier": "PRODUTO",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ]
+        },
+        {
+          "produtoCodigo": 1803673,
+          "nome": "Produto 1803673",
+          "grupoCodigo": null,
+          "subGrupo1Codigo": null,
+          "subGrupo2Codigo": null,
+          "subGrupo3Codigo": null,
+          "ncm": null,
+          "departamento": "PRODUTOS_DE_LOJA",
+          "matchTier": "PRODUTO+PRODUTO_EMPRESA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ]
+        }
+      ],
+      "lineage": [
+        {
+          "origem": "F07.2",
+          "snapshot": "product_hierarchy",
+          "api": "/INTEGRACAO/PRODUTO",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "departmentIntelligence": {
+      "departamentosComVenda": 1,
+      "receitaPorDepartamento": [
+        {
+          "departamento": "PRODUTOS_DE_LOJA",
+          "receita": 462.84,
+          "itens": 116,
+          "produtosDistintos": 1
+        }
+      ],
+      "topDepartamento": {
+        "departamento": "PRODUTOS_DE_LOJA",
+        "receita": 462.84,
+        "itens": 116,
+        "produtosDistintos": 1
+      },
+      "departamentoNegligenciado": null,
+      "departamentosSemVenda": [
+        "LUBRIFICANTES",
+        "FILTROS",
+        "ADITIVOS",
+        "ACESSORIOS",
+        "SERVICOS",
+        "OUTROS",
+        "NAO_CLASSIFICADO"
+      ],
+      "produtosPorDepartamentoCatalogo": {
+        "COMBUSTIVEL": 6,
+        "PRODUTOS_DE_LOJA": 1,
+        "LUBRIFICANTES": 0,
+        "FILTROS": 0,
+        "ADITIVOS": 0,
+        "ACESSORIOS": 0,
+        "SERVICOS": 0,
+        "OUTROS": 0,
+        "NAO_CLASSIFICADO": 0
+      },
+      "lineage": [
+        {
+          "origem": "F07.2",
+          "snapshot": "department_intelligence",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "productRevenueIntelligence": {
+      "topReceita": [
+        {
+          "produtoCodigo": 1803673,
+          "valor": 462.8400000000007,
+          "qtd": 116.0,
+          "nome": "Produto 1803673"
+        }
+      ],
+      "topVolume": [
+        {
+          "produtoCodigo": 1803673,
+          "valor": 462.8400000000007,
+          "qtd": 116.0,
+          "nome": "Produto 1803673"
+        }
+      ],
+      "pareto": [
+        {
+          "rank": 1,
+          "produtoCodigo": 1803673,
+          "nome": "Produto 1803673",
+          "valor": 462.84,
+          "qtd": 116.0,
+          "cumPct": 100.0,
+          "pareto80": false
+        }
+      ],
+      "produtosPareto80": 0,
+      "concentracaoTop5Pct": 100.0,
+      "lineage": [
+        {
+          "origem": "F07.2",
+          "snapshot": "product_revenue_intelligence",
+          "api": "/INTEGRACAO/VENDA_ITEM",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "branchProductMix": {
+      "filiais": [
+        {
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "filial": "POSTO VIP",
+          "mixCombustivelPct": 78.4,
+          "mixProdutosVendidosPct": 21.6,
+          "mixLubrificantesPct": 0.0,
+          "mixServicosPct": 0.0,
+          "mixAcessoriosPct": 0.0,
+          "mixOutrosDepartamentos": {
+            "PRODUTOS_DE_LOJA": 462.84
+          },
+          "dependenciaCombustivelPct": 78.4,
+          "mixSaudavelScore": 21.6,
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "branch_product_mix",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "filialMelhorMix": {
+        "empresaCodigo": 11495,
+        "empresaNome": "POSTO VIP",
+        "filial": "POSTO VIP",
+        "mixCombustivelPct": 78.4,
+        "mixProdutosVendidosPct": 21.6,
+        "mixLubrificantesPct": 0.0,
+        "mixServicosPct": 0.0,
+        "mixAcessoriosPct": 0.0,
+        "mixOutrosDepartamentos": {
+          "PRODUTOS_DE_LOJA": 462.84
+        },
+        "dependenciaCombustivelPct": 78.4,
+        "mixSaudavelScore": 21.6,
+        "lineage": [
+          {
+            "origem": "F07.2",
+            "snapshot": "branch_product_mix",
+            "api": "/INTEGRACAO/VENDA_ITEM",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "filialMaisDependenteCombustivel": {
+        "empresaCodigo": 11495,
+        "empresaNome": "POSTO VIP",
+        "filial": "POSTO VIP",
+        "mixCombustivelPct": 78.4,
+        "mixProdutosVendidosPct": 21.6,
+        "mixLubrificantesPct": 0.0,
+        "mixServicosPct": 0.0,
+        "mixAcessoriosPct": 0.0,
+        "mixOutrosDepartamentos": {
+          "PRODUTOS_DE_LOJA": 462.84
+        },
+        "dependenciaCombustivelPct": 78.4,
+        "mixSaudavelScore": 21.6,
+        "lineage": [
+          {
+            "origem": "F07.2",
+            "snapshot": "branch_product_mix",
+            "api": "/INTEGRACAO/VENDA_ITEM",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "lineage": [
+        {
+          "origem": "F07.2",
+          "snapshot": "branch_product_mix",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "productMasterSources": {
+      "produtoEmpresaMeta": {
+        "11495": {
+          "key": "produto_empresa",
+          "empresaCodigo": 11495,
+          "pages": 1,
+          "count": 0,
+          "error": "Endpoint sem permissao",
+          "elapsedSec": 0.0
+        }
+      },
+      "produtoRedeMeta": {
+        "count": 0,
+        "error": "401"
+      }
+    },
+    "paginationEngine": {
+      "produto": {
+        "count": 8
+      },
+      "vendaItem": {
+        "count": 200
+      }
+    },
+    "productCatalogCompleteness": {
+      "produtosExistem": 7,
+      "produtosNoProdutoBase": 7,
+      "produtosVendidos": 2,
+      "produtosVendidosNaoCombustivel": 1,
+      "produtosVendidosSemCadastroAntes": 73,
+      "produtosVendidosSemCadastro": 0,
+      "produtosSemDescricao": 1,
+      "produtosSemDepartamento": 0,
+      "coberturaCatalogoAtualPct": 3.95,
+      "coberturaProdutoBasePct": 100.0,
+      "coberturaCatalogoFinalPct": 100.0,
+      "coberturaNaoCombustivelFinalPct": 100.0,
+      "nfceCoveragePct": 0.0,
+      "lineage": [
+        {
+          "origem": "F07.2",
+          "snapshot": "product_master_coverage",
+          "api": "/INTEGRACAO/PRODUTO+PRODUTO_EMPRESA",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "salesCoverageReconciliation": {
+      "receitaTotal": 2142.84,
+      "receitaCombustivel": 1680.0,
+      "receitaProdutosVendidos": 462.84,
+      "f07_0_receitaProdutosVendidos": 462.84,
+      "gapReceitaF070vsF071": 0.0,
+      "gapItensF070vsF071": 0,
+      "gapProdutosDistintosF070vsF071": 0,
+      "nfceCoveragePct": 0.0,
+      "lineage": [
+        {
+          "origem": "F07.1+F07.0",
+          "snapshot": "f07_0_non_fuel_product_sales.json",
+          "api": "/INTEGRACAO/VENDA_ITEM",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "produtosVendidosKpiEngine": {
+      "valorTotalProdutosVendidos": 462.84,
+      "quantidadeItensProdutosVendidos": 116,
+      "quantidadeUnidadesProdutosVendidos": 116.0,
+      "ticketMedioProdutosVendidos": 3.99,
+      "participacaoNoFaturamentoPct": 21.6,
+      "produtosDistintosVendidos": 1,
+      "valorTotalCombustivel": 1680.0,
+      "itensCombustivel": 84,
+      "lineage": [
+        {
+          "origem": "F07.1",
+          "snapshot": "produtos_vendidos_kpi",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ],
+      "valorTotalNaoCombustivel": 462.84,
+      "itensNaoCombustivel": 116,
+      "ticketMedioNaoCombustivel": 3.99,
+      "participacaoNaoCombustivelPct": 21.6
+    },
+    "nonFuelSalesEngine": {
+      "valorTotalProdutosVendidos": 462.84,
+      "quantidadeItensProdutosVendidos": 116,
+      "quantidadeUnidadesProdutosVendidos": 116.0,
+      "ticketMedioProdutosVendidos": 3.99,
+      "participacaoNoFaturamentoPct": 21.6,
+      "produtosDistintosVendidos": 1,
+      "valorTotalCombustivel": 1680.0,
+      "itensCombustivel": 84,
+      "lineage": [
+        {
+          "origem": "F07.1",
+          "snapshot": "produtos_vendidos_kpi",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ],
+      "valorTotalNaoCombustivel": 462.84,
+      "itensNaoCombustivel": 116,
+      "ticketMedioNaoCombustivel": 3.99,
+      "participacaoNaoCombustivelPct": 21.6
+    },
+    "productRankingEngine": {
+      "topProdutoQuantidade": {
+        "produtoCodigo": 1803673,
+        "qtd": 116.0,
+        "valor": 462.8400000000007,
+        "nome": "Produto 1803673"
+      },
+      "topProdutoFaturamento": {
+        "produtoCodigo": 1803673,
+        "qtd": 116.0,
+        "valor": 462.8400000000007,
+        "nome": "Produto 1803673"
+      },
+      "topDepartamentos": [
+        {
+          "nome": "PRODUTOS_DE_LOJA",
+          "qtd": 116.0,
+          "valor": 462.8400000000007
+        }
+      ],
+      "rankingProdutos": [
+        {
+          "produtoCodigo": 1803673,
+          "qtd": 116.0,
+          "valor": 462.8400000000007,
+          "nome": "Produto 1803673"
+        }
+      ],
+      "naoClassificados": 0,
+      "lineage": [
+        {
+          "origem": "F07.1",
+          "snapshot": "product_ranking",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "branchProductAnalytics": {
+      "filiais": [
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "valorCombustivel": 1680.0,
+          "valorProdutosVendidos": 462.84,
+          "participacaoProdutosVendidosPct": 21.6,
+          "dependenciaCombustivelPct": 78.4,
+          "departamentoDominante": "PRODUTOS_DE_LOJA",
+          "mixDepartamentos": {
+            "PRODUTOS_DE_LOJA": 462.8400000000007
+          },
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "branch_product",
+              "api": "/INTEGRACAO/VENDA",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "filialMaisProdutosVendidos": {
+        "empresaCodigo": 11495,
+        "nomeFilial": "POSTO VIP",
+        "valorCombustivel": 1680.0,
+        "valorProdutosVendidos": 462.84,
+        "participacaoProdutosVendidosPct": 21.6,
+        "dependenciaCombustivelPct": 78.4,
+        "departamentoDominante": "PRODUTOS_DE_LOJA",
+        "mixDepartamentos": {
+          "PRODUTOS_DE_LOJA": 462.8400000000007
+        },
+        "lineage": [
+          {
+            "origem": "F07.1",
+            "snapshot": "branch_product",
+            "api": "/INTEGRACAO/VENDA",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "filialMenosProdutosVendidos": {
+        "empresaCodigo": 11495,
+        "nomeFilial": "POSTO VIP",
+        "valorCombustivel": 1680.0,
+        "valorProdutosVendidos": 462.84,
+        "participacaoProdutosVendidosPct": 21.6,
+        "dependenciaCombustivelPct": 78.4,
+        "departamentoDominante": "PRODUTOS_DE_LOJA",
+        "mixDepartamentos": {
+          "PRODUTOS_DE_LOJA": 462.8400000000007
+        },
+        "lineage": [
+          {
+            "origem": "F07.1",
+            "snapshot": "branch_product",
+            "api": "/INTEGRACAO/VENDA",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "lineage": [
+        {
+          "origem": "F07.1",
+          "snapshot": "branch_analytics",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "branchDepartmentAnalytics": {
+      "filiais": [
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": "POSTO VIP",
+          "valorCombustivel": 1680.0,
+          "valorProdutosVendidos": 462.84,
+          "participacaoProdutosVendidosPct": 21.6,
+          "dependenciaCombustivelPct": 78.4,
+          "departamentoDominante": "PRODUTOS_DE_LOJA",
+          "mixDepartamentos": {
+            "PRODUTOS_DE_LOJA": 462.8400000000007
+          },
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "branch_product",
+              "api": "/INTEGRACAO/VENDA",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "filialMaisProdutosVendidos": {
+        "empresaCodigo": 11495,
+        "nomeFilial": "POSTO VIP",
+        "valorCombustivel": 1680.0,
+        "valorProdutosVendidos": 462.84,
+        "participacaoProdutosVendidosPct": 21.6,
+        "dependenciaCombustivelPct": 78.4,
+        "departamentoDominante": "PRODUTOS_DE_LOJA",
+        "mixDepartamentos": {
+          "PRODUTOS_DE_LOJA": 462.8400000000007
+        },
+        "lineage": [
+          {
+            "origem": "F07.1",
+            "snapshot": "branch_product",
+            "api": "/INTEGRACAO/VENDA",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "filialMenosProdutosVendidos": {
+        "empresaCodigo": 11495,
+        "nomeFilial": "POSTO VIP",
+        "valorCombustivel": 1680.0,
+        "valorProdutosVendidos": 462.84,
+        "participacaoProdutosVendidosPct": 21.6,
+        "dependenciaCombustivelPct": 78.4,
+        "departamentoDominante": "PRODUTOS_DE_LOJA",
+        "mixDepartamentos": {
+          "PRODUTOS_DE_LOJA": 462.8400000000007
+        },
+        "lineage": [
+          {
+            "origem": "F07.1",
+            "snapshot": "branch_product",
+            "api": "/INTEGRACAO/VENDA",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "lineage": [
+        {
+          "origem": "F07.1",
+          "snapshot": "branch_analytics",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "multiTenantScalabilityEngine": {
+      "premissaOficial": "Token pode ser rede; empresaCodigo é chave de segregação",
+      "empresaCodigoObrigatorio": true,
+      "filtroFilialObrigatorio": true,
+      "semCrossTenantLogico": true,
+      "segregacaoLogicaConfiavel": true,
+      "prontoParaNFiliais": true,
+      "filiaisHomologadas": [
+        11495
+      ],
+      "ia0Referencia": "[PARECER FINAL: COBERTURA MULTIEMPRESA NÃO COMPROVADA]",
+      "lineage": [
+        {
+          "origem": "IA-0+F07.1",
+          "snapshot": "ia0_token_tenant_coverage_audit.json",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "productSalesLineage": {
+      "items": [
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874453,
+          "vendaItemCodigo": 747220348,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874454,
+          "vendaItemCodigo": 747220349,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874455,
+          "vendaItemCodigo": 747220350,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874456,
+          "vendaItemCodigo": 747220351,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874457,
+          "vendaItemCodigo": 747220352,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874458,
+          "vendaItemCodigo": 747220353,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874459,
+          "vendaItemCodigo": 747220354,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874460,
+          "vendaItemCodigo": 747220355,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874461,
+          "vendaItemCodigo": 747220356,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874462,
+          "vendaItemCodigo": 747220357,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874463,
+          "vendaItemCodigo": 747220358,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874464,
+          "vendaItemCodigo": 747220359,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874465,
+          "vendaItemCodigo": 747220360,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874466,
+          "vendaItemCodigo": 747220361,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874467,
+          "vendaItemCodigo": 747220362,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874468,
+          "vendaItemCodigo": 747220363,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874469,
+          "vendaItemCodigo": 747220364,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874470,
+          "vendaItemCodigo": 747220365,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874471,
+          "vendaItemCodigo": 747220366,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874472,
+          "vendaItemCodigo": 747220367,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874473,
+          "vendaItemCodigo": 747220368,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874474,
+          "vendaItemCodigo": 747220369,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874475,
+          "vendaItemCodigo": 747220370,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874476,
+          "vendaItemCodigo": 747220371,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874477,
+          "vendaItemCodigo": 747220372,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874478,
+          "vendaItemCodigo": 747220373,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874479,
+          "vendaItemCodigo": 747220374,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874480,
+          "vendaItemCodigo": 747220375,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874481,
+          "vendaItemCodigo": 747220376,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "vendaCodigo": 355874482,
+          "vendaItemCodigo": 747220377,
+          "produtoCodigo": 1257884,
+          "departamento": "COMBUSTIVEL",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "total": 200,
+      "semEmpresa": 0,
+      "semLineage": 0
+    },
+    "cockpit": {
+      "tituloVisual": "Produtos Vendidos",
+      "receitaProdutosVendidos": 462.84,
+      "itensVendidos": 116,
+      "ticketMedio": 3.99,
+      "participacaoFaturamentoPct": 21.6,
+      "produtosDistintos": 1,
+      "topProdutos": [
+        {
+          "produtoCodigo": 1803673,
+          "qtd": 116.0,
+          "valor": 462.8400000000007,
+          "nome": "Produto 1803673"
+        }
+      ],
+      "topDepartamentos": [
+        {
+          "departamento": "PRODUTOS_DE_LOJA",
+          "receita": 462.84,
+          "itens": 116,
+          "produtosDistintos": 1
+        }
+      ],
+      "mixPorFilial": [
+        {
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "filial": "POSTO VIP",
+          "mixCombustivelPct": 78.4,
+          "mixProdutosVendidosPct": 21.6,
+          "mixLubrificantesPct": 0.0,
+          "mixServicosPct": 0.0,
+          "mixAcessoriosPct": 0.0,
+          "mixOutrosDepartamentos": {
+            "PRODUTOS_DE_LOJA": 462.84
+          },
+          "dependenciaCombustivelPct": 78.4,
+          "mixSaudavelScore": 21.6,
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "branch_product_mix",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "produtosSemCadastro": 0,
+      "produtosSemDepartamento": 0,
+      "pareto8020": [
+        {
+          "rank": 1,
+          "produtoCodigo": 1803673,
+          "nome": "Produto 1803673",
+          "valor": 462.84,
+          "qtd": 116.0,
+          "cumPct": 100.0,
+          "pareto80": false
+        }
+      ],
+      "produtosPareto80": 0,
+      "coberturaCatalogoAtualPct": 3.95,
+      "coberturaCatalogoFinalPct": 100.0,
+      "produtosRecuperados": 0,
+      "trustExecutivo": 88.69,
+      "faturamentoNaoCombustivel": 462.84,
+      "quantidadeItens": 116,
+      "produtosPendentes": 0,
+      "performanceLookupSec": 0.0,
+      "cacheHitRatePct": 0.0,
+      "departamentosRefinados": 7,
+      "residualSku": 1975728,
+      "residualClassificacao": "RESOLVIDO",
+      "topProdutosVolume": [],
+      "topProdutosReceita": [],
+      "margemBrutaTotal": 0,
+      "margemBrutaPct": 0,
+      "filialDestaque": {},
+      "mixSaudavel": false,
+      "filialMixSaudavel": {
+        "empresaCodigo": 11495,
+        "empresaNome": "POSTO VIP",
+        "filial": "POSTO VIP",
+        "mixCombustivelPct": 78.4,
+        "mixProdutosVendidosPct": 21.6,
+        "mixLubrificantesPct": 0.0,
+        "mixServicosPct": 0.0,
+        "mixAcessoriosPct": 0.0,
+        "mixOutrosDepartamentos": {
+          "PRODUTOS_DE_LOJA": 462.84
+        },
+        "dependenciaCombustivelPct": 78.4,
+        "mixSaudavelScore": 21.6,
+        "lineage": [
+          {
+            "origem": "F07.2",
+            "snapshot": "branch_product_mix",
+            "api": "/INTEGRACAO/VENDA_ITEM",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "oportunidades": [
+        {
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "prioridade": "ALTA",
+          "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+          "impactoEstimadoReceita": 165.6
+        },
+        {
+          "tipo": "DESENVOLVER_FILIAL",
+          "prioridade": "ALTA",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+          "empresaCodigo": 11495
+        }
+      ],
+      "subtitulo": "Commercial Action Center · execução comercial",
+      "topMargem": [],
+      "alertasBaixaMargem": [],
+      "potencialExpansao": [],
+      "filiaisAbaixoBenchmark": [],
+      "produtosFocoComercial": [],
+      "dependenciaCombustivel": [
+        {
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "filial": "POSTO VIP",
+          "mixCombustivelPct": 78.4,
+          "mixProdutosVendidosPct": 21.6,
+          "mixLubrificantesPct": 0.0,
+          "mixServicosPct": 0.0,
+          "mixAcessoriosPct": 0.0,
+          "mixOutrosDepartamentos": {
+            "PRODUTOS_DE_LOJA": 462.84
+          },
+          "dependenciaCombustivelPct": 78.4,
+          "mixSaudavelScore": 21.6,
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "branch_product_mix",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
+        }
+      ],
+      "acoesComerciais": [
+        {
+          "id": "PV-OPP-C672381F",
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "titulo": "AUMENTAR PARTICIPACAO",
+          "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+          "produtoCodigo": null,
+          "empresaCodigo": null,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 165.6,
+          "impactoEstimadoMargem": 49.68,
+          "evidencia": {
+            "tipo": "AUMENTAR_PARTICIPACAO",
+            "prioridade": "ALTA",
+            "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+            "impactoEstimadoReceita": 165.6
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-OPP-A67E33D7",
+          "tipo": "DESENVOLVER_FILIAL",
+          "titulo": "DESENVOLVER FILIAL",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+          "produtoCodigo": null,
+          "empresaCodigo": 11495,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 46.284,
+          "impactoEstimadoMargem": 13.89,
+          "evidencia": {
+            "tipo": "DESENVOLVER_FILIAL",
+            "prioridade": "ALTA",
+            "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+            "empresaCodigo": 11495
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-COMB-D883D58E",
+          "tipo": "REDUZIR_DEPENDENCIA_COMBUSTIVEL",
+          "titulo": "Reduzir dependência combustível — filial 11495",
+          "descricao": "Dependência 78.4% — ampliar Produtos Vendidos",
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+60",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 23.14,
+          "impactoEstimadoMargem": 8.1,
+          "impactoPctReceitaPv": 5.0,
+          "evidencia": {
+            "mixProdutosVendidosPct": 21.6,
+            "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "fuel_dependency_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "acoesAltaPrioridade": [
+        {
+          "id": "PV-OPP-C672381F",
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "titulo": "AUMENTAR PARTICIPACAO",
+          "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+          "produtoCodigo": null,
+          "empresaCodigo": null,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 165.6,
+          "impactoEstimadoMargem": 49.68,
+          "evidencia": {
+            "tipo": "AUMENTAR_PARTICIPACAO",
+            "prioridade": "ALTA",
+            "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+            "impactoEstimadoReceita": 165.6
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-OPP-A67E33D7",
+          "tipo": "DESENVOLVER_FILIAL",
+          "titulo": "DESENVOLVER FILIAL",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+          "produtoCodigo": null,
+          "empresaCodigo": 11495,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 46.284,
+          "impactoEstimadoMargem": 13.89,
+          "evidencia": {
+            "tipo": "DESENVOLVER_FILIAL",
+            "prioridade": "ALTA",
+            "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+            "empresaCodigo": 11495
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "impactoTotalReceita": 235.02,
+      "impactoTotalMargem": 71.67,
+      "totalAcoes": 3
+    },
+    "executiveAnswers": {
+      "1_produtosExistem": 7,
+      "2_produtosVendidos": 1,
+      "3_semCadastro": 0,
+      "4_produtosRecuperados": 0,
+      "5_coberturaCatalogoAtual": 3.95,
+      "6_coberturaCatalogoFinal": 100.0,
+      "7_departamentosExistem": 1,
+      "8_departamentoLider": "PRODUTOS_DE_LOJA",
+      "9_produtoLider": 1803673,
+      "10_receitaProdutosVendidos": 462.84,
+      "11_receitaLubrificantes": 0,
+      "12_receitaServicos": 0,
+      "13_receitaAcessorios": 0,
+      "14_receitaPorFilial": {
+        "11495": 21.6
+      },
+      "15_filialMelhorMix": 11495,
+      "16_filialMaisDependenteCombustivel": 11495,
+      "17_produtosSemClassificacao": 0,
+      "18_catalogoCorporativoConfiavel": false,
+      "19_cockpitAprovado": false,
+      "20_aprovadoF073": false,
+      "trustExecutivo": 88.69,
+      "1_produto1975728Resolvido": true,
+      "2_classificacaoFinal1975728": "RESOLVIDO",
+      "3_produtosSemCadastroRestantes": 0,
+      "4_coberturaCatalogoFinal": 100.0,
+      "5_tempoLookupAntes": 68.15,
+      "6_tempoLookupDepois": 0.0,
+      "7_reducaoPercentual": 100.0,
+      "8_cacheImplementado": true,
+      "9_cacheHitRate": 0.0,
+      "10_departamentosRefinados": 7,
+      "11_produtosNaoClassificados": 0,
+      "12_categoriaInventada": false,
+      "13_termoConveniencia": false,
+      "14_empresaCodigoObrigatorio": true,
+      "15_prontoParaNFiliais": true,
+      "16_cockpitAprovado": true,
+      "17_dwAprovado": true,
+      "18_performanceAprovada": true,
+      "19_qaAprovado": true,
+      "20_aprovadoF074": true,
+      "1_produtoMaisVendidoVolume": null,
+      "2_produtoMaiorReceita": null,
+      "3_filialMelhorPerformance": null,
+      "4_receitaProdutosVendidos": 462.84,
+      "5_margemBrutaTotal": 0,
+      "6_margemBrutaPct": 0,
+      "7_mixSaudavel": false,
+      "8_filialMixSaudavel": 11495,
+      "9_departamentoMargemLider": null,
+      "10_oportunidadesIdentificadas": 2,
+      "11_existeOportunidadeCrescimento": true,
+      "12_participacaoProdutosVendidos": 21.6,
+      "13_coberturaCatalogoPreservada": 100.0,
+      "14_termoConveniencia": false,
+      "15_empresaCodigoObrigatorio": true,
+      "16_cockpitComercialAprovado": {},
+      "17_gestaoComercialConfiavel": {},
+      "18_margemComEvidenciaVendaItem": true,
+      "20_aprovadoF075": {},
+      "1_produtoMaiorMargemPct": null,
+      "2_margemPctLider": null,
+      "3_produtosAltoVolumeBaixaMargem": 0,
+      "4_produtoAlertaMargemTop": null,
+      "5_produtosPotencialExpansao": 0,
+      "6_produtoExpansaoTop": null,
+      "7_filiaisAbaixoBenchmarkMix": 0,
+      "8_benchmarkMixProdutosVendidosPct": 21.6,
+      "9_produtosFocoComercial": 0,
+      "10_produtoFocoPrioritario": null,
+      "11_filiaisDependenciaCombustivel": 1,
+      "12_dependenciaRedeExcessiva": true,
+      "16_cockpitDecisaoAprovado": {},
+      "17_assortmentConfiavel": {},
+      "18_motorDecisaoComercial": {},
+      "20_aprovadoF076": {},
+      "1_totalAcoesComerciais": 3,
+      "2_acoesAltaPrioridade": 2,
+      "3_impactoTotalReceita": 235.02,
+      "4_impactoTotalMargem": 71.67,
+      "5_acaoPrioritaria": "PV-OPP-C672381F",
+      "6_tipoAcaoPrioritaria": "AUMENTAR_PARTICIPACAO",
+      "7_responsavelAcaoTop": "JOÃO RYVISON DE ANDRADE SOUZA",
+      "8_acoesComEvidencia": 3,
+      "9_acoesComResponsavel": 3,
+      "10_r04Track": "COMMERCIAL_ACTION_CENTER",
+      "11_r04GateAprovado": true,
+      "12_statusMaisFrequente": "RECOMENDADA",
+      "16_actionCenterAprovado": true,
+      "17_execucaoComercialConfiavel": true,
+      "18_r04MargemConfiavel": 100.0,
+      "20_aprovadoF077": true
+    },
+    "qa": {
+      "semProdutoInventado": true,
+      "semDepartamentoInventado": true,
+      "semCrossTenant": true,
+      "semKpiSemLineage": true,
+      "semClassificacaoSemEvidencia": true,
+      "produtosRecuperados": 0,
+      "produtosAindaSemMatch": 0,
+      "coberturaFinalPct": 100.0,
+      "coberturaSuperiorF071": true,
+      "reducaoSemMatch": false,
+      "motorAuditavel": true,
+      "semCrossTenantLogico": true,
+      "semTermoConveniencia": true,
+      "empresaCodigoObrigatorio": true,
+      "residualSkuResolvidoOuIsolado": true,
+      "performanceAprovada": true,
+      "cacheImplementado": true,
+      "margemComEvidenciaVendaItem": true,
+      "assortmentComLineage": true,
+      "focoComercialQuantificado": true,
+      "motorDecisaoComercial": true,
+      "todasAcoesComResponsavel": true,
+      "todasAcoesComEvidencia": true,
+      "todasAcoesComLineage": true,
+      "actionCenterAuditavel": true
+    },
+    "parecerFinal": "[PARECER FINAL: APROVADO PARA F07.7]",
+    "governanceRules": {
+      "empresaCodigoObrigatorio": true,
+      "nomenclaturaProdutosVendidos": true,
+      "proibidoConveniencia": true,
+      "semDepartamentoInventado": true
+    },
+    "dwLayer": {
+      "dimProductMaster": [
+        {
+          "produtoCodigo": 1257884,
+          "sources": [
+            "PRODUTO",
+            "PRODUTO_EMPRESA"
+          ],
+          "empresas": [
+            11495
+          ],
+          "nome": "Gasolina",
+          "ncm": "27101259",
+          "grupoCodigo": 24554,
+          "tipoProduto": "C",
+          "combustivel": true,
+          "produtoLmcCodigo": 8297,
+          "produtoCodigoExterno": "1",
+          "produtoCodigoBarra": [],
+          "departamento": "COMBUSTIVEL",
+          "categoria": "Combustível",
+          "confidenceLevel": "ALTA",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "matchTier": "PRODUTO+PRODUTO_EMPRESA",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "filial": "POSTO VIP",
+          "ativo": true,
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "dim_product_master",
+              "api": "PRODUTO+PRODUTO_EMPRESA",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1257885,
+          "sources": [
+            "PRODUTO"
+          ],
+          "empresas": [],
+          "nome": "Gasolina aditivada",
+          "tipoProduto": "C",
+          "combustivel": true,
+          "departamento": "COMBUSTIVEL",
+          "categoria": "Combustível",
+          "confidenceLevel": "ALTA",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "matchTier": "PRODUTO",
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "dim_product_master",
+              "api": "PRODUTO",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1975728,
+          "sources": [
+            "PRODUTO"
+          ],
+          "empresas": [],
+          "nome": "Etanol aditivado",
+          "tipoProduto": "C",
+          "combustivel": true,
+          "departamento": "COMBUSTIVEL",
+          "categoria": "Combustível",
+          "confidenceLevel": "ALTA",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "matchTier": "PRODUTO",
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "dim_product_master",
+              "api": "PRODUTO",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1260803,
+          "sources": [
+            "PRODUTO"
+          ],
+          "empresas": [],
+          "nome": "Diesel S10",
+          "tipoProduto": "C",
+          "combustivel": true,
+          "departamento": "COMBUSTIVEL",
+          "categoria": "Combustível",
+          "confidenceLevel": "ALTA",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "matchTier": "PRODUTO",
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "dim_product_master",
+              "api": "PRODUTO",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1257999,
+          "sources": [
+            "PRODUTO"
+          ],
+          "empresas": [],
+          "nome": "Diesel S10",
+          "tipoProduto": "C",
+          "combustivel": true,
+          "departamento": "COMBUSTIVEL",
+          "categoria": "Combustível",
+          "confidenceLevel": "ALTA",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "matchTier": "PRODUTO",
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "dim_product_master",
+              "api": "PRODUTO",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1258001,
+          "sources": [
+            "PRODUTO"
+          ],
+          "empresas": [],
+          "nome": "Diesel comum",
+          "tipoProduto": "C",
+          "combustivel": true,
+          "departamento": "COMBUSTIVEL",
+          "categoria": "Combustível",
+          "confidenceLevel": "ALTA",
+          "evidence": [
+            "combustivel/tipoProduto/C ou FUEL_CATALOG"
+          ],
+          "matchTier": "PRODUTO",
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "dim_product_master",
+              "api": "PRODUTO",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "produtoCodigo": 1803673,
+          "sources": [
+            "PRODUTO",
+            "PRODUTO_EMPRESA"
+          ],
+          "empresas": [
+            11495
+          ],
+          "nome": "Produto 1803673",
+          "tipoProduto": "L",
+          "combustivel": false,
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "matchTier": "PRODUTO+PRODUTO_EMPRESA",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "filial": "POSTO VIP",
+          "ativo": true,
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "dim_product_master",
+              "api": "PRODUTO+PRODUTO_EMPRESA",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "dimProductDepartment": [
+        "COMBUSTIVEL",
+        "PRODUTOS_DE_LOJA"
+      ],
+      "factProductSales": [
+        {
+          "saleItemId": "SI-32597364",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874537,
+          "vendaItemCodigo": 747220432,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-5ACB9514",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874538,
+          "vendaItemCodigo": 747220433,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-C1955008",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874539,
+          "vendaItemCodigo": 747220434,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-03935E39",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874540,
+          "vendaItemCodigo": 747220435,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-8B1A3591",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874541,
+          "vendaItemCodigo": 747220436,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-6FC93AD6",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874542,
+          "vendaItemCodigo": 747220437,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-65F491F6",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874543,
+          "vendaItemCodigo": 747220438,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-E091AC5A",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874544,
+          "vendaItemCodigo": 747220439,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-003FDE6B",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874545,
+          "vendaItemCodigo": 747220440,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-23DA201C",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874546,
+          "vendaItemCodigo": 747220441,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-53A91128",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874547,
+          "vendaItemCodigo": 747220442,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-C9482AA8",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874548,
+          "vendaItemCodigo": 747220443,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-03D1AF16",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874549,
+          "vendaItemCodigo": 747220444,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-A9AF60CB",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874550,
+          "vendaItemCodigo": 747220445,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-85F7575B",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874551,
+          "vendaItemCodigo": 747220446,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-AFB0125A",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874552,
+          "vendaItemCodigo": 747220447,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-28936659",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874553,
+          "vendaItemCodigo": 747220448,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-7714DC96",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874554,
+          "vendaItemCodigo": 747220449,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-FD2E37E5",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874555,
+          "vendaItemCodigo": 747220450,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-2CCF0DB1",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874556,
+          "vendaItemCodigo": 747220451,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-A0E0ADD1",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874557,
+          "vendaItemCodigo": 747220452,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-F3DAFA96",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874558,
+          "vendaItemCodigo": 747220453,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-A32F43BC",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874559,
+          "vendaItemCodigo": 747220454,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-B4F4BDFC",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874560,
+          "vendaItemCodigo": 747220455,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-ADD1D5E2",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874561,
+          "vendaItemCodigo": 747220456,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-25B426AC",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874562,
+          "vendaItemCodigo": 747220457,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-4AC02645",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874563,
+          "vendaItemCodigo": 747220458,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-E6D05C31",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874564,
+          "vendaItemCodigo": 747220459,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-BB9DA66F",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874565,
+          "vendaItemCodigo": 747220460,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-4100776A",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874566,
+          "vendaItemCodigo": 747220461,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-6218947E",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874567,
+          "vendaItemCodigo": 747220462,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-62DBC33B",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874568,
+          "vendaItemCodigo": 747220463,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-7A028219",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874569,
+          "vendaItemCodigo": 747220464,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-3A3E2FE9",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874570,
+          "vendaItemCodigo": 747220465,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-1336050D",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874571,
+          "vendaItemCodigo": 747220466,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-B913994E",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874572,
+          "vendaItemCodigo": 747220467,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-19BD6D53",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874573,
+          "vendaItemCodigo": 747220468,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-D42F56F8",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874574,
+          "vendaItemCodigo": 747220469,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-BDF3AC43",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874575,
+          "vendaItemCodigo": 747220470,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-4B93C061",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874576,
+          "vendaItemCodigo": 747220471,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-09A26038",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874577,
+          "vendaItemCodigo": 747220472,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-77AAEC5A",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874578,
+          "vendaItemCodigo": 747220473,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-CA0624D5",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874579,
+          "vendaItemCodigo": 747220474,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-28052F64",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874580,
+          "vendaItemCodigo": 747220475,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-80A060FB",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874581,
+          "vendaItemCodigo": 747220476,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-31F5C348",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874582,
+          "vendaItemCodigo": 747220477,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-44F639B0",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874583,
+          "vendaItemCodigo": 747220478,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-5E202E4B",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874584,
+          "vendaItemCodigo": 747220479,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-4745E5BA",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874585,
+          "vendaItemCodigo": 747220480,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "saleItemId": "SI-2931F44A",
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "vendaCodigo": 355874586,
+          "vendaItemCodigo": 747220481,
+          "produtoCodigo": 1803673,
+          "produtoNome": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "categoria": "Produtos Vendidos",
+          "quantidade": 1.0,
+          "valorTotal": 3.99,
+          "combustivel": false,
+          "bicoCodigo": null,
+          "dataMovimento": "2026-06-05",
+          "nfceCodigo": null,
+          "confidenceLevel": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C"
+          ],
+          "lineage": [
+            {
+              "origem": "F07.1",
+              "snapshot": "VENDA_ITEM paginado",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "factProductMix": [
+        {
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "filial": "POSTO VIP",
+          "mixCombustivelPct": 78.4,
+          "mixProdutosVendidosPct": 21.6,
+          "mixLubrificantesPct": 0.0,
+          "mixServicosPct": 0.0,
+          "mixAcessoriosPct": 0.0,
+          "mixOutrosDepartamentos": {
+            "PRODUTOS_DE_LOJA": 462.84
+          },
+          "dependenciaCombustivelPct": 78.4,
+          "mixSaudavelScore": 21.6,
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "branch_product_mix",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "factProductRevenue": [
+        {
+          "produtoCodigo": 1803673,
+          "valor": 462.8400000000007,
+          "qtd": 116.0,
+          "nome": "Produto 1803673"
+        }
+      ],
+      "factProductCoverage": {
+        "produtosExistem": 7,
+        "produtosNoProdutoBase": 7,
+        "produtosVendidos": 2,
+        "produtosVendidosNaoCombustivel": 1,
+        "produtosVendidosSemCadastroAntes": 73,
+        "produtosVendidosSemCadastro": 0,
+        "produtosSemDescricao": 1,
+        "produtosSemDepartamento": 0,
+        "coberturaCatalogoAtualPct": 3.95,
+        "coberturaProdutoBasePct": 100.0,
+        "coberturaCatalogoFinalPct": 100.0,
+        "coberturaNaoCombustivelFinalPct": 100.0,
+        "nfceCoveragePct": 0.0,
+        "lineage": [
+          {
+            "origem": "F07.2",
+            "snapshot": "product_master_coverage",
+            "api": "/INTEGRACAO/PRODUTO+PRODUTO_EMPRESA",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "dimProductMasterCache": [
+        {
+          "produtoCodigo": 1801810,
+          "empresaCodigo": 11495,
+          "nomeProduto": "Produto 1801810",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807126+00:00",
+          "confidence": "MEDIA",
+          "evidence": null
+        },
+        {
+          "produtoCodigo": 1802031,
+          "empresaCodigo": 11495,
+          "nomeProduto": "COXINHA DE FRANGO CHIC",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807065+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802613,
+          "empresaCodigo": 11495,
+          "nomeProduto": "REFRIGERANTE FANTA UVA LATA 350ML",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807194+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802200,
+          "empresaCodigo": 11495,
+          "nomeProduto": "FREEGELLS MELÃO",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807147+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802523,
+          "empresaCodigo": 11495,
+          "nomeProduto": "PITU LATÃO 473ML",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807013+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802381,
+          "empresaCodigo": 11495,
+          "nomeProduto": "PAÇOQUERO GG (PAÇOCAO) 50G",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.806983+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802182,
+          "empresaCodigo": 11495,
+          "nomeProduto": "FINI TUBES MORANGO NATA AZEDINHO 80G",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807092+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802198,
+          "empresaCodigo": 11495,
+          "nomeProduto": "CHEETOS LUA 34 G",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807144+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802483,
+          "empresaCodigo": 11495,
+          "nomeProduto": "FREEGELLS CEREJA",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807191+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802207,
+          "empresaCodigo": 11495,
+          "nomeProduto": "REFRIGERANTE SUKITA LARANJA LT 350ML",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807161+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802532,
+          "empresaCodigo": 11495,
+          "nomeProduto": "BISCOITO TRELOSO MORANGO 120G",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807040+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1801812,
+          "empresaCodigo": 11495,
+          "nomeProduto": "MENTOS MINT 37,5G",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807133+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802196,
+          "empresaCodigo": 11495,
+          "nomeProduto": "PIPPOS ANIME CEBOLA E SALSA 60G",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807139+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802397,
+          "empresaCodigo": 11495,
+          "nomeProduto": "SKINKA LARANJA",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807021+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802530,
+          "empresaCodigo": 11495,
+          "nomeProduto": "BISCOITO PASSATEMPO  RECH 130G",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807032+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802654,
+          "empresaCodigo": 11495,
+          "nomeProduto": "BISCOITO BONO MORANGO 90G",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807028+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803474,
+          "empresaCodigo": 11495,
+          "nomeProduto": "LUCKY STRIKE FRESH DOUBLE ICE",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807136+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803344,
+          "empresaCodigo": 11495,
+          "nomeProduto": "REFRIGERANTE PEPSI COLA 200ML PET",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807119+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803141,
+          "empresaCodigo": 11495,
+          "nomeProduto": "REFRIGERANTE COCA ZERO 1L",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.806966+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802831,
+          "empresaCodigo": 11495,
+          "nomeProduto": "AGUA MINERAL CRYSTAL 1,5L",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807116+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803302,
+          "empresaCodigo": 11495,
+          "nomeProduto": "REFRIGERANTE GUARANA ANTARTICA 200ML PET",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807047+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803402,
+          "empresaCodigo": 11495,
+          "nomeProduto": "MARLBORO GOLD SELECTION BOX",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.806976+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802823,
+          "empresaCodigo": 11495,
+          "nomeProduto": "REFRIGERANTE PEPSI TWISTER 2L",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807096+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802775,
+          "empresaCodigo": 11495,
+          "nomeProduto": "PITU LATA 350 ML",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807003+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803364,
+          "empresaCodigo": 11495,
+          "nomeProduto": "BISC RECH TRELOSO 120G CHOC",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807171+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803180,
+          "empresaCodigo": 11495,
+          "nomeProduto": "CERVEJA BUDWEISER LONG 330ML",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807062+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802730,
+          "empresaCodigo": 11495,
+          "nomeProduto": "BEM CASADO DOCES LABANCA/ BAKERY",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807182+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803055,
+          "empresaCodigo": 11495,
+          "nomeProduto": "CERVEJA DEVASSA 473.",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807069+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803229,
+          "empresaCodigo": 11495,
+          "nomeProduto": "ICE LEAO PESSEGO 300ML",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807158+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803445,
+          "empresaCodigo": 11495,
+          "nomeProduto": "DUNHILL RED (CARLTON)",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807075+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803499,
+          "empresaCodigo": 11495,
+          "nomeProduto": "ROTHMANS BLUE KS",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807188+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1802688,
+          "empresaCodigo": 11495,
+          "nomeProduto": "ENERGETICO MONSTER 473 ML",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807082+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803593,
+          "empresaCodigo": 11495,
+          "nomeProduto": "REFRIGERANTE COCA 350ML LT",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807102+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803592,
+          "empresaCodigo": 11495,
+          "nomeProduto": "REFRIGERANTE COCA COLA 2L.",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807099+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1822404,
+          "empresaCodigo": 11495,
+          "nomeProduto": "SANDUICHE NATURAL LEVE FRANCO\\RICOTA",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807089+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803628,
+          "empresaCodigo": 11495,
+          "nomeProduto": "CERVEJA HEINEKEN 600ML",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807185+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803533,
+          "empresaCodigo": 11495,
+          "nomeProduto": "ROTHMANS GLOBAL RED",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.806980+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803664,
+          "empresaCodigo": 11495,
+          "nomeProduto": "REFRIGERANTE COCA COLA 1L",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.806995+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803580,
+          "empresaCodigo": 11495,
+          "nomeProduto": "CERVEJA SCHIN LATÃO",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807079+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803520,
+          "empresaCodigo": 11495,
+          "nomeProduto": "MARLBORO RED SELECTION BOX",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.806928+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803739,
+          "empresaCodigo": 11495,
+          "nomeProduto": "VINHO CARRETEIRO 900ML",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807151+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803525,
+          "empresaCodigo": 11495,
+          "nomeProduto": "ROTHMANS RED BOX",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.806961+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803670,
+          "empresaCodigo": 11495,
+          "nomeProduto": "REFRIGERANTE SODA 350ML LT",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.806999+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803587,
+          "empresaCodigo": 11495,
+          "nomeProduto": "Produto 1803587",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807085+00:00",
+          "confidence": "MEDIA",
+          "evidence": null
+        },
+        {
+          "produtoCodigo": 1803673,
+          "empresaCodigo": 11495,
+          "nomeProduto": "Produto 1803673",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807010+00:00",
+          "confidence": "MEDIA",
+          "evidence": null
+        },
+        {
+          "produtoCodigo": 1803530,
+          "empresaCodigo": 11495,
+          "nomeProduto": "LUCKY STRIKE PATTERSON RED BOX",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.806971+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 1803621,
+          "empresaCodigo": 11495,
+          "nomeProduto": "CERVEJA BRAHMA CHOPP 473ML",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807175+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 2155820,
+          "empresaCodigo": 11495,
+          "nomeProduto": "ENROLADINHO CHIC",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807058+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 2323122,
+          "empresaCodigo": 11495,
+          "nomeProduto": "PASTEL DE FRANGO (CASA DO SALGADO)",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807072+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        },
+        {
+          "produtoCodigo": 2387407,
+          "empresaCodigo": 11495,
+          "nomeProduto": "PIRULITO POP OREO",
+          "departamento": "PRODUTOS_DE_LOJA",
+          "fonte": "PRODUTO_TARGETED",
+          "lastSeen": "2026-06-15T00:26:14.807123+00:00",
+          "confidence": "MEDIA",
+          "evidence": [
+            "PRODUTO.combustivel=false ou tipo≠C",
+            "PRODUTO.lookup(produtoCodigo)"
+          ]
+        }
+      ],
+      "factProductLookupPerformance": [
+        {
+          "tempoTotalLookupAntesSec": 68.15,
+          "tempoTotalLookupDepoisSec": 0.0,
+          "reducaoPercentual": 100.0,
+          "lookupsExecutados": 0,
+          "cacheHits": 0,
+          "cacheMisses": 0,
+          "cacheHitRatePct": 0.0,
+          "timeouts": 0,
+          "errors": 0,
+          "metaLookupF072Sec": 68.0,
+          "performanceAprovada": true,
+          "lineage": [
+            {
+              "origem": "F07.3",
+              "snapshot": "performance_benchmark",
+              "api": "product_master_cache",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "factProductResidualSku": [
+        {
+          "produtoCodigo": 1975728,
+          "classificacaoFinal": "RESOLVIDO",
+          "nomeResolvido": "Etanol aditivado",
+          "departamento": "COMBUSTIVEL",
+          "vendaItemOcorrencias": 0,
+          "empresaCodigo": 0,
+          "probes": [
+            {
+              "fonte": "FUEL_CATALOG",
+              "encontrado": true,
+              "nome": "Etanol aditivado"
+            },
+            {
+              "fonte": "dim_product_master",
+              "encontrado": true,
+              "nome": "Etanol aditivado"
+            }
+          ],
+          "liveProbes": {},
+          "lineage": [
+            {
+              "origem": "F07.3",
+              "snapshot": "residual_sku_forensics",
+              "api": "FUEL_CATALOG+PRODUTO",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "factProductSalesWithMargin": [],
+      "factProductMargin": [],
+      "factCommercialOpportunity": [
+        {
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "prioridade": "ALTA",
+          "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+          "impactoEstimadoReceita": 165.6
+        },
+        {
+          "tipo": "DESENVOLVER_FILIAL",
+          "prioridade": "ALTA",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+          "empresaCodigo": 11495
+        }
+      ],
+      "factProductAssortmentRollup": [],
+      "factCommercialFocus": [],
+      "factBranchBenchmarkGap": [],
+      "factFuelDependencyRisk": [
+        {
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "filial": "POSTO VIP",
+          "mixCombustivelPct": 78.4,
+          "mixProdutosVendidosPct": 21.6,
+          "mixLubrificantesPct": 0.0,
+          "mixServicosPct": 0.0,
+          "mixAcessoriosPct": 0.0,
+          "mixOutrosDepartamentos": {
+            "PRODUTOS_DE_LOJA": 462.84
+          },
+          "dependenciaCombustivelPct": 78.4,
+          "mixSaudavelScore": 21.6,
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "branch_product_mix",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ],
+          "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
+        }
+      ],
+      "factCommercialAction": [
+        {
+          "id": "PV-OPP-C672381F",
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "titulo": "AUMENTAR PARTICIPACAO",
+          "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+          "produtoCodigo": null,
+          "empresaCodigo": null,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 165.6,
+          "impactoEstimadoMargem": 49.68,
+          "evidencia": {
+            "tipo": "AUMENTAR_PARTICIPACAO",
+            "prioridade": "ALTA",
+            "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+            "impactoEstimadoReceita": 165.6
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-OPP-A67E33D7",
+          "tipo": "DESENVOLVER_FILIAL",
+          "titulo": "DESENVOLVER FILIAL",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+          "produtoCodigo": null,
+          "empresaCodigo": 11495,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 46.284,
+          "impactoEstimadoMargem": 13.89,
+          "evidencia": {
+            "tipo": "DESENVOLVER_FILIAL",
+            "prioridade": "ALTA",
+            "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+            "empresaCodigo": 11495
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-COMB-D883D58E",
+          "tipo": "REDUZIR_DEPENDENCIA_COMBUSTIVEL",
+          "titulo": "Reduzir dependência combustível — filial 11495",
+          "descricao": "Dependência 78.4% — ampliar Produtos Vendidos",
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+60",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 23.14,
+          "impactoEstimadoMargem": 8.1,
+          "impactoPctReceitaPv": 5.0,
+          "evidencia": {
+            "mixProdutosVendidosPct": 21.6,
+            "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "fuel_dependency_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "factCommercialActionSummary": [
+        {
+          "totalAcoes": 3,
+          "porStatus": {
+            "RECOMENDADA": 3
+          },
+          "porPrioridade": {
+            "ALTA": 2,
+            "MEDIA": 1
+          },
+          "impactoTotalReceita": 235.02,
+          "impactoTotalMargem": 71.67,
+          "acoesAltaPrioridade": 2,
+          "acoesComResponsavel": 3,
+          "acoesComEvidencia": 3,
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "action_center_summary",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ]
+    },
+    "residualSkuForensics": {
+      "produtoCodigo": 1975728,
+      "classificacaoFinal": "RESOLVIDO",
+      "nomeResolvido": "Etanol aditivado",
+      "departamento": "COMBUSTIVEL",
+      "vendaItemOcorrencias": 0,
+      "empresaCodigo": 0,
+      "probes": [
+        {
+          "fonte": "FUEL_CATALOG",
+          "encontrado": true,
+          "nome": "Etanol aditivado"
+        },
+        {
+          "fonte": "dim_product_master",
+          "encontrado": true,
+          "nome": "Etanol aditivado"
+        }
+      ],
+      "liveProbes": {},
+      "lineage": [
+        {
+          "origem": "F07.3",
+          "snapshot": "residual_sku_forensics",
+          "api": "FUEL_CATALOG+PRODUTO",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "productLookupOptimization": {
+      "concurrency": 16,
+      "timeoutSec": 15.0,
+      "parallelProdutoProdutoEmpresa": true,
+      "cacheEnabled": true,
+      "incrementalLookup": true,
+      "lineage": [
+        {
+          "origem": "F07.3",
+          "snapshot": "lookup_optimization",
+          "api": "product_master_cache",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "productCacheStrategy": {
+      "cacheHits": 0,
+      "cacheMisses": 0,
+      "cacheWrites": 0,
+      "cacheHitRatePct": 0.0,
+      "indexSize": 263,
+      "cachePath": "C:\\Users\\mlisb\\OneDrive\\ProjetosAntigravy\\LOGOS SPACE\\Api_WebPosto\\WebPosto_API\\snapshots\\product_master_cache\\index.json",
+      "camposObrigatorios": [
+        "produtoCodigo",
+        "empresaCodigo",
+        "nomeProduto",
+        "departamento",
+        "fonte",
+        "lastSeen",
+        "confidence"
+      ],
+      "lineage": [
+        {
+          "origem": "F07.3",
+          "snapshot": "cache_strategy",
+          "api": "snapshots/product_master_cache",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "departmentRefinement": {
+      "departamentosRefinados": 7,
+      "produtosNaoClassificados": 0,
+      "produtosVendidosNaoClassificados": 0,
+      "porDepartamento": {
+        "COMBUSTIVEL": 6,
+        "PRODUTOS_DE_LOJA": 1
+      },
+      "departamentosOficiais": [
+        "COMBUSTIVEL",
+        "PRODUTOS_DE_LOJA",
+        "LUBRIFICANTES",
+        "FILTROS",
+        "ADITIVOS",
+        "ACESSORIOS",
+        "SERVICOS",
+        "OUTROS",
+        "NAO_CLASSIFICADO"
+      ],
+      "categoriaInventada": false,
+      "lineage": [
+        {
+          "origem": "F07.3",
+          "snapshot": "department_refinement",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "multiBranchProductScale": {
+      "empresaCodigoObrigatorio": true,
+      "catalogoCorporativo": 7,
+      "catalogoPorFilial": {
+        "11495": 2
+      },
+      "filiaisHomologadas": [
+        11495,
+        5555
+      ],
+      "semCrossTenantLogico": true,
+      "prontoParaNFiliais": true,
+      "lineage": [
+        {
+          "origem": "F07.3",
+          "snapshot": "multi_branch_scale",
+          "api": "ia0_token_tenant_coverage_audit.json",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "productPerformanceBenchmark": {
+      "tempoTotalLookupAntesSec": 68.15,
+      "tempoTotalLookupDepoisSec": 0.0,
+      "reducaoPercentual": 100.0,
+      "lookupsExecutados": 0,
+      "cacheHits": 0,
+      "cacheMisses": 0,
+      "cacheHitRatePct": 0.0,
+      "timeouts": 0,
+      "errors": 0,
+      "metaLookupF072Sec": 68.0,
+      "performanceAprovada": true,
+      "lineage": [
+        {
+          "origem": "F07.3",
+          "snapshot": "performance_benchmark",
+          "api": "product_master_cache",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "productSalesPerformance": {
+      "topProdutoVolume": {},
+      "topProdutoReceita": {},
+      "rankingVolume": [],
+      "rankingReceita": [],
+      "lineage": [
+        {
+          "origem": "F07.4",
+          "snapshot": "sales_performance",
+          "api": "/INTEGRACAO/VENDA_ITEM",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "marginIntelligence": {
+      "receitaProdutosVendidos": 462.84,
+      "margemBrutaTotal": 0,
+      "margemBrutaPct": 0,
+      "topDepartamentoMargem": {},
+      "porDepartamento": [],
+      "porFilial": [],
+      "topProdutoMargem": {},
+      "lineage": [
+        {
+          "origem": "F07.4",
+          "snapshot": "margin_intelligence",
+          "api": "/INTEGRACAO/VENDA_ITEM",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "mixHealthCommercial": {
+      "participacaoProdutosVendidosPct": 21.6,
+      "margemMediaPct": 0.0,
+      "mixSaudavel": false,
+      "filialMixMaisSaudavel": {
+        "empresaCodigo": 11495,
+        "empresaNome": "POSTO VIP",
+        "filial": "POSTO VIP",
+        "mixCombustivelPct": 78.4,
+        "mixProdutosVendidosPct": 21.6,
+        "mixLubrificantesPct": 0.0,
+        "mixServicosPct": 0.0,
+        "mixAcessoriosPct": 0.0,
+        "mixOutrosDepartamentos": {
+          "PRODUTOS_DE_LOJA": 462.84
+        },
+        "dependenciaCombustivelPct": 78.4,
+        "mixSaudavelScore": 21.6,
+        "lineage": [
+          {
+            "origem": "F07.2",
+            "snapshot": "branch_product_mix",
+            "api": "/INTEGRACAO/VENDA_ITEM",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "filiais": [
+        {
+          "empresaCodigo": 11495,
+          "empresaNome": "POSTO VIP",
+          "filial": "POSTO VIP",
+          "mixCombustivelPct": 78.4,
+          "mixProdutosVendidosPct": 21.6,
+          "mixLubrificantesPct": 0.0,
+          "mixServicosPct": 0.0,
+          "mixAcessoriosPct": 0.0,
+          "mixOutrosDepartamentos": {
+            "PRODUTOS_DE_LOJA": 462.84
+          },
+          "dependenciaCombustivelPct": 78.4,
+          "mixSaudavelScore": 21.6,
+          "lineage": [
+            {
+              "origem": "F07.2",
+              "snapshot": "branch_product_mix",
+              "api": "/INTEGRACAO/VENDA_ITEM",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "lineage": [
+        {
+          "origem": "F07.4",
+          "snapshot": "mix_health",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "opportunityEngine": {
+      "oportunidades": [
+        {
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "prioridade": "ALTA",
+          "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+          "impactoEstimadoReceita": 165.6
+        },
+        {
+          "tipo": "DESENVOLVER_FILIAL",
+          "prioridade": "ALTA",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+          "empresaCodigo": 11495
+        }
+      ],
+      "totalOportunidades": 2,
+      "existeOportunidadeCrescimento": true,
+      "receitaAtualProdutosVendidos": 462.84,
+      "lineage": [
+        {
+          "origem": "F07.4",
+          "snapshot": "opportunity_engine",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "productOpportunityAssortment": {
+      "marginLeaders": {
+        "topProdutoMargemPct": {},
+        "rankingMargemPct": [],
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "margin_leaders",
+            "api": "/INTEGRACAO/VENDA_ITEM",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "highVolumeLowMargin": {
+        "benchmarkMargemPct": 25.0,
+        "volumeThreshold": 0,
+        "produtos": [],
+        "totalAlertas": 0,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "high_volume_low_margin",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "expansionPotential": {
+        "produtos": [],
+        "totalPotencial": 0,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "expansion_potential",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "branchBenchmarkGap": {
+        "benchmarkMixProdutosVendidosPct": 21.6,
+        "filiaisAbaixoBenchmark": [],
+        "totalAbaixoBenchmark": 0,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "branch_benchmark_gap",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "commercialFocus": {
+        "produtosFoco": [],
+        "totalFoco": 0,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "commercial_focus",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "fuelDependencyRisk": {
+        "thresholdDependenciaPct": 70.0,
+        "filiaisRisco": [
+          {
+            "empresaCodigo": 11495,
+            "empresaNome": "POSTO VIP",
+            "filial": "POSTO VIP",
+            "mixCombustivelPct": 78.4,
+            "mixProdutosVendidosPct": 21.6,
+            "mixLubrificantesPct": 0.0,
+            "mixServicosPct": 0.0,
+            "mixAcessoriosPct": 0.0,
+            "mixOutrosDepartamentos": {
+              "PRODUTOS_DE_LOJA": 462.84
+            },
+            "dependenciaCombustivelPct": 78.4,
+            "mixSaudavelScore": 21.6,
+            "lineage": [
+              {
+                "origem": "F07.2",
+                "snapshot": "branch_product_mix",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ],
+            "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
+          }
+        ],
+        "totalFiliaisRisco": 1,
+        "dependenciaRedeExcessiva": true,
+        "participacaoProdutosVendidosPct": 21.6,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "fuel_dependency",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "lineage": [
+        {
+          "origem": "F07.5",
+          "snapshot": "assortment_intelligence",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "assortmentIntelligence": {
+      "marginLeaders": {
+        "topProdutoMargemPct": {},
+        "rankingMargemPct": [],
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "margin_leaders",
+            "api": "/INTEGRACAO/VENDA_ITEM",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "highVolumeLowMargin": {
+        "benchmarkMargemPct": 25.0,
+        "volumeThreshold": 0,
+        "produtos": [],
+        "totalAlertas": 0,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "high_volume_low_margin",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "expansionPotential": {
+        "produtos": [],
+        "totalPotencial": 0,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "expansion_potential",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "branchBenchmarkGap": {
+        "benchmarkMixProdutosVendidosPct": 21.6,
+        "filiaisAbaixoBenchmark": [],
+        "totalAbaixoBenchmark": 0,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "branch_benchmark_gap",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "commercialFocus": {
+        "produtosFoco": [],
+        "totalFoco": 0,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "commercial_focus",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "fuelDependencyRisk": {
+        "thresholdDependenciaPct": 70.0,
+        "filiaisRisco": [
+          {
+            "empresaCodigo": 11495,
+            "empresaNome": "POSTO VIP",
+            "filial": "POSTO VIP",
+            "mixCombustivelPct": 78.4,
+            "mixProdutosVendidosPct": 21.6,
+            "mixLubrificantesPct": 0.0,
+            "mixServicosPct": 0.0,
+            "mixAcessoriosPct": 0.0,
+            "mixOutrosDepartamentos": {
+              "PRODUTOS_DE_LOJA": 462.84
+            },
+            "dependenciaCombustivelPct": 78.4,
+            "mixSaudavelScore": 21.6,
+            "lineage": [
+              {
+                "origem": "F07.2",
+                "snapshot": "branch_product_mix",
+                "api": "/INTEGRACAO/VENDA_ITEM",
+                "cockpit": "non-fuel-products",
+                "webPosto": false
+              }
+            ],
+            "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
+          }
+        ],
+        "totalFiliaisRisco": 1,
+        "dependenciaRedeExcessiva": true,
+        "participacaoProdutosVendidosPct": 21.6,
+        "lineage": [
+          {
+            "origem": "F07.5",
+            "snapshot": "fuel_dependency",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "lineage": [
+        {
+          "origem": "F07.5",
+          "snapshot": "assortment_intelligence",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    },
+    "commercialActionCenter": {
+      "actions": [
+        {
+          "id": "PV-OPP-C672381F",
+          "tipo": "AUMENTAR_PARTICIPACAO",
+          "titulo": "AUMENTAR PARTICIPACAO",
+          "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+          "produtoCodigo": null,
+          "empresaCodigo": null,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 165.6,
+          "impactoEstimadoMargem": 49.68,
+          "evidencia": {
+            "tipo": "AUMENTAR_PARTICIPACAO",
+            "prioridade": "ALTA",
+            "descricao": "Produtos Vendidos com 21.6% do faturamento — meta 35%+",
+            "impactoEstimadoReceita": 165.6
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-OPP-A67E33D7",
+          "tipo": "DESENVOLVER_FILIAL",
+          "titulo": "DESENVOLVER FILIAL",
+          "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+          "produtoCodigo": null,
+          "empresaCodigo": 11495,
+          "departamento": null,
+          "prioridade": "ALTA",
+          "prioridadeOrdem": 1,
+          "status": "RECOMENDADA",
+          "prazo": "D+30",
+          "responsavel": {
+            "ownerId": 276288,
+            "ownerName": "JOÃO RYVISON DE ANDRADE SOUZA",
+            "ownerRole": "COMERCIAL_PRODUTOS_VENDIDOS",
+            "responsavelTipo": "COMERCIAL"
+          },
+          "impactoEstimadoReceita": 46.284,
+          "impactoEstimadoMargem": 13.89,
+          "evidencia": {
+            "tipo": "DESENVOLVER_FILIAL",
+            "prioridade": "ALTA",
+            "descricao": "Desenvolver mix Produtos Vendidos na filial 11495",
+            "empresaCodigo": 11495
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "opportunity_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        },
+        {
+          "id": "PV-COMB-D883D58E",
+          "tipo": "REDUZIR_DEPENDENCIA_COMBUSTIVEL",
+          "titulo": "Reduzir dependência combustível — filial 11495",
+          "descricao": "Dependência 78.4% — ampliar Produtos Vendidos",
+          "empresaCodigo": 11495,
+          "prioridade": "MEDIA",
+          "prioridadeOrdem": 2,
+          "status": "RECOMENDADA",
+          "prazo": "D+60",
+          "responsavel": {
+            "ownerId": 251934,
+            "ownerName": "WANDERSON GUILHERME DOS SANTOS OLIV",
+            "ownerRole": "GERENTE_LOJA",
+            "responsavelTipo": "OPERACOES"
+          },
+          "impactoEstimadoReceita": 23.14,
+          "impactoEstimadoMargem": 8.1,
+          "impactoPctReceitaPv": 5.0,
+          "evidencia": {
+            "mixProdutosVendidosPct": 21.6,
+            "risco": "DEPENDENCIA_COMBUSTIVEL_ALTA"
+          },
+          "lineage": [
+            {
+              "origem": "F07.6",
+              "snapshot": "fuel_dependency_action",
+              "api": "/api/v1/non-fuel-products/cockpit",
+              "cockpit": "non-fuel-products",
+              "webPosto": false
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "totalAcoes": 3,
+        "porStatus": {
+          "RECOMENDADA": 3
+        },
+        "porPrioridade": {
+          "ALTA": 2,
+          "MEDIA": 1
+        },
+        "impactoTotalReceita": 235.02,
+        "impactoTotalMargem": 71.67,
+        "acoesAltaPrioridade": 2,
+        "acoesComResponsavel": 3,
+        "acoesComEvidencia": 3,
+        "lineage": [
+          {
+            "origem": "F07.6",
+            "snapshot": "action_center_summary",
+            "api": "/api/v1/non-fuel-products/cockpit",
+            "cockpit": "non-fuel-products",
+            "webPosto": false
+          }
+        ]
+      },
+      "r04Gate": {
+        "track": "COMMERCIAL_ACTION_CENTER",
+        "confiabilidadeMargemPct": 100.0,
+        "parecerR04": "[PARECER FINAL: F07.6 = COMMERCIAL ACTION CENTER]"
+      },
+      "lineage": [
+        {
+          "origem": "F07.6",
+          "snapshot": "commercial_action_center",
+          "api": "/api/v1/non-fuel-products/cockpit",
+          "cockpit": "non-fuel-products",
+          "webPosto": false
+        }
+      ]
+    }
+  }
+}

@@ -18,19 +18,25 @@ import {
 } from "@/components/ui/sidebar";
 import {
   BarChart3Icon,
+  Building2Icon,
   ClipboardCheckIcon,
   FuelIcon,
   LandmarkIcon,
   LayoutGridIcon,
   PackageIcon,
+  SmartphoneIcon,
   Settings2Icon,
   ShoppingCartIcon,
+  TruckIcon,
 } from "lucide-react";
 
 const navMain = [
   { title: "Painel", url: "/dashboard", icon: LayoutGridIcon },
   { title: "Extratos", url: "/dashboard/statements", icon: LandmarkIcon },
   { title: "Abastecimento", url: "/abastecimento", icon: FuelIcon },
+  { title: "TMS", url: "/tms/programacao", icon: TruckIcon },
+  { title: "Descarga", url: "/tms/mobile/descarga", icon: SmartphoneIcon },
+  { title: "Postos", url: "/tms/cadastros/postos", icon: Building2Icon },
   { title: "Vendas", url: "/vendas", icon: ShoppingCartIcon },
   { title: "Produtos", url: "/produtos", icon: PackageIcon },
   { title: "Auditoria", url: "/auditoria", icon: ClipboardCheckIcon },

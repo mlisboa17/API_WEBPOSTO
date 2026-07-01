@@ -1,16 +1,32 @@
 import { renderTable } from "../components/table.js";
 import { formatCurrency, formatDate, formatMissing } from "../services/formatters.js";
 import { resolveFilialFromRow } from "../components/filiais.js";
+import { renderExecutiveTablePage } from "../services/executiveCockpitAdapter.js";
 
 export function renderAccountsPayable(container, payload, onPageChange, options = {}) {
   const rows = payload?.data || [];
   const page = payload?.page || 1;
   const limit = payload?.limit || 50;
   const total = payload?.total || 0;
+  const filters = options.filters || {};
 
-  container.innerHTML = '<div id="table"></div><div id="pager"></div>';
+  renderExecutiveTablePage(container, payload, filters, {
+    title: "Contas a Pagar",
+    valueKey: "valor",
+    formatTotal: (n) => formatCurrency(n),
+    filialAccessor: (row) => resolveFilialFromRow(row),
+    chartTitle: "Pagamentos por filial",
+    branchTag: "Contas",
+    defaultView: "accounts",
+    detailBuilder: () => '<div id="accountsTable"></div><div id="accountsPager"></div>',
+    onNavigate: options.onNavigate,
+  });
+
+  const tableNode = container.querySelector("#accountsTable");
+  if (!tableNode) return;
+
   renderTable(
-    container.querySelector("#table"),
+    tableNode,
     [
       { key: "fornecedor", label: "Fornecedor", type: "text", sortable: true, truncate: true, formatter: formatMissing, filter: true },
       { key: "valor", label: "Valor", type: "currency", sortable: true, formatter: formatCurrency, sum: true, filter: true },

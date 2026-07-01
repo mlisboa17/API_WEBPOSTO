@@ -1,16 +1,31 @@
 import { formatCurrency } from "../services/format.js";
 import { downloadCsv } from "../services/export.js";
+import { bindExecutiveNav, renderExecutiveEmptyState } from "../components/executiveFirstFold.js";
+import { buildExecutivePageHtml } from "../components/executiveInsightDetail.js";
+import { buildChartBars, countKpi, moneyKpi } from "../services/executiveKpis.js";
+import {
+  buildFourQuestionBrief,
+  enrichAlert,
+  mapCriticalBranches,
+  mapPriorityActions,
+  mapRisks,
+} from "../services/executiveBrief.js";
+
+function cellText(value) {
+  if (value == null || value === "" || value === "—") return "Não informado";
+  return value;
+}
 
 function fmtMoney(v) {
-  if (v === null || v === undefined) return "—";
+  if (v == null || v === "") return "Dados indisponíveis";
   return formatCurrency(v);
 }
 
 function label(item, nameKey = "employeeName", codeKey = "funcionarioCodigo") {
-  if (!item) return "—";
+  if (!item) return "Não informado";
   const name = item[nameKey] || item.nomeFilial || item.nome;
   const code = item[codeKey] ?? item.empresaCodigo ?? item.pdvCodigo ?? item.turno;
-  return name ? `${name} (${code})` : String(code ?? "—");
+  return name ? `${name} (${code})` : cellText(code);
 }
 
 function renderTable(title, items, columns) {
@@ -23,7 +38,7 @@ function renderTable(title, items, columns) {
         .map((c) => {
           const val = c.render ? c.render(item) : item[c.key];
           if (c.money) return `<td>${fmtMoney(val)}</td>`;
-          return `<td>${val ?? "—"}</td>`;
+          return `<td>${cellText(val)}</td>`;
         })
         .join("");
       return `<tr>${cells}</tr>`;
@@ -35,57 +50,134 @@ function renderTable(title, items, columns) {
 export function renderExecutiveScorecard(node, payload, filters, options = {}) {
   if (!node) return;
   if (!payload) {
-    node.innerHTML = `<p class="muted">Carregando Executive Scorecard…</p>`;
+    node.innerHTML = renderExecutiveEmptyState({
+      title: options.pageTitle || "Indicadores",
+      message: "Não foi possível montar esta visão no período selecionado.",
+      chartTitle: "Indicadores por filial",
+    });
     return;
   }
 
   const cockpit = payload.cockpit || {};
-  const scores = cockpit.scores || {};
-  const exec = payload.executiveAnswers || {};
-  const parecer = payload.parecerFinal || "";
-  const decisao = payload.decisaoArquitetural || {};
+  const topFiliais = cockpit.topFiliais || [];
+  const topOperadores = cockpit.topOperadores || [];
+  const alertas = cockpit.alertas || [];
+  const tendencias = cockpit.tendencias || {};
+  const hasData = topFiliais.length > 0 || topOperadores.length > 0 || alertas.length > 0;
 
-  node.innerHTML = `
-    <header class="view-header">
-      <div>
-        <h2>Executive Scorecard</h2>
-        <p class="muted">F04.7 · ${filters?.dataInicial || ""} → ${filters?.dataFinal || ""}</p>
-        ${parecer ? `<p class="parecer">${parecer}</p>` : ""}
-        ${decisao.justificativa ? `<p class="muted">${decisao.justificativa}</p>` : ""}
-      </div>
-      <div class="view-actions">
-        <button type="button" id="scorecardRefresh" class="btn-secondary">Atualizar</button>
-        <button type="button" id="scorecardExport" class="btn-secondary">Exportar CSV</button>
-      </div>
-    </header>
-    <div class="kpi-grid">
-      <article class="kpi-card kpi-card--highlight"><span class="kpi-label">Executive Score</span><strong>${scores.executive ?? exec["1_executiveScore"] ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Financial</span><strong>${scores.financial ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">People</span><strong>${scores.people ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Operations</span><strong>${scores.operations ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Growth</span><strong>${scores.growth ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Risk</span><strong>${scores.risk ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Alertas</span><strong>${exec["13_alertasExecutivos"] ?? "—"}</strong></article>
-      <article class="kpi-card"><span class="kpi-label">Paridade Δ</span><strong>${exec.paridadeDelta ?? "—"}</strong></article>
+  if (!hasData) {
+    node.innerHTML = renderExecutiveEmptyState({
+      title: options.pageTitle || "Indicadores",
+      message: "Nenhum indicador disponível no período.",
+      chartTitle: "Indicadores por filial",
+    });
+    return;
+  }
+
+  const receitaTop = topFiliais.reduce((sum, f) => sum + Number(f.receita || 0), 0);
+  const kpis = [
+    { label: "Filiais", value: countKpi(topFiliais.length), trendPct: null, status: "ok" },
+    { label: "Operadores", value: countKpi(topOperadores.length), trendPct: null, status: "ok" },
+    { label: "Receita top", value: receitaTop > 0 ? moneyKpi(receitaTop) : "Dados indisponíveis", trendPct: null, status: "ok" },
+    { label: "Alertas", value: String(alertas.length), trendPct: null, status: alertas.length ? "warn" : "ok" },
+  ];
+
+  const topFilial = topFiliais[0];
+  const topOp = topOperadores[0];
+  const brief = buildFourQuestionBrief({
+    what: `${topFiliais.length} filial(is) e ${topOperadores.length} operador(es) no ranking.`,
+    why: topFilial ? `${cellText(topFilial.nomeFilial)} lidera receita.` : "Ranking em consolidação.",
+    where: topFilial ? cellText(topFilial.nomeFilial) : "Rede",
+    actionNow: topOp ? `Reconhecer desempenho de ${label(topOp)}.` : "Acompanhar evolução semanal.",
+  });
+
+  const chartBars = buildChartBars(topFiliais.slice(0, 7), {
+    labelKey: "nomeFilial",
+    valueKey: "receita",
+    max: 7,
+  });
+
+  const cards = alertas.slice(0, 3).map((a) =>
+    enrichAlert(
+      {
+        severity: a.severity || "MÉDIO",
+        title: cellText(a.message || a.category, "Alerta executivo"),
+        detail: cellText(a.category),
+        view: "executiveScorecard",
+        origin: "Executivo",
+      },
+      {
+        why: cellText(a.category, "Indicador fora do padrão"),
+        where: "Rede",
+        actionNow: "Revisar indicador e definir ação",
+      }
+    )
+  );
+
+  const tendenciaRows = Object.entries(tendencias).map(([chave, valor]) => ({
+    indicador: chave.replace(/_/g, " "),
+    valor: valor == null ? "Não informado" : typeof valor === "object" ? "Ver detalhamento" : String(valor),
+  }));
+
+  const detail = `
+    <div class="exec-detail-toolbar">
+      <button type="button" id="scorecardRefresh" class="btn-secondary">Atualizar</button>
+      <button type="button" id="scorecardExport" class="btn-secondary">Exportar CSV</button>
     </div>
-    ${renderTable("Top Filiais", cockpit.topFiliais, [
+    ${payload.parecerFinal ? `<p class="parecer">${payload.parecerFinal}</p>` : ""}
+    ${renderTable("Top filiais", topFiliais, [
       { key: "nomeFilial", label: "Filial" },
       { key: "receita", label: "Receita", money: true },
     ])}
-    ${renderTable("Top Operadores", cockpit.topOperadores, [
+    ${renderTable("Top operadores", topOperadores, [
       { key: "employeeName", label: "Operador", render: (r) => label(r) },
-      { key: "benchmarkScore", label: "Score" },
+      { key: "benchmarkScore", label: "Pontuação" },
     ])}
-    ${renderTable("Alertas Executivos", cockpit.alertas, [
-      { key: "severity", label: "Severidade" },
+    ${renderTable("Alertas executivos", alertas, [
+      { key: "severity", label: "Prioridade" },
       { key: "category", label: "Categoria" },
       { key: "message", label: "Mensagem" },
     ])}
-    <section class="panel"><h3>Tendências</h3><pre>${JSON.stringify(cockpit.tendencias || {}, null, 2)}</pre></section>
+    ${renderTable("Tendências", tendenciaRows, [
+      { key: "indicador", label: "Indicador" },
+      { key: "valor", label: "Situação" },
+    ])}
   `;
 
+  node.innerHTML = buildExecutivePageHtml({
+    title: options.pageTitle || "Indicadores",
+    actionsHtml: "",
+    kpis,
+    brief,
+    chartBars,
+    chartTitle: "Receita por filial",
+    criticalBranches: mapCriticalBranches(
+      topFiliais.slice(0, 3).map((f) => ({
+        name: cellText(f.nomeFilial),
+        metric: fmtMoney(f.receita),
+        tag: "Receita",
+        view: "executiveScorecard",
+      }))
+    ),
+    priorityActions: mapPriorityActions(
+      cards.map((a) => ({ title: a.title, detail: a.actionNow, view: a.view }))
+    ),
+    risks: mapRisks(
+      alertas.slice(0, 3).map((a) => ({
+        title: cellText(a.message),
+        detail: cellText(a.category),
+        severity: a.severity,
+      }))
+    ),
+    opportunities: [],
+    alerts: cards,
+    detailHtml: detail,
+    detailSummary: "Detalhamento de indicadores",
+  });
+
+  bindExecutiveNav(node, options.onNavigate);
   node.querySelector("#scorecardRefresh")?.addEventListener("click", () => options.onRefresh?.());
   node.querySelector("#scorecardExport")?.addEventListener("click", () => {
-    downloadCsv("executive-scorecard.csv", cockpit.topOperadores || []);
+    downloadCsv("indicadores-executivos.csv", topOperadores);
   });
 }

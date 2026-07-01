@@ -1057,6 +1057,30 @@ class NetworkFinancialOverviewService:
         filtered.sort(key=lambda x: str(x.get("data") or ""), reverse=True)
         page_data, total = self._paginate(filtered, page=page, limit=limit)
 
+        employee_index: dict[int, dict[str, Any]] = {}
+        if any(row.get("funcionarioCodigo") not in (None, "", 0) for row in page_data):
+            from src.services.employee_dimension_service import EmployeeDimensionService
+
+            try:
+                employee_ctx = await EmployeeDimensionService(self.client).build(
+                    filters.data_inicial, filters.data_final
+                )
+                employee_index = employee_ctx.get("index") or {}
+            except Exception:
+                LOGGER.warning("Dimensão de funcionários indisponível para despesas", exc_info=True)
+
+        def _employee_name(codigo: Any) -> str | None:
+            if codigo in (None, "", 0):
+                return None
+            try:
+                info = employee_index.get(int(codigo))
+            except (TypeError, ValueError):
+                return None
+            if not info:
+                return None
+            name = info.get("employeeName")
+            return str(name).strip() if name else None
+
         resumo_por_origem: dict[str, dict[str, Any]] = {}
         for row in enriched:
             origem = str(row.get("origem") or "desconhecido")
@@ -1135,6 +1159,7 @@ class NetworkFinancialOverviewService:
                         "caixaCodigo": row.get("caixaCodigo"),
                         "pdvCodigo": row.get("pdvCodigo"),
                         "funcionarioCodigo": row.get("funcionarioCodigo"),
+                        "employeeName": _employee_name(row.get("funcionarioCodigo")),
                         "turnoCodigo": row.get("turnoCodigo"),
                         "turno": row.get("turno"),
                         "despesaApurado": row.get("despesaApurado"),

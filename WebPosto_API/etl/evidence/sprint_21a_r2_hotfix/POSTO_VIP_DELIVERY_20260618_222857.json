@@ -1,0 +1,15 @@
+{
+  "tenant": "POSTO_VIP",
+  "endpoint": "DELIVERY",
+  "base_url": "https://web.qualityautomacao.com.br",
+  "path": "/INTEGRACAO/DELIVERY",
+  "url_masked": "https://web.qualityautomacao.com.br/INTEGRACAO/DELIVERY?CHAVE=4d6bbe21...8fd7&...",
+  "timestamp": "2026-06-18T22:28:57.742437",
+  "http_status": 401,
+  "success": false,
+  "records_count": 0,
+  "sample_payload": null,
+  "error": "Unauthorized - Invalid or expired API key",
+  "fields_detected": [],
+  "is_expected_401": false
+}

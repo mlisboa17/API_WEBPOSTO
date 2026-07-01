@@ -1,0 +1,171 @@
+{
+  "lastUpdated": "2026-06-14T14:09:22",
+  "data": {
+    "totalPdvs": 3,
+    "ranking": [
+      {
+        "pdvCodigo": 15880,
+        "fechamentos": 7,
+        "diferencaAcumulada": -3735.54,
+        "desvioPadrao": 793.42,
+        "diferencaMedia": -533.65,
+        "operadores": [
+          {
+            "funcionarioCodigo": 158924,
+            "fechamentos": 4
+          },
+          {
+            "funcionarioCodigo": 299152,
+            "fechamentos": 3
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 6
+          },
+          {
+            "turno": "2º TURNO",
+            "fechamentos": 1
+          }
+        ],
+        "cashRiskScore": 25.92,
+        "band": "Critico",
+        "vsMediaRede": 174.68,
+        "monitoramentoPrioritario": true
+      },
+      {
+        "pdvCodigo": 56764,
+        "fechamentos": 6,
+        "diferencaAcumulada": -1749.98,
+        "desvioPadrao": 463.61,
+        "diferencaMedia": -291.66,
+        "operadores": [
+          {
+            "funcionarioCodigo": 276288,
+            "fechamentos": 4
+          },
+          {
+            "funcionarioCodigo": 178278,
+            "fechamentos": 2
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 6
+          }
+        ],
+        "cashRiskScore": 30.88,
+        "band": "Critico",
+        "vsMediaRede": -66.99,
+        "monitoramentoPrioritario": false
+      },
+      {
+        "pdvCodigo": 54193,
+        "fechamentos": 6,
+        "diferencaAcumulada": -1332.97,
+        "desvioPadrao": 272.24,
+        "diferencaMedia": -222.16,
+        "operadores": [
+          {
+            "funcionarioCodigo": 294273,
+            "fechamentos": 2
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "fechamentos": 2
+          },
+          {
+            "funcionarioCodigo": 213391,
+            "fechamentos": 1
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 6
+          }
+        ],
+        "cashRiskScore": 31.92,
+        "band": "Critico",
+        "vsMediaRede": -136.8,
+        "monitoramentoPrioritario": true
+      }
+    ],
+    "alvosCriticos": {
+      "54193": {
+        "pdvCodigo": 54193,
+        "fechamentos": 6,
+        "diferencaAcumulada": -1332.97,
+        "desvioPadrao": 272.24,
+        "diferencaMedia": -222.16,
+        "operadores": [
+          {
+            "funcionarioCodigo": 294273,
+            "fechamentos": 2
+          },
+          {
+            "funcionarioCodigo": 227386,
+            "fechamentos": 2
+          },
+          {
+            "funcionarioCodigo": 213391,
+            "fechamentos": 1
+          },
+          {
+            "funcionarioCodigo": 299371,
+            "fechamentos": 1
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 6
+          }
+        ],
+        "cashRiskScore": 31.92,
+        "band": "Critico",
+        "vsMediaRede": -136.8,
+        "monitoramentoPrioritario": true
+      },
+      "15880": {
+        "pdvCodigo": 15880,
+        "fechamentos": 7,
+        "diferencaAcumulada": -3735.54,
+        "desvioPadrao": 793.42,
+        "diferencaMedia": -533.65,
+        "operadores": [
+          {
+            "funcionarioCodigo": 158924,
+            "fechamentos": 4
+          },
+          {
+            "funcionarioCodigo": 299152,
+            "fechamentos": 3
+          }
+        ],
+        "turnos": [
+          {
+            "turno": "1º TURNO",
+            "fechamentos": 6
+          },
+          {
+            "turno": "2º TURNO",
+            "fechamentos": 1
+          }
+        ],
+        "cashRiskScore": 25.92,
+        "band": "Critico",
+        "vsMediaRede": 174.68,
+        "monitoramentoPrioritario": true
+      },
+      "mediaGlobalQuebra": 358.96
+    }
+  },
+  "snapshotKey": "cash:pdvs:2026-06-09:2026-06-14:all"
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "financial_sales",
+  "key": "2026-06-01:2026-06-07:all",
+  "lastUpdated": "2026-06-14T13:03:58",
+  "homologated": true,
+  "source": "qa",
+  "data": {
+    "page": 1,
+    "limit": 500,
+    "total": 2,
+    "data": [
+      {
+        "vendaCodigo": 1
+      },
+      {
+        "vendaCodigo": 2
+      }
+    ],
+    "consolidado": {
+      "total_vendas": "100",
+      "qtd_vendas": 2
+    }
+  }
+}

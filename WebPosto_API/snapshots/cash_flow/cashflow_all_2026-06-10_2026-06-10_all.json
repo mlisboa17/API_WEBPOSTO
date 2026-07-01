@@ -1,0 +1,429 @@
+{
+  "lastUpdated": "2026-06-14T17:52:35",
+  "flow": {
+    "sources": [
+      "CAIXA_APRESENTADO",
+      "MOVIMENTO_CONTA",
+      "TITULO_PAGAR",
+      "TITULO_RECEBER"
+    ],
+    "forbiddenSourcesUsed": [],
+    "referenceDate": "2026-06-10",
+    "cards": {
+      "entradasPrevistas": "72555.02",
+      "saidasPrevistas": "19602.76",
+      "saldoProjetado": "52952.26",
+      "saldoAcumulado": "52952.26"
+    },
+    "daily": [
+      {
+        "periodo": "2026-06-10",
+        "entradasPrevistas": "72555.02",
+        "saidasPrevistas": "19602.76",
+        "saldoProjetado": "52952.26",
+        "saldoAcumulado": "52952.26"
+      }
+    ],
+    "weekly": [
+      {
+        "periodo": "2026-W24",
+        "entradasPrevistas": "72555.02",
+        "saidasPrevistas": "19602.76",
+        "saldoProjetado": "52952.26",
+        "saldoAcumulado": "52952.26"
+      }
+    ],
+    "monthly": [
+      {
+        "periodo": "2026-06",
+        "entradasPrevistas": "72555.02",
+        "saidasPrevistas": "19602.76",
+        "saldoProjetado": "52952.26",
+        "saldoAcumulado": "52952.26"
+      }
+    ],
+    "payablesAging": {
+      "vencido": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "hoje": {
+        "count": 5,
+        "valor": "4804.17"
+      },
+      "7d": {
+        "count": 10,
+        "valor": "84670.00"
+      },
+      "15d": {
+        "count": 1,
+        "valor": "194.74"
+      },
+      "30d": {
+        "count": 1,
+        "valor": "109.90"
+      },
+      "acima30": {
+        "count": 8,
+        "valor": "879.20"
+      }
+    },
+    "receivablesAging": {
+      "vencido": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "hoje": {
+        "count": 3,
+        "valor": "757.48"
+      },
+      "7d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "15d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "30d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "acima30": {
+        "count": 0,
+        "valor": "0.00"
+      }
+    },
+    "payablesFuture": [
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 2707868,
+        "descricao": "CDD OLINDA",
+        "vencimento": "2026-06-10",
+        "valor": "1228.68",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 2949456,
+        "descricao": "MR MACEDO ROCHA",
+        "vencimento": "2026-06-10",
+        "valor": "1840.00",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3021545,
+        "descricao": "CDD OLINDA",
+        "vencimento": "2026-06-10",
+        "valor": "1323.09",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3051916,
+        "descricao": "LOG LINK INFORMATICA",
+        "vencimento": "2026-06-10",
+        "valor": "159.90",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3083485,
+        "descricao": "PEPSICO DO BRASIL LTDA",
+        "vencimento": "2026-06-16",
+        "valor": "1100.47",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3083491,
+        "descricao": "CERVEJARIA PETROPOLIS DE PERNAMBUCO LTDA",
+        "vencimento": "2026-06-15",
+        "valor": "197.47",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3083498,
+        "descricao": "SOUZA DISTRIBUIDORA",
+        "vencimento": "2026-06-18",
+        "valor": "194.74",
+        "aging": "15d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3083752,
+        "descricao": "LOG LINK INFORMATICA",
+        "vencimento": "2026-07-10",
+        "valor": "109.90",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3083753,
+        "descricao": "LOG LINK INFORMATICA",
+        "vencimento": "2026-08-10",
+        "valor": "109.90",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3083754,
+        "descricao": "LOG LINK INFORMATICA",
+        "vencimento": "2026-09-10",
+        "valor": "109.90",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3083755,
+        "descricao": "LOG LINK INFORMATICA",
+        "vencimento": "2026-10-10",
+        "valor": "109.90",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3083756,
+        "descricao": "LOG LINK INFORMATICA",
+        "vencimento": "2026-11-10",
+        "valor": "109.90",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3083757,
+        "descricao": "LOG LINK INFORMATICA",
+        "vencimento": "2026-12-10",
+        "valor": "109.90",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3083758,
+        "descricao": "LOG LINK INFORMATICA",
+        "vencimento": "2027-01-10",
+        "valor": "109.90",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3083759,
+        "descricao": "LOG LINK INFORMATICA",
+        "vencimento": "2027-02-10",
+        "valor": "109.90",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3083760,
+        "descricao": "LOG LINK INFORMATICA",
+        "vencimento": "2027-03-10",
+        "valor": "109.90",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3084198,
+        "descricao": "FORNECEDOR FOOD",
+        "vencimento": "2026-06-10",
+        "valor": "252.50",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3084570,
+        "descricao": "SUAPE",
+        "vencimento": "2026-06-17",
+        "valor": "771.86",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3084572,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-06-13",
+        "valor": "30130.50",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3084573,
+        "descricao": "MMS TRANSPORTE",
+        "vencimento": "2026-06-13",
+        "valor": "300.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3084638,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-06-13",
+        "valor": "30130.50",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3084639,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-06-13",
+        "valor": "300.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3084641,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-06-13",
+        "valor": "21295.20",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3084642,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-06-13",
+        "valor": "300.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3087262,
+        "descricao": "MILAGRES GAS E AGUA",
+        "vencimento": "2026-06-12",
+        "valor": "144.00",
+        "aging": "7d"
+      }
+    ],
+    "receivablesFuture": [
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20790667,
+        "descricao": "DESPERDICIO",
+        "vencimento": "2026-06-10",
+        "valor": "12.45",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20799257,
+        "descricao": "RIO DOCE COMERCIO E SERVICOS LTDA",
+        "vencimento": "2026-06-10",
+        "valor": "292.53",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20799286,
+        "descricao": "RIO DOCE COMERCIO E SERVICOS LTDA",
+        "vencimento": "2026-06-10",
+        "valor": "452.50",
+        "aging": "hoje"
+      }
+    ],
+    "overdueEvents": [],
+    "treasury": {
+      "creditos": {
+        "count": 1010,
+        "valor": "71797.54"
+      },
+      "debitos": {
+        "count": 990,
+        "valor": "14798.59"
+      },
+      "tarifas": {
+        "count": 981,
+        "valor": "393.37"
+      },
+      "transferencias": {
+        "count": 981,
+        "valor": "57030.77"
+      }
+    },
+    "insights": {
+      "criticalDays": [
+        {
+          "periodo": "2026-06-10",
+          "entradasPrevistas": "72555.02",
+          "saidasPrevistas": "19602.76",
+          "saldoProjetado": "52952.26",
+          "saldoAcumulado": "52952.26"
+        }
+      ],
+      "payablesVencidoValor": "0.00",
+      "receivablesVencidoValor": "0.00",
+      "tarifasValor": "393.37",
+      "topOpportunities": [
+        {
+          "tipo": "TARIFA_BANCARIA",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:50 CONTA:008800830 ",
+          "valor": "7.65",
+          "vencimento": "2026-06-10",
+          "acao": "Revisar tarifa evitável ou conta bancária"
+        },
+        {
+          "tipo": "TARIFA_BANCARIA",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:0160778999 ",
+          "valor": "5.85",
+          "vencimento": "2026-06-10",
+          "acao": "Revisar tarifa evitável ou conta bancária"
+        },
+        {
+          "tipo": "TARIFA_BANCARIA",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:1 CONTA:569127893 ",
+          "valor": "5.73",
+          "vencimento": "2026-06-10",
+          "acao": "Revisar tarifa evitável ou conta bancária"
+        },
+        {
+          "tipo": "TARIFA_BANCARIA",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:4874 CONTA:12880000007627285020 ",
+          "valor": "5.20",
+          "vencimento": "2026-06-10",
+          "acao": "Revisar tarifa evitável ou conta bancária"
+        }
+      ]
+    },
+    "snapshotKeys": {
+      "daily": "cashflow:daily:2026-06-10:2026-06-10:all",
+      "weekly": "cashflow:weekly:2026-06-10:2026-06-10:all",
+      "monthly": "cashflow:monthly:2026-06-10:2026-06-10:all"
+    },
+    "performanceMs": {
+      "payables": 4485.9,
+      "receivables": 4835.7,
+      "bank": 48006.7,
+      "caixaApresentado": 4003.0
+    }
+  },
+  "snapshotKey": "cashflow:all:2026-06-10:2026-06-10:all"
+}

@@ -1,0 +1,181 @@
+{
+  "apis": [
+    {
+      "path": "/health",
+      "status": 200,
+      "elapsed_s": 0.04,
+      "ok": true,
+      "success": null,
+      "source": null
+    },
+    {
+      "path": "/app/financial",
+      "status": 200,
+      "elapsed_s": 0.02,
+      "ok": true,
+      "success": null,
+      "source": null
+    },
+    {
+      "path": "/v1/financial/overview?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 31.51,
+      "ok": true,
+      "success": true,
+      "source": null
+    },
+    {
+      "path": "/v1/financial/expenses?dataInicial=2026-06-01&dataFinal=2026-06-07&page=1&limit=10",
+      "status": 200,
+      "elapsed_s": 22.15,
+      "ok": true,
+      "success": true,
+      "source": null
+    },
+    {
+      "path": "/v1/sales?dataInicial=2026-06-01&dataFinal=2026-06-07&page=1&limit=10",
+      "status": 200,
+      "elapsed_s": 8.33,
+      "ok": true,
+      "success": true,
+      "source": "snapshot"
+    },
+    {
+      "path": "/v1/stock?dataInicial=2026-06-01&dataFinal=2026-06-07&page=1&limit=10",
+      "status": 200,
+      "elapsed_s": 31.09,
+      "ok": true,
+      "success": true,
+      "source": null
+    },
+    {
+      "path": "/api/v1/financial/operations-center/cockpit?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.12,
+      "ok": true,
+      "success": true,
+      "source": null
+    },
+    {
+      "path": "/api/v1/financial/intelligence-center/cockpit?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.21,
+      "ok": true,
+      "success": true,
+      "source": null
+    },
+    {
+      "path": "/api/v1/financial/snapshot-health/inventory",
+      "status": 200,
+      "elapsed_s": 0.17,
+      "ok": true,
+      "success": true,
+      "source": null
+    },
+    {
+      "path": "/api/v1/admin/circuit-breaker/status",
+      "status": 200,
+      "elapsed_s": 0.02,
+      "ok": true,
+      "success": true,
+      "source": null
+    },
+    {
+      "path": "/api/v1/non-fuel-products/cockpit?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.02,
+      "ok": true,
+      "success": true,
+      "source": null
+    },
+    {
+      "path": "/api/v1/fuel-governance/cockpit?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.02,
+      "ok": true,
+      "success": true,
+      "source": null
+    },
+    {
+      "path": "/api/v1/nfce-intelligence/cockpit?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.02,
+      "ok": true,
+      "success": true,
+      "source": null
+    },
+    {
+      "path": "/api/v1/fiscal-intelligence/cockpit?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.01,
+      "ok": true,
+      "success": true,
+      "source": null
+    },
+    {
+      "path": "/api/v1/commercial-execution/cockpit?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.01,
+      "ok": true,
+      "success": true,
+      "source": null
+    },
+    {
+      "path": "/api/v1/finance/cash-flow/snapshot?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.0,
+      "ok": true,
+      "success": true,
+      "source": null
+    },
+    {
+      "path": "/api/v1/sales/fuel-summary?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 54.53,
+      "ok": true,
+      "success": null,
+      "source": null
+    },
+    {
+      "path": "/api/v1/fuel/executive?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 3.75,
+      "ok": true,
+      "success": true,
+      "source": null
+    },
+    {
+      "path": "/api/v1/cash/operations/summary?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.07,
+      "ok": true,
+      "success": true,
+      "source": null
+    },
+    {
+      "path": "/api/v1/finance/center/snapshot?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.02,
+      "ok": true,
+      "success": true,
+      "source": null
+    },
+    {
+      "path": "/api/v1/commercial-copilot/cockpit?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.04,
+      "ok": true,
+      "success": true,
+      "source": null
+    },
+    {
+      "path": "/api/v1/lmc-intelligence/cockpit?dataInicial=2026-06-01&dataFinal=2026-06-07",
+      "status": 200,
+      "elapsed_s": 0.03,
+      "ok": true,
+      "success": true,
+      "source": null
+    }
+  ],
+  "generated_at": "2026-06-14T14:39:17.865457"
+}

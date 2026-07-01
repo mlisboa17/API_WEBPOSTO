@@ -1,0 +1,31 @@
+{
+  "tenant": "POSTO_VIP",
+  "endpoint": "PDV",
+  "base_url": "https://web.qualityautomacao.com.br",
+  "path": "/INTEGRACAO/PDV",
+  "url_masked": "https://web.qualityautomacao.com.br/INTEGRACAO/PDV?CHAVE=4d6bbe21...8fd7&...",
+  "timestamp": "2026-06-18T22:28:43.089746",
+  "http_status": 200,
+  "success": true,
+  "records_count": 30,
+  "sample_payload": {
+    "empresaCodigo": 5555,
+    "pdvCodigo": 15880,
+    "pdv": "POSTO CASA CAIADA",
+    "tipo": "Pista",
+    "ativo": "true",
+    "pdvReferencia": "001",
+    "codigo": 15880
+  },
+  "error": null,
+  "fields_detected": [
+    "empresaCodigo",
+    "pdvCodigo",
+    "pdv",
+    "tipo",
+    "ativo",
+    "pdvReferencia",
+    "codigo"
+  ],
+  "is_expected_401": false
+}

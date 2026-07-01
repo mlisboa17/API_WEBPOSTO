@@ -1,9 +1,16 @@
 import { renderTopNBlocks } from "../components/topN.js";
 import { renderAlerts } from "../components/alerts.js";
+import {
+  bindExecutiveNav,
+  renderExecutiveFirstFold,
+  wrapExecutiveDetail,
+} from "../components/executiveFirstFold.js";
 import { metricsEngine } from "../services/metricsEngine.js";
 import { formatCurrency, formatNumber } from "../services/format.js";
 import { fetchExecutiveSnapshot, postExecutiveRefresh } from "../services/api.js";
 import { computeAlerts, computeTopN } from "../services/analyticsEngine.js";
+import { buildFourQuestionBrief, enrichAlert } from "../services/executiveBrief.js";
+import { moneyKpi, periodSubtitle } from "../services/executiveKpis.js";
 import { APP_CONFIG } from "../config.js";
 
 const FRIENDLY_FALLBACK_MSG = "Não foi possível atualizar agora. Exibindo último dado disponível.";
@@ -340,6 +347,80 @@ function renderExecutiveFuelsCard(container, fuelSummary, errorMessage) {
   `;
 }
 
+function renderExecutiveFirstFoldSection(container, snapshot, filters, alerts, refreshing = false) {
+  const foldRoot = container.querySelector("#exec-first-fold-root");
+  if (!foldRoot) return;
+
+  const kpis = snapshot?.kpis;
+  const alertCount = Array.isArray(alerts) ? alerts.length : 0;
+  const resultado = kpis?.resultadoOperacional;
+  const firstFold = renderExecutiveFirstFold({
+    title: "Painel Executivo",
+    subtitle: periodSubtitle(filters),
+    actionsHtml: `
+      <button class="btn-primary exec-refresh-btn" type="button" id="execRefreshNowBtn" ${refreshing ? "disabled" : ""}>
+        Atualizar agora
+      </button>
+      <button class="btn-primary" style="background:#555;padding:0.4rem 0.8rem;font-size:12px;" id="execAuditBtn" type="button">
+        Ver origem dos dados
+      </button>
+    `,
+    kpis: kpis
+      ? [
+          { label: "Receita", value: moneyKpi(kpis.faturamento), trendPct: null, status: "ok" },
+          { label: "Despesa", value: moneyKpi(kpis.despesasTotais), trendPct: null, status: "warn" },
+          {
+            label: "Resultado",
+            value: moneyKpi(resultado),
+            trendPct: null,
+            status: Number(resultado) < 0 ? "crit" : "ok",
+          },
+          { label: "Alertas", value: String(alertCount), trendPct: null, status: alertCount > 0 ? "warn" : "ok" },
+        ]
+      : [
+          { label: "Receita", value: "…", trendPct: null, status: "ok" },
+          { label: "Despesa", value: "…", trendPct: null, status: "ok" },
+          { label: "Resultado", value: "…", trendPct: null, status: "ok" },
+          { label: "Alertas", value: "…", trendPct: null, status: "ok" },
+        ],
+    brief: buildFourQuestionBrief({
+      what: kpis
+        ? `Faturamento ${moneyKpi(kpis.faturamento)} · resultado ${moneyKpi(resultado)}.`
+        : "Consolidando indicadores executivos da rede.",
+      why:
+        alertCount > 0
+          ? `${alertCount} alerta(s) operacional(is) no período.`
+          : kpis
+            ? `Ticket médio ${moneyKpi(kpis.ticketMedio)} · ${formatNumber(kpis.qtdVendas)} vendas.`
+            : "Carregando drivers do período.",
+      where: snapshot?.coverage?.filiaisComDados
+        ? `${snapshot.coverage.filiaisComDados} filiais com dados`
+        : "Rede consolidada",
+      actionNow: alertCount > 0 ? "Revisar alertas na seção de detalhamento." : "Atualizar snapshot se dados estiverem stale.",
+    }),
+    chartBars: [],
+    chartTitle: "Indicadores consolidados",
+    criticalBranches: [],
+    priorityActions: [],
+    risks: [],
+    opportunities: [],
+    alerts: (alerts || []).slice(0, 3).map((a) =>
+      enrichAlert(
+        {
+          severity: a.severity || "MÉDIO",
+          title: a.title || a.message || "Alerta",
+          detail: a.detail || "",
+          view: a.view || "executiveDashboard",
+          origin: a.origin || "Operação",
+        },
+        { why: a.message || a.title || "", where: a.filial || "Rede", actionNow: "Ver detalhamento" }
+      )
+    ),
+  });
+
+  foldRoot.innerHTML = firstFold;
+}
+
 function renderExecutiveStatusBar(container, snapshot, refreshing = false) {
   const statusNode = container.querySelector("#exec-status-bar");
   if (!statusNode) return;
@@ -454,6 +535,10 @@ async function triggerExecutiveRefresh(container, filters, generation) {
     if (generation !== executiveRenderGeneration) return;
     if (refreshed) {
       container.dataset.lastUpdated = refreshed.lastUpdated || "";
+      const sales = [];
+      const expenses = [];
+      const refreshedAlerts = computeAlerts(sales, expenses, [], []);
+      renderExecutiveFirstFoldSection(container, refreshed, filters, refreshedAlerts, false);
       renderExecutiveFromSnapshot(container, refreshed, { refreshing: false });
     } else {
       renderExecutiveStatusBar(container, statusSnapshot, false);
@@ -480,15 +565,11 @@ export async function renderExecutiveDashboard(container, data, filters, options
 
   container.innerHTML = `
     <div class="executive-dashboard">
+      <div id="exec-first-fold-root"></div>
+      ${wrapExecutiveDetail(
+        `
       <div id="exec-status-bar"></div>
       <div id="exec-kpis" class="exec-kpis-container"></div>
-
-      <div style="display:flex;justify-content:flex-end;gap:0.5rem;margin-bottom:0.5rem;">
-        <button class="btn-primary" style="background:#555;padding:0.4rem 0.8rem;font-size:12px;" id="execAuditBtn">
-          Ver origem dos dados
-        </button>
-      </div>
-
       <div class="exec-grid">
         <div class="exec-main-col">
           <div id="exec-coverage"></div>
@@ -501,8 +582,14 @@ export async function renderExecutiveDashboard(container, data, filters, options
           <div id="exec-fuels"></div>
         </div>
       </div>
+      `,
+        "Cobertura, DRE, alertas e operação"
+      )}
     </div>
   `;
+
+  bindExecutiveNav(container, options.onNavigate);
+  renderExecutiveFirstFoldSection(container, null, filters, alerts, false);
 
   const coverageNode = container.querySelector("#exec-coverage");
   const alertsNode = container.querySelector("#exec-alerts");
@@ -522,7 +609,7 @@ export async function renderExecutiveDashboard(container, data, filters, options
     renderTopNBlocks(topnNode, topn);
   }
 
-  kpiNode.innerHTML = `<div class="kpi-bar"><div class="kpi-item"><span class="kpi-label">Carregando snapshot executivo…</span></div></div>`;
+  kpiNode.innerHTML = `<div class="kpi-bar"><div class="kpi-item"><span class="kpi-label">Carregando resumo executivo…</span></div></div>`;
   dreNode.innerHTML = `<div class="panel"><span class="small">Carregando DRE…</span></div>`;
   coverageNode.innerHTML = `<div class="panel"><span class="small">Carregando cobertura…</span></div>`;
   qualityNode.innerHTML = `<div class="panel"><span class="small">Carregando qualidade…</span></div>`;
@@ -548,6 +635,7 @@ export async function renderExecutiveDashboard(container, data, filters, options
   if (generation !== executiveRenderGeneration) return;
 
   container.dataset.lastUpdated = snapshot?.lastUpdated || "";
+  renderExecutiveFirstFoldSection(container, snapshot, filters, alerts, !options.skipBackgroundRefresh);
   renderExecutiveFromSnapshot(container, snapshot, { refreshing: !options.skipBackgroundRefresh });
 
   if (!container.dataset.execClickBound) {

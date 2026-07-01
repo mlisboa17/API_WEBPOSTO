@@ -1,0 +1,157 @@
+{
+  "lastUpdated": "2026-06-14T18:41:36",
+  "data": {
+    "total": 3,
+    "porNivel": {
+      "INFO": 0,
+      "ATENCAO": 0,
+      "ALTO": 0,
+      "CRITICO": 3,
+      "OK": 0
+    },
+    "ativos": [
+      {
+        "nivel": "CRITICO",
+        "caixaCodigo": 4344416,
+        "empresaCodigo": 11495,
+        "funcionarioCodigo": 294273,
+        "pdvCodigo": 54193,
+        "turno": "1º TURNO",
+        "turnoCodigo": 1,
+        "dataMovimento": "2026-06-10",
+        "diferenca": -105.01,
+        "diferencaAbsoluta": 105.01,
+        "consecutivasOperador": 1,
+        "quebrasPdv30d": 30,
+        "motivo": "diferenca >= R$ 100.00; 30 quebras PDV em 30d"
+      },
+      {
+        "nivel": "CRITICO",
+        "caixaCodigo": 4344360,
+        "empresaCodigo": 5555,
+        "funcionarioCodigo": 299152,
+        "pdvCodigo": 15880,
+        "turno": "1º TURNO",
+        "turnoCodigo": 1,
+        "dataMovimento": "2026-06-10",
+        "diferenca": -42.24,
+        "diferencaAbsoluta": 42.24,
+        "consecutivasOperador": 1,
+        "quebrasPdv30d": 29,
+        "motivo": "29 quebras PDV em 30d"
+      },
+      {
+        "nivel": "CRITICO",
+        "caixaCodigo": 4344358,
+        "empresaCodigo": 11495,
+        "funcionarioCodigo": 276288,
+        "pdvCodigo": 56764,
+        "turno": "1º TURNO",
+        "turnoCodigo": 1,
+        "dataMovimento": "2026-06-10",
+        "diferenca": -0.6,
+        "diferencaAbsoluta": 0.6,
+        "consecutivasOperador": 1,
+        "quebrasPdv30d": 31,
+        "motivo": "31 quebras PDV em 30d"
+      }
+    ],
+    "criticos": [
+      {
+        "nivel": "CRITICO",
+        "caixaCodigo": 4344416,
+        "empresaCodigo": 11495,
+        "funcionarioCodigo": 294273,
+        "pdvCodigo": 54193,
+        "turno": "1º TURNO",
+        "turnoCodigo": 1,
+        "dataMovimento": "2026-06-10",
+        "diferenca": -105.01,
+        "diferencaAbsoluta": 105.01,
+        "consecutivasOperador": 1,
+        "quebrasPdv30d": 30,
+        "motivo": "diferenca >= R$ 100.00; 30 quebras PDV em 30d"
+      },
+      {
+        "nivel": "CRITICO",
+        "caixaCodigo": 4344360,
+        "empresaCodigo": 5555,
+        "funcionarioCodigo": 299152,
+        "pdvCodigo": 15880,
+        "turno": "1º TURNO",
+        "turnoCodigo": 1,
+        "dataMovimento": "2026-06-10",
+        "diferenca": -42.24,
+        "diferencaAbsoluta": 42.24,
+        "consecutivasOperador": 1,
+        "quebrasPdv30d": 29,
+        "motivo": "29 quebras PDV em 30d"
+      },
+      {
+        "nivel": "CRITICO",
+        "caixaCodigo": 4344358,
+        "empresaCodigo": 11495,
+        "funcionarioCodigo": 276288,
+        "pdvCodigo": 56764,
+        "turno": "1º TURNO",
+        "turnoCodigo": 1,
+        "dataMovimento": "2026-06-10",
+        "diferenca": -0.6,
+        "diferencaAbsoluta": 0.6,
+        "consecutivasOperador": 1,
+        "quebrasPdv30d": 31,
+        "motivo": "31 quebras PDV em 30d"
+      }
+    ],
+    "vermelhas": {
+      "turnos": [
+        {
+          "turno": "1º TURNO",
+          "alertas": 3,
+          "diferencaAbsoluta": 147.85
+        }
+      ],
+      "pdvs": [
+        {
+          "pdvCodigo": 54193,
+          "alertas": 1,
+          "diferencaAbsoluta": 105.01,
+          "monitoramentoPrioritario": true
+        },
+        {
+          "pdvCodigo": 15880,
+          "alertas": 1,
+          "diferencaAbsoluta": 42.24,
+          "monitoramentoPrioritario": true
+        },
+        {
+          "pdvCodigo": 56764,
+          "alertas": 1,
+          "diferencaAbsoluta": 0.6,
+          "monitoramentoPrioritario": false
+        }
+      ],
+      "operadores": [
+        {
+          "funcionarioCodigo": 294273,
+          "alertas": 1,
+          "diferencaAbsoluta": 105.01,
+          "monitoramentoPrioritario": true
+        },
+        {
+          "funcionarioCodigo": 276288,
+          "alertas": 1,
+          "diferencaAbsoluta": 0.6,
+          "monitoramentoPrioritario": true
+        },
+        {
+          "funcionarioCodigo": 299152,
+          "alertas": 1,
+          "diferencaAbsoluta": 42.24,
+          "monitoramentoPrioritario": false
+        }
+      ]
+    }
+  },
+  "snapshotKey": "cash:alerts:2026-06-10:2026-06-10:all"
+}

@@ -10,7 +10,7 @@
 
     <title>LOGOS SPACE</title>
 
-    <link rel="stylesheet" href="/frontend/styles.css?v=ux-01-ia" />
+    <link rel="stylesheet" href="/frontend/styles.css?v=president-snapshot-20260628" />
 
   </head>
 
@@ -32,15 +32,20 @@
 
           </div>
 
-          <button id="refreshBtn" class="btn-primary" type="button">Atualizar</button>
+          <button id="refreshBtn" class="btn-secondary admin-refresh-btn" type="button" title="Atualização técnica">Atualizar dados</button>
 
         </header>
 
-        <section class="filters" id="filtersContainer"></section>
+        <section id="bootStatus" class="state" role="status">
+          Carregando interface… Se permanecer em branco, confirme que a API está ativa e recarregue com Ctrl+F5.
+        </section>
 
         <nav id="areaTabs" class="area-tabs" aria-label="Abas da área"></nav>
 
-        <div id="motorStrip"></div>
+        <header class="view-header-premium">
+          <div id="viewTitleHost"></div>
+          <div id="primaryFiltersHost"></div>
+        </header>
 
         <main class="content-grid">
 
@@ -48,9 +53,15 @@
 
           <section id="error" class="state error hidden"></section>
 
-          <section id="executiveView" class="view hidden"></section>
+          <section id="presidentDashboardView" class="view hidden"></section>
 
           <section id="executiveWorkspaceView" class="view hidden"></section>
+
+          <section id="financialHubView" class="view hidden"></section>
+
+          <section id="treasuryHubView" class="view hidden"></section>
+
+          <section id="productsHubView" class="view hidden"></section>
 
           <section id="dashboardView" class="view hidden"></section>
 
@@ -126,13 +137,48 @@
 
           <section id="stockView" class="view hidden"></section>
 
+          <div id="advancedFiltersHost"></div>
+
         </main>
+
+        <div id="motorStrip"></div>
+
+        <div id="motorStrip"></div>
 
       </div>
 
     </div>
 
-    <script type="module" src="/frontend/app.js?v=ux-01-ia"></script>
+    <script>
+      (function () {
+        function showBootError(message) {
+          var el = document.getElementById("bootStatus");
+          if (!el) return;
+          el.className = "state error";
+          el.textContent = message;
+        }
+
+        window.addEventListener("error", function (event) {
+          var detail = event && event.message ? event.message : "erro desconhecido";
+          showBootError("Falha ao carregar a interface: " + detail);
+        });
+
+        window.addEventListener("unhandledrejection", function (event) {
+          var reason = event && event.reason ? event.reason : "erro desconhecido";
+          var detail = typeof reason === "string" ? reason : reason && reason.message ? reason.message : String(reason);
+          showBootError("Falha ao iniciar a interface: " + detail);
+        });
+
+        window.setTimeout(function () {
+          if (window.__LOGOS_APP_READY) return;
+          showBootError(
+            "Interface não iniciou. Abra http://127.0.0.1:8040/app/financial com a API em execução e recarregue com Ctrl+F5."
+          );
+        }, 8000);
+      })();
+    </script>
+
+    <script type="module" src="/frontend/app.js?v=president-snapshot-20260628"></script>
 
   </body>
 

@@ -1,9 +1,12 @@
-"""F08.0 — Live-first com fallback snapshot homologado."""
+"""F08.0 / RT-02 — Snapshot-first com fallback live budgetado."""
 from __future__ import annotations
 
+import asyncio
 from typing import Any
 
 from src.gateway.webposto_client import WebPostoClient
+from src.infrastructure.config.settings import settings
+from src.models.error_model import WebPostoError
 from src.models.response_model import WebPostoResponse
 from src.services.financial_snapshot_service import FinancialSnapshotService
 from src.services.financial_snapshot_health_service import FinancialSnapshotHealthService
@@ -39,6 +42,9 @@ class FinancialResilienceService:
         *,
         source: str,
         key: str,
+        mode: str,
+        reason: str,
+        live_attempted: bool = False,
         last_updated: str | None = None,
         banner: str | None = None,
         live_error: Any = None,
@@ -47,6 +53,9 @@ class FinancialResilienceService:
     ) -> dict[str, Any]:
         meta = {
             "source": source,
+            "mode": mode,
+            "reason": reason,
+            "liveAttempted": live_attempted,
             "snapshotKey": key,
             "lastUpdated": last_updated,
             "banner": banner,
@@ -86,36 +95,92 @@ class FinancialResilienceService:
         except Exception:
             return
 
+    def _snapshot_overview_response(
+        self,
+        *,
+        filters: FinancialOverviewFilters,
+        key: str,
+        snap: dict[str, Any],
+        reason: str,
+        live_attempted: bool,
+        live_error: Any = None,
+    ) -> dict[str, Any]:
+        return {
+            "success": True,
+            "source": "snapshot",
+            "data": snap["data"],
+            "error": None,
+            "resilience": self._resilience_meta(
+                source="snapshot",
+                mode="snapshot_first",
+                reason=reason,
+                live_attempted=live_attempted,
+                key=key,
+                last_updated=snap.get("lastUpdated"),
+                banner=BANNER_SNAPSHOT,
+                live_error=live_error,
+                snapshot_kind="financial_overview",
+                snap_payload=snap,
+            ),
+        }
+
     async def get_financial_overview(self, filters: FinancialOverviewFilters) -> dict[str, Any]:
-        key = self._snapshots.build_key(filters.data_inicial, filters.data_final, self._empresa_for_key(filters))
-        live = await self._overview.get_financial_overview_only(filters)
+        data_inicial, data_final = self._period_bounds(filters)
+        key = self._snapshots.build_key(data_inicial, data_final, self._empresa_for_key(filters))
+        self._snapshots.ensure_homologated(data_inicial, data_final, self._empresa_for_key(filters))
+
+        exp_snap = self._snapshots.load_kind("financial_expenses", key)
+        if exp_snap and exp_snap.get("data"):
+            filtered = self._filtered_expense_snap(exp_snap, filters)
+            if filtered:
+                overview_data = self._snapshots.build_overview_from_expense_rows(filtered["data"].get("data") or [])
+                return self._snapshot_overview_response(
+                    filters=filters,
+                    key=key,
+                    snap={"data": overview_data, "lastUpdated": filtered.get("lastUpdated")},
+                    reason="homologated_snapshot",
+                    live_attempted=False,
+                )
+
+        live = await self._live_with_budget(
+            self._overview.get_financial_overview_only(filters),
+            endpoint="financial_overview",
+        )
         if live.success and live.data:
             self._snapshots.save_kind("financial_overview", key, live.data, source="live")
             body = live.to_dict()
-            body["resilience"] = self._resilience_meta(source="live", key=key, banner=None)
+            body["source"] = "live"
+            body["resilience"] = self._resilience_meta(
+                source="live",
+                mode="live",
+                reason="ok",
+                live_attempted=True,
+                key=key,
+                banner=None,
+            )
             return body
 
-        self._snapshots.ensure_homologated(filters.data_inicial, filters.data_final, self._empresa_for_key(filters))
-        snap = self._snapshots.load_kind("financial_overview", key)
-        if snap:
-            self._schedule_recovery(filters, key)
-            return {
-                "success": True,
-                "data": snap["data"],
-                "error": None,
-                "resilience": self._resilience_meta(
-                    source="snapshot",
+        if exp_snap and exp_snap.get("data"):
+            filtered_rows = self._snapshots.filter_rows_by_date(
+                exp_snap["data"].get("data") or [],
+                data_inicial,
+                data_final,
+            )
+            if filtered_rows:
+                overview_data = self._snapshots.build_overview_from_expense_rows(filtered_rows)
+                self._schedule_recovery(filters, key)
+                return self._snapshot_overview_response(
+                    filters=filters,
                     key=key,
-                    last_updated=snap.get("lastUpdated"),
-                    banner=BANNER_SNAPSHOT,
+                    snap={"data": overview_data, "lastUpdated": exp_snap.get("lastUpdated")},
+                    reason=self._failure_reason(live.error),
+                    live_attempted=True,
                     live_error=live.error,
-                    snapshot_kind="financial_overview",
-                    snap_payload=snap,
-                ),
-            }
+                )
 
         return {
             "success": True,
+            "source": "degraded",
             "data": {
                 "postos": [],
                 "consolidado": {"total_despesas": "0", "total_a_pagar": "0", "synthetic": True},
@@ -123,11 +188,79 @@ class FinancialResilienceService:
             "error": None,
             "resilience": self._resilience_meta(
                 source="degraded",
+                mode="degraded",
+                reason=self._failure_reason(live.error),
+                live_attempted=True,
                 key=key,
                 banner=BANNER_DEGRADED,
                 live_error=live.error,
             ),
         }
+
+    @staticmethod
+    def _failure_reason(error: WebPostoError | None) -> str:
+        if error is None:
+            return "live_error"
+        if str(error.type or "").upper() == "LIVE_TIMEOUT":
+            return "live_timeout"
+        return "live_error"
+
+    async def _live_with_budget(self, coro, *, endpoint: str) -> WebPostoResponse:
+        budget = settings.financial_live_budget_seconds
+        task = asyncio.create_task(coro)
+        try:
+            return await asyncio.wait_for(task, timeout=budget)
+        except asyncio.TimeoutError:
+            task.cancel()
+            try:
+                await task
+            except asyncio.CancelledError:
+                pass
+            return WebPostoResponse.fail(
+                WebPostoError(
+                    endpoint=endpoint,
+                    type="LIVE_TIMEOUT",
+                    message=f"Consulta live excedeu o orçamento de {budget}s",
+                )
+            )
+
+    @staticmethod
+    def _period_bounds(filters: FinancialOverviewFilters) -> tuple[str, str]:
+        return FinancialSnapshotService.normalize_period(filters.data_inicial, filters.data_final)
+
+    def _filtered_expense_snap(
+        self,
+        snap: dict[str, Any],
+        filters: FinancialOverviewFilters,
+    ) -> dict[str, Any] | None:
+        payload = snap.get("data")
+        if not isinstance(payload, dict):
+            return None
+        rows = payload.get("data") or []
+        if not isinstance(rows, list):
+            return None
+        filtered_rows = self._snapshots.filter_rows_by_date(
+            rows,
+            filters.data_inicial,
+            filters.data_final,
+        )
+        if not filtered_rows:
+            return None
+        filtered_payload = dict(payload)
+        filtered_payload["data"] = filtered_rows
+        filtered_payload["total"] = len(filtered_rows)
+        return {"data": filtered_payload, "lastUpdated": snap.get("lastUpdated")}
+
+    def _paginate_expenses(self, snap: dict[str, Any], *, page: int, limit: int) -> dict[str, Any]:
+        data = dict(snap["data"])
+        rows = data.get("data") or []
+        start = max(page - 1, 0) * limit
+        page_rows = rows[start : start + limit]
+        data["page"] = page
+        data["limit"] = limit
+        data["total"] = len(rows)
+        data["data"] = page_rows
+        return data
 
     async def get_financial_expenses(
         self,
@@ -135,47 +268,85 @@ class FinancialResilienceService:
         page: int = 1,
         limit: int = 50,
     ) -> dict[str, Any]:
-        key = self._snapshots.build_key(filters.data_inicial, filters.data_final, self._empresa_for_key(filters))
-        live = await self._overview.get_financial_expenses(filters, page=page, limit=limit)
+        data_inicial, data_final = self._period_bounds(filters)
+        key = self._snapshots.build_key(data_inicial, data_final, self._empresa_for_key(filters))
+        self._snapshots.ensure_homologated(data_inicial, data_final, self._empresa_for_key(filters))
+        snap = self._snapshots.load_kind("financial_expenses", key)
+        if snap and snap.get("data"):
+            filtered = self._filtered_expense_snap(snap, filters)
+            if filtered:
+                data = self._paginate_expenses(filtered, page=page, limit=limit)
+                return {
+                    "success": True,
+                    "source": "snapshot",
+                    "data": data,
+                    "error": None,
+                    "resilience": self._resilience_meta(
+                        source="snapshot",
+                        mode="snapshot_first",
+                        reason="homologated_snapshot",
+                        live_attempted=False,
+                        key=key,
+                        last_updated=snap.get("lastUpdated"),
+                        banner=BANNER_SNAPSHOT,
+                        snapshot_kind="financial_expenses",
+                        snap_payload=snap,
+                    ),
+                }
+
+        live = await self._live_with_budget(
+            self._overview.get_financial_expenses(filters, page=page, limit=limit),
+            endpoint="financial_expenses",
+        )
         if live.success and live.data:
             self._snapshots.save_kind("financial_expenses", key, live.data, source="live")
             body = live.to_dict()
-            body["resilience"] = self._resilience_meta(source="live", key=key, banner=None)
+            body["source"] = "live"
+            body["resilience"] = self._resilience_meta(
+                source="live",
+                mode="live",
+                reason="ok",
+                live_attempted=True,
+                key=key,
+                banner=None,
+            )
             return body
 
-        self._snapshots.ensure_homologated(filters.data_inicial, filters.data_final, self._empresa_for_key(filters))
         snap = self._snapshots.load_kind("financial_expenses", key)
         if snap and snap.get("data"):
-            data = dict(snap["data"])
-            rows = data.get("data") or []
-            start = max(page - 1, 0) * limit
-            page_rows = rows[start : start + limit]
-            data["page"] = page
-            data["limit"] = limit
-            data["total"] = len(rows)
-            data["data"] = page_rows
-            self._schedule_recovery(filters, key)
-            return {
-                "success": True,
-                "data": data,
-                "error": None,
-                "resilience": self._resilience_meta(
-                    source="snapshot",
-                    key=key,
-                    last_updated=snap.get("lastUpdated"),
-                    banner=BANNER_SNAPSHOT,
-                    live_error=live.error,
-                    snapshot_kind="financial_expenses",
-                    snap_payload=snap,
-                ),
-            }
+            filtered = self._filtered_expense_snap(snap, filters)
+            if filtered:
+                data = self._paginate_expenses(filtered, page=page, limit=limit)
+                self._schedule_recovery(filters, key)
+                return {
+                    "success": True,
+                    "source": "snapshot",
+                    "data": data,
+                    "error": None,
+                    "resilience": self._resilience_meta(
+                        source="snapshot",
+                        mode="snapshot_fallback",
+                        reason=self._failure_reason(live.error),
+                        live_attempted=True,
+                        key=key,
+                        last_updated=snap.get("lastUpdated"),
+                        banner=BANNER_SNAPSHOT,
+                        live_error=live.error,
+                        snapshot_kind="financial_expenses",
+                        snap_payload=snap,
+                    ),
+                }
 
         return {
             "success": True,
+            "source": "degraded",
             "data": {"page": page, "limit": limit, "total": 0, "data": []},
             "error": None,
             "resilience": self._resilience_meta(
                 source="degraded",
+                mode="degraded",
+                reason=self._failure_reason(live.error),
+                live_attempted=True,
                 key=key,
                 banner=BANNER_DEGRADED,
                 live_error=live.error,

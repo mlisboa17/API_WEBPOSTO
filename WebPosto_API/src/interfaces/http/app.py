@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, RedirectResponse
+from starlette.requests import Request
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 
@@ -27,6 +28,7 @@ from src.interfaces.http.routes import executive_scorecard
 from src.interfaces.http.routes import corporate_intelligence_hub
 from src.interfaces.http.routes import executive_decision_engine
 from src.interfaces.http.routes import action_center
+from src.interfaces.http.routes import owner_action_center  # BUILD-01D
 from src.interfaces.http.routes import executive_ai_copilot
 from src.interfaces.http.routes import autonomous_recommendation_engine
 from src.interfaces.http.routes import closed_loop_learning_engine
@@ -47,6 +49,8 @@ from src.interfaces.http.routes import admin_circuit_breaker
 from src.interfaces.http.routes import financial_snapshot_health
 from src.interfaces.http.routes import financial_operations
 from src.interfaces.http.routes import financial_operations_center
+from src.interfaces.http.routes import business_analyst
+from src.interfaces.http.routes import governance
 from src.interfaces.http.routes import financial_intelligence_center
 from src.services.financial_snapshot_scheduler import get_financial_scheduler
 from src.shared.logger import setup_logging
@@ -74,6 +78,16 @@ def create_app() -> FastAPI:
         allow_headers=["*"],
     )
 
+    @app.middleware("http")
+    async def disable_frontend_cache(request: Request, call_next):
+        response = await call_next(request)
+        path = request.url.path
+        if path.startswith("/frontend/") and path.endswith((".js", ".css")):
+            response.headers["Cache-Control"] = "no-cache, must-revalidate"
+        elif path == "/app/financial":
+            response.headers["Cache-Control"] = "no-cache, must-revalidate"
+        return response
+
     # Incluir rotas
     app.include_router(health.router)
     app.include_router(gateway_expenses.router)
@@ -99,6 +113,7 @@ def create_app() -> FastAPI:
     app.include_router(corporate_intelligence_hub.router)
     app.include_router(executive_decision_engine.router)
     app.include_router(action_center.router)
+    app.include_router(owner_action_center.router)  # BUILD-01D
     app.include_router(executive_ai_copilot.router)
     app.include_router(autonomous_recommendation_engine.router)
     app.include_router(closed_loop_learning_engine.router)
@@ -120,15 +135,29 @@ def create_app() -> FastAPI:
     app.include_router(financial_operations.router)
     app.include_router(financial_operations_center.router)
     app.include_router(financial_intelligence_center.router)
+    app.include_router(business_analyst.router)
+    app.include_router(governance.router)
 
     root = Path(__file__).resolve().parents[3]
     frontend_dir = root / "frontend"
+    snapshots_dir = root / "snapshots"
+    if snapshots_dir.is_dir():
+        app.mount("/snapshots", StaticFiles(directory=str(snapshots_dir)), name="snapshots")
+
     if frontend_dir.is_dir():
         app.mount("/frontend", StaticFiles(directory=str(frontend_dir)), name="frontend")
 
+        @app.get("/")
+        async def root_redirect() -> RedirectResponse:
+            return RedirectResponse(url="/app/financial")
+
         @app.get("/app/financial")
         async def financial_frontend() -> FileResponse:
-            return FileResponse(frontend_dir / "index.html", media_type="text/html; charset=utf-8")
+            return FileResponse(
+                frontend_dir / "index.html",
+                media_type="text/html; charset=utf-8",
+                headers={"Cache-Control": "no-cache, must-revalidate"},
+            )
 
     # Startup event
     @app.on_event("startup")
