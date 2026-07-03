@@ -29,6 +29,7 @@ from src.interfaces.http.routes import corporate_intelligence_hub
 from src.interfaces.http.routes import executive_decision_engine
 from src.interfaces.http.routes import action_center
 from src.interfaces.http.routes import owner_action_center  # BUILD-01D
+from src.interfaces.http.routes import decision_discovery  # VALUE-01
 from src.interfaces.http.routes import executive_ai_copilot
 from src.interfaces.http.routes import autonomous_recommendation_engine
 from src.interfaces.http.routes import closed_loop_learning_engine
@@ -114,6 +115,7 @@ def create_app() -> FastAPI:
     app.include_router(executive_decision_engine.router)
     app.include_router(action_center.router)
     app.include_router(owner_action_center.router)  # BUILD-01D
+    app.include_router(decision_discovery.router)  # VALUE-01
     app.include_router(executive_ai_copilot.router)
     app.include_router(autonomous_recommendation_engine.router)
     app.include_router(closed_loop_learning_engine.router)
