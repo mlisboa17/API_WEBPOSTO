@@ -20,6 +20,9 @@ from typing import Dict, Any
 
 from src.services.decision_discovery import DecisionDiscoveryEngine
 from src.services.decision_discovery.detectors import FuelRevenueDetector
+from src.services.decision_discovery.root_cause.root_cause_engine import RootCauseEngine
+from src.services.decision_discovery.root_cause.investigators import FuelRevenueRootCause
+from src.services.decision_discovery.models import DecisionCategory
 
 router = APIRouter(prefix="/api/v1/discovery", tags=["Decision Discovery"])
 
@@ -298,3 +301,95 @@ async def get_today_decision(
         dataFinal=data_final,
         empresaCodigo=empresaCodigo
     )
+
+
+@router.get("/explain/{decision_id}")
+async def explain_decision(
+    decision_id: str
+) -> Dict[str, Any]:
+    """
+    Explica a causa raiz de uma decisão.
+    
+    VALUE-02: Root Cause Engine
+    
+    Investiga automaticamente:
+    - Produto afetado
+    - Volume/litros
+    - Preço médio
+    - Margem
+    - Padrão temporal
+    - Causa provável
+    - Evidências
+    - Recomendações específicas
+    
+    Args:
+        decision_id: ID da decisão a ser explicada
+    
+    Returns:
+        RootCauseAnalysis completo com causa provável e recomendações
+    """
+    try:
+        # 1. Buscar decisão (simular por enquanto - futuramente buscar do cache/DB)
+        # Para MVP, vamos gerar uma decisão de exemplo
+        from src.services.decision_discovery.models import DecisionCandidate, MoneyFound, ConfidenceFactors, ImpactType
+        
+        # Decisão simulada para demonstração
+        decision = DecisionCandidate(
+            id=decision_id,
+            detector_name="FuelRevenueDetector",
+            title="Você pode estar perdendo aproximadamente R$ 12.430 por semana",
+            summary="Queda de 34% nas vendas de combustíveis",
+            category=DecisionCategory.REVENUE,
+            impact_type=ImpactType.REVENUE,
+            tenant="vip",
+            tenant_name="POSTO VIP",
+            period_start="2026-06-25",
+            period_end="2026-07-02",
+            money_found=MoneyFound(at_risk=12430.0),
+            confidence=0.94,
+            confidence_factors=ConfidenceFactors(
+                data_quality=0.98,
+                comparison_validity=0.95,
+                period_adequacy=0.90
+            ),
+            recommended_actions=["Verificar preço", "Verificar estoque"],
+            estimated_execution_time=20,
+            evidence={
+                "product_name": "Diesel S10",
+                "product_drop_pct": 0.87,
+                "current_volume": 2100,
+                "previous_volume": 3200,
+                "current_price": 5.89,
+                "previous_price": 5.45,
+                "current_margin": 0.15,
+                "previous_margin": 0.14,
+                "days_impacted": 7,
+                "time_pattern": "Queda concentrada no período noturno (18h-22h)",
+            },
+            baseline_used={
+                "baseline_value": 36580.0,
+                "current_value": 24150.0,
+            },
+            source_endpoints=["/api/v1/sales/fuel-summary"],
+        )
+        
+        # 2. Criar Root Cause Engine
+        root_cause_engine = RootCauseEngine()
+        root_cause_engine.register_investigator(
+            DecisionCategory.REVENUE,
+            FuelRevenueRootCause()
+        )
+        
+        # 3. Investigar causa raiz
+        result = await root_cause_engine.investigate(decision)
+        
+        return {
+            "success": result.success,
+            "data": result.to_dict(),
+        }
+        
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Erro ao explicar decisão: {str(e)}"
+        )
