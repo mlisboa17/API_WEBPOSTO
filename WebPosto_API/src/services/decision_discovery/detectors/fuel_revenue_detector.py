@@ -18,7 +18,7 @@ from __future__ import annotations
 
 import uuid
 from datetime import datetime, timedelta
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List, Union
 
 from src.services.decision_discovery.base_detector import BaseDetector
 from src.services.decision_discovery.models import (
@@ -63,7 +63,7 @@ class FuelRevenueDetector(BaseDetector):
         data_inicial: str,
         data_final: str,
         **kwargs: Any
-    ) -> Optional[DecisionCandidate]:
+    ) -> Union[Optional[DecisionCandidate], List[DecisionCandidate]]:
         """
         Detecta quedas significativas de receita em combustíveis.
         
@@ -81,12 +81,31 @@ class FuelRevenueDetector(BaseDetector):
                 "tenant": tenant_code,
                 "period": f"{data_inicial} to {data_final}",
             })
+
+            analysis_id = kwargs.get("analysis_id")
+            credential_alias = kwargs.get("credential_alias")
+            if analysis_id or credential_alias:
+                from src.core.logger import get_logger, log_structured
+                log_structured(
+                    get_logger(__name__),
+                    {
+                        "event": "DISCOVERY_TENANT_TRACE",
+                        "analysis_id": analysis_id,
+                        "detector": self.detector_name,
+                        "tenant_id": tenant_code,
+                        "empresa_codigo": tenant_code,
+                        "credential_alias": credential_alias,
+                        "period_start": data_inicial,
+                        "period_end": data_final,
+                    },
+                )
             
             # 1. Buscar dados de vendas de combustíveis
             fuel_data = await self._fetch_fuel_data(
                 tenant_code=tenant_code,
                 data_inicial=data_inicial,
-                data_final=data_final
+                data_final=data_final,
+                webposto_api_key=kwargs.get("webposto_api_key"),
             )
             
             if not fuel_data:
@@ -94,43 +113,31 @@ class FuelRevenueDetector(BaseDetector):
                 return None
             
             # 2. Analisar dados e identificar quedas
-            analysis = self._analyze_fuel_revenue_drop(fuel_data)
+            analyses = self._analyze_fuel_revenue_drops(fuel_data)
             
-            if not analysis:
+            if not analyses:
                 self.log("no_significant_drop", {"reason": "No significant revenue drop found"})
                 return None
             
-            # 3. Validar relevância
-            if analysis["impact_brl"] < self.MIN_IMPACT_BRL:
-                self.log("impact_too_low", {
-                    "impact": analysis["impact_brl"],
-                    "threshold": self.MIN_IMPACT_BRL,
+            tenant_name = kwargs.get("tenant_name", tenant_code)
+            candidates: List[DecisionCandidate] = []
+            for analysis in analyses:
+                candidate = self._create_candidate(
+                    tenant_code=tenant_code,
+                    tenant_name=tenant_name,
+                    period_start=data_inicial,
+                    period_end=data_final,
+                    analysis=analysis,
+                )
+                candidates.append(candidate)
+                self.log("candidate_created", {
+                    "title": candidate.title,
+                    "impact": candidate.money_found.total_impact(),
+                    "confidence": candidate.confidence,
+                    "product": analysis.get("product_name"),
                 })
-                return None
             
-            if analysis["confidence"] < self.MIN_CONFIDENCE:
-                self.log("confidence_too_low", {
-                    "confidence": analysis["confidence"],
-                    "threshold": self.MIN_CONFIDENCE,
-                })
-                return None
-            
-            # 4. Criar DecisionCandidate
-            candidate = self._create_candidate(
-                tenant_code=tenant_code,
-                tenant_name=kwargs.get("tenant_name", tenant_code),
-                period_start=data_inicial,
-                period_end=data_final,
-                analysis=analysis
-            )
-            
-            self.log("candidate_created", {
-                "title": candidate.title,
-                "impact": candidate.money_found.total_impact(),
-                "confidence": candidate.confidence,
-            })
-            
-            return candidate
+            return candidates if len(candidates) > 1 else candidates[0]
             
         except Exception as e:
             self.log("detection_error", {"error": str(e)}, level="error")
@@ -140,43 +147,176 @@ class FuelRevenueDetector(BaseDetector):
         self,
         tenant_code: str,
         data_inicial: str,
-        data_final: str
+        data_final: str,
+        webposto_api_key: str | None = None,
     ) -> Optional[Dict[str, Any]]:
         """
-        Busca dados de vendas de combustíveis.
-        
-        VALUE-01 (arquitetura): Por enquanto, retorna estrutura simulada
-        mas válida para validar a arquitetura. Quando APIs de fuel estiverem
-        disponíveis, substituir por chamadas reais.
-        
-        TODO: Integrar com APIs reais:
-        - /api/v1/sales/fuel-summary
-        - /api/v1/fuel/executive
-        
-        Args:
-            tenant_code: Código do tenant
-            data_inicial: Data inicial
-            data_final: Data final
-        
-        Returns:
-            Dados de combustível ou None se não disponíveis
+        Busca dados reais de vendas de combustíveis (período atual vs anterior).
         """
-        # IMPORTANTE (VALUE-01):
-        # Esta é uma versão de estrutura válida para demonstrar a arquitetura.
-        # Indica claramente "dados insuficientes" quando não há dados reais.
-        #
-        # Quando as APIs de fuel estiverem disponíveis, esta função será
-        # substituída por chamadas HTTP reais usando httpx ou chamadas diretas
-        # aos serviços internos.
-        
-        self.log("fuel_data_fetch", {
-            "status": "insufficient_data",
-            "message": "Awaiting real fuel API integration",
-        })
-        
-        # Retorna None para indicar dados insuficientes
-        # (arquitetura pronta, aguardando dados reais)
-        return None
+        try:
+            from src.gateway.webposto_client import WebPostoClient
+            from src.services.network_financial_overview_service import NetworkFinancialOverviewService
+            from src.services.analytics_service import AnalyticsService
+            from src.services.analytics_multiselect import build_overview_filters
+
+            if webposto_api_key:
+                client = WebPostoClient.for_api_key(webposto_api_key)
+                overview = NetworkFinancialOverviewService(client)
+                analytics = AnalyticsService(overview)
+            elif not hasattr(self, "_analytics"):
+                client = WebPostoClient()
+                overview = NetworkFinancialOverviewService(client)
+                self._analytics = AnalyticsService(overview)
+                analytics = self._analytics
+            else:
+                analytics = self._analytics
+
+            start = datetime.fromisoformat(data_inicial).date()
+            end = datetime.fromisoformat(data_final).date()
+            period_days = (end - start).days + 1
+            if period_days < self.MIN_DAYS_DATA:
+                self.log("period_too_short", {"days": period_days, "min_days": self.MIN_DAYS_DATA})
+                return None
+
+            prev_end = start - timedelta(days=1)
+            prev_start = prev_end - timedelta(days=period_days - 1)
+
+            current_filters = build_overview_filters(data_inicial, data_final, tenant_code)
+            prev_filters = build_overview_filters(
+                prev_start.isoformat(),
+                prev_end.isoformat(),
+                tenant_code,
+            )
+
+            current_resp = await analytics.get_fuel_summary(current_filters)
+            prev_resp = await analytics.get_fuel_summary(prev_filters)
+
+            if not current_resp.success and not prev_resp.success:
+                self.log("fuel_data_fetch", {"status": "failed", "tenant": tenant_code})
+                return None
+
+            current_rows = current_resp.data if current_resp.success and isinstance(current_resp.data, list) else []
+            prev_rows = prev_resp.data if prev_resp.success and isinstance(prev_resp.data, list) else []
+
+            if not current_rows and not prev_rows:
+                self.log("fuel_data_fetch", {"status": "empty", "tenant": tenant_code})
+                return None
+
+            def aggregate_by_product(rows: list) -> dict[str, float]:
+                totals: dict[str, float] = {}
+                for row in rows:
+                    name = str(row.get("combustivel") or "").strip()
+                    if not name:
+                        continue
+                    totals[name] = totals.get(name, 0.0) + float(row.get("valor") or 0.0)
+                return totals
+
+            current_by_product = aggregate_by_product(current_rows)
+            prev_by_product = aggregate_by_product(prev_rows)
+            all_products = set(current_by_product) | set(prev_by_product)
+
+            product_comparisons: list[dict[str, Any]] = []
+            for product in all_products:
+                current_value = current_by_product.get(product, 0.0)
+                previous_value = prev_by_product.get(product, 0.0)
+                drop_brl = previous_value - current_value
+                if drop_brl <= 0:
+                    continue
+                drop_pct = drop_brl / previous_value if previous_value > 0 else 0.0
+                product_comparisons.append({
+                    "product_name": product,
+                    "current_value": current_value,
+                    "previous_value": previous_value,
+                    "impact_brl": drop_brl,
+                    "impact_pct": drop_pct,
+                })
+
+            product_comparisons.sort(key=lambda item: item["impact_brl"], reverse=True)
+
+            current_total = sum(current_by_product.values())
+            previous_total = sum(prev_by_product.values())
+
+            data_quality = 0.95 if current_rows and prev_rows else 0.70
+
+            self.log("fuel_data_fetch", {
+                "status": "ok",
+                "tenant": tenant_code,
+                "products_with_drop": len(product_comparisons),
+                "current_total": current_total,
+                "previous_total": previous_total,
+            })
+
+            return {
+                "current_period": {"revenue": current_total},
+                "previous_period": {"revenue": previous_total},
+                "product_comparisons": product_comparisons,
+                "data_quality": data_quality,
+                "comparison_validity": 0.90 if prev_rows else 0.60,
+                "period_adequacy": 0.85 if period_days >= self.MIN_DAYS_DATA else 0.50,
+                "source_endpoints": ["/api/v1/sales/fuel-summary"],
+            }
+        except Exception as exc:
+            self.log("fuel_data_fetch_error", {"error": str(exc)}, level="error")
+            return None
+    
+    def _analyze_fuel_revenue_drops(
+        self,
+        fuel_data: Dict[str, Any]
+    ) -> List[Dict[str, Any]]:
+        """
+        Analisa quedas por produto descoberto automaticamente no ERP.
+        """
+        comparisons = fuel_data.get("product_comparisons") or []
+        if comparisons:
+            analyses: List[Dict[str, Any]] = []
+            for item in comparisons:
+                analysis = self._build_analysis_from_drop(fuel_data, item)
+                if analysis:
+                    analyses.append(analysis)
+            return analyses
+
+        # Fallback legado (estrutura agregada)
+        single = self._analyze_fuel_revenue_drop(fuel_data)
+        return [single] if single else []
+    
+    def _build_analysis_from_drop(
+        self,
+        fuel_data: Dict[str, Any],
+        comparison: Dict[str, Any],
+    ) -> Optional[Dict[str, Any]]:
+        drop_brl = float(comparison.get("impact_brl") or 0)
+        if drop_brl <= 0:
+            return None
+
+        drop_pct = float(comparison.get("impact_pct") or 0)
+        product_name = comparison.get("product_name") or "Combustível"
+        confidence_factors = self._calculate_confidence(fuel_data)
+        overall_confidence = confidence_factors.overall_confidence()
+        money_found = self._calculate_money_found(
+            drop_brl=drop_brl,
+            drop_pct=drop_pct,
+            confidence=overall_confidence,
+        )
+
+        return {
+            "impact_brl": drop_brl,
+            "impact_pct": drop_pct,
+            "product_name": product_name,
+            "product_drop_pct": drop_pct,
+            "confidence": overall_confidence,
+            "confidence_factors": confidence_factors,
+            "money_found": money_found,
+            "evidence": {
+                "product_name": product_name,
+                "current_value": comparison.get("current_value"),
+                "previous_value": comparison.get("previous_value"),
+            },
+            "baseline": {
+                "baseline_value": comparison.get("previous_value"),
+                "current_value": comparison.get("current_value"),
+                "period": "período atual vs período anterior equivalente",
+            },
+        }
     
     def _analyze_fuel_revenue_drop(
         self,

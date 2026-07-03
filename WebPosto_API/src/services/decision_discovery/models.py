@@ -249,19 +249,23 @@ class DecisionCandidate:
     alternatives_considered: int = 0  # Quantas alternativas foram descartadas
     selection_reason: str = ""  # Por que esta foi escolhida
     
+    # Thresholds de decisão prioritária (BUILD-03A)
+    MIN_DECISION_CONFIDENCE = 0.80
+    MIN_DECISION_IMPACT_BRL = 5000.0
+
     def is_valid(self) -> bool:
         """
-        Valida se a decisão atende aos critérios mínimos.
+        Valida se a decisão atende aos critérios mínimos de PRIORIDADE.
         
         Critérios:
         - Confidence >= 80%
-        - Money Found > 0
+        - Impacto financeiro >= R$ 5.000
         - Título claro
         - Ações recomendadas
         """
         return (
-            self.confidence >= 0.80 and
-            self.money_found.total_impact() > 0 and
+            self.confidence >= self.MIN_DECISION_CONFIDENCE and
+            self.money_found.total_impact() >= self.MIN_DECISION_IMPACT_BRL and
             len(self.title) > 0 and
             len(self.recommended_actions) > 0
         )
@@ -313,6 +317,26 @@ class DecisionCandidate:
 
 
 @dataclass
+class TenantAnalysisRecord:
+    """Registro de execução por tenant (BUILD-03B)."""
+
+    tenant_id: str
+    tenant_name: str
+    empresa_codigo: str
+    credential_alias: str
+    status: str
+    detectors_executed: List[str] = field(default_factory=list)
+    candidates_found: int = 0
+    decisions_found: int = 0
+    observations_found: int = 0
+    requests_count: int = 0
+    execution_time_ms: int = 0
+    period_start: str = ""
+    period_end: str = ""
+    error: Optional[str] = None
+
+
+@dataclass
 class DiscoveryResult:
     """
     Resultado completo da execução do Discovery Engine.
@@ -327,6 +351,8 @@ class DiscoveryResult:
     execution_time_ms: float = 0.0
     detectors_executed: List[str] = field(default_factory=list)
     message: str = ""  # Mensagem caso não haja decisão
+    tenant_records: List[TenantAnalysisRecord] = field(default_factory=list)
+    tenant_ids: List[str] = field(default_factory=list)
     
     def to_dict(self) -> Dict[str, Any]:
         """Serializa DiscoveryResult para dict."""

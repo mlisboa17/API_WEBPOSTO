@@ -64,6 +64,21 @@ class WebPostoClient:
             block_seconds=self.config.circuit_block_seconds,
         )
 
+    @classmethod
+    def for_api_key(cls, api_key: str, config: CoreConfig | None = None) -> WebPostoClient:
+        """Cliente isolado para uma única credencial — evita mistura entre tenants."""
+        base = config or load_core_config()
+        isolated = CoreConfig(
+            webposto_base_url=base.webposto_base_url,
+            webposto_api_key=api_key,
+            webposto_api_keys=(api_key,),
+            timeout_seconds=base.timeout_seconds,
+            permission_ttl_seconds=base.permission_ttl_seconds,
+            circuit_fail_threshold=base.circuit_fail_threshold,
+            circuit_block_seconds=base.circuit_block_seconds,
+        )
+        return cls(isolated)
+
     @staticmethod
     def _extract_rows(payload: Any) -> list[dict[str, Any]]:
         if isinstance(payload, list):

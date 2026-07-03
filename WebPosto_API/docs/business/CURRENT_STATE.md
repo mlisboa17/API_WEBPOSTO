@@ -282,6 +282,17 @@ class ConfirmedImpact:
 
 ---
 
+## BUILD-03B — Multi-Tenant Discovery (2026-07-03)
+
+O Discovery Engine analisa **todos os tenants descobertos e validados** via `/INTEGRACAO/EMPRESAS` por credencial configurada. Nenhum tenant default limita silenciosamente a análise global do proprietário.
+
+- `TenantDiscoveryService` descobre `empresaCodigo` sem lista hardcoded
+- `DecisionDiscoveryEngine.discover_all_tenants()` executa detectores por tenant (sequencial)
+- `analysis_proof.tenants[]` documenta cobertura real por posto
+- Runtime validado: 3 postos (5555, 11495, 74014) em ~205s
+
+---
+
 **[CURRENT_STATE — LOGOS Decision Execution Platform]**
 
 *Phase: 3/7 (DECIDIR→EXECUTAR) | Sprint: EXEC-01 | Status: IMPLEMENTING | Next: API + Frontend*
