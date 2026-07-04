@@ -20,6 +20,8 @@ class PerformanceMetrics:
     fuel_cache_miss_count: int = 0
     expense_cache_hit_count: int = 0
     expense_cache_miss_count: int = 0
+    receivable_cache_hit_count: int = 0
+    receivable_cache_miss_count: int = 0
     webposto_request_total: int = 0
     webposto_venda_requests: int = 0
     webposto_venda_item_requests: int = 0
@@ -73,6 +75,14 @@ class PerformanceMetrics:
         with self._lock:
             self.expense_cache_miss_count += 1
 
+    def record_receivable_cache_hit(self) -> None:
+        with self._lock:
+            self.receivable_cache_hit_count += 1
+
+    def record_receivable_cache_miss(self) -> None:
+        with self._lock:
+            self.receivable_cache_miss_count += 1
+
     def record_webposto_request(self, endpoint_key: str, status: int, *, is_timeout: bool = False) -> None:
         with self._lock:
             self.webposto_request_total += 1
@@ -103,6 +113,8 @@ class PerformanceMetrics:
             self.fuel_cache_miss_count = 0
             self.expense_cache_hit_count = 0
             self.expense_cache_miss_count = 0
+            self.receivable_cache_hit_count = 0
+            self.receivable_cache_miss_count = 0
             self.webposto_request_total = 0
             self.webposto_venda_requests = 0
             self.webposto_venda_item_requests = 0
@@ -139,6 +151,8 @@ class PerformanceMetrics:
                 "fuel_cache_miss_count": self.fuel_cache_miss_count,
                 "expense_cache_hit_count": self.expense_cache_hit_count,
                 "expense_cache_miss_count": self.expense_cache_miss_count,
+                "receivable_cache_hit_count": self.receivable_cache_hit_count,
+                "receivable_cache_miss_count": self.receivable_cache_miss_count,
                 "webposto_request_total": self.webposto_request_total,
                 "webposto_venda_requests": self.webposto_venda_requests,
                 "webposto_venda_item_requests": self.webposto_venda_item_requests,

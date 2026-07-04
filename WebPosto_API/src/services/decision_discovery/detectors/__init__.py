@@ -17,10 +17,12 @@ Futuros detectores:
 - EmployeeDetector: Detecta questões com funcionários
 """
 
-from src.services.decision_discovery.detectors.fuel_revenue_detector import FuelRevenueDetector
+from src.services.decision_discovery.detectors.card_receivable_detector import CardReceivableDetector
 from src.services.decision_discovery.detectors.expense_detector import ExpenseDetector
+from src.services.decision_discovery.detectors.fuel_revenue_detector import FuelRevenueDetector
 
 __all__ = [
+    "CardReceivableDetector",
     "FuelRevenueDetector",
     "ExpenseDetector",
 ]

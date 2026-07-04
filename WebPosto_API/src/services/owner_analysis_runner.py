@@ -6,7 +6,7 @@ import uuid
 from typing import Any, List, Literal
 
 from src.services.decision_discovery import DecisionDiscoveryEngine
-from src.services.decision_discovery.detectors import ExpenseDetector, FuelRevenueDetector
+from src.services.decision_discovery.detectors import CardReceivableDetector, ExpenseDetector, FuelRevenueDetector
 from src.services.decision_discovery.models import DecisionCandidate, TenantAnalysisRecord
 from src.services.owner_analysis_models import TenantProgressCallback
 from src.services.tenant_discovery_service import TenantDiscoveryService, TenantDiscoveryResult
@@ -32,6 +32,7 @@ def _get_discovery_engine() -> DecisionDiscoveryEngine:
     engine = DecisionDiscoveryEngine()
     engine.register_detector(FuelRevenueDetector())
     engine.register_detector(ExpenseDetector())
+    engine.register_detector(CardReceivableDetector())
     return engine
 
 
@@ -121,8 +122,8 @@ def _analysis_limitations(result: Any, observations: List[dict[str, Any]] | None
     limitations = []
     if _detectors_count(result.detectors_executed) == 1:
         limitations.append("Apenas uma área financeira foi verificada nesta análise.")
-    elif _detectors_count(result.detectors_executed) == 2:
-        limitations.append("Combustível e despesas operacionais foram verificados; caixa e cartões ainda não.")
+    elif _detectors_count(result.detectors_executed) == 3:
+        limitations.append("Combustível, despesas e recebíveis verificados; cartão TEF sem NSU no ERP.")
     if not result.all_candidates and not (observations or []):
         limitations.append("Nenhum candidato atingiu os critérios de prioridade")
     return limitations
@@ -317,11 +318,15 @@ async def run_owner_analysis(
             "/api/v1/sales/fuel-summary",
             "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
             "/INTEGRACAO/TITULO_PAGAR",
+            "/INTEGRACAO/TITULO_RECEBER",
+            "/INTEGRACAO/VENDA_FORMA_PAGAMENTO",
         ],
         "endpoints_consulted": [
             "/api/v1/sales/fuel-summary",
             "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
             "/INTEGRACAO/TITULO_PAGAR",
+            "/INTEGRACAO/TITULO_RECEBER",
+            "/INTEGRACAO/VENDA_FORMA_PAGAMENTO",
         ],
         "records_analyzed": None,
         "candidates_found": total_candidates,
