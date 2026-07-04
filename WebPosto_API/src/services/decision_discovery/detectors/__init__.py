@@ -18,7 +18,9 @@ Futuros detectores:
 """
 
 from src.services.decision_discovery.detectors.fuel_revenue_detector import FuelRevenueDetector
+from src.services.decision_discovery.detectors.expense_detector import ExpenseDetector
 
 __all__ = [
     "FuelRevenueDetector",
+    "ExpenseDetector",
 ]

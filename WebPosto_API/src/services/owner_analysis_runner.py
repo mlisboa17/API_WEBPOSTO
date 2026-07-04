@@ -6,7 +6,7 @@ import uuid
 from typing import Any, List, Literal
 
 from src.services.decision_discovery import DecisionDiscoveryEngine
-from src.services.decision_discovery.detectors import FuelRevenueDetector
+from src.services.decision_discovery.detectors import ExpenseDetector, FuelRevenueDetector
 from src.services.decision_discovery.models import DecisionCandidate, TenantAnalysisRecord
 from src.services.owner_analysis_models import TenantProgressCallback
 from src.services.tenant_discovery_service import TenantDiscoveryService, TenantDiscoveryResult
@@ -31,6 +31,7 @@ MonitoringState = Literal[
 def _get_discovery_engine() -> DecisionDiscoveryEngine:
     engine = DecisionDiscoveryEngine()
     engine.register_detector(FuelRevenueDetector())
+    engine.register_detector(ExpenseDetector())
     return engine
 
 
@@ -119,8 +120,9 @@ def _tenant_record_to_dict(record: TenantAnalysisRecord) -> dict[str, Any]:
 def _analysis_limitations(result: Any, observations: List[dict[str, Any]] | None = None) -> List[str]:
     limitations = []
     if _detectors_count(result.detectors_executed) == 1:
-        limitations.append("Apenas vendas de combustível foram verificadas.")
-        limitations.append("Caixa, Cartões e Despesas ainda não estão sendo analisados.")
+        limitations.append("Apenas uma área financeira foi verificada nesta análise.")
+    elif _detectors_count(result.detectors_executed) == 2:
+        limitations.append("Combustível e despesas operacionais foram verificados; caixa e cartões ainda não.")
     if not result.all_candidates and not (observations or []):
         limitations.append("Nenhum candidato atingiu os critérios de prioridade")
     return limitations
@@ -311,8 +313,16 @@ async def run_owner_analysis(
         "detectors_executed": detectors_executed,
         "detectors_successful": detectors_executed,
         "detectors_failed": 0,
-        "data_sources_consulted": ["/api/v1/sales/fuel-summary"],
-        "endpoints_consulted": ["/api/v1/sales/fuel-summary"],
+        "data_sources_consulted": [
+            "/api/v1/sales/fuel-summary",
+            "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+            "/INTEGRACAO/TITULO_PAGAR",
+        ],
+        "endpoints_consulted": [
+            "/api/v1/sales/fuel-summary",
+            "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+            "/INTEGRACAO/TITULO_PAGAR",
+        ],
         "records_analyzed": None,
         "candidates_found": total_candidates,
         "candidates_approved": len(result.all_candidates),

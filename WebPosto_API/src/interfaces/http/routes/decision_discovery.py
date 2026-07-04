@@ -19,9 +19,9 @@ from datetime import datetime, timedelta
 from typing import Dict, Any
 
 from src.services.decision_discovery import DecisionDiscoveryEngine
-from src.services.decision_discovery.detectors import FuelRevenueDetector
+from src.services.decision_discovery.detectors import ExpenseDetector, FuelRevenueDetector
 from src.services.decision_discovery.root_cause.root_cause_engine import RootCauseEngine
-from src.services.decision_discovery.root_cause.investigators import FuelRevenueRootCause
+from src.services.decision_discovery.root_cause.investigators import ExpenseRootCause, FuelRevenueRootCause
 from src.services.decision_discovery.models import DecisionCategory
 
 router = APIRouter(prefix="/api/v1/discovery", tags=["Decision Discovery"])
@@ -40,9 +40,9 @@ def _get_discovery_engine() -> DecisionDiscoveryEngine:
     
     # Registrar detectores disponíveis
     engine.register_detector(FuelRevenueDetector())
+    engine.register_detector(ExpenseDetector())
     
     # Futuros detectores serão adicionados aqui:
-    # engine.register_detector(ExpenseDetector())
     # engine.register_detector(CardDetector())
     # engine.register_detector(MarginDetector())
     # engine.register_detector(ReceivableDetector())
@@ -378,6 +378,10 @@ async def explain_decision(
         root_cause_engine.register_investigator(
             DecisionCategory.REVENUE,
             FuelRevenueRootCause()
+        )
+        root_cause_engine.register_investigator(
+            DecisionCategory.COST,
+            ExpenseRootCause()
         )
         
         # 3. Investigar causa raiz
