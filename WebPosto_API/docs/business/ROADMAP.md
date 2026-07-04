@@ -86,6 +86,12 @@ O LOGOS passa a ser uma **Decision Execution Platform** — um sistema que não 
 
 ### FASE 4: EXECUTAR ▶️ (CURRENT)
 
+#### VALUE-03 — Expense Loss Detector ✅ (2026-07-04)
+- ExpenseDetector + ExpenseRootCause
+- Dados reais: `CONSULTAR_DESPESAS_FINANCEIRO_REDE`
+- Primeira decisão: POSTO DOZE FILIAL II (vales funcionário)
+- PCG 96/100 — `docs/governance/PCG_VALUE_03.md`
+
 #### PERFORMANCE-01 — Fast Daily Analysis Loop ✅ (2026-07-04)
 - Home imediata (~3 ms) + refresh background
 - Fuel cache isolado; concurrency 3 medida

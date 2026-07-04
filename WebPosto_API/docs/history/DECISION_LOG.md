@@ -11,6 +11,27 @@
 
 ---
 
+## ADR-024: Expense Loss Detector (VALUE-03)
+**Status:** ✅ ACCEPTED  
+**Data:** 2026-07-04  
+**Sprint:** VALUE-03
+
+### Contexto
+LOGOS precisava responder "onde estou perdendo dinheiro" em despesas, não apenas combustível.
+
+### Decisão
+- Fonte: `CONSULTAR_DESPESAS_FINANCEIRO_REDE` + `TITULO_PAGAR`
+- Baseline adaptativo 30d vs 30d anterior
+- Money Found sempre ESTIMATED; duplicidade = POSSÍVEL DUPLICIDADE
+- Detector compete com FuelRevenueDetector no Discovery Engine
+
+### Evidência
+- `docs/validation/VALUE_03_EXPENSE_DATA_RAW.json`
+- `docs/validation/VALUE_03_DISCOVERY_RAW.json`
+- `docs/governance/PCG_VALUE_03.md` (96/100)
+
+---
+
 ## ADR-023: Fast Daily Analysis Loop + Single-Flight por Scope
 **Status:** ✅ ACCEPTED  
 **Data:** 2026-07-04  

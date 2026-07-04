@@ -1,0 +1,169 @@
+{
+  "executed_at": "2026-07-04",
+  "period": {
+    "start": "2026-06-27",
+    "end": "2026-07-04"
+  },
+  "tenants_discovered": [
+    "5555",
+    "11495",
+    "74014"
+  ],
+  "detectors": [
+    "FuelRevenueDetector",
+    "ExpenseDetector"
+  ],
+  "candidates_before_ranking": [
+    {
+      "tenant": "74014",
+      "tenant_name": "POSTO DOZE FILIAL II",
+      "detector": "ExpenseDetector",
+      "candidate_type": "CATEGORY_SPIKE",
+      "title": "R$ 7,501 acima do comportamento de referência em Vale de funcionário referente a consolidação de caixa",
+      "impact": 11251.5,
+      "at_risk": 7501.0,
+      "at_risk_type": "ESTIMATED",
+      "confidence": 0.89,
+      "priority_score": 52.63,
+      "final_state": "DECISION",
+      "reason": ""
+    }
+  ],
+  "approved_decisions": [
+    {
+      "tenant": "74014",
+      "tenant_name": "POSTO DOZE FILIAL II",
+      "detector": "ExpenseDetector",
+      "candidate_type": "CATEGORY_SPIKE",
+      "title": "R$ 7,501 acima do comportamento de referência em Vale de funcionário referente a consolidação de caixa",
+      "impact": 11251.5,
+      "at_risk": 7501.0,
+      "at_risk_type": "ESTIMATED",
+      "confidence": 0.89,
+      "priority_score": 52.63,
+      "final_state": "DECISION",
+      "reason": ""
+    }
+  ],
+  "global_winner": {
+    "tenant": "74014",
+    "tenant_name": "POSTO DOZE FILIAL II",
+    "detector": "ExpenseDetector",
+    "candidate_type": "CATEGORY_SPIKE",
+    "title": "R$ 7,501 acima do comportamento de referência em Vale de funcionário referente a consolidação de caixa",
+    "impact": 11251.5,
+    "at_risk": 7501.0,
+    "at_risk_type": "ESTIMATED",
+    "confidence": 0.89,
+    "priority_score": 52.63,
+    "final_state": "DECISION",
+    "reason": ""
+  },
+  "performance": {
+    "full_analysis_cold_ms": 59882.0,
+    "full_analysis_warm_ms": 2.3,
+    "expense_cache_hits": 3,
+    "expense_cache_misses": 3,
+    "fuel_cache_hits": 3,
+    "fuel_cache_misses": 3
+  },
+  "root_cause_top_expense": {
+    "decision_id": "dfd0f0d1-57e3-4f7d-94d2-25a33e6d6a88",
+    "investigator": "ExpenseRootCause",
+    "problem": {
+      "summary": "R$ 7,501 acima do comportamento de referência em Vale de funcionário referente a consolidação de caixa",
+      "financial_impact": 11251.5
+    },
+    "investigations": [
+      {
+        "aspect": "Categoria",
+        "finding": "Vale de funcionário referente a consolidação de caixa: R$ 8,401.00 no período atual vs R$ 900.00 no baseline (excesso estimado R$ 7,501.00)",
+        "evidence": {
+          "category": "Vale de funcionário referente a consolidação de caixa",
+          "current": 8401.0,
+          "baseline": 900.0,
+          "excess": 7501.0
+        },
+        "contribution_to_problem": 0.8929,
+        "confidence": 0.9
+      },
+      {
+        "aspect": "Fornecedor",
+        "finding": "Fornecedor não identificado no lançamento principal",
+        "evidence": {},
+        "contribution_to_problem": 0.0,
+        "confidence": 0.0
+      },
+      {
+        "aspect": "Frequência",
+        "finding": "16 lançamentos no período atual vs 7 no baseline",
+        "evidence": {
+          "current_count": 16,
+          "baseline_count": 7
+        },
+        "contribution_to_problem": 1.0,
+        "confidence": 0.8
+      },
+      {
+        "aspect": "Tipo de anomalia",
+        "finding": "Aumento agregado por categoria acima do comportamento de referência",
+        "evidence": {
+          "anomaly_type": "CATEGORY_SPIKE"
+        },
+        "contribution_to_problem": 0.65,
+        "confidence": 0.85
+      }
+    ],
+    "most_probable_cause": {
+      "cause_type": "operational",
+      "description": "Maior volume de lançamentos em Vale de funcionário referente a consolidação de caixa",
+      "probability": 0.775,
+      "certainty": "PROBABLE",
+      "supporting_evidence": [
+        "16 lançamentos vs média histórica de 7",
+        "Categoria: Vale de funcionário referente a consolidação de caixa"
+      ],
+      "contradicting_evidence": []
+    },
+    "alternative_causes": [],
+    "discarded_hypotheses": [
+      "Duplicidade confirmada descartada (apenas sinal, sem prova documental)",
+      "Concentração por fornecedor descartada (dado não disponível no lançamento principal)"
+    ],
+    "recommendations": [
+      {
+        "action": "Revisar os 5 maiores lançamentos de Vale de funcionário referente a consolidação de caixa (2026-06-05 a 2026-07-04)",
+        "estimated_time_minutes": 15,
+        "expected_impact": "Alto",
+        "priority": 1,
+        "why": "Categoria respondeu pela maior parte do excesso estimado"
+      },
+      {
+        "action": "Validar se os serviços/produtos correspondem a ordens ou contratos ativos",
+        "estimated_time_minutes": 10,
+        "expected_impact": "Médio",
+        "priority": 2,
+        "why": "Descartar aumento legítimo antes de tratar como perda"
+      }
+    ],
+    "confidence": {
+      "overall": 0.6925,
+      "explanation": "Confiança moderada: validar com documentos antes de agir"
+    },
+    "metadata": {
+      "timestamp": "2026-07-04T11:33:31.822062",
+      "data_sources": [
+        "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+        "/INTEGRACAO/TITULO_PAGAR"
+      ],
+      "duration_ms": 0.11
+    },
+    "insufficient_data_message": null,
+    "has_probable_cause": true,
+    "explanation": "**Problema Encontrado:**\nR$ 7,501 acima do comportamento de referência em Vale de funcionário referente a consolidação de caixa\n\n**Impacto Financeiro:**\nR$ 11,251.50\n\n**Causa Mais Provável:**\nMaior volume de lançamentos em Vale de funcionário referente a consolidação de caixa\n\n**Certeza:**\nPROBABLE (Probabilidade: 78%)\n\n**Evidências:**\n• 16 lançamentos vs média histórica de 7\n• Categoria: Vale de funcionário referente a consolidação de caixa\n\n**Recomendações:**\n1. Revisar os 5 maiores lançamentos de Vale de funcionário referente a consolidação de caixa (2026-06-05 a 2026-07-04) (15 min) - Impacto: Alto\n2. Validar se os serviços/produtos correspondem a ordens ou contratos ativos (10 min) - Impacto: Médio\n\n**Confidence da Análise:**\n69% - Confiança moderada: validar com documentos antes de agir"
+  },
+  "thresholds": {
+    "min_decision_confidence": 0.8,
+    "min_decision_impact_brl": 5000.0
+  }
+}

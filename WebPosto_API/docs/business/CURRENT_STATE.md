@@ -310,4 +310,20 @@ Evidência: `docs/runtime/PERFORMANCE_01_RUNTIME_REPORT.md`
 
 ---
 
+## VALUE-03 — Expense Loss Detector (2026-07-04)
+
+**Status:** ✅ COMPLETE (PCG 96/100)
+
+| Capacidade | Runtime |
+|---|---|
+| ExpenseDetector | CATEGORY_SPIKE, SUPPLIER_SPIKE, DUPLICATE_PAYMENT_SIGNAL |
+| Decisão real | 74014 — R$ 7.501 ESTIMATED acima baseline |
+| FULL_ANALYSIS cold | 59,9 s (+ expense API) |
+| FULL_ANALYSIS warm | 2,3 ms |
+| HOME | 2,6 ms |
+
+Evidência: `docs/validation/VALUE_03_REPORT.md`
+
+---
+
 **[CURRENT_STATE — LOGOS Decision Execution Platform]**

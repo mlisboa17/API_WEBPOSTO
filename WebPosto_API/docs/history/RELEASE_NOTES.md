@@ -25,6 +25,18 @@ Formato: `PHASE.MAJOR.MINOR` (ex: `3.3.0` = FASE 3, PRODUCT-03, base)
 
 ## 🚀 Releases
 
+### v3.5.0 — Expense Loss Detector (VALUE-03)
+**Data:** 2026-07-04  
+**Branch:** `feature/build-03-trust-home`
+
+- `ExpenseDetector` — anomalias em despesas reais (CATEGORY_SPIKE, SUPPLIER_SPIKE, DUPLICATE_PAYMENT_SIGNAL)
+- `ExpenseRootCause` — causa provável para decisões COST
+- Cache `snapshots/discovery_expense` isolado por tenant
+- Primeira decisão real: POSTO DOZE FILIAL II — vales de funcionário +R$ 7.501 vs baseline
+- Evidência: `docs/validation/VALUE_03_REPORT.md`
+
+---
+
 ### v3.4.0 — Fast Daily Analysis Loop (PERFORMANCE-01)
 **Data:** 2026-07-04  
 **Branch:** `feature/build-03-trust-home`

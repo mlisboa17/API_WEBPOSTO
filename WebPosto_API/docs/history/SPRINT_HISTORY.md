@@ -11,6 +11,19 @@
 
 ---
 
+#### VALUE-03 — Expense Loss Detector
+**Data:** 2026-07-04  
+**Branch:** `feature/build-03-trust-home`  
+**Status:** ✅ COMPLETE
+
+**Entregáveis:**
+- ExpenseDetector + ExpenseRootCause
+- Survey `EXPENSE_DATA_SURVEY.md`
+- Validação runtime 3 tenants
+- PCG 96/100
+
+---
+
 ## 📊 Resumo Executivo
 
 | Fase | Sprints | Status |
