@@ -86,6 +86,12 @@ O LOGOS passa a ser uma **Decision Execution Platform** — um sistema que não 
 
 ### FASE 4: EXECUTAR ▶️ (CURRENT)
 
+#### VALUE-04 — Card Receivable Loss Detector ✅ (2026-07-04)
+- CardReceivableDetector + CardReceivableRootCause
+- Reconciliation LEVEL 1 comprovado
+- 2 observações runtime (POSTO VIP, POSTO DOZE)
+- PCG 96/100
+
 #### VALUE-03 — Expense Loss Detector ✅ (2026-07-04)
 - ExpenseDetector + ExpenseRootCause
 - Dados reais: `CONSULTAR_DESPESAS_FINANCEIRO_REDE`

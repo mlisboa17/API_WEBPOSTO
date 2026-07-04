@@ -25,6 +25,15 @@ Formato: `PHASE.MAJOR.MINOR` (ex: `3.3.0` = FASE 3, PRODUCT-03, base)
 
 ## 🚀 Releases
 
+### v3.6.0 — Card Receivable Loss Detector (VALUE-04)
+**Data:** 2026-07-04
+
+- CardReceivableDetector (LEVEL 1 aggregate)
+- Observações recebíveis vencidos sem baixa (11495, 74014)
+- Cache `snapshots/discovery_receivable`
+
+---
+
 ### v3.5.0 — Expense Loss Detector (VALUE-03)
 **Data:** 2026-07-04  
 **Branch:** `feature/build-03-trust-home`

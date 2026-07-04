@@ -21,7 +21,7 @@
 │   ├── ../00_LOGOS_CONTEXT_PACK.md (contexto essencial)
 │   ├── business/PRODUCT_CONSTITUTION.md (princípios)
 │   └── runtime/PERFORMANCE_01_RUNTIME_REPORT.md (PERFORMANCE-01 final)
-│   └── validation/VALUE_03_REPORT.md (VALUE-03 final)
+│   └── validation/VALUE_04_REPORT.md (VALUE-04 final)
 │
 ├── 📊 runtime/ (Runtime Evidence)
 │   └── PERFORMANCE_01_RUNTIME_REPORT.md

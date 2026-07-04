@@ -11,6 +11,13 @@
 
 ---
 
+## ADR-025: Card Receivable Detector LEVEL 1
+**Status:** ✅ ACCEPTED | **Data:** 2026-07-04 | **Sprint:** VALUE-04
+
+Conciliação transacional impossível (sem NSU). Detector usa TITULO_RECEBER agregado; Money Found ESTIMATED; confidence cap LEVEL 1.
+
+---
+
 ## ADR-024: Expense Loss Detector (VALUE-03)
 **Status:** ✅ ACCEPTED  
 **Data:** 2026-07-04  

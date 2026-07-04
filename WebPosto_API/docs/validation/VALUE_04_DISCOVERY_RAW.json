@@ -1,0 +1,97 @@
+{
+  "executed_at": "2026-07-04",
+  "period": {
+    "start": "2026-06-27",
+    "end": "2026-07-04"
+  },
+  "candidates_before_ranking": [
+    {
+      "tenant": "74014",
+      "tenant_name": "POSTO DOZE FILIAL II",
+      "detector": "ExpenseDetector",
+      "signal_type": "CATEGORY_SPIKE",
+      "impact": 11251.5,
+      "at_risk": 7501.0,
+      "at_risk_type": "ESTIMATED",
+      "confidence": 0.89,
+      "priority_score": 52.63,
+      "final_state": "DECISION",
+      "reason": ""
+    },
+    {
+      "tenant": "11495",
+      "tenant_name": "POSTO VIP",
+      "detector": "CardReceivableDetector",
+      "signal_type": "OVERDUE_RECEIVABLE",
+      "impact": 3970.9,
+      "at_risk": 2481.81,
+      "at_risk_type": "ESTIMATED",
+      "confidence": 0.7491,
+      "priority_score": null,
+      "final_state": "OBSERVATION",
+      "reason": "Confidence insuficiente: 75% < 80%"
+    },
+    {
+      "tenant": "74014",
+      "tenant_name": "POSTO DOZE FILIAL II",
+      "detector": "CardReceivableDetector",
+      "signal_type": "OVERDUE_RECEIVABLE",
+      "impact": 5221.62,
+      "at_risk": 3263.51,
+      "at_risk_type": "ESTIMATED",
+      "confidence": 0.5023,
+      "priority_score": null,
+      "final_state": "OBSERVATION",
+      "reason": "Confidence insuficiente: 50% < 80%"
+    }
+  ],
+  "counts_by_detector": {
+    "FuelRevenueDetector": 0,
+    "ExpenseDetector": 1,
+    "CardReceivableDetector": 2
+  },
+  "approved_decisions": [
+    {
+      "tenant": "74014",
+      "tenant_name": "POSTO DOZE FILIAL II",
+      "detector": "ExpenseDetector",
+      "signal_type": "CATEGORY_SPIKE",
+      "impact": 11251.5,
+      "at_risk": 7501.0,
+      "at_risk_type": "ESTIMATED",
+      "confidence": 0.89,
+      "priority_score": 52.63,
+      "final_state": "DECISION",
+      "reason": ""
+    }
+  ],
+  "global_winner": {
+    "tenant": "74014",
+    "tenant_name": "POSTO DOZE FILIAL II",
+    "detector": "ExpenseDetector",
+    "signal_type": "CATEGORY_SPIKE",
+    "impact": 11251.5,
+    "at_risk": 7501.0,
+    "at_risk_type": "ESTIMATED",
+    "confidence": 0.89,
+    "priority_score": 52.63,
+    "final_state": "DECISION",
+    "reason": ""
+  },
+  "performance": {
+    "full_analysis_cold_ms": 76.8,
+    "full_analysis_warm_ms": 2.4,
+    "receivable_cache_hits": 6,
+    "receivable_cache_misses": 0,
+    "expense_cache_hits": 6,
+    "expense_cache_misses": 0,
+    "fuel_cache_hits": 6,
+    "fuel_cache_misses": 0,
+    "webposto_requests_cold": 0,
+    "webposto_requests_warm": 0
+  },
+  "thresholds": {
+    "min_decision_confidence": 0.8,
+    "min_decision_impact_brl": 5000.0
+  }
+}

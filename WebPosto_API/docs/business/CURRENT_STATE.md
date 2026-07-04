@@ -326,4 +326,20 @@ Evidência: `docs/validation/VALUE_03_REPORT.md`
 
 ---
 
+## VALUE-04 — Card Receivable Loss Detector (2026-07-04)
+
+**Status:** ✅ COMPLETE (PCG 96/100)
+
+| Capacidade | Runtime |
+|---|---|
+| Reconciliation Level | 1 (agregado) |
+| Observações | POSTO VIP R$ 2.481 vencido; POSTO DOZE R$ 3.263 vencido |
+| Decisions CardReceivable | 0 (confidence LEVEL 1 < 80%) |
+| FULL_ANALYSIS cold (1º) | 121,2 s |
+| FULL_ANALYSIS warm | 2,4 ms |
+
+Evidência: `docs/validation/VALUE_04_REPORT.md`
+
+---
+
 **[CURRENT_STATE — LOGOS Decision Execution Platform]**

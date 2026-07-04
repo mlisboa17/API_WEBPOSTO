@@ -24,6 +24,11 @@
 
 ---
 
+#### VALUE-04 — Card Receivable Loss Detector
+**Data:** 2026-07-04 | **Status:** ✅ COMPLETE
+
+---
+
 ## 📊 Resumo Executivo
 
 | Fase | Sprints | Status |
