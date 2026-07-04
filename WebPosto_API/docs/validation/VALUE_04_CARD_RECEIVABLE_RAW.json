@@ -1,0 +1,246 @@
+{
+  "executed_at": "2026-07-04",
+  "periodo": {
+    "start": "2026-06-05",
+    "end": "2026-07-04",
+    "days": 30
+  },
+  "tenants_discovered": 3,
+  "tenants": [
+    {
+      "tenant_id": "5555",
+      "empresa_codigo": "5555",
+      "periodo": {
+        "start": "2026-06-05",
+        "end": "2026-07-04"
+      },
+      "vendas_cartao_count": 0,
+      "valor_bruto_cartao": 0.0,
+      "formas_pagamento_amostra": [],
+      "formas_pagamento_count": 0,
+      "recebiveis_total_count": 0,
+      "recebiveis_valor_total": 0.0,
+      "recebidos_count": 0,
+      "recebidos_valor": 0.0,
+      "pendentes_count": 0,
+      "pendentes_valor": 0.0,
+      "vencidos_count": 0,
+      "vencidos_valor": 0.0,
+      "a_vencer_count": 0,
+      "a_vencer_valor": 0.0,
+      "status_encontrados": [],
+      "datas_vencimento_min": null,
+      "datas_vencimento_max": null,
+      "movimento_bancario_creditos_count": 0,
+      "movimento_bancario_creditos_valor": 0.0,
+      "field_keys": {
+        "venda_forma_pagamento": [],
+        "titulo_receber": [],
+        "movimento_conta": []
+      },
+      "amostra_sanitizada": {
+        "venda_forma_pagamento": [],
+        "titulo_receber_vencido": []
+      },
+      "registros_sem_vinculo_venda_recebivel": 0,
+      "query_ms": 64740.6,
+      "tenant_name": "AP CASA CAIADA"
+    },
+    {
+      "tenant_id": "11495",
+      "empresa_codigo": "11495",
+      "periodo": {
+        "start": "2026-06-05",
+        "end": "2026-07-04"
+      },
+      "vendas_cartao_count": 0,
+      "valor_bruto_cartao": 0.0,
+      "formas_pagamento_amostra": [],
+      "formas_pagamento_count": 0,
+      "recebiveis_total_count": 51,
+      "recebiveis_valor_total": 2486.42,
+      "recebidos_count": 0,
+      "recebidos_valor": 0.0,
+      "pendentes_count": 51,
+      "pendentes_valor": 2486.42,
+      "vencidos_count": 50,
+      "vencidos_valor": 2481.81,
+      "a_vencer_count": 1,
+      "a_vencer_valor": 4.61,
+      "status_encontrados": [],
+      "datas_vencimento_min": "2026-06-08",
+      "datas_vencimento_max": "2026-07-06",
+      "movimento_bancario_creditos_count": 125,
+      "movimento_bancario_creditos_valor": 3935.82,
+      "field_keys": {
+        "venda_forma_pagamento": [],
+        "titulo_receber": [
+          "clienteCodigo",
+          "codigo",
+          "convertido",
+          "cpfCnpjCliente",
+          "dataMovimento",
+          "dataPagamento",
+          "dataVencimento",
+          "documento",
+          "duplicataCodigo",
+          "empresaCodigo",
+          "nomeCliente",
+          "pendente",
+          "planoContaGerencialCodigo",
+          "tipo",
+          "tituloCodigo",
+          "tituloNumero",
+          "valor",
+          "vendaCodigo"
+        ],
+        "movimento_conta": [
+          "centroCustoCodigo",
+          "codigo",
+          "codigoPessoa",
+          "codigoTipoDocumentoOrigem",
+          "conciliado",
+          "contaCodigo",
+          "daraHoraConciliacao",
+          "dataMovimento",
+          "descricao",
+          "documento",
+          "documentoOrigemCodigo",
+          "empresaCodigo",
+          "evento",
+          "lote",
+          "movimentoContaCodigo",
+          "planoContaGerencialCodigo",
+          "saldo",
+          "tipo",
+          "tipoDocumentoOrigem",
+          "tipoPessoa",
+          "usuarioConciliacao",
+          "valor"
+        ]
+      },
+      "amostra_sanitizada": {
+        "venda_forma_pagamento": [],
+        "titulo_receber_vencido": [
+          {
+            "empresaCodigo": 11495,
+            "tituloCodigo": 20757854,
+            "cliente": "DESPERDICIO",
+            "valor": "39.92",
+            "vencimento": "2026-06-08",
+            "pendente": true
+          },
+          {
+            "empresaCodigo": 11495,
+            "tituloCodigo": 20763866,
+            "cliente": "PRODUTOS TROCA/AVARIADO",
+            "valor": "4.60",
+            "vencimento": "2026-06-08",
+            "pendente": true
+          }
+        ]
+      },
+      "registros_sem_vinculo_venda_recebivel": 0,
+      "query_ms": 41576.6,
+      "tenant_name": "POSTO VIP"
+    },
+    {
+      "tenant_id": "74014",
+      "empresa_codigo": "74014",
+      "periodo": {
+        "start": "2026-06-05",
+        "end": "2026-07-04"
+      },
+      "vendas_cartao_count": 0,
+      "valor_bruto_cartao": 0.0,
+      "formas_pagamento_amostra": [],
+      "formas_pagamento_count": 0,
+      "recebiveis_total_count": 9,
+      "recebiveis_valor_total": 4920.22,
+      "recebidos_count": 0,
+      "recebidos_valor": 0.0,
+      "pendentes_count": 9,
+      "pendentes_valor": 4920.22,
+      "vencidos_count": 2,
+      "vencidos_valor": 3263.51,
+      "a_vencer_count": 7,
+      "a_vencer_valor": 1656.71,
+      "status_encontrados": [],
+      "datas_vencimento_min": "2026-06-11",
+      "datas_vencimento_max": "2026-07-20",
+      "movimento_bancario_creditos_count": 128,
+      "movimento_bancario_creditos_valor": 6820.27,
+      "field_keys": {
+        "venda_forma_pagamento": [],
+        "titulo_receber": [
+          "clienteCodigo",
+          "codigo",
+          "convertido",
+          "cpfCnpjCliente",
+          "dataMovimento",
+          "dataPagamento",
+          "dataVencimento",
+          "documento",
+          "duplicataCodigo",
+          "empresaCodigo",
+          "nomeCliente",
+          "pendente",
+          "planoContaGerencialCodigo",
+          "tipo",
+          "tituloCodigo",
+          "tituloNumero",
+          "valor",
+          "vendaCodigo"
+        ],
+        "movimento_conta": [
+          "centroCustoCodigo",
+          "codigo",
+          "codigoPessoa",
+          "codigoTipoDocumentoOrigem",
+          "conciliado",
+          "contaCodigo",
+          "daraHoraConciliacao",
+          "dataMovimento",
+          "descricao",
+          "documento",
+          "documentoOrigemCodigo",
+          "empresaCodigo",
+          "evento",
+          "lote",
+          "movimentoContaCodigo",
+          "planoContaGerencialCodigo",
+          "saldo",
+          "tipo",
+          "tipoDocumentoOrigem",
+          "tipoPessoa",
+          "usuarioConciliacao",
+          "valor"
+        ]
+      },
+      "amostra_sanitizada": {
+        "venda_forma_pagamento": [],
+        "titulo_receber_vencido": [
+          {
+            "empresaCodigo": 74014,
+            "tituloCodigo": 20805386,
+            "cliente": "F.J. SERVICOS E COMERCIO LTDA.",
+            "valor": "1798.70",
+            "vencimento": "2026-06-11",
+            "pendente": true
+          },
+          {
+            "empresaCodigo": 74014,
+            "tituloCodigo": 20862819,
+            "cliente": "F.J. SERVICOS E COMERCIO LTDA.",
+            "valor": "1464.81",
+            "vencimento": "2026-06-18",
+            "pendente": true
+          }
+        ]
+      },
+      "registros_sem_vinculo_venda_recebivel": 0,
+      "query_ms": 50390.0,
+      "tenant_name": "POSTO DOZE FILIAL II"
+    }
+  ]
+}
