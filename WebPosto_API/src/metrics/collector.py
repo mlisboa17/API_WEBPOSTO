@@ -58,6 +58,10 @@ class MetricsCollector:
                 }
             return data
 
+    def reset(self) -> None:
+        with self._lock:
+            self._per_endpoint.clear()
+
 
 metrics_collector = MetricsCollector()
 

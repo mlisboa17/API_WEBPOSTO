@@ -2,9 +2,10 @@ from __future__ import annotations
 
 import json
 import re
-from datetime import datetime
 from pathlib import Path
 from typing import Any
+
+from src.utils.utc_datetime import is_past_ttl
 
 
 def safe_filename(key: str) -> str:
@@ -34,11 +35,9 @@ class SnapshotStore:
         if not last_updated:
             return True
         try:
-            ts = datetime.fromisoformat(str(last_updated))
+            return is_past_ttl(str(last_updated), self._ttl_seconds)
         except ValueError:
             return True
-        age = (datetime.now() - ts).total_seconds()
-        return age > self._ttl_seconds
 
     def _read_payload(self, key: str) -> dict[str, Any] | None:
         stored = self._memory.get(key)

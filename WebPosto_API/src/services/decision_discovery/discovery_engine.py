@@ -13,6 +13,7 @@ antes de aumentar a quantidade de decisões apresentadas.
 from __future__ import annotations
 
 import asyncio
+import os
 import time
 from typing import List, Optional, Dict, Any
 
@@ -22,6 +23,7 @@ from src.services.decision_discovery.models import (
     DiscoveryResult,
     TenantAnalysisRecord,
 )
+from src.services.owner_analysis_models import TenantProgressCallback
 from src.services.tenant_discovery_service import DiscoveredTenant
 from src.services.decision_discovery.priority_calculator import PriorityScoreCalculator
 
@@ -146,6 +148,7 @@ class DecisionDiscoveryEngine:
         data_inicial: str,
         data_final: str,
         top_n: int = 5,
+        on_tenant_progress: TenantProgressCallback | None = None,
         **kwargs: Any,
     ) -> DiscoveryResult:
         """Executa detectores para cada tenant descoberto e agrega candidatos globalmente."""
@@ -161,12 +164,16 @@ class DecisionDiscoveryEngine:
         all_valid: List[DecisionCandidate] = []
         all_rejected: List[Dict[str, Any]] = []
         tenant_records: List[TenantAnalysisRecord] = []
-        tenant_ids: List[str] = []
+        tenant_ids: List[str] = [t.tenant_id for t in tenants]
+        tenants_total = len(tenants)
+        tenants_completed = 0
+        progress_lock = asyncio.Lock()
+        max_concurrency = max(1, int(os.getenv("OWNER_ANALYSIS_MAX_CONCURRENCY", "1")))
 
-        for tenant in tenants:
+        async def _analyze_tenant(
+            tenant: DiscoveredTenant,
+        ) -> tuple[TenantAnalysisRecord, List[DecisionCandidate], List[Dict[str, Any]]]:
             tenant_start = time.time()
-            tenant_ids.append(tenant.tenant_id)
-
             tenant_kwargs = {
                 **kwargs,
                 "tenant_name": tenant.tenant_name,
@@ -188,44 +195,65 @@ class DecisionDiscoveryEngine:
                     **tenant_kwargs,
                 )
                 valid, rejected = self._validate_candidates(candidates)
-                all_valid.extend(valid)
-                all_rejected.extend(rejected)
 
-                tenant_records.append(
-                    TenantAnalysisRecord(
-                        tenant_id=tenant.tenant_id,
-                        tenant_name=tenant.tenant_name,
-                        empresa_codigo=str(tenant.empresa_codigo),
-                        credential_alias=tenant.credential_alias,
-                        status="ANALYZED",
-                        detectors_executed=[d.detector_name for d in self._detectors],
-                        candidates_found=len(candidates),
-                        decisions_found=len(valid),
-                        observations_found=len(rejected),
-                        requests_count=2 * len(self._detectors),
-                        execution_time_ms=int((time.time() - tenant_start) * 1000),
-                        period_start=data_inicial,
-                        period_end=data_final,
-                    )
+                record = TenantAnalysisRecord(
+                    tenant_id=tenant.tenant_id,
+                    tenant_name=tenant.tenant_name,
+                    empresa_codigo=str(tenant.empresa_codigo),
+                    credential_alias=tenant.credential_alias,
+                    status="ANALYZED",
+                    detectors_executed=[d.detector_name for d in self._detectors],
+                    candidates_found=len(candidates),
+                    decisions_found=len(valid),
+                    observations_found=len(rejected),
+                    requests_count=2 * len(self._detectors),
+                    execution_time_ms=int((time.time() - tenant_start) * 1000),
+                    period_start=data_inicial,
+                    period_end=data_final,
                 )
+                return record, valid, rejected
             except Exception as exc:
-                tenant_records.append(
-                    TenantAnalysisRecord(
-                        tenant_id=tenant.tenant_id,
-                        tenant_name=tenant.tenant_name,
-                        empresa_codigo=str(tenant.empresa_codigo),
-                        credential_alias=tenant.credential_alias,
-                        status="FAILED",
-                        execution_time_ms=int((time.time() - tenant_start) * 1000),
-                        period_start=data_inicial,
-                        period_end=data_final,
-                        error=str(exc)[:220],
-                    )
-                )
                 self._log(
                     f"Tenant analysis failed: tenant={tenant.tenant_id} error={exc}",
                     level="error",
                 )
+                record = TenantAnalysisRecord(
+                    tenant_id=tenant.tenant_id,
+                    tenant_name=tenant.tenant_name,
+                    empresa_codigo=str(tenant.empresa_codigo),
+                    credential_alias=tenant.credential_alias,
+                    status="FAILED",
+                    execution_time_ms=int((time.time() - tenant_start) * 1000),
+                    period_start=data_inicial,
+                    period_end=data_final,
+                    error=str(exc)[:220],
+                )
+                return record, [], []
+
+        async def _run_with_progress(tenant: DiscoveredTenant) -> None:
+            nonlocal tenants_completed
+            record, valid, rejected = await _analyze_tenant(tenant)
+            async with progress_lock:
+                all_valid.extend(valid)
+                all_rejected.extend(rejected)
+                tenant_records.append(record)
+                tenants_completed += 1
+                if on_tenant_progress is not None:
+                    await on_tenant_progress(record, tenants_completed, tenants_total)
+
+        if max_concurrency <= 1:
+            for tenant in tenants:
+                await _run_with_progress(tenant)
+        else:
+            sem = asyncio.Semaphore(max_concurrency)
+
+            async def _bounded(tenant: DiscoveredTenant) -> None:
+                async with sem:
+                    await _run_with_progress(tenant)
+
+            await asyncio.gather(*[_bounded(t) for t in tenants])
+
+        tenant_records.sort(key=lambda r: tenant_ids.index(r.tenant_id))
 
         scored_candidates = self._score_candidates(all_valid)
         sorted_candidates = sorted(

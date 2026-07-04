@@ -18,6 +18,7 @@ from src.models.response_model import WebPostoResponse
 from src.services.date_range_resolver import DateRangeResolver
 from src.utils.circuit_breaker import SimpleCircuitBreaker
 from src.utils.permission_cache import get_permissions, is_cache_fresh, set_permissions
+from src.services.performance.performance_metrics import performance_metrics
 from src.utils.retry import retry_async
 
 ENDPOINTS = {
@@ -151,20 +152,28 @@ class WebPostoClient:
         return httpx.Timeout(base, connect=min(5.0, base))
 
     async def discover_permissions(self, force: bool = False) -> dict[str, bool]:
-        if not force and is_cache_fresh(self.config.permission_ttl_seconds):
-            cached = get_permissions()
+        fingerprint = (
+            self._fingerprint(self._api_keys[0])
+            if len(self._api_keys) == 1
+            else "_merged"
+        )
+        if not force and is_cache_fresh(self.config.permission_ttl_seconds, fingerprint):
+            cached = get_permissions(fingerprint)
             if all(key in cached for key in ENDPOINTS):
+                performance_metrics.record_permission_cache_hit()
                 return cached
 
         if WebPostoClient._permissions_lock is None:
             WebPostoClient._permissions_lock = asyncio.Lock()
 
         async with WebPostoClient._permissions_lock:
-            if not force and is_cache_fresh(self.config.permission_ttl_seconds):
-                cached = get_permissions()
+            if not force and is_cache_fresh(self.config.permission_ttl_seconds, fingerprint):
+                cached = get_permissions(fingerprint)
                 if all(key in cached for key in ENDPOINTS):
+                    performance_metrics.record_permission_cache_hit()
                     return cached
 
+            probe_started = perf_counter()
             permissions: dict[str, bool] = {}
 
             async def _probe_permission(client: httpx.AsyncClient, key: str, path: str, api_key: str):
@@ -221,7 +230,14 @@ class WebPostoClient:
                 ]
                 await asyncio.gather(*tasks)
 
-            set_permissions(permissions)
+            probe_ms = int((perf_counter() - probe_started) * 1000)
+            http_count = len(self._api_keys) * len(ENDPOINTS)
+            performance_metrics.record_permission_cache_miss(
+                duration_ms=probe_ms,
+                http_count=http_count,
+                endpoints=len(ENDPOINTS),
+            )
+            set_permissions(permissions, fingerprint)
             return permissions
 
 
@@ -310,6 +326,8 @@ class WebPostoClient:
 
         for api_key, response, latency_ms, exc in results:
             if exc is not None:
+                is_timeout = "timeout" in str(exc).casefold() or isinstance(exc, httpx.TimeoutException)
+                performance_metrics.record_webposto_request(endpoint_key, 500, is_timeout=is_timeout)
                 metrics_collector.record(path, 500, 0.0)
                 last_error = WebPostoError(endpoint=path, status=500, type="NETWORK_ERROR", message=str(exc)[:220])
                 log_structured(
@@ -331,6 +349,7 @@ class WebPostoClient:
                 continue
 
             status = response.status_code
+            performance_metrics.record_webposto_request(endpoint_key, status)
             metrics_collector.record(path, status, latency_ms)
             if status == 200:
                 payload = response.json()
@@ -395,7 +414,12 @@ class WebPostoClient:
 
         if auth_errors and auth_errors == len(self._api_keys):
             permissions[endpoint_key] = False
-            set_permissions(permissions)
+            fp = (
+                self._fingerprint(self._api_keys[0])
+                if len(self._api_keys) == 1
+                else "_merged"
+            )
+            set_permissions(permissions, fp)
             self.breaker.block_endpoint(endpoint_key, duration_seconds=self.config.circuit_block_seconds)
             return WebPostoResponse.fail(
                 WebPostoError(endpoint=path, status=401, type="AUTHORIZATION_ERROR", message="Sem permissao para endpoint")

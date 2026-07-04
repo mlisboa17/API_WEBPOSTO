@@ -17,10 +17,13 @@ Princípio 19: Encontrar a decisão mais valiosa primeiro.
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Optional, Dict, Any, List, Union
 
 from src.services.decision_discovery.base_detector import BaseDetector
+from src.services.performance.performance_metrics import performance_metrics
+from src.services.snapshot_store import SnapshotStore
+from src.utils.utc_datetime import age_seconds, utc_now_iso
 from src.services.decision_discovery.models import (
     DecisionCandidate,
     MoneyFound,
@@ -52,10 +55,20 @@ class FuelRevenueDetector(BaseDetector):
     MIN_IMPACT_BRL = 5000.0  # Impacto mínimo para considerar relevante
     MIN_CONFIDENCE = 0.80  # Confidence mínimo para exibir
     MIN_DAYS_DATA = 7  # Dias mínimos de dados
-    
+
+    CURRENT_PERIOD_TTL_SECONDS = 5 * 60
+    CLOSED_PERIOD_TTL_SECONDS = 24 * 60 * 60
+
+    _fuel_cache_store: SnapshotStore | None = None
+
     def __init__(self):
         """Inicializa o FuelRevenueDetector."""
         super().__init__(detector_name="FuelRevenueDetector")
+        if FuelRevenueDetector._fuel_cache_store is None:
+            FuelRevenueDetector._fuel_cache_store = SnapshotStore(
+                "snapshots/discovery_fuel",
+                FuelRevenueDetector.CLOSED_PERIOD_TTL_SECONDS,
+            )
     
     async def detect(
         self,
@@ -143,6 +156,26 @@ class FuelRevenueDetector(BaseDetector):
             self.log("detection_error", {"error": str(e)}, level="error")
             return None
     
+    @classmethod
+    def _fuel_cache_key(
+        cls,
+        tenant_id: str,
+        empresa_codigo: str,
+        data_inicial: str,
+        data_final: str,
+    ) -> str:
+        return f"discovery_fuel:{tenant_id}:{empresa_codigo}:{data_inicial}:{data_final}"
+
+    @classmethod
+    def _period_ttl(cls, data_final: str) -> float:
+        try:
+            end = datetime.fromisoformat(data_final).date()
+            if end >= datetime.now().date():
+                return cls.CURRENT_PERIOD_TTL_SECONDS
+        except ValueError:
+            pass
+        return cls.CLOSED_PERIOD_TTL_SECONDS
+
     async def _fetch_fuel_data(
         self,
         tenant_code: str,
@@ -152,7 +185,61 @@ class FuelRevenueDetector(BaseDetector):
     ) -> Optional[Dict[str, Any]]:
         """
         Busca dados reais de vendas de combustíveis (período atual vs anterior).
+        Cache via SnapshotStore (VENDA_ITEM path — distinto do FuelSnapshotService/LMC).
         """
+        store = self._fuel_cache_store
+        empresa_codigo = str(tenant_code)
+        cache_key = self._fuel_cache_key(tenant_code, empresa_codigo, data_inicial, data_final)
+        if store:
+            stored, _expired = store.load_stale(cache_key)
+            if stored and stored.get("fuel_data"):
+                ttl = self._period_ttl(data_final)
+                try:
+                    age = age_seconds(str(stored.get("lastUpdated")))
+                except ValueError:
+                    age = ttl + 1
+                if age <= ttl:
+                    performance_metrics.record_fuel_cache_hit()
+                    payload = dict(stored["fuel_data"])
+                    payload.setdefault("cache_status", "HIT")
+                    payload.setdefault("snapshot_key", cache_key)
+                    payload["cache_age_seconds"] = int(age)
+                    return payload
+            performance_metrics.record_fuel_cache_miss()
+
+        result = await self._fetch_fuel_data_live(
+            tenant_code=tenant_code,
+            data_inicial=data_inicial,
+            data_final=data_final,
+            webposto_api_key=webposto_api_key,
+        )
+        if result and store:
+            store.save(
+                cache_key,
+                {
+                    "lastUpdated": utc_now_iso(),
+                    "fuel_data": {
+                        **result,
+                        "tenant_id": tenant_code,
+                        "period_start": data_inicial,
+                        "period_end": data_final,
+                        "fetched_at": utc_now_iso(),
+                        "cache_status": "MISS",
+                        "snapshot_key": cache_key,
+                        "source_endpoint": "/api/v1/sales/fuel-summary",
+                    },
+                },
+            )
+        return result
+
+    async def _fetch_fuel_data_live(
+        self,
+        tenant_code: str,
+        data_inicial: str,
+        data_final: str,
+        webposto_api_key: str | None = None,
+    ) -> Optional[Dict[str, Any]]:
+        """Busca live sem cache."""
         try:
             from src.gateway.webposto_client import WebPostoClient
             from src.services.network_financial_overview_service import NetworkFinancialOverviewService
@@ -200,7 +287,16 @@ class FuelRevenueDetector(BaseDetector):
 
             if not current_rows and not prev_rows:
                 self.log("fuel_data_fetch", {"status": "empty", "tenant": tenant_code})
-                return None
+                return {
+                    "current_period": {"revenue": 0.0},
+                    "previous_period": {"revenue": 0.0},
+                    "product_comparisons": [],
+                    "data_quality": 0.50,
+                    "comparison_validity": 0.50,
+                    "period_adequacy": 0.85 if period_days >= self.MIN_DAYS_DATA else 0.50,
+                    "source_endpoints": ["/api/v1/sales/fuel-summary"],
+                    "fetch_status": "empty_rows",
+                }
 
             def aggregate_by_product(rows: list) -> dict[str, float]:
                 totals: dict[str, float] = {}

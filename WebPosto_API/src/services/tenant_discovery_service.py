@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from src.utils.utc_datetime import utc_now_iso
 from hashlib import sha256
 from typing import Any
 
@@ -11,6 +12,10 @@ import httpx
 from src.core.config import load_core_config
 from src.core.logger import get_logger, log_structured
 from src.core.webposto_credentials import WebPostoCredential, list_webposto_credentials
+from src.services.performance.performance_metrics import performance_metrics
+from src.services.snapshot_store import SnapshotStore
+
+TENANT_REGISTRY_TTL_SECONDS = 3600
 
 
 @dataclass(frozen=True)
@@ -38,6 +43,11 @@ class TenantDiscoveryService:
     def __init__(self) -> None:
         self.logger = get_logger(__name__)
         self._config = load_core_config()
+        self._registry_store = SnapshotStore("snapshots/tenant_registry", TENANT_REGISTRY_TTL_SECONDS)
+
+    @staticmethod
+    def _registry_key() -> str:
+        return "tenant_registry:official_credentials"
 
     @staticmethod
     def _fingerprint(api_key: str) -> str:
@@ -99,6 +109,47 @@ class TenantDiscoveryService:
         self,
         *,
         empresa_codigo_filter: int | None = None,
+        force_refresh: bool = False,
+    ) -> TenantDiscoveryResult:
+        cache_key = self._registry_key()
+        if not force_refresh and empresa_codigo_filter is None:
+            cached, expired = self._registry_store.load_stale(cache_key)
+            if cached and not expired:
+                performance_metrics.record_tenant_registry_hit()
+                payload = cached.get("result") or {}
+                return TenantDiscoveryResult(
+                    credentials_detected=int(payload.get("credentials_detected") or 0),
+                    tenants_discovered=[
+                        DiscoveredTenant(**item) for item in payload.get("tenants_discovered") or []
+                    ],
+                    tenants_failed=[
+                        DiscoveredTenant(**item) for item in payload.get("tenants_failed") or []
+                    ],
+                    limitations=list(payload.get("limitations") or []),
+                )
+
+        performance_metrics.record_tenant_registry_miss()
+        result = await self._discover_tenants_live(empresa_codigo_filter=empresa_codigo_filter)
+
+        if empresa_codigo_filter is None:
+            self._registry_store.save(
+                cache_key,
+                {
+                    "lastUpdated": utc_now_iso(),
+                    "result": {
+                        "credentials_detected": result.credentials_detected,
+                        "tenants_discovered": [t.__dict__ for t in result.tenants_discovered],
+                        "tenants_failed": [t.__dict__ for t in result.tenants_failed],
+                        "limitations": result.limitations,
+                    },
+                },
+            )
+        return result
+
+    async def _discover_tenants_live(
+        self,
+        *,
+        empresa_codigo_filter: int | None = None,
     ) -> TenantDiscoveryResult:
         credentials = list_webposto_credentials()
         result = TenantDiscoveryResult(credentials_detected=len(credentials))
@@ -110,6 +161,7 @@ class TenantDiscoveryService:
         seen_empresa: set[int] = set()
 
         for credential in credentials:
+            performance_metrics.record_empresas_request()
             rows, error = await self._fetch_empresas_for_credential(credential)
             fingerprint = self._fingerprint(credential.api_key)
 
