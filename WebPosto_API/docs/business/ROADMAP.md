@@ -85,6 +85,13 @@ O LOGOS passa a ser uma **Decision Execution Platform** — um sistema que não 
 ---
 
 ### FASE 4: EXECUTAR ▶️ (CURRENT)
+
+#### PERFORMANCE-01 — Fast Daily Analysis Loop ✅ (2026-07-04)
+- Home imediata (~3 ms) + refresh background
+- Fuel cache isolado; concurrency 3 medida
+- Single-flight atômico por scope
+- Evidência: `docs/runtime/PERFORMANCE_01_RUNTIME_REPORT.md`
+
 **O proprietário executa e o LOGOS acompanha.**
 
 | Sprint | Status | Entregáveis |

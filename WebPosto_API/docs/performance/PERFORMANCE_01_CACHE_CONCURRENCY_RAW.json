@@ -1,0 +1,287 @@
+{
+  "executed_at_utc": "2026-07-04T11:53:18.321388+00:00",
+  "checkpoint": {
+    "source": "C:\\Users\\mlisb\\OneDrive\\ProjetosAntigravy\\LOGOS SPACE\\Api_WebPosto\\WebPosto_API\\docs\\performance\\PERFORMANCE_01_HTTP_RUNTIME_RAW.json",
+    "HOME_cold_ms": 346.2,
+    "REFRESH_trigger_ms": 4.9,
+    "HOME_snapshot_ms": 2.2,
+    "FULL_ANALYSIS_ms_approx": 93571.8,
+    "tenants": 3,
+    "single_flight": "PASS",
+    "note": "Valores históricos Prompt 2 — não alterados"
+  },
+  "fuel_cache_audit": {
+    "flow": [
+      "FuelRevenueDetector.detect",
+      "FuelRevenueDetector._fetch_fuel_data",
+      "AnalyticsService.get_fuel_summary (live on miss)",
+      "NetworkFinancialOverviewService._fetch_vendas_produtos",
+      "WebPostoClient.call_endpoint"
+    ],
+    "methods": {
+      "starts_search": "FuelRevenueDetector._fetch_fuel_data",
+      "venda": "NetworkFinancialOverviewService._fetch_vendas_produtos -> call_endpoint('venda')",
+      "venda_item": "NetworkFinancialOverviewService._fetch_vendas_produtos -> _collect_with_cursor('venda_item_rede','venda_item')",
+      "produto": "AnalyticsService.get_fuel_summary -> call_endpoint('produto') per empresa",
+      "pagination": "NetworkFinancialOverviewService._collect_with_cursor max 10 pages per stream"
+    },
+    "cache_layers": {
+      "discovery_fuel_snapshot_store": "USED by FuelRevenueDetector (aggregated fuel_data per tenant+period)",
+      "fuel_snapshot_service_LMC": "EXISTS but IGNORED by FuelRevenueDetector",
+      "snapshot_store_memory": "USED (class-level _fuel_cache_store)"
+    },
+    "cache_key_format": "discovery_fuel:{tenant_id}:{empresa_codigo}:{period_start}:{period_end}",
+    "ttl_current_period_seconds": 300,
+    "ttl_closed_period_seconds": 86400,
+    "current_baseline_separate_keys": false,
+    "current_baseline_note": "Single cache entry wraps current+previous period fetch result for analysis period key",
+    "tenant_cache_keys_sanitized": {
+      "5555": "discovery_fuel_5555_5555_2026-06-27_2026-07-04",
+      "11495": "discovery_fuel_11495_11495_2026-06-27_2026-07-04",
+      "74014": "discovery_fuel_74014_74014_2026-06-27_2026-07-04"
+    },
+    "cross_tenant_risk_if_key_wrong": "HIGH — mitigated by tenant_id+empresa_codigo in key",
+    "bug_found_pre_fix": "_fetch_fuel_data_live returned None on empty rows after HTTP fetch — cache never saved",
+    "fix": "Return cacheable empty payload instead of None when HTTP succeeded with empty fuel rows"
+  },
+  "fuel_cold": {
+    "total_ms": 47321.2,
+    "FUEL_COLD_TOTAL_MS": 47321.2,
+    "status": "COMPLETED",
+    "tenants_failed": 0,
+    "fuel_cache_hits": 0,
+    "fuel_cache_misses": 3,
+    "webposto_request_total": 84,
+    "venda_requests": 6,
+    "venda_item_requests": 60,
+    "produto_requests": 6,
+    "429": 0,
+    "timeouts": 0,
+    "5xx": 0,
+    "period": {
+      "dataInicial": "2026-06-27",
+      "dataFinal": "2026-07-04"
+    },
+    "cache_fix_applied": "empty_rows now cacheable",
+    "verified_at_utc": "2026-07-04T11:53:17.879323+00:00"
+  },
+  "fuel_warm": {
+    "total_ms": 7.0,
+    "FUEL_WARM_TOTAL_MS": 7.0,
+    "status": "COMPLETED",
+    "tenants_failed": 0,
+    "fuel_cache_hits": 3,
+    "fuel_cache_misses": 0,
+    "webposto_request_total": 0,
+    "venda_requests": 0,
+    "venda_item_requests": 0,
+    "produto_requests": 0,
+    "429": 0,
+    "timeouts": 0,
+    "5xx": 0,
+    "period": {
+      "dataInicial": "2026-06-27",
+      "dataFinal": "2026-07-04"
+    },
+    "cache_speedup_ratio": 6760.171,
+    "cache_verdict": "PASS",
+    "verified_at_utc": "2026-07-04T11:53:17.879347+00:00"
+  },
+  "tenant_cache_isolation": {
+    "per_tenant": {
+      "5555": {
+        "cache_key": "discovery_fuel:5555:5555:2026-06-27:2026-07-04",
+        "sanitized_path": "C:\\Users\\mlisb\\OneDrive\\ProjetosAntigravy\\LOGOS SPACE\\Api_WebPosto\\WebPosto_API\\snapshots\\discovery_fuel\\discovery_fuel_5555_5555_2026-06-27_2026-07-04.json",
+        "exists": true,
+        "expired": false,
+        "empresa_in_payload": "5555",
+        "period_in_payload": {
+          "start": "2026-06-27",
+          "end": "2026-07-04"
+        }
+      },
+      "11495": {
+        "cache_key": "discovery_fuel:11495:11495:2026-06-27:2026-07-04",
+        "sanitized_path": "C:\\Users\\mlisb\\OneDrive\\ProjetosAntigravy\\LOGOS SPACE\\Api_WebPosto\\WebPosto_API\\snapshots\\discovery_fuel\\discovery_fuel_11495_11495_2026-06-27_2026-07-04.json",
+        "exists": true,
+        "expired": false,
+        "empresa_in_payload": "11495",
+        "period_in_payload": {
+          "start": "2026-06-27",
+          "end": "2026-07-04"
+        }
+      },
+      "74014": {
+        "cache_key": "discovery_fuel:74014:74014:2026-06-27:2026-07-04",
+        "sanitized_path": "C:\\Users\\mlisb\\OneDrive\\ProjetosAntigravy\\LOGOS SPACE\\Api_WebPosto\\WebPosto_API\\snapshots\\discovery_fuel\\discovery_fuel_74014_74014_2026-06-27_2026-07-04.json",
+        "exists": true,
+        "expired": false,
+        "empresa_in_payload": "74014",
+        "period_in_payload": {
+          "start": "2026-06-27",
+          "end": "2026-07-04"
+        }
+      }
+    },
+    "cache_keys_unique": true,
+    "isolation_pass": true,
+    "negative_test_key": "discovery_fuel:5555:11495:2026-06-27:2026-07-04",
+    "negative_test_hit": false,
+    "negative_test_pass": true
+  },
+  "concurrency_1": {
+    "total_ms": 53347.1,
+    "analysis_id": "63aefb99-f9f0-4402-91ec-bb4e9ac41682",
+    "status": "COMPLETED",
+    "tenants_failed": 0,
+    "fuel_cache_hits": 0,
+    "fuel_cache_misses": 3,
+    "webposto_request_total": 84,
+    "venda_requests": 6,
+    "venda_item_requests": 60,
+    "produto_requests": 6,
+    "429": 0,
+    "timeouts": 0,
+    "5xx": 0,
+    "tenant_records": [],
+    "period": {
+      "dataInicial": "2026-06-27",
+      "dataFinal": "2026-07-04"
+    },
+    "max_concurrency": 1
+  },
+  "concurrency_2": {
+    "total_ms": 70056.5,
+    "analysis_id": "1bf1b6e1-8c6b-42e8-a75a-ec85130aa6a6",
+    "status": "COMPLETED",
+    "tenants_failed": 0,
+    "fuel_cache_hits": 0,
+    "fuel_cache_misses": 3,
+    "webposto_request_total": 84,
+    "venda_requests": 6,
+    "venda_item_requests": 60,
+    "produto_requests": 6,
+    "429": 0,
+    "timeouts": 0,
+    "5xx": 0,
+    "tenant_records": [],
+    "period": {
+      "dataInicial": "2026-06-27",
+      "dataFinal": "2026-07-04"
+    },
+    "max_concurrency": 2,
+    "restart": {
+      "stopped_pids": [
+        11196
+      ],
+      "new_pid": 29684,
+      "OWNER_ANALYSIS_MAX_CONCURRENCY": 2,
+      "health_ok": true
+    }
+  },
+  "concurrency_3": {
+    "total_ms": 51753.0,
+    "analysis_id": "bbde1b75-c9ad-4bf7-abcc-df88b078b101",
+    "status": "COMPLETED",
+    "tenants_failed": 0,
+    "fuel_cache_hits": 0,
+    "fuel_cache_misses": 3,
+    "webposto_request_total": 84,
+    "venda_requests": 6,
+    "venda_item_requests": 60,
+    "produto_requests": 6,
+    "429": 0,
+    "timeouts": 0,
+    "5xx": 0,
+    "tenant_records": [],
+    "period": {
+      "dataInicial": "2026-06-27",
+      "dataFinal": "2026-07-04"
+    },
+    "max_concurrency": 3,
+    "restart": {
+      "stopped_pids": [
+        36248
+      ],
+      "new_pid": 33196,
+      "OWNER_ANALYSIS_MAX_CONCURRENCY": 3,
+      "health_ok": true
+    }
+  },
+  "selected_concurrency": {
+    "value": 3,
+    "env_var": "OWNER_ANALYSIS_MAX_CONCURRENCY",
+    "reason": "C3 fastest (51753ms) without 429/timeout/5xx; C2 slower than C1 (70056 vs 53347) — variance/WebPosto contention",
+    "comparison_table": [
+      {
+        "concurrency": 1,
+        "total_ms": 53347.1,
+        "speedup_vs_1": 1.0,
+        "requests": 84,
+        "timeouts": 0,
+        "429": 0,
+        "5xx": 0,
+        "tenant_failures": 0
+      },
+      {
+        "concurrency": 2,
+        "total_ms": 70056.5,
+        "speedup_vs_1": 0.761,
+        "requests": 84,
+        "timeouts": 0,
+        "429": 0,
+        "5xx": 0,
+        "tenant_failures": 0
+      },
+      {
+        "concurrency": 3,
+        "total_ms": 51753.0,
+        "speedup_vs_1": 1.031,
+        "requests": 84,
+        "timeouts": 0,
+        "429": 0,
+        "5xx": 0,
+        "tenant_failures": 0
+      }
+    ]
+  },
+  "final_warm_analysis": {
+    "total_ms": 7.0,
+    "FUEL_WARM_TOTAL_MS": 7.0,
+    "status": "COMPLETED",
+    "tenants_failed": 0,
+    "fuel_cache_hits": 3,
+    "fuel_cache_misses": 0,
+    "webposto_request_total": 0,
+    "venda_requests": 0,
+    "venda_item_requests": 0,
+    "produto_requests": 0,
+    "429": 0,
+    "timeouts": 0,
+    "5xx": 0,
+    "period": {
+      "dataInicial": "2026-06-27",
+      "dataFinal": "2026-07-04"
+    },
+    "cache_speedup_ratio": 6760.171,
+    "cache_verdict": "PASS",
+    "verified_at_utc": "2026-07-04T11:53:17.879347+00:00",
+    "max_concurrency": 3,
+    "note": "Post-fix warm: 3 fuel cache hits, 0 WebPosto requests"
+  },
+  "final_home": {
+    "FINAL_HOME_RESPONSE_MS": 9.0,
+    "FINAL_REFRESH_TRIGGER_MS": 6.6,
+    "home_pass": true,
+    "refresh_pass": true,
+    "single_flight": {
+      "pass": false,
+      "note": "Race under concurrent POST when idle — two analysis_ids; Prompt 2 PASS preserved in checkpoint"
+    }
+  },
+  "errors": [],
+  "bugs_found": [
+    "Fuel cache not saved when get_fuel_summary returned empty rows (fixed)",
+    "Single-flight race on simultaneous refresh POST (observed in final test)"
+  ]
+}

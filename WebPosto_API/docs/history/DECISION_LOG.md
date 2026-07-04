@@ -11,7 +11,25 @@
 
 ---
 
-## ADR-022: Decision Execution Platform
+## ADR-023: Fast Daily Analysis Loop + Single-Flight por Scope
+**Status:** ✅ ACCEPTED  
+**Data:** 2026-07-04  
+**Sprint:** PERFORMANCE-01
+
+### Contexto
+Home bloqueava ~205s na análise multi-tenant. Prompt 3 introduziu cache/concurrency; single-flight falhou sob POST concurrente (2 analysis_id).
+
+### Decisão
+- Snapshot imediato + refresh background (`OwnerAnalysisSnapshotService`)
+- Fuel cache em `snapshots/discovery_fuel` com chave tenant+empresa+período
+- `OWNER_ANALYSIS_MAX_CONCURRENCY=3` por evidência runtime
+- Single-flight: lock `asyncio` por scope + reserva atômica antes de `create_task`
+
+### Evidência
+- `docs/runtime/PERFORMANCE_01_RUNTIME_REPORT.md`
+- `docs/performance/PERFORMANCE_01_SINGLE_FLIGHT_RAW.json`
+
+---
 **Status:** 🔄 PROPOSED  
 **Data:** 2026-06-29  
 **Sprint:** EXEC-01

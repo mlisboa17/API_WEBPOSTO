@@ -19,9 +19,14 @@
 ├── 🎯 START HERE
 │   ├── INDEX.md (você está aqui)
 │   ├── ../00_LOGOS_CONTEXT_PACK.md (contexto essencial)
-│   └── business/PRODUCT_CONSTITUTION.md (princípios)
+│   ├── business/PRODUCT_CONSTITUTION.md (princípios)
+│   └── runtime/PERFORMANCE_01_RUNTIME_REPORT.md (PERFORMANCE-01 final)
 │
-├── 💼 business/ (Product & Business)
+├── 📊 runtime/ (Runtime Evidence)
+│   └── PERFORMANCE_01_RUNTIME_REPORT.md
+│
+├── ✅ validation/
+│   └── PERFORMANCE_01_VALIDATION.md
 │   ├── PRODUCT_CONSTITUTION.md
 │   ├── OWNER_OPERATING_SYSTEM.md
 │   ├── OWNER_ACTION_CENTER.md

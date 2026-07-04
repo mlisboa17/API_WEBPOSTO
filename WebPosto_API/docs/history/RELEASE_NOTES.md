@@ -25,6 +25,24 @@ Formato: `PHASE.MAJOR.MINOR` (ex: `3.3.0` = FASE 3, PRODUCT-03, base)
 
 ## 🚀 Releases
 
+### v3.4.0 — Fast Daily Analysis Loop (PERFORMANCE-01)
+**Data:** 2026-07-04  
+**Branch:** `feature/build-03-trust-home`
+
+**Performance (runtime comprovado):**
+- Home GET `/top5`: 3.3 ms
+- Refresh trigger: 491 ms
+- Análise cold: 47.3 s (concurrency 3)
+- Análise warm: 7 ms (fuel cache, 0 requests WebPosto)
+
+**Correções:**
+- Single-flight atômico por scope (`asyncio.Lock`)
+- Fuel cache persiste mesmo com linhas vazias pós-HTTP
+
+**Limitações:** single-flight in-memory (1 worker); C2 mais lento que C1 no teste.
+
+---
+
 ### v4.1.0 — Momento Zero & Executive Experience (UX-01)
 **Data:** 2026-06-29  
 **Branch:** `feature/ux-momento-zero`  

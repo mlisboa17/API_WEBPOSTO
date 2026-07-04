@@ -1,0 +1,138 @@
+{
+  "executed_at_utc": "2026-07-04T13:38:44.003383+00:00",
+  "test_2_posts_same_scope": {
+    "responses": [
+      {
+        "analysis_id": "279a6831-780e-435d-b971-7937dc6cb6ae",
+        "refresh_status": "RUNNING",
+        "already_running": true,
+        "scope_key": "2026-06-27:2026-07-04:all_discovered:FuelRevenueDetector:all",
+        "reason": "manual"
+      },
+      {
+        "analysis_id": "279a6831-780e-435d-b971-7937dc6cb6ae",
+        "refresh_status": "RUNNING",
+        "already_running": true,
+        "scope_key": "2026-06-27:2026-07-04:all_discovered:FuelRevenueDetector:all",
+        "reason": "manual"
+      }
+    ],
+    "unique_analysis_ids": 1,
+    "same_analysis_id": true,
+    "already_running_flags": [
+      true,
+      true
+    ],
+    "pass": true
+  },
+  "test_5_posts_same_scope": {
+    "responses": [
+      {
+        "analysis_id": "279a6831-780e-435d-b971-7937dc6cb6ae",
+        "already_running": true
+      },
+      {
+        "analysis_id": "279a6831-780e-435d-b971-7937dc6cb6ae",
+        "already_running": true
+      },
+      {
+        "analysis_id": "279a6831-780e-435d-b971-7937dc6cb6ae",
+        "already_running": true
+      },
+      {
+        "analysis_id": "279a6831-780e-435d-b971-7937dc6cb6ae",
+        "already_running": true
+      },
+      {
+        "analysis_id": "279a6831-780e-435d-b971-7937dc6cb6ae",
+        "already_running": true
+      }
+    ],
+    "unique_analysis_ids": 1,
+    "new_jobs_created": 0,
+    "pass": true
+  },
+  "test_different_scopes": {
+    "scope_all": {
+      "analysis_id": "30125804-d4e0-4565-9788-ae6815453186",
+      "scope_key": "2026-06-13:2026-06-20:all_discovered:FuelRevenueDetector:all"
+    },
+    "scope_empresa": {
+      "analysis_id": "711cfc92-436e-4a37-8b8e-b115b39a8442",
+      "scope_key": "2026-06-13:2026-06-20:all_discovered:FuelRevenueDetector:5555"
+    },
+    "different_analysis_ids": true,
+    "pass": true
+  },
+  "fast_path": {
+    "HOME_RESPONSE_MS": 3.3,
+    "REFRESH_TRIGGER_MS": 491.0,
+    "POST_REFRESH_HOME_MS": 23.2,
+    "home": {
+      "freshness": "FRESH",
+      "refresh_status": "COMPLETED",
+      "analysis_id": "279a6831-780e-435d-b971-7937dc6cb6ae",
+      "scope_key": "2026-06-27:2026-07-04:all_discovered:FuelRevenueDetector:all",
+      "tenant_count": 3,
+      "tenant_ids": [
+        "5555",
+        "11495",
+        "74014"
+      ],
+      "has_analysis_proof": true
+    },
+    "refresh": {
+      "analysis_id": "86611273-1a91-4e86-b227-fdc04225076b",
+      "already_running": false,
+      "scope_key": "2026-06-27:2026-07-04:all_discovered:FuelRevenueDetector:all"
+    },
+    "post_refresh_home": {
+      "freshness": "STALE_REFRESHING",
+      "refresh_status": "RUNNING",
+      "analysis_id": "86611273-1a91-4e86-b227-fdc04225076b",
+      "scope_key": "2026-06-27:2026-07-04:all_discovered:FuelRevenueDetector:all",
+      "tenant_count": 3,
+      "tenant_ids": [
+        "5555",
+        "11495",
+        "74014"
+      ],
+      "has_analysis_proof": true
+    },
+    "single_flight_recheck": {
+      "responses": [
+        {
+          "analysis_id": "86611273-1a91-4e86-b227-fdc04225076b",
+          "refresh_status": "RUNNING",
+          "already_running": true,
+          "scope_key": "2026-06-27:2026-07-04:all_discovered:FuelRevenueDetector:all",
+          "reason": "manual"
+        },
+        {
+          "analysis_id": "86611273-1a91-4e86-b227-fdc04225076b",
+          "refresh_status": "RUNNING",
+          "already_running": true,
+          "scope_key": "2026-06-27:2026-07-04:all_discovered:FuelRevenueDetector:all",
+          "reason": "manual"
+        }
+      ],
+      "unique_ids": 1,
+      "pass": true
+    }
+  },
+  "errors": [],
+  "seed_analysis_id": "279a6831-780e-435d-b971-7937dc6cb6ae",
+  "seed_terminal_status": "COMPLETED",
+  "metrics_after_tests": {
+    "duplicate_analysis_count": 12,
+    "analysis_trigger_count": 344
+  },
+  "acceptance": {
+    "single_flight_2": true,
+    "single_flight_5": true,
+    "different_scopes": true,
+    "single_flight_recheck": true,
+    "home_under_1s": true,
+    "refresh_under_1s": true
+  }
+}

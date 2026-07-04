@@ -293,6 +293,21 @@ O Discovery Engine analisa **todos os tenants descobertos e validados** via `/IN
 
 ---
 
-**[CURRENT_STATE — LOGOS Decision Execution Platform]**
+## PERFORMANCE-01 — Fast Daily Analysis Loop (2026-07-04)
 
-*Phase: 3/7 (DECIDIR→EXECUTAR) | Sprint: EXEC-01 | Status: IMPLEMENTING | Next: API + Frontend*
+**Status:** ✅ COMPLETE (PCG 95/100)
+
+| Capacidade | Runtime |
+|---|---|
+| GET `/top5` | 3.3 ms |
+| POST `/analysis/refresh` | 491 ms trigger |
+| Análise cold | 47.3 s (C3) |
+| Análise warm | 7 ms (fuel cache) |
+| Single-flight | PASS (lock por scope) |
+| Tenants | 5555, 11495, 74014 |
+
+Evidência: `docs/runtime/PERFORMANCE_01_RUNTIME_REPORT.md`
+
+---
+
+**[CURRENT_STATE — LOGOS Decision Execution Platform]**

@@ -674,6 +674,19 @@ Target: ≥ 95/100
 - DISCOVERY_FINDINGS.md
 - VALIDATION_01A_REPORT.md
 
+### PERFORMANCE-01 (2026-07-04)
+**Branch:** `feature/build-03-trust-home`  
+**Status:** ✅ COMPLETE
+
+**Entregáveis:**
+- Fast Daily Analysis Loop (snapshot + background refresh)
+- Fuel cache `discovery_fuel` isolado por tenant/empresa
+- Concurrency medida (`OWNER_ANALYSIS_MAX_CONCURRENCY=3`)
+- Single-flight atômico por scope
+- Evidência: `docs/runtime/PERFORMANCE_01_RUNTIME_REPORT.md`
+
+**Métricas:** baseline ~205s → cold 47.3s → warm 7ms; Home 3.3ms
+
 ---
 
 ## 🔗 Referências
