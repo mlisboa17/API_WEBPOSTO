@@ -45,6 +45,9 @@ from src.interfaces.http.routes import commercial_learning
 from src.interfaces.http.routes import statements
 from src.interfaces.http.routes import data_trust_baseline
 from src.interfaces.http.routes import prestacao_contas
+from src.interfaces.http.routes import cash_reconciliation
+from src.interfaces.http.routes import decisions
+from src.interfaces.http.routes import executive_follow_up
 from src.interfaces.http.routes import financial_intelligence
 from src.interfaces.http.routes import admin_circuit_breaker
 from src.interfaces.http.routes import financial_snapshot_health
@@ -131,6 +134,10 @@ def create_app() -> FastAPI:
     app.include_router(statements.router)
     app.include_router(data_trust_baseline.router)
     app.include_router(prestacao_contas.router)
+    app.include_router(cash_reconciliation.router)
+    app.include_router(decisions.router)
+    app.include_router(decisions.review_lookup_router)
+    app.include_router(executive_follow_up.router)
     app.include_router(financial_intelligence.router)
     app.include_router(admin_circuit_breaker.router)
     app.include_router(financial_snapshot_health.router)
