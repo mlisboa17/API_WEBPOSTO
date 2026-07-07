@@ -3147,3 +3147,200 @@ body:not(.area-admin) .motor-strip-host {
 @media (max-width: 640px) {
   .exec-kpi-grid { grid-template-columns: 1fr; }
 }
+
+.recon-nature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.recon-nature-card .recon-dl {
+  display: grid;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.recon-nature-card dt {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.recon-progress {
+  font-weight: 600;
+}
+
+.text-crit {
+  color: #ef4444;
+}
+
+/* DIR-01 — Diretoria decisões */
+.dir-home__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.dir-decision-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.dir-decision-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  background: var(--panel);
+}
+
+.dir-decision-card__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 12px 0;
+  font-size: 0.9rem;
+}
+
+.dir-decision-card__meta dt {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.dir-detail__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.dir-detail__kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.dir-detail__kpis dt {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.dir-block {
+  margin: 20px 0;
+}
+
+.dir-prestacao-disclaimer {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--warning, #f59e0b);
+  background: rgba(245, 158, 11, 0.08);
+  color: var(--text-muted, #cbd5e1);
+  font-size: 0.9rem;
+}
+
+.dir-review-block {
+  margin-top: 16px;
+  border-left: 3px solid var(--accent, #3b82f6);
+}
+
+.dir-review-block--done {
+  border-left-color: var(--success, #22c55e);
+}
+
+.dir-review-cta {
+  margin-top: 12px;
+}
+
+.dir-review-success {
+  color: var(--success, #22c55e);
+  margin: 8px 0;
+}
+
+.dir-review-error {
+  color: var(--danger, #ef4444);
+  margin: 8px 0;
+}
+
+.dir-review-note {
+  font-size: 0.85rem;
+}
+
+.dir-followup-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.dir-followup-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.dir-followup-card__status {
+  font-size: 0.8rem;
+  color: var(--warning, #f59e0b);
+}
+
+.dir-evidence-summary {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.dir-evidence-table {
+  font-size: 0.85rem;
+}
+
+.dir-match {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.dir-match--exact { background: #14532d; color: #bbf7d0; }
+.dir-match--probable { background: #713f12; color: #fde68a; }
+.dir-match--ambiguous { background: #7c2d12; color: #fed7aa; }
+.dir-match--none { background: #450a0a; color: #fecaca; }
+.dir-match--unknown { background: #334155; color: #cbd5e1; }
+
+.dir-match-reason,
+.dir-item-limits {
+  margin-top: 4px;
+  font-size: 0.78rem;
+}
+
+.dir-item-limits {
+  padding-left: 16px;
+  color: var(--muted);
+}
+
+.dir-actions__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.dir-limitations {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .dir-decision-grid {
+    grid-template-columns: 1fr;
+  }
+  .table-scroll {
+    overflow-x: auto;
+  }
+}

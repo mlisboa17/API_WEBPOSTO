@@ -14,6 +14,9 @@ export const NAV_AREAS = [
 
     tabs: [
 
+      { id: "diretoria", label: "Decisões", view: "ownerDiretoriaHome" },
+      { id: "acompanhamento", label: "Em acompanhamento", view: "executiveFollowUp" },
+
       { id: "presidente", label: "Presidente", view: "presidentDashboard" },
 
       { id: "resumo", label: "Resumo", view: "executiveWorkspace" },
@@ -21,6 +24,8 @@ export const NAV_AREAS = [
       { id: "indicadores", label: "Indicadores", view: "executiveScorecard" },
 
       { id: "alertas", label: "Alertas", view: "actionCenter" },
+
+      { id: "conferencia", label: "Conferência", view: "cashReconciliation" },
 
     ],
 

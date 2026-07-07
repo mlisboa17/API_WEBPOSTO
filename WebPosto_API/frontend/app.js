@@ -52,6 +52,14 @@ import {
   postExecutiveDecisionRefresh,
   fetchActionCenterCockpit,
   postActionCenterRefresh,
+  fetchCashReconciliationSummary,
+  fetchOwnerTop5Decisions,
+  fetchDecisionEvidence,
+  fetchDecisionReviewRequests,
+  postDecisionReviewRequest,
+  fetchExecutiveFollowUps,
+  fetchExecutiveFollowUpDetail,
+  triggerOwnerAnalysisRefresh,
   fetchExecutiveCopilotCockpit,
   postExecutiveCopilotRefresh,
   postExecutiveCopilotAsk,
@@ -101,6 +109,11 @@ import { renderExecutiveScorecard } from "./pages/executiveScorecard.js";
 import { renderCorporateHub } from "./pages/corporateHub.js";
 import { renderExecutiveDecision } from "./pages/executiveDecision.js";
 import { renderActionCenter } from "./pages/actionCenter.js";
+import { renderCashReconciliation } from "./pages/cashReconciliation.js";
+import { renderOwnerDiretoriaHome } from "./pages/ownerDiretoriaHome.js";
+import { renderExecutiveFollowUp } from "./pages/executiveFollowUp.js";
+import { renderExecutiveFollowUpDetail } from "./pages/executiveFollowUpDetail.js";
+import { renderDecisionDetail } from "./pages/decisionDetail.js";
 import { renderExecutiveCopilot } from "./pages/executiveCopilot.js";
 import { renderRecommendations } from "./pages/recommendations.js";
 import { renderLearning } from "./pages/learning.js";
@@ -235,6 +248,10 @@ const VIEW_ALIASES = {
   decisionengine: "executiveDecision",
   "action-center": "actionCenter",
   actioncenter: "actionCenter",
+  "cash-reconciliation": "cashReconciliation",
+  cashreconciliation: "cashReconciliation",
+  conferencia: "cashReconciliation",
+  "conferencia-financeira": "cashReconciliation",
   "executive-copilot": "executiveCopilot",
   executivecopilot: "executiveCopilot",
   copilot: "executiveCopilot",
@@ -282,6 +299,16 @@ const VIEW_ALIASES = {
   executiveworkspace: "executiveWorkspace",
   workspace: "executiveWorkspace",
   home: "executiveWorkspace",
+  diretoria: "ownerDiretoriaHome",
+  "owner-diretoria": "ownerDiretoriaHome",
+  ownerdiretoriahome: "ownerDiretoriaHome",
+  "executive-follow-up": "executiveFollowUp",
+  executivefollowup: "executiveFollowUp",
+  acompanhamento: "executiveFollowUp",
+  "executive-follow-up-detail": "executiveFollowUpDetail",
+  executivefollowupdetail: "executiveFollowUpDetail",
+  "decision-detail": "decisionDetail",
+  decisiondetail: "decisionDetail",
   financialMonitoring: "financialOperationsCenter",
   "financial-monitoring": "financialOperationsCenter",
   financialmonitoring: "financialOperationsCenter",
@@ -320,6 +347,11 @@ const VIEW_URL_NAMES = {
   corporateHub: "corporate-hub",
   executiveDecision: "executive-decision",
   actionCenter: "action-center",
+  cashReconciliation: "cash-reconciliation",
+  ownerDiretoriaHome: "owner-diretoria",
+  executiveFollowUp: "executive-follow-up",
+  executiveFollowUpDetail: "executive-follow-up-detail",
+  decisionDetail: "decision-detail",
   executiveCopilot: "executive-copilot",
   recommendations: "recommendations",
   learning: "learning",
@@ -487,6 +519,8 @@ function fromUrl() {
     pageSales: Number(query.get("pageSales") || 1),
     pageFuels: Number(query.get("pageFuels") || 1),
     pageStock: Number(query.get("pageStock") || 1),
+    decisionId: query.get("decisionId") || "",
+    followUpRequestId: query.get("followUpRequestId") || "",
     filters: {
       dataInicial: query.get("dataInicial") || startDate,
       dataFinal: query.get("dataFinal") || end,
@@ -523,6 +557,12 @@ function writeUrl(state) {
 
   if (state.hubTab && HUB_VIEWS.has(state.view)) {
     query.set("hubTab", state.hubTab);
+  }
+  if (state.decisionId) {
+    query.set("decisionId", state.decisionId);
+  }
+  if (state.followUpRequestId) {
+    query.set("followUpRequestId", state.followUpRequestId);
   }
 
   Object.entries(state.filters).forEach(([key, value]) => {
@@ -615,6 +655,12 @@ const state = {
   },
 };
 
+const decisionReviewUi = {
+  loading: false,
+  error: null,
+  success: null,
+};
+
 const loadingNode = document.querySelector("#loading");
 const errorNode = document.querySelector("#error");
 const presidentDashboardNode = document.querySelector("#presidentDashboardView");
@@ -639,6 +685,11 @@ const executiveScorecardNode = document.querySelector("#executiveScorecardView")
 const corporateHubNode = document.querySelector("#corporateHubView");
 const executiveDecisionNode = document.querySelector("#executiveDecisionView");
 const actionCenterNode = document.querySelector("#actionCenterView");
+const cashReconciliationNode = document.querySelector("#cashReconciliationView");
+const ownerDiretoriaHomeNode = document.querySelector("#ownerDiretoriaHomeView");
+const executiveFollowUpNode = document.querySelector("#executiveFollowUpView");
+const executiveFollowUpDetailNode = document.querySelector("#executiveFollowUpDetailView");
+const decisionDetailNode = document.querySelector("#decisionDetailView");
 const executiveCopilotNode = document.querySelector("#executiveCopilotView");
 const recommendationsNode = document.querySelector("#recommendationsView");
 const learningNode = document.querySelector("#learningView");
@@ -692,6 +743,16 @@ function setView(view, options = {}) {
   if (options.adminSection) {
     state.adminSection = options.adminSection;
   }
+  if (options.decisionId !== undefined) {
+    state.decisionId = options.decisionId;
+  } else if (route.view !== "decisionDetail") {
+    state.decisionId = "";
+  }
+  if (options.followUpRequestId !== undefined) {
+    state.followUpRequestId = options.followUpRequestId;
+  } else if (route.view !== "executiveFollowUpDetail") {
+    state.followUpRequestId = "";
+  }
   writeUrl(state);
   mountFilters();
   mountNavigation();
@@ -719,6 +780,11 @@ function setView(view, options = {}) {
   corporateHubNode.classList.toggle("hidden", activeView !== "corporateHub");
   executiveDecisionNode.classList.toggle("hidden", activeView !== "executiveDecision");
   actionCenterNode.classList.toggle("hidden", activeView !== "actionCenter");
+  cashReconciliationNode?.classList.toggle("hidden", activeView !== "cashReconciliation");
+  ownerDiretoriaHomeNode?.classList.toggle("hidden", activeView !== "ownerDiretoriaHome");
+  executiveFollowUpNode?.classList.toggle("hidden", activeView !== "executiveFollowUp");
+  executiveFollowUpDetailNode?.classList.toggle("hidden", activeView !== "executiveFollowUpDetail");
+  decisionDetailNode?.classList.toggle("hidden", activeView !== "decisionDetail");
   executiveCopilotNode.classList.toggle("hidden", activeView !== "executiveCopilot");
   recommendationsNode.classList.toggle("hidden", activeView !== "recommendations");
   learningNode.classList.toggle("hidden", activeView !== "learning");
@@ -795,6 +861,12 @@ function ensureDataDefaults() {
   if (!state.data.corporateHub) state.data.corporateHub = null;
   if (!state.data.executiveDecision) state.data.executiveDecision = null;
   if (!state.data.actionCenter) state.data.actionCenter = null;
+  if (!state.data.cashReconciliation) state.data.cashReconciliation = null;
+  if (!state.data.ownerDiretoriaHome) state.data.ownerDiretoriaHome = null;
+  if (!state.data.decisionDetail) state.data.decisionDetail = null;
+  if (!state.data.decisionReviewRequests) state.data.decisionReviewRequests = null;
+  if (!state.data.executiveFollowUp) state.data.executiveFollowUp = null;
+  if (!state.data.executiveFollowUpDetail) state.data.executiveFollowUpDetail = null;
   if (!state.data.executiveCopilot) state.data.executiveCopilot = null;
   if (!state.data.recommendations) state.data.recommendations = null;
   if (!state.data.learning) state.data.learning = null;
@@ -1321,6 +1393,116 @@ function renderAll() {
     });
   }
 
+  if (activeView === "cashReconciliation") {
+    renderCashReconciliation(cashReconciliationNode, state.data.cashReconciliation, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await refreshAll(true);
+      },
+      companies: state.companies,
+    });
+  }
+
+  if (activeView === "ownerDiretoriaHome") {
+    renderOwnerDiretoriaHome(ownerDiretoriaHomeNode, state.data.ownerDiretoriaHome, state.filters, {
+      onRefresh: async () => {
+        state.cache.clear();
+        await loadOwnerDiretoriaHome(true);
+        renderAll();
+      },
+      onOpenDecision: (decisionId) => {
+        setView("decisionDetail", { decisionId });
+        loadDecisionDetail(decisionId).then(() => renderAll());
+      },
+    });
+  }
+
+  if (activeView === "executiveFollowUp") {
+    renderExecutiveFollowUp(executiveFollowUpNode, state.data.executiveFollowUp, state.filters, {
+      onRefresh: async () => {
+        await loadExecutiveFollowUp(true);
+        renderAll();
+      },
+      onOpenFollowUp: (requestId) => {
+        setView("executiveFollowUpDetail", { followUpRequestId: requestId });
+        loadExecutiveFollowUpDetail(requestId).then(() => renderAll());
+      },
+    });
+  }
+
+  if (activeView === "executiveFollowUpDetail") {
+    renderExecutiveFollowUpDetail(
+      executiveFollowUpDetailNode,
+      state.data.executiveFollowUpDetail,
+      state.filters,
+      {
+        onBack: () => {
+          setView("executiveFollowUp");
+          renderAll();
+        },
+        onRefresh: async () => {
+          if (state.followUpRequestId) {
+            await loadExecutiveFollowUpDetail(state.followUpRequestId, true);
+            renderAll();
+          }
+        },
+        onOpenDecision: (decisionId) => {
+          setView("decisionDetail", { decisionId });
+          loadDecisionDetail(decisionId).then(() => renderAll());
+        },
+      },
+    );
+  }
+
+  if (activeView === "decisionDetail") {
+    renderDecisionDetail(decisionDetailNode, state.data.decisionDetail, state.filters, {
+      decisionId: state.decisionId,
+      reviewRequests: state.data.decisionReviewRequests,
+      reviewLoading: decisionReviewUi.loading,
+      reviewError: decisionReviewUi.error,
+      reviewSuccess: decisionReviewUi.success,
+      onBack: () => {
+        setView("ownerDiretoriaHome");
+        renderAll();
+      },
+      onRefresh: async () => {
+        if (state.decisionId) {
+          decisionReviewUi.error = null;
+          decisionReviewUi.success = null;
+          await loadDecisionDetail(state.decisionId, true);
+          renderAll();
+        }
+      },
+      onRequestReview: async () => {
+        if (!state.decisionId || decisionReviewUi.loading) return;
+        decisionReviewUi.loading = true;
+        decisionReviewUi.error = null;
+        decisionReviewUi.success = null;
+        renderAll();
+        try {
+          const resp = await postDecisionReviewRequest(state.decisionId, {
+            request_type: "NOMINAL_IDENTIFICATION_REVIEW",
+          });
+          if (resp?.success && resp?.data) {
+            decisionReviewUi.success = resp.data.message || "Conferência solicitada";
+            await loadDecisionDetail(state.decisionId, true);
+            await loadExecutiveFollowUp(true);
+          } else {
+            decisionReviewUi.error = "Não foi possível solicitar conferência.";
+          }
+        } catch (error) {
+          decisionReviewUi.error =
+            error?.response?.data?.detail ||
+            error?.message ||
+            "Não foi possível solicitar conferência.";
+        } finally {
+          decisionReviewUi.loading = false;
+          renderAll();
+        }
+      },
+    });
+  }
+
   if (activeView === "executiveCopilot") {
     renderExecutiveCopilot(executiveCopilotNode, state.data.executiveCopilot, state.filters, {
       onRefresh: async () => {
@@ -1767,6 +1949,74 @@ async function loadExecutiveCopilotWithSnapshotFirst(bypassCache = false) {
   } catch (error) {
     console.warn("[executiveCopilot] falha ao carregar cockpit:", error);
     state.data.executiveCopilot = null;
+  }
+}
+
+async function loadCashReconciliationWithSnapshotFirst(bypassCache = false) {
+  try {
+    const payload = await fetchCashReconciliationSummary(state.filters);
+    state.data.cashReconciliation = {
+      data: payload.data,
+      snapshot: payload.snapshot,
+      lastUpdated: new Date().toISOString(),
+    };
+  } catch (error) {
+    console.warn("[cashReconciliation] falha ao carregar conferência:", error);
+    state.data.cashReconciliation = null;
+  }
+}
+
+async function loadOwnerDiretoriaHome(bypassCache = false) {
+  try {
+    const payload = await fetchOwnerTop5Decisions(state.filters);
+    state.data.ownerDiretoriaHome = payload;
+  } catch (error) {
+    console.warn("[ownerDiretoria] falha ao carregar decisões:", error);
+    state.data.ownerDiretoriaHome = null;
+  }
+}
+
+async function loadExecutiveFollowUp(bypassCache = false) {
+  try {
+    const payload = await fetchExecutiveFollowUps();
+    state.data.executiveFollowUp = payload;
+  } catch (error) {
+    console.warn("[executiveFollowUp] falha ao carregar acompanhamento:", error);
+    state.data.executiveFollowUp = null;
+  }
+}
+
+async function loadExecutiveFollowUpDetail(requestId, bypassCache = false) {
+  if (!requestId) {
+    state.data.executiveFollowUpDetail = null;
+    return;
+  }
+  try {
+    const payload = await fetchExecutiveFollowUpDetail(requestId);
+    state.data.executiveFollowUpDetail = payload;
+  } catch (error) {
+    console.warn("[executiveFollowUpDetail] falha ao carregar detalhe:", error);
+    state.data.executiveFollowUpDetail = null;
+  }
+}
+
+async function loadDecisionDetail(decisionId, bypassCache = false) {
+  if (!decisionId) {
+    state.data.decisionDetail = null;
+    state.data.decisionReviewRequests = null;
+    return;
+  }
+  try {
+    const [payload, reviews] = await Promise.all([
+      fetchDecisionEvidence(decisionId),
+      fetchDecisionReviewRequests(decisionId),
+    ]);
+    state.data.decisionDetail = payload;
+    state.data.decisionReviewRequests = reviews;
+  } catch (error) {
+    console.warn("[decisionDetail] falha ao carregar evidências:", error);
+    state.data.decisionDetail = null;
+    state.data.decisionReviewRequests = null;
   }
 }
 
@@ -2749,6 +2999,26 @@ async function refreshAll(bypassCache = false) {
 
     if (state.view === "actionCenter") {
       await loadActionCenterWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "cashReconciliation") {
+      await loadCashReconciliationWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "ownerDiretoriaHome") {
+      await loadOwnerDiretoriaHome(bypassCache);
+    }
+
+    if (state.view === "executiveFollowUp") {
+      await loadExecutiveFollowUp(bypassCache);
+    }
+
+    if (state.view === "executiveFollowUpDetail" && state.followUpRequestId) {
+      await loadExecutiveFollowUpDetail(state.followUpRequestId, bypassCache);
+    }
+
+    if (state.view === "decisionDetail" && state.decisionId) {
+      await loadDecisionDetail(state.decisionId, bypassCache);
     }
 
     if (state.view === "executiveCopilot") {

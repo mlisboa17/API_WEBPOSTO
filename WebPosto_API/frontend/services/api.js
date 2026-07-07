@@ -1461,3 +1461,67 @@ export function fetchFinancialIntelligenceCockpit(filters) {
   });
 }
 
+export async function fetchCashReconciliationSummary(filters) {
+  const raw = await apiClient.get("/api/v1/cash-reconciliation/summary", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  return {
+    data: raw?.data || raw,
+    snapshot: raw?.snapshot,
+  };
+}
+
+export async function fetchOwnerTop5Decisions(filters) {
+  const raw = await apiClient.get("/api/v1/owner-action-center/top5", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  return raw;
+}
+
+export async function fetchDecisionEvidence(decisionId) {
+  const raw = await apiClient.get(`/api/v1/decisions/${encodeURIComponent(decisionId)}/evidence`, {
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  return raw;
+}
+
+export async function fetchDecisionReviewRequests(decisionId) {
+  const raw = await apiClient.get(
+    `/api/v1/decisions/${encodeURIComponent(decisionId)}/review-requests`,
+    { timeout: ANALYTICS_TIMEOUT_MS },
+  );
+  return raw;
+}
+
+export async function postDecisionReviewRequest(decisionId, body = {}) {
+  const raw = await apiClient.post(
+    `/api/v1/decisions/${encodeURIComponent(decisionId)}/review-requests`,
+    body,
+    { timeout: ANALYTICS_TIMEOUT_MS },
+  );
+  return raw;
+}
+
+export async function fetchExecutiveFollowUps(params = {}) {
+  const raw = await apiClient.get("/api/v1/executive/follow-ups", {
+    params,
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  return raw;
+}
+
+export async function fetchExecutiveFollowUpDetail(requestId) {
+  const raw = await apiClient.get(`/api/v1/executive/follow-ups/${encodeURIComponent(requestId)}`, {
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  return raw;
+}
+
+export async function triggerOwnerAnalysisRefresh(filters) {
+  return apiClient.post("/api/v1/owner-action-center/analysis/refresh", null, {
+    params: performanceParams(filters),
+    timeout: 15000,
+  });
+}
