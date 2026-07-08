@@ -59,6 +59,7 @@ class ExecutiveReviewRequest(BaseModel):
     unidentified_amount: float = 0.0
     review_responsible: str | None = None
     review_responsible_id: str | None = None
+    assigned_at: datetime | None = None
     due_date: str | None = None
     resolution_summary: str | None = None
     resolved_at: datetime | None = None

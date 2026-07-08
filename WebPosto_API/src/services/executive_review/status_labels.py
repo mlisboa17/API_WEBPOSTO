@@ -13,6 +13,15 @@ STATUS_EXECUTIVE_LABELS: dict[ReviewRequestStatus, str] = {
     ReviewRequestStatus.CANCELLED: "Cancelado",
 }
 
+STATUS_FINANCIAL_LABELS: dict[ReviewRequestStatus, str] = {
+    ReviewRequestStatus.REQUESTED: "Aguardando análise",
+    ReviewRequestStatus.ASSIGNED: "Atribuído",
+    ReviewRequestStatus.IN_REVIEW: "Em conferência",
+    ReviewRequestStatus.NEEDS_INFORMATION: "Informação necessária",
+    ReviewRequestStatus.COMPLETED: "Conferência concluída",
+    ReviewRequestStatus.CANCELLED: "Cancelado",
+}
+
 REQUEST_TYPE_LABELS: dict[ReviewRequestType, str] = {
     ReviewRequestType.NOMINAL_IDENTIFICATION_REVIEW: "Conferência de identificação nominal",
 }
@@ -31,6 +40,16 @@ def status_label(status: ReviewRequestStatus | str | None) -> str:
     try:
         parsed = ReviewRequestStatus(str(status))
         return STATUS_EXECUTIVE_LABELS.get(parsed, str(status))
+    except ValueError:
+        return str(status or "—")
+
+
+def financial_status_label(status: ReviewRequestStatus | str | None) -> str:
+    if isinstance(status, ReviewRequestStatus):
+        return STATUS_FINANCIAL_LABELS.get(status, str(status.value))
+    try:
+        parsed = ReviewRequestStatus(str(status))
+        return STATUS_FINANCIAL_LABELS.get(parsed, str(status))
     except ValueError:
         return str(status or "—")
 
