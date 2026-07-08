@@ -22,6 +22,12 @@
 │   ├── business/PRODUCT_CONSTITUTION.md (princípios)
 │   └── runtime/PERFORMANCE_01_RUNTIME_REPORT.md (PERFORMANCE-01 final)
 │   └── validation/VALUE_04_REPORT.md (VALUE-04 final)
+│   └── validation/DIR_01_REPORT.md (DIR-01 evidence detail)
+│   └── validation/DIRETORIA_FINAL_AUDIT.md (fechamento módulo Diretoria)
+│   └── validation/FIN_01_FINANCIAL_REVIEW_INBOX_RUNTIME.md (FIN-01 inbox financeiro)
+│   └── validation/FIN_02_MERGE_VALIDATION_EVIDENCE.md (FIN-02 merge gate)
+│   └── validation/FIN_02_FINANCIAL_REVIEW_ASSIGNMENT_RUNTIME_FIRST.json
+│   └── follow-up/TECH_DEBT_POST_FIN02.md (warnings pós-merge)
 │
 ├── 📊 runtime/ (Runtime Evidence)
 │   └── PERFORMANCE_01_RUNTIME_REPORT.md

@@ -1,0 +1,10 @@
+{
+  "captured_at": "2026-07-08T14:50:00Z",
+  "endpoint": "POST /api/v1/financial/review-inbox/d7ff3eae-b846-4bbb-8e7b-1b49841afbf1/assign",
+  "base_url": "http://127.0.0.1:8040",
+  "body": { "responsible_name": "Marcio de Lima" },
+  "http_status": 200,
+  "idempotent": true,
+  "message": "Conferência já estava atribuída a este responsável.",
+  "note": "Request já ASSIGNED após validação FIN-02 inicial; POST idempotente confirma contrato estável."
+}
