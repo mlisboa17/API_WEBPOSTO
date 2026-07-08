@@ -59,6 +59,9 @@ import {
   postDecisionReviewRequest,
   fetchExecutiveFollowUps,
   fetchExecutiveFollowUpDetail,
+  fetchFinancialReviewInbox,
+  fetchFinancialReviewDetail,
+  assignFinancialReview,
   triggerOwnerAnalysisRefresh,
   fetchExecutiveCopilotCockpit,
   postExecutiveCopilotRefresh,
@@ -131,6 +134,8 @@ import { renderFinancialOperations } from "./pages/financialOperations.js";
 import { renderFinancialOperationsCenter } from "./pages/financialOperationsCenter.js";
 import { renderFinancialIntelligence } from "./pages/financialIntelligence.js";
 import { renderFinancialHub } from "./pages/financialHub.js";
+import { renderFinancialReviewInbox } from "./pages/financialReviewInbox.js";
+import { renderFinancialReviewDetail } from "./pages/financialReviewDetail.js";
 import { renderTreasuryHub } from "./pages/treasuryHub.js";
 import { renderProductsHub } from "./pages/productsHub.js";
 import { resolveViewRoute, HUB_VIEWS } from "./services/viewRouting.js";
@@ -324,6 +329,13 @@ const VIEW_ALIASES = {
   financialHub: "financialHub",
   "visao-financeira": "financialHub",
   visaofinanceira: "financialHub",
+  financialReviewInbox: "financialReviewInbox",
+  "financial-review-inbox": "financialReviewInbox",
+  financialreviewinbox: "financialReviewInbox",
+  conferencias: "financialReviewInbox",
+  financialReviewDetail: "financialReviewDetail",
+  "financial-review-detail": "financialReviewDetail",
+  financialreviewdetail: "financialReviewDetail",
   treasuryHub: "treasuryHub",
   tesouraria: "treasuryHub",
   productsHub: "productsHub",
@@ -372,6 +384,8 @@ const VIEW_URL_NAMES = {
   financialOperationsCenter: "financial-operations-center",
   financialIntelligence: "financial-intelligence",
   financialHub: "visao-financeira",
+  financialReviewInbox: "financial-review-inbox",
+  financialReviewDetail: "financial-review-detail",
   treasuryHub: "tesouraria",
   productsHub: "produtos-vendidos",
 };
@@ -521,6 +535,7 @@ function fromUrl() {
     pageStock: Number(query.get("pageStock") || 1),
     decisionId: query.get("decisionId") || "",
     followUpRequestId: query.get("followUpRequestId") || "",
+    financialReviewRequestId: query.get("requestId") || "",
     filters: {
       dataInicial: query.get("dataInicial") || startDate,
       dataFinal: query.get("dataFinal") || end,
@@ -563,6 +578,9 @@ function writeUrl(state) {
   }
   if (state.followUpRequestId) {
     query.set("followUpRequestId", state.followUpRequestId);
+  }
+  if (state.financialReviewRequestId) {
+    query.set("requestId", state.financialReviewRequestId);
   }
 
   Object.entries(state.filters).forEach(([key, value]) => {
@@ -661,11 +679,29 @@ const decisionReviewUi = {
   success: null,
 };
 
+const financialReviewAssignUi = {
+  open: false,
+  name: "",
+  loading: false,
+  error: null,
+  success: null,
+};
+
+function resetFinancialReviewAssignUi() {
+  financialReviewAssignUi.open = false;
+  financialReviewAssignUi.name = "";
+  financialReviewAssignUi.loading = false;
+  financialReviewAssignUi.error = null;
+  financialReviewAssignUi.success = null;
+}
+
 const loadingNode = document.querySelector("#loading");
 const errorNode = document.querySelector("#error");
 const presidentDashboardNode = document.querySelector("#presidentDashboardView");
 const executiveWorkspaceNode = document.querySelector("#executiveWorkspaceView");
 const financialHubNode = document.querySelector("#financialHubView");
+const financialReviewInboxNode = document.querySelector("#financialReviewInboxView");
+const financialReviewDetailNode = document.querySelector("#financialReviewDetailView");
 const treasuryHubNode = document.querySelector("#treasuryHubView");
 const productsHubNode = document.querySelector("#productsHubView");
 const dashboardNode = document.querySelector("#dashboardView");
@@ -753,6 +789,13 @@ function setView(view, options = {}) {
   } else if (route.view !== "executiveFollowUpDetail") {
     state.followUpRequestId = "";
   }
+  if (options.financialReviewRequestId !== undefined) {
+    state.financialReviewRequestId = options.financialReviewRequestId;
+    resetFinancialReviewAssignUi();
+  } else if (route.view !== "financialReviewDetail") {
+    state.financialReviewRequestId = "";
+    resetFinancialReviewAssignUi();
+  }
   writeUrl(state);
   mountFilters();
   mountNavigation();
@@ -761,6 +804,8 @@ function setView(view, options = {}) {
   presidentDashboardNode?.classList.toggle("hidden", activeView !== "presidentDashboard");
   executiveWorkspaceNode?.classList.toggle("hidden", activeView !== "executiveWorkspace");
   financialHubNode?.classList.toggle("hidden", activeView !== "financialHub");
+  financialReviewInboxNode?.classList.toggle("hidden", activeView !== "financialReviewInbox");
+  financialReviewDetailNode?.classList.toggle("hidden", activeView !== "financialReviewDetail");
   treasuryHubNode?.classList.toggle("hidden", activeView !== "treasuryHub");
   productsHubNode?.classList.toggle("hidden", activeView !== "productsHub");
   dashboardNode?.classList.toggle("hidden", activeView !== "dashboard");
@@ -867,6 +912,8 @@ function ensureDataDefaults() {
   if (!state.data.decisionReviewRequests) state.data.decisionReviewRequests = null;
   if (!state.data.executiveFollowUp) state.data.executiveFollowUp = null;
   if (!state.data.executiveFollowUpDetail) state.data.executiveFollowUpDetail = null;
+  if (!state.data.financialReviewInbox) state.data.financialReviewInbox = null;
+  if (!state.data.financialReviewDetail) state.data.financialReviewDetail = null;
   if (!state.data.executiveCopilot) state.data.executiveCopilot = null;
   if (!state.data.recommendations) state.data.recommendations = null;
   if (!state.data.learning) state.data.learning = null;
@@ -1503,6 +1550,80 @@ function renderAll() {
     });
   }
 
+  if (activeView === "financialReviewInbox") {
+    renderFinancialReviewInbox(financialReviewInboxNode, state.data.financialReviewInbox, state.filters, {
+      onRefresh: async () => {
+        await loadFinancialReviewInbox(true);
+        renderAll();
+      },
+      onOpenReview: (requestId) => {
+        setView("financialReviewDetail", { financialReviewRequestId: requestId });
+        loadFinancialReviewDetail(requestId).then(() => renderAll());
+      },
+    });
+  }
+
+  if (activeView === "financialReviewDetail") {
+    renderFinancialReviewDetail(
+      financialReviewDetailNode,
+      state.data.financialReviewDetail,
+      state.filters,
+      {
+        assignState: financialReviewAssignUi,
+        onBack: () => {
+          resetFinancialReviewAssignUi();
+          setView("financialReviewInbox");
+          renderAll();
+        },
+        onRefresh: async () => {
+          if (state.financialReviewRequestId) {
+            await loadFinancialReviewDetail(state.financialReviewRequestId, true);
+            renderAll();
+          }
+        },
+        onAssignOpen: () => {
+          financialReviewAssignUi.open = true;
+          financialReviewAssignUi.error = null;
+          renderAll();
+        },
+        onAssignCancel: () => {
+          financialReviewAssignUi.open = false;
+          financialReviewAssignUi.error = null;
+          renderAll();
+        },
+        onAssignConfirm: async (name) => {
+          if (!state.financialReviewRequestId) return;
+          if (!name) {
+            financialReviewAssignUi.error = "Informe o nome do responsável.";
+            renderAll();
+            return;
+          }
+          financialReviewAssignUi.loading = true;
+          financialReviewAssignUi.error = null;
+          financialReviewAssignUi.success = null;
+          renderAll();
+          try {
+            const response = await assignFinancialReview(state.financialReviewRequestId, name);
+            await loadFinancialReviewDetail(state.financialReviewRequestId, true);
+            await loadFinancialReviewInbox(true);
+            financialReviewAssignUi.open = false;
+            financialReviewAssignUi.loading = false;
+            financialReviewAssignUi.success =
+              response?.message || "Conferência atribuída com sucesso.";
+            renderAll();
+          } catch (error) {
+            financialReviewAssignUi.loading = false;
+            financialReviewAssignUi.error =
+              error?.response?.data?.detail ||
+              error?.message ||
+              "Não foi possível assumir esta conferência.";
+            renderAll();
+          }
+        },
+      },
+    );
+  }
+
   if (activeView === "executiveCopilot") {
     renderExecutiveCopilot(executiveCopilotNode, state.data.executiveCopilot, state.filters, {
       onRefresh: async () => {
@@ -1997,6 +2118,30 @@ async function loadExecutiveFollowUpDetail(requestId, bypassCache = false) {
   } catch (error) {
     console.warn("[executiveFollowUpDetail] falha ao carregar detalhe:", error);
     state.data.executiveFollowUpDetail = null;
+  }
+}
+
+async function loadFinancialReviewInbox(bypassCache = false) {
+  try {
+    const payload = await fetchFinancialReviewInbox();
+    state.data.financialReviewInbox = payload;
+  } catch (error) {
+    console.warn("[financialReviewInbox] falha ao carregar conferências:", error);
+    state.data.financialReviewInbox = null;
+  }
+}
+
+async function loadFinancialReviewDetail(requestId, bypassCache = false) {
+  if (!requestId) {
+    state.data.financialReviewDetail = null;
+    return;
+  }
+  try {
+    const payload = await fetchFinancialReviewDetail(requestId);
+    state.data.financialReviewDetail = payload;
+  } catch (error) {
+    console.warn("[financialReviewDetail] falha ao carregar detalhe:", error);
+    state.data.financialReviewDetail = null;
   }
 }
 
@@ -3015,6 +3160,14 @@ async function refreshAll(bypassCache = false) {
 
     if (state.view === "executiveFollowUpDetail" && state.followUpRequestId) {
       await loadExecutiveFollowUpDetail(state.followUpRequestId, bypassCache);
+    }
+
+    if (state.view === "financialReviewInbox") {
+      await loadFinancialReviewInbox(bypassCache);
+    }
+
+    if (state.view === "financialReviewDetail" && state.financialReviewRequestId) {
+      await loadFinancialReviewDetail(state.financialReviewRequestId, bypassCache);
     }
 
     if (state.view === "decisionDetail" && state.decisionId) {

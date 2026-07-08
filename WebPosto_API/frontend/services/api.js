@@ -1519,6 +1519,31 @@ export async function fetchExecutiveFollowUpDetail(requestId) {
   return raw;
 }
 
+export async function fetchFinancialReviewInbox(params = {}) {
+  const raw = await apiClient.get("/api/v1/financial/review-inbox", {
+    params,
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  return raw;
+}
+
+export async function fetchFinancialReviewDetail(requestId) {
+  const raw = await apiClient.get(
+    `/api/v1/financial/review-inbox/${encodeURIComponent(requestId)}`,
+    { timeout: ANALYTICS_TIMEOUT_MS },
+  );
+  return raw;
+}
+
+export async function assignFinancialReview(requestId, responsibleName) {
+  const raw = await apiClient.post(
+    `/api/v1/financial/review-inbox/${encodeURIComponent(requestId)}/assign`,
+    { responsible_name: responsibleName },
+    { timeout: ANALYTICS_TIMEOUT_MS },
+  );
+  return raw;
+}
+
 export async function triggerOwnerAnalysisRefresh(filters) {
   return apiClient.post("/api/v1/owner-action-center/analysis/refresh", null, {
     params: performanceParams(filters),

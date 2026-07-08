@@ -48,6 +48,19 @@ class ExecutiveReviewStore:
             self._write(data)
         return request
 
+    def update(self, request_id: str, mutator) -> ExecutiveReviewRequest:
+        """Read-modify-write atômico dentro do lock do store."""
+        with self._lock:
+            data = self._read()
+            raw = (data.get("requests") or {}).get(request_id)
+            if not raw:
+                raise KeyError(request_id)
+            request = ExecutiveReviewRequest.model_validate(raw)
+            request = mutator(request)
+            data.setdefault("requests", {})[request_id] = request.model_dump(mode="json")
+            self._write(data)
+            return request
+
     def get(self, request_id: str) -> ExecutiveReviewRequest | None:
         data = self._read()
         raw = (data.get("requests") or {}).get(request_id)

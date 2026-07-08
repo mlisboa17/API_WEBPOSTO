@@ -45,6 +45,8 @@ export const NAV_AREAS = [
 
       { id: "visao", label: "Visão Financeira", view: "financialHub" },
 
+      { id: "conferencias", label: "Conferências", view: "financialReviewInbox" },
+
       { id: "inteligencia", label: "Inteligência", view: "financialIntelligence" },
 
       { id: "tesouraria", label: "Tesouraria", view: "treasuryHub" },
@@ -176,6 +178,10 @@ VIEW_TO_AREA.financialOperations = "administracao";
 
 
 VIEW_TO_AREA.financialHub = "financeiro";
+
+VIEW_TO_AREA.financialReviewInbox = "financeiro";
+
+VIEW_TO_AREA.financialReviewDetail = "financeiro";
 
 VIEW_TO_AREA.treasuryHub = "financeiro";
 
