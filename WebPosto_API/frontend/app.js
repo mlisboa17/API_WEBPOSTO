@@ -1452,6 +1452,7 @@ function renderAll() {
 
   if (activeView === "ownerDiretoriaHome") {
     renderOwnerDiretoriaHome(ownerDiretoriaHomeNode, state.data.ownerDiretoriaHome, state.filters, {
+      followUpPayload: state.data.executiveFollowUp,
       onRefresh: async () => {
         state.cache.clear();
         await loadOwnerDiretoriaHome(true);
@@ -1460,6 +1461,10 @@ function renderAll() {
       onOpenDecision: (decisionId) => {
         setView("decisionDetail", { decisionId });
         loadDecisionDetail(decisionId).then(() => renderAll());
+      },
+      onOpenFollowUp: (requestId) => {
+        setView("executiveFollowUpDetail", { followUpRequestId: requestId });
+        loadExecutiveFollowUpDetail(requestId).then(() => renderAll());
       },
     });
   }
@@ -2089,7 +2094,10 @@ async function loadCashReconciliationWithSnapshotFirst(bypassCache = false) {
 
 async function loadOwnerDiretoriaHome(bypassCache = false) {
   try {
-    const payload = await fetchOwnerTop5Decisions(state.filters);
+    const [payload] = await Promise.all([
+      fetchOwnerTop5Decisions(state.filters),
+      loadExecutiveFollowUp(bypassCache).catch(() => null),
+    ]);
     state.data.ownerDiretoriaHome = payload;
   } catch (error) {
     console.warn("[ownerDiretoria] falha ao carregar decisões:", error);

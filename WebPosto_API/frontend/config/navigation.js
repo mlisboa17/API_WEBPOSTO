@@ -14,7 +14,7 @@ export const NAV_AREAS = [
 
     tabs: [
 
-      { id: "diretoria", label: "Decisões", view: "ownerDiretoriaHome" },
+      { id: "diretoria", label: "Visão da rede", view: "ownerDiretoriaHome" },
       { id: "acompanhamento", label: "Em acompanhamento", view: "executiveFollowUp" },
 
       { id: "presidente", label: "Presidente", view: "presidentDashboard" },

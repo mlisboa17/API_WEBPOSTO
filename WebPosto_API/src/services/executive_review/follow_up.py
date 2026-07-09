@@ -42,6 +42,9 @@ class ExecutiveFollowUpItem(BaseModel):
     decision_category: str | None = None
     source_analysis_id: str | None = None
     request_type_label: str | None = None
+    checked_items_count: int = 0
+    total_items_count: int = 0
+    item_progress_percent: float = 0.0
 
 
 class FollowUpSummary(BaseModel):
@@ -75,6 +78,9 @@ class ExecutiveFollowUpService:
 
     def to_follow_up_item(self, request: ExecutiveReviewRequest) -> ExecutiveFollowUpItem:
         meta = self._decision_meta(request.decision_id)
+        total_items = len(request.evidence_item_ids) or int(request.evidence_count or 0)
+        checked_items = len(request.item_checks or {})
+        progress = round((checked_items / total_items) * 100, 2) if total_items else 0.0
         return ExecutiveFollowUpItem(
             id=request.id,
             request_id=request.id,
@@ -96,6 +102,9 @@ class ExecutiveFollowUpService:
             decision_category=meta.get("decision_category"),
             source_analysis_id=request.source_analysis_id,
             request_type_label=request_type_label(request.request_type),
+            checked_items_count=checked_items,
+            total_items_count=total_items,
+            item_progress_percent=progress,
         )
 
     def list_follow_ups(
