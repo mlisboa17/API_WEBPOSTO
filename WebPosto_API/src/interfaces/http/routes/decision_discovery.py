@@ -19,12 +19,18 @@ from datetime import datetime, timedelta
 from typing import Dict, Any
 
 from src.services.decision_discovery import DecisionDiscoveryEngine
-from src.services.decision_discovery.detectors import CardReceivableDetector, ExpenseDetector, FuelRevenueDetector
+from src.services.decision_discovery.detectors import (
+    CardReceivableDetector,
+    ExpenseDetector,
+    FuelRevenueDetector,
+    SupplierInvoiceSpikeDetector,
+)
 from src.services.decision_discovery.root_cause.root_cause_engine import RootCauseEngine
 from src.services.decision_discovery.root_cause.investigators import (
     CardReceivableRootCause,
     ExpenseRootCause,
     FuelRevenueRootCause,
+    SupplierInvoiceRootCause,
 )
 from src.services.decision_discovery.models import DecisionCategory
 
@@ -46,6 +52,7 @@ def _get_discovery_engine() -> DecisionDiscoveryEngine:
     engine.register_detector(FuelRevenueDetector())
     engine.register_detector(ExpenseDetector())
     engine.register_detector(CardReceivableDetector())
+    engine.register_detector(SupplierInvoiceSpikeDetector())
     
     # Futuros detectores serão adicionados aqui:
     # engine.register_detector(CardDetector())
@@ -391,6 +398,10 @@ async def explain_decision(
         root_cause_engine.register_investigator(
             DecisionCategory.CASH,
             CardReceivableRootCause()
+        )
+        root_cause_engine.register_detector_investigator(
+            "SupplierInvoiceSpikeDetector",
+            SupplierInvoiceRootCause(),
         )
         
         # 3. Investigar causa raiz

@@ -6,7 +6,12 @@ import uuid
 from typing import Any, List, Literal
 
 from src.services.decision_discovery import DecisionDiscoveryEngine
-from src.services.decision_discovery.detectors import CardReceivableDetector, ExpenseDetector, FuelRevenueDetector
+from src.services.decision_discovery.detectors import (
+    CardReceivableDetector,
+    ExpenseDetector,
+    FuelRevenueDetector,
+    SupplierInvoiceSpikeDetector,
+)
 from src.services.decision_discovery.models import DecisionCandidate, TenantAnalysisRecord
 from src.services.owner_analysis_models import TenantProgressCallback
 from src.services.tenant_discovery_service import TenantDiscoveryService, TenantDiscoveryResult
@@ -33,6 +38,7 @@ def _get_discovery_engine() -> DecisionDiscoveryEngine:
     engine.register_detector(FuelRevenueDetector())
     engine.register_detector(ExpenseDetector())
     engine.register_detector(CardReceivableDetector())
+    engine.register_detector(SupplierInvoiceSpikeDetector())
     return engine
 
 
@@ -122,6 +128,10 @@ def _analysis_limitations(result: Any, observations: List[dict[str, Any]] | None
     limitations = []
     if _detectors_count(result.detectors_executed) == 1:
         limitations.append("Apenas uma área financeira foi verificada nesta análise.")
+    elif _detectors_count(result.detectors_executed) == 4:
+        limitations.append(
+            "Combustível, despesas, NF de fornecedor e recebíveis verificados; cartão TEF sem NSU no ERP."
+        )
     elif _detectors_count(result.detectors_executed) == 3:
         limitations.append("Combustível, despesas e recebíveis verificados; cartão TEF sem NSU no ERP.")
     if not result.all_candidates and not (observations or []):
@@ -210,8 +220,12 @@ async def run_owner_analysis(
     analyzed_records = [r for r in tenant_records if r.status == "ANALYZED"]
 
     decisions = []
+    stored_candidates = []
     for idx, candidate in enumerate(result.all_candidates):
+        candidate_dict = candidate.to_dict()
+        stored_candidates.append(candidate_dict)
         decisions.append({
+            "decision_id": candidate.id,
             "action": {
                 "id": candidate.id,
                 "title": candidate.title,
@@ -239,6 +253,7 @@ async def run_owner_analysis(
                     "data_timestamp": utc_now_iso(),
                 },
             },
+            "candidate": candidate_dict,
             "tenant_id": candidate.tenant,
             "tenant_name": candidate.tenant_name,
             "rank": idx + 1,
@@ -320,6 +335,7 @@ async def run_owner_analysis(
             "/INTEGRACAO/TITULO_PAGAR",
             "/INTEGRACAO/TITULO_RECEBER",
             "/INTEGRACAO/VENDA_FORMA_PAGAMENTO",
+            "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE (REF NF)",
         ],
         "endpoints_consulted": [
             "/api/v1/sales/fuel-summary",
@@ -327,6 +343,7 @@ async def run_owner_analysis(
             "/INTEGRACAO/TITULO_PAGAR",
             "/INTEGRACAO/TITULO_RECEBER",
             "/INTEGRACAO/VENDA_FORMA_PAGAMENTO",
+            "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE (REF NF)",
         ],
         "records_analyzed": None,
         "candidates_found": total_candidates,
@@ -347,6 +364,7 @@ async def run_owner_analysis(
         "success": True,
         "data": {
             "top_5_decisions": decisions,
+            "stored_candidates": stored_candidates,
             "observations": observations,
             "total_decisions": len(decisions),
             "total_observations": len(observations),
