@@ -60,6 +60,98 @@ from src.interfaces.http.routes import financial_intelligence_center
 from src.services.financial_snapshot_scheduler import get_financial_scheduler
 from src.shared.logger import setup_logging
 
+# Sprint 1 — barramento C-Level: rotas operacionais de pista ficam desligadas por padrão.
+# Reative apenas em dev legado via ENABLE_OPERATIONAL_ROUTES=true no ambiente.
+ENABLE_OPERATIONAL_ROUTES = False
+
+
+def _mount_core(app: FastAPI) -> None:
+    """Saúde, auth, gateway legado e frontend."""
+    app.include_router(health.router)
+    app.include_router(auth.router)
+    app.include_router(gateway_expenses.router)
+    app.include_router(expenses.router)
+    app.include_router(clientes.router)
+    app.include_router(sync.router)
+    app.include_router(metrics.router)
+
+
+def _mount_executive_barramento(app: FastAPI) -> None:
+    """
+    Barramento das 3 Telas do Presidente (context.md).
+
+    Tela 1 — Top 5:     owner-action-center, discovery, decisions, follow-ups, review-inbox
+    Tela 2 — Comercial: analytics (fuel/executive, fuel-summary, kpis), fechamento_enterprise
+    Tela 3 — Financeiro: analytics (dre), cash-flow, finance_center, fechamento_enterprise (/v1/financial/*)
+
+    Agregação obrigatória: empresaCodigo (filial) ou rede consolidada.
+    """
+    # Tela 1 — Owner Action Center
+    app.include_router(owner_action_center.router)
+    app.include_router(decision_discovery.router)
+    app.include_router(decisions.router)
+    app.include_router(decisions.review_lookup_router)
+    app.include_router(executive_follow_up.router)
+    app.include_router(financial_review_inbox.router)
+
+    # Tela 2 & 3 — Comercial + Financeiro (contratos analíticos)
+    app.include_router(analytics.router)  # /api/v1/dre, /fuel/executive, /sales/fuel-summary, /kpis
+    app.include_router(fechamento_enterprise.router)  # /v1/financial/overview, /v1/vendas-combustivel, ...
+    app.include_router(finance_center.router)
+    app.include_router(cash_flow.router)  # /api/v1/finance/cash-flow
+    app.include_router(financial_intelligence.router)
+    app.include_router(financial_intelligence_center.router)
+    app.include_router(prestacao_contas.router)
+    app.include_router(cash_reconciliation.router)
+
+
+def _mount_executive_support(app: FastAPI) -> None:
+    """Módulos de suporte C-Level (rede/posto) — não são superfícies operacionais de pista."""
+    app.include_router(corporate_intelligence_hub.router)
+    app.include_router(executive_scorecard.router)
+    app.include_router(benchmark_intelligence.router)
+    app.include_router(executive_decision_engine.router)
+    app.include_router(action_center.router)
+    app.include_router(fuel_governance.router)
+    app.include_router(non_fuel_product_sales.router)
+    app.include_router(commercial_execution.router)
+    app.include_router(commercial_learning.router)
+    app.include_router(commercial_copilot.router)
+    app.include_router(data_trust_baseline.router)
+    app.include_router(executive_ai_copilot.router)
+    app.include_router(autonomous_recommendation_engine.router)
+    app.include_router(closed_loop_learning_engine.router)
+    app.include_router(management_action_center.router)
+    app.include_router(goals_campaign_engine.router)
+    app.include_router(nfce_intelligence.router)
+    app.include_router(lmc_intelligence.router)
+    app.include_router(tax_product_fiscal_intelligence.router)
+    app.include_router(fiscal_reconciliation_hub.router)
+    app.include_router(business_analyst.router)
+    app.include_router(governance.router)
+    app.include_router(statements.router)
+    app.include_router(admin_circuit_breaker.router)
+    app.include_router(financial_snapshot_health.router)
+    app.include_router(financial_operations.router)
+    app.include_router(financial_operations_center.router)
+
+
+def _mount_operational_deprecated(app: FastAPI) -> None:
+    """
+    Deprecated/Operacional — pista, turnos, operadores, PDVs, paridade unitária.
+
+    Fora do escopo C-Level (context.md). Código preservado; roteamento desligado na Sprint 1.
+    """
+    if not ENABLE_OPERATIONAL_ROUTES:
+        return
+
+    app.include_router(cash_operations.router)  # turnos, pdvs, operadores
+    app.include_router(operator_performance.router)  # /performance/operators|pdvs|turns
+    app.include_router(operator_sales_intelligence.router)  # vendas por funcionário
+    app.include_router(operator_accountability_incentive.router)  # people-intelligence
+    app.include_router(operator_profitability.router)  # people-roi
+    app.include_router(store_shift_profitability.router)  # operation-roi por turno
+
 
 def create_app() -> FastAPI:
     """Factory para criar instância da aplicação FastAPI."""
@@ -93,61 +185,11 @@ def create_app() -> FastAPI:
             response.headers["Cache-Control"] = "no-cache, must-revalidate"
         return response
 
-    # Incluir rotas
-    app.include_router(health.router)
-    app.include_router(gateway_expenses.router)
-    app.include_router(fechamento_enterprise.router)
-    app.include_router(expenses.router)
-    app.include_router(clientes.router)
-    app.include_router(sync.router)
-    app.include_router(auth.router)
-    app.include_router(metrics.router)
-    app.include_router(analytics.router)
-    app.include_router(finance_center.router)
-    app.include_router(cash_flow.router)
-    app.include_router(cash_operations.router)
-    app.include_router(operator_performance.router)
-    app.include_router(operator_sales_intelligence.router)
-    app.include_router(operator_accountability_incentive.router)
-    app.include_router(operator_profitability.router)
-    app.include_router(store_shift_profitability.router)
-    app.include_router(management_action_center.router)
-    app.include_router(goals_campaign_engine.router)
-    app.include_router(benchmark_intelligence.router)
-    app.include_router(executive_scorecard.router)
-    app.include_router(corporate_intelligence_hub.router)
-    app.include_router(executive_decision_engine.router)
-    app.include_router(action_center.router)
-    app.include_router(owner_action_center.router)  # BUILD-01D
-    app.include_router(decision_discovery.router)  # VALUE-01
-    app.include_router(executive_ai_copilot.router)
-    app.include_router(autonomous_recommendation_engine.router)
-    app.include_router(closed_loop_learning_engine.router)
-    app.include_router(nfce_intelligence.router)
-    app.include_router(lmc_intelligence.router)
-    app.include_router(tax_product_fiscal_intelligence.router)
-    app.include_router(fiscal_reconciliation_hub.router)
-    app.include_router(fuel_governance.router)
-    app.include_router(non_fuel_product_sales.router)
-    app.include_router(commercial_execution.router)
-    app.include_router(commercial_learning.router)
-    app.include_router(commercial_copilot.router)
-    app.include_router(statements.router)
-    app.include_router(data_trust_baseline.router)
-    app.include_router(prestacao_contas.router)
-    app.include_router(cash_reconciliation.router)
-    app.include_router(decisions.router)
-    app.include_router(decisions.review_lookup_router)
-    app.include_router(executive_follow_up.router)
-    app.include_router(financial_review_inbox.router)
-    app.include_router(financial_intelligence.router)
-    app.include_router(admin_circuit_breaker.router)
-    app.include_router(financial_snapshot_health.router)
-    app.include_router(financial_operations.router)
-    app.include_router(financial_operations_center.router)
-    app.include_router(financial_intelligence_center.router)
-    app.include_router(business_analyst.router)
-    app.include_router(governance.router)
+    # --- Roteamento Sprint 1: C-Level primeiro, operacional isolado ---
+    _mount_core(app)
+    _mount_executive_barramento(app)
+    _mount_executive_support(app)
+    _mount_operational_deprecated(app)
 
     root = Path(__file__).resolve().parents[3]
     frontend_dir = root / "frontend"
