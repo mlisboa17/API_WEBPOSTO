@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from src.services.decision_discovery.models import DecisionCandidate, DecisionCategory
-from src.services.decision_discovery.root_cause.investigators import ExpenseRootCause
+from src.services.decision_discovery.root_cause.investigators import ExpenseRootCause, SupplierInvoiceRootCause
 from src.services.decision_evidence.expense_evidence_builder import (
     EXPENSE_SOURCE,
     build_expense_evidence_items,
@@ -81,7 +81,11 @@ class DecisionEvidenceService:
                     "current_count": evidence.get("current_count"),
                     "baseline_count": evidence.get("baseline_count"),
                     "anomaly_type": evidence.get("anomaly_type"),
+                    "nf_number": evidence.get("nf_number"),
+                    "supplier": evidence.get("supplier"),
+                    "limitation": evidence.get("limitation"),
                 },
+                "recommended_actions": candidate.get("recommended_actions") or [],
                 "nominal_enrichment": nominal_metadata,
             },
         )
@@ -89,6 +93,14 @@ class DecisionEvidenceService:
     @staticmethod
     def _expense_cache_key(tenant_id: str, period_start: str, period_end: str) -> str:
         return f"discovery_expense:{tenant_id}:{tenant_id}:{period_start}:{period_end}"
+
+    def find_candidate(self, decision_id: str) -> dict[str, Any] | None:
+        """Resolve candidato real a partir dos snapshots de owner_analysis."""
+        return self._find_candidate(decision_id)
+
+    def to_decision_candidate(self, data: dict[str, Any]) -> DecisionCandidate:
+        """Converte payload serializado do snapshot em DecisionCandidate."""
+        return self._to_decision_candidate(data)
 
     def _find_candidate(self, decision_id: str) -> dict[str, Any] | None:
         if not OWNER_SNAPSHOT_DIR.is_dir():
@@ -173,7 +185,11 @@ class DecisionEvidenceService:
             return None
         try:
             decision = self._to_decision_candidate(candidate)
-            analysis = await ExpenseRootCause().investigate(decision)
+            detector = str(candidate.get("detector") or "")
+            if detector == "SupplierInvoiceSpikeDetector":
+                analysis = await SupplierInvoiceRootCause().investigate(decision)
+            else:
+                analysis = await ExpenseRootCause().investigate(decision)
             cause = analysis.most_probable_cause
             if cause and cause.description:
                 return cause.description
@@ -268,5 +284,10 @@ class DecisionEvidenceService:
             limitations.append(
                 "Estes lançamentos explicam o aumento versus comportamento de referência — "
                 "não constituem acusação automática."
+            )
+        if evidence.get("anomaly_type") == "SUPPLIER_INVOICE_SPIKE":
+            limitations.append(
+                evidence.get("limitation")
+                or "NF referenciada sem histórico no baseline — requer validação de pedido/contrato."
             )
         return limitations

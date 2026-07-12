@@ -33,8 +33,24 @@ from src.services.decision_discovery.root_cause.investigators import (
     SupplierInvoiceRootCause,
 )
 from src.services.decision_discovery.models import DecisionCategory
+from src.services.decision_evidence.decision_evidence_service import DecisionEvidenceService
 
 router = APIRouter(prefix="/api/v1/discovery", tags=["Decision Discovery"])
+
+_evidence_service = DecisionEvidenceService()
+
+
+def _build_root_cause_engine() -> RootCauseEngine:
+    """Configura investigadores por categoria e detector."""
+    engine = RootCauseEngine()
+    engine.register_investigator(DecisionCategory.REVENUE, FuelRevenueRootCause())
+    engine.register_investigator(DecisionCategory.COST, ExpenseRootCause())
+    engine.register_investigator(DecisionCategory.CASH, CardReceivableRootCause())
+    engine.register_detector_investigator(
+        "SupplierInvoiceSpikeDetector",
+        SupplierInvoiceRootCause(),
+    )
+    return engine
 
 
 def _get_discovery_engine() -> DecisionDiscoveryEngine:
@@ -341,77 +357,26 @@ async def explain_decision(
         RootCauseAnalysis completo com causa provável e recomendações
     """
     try:
-        # 1. Buscar decisão (simular por enquanto - futuramente buscar do cache/DB)
-        # Para MVP, vamos gerar uma decisão de exemplo
-        from src.services.decision_discovery.models import DecisionCandidate, MoneyFound, ConfidenceFactors, ImpactType
-        
-        # Decisão simulada para demonstração
-        decision = DecisionCandidate(
-            id=decision_id,
-            detector_name="FuelRevenueDetector",
-            title="Você pode estar perdendo aproximadamente R$ 12.430 por semana",
-            summary="Queda de 34% nas vendas de combustíveis",
-            category=DecisionCategory.REVENUE,
-            impact_type=ImpactType.REVENUE,
-            tenant="vip",
-            tenant_name="POSTO VIP",
-            period_start="2026-06-25",
-            period_end="2026-07-02",
-            money_found=MoneyFound(at_risk=12430.0),
-            confidence=0.94,
-            confidence_factors=ConfidenceFactors(
-                data_quality=0.98,
-                comparison_validity=0.95,
-                period_adequacy=0.90
-            ),
-            recommended_actions=["Verificar preço", "Verificar estoque"],
-            estimated_execution_time=20,
-            evidence={
-                "product_name": "Diesel S10",
-                "product_drop_pct": 0.87,
-                "current_volume": 2100,
-                "previous_volume": 3200,
-                "current_price": 5.89,
-                "previous_price": 5.45,
-                "current_margin": 0.15,
-                "previous_margin": 0.14,
-                "days_impacted": 7,
-                "time_pattern": "Queda concentrada no período noturno (18h-22h)",
-            },
-            baseline_used={
-                "baseline_value": 36580.0,
-                "current_value": 24150.0,
-            },
-            source_endpoints=["/api/v1/sales/fuel-summary"],
-        )
-        
-        # 2. Criar Root Cause Engine
-        root_cause_engine = RootCauseEngine()
-        root_cause_engine.register_investigator(
-            DecisionCategory.REVENUE,
-            FuelRevenueRootCause()
-        )
-        root_cause_engine.register_investigator(
-            DecisionCategory.COST,
-            ExpenseRootCause()
-        )
-        root_cause_engine.register_investigator(
-            DecisionCategory.CASH,
-            CardReceivableRootCause()
-        )
-        root_cause_engine.register_detector_investigator(
-            "SupplierInvoiceSpikeDetector",
-            SupplierInvoiceRootCause(),
-        )
-        
-        # 3. Investigar causa raiz
+        candidate_data = _evidence_service.find_candidate(decision_id)
+        if not candidate_data:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Decisão não encontrada no snapshot: {decision_id}",
+            )
+
+        decision = _evidence_service.to_decision_candidate(candidate_data)
+        root_cause_engine = _build_root_cause_engine()
         result = await root_cause_engine.investigate(decision)
-        
+
         return {
             "success": result.success,
             "data": result.to_dict(),
+            "source": "owner_analysis_snapshot",
+            "decision_id": decision_id,
         }
-        
+
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(
             status_code=500,
