@@ -1,6 +1,6 @@
 # Contexto do Projeto: Logos Postos (BI Executivo)
 
-**Versão:** 3.2  
+**Versão:** 3.3  
 **Atualizado:** 2026-07-12  
 **Repositório:** `WebPosto_API`  
 **Fase:** FASE 1 / FASE 2 — Transição de Análise para Diagnóstico  
@@ -94,8 +94,8 @@ Agregação obrigatória: **rede → filial → combustível**.
 - **Escopo:** Limpeza de rotas operacionais do gateway, mapeamento fino dos payloads de vendas/financeiro do WebPosto e auditoria de cache.
 - **Entregas:** Inventário de endpoints · filtro C-Level · contrato unificado de filtros · degradação elegante em `/v1/financial/*`.
 - **Valor Presidência:** Base confiável — dados certos, rápidos, sem ruído de pista.
-- **Commit Padrão:** `feat(sprint-1/infra): auditoria de rotas executivas e isolamento de contratos operacionais`
-- **Status:** 🔄 **Em Progresso**
+- **Commit Padrão:** `feat(sprint-1/infra): encerramento da sprint 1 com higienizacao do front e blindagem de cache`
+- **Status:** ✅ **Concluída**
 
 #### Ações realizadas (2026-07-12)
 
@@ -108,12 +108,13 @@ Agregação obrigatória: **rede → filial → combustível**.
 | Rotas operacionais isoladas | `cash/operations`, `performance`, `operator-intelligence`, `people-intelligence`, `people-roi`, `operation-roi` — **desmontadas** (`ENABLE_OPERATIONAL_ROUTES=false`) |
 | Código preservado | Módulos operacionais intactos; apenas exposição HTTP desligada na camada de roteamento |
 | Multitenancy | Contratos executivos mantêm `empresaCodigo` + visão rede via `analytics` e `fechamento_enterprise` |
+| Higienização frontend | `frontend/services/api.js` — funções operacionais retornam payloads vazios seguros (`DEPRECATED - OPERATIONAL`) |
+| Cache snapshots | TTL unificado 300s em `snapshot_ttl.py`; metadados `cacheHit`/`stale`/`ttlSeconds` em `/executive/snapshot` e `/fuel/snapshot` |
+| Degradação financeira | `FinancialResilienceService` cobre `overview`, `expenses`, `accounts-payable`, `accounts-receivable`, `companies` |
 
-#### Pendente Sprint 1
+#### Pendente (fora do escopo Sprint 1)
 
-- Auditoria de cache/TTL dos snapshots executivos
-- Documentar contrato fino de payloads WebPosto em `docs/validation/`
-- Degradação elegante padronizada em todos os endpoints `/v1/financial/*`
+- Documentar contrato fino de payloads WebPosto em `docs/validation/` (Sprint 2+)
 
 ---
 
@@ -179,4 +180,5 @@ Agregação obrigatória: **rede → filial → combustível**.
 
 | Data | Versão | Alteração |
 |------|--------|-----------|
+| 2026-07-12 | 3.3 | Sprint 1 concluída — front higienizado, cache TTL 300s, degradação `/v1/financial/*` |
 | 2026-07-12 | 3.2 | Sprint 1 em progresso — barramento C-Level em `app.py`, rotas operacionais isoladas |

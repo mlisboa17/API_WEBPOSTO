@@ -340,6 +340,58 @@ const COVERAGE_TIMEOUT_MS = 45000;
 const SNAPSHOT_TIMEOUT_MS = 8000;
 const REFRESH_TIMEOUT_MS = 5000;
 
+// Sprint 1 — alinhado a ENABLE_OPERATIONAL_ROUTES=false no backend (app.py)
+const ENABLE_OPERATIONAL_ROUTES = false;
+
+function deprecatedOperationalMeta(filters = {}) {
+  return {
+    deprecated: true,
+    operational: true,
+    empresaCodigo: filters?.empresaCodigo ?? null,
+    warnings: ["DEPRECATED - OPERATIONAL — rota desligada no barramento C-Level"],
+  };
+}
+
+function deprecatedCashOperationsAll(filters = {}) {
+  return {
+    summary: { total: 0, deprecated: true },
+    alerts: { data: [] },
+    operators: { data: [] },
+    pdvs: { data: [] },
+    turns: { data: [] },
+    riskScore: { score: 0 },
+    fromSnapshot: false,
+    lastUpdated: null,
+    ...deprecatedOperationalMeta(filters),
+  };
+}
+
+function deprecatedPerformanceAll(filters = {}) {
+  return {
+    summary: {},
+    operators: { data: [] },
+    pdvs: { data: [] },
+    turns: { data: [] },
+    evolution: [],
+    bestPractices: [],
+    criticalFocus: [],
+    periodo: null,
+    fromSnapshot: false,
+    lastUpdated: null,
+    ...deprecatedOperationalMeta(filters),
+  };
+}
+
+function deprecatedCockpit(filters = {}) {
+  return {
+    cockpit: null,
+    executiveAnswers: [],
+    parecerFinal: null,
+    snapshot: { hit: false, stale: true },
+    ...deprecatedOperationalMeta(filters),
+  };
+}
+
 function snapshotParams(filters) {
   const empresaCodigo = normalizeEmpresaParam(filters.empresaCodigo);
   const centroCusto = Array.isArray(filters.centroCusto)
@@ -642,6 +694,10 @@ function cashOperationsParams(filters) {
 }
 
 export async function fetchCashOperationsSnapshot(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { fromSnapshot: false, lastUpdated: null, data: null, ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.get("/api/v1/cash/operations/snapshot", {
     params: cashOperationsParams(filters),
     timeout: SNAPSHOT_TIMEOUT_MS,
@@ -650,6 +706,10 @@ export async function fetchCashOperationsSnapshot(filters) {
 }
 
 export async function postCashOperationsRefresh(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { status: "disabled", ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.post("/api/v1/cash/operations/refresh", null, {
     params: cashOperationsParams(filters),
     timeout: REFRESH_TIMEOUT_MS,
@@ -658,6 +718,10 @@ export async function postCashOperationsRefresh(filters) {
 }
 
 export async function fetchCashOperationsSummary(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { total: 0, data: [], ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.get("/api/v1/cash/operations/summary", {
     params: cashOperationsParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
@@ -666,6 +730,10 @@ export async function fetchCashOperationsSummary(filters) {
 }
 
 export async function fetchCashOperationsAll(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return deprecatedCashOperationsAll(filters);
+  }
   const [summary, alerts, operators, pdvs, turns, riskScore] = await Promise.all([
     fetchCashOperationsSummary(filters),
     apiClient.get("/api/v1/cash/operations/alerts", { params: cashOperationsParams(filters), timeout: ANALYTICS_TIMEOUT_MS }),
@@ -692,6 +760,10 @@ function performanceParams(filters) {
 }
 
 export async function fetchOperatorPerformanceSnapshot(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { fromSnapshot: false, lastUpdated: null, data: null, ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.get("/api/v1/performance/snapshot", {
     params: performanceParams(filters),
     timeout: SNAPSHOT_TIMEOUT_MS,
@@ -700,6 +772,10 @@ export async function fetchOperatorPerformanceSnapshot(filters) {
 }
 
 export async function postOperatorPerformanceRefresh(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { status: "disabled", ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.post("/api/v1/performance/refresh", null, {
     params: performanceParams(filters),
     timeout: REFRESH_TIMEOUT_MS,
@@ -708,6 +784,10 @@ export async function postOperatorPerformanceRefresh(filters) {
 }
 
 export async function fetchOperatorPerformanceSummary(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { data: [], ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.get("/api/v1/performance/summary", {
     params: performanceParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
@@ -716,6 +796,10 @@ export async function fetchOperatorPerformanceSummary(filters) {
 }
 
 export async function fetchOperatorPerformanceAll(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return deprecatedPerformanceAll(filters);
+  }
   const [summaryResp, operatorsResp, pdvsResp, turnsResp] = await Promise.all([
     apiClient.get("/api/v1/performance/summary", { params: performanceParams(filters), timeout: ANALYTICS_TIMEOUT_MS }),
     apiClient.get("/api/v1/performance/operators", { params: performanceParams(filters), timeout: ANALYTICS_TIMEOUT_MS }),
@@ -739,6 +823,10 @@ export async function fetchOperatorPerformanceAll(filters) {
 }
 
 export async function fetchOperatorIntelligenceSnapshot(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { fromSnapshot: false, lastUpdated: null, data: null, ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.get("/api/v1/operator-intelligence/snapshot", {
     params: performanceParams(filters),
     timeout: SNAPSHOT_TIMEOUT_MS,
@@ -747,6 +835,10 @@ export async function fetchOperatorIntelligenceSnapshot(filters) {
 }
 
 export async function fetchOperatorIntelligenceCockpit(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return deprecatedCockpit(filters);
+  }
   const raw = await apiClient.get("/api/v1/operator-intelligence/cockpit", {
     params: performanceParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
@@ -761,6 +853,10 @@ export async function fetchOperatorIntelligenceCockpit(filters) {
 }
 
 export async function postOperatorIntelligenceRefresh(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { status: "disabled", ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.post("/api/v1/operator-intelligence/refresh", null, {
     params: performanceParams(filters),
     timeout: REFRESH_TIMEOUT_MS,
@@ -769,6 +865,10 @@ export async function postOperatorIntelligenceRefresh(filters) {
 }
 
 export async function fetchPeopleIntelligenceCockpit(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { ...deprecatedCockpit(filters), classification: null };
+  }
   const raw = await apiClient.get("/api/v1/people-intelligence/cockpit", {
     params: performanceParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
@@ -784,6 +884,10 @@ export async function fetchPeopleIntelligenceCockpit(filters) {
 }
 
 export async function postPeopleIntelligenceRefresh(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { status: "disabled", ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.post("/api/v1/people-intelligence/refresh", null, {
     params: performanceParams(filters),
     timeout: REFRESH_TIMEOUT_MS,
@@ -792,6 +896,10 @@ export async function postPeopleIntelligenceRefresh(filters) {
 }
 
 export async function fetchPeopleRoiCockpit(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { ...deprecatedCockpit(filters), qa: [] };
+  }
   const raw = await apiClient.get("/api/v1/people-roi/cockpit", {
     params: performanceParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
@@ -807,6 +915,10 @@ export async function fetchPeopleRoiCockpit(filters) {
 }
 
 export async function postPeopleRoiRefresh(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { status: "disabled", ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.post("/api/v1/people-roi/refresh", null, {
     params: performanceParams(filters),
     timeout: REFRESH_TIMEOUT_MS,
@@ -815,6 +927,10 @@ export async function postPeopleRoiRefresh(filters) {
 }
 
 export async function fetchOperationRoiCockpit(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { ...deprecatedCockpit(filters), qa: [] };
+  }
   const raw = await apiClient.get("/api/v1/operation-roi/cockpit", {
     params: performanceParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
@@ -830,6 +946,10 @@ export async function fetchOperationRoiCockpit(filters) {
 }
 
 export async function postOperationRoiRefresh(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { status: "disabled", ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.post("/api/v1/operation-roi/refresh", null, {
     params: performanceParams(filters),
     timeout: REFRESH_TIMEOUT_MS,

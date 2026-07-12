@@ -11,9 +11,11 @@ from src.services.fuel_analytics_service import FuelAnalyticsFilters, FuelAnalyt
 from src.services.fuel_kpi_engine import FuelKpiEngine
 from src.services.multiselect_utils import parse_empresa_codigos
 from src.services.network_financial_overview_service import FinancialOverviewFilters, NetworkFinancialOverviewService
+from src.infrastructure.cache.snapshot_ttl import (
+    EXECUTIVE_SNAPSHOT_TTL_SECONDS,
+    build_snapshot_cache_meta,
+)
 from src.services.snapshot_store import SnapshotStore
-
-EXECUTIVE_SNAPSHOT_TTL_SECONDS = 5 * 60
 
 _parse_empresa_codigos = parse_empresa_codigos
 
@@ -222,11 +224,11 @@ class ExecutiveSnapshotService:
         empresa_codigo: str | int | None = None,
     ) -> dict[str, Any]:
         key = build_snapshot_key(data_inicial, data_final, empresa_codigo)
-        stored = self._store.load(key)
+        stored, expired = self._store.load_stale(key)
+        meta = build_snapshot_cache_meta(self._store, key, stored, expired=expired)
         if stored:
             return {
-                "fromSnapshot": True,
-                "lastUpdated": stored.get("lastUpdated"),
+                **meta,
                 "kpis": stored.get("kpis"),
                 "dre": stored.get("dre"),
                 "coverage": stored.get("coverage"),
@@ -236,8 +238,7 @@ class ExecutiveSnapshotService:
             }
 
         return {
-            "fromSnapshot": False,
-            "lastUpdated": None,
+            **meta,
             "kpis": None,
             "dre": None,
             "coverage": None,

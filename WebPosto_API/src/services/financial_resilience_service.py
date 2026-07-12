@@ -352,3 +352,163 @@ class FinancialResilienceService:
                 live_error=live.error,
             ),
         }
+
+    def _paginate_list_snap(self, snap: dict[str, Any], *, page: int, limit: int) -> dict[str, Any]:
+        data = dict(snap["data"])
+        rows = data.get("data") or []
+        start = max(page - 1, 0) * limit
+        page_rows = rows[start : start + limit]
+        data["page"] = page
+        data["limit"] = limit
+        data["total"] = len(rows)
+        data["data"] = page_rows
+        return data
+
+    async def _get_financial_paged(
+        self,
+        *,
+        filters: FinancialOverviewFilters,
+        kind: str,
+        endpoint: str,
+        live_fetch,
+        page: int,
+        limit: int,
+    ) -> dict[str, Any]:
+        data_inicial, data_final = self._period_bounds(filters)
+        key = self._snapshots.build_key(data_inicial, data_final, self._empresa_for_key(filters))
+        self._snapshots.ensure_homologated(data_inicial, data_final, self._empresa_for_key(filters))
+        snap = self._snapshots.load_kind(kind, key)
+        if snap and snap.get("data"):
+            data = self._paginate_list_snap(snap, page=page, limit=limit)
+            return {
+                "success": True,
+                "source": "snapshot",
+                "data": data,
+                "error": None,
+                "resilience": self._resilience_meta(
+                    source="snapshot",
+                    mode="snapshot_first",
+                    reason="homologated_snapshot",
+                    live_attempted=False,
+                    key=key,
+                    last_updated=snap.get("lastUpdated"),
+                    banner=BANNER_SNAPSHOT,
+                    snapshot_kind=kind,
+                    snap_payload=snap,
+                ),
+            }
+
+        live = await self._live_with_budget(live_fetch, endpoint=endpoint)
+        if live.success and live.data:
+            self._snapshots.save_kind(kind, key, live.data, source="live")
+            body = live.to_dict()
+            body["source"] = "live"
+            body["resilience"] = self._resilience_meta(
+                source="live",
+                mode="live",
+                reason="ok",
+                live_attempted=True,
+                key=key,
+                banner=None,
+            )
+            return body
+
+        snap = self._snapshots.load_kind(kind, key)
+        if snap and snap.get("data"):
+            data = self._paginate_list_snap(snap, page=page, limit=limit)
+            self._schedule_recovery(filters, key)
+            return {
+                "success": True,
+                "source": "snapshot",
+                "data": data,
+                "error": None,
+                "resilience": self._resilience_meta(
+                    source="snapshot",
+                    mode="snapshot_fallback",
+                    reason=self._failure_reason(live.error),
+                    live_attempted=True,
+                    key=key,
+                    last_updated=snap.get("lastUpdated"),
+                    banner=BANNER_SNAPSHOT,
+                    live_error=live.error,
+                    snapshot_kind=kind,
+                    snap_payload=snap,
+                ),
+            }
+
+        return {
+            "success": True,
+            "source": "degraded",
+            "data": {"page": page, "limit": limit, "total": 0, "data": [], "synthetic": True},
+            "error": None,
+            "resilience": self._resilience_meta(
+                source="degraded",
+                mode="degraded",
+                reason=self._failure_reason(live.error),
+                live_attempted=True,
+                key=key,
+                banner=BANNER_DEGRADED,
+                live_error=live.error,
+            ),
+        }
+
+    async def get_financial_accounts_payable(
+        self,
+        filters: FinancialOverviewFilters,
+        page: int = 1,
+        limit: int = 50,
+    ) -> dict[str, Any]:
+        return await self._get_financial_paged(
+            filters=filters,
+            kind="financial_payables",
+            endpoint="financial_accounts_payable",
+            live_fetch=self._overview.get_accounts_payable(filters, page=page, limit=limit),
+            page=page,
+            limit=limit,
+        )
+
+    async def get_financial_accounts_receivable(
+        self,
+        filters: FinancialOverviewFilters,
+        page: int = 1,
+        limit: int = 50,
+    ) -> dict[str, Any]:
+        return await self._get_financial_paged(
+            filters=filters,
+            kind="financial_receivables",
+            endpoint="financial_accounts_receivable",
+            live_fetch=self._overview.get_accounts_receivable(filters, page=page, limit=limit),
+            page=page,
+            limit=limit,
+        )
+
+    async def get_financial_companies(self) -> dict[str, Any]:
+        live = await self._live_with_budget(self._overview.get_companies(), endpoint="financial_companies")
+        if live.success and live.data:
+            body = live.to_dict()
+            body["source"] = "live"
+            body["resilience"] = self._resilience_meta(
+                source="live",
+                mode="live",
+                reason="ok",
+                live_attempted=True,
+                key="companies",
+                banner=None,
+            )
+            return body
+
+        return {
+            "success": True,
+            "source": "degraded",
+            "data": {"data": [], "total": 0, "synthetic": True},
+            "error": None,
+            "resilience": self._resilience_meta(
+                source="degraded",
+                mode="degraded",
+                reason=self._failure_reason(live.error),
+                live_attempted=True,
+                key="companies",
+                banner=BANNER_DEGRADED,
+                live_error=live.error,
+            ),
+        }
