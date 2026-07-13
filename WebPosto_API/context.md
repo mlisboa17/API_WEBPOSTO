@@ -1,6 +1,6 @@
 # Contexto do Projeto: Logos Postos (BI Executivo)
 
-**Versão:** 3.4  
+**Versão:** 3.5  
 **Atualizado:** 2026-07-12  
 **Repositório:** `WebPosto_API`  
 **Fase:** FASE 1 / FASE 2 — Transição de Análise para Diagnóstico  
@@ -132,11 +132,13 @@ Agregação obrigatória: **rede → filial → combustível**.
 |------|---------|
 | `/discovery/explain/{id}` | Mock removido — resolve candidato real via `DecisionEvidenceService` + `RootCauseEngine` |
 | Contratos WebPosto | `docs/validation/DISCOVERY_WEBPOSTO_PAYLOAD_CONTRACTS.md` — mapeamento por detector |
-| Testes | `tests/unit/test_discovery_explain_endpoint.py` — snapshot real + 404 |
+| Testes explain | `tests/unit/test_discovery_explain_endpoint.py` — snapshot real + 404 |
+| **Multi-tenant Discovery** | `DiscoveryScopeService` — portfólio via `TenantDiscoveryService`; sem default `vip` |
+| Escopo snapshot | Busca indexada por `empresaCodigo` / rede (`all`); cross-tenant → `403`/`404` |
+| Rotas `/discovery/*` | `discover_all_tenants` filtrado pelo portfólio autorizado |
 
 #### Pendente Sprint 2
 
-- Rotas `/discovery/*` multi-tenant (hoje default `vip`)
 - `business-health` com score real
 - Detectores de margem (`MarginDetector`)
 - Cobertura de testes ampliada para todos os detectores
@@ -195,6 +197,7 @@ Agregação obrigatória: **rede → filial → combustível**.
 
 | Data | Versão | Alteração |
 |------|--------|-----------|
+| 2026-07-13 | 3.5 | Sprint 2 — isolamento multi-tenant rigoroso em `/discovery/*` |
 | 2026-07-12 | 3.4 | Sprint 2 em progresso — `/discovery/explain` com snapshot real + contratos payload |
 | 2026-07-12 | 3.3 | Sprint 1 concluída — front higienizado, cache TTL 300s, degradação `/v1/financial/*` |
 | 2026-07-12 | 3.2 | Sprint 1 em progresso — barramento C-Level em `app.py`, rotas operacionais isoladas |

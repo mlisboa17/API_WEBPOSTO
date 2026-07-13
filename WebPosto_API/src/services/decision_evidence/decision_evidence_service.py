@@ -15,7 +15,8 @@ from src.services.decision_evidence.expense_evidence_builder import (
 )
 from src.services.decision_evidence.models import DecisionEvidenceItem, DecisionEvidenceResponse
 from src.services.decision_evidence.nominal_enrichment_service import NominalEnrichmentService
-from src.services.owner_analysis_models import OWNER_ANALYSIS_SNAPSHOT_DIR
+from src.services.decision_discovery.discovery_scope import DiscoveryScope
+from src.services.owner_analysis_models import DETECTOR_SET_SIGNATURE, OWNER_ANALYSIS_SNAPSHOT_DIR
 from src.services.snapshot_store import SnapshotStore
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -94,40 +95,131 @@ class DecisionEvidenceService:
     def _expense_cache_key(tenant_id: str, period_start: str, period_end: str) -> str:
         return f"discovery_expense:{tenant_id}:{tenant_id}:{period_start}:{period_end}"
 
-    def find_candidate(self, decision_id: str) -> dict[str, Any] | None:
-        """Resolve candidato real a partir dos snapshots de owner_analysis."""
-        return self._find_candidate(decision_id)
+    def find_candidate(
+        self,
+        decision_id: str,
+        *,
+        scope: DiscoveryScope | None = None,
+        period_start: str | None = None,
+        period_end: str | None = None,
+    ) -> dict[str, Any] | None:
+        """Resolve candidato real a partir dos snapshots de owner_analysis (escopo opcional)."""
+        return self._find_candidate(
+            decision_id,
+            scope=scope,
+            period_start=period_start,
+            period_end=period_end,
+        )
+
+    def candidate_exists_outside_scope(
+        self,
+        decision_id: str,
+        scope: DiscoveryScope,
+    ) -> bool:
+        """True quando a decisão existe globalmente mas não no escopo solicitado."""
+        found = self._find_candidate(decision_id, scope=None)
+        if not found:
+            return False
+        tenant = found.get("tenant") or found.get("tenant_id")
+        return not scope.allows_tenant(tenant)
 
     def to_decision_candidate(self, data: dict[str, Any]) -> DecisionCandidate:
         """Converte payload serializado do snapshot em DecisionCandidate."""
         return self._to_decision_candidate(data)
 
-    def _find_candidate(self, decision_id: str) -> dict[str, Any] | None:
+    @staticmethod
+    def _build_owner_scope_key(
+        period_start: str,
+        period_end: str,
+        empresa_codigo: str | None,
+    ) -> str:
+        empresa = str(empresa_codigo).strip() if empresa_codigo else "all"
+        return (
+            f"{period_start}:{period_end}:all_discovered:"
+            f"{DETECTOR_SET_SIGNATURE}:{empresa}"
+        )
+
+    @staticmethod
+    def _owner_snapshot_storage_key(scope_key: str) -> str:
+        return f"owner_analysis:last_valid:{scope_key}"
+
+    def _scoped_snapshot_paths(
+        self,
+        scope: DiscoveryScope,
+        *,
+        period_start: str | None = None,
+        period_end: str | None = None,
+    ) -> list[Path]:
+        if period_start and period_end:
+            scope_key = self._build_owner_scope_key(
+                period_start,
+                period_end,
+                scope.empresa_query,
+            )
+            storage_key = self._owner_snapshot_storage_key(scope_key)
+            from src.services.snapshot_store import safe_filename
+
+            indexed = OWNER_SNAPSHOT_DIR / f"{safe_filename(storage_key)}.json"
+            if indexed.exists():
+                return [indexed]
+
+        pattern = scope.snapshot_filename_pattern()
+        return sorted(OWNER_SNAPSHOT_DIR.glob(pattern), reverse=True)
+
+    def _find_candidate(
+        self,
+        decision_id: str,
+        *,
+        scope: DiscoveryScope | None = None,
+        period_start: str | None = None,
+        period_end: str | None = None,
+    ) -> dict[str, Any] | None:
         if not OWNER_SNAPSHOT_DIR.is_dir():
             return None
 
-        for path in sorted(OWNER_SNAPSHOT_DIR.glob("owner_analysis_last_valid_*.json"), reverse=True):
-            try:
-                payload = json.loads(path.read_text(encoding="utf-8"))
-            except (OSError, json.JSONDecodeError):
-                continue
-            snapshot = payload.get("snapshot") or payload
-            response = snapshot.get("response") or snapshot
-            data = response.get("data") or {}
-            for entry in data.get("top_5_decisions") or []:
-                action = entry.get("action") or {}
-                candidate = entry.get("candidate") or {}
-                ids = {
-                    str(action.get("id") or ""),
-                    str(entry.get("decision_id") or ""),
-                    str(candidate.get("id") or ""),
-                }
-                if decision_id in ids:
-                    return candidate if candidate else self._candidate_from_entry(entry)
+        if scope is not None:
+            paths = self._scoped_snapshot_paths(
+                scope,
+                period_start=period_start,
+                period_end=period_end,
+            )
+        else:
+            paths = sorted(OWNER_SNAPSHOT_DIR.glob("owner_analysis_last_valid_*.json"), reverse=True)
 
-            for entry in data.get("stored_candidates") or []:
-                if str(entry.get("id") or "") == decision_id:
-                    return entry
+        for path in paths:
+            candidate = self._find_candidate_in_path(path, decision_id)
+            if not candidate:
+                continue
+            if scope is not None and not scope.allows_tenant(
+                candidate.get("tenant") or candidate.get("tenant_id")
+            ):
+                continue
+            return candidate
+        return None
+
+    @staticmethod
+    def _find_candidate_in_path(path: Path, decision_id: str) -> dict[str, Any] | None:
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            return None
+        snapshot = payload.get("snapshot") or payload
+        response = snapshot.get("response") or snapshot
+        data = response.get("data") or {}
+        for entry in data.get("top_5_decisions") or []:
+            action = entry.get("action") or {}
+            candidate = entry.get("candidate") or {}
+            ids = {
+                str(action.get("id") or ""),
+                str(entry.get("decision_id") or ""),
+                str(candidate.get("id") or ""),
+            }
+            if decision_id in ids:
+                return candidate if candidate else DecisionEvidenceService._candidate_from_entry(entry)
+
+        for entry in data.get("stored_candidates") or []:
+            if str(entry.get("id") or "") == decision_id:
+                return entry
         return None
 
     @staticmethod

@@ -14,9 +14,10 @@ antes de aumentar a quantidade de decisões apresentadas.
 
 from __future__ import annotations
 
-from fastapi import APIRouter, Query, HTTPException
 from datetime import datetime, timedelta
-from typing import Dict, Any
+from typing import Any, Dict
+
+from fastapi import APIRouter, HTTPException, Query, Request
 
 from src.services.decision_discovery import DecisionDiscoveryEngine
 from src.services.decision_discovery.detectors import (
@@ -25,19 +26,25 @@ from src.services.decision_discovery.detectors import (
     FuelRevenueDetector,
     SupplierInvoiceSpikeDetector,
 )
-from src.services.decision_discovery.root_cause.root_cause_engine import RootCauseEngine
+from src.services.decision_discovery.discovery_route_helpers import (
+    discover_for_scope,
+    discovery_response_data,
+)
+from src.services.decision_discovery.discovery_scope import DiscoveryScope, DiscoveryScopeService
+from src.services.decision_discovery.models import DecisionCategory
 from src.services.decision_discovery.root_cause.investigators import (
     CardReceivableRootCause,
     ExpenseRootCause,
     FuelRevenueRootCause,
     SupplierInvoiceRootCause,
 )
-from src.services.decision_discovery.models import DecisionCategory
+from src.services.decision_discovery.root_cause.root_cause_engine import RootCauseEngine
 from src.services.decision_evidence.decision_evidence_service import DecisionEvidenceService
 
 router = APIRouter(prefix="/api/v1/discovery", tags=["Decision Discovery"])
 
 _evidence_service = DecisionEvidenceService()
+_scope_service = DiscoveryScopeService()
 
 
 def _build_root_cause_engine() -> RootCauseEngine:
@@ -54,241 +61,131 @@ def _build_root_cause_engine() -> RootCauseEngine:
 
 
 def _get_discovery_engine() -> DecisionDiscoveryEngine:
-    """
-    Cria e configura o Discovery Engine.
-    
-    Registra todos os detectores disponíveis.
-    
-    Returns:
-        DecisionDiscoveryEngine configurado
-    """
+    """Cria e configura o Discovery Engine com detectores registrados."""
     engine = DecisionDiscoveryEngine()
-    
-    # Registrar detectores disponíveis
     engine.register_detector(FuelRevenueDetector())
     engine.register_detector(ExpenseDetector())
     engine.register_detector(CardReceivableDetector())
     engine.register_detector(SupplierInvoiceSpikeDetector())
-    
-    # Futuros detectores serão adicionados aqui:
-    # engine.register_detector(CardDetector())
-    # engine.register_detector(MarginDetector())
-    # engine.register_detector(ReceivableDetector())
-    # etc.
-    
     return engine
+
+
+async def _resolve_scope(empresa_codigo: str | None, request: Request) -> DiscoveryScope:
+    return await _scope_service.resolve(empresa_codigo, request=request)
+
+
+async def _run_discovery(
+    *,
+    data_inicial: str,
+    data_final: str,
+    top_n: int,
+    empresa_codigo: str | None,
+    request: Request,
+) -> Dict[str, Any]:
+    scope = await _resolve_scope(empresa_codigo, request)
+    engine = _get_discovery_engine()
+    result = await discover_for_scope(
+        engine,
+        scope,
+        data_inicial=data_inicial,
+        data_final=data_final,
+        top_n=top_n,
+    )
+    return {
+        "success": True,
+        "data": discovery_response_data(result, top_n=top_n),
+    }
 
 
 @router.get("/top-decision")
 async def get_top_decision(
+    request: Request,
     dataInicial: str = Query(..., description="Data inicial (YYYY-MM-DD)"),
     dataFinal: str = Query(..., description="Data final (YYYY-MM-DD)"),
-    empresaCodigo: str | None = Query(None, description="Código da empresa"),
+    empresaCodigo: str | None = Query(None, description="Código da empresa ou lista separada por vírgula"),
 ) -> Dict[str, Any]:
-    """
-    Retorna a decisão de maior prioridade.
-    
-    O Discovery Engine executa todos os detectores disponíveis,
-    compara os resultados e retorna automaticamente a decisão
-    mais importante para o proprietário.
-    
-    Critérios de seleção:
-    - Confidence >= 80%
-    - Maior Priority Score (impacto financeiro + urgência + confiança)
-    
-    Se nenhuma decisão atender aos critérios, retorna mensagem
-    explicativa ao invés de decisões fracas.
-    
-    Args:
-        dataInicial: Data inicial (YYYY-MM-DD)
-        dataFinal: Data final (YYYY-MM-DD)
-        empresaCodigo: Código da empresa (opcional, usa default se não informado)
-    
-    Returns:
-        Decisão de maior prioridade ou mensagem de dados insuficientes
-    """
     try:
-        # Usar empresa padrão se não informada
-        tenant_code = empresaCodigo or "vip"
-        tenant_name = "POSTO VIP"  # TODO: Buscar do banco de dados
-        
-        # Criar Discovery Engine
-        engine = _get_discovery_engine()
-        
-        # Executar descoberta (top 1)
-        result = await engine.discover(
-            tenant_code=tenant_code,
+        return await _run_discovery(
             data_inicial=dataInicial,
             data_final=dataFinal,
             top_n=1,
-            tenant_name=tenant_name
+            empresa_codigo=empresaCodigo,
+            request=request,
         )
-        
-        return {
-            "success": True,
-            "data": {
-                "decision": result.top_decision.to_dict() if result.top_decision else None,
-                "message": result.message,
-                "execution_time_ms": result.execution_time_ms,
-                "detectors_executed": result.detectors_executed,
-            },
-        }
-        
-    except Exception as e:
+    except HTTPException:
+        raise
+    except Exception as exc:
         raise HTTPException(
             status_code=500,
-            detail=f"Erro ao executar Decision Discovery Engine: {str(e)}"
-        )
+            detail=f"Erro ao executar Decision Discovery Engine: {str(exc)}",
+        ) from exc
 
 
 @router.get("/top-3")
 async def get_top_3_decisions(
+    request: Request,
     dataInicial: str = Query(..., description="Data inicial (YYYY-MM-DD)"),
     dataFinal: str = Query(..., description="Data final (YYYY-MM-DD)"),
-    empresaCodigo: str | None = Query(None, description="Código da empresa"),
+    empresaCodigo: str | None = Query(None, description="Código da empresa ou lista separada por vírgula"),
 ) -> Dict[str, Any]:
-    """
-    Retorna as top 3 decisões mais importantes.
-    
-    Similar ao /top-decision, mas retorna até 3 decisões
-    ordenadas por Priority Score.
-    
-    Útil para interfaces que mostram mais opções ao proprietário.
-    
-    Args:
-        dataInicial: Data inicial (YYYY-MM-DD)
-        dataFinal: Data final (YYYY-MM-DD)
-        empresaCodigo: Código da empresa (opcional)
-    
-    Returns:
-        Top 3 decisões ou mensagem de dados insuficientes
-    """
     try:
-        tenant_code = empresaCodigo or "vip"
-        tenant_name = "POSTO VIP"
-        
-        engine = _get_discovery_engine()
-        
-        result = await engine.discover(
-            tenant_code=tenant_code,
+        return await _run_discovery(
             data_inicial=dataInicial,
             data_final=dataFinal,
             top_n=3,
-            tenant_name=tenant_name
+            empresa_codigo=empresaCodigo,
+            request=request,
         )
-        
-        return {
-            "success": True,
-            "data": {
-                "decisions": [c.to_dict() for c in result.all_candidates],
-                "count": len(result.all_candidates),
-                "message": result.message,
-                "execution_time_ms": result.execution_time_ms,
-                "detectors_executed": result.detectors_executed,
-            },
-        }
-        
-    except Exception as e:
+    except HTTPException:
+        raise
+    except Exception as exc:
         raise HTTPException(
             status_code=500,
-            detail=f"Erro ao executar Decision Discovery Engine: {str(e)}"
-        )
+            detail=f"Erro ao executar Decision Discovery Engine: {str(exc)}",
+        ) from exc
 
 
 @router.get("/top-5")
 async def get_top_5_decisions(
+    request: Request,
     dataInicial: str = Query(..., description="Data inicial (YYYY-MM-DD)"),
     dataFinal: str = Query(..., description="Data final (YYYY-MM-DD)"),
-    empresaCodigo: str | None = Query(None, description="Código da empresa"),
+    empresaCodigo: str | None = Query(None, description="Código da empresa ou lista separada por vírgula"),
 ) -> Dict[str, Any]:
-    """
-    Retorna as top 5 decisões mais importantes.
-    
-    Similar ao /top-decision, mas retorna até 5 decisões
-    ordenadas por Priority Score.
-    
-    Útil para dashboards executivos completos.
-    
-    Args:
-        dataInicial: Data inicial (YYYY-MM-DD)
-        dataFinal: Data final (YYYY-MM-DD)
-        empresaCodigo: Código da empresa (opcional)
-    
-    Returns:
-        Top 5 decisões ou mensagem de dados insuficientes
-    """
     try:
-        tenant_code = empresaCodigo or "vip"
-        tenant_name = "POSTO VIP"
-        
-        engine = _get_discovery_engine()
-        
-        result = await engine.discover(
-            tenant_code=tenant_code,
+        return await _run_discovery(
             data_inicial=dataInicial,
             data_final=dataFinal,
             top_n=5,
-            tenant_name=tenant_name
+            empresa_codigo=empresaCodigo,
+            request=request,
         )
-        
-        return {
-            "success": True,
-            "data": {
-                "decisions": [c.to_dict() for c in result.all_candidates],
-                "count": len(result.all_candidates),
-                "message": result.message,
-                "execution_time_ms": result.execution_time_ms,
-                "detectors_executed": result.detectors_executed,
-            },
-        }
-        
-    except Exception as e:
+    except HTTPException:
+        raise
+    except Exception as exc:
         raise HTTPException(
             status_code=500,
-            detail=f"Erro ao executar Decision Discovery Engine: {str(e)}"
-        )
+            detail=f"Erro ao executar Decision Discovery Engine: {str(exc)}",
+        ) from exc
 
 
 @router.get("/debug/execution-log")
 async def get_execution_log(
+    request: Request,
     dataInicial: str = Query(..., description="Data inicial (YYYY-MM-DD)"),
     dataFinal: str = Query(..., description="Data final (YYYY-MM-DD)"),
-    empresaCodigo: str | None = Query(None, description="Código da empresa"),
+    empresaCodigo: str | None = Query(None, description="Código da empresa ou lista separada por vírgula"),
 ) -> Dict[str, Any]:
-    """
-    Retorna log completo de execução do Discovery Engine.
-    
-    Útil para debugging e auditoria.
-    
-    Mostra:
-    - Detectores executados
-    - Candidatos gerados
-    - Candidatos rejeitados (com motivo)
-    - Priority Scores calculados
-    - Decisão final escolhida
-    
-    Args:
-        dataInicial: Data inicial (YYYY-MM-DD)
-        dataFinal: Data final (YYYY-MM-DD)
-        empresaCodigo: Código da empresa (opcional)
-    
-    Returns:
-        Log completo de execução
-    """
     try:
-        tenant_code = empresaCodigo or "vip"
-        tenant_name = "POSTO VIP"
-        
+        scope = await _resolve_scope(empresaCodigo, request)
         engine = _get_discovery_engine()
-        
-        result = await engine.discover(
-            tenant_code=tenant_code,
+        result = await discover_for_scope(
+            engine,
+            scope,
             data_inicial=dataInicial,
             data_final=dataFinal,
             top_n=1,
-            tenant_name=tenant_name
         )
-        
         return {
             "success": True,
             "data": {
@@ -296,74 +193,59 @@ async def get_execution_log(
                 "result": result.to_dict(),
             },
         }
-        
-    except Exception as e:
+    except HTTPException:
+        raise
+    except Exception as exc:
         raise HTTPException(
             status_code=500,
-            detail=f"Erro ao executar Decision Discovery Engine: {str(e)}"
-        )
+            detail=f"Erro ao executar Decision Discovery Engine: {str(exc)}",
+        ) from exc
 
 
 @router.get("/today")
 async def get_today_decision(
-    empresaCodigo: str | None = Query(None, description="Código da empresa"),
+    request: Request,
+    empresaCodigo: str | None = Query(None, description="Código da empresa ou lista separada por vírgula"),
 ) -> Dict[str, Any]:
-    """
-    Conveniência: retorna a melhor decisão de hoje (últimos 7 dias).
-    
-    Equivalente a chamar /top-decision com dataInicial=(hoje - 7 dias)
-    e dataFinal=hoje.
-    
-    Args:
-        empresaCodigo: Código da empresa (opcional)
-    
-    Returns:
-        Melhor decisão de hoje
-    """
     hoje = datetime.now().date()
     data_final = hoje.isoformat()
     data_inicial = (hoje - timedelta(days=7)).isoformat()
-    
     return await get_top_decision(
+        request=request,
         dataInicial=data_inicial,
         dataFinal=data_final,
-        empresaCodigo=empresaCodigo
+        empresaCodigo=empresaCodigo,
     )
 
 
 @router.get("/explain/{decision_id}")
 async def explain_decision(
-    decision_id: str
+    decision_id: str,
+    request: Request,
+    empresaCodigo: str | None = Query(None, description="Código da empresa ou lista separada por vírgula"),
+    dataInicial: str | None = Query(None, description="Data inicial (YYYY-MM-DD)"),
+    dataFinal: str | None = Query(None, description="Data final (YYYY-MM-DD)"),
 ) -> Dict[str, Any]:
-    """
-    Explica a causa raiz de uma decisão.
-    
-    VALUE-02: Root Cause Engine
-    
-    Investiga automaticamente:
-    - Produto afetado
-    - Volume/litros
-    - Preço médio
-    - Margem
-    - Padrão temporal
-    - Causa provável
-    - Evidências
-    - Recomendações específicas
-    
-    Args:
-        decision_id: ID da decisão a ser explicada
-    
-    Returns:
-        RootCauseAnalysis completo com causa provável e recomendações
-    """
     try:
-        candidate_data = _evidence_service.find_candidate(decision_id)
+        scope = await _resolve_scope(empresaCodigo, request)
+        candidate_data = _evidence_service.find_candidate(
+            decision_id,
+            scope=scope,
+            period_start=dataInicial,
+            period_end=dataFinal,
+        )
         if not candidate_data:
+            if _evidence_service.candidate_exists_outside_scope(decision_id, scope):
+                raise HTTPException(
+                    status_code=403,
+                    detail="Decisão fora do escopo corporativo autorizado",
+                )
             raise HTTPException(
                 status_code=404,
                 detail=f"Decisão não encontrada no snapshot: {decision_id}",
             )
 
+        _scope_service.assert_candidate_visible(scope, candidate_data)
         decision = _evidence_service.to_decision_candidate(candidate_data)
         root_cause_engine = _build_root_cause_engine()
         result = await root_cause_engine.investigate(decision)
@@ -377,8 +259,8 @@ async def explain_decision(
 
     except HTTPException:
         raise
-    except Exception as e:
+    except Exception as exc:
         raise HTTPException(
             status_code=500,
-            detail=f"Erro ao explicar decisão: {str(e)}"
-        )
+            detail=f"Erro ao explicar decisão: {str(exc)}",
+        ) from exc
