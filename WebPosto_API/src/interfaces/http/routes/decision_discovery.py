@@ -24,6 +24,7 @@ from src.services.decision_discovery.detectors import (
     CardReceivableDetector,
     ExpenseDetector,
     FuelRevenueDetector,
+    MarginDetector,
     SupplierInvoiceSpikeDetector,
 )
 from src.services.decision_discovery.discovery_route_helpers import (
@@ -66,6 +67,7 @@ def _get_discovery_engine() -> DecisionDiscoveryEngine:
     engine.register_detector(FuelRevenueDetector())
     engine.register_detector(ExpenseDetector())
     engine.register_detector(CardReceivableDetector())
+    engine.register_detector(MarginDetector())
     engine.register_detector(SupplierInvoiceSpikeDetector())
     return engine
 

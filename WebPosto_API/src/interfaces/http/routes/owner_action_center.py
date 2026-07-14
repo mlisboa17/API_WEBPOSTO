@@ -11,11 +11,13 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException, Query, Request
 
 from src.services.action_center_service import ActionCenterService
 from src.services.action_center_snapshot_service import ActionCenterSnapshotService
+from src.services.decision_discovery.discovery_scope import DiscoveryScopeService
 from src.services.owner_analysis_snapshot_service import get_owner_analysis_snapshot_service
+from src.services.owner_business_health_service import OwnerBusinessHealthService
 from src.services.performance.performance_metrics import performance_metrics
 
 router = APIRouter(prefix="/api/v1/owner-action-center", tags=["Owner Action Center"])
@@ -23,6 +25,8 @@ router = APIRouter(prefix="/api/v1/owner-action-center", tags=["Owner Action Cen
 _action_service = ActionCenterService()
 _action_snapshot = ActionCenterSnapshotService(_action_service)
 _owner_snapshot = get_owner_analysis_snapshot_service()
+_health_service = OwnerBusinessHealthService()
+_scope_service = DiscoveryScopeService()
 
 
 @router.get("/top5")
@@ -82,51 +86,32 @@ async def reset_analysis_metrics() -> dict:
 
 @router.get("/business-health")
 async def get_business_health(
+    request: Request,
     dataInicial: str = Query(..., description="Data inicial (YYYY-MM-DD)"),
     dataFinal: str = Query(..., description="Data final (YYYY-MM-DD)"),
     empresaCodigo: str | None = Query(None, description="Código da empresa"),
 ) -> dict:
     try:
-        payload, stale, hit = await _action_snapshot.get_or_collect(
-            dataInicial, dataFinal, empresaCodigo
+        scope = await _scope_service.resolve(empresaCodigo, request=request)
+        result = _health_service.calculate_or_forbid(
+            dataInicial,
+            dataFinal,
+            scope=scope,
         )
-
-        if not payload:
-            return {
-                "success": True,
-                "data": {
-                    "overall_score": 0,
-                    "status": "unknown",
-                    "risk_count": 0,
-                    "last_update": datetime.now().isoformat(),
-                    "has_sufficient_data": False,
-                    "message": "Dados insuficientes para calcular health score",
-                },
-            }
-
-        overall_score = 0
-        status = "unknown"
-        risk_count = 0
-
         return {
             "success": True,
-            "data": {
-                "overall_score": overall_score,
-                "status": status,
-                "risk_count": risk_count,
-                "last_update": datetime.now().isoformat(),
-                "has_sufficient_data": overall_score > 0,
-                "message": "Dados insuficientes para calcular health score" if overall_score == 0 else None,
-            },
-            "snapshot": {"hit": hit, "stale": stale},
+            "data": result.to_response_data(),
+            "snapshot": {"hit": result.snapshot_hit, "stale": result.snapshot_stale},
         }
-
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao calcular health score: {str(e)}")
 
 
 @router.get("/today-summary")
 async def get_today_summary(
+    request: Request,
     empresaCodigo: str | None = Query(None, description="Código da empresa"),
 ) -> dict:
     """Resumo de hoje — usa fast path de snapshot (não bloqueia)."""
@@ -140,7 +125,7 @@ async def get_today_summary(
         empresa_codigo=empresaCodigo,
         auto_refresh=True,
     )
-    health_response = await get_business_health(data_inicial, data_final, empresaCodigo)
+    health_response = await get_business_health(request, data_inicial, data_final, empresaCodigo)
 
     return {
         "success": True,

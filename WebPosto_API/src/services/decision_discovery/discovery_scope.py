@@ -8,7 +8,7 @@ from fastapi import HTTPException, Request
 
 from src.infrastructure.security.jwt_utils import decode_token
 from src.services.multiselect_utils import parse_empresa_codigos
-from src.services.owner_analysis_models import DETECTOR_SET_SIGNATURE
+from src.services.owner_analysis_models import DETECTOR_SET_SIGNATURE, LEGACY_DETECTOR_SET_SIGNATURE
 from src.services.tenant_discovery_service import TenantDiscoveryService
 
 
@@ -44,9 +44,19 @@ class DiscoveryScope:
             return str(next(iter(self.requested_empresa_codes)))
         return ",".join(str(code) for code in sorted(self.requested_empresa_codes))
 
-    def snapshot_filename_pattern(self) -> str:
+    def snapshot_filename_patterns(self) -> list[str]:
         suffix = self.empresa_snapshot_suffix().replace(",", "_")
-        return f"owner_analysis_last_valid_*_{DETECTOR_SET_SIGNATURE.replace(',', '_')}_{suffix}.json"
+        patterns = [
+            f"owner_analysis_last_valid_*_{DETECTOR_SET_SIGNATURE.replace(',', '_')}_{suffix}.json",
+        ]
+        legacy = LEGACY_DETECTOR_SET_SIGNATURE.replace(",", "_")
+        current = DETECTOR_SET_SIGNATURE.replace(",", "_")
+        if legacy != current:
+            patterns.append(f"owner_analysis_last_valid_*_{legacy}_{suffix}.json")
+        return patterns
+
+    def snapshot_filename_pattern(self) -> str:
+        return self.snapshot_filename_patterns()[0]
 
 
 def extract_token_payload(request: Request | None) -> dict | None:

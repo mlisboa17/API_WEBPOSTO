@@ -164,7 +164,13 @@ class DecisionEvidenceService:
                 return [indexed]
 
         pattern = scope.snapshot_filename_pattern()
-        return sorted(OWNER_SNAPSHOT_DIR.glob(pattern), reverse=True)
+        paths = sorted(OWNER_SNAPSHOT_DIR.glob(pattern), reverse=True)
+        if not paths:
+            for alt in scope.snapshot_filename_patterns()[1:]:
+                paths = sorted(OWNER_SNAPSHOT_DIR.glob(alt), reverse=True)
+                if paths:
+                    break
+        return paths
 
     def _find_candidate(
         self,
