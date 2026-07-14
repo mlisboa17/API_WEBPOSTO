@@ -67,8 +67,13 @@ def _aggregate_dre(items: list[dict[str, Any]], data_inicial: str, data_final: s
     receitas = sum(_to_number(item.get("receitas")) for item in items)
     custos = sum(_to_number(item.get("custosProduto")) for item in items)
     outras = sum(_to_number(item.get("outrasDespesas")) for item in items)
+    deducoes = sum(_to_number(item.get("deducoes")) for item in items)
     resultado = sum(_to_number(item.get("resultadoOperacional")) for item in items)
+    margem_contrib = receitas - custos - deducoes
     margem = (resultado / receitas * 100) if receitas > 0 else 0.0
+    por_filial: list[dict[str, Any]] = []
+    for item in items:
+        por_filial.extend(item.get("porFilial") or [])
     return {
         "receitas": str(receitas),
         "custosProduto": str(custos),
@@ -80,7 +85,19 @@ def _aggregate_dre(items: list[dict[str, Any]], data_inicial: str, data_final: s
         "periodoInicial": data_inicial,
         "periodoFinal": data_final,
         "agrupamento": [],
-        "formula": "receitas - custosProduto - outrasDespesas = resultadoOperacional",
+        "faturamentoBruto": str(receitas),
+        "deducoes": str(deducoes),
+        "margemContribuicao": str(margem_contrib),
+        "despesasOperacionais": str(outras),
+        "porFilial": por_filial,
+        "estruturaGerencial": {
+            "faturamentoBruto": str(receitas),
+            "deducoes": str(deducoes),
+            "margemContribuicao": str(margem_contrib),
+            "despesasOperacionais": str(outras),
+            "resultadoOperacional": str(resultado),
+        },
+        "formula": "faturamentoBruto - deducoes - custosProduto = margemContribuicao; margemContribuicao - despesasOperacionais = resultadoOperacional",
         "lineage": {"aggregate": "multiselect_backend"},
     }
 

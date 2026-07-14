@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+from collections import defaultdict
 from dataclasses import dataclass
 from decimal import Decimal
 from typing import Any
@@ -82,12 +83,15 @@ class DreResult:
     agrupamento: list[dict[str, Any]]
     filtros: dict[str, Any]
     empresas_codigos: list[int]
+    deducoes: Decimal = Decimal("0")
+    por_filial: list[dict[str, Any]] | None = None
 
     def to_dict(self) -> dict[str, Any]:
         periodo = f"{self.periodo_inicial}..{self.periodo_final}"
         filtro_empresa = self.filtros.get("empresaCodigo")
         filtro_centro = self.filtros.get("centroCusto")
         escopo_rede = ",".join(str(c) for c in self.empresas_codigos) if self.empresas_codigos else "rede_completa"
+        margem_contribuicao = self.receitas - self.custos_produto - self.deducoes
         return {
             "receitas": str(self.receitas),
             "custosProduto": str(self.custos_produto),
@@ -103,12 +107,24 @@ class DreResult:
             "periodoInicial": self.periodo_inicial,
             "periodoFinal": self.periodo_final,
             "agrupamento": self.agrupamento,
-            "formula": "receitas - custosProduto - outrasDespesas = resultadoOperacional",
+            "faturamentoBruto": str(self.receitas),
+            "deducoes": str(self.deducoes),
+            "margemContribuicao": str(margem_contribuicao),
+            "despesasOperacionais": str(self.outras_despesas),
+            "porFilial": self.por_filial or [],
+            "estruturaGerencial": {
+                "faturamentoBruto": str(self.receitas),
+                "deducoes": str(self.deducoes),
+                "margemContribuicao": str(margem_contribuicao),
+                "despesasOperacionais": str(self.outras_despesas),
+                "resultadoOperacional": str(self.resultado_operacional),
+            },
+            "formula": "faturamentoBruto - deducoes - custosProduto = margemContribuicao; margemContribuicao - despesasOperacionais = resultadoOperacional",
             "lineage": {
                 "receitas": f"endpoint=/INTEGRACAO/VENDA_ITEM_REDE|campo=totalVenda|filtro=empresaCodigo:{filtro_empresa},centroCusto:{filtro_centro}|periodo={periodo}|rede={escopo_rede}",
                 "custosProduto": f"endpoint=/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE|campo=valor(classificado_custo)|filtro=empresaCodigo:{filtro_empresa},centroCusto:{filtro_centro}|periodo={periodo}|rede={escopo_rede}",
                 "outrasDespesas": f"endpoint=/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE|campo=valor(classificado_outra)|filtro=empresaCodigo:{filtro_empresa},centroCusto:{filtro_centro}|periodo={periodo}|rede={escopo_rede}",
-                "resultadoOperacional": f"endpoint=calculo_backend|campo=receitas-custosProduto-outrasDespesas|filtro=empresaCodigo:{filtro_empresa},centroCusto:{filtro_centro}|periodo={periodo}|rede={escopo_rede}",
+                "resultadoOperacional": f"endpoint=calculo_backend|campo=margemContribuicao-despesasOperacionais|filtro=empresaCodigo:{filtro_empresa},centroCusto:{filtro_centro}|periodo={periodo}|rede={escopo_rede}",
                 "margemPct": f"endpoint=calculo_backend|campo=resultado/receitas*100|filtro=empresaCodigo:{filtro_empresa},centroCusto:{filtro_centro}|periodo={periodo}|rede={escopo_rede}",
             },
         }
@@ -223,6 +239,63 @@ class AnalyticsService:
         )
         return WebPostoResponse.ok(resultado_kpi.to_dict())
 
+    @staticmethod
+    def _build_filial_dre(
+        sales: list[dict[str, Any]],
+        expenses: list[dict[str, Any]],
+    ) -> list[dict[str, Any]]:
+        receitas_by: dict[int, Decimal] = defaultdict(Decimal)
+        custos_by: dict[int, Decimal] = defaultdict(Decimal)
+        outras_by: dict[int, Decimal] = defaultdict(Decimal)
+
+        for row in sales:
+            code = row.get("empresaCodigo")
+            if code is None:
+                continue
+            try:
+                empresa = int(code)
+            except (TypeError, ValueError):
+                continue
+            receitas_by[empresa] += _to_dec(row.get("totalVenda") or row.get("valor"))
+
+        for row in expenses:
+            code = row.get("empresaCodigo")
+            if code is None:
+                continue
+            try:
+                empresa = int(code)
+            except (TypeError, ValueError):
+                continue
+            valor = _to_dec(row.get("valor"))
+            if AnalyticsService._classify_expense(row) == "custo_produto":
+                custos_by[empresa] += valor
+            else:
+                outras_by[empresa] += valor
+
+        filiais: list[dict[str, Any]] = []
+        for empresa in sorted(set(receitas_by) | set(custos_by) | set(outras_by)):
+            receitas = receitas_by.get(empresa, Decimal("0"))
+            custos = custos_by.get(empresa, Decimal("0"))
+            outras = outras_by.get(empresa, Decimal("0"))
+            deducoes = Decimal("0")
+            margem_contrib = receitas - custos - deducoes
+            resultado = margem_contrib - outras
+            margem = (resultado / receitas * 100) if receitas else Decimal("0")
+            filiais.append(
+                {
+                    "empresaCodigo": empresa,
+                    "nomeFilial": FILIAIS_BASE.get(empresa, f"Filial {empresa}"),
+                    "faturamentoBruto": str(receitas),
+                    "deducoes": str(deducoes),
+                    "custosProduto": str(custos),
+                    "margemContribuicao": str(margem_contrib),
+                    "despesasOperacionais": str(outras),
+                    "resultadoOperacional": str(resultado),
+                    "margemPct": str(margem.quantize(Decimal("0.01"))),
+                }
+            )
+        return filiais
+
     async def get_dre(self, filters: FinancialOverviewFilters) -> WebPostoResponse:
         exp_resp, sales_resp = await asyncio.gather(
             self.overview.get_financial_expenses(filters, page=1, limit=500),
@@ -261,8 +334,12 @@ class AnalyticsService:
             agrupamento[plano] += valor
 
         resultado_op = receitas - custos - outras
+        deducoes = Decimal("0")
+        margem_contrib = receitas - custos - deducoes
+        resultado_op = margem_contrib - outras
         divergencia = abs(resultado_op - (receitas - custos - outras))
         margem = (resultado_op / receitas * 100) if receitas else Decimal("0")
+        por_filial = self._build_filial_dre(sales, expenses)
 
         agrup_list = [
             {"planoConta": k, "valor": str(v)}
@@ -285,6 +362,8 @@ class AnalyticsService:
                 "centroCusto": filters.centro_custo,
             },
             empresas_codigos=sorted(codigos_set),
+            deducoes=deducoes,
+            por_filial=por_filial,
         )
         return WebPostoResponse.ok(dre.to_dict())
 

@@ -173,6 +173,45 @@ class CorporateCashFlowService:
             )
         return opps[:20]
 
+    @staticmethod
+    def _build_semantic_breakdown(
+        payables_future: list[dict[str, Any]],
+        receivables_future: list[dict[str, Any]],
+        pay_rows: list[dict[str, Any]],
+        rec_rows: list[dict[str, Any]],
+    ) -> dict[str, Any]:
+        despesas_map: dict[str, Decimal] = defaultdict(Decimal)
+        receitas_map: dict[str, Decimal] = defaultdict(Decimal)
+
+        for row in pay_rows:
+            nature = str(row.get("nomeFornecedor") or row.get("fornecedor") or row.get("descricao") or "CP")
+            despesas_map[nature] += _dec(normalize_webposto_account_value(row.get("valor")))
+
+        for row in rec_rows:
+            nature = str(row.get("nomeCliente") or row.get("cliente") or row.get("descricao") or "CR")
+            receitas_map[nature] += _dec(normalize_webposto_account_value(row.get("valor")))
+
+        despesas = [
+            {"natureza": k, "valor": _q2(v)}
+            for k, v in sorted(despesas_map.items(), key=lambda item: item[1], reverse=True)[:20]
+        ]
+        receitas = [
+            {"natureza": k, "valor": _q2(v)}
+            for k, v in sorted(receitas_map.items(), key=lambda item: item[1], reverse=True)[:20]
+        ]
+        return {
+            "despesas": despesas,
+            "receitas": receitas,
+            "despesasPrevistas": [
+                {"tipo": item.get("tipo"), "descricao": item.get("descricao"), "valor": item.get("valor")}
+                for item in payables_future[:30]
+            ],
+            "receitasPrevistas": [
+                {"tipo": item.get("tipo"), "descricao": item.get("descricao"), "valor": item.get("valor")}
+                for item in receivables_future[:30]
+            ],
+        }
+
     async def build(
         self,
         filters: FinancialOverviewFilters,
@@ -393,6 +432,12 @@ class CorporateCashFlowService:
                 "tarifasValor": treasury["tarifas"].get("valor", "0"),
                 "topOpportunities": top_opportunities,
             },
+            "semanticBreakdown": self._build_semantic_breakdown(
+                payables_future,
+                receivables_future,
+                pay_rows,
+                rec_rows,
+            ),
             "snapshotKeys": {
                 "daily": meta.snapshot_key("daily"),
                 "weekly": meta.snapshot_key("weekly"),
