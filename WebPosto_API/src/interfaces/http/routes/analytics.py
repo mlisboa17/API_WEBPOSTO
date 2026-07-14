@@ -38,7 +38,7 @@ from src.services.fuel_analytics_service import FuelAnalyticsService
 
 from src.services.fuel_kpi_engine import FuelKpiEngine
 
-from src.services.fuel_snapshot_service import FuelSnapshotService
+from src.services.fuel_pricing_service import FuelPricingService
 
 from src.services.multiselect_utils import empresa_codigo_cache_key
 
@@ -85,6 +85,8 @@ _executive_snapshot = ExecutiveSnapshotService(
     _fuel_kpi_engine,
 
 )
+
+_fuel_pricing = FuelPricingService(_client)
 
 _fuel_snapshot = FuelSnapshotService(_fuel_analytics, _fuel_kpi_engine)
 
@@ -234,7 +236,7 @@ async def get_fuel_executive(
 
     response = await fetch_fuel_executive_multiselect(
 
-        _fuel_analytics, _fuel_kpi_engine, dataInicial, dataFinal, empresaCodigo
+        _fuel_analytics, _fuel_kpi_engine, dataInicial, dataFinal, empresaCodigo, _fuel_pricing
 
     )
 

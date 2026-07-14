@@ -1,7 +1,7 @@
 # Contexto do Projeto: Logos Postos (BI Executivo)
 
-**Versão:** 3.5  
-**Atualizado:** 2026-07-12  
+**Versão:** 3.6  
+**Atualizado:** 2026-07-14  
 **Repositório:** `WebPosto_API`  
 **Fase:** FASE 1 / FASE 2 — Transição de Análise para Diagnóstico  
 **Runtime:** `http://127.0.0.1:8046` · SPA `/app/financial`
@@ -124,9 +124,9 @@ Agregação obrigatória: **rede → filial → combustível**.
 - **Entregas:** Detectores · `priority_score` · hierarquia UI · evidência + conferência · teste 15s + Playwright.
 - **Valor Presidência:** Responde em 15s: o que está errado, onde, quanto e o que fazer primeiro.
 - **Commit Padrão:** `feat(sprint-2/intelligence): algoritmo de priorizacao do top 5 de decisoes`
-- **Status:** 🔄 **Em Progresso**
+- **Status:** ✅ **Concluída**
 
-#### Ações realizadas (2026-07-12)
+#### Ações realizadas (2026-07-12 — 2026-07-14)
 
 | Ação | Detalhe |
 |------|---------|
@@ -136,12 +136,13 @@ Agregação obrigatória: **rede → filial → combustível**.
 | **Multi-tenant Discovery** | `DiscoveryScopeService` — portfólio via `TenantDiscoveryService`; sem default `vip` |
 | Escopo snapshot | Busca indexada por `empresaCodigo` / rede (`all`); cross-tenant → `403`/`404` |
 | Rotas `/discovery/*` | `discover_all_tenants` filtrado pelo portfólio autorizado |
+| **`business-health` real** | `OwnerBusinessHealthService` — score 100 − deduções ponderadas por anomalias ativas |
+| **`MarginDetector`** | Compara preço compra (abastecimento) vs venda vs meta do scorecard |
+| Testes score/margem | `test_business_health_score.py`, `test_margin_detector.py` — 16 passed |
 
 #### Pendente Sprint 2
 
-- `business-health` com score real
-- Detectores de margem (`MarginDetector`)
-- Cobertura de testes ampliada para todos os detectores
+- _(nenhum — sprint encerrada)_
 
 ---
 
@@ -151,7 +152,15 @@ Agregação obrigatória: **rede → filial → combustível**.
 - **Entregas:** DRE por rede/posto · cash-flow integrado · resiliência UI (skeleton/retry) · inbox de conferências.
 - **Valor Presidência:** Visão única da saúde financeira — margem, despesas e liquidez sem planilhas.
 - **Commit Padrão:** `feat(sprint-3/financeiro): unificacao de endpoints de despesas e visualizacao de dre`
-- **Status:** 🔄 Parcial
+- **Status:** ✅ **Concluída**
+
+#### Ações realizadas (2026-07-14)
+
+| Ação | Detalhe |
+|------|---------|
+| **`/api/v1/dre`** | Estrutura gerencial: faturamentoBruto, deduções, margemContribuicao, despesasOperacionais, porFilial |
+| **`/api/v1/finance/cash-flow`** | `semanticBreakdown` com despesas/receitas semânticas + séries daily/weekly/monthly consolidadas |
+| Agregação multiselect | `_aggregate_dre` preserva campos gerenciais na visão rede |
 
 ---
 
@@ -161,7 +170,15 @@ Agregação obrigatória: **rede → filial → combustível**.
 - **Entregas:** Cockpit combustível · benchmark entre filiais · paridade compra/venda · alertas de outlier.
 - **Valor Presidência:** Identifica perda de margem antes do fechamento do mês.
 - **Commit Padrão:** `feat(sprint-4/comercial): visualizacao executiva de combustiveis e precificacao`
-- **Status:** ⏳ Planejada
+- **Status:** ✅ **Concluída**
+
+#### Ações realizadas (2026-07-14)
+
+| Ação | Detalhe |
+|------|---------|
+| **`/api/v1/fuel/executive`** | `FuelPricingService` — litros × preço médio compra (abastecimento) vs venda por combustível |
+| **`paridadePrecos`** | Bloco `paridadePrecos` + KPIs `precificacao` sem alterar contrato existente do cockpit |
+| Enriquecimento combustíveis | `precoMedioCompra`, `precoMedioVenda`, `margemRealizadaPct` por item em `combustiveis` |
 
 ---
 
@@ -197,6 +214,7 @@ Agregação obrigatória: **rede → filial → combustível**.
 
 | Data | Versão | Alteração |
 |------|--------|-----------|
+| 2026-07-14 | 3.6 | Sprints 2–4 concluídas — business-health, MarginDetector, DRE gerencial, cash-flow semântico, paridade preços |
 | 2026-07-13 | 3.5 | Sprint 2 — isolamento multi-tenant rigoroso em `/discovery/*` |
 | 2026-07-12 | 3.4 | Sprint 2 em progresso — `/discovery/explain` com snapshot real + contratos payload |
 | 2026-07-12 | 3.3 | Sprint 1 concluída — front higienizado, cache TTL 300s, degradação `/v1/financial/*` |
