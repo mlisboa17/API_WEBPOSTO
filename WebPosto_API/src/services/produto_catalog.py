@@ -169,6 +169,35 @@ class ProdutoCatalogService:
                 if normalized is not None:
                     by_code[code_int] = normalized
 
+        # Enriquecimento cruzado via vínculo LMC (Sprint 19): quando PRODUTO/PRODUTO_EMPRESA
+        # não trazem nome real (PRODUTO_COMBUSTIVEL é bloqueado por permissão - HTTP 401),
+        # propaga o nome de outro produto que compartilhe o mesmo produtoLmcCodigo, eliminando
+        # "Produto {codigo}" genérico sempre que houver vínculo operacional resolvido.
+        name_by_lmc: dict[int, str] = {}
+        for entry in by_code.values():
+            lmc_code = entry.get("produtoLmcCodigo")
+            name = str(entry.get("nomeProduto") or "").strip()
+            if lmc_code is None or not name or name.startswith("Produto "):
+                continue
+            name_by_lmc.setdefault(int(lmc_code), name)
+
+        if name_by_lmc:
+            for code_int, entry in list(by_code.items()):
+                current_name = str(entry.get("nomeProduto") or "").strip()
+                if not current_name.startswith("Produto "):
+                    continue
+                lmc_code = entry.get("produtoLmcCodigo")
+                if lmc_code is None:
+                    continue
+                resolved_name = name_by_lmc.get(int(lmc_code))
+                if not resolved_name:
+                    continue
+                by_code[code_int] = {
+                    **entry,
+                    "nomeProduto": resolved_name,
+                    "source": f"{entry.get('source', '')}+LMC_CROSS_REF",
+                }
+
         payload = {
             "generatedAt": self._now().isoformat(),
             "ttlHours": TTL_HOURS,

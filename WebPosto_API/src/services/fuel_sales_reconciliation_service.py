@@ -74,6 +74,18 @@ class FuelSalesReconciliationService:
             for product in catalog_products
             if product.get("produtoCodigo") is not None
         }
+        lmc_by_product = {
+            int(product["produtoCodigo"]): int(product["produtoLmcCodigo"])
+            for product in catalog_products
+            if product.get("produtoCodigo") is not None and product.get("produtoLmcCodigo") is not None
+        }
+        name_by_lmc = {
+            int(product["produtoLmcCodigo"]): str(product["nomeProduto"])
+            for product in catalog_products
+            if product.get("produtoLmcCodigo") is not None
+            and product.get("nomeProduto")
+            and not str(product["nomeProduto"]).startswith("Produto ")
+        }
 
         company_results: list[dict[str, Any]] = []
         for code, name in companies:
@@ -105,6 +117,7 @@ class FuelSalesReconciliationService:
                     "acrescimo": Decimal("0"),
                 }
             )
+            lmc_seen: dict[int, int] = {}
             for fact in normalized["accepted"]:
                 acc = by_product[fact.produto_codigo]
                 acc["litros"] += fact.litros
@@ -112,6 +125,8 @@ class FuelSalesReconciliationService:
                 acc["custo"] += fact.custo_total
                 acc["desconto"] += fact.desconto_total
                 acc["acrescimo"] += fact.acrescimo_total
+                if fact.produto_lmc_codigo is not None and fact.produto_codigo not in lmc_seen:
+                    lmc_seen[fact.produto_codigo] = fact.produto_lmc_codigo
 
             product_rows: list[dict[str, Any]] = []
             for product_code, values in sorted(
@@ -121,10 +136,16 @@ class FuelSalesReconciliationService:
                 revenue = values["faturamento"]
                 cost = values["custo"]
                 margin = revenue - cost
+                combustivel_name = name_by_product.get(product_code, "")
+                if not combustivel_name or combustivel_name.startswith("Produto "):
+                    lmc_code = lmc_by_product.get(product_code, lmc_seen.get(product_code))
+                    combustivel_name = name_by_lmc.get(lmc_code, combustivel_name) if lmc_code is not None else combustivel_name
+                if not combustivel_name:
+                    combustivel_name = f"Produto {product_code}"
                 product_rows.append(
                     {
                         "produtoCodigo": product_code,
-                        "combustivel": name_by_product.get(product_code, f"Produto {product_code}"),
+                        "combustivel": combustivel_name,
                         "litros": self._q(liters, "0.001"),
                         "faturamento": self._q(revenue, "0.01"),
                         "custoRegistrado": self._q(cost, "0.01"),
