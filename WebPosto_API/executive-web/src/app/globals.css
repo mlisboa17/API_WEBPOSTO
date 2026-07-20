@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
+  --primary: #0f172a;
+  --primary-foreground: #f8fafc;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --critical: #ef4444;
+  --info: #3b82f6;
+  --radius: .75rem;
+}
+
+.dark {
+  --background: #08101f;
+  --foreground: #e5edf7;
+  --card: #0f1a2d;
+  --card-foreground: #f8fafc;
+  --muted: #162238;
+  --muted-foreground: #94a3b8;
+  --border: #23324a;
+  --primary: #e2e8f0;
+  --primary-foreground: #0f172a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-critical: var(--critical);
+  --color-info: var(--info);
+  --font-sans: "Inter", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) * .8);
+  --radius-sm: calc(var(--radius) * .6);
+}
+
+* { border-color: var(--border); }
+body { min-width: 320px; }
+button, input, select { outline: none; }
+.input { height: 2.5rem; border-radius: .375rem; border: 1px solid var(--border); background: var(--background); padding: 0 .75rem; color: var(--foreground); font-size: .875rem; }
+:focus-visible { box-shadow: 0 0 0 3px color-mix(in srgb, var(--info) 25%, transparent); }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: #94a3b855; border-radius: 999px; }

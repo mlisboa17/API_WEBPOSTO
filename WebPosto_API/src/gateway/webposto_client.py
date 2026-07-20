@@ -35,11 +35,14 @@ ENDPOINTS = {
     "despesas_financeiro_rede": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
     "empresas": "/INTEGRACAO/EMPRESAS",
     "conta": "/INTEGRACAO/CONTA",
+    "plano_de_contas": "/INTEGRACAO/PLANO_DE_CONTAS",
     "venda": "/INTEGRACAO/VENDA",
     "venda_item": "/INTEGRACAO/VENDA_ITEM",
     "venda_item_rede": "/INTEGRACAO/CONSULTAR_VENDA_ITEM_REDE",
     "venda_forma_pagamento": "/INTEGRACAO/VENDA_FORMA_PAGAMENTO",
     "venda_forma_pagamento_rede": "/INTEGRACAO/CONSULTAR_VENDA_FORMA_PAGAMENTO_REDE",
+    "administradora_rede": "/INTEGRACAO/CONSULTAR_ADMINISTRADORA_REDE",
+    "cartao_rede": "/INTEGRACAO/CONSULTAR_CARTAO_REDE",
     "nfce": "/INTEGRACAO/NFCE",
     "produto_estoque": "/INTEGRACAO/PRODUTO_ESTOQUE",
     "produto": "/INTEGRACAO/PRODUTO",
@@ -52,6 +55,9 @@ ENDPOINTS = {
     "lmc_rede": "/INTEGRACAO/CONSULTAR_LMC_REDE",
     "funcionario": "/INTEGRACAO/FUNCIONARIO",
 }
+
+# A ordem acompanha OFFICIAL_WEBPOSTO_TOKEN_ENV_KEYS em src.core.config.
+OFFICIAL_COMPANY_TOKEN_INDEX = {11495: 0, 5555: 1, 74014: 2}
 
 
 class WebPostoClient:
@@ -110,6 +116,19 @@ class WebPostoClient:
             (self.config.webposto_api_key,) if self.config.webposto_api_key else ()
         )
 
+    def _api_keys_for_params(self, params: dict[str, Any] | None) -> tuple[str, ...]:
+        keys = self._api_keys
+        if not params or params.get("empresaCodigo") in (None, ""):
+            return keys
+        try:
+            index = OFFICIAL_COMPANY_TOKEN_INDEX[int(params["empresaCodigo"])]
+        except (KeyError, TypeError, ValueError):
+            return keys
+        # Configurações isoladas já contêm somente a credencial correta.
+        if len(keys) == 1:
+            return keys
+        return (keys[index],) if index < len(keys) else keys
+
     @staticmethod
     def _fingerprint(api_key: str) -> str:
         return sha256(api_key.encode("utf-8")).hexdigest()[:12]
@@ -142,6 +161,8 @@ class WebPostoClient:
             "venda_item_rede",
             "venda_forma_pagamento",
             "venda_forma_pagamento_rede",
+            "administradora_rede",
+            "cartao_rede",
             "nfce",
             "produto_estoque",
             "estoque_periodo",
@@ -252,11 +273,18 @@ class WebPostoClient:
                 WebPostoError(endpoint=endpoint_key, status=400, type="INVALID_ENDPOINT", message="Endpoint nao mapeado")
             )
 
-        permissions = await self.discover_permissions()
-        if not permissions.get(endpoint_key, False):
-            return WebPostoResponse.fail(
-                WebPostoError(endpoint=path, status=401, type="AUTHORIZATION_ERROR", message="Endpoint sem permissao")
-            )
+        selected_keys = self._api_keys_for_params(params)
+        targeted_official_call = (
+            bool(params and params.get("empresaCodigo") not in (None, ""))
+            and len(selected_keys) == 1
+        ) or endpoint_key == "despesas_financeiro_rede"
+        permissions: dict[str, bool] = {}
+        if not targeted_official_call:
+            permissions = await self.discover_permissions()
+            if not permissions.get(endpoint_key, False):
+                return WebPostoResponse.fail(
+                    WebPostoError(endpoint=path, status=401, type="AUTHORIZATION_ERROR", message="Endpoint sem permissao")
+                )
 
         if self.breaker.is_blocked(endpoint_key):
             metrics_collector.record(path, 503, 0.0, circuit_open=True)
@@ -306,7 +334,7 @@ class WebPostoClient:
             except Exception as exc:
                 return api_key, None, 0.0, exc
 
-        if not self._api_keys:
+        if not selected_keys:
             return WebPostoResponse.fail(
                 WebPostoError(
                     endpoint=path,
@@ -317,7 +345,7 @@ class WebPostoClient:
             )
 
         async with httpx.AsyncClient(base_url=self.config.webposto_base_url, timeout=timeout) as client:
-            results = await asyncio.gather(*[_call_with_key(client, api_key) for api_key in self._api_keys])
+            results = await asyncio.gather(*[_call_with_key(client, api_key) for api_key in selected_keys])
 
         ok_payloads: list[Any] = []
         ok_rows: list[dict[str, Any]] = []
@@ -412,11 +440,11 @@ class WebPostoClient:
                 }
             )
 
-        if auth_errors and auth_errors == len(self._api_keys):
+        if auth_errors and auth_errors == len(selected_keys):
             permissions[endpoint_key] = False
             fp = (
-                self._fingerprint(self._api_keys[0])
-                if len(self._api_keys) == 1
+                self._fingerprint(selected_keys[0])
+                if len(selected_keys) == 1
                 else "_merged"
             )
             set_permissions(permissions, fp)

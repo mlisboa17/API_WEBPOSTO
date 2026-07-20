@@ -3,6 +3,7 @@ import { formatDate, formatMissing, formatNumber } from "../services/format.js";
 import { renderExecutiveCockpitPage } from "../services/executiveCockpitAdapter.js";
 import { buildFourQuestionBrief, enrichAlert } from "../services/executiveBrief.js";
 import { buildChartBars } from "../services/executiveKpis.js";
+import { EXECUTIVE_UNAVAILABLE_MSG } from "../services/executivePayload.js";
 
 function toNumber(value) {
   const n = Number(value || 0);
@@ -85,6 +86,42 @@ function buildPie(combustiveis) {
   `;
 }
 
+function buildParidadeTable(paridadePrecos) {
+  if (!paridadePrecos?.length) {
+    return '<p class="small">Paridade de preços indisponível para o período.</p>';
+  }
+  const rows = paridadePrecos
+    .map(
+      (item) => `
+      <tr>
+        <td>${formatMissing(item.combustivel)}</td>
+        <td>${litros(item.litros)}</td>
+        <td>${formatCurrency(item.precoMedioCompra)}</td>
+        <td>${formatCurrency(item.precoMedioVenda)}</td>
+        <td>${pct(item.margemRealizadaPct)}</td>
+        <td>${pct(item.margemMetaPct)}</td>
+        <td>${pct(item.deltaMargemPct)}</td>
+      </tr>`
+    )
+    .join("");
+  return `
+    <table class="table-compact">
+      <thead>
+        <tr>
+          <th>Combustível</th><th>Litros</th><th>Compra média</th><th>Venda média</th>
+          <th>Margem real</th><th>Meta</th><th>Δ margem</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+function formatCurrency(value) {
+  const n = Number(String(value ?? 0).replace(",", "."));
+  if (!Number.isFinite(n)) return "—";
+  return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
+
 function buildFuelDetail(data, partialCoverage) {
   const kpis = data.kpis || {};
   const combustiveis = data.combustiveis || [];
@@ -102,6 +139,10 @@ function buildFuelDetail(data, partialCoverage) {
       <article class="card"><div class="label">Participacao Diesel</div><div class="value">${pct(kpis.participacaoDiesel)}</div></article>
       <article class="card"><div class="label">Participacao Gasolina</div><div class="value">${pct(kpis.participacaoGasolina)}</div></article>
       <article class="card"><div class="label">Participacao Etanol</div><div class="value">${pct(kpis.participacaoEtanol)}</div></article>
+    </section>
+    <section class="card" style="margin-bottom:14px;">
+      <div class="label" style="margin-bottom:10px;">Paridade compra × venda</div>
+      ${buildParidadeTable(data.paridadePrecos)}
     </section>
     <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-bottom:14px;">
       <article class="card">
@@ -121,6 +162,17 @@ function buildFuelDetail(data, partialCoverage) {
 }
 
 export function renderFuelExecutiveDashboard(container, payload, options = {}) {
+  if (payload?.unavailable) {
+    container.innerHTML = `
+      <section class="panel">
+        <h2>Combustíveis — Visão Executiva</h2>
+        <p class="small exec-fallback-msg">${payload.message || EXECUTIVE_UNAVAILABLE_MSG}</p>
+        <button type="button" class="btn-secondary" id="fuelExecRetry">Tentar novamente</button>
+      </section>`;
+    container.querySelector("#fuelExecRetry")?.addEventListener("click", () => options.onRefresh?.());
+    return;
+  }
+
   const data = payload || {};
   const filters = options.filters || {};
   const kpis = data.kpis || {};

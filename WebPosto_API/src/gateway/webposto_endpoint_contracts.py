@@ -39,6 +39,7 @@ ENDPOINTS_REQUIRING_DATES = {
     "venda_item_rede",
     "venda_forma_pagamento",
     "venda_forma_pagamento_rede",
+    "cartao_rede",
     "nfce",
     "produto_estoque",
     "estoque_periodo",
@@ -49,6 +50,7 @@ ENDPOINTS_REQUIRING_DATES = {
 ENDPOINTS_WITHOUT_DATES = {
     "empresas",
     "conta",
+    "plano_de_contas",
     "produto",
     "produto_empresa",
     "produto_rede",
@@ -57,10 +59,34 @@ ENDPOINTS_WITHOUT_DATES = {
     "tanque",
     "funcionario",
     "analise_vendas_combustivel",  # Analítico, mas opcional
+    "administradora_rede",
 }
 
 # Contratos detalhados por endpoint
 WEBPOSTO_ENDPOINT_CONTRACTS: dict[str, WebPostoEndpointContract] = {
+    "administradora_rede": WebPostoEndpointContract(
+        path="/INTEGRACAO/CONSULTAR_ADMINISTRADORA_REDE",
+        requires_date_range=False,
+        supports_pagination=True,
+        payload_shape="resultados",
+        min_timeout_seconds=20.0,
+        description="Cadastro de administradoras de cartão da rede",
+    ),
+    "cartao_rede": WebPostoEndpointContract(
+        path="/INTEGRACAO/CONSULTAR_CARTAO_REDE",
+        requires_date_range=True,
+        supports_pagination=True,
+        payload_shape="resultados",
+        min_timeout_seconds=20.0,
+        description="Movimentação detalhada de cartões da rede",
+    ),
+    "plano_de_contas": WebPostoEndpointContract(
+        path="/INTEGRACAO/PLANO_DE_CONTAS",
+        requires_date_range=False,
+        supports_pagination=False,
+        payload_shape="array_root",
+        description="Cadastro oficial do plano de contas",
+    ),
     # === ENDPOINTS FINANCEIROS (EXIGEM DATAS) ===
     "despesas_financeiro_rede": WebPostoEndpointContract(
         path="/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
@@ -113,7 +139,7 @@ WEBPOSTO_ENDPOINT_CONTRACTS: dict[str, WebPostoEndpointContract] = {
         path="/INTEGRACAO/CAIXA",
         requires_date_range=True,
         requires_empresa_codigo=False,
-        supports_pagination=True,
+        supports_pagination=False,
         payload_shape="resultados",
         min_timeout_seconds=10.0,
         description="Fechamentos de caixa",
@@ -122,7 +148,7 @@ WEBPOSTO_ENDPOINT_CONTRACTS: dict[str, WebPostoEndpointContract] = {
         path="/INTEGRACAO/CAIXA_APRESENTADO",
         requires_date_range=True,
         requires_empresa_codigo=False,
-        supports_pagination=True,
+        supports_pagination=False,
         payload_shape="resultados",
         min_timeout_seconds=10.0,
         description="Caixas apresentados",

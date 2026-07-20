@@ -4,6 +4,8 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
+from src.core.management_scope import department_for_group
+from src.domain.catalog.product_schema import NormalizedProductCatalogEntry
 from src.gateway.webposto_client import WebPostoClient
 from src.models.response_model import WebPostoResponse
 
@@ -62,7 +64,8 @@ class ProdutoCatalogService:
 
         company = company_row or {}
         name = str(
-            row.get("nome")
+            row.get("nomeProduto")
+            or row.get("nome")
             or row.get("descricao")
             or row.get("descricaoProduto")
             or company.get("nome")
@@ -72,6 +75,18 @@ class ProdutoCatalogService:
         if not name or name.lower() in {"none", "null", "undefined"}:
             name = f"Produto {code_int}"
         grupo = str(row.get("nomeGrupo") or row.get("grupoProduto") or row.get("descricaoGrupo") or "").strip()
+        raw_group_code = (
+            row.get("grupoCodigo")
+            or row.get("codigoGrupo")
+            or row.get("grupoProdutoCodigo")
+            or company.get("grupoCodigo")
+            or company.get("codigoGrupo")
+            or company.get("grupoProdutoCodigo")
+        )
+        try:
+            group_code = int(raw_group_code) if raw_group_code not in (None, "") else None
+        except (TypeError, ValueError):
+            group_code = None
         tipo = str(row.get("tipoProduto") or row.get("produtoTipo") or "").strip()
         combustivel = bool(row.get("combustivel")) or bool(row.get("tipoCombustivel")) or tipo.upper() == "C"
         tipo_combustivel = str(row.get("tipoCombustivel") or company.get("tipoCombustivel") or "").strip()
@@ -81,17 +96,22 @@ class ProdutoCatalogService:
             lmc_code = int(raw_lmc_code) if raw_lmc_code is not None else None
         except Exception:
             lmc_code = None
-        return {
-            "produtoCodigo": code_int,
-            "produtoLmcCodigo": lmc_code,
-            "nomeProduto": name,
-            "grupoProduto": grupo,
-            "tipoProduto": tipo,
-            "combustivel": combustivel,
-            "tipoCombustivel": tipo_combustivel,
-            "ativo": active,
-            "source": source,
-        }
+        department = department_for_group(group_code)
+        entry = NormalizedProductCatalogEntry(
+            produtoCodigo=code_int,
+            produtoLmcCodigo=lmc_code,
+            nomeProduto=name,
+            grupoCodigo=group_code,
+            grupoProduto=grupo,
+            tipoProduto=tipo,
+            combustivel=combustivel,
+            tipoCombustivel=tipo_combustivel,
+            ativo=active,
+            departamento=department,
+            classificacaoStatus="CONFIRMADA_GRUPO" if department else "NAO_CLASSIFICADA",
+            source=source,
+        )
+        return entry.model_dump()
 
     async def _fetch_produto_base(self) -> list[dict[str, Any]]:
         response = await self.client.call_endpoint("produto", params={})
@@ -145,7 +165,9 @@ class ProdutoCatalogService:
                     "ativo": row.get("ativo", current.get("ativo")),
                     "source": f"{current.get('source', '/INTEGRACAO/PRODUTO')}+/INTEGRACAO/PRODUTO_EMPRESA",
                 }
-                by_code[code_int] = merged
+                normalized = self._normalize_entry(merged, source=merged["source"], company_row=row)
+                if normalized is not None:
+                    by_code[code_int] = normalized
 
         payload = {
             "generatedAt": self._now().isoformat(),

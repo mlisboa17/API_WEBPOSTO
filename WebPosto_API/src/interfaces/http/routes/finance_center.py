@@ -7,6 +7,7 @@ from src.services.analytics_multiselect import build_finance_center_filters
 from src.services.corporate_finance_center_service import CorporateFinanceCenterService
 from src.services.finance_center_snapshot_service import FinanceCenterSnapshotService
 from src.services.network_financial_overview_service import NetworkFinancialOverviewService
+from src.services.expense_snapshot_fallback import load_expense_snapshots
 
 router = APIRouter(prefix="/api/v1/finance/center", tags=["Finance Center"])
 
@@ -57,6 +58,22 @@ async def finance_center_expenses(
 ) -> dict:
     filters = _common_params(dataInicial, dataFinal, empresaCodigo, centroCusto, planoConta, categoriaLogos)
     return (await _finance_center.get_expenses(filters, empresaCodigo, page, limit)).to_dict()
+
+
+@router.get("/expenses-snapshot")
+async def finance_center_expenses_snapshot(
+    dataInicial: str = Query(...), dataFinal: str = Query(...),
+    empresaCodigo: int | None = Query(None), page: int = Query(1, ge=1),
+    limit: int = Query(500, ge=1, le=500),
+) -> dict:
+    fallback = load_expense_snapshots(dataInicial, dataFinal, empresaCodigo)
+    rows = fallback["rows"]
+    start_index = (page - 1) * limit
+    return {"success": True, "data": {
+        "page": page, "limit": limit, "total": len(rows),
+        "data": rows[start_index:start_index + limit],
+        "fromSnapshot": True, "coverage": fallback["coverage"], "source": fallback["source"],
+    }, "error": None}
 
 
 @router.get("/payables")

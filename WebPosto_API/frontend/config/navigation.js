@@ -1,6 +1,30 @@
 /** UX-01 + RT-03B + RT-07 + RT-07.2 — Navegação executiva simplificada. */
 
+export const PRESIDENT_MODE_VALUE = "presidente";
 
+/** Telas oficiais C-Level (context.md §2) + drill-downs de suporte na mesma jornada. */
+export const PRESIDENT_ALLOWED_VIEWS = new Set([
+  "ownerDiretoriaHome",
+  "fuels",
+  "treasuryHub",
+  "decisionDetail",
+  "executiveFollowUp",
+  "executiveFollowUpDetail",
+]);
+
+export const PRESIDENT_NAV_AREAS = [
+  {
+    id: "presidente",
+    icon: "👔",
+    label: "Presidência",
+    tabs: [
+      { id: "rede", label: "Decisões da rede", view: "ownerDiretoriaHome" },
+      { id: "combustivel", label: "Combustível & margem", view: "fuels" },
+      { id: "caixa", label: "Fluxo de caixa", view: "treasuryHub", hubTab: "fluxo" },
+    ],
+    motors: [],
+  },
+];
 
 export const NAV_AREAS = [
 
@@ -189,30 +213,37 @@ VIEW_TO_AREA.productsHub = "produtos_vendidos";
 
 
 
-export function resolveAreaForView(view) {
+export function isPresidentMode(mode) {
+  return String(mode || "").trim().toLowerCase() === PRESIDENT_MODE_VALUE;
+}
 
+export function getNavigationAreas(presidentMode = false) {
+  return presidentMode ? PRESIDENT_NAV_AREAS : NAV_AREAS;
+}
+
+export function isPresidentAllowedView(view) {
+  return PRESIDENT_ALLOWED_VIEWS.has(view);
+}
+
+export function resolveAreaForView(view, presidentMode = false) {
+  if (presidentMode) return "presidente";
   if (ADMIN_VIEWS.has(view)) return "administracao";
-
   return VIEW_TO_AREA[view] || "executivo";
-
 }
 
-
-
-export function getAreaById(areaId) {
-
-  return NAV_AREAS.find((area) => area.id === areaId) || NAV_AREAS[0];
-
+export function getAreaById(areaId, presidentMode = false) {
+  const areas = getNavigationAreas(presidentMode);
+  return areas.find((area) => area.id === areaId) || areas[0];
 }
 
-
-
-export function getDefaultViewForArea(areaId) {
-
-  const area = getAreaById(areaId);
-
+export function getDefaultViewForArea(areaId, presidentMode = false) {
+  if (presidentMode) return "ownerDiretoriaHome";
+  const area = getAreaById(areaId, presidentMode);
   return area.tabs[0]?.view || "executiveWorkspace";
+}
 
+export function getPresidentDefaultView() {
+  return "ownerDiretoriaHome";
 }
 
 

@@ -310,6 +310,21 @@ Evidência: `docs/runtime/PERFORMANCE_01_RUNTIME_REPORT.md`
 
 ---
 
+## DIR-01 — Decision Evidence Detail (2026-07-05)
+
+**Status:** ✅ COMPLETE
+
+| Capacidade | Runtime |
+|---|---|
+| Endpoint | `GET /api/v1/decisions/{id}/evidence` |
+| evidence_items VALUE-03 | 16 lançamentos / R$ 8.401 |
+| UI | Home Diretoria + detalhe |
+| Ações executivas | Contrato UI (backend pendente) |
+
+Evidência: `docs/validation/DIR_01_REPORT.md`
+
+---
+
 ## VALUE-03 — Expense Loss Detector (2026-07-04)
 
 **Status:** ✅ COMPLETE (PCG 96/100)

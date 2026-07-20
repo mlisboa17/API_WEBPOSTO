@@ -57,6 +57,7 @@ from src.interfaces.http.routes import financial_operations_center
 from src.interfaces.http.routes import business_analyst
 from src.interfaces.http.routes import governance
 from src.interfaces.http.routes import financial_intelligence_center
+from src.interfaces.http.routes import director_financial_reconciliation
 from src.services.financial_snapshot_scheduler import get_financial_scheduler
 from src.shared.logger import setup_logging
 
@@ -103,6 +104,7 @@ def _mount_executive_barramento(app: FastAPI) -> None:
     app.include_router(financial_intelligence_center.router)
     app.include_router(prestacao_contas.router)
     app.include_router(cash_reconciliation.router)
+    app.include_router(director_financial_reconciliation.router)
 
 
 def _mount_executive_support(app: FastAPI) -> None:

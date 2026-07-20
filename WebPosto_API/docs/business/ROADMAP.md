@@ -98,6 +98,12 @@ O LOGOS passa a ser uma **Decision Execution Platform** — um sistema que não 
 - Primeira decisão: POSTO DOZE FILIAL II (vales funcionário)
 - PCG 96/100 — `docs/governance/PCG_VALUE_03.md`
 
+#### DIR-01 — Decision Evidence Detail ✅ (2026-07-05)
+- `GET /api/v1/decisions/{id}/evidence`
+- `evidence_items` no ExpenseDetector
+- UI detalhe com 16 lançamentos VALUE-03
+- Evidência: `docs/validation/DIR_01_REPORT.md`
+
 #### PERFORMANCE-01 — Fast Daily Analysis Loop ✅ (2026-07-04)
 - Home imediata (~3 ms) + refresh background
 - Fuel cache isolado; concurrency 3 medida

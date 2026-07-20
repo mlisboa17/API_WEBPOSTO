@@ -52,11 +52,27 @@ jobs:
     - name: Cache Poetry dependencies
       uses: actions/cache@v3
       with:
-        path: ~/.cache/pypoetry
+        path: |
+          ~/.cache/pypoetry
+          ~/.cache/pip
         key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-poetry-
 
     - name: Install dependencies
       run: poetry install
+
+    - name: President screens regression (integration)
+      run: poetry run pytest tests/integration/test_president_screens_api.py -v --no-cov -m integration
+      env:
+        ENVIRONMENT: test
+        DATABASE_URL: postgresql://postgres:postgres@localhost:5432/webposto
+        REDIS_URL: redis://localhost:6379/0
+        WEBPOSTO_API_KEY: ""
+        WEBPOSTO_CHAVE: ""
+        SECRET_KEY: ci-test-secret-not-production
+        AUTH_USER_EMAIL: admin@company.com
+        AUTH_USER_PASSWORD: password
 
     - name: Run tests with coverage
       run: poetry run pytest --cov=src --cov-report=xml

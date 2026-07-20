@@ -5,7 +5,7 @@ Contratos Pydantic v2 — catálogo de produtos WebPosto (INTEGRACAO/PRODUTO).
 from __future__ import annotations
 
 from decimal import Decimal, ROUND_HALF_UP
-from typing import List, Optional
+from typing import List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
@@ -80,3 +80,22 @@ class PaginatedProdutosResponse(BaseModel):
     produtos: List[WebPostoProdutoSchema]
     fonte: str = "webposto_integracao"
     cache_hit: bool = False
+
+
+class NormalizedProductCatalogEntry(BaseModel):
+    """Contrato interno usado pelo catálogo executivo e pela departamentalização."""
+
+    model_config = ConfigDict(frozen=True, extra="ignore")
+
+    produtoCodigo: int = Field(..., gt=0)
+    produtoLmcCodigo: Optional[int] = None
+    nomeProduto: str = Field(..., min_length=1)
+    grupoCodigo: Optional[int] = None
+    grupoProduto: str = ""
+    tipoProduto: str = ""
+    combustivel: bool = False
+    tipoCombustivel: str = ""
+    ativo: Optional[bool] = None
+    departamento: Optional[Literal["combustiveis", "conveniencia", "lubrificantes"]] = None
+    classificacaoStatus: Literal["CONFIRMADA_GRUPO", "NAO_CLASSIFICADA"] = "NAO_CLASSIFICADA"
+    source: str

@@ -11,6 +11,7 @@ import httpx
 
 from src.core.config import load_core_config
 from src.core.logger import get_logger, log_structured
+from src.core.management_scope import is_licensed_company
 from src.core.webposto_credentials import WebPostoCredential, list_webposto_credentials
 from src.services.performance.performance_metrics import performance_metrics
 from src.services.snapshot_store import SnapshotStore
@@ -198,6 +199,9 @@ class TenantDiscoveryService:
                 try:
                     empresa_codigo = int(raw_codigo)
                 except (TypeError, ValueError):
+                    continue
+
+                if not is_licensed_company(empresa_codigo):
                     continue
 
                 if empresa_codigo_filter is not None and empresa_codigo != empresa_codigo_filter:

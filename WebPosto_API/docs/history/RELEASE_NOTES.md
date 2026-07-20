@@ -25,6 +25,16 @@ Formato: `PHASE.MAJOR.MINOR` (ex: `3.3.0` = FASE 3, PRODUCT-03, base)
 
 ## 🚀 Releases
 
+### v3.5.1 — Decision Evidence Detail (DIR-01)
+**Data:** 2026-07-05  
+**Branch:** `feature/build-03-trust-home`
+
+- Endpoint `GET /api/v1/decisions/{id}/evidence`
+- `evidence_items` preservados no ExpenseDetector
+- UI Diretoria: Home + detalhe com lançamentos reais
+
+---
+
 ### v3.6.0 — Card Receivable Loss Detector (VALUE-04)
 **Data:** 2026-07-04
 

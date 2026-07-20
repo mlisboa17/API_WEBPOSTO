@@ -39,6 +39,9 @@ from src.services.fuel_analytics_service import FuelAnalyticsService
 from src.services.fuel_kpi_engine import FuelKpiEngine
 
 from src.services.fuel_pricing_service import FuelPricingService
+from src.services.fuel_sales_reconciliation_service import FuelSalesReconciliationService
+
+from src.services.fuel_snapshot_service import FuelSnapshotService
 
 from src.services.multiselect_utils import empresa_codigo_cache_key
 
@@ -87,6 +90,7 @@ _executive_snapshot = ExecutiveSnapshotService(
 )
 
 _fuel_pricing = FuelPricingService(_client)
+_fuel_sales_reconciliation = FuelSalesReconciliationService(_client, catalog=_product_catalog)
 
 _fuel_snapshot = FuelSnapshotService(_fuel_analytics, _fuel_kpi_engine)
 
@@ -146,6 +150,16 @@ async def get_kpis(
 
 
 
+
+
+@router.get("/fuel/sales-reconciliation")
+async def get_fuel_sales_reconciliation(
+    dataInicial: str = Query(..., description="Data inicial YYYY-MM-DD"),
+    dataFinal: str = Query(..., description="Data final YYYY-MM-DD"),
+    empresaCodigo: int | None = Query(None, description="Uma das três empresas licenciadas"),
+) -> dict:
+    response = await _fuel_sales_reconciliation.build(dataInicial, dataFinal, empresaCodigo)
+    return response.to_dict()
 
 
 @router.get("/sales/fuel-summary")

@@ -3,7 +3,7 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "webposto-service"
+name = "webposto-codex"
 version = "0.1.0"
 description = "Serviço production-ready que sincroniza dados da API REST do webPosto"
 authors = ["Grupo Lisboa <mlisboa17@gmail.com>"]

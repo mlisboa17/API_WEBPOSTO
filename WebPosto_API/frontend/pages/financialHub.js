@@ -2,6 +2,7 @@ import { mountHubShell } from "../components/hubShell.js";
 import { renderExecutiveEmptyState, setViewTitle } from "../components/executiveFirstFold.js";
 import { renderFinancialOverview } from "./financialOverview.js";
 import { renderFinancialExpenses } from "./financialExpenses.js";
+import { renderSectionSkeleton } from "../components/sectionState.js";
 
 const TABS = [
   { id: "receitas", label: "Receitas" },
@@ -46,27 +47,24 @@ export function renderFinancialHub(container, props) {
     if (currentTabId === "receitas") {
       const overview = p.data?.overview;
       const resilience = p.data?.overviewResilience;
-      const postos = overview?.postos || [];
+      const overviewUi = p.data?.overviewUi || {};
 
-      if (!overview) {
-        renderHubEmptyState(contentEl, currentTabId, "Dados financeiros indisponíveis no momento.");
-        return;
-      }
-
-      if (resilience?.source === "degraded" && postos.length === 0) {
-        renderHubEmptyState(
-          contentEl,
-          currentTabId,
-          resilience?.banner ||
-            "Integração protegida — dados consolidados serão exibidos quando disponíveis."
-        );
+      if (overviewUi.status === "loading") {
+        contentEl.innerHTML = renderSectionSkeleton({ title: "Carregando receitas e overview…", lines: 4 });
         return;
       }
 
       renderFinancialOverview(
         contentEl,
         { data: overview, resilience },
-        { ...p.options?.receitas, filters: p.filters, revenueTotal: p.data?.revenueTotal, companies: p.companies }
+        {
+          ...p.options?.receitas,
+          filters: p.filters,
+          revenueTotal: p.data?.revenueTotal,
+          companies: p.companies,
+          sectionUi: overviewUi,
+          onRetry: p.options?.receitas?.onRetry,
+        }
       );
       return;
     }

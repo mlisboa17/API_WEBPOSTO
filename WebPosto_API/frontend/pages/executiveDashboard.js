@@ -8,6 +8,7 @@ import {
 import { metricsEngine } from "../services/metricsEngine.js";
 import { formatCurrency, formatNumber } from "../services/format.js";
 import { fetchExecutiveSnapshot, postExecutiveRefresh } from "../services/api.js";
+import { EXECUTIVE_UNAVAILABLE_MSG, normalizeDre } from "../services/executivePayload.js";
 import { computeAlerts, computeTopN } from "../services/analyticsEngine.js";
 import { buildFourQuestionBrief, enrichAlert } from "../services/executiveBrief.js";
 import { moneyKpi, periodSubtitle } from "../services/executiveKpis.js";
@@ -116,17 +117,46 @@ function renderDreFromBackend(container, dre) {
     container.innerHTML = `<div class="panel"><span class="small">DRE não disponível.</span></div>`;
     return;
   }
-  const isValid = dre.validacaoOk !== false;
+  if (dre.unavailable) {
+    container.innerHTML = `<div class="panel"><span class="small exec-fallback-msg">${dre.message || EXECUTIVE_UNAVAILABLE_MSG}</span></div>`;
+    return;
+  }
+
+  const normalized = normalizeDre(dre);
+  const isValid = normalized.validacaoOk !== false;
+  const porFilial = normalized.porFilial || [];
+  const filialRows = porFilial.length
+    ? `
+      <div class="dre-filial-block" style="margin-top:10px;font-size:12px;">
+        <strong>Por filial</strong>
+        <div style="display:grid;gap:4px;margin-top:6px;max-height:120px;overflow-y:auto;">
+          ${porFilial
+            .slice(0, 8)
+            .map(
+              (row) => `
+            <div style="display:flex;justify-content:space-between;gap:8px;">
+              <span>${row.nomeFilial || row.empresaCodigo || "Filial"}</span>
+              <span>${formatCurrency(row.faturamentoBruto ?? row.receitas)} · MC ${formatCurrency(row.margemContribuicao)}</span>
+            </div>`
+            )
+            .join("")}
+        </div>
+      </div>`
+    : "";
+
   container.innerHTML = `
     <div class="panel dre-panel">
       <h3>DRE Gerencial <span style="font-size:11px;color:#888">(Calculado no Backend)</span></h3>
-      <div class="dre-line"><span>Receitas brutas:</span><span>${formatCurrency(dre.receitas)}</span></div>
-      <div class="dre-line negative"><span>(-) Custos Produto:</span><span>${formatCurrency(dre.custosProduto)}</span></div>
-      <div class="dre-line negative"><span>(-) Outras Despesas:</span><span>${formatCurrency(dre.outrasDespesas)}</span></div>
+      <div class="dre-line"><span>Faturamento bruto:</span><span>${formatCurrency(normalized.faturamentoBruto)}</span></div>
+      <div class="dre-line negative"><span>(-) Deduções:</span><span>${formatCurrency(normalized.deducoes)}</span></div>
+      <div class="dre-line negative"><span>(-) Custos produto:</span><span>${formatCurrency(normalized.custosProduto)}</span></div>
+      <div class="dre-line"><span>Margem de contribuição:</span><span>${formatCurrency(normalized.margemContribuicao)}</span></div>
+      <div class="dre-line negative"><span>(-) Despesas operacionais:</span><span>${formatCurrency(normalized.despesasOperacionais)}</span></div>
       <hr />
-      ${!isValid ? `<div class="alert-danger" style="margin-bottom:8px;padding:4px;font-size:12px">⚠ Divergência DRE detectada: ${dre.divergencia}</div>` : ""}
-      <div class="dre-line total"><span>Resultado Operacional:</span><span class="${Number(dre.resultadoOperacional) < 0 ? 'text-danger' : 'text-success'}">${formatCurrency(dre.resultadoOperacional)}</span></div>
-      <div class="dre-line"><span>Margem %:</span><span>${formatNumber(dre.margemPct)}% <b title="${dre.formula || ''}" style="cursor:help">ℹ️</b></span></div>
+      ${!isValid ? `<div class="alert-danger" style="margin-bottom:8px;padding:4px;font-size:12px">⚠ Divergência DRE detectada: ${normalized.divergencia}</div>` : ""}
+      <div class="dre-line total"><span>Resultado operacional:</span><span class="${Number(normalized.resultadoOperacional) < 0 ? 'text-danger' : 'text-success'}">${formatCurrency(normalized.resultadoOperacional)}</span></div>
+      <div class="dre-line"><span>Margem %:</span><span>${formatNumber(normalized.margemPct)}% <b title="${normalized.formula || ''}" style="cursor:help">ℹ️</b></span></div>
+      ${filialRows}
     </div>
   `;
 }
@@ -473,7 +503,7 @@ function renderExecutiveFromSnapshot(container, snapshot, { refreshing = false }
   }
 
   if (hasDre) {
-    renderDreFromBackend(dreNode, snapshot.dre);
+    renderDreFromBackend(dreNode, normalizeDre(snapshot.dre));
   } else {
     dreNode.innerHTML = `<div class="panel"><span class="small exec-fallback-msg">${friendlyErrorMessage(false)}</span></div>`;
   }

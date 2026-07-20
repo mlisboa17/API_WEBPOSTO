@@ -21,6 +21,11 @@ import {
   fetchFinancialIntelligenceSnapshot,
   postFinancialIntelligenceRefresh,
   fetchFinanceCenterSummary,
+  fetchDirectorFinancialReconciliation,
+  postDirectorFinancialReconciliationRefresh,
+  postDepartmentReview,
+  postSharedAllocationRule,
+  fetchCompleteDepartmentalDre,
   fetchCashFlowSnapshot,
   postCashFlowRefresh,
   fetchCashFlow,
@@ -53,7 +58,7 @@ import {
   fetchActionCenterCockpit,
   postActionCenterRefresh,
   fetchCashReconciliationSummary,
-  fetchOwnerTop5Decisions,
+  fetchOwnerDiretoriaBundle,
   fetchDecisionEvidence,
   fetchDecisionReviewRequests,
   postDecisionReviewRequest,
@@ -139,7 +144,14 @@ import { renderFinancialReviewDetail } from "./pages/financialReviewDetail.js";
 import { renderTreasuryHub } from "./pages/treasuryHub.js";
 import { renderProductsHub } from "./pages/productsHub.js";
 import { resolveViewRoute, HUB_VIEWS } from "./services/viewRouting.js";
-import { getDefaultViewForArea, resolveAreaForView } from "./config/navigation.js";
+import {
+  getDefaultViewForArea,
+  getPresidentDefaultView,
+  isPresidentAllowedView,
+  isPresidentMode,
+  PRESIDENT_MODE_VALUE,
+  resolveAreaForView,
+} from "./config/navigation.js";
 import { mountNavigationShell } from "./components/navigationShell.js";
 import { renderCompanySwitcher } from "./components/CompanySwitcher.js";
 import { createTableState } from "./services/tableState.js";
@@ -149,6 +161,7 @@ import {
   enrichFuelSummary,
   enrichStockRows,
 } from "./services/productCatalog.js";
+import { normalizeCashFlow, normalizeFuelExecutive } from "./services/executivePayload.js";
 import { buildPresidentDashboardData } from "./services/strategicAnalytics.js";
 import { fetchPresidentSnapshotBundle } from "./services/presidentSnapshots.js";
 
@@ -521,11 +534,24 @@ async function fetchDatasetAcrossCompanies(fetcher, filters, displayLimit) {
 
 function fromUrl() {
   const query = new URLSearchParams(window.location.search);
-  const viewRaw = query.get("view") || "presidentDashboard";
+  const presidentMode = isPresidentMode(query.get("mode"));
+  const viewRaw =
+    query.get("view") || (presidentMode ? "owner-diretoria" : "presidentDashboard");
   const hubTab = query.get("hubTab") || "";
   const viewNormalized = viewRaw === "fuel" ? "fuels" : normalizeViewId(viewRaw);
-  const route = applyViewRoute(viewNormalized, hubTab);
+  let route = applyViewRoute(viewNormalized, hubTab);
+
+  if (presidentMode) {
+    if (!isPresidentAllowedView(route.view)) {
+      route = applyViewRoute(getPresidentDefaultView(), "");
+    }
+    if (route.view === "treasuryHub" && !route.hubTab) {
+      route.hubTab = "fluxo";
+    }
+  }
+
   return {
+    presidentMode,
     view: route.view,
     hubTab: route.hubTab,
     pageExpenses: Number(query.get("pageExpenses") || 1),
@@ -563,6 +589,9 @@ function fromUrl() {
 
 function writeUrl(state) {
   const query = new URLSearchParams();
+  if (state.presidentMode) {
+    query.set("mode", PRESIDENT_MODE_VALUE);
+  }
   query.set("view", viewForUrl(state.view));
   query.set("pageExpenses", String(state.pageExpenses));
   query.set("pageAccounts", String(state.pageAccounts));
@@ -642,7 +671,7 @@ const initialUrlState = fromUrl();
 
 const state = {
   ...initialUrlState,
-  area: resolveAreaForView(initialUrlState.view),
+  area: resolveAreaForView(initialUrlState.view, initialUrlState.presidentMode),
   hubTab: initialUrlState.hubTab || "",
   adminSection: "filiais",
   limitExpenses: 50,
@@ -678,6 +707,18 @@ const decisionReviewUi = {
   error: null,
   success: null,
 };
+
+const sectionUi = {
+  overview: { status: "idle", error: null },
+  sales: { status: "idle", error: null },
+};
+
+function resetSectionUi(key) {
+  if (sectionUi[key]) {
+    sectionUi[key].status = "idle";
+    sectionUi[key].error = null;
+  }
+}
 
 const financialReviewAssignUi = {
   open: false,
@@ -773,20 +814,32 @@ function setView(view, options = {}) {
     }
   }
   const route = applyViewRoute(normalized, hubTab);
-  state.view = route.view;
-  state.hubTab = route.hubTab;
-  state.area = resolveAreaForView(state.view);
+  if (state.presidentMode) {
+    if (!isPresidentAllowedView(route.view)) {
+      state.view = getPresidentDefaultView();
+      state.hubTab = "";
+      state.area = "presidente";
+    } else {
+      state.view = route.view;
+      state.hubTab = route.view === "treasuryHub" ? route.hubTab || "fluxo" : route.hubTab;
+      state.area = "presidente";
+    }
+  } else {
+    state.view = route.view;
+    state.hubTab = route.hubTab;
+    state.area = resolveAreaForView(state.view, false);
+  }
   if (options.adminSection) {
     state.adminSection = options.adminSection;
   }
   if (options.decisionId !== undefined) {
     state.decisionId = options.decisionId;
-  } else if (route.view !== "decisionDetail") {
+  } else if (state.view !== "decisionDetail") {
     state.decisionId = "";
   }
   if (options.followUpRequestId !== undefined) {
     state.followUpRequestId = options.followUpRequestId;
-  } else if (route.view !== "executiveFollowUpDetail") {
+  } else if (state.view !== "executiveFollowUpDetail") {
     state.followUpRequestId = "";
   }
   if (options.financialReviewRequestId !== undefined) {
@@ -799,7 +852,15 @@ function setView(view, options = {}) {
   writeUrl(state);
   mountFilters();
   mountNavigation();
+  document.body.dataset.hubTab = state.hubTab || "";
+  const topbarSubtitle = document.querySelector(".topbar p");
+  if (topbarSubtitle) {
+    topbarSubtitle.textContent = state.presidentMode
+      ? "Presidência — decisões, combustível e fluxo de caixa"
+      : "Cockpit corporativo — finanças, combustíveis, produtos vendidos e fiscal";
+  }
   const activeView = state.view;
+  document.body.classList.toggle("president-dashboard-mode", activeView === "presidentDashboard");
 
   presidentDashboardNode?.classList.toggle("hidden", activeView !== "presidentDashboard");
   executiveWorkspaceNode?.classList.toggle("hidden", activeView !== "executiveWorkspace");
@@ -856,17 +917,26 @@ function mountNavigation() {
   mountNavigationShell({
     areaId: state.area,
     view: state.view,
+    presidentMode: state.presidentMode,
     onAreaChange: async (areaId) => {
       state.area = areaId;
-      const nextView = getDefaultViewForArea(areaId);
-      if (areaId === "administracao") {
+      const nextView = getDefaultViewForArea(areaId, state.presidentMode);
+      if (state.presidentMode) {
+        const hubTab = nextView === "treasuryHub" ? "fluxo" : "";
+        setView(nextView, { hubTab });
+      } else if (areaId === "administracao") {
         setView("administration", { adminSection: "filiais" });
       } else {
         setView(nextView);
       }
       await refreshAll(false);
     },
-    onTabChange: async (view, tabId) => {
+    onTabChange: async (view, tabId, hubTab = "") => {
+      if (state.presidentMode) {
+        setView(view, { hubTab: hubTab || (view === "treasuryHub" ? "fluxo" : "") });
+        await refreshAll(false);
+        return;
+      }
       if (state.area === "administracao" && view !== "financialOperationsCenter") {
         setView("administration", { adminSection: tabId || "filiais" });
       } else {
@@ -1204,6 +1274,22 @@ function renderAll() {
           onRefresh: async () => {
             state.cache.clear();
             await refreshAll(true);
+          },
+          onDepartmentReview: async (body) => {
+            const result = await postDepartmentReview(state.filters, body);
+            state.data.financeCenter.directorReconciliation = result.reconciliation;
+            if (result.reconciliation?.publication?.dreTotalsReleased) {
+              state.data.financeCenter.completeDepartmentalDre = await fetchCompleteDepartmentalDre(state.filters);
+            }
+            renderAll();
+          },
+          onSharedAllocation: async (body) => {
+            const result = await postSharedAllocationRule(state.filters, body);
+            state.data.financeCenter.directorReconciliation = result.reconciliation;
+            if (result.reconciliation?.publication?.dreTotalsReleased) {
+              state.data.financeCenter.completeDepartmentalDre = await fetchCompleteDepartmentalDre(state.filters);
+            }
+            renderAll();
           },
         },
         accounts: {
@@ -2095,7 +2181,7 @@ async function loadCashReconciliationWithSnapshotFirst(bypassCache = false) {
 async function loadOwnerDiretoriaHome(bypassCache = false) {
   try {
     const [payload] = await Promise.all([
-      fetchOwnerTop5Decisions(state.filters),
+      fetchOwnerDiretoriaBundle(state.filters),
       loadExecutiveFollowUp(bypassCache).catch(() => null),
     ]);
     state.data.ownerDiretoriaHome = payload;
@@ -2597,7 +2683,7 @@ async function loadCashFlowWithSnapshotFirst(bypassCache = false) {
 
   if (snapshot?.fromSnapshot && snapshot?.flow) {
     state.data.cashFlow = {
-      ...snapshot.flow,
+      ...normalizeCashFlow(snapshot.flow),
       fromSnapshot: true,
       lastUpdated: snapshot.lastUpdated,
     };
@@ -2613,11 +2699,13 @@ async function loadCashFlowWithSnapshotFirst(bypassCache = false) {
     () => fetchCashFlow(state.filters),
     bypassCache
   );
-  state.data.cashFlow = {
-    ...flow,
-    fromSnapshot: false,
-    lastUpdated: new Date().toISOString(),
-  };
+  state.data.cashFlow = flow?.unavailable
+    ? flow
+    : {
+        ...flow,
+        fromSnapshot: false,
+        lastUpdated: new Date().toISOString(),
+      };
   postCashFlowRefresh(state.filters).catch((error) => {
     console.warn("[cashFlow] refresh em background falhou:", error);
   });
@@ -2650,6 +2738,26 @@ async function loadFinanceCenterWithSnapshotFirst(bypassCache = false) {
       }
     } catch (error) {
       console.warn("[financeCenter] intelligence snapshot:", error);
+    }
+    try {
+      state.data.financeCenter.directorReconciliation = await (
+        bypassCache
+          ? postDirectorFinancialReconciliationRefresh(state.filters)
+          : fetchDirectorFinancialReconciliation(state.filters)
+      );
+    } catch (error) {
+      state.data.financeCenter.directorReconciliation = {
+        complete: false,
+        warnings: ["Conciliação da Diretoria indisponível; totais bloqueados."],
+        executiveSummary: [],
+      };
+    }
+    if (state.data.financeCenter.directorReconciliation?.publication?.dreTotalsReleased) {
+      try {
+        state.data.financeCenter.completeDepartmentalDre = await fetchCompleteDepartmentalDre(state.filters);
+      } catch (error) {
+        state.data.financeCenter.completeDepartmentalDre = null;
+      }
     }
     postFinanceCenterRefresh(state.filters).catch((error) => {
       console.warn("[financeCenter] refresh em background falhou:", error);
@@ -2697,6 +2805,26 @@ async function loadFinanceCenterWithSnapshotFirst(bypassCache = false) {
   } catch (error) {
     console.warn("[financeCenter] intelligence live:", error);
   }
+  try {
+    state.data.financeCenter.directorReconciliation = await (
+      bypassCache
+        ? postDirectorFinancialReconciliationRefresh(state.filters)
+        : fetchDirectorFinancialReconciliation(state.filters)
+    );
+  } catch (error) {
+    state.data.financeCenter.directorReconciliation = {
+      complete: false,
+      warnings: ["Conciliação da Diretoria indisponível; totais bloqueados."],
+      executiveSummary: [],
+    };
+  }
+  if (state.data.financeCenter.directorReconciliation?.publication?.dreTotalsReleased) {
+    try {
+      state.data.financeCenter.completeDepartmentalDre = await fetchCompleteDepartmentalDre(state.filters);
+    } catch (error) {
+      state.data.financeCenter.completeDepartmentalDre = null;
+    }
+  }
   postFinanceCenterRefresh(state.filters).catch((error) => {
     console.warn("[financeCenter] refresh em background falhou:", error);
   });
@@ -2711,7 +2839,9 @@ async function loadFuelWithSnapshotFirst(bypassCache = false) {
   }
 
   if (snapshot?.fromSnapshot && snapshot?.fuel?.data) {
-    state.data.fuelExecutive = enrichFuelExecutive(state.productCatalog, snapshot.fuel.data);
+    state.data.fuelExecutive = normalizeFuelExecutive(
+      enrichFuelExecutive(state.productCatalog, snapshot.fuel.data)
+    );
     postFuelRefresh(state.filters).catch((error) => {
       console.warn("[fuels] refresh em background falhou:", error);
     });
@@ -2724,7 +2854,11 @@ async function loadFuelWithSnapshotFirst(bypassCache = false) {
     () => fetchFuelExecutive(state.filters),
     bypassCache
   );
-  state.data.fuelExecutive = enrichFuelExecutive(state.productCatalog, state.data.fuelExecutive);
+  if (!state.data.fuelExecutive?.unavailable) {
+    state.data.fuelExecutive = normalizeFuelExecutive(
+      enrichFuelExecutive(state.productCatalog, state.data.fuelExecutive)
+    );
+  }
   postFuelRefresh(state.filters).catch((error) => {
     console.warn("[fuels] refresh em background falhou:", error);
   });
@@ -2861,6 +2995,10 @@ async function safeLoad(loader) {
 async function loadPresidentDashboard(bypassCache = false) {
   const snapshotBundle = await fetchPresidentSnapshotBundle(state.filters);
   if (snapshotBundle.hit) {
+    const directorReconciliation = await safeLoad(() => fetchDirectorFinancialReconciliation(state.filters));
+    const completeDre = directorReconciliation?.publication?.dreTotalsReleased
+      ? await safeLoad(() => fetchCompleteDepartmentalDre(state.filters))
+      : null;
     state.data.presidentDashboard = buildPresidentDashboardData({
       overview: snapshotBundle.overview?.data ?? snapshotBundle.overview,
       expenses: snapshotBundle.expenses?.data ?? snapshotBundle.expenses,
@@ -2869,6 +3007,8 @@ async function loadPresidentDashboard(bypassCache = false) {
       scorecard: snapshotBundle.scorecard?.data ?? snapshotBundle.scorecard,
       fuelGovernance: snapshotBundle.fuelGovernance?.data ?? snapshotBundle.fuelGovernance,
       products: snapshotBundle.products?.data ?? snapshotBundle.products,
+      directorReconciliation,
+      completeDre,
       snapshotHit: true,
     });
     return;
@@ -2885,6 +3025,7 @@ async function loadPresidentDashboard(bypassCache = false) {
     stock,
     fuelSummary,
     scorecard,
+    directorReconciliation,
   ] = await Promise.all([
     safeLoad(() => getCached("president_kpis", state.filters, () => fetchKpis(state.filters), bypassCache)),
     previousFilters
@@ -2922,7 +3063,12 @@ async function loadPresidentDashboard(bypassCache = false) {
     safeLoad(() =>
       getCached("president_scorecard", state.filters, () => fetchExecutiveScorecardCockpit(state.filters), bypassCache)
     ),
+    safeLoad(() => fetchDirectorFinancialReconciliation(state.filters)),
   ]);
+
+  const completeDre = directorReconciliation?.publication?.dreTotalsReleased
+    ? await safeLoad(() => fetchCompleteDepartmentalDre(state.filters))
+    : null;
 
   state.data.presidentDashboard = buildPresidentDashboardData({
     kpis,
@@ -2937,6 +3083,8 @@ async function loadPresidentDashboard(bypassCache = false) {
       Array.isArray(fuelSummary) ? fuelSummary : Array.isArray(fuelSummary?.data) ? fuelSummary.data : []
     ),
     scorecard: scorecard?.data ?? scorecard,
+    directorReconciliation,
+    completeDre,
   });
 }
 

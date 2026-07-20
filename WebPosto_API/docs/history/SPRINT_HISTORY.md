@@ -11,6 +11,19 @@
 
 ---
 
+#### DIR-01 — Decision Evidence Detail
+**Data:** 2026-07-05  
+**Branch:** `feature/build-03-trust-home`  
+**Status:** ✅ COMPLETE
+
+**Entregáveis:**
+- `GET /api/v1/decisions/{id}/evidence`
+- `evidence_items` no ExpenseDetector
+- UI Home Diretoria + detalhe com tabela de lançamentos
+- VALUE-03: 16 itens / R$ 8.401
+
+---
+
 #### VALUE-03 — Expense Loss Detector
 **Data:** 2026-07-04  
 **Branch:** `feature/build-03-trust-home`  

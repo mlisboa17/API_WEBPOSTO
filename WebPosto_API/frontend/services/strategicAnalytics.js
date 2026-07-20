@@ -1,4 +1,5 @@
 import { formatCurrency } from "./format.js";
+import { LICENSED_COMPANIES, MANAGEMENT_DEPARTMENTS, WEBPOSTO_GROUP_DEPARTMENT_MAP } from "../config/managementScope.js";
 
 const MONEY_KEYS = [
   "receita",
@@ -84,6 +85,47 @@ function fmtPct(value) {
   return `${value >= 0 ? "+" : ""}${value.toFixed(1)}%`;
 }
 
+function normalizedText(value) {
+  return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
+}
+
+function departmentId(row) {
+  const groupCode = String(row?.grupoCodigo ?? row?.grupoProdutoCodigo ?? row?.codigoGrupo ?? "");
+  if (WEBPOSTO_GROUP_DEPARTMENT_MAP[groupCode]) return WEBPOSTO_GROUP_DEPARTMENT_MAP[groupCode];
+  const text = normalizedText([
+    row?.departamento,
+    row?.departamentoNome,
+    row?.setor,
+    row?.grupo,
+    row?.categoria,
+    row?.produto,
+    row?.descricao,
+  ].filter(Boolean).join(" "));
+  if (/COMBUST|GASOLINA|ETANOL|DIESEL|GNV/.test(text)) return "combustiveis";
+  if (/LUBRIFIC|OLEO MOTOR|ADITIVO|FLUIDO|FILTRO|PALHETA|GRAXA/.test(text)) return "lubrificantes";
+  if (/CONVENI|LOJA|BEBIDA|ALIMENTO|CIGARRO|TABACO|BAZAR|FAST FOOD|MERCEARIA|SALGADINHO|BISCOITO|SORVETE|GELO|BOMBON|AGUA RETORN/.test(text)) return "conveniencia";
+  return null;
+}
+
+function buildDepartments(raw) {
+  const salesRows = rows(raw.sales);
+  return MANAGEMENT_DEPARTMENTS.map((department) => {
+    const departmentSales = salesRows.filter((row) => departmentId(row) === department.id);
+    const revenue = sumByKeys(departmentSales, MONEY_KEYS);
+    const fuelRevenue = department.id === "combustiveis" ? sumByKeys(rows(raw.fuelSummary), MONEY_KEYS) : null;
+    const resolvedRevenue = revenue ?? fuelRevenue;
+    return {
+      ...department,
+      revenue: resolvedRevenue,
+      revenueLabel: resolvedRevenue == null ? "Não identificado na origem" : fmtMoney(resolvedRevenue),
+      status: resolvedRevenue == null ? "pending" : "available",
+      detail: resolvedRevenue == null
+        ? "O WebPosto não retornou classificação departamental suficiente para este recorte."
+        : `${departmentSales.length || rows(raw.fuelSummary).length} registro(s) classificados sem mistura com outros departamentos.`,
+    };
+  });
+}
+
 function normalizeFuelName(item) {
   return pickLabel(item, ["combustivel", "produto", "nomeProduto", "categoria", "descricao"], "Combustivel");
 }
@@ -117,19 +159,33 @@ function buildBranchRanking(scorecard, sales) {
     rows(sales),
   ];
   const sourceRows = sourceOptions.find((items) => items.length) || [];
-  const map = new Map();
+  const companyByCode = new Map(LICENSED_COMPANIES.map((company) => [company.empresaCodigo, company]));
+  const totals = new Map(LICENSED_COMPANIES.map((company) => [company.empresaCodigo, null]));
 
   for (const item of sourceRows) {
-    const label = pickLabel(item, ["nomeFilial", "filial", "empresaNome", "nomeFantasia", "empresaCodigo"], "Filial");
+    const rawCode = String(item?.empresaCodigo ?? item?.codigoEmpresa ?? item?.filialCodigo ?? "");
+    let company = companyByCode.get(rawCode);
+    if (!company) {
+      const rawName = normalizedText(pickLabel(item, ["nomeFilial", "filial", "empresaNome", "nomeFantasia"], ""));
+      company = LICENSED_COMPANIES.find((candidate) => {
+        const officialName = normalizedText(candidate.nome);
+        return rawName === officialName || rawName.includes(officialName) || officialName.includes(rawName);
+      });
+    }
+    if (!company) continue;
     const value = firstNumber(item, ["receita", ...MONEY_KEYS]);
     if (value == null) continue;
-    map.set(label, (map.get(label) || 0) + value);
+    totals.set(company.empresaCodigo, (totals.get(company.empresaCodigo) || 0) + value);
   }
 
-  return Array.from(map.entries())
-    .map(([label, value]) => ({ label, value }))
-    .sort((a, b) => b.value - a.value)
-    .slice(0, 8);
+  return LICENSED_COMPANIES
+    .map((company) => ({
+      empresaCodigo: company.empresaCodigo,
+      label: company.nome,
+      value: totals.get(company.empresaCodigo),
+      available: totals.get(company.empresaCodigo) != null,
+    }))
+    .sort((a, b) => Number(b.value ?? -1) - Number(a.value ?? -1));
 }
 
 function scorecardRevenue(scorecard) {
@@ -222,6 +278,24 @@ export function buildPresidentDashboardData(raw) {
   const ticket = scorecardTicket(scorecard) ?? firstPositiveNumber(raw.kpis, ["ticketMedio", "ticket_medio"]) ?? firstPositiveNumber(raw.sales?.consolidado, ["ticketMedio", "ticket_medio"]);
 
   const context = { revenueTrend, expenseRatio, fuelMix, stockTurnover, branchRanking };
+  const reconciliation = raw.directorReconciliation || {};
+  const publication = reconciliation.publication || {};
+  const dreLines = raw.completeDre?.lines || [];
+  const companyMap = new Map(LICENSED_COMPANIES.map((item) => [Number(item.empresaCodigo), item.nome]));
+  const departmentMatrix = dreLines.length
+    ? dreLines.map((line) => ({ ...line, companyName: line.companyName || companyMap.get(Number(line.companyCode)) }))
+    : LICENSED_COMPANIES.flatMap((company) => MANAGEMENT_DEPARTMENTS.map((department) => ({
+        companyCode: company.empresaCodigo,
+        companyName: company.nome,
+        department: department.id,
+        status: "BLOQUEADO",
+        revenue: null,
+        cost: null,
+        grossMargin: null,
+        expenses: null,
+        operatingResult: null,
+        operatingMarginPct: null,
+      })));
   return {
     kpis: [
       { label: "Receita consolidada", value: fmtMoney(currentRevenue), raw: currentRevenue, tone: revenueTrend == null || revenueTrend >= 0 ? "good" : "bad", delta: fmtPct(revenueTrend) },
@@ -234,6 +308,15 @@ export function buildPresidentDashboardData(raw) {
     stockTurnover,
     alerts: collectAlerts(context),
     insights: collectInsights(context),
+    departments: buildDepartments(raw),
+    departmentMatrix,
+    homologation: {
+      released: publication.dreTotalsReleased === true,
+      sourceCoverageComplete: publication.sourceCoverageComplete === true,
+      classificationComplete: publication.departmentalClassificationComplete === true,
+      pendingExpenses: Number(reconciliation.departmentGovernance?.unclassified || reconciliation.reviewableFacts?.length || 0),
+      conflicts: Number(reconciliation.departmentGovernance?.conflicts || 0),
+    },
     source: raw,
   };
 }

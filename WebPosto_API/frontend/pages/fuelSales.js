@@ -11,6 +11,12 @@ import {
   mapPriorityActions,
   mapRisks,
 } from "../services/executiveBrief.js";
+import {
+  bindSectionRetry,
+  friendlySectionError,
+  renderSectionError,
+  renderSectionSkeleton,
+} from "../components/sectionState.js";
 
 function formatDecimalBr(num, decimals = 1) {
   const n = Number(num);
@@ -42,6 +48,23 @@ const FUEL_EMPTY_MSG = "Integração protegida ou sem movimentação no período
 
 export function renderFuelSales(container, payload, onPageChange, options = {}) {
   if (!container) return;
+
+  const sectionUi = options.sectionUi || {};
+
+  if (sectionUi.status === "loading") {
+    container.innerHTML = renderSectionSkeleton({ title: "Carregando vendas do período…", lines: 4 });
+    return;
+  }
+
+  if (sectionUi.status === "error") {
+    container.innerHTML = renderSectionError({
+      title: "Vendas indisponíveis",
+      message: friendlySectionError(sectionUi.error, "as vendas"),
+      retryId: "salesSectionRetry",
+    });
+    bindSectionRetry(container, "salesSectionRetry", options.onRetry);
+    return;
+  }
 
   window.salesActiveSubview = window.salesActiveSubview || "detailed";
 

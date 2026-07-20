@@ -1,7 +1,7 @@
 # Contexto do Projeto: Logos Postos (BI Executivo)
 
-**Versão:** 3.6  
-**Atualizado:** 2026-07-14  
+**Versão:** 3.7  
+**Atualizado:** 2026-07-15  
 **Repositório:** `WebPosto_API`  
 **Fase:** FASE 1 / FASE 2 — Transição de Análise para Diagnóstico  
 **Runtime:** `http://127.0.0.1:8046` · SPA `/app/financial`
@@ -27,6 +27,11 @@
 | Drill-down | Todo KPI deve permitir filtro por **filial** (`empresaCodigo`) |
 | Granularidade mínima | Filial · combustível · natureza gerencial — nunca bico, turno ou operador |
 | Filtros padrão | `dataInicial`, `dataFinal`, `empresaCodigo` |
+| Escopo licenciado | Somente `11495` (Posto VIP), `5555` (Casa Caiada) e `74014` (Posto Doze Filial II) |
+| Gestão departamental | Resultados sempre separados em **Combustíveis**, **Conveniência** e **Lubrificantes**; é proibido somar receitas, custos, margens ou metas entre departamentos |
+| Dados sem departamento | Exibir como não classificados/indisponíveis; nunca estimar, ratear ou misturar para completar indicadores |
+| Mapa WebPosto confirmado | `COMBUSTIVEIS` → Combustíveis; `LUBRIFICANTES`, `ADITIVOS`, `FLUIDOS`, `FILTROS`, `PALHETAS` → Lubrificantes; grupos de loja/alimentos/bebidas/tabaco/bazar → Conveniência |
+| Grupos ambíguos | `COMODATO` (25016), `DIVERSOS` (26039) e `USO E CONSUMO` (29273) permanecem fora dos KPIs até validação gerencial |
 | Dados | Runtime real — sem mock, sem seed |
 | Arquitetura | Snapshot First (TTL ~300s) · FastAPI + SPA · `httpx` assíncrono |
 
@@ -182,6 +187,41 @@ Agregação obrigatória: **rede → filial → combustível**.
 
 ---
 
+### Integração Frontend — 3 Telas do Presidente
+
+- **Escopo:** Mapear payloads estruturados do backend (Sprints 2–4) para consumo integral no SPA, sem alterar motores analíticos.
+- **Status:** ✅ **Concluída** (2026-07-15)
+
+#### Ações realizadas
+
+| Camada | Detalhe |
+|--------|---------|
+| `frontend/services/apiClient.js` | `credentials: include`, header `Authorization: Bearer` (cookie `access_token`), erros 403/404 com flag `unavailable` |
+| `frontend/services/executivePayload.js` | Normalizers: `normalizeDre`, `normalizeCashFlow`, `normalizeFuelExecutive`, `normalizeBusinessHealth` |
+| `frontend/services/api.js` | `executiveGet`, `fetchBusinessHealth`, `fetchOwnerDiretoriaBundle` (top5 + health em paralelo, sem ping duplicado) |
+| Tela 1 | `ownerDiretoriaHome.js` — painel Saúde da Rede + label `MarginDetector` |
+| Tela 2 | `fuelExecutiveDashboard.js` — tabela `paridadePrecos` (compra × venda × margem) |
+| Tela 3 | `executiveDashboard.js` + `cashFlow.js` — DRE gerencial (`faturamentoBruto`, `margemContribuicao`, `despesasOperacionais`) + `semanticBreakdown` |
+| Estados 403/404 | Mensagem amigável: *"Dados indisponíveis para esta filial"* |
+| Evidências | `PRESIDENT_SCREENS_SMOKE.md` (curl porta 8046) · `tests/integration/test_president_screens_api.py` |
+
+#### Conclusão da integração
+
+- Contratos JSON das 3 telas estão mapeados ponta a ponta no frontend.
+- Chamadas executivas passam `empresaCodigo` via `analyticsParams` / `performanceParams` / `snapshotParams`.
+- Preferência mantida por `/executive/snapshot`, `/fuel/snapshot` e `/finance/cash-flow/snapshot` antes de endpoints live.
+- Backend consolidado **não foi alterado** nesta entrega.
+
+#### Próximos passos (abertura de PR)
+
+1. Abrir PR `feature/director-value-demo` → `main` com escopo *Integração Frontend — 3 Telas do Presidente*.
+2. Anexar evidência: `pytest tests/integration/test_president_screens_api.py -v` + prints dos curls em `PRESIDENT_SCREENS_SMOKE.md`.
+3. QA manual nas rotas SPA: `owner-diretoria`, `fuels`, `treasuryHub` (fluxo) com filtro por filial (Real, Casa Caiada, VIP).
+4. Validar filial inválida → UI exibe fallback amigável sem quebra de layout.
+5. Pós-merge: demo presidencial usando snapshot-first (sem recomputo redundante).
+
+---
+
 ## 4. Protocolo de Engenharia
 
 - Commits obrigatoriamente atômicos e isolados por entrega de Sprint seguindo o padrão definido.
@@ -214,6 +254,7 @@ Agregação obrigatória: **rede → filial → combustível**.
 
 | Data | Versão | Alteração |
 |------|--------|-----------|
+| 2026-07-15 | 3.7 | Integração frontend das 3 Telas do Presidente — normalizers, business-health, smoke tests |
 | 2026-07-14 | 3.6 | Sprints 2–4 concluídas — business-health, MarginDetector, DRE gerencial, cash-flow semântico, paridade preços |
 | 2026-07-13 | 3.5 | Sprint 2 — isolamento multi-tenant rigoroso em `/discovery/*` |
 | 2026-07-12 | 3.4 | Sprint 2 em progresso — `/discovery/explain` com snapshot real + contratos payload |

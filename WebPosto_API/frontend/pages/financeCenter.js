@@ -322,6 +322,73 @@ export function renderFinanceCenter(container, data, filters, options = {}) {
 
   const critical = health.critical;
 
+  const directorReconciliation = data?.directorReconciliation || {};
+  const completeDre = data?.completeDepartmentalDre || null;
+  const directorRows = directorReconciliation.executiveSummary || [];
+  const departmentNames = {
+    combustiveis: "Combustíveis",
+    conveniencia: "Conveniência",
+    lubrificantes: "Lubrificantes",
+    nao_classificado: "Não classificado",
+  };
+  const directorStatus = directorReconciliation.complete
+    ? '<span class="status-ok">Cobertura comprovada</span>'
+    : '<span class="status-critical">Totais bloqueados</span>';
+  const directorTable = directorRows.length
+    ? `<div class="table-wrap"><table><thead><tr><th>Empresa</th><th>Departamento</th><th>Despesa confirmada</th><th>Confirmados</th><th>Prováveis</th><th>Quarentena</th><th>Sem vínculo</th></tr></thead><tbody>${directorRows.map((row) => `
+        <tr>
+          <td>${row.companyName || row.companyCode}</td>
+          <td>${departmentNames[row.department] || row.department}</td>
+          <td>${directorReconciliation.complete ? fmtMoney(row.confirmedDreAmount) : "—"}</td>
+          <td>${row.confirmedMatches ?? 0}</td>
+          <td>${row.probableMatches ?? 0}</td>
+          <td>${row.quarantined ?? 0}</td>
+          <td>${row.unmatched ?? 0}</td>
+        </tr>`).join("")}</tbody></table></div>`
+    : '<p class="muted">Nenhum fato conciliado disponível para o período.</p>';
+  const directorWarnings = (directorReconciliation.warnings || []).length
+    ? `<ul class="small">${directorReconciliation.warnings.map((item) => `<li>${String(item)}</li>`).join("")}</ul>`
+    : "";
+  const directorAlertSummary = directorReconciliation.alertSummary || {};
+  const reviewableFacts = directorReconciliation.reviewableFacts || [];
+  const homologationQueue = directorReconciliation.homologationQueue || [];
+  const reviewTable = reviewableFacts.length
+    ? `<section class="review-queue"><h4>Despesas aguardando departamento (${reviewableFacts.length})</h4>
+      <div class="table-wrap"><table><thead><tr><th>Empresa</th><th>Data</th><th>Valor</th><th>Descrição WebPosto</th><th>Categoria gerencial</th><th>Documento / fornecedor</th><th>Plano</th><th>Departamento</th><th>Responsável</th><th>Justificativa</th><th>Ação</th></tr></thead><tbody>${reviewableFacts.map((fact) => `
+        <tr data-review-fact="${fact.factId}">
+          <td>${fact.companyName || fact.companyCode}<br><span class="small muted">${fact.companyCode}</span></td><td>${fact.date}</td><td>${fmtMoney(fact.amount)}</td>
+          <td><strong>${fact.description || "Sem descrição na API"}</strong>${fact.costCenter ? `<br><span class="small">Centro: ${fact.costCenter}</span>` : ""}</td>
+          <td>${fact.taxonomySuggestion?.category || fact.managementCategory || "—"}<br><span class="small muted">${fact.taxonomySuggestion?.subcategory || ""} · ${fact.taxonomySuggestion?.accounting_nature || ""}</span></td><td>${fact.document || fact.supplier || "—"}</td><td>${fact.managementAccountCode || "—"}</td>
+          <td><select data-review-department><option value="">Selecione</option><option value="combustiveis">Combustíveis</option><option value="conveniencia">Conveniência</option><option value="lubrificantes">Lubrificantes</option></select></td>
+          <td><input data-reviewer placeholder="Nome" /></td><td><input data-rationale placeholder="Evidência da decisão" /></td>
+          <td><label class="small"><input type="checkbox" data-apply-account ${fact.managementAccountCode ? "" : "disabled"}/> Reutilizar plano</label><button type="button" data-save-review>Classificar</button></td>
+        </tr>`).join("")}</tbody></table></div></section>`
+    : '<p class="small status-ok">Nenhuma despesa aguardando classificação.</p>';
+  const allocationTable = homologationQueue.length
+    ? `<section class="review-queue"><h4>Rateio de despesas compartilhadas</h4><p class="small muted">Use somente quando a conta atender mais de um departamento. A soma deve ser 100%.</p>
+      <div class="table-wrap"><table><thead><tr><th>Empresa</th><th>Plano</th><th>Registros</th><th>Total</th><th>Comb. %</th><th>Conv. %</th><th>Lub. %</th><th>Responsável</th><th>Justificativa</th><th>Ação</th></tr></thead><tbody>${homologationQueue.map((group) => `
+        <tr data-allocation-account="${group.managementAccountCode || ""}">
+          <td>${group.companyCode}</td><td>${group.managementAccountCode || "—"}</td><td>${group.records}</td><td>${fmtMoney(group.totalAmount)}</td>
+          <td><input type="number" min="0" max="100" value="0" data-allocation-combustiveis /></td>
+          <td><input type="number" min="0" max="100" value="0" data-allocation-conveniencia /></td>
+          <td><input type="number" min="0" max="100" value="0" data-allocation-lubrificantes /></td>
+          <td><input data-allocation-reviewer placeholder="Nome" /></td><td><input data-allocation-rationale placeholder="Critério do rateio" /></td>
+          <td><button type="button" data-save-allocation ${group.managementAccountCode ? "" : "disabled"}>Salvar rateio</button></td>
+        </tr>`).join("")}</tbody></table></div></section>`
+    : "";
+  const directorHtml = `
+    <section class="panel" data-testid="director-financial-reconciliation">
+      <div class="panel-heading"><div><h3>Conciliação para a Diretoria</h3><p class="small muted">Empresa e departamento separados. Prováveis e quarentena não entram na DRE.</p></div>${directorStatus}</div>
+      ${directorWarnings}
+      <p class="small">Alertas: ${directorAlertSummary.total ?? 0} · críticos ${directorAlertSummary.critical ?? 0} · altos ${directorAlertSummary.high ?? 0}</p>
+      ${directorTable}
+      ${reviewTable}
+      ${allocationTable}
+    </section>`;
+  const completeDreHtml = completeDre?.lines?.length
+    ? `<section class="panel" data-testid="complete-departmental-dre"><h3>DRE Departamental</h3><p class="small muted">Nenhum resultado genérico consolidado.</p><div class="table-wrap"><table><thead><tr><th>Empresa</th><th>Departamento</th><th>Faturamento</th><th>Custo</th><th>Margem bruta</th><th>Despesas</th><th>Resultado</th><th>Margem %</th><th>Status</th></tr></thead><tbody>${completeDre.lines.map((row) => `<tr><td>${row.companyName}</td><td>${departmentNames[row.department] || row.department}</td><td>${fmtMoney(row.revenue)}</td><td>${fmtMoney(row.cost)}</td><td>${fmtMoney(row.grossMargin)}</td><td>${fmtMoney(row.expenses)}</td><td>${fmtMoney(row.operatingResult)}</td><td>${row.operatingMarginPct ?? "—"}</td><td>${row.status}</td></tr>`).join("")}</tbody></table></div></section>`
+    : "";
+
 
 
   const intelligenceHtml = intel.classification || advanced.accountAnalytics || supAnalytics.topFornecedores?.length || segPayload.topStrategic?.length
@@ -450,7 +517,7 @@ export function renderFinanceCenter(container, data, filters, options = {}) {
 
   renderExecutiveCockpitPage(container, { cockpit: {}, executiveAnswers: {}, ...data }, filters, {
 
-    title: "Centro Financeiro Corporativo",
+    title: "Central de Homologação Financeira",
 
     actionsHtml: `
 
@@ -514,6 +581,10 @@ export function renderFinanceCenter(container, data, filters, options = {}) {
 
         ${warningsHtml}
 
+        ${directorHtml}
+
+        ${completeDreHtml}
+
         <div class="fc-cards">
 
           <article class="fc-card"><h3>Despesas Gerenciais</h3><p class="fc-val">${despesas.totalRegistros ?? 0}</p><span class="small">${fmtMoney(despesas.totalValor)}</span></article>
@@ -546,7 +617,7 @@ export function renderFinanceCenter(container, data, filters, options = {}) {
 
       </div>`,
 
-    detailSummary: "Aging, tesouraria e inteligência financeira",
+    detailSummary: "Abrir fila de classificação, rateios e evidências",
 
     refreshButtonId: "fcRefresh",
 
@@ -564,6 +635,45 @@ export function renderFinanceCenter(container, data, filters, options = {}) {
 
     downloadCsv(`centro_financeiro_${filters.dataInicial}_${filters.dataFinal}`, EXPORT_COLUMNS, exportRows);
 
+  });
+
+  container.querySelectorAll("[data-save-review]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const row = button.closest("[data-review-fact]");
+      const fact = reviewableFacts.find((item) => item.factId === row?.dataset.reviewFact);
+      const body = {
+        factId: fact?.factId,
+        department: row?.querySelector("[data-review-department]")?.value,
+        reviewer: row?.querySelector("[data-reviewer]")?.value?.trim(),
+        rationale: row?.querySelector("[data-rationale]")?.value?.trim(),
+        applyToAccount: Boolean(row?.querySelector("[data-apply-account]")?.checked),
+        managementAccountCode: fact?.managementAccountCode || null,
+      };
+      if (!body.department || !body.reviewer || !body.rationale) return;
+      button.disabled = true;
+      try { await options.onDepartmentReview?.(body); } finally { button.disabled = false; }
+    });
+  });
+
+  container.querySelectorAll("[data-save-allocation]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const row = button.closest("[data-allocation-account]");
+      const percentages = {
+        combustiveis: Number(row?.querySelector("[data-allocation-combustiveis]")?.value || 0),
+        conveniencia: Number(row?.querySelector("[data-allocation-conveniencia]")?.value || 0),
+        lubrificantes: Number(row?.querySelector("[data-allocation-lubrificantes]")?.value || 0),
+      };
+      const body = {
+        managementAccountCode: row?.dataset.allocationAccount,
+        percentages,
+        reviewer: row?.querySelector("[data-allocation-reviewer]")?.value?.trim(),
+        rationale: row?.querySelector("[data-allocation-rationale]")?.value?.trim(),
+      };
+      const total = Object.values(percentages).reduce((sum, value) => sum + value, 0);
+      if (!body.managementAccountCode || total !== 100 || !body.reviewer || !body.rationale) return;
+      button.disabled = true;
+      try { await options.onSharedAllocation?.(body); } finally { button.disabled = false; }
+    });
   });
 
   container.querySelector("#fcExportPdf")?.addEventListener("click", () => {

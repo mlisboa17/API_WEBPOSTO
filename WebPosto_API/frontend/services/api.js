@@ -38,6 +38,35 @@ function toQuery(params) {
 
 import { apiClient } from './apiClient.js';
 import { validateResponse, SCHEMAS } from './validation.js';
+import {
+  EXECUTIVE_UNAVAILABLE_MSG,
+  normalizeBusinessHealth,
+  normalizeCashFlow,
+  normalizeDre,
+  normalizeFuelExecutive,
+  unavailablePayload,
+} from './executivePayload.js';
+
+async function executiveGet(path, options = {}) {
+  try {
+    const raw = await apiClient.get(path, options);
+    return {
+      data: raw?.data ?? raw,
+      snapshot: raw?.snapshot,
+      unavailable: false,
+    };
+  } catch (error) {
+    if (error?.unavailable || error?.status === 403 || error?.status === 404) {
+      return {
+        data: null,
+        snapshot: null,
+        unavailable: true,
+        message: EXECUTIVE_UNAVAILABLE_MSG,
+      };
+    }
+    throw error;
+  }
+}
 
 async function get(path, params = {}, options = {}) {
   if (ENABLE_AUDIT_MODE) {
@@ -428,13 +457,14 @@ export async function fetchKpis(filters) {
 
 export async function fetchDre(filters) {
   if (ENABLE_AUDIT_MODE) {
-    return await auditDre(filters);
+    return normalizeDre(await auditDre(filters));
   }
-  const raw = await apiClient.get("/api/v1/dre", {
+  const result = await executiveGet("/api/v1/dre", {
     params: analyticsParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
   });
-  return raw?.data || raw;
+  if (result.unavailable) return unavailablePayload(result.message);
+  return normalizeDre(result.data);
 }
 
 export async function fetchDataQuality(filters) {
@@ -457,11 +487,12 @@ export async function fetchFuelSummary(filters) {
 }
 
 export async function fetchFuelExecutive(filters) {
-  const raw = await apiClient.get("/api/v1/fuel/executive", {
+  const result = await executiveGet("/api/v1/fuel/executive", {
     params: analyticsParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
   });
-  return raw?.data || raw;
+  if (result.unavailable) return unavailablePayload(result.message);
+  return normalizeFuelExecutive(result.data);
 }
 
 export async function fetchFuelSnapshot(filters) {
@@ -508,7 +539,11 @@ export async function fetchExecutiveSnapshot(filters) {
     params: snapshotParams(filters),
     timeout: SNAPSHOT_TIMEOUT_MS,
   });
-  return raw?.data || raw;
+  const data = raw?.data || raw;
+  if (data?.dre) {
+    data.dre = normalizeDre(data.dre);
+  }
+  return data;
 }
 
 export async function postExecutiveRefresh(filters) {
@@ -553,6 +588,48 @@ export async function fetchFinanceCenterSummary(filters) {
   const raw = await apiClient.get("/api/v1/finance/center/summary", {
     params: financeCenterParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchDirectorFinancialReconciliation(filters) {
+  const raw = await apiClient.get("/api/v1/finance/director-reconciliation", {
+    params: financeCenterParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function postDirectorFinancialReconciliationRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/finance/director-reconciliation/refresh", null, {
+    params: financeCenterParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function postDepartmentReview(filters, body) {
+  const raw = await apiClient.post(
+    "/api/v1/finance/director-reconciliation/department-reviews",
+    body,
+    { params: financeCenterParams(filters), timeout: REFRESH_TIMEOUT_MS },
+  );
+  return raw?.data || raw;
+}
+
+export async function postSharedAllocationRule(filters, body) {
+  const raw = await apiClient.post(
+    "/api/v1/finance/director-reconciliation/allocation-rules",
+    body,
+    { params: financeCenterParams(filters), timeout: REFRESH_TIMEOUT_MS },
+  );
+  return raw?.data || raw;
+}
+
+export async function fetchCompleteDepartmentalDre(filters) {
+  const raw = await apiClient.get("/api/v1/finance/director-reconciliation/dre-complete", {
+    params: financeCenterParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
   });
   return raw?.data || raw;
 }
@@ -682,11 +759,12 @@ export async function postCashFlowRefresh(filters) {
 }
 
 export async function fetchCashFlow(filters) {
-  const raw = await apiClient.get("/api/v1/finance/cash-flow", {
+  const result = await executiveGet("/api/v1/finance/cash-flow", {
     params: cashFlowParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
   });
-  return raw?.data || raw;
+  if (result.unavailable) return unavailablePayload(result.message);
+  return normalizeCashFlow(result.data);
 }
 
 function cashOperationsParams(filters) {
@@ -1598,6 +1676,32 @@ export async function fetchOwnerTop5Decisions(filters) {
     timeout: ANALYTICS_TIMEOUT_MS,
   });
   return raw;
+}
+
+export async function fetchBusinessHealth(filters) {
+  const result = await executiveGet("/api/v1/owner-action-center/business-health", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  if (result.unavailable) {
+    return {
+      ...unavailablePayload(result.message),
+      snapshot: result.snapshot,
+    };
+  }
+  return normalizeBusinessHealth(result.data);
+}
+
+/** Carga única da Tela 1 — top5 + business-health (sem ping duplicado). */
+export async function fetchOwnerDiretoriaBundle(filters) {
+  const [top5, businessHealth] = await Promise.all([
+    fetchOwnerTop5Decisions(filters),
+    fetchBusinessHealth(filters),
+  ]);
+  return {
+    ...top5,
+    businessHealth,
+  };
 }
 
 export async function fetchDecisionEvidence(decisionId) {

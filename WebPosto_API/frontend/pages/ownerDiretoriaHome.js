@@ -1,4 +1,5 @@
 import { formatCurrency } from "../services/format.js";
+import { EXECUTIVE_UNAVAILABLE_MSG } from "../services/executivePayload.js";
 
 function fmtMoney(value) {
   if (value == null || value === "") return "Indisponível";
@@ -15,6 +16,8 @@ function detectorLabel(name) {
     FuelRevenueDetector: "Combustível",
     ExpenseDetector: "Despesas",
     CardReceivableDetector: "Recebíveis",
+    SupplierInvoiceSpikeDetector: "NF fornecedor",
+    MarginDetector: "Margem combustível",
   };
   return map[name] || name;
 }
@@ -23,7 +26,65 @@ function moneyTypeLabel(action, candidate) {
   const money = candidate?.money_found || action?.money_found || {};
   const atRisk = money?.at_risk?.type || money?.recoverable?.type;
   if (atRisk === "CONFIRMED") return "CONFIRMED";
+  if (atRisk === "AT_RISK") return "AT_RISK";
+  if (atRisk === "RECOVERABLE_SIGNAL") return "RECOVERABLE_SIGNAL";
   return "ESTIMATED";
+}
+
+function moneyTypePhrase(type, evidence) {
+  const map = {
+    CONFIRMED: "valor confirmado",
+    ESTIMATED: "valor estimado acima do comportamento de referência",
+    AT_RISK: "exposição em risco estimada",
+    RECOVERABLE_SIGNAL: "sinal de valor recuperável",
+  };
+  if (type === "ESTIMATED" && evidence?.anomaly_type === "SUPPLIER_INVOICE_SPIKE") {
+    return "valor estimado sob atenção";
+  }
+  return map[type] || "valor sob atenção";
+}
+
+function decisionContext(decision) {
+  const action = decision?.action || {};
+  const candidate = decision?.candidate || {};
+  const evidence = candidate.evidence || action.evidence || {};
+  const baseline = candidate.baseline || candidate.baseline_used || {};
+  return { action, candidate, evidence, baseline };
+}
+
+function evidenceLine(evidence, baseline) {
+  const current = baseline.current_value;
+  const base = baseline.baseline_value;
+  if (evidence.nf_number && evidence.supplier) {
+    const baseVal = base != null ? fmtMoney(base) : "R$ 0,00";
+    return `NF ${evidence.nf_number} · ${evidence.supplier} — sem despesa equivalente no período de referência (${baseVal})`;
+  }
+  if (evidence.current_count != null && evidence.baseline_count != null) {
+    return `${evidence.current_count} lançamentos no período · vs ${evidence.baseline_count} no período de referência`;
+  }
+  if (current != null && base != null) {
+    return `${fmtMoney(current)} no período atual · vs ${fmtMoney(base)} no período de referência`;
+  }
+  return evidence.limitation || evidence.category || "";
+}
+
+function directorQuestion(decision) {
+  const { action, candidate, evidence, baseline } = decisionContext(decision);
+  const actions = candidate.recommended_actions || action.recommended_actions || [];
+  if (actions.length) return actions[0];
+  if (evidence.nf_number && evidence.supplier) {
+    return `Por que a NF ${evidence.nf_number} de ${evidence.supplier} apareceu neste período sem histórico equivalente no baseline?`;
+  }
+  return null;
+}
+
+function problemLabel(decision) {
+  const { action, candidate, evidence } = decisionContext(decision);
+  const detector = candidate.detector || candidate.detector_name || action.detector;
+  if (detector === "SupplierInvoiceSpikeDetector" && evidence.nf_number) {
+    return `NF ${evidence.nf_number}${evidence.supplier ? ` — ${evidence.supplier}` : ""}`;
+  }
+  return evidence.category || action.title || candidate.title || "—";
 }
 
 function impactValue(decision) {
@@ -84,10 +145,12 @@ function tenantSummary(row) {
   if (row.decisions.length) {
     const top = row.decisions[0];
     const action = top.action || {};
+    const rank = top.rank ?? row.decisions[0]?.rank;
+    const rankLabel = rank ? ` (#${rank} na rede)` : "";
     return {
       tone: "priority",
-      headline: "1 decisão prioritária",
-      detail: `${fmtMoney(impactValue(top))} em análise`,
+      headline: row.decisions.length > 1 ? `${row.decisions.length} decisões` : `1 decisão${rankLabel}`,
+      detail: `${fmtMoney(impactValue(top))} · ${action.title || "Decisão prioritária"}`,
       cta: "Ver decisão",
       ctaKind: "decision",
       targetId: top.decision_id || action.id,
@@ -116,38 +179,84 @@ function tenantSummary(row) {
   };
 }
 
-function renderPriorityHero(decision, options) {
+function renderNetworkPriority(decision) {
   if (!decision) return "";
-  const action = decision.action || {};
-  const candidate = decision.candidate || {};
+  const { action, candidate, evidence, baseline } = decisionContext(decision);
   const id = decision.decision_id || action.id;
   const moneyType = moneyTypeLabel(action, candidate);
   const value = impactValue(decision);
-  const evidence = candidate.evidence || action.evidence || {};
-  const category = evidence.category || candidate.category || action.category || "—";
-  const currentCount = evidence.current_count;
-  const baselineCount = evidence.baseline_count;
-  const countLine =
-    currentCount != null && baselineCount != null
-      ? `${currentCount} lançamentos no período · vs ${baselineCount} no período de referência`
-      : null;
+  const problem = problemLabel(decision);
+  const context = evidenceLine(evidence, baseline);
 
   return `
-    <section class="dir-network-priority">
-      <span class="dir-network-eyebrow">Atenção prioritária</span>
+    <section class="dir-network-hero">
+      <span class="dir-network-eyebrow">Prioridade da rede</span>
       <h3>${decision.tenant_name || decision.tenant_id || "—"}</h3>
       <p class="dir-network-priority__amount">
         ${fmtMoney(value)}
-        <span class="dir-money-tag dir-money-tag--${moneyType.toLowerCase()}">${moneyType === "CONFIRMED" ? "confirmado" : "valor estimado acima do comportamento de referência"}</span>
+        <span class="dir-money-tag dir-money-tag--${moneyType.toLowerCase()}">${moneyTypePhrase(moneyType, evidence)}</span>
       </p>
       <p class="dir-network-priority__title">${action.title || "Decisão prioritária"}</p>
-      <p class="muted">${category}</p>
-      ${countLine ? `<p class="muted">${countLine}</p>` : ""}
+      <p class="muted dir-network-problem">${problem}</p>
+      ${context ? `<p class="muted">${context}</p>` : ""}
       <p class="dir-network-confidence">Confiança ${fmtPct(action.confidence ?? candidate.confidence)}</p>
       <button type="button" class="btn-primary dir-open-decision" data-decision-id="${id}">
-        Entender decisão
+        Entender prioridade
       </button>
     </section>`;
+}
+
+function renderNextDecisions(decisions) {
+  const next = (decisions || []).slice(1);
+  if (!next.length) return "";
+  const cards = next
+    .map((decision) => {
+      const { action, candidate, evidence, baseline } = decisionContext(decision);
+      const id = decision.decision_id || action.id;
+      const moneyType = moneyTypeLabel(action, candidate);
+      const rank = decision.rank ?? 2;
+      const question = directorQuestion(decision);
+      const context = evidenceLine(evidence, baseline);
+      return `
+        <article class="dir-network-next">
+          <header>
+            <span class="dir-network-next__rank">#${rank} Próxima decisão</span>
+            <h4>${decision.tenant_name || decision.tenant_id}</h4>
+          </header>
+          <p class="dir-network-next__amount">
+            ${fmtMoney(impactValue(decision))}
+            <span class="dir-money-tag dir-money-tag--${moneyType.toLowerCase()}">${moneyTypePhrase(moneyType, evidence)}</span>
+          </p>
+          <p class="dir-network-next__title">${problemLabel(decision)}</p>
+          ${context ? `<p class="muted">${context}</p>` : `<p class="muted">${action.title || ""}</p>`}
+          <p class="muted">Confiança ${fmtPct(action.confidence ?? candidate.confidence)}</p>
+          ${
+            question
+              ? `<p class="dir-network-question"><strong>Pergunta para o responsável:</strong> ${question}</p>`
+              : ""
+          }
+          <button type="button" class="btn-secondary dir-open-decision" data-decision-id="${id}">
+            Entender decisão
+          </button>
+        </article>`;
+    })
+    .join("");
+
+  return `
+    <section class="dir-network-block dir-network-next-section">
+      <h3>Próximas decisões</h3>
+      <p class="muted">Comparadas e ranqueadas pelo LOGOS — atenção após a prioridade #1.</p>
+      <div class="dir-network-next-grid">${cards}</div>
+    </section>`;
+}
+
+function renderNetworkIntro(decisionCount) {
+  if (decisionCount < 2) return "";
+  return `
+    <p class="dir-network-narrative">
+      O LOGOS analisou a rede e encontrou <strong>${decisionCount} decisões reais</strong> —
+      comparou as situações e organizou onde olhar primeiro e o que vem depois.
+    </p>`;
 }
 
 function renderTenantCards(rows, options) {
@@ -194,7 +303,7 @@ function renderObservations(observations) {
             <div><dt>Valor monitorado</dt><dd>${fmtMoney(gap)}</dd></div>
             <div><dt>Confiança</dt><dd>${fmtPct(obs.confidence)}</dd></div>
           </dl>
-          <p class="muted dir-observation-note">${obs.observation_reason || obs.discard_reason || "Ainda abaixo do limiar para decisão prioritária."}</p>
+          <p class="muted dir-observation-note">${obs.observation_reason || obs.discard_reason || "O LOGOS ainda não possui evidência suficiente para classificar este sinal como decisão prioritária."}</p>
         </article>`;
     })
     .join("");
@@ -250,6 +359,50 @@ function renderFollowUps(followPayload, options) {
     </section>`;
 }
 
+function healthStatusLabel(status) {
+  const map = {
+    healthy: "Saudável",
+    attention: "Atenção",
+    risk: "Risco",
+    critical: "Crítico",
+    unknown: "Indisponível",
+  };
+  return map[status] || status || "—";
+}
+
+function renderBusinessHealth(health) {
+  if (!health) return "";
+  if (health.unavailable) {
+    return `
+      <section class="dir-network-block dir-health dir-health--unknown">
+        <h3>Saúde da rede</h3>
+        <p class="muted">${health.message || EXECUTIVE_UNAVAILABLE_MSG}</p>
+      </section>`;
+  }
+
+  const tone = health.status || "unknown";
+  const deductions = (health.deductions || []).slice(0, 5);
+  const deductionList = deductions.length
+    ? `<ul class="dir-health-deductions">${deductions
+        .map(
+          (item) =>
+            `<li><strong>${detectorLabel(item.detector)}</strong> · ${item.title || "Anomalia"} · −${item.deduction_points ?? "—"} pts</li>`
+        )
+        .join("")}</ul>`
+    : `<p class="muted">Nenhuma dedução ativa no período.</p>`;
+
+  return `
+    <section class="dir-network-block dir-health dir-health--${tone}">
+      <h3>Saúde da rede</h3>
+      <div class="dir-health-score">
+        <span class="dir-health-score__value">${health.overall_score ?? "—"}</span>
+        <span class="dir-health-score__label">${healthStatusLabel(health.status)} · ${health.risk_count ?? 0} risco(s)</span>
+      </div>
+      ${health.message ? `<p class="muted">${health.message}</p>` : ""}
+      ${deductionList}
+    </section>`;
+}
+
 function renderCoverage(proof, payload) {
   const tenants = proof.tenants || [];
   const detectors = (proof.detectors_executed || []).map(detectorLabel);
@@ -275,7 +428,11 @@ function analysisStatusLine(payload) {
   const status = payload.analysis_status;
   const monitoring = payload.monitoring_state;
   const refresh = payload.refresh_status;
+  const decisionCount = payload.data?.total_decisions ?? payload.data?.top_5_decisions?.length ?? 0;
   if (refresh === "RUNNING") return "Atualizando análise da rede…";
+  if (status === "PRIORITY_FOUND" && decisionCount >= 2) {
+    return `${decisionCount} decisões reais identificadas na rede`;
+  }
   if (status === "PRIORITY_FOUND") return "Decisão prioritária identificada na rede";
   if (monitoring === "OBSERVATION") return "Análise concluída — sinais em observação";
   if (status === "ANALYSIS_COMPLETE_NO_PRIORITY") return "Análise concluída — sem decisão prioritária no período";
@@ -298,9 +455,11 @@ export function renderOwnerDiretoriaHome(node, payload, filters, options = {}) {
 
   const data = payload.data;
   const proof = payload.analysis_proof || {};
-  const decisions = data.top_5_decisions || [];
+  const decisions = (data.top_5_decisions || []).map((item, index) => ({
+    ...item,
+    rank: item.rank ?? index + 1,
+  }));
   const observations = data.observations || [];
-  const priority = decisions[0] || null;
   const tenantRows = buildTenantIndex(decisions, observations, proof.tenants);
   const statusText = analysisStatusLine(payload);
 
@@ -315,7 +474,10 @@ export function renderOwnerDiretoriaHome(node, payload, filters, options = {}) {
         <button type="button" id="dirHomeRefresh" class="btn-secondary">Atualizar análise</button>
       </header>
 
-      ${priority ? renderPriorityHero(priority) : ""}
+      ${renderBusinessHealth(payload.businessHealth)}
+      ${renderNetworkIntro(decisions.length)}
+      ${decisions.length ? renderNetworkPriority(decisions[0]) : ""}
+      ${renderNextDecisions(decisions)}
 
       <section class="dir-network-block">
         <h3>Postos analisados</h3>

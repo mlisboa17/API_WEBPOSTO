@@ -1,4 +1,4 @@
-# LOGOS SPACE
+# webposto CODEX
 
 Plataforma corporativa de inteligência operacional e financeira para redes de postos de combustível. Consolida dados do **WebPosto (Quality Automação)** em dashboards executivos, centro financeiro, fluxo de caixa, inteligência de fornecedores e analytics de combustíveis — com arquitetura **Snapshot First** (TTL 300s) para performance sub-segundo em cache HIT.
 

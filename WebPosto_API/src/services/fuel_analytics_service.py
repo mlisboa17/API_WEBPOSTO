@@ -6,7 +6,11 @@ from decimal import Decimal
 import re
 from typing import Any
 
+from pydantic import ValidationError
+
+from src.core.management_scope import is_licensed_company
 from src.domain.entities.filial_master import filial_name_lookup
+from src.domain.fuel.models import FuelVolumeFact
 from src.gateway.webposto_client import WebPostoClient
 from src.models.error_model import WebPostoError
 from src.models.response_model import WebPostoResponse
@@ -176,6 +180,15 @@ class FuelAnalyticsService:
         return by_code, by_lmc_code
 
     async def _fetch_lmc_rows(self, filtros: FuelAnalyticsFilters) -> WebPostoResponse:
+        if filtros.empresa_codigo is not None and not is_licensed_company(filtros.empresa_codigo):
+            return WebPostoResponse.fail(
+                WebPostoError(
+                    endpoint="/INTEGRACAO/CONSULTAR_LMC_REDE",
+                    status=403,
+                    type="UNLICENSED_COMPANY",
+                    message="Empresa fora do escopo das três licenças WebPosto",
+                )
+            )
         params: dict[str, Any] = {
             "dataInicial": filtros.data_inicial,
             "dataFinal": filtros.data_final,
@@ -227,6 +240,9 @@ class FuelAnalyticsService:
             except Exception:
                 continue
 
+            if not is_licensed_company(empresa_codigo):
+                continue
+
             litros = self._extract_litros(row)
             if litros <= 0:
                 continue
@@ -252,6 +268,21 @@ class FuelAnalyticsService:
                     nome_produto = self._clean_product_name(product_names_by_lmc.get(lmc_codigo_int))
             if not nome_produto:
                 nome_produto = f"Produto {produto_codigo}"
+
+            try:
+                fact = FuelVolumeFact(
+                    empresa_codigo=empresa_codigo,
+                    produto_codigo=produto_codigo,
+                    produto_lmc_codigo=row.get("produtoLmcCodigo"),
+                    combustivel=nome_produto,
+                    data_referencia=data_ref,
+                    litros=litros,
+                )
+            except ValidationError:
+                continue
+
+            litros = fact.litros
+            nome_produto = fact.combustivel
 
             litros_total += litros
             by_company[empresa_codigo] += litros

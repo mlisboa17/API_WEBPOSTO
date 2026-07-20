@@ -70,8 +70,10 @@ class Settings(BaseSettings):
     financial_auto_recovery_enabled: bool = True
     financial_auto_recovery_interval_seconds: int = 900
     financial_live_budget_seconds: int = 22
-    sales_live_timeout_seconds: int = 8
-    sales_total_budget_seconds: int = 22
+    # O WebPosto pode ultrapassar 8 s mesmo em partições diárias da empresa 74014.
+    # Mantém a tentativa limitada, mas permite concluir uma chamada diária válida.
+    sales_live_timeout_seconds: int = 20
+    sales_total_budget_seconds: int = 30
     stock_live_timeout_seconds: int = 8
     stock_total_budget_seconds: int = 22
 

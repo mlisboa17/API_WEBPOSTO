@@ -408,6 +408,27 @@ class CorporateFinanceCenterService:
             return err
         expenses = self._filter_expenses(raw, filters)
         page_data, total = self._paginate(expenses, page, limit)
+        employee_index: dict[int, dict[str, Any]] = {}
+        if any(r.get("funcionarioCodigo") not in (None, "", 0) for r in page_data):
+            from src.services.employee_dimension_service import EmployeeDimensionService
+
+            try:
+                employee_ctx = await EmployeeDimensionService(self._client).build(
+                    filters.data_inicial, filters.data_final
+                )
+                employee_index = employee_ctx.get("index") or {}
+            except Exception:
+                LOGGER.warning("Dimensão nominal indisponível no centro financeiro", exc_info=True)
+
+        def employee_name(code: Any) -> str | None:
+            if code in (None, "", 0):
+                return None
+            try:
+                name = (employee_index.get(int(code)) or {}).get("employeeName")
+            except (TypeError, ValueError):
+                return None
+            return str(name).strip() if name else None
+
         ms = round((time.perf_counter() - t0) * 1000, 1)
         meta = FinanceCenterMeta(filters.data_inicial, filters.data_final, empresa_codigo_raw, {"despesas": ms})
         public = [
@@ -418,6 +439,8 @@ class CorporateFinanceCenterService:
                 "planoConta": r.get("planoConta"),
                 "planoContaCodigo": r.get("planoContaCodigo"),
                 "centroCusto": r.get("centroCusto"),
+                "funcionarioCodigo": r.get("funcionarioCodigo"),
+                "employeeName": employee_name(r.get("funcionarioCodigo")),
                 "categoriaLogos": r.get("categoriaLogos"),
                 "categoriaLogosV2": r.get("categoriaLogosV2"),
                 "categoriaLogosV3": r.get("categoriaLogosV3"),
