@@ -1,0 +1,660 @@
+{
+  "lastUpdated": "2026-07-19T03:27:17",
+  "payload": {
+    "summary": {
+      "filial": "11495",
+      "periodoInicio": "2026-07-01",
+      "periodoFim": "2026-07-01",
+      "valorApurado": 41025.8,
+      "valorApresentado": 41025.91,
+      "valorConferido": 30598.21,
+      "valorDivergente": 0.11,
+      "valorPendente": 10427.59,
+      "naturezasConferidas": 4,
+      "naturezasTotal": 5,
+      "natureCards": [
+        {
+          "paymentNature": "DINHEIRO",
+          "label": "Dinheiro",
+          "valorApurado": 10427.59,
+          "valorApresentado": 10427.7,
+          "sangria": 0.0,
+          "diferenca": 0.11,
+          "status": "NEEDS_REVIEW",
+          "itemsCount": 2,
+          "reviewedCount": 0,
+          "openCount": 2
+        },
+        {
+          "paymentNature": "CARTAO",
+          "label": "Cartão",
+          "valorApurado": 18325.62,
+          "valorApresentado": 18325.62,
+          "sangria": null,
+          "diferenca": 0.0,
+          "status": "AUTO_MATCHED",
+          "itemsCount": 2,
+          "reviewedCount": 2,
+          "openCount": 0
+        },
+        {
+          "paymentNature": "DESPESA",
+          "label": "Despesa",
+          "valorApurado": 282.09,
+          "valorApresentado": 282.09,
+          "sangria": null,
+          "diferenca": 0.0,
+          "status": "AUTO_MATCHED",
+          "itemsCount": 1,
+          "reviewedCount": 1,
+          "openCount": 0
+        },
+        {
+          "paymentNature": "VALE_FUNCIONARIO",
+          "label": "Vale Funcionário",
+          "valorApurado": 250.0,
+          "valorApresentado": 250.0,
+          "sangria": null,
+          "diferenca": 0.0,
+          "status": "AUTO_MATCHED",
+          "itemsCount": 2,
+          "reviewedCount": 2,
+          "openCount": 0
+        },
+        {
+          "paymentNature": "TRANSFERENCIA_CREDITO",
+          "label": "Transferência Crédito",
+          "valorApurado": 11740.5,
+          "valorApresentado": 11740.5,
+          "sangria": null,
+          "diferenca": 0.0,
+          "status": "AUTO_MATCHED",
+          "itemsCount": 2,
+          "reviewedCount": 2,
+          "openCount": 0
+        }
+      ],
+      "preCheck": {
+        "totalAnalyzed": 9,
+        "autoMatched": 7,
+        "needsReview": 2,
+        "divergent": 0,
+        "justified": 0,
+        "confirmed": 0,
+        "divergentAmount": 0.39
+      },
+      "auditSignals": [
+        {
+          "signalType": "UNJUSTIFIED_DIVERGENCE",
+          "severity": "MEDIUM",
+          "entityType": "RECONCILIATION_ITEM",
+          "entityId": "11495:4364583:DINHEIRO",
+          "amount": 0.25,
+          "occurrenceCount": 1,
+          "firstOccurrence": "2026-07-01",
+          "lastOccurrence": "2026-07-01",
+          "explanation": "DIVERGÊNCIA RECORRENTE — revisão recomendada sem justificativa registrada",
+          "status": "OPEN"
+        },
+        {
+          "signalType": "UNJUSTIFIED_DIVERGENCE",
+          "severity": "MEDIUM",
+          "entityType": "RECONCILIATION_ITEM",
+          "entityId": "11495:4364591:DINHEIRO",
+          "amount": 0.14,
+          "occurrenceCount": 1,
+          "firstOccurrence": "2026-07-01",
+          "lastOccurrence": "2026-07-01",
+          "explanation": "DIVERGÊNCIA RECORRENTE — revisão recomendada sem justificativa registrada",
+          "status": "OPEN"
+        },
+        {
+          "signalType": "RECURRING_NATURE",
+          "severity": "MEDIUM",
+          "entityType": "PAYMENT_NATURE",
+          "entityId": "DINHEIRO",
+          "amount": 0.0,
+          "occurrenceCount": 2,
+          "firstOccurrence": "2026-07-01",
+          "lastOccurrence": "2026-07-01",
+          "explanation": "PADRÃO RECORRENTE — natureza DINHEIRO diverge repetidamente",
+          "status": "OPEN"
+        }
+      ]
+    },
+    "items": [
+      {
+        "id": "11495:4364583:DINHEIRO",
+        "filial": 11495,
+        "caixaCodigo": 4364583,
+        "turno": "1º TURNO",
+        "periodoInicio": "2026-07-01",
+        "periodoFim": "2026-07-01",
+        "paymentNature": "DINHEIRO",
+        "captureOrigin": "CASH_REGISTER",
+        "valorApresentado": 636.5,
+        "valorApurado": 636.25,
+        "valorEsperado": 636.25,
+        "valorRealizado": 636.5,
+        "sangria": null,
+        "diferenca": 0.25,
+        "expectedDestination": "CASH",
+        "evidences": [
+          {
+            "source": "CAIXA_APRESENTADO",
+            "externalReference": "4364583",
+            "amount": 636.25,
+            "effectiveDate": "2026-07-01",
+            "status": "AVAILABLE"
+          }
+        ],
+        "cardBreakdown": [],
+        "status": "NEEDS_REVIEW",
+        "preCheckOutcome": "NEEDS_REVIEW",
+        "justifications": [],
+        "responsibleUser": null,
+        "updatedAt": null
+      },
+      {
+        "id": "11495:4364583:CARTAO",
+        "filial": 11495,
+        "caixaCodigo": 4364583,
+        "turno": "1º TURNO",
+        "periodoInicio": "2026-07-01",
+        "periodoFim": "2026-07-01",
+        "paymentNature": "CARTAO",
+        "captureOrigin": "POS_MANUAL",
+        "valorApresentado": 1435.79,
+        "valorApurado": 1435.79,
+        "valorEsperado": 2547.34,
+        "valorRealizado": 1435.79,
+        "sangria": null,
+        "diferenca": 0.0,
+        "expectedDestination": "ACQUIRER_RECEIVABLE",
+        "evidences": [
+          {
+            "source": "CAIXA_APRESENTADO",
+            "externalReference": "4364583",
+            "amount": 1435.79,
+            "effectiveDate": "2026-07-01",
+            "status": "AVAILABLE"
+          }
+        ],
+        "cardBreakdown": [
+          {
+            "rawPaymentLabel": "CARTAO POS",
+            "normalizedBrand": "UNKNOWN",
+            "normalizedMethod": "CARD",
+            "normalizedAcquirer": "ADM_94762",
+            "captureOrigin": "POS_MANUAL",
+            "grossAmount": 728.45,
+            "feeRate": 0.79,
+            "expectedNet": 722.66,
+            "settlementDate": "2026-07-02",
+            "destinationAccount": null
+          },
+          {
+            "rawPaymentLabel": "CARTAO POS",
+            "normalizedBrand": "UNKNOWN",
+            "normalizedMethod": "CARD",
+            "normalizedAcquirer": "ADM_94760",
+            "captureOrigin": "POS_MANUAL",
+            "grossAmount": 640.09,
+            "feeRate": 0.79,
+            "expectedNet": 634.99,
+            "settlementDate": "2026-07-02",
+            "destinationAccount": null
+          },
+          {
+            "rawPaymentLabel": "CARTAO POS",
+            "normalizedBrand": "UNKNOWN",
+            "normalizedMethod": "CARD",
+            "normalizedAcquirer": "ADM_94761",
+            "captureOrigin": "POS_MANUAL",
+            "grossAmount": 518.22,
+            "feeRate": 2.88,
+            "expectedNet": 503.29,
+            "settlementDate": "2026-07-02",
+            "destinationAccount": null
+          },
+          {
+            "rawPaymentLabel": "CARTAO POS",
+            "normalizedBrand": "UNKNOWN",
+            "normalizedMethod": "CARD",
+            "normalizedAcquirer": "ADM_94763",
+            "captureOrigin": "POS_MANUAL",
+            "grossAmount": 321.0,
+            "feeRate": 1.09,
+            "expectedNet": 317.48,
+            "settlementDate": "2026-07-02",
+            "destinationAccount": null
+          },
+          {
+            "rawPaymentLabel": "CARTAO POS",
+            "normalizedBrand": "UNKNOWN",
+            "normalizedMethod": "CARD",
+            "normalizedAcquirer": "ADM_106911",
+            "captureOrigin": "POS_MANUAL",
+            "grossAmount": 245.63,
+            "feeRate": 1.49,
+            "expectedNet": 241.96,
+            "settlementDate": "2026-08-13",
+            "destinationAccount": null
+          },
+          {
+            "rawPaymentLabel": "CARTAO POS",
+            "normalizedBrand": "UNKNOWN",
+            "normalizedMethod": "CARD",
+            "normalizedAcquirer": "ADM_106915",
+            "captureOrigin": "POS_MANUAL",
+            "grossAmount": 129.42,
+            "feeRate": 1.89,
+            "expectedNet": 126.96,
+            "settlementDate": "2026-08-13",
+            "destinationAccount": null
+          }
+        ],
+        "status": "AUTO_MATCHED",
+        "preCheckOutcome": "AUTO_MATCHED",
+        "justifications": [],
+        "responsibleUser": null,
+        "updatedAt": null
+      },
+      {
+        "id": "11495:4364583:DESPESA",
+        "filial": 11495,
+        "caixaCodigo": 4364583,
+        "turno": "1º TURNO",
+        "periodoInicio": "2026-07-01",
+        "periodoFim": "2026-07-01",
+        "paymentNature": "DESPESA",
+        "captureOrigin": "CASH_REGISTER",
+        "valorApresentado": 282.09,
+        "valorApurado": 282.09,
+        "valorEsperado": 282.09,
+        "valorRealizado": 282.09,
+        "sangria": null,
+        "diferenca": 0.0,
+        "expectedDestination": "EXPENSE_LEDGER",
+        "evidences": [
+          {
+            "source": "CAIXA_APRESENTADO",
+            "externalReference": "4364583",
+            "amount": 282.09,
+            "effectiveDate": "2026-07-01",
+            "status": "AVAILABLE"
+          }
+        ],
+        "cardBreakdown": [],
+        "status": "AUTO_MATCHED",
+        "preCheckOutcome": "AUTO_MATCHED",
+        "justifications": [],
+        "responsibleUser": null,
+        "updatedAt": null
+      },
+      {
+        "id": "11495:4364583:VALE_FUNCIONARIO",
+        "filial": 11495,
+        "caixaCodigo": 4364583,
+        "turno": "1º TURNO",
+        "periodoInicio": "2026-07-01",
+        "periodoFim": "2026-07-01",
+        "paymentNature": "VALE_FUNCIONARIO",
+        "captureOrigin": "CASH_REGISTER",
+        "valorApresentado": 40.0,
+        "valorApurado": 40.0,
+        "valorEsperado": 40.0,
+        "valorRealizado": 40.0,
+        "sangria": null,
+        "diferenca": 0.0,
+        "expectedDestination": "EMPLOYEE_BALANCE",
+        "evidences": [
+          {
+            "source": "CAIXA_APRESENTADO",
+            "externalReference": "4364583",
+            "amount": 40.0,
+            "effectiveDate": "2026-07-01",
+            "status": "AVAILABLE"
+          }
+        ],
+        "cardBreakdown": [],
+        "status": "AUTO_MATCHED",
+        "preCheckOutcome": "AUTO_MATCHED",
+        "justifications": [],
+        "responsibleUser": null,
+        "updatedAt": null
+      },
+      {
+        "id": "11495:4364583:TRANSFERENCIA_CREDITO",
+        "filial": 11495,
+        "caixaCodigo": 4364583,
+        "turno": "1º TURNO",
+        "periodoInicio": "2026-07-01",
+        "periodoFim": "2026-07-01",
+        "paymentNature": "TRANSFERENCIA_CREDITO",
+        "captureOrigin": "CASH_REGISTER",
+        "valorApresentado": 752.24,
+        "valorApurado": 752.24,
+        "valorEsperado": 752.24,
+        "valorRealizado": 752.24,
+        "sangria": null,
+        "diferenca": 0.0,
+        "expectedDestination": "BANK_ACCOUNT",
+        "evidences": [
+          {
+            "source": "CAIXA_APRESENTADO",
+            "externalReference": "4364583",
+            "amount": 752.24,
+            "effectiveDate": "2026-07-01",
+            "status": "AVAILABLE"
+          }
+        ],
+        "cardBreakdown": [],
+        "status": "AUTO_MATCHED",
+        "preCheckOutcome": "AUTO_MATCHED",
+        "justifications": [],
+        "responsibleUser": null,
+        "updatedAt": null
+      },
+      {
+        "id": "11495:4364591:DINHEIRO",
+        "filial": 11495,
+        "caixaCodigo": 4364591,
+        "turno": "1º TURNO",
+        "periodoInicio": "2026-07-01",
+        "periodoFim": "2026-07-01",
+        "paymentNature": "DINHEIRO",
+        "captureOrigin": "CASH_REGISTER",
+        "valorApresentado": 9791.2,
+        "valorApurado": 9791.34,
+        "valorEsperado": 9791.34,
+        "valorRealizado": 9791.2,
+        "sangria": null,
+        "diferenca": -0.14,
+        "expectedDestination": "CASH",
+        "evidences": [
+          {
+            "source": "CAIXA_APRESENTADO",
+            "externalReference": "4364591",
+            "amount": 9791.34,
+            "effectiveDate": "2026-07-01",
+            "status": "AVAILABLE"
+          }
+        ],
+        "cardBreakdown": [],
+        "status": "NEEDS_REVIEW",
+        "preCheckOutcome": "NEEDS_REVIEW",
+        "justifications": [],
+        "responsibleUser": null,
+        "updatedAt": null
+      },
+      {
+        "id": "11495:4364591:CARTAO",
+        "filial": 11495,
+        "caixaCodigo": 4364591,
+        "turno": "1º TURNO",
+        "periodoInicio": "2026-07-01",
+        "periodoFim": "2026-07-01",
+        "paymentNature": "CARTAO",
+        "captureOrigin": "POS_MANUAL",
+        "valorApresentado": 16889.83,
+        "valorApurado": 16889.83,
+        "valorEsperado": 2547.34,
+        "valorRealizado": 16889.83,
+        "sangria": null,
+        "diferenca": 0.0,
+        "expectedDestination": "ACQUIRER_RECEIVABLE",
+        "evidences": [
+          {
+            "source": "CAIXA_APRESENTADO",
+            "externalReference": "4364591",
+            "amount": 16889.83,
+            "effectiveDate": "2026-07-01",
+            "status": "AVAILABLE"
+          }
+        ],
+        "cardBreakdown": [
+          {
+            "rawPaymentLabel": "CARTAO POS",
+            "normalizedBrand": "UNKNOWN",
+            "normalizedMethod": "CARD",
+            "normalizedAcquirer": "ADM_94762",
+            "captureOrigin": "POS_MANUAL",
+            "grossAmount": 728.45,
+            "feeRate": 0.79,
+            "expectedNet": 722.66,
+            "settlementDate": "2026-07-02",
+            "destinationAccount": null
+          },
+          {
+            "rawPaymentLabel": "CARTAO POS",
+            "normalizedBrand": "UNKNOWN",
+            "normalizedMethod": "CARD",
+            "normalizedAcquirer": "ADM_94760",
+            "captureOrigin": "POS_MANUAL",
+            "grossAmount": 640.09,
+            "feeRate": 0.79,
+            "expectedNet": 634.99,
+            "settlementDate": "2026-07-02",
+            "destinationAccount": null
+          },
+          {
+            "rawPaymentLabel": "CARTAO POS",
+            "normalizedBrand": "UNKNOWN",
+            "normalizedMethod": "CARD",
+            "normalizedAcquirer": "ADM_94761",
+            "captureOrigin": "POS_MANUAL",
+            "grossAmount": 518.22,
+            "feeRate": 2.88,
+            "expectedNet": 503.29,
+            "settlementDate": "2026-07-02",
+            "destinationAccount": null
+          },
+          {
+            "rawPaymentLabel": "CARTAO POS",
+            "normalizedBrand": "UNKNOWN",
+            "normalizedMethod": "CARD",
+            "normalizedAcquirer": "ADM_94763",
+            "captureOrigin": "POS_MANUAL",
+            "grossAmount": 321.0,
+            "feeRate": 1.09,
+            "expectedNet": 317.48,
+            "settlementDate": "2026-07-02",
+            "destinationAccount": null
+          },
+          {
+            "rawPaymentLabel": "CARTAO POS",
+            "normalizedBrand": "UNKNOWN",
+            "normalizedMethod": "CARD",
+            "normalizedAcquirer": "ADM_106911",
+            "captureOrigin": "POS_MANUAL",
+            "grossAmount": 245.63,
+            "feeRate": 1.49,
+            "expectedNet": 241.96,
+            "settlementDate": "2026-08-13",
+            "destinationAccount": null
+          },
+          {
+            "rawPaymentLabel": "CARTAO POS",
+            "normalizedBrand": "UNKNOWN",
+            "normalizedMethod": "CARD",
+            "normalizedAcquirer": "ADM_106915",
+            "captureOrigin": "POS_MANUAL",
+            "grossAmount": 129.42,
+            "feeRate": 1.89,
+            "expectedNet": 126.96,
+            "settlementDate": "2026-08-13",
+            "destinationAccount": null
+          }
+        ],
+        "status": "AUTO_MATCHED",
+        "preCheckOutcome": "AUTO_MATCHED",
+        "justifications": [],
+        "responsibleUser": null,
+        "updatedAt": null
+      },
+      {
+        "id": "11495:4364591:VALE_FUNCIONARIO",
+        "filial": 11495,
+        "caixaCodigo": 4364591,
+        "turno": "1º TURNO",
+        "periodoInicio": "2026-07-01",
+        "periodoFim": "2026-07-01",
+        "paymentNature": "VALE_FUNCIONARIO",
+        "captureOrigin": "CASH_REGISTER",
+        "valorApresentado": 210.0,
+        "valorApurado": 210.0,
+        "valorEsperado": 210.0,
+        "valorRealizado": 210.0,
+        "sangria": null,
+        "diferenca": 0.0,
+        "expectedDestination": "EMPLOYEE_BALANCE",
+        "evidences": [
+          {
+            "source": "CAIXA_APRESENTADO",
+            "externalReference": "4364591",
+            "amount": 210.0,
+            "effectiveDate": "2026-07-01",
+            "status": "AVAILABLE"
+          }
+        ],
+        "cardBreakdown": [],
+        "status": "AUTO_MATCHED",
+        "preCheckOutcome": "AUTO_MATCHED",
+        "justifications": [],
+        "responsibleUser": null,
+        "updatedAt": null
+      },
+      {
+        "id": "11495:4364591:TRANSFERENCIA_CREDITO",
+        "filial": 11495,
+        "caixaCodigo": 4364591,
+        "turno": "1º TURNO",
+        "periodoInicio": "2026-07-01",
+        "periodoFim": "2026-07-01",
+        "paymentNature": "TRANSFERENCIA_CREDITO",
+        "captureOrigin": "CASH_REGISTER",
+        "valorApresentado": 10988.26,
+        "valorApurado": 10988.26,
+        "valorEsperado": 10988.26,
+        "valorRealizado": 10988.26,
+        "sangria": null,
+        "diferenca": 0.0,
+        "expectedDestination": "BANK_ACCOUNT",
+        "evidences": [
+          {
+            "source": "CAIXA_APRESENTADO",
+            "externalReference": "4364591",
+            "amount": 10988.26,
+            "effectiveDate": "2026-07-01",
+            "status": "AVAILABLE"
+          }
+        ],
+        "cardBreakdown": [],
+        "status": "AUTO_MATCHED",
+        "preCheckOutcome": "AUTO_MATCHED",
+        "justifications": [],
+        "responsibleUser": null,
+        "updatedAt": null
+      }
+    ],
+    "exceptions": [
+      {
+        "id": "11495:4364583:DINHEIRO",
+        "filial": 11495,
+        "caixaCodigo": 4364583,
+        "turno": "1º TURNO",
+        "periodoInicio": "2026-07-01",
+        "periodoFim": "2026-07-01",
+        "paymentNature": "DINHEIRO",
+        "captureOrigin": "CASH_REGISTER",
+        "valorApresentado": 636.5,
+        "valorApurado": 636.25,
+        "valorEsperado": 636.25,
+        "valorRealizado": 636.5,
+        "sangria": null,
+        "diferenca": 0.25,
+        "expectedDestination": "CASH",
+        "evidences": [
+          {
+            "source": "CAIXA_APRESENTADO",
+            "externalReference": "4364583",
+            "amount": 636.25,
+            "effectiveDate": "2026-07-01",
+            "status": "AVAILABLE"
+          }
+        ],
+        "cardBreakdown": [],
+        "status": "NEEDS_REVIEW",
+        "preCheckOutcome": "NEEDS_REVIEW",
+        "justifications": [],
+        "responsibleUser": null,
+        "updatedAt": null
+      },
+      {
+        "id": "11495:4364591:DINHEIRO",
+        "filial": 11495,
+        "caixaCodigo": 4364591,
+        "turno": "1º TURNO",
+        "periodoInicio": "2026-07-01",
+        "periodoFim": "2026-07-01",
+        "paymentNature": "DINHEIRO",
+        "captureOrigin": "CASH_REGISTER",
+        "valorApresentado": 9791.2,
+        "valorApurado": 9791.34,
+        "valorEsperado": 9791.34,
+        "valorRealizado": 9791.2,
+        "sangria": null,
+        "diferenca": -0.14,
+        "expectedDestination": "CASH",
+        "evidences": [
+          {
+            "source": "CAIXA_APRESENTADO",
+            "externalReference": "4364591",
+            "amount": 9791.34,
+            "effectiveDate": "2026-07-01",
+            "status": "AVAILABLE"
+          }
+        ],
+        "cardBreakdown": [],
+        "status": "NEEDS_REVIEW",
+        "preCheckOutcome": "NEEDS_REVIEW",
+        "justifications": [],
+        "responsibleUser": null,
+        "updatedAt": null
+      }
+    ],
+    "meta": {
+      "performanceMs": 3505.1,
+      "caixaTurnos": 2,
+      "vfpRows": 181,
+      "cardVfpRows": 54,
+      "sangriaTotal": 0.0,
+      "natureTotals": {
+        "DINHEIRO": {
+          "ap": 10427.7,
+          "au": 10427.59
+        },
+        "CARTAO": {
+          "ap": 18325.620000000003,
+          "au": 18325.620000000003
+        },
+        "DESPESA": {
+          "ap": 282.09,
+          "au": 282.09
+        },
+        "VALE_FUNCIONARIO": {
+          "ap": 250.0,
+          "au": 250.0
+        },
+        "TRANSFERENCIA_CREDITO": {
+          "ap": 11740.5,
+          "au": 11740.5
+        }
+      }
+    },
+    "stateKey": "recon:11495:2026-07-01:2026-07-01",
+    "generatedAt": "2026-07-19T06:27:17+00:00"
+  },
+  "snapshotKey": "recon:summary:2026-07-01:2026-07-01:11495"
+}

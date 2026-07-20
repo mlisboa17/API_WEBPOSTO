@@ -1,0 +1,74 @@
+{
+  "kind": "financial_sales",
+  "key": "2026-07-01:2026-07-17:5555",
+  "lastUpdated": "2026-07-17T22:43:46",
+  "homologated": true,
+  "source": "live",
+  "data": {
+    "page": 1,
+    "limit": 5,
+    "total": 200,
+    "data": [
+      {
+        "empresaCodigo": 5555,
+        "filial": "AP CASA CAIADA",
+        "vendaCodigo": 360031804,
+        "data": "2026-07-01",
+        "cliente": "consumidor final",
+        "itens": 1,
+        "formaPagamento": "",
+        "totalVenda": "20.00",
+        "synthetic": false
+      },
+      {
+        "empresaCodigo": 5555,
+        "filial": "AP CASA CAIADA",
+        "vendaCodigo": 360031818,
+        "data": "2026-07-01",
+        "cliente": "consumidor final",
+        "itens": 1,
+        "formaPagamento": "",
+        "totalVenda": "138.60",
+        "synthetic": false
+      },
+      {
+        "empresaCodigo": 5555,
+        "filial": "AP CASA CAIADA",
+        "vendaCodigo": 360033028,
+        "data": "2026-07-01",
+        "cliente": "consumidor final",
+        "itens": 1,
+        "formaPagamento": "",
+        "totalVenda": "12.00",
+        "synthetic": false
+      },
+      {
+        "empresaCodigo": 5555,
+        "filial": "AP CASA CAIADA",
+        "vendaCodigo": 360033029,
+        "data": "2026-07-01",
+        "cliente": "consumidor final",
+        "itens": 1,
+        "formaPagamento": "",
+        "totalVenda": "12.00",
+        "synthetic": false
+      },
+      {
+        "empresaCodigo": 5555,
+        "filial": "AP CASA CAIADA",
+        "vendaCodigo": 360034349,
+        "data": "2026-07-01",
+        "cliente": "consumidor final",
+        "itens": 1,
+        "formaPagamento": "",
+        "totalVenda": "30.00",
+        "synthetic": false
+      }
+    ],
+    "consolidado": {
+      "total_vendas": "20922.42",
+      "qtd_vendas": 200
+    },
+    "synthetic": false
+  }
+}

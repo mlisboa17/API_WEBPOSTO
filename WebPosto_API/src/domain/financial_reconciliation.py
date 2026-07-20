@@ -16,6 +16,13 @@ class FinancialSource(str, Enum):
     ACCOUNT_MOVEMENT = "MOVIMENTO_CONTA"
 
 
+class CoverageStatus(str, Enum):
+    PROVEN_WITH_MOVEMENT = "COMPROVADO_COM_MOVIMENTO"
+    PROVEN_WITHOUT_MOVEMENT = "COMPROVADO_SEM_MOVIMENTO"
+    SOURCE_UNAVAILABLE = "FONTE_INDISPONÍVEL"
+    INCOMPLETE_COVERAGE = "COBERTURA_INCOMPLETA"
+
+
 class MatchStatus(str, Enum):
     CONFIRMED = "CONFIRMADO"
     PROBABLE = "PROVAVEL_CORRESPONDENCIA"
@@ -66,6 +73,7 @@ class FinancialReconciliationResult(BaseModel):
 
 class FinancialCoverage(BaseModel):
     source: FinancialSource
+    status: CoverageStatus
     complete: bool
     records: int = 0
     strategy: str

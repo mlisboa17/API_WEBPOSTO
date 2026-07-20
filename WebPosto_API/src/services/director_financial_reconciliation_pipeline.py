@@ -14,6 +14,7 @@ from typing import Any
 from src.core.financial_vocabulary import FinancialConcept
 from src.core.management_scope import LICENSED_COMPANIES, LICENSED_COMPANY_CODES
 from src.domain.financial_reconciliation import (
+    CoverageStatus,
     FinancialCoverage,
     FinancialFact,
     FinancialSource,
@@ -195,14 +196,39 @@ class DirectorFinancialReconciliationPipeline:
             rows = [row for row in rows if int(row.get("empresaCodigo") or 0) in requested]
             normalized = self._normalize(source, rows)
             facts.extend(normalized)
-            if source == FinancialSource.ACCOUNT_MOVEMENT:
-                complete = bool(response.success and ((response.data or {}).get("coverage") or {}).get("complete"))
-                strategy = "COMPANY_DAY_CURSOR"
+
+            if not response.success:
+                status = CoverageStatus.SOURCE_UNAVAILABLE
+                complete = False
             else:
-                complete = bool(response.success)
-                strategy = "DATE_RANGE_FILTERED_BY_LICENSE"
+                if source == FinancialSource.ACCOUNT_MOVEMENT:
+                    is_complete = bool(((response.data or {}).get("coverage") or {}).get("complete"))
+                    if not is_complete:
+                        status = CoverageStatus.INCOMPLETE_COVERAGE
+                        complete = False
+                    elif len(normalized) > 0:
+                        status = CoverageStatus.PROVEN_WITH_MOVEMENT
+                        complete = True
+                    else:
+                        status = CoverageStatus.PROVEN_WITHOUT_MOVEMENT
+                        complete = True
+                else:
+                    status = (
+                        CoverageStatus.PROVEN_WITH_MOVEMENT if len(normalized) > 0
+                        else CoverageStatus.PROVEN_WITHOUT_MOVEMENT
+                    )
+                    complete = True
+
+            strategy = (
+                "COMPANY_DAY_CURSOR" if source == FinancialSource.ACCOUNT_MOVEMENT
+                else "DATE_RANGE_FILTERED_BY_LICENSE"
+            )
             coverages.append(FinancialCoverage(
-                source=source, complete=complete, records=len(normalized), strategy=strategy,
+                source=source,
+                status=status,
+                complete=complete,
+                records=len(normalized),
+                strategy=strategy,
                 warning=None if complete else "Fonte incompleta; totais bloqueados",
             ))
 
@@ -220,8 +246,11 @@ class DirectorFinancialReconciliationPipeline:
             "methods": sorted({fact.department_method for fact in department_eligible}),
             "automaticClassificationThreshold": "0.90",
         }
+        expenses_coverage = next(c for c in coverages if c.source == FinancialSource.EXPENSES)
+        proven_zero_expenses = expenses_coverage.status == CoverageStatus.PROVEN_WITHOUT_MOVEMENT
+        
         departmental_classification_complete = (
-            governance["eligible"] > 0
+            (governance["eligible"] > 0 or proven_zero_expenses)
             and governance["unclassified"] == 0
             and governance["conflicts"] == 0
         )

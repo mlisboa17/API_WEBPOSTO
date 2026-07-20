@@ -9,8 +9,9 @@
       "ok": true
     },
     {
-      "step": "PRIORITY_VISIBLE",
-      "ok": true
+      "step": "TOP_DECISIONS_VISIBLE",
+      "ok": true,
+      "decisions_count": 2
     },
     {
       "step": "OBSERVATIONS_VISIBLE",
@@ -38,7 +39,8 @@
   "detectors_visible": [
     "FuelRevenueDetector",
     "ExpenseDetector",
-    "CardReceivableDetector"
+    "CardReceivableDetector",
+    "SupplierInvoiceSpikeDetector"
   ],
   "priority_decision_visible": true,
   "priority_tenant": "POSTO DOZE FILIAL II",

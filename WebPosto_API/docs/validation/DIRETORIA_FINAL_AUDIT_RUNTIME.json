@@ -1,0 +1,128 @@
+{
+  "audit_timestamp": "2026-07-07T17:58:00-03:00",
+  "branch": "feature/build-03-trust-home",
+  "commit": "e63fb5e",
+  "audit_method": [
+    "Persisted snapshots (owner_analysis, executive_review_requests)",
+    "Prior runtime artifacts DIR_01 / DIR_01D / DIR_02 / VALUE_04",
+    "HTTP TestClient re-validation 2026-07-07 (evidence, review-requests, follow-ups, idempotency)",
+    "Frontend route wiring review (app.js, ownerDiretoriaHome.js, decisionDetail.js, executiveFollowUp*.js)",
+    "Unit tests: test_decision_evidence, test_executive_review_request, test_executive_follow_up"
+  ],
+  "home": {
+    "endpoint": "GET /api/v1/owner-action-center/top5",
+    "snapshot_source": "snapshots/owner_analysis/owner_analysis_last_valid_2026-06-05_2026-07-04_all_discovered_DIR01.json",
+    "warm_response_ms_reference": 2.6,
+    "warm_response_source": "docs/validation/VALUE_04_REPORT.md (PERFORMANCE-01)",
+    "monitoring_state": "DECISION",
+    "analysis_status": "PRIORITY_FOUND",
+    "decisions_count": 1,
+    "observations_count": 0,
+    "analysis_proof_in_seed_snapshot": false,
+    "multi_tenant_proof_snapshot": "snapshots/owner_analysis/owner_analysis_last_valid_2026-06-27_2026-07-04_all_discovered_FuelRevenueDetector_all.json",
+    "tenants_analyzed_persisted": ["5555", "11495", "74014"],
+    "detectors_executed_persisted_full_pipeline": [
+      "FuelRevenueDetector",
+      "ExpenseDetector",
+      "CardReceivableDetector"
+    ],
+    "detectors_source": "src/services/owner_analysis_runner.py + VALUE_04_DISCOVERY_RAW.json"
+  },
+  "prioritization": {
+    "value_04_winner": {
+      "detector": "ExpenseDetector",
+      "tenant_id": "74014",
+      "priority_score": 52.63,
+      "money_found_type": "ESTIMATED"
+    },
+    "observations_runtime_value_04": 2,
+    "decisions_runtime_value_04": 1,
+    "global_ranking": true,
+    "confidence_threshold_respected": true,
+    "source": "docs/validation/VALUE_04_REPORT.md"
+  },
+  "decision_audited": {
+    "decision_id": "175da101-6f68-42f4-9d2b-9b42e6cedea2",
+    "tenant_id": "74014",
+    "tenant_name": "POSTO DOZE FILIAL II",
+    "detector": "ExpenseDetector",
+    "category": "Vale de funcionário referente a consolidação de caixa"
+  },
+  "evidence": {
+    "endpoint": "GET /api/v1/decisions/{decision_id}/evidence",
+    "http_status": 200,
+    "http_cold_ms_2026_07_07": 171615.2,
+    "service_cold_ms_2026_07_07": 78270.3,
+    "evidence_items_count": 16,
+    "evidence_items_total": 8401.0,
+    "computed_sum": 8401.0,
+    "tenant_ids": ["74014"],
+    "empresa_codigos": ["74014"],
+    "match_status_counts_2026_07_07": {
+      "NO_MATCH": 10,
+      "AMBIGUOUS": 3,
+      "PROBABLE": 3
+    },
+    "root_cause": "Maior volume de lançamentos em Vale de funcionário referente a consolidação de caixa",
+    "root_cause_investigator": "ExpenseRootCause",
+    "money_found_at_risk": {
+      "value": 7501.0,
+      "type": "ESTIMATED"
+    },
+    "confidence": 0.89,
+    "limitations_count": 7,
+    "multi_tenant_isolation": "PASS"
+  },
+  "executive_review": {
+    "endpoint_post": "POST /api/v1/decisions/{decision_id}/review-requests",
+    "endpoint_get": "GET /api/v1/decisions/{decision_id}/review-requests",
+    "prior_validated_request_id": "276f5e58-c568-4a2b-99ef-d73d9fbaf7b7",
+    "prior_validated_at": "2026-07-06T19:36:16Z",
+    "store_after_audit_2026_07_07": {
+      "active_request_id": "d7ff3eae-b846-4bbb-8e7b-1b49841afbf1",
+      "status": "REQUESTED",
+      "review_responsible": null,
+      "evidence_count": 13,
+      "evidence_total_amount": 7951.0
+    },
+    "idempotency": {
+      "post1_status": 200,
+      "post2_status": 200,
+      "post2_already_exists": true,
+      "logical_requests_per_decision": 1,
+      "pass": true
+    },
+    "note": "Auditoria reexecutou POST idempotente; store.json atualizado com novo UUID, mantendo 1 solicitação lógica por decisão."
+  },
+  "follow_up": {
+    "endpoint_list": "GET /api/v1/executive/follow-ups",
+    "endpoint_detail": "GET /api/v1/executive/follow-ups/{request_id}",
+    "http_status_list": 200,
+    "http_status_detail_active_request": 200,
+    "summary": {
+      "active_count": 1,
+      "total_amount_in_review": 7951.0,
+      "awaiting_assignment_count": 1,
+      "in_review_count": 0
+    },
+    "status_label": "Aguardando atribuição",
+    "tenant_filter_5555_isolation": "PASS",
+    "sources": [
+      "docs/validation/DIR_02_EXECUTIVE_FOLLOW_UP_RUNTIME.json",
+      "snapshots/executive_review_requests/store.json"
+    ]
+  },
+  "president_test": {
+    "pass": 11,
+    "partial": 1,
+    "fail": 0,
+    "partial_items": ["4 — ESTIMATED visível no card ('Impacto estimado') mas badge ESTIMATED/CONFIRMED ausente no detalhe"]
+  },
+  "findings_summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 5,
+    "low": 2
+  },
+  "verdict": "READY WITH GAPS"
+}

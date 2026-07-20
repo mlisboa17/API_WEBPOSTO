@@ -1,0 +1,4191 @@
+{
+  "lastUpdated": "2026-07-19T00:23:36",
+  "flow": {
+    "sources": [
+      "CAIXA_APRESENTADO",
+      "MOVIMENTO_CONTA",
+      "TITULO_PAGAR",
+      "TITULO_RECEBER"
+    ],
+    "forbiddenSourcesUsed": [],
+    "referenceDate": "2026-07-18",
+    "cards": {
+      "entradasPrevistas": "6071.59",
+      "saidasPrevistas": "440712.26",
+      "saldoProjetado": "-434640.67",
+      "saldoAcumulado": "-434640.67"
+    },
+    "daily": [
+      {
+        "periodo": "2026-07-01",
+        "entradasPrevistas": "5808.66",
+        "saidasPrevistas": "2250.21",
+        "saldoProjetado": "3558.45",
+        "saldoAcumulado": "3558.45"
+      },
+      {
+        "periodo": "2026-07-02",
+        "entradasPrevistas": "30.22",
+        "saidasPrevistas": "1001.77",
+        "saldoProjetado": "-971.55",
+        "saldoAcumulado": "2586.90"
+      },
+      {
+        "periodo": "2026-07-03",
+        "entradasPrevistas": "13.00",
+        "saidasPrevistas": "7319.76",
+        "saldoProjetado": "-7306.76",
+        "saldoAcumulado": "-4719.86"
+      },
+      {
+        "periodo": "2026-07-04",
+        "entradasPrevistas": "0.00",
+        "saidasPrevistas": "48770.77",
+        "saldoProjetado": "-48770.77",
+        "saldoAcumulado": "-53490.63"
+      },
+      {
+        "periodo": "2026-07-05",
+        "entradasPrevistas": "0.00",
+        "saidasPrevistas": "1006.44",
+        "saldoProjetado": "-1006.44",
+        "saldoAcumulado": "-54497.07"
+      },
+      {
+        "periodo": "2026-07-06",
+        "entradasPrevistas": "82.21",
+        "saidasPrevistas": "30427.50",
+        "saldoProjetado": "-30345.29",
+        "saldoAcumulado": "-84842.36"
+      },
+      {
+        "periodo": "2026-07-07",
+        "entradasPrevistas": "0.00",
+        "saidasPrevistas": "52916.01",
+        "saldoProjetado": "-52916.01",
+        "saldoAcumulado": "-137758.37"
+      },
+      {
+        "periodo": "2026-07-08",
+        "entradasPrevistas": "3.75",
+        "saidasPrevistas": "1596.11",
+        "saldoProjetado": "-1592.36",
+        "saldoAcumulado": "-139350.73"
+      },
+      {
+        "periodo": "2026-07-09",
+        "entradasPrevistas": "17.74",
+        "saidasPrevistas": "52320.78",
+        "saldoProjetado": "-52303.04",
+        "saldoAcumulado": "-191653.77"
+      },
+      {
+        "periodo": "2026-07-10",
+        "entradasPrevistas": "6.49",
+        "saidasPrevistas": "7548.38",
+        "saldoProjetado": "-7541.89",
+        "saldoAcumulado": "-199195.66"
+      },
+      {
+        "periodo": "2026-07-11",
+        "entradasPrevistas": "0.00",
+        "saidasPrevistas": "900.00",
+        "saldoProjetado": "-900.00",
+        "saldoAcumulado": "-200095.66"
+      },
+      {
+        "periodo": "2026-07-12",
+        "entradasPrevistas": "0.00",
+        "saidasPrevistas": "31127.50",
+        "saldoProjetado": "-31127.50",
+        "saldoAcumulado": "-231223.16"
+      },
+      {
+        "periodo": "2026-07-13",
+        "entradasPrevistas": "16.00",
+        "saidasPrevistas": "332.00",
+        "saldoProjetado": "-316.00",
+        "saldoAcumulado": "-231539.16"
+      },
+      {
+        "periodo": "2026-07-14",
+        "entradasPrevistas": "18.99",
+        "saidasPrevistas": "55591.55",
+        "saldoProjetado": "-55572.56",
+        "saldoAcumulado": "-287111.72"
+      },
+      {
+        "periodo": "2026-07-15",
+        "entradasPrevistas": "37.47",
+        "saidasPrevistas": "13329.05",
+        "saldoProjetado": "-13291.58",
+        "saldoAcumulado": "-300403.30"
+      },
+      {
+        "periodo": "2026-07-16",
+        "entradasPrevistas": "6.10",
+        "saidasPrevistas": "2400.00",
+        "saldoProjetado": "-2393.90",
+        "saldoAcumulado": "-302797.20"
+      },
+      {
+        "periodo": "2026-07-17",
+        "entradasPrevistas": "30.96",
+        "saidasPrevistas": "200.90",
+        "saldoProjetado": "-169.94",
+        "saldoAcumulado": "-302967.14"
+      },
+      {
+        "periodo": "2026-07-18",
+        "entradasPrevistas": "0.00",
+        "saidasPrevistas": "131673.53",
+        "saldoProjetado": "-131673.53",
+        "saldoAcumulado": "-434640.67"
+      }
+    ],
+    "weekly": [
+      {
+        "periodo": "2026-W27",
+        "entradasPrevistas": "5851.88",
+        "saidasPrevistas": "60348.95",
+        "saldoProjetado": "-54497.07",
+        "saldoAcumulado": "-54497.07"
+      },
+      {
+        "periodo": "2026-W28",
+        "entradasPrevistas": "110.19",
+        "saidasPrevistas": "176836.28",
+        "saldoProjetado": "-176726.09",
+        "saldoAcumulado": "-231223.16"
+      },
+      {
+        "periodo": "2026-W29",
+        "entradasPrevistas": "109.52",
+        "saidasPrevistas": "203527.03",
+        "saldoProjetado": "-203417.51",
+        "saldoAcumulado": "-434640.67"
+      }
+    ],
+    "monthly": [
+      {
+        "periodo": "2026-07",
+        "entradasPrevistas": "6071.59",
+        "saidasPrevistas": "440712.26",
+        "saldoProjetado": "-434640.67",
+        "saldoAcumulado": "-434640.67"
+      }
+    ],
+    "payablesAging": {
+      "vencido": {
+        "count": 99,
+        "valor": "308997.69"
+      },
+      "hoje": {
+        "count": 8,
+        "valor": "131673.53"
+      },
+      "7d": {
+        "count": 34,
+        "valor": "245249.13"
+      },
+      "15d": {
+        "count": 11,
+        "valor": "5683.09"
+      },
+      "30d": {
+        "count": 17,
+        "valor": "24088.05"
+      },
+      "acima30": {
+        "count": 61,
+        "valor": "160598.57"
+      }
+    },
+    "receivablesAging": {
+      "vencido": {
+        "count": 14,
+        "valor": "262.93"
+      },
+      "hoje": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "7d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "15d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "30d": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "acima30": {
+        "count": 6,
+        "valor": "801.67"
+      }
+    },
+    "payablesFuture": [
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 2707869,
+        "descricao": "CDD OLINDA",
+        "vencimento": "2026-07-10",
+        "valor": "1228.68",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 2758906,
+        "descricao": "VEM TRABALHADOR",
+        "vencimento": "2026-07-05",
+        "valor": "189.20",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 2938874,
+        "descricao": "ADMINISTRATIVO",
+        "vencimento": "2026-07-16",
+        "valor": "1800.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 2952502,
+        "descricao": "ALELO",
+        "vencimento": "2026-07-04",
+        "valor": "1300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3058294,
+        "descricao": "MERCADO LIVRE",
+        "vencimento": "2026-07-14",
+        "valor": "3000.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3104917,
+        "descricao": "FORNECEDOR FOOD",
+        "vencimento": "2026-07-01",
+        "valor": "215.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3104938,
+        "descricao": "SUAPE",
+        "vencimento": "2026-07-01",
+        "valor": "1717.68",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3104944,
+        "descricao": "UNILEVER BRASIL LTDA",
+        "vencimento": "2026-07-03",
+        "valor": "843.66",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3104945,
+        "descricao": "UNILEVER BRASIL LTDA",
+        "vencimento": "2026-07-10",
+        "valor": "843.65",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3105110,
+        "descricao": "SUAPE",
+        "vencimento": "2026-07-04",
+        "valor": "107.64",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3105489,
+        "descricao": "MILAGRES GAS E AGUA",
+        "vencimento": "2026-07-01",
+        "valor": "240.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106207,
+        "descricao": "SUAPE",
+        "vencimento": "2026-07-04",
+        "valor": "920.88",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106208,
+        "descricao": "CHIC FABRICACAO DE DOCES E SALGADOS LTDA",
+        "vencimento": "2026-07-09",
+        "valor": "387.50",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106212,
+        "descricao": "INDUSTRIA DE BEBIDAS IGARASSU LTDA",
+        "vencimento": "2026-07-08",
+        "valor": "1260.63",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106274,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-04",
+        "valor": "29827.50",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106275,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-04",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3106391,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-08-05",
+        "valor": "300.00",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3106396,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-08-05",
+        "valor": "300.00",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106473,
+        "descricao": "CD PERNAMBUCO",
+        "vencimento": "2026-07-02",
+        "valor": "965.97",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106493,
+        "descricao": "INGA CEASA",
+        "vencimento": "2026-07-23",
+        "valor": "16.99",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106501,
+        "descricao": "INGA CEASA",
+        "vencimento": "2026-07-23",
+        "valor": "363.07",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106889,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-04",
+        "valor": "15264.75",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106890,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-04",
+        "valor": "150.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3107355,
+        "descricao": "MILAGRES GAS E AGUA",
+        "vencimento": "2026-07-03",
+        "valor": "40.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108010,
+        "descricao": "GALEGO DO GELO",
+        "vencimento": "2026-07-03",
+        "valor": "98.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108015,
+        "descricao": "FORNECEDOR FOOD",
+        "vencimento": "2026-07-03",
+        "valor": "60.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108028,
+        "descricao": "FORNECEDOR FOOD",
+        "vencimento": "2026-07-03",
+        "valor": "43.20",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108030,
+        "descricao": "CARVÃO SÃO CONRADO",
+        "vencimento": "2026-07-10",
+        "valor": "465.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108038,
+        "descricao": "G. DOCES",
+        "vencimento": "2026-07-09",
+        "valor": "447.19",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108071,
+        "descricao": "LAVORO DISTRIBUIDORA",
+        "vencimento": "2026-07-03",
+        "valor": "80.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108075,
+        "descricao": "FORNECEDOR FOOD",
+        "vencimento": "2026-07-03",
+        "valor": "79.90",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108395,
+        "descricao": "COMERCIAL BEZERRA  FILIAL 01",
+        "vencimento": "2026-07-01",
+        "valor": "36.49",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108397,
+        "descricao": "COMERCIAL BEZERRA  FILIAL 01",
+        "vencimento": "2026-07-02",
+        "valor": "35.80",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108399,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-06",
+        "valor": "29827.50",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108400,
+        "descricao": "MMS TRANSPORTE",
+        "vencimento": "2026-07-06",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108417,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-07",
+        "valor": "20944.79",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108418,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-07",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108425,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-07",
+        "valor": "29777.50",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108426,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-07",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108956,
+        "descricao": "MATEUS LJ 51 PAULISTA MARANGUA",
+        "vencimento": "2026-07-05",
+        "valor": "86.24",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108957,
+        "descricao": "JTID_JABOATAO",
+        "vencimento": "2026-07-10",
+        "valor": "2841.50",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108959,
+        "descricao": "FORNECEDOR FOOD",
+        "vencimento": "2026-07-05",
+        "valor": "145.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108960,
+        "descricao": "FORNECEDOR FOOD",
+        "vencimento": "2026-07-05",
+        "valor": "90.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108961,
+        "descricao": "GALEGO DO GELO",
+        "vencimento": "2026-07-05",
+        "valor": "196.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3110019,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-09",
+        "valor": "29777.50",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3110020,
+        "descricao": "MMS TRANSPORTE",
+        "vencimento": "2026-07-09",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3110023,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-09",
+        "valor": "20944.79",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3110024,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-09",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3110087,
+        "descricao": "MMS TRANSPORTE",
+        "vencimento": "2026-08-05",
+        "valor": "300.00",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3110095,
+        "descricao": "MMS TRANSPORTE",
+        "vencimento": "2026-07-06",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3110762,
+        "descricao": "GALEGO DO GELO",
+        "vencimento": "2026-07-07",
+        "valor": "147.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3110838,
+        "descricao": "RUBI DISTRIBUIDORA",
+        "vencimento": "2026-07-28",
+        "valor": "127.84",
+        "aging": "15d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3110845,
+        "descricao": "RUBI DISTRIBUIDORA",
+        "vencimento": "2026-07-07",
+        "valor": "34.95",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3110856,
+        "descricao": "RUBI DISTRIBUIDORA",
+        "vencimento": "2026-07-28",
+        "valor": "136.12",
+        "aging": "15d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3110868,
+        "descricao": "NORDESTE COMERCIO E INDUSTRIA DE BEBIDAS E ALIMENTOS LTDA FI",
+        "vencimento": "2026-07-20",
+        "valor": "304.40",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3112105,
+        "descricao": "COMERCIAL BEZERRA  FILIAL 01",
+        "vencimento": "2026-07-07",
+        "valor": "79.77",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3112334,
+        "descricao": "DLP DISTRIBUIDORA",
+        "vencimento": "2026-07-31",
+        "valor": "48.54",
+        "aging": "15d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3112444,
+        "descricao": "MILAGRES GAS E AGUA",
+        "vencimento": "2026-07-08",
+        "valor": "36.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3113087,
+        "descricao": "FORNECEDOR FOOD",
+        "vencimento": "2026-07-08",
+        "valor": "150.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3113089,
+        "descricao": "SOUZA DISTRIBUIDORA",
+        "vencimento": "2026-07-21",
+        "valor": "1671.03",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3113120,
+        "descricao": "CHIC FABRICACAO DE DOCES E SALGADOS LTDA",
+        "vencimento": "2026-07-15",
+        "valor": "392.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3113354,
+        "descricao": "DLP DISTRIBUIDORA",
+        "vencimento": "2026-07-29",
+        "valor": "1540.81",
+        "aging": "15d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3113355,
+        "descricao": "DLP DISTRIBUIDORA",
+        "vencimento": "2026-08-05",
+        "valor": "1540.81",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3113356,
+        "descricao": "DLP DISTRIBUIDORA",
+        "vencimento": "2026-08-12",
+        "valor": "1540.82",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3114369,
+        "descricao": "SEARA COMERCIO",
+        "vencimento": "2026-07-29",
+        "valor": "208.90",
+        "aging": "15d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3114438,
+        "descricao": "CDD OLINDA",
+        "vencimento": "2026-07-15",
+        "valor": "1751.50",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115347,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-11",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3115453,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-12",
+        "valor": "29777.50",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3115454,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-08-05",
+        "valor": "300.00",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115714,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-12",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115717,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-12",
+        "valor": "150.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115727,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-07-13",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115734,
+        "descricao": "COMERCIAL JURIVAN",
+        "vencimento": "2026-07-10",
+        "valor": "842.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115792,
+        "descricao": "UNILEVER BRASIL LTDA",
+        "vencimento": "2026-07-28",
+        "valor": "510.27",
+        "aging": "15d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115834,
+        "descricao": "MAX-GIRO",
+        "vencimento": "2026-07-08",
+        "valor": "149.48",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115966,
+        "descricao": "SOUZA CRUZ LTDA.",
+        "vencimento": "2026-07-15",
+        "valor": "7948.61",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115970,
+        "descricao": "CD PERNAMBUCO",
+        "vencimento": "2026-07-15",
+        "valor": "2348.23",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115972,
+        "descricao": "INDUSTRIA DE BEBIDAS IGARASSU LTDA",
+        "vencimento": "2026-07-15",
+        "valor": "667.71",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115979,
+        "descricao": "GRIFOS COMERCIO DE ALIMENTOS LTDA",
+        "vencimento": "2026-07-10",
+        "valor": "187.55",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3116312,
+        "descricao": "MILAGRES GAS E AGUA",
+        "vencimento": "2026-07-07",
+        "valor": "132.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3116818,
+        "descricao": "GI DISTRIBUIDORA",
+        "vencimento": "2026-07-27",
+        "valor": "503.30",
+        "aging": "15d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3117335,
+        "descricao": "COMERCIAL BEZERRA  FILIAL 01",
+        "vencimento": "2026-07-09",
+        "valor": "53.90",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3117338,
+        "descricao": "COMERCIAL BEZERRA  FILIAL 01",
+        "vencimento": "2026-07-09",
+        "valor": "109.90",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3117416,
+        "descricao": "CDD OLINDA",
+        "vencimento": "2026-07-20",
+        "valor": "1515.55",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3117423,
+        "descricao": "SOUZA DISTRIBUIDORA",
+        "vencimento": "2026-07-22",
+        "valor": "257.84",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3117449,
+        "descricao": "JTID_JABOATAO",
+        "vencimento": "2026-07-20",
+        "valor": "916.54",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3117599,
+        "descricao": "MILAGRES GAS E AGUA",
+        "vencimento": "2026-07-13",
+        "valor": "32.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3118111,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-14",
+        "valor": "150.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3118120,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-07-14",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3118174,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-07-14",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3118183,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-14",
+        "valor": "29479.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3118184,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-08-05",
+        "valor": "300.00",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3118209,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-14",
+        "valor": "21762.55",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3118210,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-08-05",
+        "valor": "300.00",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3118235,
+        "descricao": "COMERCIAL BEZERRA  FILIAL 01",
+        "vencimento": "2026-08-20",
+        "valor": "1543.81",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3118238,
+        "descricao": "COMERCIAL BEZERRA  FILIAL 01",
+        "vencimento": "2026-08-20",
+        "valor": "14.90",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3118855,
+        "descricao": "CERVEJARIA PETROPOLIS DE PERNAMBUCO LTDA",
+        "vencimento": "2026-07-21",
+        "valor": "698.57",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3118879,
+        "descricao": "CHIC FABRICACAO DE DOCES E SALGADOS LTDA",
+        "vencimento": "2026-07-21",
+        "valor": "361.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3118884,
+        "descricao": "SOUZA DISTRIBUIDORA",
+        "vencimento": "2026-07-24",
+        "valor": "486.72",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3118899,
+        "descricao": "SOUZA DISTRIBUIDORA",
+        "vencimento": "2026-07-24",
+        "valor": "445.87",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3119832,
+        "descricao": "FORNECEDOR FOOD",
+        "vencimento": "2026-07-15",
+        "valor": "125.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3119837,
+        "descricao": "CD PERNAMBUCO",
+        "vencimento": "2026-07-22",
+        "valor": "758.97",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3119842,
+        "descricao": "DELUTTI SUCOS",
+        "vencimento": "2026-07-15",
+        "valor": "96.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3120777,
+        "descricao": "MAX TUDO COMERCIO DE MATERIAIS DE CONSTRUCAO EIRELI",
+        "vencimento": "2026-07-20",
+        "valor": "298.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3121256,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-18",
+        "valor": "29479.00",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3121265,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-19",
+        "valor": "17410.04",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3121266,
+        "descricao": "KARLEAL K  C TRANSPORTE",
+        "vencimento": "2026-07-19",
+        "valor": "240.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3121549,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-18",
+        "valor": "29479.00",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3121553,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-18",
+        "valor": "13057.53",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3121557,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-19",
+        "valor": "17837.70",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3122228,
+        "descricao": "SOUZA CRUZ LTDA.",
+        "vencimento": "2026-07-22",
+        "valor": "4740.33",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3122253,
+        "descricao": "CASA DOS SALGADOS ALIMENTOS LTDA",
+        "vencimento": "2026-07-22",
+        "valor": "1228.30",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3122357,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-20",
+        "valor": "29729.50",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3122358,
+        "descricao": "KARLEAL K  C TRANSPORTE",
+        "vencimento": "2026-07-20",
+        "valor": "300.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123235,
+        "descricao": "GALEGO DO GELO",
+        "vencimento": "2026-07-17",
+        "valor": "200.90",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123266,
+        "descricao": "FGTS",
+        "vencimento": "2026-12-31",
+        "valor": "0.01",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123267,
+        "descricao": "FGTS",
+        "vencimento": "2026-12-31",
+        "valor": "0.01",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123268,
+        "descricao": "FGTS",
+        "vencimento": "2026-12-31",
+        "valor": "0.50",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123270,
+        "descricao": "FGTS",
+        "vencimento": "2026-07-20",
+        "valor": "0.50",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123271,
+        "descricao": "FGTS",
+        "vencimento": "2026-07-20",
+        "valor": "0.50",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123276,
+        "descricao": "FGTS",
+        "vencimento": "2026-07-25",
+        "valor": "0.01",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123873,
+        "descricao": "JTID_JABOATAO",
+        "vencimento": "2026-07-27",
+        "valor": "405.93",
+        "aging": "15d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123874,
+        "descricao": "CDD OLINDA",
+        "vencimento": "2026-07-27",
+        "valor": "1052.69",
+        "aging": "15d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123875,
+        "descricao": "CDD OLINDA",
+        "vencimento": "2026-07-27",
+        "valor": "810.08",
+        "aging": "15d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123876,
+        "descricao": "GI DISTRIBUIDORA",
+        "vencimento": "2026-08-03",
+        "valor": "481.42",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123877,
+        "descricao": "LAVORO DISTRIBUIDORA",
+        "vencimento": "2026-07-18",
+        "valor": "100.00",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123878,
+        "descricao": "AUJO DISTRIBUIDORA DE ALIMENTOS LTDA-ME",
+        "vencimento": "2026-07-31",
+        "valor": "338.61",
+        "aging": "15d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123879,
+        "descricao": "MARJI DISTRIBUIDORA",
+        "vencimento": "2026-08-03",
+        "valor": "167.56",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123881,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-20",
+        "valor": "18498.60",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123882,
+        "descricao": "VERA CRUZ TRANSPORTE E LOGISTICA",
+        "vencimento": "2026-07-20",
+        "valor": "210.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123884,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-21",
+        "valor": "29579.50",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123885,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-21",
+        "valor": "300.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123886,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-20",
+        "valor": "13057.53",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123887,
+        "descricao": "VERA CRUZ TRANSPORTE E LOGISTICA",
+        "vencimento": "2026-07-20",
+        "valor": "210.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3104940,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-07-04",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3104949,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-07-04",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3104956,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-07-04",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105638,
+        "descricao": "ALELO",
+        "vencimento": "2026-07-03",
+        "valor": "3000.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105639,
+        "descricao": "ALELO",
+        "vencimento": "2026-08-03",
+        "valor": "3000.00",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105640,
+        "descricao": "ALELO",
+        "vencimento": "2026-09-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105641,
+        "descricao": "ALELO",
+        "vencimento": "2026-10-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105642,
+        "descricao": "ALELO",
+        "vencimento": "2026-11-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105643,
+        "descricao": "ALELO",
+        "vencimento": "2026-12-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105644,
+        "descricao": "ALELO",
+        "vencimento": "2027-01-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105645,
+        "descricao": "ALELO",
+        "vencimento": "2027-02-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105646,
+        "descricao": "ALELO",
+        "vencimento": "2027-03-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105647,
+        "descricao": "ALELO",
+        "vencimento": "2027-04-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105648,
+        "descricao": "ALELO",
+        "vencimento": "2027-05-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105649,
+        "descricao": "ALELO",
+        "vencimento": "2027-06-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105650,
+        "descricao": "ALELO",
+        "vencimento": "2026-07-03",
+        "valor": "3000.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105651,
+        "descricao": "ALELO",
+        "vencimento": "2026-08-03",
+        "valor": "3000.00",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105652,
+        "descricao": "ALELO",
+        "vencimento": "2026-09-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105653,
+        "descricao": "ALELO",
+        "vencimento": "2026-10-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105654,
+        "descricao": "ALELO",
+        "vencimento": "2026-11-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105655,
+        "descricao": "ALELO",
+        "vencimento": "2026-12-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105656,
+        "descricao": "ALELO",
+        "vencimento": "2027-01-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105657,
+        "descricao": "ALELO",
+        "vencimento": "2027-02-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105658,
+        "descricao": "ALELO",
+        "vencimento": "2027-03-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105659,
+        "descricao": "ALELO",
+        "vencimento": "2027-04-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105660,
+        "descricao": "ALELO",
+        "vencimento": "2027-05-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105661,
+        "descricao": "ALELO",
+        "vencimento": "2027-06-03",
+        "valor": "3000.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3107293,
+        "descricao": "MMS TRANSPORTE",
+        "vencimento": "2026-07-05",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3107304,
+        "descricao": "DOMINGUES CONSTRUCAO",
+        "vencimento": "2026-07-03",
+        "valor": "75.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3110796,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-07",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3110798,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-07",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3110806,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-07",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3110884,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-07",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3110905,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-10",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3110921,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-10",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3115976,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-11",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3115984,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-11",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3116001,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-12",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3116003,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-12",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3116012,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-12",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3116023,
+        "descricao": "COMERCIAL JURIVAN",
+        "vencimento": "2026-07-10",
+        "valor": "144.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3116026,
+        "descricao": "COMERCIAL JURIVAN",
+        "vencimento": "2026-07-10",
+        "valor": "396.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117294,
+        "descricao": "VIRTUALNET",
+        "vencimento": "2026-08-10",
+        "valor": "329.80",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117295,
+        "descricao": "VIRTUALNET",
+        "vencimento": "2026-09-10",
+        "valor": "329.80",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117296,
+        "descricao": "VIRTUALNET",
+        "vencimento": "2026-10-10",
+        "valor": "329.80",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117297,
+        "descricao": "VIRTUALNET",
+        "vencimento": "2026-11-10",
+        "valor": "329.80",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117298,
+        "descricao": "VIRTUALNET",
+        "vencimento": "2026-12-10",
+        "valor": "329.80",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117299,
+        "descricao": "VIRTUALNET",
+        "vencimento": "2027-01-10",
+        "valor": "329.80",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117300,
+        "descricao": "VIRTUALNET",
+        "vencimento": "2027-02-10",
+        "valor": "329.80",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117302,
+        "descricao": "GAS4US SERVICOS E TECNOLOGIA DA INFORMACAO LTDA",
+        "vencimento": "2026-08-10",
+        "valor": "380.29",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117303,
+        "descricao": "GAS4US SERVICOS E TECNOLOGIA DA INFORMACAO LTDA",
+        "vencimento": "2026-09-10",
+        "valor": "380.29",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117304,
+        "descricao": "GAS4US SERVICOS E TECNOLOGIA DA INFORMACAO LTDA",
+        "vencimento": "2026-10-10",
+        "valor": "380.29",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117305,
+        "descricao": "GAS4US SERVICOS E TECNOLOGIA DA INFORMACAO LTDA",
+        "vencimento": "2026-11-10",
+        "valor": "380.29",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117306,
+        "descricao": "GAS4US SERVICOS E TECNOLOGIA DA INFORMACAO LTDA",
+        "vencimento": "2026-12-10",
+        "valor": "380.29",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117307,
+        "descricao": "GAS4US SERVICOS E TECNOLOGIA DA INFORMACAO LTDA",
+        "vencimento": "2027-01-10",
+        "valor": "380.29",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117308,
+        "descricao": "GAS4US SERVICOS E TECNOLOGIA DA INFORMACAO LTDA",
+        "vencimento": "2027-02-10",
+        "valor": "380.29",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117310,
+        "descricao": "VISAO CONTABIL LTDA",
+        "vencimento": "2026-08-10",
+        "valor": "1847.35",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117311,
+        "descricao": "VISAO CONTABIL LTDA",
+        "vencimento": "2026-09-10",
+        "valor": "1847.35",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117312,
+        "descricao": "VISAO CONTABIL LTDA",
+        "vencimento": "2026-10-10",
+        "valor": "1847.35",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117313,
+        "descricao": "VISAO CONTABIL LTDA",
+        "vencimento": "2026-11-10",
+        "valor": "1847.35",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117314,
+        "descricao": "VISAO CONTABIL LTDA",
+        "vencimento": "2026-12-10",
+        "valor": "1847.35",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117315,
+        "descricao": "VISAO CONTABIL LTDA",
+        "vencimento": "2027-01-10",
+        "valor": "1847.35",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117316,
+        "descricao": "VISAO CONTABIL LTDA",
+        "vencimento": "2027-02-10",
+        "valor": "1847.35",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117317,
+        "descricao": "VISAO CONTABIL LTDA",
+        "vencimento": "2027-03-10",
+        "valor": "1847.35",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117318,
+        "descricao": "VISAO CONTABIL LTDA",
+        "vencimento": "2027-04-10",
+        "valor": "1847.35",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117321,
+        "descricao": "MMS TRANSPORTE",
+        "vencimento": "2026-07-14",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117323,
+        "descricao": "MMS TRANSPORTE",
+        "vencimento": "2026-07-14",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3119034,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-07-16",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3119040,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-07-16",
+        "valor": "300.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3120872,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-18",
+        "valor": "29479.00",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3120873,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-18",
+        "valor": "300.00",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3120874,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-18",
+        "valor": "29479.00",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3120875,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-18",
+        "valor": "300.00",
+        "aging": "hoje"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3121951,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-19",
+        "valor": "30831.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3121952,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-19",
+        "valor": "300.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3121965,
+        "descricao": "COPERGAS",
+        "vencimento": "2026-07-22",
+        "valor": "57315.32",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3121967,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-19",
+        "valor": "15215.75",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3121968,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-19",
+        "valor": "150.00",
+        "aging": "7d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123159,
+        "descricao": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+        "vencimento": "2026-08-07",
+        "valor": "2300.00",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123160,
+        "descricao": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+        "vencimento": "2026-09-07",
+        "valor": "2300.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123161,
+        "descricao": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+        "vencimento": "2026-10-07",
+        "valor": "2300.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123162,
+        "descricao": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+        "vencimento": "2026-11-07",
+        "valor": "2300.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123163,
+        "descricao": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+        "vencimento": "2026-12-07",
+        "valor": "2300.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123164,
+        "descricao": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+        "vencimento": "2027-01-07",
+        "valor": "2300.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123165,
+        "descricao": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+        "vencimento": "2027-02-07",
+        "valor": "2300.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123166,
+        "descricao": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+        "vencimento": "2027-03-07",
+        "valor": "2300.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123167,
+        "descricao": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+        "vencimento": "2027-04-07",
+        "valor": "2300.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123169,
+        "descricao": "LOJA DE ABREU E LIMA",
+        "vencimento": "2026-08-15",
+        "valor": "7700.00",
+        "aging": "30d"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123170,
+        "descricao": "LOJA DE ABREU E LIMA",
+        "vencimento": "2026-09-15",
+        "valor": "7700.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123171,
+        "descricao": "LOJA DE ABREU E LIMA",
+        "vencimento": "2026-10-15",
+        "valor": "7700.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123172,
+        "descricao": "LOJA DE ABREU E LIMA",
+        "vencimento": "2026-11-15",
+        "valor": "7700.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123173,
+        "descricao": "LOJA DE ABREU E LIMA",
+        "vencimento": "2026-12-15",
+        "valor": "7700.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123174,
+        "descricao": "LOJA DE ABREU E LIMA",
+        "vencimento": "2027-01-15",
+        "valor": "7700.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123175,
+        "descricao": "LOJA DE ABREU E LIMA",
+        "vencimento": "2027-02-15",
+        "valor": "7700.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123176,
+        "descricao": "LOJA DE ABREU E LIMA",
+        "vencimento": "2027-03-15",
+        "valor": "7700.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3123177,
+        "descricao": "LOJA DE ABREU E LIMA",
+        "vencimento": "2027-04-15",
+        "valor": "7700.00",
+        "aging": "acima30"
+      }
+    ],
+    "receivablesFuture": [
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20965417,
+        "descricao": "VALE CINTHIA FERNANDES GADELHA",
+        "vencimento": "2026-07-02",
+        "valor": "30.22",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20973963,
+        "descricao": "DESPERDICIO",
+        "vencimento": "2026-07-03",
+        "valor": "13.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20976442,
+        "descricao": "VENCIDOS AVARIADOS S/ TROCA",
+        "vencimento": "2026-07-06",
+        "valor": "4.61",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20979941,
+        "descricao": "DESPERDICIO",
+        "vencimento": "2026-07-06",
+        "valor": "7.80",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20980602,
+        "descricao": "VALE CINTHIA FERNANDES GADELHA",
+        "vencimento": "2026-07-06",
+        "valor": "69.80",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21009339,
+        "descricao": "DESPERDICIO",
+        "vencimento": "2026-07-08",
+        "valor": "3.75",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21015946,
+        "descricao": "VALE JOSIANE",
+        "vencimento": "2026-07-09",
+        "valor": "17.74",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21025074,
+        "descricao": "VALE JOSIANE",
+        "vencimento": "2026-07-10",
+        "valor": "6.49",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21033184,
+        "descricao": "DESPERDICIO",
+        "vencimento": "2026-07-13",
+        "valor": "16.00",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21057504,
+        "descricao": "VALE CINTHIA FERNANDES GADELHA",
+        "vencimento": "2026-07-14",
+        "valor": "18.99",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21063920,
+        "descricao": "VALE CINTHIA FERNANDES GADELHA",
+        "vencimento": "2026-07-15",
+        "valor": "12.99",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21068115,
+        "descricao": "VALE CINTHIA FERNANDES GADELHA",
+        "vencimento": "2026-07-15",
+        "valor": "24.48",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21074010,
+        "descricao": "VENCIDOS AVARIADOS S/ TROCA",
+        "vencimento": "2026-07-16",
+        "valor": "6.10",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21084137,
+        "descricao": "DESPERDICIO",
+        "vencimento": "2026-07-17",
+        "valor": "30.96",
+        "aging": "vencido"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 74014,
+        "codigo": 20981418,
+        "descricao": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+        "vencimento": "2026-08-20",
+        "valor": "71.38",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 74014,
+        "codigo": 20984118,
+        "descricao": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+        "vencimento": "2026-08-20",
+        "valor": "241.04",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 74014,
+        "codigo": 21042926,
+        "descricao": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+        "vencimento": "2026-08-20",
+        "valor": "61.19",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 74014,
+        "codigo": 21081926,
+        "descricao": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+        "vencimento": "2026-08-20",
+        "valor": "5.00",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 74014,
+        "codigo": 21086394,
+        "descricao": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+        "vencimento": "2026-08-20",
+        "valor": "106.03",
+        "aging": "acima30"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 74014,
+        "codigo": 21092780,
+        "descricao": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+        "vencimento": "2026-08-20",
+        "valor": "317.03",
+        "aging": "acima30"
+      }
+    ],
+    "overdueEvents": [
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 2707869,
+        "descricao": "CDD OLINDA",
+        "vencimento": "2026-07-10",
+        "valor": "1228.68",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 2758906,
+        "descricao": "VEM TRABALHADOR",
+        "vencimento": "2026-07-05",
+        "valor": "189.20",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 2938874,
+        "descricao": "ADMINISTRATIVO",
+        "vencimento": "2026-07-16",
+        "valor": "1800.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 2952502,
+        "descricao": "ALELO",
+        "vencimento": "2026-07-04",
+        "valor": "1300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3058294,
+        "descricao": "MERCADO LIVRE",
+        "vencimento": "2026-07-14",
+        "valor": "3000.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3104917,
+        "descricao": "FORNECEDOR FOOD",
+        "vencimento": "2026-07-01",
+        "valor": "215.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3104938,
+        "descricao": "SUAPE",
+        "vencimento": "2026-07-01",
+        "valor": "1717.68",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3104944,
+        "descricao": "UNILEVER BRASIL LTDA",
+        "vencimento": "2026-07-03",
+        "valor": "843.66",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3104945,
+        "descricao": "UNILEVER BRASIL LTDA",
+        "vencimento": "2026-07-10",
+        "valor": "843.65",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3105110,
+        "descricao": "SUAPE",
+        "vencimento": "2026-07-04",
+        "valor": "107.64",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3105489,
+        "descricao": "MILAGRES GAS E AGUA",
+        "vencimento": "2026-07-01",
+        "valor": "240.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106207,
+        "descricao": "SUAPE",
+        "vencimento": "2026-07-04",
+        "valor": "920.88",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106208,
+        "descricao": "CHIC FABRICACAO DE DOCES E SALGADOS LTDA",
+        "vencimento": "2026-07-09",
+        "valor": "387.50",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106212,
+        "descricao": "INDUSTRIA DE BEBIDAS IGARASSU LTDA",
+        "vencimento": "2026-07-08",
+        "valor": "1260.63",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106274,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-04",
+        "valor": "29827.50",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106275,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-04",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106473,
+        "descricao": "CD PERNAMBUCO",
+        "vencimento": "2026-07-02",
+        "valor": "965.97",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106889,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-04",
+        "valor": "15264.75",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3106890,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-04",
+        "valor": "150.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3107355,
+        "descricao": "MILAGRES GAS E AGUA",
+        "vencimento": "2026-07-03",
+        "valor": "40.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108010,
+        "descricao": "GALEGO DO GELO",
+        "vencimento": "2026-07-03",
+        "valor": "98.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108015,
+        "descricao": "FORNECEDOR FOOD",
+        "vencimento": "2026-07-03",
+        "valor": "60.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108028,
+        "descricao": "FORNECEDOR FOOD",
+        "vencimento": "2026-07-03",
+        "valor": "43.20",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108030,
+        "descricao": "CARVÃO SÃO CONRADO",
+        "vencimento": "2026-07-10",
+        "valor": "465.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108038,
+        "descricao": "G. DOCES",
+        "vencimento": "2026-07-09",
+        "valor": "447.19",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108071,
+        "descricao": "LAVORO DISTRIBUIDORA",
+        "vencimento": "2026-07-03",
+        "valor": "80.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108075,
+        "descricao": "FORNECEDOR FOOD",
+        "vencimento": "2026-07-03",
+        "valor": "79.90",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108395,
+        "descricao": "COMERCIAL BEZERRA  FILIAL 01",
+        "vencimento": "2026-07-01",
+        "valor": "36.49",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108397,
+        "descricao": "COMERCIAL BEZERRA  FILIAL 01",
+        "vencimento": "2026-07-02",
+        "valor": "35.80",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108399,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-06",
+        "valor": "29827.50",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108400,
+        "descricao": "MMS TRANSPORTE",
+        "vencimento": "2026-07-06",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108417,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-07",
+        "valor": "20944.79",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108418,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-07",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108425,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-07",
+        "valor": "29777.50",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108426,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-07",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108956,
+        "descricao": "MATEUS LJ 51 PAULISTA MARANGUA",
+        "vencimento": "2026-07-05",
+        "valor": "86.24",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108957,
+        "descricao": "JTID_JABOATAO",
+        "vencimento": "2026-07-10",
+        "valor": "2841.50",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108959,
+        "descricao": "FORNECEDOR FOOD",
+        "vencimento": "2026-07-05",
+        "valor": "145.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108960,
+        "descricao": "FORNECEDOR FOOD",
+        "vencimento": "2026-07-05",
+        "valor": "90.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3108961,
+        "descricao": "GALEGO DO GELO",
+        "vencimento": "2026-07-05",
+        "valor": "196.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3110019,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-09",
+        "valor": "29777.50",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3110020,
+        "descricao": "MMS TRANSPORTE",
+        "vencimento": "2026-07-09",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3110023,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-09",
+        "valor": "20944.79",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3110024,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-09",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3110095,
+        "descricao": "MMS TRANSPORTE",
+        "vencimento": "2026-07-06",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3110762,
+        "descricao": "GALEGO DO GELO",
+        "vencimento": "2026-07-07",
+        "valor": "147.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3110845,
+        "descricao": "RUBI DISTRIBUIDORA",
+        "vencimento": "2026-07-07",
+        "valor": "34.95",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3112105,
+        "descricao": "COMERCIAL BEZERRA  FILIAL 01",
+        "vencimento": "2026-07-07",
+        "valor": "79.77",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3112444,
+        "descricao": "MILAGRES GAS E AGUA",
+        "vencimento": "2026-07-08",
+        "valor": "36.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3113087,
+        "descricao": "FORNECEDOR FOOD",
+        "vencimento": "2026-07-08",
+        "valor": "150.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3113120,
+        "descricao": "CHIC FABRICACAO DE DOCES E SALGADOS LTDA",
+        "vencimento": "2026-07-15",
+        "valor": "392.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3114438,
+        "descricao": "CDD OLINDA",
+        "vencimento": "2026-07-15",
+        "valor": "1751.50",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115347,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-11",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3115453,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-12",
+        "valor": "29777.50",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115714,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-12",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115717,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-12",
+        "valor": "150.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115727,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-07-13",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115734,
+        "descricao": "COMERCIAL JURIVAN",
+        "vencimento": "2026-07-10",
+        "valor": "842.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115834,
+        "descricao": "MAX-GIRO",
+        "vencimento": "2026-07-08",
+        "valor": "149.48",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115966,
+        "descricao": "SOUZA CRUZ LTDA.",
+        "vencimento": "2026-07-15",
+        "valor": "7948.61",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115970,
+        "descricao": "CD PERNAMBUCO",
+        "vencimento": "2026-07-15",
+        "valor": "2348.23",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115972,
+        "descricao": "INDUSTRIA DE BEBIDAS IGARASSU LTDA",
+        "vencimento": "2026-07-15",
+        "valor": "667.71",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3115979,
+        "descricao": "GRIFOS COMERCIO DE ALIMENTOS LTDA",
+        "vencimento": "2026-07-10",
+        "valor": "187.55",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3116312,
+        "descricao": "MILAGRES GAS E AGUA",
+        "vencimento": "2026-07-07",
+        "valor": "132.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3117335,
+        "descricao": "COMERCIAL BEZERRA  FILIAL 01",
+        "vencimento": "2026-07-09",
+        "valor": "53.90",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3117338,
+        "descricao": "COMERCIAL BEZERRA  FILIAL 01",
+        "vencimento": "2026-07-09",
+        "valor": "109.90",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3117599,
+        "descricao": "MILAGRES GAS E AGUA",
+        "vencimento": "2026-07-13",
+        "valor": "32.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3118111,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-14",
+        "valor": "150.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3118120,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-07-14",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3118174,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-07-14",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3118183,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-14",
+        "valor": "29479.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 5555,
+        "codigo": 3118209,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-14",
+        "valor": "21762.55",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3119832,
+        "descricao": "FORNECEDOR FOOD",
+        "vencimento": "2026-07-15",
+        "valor": "125.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3119842,
+        "descricao": "DELUTTI SUCOS",
+        "vencimento": "2026-07-15",
+        "valor": "96.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 11495,
+        "codigo": 3123235,
+        "descricao": "GALEGO DO GELO",
+        "vencimento": "2026-07-17",
+        "valor": "200.90",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3104940,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-07-04",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3104949,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-07-04",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3104956,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-07-04",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105638,
+        "descricao": "ALELO",
+        "vencimento": "2026-07-03",
+        "valor": "3000.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3105650,
+        "descricao": "ALELO",
+        "vencimento": "2026-07-03",
+        "valor": "3000.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3107293,
+        "descricao": "MMS TRANSPORTE",
+        "vencimento": "2026-07-05",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3107304,
+        "descricao": "DOMINGUES CONSTRUCAO",
+        "vencimento": "2026-07-03",
+        "valor": "75.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3110796,
+        "descricao": "VIBRA ENERGIA S.A",
+        "vencimento": "2026-07-07",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3110798,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-07",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3110806,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-07",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3110884,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-07",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3110905,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-10",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3110921,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-10",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3115976,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-11",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3115984,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-11",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3116001,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-12",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3116003,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-12",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3116012,
+        "descricao": "IPSEP TRANSPORTE",
+        "vencimento": "2026-07-12",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3116023,
+        "descricao": "COMERCIAL JURIVAN",
+        "vencimento": "2026-07-10",
+        "valor": "144.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3116026,
+        "descricao": "COMERCIAL JURIVAN",
+        "vencimento": "2026-07-10",
+        "valor": "396.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117321,
+        "descricao": "MMS TRANSPORTE",
+        "vencimento": "2026-07-14",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3117323,
+        "descricao": "MMS TRANSPORTE",
+        "vencimento": "2026-07-14",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3119034,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-07-16",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_PAGAR",
+        "empresaCodigo": 74014,
+        "codigo": 3119040,
+        "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+        "vencimento": "2026-07-16",
+        "valor": "300.00",
+        "aging": "vencido",
+        "direcao": "saida"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20965417,
+        "descricao": "VALE CINTHIA FERNANDES GADELHA",
+        "vencimento": "2026-07-02",
+        "valor": "30.22",
+        "aging": "vencido",
+        "direcao": "entrada"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20973963,
+        "descricao": "DESPERDICIO",
+        "vencimento": "2026-07-03",
+        "valor": "13.00",
+        "aging": "vencido",
+        "direcao": "entrada"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20976442,
+        "descricao": "VENCIDOS AVARIADOS S/ TROCA",
+        "vencimento": "2026-07-06",
+        "valor": "4.61",
+        "aging": "vencido",
+        "direcao": "entrada"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20979941,
+        "descricao": "DESPERDICIO",
+        "vencimento": "2026-07-06",
+        "valor": "7.80",
+        "aging": "vencido",
+        "direcao": "entrada"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 20980602,
+        "descricao": "VALE CINTHIA FERNANDES GADELHA",
+        "vencimento": "2026-07-06",
+        "valor": "69.80",
+        "aging": "vencido",
+        "direcao": "entrada"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21009339,
+        "descricao": "DESPERDICIO",
+        "vencimento": "2026-07-08",
+        "valor": "3.75",
+        "aging": "vencido",
+        "direcao": "entrada"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21015946,
+        "descricao": "VALE JOSIANE",
+        "vencimento": "2026-07-09",
+        "valor": "17.74",
+        "aging": "vencido",
+        "direcao": "entrada"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21025074,
+        "descricao": "VALE JOSIANE",
+        "vencimento": "2026-07-10",
+        "valor": "6.49",
+        "aging": "vencido",
+        "direcao": "entrada"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21033184,
+        "descricao": "DESPERDICIO",
+        "vencimento": "2026-07-13",
+        "valor": "16.00",
+        "aging": "vencido",
+        "direcao": "entrada"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21057504,
+        "descricao": "VALE CINTHIA FERNANDES GADELHA",
+        "vencimento": "2026-07-14",
+        "valor": "18.99",
+        "aging": "vencido",
+        "direcao": "entrada"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21063920,
+        "descricao": "VALE CINTHIA FERNANDES GADELHA",
+        "vencimento": "2026-07-15",
+        "valor": "12.99",
+        "aging": "vencido",
+        "direcao": "entrada"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21068115,
+        "descricao": "VALE CINTHIA FERNANDES GADELHA",
+        "vencimento": "2026-07-15",
+        "valor": "24.48",
+        "aging": "vencido",
+        "direcao": "entrada"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21074010,
+        "descricao": "VENCIDOS AVARIADOS S/ TROCA",
+        "vencimento": "2026-07-16",
+        "valor": "6.10",
+        "aging": "vencido",
+        "direcao": "entrada"
+      },
+      {
+        "tipo": "TITULO_RECEBER",
+        "empresaCodigo": 11495,
+        "codigo": 21084137,
+        "descricao": "DESPERDICIO",
+        "vencimento": "2026-07-17",
+        "valor": "30.96",
+        "aging": "vencido",
+        "direcao": "entrada"
+      }
+    ],
+    "treasury": {
+      "creditos": {
+        "count": 100,
+        "valor": "5808.66"
+      },
+      "debitos": {
+        "count": 100,
+        "valor": "41.04"
+      },
+      "tarifas": {
+        "count": 100,
+        "valor": "41.04"
+      },
+      "transferencias": {
+        "count": 100,
+        "valor": "5808.66"
+      }
+    },
+    "insights": {
+      "criticalDays": [
+        {
+          "periodo": "2026-07-18",
+          "entradasPrevistas": "0.00",
+          "saidasPrevistas": "131673.53",
+          "saldoProjetado": "-131673.53",
+          "saldoAcumulado": "-434640.67"
+        },
+        {
+          "periodo": "2026-07-17",
+          "entradasPrevistas": "30.96",
+          "saidasPrevistas": "200.90",
+          "saldoProjetado": "-169.94",
+          "saldoAcumulado": "-302967.14"
+        },
+        {
+          "periodo": "2026-07-16",
+          "entradasPrevistas": "6.10",
+          "saidasPrevistas": "2400.00",
+          "saldoProjetado": "-2393.90",
+          "saldoAcumulado": "-302797.20"
+        },
+        {
+          "periodo": "2026-07-15",
+          "entradasPrevistas": "37.47",
+          "saidasPrevistas": "13329.05",
+          "saldoProjetado": "-13291.58",
+          "saldoAcumulado": "-300403.30"
+        },
+        {
+          "periodo": "2026-07-14",
+          "entradasPrevistas": "18.99",
+          "saidasPrevistas": "55591.55",
+          "saldoProjetado": "-55572.56",
+          "saldoAcumulado": "-287111.72"
+        }
+      ],
+      "payablesVencidoValor": "308997.69",
+      "receivablesVencidoValor": "262.93",
+      "tarifasValor": "41.04",
+      "topOpportunities": [
+        {
+          "tipo": "COBRANCA_VENCIDA",
+          "descricao": "VALE CINTHIA FERNANDES GADELHA",
+          "valor": "69.80",
+          "vencimento": "2026-07-06",
+          "acao": "Priorizar recebimento de título vencido"
+        },
+        {
+          "tipo": "COBRANCA_VENCIDA",
+          "descricao": "DESPERDICIO",
+          "valor": "30.96",
+          "vencimento": "2026-07-17",
+          "acao": "Priorizar recebimento de título vencido"
+        },
+        {
+          "tipo": "COBRANCA_VENCIDA",
+          "descricao": "VALE CINTHIA FERNANDES GADELHA",
+          "valor": "30.22",
+          "vencimento": "2026-07-02",
+          "acao": "Priorizar recebimento de título vencido"
+        },
+        {
+          "tipo": "COBRANCA_VENCIDA",
+          "descricao": "VALE CINTHIA FERNANDES GADELHA",
+          "valor": "24.48",
+          "vencimento": "2026-07-15",
+          "acao": "Priorizar recebimento de título vencido"
+        },
+        {
+          "tipo": "COBRANCA_VENCIDA",
+          "descricao": "VALE CINTHIA FERNANDES GADELHA",
+          "valor": "18.99",
+          "vencimento": "2026-07-14",
+          "acao": "Priorizar recebimento de título vencido"
+        },
+        {
+          "tipo": "COBRANCA_VENCIDA",
+          "descricao": "VALE JOSIANE",
+          "valor": "17.74",
+          "vencimento": "2026-07-09",
+          "acao": "Priorizar recebimento de título vencido"
+        },
+        {
+          "tipo": "COBRANCA_VENCIDA",
+          "descricao": "DESPERDICIO",
+          "valor": "16.00",
+          "vencimento": "2026-07-13",
+          "acao": "Priorizar recebimento de título vencido"
+        },
+        {
+          "tipo": "COBRANCA_VENCIDA",
+          "descricao": "DESPERDICIO",
+          "valor": "13.00",
+          "vencimento": "2026-07-03",
+          "acao": "Priorizar recebimento de título vencido"
+        },
+        {
+          "tipo": "RENEGOCIACAO_CP",
+          "descricao": "VIBRA ENERGIA S.A",
+          "valor": "29827.50",
+          "vencimento": "2026-07-04",
+          "acao": "Renegociar ou programar pagamento vencido"
+        },
+        {
+          "tipo": "RENEGOCIACAO_CP",
+          "descricao": "VIBRA ENERGIA S.A",
+          "valor": "29827.50",
+          "vencimento": "2026-07-06",
+          "acao": "Renegociar ou programar pagamento vencido"
+        },
+        {
+          "tipo": "RENEGOCIACAO_CP",
+          "descricao": "VIBRA ENERGIA S.A",
+          "valor": "29777.50",
+          "vencimento": "2026-07-07",
+          "acao": "Renegociar ou programar pagamento vencido"
+        },
+        {
+          "tipo": "RENEGOCIACAO_CP",
+          "descricao": "VIBRA ENERGIA S.A",
+          "valor": "29777.50",
+          "vencimento": "2026-07-09",
+          "acao": "Renegociar ou programar pagamento vencido"
+        },
+        {
+          "tipo": "RENEGOCIACAO_CP",
+          "descricao": "VIBRA ENERGIA S.A",
+          "valor": "29777.50",
+          "vencimento": "2026-07-12",
+          "acao": "Renegociar ou programar pagamento vencido"
+        },
+        {
+          "tipo": "RENEGOCIACAO_CP",
+          "descricao": "VIBRA ENERGIA S.A",
+          "valor": "29479.00",
+          "vencimento": "2026-07-14",
+          "acao": "Renegociar ou programar pagamento vencido"
+        },
+        {
+          "tipo": "RENEGOCIACAO_CP",
+          "descricao": "VIBRA ENERGIA S.A",
+          "valor": "21762.55",
+          "vencimento": "2026-07-14",
+          "acao": "Renegociar ou programar pagamento vencido"
+        },
+        {
+          "tipo": "RENEGOCIACAO_CP",
+          "descricao": "VIBRA ENERGIA S.A",
+          "valor": "20944.79",
+          "vencimento": "2026-07-07",
+          "acao": "Renegociar ou programar pagamento vencido"
+        },
+        {
+          "tipo": "DIA_CRITICO",
+          "descricao": "Saldo acumulado negativo em 2026-07-18",
+          "valor": "-434640.67",
+          "vencimento": "2026-07-18",
+          "acao": "Antecipar recebíveis ou postergar pagamentos neste dia"
+        },
+        {
+          "tipo": "DIA_CRITICO",
+          "descricao": "Saldo acumulado negativo em 2026-07-17",
+          "valor": "-302967.14",
+          "vencimento": "2026-07-17",
+          "acao": "Antecipar recebíveis ou postergar pagamentos neste dia"
+        },
+        {
+          "tipo": "DIA_CRITICO",
+          "descricao": "Saldo acumulado negativo em 2026-07-16",
+          "valor": "-302797.20",
+          "vencimento": "2026-07-16",
+          "acao": "Antecipar recebíveis ou postergar pagamentos neste dia"
+        },
+        {
+          "tipo": "TARIFA_BANCARIA",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:4025 CONTA:10474434 ",
+          "valor": "2.60",
+          "vencimento": "2026-07-01",
+          "acao": "Revisar tarifa evitável ou conta bancária"
+        }
+      ]
+    },
+    "semanticBreakdown": {
+      "despesas": [
+        {
+          "natureza": "VIBRA ENERGIA S.A",
+          "valor": "1378641.19"
+        },
+        {
+          "natureza": "COPERGAS",
+          "valor": "159554.46"
+        },
+        {
+          "natureza": "LOJA DE ABREU E LIMA",
+          "valor": "77000.00"
+        },
+        {
+          "natureza": "ALELO",
+          "valor": "74884.00"
+        },
+        {
+          "natureza": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+          "valor": "23000.00"
+        },
+        {
+          "natureza": "SOUZA CRUZ LTDA.",
+          "valor": "20637.55"
+        },
+        {
+          "natureza": "VISAO CONTABIL LTDA",
+          "valor": "18473.50"
+        },
+        {
+          "natureza": "CDD OLINDA",
+          "valor": "7681.59"
+        },
+        {
+          "natureza": "JTID_JABOATAO",
+          "valor": "7005.46"
+        },
+        {
+          "natureza": "IPSEP TRANSPORTE",
+          "valor": "6300.00"
+        },
+        {
+          "natureza": "SUAPE",
+          "valor": "5510.08"
+        },
+        {
+          "natureza": "DLP DISTRIBUIDORA",
+          "valor": "4670.98"
+        },
+        {
+          "natureza": "CD PERNAMBUCO",
+          "valor": "4073.17"
+        },
+        {
+          "natureza": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+          "valor": "3900.00"
+        },
+        {
+          "natureza": "GAS4US SERVICOS E TECNOLOGIA DA INFORMACAO LTDA",
+          "valor": "3422.32"
+        },
+        {
+          "natureza": "MERCADO LIVRE",
+          "valor": "3000.00"
+        },
+        {
+          "natureza": "SOUZA DISTRIBUIDORA",
+          "valor": "2861.46"
+        },
+        {
+          "natureza": "VIRTUALNET",
+          "valor": "2638.40"
+        },
+        {
+          "natureza": "UNILEVER BRASIL LTDA",
+          "valor": "2197.58"
+        },
+        {
+          "natureza": "MMS TRANSPORTE",
+          "valor": "2100.00"
+        }
+      ],
+      "receitas": [
+        {
+          "natureza": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "801.67"
+        },
+        {
+          "natureza": "VALE CINTHIA FERNANDES GADELHA",
+          "valor": "156.48"
+        },
+        {
+          "natureza": "DESPERDICIO",
+          "valor": "71.51"
+        },
+        {
+          "natureza": "VALE JOSIANE",
+          "valor": "24.23"
+        },
+        {
+          "natureza": "VENCIDOS AVARIADOS S/ TROCA",
+          "valor": "10.71"
+        }
+      ],
+      "despesasPrevistas": [
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "CDD OLINDA",
+          "valor": "1228.68"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "VEM TRABALHADOR",
+          "valor": "189.20"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "ADMINISTRATIVO",
+          "valor": "1800.00"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "ALELO",
+          "valor": "1300.00"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "MERCADO LIVRE",
+          "valor": "3000.00"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "FORNECEDOR FOOD",
+          "valor": "215.00"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "SUAPE",
+          "valor": "1717.68"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "UNILEVER BRASIL LTDA",
+          "valor": "843.66"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "UNILEVER BRASIL LTDA",
+          "valor": "843.65"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "SUAPE",
+          "valor": "107.64"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "MILAGRES GAS E AGUA",
+          "valor": "240.00"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "SUAPE",
+          "valor": "920.88"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "CHIC FABRICACAO DE DOCES E SALGADOS LTDA",
+          "valor": "387.50"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "INDUSTRIA DE BEBIDAS IGARASSU LTDA",
+          "valor": "1260.63"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "VIBRA ENERGIA S.A",
+          "valor": "29827.50"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "IPSEP TRANSPORTE",
+          "valor": "300.00"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+          "valor": "300.00"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+          "valor": "300.00"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "CD PERNAMBUCO",
+          "valor": "965.97"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "INGA CEASA",
+          "valor": "16.99"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "INGA CEASA",
+          "valor": "363.07"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "VIBRA ENERGIA S.A",
+          "valor": "15264.75"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "IPSEP TRANSPORTE",
+          "valor": "150.00"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "MILAGRES GAS E AGUA",
+          "valor": "40.00"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "GALEGO DO GELO",
+          "valor": "98.00"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "FORNECEDOR FOOD",
+          "valor": "60.00"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "FORNECEDOR FOOD",
+          "valor": "43.20"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "CARVÃO SÃO CONRADO",
+          "valor": "465.00"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "G. DOCES",
+          "valor": "447.19"
+        },
+        {
+          "tipo": "TITULO_PAGAR",
+          "descricao": "LAVORO DISTRIBUIDORA",
+          "valor": "80.00"
+        }
+      ],
+      "receitasPrevistas": [
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "VALE CINTHIA FERNANDES GADELHA",
+          "valor": "30.22"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "DESPERDICIO",
+          "valor": "13.00"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "VENCIDOS AVARIADOS S/ TROCA",
+          "valor": "4.61"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "DESPERDICIO",
+          "valor": "7.80"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "VALE CINTHIA FERNANDES GADELHA",
+          "valor": "69.80"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "DESPERDICIO",
+          "valor": "3.75"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "VALE JOSIANE",
+          "valor": "17.74"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "VALE JOSIANE",
+          "valor": "6.49"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "DESPERDICIO",
+          "valor": "16.00"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "VALE CINTHIA FERNANDES GADELHA",
+          "valor": "18.99"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "VALE CINTHIA FERNANDES GADELHA",
+          "valor": "12.99"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "VALE CINTHIA FERNANDES GADELHA",
+          "valor": "24.48"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "VENCIDOS AVARIADOS S/ TROCA",
+          "valor": "6.10"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "DESPERDICIO",
+          "valor": "30.96"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "71.38"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "241.04"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "61.19"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "5.00"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "106.03"
+        },
+        {
+          "tipo": "TITULO_RECEBER",
+          "descricao": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "317.03"
+        }
+      ]
+    },
+    "snapshotKeys": {
+      "daily": "cashflow:daily:2026-07-01:2026-07-18:all",
+      "weekly": "cashflow:weekly:2026-07-01:2026-07-18:all",
+      "monthly": "cashflow:monthly:2026-07-01:2026-07-18:all"
+    },
+    "performanceMs": {
+      "payables": 793.1,
+      "receivables": 670.5,
+      "bank": 1557.8,
+      "caixaApresentado": 925.9
+    }
+  },
+  "snapshotKey": "cashflow:all:2026-07-01:2026-07-18:all"
+}

@@ -84,6 +84,10 @@ class CompleteDepartmentalDreService:
                     }
 
         dre_ready = bool((reconciliation.get("publication") or {}).get("dreTotalsReleased"))
+        expense_coverage = next((c for c in reconciliation.get("coverage") or []
+                                 if c.get("source") == "DESPESAS_FINANCEIRO_REDE"), {})
+        expense_status = expense_coverage.get("status", "FONTE_INDISPONÍVEL")
+
         lines: list[dict[str, Any]] = []
         for company in selected:
             for department in self.DEPARTMENTS:
@@ -116,6 +120,10 @@ class CompleteDepartmentalDreService:
                         "itemsQuarantined": sales.get("itemsQuarantined"),
                         "pagination": sales.get("pagination") or {},
                     } if sales and revenue is not None and cost is not None else None),
+                    "financialEvidence": {
+                        "status": expense_status,
+                        "confirmedExpenses": str(expenses) if expenses is not None else None,
+                    },
                     "missingEvidence": [
                         name for name, missing in (
                             ("CLASSIFICACAO_DESPESAS", not dre_ready or expenses is None),

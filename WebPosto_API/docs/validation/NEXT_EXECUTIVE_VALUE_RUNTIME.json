@@ -3,9 +3,9 @@
   "data": {
     "top_5_decisions": [
       {
-        "decision_id": "0a4706d8-5e56-4da0-bbfa-5e4f898e636a",
+        "decision_id": "86845933-09f2-4a59-b24b-1c8536eb13be",
         "action": {
-          "id": "0a4706d8-5e56-4da0-bbfa-5e4f898e636a",
+          "id": "86845933-09f2-4a59-b24b-1c8536eb13be",
           "title": "R$ 7,501 acima do comportamento de referência em Vale de funcionário referente a consolidação de caixa",
           "description": "Despesas em POSTO DOZE FILIAL II: Vale de funcionário referente a consolidação de caixa ficou R$ 7,501.00 acima do baseline de 30 dias (tipo: CATEGORY_SPIKE). Valor estimado em risco — não é perda confirmada.",
           "priority": "high",
@@ -20,11 +20,11 @@
           "source": {
             "service": "discovery-engine",
             "endpoint": "/api/v1/discovery/top-5",
-            "data_timestamp": "2026-07-09T12:18:42+00:00"
+            "data_timestamp": "2026-07-09T15:11:10+00:00"
           }
         },
         "candidate": {
-          "id": "0a4706d8-5e56-4da0-bbfa-5e4f898e636a",
+          "id": "86845933-09f2-4a59-b24b-1c8536eb13be",
           "detector": "ExpenseDetector",
           "title": "R$ 7,501 acima do comportamento de referência em Vale de funcionário referente a consolidação de caixa",
           "summary": "Despesas em POSTO DOZE FILIAL II: Vale de funcionário referente a consolidação de caixa ficou R$ 7,501.00 acima do baseline de 30 dias (tipo: CATEGORY_SPIKE). Valor estimado em risco — não é perda confirmada.",
@@ -627,7 +627,7 @@
             "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
             "/INTEGRACAO/TITULO_PAGAR"
           ],
-          "created_at": "2026-07-09T09:18:41.992780",
+          "created_at": "2026-07-09T12:11:10.967937",
           "alternatives_considered": 0,
           "selection_reason": ""
         },
@@ -636,9 +636,9 @@
         "rank": 1
       },
       {
-        "decision_id": "beb47bbe-b1e3-426a-85d9-a08f0436fa08",
+        "decision_id": "6a19fb09-7c07-4d50-aba3-9885adbea3e1",
         "action": {
-          "id": "beb47bbe-b1e3-426a-85d9-a08f0436fa08",
+          "id": "6a19fb09-7c07-4d50-aba3-9885adbea3e1",
           "title": "R$ 5,979 em NF 001872693 (SOUZA CRUZ LTDA.) sem histórico no período anterior",
           "description": "POSTO VIP: NF 001872693 de SOUZA CRUZ LTDA. totalizou R$ 5,979.47 no período atual vs R$ 0.00 no baseline de 30 dias. Valor estimado em risco — não é perda confirmada.",
           "priority": "high",
@@ -653,11 +653,11 @@
           "source": {
             "service": "discovery-engine",
             "endpoint": "/api/v1/discovery/top-5",
-            "data_timestamp": "2026-07-09T12:18:42+00:00"
+            "data_timestamp": "2026-07-09T15:11:10+00:00"
           }
         },
         "candidate": {
-          "id": "beb47bbe-b1e3-426a-85d9-a08f0436fa08",
+          "id": "6a19fb09-7c07-4d50-aba3-9885adbea3e1",
           "detector": "SupplierInvoiceSpikeDetector",
           "title": "R$ 5,979 em NF 001872693 (SOUZA CRUZ LTDA.) sem histórico no período anterior",
           "summary": "POSTO VIP: NF 001872693 de SOUZA CRUZ LTDA. totalizou R$ 5,979.47 no período atual vs R$ 0.00 no baseline de 30 dias. Valor estimado em risco — não é perda confirmada.",
@@ -767,7 +767,7 @@
           "source_endpoints": [
             "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE"
           ],
-          "created_at": "2026-07-09T09:18:41.968128",
+          "created_at": "2026-07-09T12:11:10.952618",
           "alternatives_considered": 0,
           "selection_reason": ""
         },
@@ -778,7 +778,7 @@
     ],
     "stored_candidates": [
       {
-        "id": "0a4706d8-5e56-4da0-bbfa-5e4f898e636a",
+        "id": "86845933-09f2-4a59-b24b-1c8536eb13be",
         "detector": "ExpenseDetector",
         "title": "R$ 7,501 acima do comportamento de referência em Vale de funcionário referente a consolidação de caixa",
         "summary": "Despesas em POSTO DOZE FILIAL II: Vale de funcionário referente a consolidação de caixa ficou R$ 7,501.00 acima do baseline de 30 dias (tipo: CATEGORY_SPIKE). Valor estimado em risco — não é perda confirmada.",
@@ -1381,12 +1381,12 @@
           "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
           "/INTEGRACAO/TITULO_PAGAR"
         ],
-        "created_at": "2026-07-09T09:18:41.992780",
+        "created_at": "2026-07-09T12:11:10.967937",
         "alternatives_considered": 0,
         "selection_reason": ""
       },
       {
-        "id": "beb47bbe-b1e3-426a-85d9-a08f0436fa08",
+        "id": "6a19fb09-7c07-4d50-aba3-9885adbea3e1",
         "detector": "SupplierInvoiceSpikeDetector",
         "title": "R$ 5,979 em NF 001872693 (SOUZA CRUZ LTDA.) sem histórico no período anterior",
         "summary": "POSTO VIP: NF 001872693 de SOUZA CRUZ LTDA. totalizou R$ 5,979.47 no período atual vs R$ 0.00 no baseline de 30 dias. Valor estimado em risco — não é perda confirmada.",
@@ -1496,14 +1496,14 @@
         "source_endpoints": [
           "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE"
         ],
-        "created_at": "2026-07-09T09:18:41.968128",
+        "created_at": "2026-07-09T12:11:10.952618",
         "alternatives_considered": 0,
         "selection_reason": ""
       }
     ],
     "observations": [
       {
-        "id": "8946d233-9bc9-4b2a-aff2-e9d0d2991ca5",
+        "id": "5703fe16-3351-4aaf-822f-592911b1ee5a",
         "tenant_id": "74014",
         "tenant_name": "POSTO DOZE FILIAL II",
         "detector": "CardReceivableDetector",
@@ -1542,10 +1542,10 @@
           "/INTEGRACAO/VENDA_FORMA_PAGAMENTO",
           "/INTEGRACAO/MOVIMENTO_CONTA"
         ],
-        "analyzed_at": "2026-07-09T12:18:42+00:00"
+        "analyzed_at": "2026-07-09T15:11:10+00:00"
       },
       {
-        "id": "8f7b5e8d-993a-46e0-82c6-155dcdb98d1e",
+        "id": "8cad9797-800b-48a1-bc9e-c9b6de0a494d",
         "tenant_id": "11495",
         "tenant_name": "POSTO VIP",
         "detector": "CardReceivableDetector",
@@ -1584,7 +1584,7 @@
           "/INTEGRACAO/VENDA_FORMA_PAGAMENTO",
           "/INTEGRACAO/MOVIMENTO_CONTA"
         ],
-        "analyzed_at": "2026-07-09T12:18:42+00:00"
+        "analyzed_at": "2026-07-09T15:11:10+00:00"
       }
     ],
     "total_decisions": 2,
@@ -1596,10 +1596,10 @@
   "analysis_status": "PRIORITY_FOUND",
   "monitoring_state": "DECISION",
   "analysis_proof": {
-    "analysis_id": "16a6b17e-c7c7-4508-a54f-e86eac63350a",
-    "started_at": "2026-07-09T12:18:41.852070+00:00",
-    "completed_at": "2026-07-09T12:18:42.015625+00:00",
-    "execution_time_ms": 163,
+    "analysis_id": "82c77707-fcc9-4386-8885-d74aa0d9b3ec",
+    "started_at": "2026-07-09T15:11:10.862689+00:00",
+    "completed_at": "2026-07-09T15:11:10.973442+00:00",
+    "execution_time_ms": 110,
     "tenant_count": 3,
     "tenant_ids": [
       "5555",
@@ -1623,7 +1623,7 @@
         "decisions_found": 0,
         "observations_found": 0,
         "requests_count": 8,
-        "execution_time_ms": 37,
+        "execution_time_ms": 31,
         "period_analyzed": {
           "start": "2026-06-05",
           "end": "2026-07-04"
@@ -1646,7 +1646,7 @@
         "decisions_found": 1,
         "observations_found": 1,
         "requests_count": 8,
-        "execution_time_ms": 60,
+        "execution_time_ms": 55,
         "period_analyzed": {
           "start": "2026-06-05",
           "end": "2026-07-04"
@@ -1669,7 +1669,7 @@
         "decisions_found": 1,
         "observations_found": 1,
         "requests_count": 8,
-        "execution_time_ms": 47,
+        "execution_time_ms": 20,
         "period_analyzed": {
           "start": "2026-06-05",
           "end": "2026-07-04"
@@ -1705,14 +1705,16 @@
       "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
       "/INTEGRACAO/TITULO_PAGAR",
       "/INTEGRACAO/TITULO_RECEBER",
-      "/INTEGRACAO/VENDA_FORMA_PAGAMENTO"
+      "/INTEGRACAO/VENDA_FORMA_PAGAMENTO",
+      "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE (REF NF)"
     ],
     "endpoints_consulted": [
       "/api/v1/sales/fuel-summary",
       "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
       "/INTEGRACAO/TITULO_PAGAR",
       "/INTEGRACAO/TITULO_RECEBER",
-      "/INTEGRACAO/VENDA_FORMA_PAGAMENTO"
+      "/INTEGRACAO/VENDA_FORMA_PAGAMENTO",
+      "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE (REF NF)"
     ],
     "records_analyzed": null,
     "candidates_found": 4,
@@ -1728,15 +1730,17 @@
     "limitations": [
       "Combustível, despesas, NF de fornecedor e recebíveis verificados; cartão TEF sem NSU no ERP."
     ],
-    "last_analysis_at": "2026-07-09T12:18:42.015625+00:00"
+    "last_analysis_at": "2026-07-09T15:11:10.973442+00:00"
   },
-  "generated_at": "2026-07-09T12:18:42.015625+00:00",
-  "_meta": {
-    "duration_ms": 163,
-    "period_start": "2026-06-05",
-    "period_end": "2026-07-04",
-    "tenants_total": 3,
-    "tenants_analyzed": 3,
-    "tenants_failed": 0
-  }
+  "generated_at": "2026-07-09T15:11:10.973442+00:00",
+  "freshness": "FRESH",
+  "refresh_status": "COMPLETED",
+  "analysis_id": "82c77707-fcc9-4386-8885-d74aa0d9b3ec",
+  "last_completed_analysis_id": "82c77707-fcc9-4386-8885-d74aa0d9b3ec",
+  "last_analysis_at": "2026-07-09T15:11:10.973442+00:00",
+  "snapshot_age_seconds": 210,
+  "snapshot_freshness_ttl_seconds": 1800,
+  "coverage": null,
+  "auto_refresh_triggered": false,
+  "scope_key": "2026-06-05:2026-07-04:all_discovered:CardReceivableDetector,ExpenseDetector,FuelRevenueDetector:all"
 }

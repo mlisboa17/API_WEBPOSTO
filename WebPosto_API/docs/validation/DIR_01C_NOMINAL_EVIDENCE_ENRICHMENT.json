@@ -1,0 +1,41 @@
+{
+  "decision_id": "175da101-6f68-42f4-9d2b-9b42e6cedea2",
+  "empresa_codigo": "74014",
+  "before": {
+    "EXACT": 0,
+    "PROBABLE": 3,
+    "AMBIGUOUS": 0,
+    "NO_MATCH": 13,
+    "with_funcionario": 3,
+    "total_with_funcionario_amount": 450.0,
+    "total_without_funcionario_amount": 7951.0,
+    "coverage_pct_count": 18.8,
+    "coverage_pct_amount": 5.4
+  },
+  "after": {
+    "EXACT": 0,
+    "PROBABLE": 3,
+    "AMBIGUOUS": 3,
+    "NO_MATCH": 10,
+    "with_funcionario": 3,
+    "total_with_funcionario_amount": 450.0,
+    "total_without_funcionario_amount": 7951.0,
+    "coverage_pct_count": 18.8,
+    "coverage_pct_amount": 5.4,
+    "prestacao_enriched": 0
+  },
+  "prestacao_locate": {
+    "found": true,
+    "source_gap": false,
+    "path": "NewWebLogos/docs/validation/RAW_DATA_POSTO_DOZE_2026-06.md",
+    "source_file": "Prestação de ContasDOzeReal.pdf",
+    "empresa_codigo": "74014",
+    "period_start": "2026-06-01",
+    "period_end": "2026-06-28",
+    "items_extracted": 13
+  },
+  "prestacao_nominal_items_extracted": 13,
+  "api_http_status": 200,
+  "forced_match": false,
+  "cross_post_contamination": false
+}

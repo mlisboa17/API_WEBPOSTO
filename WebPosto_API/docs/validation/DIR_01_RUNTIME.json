@@ -1,0 +1,63 @@
+{
+  "decision_id": "175da101-6f68-42f4-9d2b-9b42e6cedea2",
+  "nominal_source_primary": "CAIXA+CAIXA_APRESENTADO.valeFunApurado",
+  "nominal_sources_audited": [
+    "CAIXA (/INTEGRACAO/CAIXA)",
+    "CAIXA_REDE (/INTEGRACAO/CONSULTAR_CAIXA_REDE)",
+    "CAIXA_APRESENTADO (/INTEGRACAO/CAIXA_APRESENTADO)",
+    "CAIXA_APRESENTADO_REDE (/INTEGRACAO/CONSULTAR_CAIXA_APRESENTADO_REDE)",
+    "FUNCIONARIO (/INTEGRACAO/FUNCIONARIO)",
+    "DESPESAS_FINANCEIRO_REDE (origem financeira — sem beneficiário)"
+  ],
+  "evidence_items_count": 16,
+  "evidence_items_total": 8401.0,
+  "EXACT": 0,
+  "PROBABLE": 3,
+  "AMBIGUOUS": 0,
+  "NO_MATCH": 13,
+  "with_funcionario": 3,
+  "with_caixa": 3,
+  "with_turno": 3,
+  "total_with_funcionario_amount": 450.0,
+  "total_without_funcionario_amount": 7951.0,
+  "limitations": [
+    "3 de 16 lançamentos com funcionário identificado via match operacional; 13 permanecem sem beneficiário nominal.",
+    "13 lançamento(s) sem candidato operacional (NO_MATCH) — consolidação financeira sem espelho linha a linha na API.",
+    "Fonte complementar necessária: VALE_FUNCIONARIO_REDE (401) — indisponível no token; necessário para vale nominal linha a linha.",
+    "Fonte complementar necessária: Prestação de Contas (PDF parser) — complementar quando API não expõe beneficiário por lançamento consolidado.",
+    "Estes lançamentos explicam o aumento versus comportamento de referência — não constituem acusação automática."
+  ],
+  "complementary_sources_required": [
+    "VALE_FUNCIONARIO_REDE (401) — indisponível no token; necessário para vale nominal linha a linha.",
+    "Prestação de Contas (PDF parser) — complementar quando API não expõe beneficiário por lançamento consolidado."
+  ],
+  "sample_matches": [
+    {
+      "date": "2026-06-14",
+      "amount": 150.0,
+      "person_name": "DOUGLAS HENRIQUE CABRAL ISIDRO ARAU",
+      "match_status": "PROBABLE",
+      "cash_register": "4346306",
+      "shift": "1º TURNO"
+    },
+    {
+      "date": "2026-06-18",
+      "amount": 150.0,
+      "person_name": "RYAN HENRIQUE SILVA DE AZEVEDO",
+      "match_status": "PROBABLE",
+      "cash_register": "4354022",
+      "shift": "1º TURNO"
+    },
+    {
+      "date": "2026-06-25",
+      "amount": 150.0,
+      "person_name": "RYAN HENRIQUE SILVA DE AZEVEDO",
+      "match_status": "PROBABLE",
+      "cash_register": "4359778",
+      "shift": "1º TURNO"
+    }
+  ],
+  "screen_validated": true,
+  "parecer": "PARCIAL — lançamentos visíveis; 3/16 com funcionário via match CAIXA.",
+  "diretor_consegue_conferir": false
+}

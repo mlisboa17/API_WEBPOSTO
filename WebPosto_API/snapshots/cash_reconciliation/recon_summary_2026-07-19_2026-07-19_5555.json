@@ -1,0 +1,42 @@
+{
+  "lastUpdated": "2026-07-20T13:25:51",
+  "payload": {
+    "summary": {
+      "filial": "5555",
+      "periodoInicio": "2026-07-19",
+      "periodoFim": "2026-07-19",
+      "valorApurado": 0.0,
+      "valorApresentado": 0.0,
+      "valorConferido": 0.0,
+      "valorDivergente": 0.0,
+      "valorPendente": 0.0,
+      "naturezasConferidas": 0,
+      "naturezasTotal": 0,
+      "natureCards": [],
+      "preCheck": {
+        "totalAnalyzed": 0,
+        "autoMatched": 0,
+        "needsReview": 0,
+        "divergent": 0,
+        "justified": 0,
+        "confirmed": 0,
+        "divergentAmount": 0.0
+      },
+      "auditSignals": []
+    },
+    "items": [],
+    "exceptions": [],
+    "meta": {
+      "performanceMs": 199430.4,
+      "caixaTurnos": 0,
+      "vfpRows": 0,
+      "cardVfpRows": 0,
+      "sangriaTotal": 0.0,
+      "bankCredits": [],
+      "natureTotals": {}
+    },
+    "stateKey": "recon:5555:2026-07-19:2026-07-19",
+    "generatedAt": "2026-07-20T16:25:51+00:00"
+  },
+  "snapshotKey": "recon:summary:2026-07-19:2026-07-19:5555"
+}

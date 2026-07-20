@@ -1,0 +1,74 @@
+{
+  "kind": "financial_sales",
+  "key": "2026-07-01:2026-07-17:74014",
+  "lastUpdated": "2026-07-17T22:43:50",
+  "homologated": true,
+  "source": "live",
+  "data": {
+    "page": 1,
+    "limit": 5,
+    "total": 200,
+    "data": [
+      {
+        "empresaCodigo": 74014,
+        "filial": "POSTO DOZE FILIAL II",
+        "vendaCodigo": 360031599,
+        "data": "2026-07-01",
+        "cliente": "consumidor final",
+        "itens": 21,
+        "formaPagamento": "",
+        "totalVenda": "590.47",
+        "synthetic": false
+      },
+      {
+        "empresaCodigo": 74014,
+        "filial": "POSTO DOZE FILIAL II",
+        "vendaCodigo": 360031696,
+        "data": "2026-07-01",
+        "cliente": "consumidor final",
+        "itens": 1,
+        "formaPagamento": "",
+        "totalVenda": "50.00",
+        "synthetic": false
+      },
+      {
+        "empresaCodigo": 74014,
+        "filial": "POSTO DOZE FILIAL II",
+        "vendaCodigo": 360031809,
+        "data": "2026-07-01",
+        "cliente": "consumidor final",
+        "itens": 1,
+        "formaPagamento": "",
+        "totalVenda": "80.00",
+        "synthetic": false
+      },
+      {
+        "empresaCodigo": 74014,
+        "filial": "POSTO DOZE FILIAL II",
+        "vendaCodigo": 360032038,
+        "data": "2026-07-01",
+        "cliente": "consumidor final",
+        "itens": 1,
+        "formaPagamento": "",
+        "totalVenda": "40.24",
+        "synthetic": false
+      },
+      {
+        "empresaCodigo": 74014,
+        "filial": "POSTO DOZE FILIAL II",
+        "vendaCodigo": 360032193,
+        "data": "2026-07-01",
+        "cliente": "consumidor final",
+        "itens": 1,
+        "formaPagamento": "",
+        "totalVenda": "15.00",
+        "synthetic": false
+      }
+    ],
+    "consolidado": {
+      "total_vendas": "18910.10",
+      "qtd_vendas": 200
+    },
+    "synthetic": false
+  }
+}

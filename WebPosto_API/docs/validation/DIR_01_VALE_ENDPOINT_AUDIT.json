@@ -1,0 +1,232 @@
+{
+  "base_url": "https://web.qualityautomacao.com.br",
+  "period": {
+    "start": "2026-06-05",
+    "end": "2026-07-04"
+  },
+  "credential_tokens_configured": 3,
+  "permission_cache": {
+    "VALE_FUNCIONARIO_REDE": {
+      "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+      "allowed_in_cache": null
+    },
+    "CONSULTAR_VALE_FUNCIONARIO_REDE": {
+      "path": "/INTEGRACAO/CONSULTAR_VALE_FUNCIONARIO_REDE",
+      "allowed_in_cache": null
+    },
+    "DESPESA_FUNCIONARIO": {
+      "path": "/INTEGRACAO/DESPESA_FUNCIONARIO",
+      "allowed_in_cache": null
+    },
+    "CONSULTAR_DESPESA_FUNCIONARIO_REDE": {
+      "path": "/INTEGRACAO/CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+      "allowed_in_cache": null
+    },
+    "FUNCIONARIO_MOVIMENTO": {
+      "path": "/INTEGRACAO/FUNCIONARIO_MOVIMENTO",
+      "allowed_in_cache": null
+    }
+  },
+  "http_probe": [
+    {
+      "endpoint": "VALE_FUNCIONARIO_REDE",
+      "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+      "method": "GET",
+      "empresaCodigo": null,
+      "http_status": 401,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "NoneType"
+    },
+    {
+      "endpoint": "VALE_FUNCIONARIO_REDE",
+      "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+      "method": "GET",
+      "empresaCodigo": 5555,
+      "http_status": 401,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "NoneType"
+    },
+    {
+      "endpoint": "VALE_FUNCIONARIO_REDE",
+      "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+      "method": "GET",
+      "empresaCodigo": 11495,
+      "http_status": 401,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "NoneType"
+    },
+    {
+      "endpoint": "VALE_FUNCIONARIO_REDE",
+      "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+      "method": "GET",
+      "empresaCodigo": 74014,
+      "http_status": 401,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "NoneType"
+    },
+    {
+      "endpoint": "CONSULTAR_VALE_FUNCIONARIO_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_VALE_FUNCIONARIO_REDE",
+      "method": "GET",
+      "empresaCodigo": null,
+      "http_status": 200,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "list"
+    },
+    {
+      "endpoint": "CONSULTAR_VALE_FUNCIONARIO_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_VALE_FUNCIONARIO_REDE",
+      "method": "GET",
+      "empresaCodigo": 5555,
+      "http_status": 200,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "list"
+    },
+    {
+      "endpoint": "CONSULTAR_VALE_FUNCIONARIO_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_VALE_FUNCIONARIO_REDE",
+      "method": "GET",
+      "empresaCodigo": 11495,
+      "http_status": 200,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "list"
+    },
+    {
+      "endpoint": "CONSULTAR_VALE_FUNCIONARIO_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_VALE_FUNCIONARIO_REDE",
+      "method": "GET",
+      "empresaCodigo": 74014,
+      "http_status": 200,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "list"
+    },
+    {
+      "endpoint": "DESPESA_FUNCIONARIO",
+      "path": "/INTEGRACAO/DESPESA_FUNCIONARIO",
+      "method": "GET",
+      "empresaCodigo": null,
+      "http_status": 401,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "NoneType"
+    },
+    {
+      "endpoint": "DESPESA_FUNCIONARIO",
+      "path": "/INTEGRACAO/DESPESA_FUNCIONARIO",
+      "method": "GET",
+      "empresaCodigo": 5555,
+      "http_status": 401,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "NoneType"
+    },
+    {
+      "endpoint": "DESPESA_FUNCIONARIO",
+      "path": "/INTEGRACAO/DESPESA_FUNCIONARIO",
+      "method": "GET",
+      "empresaCodigo": 11495,
+      "http_status": 401,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "NoneType"
+    },
+    {
+      "endpoint": "DESPESA_FUNCIONARIO",
+      "path": "/INTEGRACAO/DESPESA_FUNCIONARIO",
+      "method": "GET",
+      "empresaCodigo": 74014,
+      "http_status": 401,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "NoneType"
+    },
+    {
+      "endpoint": "CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+      "method": "GET",
+      "empresaCodigo": null,
+      "http_status": 401,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "NoneType"
+    },
+    {
+      "endpoint": "CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+      "method": "GET",
+      "empresaCodigo": 5555,
+      "http_status": 401,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "NoneType"
+    },
+    {
+      "endpoint": "CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+      "method": "GET",
+      "empresaCodigo": 11495,
+      "http_status": 401,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "NoneType"
+    },
+    {
+      "endpoint": "CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+      "path": "/INTEGRACAO/CONSULTAR_DESPESA_FUNCIONARIO_REDE",
+      "method": "GET",
+      "empresaCodigo": 74014,
+      "http_status": 401,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "NoneType"
+    },
+    {
+      "endpoint": "FUNCIONARIO_MOVIMENTO",
+      "path": "/INTEGRACAO/FUNCIONARIO_MOVIMENTO",
+      "method": "GET",
+      "empresaCodigo": null,
+      "http_status": 401,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "NoneType"
+    },
+    {
+      "endpoint": "FUNCIONARIO_MOVIMENTO",
+      "path": "/INTEGRACAO/FUNCIONARIO_MOVIMENTO",
+      "method": "GET",
+      "empresaCodigo": 5555,
+      "http_status": 401,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "NoneType"
+    },
+    {
+      "endpoint": "FUNCIONARIO_MOVIMENTO",
+      "path": "/INTEGRACAO/FUNCIONARIO_MOVIMENTO",
+      "method": "GET",
+      "empresaCodigo": 11495,
+      "http_status": 401,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "NoneType"
+    },
+    {
+      "endpoint": "FUNCIONARIO_MOVIMENTO",
+      "path": "/INTEGRACAO/FUNCIONARIO_MOVIMENTO",
+      "method": "GET",
+      "empresaCodigo": 74014,
+      "http_status": 401,
+      "row_count": 0,
+      "sample_fields": [],
+      "body_type": "NoneType"
+    }
+  ]
+}

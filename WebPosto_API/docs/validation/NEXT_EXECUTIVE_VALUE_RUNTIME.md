@@ -10,7 +10,7 @@
 |---|---|
 | REPOSITORY | Api_WebPosto/WebPosto_API |
 | BRANCH | feature/director-value-demo |
-| HEAD | 9fc7886 (+ alterações locais discovery) |
+| HEAD | 61ea7e8 |
 | DIRECTOR_DEMO_PRESENT | YES |
 | TENANTS | 5555, 11495, 74014 |
 | ACTIVE_DETECTORS (antes) | FuelRevenueDetector, ExpenseDetector, CardReceivableDetector |
@@ -60,13 +60,14 @@ Artefato: `NEXT_EXECUTIVE_VALUE_RUNTIME.json`
 
 | Gate | Status |
 |---|---|
-| HOME_VISIBLE (Visão da rede) | Pendente restart UI/API — lógica validada em runner |
+| HOME_VISIBLE (Visão da rede) | YES — Playwright 6/6 jornada; 3 tenants, prioridade 74014 |
 | EVIDENCE_ACCESSIBLE | YES — evidence_items na decisão VIP |
 | ROOT_CAUSE_VISIBLE | YES — SupplierInvoiceRootCause registrado |
 | MONEY_LABEL_HONEST | YES — ESTIMATED, não CONFIRMED |
 | TENANT_ISOLATION | YES |
 | MOCKS / SEEDS | NO |
-| RUNTIME_HTTP | Runner Python real (API 8040 não reiniciada nesta sessão) |
+| RUNTIME_HTTP | YES — API 8046 restart + refresh; top5 com 2 decisões |
+| UI_VALIDATED | YES — 4 detectores na cobertura; observations + follow-up Marcio 3/13 |
 | TESTS | 4 passed — `test_supplier_invoice_spike_detector.py` |
 
 ## President Gate

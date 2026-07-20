@@ -1,0 +1,2674 @@
+{
+  "lastUpdated": "2026-07-11T21:02:31.289326",
+  "data": {
+    "sprint": "F06.5",
+    "periodo": {
+      "dataInicial": "2026-06-05",
+      "dataFinal": "2026-07-04"
+    },
+    "elapsedMs": 76.1,
+    "fonte": {
+      "webPostoLive": false,
+      "readOnly": true,
+      "snapshotsHomologados": true,
+      "semFraudePresumida": true,
+      "semPerdaPresumida": true
+    },
+    "lmcComplianceAudit": {
+      "diasComLmc": 0,
+      "diasSemLmc": 30,
+      "diasJanela": 30,
+      "branchDaysExpected": 60,
+      "branchDaysWithLmc": 0,
+      "branchDaysWithoutLmc": 60,
+      "taxaConformidadePct": 0.0,
+      "taxaNaoConformidadePct": 100.0,
+      "classificacaoGeral": "NÃO CONFORME",
+      "items": [
+        {
+          "data": "2026-06-05",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-05",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-06",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-06",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-07",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-07",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-08",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-08",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-09",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-09",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-10",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-10",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-11",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-11",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-12",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-12",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-13",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-13",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-14",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-14",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-15",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-15",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-16",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-16",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-17",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-17",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-18",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-18",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-19",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-19",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-20",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-20",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-21",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-21",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-22",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-22",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-23",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-23",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-24",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-24",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-25",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-25",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-26",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-26",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-27",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-27",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-28",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-28",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-29",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-29",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-30",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-30",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-07-01",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-07-01",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-07-02",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-07-02",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-07-03",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-07-03",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-07-04",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-07-04",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ],
+      "preenchidos": 0,
+      "naoPreenchidos": 60,
+      "lineage": [
+        {
+          "origem": "F06.5",
+          "snapshot": "fuel_network_audit",
+          "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+          "cockpit": "fuel-governance",
+          "webPosto": false,
+          "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+        }
+      ]
+    },
+    "routineAdherenceAudit": {
+      "periodicidade": "EVENTUAL",
+      "regularidadePct": 0.0,
+      "continuidadeDiasComLmc": 0,
+      "continuidadeDiasSemLmc": 30,
+      "rotinaDiaria": false,
+      "rotinaSemanal": false,
+      "rotinaEventual": true,
+      "lacunasConsecutivas": 0,
+      "lineage": [
+        {
+          "origem": "F06.5",
+          "snapshot": "compliance_calendar",
+          "api": "/api/v1/fuel-governance/cockpit",
+          "cockpit": "fuel-governance",
+          "webPosto": false,
+          "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+        }
+      ]
+    },
+    "operationalDisciplineAudit": {
+      "filiais": [
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "diasComLmc": 0,
+          "diasEsperados": 30,
+          "conformidadePct": 0.0,
+          "disciplina": "DISCIPLINA CRÍTICA",
+          "preenchidoPor": [],
+          "lineage": [
+            {
+              "origem": "F06.5",
+              "snapshot": "branch_discipline",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "diasComLmc": 0,
+          "diasEsperados": 30,
+          "conformidadePct": 0.0,
+          "disciplina": "DISCIPLINA CRÍTICA",
+          "preenchidoPor": [],
+          "lineage": [
+            {
+              "origem": "F06.5",
+              "snapshot": "branch_discipline",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ],
+      "lineage": [
+        {
+          "origem": "F06.5",
+          "snapshot": "operational_discipline",
+          "api": "/api/v1/fuel-governance/cockpit",
+          "cockpit": "fuel-governance",
+          "webPosto": false,
+          "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+        }
+      ]
+    },
+    "delayAnalysisEngine": {
+      "atrasos": [
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-06-01",
+          "atrasoDias": 4,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "MARCIO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-06-01",
+          "atrasoDias": 4,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "MARCIO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-06-01",
+          "atrasoDias": 4,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "MARCIO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-06-01",
+          "atrasoDias": 4,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "MARCIO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-06-01",
+          "atrasoDias": 4,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "MARCIO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-05-01",
+          "atrasoDias": 35,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "JOSÉ ARTHUR MAIA GIRAO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-05-01",
+          "atrasoDias": 35,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "JOSÉ ARTHUR MAIA GIRAO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-05-01",
+          "atrasoDias": 35,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "JOSÉ ARTHUR MAIA GIRAO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-05-01",
+          "atrasoDias": 35,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "JOSÉ ARTHUR MAIA GIRAO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-05-01",
+          "atrasoDias": 35,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "JOSÉ ARTHUR MAIA GIRAO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-05",
+          "tipo": "DIA_SEM_LMC",
+          "atrasoDias": null
+        },
+        {
+          "data": "2026-06-06",
+          "tipo": "DIA_SEM_LMC",
+          "atrasoDias": null
+        },
+        {
+          "data": "2026-06-07",
+          "tipo": "DIA_SEM_LMC",
+          "atrasoDias": null
+        },
+        {
+          "data": "2026-06-08",
+          "tipo": "DIA_SEM_LMC",
+          "atrasoDias": null
+        },
+        {
+          "data": "2026-06-09",
+          "tipo": "DIA_SEM_LMC",
+          "atrasoDias": null
+        }
+      ],
+      "mediaAtrasoDias": 19.5,
+      "maiorAtrasoDias": 35,
+      "menorAtrasoDias": 4,
+      "lmcRetroativo": true,
+      "registrosRetroativos": 10,
+      "lmcAcumulado": true,
+      "lmcForaRotina": true,
+      "lineage": [
+        {
+          "origem": "F06.5",
+          "snapshot": "delay_analysis",
+          "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+          "cockpit": "fuel-governance",
+          "webPosto": false,
+          "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+        }
+      ]
+    },
+    "branchComplianceRanking": {
+      "topConformidade": [
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "diasComLmc": 0,
+          "diasEsperados": 30,
+          "conformidadePct": 0.0,
+          "disciplina": "DISCIPLINA CRÍTICA",
+          "preenchidoPor": [],
+          "lineage": [
+            {
+              "origem": "F06.5",
+              "snapshot": "branch_discipline",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "diasComLmc": 0,
+          "diasEsperados": 30,
+          "conformidadePct": 0.0,
+          "disciplina": "DISCIPLINA CRÍTICA",
+          "preenchidoPor": [],
+          "lineage": [
+            {
+              "origem": "F06.5",
+              "snapshot": "branch_discipline",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ],
+      "topAtraso": [
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "diasComLmc": 0,
+          "diasEsperados": 30,
+          "conformidadePct": 0.0,
+          "disciplina": "DISCIPLINA CRÍTICA",
+          "preenchidoPor": [],
+          "lineage": [
+            {
+              "origem": "F06.5",
+              "snapshot": "branch_discipline",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "diasComLmc": 0,
+          "diasEsperados": 30,
+          "conformidadePct": 0.0,
+          "disciplina": "DISCIPLINA CRÍTICA",
+          "preenchidoPor": [],
+          "lineage": [
+            {
+              "origem": "F06.5",
+              "snapshot": "branch_discipline",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ],
+      "topDisciplina": [
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "diasComLmc": 0,
+          "diasEsperados": 30,
+          "conformidadePct": 0.0,
+          "disciplina": "DISCIPLINA CRÍTICA",
+          "preenchidoPor": [],
+          "lineage": [
+            {
+              "origem": "F06.5",
+              "snapshot": "branch_discipline",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "diasComLmc": 0,
+          "diasEsperados": 30,
+          "conformidadePct": 0.0,
+          "disciplina": "DISCIPLINA CRÍTICA",
+          "preenchidoPor": [],
+          "lineage": [
+            {
+              "origem": "F06.5",
+              "snapshot": "branch_discipline",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "diasComLmc": 0,
+          "diasEsperados": 30,
+          "conformidadePct": 0.0,
+          "disciplina": "DISCIPLINA CRÍTICA",
+          "preenchidoPor": [],
+          "lineage": [
+            {
+              "origem": "F06.5",
+              "snapshot": "branch_discipline",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "rank": 2,
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "diasComLmc": 0,
+          "diasEsperados": 30,
+          "conformidadePct": 0.0,
+          "disciplina": "DISCIPLINA CRÍTICA",
+          "preenchidoPor": [],
+          "lineage": [
+            {
+              "origem": "F06.5",
+              "snapshot": "branch_discipline",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ],
+      "lineage": [
+        {
+          "origem": "F06.5",
+          "snapshot": "branch_ranking",
+          "api": "/api/v1/fuel-governance/cockpit",
+          "cockpit": "fuel-governance",
+          "webPosto": false,
+          "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+        }
+      ]
+    },
+    "fuelGovernanceIntelligence": {
+      "problemaFaltaLmc": true,
+      "problemaFaltaRotina": true,
+      "problemaFaltaProcesso": true,
+      "problemaPrincipal": "Falta de rotina operacional",
+      "tecnologiaVsRotina": "ROTINA",
+      "causasQuantificadas": [
+        {
+          "causa": "Falta de rotina operacional",
+          "pesoPct": 100.0,
+          "evidencia": "60 branch-days sem LMC"
+        },
+        {
+          "causa": "Falta de processo por filial",
+          "pesoPct": 100.0,
+          "evidencia": "2 filial(is) sem nenhum LMC na janela"
+        },
+        {
+          "causa": "Cobertura de join ABAST parcial (não conclusivo de fraude)",
+          "pesoPct": 58.0,
+          "evidencia": "Join 42.0%"
+        }
+      ],
+      "semFraudePresumida": true,
+      "semPerdaPresumida": true,
+      "lineage": [
+        {
+          "origem": "F06.5+R03",
+          "snapshot": "r03_fiscal_coverage_roi_audit.json",
+          "api": "/api/v1/fuel-governance/summary",
+          "cockpit": "fuel-governance",
+          "webPosto": false,
+          "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+        }
+      ]
+    },
+    "cockpit": {
+      "conformidadeLmc": "NÃO CONFORME",
+      "taxaConformidadePct": 0.0,
+      "diasSemLmc": 30,
+      "atrasos": [
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-06-01",
+          "atrasoDias": 4,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "MARCIO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-06-01",
+          "atrasoDias": 4,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "MARCIO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-06-01",
+          "atrasoDias": 4,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "MARCIO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-06-01",
+          "atrasoDias": 4,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "MARCIO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-06-01",
+          "atrasoDias": 4,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "MARCIO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-05-01",
+          "atrasoDias": 35,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "JOSÉ ARTHUR MAIA GIRAO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-05-01",
+          "atrasoDias": 35,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "JOSÉ ARTHUR MAIA GIRAO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-05-01",
+          "atrasoDias": 35,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "JOSÉ ARTHUR MAIA GIRAO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ],
+      "mediaAtrasoDias": 19.5,
+      "rankingFiliais": [
+        {
+          "rank": 1,
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "diasComLmc": 0,
+          "diasEsperados": 30,
+          "conformidadePct": 0.0,
+          "disciplina": "DISCIPLINA CRÍTICA",
+          "preenchidoPor": [],
+          "lineage": [
+            {
+              "origem": "F06.5",
+              "snapshot": "branch_discipline",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "rank": 2,
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "diasComLmc": 0,
+          "diasEsperados": 30,
+          "conformidadePct": 0.0,
+          "disciplina": "DISCIPLINA CRÍTICA",
+          "preenchidoPor": [],
+          "lineage": [
+            {
+              "origem": "F06.5",
+              "snapshot": "branch_discipline",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ],
+      "governancaCombustivel": "Falta de rotina operacional",
+      "periodicidade": "EVENTUAL",
+      "trustExecutivo": 88.69
+    },
+    "executiveAnswers": {
+      "1_diasComLmc": 0,
+      "2_diasSemLmc": 30,
+      "3_taxaConformidadeLmc": 0.0,
+      "4_taxaNaoConformidade": 100.0,
+      "5_filialMaisDisciplinada": 11495,
+      "6_filialMenosDisciplinada": 5555,
+      "7_mediaAtrasoDias": 19.5,
+      "8_maiorAtrasoDias": 35,
+      "9_menorAtrasoDias": 4,
+      "10_lmcPreenchidoDiariamente": false,
+      "11_preenchimentoRetroativo": true,
+      "12_acumuloOperacional": true,
+      "13_problemaPrincipalDadoOuProcesso": "PROCESSO",
+      "14_tecnologiaOuRotina": "ROTINA",
+      "15_filialPrecisaIntervencao": 5555,
+      "16_filialBenchmark": 11495,
+      "17_fuelGovernanceViavel": true,
+      "18_complianceOperacionalViavel": true,
+      "19_roadmapCombustivelConfiavel": false,
+      "20_aprovadoF066": true,
+      "trustExecutivo": 88.69
+    },
+    "qa": {
+      "readOnly": true,
+      "fonteWebPostoLive": false,
+      "snapshotsHomologados": true,
+      "semFraudePresumida": true,
+      "semPerdasPresumidas": true,
+      "semCalculoSemEvidencia": true,
+      "semCrossTenant": true,
+      "semDadoInventado": true,
+      "semScoreExecutivoNovo": true,
+      "semIaAutonoma": true,
+      "lineageCompleto": true,
+      "motorAuditavel": true
+    },
+    "parecerFinal": "[PARECER FINAL: APROVADO PARA F06.6]",
+    "processoOperacionalSuficiente": false,
+    "governanceRules": {
+      "semFraudePresumida": true,
+      "semPerdasPresumidas": true,
+      "semScoreExecutivo": true,
+      "lineageObrigatorio": true
+    },
+    "dwLayer": {
+      "factLmcCompliance": [
+        {
+          "data": "2026-06-05",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-05",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-06",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-06",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-07",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-07",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-08",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-08",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-09",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-09",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-10",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-10",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-11",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-11",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-12",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-12",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-13",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-13",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-14",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-14",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-15",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-15",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-16",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-16",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-17",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-17",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-18",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-18",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-19",
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-19",
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "registrosLmc": 0,
+          "status": "NÃO CONFORME",
+          "preenchidoPor": null,
+          "lineage": [
+            {
+              "origem": "evidência_ausente",
+              "snapshot": "fuel_network_audit",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ],
+      "factLmcDelay": [
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-06-01",
+          "atrasoDias": 4,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "MARCIO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-06-01",
+          "atrasoDias": 4,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "MARCIO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-06-01",
+          "atrasoDias": 4,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "MARCIO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-06-01",
+          "atrasoDias": 4,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "MARCIO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-06-01",
+          "atrasoDias": 4,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "MARCIO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-05-01",
+          "atrasoDias": 35,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "JOSÉ ARTHUR MAIA GIRAO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-05-01",
+          "atrasoDias": 35,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "JOSÉ ARTHUR MAIA GIRAO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-05-01",
+          "atrasoDias": 35,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "JOSÉ ARTHUR MAIA GIRAO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-05-01",
+          "atrasoDias": 35,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "JOSÉ ARTHUR MAIA GIRAO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 11495,
+          "dataMovimento": "2026-05-01",
+          "atrasoDias": 35,
+          "tipo": "RETROATIVO",
+          "preenchidoPor": "JOSÉ ARTHUR MAIA GIRAO",
+          "lineage": [
+            {
+              "origem": "fuel_network_audit",
+              "snapshot": "fuel_network_audit_result.json",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "data": "2026-06-05",
+          "tipo": "DIA_SEM_LMC",
+          "atrasoDias": null
+        },
+        {
+          "data": "2026-06-06",
+          "tipo": "DIA_SEM_LMC",
+          "atrasoDias": null
+        },
+        {
+          "data": "2026-06-07",
+          "tipo": "DIA_SEM_LMC",
+          "atrasoDias": null
+        },
+        {
+          "data": "2026-06-08",
+          "tipo": "DIA_SEM_LMC",
+          "atrasoDias": null
+        },
+        {
+          "data": "2026-06-09",
+          "tipo": "DIA_SEM_LMC",
+          "atrasoDias": null
+        }
+      ],
+      "factFuelGovernance": [
+        {
+          "problemaFaltaLmc": true,
+          "problemaFaltaRotina": true,
+          "problemaFaltaProcesso": true,
+          "problemaPrincipal": "Falta de rotina operacional",
+          "tecnologiaVsRotina": "ROTINA",
+          "causasQuantificadas": [
+            {
+              "causa": "Falta de rotina operacional",
+              "pesoPct": 100.0,
+              "evidencia": "60 branch-days sem LMC"
+            },
+            {
+              "causa": "Falta de processo por filial",
+              "pesoPct": 100.0,
+              "evidencia": "2 filial(is) sem nenhum LMC na janela"
+            },
+            {
+              "causa": "Cobertura de join ABAST parcial (não conclusivo de fraude)",
+              "pesoPct": 58.0,
+              "evidencia": "Join 42.0%"
+            }
+          ],
+          "semFraudePresumida": true,
+          "semPerdaPresumida": true,
+          "lineage": [
+            {
+              "origem": "F06.5+R03",
+              "snapshot": "r03_fiscal_coverage_roi_audit.json",
+              "api": "/api/v1/fuel-governance/summary",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ],
+      "factBranchCompliance": [
+        {
+          "empresaCodigo": 11495,
+          "nomeFilial": null,
+          "diasComLmc": 0,
+          "diasEsperados": 30,
+          "conformidadePct": 0.0,
+          "disciplina": "DISCIPLINA CRÍTICA",
+          "preenchidoPor": [],
+          "lineage": [
+            {
+              "origem": "F06.5",
+              "snapshot": "branch_discipline",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        },
+        {
+          "empresaCodigo": 5555,
+          "nomeFilial": null,
+          "diasComLmc": 0,
+          "diasEsperados": 30,
+          "conformidadePct": 0.0,
+          "disciplina": "DISCIPLINA CRÍTICA",
+          "preenchidoPor": [],
+          "lineage": [
+            {
+              "origem": "F06.5",
+              "snapshot": "branch_discipline",
+              "api": "/INTEGRACAO/CONSULTAR_LMC_REDE",
+              "cockpit": "fuel-governance",
+              "webPosto": false,
+              "endpoint": "/INTEGRACAO/CONSULTAR_LMC_REDE"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

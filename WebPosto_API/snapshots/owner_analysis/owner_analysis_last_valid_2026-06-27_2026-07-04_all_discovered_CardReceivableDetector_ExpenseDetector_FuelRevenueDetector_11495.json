@@ -1,0 +1,183 @@
+{
+  "lastUpdated": "2026-07-04T22:45:03.973041+00:00",
+  "snapshot": {
+    "analysis_id": "aad75af9-8ad4-4a08-8870-492895598ffe",
+    "response": {
+      "success": true,
+      "data": {
+        "top_5_decisions": [],
+        "observations": [
+          {
+            "id": "c0ff2764-14c7-4585-bd1c-624534a3f452",
+            "tenant_id": "11495",
+            "tenant_name": "POSTO VIP",
+            "detector": "CardReceivableDetector",
+            "category": "CASH",
+            "title": "R$ 2,482 em recebíveis vencidos sem evidência de liquidação",
+            "description": "POSTO VIP: 50 título(s) analisado(s). Esperado pendente R$ 2,494.22; com evidência de liquidação R$ 0.00. Gap estimado R$ 2,481.81 — LEVEL 1: titulos vencidos sem baixa contábil — não prova gap de cartão TEF",
+            "product": "R$ 2,482 em recebíveis vencidos sem evidência de liquidação",
+            "period": {
+              "start": "2026-06-05",
+              "end": "2026-07-04"
+            },
+            "current_value": null,
+            "baseline_value": null,
+            "variation_percent": null,
+            "financial_impact": 3970.8959999999997,
+            "confidence": 0.749062512,
+            "decision_threshold": 5000.0,
+            "confidence_threshold": 0.8,
+            "observation_reason": "Confidence ainda insuficiente para recomendar ação.",
+            "discard_reason": "Confidence insuficiente: 75% < 80%",
+            "evidence": {
+              "signal_type": "OVERDUE_RECEIVABLE",
+              "reconciliation_level": 1,
+              "expected_value": 2494.22,
+              "settled_value": 0.0,
+              "gap_value": 2481.81,
+              "overdue_count": 50,
+              "avg_overdue_days": 16.8,
+              "top_client_share": 0.353,
+              "expectation_source": "/INTEGRACAO/TITULO_RECEBER",
+              "settlement_source": "/INTEGRACAO/TITULO_RECEBER (dataPagamento/pendente)",
+              "limitation": "LEVEL 1: titulos vencidos sem baixa contábil — não prova gap de cartão TEF"
+            },
+            "endpoint_sources": [
+              "/INTEGRACAO/TITULO_RECEBER",
+              "/INTEGRACAO/VENDA_FORMA_PAGAMENTO",
+              "/INTEGRACAO/MOVIMENTO_CONTA"
+            ],
+            "analyzed_at": "2026-07-04T22:45:03+00:00"
+          }
+        ],
+        "total_decisions": 0,
+        "total_observations": 1,
+        "filtered_by_confidence": 1,
+        "has_sufficient_data": true,
+        "message": "Análise concluída. Sinais em observação."
+      },
+      "analysis_status": "ANALYSIS_COMPLETE_NO_PRIORITY",
+      "monitoring_state": "OBSERVATION",
+      "analysis_proof": {
+        "analysis_id": "aad75af9-8ad4-4a08-8870-492895598ffe",
+        "started_at": "2026-07-04T22:44:25.710448+00:00",
+        "completed_at": "2026-07-04T22:45:03.973041+00:00",
+        "execution_time_ms": 38262,
+        "tenant_count": 1,
+        "tenant_ids": [
+          "11495"
+        ],
+        "tenants": [
+          {
+            "tenant_id": "11495",
+            "tenant_name": "POSTO VIP",
+            "empresa_codigo": "11495",
+            "credential_alias": "WEBPOSTO_API_KEY_POSTO_VIP_RIO_DOCE",
+            "status": "ANALYZED",
+            "detectors_executed": [
+              "FuelRevenueDetector",
+              "ExpenseDetector",
+              "CardReceivableDetector"
+            ],
+            "candidates_found": 1,
+            "decisions_found": 0,
+            "observations_found": 1,
+            "requests_count": 6,
+            "execution_time_ms": 36135,
+            "period_analyzed": {
+              "start": "2026-06-27",
+              "end": "2026-07-04"
+            },
+            "error": null
+          }
+        ],
+        "credentials_detected": 3,
+        "tenants_discovered": 1,
+        "tenants_validated": 1,
+        "tenants_analyzed": 1,
+        "tenants_failed": 0,
+        "period_analyzed": {
+          "start": "2026-06-27",
+          "end": "2026-07-04"
+        },
+        "detectors_available": 3,
+        "detectors_executed": [
+          "FuelRevenueDetector",
+          "ExpenseDetector",
+          "CardReceivableDetector"
+        ],
+        "detectors_successful": [
+          "FuelRevenueDetector",
+          "ExpenseDetector",
+          "CardReceivableDetector"
+        ],
+        "detectors_failed": 0,
+        "data_sources_consulted": [
+          "/api/v1/sales/fuel-summary",
+          "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+          "/INTEGRACAO/TITULO_PAGAR",
+          "/INTEGRACAO/TITULO_RECEBER",
+          "/INTEGRACAO/VENDA_FORMA_PAGAMENTO"
+        ],
+        "endpoints_consulted": [
+          "/api/v1/sales/fuel-summary",
+          "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+          "/INTEGRACAO/TITULO_PAGAR",
+          "/INTEGRACAO/TITULO_RECEBER",
+          "/INTEGRACAO/VENDA_FORMA_PAGAMENTO"
+        ],
+        "records_analyzed": null,
+        "candidates_found": 1,
+        "candidates_approved": 0,
+        "candidates_discarded": 1,
+        "decisions_approved": 0,
+        "discard_reasons": [
+          "Confidence insuficiente: 75% < 80%"
+        ],
+        "confidence_threshold": 0.8,
+        "financial_impact_threshold": 5000.0,
+        "limitations": [
+          "Combustível, despesas e recebíveis verificados; cartão TEF sem NSU no ERP."
+        ],
+        "last_analysis_at": "2026-07-04T22:45:03.973041+00:00"
+      },
+      "generated_at": "2026-07-04T22:45:03.973041+00:00"
+    },
+    "period_start": "2026-06-27",
+    "period_end": "2026-07-04",
+    "scope_key": "2026-06-27:2026-07-04:all_discovered:CardReceivableDetector,ExpenseDetector,FuelRevenueDetector:11495",
+    "created_at": "2026-07-04T22:44:25+00:00",
+    "completed_at": "2026-07-04T22:45:03.973041+00:00",
+    "duration_ms": 38262,
+    "expires_at": "2026-07-04T23:15:03.973119+00:00",
+    "refresh_status": "COMPLETED",
+    "metrics": {
+      "tenant_registry_cache_hit": 0,
+      "tenant_registry_cache_miss": 3,
+      "empresas_request_count": 9,
+      "permission_cache_hit": 206,
+      "permission_cache_miss": 1,
+      "permission_probe_duration_ms": 12899,
+      "permission_endpoints_checked": 29,
+      "permission_probe_http_count": 29,
+      "fuel_cache_hit_count": 0,
+      "fuel_cache_miss_count": 1,
+      "expense_cache_hit_count": 0,
+      "expense_cache_miss_count": 1,
+      "receivable_cache_hit_count": 0,
+      "receivable_cache_miss_count": 1,
+      "webposto_request_total": 177,
+      "webposto_venda_requests": 3,
+      "webposto_venda_item_requests": 30,
+      "webposto_produto_requests": 2,
+      "webposto_429_count": 0,
+      "webposto_timeout_count": 0,
+      "webposto_5xx_count": 0,
+      "duplicate_analysis_count": 0,
+      "duplicate_request_count": 0,
+      "analysis_trigger_count": 1,
+      "snapshot_freshness_last": "NO_ANALYSIS",
+      "snapshot_age_seconds_last": null
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "items": {
+    "11495:4363558:DINHEIRO": {
+      "status": "JUSTIFIED",
+      "updatedAt": "2026-07-04T22:45:44+00:00",
+      "responsibleUser": "auditor_d02"
+    }
+  },
+  "justifications": {
+    "11495:4363558:DINHEIRO": [
+      {
+        "id": "JUST-7ECD70129B",
+        "reasonCategory": "OPERATIONAL_ERROR",
+        "description": "Teste runtime D02 paridade VIP",
+        "expectedResolutionDate": null,
+        "responsibleUser": "auditor_d02",
+        "createdAt": "2026-07-04T22:45:44+00:00",
+        "createdBy": null
+      }
+    ]
+  }
+}

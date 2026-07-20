@@ -1,0 +1,20 @@
+{
+  "decision_id": "175da101-6f68-42f4-9d2b-9b42e6cedea2",
+  "evidence_items_total": 16,
+  "identified_count": 3,
+  "identified_amount": 450.0,
+  "pending_review_count": 13,
+  "pending_review_amount": 7951.0,
+  "request_created": true,
+  "request_id": "d7ff3eae-b846-4bbb-8e7b-1b49841afbf1",
+  "status": "REQUESTED",
+  "review_responsible": null,
+  "service_second_post_duplicate": true,
+  "http_post1_status": 200,
+  "http_post2_status": 200,
+  "http_post2_already_exists": true,
+  "http_get_list_status": 200,
+  "http_get_one_status": 200,
+  "idempotency_pass": true,
+  "store_requests_count": 1
+}

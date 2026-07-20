@@ -68,3 +68,29 @@ async def test_blocks_department_when_sales_evidence_is_missing() -> None:
     convenience = next(row for row in result["lines"] if row["department"] == "conveniencia")
     assert convenience["status"] == "BLOQUEADO"
     assert "FATURAMENTO" in convenience["missingEvidence"]
+
+
+async def test_dre_reports_financial_evidence_status() -> None:
+    class ZeroProvenReconciliation:
+        async def build(self, start, end, company):
+            return {
+                "publication": {"dreTotalsReleased": True},
+                "coverage": [{
+                    "source": "DESPESAS_FINANCEIRO_REDE",
+                    "status": "COMPROVADO_SEM_MOVIMENTO",
+                    "complete": True
+                }],
+                "departmentalDre": [
+                    {"companyCode": 11495, "department": "combustiveis", "confirmedExpenses": "0.00"}
+                ]
+            }
+
+    result = await CompleteDepartmentalDreService(ZeroProvenReconciliation(), Fuel(), NonFuel()).build(
+        "2026-07-01", "2026-07-01", 11495
+    )
+    fuel = next(row for row in result["lines"] if row["department"] == "combustiveis")
+    assert fuel["status"] == "LIBERADO"
+    assert fuel["expenses"] == "0.00"
+    assert fuel["financialEvidence"]["status"] == "COMPROVADO_SEM_MOVIMENTO"
+    assert fuel["financialEvidence"]["confirmedExpenses"] == "0.00"
+
