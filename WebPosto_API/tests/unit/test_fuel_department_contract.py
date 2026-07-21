@@ -4,6 +4,7 @@ import pytest
 from pydantic import ValidationError
 
 from src.domain.fuel.models import FuelVolumeFact
+from src.models.response_model import WebPostoResponse
 from src.services.fuel_analytics_service import FuelAnalyticsFilters, FuelAnalyticsService
 
 
@@ -57,3 +58,48 @@ async def test_fuel_service_blocks_unlicensed_filter_before_calling_api() -> Non
     assert response.error is not None
     assert response.error.status == 403
     assert response.error.type == "UNLICENSED_COMPANY"
+
+
+class _LmcOnlyClient:
+    """Cliente falso que só serve CONSULTAR_LMC_REDE; o catálogo é injetado à parte."""
+
+    async def call_endpoint(self, name, params=None):
+        assert name == "lmc_rede"
+        return WebPostoResponse.ok(
+            [
+                {
+                    "empresaCodigo": 74014,
+                    "produtoCodigo": 20,
+                    "produtoLmcCodigo": 555,
+                    "saida": "100",
+                    "data": "2026-07-17",
+                }
+            ]
+        )
+
+
+class _FakeCatalogWithLmcLink:
+    """Catálogo em que o produto 20 não tem nome próprio, mas compartilha
+    produtoLmcCodigo com o produto 10 (Diesel S10, já nomeado)."""
+
+    async def get_catalog(self, _codes):
+        return WebPostoResponse.ok(
+            {
+                "products": [
+                    {"produtoCodigo": 10, "nomeProduto": "Diesel S10", "produtoLmcCodigo": 555},
+                    {"produtoCodigo": 20, "nomeProduto": "Produto 20", "produtoLmcCodigo": 555},
+                ]
+            }
+        )
+
+
+@pytest.mark.asyncio
+async def test_fuel_summary_resolves_generic_name_via_catalog_lmc_cross_reference() -> None:
+    service = FuelAnalyticsService(_LmcOnlyClient(), catalog=_FakeCatalogWithLmcLink())
+
+    response = await service.get_fuel_summary(
+        FuelAnalyticsFilters("2026-07-17", "2026-07-17", empresa_codigo=74014)
+    )
+
+    assert response.success is True
+    assert response.data["combustiveis"][0]["combustivel"] == "Diesel S10"
