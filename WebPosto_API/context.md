@@ -222,6 +222,41 @@ Agregação obrigatória: **rede → filial → combustível**.
 
 ---
 
+### Sprint 18: Auditoria de Despesas Zeradas & Estados de Cobertura
+
+- **Escopo:** Motor de auditoria (D02) para reconciliação de despesas/caixa/cartão, sinalização de despesas zeradas e estados de cobertura por natureza financeira.
+- **Commit:** `fb07347` — `feat: implementar Sprint 18 - auditoria de despesas zeradas e estados de cobertura`
+- **Status:** ✅ **Concluída** (2026-07-20)
+
+#### Ações realizadas
+
+| Ação | Detalhe |
+|------|---------|
+| Motor de auditoria D02 | `docs/d02/` — contrato de reconciliação, matriz de fontes, engine de sinais, correção conceitual, sumário executivo |
+| Paridade real | `D02_REAL_PARITY_RUNTIME_REPORT.md`, `D02_PARITY_RUN.json`, `D02_PARITY_REPORT.md` |
+| UX de reconciliação | `D02_DIRETORIA_RECONCILIATION_UX.md` — estados de cobertura para a Diretoria |
+| Canvas de auditoria | `canvases/logos-auditoria.canvas.tsx` |
+| Baseline multi-decisão | `DIRECTOR_MULTI_DECISION_BASELINE.md`, runtime JSON/PNG de evidência |
+
+---
+
+### Sprint 19: Resolução de Nomes de Combustível (Cruzamento LMC)
+
+- **Escopo:** Eliminar nomes genéricos (`"Produto {codigo}"`) nos dashboards executivos de combustível, já que `/INTEGRACAO/PRODUTO_COMBUSTIVEL` está permanentemente bloqueado (HTTP 401).
+- **Commits:** `c7fe81b` (cruzamento LMC no `ProdutoCatalogService` + `FuelSalesReconciliationService`), `b7fa100` (unificação do `FuelAnalyticsService` com o mesmo mecanismo)
+- **Status:** ✅ **Concluída** (2026-07-20)
+
+#### Ações realizadas
+
+| Ação | Detalhe |
+|------|---------|
+| `ProdutoCatalogService.get_catalog()` | Cruzamento por `produtoLmcCodigo`: propaga nome real entre produtos "irmãos" (mesmo bico/LMC) quando um deles não tem nome próprio cadastrado |
+| `FuelSalesReconciliationService.build()` | Fallback de nome via LMC agregado por venda (`fact.produto_lmc_codigo`) na reconciliação departamental de combustíveis |
+| `FuelAnalyticsService` | Unificado para usar `ProdutoCatalogService.get_catalog()` (injetável via `catalog=`) em vez de chamada duplicada e direta ao endpoint `produto` — elimina lógica de nomes divergente entre serviços |
+| Testes | `test_get_catalog_resolves_generic_name_via_lmc_cross_reference`, `test_resolves_generic_name_via_lmc_cross_reference`, `test_fuel_summary_resolves_generic_name_via_catalog_lmc_cross_reference` — 27 testes de combustível/catálogo passando |
+
+---
+
 ## 4. Protocolo de Engenharia
 
 - Commits obrigatoriamente atômicos e isolados por entrega de Sprint seguindo o padrão definido.
@@ -254,6 +289,8 @@ Agregação obrigatória: **rede → filial → combustível**.
 
 | Data | Versão | Alteração |
 |------|--------|-----------|
+| 2026-07-20 | 3.9 | Sprint 19 — cruzamento LMC unificado em `ProdutoCatalogService`, `FuelSalesReconciliationService` e `FuelAnalyticsService`; elimina nomes genéricos de combustível |
+| 2026-07-20 | 3.8 | Sprint 18 — motor de auditoria D02 (reconciliação de despesas/caixa/cartão), estados de cobertura, baseline multi-decisão |
 | 2026-07-15 | 3.7 | Integração frontend das 3 Telas do Presidente — normalizers, business-health, smoke tests |
 | 2026-07-14 | 3.6 | Sprints 2–4 concluídas — business-health, MarginDetector, DRE gerencial, cash-flow semântico, paridade preços |
 | 2026-07-13 | 3.5 | Sprint 2 — isolamento multi-tenant rigoroso em `/discovery/*` |
