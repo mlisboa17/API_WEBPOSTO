@@ -20,12 +20,12 @@ import threading
 from pathlib import Path
 from typing import Callable
 
-from sqlalchemy import Column, DateTime, MetaData, String, Table, create_engine, func, select
+from sqlalchemy import Column, DateTime, MetaData, String, Table, case, create_engine, func, select
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.pool import StaticPool
 from sqlalchemy.types import JSON
 
-from src.services.decision_execution.models import ExecutionRecord
+from src.services.decision_execution.models import DecisionStatus, ExecutionRecord
 
 ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_SQLITE_PATH = ROOT / "snapshots" / "decision_execution" / "store.db"
@@ -142,3 +142,71 @@ class SQLExecutionRecordStore:
         with self._engine.connect() as conn:
             rows = conn.execute(select(execution_records_table.c.payload)).all()
         return [ExecutionRecord.model_validate(row.payload) for row in rows]
+
+    def aggregate_category_stats(
+        self, tenant_id: str, empresa_codigo: str
+    ) -> dict[str, dict[str, int]]:
+        """Aggregate per-category decision counts directly via SQL (no payload loading).
+
+        Filters strictly by tenant/empresa and excludes decisions that were never
+        presented (status == NEW). Returned counts can be used to compute success,
+        execution and rejection rates without deserializing full ExecutionRecords.
+        """
+        status_col = execution_records_table.c.current_status
+
+        executing_count = func.sum(
+            case((status_col == DecisionStatus.EXECUTING.value, 1), else_=0)
+        ).label("executing")
+        completed_count = func.sum(
+            case((status_col == DecisionStatus.COMPLETED.value, 1), else_=0)
+        ).label("completed")
+        not_completed_count = func.sum(
+            case((status_col == DecisionStatus.NOT_COMPLETED.value, 1), else_=0)
+        ).label("not_completed")
+        partial_count = func.sum(
+            case((status_col == DecisionStatus.PARTIAL.value, 1), else_=0)
+        ).label("partial")
+        expired_count = func.sum(
+            case((status_col == DecisionStatus.EXPIRED.value, 1), else_=0)
+        ).label("expired")
+
+        stmt = (
+            select(
+                execution_records_table.c.decision_category,
+                func.count().label("presented"),
+                executing_count,
+                completed_count,
+                not_completed_count,
+                partial_count,
+                expired_count,
+            )
+            .where(
+                execution_records_table.c.tenant_id == tenant_id,
+                execution_records_table.c.empresa_codigo == empresa_codigo,
+                status_col != DecisionStatus.NEW.value,
+            )
+            .group_by(execution_records_table.c.decision_category)
+        )
+
+        with self._lock, self._engine.connect() as conn:
+            rows = conn.execute(stmt).all()
+
+        result: dict[str, dict[str, int]] = {}
+        for row in rows:
+            category = row.decision_category or "unknown"
+            presented = row.presented or 0
+            executing = row.executing or 0
+            completed = row.completed or 0
+            not_completed = row.not_completed or 0
+            partial = row.partial or 0
+            expired = row.expired or 0
+            executed = executing + completed + not_completed + partial
+            result[category] = {
+                "presented": presented,
+                "executed": executed,
+                "completed": completed,
+                "not_completed": not_completed,
+                "partial": partial,
+                "expired": expired,
+            }
+        return result

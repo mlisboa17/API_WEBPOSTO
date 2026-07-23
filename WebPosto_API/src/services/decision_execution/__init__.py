@@ -53,6 +53,10 @@ from .feedback import ExecutionFeedbackService
 
 from .behavior_analytics import BehaviorAnalyticsService
 
+from .efficacy_analytics import CategoryEfficacy, EfficacyAnalyticsEngine
+
+from .preference_model import PreferenceModelService, PreferenceWeightResult
+
 __all__ = [
     # Enums
     "DecisionStatus",
@@ -79,4 +83,8 @@ __all__ = [
     "ExecutionMetricsCalculator",
     "ExecutionFeedbackService",
     "BehaviorAnalyticsService",
+    "EfficacyAnalyticsEngine",
+    "CategoryEfficacy",
+    "PreferenceModelService",
+    "PreferenceWeightResult",
 ]
