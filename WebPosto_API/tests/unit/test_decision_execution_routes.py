@@ -8,12 +8,24 @@ DIR-01 sem depender de dados reais.
 from __future__ import annotations
 
 import asyncio
+from datetime import datetime, timedelta
 
 import pytest
 
 from src.interfaces.http.routes import decisions as mod
 from src.services.decision_evidence.models import DecisionEvidenceResponse
 from src.services.decision_execution import ExecutionRecordStore, ExecutionService
+from src.services.owner_intelligence.schemas import (
+    ActionPriority,
+    ActionType,
+    BusinessHealthMetrics,
+    ConfidenceLevel,
+    DailyDecision,
+    DecisionAction,
+    DecisionSource,
+    FinancialImpact,
+    OwnerActionCenterSummary,
+)
 
 
 def _fake_evidence(decision_id: str, *, recoverable: float = 8500.0) -> DecisionEvidenceResponse:
@@ -190,3 +202,222 @@ def test_behavior_insights_reports_executed_and_rejected_categories(isolated_sto
     assert "CardReceivableDetector" in data["categories"]
     assert data["categories"]["CardReceivableDetector"]["completed"] >= 1
     assert data["most_executed_category"] == "CardReceivableDetector"
+
+
+# ---------------------------------------------------------------------------
+# FASE 5 (APRENDER) — Action Center Top 5 with preference weights
+# ---------------------------------------------------------------------------
+
+
+def _make_decision_action(
+    decision_id: str,
+    priority: ActionPriority,
+    category: str,
+    tenant_id: str,
+    empresa_codigo: str,
+) -> DecisionAction:
+    return DecisionAction(
+        id=f"act-{decision_id}",
+        type=ActionType.URGENT,
+        priority=priority,
+        title=f"Action {decision_id}",
+        description="Test action",
+        financial_impact=FinancialImpact(
+            estimated_value=1000.0,
+            impact_type="recoverable",
+            probability=0.8,
+            timeframe_days=1,
+        ),
+        source=DecisionSource(
+            endpoint="/test",
+            service="TestService",
+            data_timestamp=datetime.utcnow(),
+        ),
+        confidence=0.85,
+        confidence_level=ConfidenceLevel.HIGH,
+        tenant_id=tenant_id,
+        empresa_codigo=empresa_codigo,
+        suggested_action="Execute",
+        category=category,
+    )
+
+
+def _make_daily_decision(
+    decision_id: str,
+    rank: int,
+    priority: ActionPriority,
+    category: str,
+    total_score: float,
+    tenant_id: str = "tenant-001",
+    empresa_codigo: str = "empresa-001",
+) -> DailyDecision:
+    action = _make_decision_action(decision_id, priority, category, tenant_id, empresa_codigo)
+    return DailyDecision(
+        id=decision_id,
+        rank=rank,
+        title=f"Decision {decision_id}",
+        description="Test decision",
+        decision_question="Should we act?",
+        why_appeared="Test",
+        why_ranked="Test",
+        money_involved="R$ 1.000,00",
+        what_rule_triggered="test-rule",
+        total_score=total_score,
+        financial_impact_score=80.0,
+        urgency_score=80.0,
+        confidence_score=85.0,
+        ease_score=80.0,
+        time_score=80.0,
+        action=action,
+        decision_type="recovery",
+    )
+
+
+def _make_owner_summary(
+    tenant_id: str,
+    empresa_codigo: str,
+    decisions: list[DailyDecision],
+    preference_audit: list[dict] | None = None,
+) -> OwnerActionCenterSummary:
+    now = datetime.utcnow()
+    return OwnerActionCenterSummary(
+        tenant_id=tenant_id,
+        empresa_codigo=empresa_codigo,
+        generated_at=now,
+        data_period_start=now - timedelta(days=30),
+        data_period_end=now,
+        business_health=BusinessHealthMetrics(
+            score=70.0,
+            status="good",
+            trend="stable",
+            trend_percent=0.0,
+            revenue_health=70.0,
+            expense_health=70.0,
+            cash_health=70.0,
+            margin_health=70.0,
+            operational_health=70.0,
+            summary="Test summary",
+            recommendations=[],
+        ),
+        money_at_risk=[],
+        money_at_risk_total=0,
+        recoverable_money=[],
+        recoverable_total=0,
+        opportunities=[],
+        opportunity_total=0,
+        top_5_decisions=decisions,
+        all_decisions=decisions,
+        executive_summary="Test executive summary",
+        greeting="Bom dia",
+        total_actions=len(decisions),
+        critical_actions=sum(1 for d in decisions if d.action.priority == ActionPriority.CRITICAL),
+        high_actions=sum(1 for d in decisions if d.action.priority == ActionPriority.HIGH),
+        actions_requiring_immediate_attention=0,
+        confidence_average=0.85,
+        data_sources=[],
+        preference_audit=preference_audit or [],
+    )
+
+
+def test_top5_requires_tenant_and_company():
+    with pytest.raises(Exception) as exc_info:
+        asyncio.run(mod.get_top5_decisions(tenant_id="", empresa_codigo="123"))
+    assert getattr(exc_info.value, "status_code", None) == 422
+
+
+def test_top5_returns_empty_when_no_decisions(monkeypatch):
+    async def _empty_summary(*_a, **_kw):
+        return _make_owner_summary("tenant-001", "empresa-001", [])
+
+    monkeypatch.setattr(
+        mod._owner_intelligence_engine, "generate_action_center_summary", _empty_summary
+    )
+
+    result = asyncio.run(
+        mod.get_top5_decisions(tenant_id="tenant-001", empresa_codigo="empresa-001")
+    )
+    assert result["success"] is True
+    assert result["data"]["decisions"] == []
+    assert result["data"]["preference_audit"] == []
+    assert result["data"]["tenant_id"] == "tenant-001"
+    assert result["data"]["empresa_codigo"] == "empresa-001"
+
+
+def test_top5_returns_decisions_with_preference_audit(monkeypatch):
+    decisions = [
+        _make_daily_decision("dec-001", 1, ActionPriority.HIGH, "revenue", 90.0),
+        _make_daily_decision("dec-002", 2, ActionPriority.HIGH, "expense", 80.0),
+    ]
+    audit = [
+        {
+            "decision_id": "dec-001",
+            "category": "revenue",
+            "original_score": 90.0,
+            "adjusted_score": 94.5,
+            "multiplier": 1.05,
+            "reason": "positive preference bias",
+        },
+        {
+            "decision_id": "dec-002",
+            "category": "expense",
+            "original_score": 80.0,
+            "adjusted_score": 76.0,
+            "multiplier": 0.95,
+            "reason": "negative preference bias",
+        },
+    ]
+
+    async def _summary(*_a, **_kw):
+        return _make_owner_summary("tenant-001", "empresa-001", decisions, audit)
+
+    monkeypatch.setattr(mod._owner_intelligence_engine, "generate_action_center_summary", _summary)
+
+    result = asyncio.run(
+        mod.get_top5_decisions(tenant_id="tenant-001", empresa_codigo="empresa-001")
+    )
+    data = result["data"]
+    assert len(data["decisions"]) == 2
+    assert data["decisions"][0]["id"] == "dec-001"
+    assert data["total_actions"] == 2
+    assert len(data["preference_audit"]) == 2
+    assert data["preference_audit"][0]["decision_id"] == "dec-001"
+    assert "multiplier" in data["preference_audit"][0]
+    assert "reason" in data["preference_audit"][0]
+
+
+def test_top5_critical_decision_never_reduced(monkeypatch):
+    decisions = [
+        _make_daily_decision("dec-critical", 1, ActionPriority.CRITICAL, "revenue", 90.0),
+        _make_daily_decision("dec-high", 2, ActionPriority.HIGH, "revenue", 90.0),
+    ]
+    audit = [
+        {
+            "decision_id": "dec-critical",
+            "category": "revenue",
+            "original_score": 90.0,
+            "adjusted_score": 103.5,
+            "multiplier": 1.15,
+            "reason": "critical priority protected from reduction (category=revenue)",
+        },
+        {
+            "decision_id": "dec-high",
+            "category": "revenue",
+            "original_score": 90.0,
+            "adjusted_score": 76.5,
+            "multiplier": 0.85,
+            "reason": "negative preference bias",
+        },
+    ]
+
+    async def _summary(*_a, **_kw):
+        return _make_owner_summary("tenant-001", "empresa-001", decisions, audit)
+
+    monkeypatch.setattr(mod._owner_intelligence_engine, "generate_action_center_summary", _summary)
+
+    result = asyncio.run(
+        mod.get_top5_decisions(tenant_id="tenant-001", empresa_codigo="empresa-001")
+    )
+    data = result["data"]
+    critical_audit = next(a for a in data["preference_audit"] if a["decision_id"] == "dec-critical")
+    assert critical_audit["multiplier"] >= 1.15
+    assert "critical" in critical_audit["reason"].lower()

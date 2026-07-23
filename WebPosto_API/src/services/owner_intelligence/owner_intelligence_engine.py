@@ -24,17 +24,17 @@ from datetime import datetime, timedelta
 from typing import Optional, Dict, Any, List
 from dataclasses import dataclass
 
-from src.services.decision_execution.preference_model import PreferenceModelService
+from src.services.decision_execution.preference_model import (
+    PreferenceModelService,
+    PreferenceWeightResult,
+)
 
 from .schemas import (
     OwnerActionCenterSummary,
     BusinessHealthMetrics,
-    DailyDecision,
     MoneyAtRiskFinding,
     RecoverableMoneyFinding,
     GrowthOpportunity,
-    DecisionSource,
-    ConfidenceLevel,
     BaselineConfig,
     RiskThresholds,
 )
@@ -42,7 +42,6 @@ from .money_at_risk import MoneyAtRiskEngine
 from .recoverable_money import RecoverableMoneyEngine
 from .growth_opportunities import GrowthOpportunitiesEngine
 from .daily_actions import DailyActionsEngine
-from .priority_engine import PriorityEngine
 
 logger = logging.getLogger(__name__)
 
@@ -201,9 +200,14 @@ class OwnerIntelligenceEngine:
             immediate_attention = sum(1 for d in top_5_decisions if d.urgency_score >= 80)
 
             # 9. Apply preference model weights to the top 5 decisions
-            top_5_decisions, _ = self.preference_model_service.apply_preference_weights(
-                top_5_decisions, tenant_id=tenant_id, empresa_codigo=empresa_codigo
-            )
+            preference_audit: List[Dict[str, Any]] = []
+            if top_5_decisions:
+                top_5_decisions, weight_results = (
+                    self.preference_model_service.apply_preference_weights(
+                        top_5_decisions, tenant_id=tenant_id, empresa_codigo=empresa_codigo
+                    )
+                )
+                preference_audit = [self._audit_to_dict(r) for r in weight_results]
 
             # 10. Generate executive summary
             executive_summary = self.daily_actions_engine.get_executive_summary(
@@ -240,6 +244,7 @@ class OwnerIntelligenceEngine:
                 actions_requiring_immediate_attention=immediate_attention,
                 confidence_average=confidence_average,
                 data_sources=data_sources_used,
+                preference_audit=preference_audit,
             )
 
             elapsed = (datetime.utcnow() - start_time).total_seconds()
@@ -509,4 +514,17 @@ class OwnerIntelligenceEngine:
             actions_requiring_immediate_attention=0,
             confidence_average=0,
             data_sources=[],
+            preference_audit=[],
         )
+
+    @staticmethod
+    def _audit_to_dict(result: "PreferenceWeightResult") -> Dict[str, Any]:
+        """Serialize a PreferenceWeightResult for the API response."""
+        return {
+            "decision_id": result.decision_id,
+            "category": result.category,
+            "original_score": result.original_score,
+            "adjusted_score": result.adjusted_score,
+            "multiplier": result.multiplier,
+            "reason": result.reason,
+        }

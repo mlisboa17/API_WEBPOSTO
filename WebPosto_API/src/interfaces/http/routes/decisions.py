@@ -20,8 +20,13 @@ from datetime import datetime
 from decimal import Decimal, InvalidOperation
 from typing import Any
 
-from fastapi import APIRouter, Body, HTTPException, Response
+from fastapi import APIRouter, Body, HTTPException, Query, Response
 from pydantic import BaseModel
+
+from src.services.owner_intelligence.owner_intelligence_engine import (
+    EngineDataSources,
+    OwnerIntelligenceEngine,
+)
 
 from src.services.decision_evidence.decision_evidence_service import DecisionEvidenceService
 from src.services.decision_execution import (
@@ -54,6 +59,7 @@ _review_service = ExecutiveReviewService(_evidence_service)
 _execution_store = SQLExecutionRecordStore()
 _execution_service = ExecutionService(repository=_execution_store)
 _behavior_analytics_service = BehaviorAnalyticsService()
+_owner_intelligence_engine = OwnerIntelligenceEngine()
 
 
 @router.get("/{decision_id}/evidence")
@@ -61,7 +67,9 @@ async def get_decision_evidence(decision_id: str) -> dict:
     """Retorna lançamentos/evidências que sustentam uma decisão prioritária."""
     result = await _evidence_service.get_evidence(decision_id)
     if not result:
-        raise HTTPException(status_code=404, detail="Decisão não encontrada nos snapshots de análise")
+        raise HTTPException(
+            status_code=404, detail="Decisão não encontrada nos snapshots de análise"
+        )
     return {"success": True, "data": result.model_dump()}
 
 
@@ -75,7 +83,9 @@ async def create_decision_review_request(
     try:
         request, already_exists = await _review_service.create_review_request(decision_id, body)
     except DecisionNotFoundError:
-        raise HTTPException(status_code=404, detail="Decisão não encontrada nos snapshots de análise") from None
+        raise HTTPException(
+            status_code=404, detail="Decisão não encontrada nos snapshots de análise"
+        ) from None
     except NoPendingEvidenceError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
@@ -95,7 +105,9 @@ async def list_decision_review_requests(decision_id: str) -> dict:
     try:
         requests = await _review_service.list_for_decision(decision_id)
     except DecisionNotFoundError:
-        raise HTTPException(status_code=404, detail="Decisão não encontrada nos snapshots de análise") from None
+        raise HTTPException(
+            status_code=404, detail="Decisão não encontrada nos snapshots de análise"
+        ) from None
 
     return {
         "success": True,
@@ -198,7 +210,9 @@ async def execute_decision_endpoint(
     """Owner clica "Executar Agora": cria/avança o ExecutionRecord para EXECUTING."""
     record = await _get_or_create_execution_record(decision_id)
     if not record:
-        raise HTTPException(status_code=404, detail="Decisão não encontrada nos snapshots de análise")
+        raise HTTPException(
+            status_code=404, detail="Decisão não encontrada nos snapshots de análise"
+        )
 
     if record.current_status == DecisionStatus.EXECUTING:
         return {"success": True, "data": _execution_service.get_execution_context(record)}
@@ -248,7 +262,9 @@ async def confirm_decision_endpoint(decision_id: str, body: ConfirmDecisionBody)
     try:
         confirmation_result = ConfirmationResult(body.result)
     except ValueError:
-        raise HTTPException(status_code=422, detail=f"result inválido: {body.result!r} (use yes/partial/no)") from None
+        raise HTTPException(
+            status_code=422, detail=f"result inválido: {body.result!r} (use yes/partial/no)"
+        ) from None
 
     try:
         confirmed_amount = (
@@ -271,7 +287,9 @@ async def confirm_decision_endpoint(decision_id: str, body: ConfirmDecisionBody)
             partial_reason=PartialReason(body.partial_reason) if body.partial_reason else None,
             partial_details=body.partial_details,
             next_action=body.next_action,
-            rejection_reason=RejectionReason(body.rejection_reason) if body.rejection_reason else None,
+            rejection_reason=(
+                RejectionReason(body.rejection_reason) if body.rejection_reason else None
+            ),
             rejection_details=body.rejection_details,
         )
     except (ExecutionError, ConfirmationError) as exc:
@@ -331,3 +349,49 @@ async def get_behavior_insights() -> dict:
     records = _execution_store.list_all()
     insights = _behavior_analytics_service.analyze(records)
     return {"success": True, "data": insights}
+
+
+@router.get("/top5")
+async def get_top5_decisions(
+    tenant_id: str = Query(..., description="Tenant identifier"),
+    empresa_codigo: str = Query(..., description="Company code (WebPosto)"),
+) -> dict:
+    """FASE 5 (APRENDER) — Action Center Top 5 decisions with preference weights applied.
+
+    Exposes the owner intelligence summary through the decisions API so the
+    vanilla-js frontend can consume ranked decisions plus preference audit
+    metadata without changing existing contracts.
+    """
+    if not tenant_id.strip() or not empresa_codigo.strip():
+        raise HTTPException(status_code=422, detail="tenant_id and empresa_codigo are required")
+
+    data_sources = EngineDataSources(
+        financial_overview={},
+        accounts_receivable={},
+        accounts_payable={},
+        sales_data={},
+        product_data={},
+        payment_data={},
+        card_data={},
+        expense_data={},
+        historical_data={},
+    )
+
+    summary = await _owner_intelligence_engine.generate_action_center_summary(
+        tenant_id=tenant_id,
+        empresa_codigo=empresa_codigo,
+        data_sources=data_sources,
+    )
+
+    return {
+        "success": True,
+        "data": {
+            "tenant_id": summary.tenant_id,
+            "empresa_codigo": summary.empresa_codigo,
+            "decisions": [d.model_dump(mode="json") for d in summary.top_5_decisions],
+            "preference_audit": summary.preference_audit,
+            "total_actions": summary.total_actions,
+            "critical_actions": summary.critical_actions,
+            "high_actions": summary.high_actions,
+        },
+    }
