@@ -1728,6 +1728,43 @@ export async function postDecisionReviewRequest(decisionId, body = {}) {
   return raw;
 }
 
+/** EXEC-02 — Owner clica "Executar Agora": NEW/READY -> EXECUTING. */
+export async function executeDecision(decisionId, body = {}) {
+  const raw = await apiClient.post(
+    `/api/v1/decisions/${encodeURIComponent(decisionId)}/execute`,
+    body,
+    { timeout: ANALYTICS_TIMEOUT_MS },
+  );
+  return raw;
+}
+
+/** EXEC-02 — Confirmação de resultado (SIM/PARCIALMENTE/NÃO). body.result: 'yes'|'partial'|'no'. */
+export async function confirmDecisionResult(decisionId, body) {
+  const raw = await apiClient.post(
+    `/api/v1/decisions/${encodeURIComponent(decisionId)}/confirm`,
+    body,
+    { timeout: ANALYTICS_TIMEOUT_MS },
+  );
+  return raw;
+}
+
+/** EXEC-02 — Timeline completa (status, eventos, impacto estimado/confirmado) de uma decisão. */
+export async function fetchDecisionTimeline(decisionId) {
+  const raw = await apiClient.get(`/api/v1/decisions/${encodeURIComponent(decisionId)}/timeline`, {
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  return raw;
+}
+
+/** EXEC-03 — Dashboard de métricas de execução (pendentes, hoje, período, all-time) por tenant. */
+export async function fetchExecutionMetricsSummary(tenantId, empresaCodigo) {
+  const raw = await apiClient.get("/api/v1/decisions/metrics/summary", {
+    params: { tenant_id: tenantId, empresa_codigo: empresaCodigo },
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  return raw;
+}
+
 export async function fetchExecutiveFollowUps(params = {}) {
   const raw = await apiClient.get("/api/v1/executive/follow-ups", {
     params,

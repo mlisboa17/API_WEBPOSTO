@@ -201,6 +201,157 @@ function identityBadge(item) {
   return `<span class="dir-match dir-match--${cls}">${label}</span>`;
 }
 
+const EXEC_STATUS_LABEL = {
+  new: "Criada",
+  ready: "Pronta para execução",
+  executing: "Em execução",
+  completed: "Concluída",
+  not_completed: "Não concluída",
+  partial: "Parcialmente concluída",
+  expired: "Expirada",
+  cancelled: "Cancelada",
+  archived: "Arquivada",
+};
+
+const REJECTION_REASON_LABEL = {
+  not_priority: "Não era prioridade",
+  no_time: "Não teve tempo",
+  incorrect_info: "Informação incorreta",
+  already_resolved: "Já resolvido de outra forma",
+  could_not_contact: "Não conseguiu contato",
+  external_blocker: "Bloqueio externo",
+  other: "Outro motivo",
+};
+
+const PARTIAL_REASON_LABEL = {
+  awaiting_response: "Aguardando resposta externa",
+  in_progress: "Em andamento",
+  partially_successful: "Parcialmente bem-sucedido",
+  requires_followup: "Requer acompanhamento",
+};
+
+/** EXEC-02 — bloco "Executar Agora" / confirmação SIM-PARCIAL-NÃO / timeline. */
+function renderExecutionBlock(execution, executionUi = {}) {
+  const loading = executionUi.loading;
+  const error = executionUi.error;
+  const success = executionUi.success;
+  const form = executionUi.confirmForm || {};
+
+  if (executionUi.notYetExecuted || !execution) {
+    return `
+      <section class="panel dir-execution-block">
+        <h3>Execução</h3>
+        <p class="muted">Esta decisão ainda não foi executada.</p>
+        ${error ? `<p class="dir-review-error" role="alert">${error}</p>` : ""}
+        <button type="button" id="dirExecuteBtn" class="btn-primary" ${loading ? "disabled" : ""}>
+          ${loading ? "Executando..." : "Executar Agora"}
+        </button>
+      </section>`;
+  }
+
+  const status = execution.status;
+  const statusLabel = EXEC_STATUS_LABEL[status] || status;
+  const estimated = execution.estimated_impact || {};
+  const confirmed = execution.confirmed_impact || null;
+  const timeline = execution.timeline || [];
+
+  const timelineHtml = timeline.length
+    ? `<ul class="dir-timeline">${timeline
+        .map(
+          (e) =>
+            `<li><strong>${EXEC_STATUS_LABEL[e.status] || e.status}</strong> — ${fmtCell(e.action)} <span class="muted">(${new Date(e.timestamp).toLocaleString("pt-BR")})</span></li>`,
+        )
+        .join("")}</ul>`
+    : "";
+
+  let confirmationSection = "";
+  if (status === "executing") {
+    confirmationSection = `
+      <div class="dir-confirm-question">
+        <p><strong>A decisão resolveu o problema?</strong></p>
+        <div class="dir-confirm-choices">
+          <button type="button" class="btn-secondary dir-confirm-choice" data-result="yes">SIM</button>
+          <button type="button" class="btn-secondary dir-confirm-choice" data-result="partial">PARCIALMENTE</button>
+          <button type="button" class="btn-secondary dir-confirm-choice" data-result="no">NÃO</button>
+        </div>
+        ${
+          form.result === "yes"
+            ? `
+          <div class="dir-confirm-form">
+            <label>Valor confirmado (R$)
+              <input type="number" step="0.01" id="dirConfirmAmount" value="${form.confirmedAmount ?? ""}" />
+            </label>
+            <button type="button" id="dirConfirmSubmit" class="btn-primary" ${loading ? "disabled" : ""}>
+              ${loading ? "Confirmando..." : "Confirmar SIM"}
+            </button>
+          </div>`
+            : ""
+        }
+        ${
+          form.result === "partial"
+            ? `
+          <div class="dir-confirm-form">
+            <label>Progresso (%)
+              <input type="number" min="0" max="100" id="dirConfirmProgress" value="${form.partialProgress ?? ""}" />
+            </label>
+            <label>Motivo
+              <select id="dirConfirmPartialReason">
+                <option value="">Selecione...</option>
+                ${Object.entries(PARTIAL_REASON_LABEL)
+                  .map(([v, l]) => `<option value="${v}" ${form.partialReason === v ? "selected" : ""}>${l}</option>`)
+                  .join("")}
+              </select>
+            </label>
+            <label>Valor confirmado até agora (R$) — opcional
+              <input type="number" step="0.01" id="dirConfirmAmount" value="${form.confirmedAmount ?? ""}" />
+            </label>
+            <button type="button" id="dirConfirmSubmit" class="btn-primary" ${loading ? "disabled" : ""}>
+              ${loading ? "Confirmando..." : "Confirmar Parcial"}
+            </button>
+          </div>`
+            : ""
+        }
+        ${
+          form.result === "no"
+            ? `
+          <div class="dir-confirm-form">
+            <label>Motivo
+              <select id="dirConfirmRejectionReason">
+                <option value="">Selecione...</option>
+                ${Object.entries(REJECTION_REASON_LABEL)
+                  .map(([v, l]) => `<option value="${v}" ${form.rejectionReason === v ? "selected" : ""}>${l}</option>`)
+                  .join("")}
+              </select>
+            </label>
+            <button type="button" id="dirConfirmSubmit" class="btn-primary" ${loading ? "disabled" : ""}>
+              ${loading ? "Confirmando..." : "Confirmar Não"}
+            </button>
+          </div>`
+            : ""
+        }
+      </div>`;
+  }
+
+  return `
+    <section class="panel dir-execution-block">
+      <h3>Execução</h3>
+      <p>Status: <strong>${statusLabel}</strong></p>
+      <dl class="dir-detail__kpis">
+        <div><dt>Impacto estimado</dt><dd>${fmtMoney(estimated.amount)} <span class="muted">(${estimated.label || "ESTIMADO"})</span></dd></div>
+        ${
+          confirmed
+            ? `<div><dt>Impacto confirmado</dt><dd>${fmtMoney(confirmed.amount)} <span class="muted">(${confirmed.label})</span></dd></div>`
+            : ""
+        }
+      </dl>
+      ${error ? `<p class="dir-review-error" role="alert">${error}</p>` : ""}
+      ${success ? `<p class="dir-review-success" role="status">${success}</p>` : ""}
+      ${confirmationSection}
+      ${timelineHtml}
+    </section>`;
+}
+
+
 function renderEvidenceTable(items) {
   if (!items?.length) {
     return `<p class="muted">Nenhum lançamento detalhado disponível para esta decisão.</p>`;
@@ -254,6 +405,23 @@ function renderEvidenceTable(items) {
         <tbody>${rows}</tbody>
       </table>
     </div>`;
+}
+
+/** EXEC-03 — resumo de métricas de execução do posto (pendentes, hoje, mês, all-time). */
+function renderExecutionMetricsBlock(metrics) {
+  if (!metrics) return "";
+  return `
+    <section class="panel dir-execution-metrics">
+      <h3>Métricas de execução — ${fmtCell(metrics.tenant_id)}</h3>
+      <dl class="dir-detail__kpis">
+        <div><dt>Pendentes</dt><dd>${metrics.pending_count} <span class="muted">(${metrics.urgent_count} urgente(s))</span></dd></div>
+        <div><dt>Executadas hoje</dt><dd>${metrics.executed_today} <span class="muted">(${metrics.completed_today} concluídas)</span></dd></div>
+        <div><dt>Confirmado hoje</dt><dd>${fmtMoney(metrics.confirmed_today_value)}</dd></div>
+        <div><dt>Taxa de conclusão (mês)</dt><dd>${Math.round(metrics.period_completion_rate)}%</dd></div>
+        <div><dt>Confirmado no mês</dt><dd>${fmtMoney(metrics.period_confirmed_value)}</dd></div>
+        <div><dt>Confirmado total</dt><dd>${fmtMoney(metrics.total_confirmed_value)} <span class="muted">(${metrics.total_completed} decisão(ões))</span></dd></div>
+      </dl>
+    </section>`;
 }
 
 export function renderDecisionDetail(node, payload, filters, options = {}) {
@@ -350,6 +518,9 @@ export function renderDecisionDetail(node, payload, filters, options = {}) {
         }
       </section>
 
+      ${renderExecutionBlock(options.execution, options.executionUi)}
+      ${renderExecutionMetricsBlock(options.executionMetrics)}
+
       ${renderExecutiveReviewBlock(pending, reviewPayload, options, { aggregate, actions, supplierMode })}
     </section>
   `;
@@ -357,5 +528,23 @@ export function renderDecisionDetail(node, payload, filters, options = {}) {
   node.querySelector("#dirDetailBack")?.addEventListener("click", () => options.onBack?.());
   node.querySelector("#dirDetailRefresh")?.addEventListener("click", () => options.onRefresh?.());
   node.querySelector("#dirRequestReviewBtn")?.addEventListener("click", () => options.onRequestReview?.());
+  node.querySelector("#dirExecuteBtn")?.addEventListener("click", () => options.onExecuteDecision?.());
+  node.querySelectorAll(".dir-confirm-choice").forEach((btn) => {
+    btn.addEventListener("click", () => options.onSelectConfirmResult?.(btn.getAttribute("data-result")));
+  });
+  node.querySelector("#dirConfirmSubmit")?.addEventListener("click", () => {
+    const form = options.executionUi?.confirmForm || {};
+    const amountInput = node.querySelector("#dirConfirmAmount");
+    const progressInput = node.querySelector("#dirConfirmProgress");
+    const partialReasonSelect = node.querySelector("#dirConfirmPartialReason");
+    const rejectionReasonSelect = node.querySelector("#dirConfirmRejectionReason");
+    options.onConfirmDecision?.({
+      result: form.result,
+      confirmedAmount: amountInput?.value ? Number(amountInput.value) : undefined,
+      partialProgress: progressInput?.value ? Number(progressInput.value) : undefined,
+      partialReason: partialReasonSelect?.value || undefined,
+      rejectionReason: rejectionReasonSelect?.value || undefined,
+    });
+  });
 }
 

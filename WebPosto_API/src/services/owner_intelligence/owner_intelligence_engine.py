@@ -155,13 +155,16 @@ class OwnerIntelligenceEngine:
             
             # 5. Run Motor 4: Generate Daily Decisions
             logger.debug("Running DailyActionsEngine...")
+            execution_feedback, execution_feedback_stats = self._load_execution_feedback()
             top_5_decisions, all_decisions = await self.daily_actions_engine.generate_decisions(
                 tenant_id=tenant_id,
                 empresa_codigo=empresa_codigo,
                 money_at_risk=money_at_risk,
                 recoverable_money=recoverable_money,
                 opportunities=opportunities,
-                max_decisions=5
+                max_decisions=5,
+                execution_feedback=execution_feedback,
+                execution_feedback_stats=execution_feedback_stats,
             )
             
             # 6. Calculate totals
@@ -233,7 +236,27 @@ class OwnerIntelligenceEngine:
             logger.error(f"Error generating action center summary: {e}")
             # Return empty summary on error
             return self._create_empty_summary(tenant_id, empresa_codigo)
-    
+
+    @staticmethod
+    def _load_execution_feedback():
+        """
+        EXEC-03 — load the owner's confirmed execution history (SIM/PARCIAL/NÃO)
+        and precompute the per-category dampening signal for the priority engine.
+
+        Fails soft: if the execution store is unavailable for any reason, the
+        engine falls back to no dampening (behaves exactly as before EXEC-03).
+        """
+        try:
+            from src.services.decision_execution import ExecutionFeedbackService, ExecutionRecordStore
+
+            feedback = ExecutionFeedbackService()
+            store = ExecutionRecordStore()
+            stats = feedback.compute_stats(store.list_all())
+            return feedback, stats
+        except Exception as e:
+            logger.warning(f"ExecutionFeedbackService unavailable, skipping EXEC-03 dampening: {e}")
+            return None, {}
+
     def _calculate_business_health(
         self,
         money_at_risk: List[MoneyAtRiskFinding],

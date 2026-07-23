@@ -62,6 +62,10 @@ import {
   fetchDecisionEvidence,
   fetchDecisionReviewRequests,
   postDecisionReviewRequest,
+  executeDecision,
+  confirmDecisionResult,
+  fetchDecisionTimeline,
+  fetchExecutionMetricsSummary,
   fetchExecutiveFollowUps,
   fetchExecutiveFollowUpDetail,
   fetchFinancialReviewInbox,
@@ -708,6 +712,22 @@ const decisionReviewUi = {
   success: null,
 };
 
+const decisionExecutionUi = {
+  loading: false,
+  error: null,
+  success: null,
+  notYetExecuted: false,
+  confirmForm: { result: null },
+};
+
+function resetDecisionExecutionUi() {
+  decisionExecutionUi.loading = false;
+  decisionExecutionUi.error = null;
+  decisionExecutionUi.success = null;
+  decisionExecutionUi.notYetExecuted = false;
+  decisionExecutionUi.confirmForm = { result: null };
+}
+
 const sectionUi = {
   overview: { status: "idle", error: null },
   sales: { status: "idle", error: null },
@@ -980,6 +1000,7 @@ function ensureDataDefaults() {
   if (!state.data.ownerDiretoriaHome) state.data.ownerDiretoriaHome = null;
   if (!state.data.decisionDetail) state.data.decisionDetail = null;
   if (!state.data.decisionReviewRequests) state.data.decisionReviewRequests = null;
+  if (!state.data.decisionExecution) state.data.decisionExecution = null;
   if (!state.data.executiveFollowUp) state.data.executiveFollowUp = null;
   if (!state.data.executiveFollowUpDetail) state.data.executiveFollowUpDetail = null;
   if (!state.data.financialReviewInbox) state.data.financialReviewInbox = null;
@@ -1545,6 +1566,7 @@ function renderAll() {
         renderAll();
       },
       onOpenDecision: (decisionId) => {
+        resetDecisionExecutionUi();
         setView("decisionDetail", { decisionId });
         loadDecisionDetail(decisionId).then(() => renderAll());
       },
@@ -1599,7 +1621,11 @@ function renderAll() {
       reviewLoading: decisionReviewUi.loading,
       reviewError: decisionReviewUi.error,
       reviewSuccess: decisionReviewUi.success,
+      execution: state.data.decisionExecution,
+      executionUi: decisionExecutionUi,
+      executionMetrics: state.data.executionMetrics,
       onBack: () => {
+        resetDecisionExecutionUi();
         setView("ownerDiretoriaHome");
         renderAll();
       },
@@ -1635,6 +1661,54 @@ function renderAll() {
             "Não foi possível solicitar conferência.";
         } finally {
           decisionReviewUi.loading = false;
+          renderAll();
+        }
+      },
+      onExecuteDecision: async () => {
+        if (!state.decisionId || decisionExecutionUi.loading) return;
+        decisionExecutionUi.loading = true;
+        decisionExecutionUi.error = null;
+        decisionExecutionUi.success = null;
+        renderAll();
+        try {
+          await executeDecision(state.decisionId, { user_id: "owner" });
+          decisionExecutionUi.success = "Execução iniciada";
+          await loadDecisionExecution(state.decisionId);
+        } catch (error) {
+          decisionExecutionUi.error =
+            error?.response?.data?.detail || error?.message || "Não foi possível executar a decisão.";
+        } finally {
+          decisionExecutionUi.loading = false;
+          renderAll();
+        }
+      },
+      onSelectConfirmResult: (result) => {
+        decisionExecutionUi.confirmForm = { result };
+        renderAll();
+      },
+      onConfirmDecision: async ({ result, confirmedAmount, partialProgress, partialReason, rejectionReason }) => {
+        if (!state.decisionId || decisionExecutionUi.loading || !result) return;
+        decisionExecutionUi.loading = true;
+        decisionExecutionUi.error = null;
+        decisionExecutionUi.success = null;
+        renderAll();
+        try {
+          await confirmDecisionResult(state.decisionId, {
+            user_id: "owner",
+            result,
+            confirmed_amount: confirmedAmount,
+            partial_progress: partialProgress,
+            partial_reason: partialReason,
+            rejection_reason: rejectionReason,
+          });
+          decisionExecutionUi.success = "Confirmação registrada";
+          decisionExecutionUi.confirmForm = { result: null };
+          await loadDecisionExecution(state.decisionId);
+        } catch (error) {
+          decisionExecutionUi.error =
+            error?.response?.data?.detail || error?.message || "Não foi possível confirmar o resultado.";
+        } finally {
+          decisionExecutionUi.loading = false;
           renderAll();
         }
       },
@@ -2243,6 +2317,8 @@ async function loadDecisionDetail(decisionId, bypassCache = false) {
   if (!decisionId) {
     state.data.decisionDetail = null;
     state.data.decisionReviewRequests = null;
+    state.data.decisionExecution = null;
+    state.data.executionMetrics = null;
     return;
   }
   try {
@@ -2256,6 +2332,34 @@ async function loadDecisionDetail(decisionId, bypassCache = false) {
     console.warn("[decisionDetail] falha ao carregar evidências:", error);
     state.data.decisionDetail = null;
     state.data.decisionReviewRequests = null;
+  }
+  await loadDecisionExecution(decisionId);
+
+  const tenantId = state.data.decisionDetail?.data?.source_metadata?.tenant_id;
+  if (tenantId) {
+    try {
+      const metrics = await fetchExecutionMetricsSummary(tenantId, tenantId);
+      state.data.executionMetrics = metrics?.data || null;
+    } catch (error) {
+      state.data.executionMetrics = null;
+    }
+  } else {
+    state.data.executionMetrics = null;
+  }
+}
+
+async function loadDecisionExecution(decisionId) {
+  if (!decisionId) {
+    state.data.decisionExecution = null;
+    return;
+  }
+  try {
+    const timeline = await fetchDecisionTimeline(decisionId);
+    state.data.decisionExecution = timeline?.data || null;
+    decisionExecutionUi.notYetExecuted = false;
+  } catch (error) {
+    state.data.decisionExecution = null;
+    decisionExecutionUi.notYetExecuted = true;
   }
 }
 

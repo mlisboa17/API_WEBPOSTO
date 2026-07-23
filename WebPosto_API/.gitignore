@@ -1,0 +1,18 @@
+# Generated runtime artifacts (do not commit)
+snapshots/decision_execution/*.db
+snapshots/decision_execution/*.db-journal
+tests/runtime_tmp/
+.pytest_cache/
+__pycache__/
+*.pyc
+.coverage
+htmlcov/
+api.log
+server.log
+server_log.txt
+webposto-codex.out.log
+webposto-codex.err.log
+president-8040.out.log
+president-8040.err.log
+diretoria-api-8040.out.log
+diretoria-api-8040.err.log

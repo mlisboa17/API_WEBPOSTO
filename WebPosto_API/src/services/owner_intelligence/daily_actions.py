@@ -17,7 +17,7 @@ Each decision must answer:
 
 import logging
 from datetime import datetime, timedelta
-from typing import List, Optional, Dict, Any, Tuple
+from typing import List, Optional, Dict, Any, Tuple, TYPE_CHECKING
 from dataclasses import dataclass
 
 from .schemas import (
@@ -26,6 +26,9 @@ from .schemas import (
     ActionPriority, ActionType, ConfidenceLevel
 )
 from .priority_engine import PriorityEngine
+
+if TYPE_CHECKING:
+    from src.services.decision_execution.feedback import ExecutionFeedbackService
 
 logger = logging.getLogger(__name__)
 
@@ -60,7 +63,9 @@ class DailyActionsEngine:
         money_at_risk: List[MoneyAtRiskFinding],
         recoverable_money: List[RecoverableMoneyFinding],
         opportunities: List[GrowthOpportunity],
-        max_decisions: int = 5
+        max_decisions: int = 5,
+        execution_feedback: Optional["ExecutionFeedbackService"] = None,
+        execution_feedback_stats: Optional[Dict[str, Dict[str, int]]] = None,
     ) -> Tuple[List[DailyDecision], List[DailyDecision]]:
         """
         Generate prioritized daily decisions.
@@ -72,6 +77,11 @@ class DailyActionsEngine:
             recoverable_money: Findings from RecoverableMoneyEngine
             opportunities: Findings from GrowthOpportunitiesEngine
             max_decisions: Maximum number of top decisions to return
+            execution_feedback: EXEC-03 — optional feedback service used to
+                dampen categories the owner has repeatedly rejected as
+                not-a-priority/already-resolved.
+            execution_feedback_stats: Precomputed stats for execution_feedback
+                (see ExecutionFeedbackService.compute_stats).
             
         Returns:
             Tuple of (top_decisions, all_decisions)
@@ -104,13 +114,20 @@ class DailyActionsEngine:
             # Calculate priority scores for all candidates
             scored_candidates = []
             for candidate in candidates:
+                dampening = 1.0
+                if execution_feedback is not None:
+                    dampening = execution_feedback.dampening_for_text(
+                        self._category_text(candidate), execution_feedback_stats or {}
+                    )
+
                 scores = self.priority_engine.calculate_score(
                     financial_value=candidate.financial_value,
                     urgency_score=candidate.urgency_score,
                     confidence=candidate.confidence_score,
                     action_type=candidate.action.type,
                     priority=candidate.action.priority,
-                    time_to_resolve=candidate.action.time_to_resolve
+                    time_to_resolve=candidate.action.time_to_resolve,
+                    dampening_multiplier=dampening,
                 )
                 
                 scored_candidates.append((candidate, scores))
@@ -156,7 +173,20 @@ class DailyActionsEngine:
         except Exception as e:
             logger.error(f"Error in DailyActionsEngine.generate_decisions: {e}")
             return [], []
-    
+
+    @staticmethod
+    def _category_text(candidate: RawDecisionCandidate) -> Optional[str]:
+        """
+        Extract the category/type string used to bridge a candidate with the
+        EXEC-03 execution feedback signal (risk_type/recovery_type/opportunity_type).
+        """
+        finding = candidate.source_finding
+        return (
+            getattr(finding, "risk_type", None)
+            or getattr(finding, "recovery_type", None)
+            or getattr(finding, "opportunity_type", None)
+        )
+
     def _convert_risk_to_candidate(
         self,
         finding: MoneyAtRiskFinding
