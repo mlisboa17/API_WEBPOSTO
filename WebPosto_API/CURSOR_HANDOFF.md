@@ -17,7 +17,7 @@ fazem parte do mesmo produto.
 
 ## Estado atual
 
-As Sprints 28–45 entregaram:
+As Sprints 28–46 entregaram:
 
 - rotinas diária e semanal configuráveis;
 - execução diária padrão às 06:00 sobre o dia anterior;
@@ -32,7 +32,9 @@ As Sprints 28–45 entregaram:
 - tratativa de despesas pendentes (PENDENTE_CLASSIFICACAO);
 - síntese executiva < 1s com cache;
 - rateio de custos compartilhados (%, faturamento ou fixo);
-- enums ProductType C/P/U e ExpenseClassification.
+- enums ProductType C/P/U e ExpenseClassification;
+- conciliação de perdas volumétricas de combustíveis;
+- Curva ABC, ruptura de estoque e capital parado de conveniência.
 
 ## Arquivos centrais
 
@@ -67,12 +69,12 @@ Frontend executivo:
 
 ## Próxima sprint sugerida
 
-Sprint 46 — operação contínua e classificação:
+Sprint 47 — integração e automação operacional:
 
-- sessão real de 30 segundos com Presidente usando síntese executiva;
-- classificar as 23 despesas pendentes via interface `/expense-classification`;
-- aprovar regras de rateio com Diretoria;
-- monitorar integridade de paginação em produção.
+- integrar medição de tanque em tempo real do WebPosto;
+- automatizar alertas de ruptura para produtos Curva A;
+- implementar recomendações de compra por dias de cobertura;
+- dashboard visual de perdas volumétricas.
 
 ## Sprint 44 & 45 entregues
 
@@ -91,6 +93,17 @@ Sprint 46 — operação contínua e classificação:
 - 15 testes unitários passando.
 
 Detalhes: `docs/business/SPRINT_44_45_EXECUTIVE_VALIDATION.md`.
+
+## Sprint 46 entregue
+
+**Sprint 46 — Operacional Avançado:**
+- FuelLossService: conciliação volumétrica com tolerância configurável;
+- Classificação: NORMAL, ATENCAO, CRITICO, SOBRA_SUSPEITA;
+- ConvenienceAnalyticsService: Curva ABC, ruptura, capital parado;
+- Endpoints `/api/v1/operational/*`;
+- 19 testes unitários passando.
+
+Detalhes: `docs/business/SPRINT_46_OPERATIONAL_ADVANCED.md`.
 
 ## Sprint 43 entregue
 

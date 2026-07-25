@@ -67,6 +67,7 @@ from src.interfaces.http.routes import departmental_facts
 from src.interfaces.http.routes import departmental_kpis
 from src.interfaces.http.routes import departmental_governance
 from src.interfaces.http.routes import executive_synthesis
+from src.interfaces.http.routes import operational_advanced
 from src.services.financial_snapshot_scheduler import get_financial_scheduler
 from src.services.departmental_automation_service import get_departmental_automation
 from src.shared.logger import setup_logging
@@ -151,6 +152,7 @@ def _mount_executive_support(app: FastAPI) -> None:
     app.include_router(departmental_kpis.router)
     app.include_router(departmental_governance.router)
     app.include_router(executive_synthesis.router)
+    app.include_router(operational_advanced.router)
 
 
 def _mount_operational_deprecated(app: FastAPI) -> None:

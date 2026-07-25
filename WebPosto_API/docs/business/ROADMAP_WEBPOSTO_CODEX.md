@@ -495,6 +495,17 @@ amostras reais do Posto Doze e fechar os bloqueios registrados na
 - 🔄 Classificar 23 despesas pendentes via interface.
 - 🔄 Aprovar regras de rateio com Diretoria.
 
+### Sprint 46 — Operacional Avançado: Perdas, Curva ABC e Ruptura
+
+- ✅ FuelLossService: conciliação volumétrica com tolerância configurável.
+- ✅ Classificação de variação: NORMAL, ATENCAO, CRITICO, SOBRA_SUSPEITA.
+- ✅ Cálculo de variação térmica/física por tanque.
+- ✅ ConvenienceAnalyticsService: Curva ABC por faturamento/margem.
+- ✅ Detecção de ruptura e estoque crítico com dias de cobertura.
+- ✅ Indicador de capital parado (30/60 dias).
+- ✅ Endpoints /api/v1/operational/* com DTOs Pydantic V2.
+- ✅ 19 testes unitários passando.
+
 ### Sprint 20 — Auditoria periódica de prestação de contas
 
 Automatizar a conferência semanal ou a cada X dias do relatório **Prestação de
