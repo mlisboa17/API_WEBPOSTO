@@ -17,20 +17,13 @@ Warnings são **pré-existentes** ou **amplificados por import de `create_app()`
 
 ## Itens
 
-### 1. FastAPI `on_event` deprecation (prioridade alta)
+### 1. ~~FastAPI `on_event` deprecation~~ ✅ RESOLVIDO (Sprint 45)
 
-**Origem:** `src/interfaces/http/app.py` linhas 174–185
+**Origem:** `src/interfaces/http/app.py`
 
-```
-@app.on_event("startup")
-@app.on_event("shutdown")
-```
+**Ação realizada:** Migração para `lifespan` async context manager.
 
-**Ação:** Migrar para `lifespan` context manager ([FastAPI Lifespan Events](https://fastapi.tiangolo.com/advanced/events/)).
-
-**Arquivos prováveis:** `src/interfaces/http/app.py`, possivelmente `src/main.py` se duplicado.
-
-**Critério de done:** pytest FIN suite sem `DeprecationWarning: on_event is deprecated`.
+**Commit:** `feat(sprint-44-45): sessao executiva 30s e sanidade financeira`
 
 ---
 

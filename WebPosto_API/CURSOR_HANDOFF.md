@@ -17,7 +17,7 @@ fazem parte do mesmo produto.
 
 ## Estado atual
 
-As Sprints 28–42 entregaram:
+As Sprints 28–45 entregaram:
 
 - rotinas diária e semanal configuráveis;
 - execução diária padrão às 06:00 sobre o dia anterior;
@@ -27,7 +27,12 @@ As Sprints 28–42 entregaram:
 - notificações, valor comprovado, EVS e confiabilidade por agente;
 - agentes Financeiro, Operacional, Comercial, Governança e Presidência;
 - Dashboard Presidência 2.0 em quatro blocos;
-- telemetria anônima de adoção executiva.
+- telemetria anônima de adoção executiva;
+- validação de integridade de paginação;
+- tratativa de despesas pendentes (PENDENTE_CLASSIFICACAO);
+- síntese executiva < 1s com cache;
+- rateio de custos compartilhados (%, faturamento ou fixo);
+- enums ProductType C/P/U e ExpenseClassification.
 
 ## Arquivos centrais
 
@@ -62,12 +67,30 @@ Frontend executivo:
 
 ## Próxima sprint sugerida
 
-Sprint 44 — operação contínua e calibração:
+Sprint 46 — operação contínua e classificação:
 
-- repetir teste de 30 segundos com Presidente real e registrar `PRESIDENT_30_SECOND_TEST.json`;
-- calibrar blocos ignorados conforme `executive-adoption/block-review`;
-- publicar relatório mensal BVG em rotina departamental;
-- manter webhook homologado em produção.
+- sessão real de 30 segundos com Presidente usando síntese executiva;
+- classificar as 23 despesas pendentes via interface `/expense-classification`;
+- aprovar regras de rateio com Diretoria;
+- monitorar integridade de paginação em produção.
+
+## Sprint 44 & 45 entregues
+
+**Sprint 44 — Sessão Executiva 30s:**
+- validação de integridade de paginação com alertas;
+- tratativa de despesas pendentes sem quebrar pipeline DRE;
+- centro de custo PENDENTE_CLASSIFICACAO com alerta visual;
+- síntese executiva consolidada com cache < 1s;
+- endpoints `/api/v1/executive-synthesis/*`.
+
+**Sprint 45 — Sanidade Financeira:**
+- enum ExpenseClassification configurável;
+- CostAllocationService com rateio dinâmico;
+- ProductType C/P/U com fallback seguro;
+- migração FastAPI `on_event` → `lifespan`;
+- 15 testes unitários passando.
+
+Detalhes: `docs/business/SPRINT_44_45_EXECUTIVE_VALIDATION.md`.
 
 ## Sprint 43 entregue
 
