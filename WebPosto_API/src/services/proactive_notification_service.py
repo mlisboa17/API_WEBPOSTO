@@ -81,6 +81,38 @@ class ProactiveNotificationService:
             values = [item for item in values if item.get("audience") == audience]
         return sorted(values, key=lambda item: item["createdAt"], reverse=True)
 
+    def homologate_webhook(self, url: str | None = None) -> dict[str, Any]:
+        target = (url or self._webhook_url or "").strip()
+        if not target:
+            return {
+                "status": "NOT_CONFIGURED",
+                "webhookConfigured": False,
+                "message": "Defina EXECUTIVE_NOTIFICATION_WEBHOOK_URL ou informe url no corpo.",
+                "containsBusinessData": False,
+            }
+        payload = {
+            "type": "WEBHOOK_HOMOLOGATION",
+            "source": "logos-webposto",
+            "at": datetime.now(timezone.utc).isoformat(),
+            "containsBusinessData": False,
+        }
+        try:
+            self._sender(target, payload)
+            return {
+                "status": "DELIVERED",
+                "webhookConfigured": True,
+                "endpoint": target.split("?")[0],
+                "containsBusinessData": False,
+            }
+        except Exception as exc:  # noqa: BLE001
+            return {
+                "status": "FAILED",
+                "webhookConfigured": True,
+                "endpoint": target.split("?")[0],
+                "error": exc.__class__.__name__,
+                "containsBusinessData": False,
+            }
+
     def _set_webhook_status(self, notification_id: str, status: str) -> None:
         with InterProcessFileLock(self._path):
             state = self._load()

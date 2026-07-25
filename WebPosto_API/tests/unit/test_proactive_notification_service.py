@@ -46,3 +46,28 @@ def test_configured_webhook_is_actively_dispatched(tmp_path):
     assert result["webhookDelivered"] == 2
     assert len(sent) == 2
     assert all(item["delivery"]["webhook"] == "DELIVERED" for item in service.list())
+
+
+def test_webhook_homologation_sends_minimal_payload_without_business_data(tmp_path):
+    sent = []
+    service = ProactiveNotificationService(
+        tmp_path / "outbox.json",
+        webhook_url="https://notifications.invalid/hook",
+        sender=lambda url, payload: sent.append((url, payload)),
+    )
+
+    result = service.homologate_webhook()
+
+    assert result["status"] == "DELIVERED"
+    assert sent[0][1]["type"] == "WEBHOOK_HOMOLOGATION"
+    assert sent[0][1]["containsBusinessData"] is False
+    assert service.list() == []
+
+
+def test_webhook_homologation_without_configuration(tmp_path):
+    service = ProactiveNotificationService(tmp_path / "outbox.json", webhook_url="")
+
+    result = service.homologate_webhook()
+
+    assert result["status"] == "NOT_CONFIGURED"
+    assert result["webhookConfigured"] is False

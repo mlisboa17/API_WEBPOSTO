@@ -108,3 +108,16 @@ def test_validation_requires_measurable_value(tmp_path):
         assert str(exc) == "VALIDATED_VALUE_REQUIRED"
     else:
         raise AssertionError("resultado sem valor observado não pode ser validado")
+
+
+def test_monthly_report_separates_validated_from_estimated(tmp_path):
+    service = validated_service(tmp_path)
+    report = service.monthly_report("2026-07")
+
+    assert report["reportType"] == "MONTHLY_BUSINESS_VALUE_GENERATED_BY_AI"
+    assert report["period"] == "2026-07"
+    assert report["businessValueGeneratedByAI"]["label"] == "VALIDATED_VALUE_ONLY"
+    assert report["estimatedValue"]["label"] == "ESTIMATED_NOT_REALIZED"
+    assert report["governance"]["validatedOnlyInTotals"] is True
+    assert len(report["items"]) == 1
+    assert report["items"][0]["status"] == "VALIDATED"

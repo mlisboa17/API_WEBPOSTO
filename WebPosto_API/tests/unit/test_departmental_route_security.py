@@ -24,6 +24,9 @@ def test_mutating_routes_require_authentication():
     assert client.get("/api/v1/departmental-governance/proactive-agents").status_code == 401
     assert client.get("/api/v1/departmental-governance/proactive-value").status_code == 401
     assert client.get("/api/v1/departmental-governance/executive-adoption/summary").status_code == 401
+    assert client.get("/api/v1/departmental-governance/executive-adoption/block-review").status_code == 401
+    assert client.get("/api/v1/departmental-governance/monthly-business-value-report?month=2026-07").status_code == 401
+    assert client.post("/api/v1/departmental-governance/proactive-notifications/webhook-homologation").status_code == 401
     assert client.post(
         "/api/v1/departmental-governance/executive-adoption/events",
         json={"eventType": "PAGE_OPEN", "feature": "ATTENTION", "sessionId": "test"},

@@ -68,6 +68,12 @@ class ExecutiveAdoptionBody(BaseModel):
     clicks: int | None = Field(default=None, ge=0, le=100)
 
 
+class WebhookHomologationBody(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    url: str | None = Field(default=None, max_length=2048)
+
+
 def _schedule_payload(config) -> dict:
     payload = config.model_dump(mode="json")
     return {
@@ -178,6 +184,27 @@ async def proactive_value(
     }
 
 
+@router.get("/monthly-business-value-report")
+async def monthly_business_value_report(
+    month: str = Query(..., pattern=r"^\d{4}-\d{2}$"),
+    current_user: dict = Depends(require_roles("director", "audit", "admin", "owner")),
+) -> dict:
+    try:
+        report = _value.monthly_report(month)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    return {"success": True, "data": report, "error": None}
+
+
+@router.post("/proactive-notifications/webhook-homologation")
+async def homologate_executive_notification_webhook(
+    body: WebhookHomologationBody | None = None,
+    current_user: dict = Depends(require_roles("admin", "owner")),
+) -> dict:
+    url = body.url if body else None
+    return {"success": True, "data": _notifications.homologate_webhook(url), "error": None}
+
+
 @router.post("/executive-adoption/events")
 async def record_executive_adoption(
     body: ExecutiveAdoptionBody,
@@ -191,6 +218,13 @@ async def executive_adoption_summary(
     current_user: dict = Depends(require_roles("director", "admin", "owner")),
 ) -> dict:
     return {"success": True, "data": _adoption.summary(), "error": None}
+
+
+@router.get("/executive-adoption/block-review")
+async def executive_adoption_block_review(
+    current_user: dict = Depends(require_roles("director", "admin", "owner")),
+) -> dict:
+    return {"success": True, "data": _adoption.block_review(), "error": None}
 
 
 @router.post("/proactive-value/{recommendation_id}/transition")

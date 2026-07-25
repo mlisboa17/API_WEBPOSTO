@@ -15,6 +15,14 @@ from src.services.json_file_lock import InterProcessFileLock
 class ExecutiveAdoptionService:
     ALLOWED_EVENTS = {"PAGE_OPEN", "INFORMATION_FOUND", "FEATURE_USED"}
     ALLOWED_FEATURES = {"ATTENTION", "VALUE", "AI_VALUE", "PRESIDENCY_ANSWERS", "DETAILS"}
+    BLOCK_LABELS = {
+        "ATTENTION": "O que exige atenção hoje",
+        "VALUE": "O que gera mais valor",
+        "AI_VALUE": "Valor gerado pela IA",
+        "PRESIDENCY_ANSWERS": "Perguntas da Presidência",
+        "DETAILS": "Análises detalhadas",
+    }
+    THIRTY_SECOND_TARGET_MS = 30_000
 
     def __init__(self, path: str | Path = ".runtime/executive_adoption.json") -> None:
         self._path = Path(path)
@@ -48,16 +56,69 @@ class ExecutiveAdoptionService:
         for item in events:
             if item["eventType"] == "FEATURE_USED":
                 usage[item["feature"]] = usage.get(item["feature"], 0) + 1
+        avg_ms = round(sum(item["elapsedMs"] or 0 for item in found) / len(found), 2) if found else None
         return {
             "sessions": len({item["sessionId"] for item in events if item["sessionId"]}),
-            "averageTimeToInformationMs": round(
-                sum(item["elapsedMs"] or 0 for item in found) / len(found), 2
-            ) if found else None,
+            "averageTimeToInformationMs": avg_ms,
             "averageClicksToInformation": round(
                 sum(item["clicks"] or 0 for item in found) / len(found), 2
             ) if found else None,
             "featureUsage": usage,
             "ignoredFeatures": sorted(self.ALLOWED_FEATURES - set(usage)),
+            "withinThirtySecondTarget": avg_ms is not None and avg_ms <= self.THIRTY_SECOND_TARGET_MS,
+            "containsBusinessData": False,
+        }
+
+    def block_review(self) -> dict[str, Any]:
+        events = self._load().get("events") or []
+        usage = {
+            feature: {"opens": 0, "informationFound": 0, "timesMs": [], "clicks": []}
+            for feature in self.ALLOWED_FEATURES
+        }
+        for item in events:
+            feature = item["feature"]
+            if feature not in usage:
+                continue
+            if item["eventType"] in {"FEATURE_USED", "PAGE_OPEN"}:
+                usage[feature]["opens"] += 1
+            if item["eventType"] == "INFORMATION_FOUND":
+                usage[feature]["informationFound"] += 1
+                if item.get("elapsedMs") is not None:
+                    usage[feature]["timesMs"].append(item["elapsedMs"])
+                if item.get("clicks") is not None:
+                    usage[feature]["clicks"].append(item["clicks"])
+        blocks = []
+        for feature in ("ATTENTION", "VALUE", "AI_VALUE", "PRESIDENCY_ANSWERS"):
+            stats = usage[feature]
+            avg_ms = round(sum(stats["timesMs"]) / len(stats["timesMs"]), 2) if stats["timesMs"] else None
+            avg_clicks = round(sum(stats["clicks"]) / len(stats["clicks"]), 2) if stats["clicks"] else None
+            engagement = "IGNORED" if stats["opens"] == 0 else (
+                "ENGAGED" if stats["informationFound"] else "OPENED_ONLY"
+            )
+            blocks.append({
+                "feature": feature,
+                "title": self.BLOCK_LABELS[feature],
+                "engagement": engagement,
+                "opens": stats["opens"],
+                "informationFound": stats["informationFound"],
+                "averageTimeToInformationMs": avg_ms,
+                "averageClicks": avg_clicks,
+                "withinThirtySecondTarget": avg_ms is not None and avg_ms <= self.THIRTY_SECOND_TARGET_MS,
+            })
+        ignored = [block for block in blocks if block["engagement"] == "IGNORED"]
+        return {
+            "blocks": blocks,
+            "presidencyBlocksReviewed": len(blocks),
+            "ignoredPresidencyBlocks": [block["feature"] for block in ignored],
+            "recommendations": [
+                f"Revisar copy e hierarquia do bloco {block['title']} — nunca aberto nas sessões observadas."
+                for block in ignored
+            ] + [
+                f"Reduzir fricção no bloco {block['title']}; tempo médio {block['averageTimeToInformationMs']}ms excede 30s."
+                for block in blocks
+                if block["averageTimeToInformationMs"] is not None
+                and block["averageTimeToInformationMs"] > self.THIRTY_SECOND_TARGET_MS
+            ],
             "containsBusinessData": False,
         }
 

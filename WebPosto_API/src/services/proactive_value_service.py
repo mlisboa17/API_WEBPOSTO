@@ -200,6 +200,49 @@ class ProactiveValueService:
     def list(self, month: str | None = None) -> list[dict[str, Any]]:
         return sorted(self._records(month), key=lambda item: item["generatedAt"], reverse=True)
 
+    def monthly_report(self, month: str) -> dict[str, Any]:
+        if len(month) != 7 or month[4] != "-":
+            raise ValueError("INVALID_MONTH")
+        summary = self.summary(month)
+        validated = summary["businessValueGeneratedByAI"]
+        estimated = summary["estimatedValue"]
+        recommendations = self.list(month)
+        return {
+            "reportType": "MONTHLY_BUSINESS_VALUE_GENERATED_BY_AI",
+            "period": month,
+            "generatedAt": datetime.now(timezone.utc).isoformat(),
+            "headline": (
+                f"Valor financeiro comprovado no período: R$ {validated['totalFinancialValueBRL']:,.2f}"
+                if validated["totalFinancialValueBRL"] > 0
+                else "Nenhum valor validado registrado no período — potencial estimado não é realizado."
+            ),
+            "businessValueGeneratedByAI": validated,
+            "estimatedValue": estimated,
+            "recommendationFunnel": summary["recommendations"],
+            "executiveValueScore": summary["executiveValueScore"],
+            "topContributingAgent": summary["topContributingAgent"],
+            "highestImpactRecommendations": summary["highestImpactRecommendations"],
+            "agentMetrics": summary["agentMetrics"],
+            "adoptionRate": summary["adoptionRate"],
+            "items": [
+                {
+                    "id": item["id"],
+                    "title": item["title"],
+                    "status": self._status(item),
+                    "agents": item.get("agents") or [],
+                    "estimatedImpactBRL": item.get("estimatedImpactBRL"),
+                    "validatedValue": item.get("validatedValue"),
+                    "falsePositive": item.get("falsePositive", False),
+                }
+                for item in recommendations
+            ],
+            "governance": {
+                "validatedOnlyInTotals": True,
+                "estimatedNeverCountedAsRealized": True,
+                "scopeCompanies": ["11495", "5555", "74014"],
+            },
+        }
+
     def _agent_metrics(self, records: list[dict]) -> list[dict[str, Any]]:
         names = ("FINANCIAL", "OPERATIONAL", "COMMERCIAL", "GOVERNANCE")
         output = []

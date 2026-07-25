@@ -1,0 +1,53 @@
+{
+  "test": "President 30 second test",
+  "surface": "Presidência 2.0",
+  "url": "http://127.0.0.1:3000/?start=2026-07-01&end=2026-07-18",
+  "runtime_frontend": "executive-web",
+  "api_endpoints": {
+    "intelligence": "/api/executive-intelligence?day=2026-07-18",
+    "adoption": "/api/executive-adoption",
+    "monthly_bvg": "/api/v1/departmental-governance/monthly-business-value-report?month=2026-07"
+  },
+  "time_budget_seconds": 30,
+  "questions": [
+    {
+      "id": "attention_today",
+      "question": "O que exige minha atenção hoje?",
+      "block": "ATTENTION",
+      "score": "PASS"
+    },
+    {
+      "id": "highest_value",
+      "question": "Onde está o maior valor potencial?",
+      "block": "VALUE",
+      "score": "PASS"
+    },
+    {
+      "id": "ai_proven_value",
+      "question": "Quanto valor a IA já comprovou?",
+      "block": "AI_VALUE",
+      "score": "PASS"
+    },
+    {
+      "id": "immediate_decisions",
+      "question": "Quais decisões imediatas existem?",
+      "block": "PRESIDENCY_ANSWERS",
+      "score": "PASS"
+    }
+  ],
+  "adoption_targets": {
+    "averageTimeToInformationMsMax": 30000,
+    "withinThirtySecondTarget": true,
+    "presidencyBlocksEngaged": 4
+  },
+  "scores": {
+    "PASS": 4,
+    "PARTIAL": 0,
+    "FAIL": 0
+  },
+  "governance": {
+    "estimatedNeverRealized": true,
+    "validatedOnlyInTotals": true,
+    "noInventedOpportunities": true
+  }
+}
