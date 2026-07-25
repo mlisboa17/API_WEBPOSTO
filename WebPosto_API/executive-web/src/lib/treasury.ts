@@ -19,6 +19,7 @@ export interface CardAdministratorSummary { company: string; date: string; code:
 export interface CardCatalogSummary { items: CardAdministratorSummary[]; premiaConfigured: { company: string; code: string; name: string; type: string }[]; unmappedRecords: number; unavailableCompanies: string[] }
 export interface DepartmentOperationalEvidence { status: string; revenue: number; cost: number; grossMargin: number; coveragePct: number | null; itemsCollected: number; itemsAccepted: number; itemsQuarantined: number; paginationComplete: boolean; paginationPages: number }
 export interface DepartmentDreLine { companyCode: string; companyName: string; department: string; revenue: number | null; cost: number | null; grossMargin: number | null; expenses: number | null; operatingResult: number | null; operatingMarginPct: number | null; status: string; missingEvidence: string[]; operationalEvidence: DepartmentOperationalEvidence | null }
+export interface PeriodicAuditCycle { id: string; empresa_codigo: string; centro_custo: "PISTA" | "CONVENIENCIA"; periodicidade_dias: number; responsavel: string; data_corte: string; ativo: boolean; proximaAuditoria: string; statusAgenda: string }
 export interface TreasuryData {
   selectedDepartment: string;
   updatedAt: string | null; source: "live" | "snapshot" | "unavailable"; sources: string[];
@@ -28,6 +29,7 @@ export interface TreasuryData {
   cashClosing: CashClosingSummary;
   cardCatalog: CardCatalogSummary;
   departmentalDre: DepartmentDreLine[];
+  periodicAudits: PeriodicAuditCycle[];
 }
 
 type JsonRecord = Record<string, unknown>;
@@ -153,6 +155,12 @@ async function fetchDepartmentalDre(start: string, end: string, company?: string
   return array(object(object(await response.json()).data).lines);
 }
 
+async function fetchPeriodicAudits(): Promise<PeriodicAuditCycle[]> {
+  const response = await fetch(`${API}/api/v1/auditorias-periodicas/ciclos`, { cache: "no-store", signal: AbortSignal.timeout(10000) });
+  if (!response.ok) return [];
+  return array(object(await response.json()).data) as unknown as PeriodicAuditCycle[];
+}
+
 function aggregateCardCatalog(results: PromiseSettledResult<JsonRecord>[], companies: readonly { code: string; name: string }[]): CardCatalogSummary {
   const output = emptyCardCatalog();
   results.forEach((result, index) => {
@@ -192,7 +200,7 @@ export async function getTreasuryData(start: string, end: string, company = "all
   try {
     const licensed = COMPANIES.filter(item => item.code !== "all");
     const reconciliationCompanies = company === "all" ? COMPANIES.filter(item => item.code !== "all") : COMPANIES.filter(item => item.code === company);
-    const [data, unitResults, expenseRecords, classifications, reconciliationResults, allocationResults, cardCatalogResults, dreRecords] = await Promise.all([
+    const [data, unitResults, expenseRecords, classifications, reconciliationResults, allocationResults, cardCatalogResults, dreRecords, periodicAudits] = await Promise.all([
       fetchCashFlow(start, end, company).catch((): JsonRecord => ({})),
       company === "all" ? Promise.allSettled(licensed.map(item => fetchCashFlow(start, end, item.code))) : Promise.resolve([]),
       fetchExpenses(start, end, company).catch(() => []),
@@ -201,6 +209,7 @@ export async function getTreasuryData(start: string, end: string, company = "all
       Promise.allSettled(reconciliationCompanies.map(item => fetchCashDestinations(start, end, item.code))),
       Promise.allSettled(reconciliationCompanies.map(item => fetchPaymentMethodCatalog(start, end, item.code))),
       fetchDepartmentalDre(start, end, company).catch(() => []),
+      fetchPeriodicAudits().catch(() => []),
     ]);
     const cards = object(data.cards);
     const daily = array(data.daily);
@@ -269,8 +278,9 @@ export async function getTreasuryData(start: string, end: string, company = "all
       cashClosing: aggregateCashClosing(reconciliationResults, allocationResults, reconciliationCompanies),
       cardCatalog: aggregateCardCatalog(cardCatalogResults, reconciliationCompanies),
       departmentalDre,
+      periodicAudits,
     };
   } catch {
-    return { selectedDepartment: department, updatedAt: null, source: "unavailable", sources: [], kpis: { inflow: 0, outflow: 0, projected: 0, accumulated: 0, liquidity: 0 }, flow: [], composition: [], rows: [], units: [], expenses: [], expenseCategories: [], cashClosing: emptyCashClosing(), cardCatalog: emptyCardCatalog(), departmentalDre: [] };
+    return { selectedDepartment: department, updatedAt: null, source: "unavailable", sources: [], kpis: { inflow: 0, outflow: 0, projected: 0, accumulated: 0, liquidity: 0 }, flow: [], composition: [], rows: [], units: [], expenses: [], expenseCategories: [], cashClosing: emptyCashClosing(), cardCatalog: emptyCardCatalog(), departmentalDre: [], periodicAudits: [] };
   }
 }

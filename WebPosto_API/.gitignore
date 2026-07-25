@@ -1,6 +1,8 @@
 # Generated runtime artifacts (do not commit)
+.runtime/
 snapshots/decision_execution/*.db
 snapshots/decision_execution/*.db-journal
+snapshots/periodic_audits/
 tests/runtime_tmp/
 .pytest_cache/
 __pycache__/

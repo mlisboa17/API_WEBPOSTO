@@ -20,10 +20,12 @@ def create_access_token(subject: str, extra: Dict[str, Any] | None = None) -> st
     return token
 
 
-def create_refresh_token(subject: str) -> str:
+def create_refresh_token(subject: str, extra: Dict[str, Any] | None = None) -> str:
     now = datetime.utcnow()
     exp = now + timedelta(days=settings.refresh_token_expire_days)
     payload = {"sub": subject, "exp": exp, "iat": now}
+    if extra:
+        payload.update(extra)
     token = jwt.encode(payload, settings.secret_key, algorithm=settings.jwt_algorithm)
     return token
 

@@ -36,6 +36,7 @@ WEBPOSTO_GROUP_DEPARTMENT_MAP: dict[int, DepartmentId] = {
     24557: "lubrificantes",
     28811: "lubrificantes",
     62009: "lubrificantes",
+    166355: "lubrificantes",
     162956: "conveniencia",
     162989: "conveniencia",
     51350: "conveniencia",
@@ -51,7 +52,12 @@ WEBPOSTO_GROUP_DEPARTMENT_MAP: dict[int, DepartmentId] = {
     55453: "conveniencia",
     56795: "conveniencia",
 }
-UNMAPPED_WEBPOSTO_GROUP_CODES = frozenset({25016, 26039, 29273})
+QUARANTINED_WEBPOSTO_GROUPS: dict[int, str] = {
+    25016: "COMODATO",
+    26039: "DIVERSOS",
+    29273: "USO E CONSUMO",
+}
+UNMAPPED_WEBPOSTO_GROUP_CODES = frozenset(QUARANTINED_WEBPOSTO_GROUPS)
 
 
 def department_for_group(group_code: int | str | None) -> DepartmentId | None:
@@ -66,3 +72,11 @@ def is_licensed_company(empresa_codigo: int | str | None) -> bool:
         return int(empresa_codigo) in LICENSED_COMPANY_CODES
     except (TypeError, ValueError):
         return False
+
+
+def quarantine_reason_for_group(group_code: int | str | None) -> str | None:
+    try:
+        name = QUARANTINED_WEBPOSTO_GROUPS.get(int(group_code))
+    except (TypeError, ValueError):
+        return None
+    return f"GRUPO_AMBIGUO:{name}" if name else None

@@ -11,6 +11,7 @@ import httpx
 
 from src.core.config import CoreConfig, load_core_config
 from src.core.logger import get_logger, log_structured
+from src.core.management_scope import LICENSED_COMPANY_CODES
 from src.gateway.webposto_endpoint_contracts import endpoint_requires_dates
 from src.metrics.collector import metrics_collector
 from src.models.error_model import WebPostoError
@@ -42,10 +43,13 @@ ENDPOINTS = {
     "venda_forma_pagamento": "/INTEGRACAO/VENDA_FORMA_PAGAMENTO",
     "venda_forma_pagamento_rede": "/INTEGRACAO/CONSULTAR_VENDA_FORMA_PAGAMENTO_REDE",
     "administradora_rede": "/INTEGRACAO/CONSULTAR_ADMINISTRADORA_REDE",
+    "cartao": "/INTEGRACAO/CARTAO",
     "cartao_rede": "/INTEGRACAO/CONSULTAR_CARTAO_REDE",
     "nfce": "/INTEGRACAO/NFCE",
     "produto_estoque": "/INTEGRACAO/PRODUTO_ESTOQUE",
     "produto": "/INTEGRACAO/PRODUTO",
+    "grupo": "/INTEGRACAO/GRUPO",
+    "grupo_meta": "/INTEGRACAO/GRUPO_META",
     "produto_empresa": "/INTEGRACAO/PRODUTO_EMPRESA",
     "produto_rede": "/INTEGRACAO/PRODUTO_REDE",
     "produto_empresa_rede": "/INTEGRACAO/PRODUTO_EMPRESA_REDE",
@@ -150,6 +154,40 @@ class WebPostoClient:
             seen.add(marker)
             unique.append(row)
         return unique
+
+    @staticmethod
+    def _scope_network_payload(
+        payload: Any,
+        requested_company: Any = None,
+    ) -> Any:
+        """Remove empresas não licenciadas de respostas de endpoints de rede."""
+        requested: int | None
+        try:
+            requested = int(requested_company) if requested_company not in (None, "") else None
+        except (TypeError, ValueError):
+            requested = None
+        allowed = {requested} if requested in LICENSED_COMPANY_CODES else set(LICENSED_COMPANY_CODES)
+
+        def scoped(rows: list[Any]) -> list[Any]:
+            return [
+                row
+                for row in rows
+                if isinstance(row, dict)
+                and row.get("empresaCodigo") is not None
+                and str(row.get("empresaCodigo")).isdigit()
+                and int(row["empresaCodigo"]) in allowed
+            ]
+
+        if isinstance(payload, list):
+            return scoped(payload)
+        if isinstance(payload, dict):
+            result = dict(payload)
+            for key in ("resultados", "data", "items"):
+                if isinstance(payload.get(key), list):
+                    result[key] = scoped(payload[key])
+                    break
+            return result
+        return payload
 
     def _endpoint_timeout(self, endpoint_key: str) -> httpx.Timeout:
         base = self.config.timeout_seconds
@@ -381,6 +419,11 @@ class WebPostoClient:
             metrics_collector.record(path, status, latency_ms)
             if status == 200:
                 payload = response.json()
+                if endpoint_key == "despesas_financeiro_rede":
+                    payload = self._scope_network_payload(
+                        payload,
+                        (params or {}).get("empresaCodigo"),
+                    )
                 rows = self._extract_rows(payload)
                 ok_payloads.append(payload)
                 ok_rows.extend(rows)

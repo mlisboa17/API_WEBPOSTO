@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
-from src.core.management_scope import department_for_group
+from src.core.management_scope import department_for_group, quarantine_reason_for_group
 from src.domain.catalog.product_schema import NormalizedProductCatalogEntry
 from src.gateway.webposto_client import WebPostoClient
 from src.models.response_model import WebPostoResponse
@@ -109,6 +109,7 @@ class ProdutoCatalogService:
             ativo=active,
             departamento=department,
             classificacaoStatus="CONFIRMADA_GRUPO" if department else "NAO_CLASSIFICADA",
+            classificacaoMotivo=quarantine_reason_for_group(group_code),
             source=source,
         )
         return entry.model_dump()

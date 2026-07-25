@@ -75,3 +75,15 @@ async def test_supports_endpoint_specific_cursor_field() -> None:
 
     assert response.success is True
     assert client.calls[1]["ultimoCodigo"] == 20
+
+
+async def test_rejects_unknown_payload_shape_instead_of_claiming_empty_completion() -> None:
+    client = FakeClient([{"total": 200, "resultado": [row(1)]}])
+
+    response = await WebPostoCursorPaginator(client).collect(
+        "venda_item_rede", "venda_item", {}
+    )
+
+    assert response.success is False
+    assert response.error is not None
+    assert response.error.type == "UNSUPPORTED_PAGINATION_PAYLOAD"

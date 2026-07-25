@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0",
+  "geradoEm": "2026-07-21",
+  "fonte": "validado_usuario (PagBank oficial + e-Rede oficial) - ver AGENTS.md/memoria repo",
+  "observacao": "Persistencia provisoria em arquivo ate a migration supabase/migrations/20260721_create_card_acquirer_fee_model.sql ser aplicada com credenciais reais (SUPABASE_URL/SUPABASE_KEY). Estrutura espelha as tabelas taxa_operadora e prazo_recebimento.",
+  "taxas": [
+    { "empresaCodigo": 5555, "adquirente": "PAGBANK", "bandeira": "VISA", "modalidade": "PIX", "percentual": "0.50", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 5555, "adquirente": "PAGBANK", "bandeira": "VISA", "modalidade": "DEBITO", "percentual": "1.05", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 5555, "adquirente": "PAGBANK", "bandeira": "MASTERCARD", "modalidade": "DEBITO", "percentual": "1.05", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 5555, "adquirente": "PAGBANK", "bandeira": "ELO", "modalidade": "DEBITO", "percentual": "1.65", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 5555, "adquirente": "PAGBANK", "bandeira": "VISA", "modalidade": "CREDITO_VISTA", "percentual": "3.39", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 5555, "adquirente": "PAGBANK", "bandeira": "MASTERCARD", "modalidade": "CREDITO_VISTA", "percentual": "3.39", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 5555, "adquirente": "PAGBANK", "bandeira": "ELO", "modalidade": "CREDITO_VISTA", "percentual": "4.32", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 5555, "adquirente": "PAGBANK", "bandeira": "AMEX", "modalidade": "CREDITO_VISTA", "percentual": "3.19", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 74014, "adquirente": "PAGBANK", "bandeira": "VISA", "modalidade": "PIX", "percentual": "0.20", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 74014, "adquirente": "PAGBANK", "bandeira": "VISA", "modalidade": "DEBITO", "percentual": "0.65", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 74014, "adquirente": "PAGBANK", "bandeira": "MASTERCARD", "modalidade": "DEBITO", "percentual": "0.65", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 74014, "adquirente": "PAGBANK", "bandeira": "ELO", "modalidade": "DEBITO", "percentual": "1.04", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 74014, "adquirente": "PAGBANK", "bandeira": "VISA", "modalidade": "CREDITO_VISTA", "percentual": "2.79", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 74014, "adquirente": "PAGBANK", "bandeira": "MASTERCARD", "modalidade": "CREDITO_VISTA", "percentual": "2.79", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 74014, "adquirente": "PAGBANK", "bandeira": "ELO", "modalidade": "CREDITO_VISTA", "percentual": "4.28", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 74014, "adquirente": "PAGBANK", "bandeira": "AMEX", "modalidade": "CREDITO_VISTA", "percentual": "3.19", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 11495, "adquirente": "REDE", "bandeira": "VISA", "modalidade": "DEBITO", "percentual": "0.63", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 11495, "adquirente": "REDE", "bandeira": "MAESTRO", "modalidade": "DEBITO", "percentual": "0.63", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 11495, "adquirente": "REDE", "bandeira": "ELO", "modalidade": "DEBITO", "percentual": "1.43", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 11495, "adquirente": "REDE", "bandeira": "MASTERCARD", "modalidade": "CREDITO_VISTA", "percentual": "2.70", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 11495, "adquirente": "REDE", "bandeira": "VISA", "modalidade": "CREDITO_VISTA", "percentual": "2.70", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null },
+    { "empresaCodigo": 11495, "adquirente": "REDE", "bandeira": "ELO", "modalidade": "CREDITO_VISTA", "percentual": "3.50", "vigenciaInicio": "2026-07-21", "vigenciaFim": null, "parcelas": null }
+  ],
+  "prazos": [
+    { "adquirente": "PAGBANK", "modalidade": "PIX", "dias": 0, "diasUteis": false, "incluiFimDeSemana": true },
+    { "adquirente": "PAGBANK", "modalidade": "DEBITO", "dias": 0, "diasUteis": false, "incluiFimDeSemana": true },
+    { "adquirente": "PAGBANK", "modalidade": "CREDITO_VISTA", "dias": 0, "diasUteis": false, "incluiFimDeSemana": true },
+    { "adquirente": "PAGBANK", "modalidade": "CREDITO_PRE_PAGO", "dias": 2, "diasUteis": true, "incluiFimDeSemana": false },
+    { "adquirente": "REDE", "modalidade": "DEBITO", "dias": 1, "diasUteis": true, "incluiFimDeSemana": false },
+    { "adquirente": "REDE", "modalidade": "CREDITO_VISTA", "dias": 1, "diasUteis": true, "incluiFimDeSemana": false }
+  ]
+}

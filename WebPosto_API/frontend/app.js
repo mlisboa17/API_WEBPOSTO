@@ -1615,8 +1615,10 @@ function renderAll() {
   }
 
   if (activeView === "decisionDetail") {
+    const preferenceAudit = state.data.ownerDiretoriaHome?.data?.preference_audit;
     renderDecisionDetail(decisionDetailNode, state.data.decisionDetail, state.filters, {
       decisionId: state.decisionId,
+      preferenceAudit,
       reviewRequests: state.data.decisionReviewRequests,
       reviewLoading: decisionReviewUi.loading,
       reviewError: decisionReviewUi.error,
@@ -3099,11 +3101,7 @@ async function safeLoad(loader) {
 async function loadPresidentDashboard(bypassCache = false) {
   const snapshotBundle = await fetchPresidentSnapshotBundle(state.filters);
   if (snapshotBundle.hit) {
-    const directorReconciliation = await safeLoad(() => fetchDirectorFinancialReconciliation(state.filters));
-    const completeDre = directorReconciliation?.publication?.dreTotalsReleased
-      ? await safeLoad(() => fetchCompleteDepartmentalDre(state.filters))
-      : null;
-    state.data.presidentDashboard = buildPresidentDashboardData({
+    const snapshotData = {
       overview: snapshotBundle.overview?.data ?? snapshotBundle.overview,
       expenses: snapshotBundle.expenses?.data ?? snapshotBundle.expenses,
       sales: snapshotBundle.sales?.data ?? snapshotBundle.sales,
@@ -3111,9 +3109,22 @@ async function loadPresidentDashboard(bypassCache = false) {
       scorecard: snapshotBundle.scorecard?.data ?? snapshotBundle.scorecard,
       fuelGovernance: snapshotBundle.fuelGovernance?.data ?? snapshotBundle.fuelGovernance,
       products: snapshotBundle.products?.data ?? snapshotBundle.products,
+      snapshotHit: true,
+    };
+
+    // Mostra os números disponíveis sem bloquear a tela pela conciliação.
+    state.data.presidentDashboard = buildPresidentDashboardData(snapshotData);
+    renderAll();
+    setLoading(false);
+
+    const directorReconciliation = await safeLoad(() => fetchDirectorFinancialReconciliation(state.filters));
+    const completeDre = directorReconciliation?.publication?.dreTotalsReleased
+      ? await safeLoad(() => fetchCompleteDepartmentalDre(state.filters))
+      : null;
+    state.data.presidentDashboard = buildPresidentDashboardData({
+      ...snapshotData,
       directorReconciliation,
       completeDre,
-      snapshotHit: true,
     });
     return;
   }

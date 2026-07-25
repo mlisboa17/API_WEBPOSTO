@@ -18,8 +18,9 @@ async def prestacao_summary(
     dataInicial: str = Query(...),
     dataFinal: str = Query(...),
     empresaCodigo: str | None = Query(None),
+    centroCusto: str | None = Query(None, description="PISTA ou CONVENIENCIA"),
 ) -> dict:
-    payload, stale, hit = await _snapshot.get_or_collect(dataInicial, dataFinal, empresaCodigo)
+    payload, stale, hit = await _snapshot.get_or_collect(dataInicial, dataFinal, empresaCodigo, centroCusto)
     if not payload:
         return {"success": False, "data": None, "error": "Falha ao consolidar prestação de contas"}
     return {
@@ -28,6 +29,7 @@ async def prestacao_summary(
             "executive": payload.get("executive"),
             "discovery": payload.get("discovery"),
             "periodo": payload.get("periodo"),
+            "scope": payload.get("scope"),
             "performanceMs": payload.get("performanceMs"),
         },
         "snapshot": {"hit": hit, "stale": stale},
@@ -40,8 +42,9 @@ async def prestacao_accountability(
     dataInicial: str = Query(...),
     dataFinal: str = Query(...),
     empresaCodigo: str | None = Query(None),
+    centroCusto: str | None = Query(None, description="PISTA ou CONVENIENCIA"),
 ) -> dict:
-    payload, stale, hit = await _snapshot.get_or_collect(dataInicial, dataFinal, empresaCodigo)
+    payload, stale, hit = await _snapshot.get_or_collect(dataInicial, dataFinal, empresaCodigo, centroCusto)
     if not payload:
         return {"success": False, "data": None, "error": "Falha ao consolidar accountability"}
     return {
@@ -57,8 +60,9 @@ async def prestacao_discovery(
     dataInicial: str = Query(...),
     dataFinal: str = Query(...),
     empresaCodigo: str | None = Query(None),
+    centroCusto: str | None = Query(None, description="PISTA ou CONVENIENCIA"),
 ) -> dict:
-    payload, stale, hit = await _snapshot.get_or_collect(dataInicial, dataFinal, empresaCodigo)
+    payload, stale, hit = await _snapshot.get_or_collect(dataInicial, dataFinal, empresaCodigo, centroCusto)
     if not payload:
         return {"success": False, "data": None, "error": "Falha ao consolidar discovery"}
     return {
@@ -74,8 +78,9 @@ async def prestacao_lineage(
     dataInicial: str = Query(...),
     dataFinal: str = Query(...),
     empresaCodigo: str | None = Query(None),
+    centroCusto: str | None = Query(None, description="PISTA ou CONVENIENCIA"),
 ) -> dict:
-    payload, stale, hit = await _snapshot.get_or_collect(dataInicial, dataFinal, empresaCodigo)
+    payload, stale, hit = await _snapshot.get_or_collect(dataInicial, dataFinal, empresaCodigo, centroCusto)
     if not payload:
         return {"success": False, "data": None, "error": "Falha ao consolidar linhagem"}
     return {
@@ -91,10 +96,11 @@ async def prestacao_snapshot(
     dataInicial: str = Query(...),
     dataFinal: str = Query(...),
     empresaCodigo: str | None = Query(None),
+    centroCusto: str | None = Query(None, description="PISTA ou CONVENIENCIA"),
 ) -> dict:
-    master = _snapshot.get_master(dataInicial, dataFinal, empresaCodigo)
+    master = _snapshot.get_master(dataInicial, dataFinal, empresaCodigo, centroCusto)
     if master.get("stale") and master.get("payload"):
-        asyncio.create_task(_snapshot.refresh_background(dataInicial, dataFinal, empresaCodigo))
+        asyncio.create_task(_snapshot.refresh_background(dataInicial, dataFinal, empresaCodigo, centroCusto))
     return {"success": True, "data": master, "error": None}
 
 
@@ -103,6 +109,7 @@ async def prestacao_refresh(
     dataInicial: str = Query(...),
     dataFinal: str = Query(...),
     empresaCodigo: str | None = Query(None),
+    centroCusto: str | None = Query(None, description="PISTA ou CONVENIENCIA"),
 ) -> dict:
-    asyncio.create_task(_snapshot.refresh_background(dataInicial, dataFinal, empresaCodigo))
+    asyncio.create_task(_snapshot.refresh_background(dataInicial, dataFinal, empresaCodigo, centroCusto))
     return {"success": True, "data": {"status": "refresh_started"}, "error": None}

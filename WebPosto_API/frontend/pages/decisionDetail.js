@@ -424,11 +424,37 @@ function renderExecutionMetricsBlock(metrics) {
     </section>`;
 }
 
+function renderPersonalizationBlock(decisionId, audit) {
+  if (!Array.isArray(audit)) return "";
+  const entry = audit.find((a) => a.decision_id === decisionId);
+  if (!entry || entry.multiplier == null || Math.abs(entry.multiplier - 1.0) <= 0.001) {
+    return "";
+  }
+
+  const isPositive = entry.multiplier > 1.0;
+  const icon = isPositive ? "↗️" : "↘️";
+  const direction = isPositive ? "aumentada" : "ajustada";
+
+  return `
+    <section class="dir-block dir-personalization">
+      <div class="dir-personalization__badge">
+        <span class="dir-preference-badge">Personalizada p/ você</span>
+      </div>
+      <p class="dir-personalization__reason">
+        ${icon} <strong>Relevância ${direction}:</strong> ${entry.reason || "Ajuste baseado no seu perfil de execução histórica."}
+      </p>
+      <p class="muted dir-personalization__disclaimer">
+        O LOGOS aprendeu que este tipo de decisão é ${isPositive ? "prioritário" : "menos urgente"} para o seu estilo de gestão.
+      </p>
+    </section>`;
+}
+
 export function renderDecisionDetail(node, payload, filters, options = {}) {
   if (!node) return;
 
   const evidence = payload?.data;
   const reviewPayload = options.reviewRequests;
+  const preferenceAudit = options.preferenceAudit || [];
 
   if (!evidence) {
     node.innerHTML = `
@@ -466,6 +492,8 @@ export function renderDecisionDetail(node, payload, filters, options = {}) {
         <button type="button" id="dirDetailBack" class="btn-link">← Voltar à Home</button>
         <button type="button" id="dirDetailRefresh" class="btn-secondary">Atualizar</button>
       </header>
+
+      ${renderPersonalizationBlock(evidence.decision_id || options.decisionId, preferenceAudit)}
 
       <h2>Resumo executivo</h2>
       <p class="dir-lead">${evidence.decision_summary || "—"}</p>

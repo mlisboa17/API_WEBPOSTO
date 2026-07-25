@@ -27,6 +27,14 @@ class WebPostoCursorPaginator:
         return []
 
     @staticmethod
+    def _has_supported_shape(payload: Any) -> bool:
+        if isinstance(payload, list):
+            return True
+        if isinstance(payload, dict):
+            return any(isinstance(payload.get(key), list) for key in ("resultados", "data", "items"))
+        return False
+
+    @staticmethod
     def _cursor(payload: Any, rows: list[dict[str, Any]], cursor_field: str) -> Any:
         if isinstance(payload, dict) and payload.get("ultimoCodigo") not in (None, ""):
             return payload["ultimoCodigo"]
@@ -69,6 +77,14 @@ class WebPostoCursorPaginator:
                 return response
 
             payload = response.data
+            if not self._has_supported_shape(payload):
+                return WebPostoResponse.fail(
+                    WebPostoError(
+                        endpoint=fallback_key,
+                        type="UNSUPPORTED_PAGINATION_PAYLOAD",
+                        message="Resposta paginada sem lista em resultados, data ou items",
+                    )
+                )
             batch = self._rows(payload)
             pages += 1
             if not batch:

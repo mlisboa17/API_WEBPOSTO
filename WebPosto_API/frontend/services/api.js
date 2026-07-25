@@ -1671,6 +1671,22 @@ export async function fetchCashReconciliationSummary(filters) {
 }
 
 export async function fetchOwnerTop5Decisions(filters) {
+  // FASE 5: Usar o novo endpoint que suporta pesos de preferência e auditoria
+  // Mantemos o fallback caso o novo endpoint não retorne o esperado por algum motivo
+  try {
+    const raw = await apiClient.get("/api/v1/decisions/top5", {
+      params: {
+        tenant_id: filters.empresaCodigo || "default",
+        empresa_codigo: filters.empresaCodigo || "default",
+      },
+      timeout: ANALYTICS_TIMEOUT_MS,
+    });
+    if (raw && raw.success) return raw;
+  } catch (error) {
+    console.warn("[api] Falha ao buscar Top 5 via Decisions API, tentando fallback:", error);
+  }
+
+  // Fallback para o endpoint clássico de snapshot
   const raw = await apiClient.get("/api/v1/owner-action-center/top5", {
     params: performanceParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,

@@ -98,4 +98,5 @@ class NormalizedProductCatalogEntry(BaseModel):
     ativo: Optional[bool] = None
     departamento: Optional[Literal["combustiveis", "conveniencia", "lubrificantes"]] = None
     classificacaoStatus: Literal["CONFIRMADA_GRUPO", "NAO_CLASSIFICADA"] = "NAO_CLASSIFICADA"
+    classificacaoMotivo: Optional[str] = None
     source: str

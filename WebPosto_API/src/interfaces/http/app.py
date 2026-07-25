@@ -1,3 +1,6 @@
+import asyncio
+from contextlib import suppress
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, RedirectResponse
@@ -45,6 +48,7 @@ from src.interfaces.http.routes import commercial_learning
 from src.interfaces.http.routes import statements
 from src.interfaces.http.routes import data_trust_baseline
 from src.interfaces.http.routes import prestacao_contas
+from src.interfaces.http.routes import periodic_audits
 from src.interfaces.http.routes import cash_reconciliation
 from src.interfaces.http.routes import decisions
 from src.interfaces.http.routes import executive_follow_up
@@ -58,7 +62,11 @@ from src.interfaces.http.routes import business_analyst
 from src.interfaces.http.routes import governance
 from src.interfaces.http.routes import financial_intelligence_center
 from src.interfaces.http.routes import director_financial_reconciliation
+from src.interfaces.http.routes import departmental_facts
+from src.interfaces.http.routes import departmental_kpis
+from src.interfaces.http.routes import departmental_governance
 from src.services.financial_snapshot_scheduler import get_financial_scheduler
+from src.services.departmental_automation_service import get_departmental_automation
 from src.shared.logger import setup_logging
 
 # Sprint 1 — barramento C-Level: rotas operacionais de pista ficam desligadas por padrão.
@@ -103,6 +111,7 @@ def _mount_executive_barramento(app: FastAPI) -> None:
     app.include_router(financial_intelligence.router)
     app.include_router(financial_intelligence_center.router)
     app.include_router(prestacao_contas.router)
+    app.include_router(periodic_audits.router)
     app.include_router(cash_reconciliation.router)
     app.include_router(director_financial_reconciliation.router)
 
@@ -136,6 +145,9 @@ def _mount_executive_support(app: FastAPI) -> None:
     app.include_router(financial_snapshot_health.router)
     app.include_router(financial_operations.router)
     app.include_router(financial_operations_center.router)
+    app.include_router(departmental_facts.router)
+    app.include_router(departmental_kpis.router)
+    app.include_router(departmental_governance.router)
 
 
 def _mount_operational_deprecated(app: FastAPI) -> None:
@@ -158,6 +170,8 @@ def _mount_operational_deprecated(app: FastAPI) -> None:
 def create_app() -> FastAPI:
     """Factory para criar instância da aplicação FastAPI."""
 
+    settings.validate_production_security()
+
     # Setup logging
     setup_logging(settings.log_level, settings.log_format)
 
@@ -171,7 +185,7 @@ def create_app() -> FastAPI:
     # CORS middleware
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],
+        allow_origins=settings.allowed_origins(),
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
@@ -214,6 +228,14 @@ def create_app() -> FastAPI:
                 headers={"Cache-Control": "no-cache, must-revalidate"},
             )
 
+        @app.get("/app/departmental")
+        async def departmental_frontend() -> FileResponse:
+            return FileResponse(
+                frontend_dir / "departmental.html",
+                media_type="text/html; charset=utf-8",
+                headers={"Cache-Control": "no-cache, must-revalidate"},
+            )
+
     # Startup event
     @app.on_event("startup")
     async def on_startup():
@@ -221,11 +243,28 @@ def create_app() -> FastAPI:
         await init_db()
         await init_gateway_db()
         get_financial_scheduler().schedule_next_run()
+        if settings.departmental_scheduler_enabled:
+            async def poll_departmental_schedule() -> None:
+                while True:
+                    await get_departmental_automation().run_due()
+                    await asyncio.sleep(
+                        max(15, settings.departmental_scheduler_poll_seconds)
+                    )
+
+            app.state.departmental_scheduler_task = asyncio.create_task(
+                poll_departmental_schedule(),
+                name="departmental-scheduler",
+            )
 
     # Shutdown event
     @app.on_event("shutdown")
     async def on_shutdown():
         """Executado ao desligar a aplicação."""
+        task = getattr(app.state, "departmental_scheduler_task", None)
+        if task:
+            task.cancel()
+            with suppress(asyncio.CancelledError):
+                await task
         await close_db()
 
     return app

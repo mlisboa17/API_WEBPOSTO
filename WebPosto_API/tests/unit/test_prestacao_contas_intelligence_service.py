@@ -29,3 +29,17 @@ def test_cash_expense_origin_bobina():
     report = PrestacaoContasIntelligenceService.cash_expense_origin(enriched)
     assert report["bobinaTermica"]["count"] == 1
     assert report["totals"].get("DESPESA_OPERACIONAL") == 12.5
+
+
+def test_center_cost_filter_does_not_mix_pista_and_convenience():
+    rows = [
+        {"centroCusto": "PISTA", "valor": 100},
+        {"centroCusto": "LOJA CONVENIENCIA", "valor": 200},
+        {"valor": 300},
+    ]
+    pista, pista_coverage = PrestacaoContasIntelligenceService._filter_center_rows(rows, "PISTA")
+    loja, loja_coverage = PrestacaoContasIntelligenceService._filter_center_rows(rows, "CONVENIENCIA")
+    assert [row["valor"] for row in pista] == [100]
+    assert [row["valor"] for row in loja] == [200]
+    assert pista_coverage["status"] == "PENDENTE_EVIDENCIA_CENTRO"
+    assert loja_coverage["withoutCenter"] == 1

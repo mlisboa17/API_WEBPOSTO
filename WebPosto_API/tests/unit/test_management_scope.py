@@ -1,9 +1,11 @@
 from src.core.management_scope import (
     LICENSED_COMPANY_CODES,
     MANAGEMENT_DEPARTMENTS,
+    QUARANTINED_WEBPOSTO_GROUPS,
     UNMAPPED_WEBPOSTO_GROUP_CODES,
     department_for_group,
     is_licensed_company,
+    quarantine_reason_for_group,
 )
 
 
@@ -25,8 +27,20 @@ def test_real_webposto_groups_map_to_management_departments() -> None:
     assert department_for_group(24554) == "combustiveis"
     assert department_for_group("55444") == "conveniencia"
     assert department_for_group(24556) == "lubrificantes"
+    assert department_for_group(166355) == "lubrificantes"
 
 
 def test_ambiguous_groups_remain_unmapped() -> None:
     assert UNMAPPED_WEBPOSTO_GROUP_CODES == frozenset({25016, 26039, 29273})
-    assert department_for_group(26039) is None
+    assert QUARANTINED_WEBPOSTO_GROUPS == {
+        25016: "COMODATO",
+        26039: "DIVERSOS",
+        29273: "USO E CONSUMO",
+    }
+    for code in UNMAPPED_WEBPOSTO_GROUP_CODES:
+        assert department_for_group(code) is None
+        assert quarantine_reason_for_group(code).startswith("GRUPO_AMBIGUO:")
+
+
+def test_regular_group_has_no_quarantine_reason() -> None:
+    assert quarantine_reason_for_group(24554) is None

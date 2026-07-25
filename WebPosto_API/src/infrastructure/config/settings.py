@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -57,6 +57,8 @@ class Settings(BaseSettings):
     auth_user_password_hash: str = ""
     auth_user_role: str = "director"
     auth_user_company_id: str = "default-company"
+    auth_cookie_secure: bool = False
+    cors_allowed_origins: str = "http://127.0.0.1:8040,http://localhost:8040"
 
     # Circuit Breaker
     circuit_breaker_threshold: int = 5
@@ -70,6 +72,8 @@ class Settings(BaseSettings):
     financial_auto_recovery_enabled: bool = True
     financial_auto_recovery_interval_seconds: int = 900
     financial_live_budget_seconds: int = 22
+    departmental_scheduler_enabled: bool = False
+    departmental_scheduler_poll_seconds: int = 60
     # O WebPosto pode ultrapassar 8 s mesmo em partições diárias da empresa 74014.
     # Mantém a tentativa limitada, mas permite concluir uma chamada diária válida.
     sales_live_timeout_seconds: int = 20
@@ -77,11 +81,42 @@ class Settings(BaseSettings):
     stock_live_timeout_seconds: int = 8
     stock_total_budget_seconds: int = 22
 
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
-        case_sensitive = False
-        extra = "ignore"
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        case_sensitive=False,
+        extra="ignore",
+    )
+
+    def allowed_origins(self) -> list[str]:
+        return [
+            origin.strip()
+            for origin in self.cors_allowed_origins.split(",")
+            if origin.strip()
+        ]
+
+    def validate_production_security(self) -> None:
+        if self.environment.strip().lower() not in {"production", "prod"}:
+            return
+        failures: list[str] = []
+        if self.debug:
+            failures.append("DEBUG_ENABLED")
+        if self.secret_key == "changeme_replace_in_env" or len(self.secret_key) < 32:
+            failures.append("WEAK_SECRET_KEY")
+        if self.consumer_token == "dev-consumer-token":
+            failures.append("DEFAULT_CONSUMER_TOKEN")
+        if self.admin_token == "dev-admin-token":
+            failures.append("DEFAULT_ADMIN_TOKEN")
+        if self.auth_user_password or not self.auth_user_password_hash:
+            failures.append("PASSWORD_HASH_REQUIRED")
+        if not self.auth_cookie_secure:
+            failures.append("SECURE_COOKIE_REQUIRED")
+        if "*" in self.allowed_origins():
+            failures.append("WILDCARD_CORS_FORBIDDEN")
+        if failures:
+            raise RuntimeError(
+                "INSECURE_PRODUCTION_CONFIGURATION:" + ",".join(failures)
+            )
 
 
 # Instância global de settings

@@ -333,7 +333,12 @@ class ExecutionService:
             ip_address=ip_address,
             user_agent=user_agent
         )
-        
+
+        # A state machine exige o campo `confirmation` já preenchido no record
+        # ANTES da transição (ver required_fields em TransitionRule) -- setar aqui,
+        # antes dos branches de resultado que chamam DecisionStatusMachine.
+        record.confirmation = confirmation
+
         # Add result-specific details
         if result == ConfirmationResult.YES:
             # SUCCESS: Create confirmed impact

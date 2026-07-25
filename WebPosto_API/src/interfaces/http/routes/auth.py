@@ -38,14 +38,17 @@ async def login(payload: LoginPayload, response: Response):
     # subject can be user id or email
     subject = payload.email
     access_token = create_access_token(subject, extra={"role": settings.auth_user_role})
-    refresh_token = create_refresh_token(subject)
+    refresh_token = create_refresh_token(
+        subject,
+        extra={"role": settings.auth_user_role},
+    )
 
     # Set HttpOnly Secure cookies
     response.set_cookie(
         "access_token",
         access_token,
         httponly=True,
-        secure=False,
+        secure=settings.auth_cookie_secure,
         samesite="lax",
         max_age=60 * settings.access_token_expire_minutes,
         path="/",
@@ -54,7 +57,7 @@ async def login(payload: LoginPayload, response: Response):
         "refresh_token",
         refresh_token,
         httponly=True,
-        secure=False,
+        secure=settings.auth_cookie_secure,
         samesite="lax",
         max_age=60 * 60 * 24 * settings.refresh_token_expire_days,
         path="/auth/refresh",
@@ -87,12 +90,13 @@ async def refresh(request: Request, response: Response):
         raise HTTPException(status_code=401, detail="Invalid refresh token")
 
     subject = payload.get("sub")
-    access_token = create_access_token(subject)
+    role = payload.get("role") or settings.auth_user_role
+    access_token = create_access_token(subject, extra={"role": role})
     response.set_cookie(
         "access_token",
         access_token,
         httponly=True,
-        secure=False,
+        secure=settings.auth_cookie_secure,
         samesite="lax",
         max_age=60 * settings.access_token_expire_minutes,
         path="/",

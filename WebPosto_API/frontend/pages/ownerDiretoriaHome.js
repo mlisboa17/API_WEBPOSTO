@@ -179,7 +179,17 @@ function tenantSummary(row) {
   };
 }
 
-function renderNetworkPriority(decision) {
+function renderPreferenceBadge(decisionId, audit) {
+  if (!Array.isArray(audit)) return "";
+  const entry = audit.find((a) => a.decision_id === decisionId);
+  // multiplier !== 1.0 indicates a personalization adjustment
+  if (entry && entry.multiplier != null && Math.abs(entry.multiplier - 1.0) > 0.001) {
+    return `<span class="dir-preference-badge" title="${entry.reason || ""}">Personalizada p/ você</span>`;
+  }
+  return "";
+}
+
+function renderNetworkPriority(decision, preferenceAudit) {
   if (!decision) return "";
   const { action, candidate, evidence, baseline } = decisionContext(decision);
   const id = decision.decision_id || action.id;
@@ -187,10 +197,11 @@ function renderNetworkPriority(decision) {
   const value = impactValue(decision);
   const problem = problemLabel(decision);
   const context = evidenceLine(evidence, baseline);
+  const preferenceBadge = renderPreferenceBadge(id, preferenceAudit);
 
   return `
     <section class="dir-network-hero">
-      <span class="dir-network-eyebrow">Prioridade da rede</span>
+      <span class="dir-network-eyebrow">Prioridade da rede ${preferenceBadge}</span>
       <h3>${decision.tenant_name || decision.tenant_id || "—"}</h3>
       <p class="dir-network-priority__amount">
         ${fmtMoney(value)}
@@ -206,7 +217,7 @@ function renderNetworkPriority(decision) {
     </section>`;
 }
 
-function renderNextDecisions(decisions) {
+function renderNextDecisions(decisions, preferenceAudit) {
   const next = (decisions || []).slice(1);
   if (!next.length) return "";
   const cards = next
@@ -217,10 +228,12 @@ function renderNextDecisions(decisions) {
       const rank = decision.rank ?? 2;
       const question = directorQuestion(decision);
       const context = evidenceLine(evidence, baseline);
+      const preferenceBadge = renderPreferenceBadge(id, preferenceAudit);
+
       return `
         <article class="dir-network-next">
           <header>
-            <span class="dir-network-next__rank">#${rank} Próxima decisão</span>
+            <span class="dir-network-next__rank">#${rank} Próxima decisão ${preferenceBadge}</span>
             <h4>${decision.tenant_name || decision.tenant_id}</h4>
           </header>
           <p class="dir-network-next__amount">
@@ -455,7 +468,8 @@ export function renderOwnerDiretoriaHome(node, payload, filters, options = {}) {
 
   const data = payload.data;
   const proof = payload.analysis_proof || {};
-  const decisions = (data.top_5_decisions || []).map((item, index) => ({
+  const preferenceAudit = data.preference_audit || [];
+  const decisions = (data.top_5_decisions || data.decisions || []).map((item, index) => ({
     ...item,
     rank: item.rank ?? index + 1,
   }));
@@ -476,8 +490,8 @@ export function renderOwnerDiretoriaHome(node, payload, filters, options = {}) {
 
       ${renderBusinessHealth(payload.businessHealth)}
       ${renderNetworkIntro(decisions.length)}
-      ${decisions.length ? renderNetworkPriority(decisions[0]) : ""}
-      ${renderNextDecisions(decisions)}
+      ${decisions.length ? renderNetworkPriority(decisions[0], preferenceAudit) : ""}
+      ${renderNextDecisions(decisions, preferenceAudit)}
 
       <section class="dir-network-block">
         <h3>Postos analisados</h3>

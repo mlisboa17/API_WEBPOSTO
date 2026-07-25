@@ -9,11 +9,18 @@ function escapeHtml(value) {
     .replace(/"/g, "&quot;");
 }
 
-function branchRows(rows) {
+function money(value) {
+  return Number(value).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+}
+
+function branchRows(rows = []) {
   if (!rows.length) {
     return `<p class="pres-empty">Ainda não há dados confiáveis por unidade neste período.</p>`;
   }
-  const visible = rows.slice(0, 4);
+  const visible = rows.slice(0, 3);
   const max = Math.max(...visible.map((row) => Number(row.value || 0)), 1);
   return visible.map((row, index) => `
     <div class="pres-branch-row">
@@ -22,60 +29,95 @@ function branchRows(rows) {
         <strong>${escapeHtml(row.label)}</strong>
         <div class="pres-branch-track"><i style="width:${Math.max(4, (Number(row.value || 0) / max) * 100)}%"></i></div>
       </div>
-      <strong class="pres-branch-value">${row.available === false || row.value == null ? "Dados indisponíveis" : Number(row.value).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</strong>
+      <strong class="pres-branch-value">${row.available === false || row.value == null ? "Dados indisponíveis" : money(row.value)}</strong>
     </div>
   `).join("");
 }
 
-function decisionItems(data) {
+function decisionItems(data, released) {
   const alerts = data.alerts || [];
   if (alerts.length) {
-    return alerts.slice(0, 3).map((item) => `
+    return alerts.slice(0, 3).map((item, index) => `
       <div class="pres-decision pres-decision--${item.tone}">
-        <span>${item.tone === "bad" ? "Ação imediata" : "Acompanhar"}</span>
-        <strong>${escapeHtml(item.title)}</strong>
-        <p>${escapeHtml(item.detail)}</p>
+        <b>${index + 1}</b>
+        <div>
+          <span>${item.tone === "bad" ? "Ação imediata" : "Acompanhar"}</span>
+          <strong>${escapeHtml(item.title)}</strong>
+          <p>${escapeHtml(item.detail)}</p>
+        </div>
       </div>
     `).join("");
+  }
+  if (!released) {
+    return `
+      <div class="pres-decision pres-decision--warn">
+        <b>1</b>
+        <div>
+          <span>Antes de decidir</span>
+          <strong>Concluir a homologação da DRE</strong>
+          <p>Receitas podem ser acompanhadas, mas lucro e rentabilidade continuam bloqueados até a validação financeira.</p>
+        </div>
+      </div>
+    `;
   }
   const insight = data.insights?.[0];
   return `
     <div class="pres-decision pres-decision--good">
-      <span>Leitura do período</span>
-      <strong>Nenhuma ocorrência crítica calculada</strong>
-      <p>${escapeHtml(insight?.text || "Confira a cobertura dos dados antes de concluir o fechamento.")}</p>
+      <b>✓</b>
+      <div>
+        <span>Leitura do período</span>
+        <strong>Nenhuma ocorrência crítica calculada</strong>
+        <p>${escapeHtml(insight?.text || "Confira a cobertura dos dados antes de concluir o fechamento.")}</p>
+      </div>
     </div>
   `;
 }
 
-function departmentCards(departments = []) {
+function ownerKpis(data, released) {
+  const [revenue, margin] = data.kpis || [];
+  const pending = Number(data.homologation?.pendingExpenses || 0);
+  return `
+    <article class="pres-owner-kpi pres-owner-kpi--primary">
+      <span>Receita observada</span>
+      <strong>${escapeHtml(revenue?.value || "Dados indisponíveis")}</strong>
+      <small>${escapeHtml(revenue?.delta || "Período selecionado")} · ainda não representa lucro</small>
+    </article>
+    <article class="pres-owner-kpi pres-owner-kpi--${released ? "good" : "locked"}">
+      <span>Resultado do grupo</span>
+      <strong>${released ? escapeHtml(margin?.value || "Dados indisponíveis") : "Em validação"}</strong>
+      <small>${released ? escapeHtml(margin?.delta || "DRE homologada") : "Aguardando homologação financeira"}</small>
+    </article>
+    <article class="pres-owner-kpi pres-owner-kpi--${pending ? "warn" : "good"}">
+      <span>Pendências financeiras</span>
+      <strong>${pending}</strong>
+      <small>${pending ? "Exigem classificação gerencial" : "Nenhuma despesa pendente"}</small>
+    </article>
+  `;
+}
+
+function departmentSummary(departments = []) {
   return departments.map((item) => `
-    <article class="pres-department pres-department--${item.status}">
-      <header>
-        <span>${item.status === "available" ? "Dados classificados" : "Classificação pendente"}</span>
-        <h3>${escapeHtml(item.label)}</h3>
-      </header>
-      <div class="pres-department-value">
-        <small>Faturamento do departamento</small>
-        <strong>${escapeHtml(item.revenueLabel)}</strong>
+    <article class="pres-owner-dept pres-owner-dept--${item.status}">
+      <div>
+        <span>${escapeHtml(item.label)}</span>
+        <small>${item.status === "available" ? "Receita identificada" : "Cobertura pendente"}</small>
       </div>
-      <p>${escapeHtml(item.detail)}</p>
-      <dl>
-        <div><dt>Margem</dt><dd>Somente quando identificada</dd></div>
-        <div><dt>Despesas</dt><dd>Somente do departamento</dd></div>
-        <div><dt>Rentabilidade</dt><dd>Sem rateio genérico</dd></div>
-      </dl>
+      <strong>${escapeHtml(item.revenueLabel)}</strong>
     </article>
   `).join("");
 }
 
 function moneyOrBlocked(value, released) {
   if (!released || value == null) return "Aguardando homologação";
-  return Number(value).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  return money(value);
 }
 
 function departmentMatrix(lines = [], released = false) {
-  const labels = { combustiveis: "Combustíveis", conveniencia: "Conveniência", lubrificantes: "Lubrificantes" };
+  const labels = {
+    combustiveis: "Combustíveis",
+    conveniencia: "Conveniência",
+    lubrificantes: "Lubrificantes",
+  };
   return `<div class="pres-matrix-wrap"><table class="pres-matrix"><thead><tr><th>Empresa</th><th>Departamento</th><th>Faturamento</th><th>Margem bruta</th><th>Despesas</th><th>Resultado</th><th>Status</th></tr></thead><tbody>${lines.map((line) => `
     <tr><td><strong>${escapeHtml(line.companyName)}</strong></td><td>${labels[line.department] || escapeHtml(line.department)}</td><td>${moneyOrBlocked(line.revenue, released)}</td><td>${moneyOrBlocked(line.grossMargin, released)}</td><td>${moneyOrBlocked(line.expenses, released)}</td><td>${moneyOrBlocked(line.operatingResult, released)}</td><td><span class="pres-line-status pres-line-status--${released && line.status === "LIBERADO" ? "ok" : "blocked"}">${released && line.status === "LIBERADO" ? "Homologado" : "Bloqueado"}</span></td></tr>
   `).join("")}</tbody></table></div>`;
@@ -90,61 +132,74 @@ function licensedCompanies() {
 export function renderPresidentDashboard(node, data, filters, options = {}) {
   if (!node) return;
   if (!data) {
-    node.innerHTML = `<section class="state">Preparando o resumo da presidência...</section>`;
+    node.innerHTML = `<section class="state">Preparando a visão do proprietário...</section>`;
     return;
   }
 
-  const availableDepartments = data.departments.filter((item) => item.status === "available").length;
-  const statusTone = availableDepartments === data.departments.length ? "good" : "warn";
   const released = data.homologation?.released === true;
-  const statusTitle = released ? "DRE homologada" : "DRE aguardando homologação";
+  const alertCount = (data.alerts || []).length;
+  const leader = (data.branchRanking || []).find((item) => item.available !== false);
+  const statusTitle = released
+    ? "Números liberados para decisão"
+    : "Fechamento ainda não homologado";
   const statusText = released
-    ? "Nove linhas departamentais validadas e liberadas."
-    : `${data.homologation?.pendingExpenses || 0} despesa(s) ainda exigem classificação gerencial.`;
+    ? "Resultado e rentabilidade validados pela governança financeira."
+    : "Acompanhe receitas e exceções; não use os dados atuais como lucro.";
+
   node.innerHTML = `
-    <section class="pres-page pres-page--simple">
-      <header class="pres-summary">
-        <div>
-          <span class="pres-eyebrow">Resumo da Presidência</span>
-          <h2>Como está o Grupo agora</h2>
-          <p>${escapeHtml(formatPeriodBr(filters.dataInicial, filters.dataFinal))} · 3 empresas licenciadas</p>
+    <section class="pres-page pres-owner-page">
+      <header class="pres-owner-hero">
+        <div class="pres-owner-heading">
+          <span class="pres-eyebrow">Visão do proprietário</span>
+          <h2>O que precisa da sua atenção</h2>
+          <p>${escapeHtml(formatPeriodBr(filters.dataInicial, filters.dataFinal))} · Grupo LOGOS SPACE</p>
         </div>
-        <div class="pres-status pres-status--${released ? "good" : "warn"}">
+        <div class="pres-owner-status pres-owner-status--${released ? "good" : "warn"}">
           <i></i>
           <div><strong>${escapeHtml(statusTitle)}</strong><span>${escapeHtml(statusText)}</span></div>
         </div>
       </header>
 
-      <section class="pres-license-scope" aria-label="Empresas licenciadas">
-        <strong>Escopo atual</strong>
-        <div>${licensedCompanies()}</div>
+      <section class="pres-owner-kpis" aria-label="Indicadores principais">
+        ${ownerKpis(data, released)}
       </section>
 
-      <section class="pres-department-intro">
-        <div><span>Gestão WebPosto</span><h3>Resultado por departamento</h3></div>
-        <p>Receitas, custos e margens não são somados entre operações.</p>
+      <section class="pres-owner-focus">
+        <article class="pres-owner-card pres-owner-actions">
+          <header>
+            <div>
+              <span>Prioridade de hoje</span>
+              <h3>${alertCount ? `${alertCount} ponto(s) para acompanhar` : "Uma decisão antes do fechamento"}</h3>
+            </div>
+            ${released ? '<em class="pres-owner-badge pres-owner-badge--good">Homologado</em>' : '<em class="pres-owner-badge">Revisão necessária</em>'}
+          </header>
+          <div class="pres-decisions">${decisionItems(data, released)}</div>
+          ${released ? "" : '<button type="button" class="btn-primary pres-owner-cta" id="presHomologation">Abrir pendências financeiras</button>'}
+        </article>
+
+        <article class="pres-owner-card pres-owner-ranking">
+          <header><div><span>Unidades</span><h3>Quem está puxando o resultado</h3></div></header>
+          ${branchRows(data.branchRanking || [])}
+          <p class="pres-owner-context">${leader ? `${escapeHtml(leader.label)} lidera a receita observada no período.` : "Ranking indisponível para este recorte."}</p>
+        </article>
       </section>
 
-      <section class="pres-exec-strip">
-        <article><span>Empresas no escopo</span><strong>3</strong><small>Somente licenças oficiais</small></article>
-        <article><span>Linhas gerenciais</span><strong>9</strong><small>3 empresas × 3 departamentos</small></article>
-        <article><span>Despesas pendentes</span><strong>${data.homologation?.pendingExpenses || 0}</strong><small>Não entram na DRE</small></article>
-        <article><span>Situação</span><strong>${released ? "Homologada" : "Bloqueada"}</strong><small>${released ? "Pronta para decisão" : "Sem estimativas"}</small></article>
+      <section class="pres-owner-section">
+        <header>
+          <div><span>Operações separadas</span><h3>Receita por departamento</h3></div>
+          <p>Sem misturar combustíveis, conveniência e lubrificantes.</p>
+        </header>
+        <div class="pres-owner-departments">${departmentSummary(data.departments)}</div>
       </section>
 
-      <article class="pres-panel pres-matrix-panel">
-        <header><div><span>Desempenho independente</span><h3>Empresa × departamento</h3></div><p>Não existe total genérico da rede.</p></header>
-        ${departmentMatrix(data.departmentMatrix, released)}
-      </article>
-
-      <section class="pres-simple-grid">
-        <article class="pres-panel"><header><div><span>Comparativo direto</span><h3>Desempenho das unidades</h3></div></header>${branchRows(data.branchRanking || [])}</article>
-        <article class="pres-panel pres-priorities"><header><div><span>O que exige atenção</span><h3>Decisões necessárias</h3></div></header><div class="pres-decisions">${decisionItems(data)}</div></article>
-      </section>
+      <details class="pres-owner-details">
+        <summary><span>Ver memória de cálculo</span><small>Empresa × departamento, status e evidências</small></summary>
+        <div class="pres-owner-details-body">${departmentMatrix(data.departmentMatrix, released)}</div>
+      </details>
 
       <footer class="pres-footer">
         <span>Fonte: WebPosto · informações disponíveis no período selecionado</span>
-        <div><button type="button" class="btn-secondary" id="presRefresh">Atualizar dados</button>${released ? "" : '<button type="button" class="btn-primary" id="presHomologation">Revisar pendências</button>'}</div>
+        <div><button type="button" class="btn-secondary" id="presRefresh">Atualizar dados</button></div>
       </footer>
     </section>
   `;

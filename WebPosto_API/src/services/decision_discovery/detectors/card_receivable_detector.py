@@ -23,6 +23,7 @@ from src.services.decision_discovery.models import (
 from src.services.network_financial_overview_service import NetworkFinancialOverviewService
 from src.services.performance.performance_metrics import performance_metrics
 from src.services.snapshot_store import SnapshotStore
+from src.services.webposto_cursor_paginator import WebPostoCursorPaginator
 from src.utils.utc_datetime import age_seconds, utc_now_iso
 
 
@@ -30,6 +31,10 @@ class CardReceivableDetector(BaseDetector):
     """Detecta gaps explicáveis entre expectativa de recebível e evidência de liquidação."""
 
     RECONCILIATION_LEVEL = 1
+    # LEVEL 2 (ver docs/architecture/CARD_RECONCILIATION_CAPABILITY.md): usado apenas pelo
+    # sinal CARD_SETTLEMENT_GAP_V2, que compara liquidacao real vs a taxa REAL cobrada por
+    # venda (/INTEGRACAO/CARTAO -> taxaPercentual), nao mais um percentual agregado estimado.
+    RECONCILIATION_LEVEL_V2 = 2
     MIN_IMPACT_BRL = 2000.0
     MIN_CONFIDENCE = 0.80
     ANALYSIS_DAYS = 30
@@ -84,11 +89,13 @@ class CardReceivableDetector(BaseDetector):
             if not payload:
                 return None
 
-            analyses = self._detect_signals(payload, ref_date=end)
+            tenant_name = kwargs.get("tenant_name", tenant_code)
+            analyses = self._detect_signals(
+                payload, ref_date=end, tenant_code=tenant_code, tenant_name=tenant_name
+            )
             if not analyses:
                 return None
 
-            tenant_name = kwargs.get("tenant_name", tenant_code)
             candidates: List[DecisionCandidate] = []
             for analysis in analyses:
                 if analysis["gap_value"] < self.MIN_IMPACT_BRL:
@@ -184,6 +191,10 @@ class CardReceivableDetector(BaseDetector):
         ]
         bank = finance._classify_bank_movements(bank_rows)
 
+        cartao_gross_v2, cartao_net_expected_v2, cartao_txn_count_v2, cartao_rows_v2 = await self._fetch_cartao_v2(
+            client, tenant_code, cur_start, cur_end
+        )
+
         return {
             "receivable_rows": rec_rows,
             "buckets": buckets,
@@ -192,9 +203,58 @@ class CardReceivableDetector(BaseDetector):
             "bank_credits": float(bank["creditos"]["valor"]),
             "data_quality": 0.85 if rec_rows else 0.4,
             "card_data_available": len(card_rows) > 0,
+            "cartao_gross_v2": float(cartao_gross_v2),
+            "cartao_net_expected_v2": float(cartao_net_expected_v2),
+            "cartao_txn_count_v2": cartao_txn_count_v2,
+            "card_data_available_v2": cartao_txn_count_v2 > 0,
+            "cartao_rows_v2": cartao_rows_v2,
         }
 
-    def _detect_signals(self, payload: dict[str, Any], ref_date: date) -> list[dict[str, Any]]:
+    @staticmethod
+    async def _fetch_cartao_v2(
+        client: Any, tenant_code: str, cur_start: str, cur_end: str
+    ) -> tuple[Decimal, Decimal, int, list[dict[str, Any]]]:
+        """Liquido esperado REAL por venda de cartao, via /INTEGRACAO/CARTAO (achado 2026-07-21):
+        cada linha ja' traz `taxaPercentual` congelada no momento da venda (nao e' uma media
+        estimada). LEVEL 2 -- ver docs/architecture/CARD_RECONCILIATION_CAPABILITY.md. Retorna
+        tambem as linhas cruas (para materializar evidence_items com NSU/autorizacao/centro de
+        custo em DIR-01, ver src/services/decision_evidence/card_evidence_builder.py)."""
+        paginator = WebPostoCursorPaginator(client)
+        params = {"dataInicial": cur_start, "dataFinal": cur_end, "empresaCodigo": int(tenant_code)}
+        try:
+            resp = await paginator.collect("cartao", "cartao", params, cursor_field="codigo")
+        except Exception:
+            return Decimal("0"), Decimal("0"), 0, []
+        rows = NetworkFinancialOverviewService._rows(resp.data) if resp.success else []
+        if not rows:
+            return Decimal("0"), Decimal("0"), 0, []
+
+        gross = Decimal("0")
+        net = Decimal("0")
+        for row in rows:
+            try:
+                valor = Decimal(str(row.get("valor") or 0))
+            except Exception:
+                continue
+            gross += valor
+            taxa = row.get("taxaPercentual")
+            if taxa is not None:
+                try:
+                    net += valor * (Decimal("1") - Decimal(str(taxa)) / Decimal("100"))
+                    continue
+                except Exception:
+                    pass
+            net += valor
+        return gross, net, len(rows), rows
+
+    def _detect_signals(
+        self,
+        payload: dict[str, Any],
+        ref_date: date,
+        *,
+        tenant_code: str | None = None,
+        tenant_name: str | None = None,
+    ) -> list[dict[str, Any]]:
         buckets = payload["buckets"]
         overdue = buckets.get("vencido") or []
         analyses: list[dict[str, Any]] = []
@@ -252,6 +312,47 @@ class CardReceivableDetector(BaseDetector):
                         top_client_share=0,
                         confidence=self._confidence(payload, 5, 30, True) * 0.75,
                         limitation="LEVEL 1 agregado: vendas cartão vs titulos recebidos — sem vínculo transacional",
+                    )
+                )
+
+        if payload.get("card_data_available_v2") and payload.get("cartao_net_expected_v2", 0) > 0:
+            gap_v2 = float(payload["cartao_net_expected_v2"]) - settled_val
+            if gap_v2 >= self.MIN_IMPACT_BRL:
+                txn_count = payload.get("cartao_txn_count_v2", 0)
+                conf_v2 = min(0.92, self._confidence(payload, txn_count, 30, True) * 0.95)
+                v2_extra: dict[str, Any] = {
+                    "reconciliation_level": self.RECONCILIATION_LEVEL_V2,
+                    "gross_v2": float(payload.get("cartao_gross_v2", 0.0)),
+                    "expectation_source": "/INTEGRACAO/CARTAO (taxaPercentual por venda)",
+                }
+                cartao_rows_v2 = payload.get("cartao_rows_v2") or []
+                if cartao_rows_v2 and tenant_code:
+                    from src.services.decision_evidence.card_evidence_builder import (
+                        attach_card_evidence_items,
+                    )
+
+                    v2_extra = attach_card_evidence_items(
+                        v2_extra,
+                        cartao_rows_v2,
+                        tenant_id=tenant_code,
+                        tenant_name=tenant_name,
+                    )
+                analyses.append(
+                    self._analysis(
+                        signal_type="CARD_SETTLEMENT_GAP_V2",
+                        gap_value=gap_v2,
+                        expected_value=float(payload["cartao_net_expected_v2"]),
+                        settled_value=settled_val,
+                        overdue_count=txn_count,
+                        avg_overdue_days=0,
+                        top_client_share=0,
+                        confidence=conf_v2,
+                        limitation=(
+                            "LEVEL 2: liquido esperado calculado com a taxa REAL de cada venda "
+                            "(taxaPercentual congelada em /INTEGRACAO/CARTAO), nao mais media "
+                            "agregada -- ainda sem match transacao-a-transacao com o extrato bancario"
+                        ),
+                        extra=v2_extra,
                     )
                 )
 
@@ -393,6 +494,8 @@ class CardReceivableDetector(BaseDetector):
             title = f"R$ {gap:,.0f} em recebíveis vencidos sem evidência de liquidação"
         elif signal == "DUPLICATE_SETTLEMENT_SIGNAL":
             title = f"Possível duplicidade em recebíveis (~R$ {gap:,.0f} em risco estimado)"
+        elif signal == "CARD_SETTLEMENT_GAP_V2":
+            title = f"R$ {gap:,.0f} de cartão com taxa real aplicada acima da liquidação registrada"
         else:
             title = f"R$ {gap:,.0f} acima do esperado vs liquidação registrada (agregado)"
 
@@ -409,6 +512,12 @@ class CardReceivableDetector(BaseDetector):
         ]
         if signal == "DUPLICATE_SETTLEMENT_SIGNAL":
             actions.insert(0, "Conferir possível duplicidade nos títulos com mesmo cliente/valor/vencimento")
+        elif signal == "CARD_SETTLEMENT_GAP_V2":
+            actions = [
+                f"Conferir extrato bancário do período ({period_start} a {period_end}) contra as {ev['overdue_count']} transações de cartão (`/INTEGRACAO/CARTAO`)",
+                "Cruzar por NSU/autorização com o portal do adquirente (PagBank/Rede) para confirmar liquidação",
+                "Validar se a taxa aplicada em cada venda está de acordo com o cadastro vigente (`administradora_rede`)",
+            ]
 
         return DecisionCandidate(
             id=str(uuid.uuid4()),

@@ -55,6 +55,7 @@ def test_catalog_does_not_guess_ambiguous_group() -> None:
     assert product is not None
     assert product["departamento"] is None
     assert product["classificacaoStatus"] == "NAO_CLASSIFICADA"
+    assert product["classificacaoMotivo"] == "GRUPO_AMBIGUO:DIVERSOS"
 
 
 async def test_get_catalog_resolves_generic_name_via_lmc_cross_reference() -> None:
