@@ -1,5 +1,6 @@
 import asyncio
-from contextlib import suppress
+from contextlib import asynccontextmanager, suppress
+from typing import AsyncIterator
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -65,6 +66,7 @@ from src.interfaces.http.routes import director_financial_reconciliation
 from src.interfaces.http.routes import departmental_facts
 from src.interfaces.http.routes import departmental_kpis
 from src.interfaces.http.routes import departmental_governance
+from src.interfaces.http.routes import executive_synthesis
 from src.services.financial_snapshot_scheduler import get_financial_scheduler
 from src.services.departmental_automation_service import get_departmental_automation
 from src.shared.logger import setup_logging
@@ -148,6 +150,7 @@ def _mount_executive_support(app: FastAPI) -> None:
     app.include_router(departmental_facts.router)
     app.include_router(departmental_kpis.router)
     app.include_router(departmental_governance.router)
+    app.include_router(executive_synthesis.router)
 
 
 def _mount_operational_deprecated(app: FastAPI) -> None:
@@ -167,6 +170,35 @@ def _mount_operational_deprecated(app: FastAPI) -> None:
     app.include_router(store_shift_profitability.router)  # operation-roi por turno
 
 
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+    """Lifecycle manager — substitui on_event startup/shutdown (FastAPI 0.93+)."""
+    await init_db()
+    await init_gateway_db()
+    get_financial_scheduler().schedule_next_run()
+
+    scheduler_task = None
+    if settings.departmental_scheduler_enabled:
+        async def poll_departmental_schedule() -> None:
+            while True:
+                await get_departmental_automation().run_due()
+                await asyncio.sleep(max(15, settings.departmental_scheduler_poll_seconds))
+
+        scheduler_task = asyncio.create_task(
+            poll_departmental_schedule(),
+            name="departmental-scheduler",
+        )
+        app.state.departmental_scheduler_task = scheduler_task
+
+    yield
+
+    if scheduler_task:
+        scheduler_task.cancel()
+        with suppress(asyncio.CancelledError):
+            await scheduler_task
+    await close_db()
+
+
 def create_app() -> FastAPI:
     """Factory para criar instância da aplicação FastAPI."""
 
@@ -175,11 +207,12 @@ def create_app() -> FastAPI:
     # Setup logging
     setup_logging(settings.log_level, settings.log_format)
 
-    # Criar app
+    # Criar app com lifespan manager
     app = FastAPI(
         title=settings.api_title,
         version=settings.api_version,
         debug=settings.debug,
+        lifespan=lifespan,
     )
 
     # CORS middleware
@@ -235,37 +268,6 @@ def create_app() -> FastAPI:
                 media_type="text/html; charset=utf-8",
                 headers={"Cache-Control": "no-cache, must-revalidate"},
             )
-
-    # Startup event
-    @app.on_event("startup")
-    async def on_startup():
-        """Executado ao iniciar a aplicação."""
-        await init_db()
-        await init_gateway_db()
-        get_financial_scheduler().schedule_next_run()
-        if settings.departmental_scheduler_enabled:
-            async def poll_departmental_schedule() -> None:
-                while True:
-                    await get_departmental_automation().run_due()
-                    await asyncio.sleep(
-                        max(15, settings.departmental_scheduler_poll_seconds)
-                    )
-
-            app.state.departmental_scheduler_task = asyncio.create_task(
-                poll_departmental_schedule(),
-                name="departmental-scheduler",
-            )
-
-    # Shutdown event
-    @app.on_event("shutdown")
-    async def on_shutdown():
-        """Executado ao desligar a aplicação."""
-        task = getattr(app.state, "departmental_scheduler_task", None)
-        if task:
-            task.cancel()
-            with suppress(asyncio.CancelledError):
-                await task
-        await close_db()
 
     return app
 
