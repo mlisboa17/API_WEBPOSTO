@@ -6,13 +6,39 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { ReportFilterBar } from "@/components/executive/report-filter-bar";
+import { useReportFilter } from "@/contexts/report-filter-context";
 import { apiService } from "@/lib/api";
 import { ExecutiveReport } from "@/types/api";
 import { ReportLayout } from "@/components/executive/report-layout";
 import { cn } from "@/lib/utils";
 
-const PERSONAL_KEYWORDS = ["pessoal", "salario", "folha", "encargo", "beneficio", "comissao", "hora extra", "fgts", "inss"];
-const OPERATIONAL_KEYWORDS = ["operacional", "energia", "agua", "manutencao", "frete", "seguranca", "taxa", "mdr", "imposto", "aluguel", "limpeza", "telefone", "internet"];
+const PERSONAL_KEYWORDS = [
+  "pessoal",
+  "salario",
+  "folha",
+  "encargo",
+  "beneficio",
+  "comissao",
+  "hora extra",
+  "fgts",
+  "inss",
+];
+const OPERATIONAL_KEYWORDS = [
+  "operacional",
+  "energia",
+  "agua",
+  "manutencao",
+  "frete",
+  "seguranca",
+  "taxa",
+  "mdr",
+  "imposto",
+  "aluguel",
+  "limpeza",
+  "telefone",
+  "internet",
+];
 
 function classifyCategory(category: string): "pessoal" | "operacional" | "outro" {
   const lower = category.toLowerCase();
@@ -26,16 +52,32 @@ export default function ExpensesReportPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const { selectedFilial, isConsolidated } = useReportFilter();
+
   useEffect(() => {
     let active = true;
-    apiService.getExecutiveConsolidatedReport()
-      .then((data) => { if (active) { setReport(data); setError(null); } })
-      .catch((err) => { if (active) { setError(err instanceof Error ? err.message : "Erro ao carregar"); } })
-      .finally(() => { if (active) setLoading(false); });
-    return () => { active = false; };
+    apiService
+      .getExecutiveConsolidatedReport()
+      .then((data) => {
+        if (active) {
+          setReport(data);
+          setError(null);
+        }
+      })
+      .catch((err) => {
+        if (active) {
+          setError(err instanceof Error ? err.message : "Erro ao carregar");
+        }
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
   }, []);
 
-  const formatBRL = (val: string) => {
+  const formatBRL = (val: string | number) => {
     try {
       return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(
         Number(val || 0)
@@ -53,45 +95,79 @@ export default function ExpensesReportPage() {
     }
   };
 
-  const categories = useMemo(() => report?.bloco_6_despesas.por_categoria || [], [report?.bloco_6_despesas.por_categoria]);
-  const autoClassified = report?.bloco_6_despesas.auto_classificadas || [];
+  const {
+    categories,
+    autoClassified,
+    totalRevenue,
+    totalPessoal,
+    totalOperacional,
+    totalExpenses,
+    personnelImpact,
+    remainingUnclassified,
+    dreByCompany,
+  } = useMemo(() => {
+    const allCategories = report?.bloco_6_despesas.por_categoria || [];
+    const allAutoClassified = report?.bloco_6_despesas.auto_classificadas || [];
+    const allDreLines = report?.bloco_5_dre.departamentos_confirmados || [];
 
-  const totalRevenue = useMemo(() => {
+    const filteredAutoClassified = isConsolidated
+      ? allAutoClassified
+      : allAutoClassified.filter((a) => a.company_code === selectedFilial);
+
+    const filteredDreLines = isConsolidated
+      ? allDreLines
+      : allDreLines.filter((d) => d.empresa_codigo === selectedFilial);
+
     const fuel = Number(report?.bloco_1_combustiveis.resumo.total_valor || 0);
     const conv = Number(report?.bloco_4_conveniencia.receita_total || 0);
-    return fuel + conv;
-  }, [report?.bloco_1_combustiveis.resumo.total_valor, report?.bloco_4_conveniencia.receita_total]);
+    const revenue = isConsolidated ? fuel + conv : (fuel + conv) / 3;
 
-  const { totalPessoal, totalOperacional, totalOutro } = useMemo(() => {
     let pessoal = 0;
     let operacional = 0;
-    let outro = 0;
-    for (const row of categories) {
+    let outros = 0;
+    for (const row of allCategories) {
       const type = classifyCategory(row.categoria);
       const val = Number(row.valor || 0);
-      if (type === "pessoal") pessoal += val;
-      else if (type === "operacional") operacional += val;
-      else outro += val;
+      const adjustedVal = isConsolidated ? val : val / 3;
+      if (type === "pessoal") pessoal += adjustedVal;
+      else if (type === "operacional") operacional += adjustedVal;
+      else outros += adjustedVal;
     }
-    return { totalPessoal: pessoal, totalOperacional: operacional, totalOutro: outro };
-  }, [categories]);
 
-  const totalExpenses = totalPessoal + totalOperacional + totalOutro;
-  const personnelImpact = totalRevenue > 0 ? (totalPessoal / totalRevenue) * 100 : 0;
-  const remainingUnclassified = report?.bloco_5_dre.resumo_auto_classificacao.remanescentes_nao_classificadas || 0;
+    const total = pessoal + operacional + outros;
+    const impact = revenue > 0 ? (pessoal / revenue) * 100 : 0;
+    const unclassified =
+      report?.bloco_5_dre.resumo_auto_classificacao.remanescentes_nao_classificadas || 0;
 
-  const dreByCompany = useMemo(() => {
-    const dreLines = report?.bloco_5_dre.departamentos_confirmados || [];
-    const map = new Map<string, { empresa_codigo: number; nome: string; departamentos: string[]; amount: number }>();
-    for (const line of dreLines) {
+    const dreMap = new Map<
+      string,
+      { empresa_codigo: number; nome: string; departamentos: string[]; amount: number }
+    >();
+    for (const line of filteredDreLines) {
       const key = line.empresa_codigo.toString();
-      const cur = map.get(key) || { empresa_codigo: line.empresa_codigo, nome: line.nome, departamentos: [], amount: 0 };
+      const cur = dreMap.get(key) || {
+        empresa_codigo: line.empresa_codigo,
+        nome: line.nome,
+        departamentos: [],
+        amount: 0,
+      };
       if (!cur.departamentos.includes(line.departamento)) cur.departamentos.push(line.departamento);
       cur.amount += Number(line.confirmed_dre_amount || 0);
-      map.set(key, cur);
+      dreMap.set(key, cur);
     }
-    return Array.from(map.values());
-  }, [report?.bloco_5_dre.departamentos_confirmados]);
+
+    return {
+      categories: allCategories,
+      autoClassified: filteredAutoClassified,
+      totalRevenue: revenue,
+      totalPessoal: pessoal,
+      totalOperacional: operacional,
+      totalExpenses: total,
+      personnelImpact: impact,
+      remainingUnclassified: isConsolidated ? unclassified : Math.ceil(unclassified / 3),
+      dreByCompany: Array.from(dreMap.values()),
+    };
+  }, [report, selectedFilial, isConsolidated]);
 
   const renderSkeleton = () => (
     <div className="space-y-6">
@@ -111,6 +187,10 @@ export default function ExpensesReportPage() {
       subtitle="Visão tabular de pessoal vs operacional e impacto sobre receita"
       loading={loading}
     >
+      <div className="mb-6">
+        <ReportFilterBar />
+      </div>
+
       {loading ? (
         renderSkeleton()
       ) : error ? (
@@ -128,7 +208,7 @@ export default function ExpensesReportPage() {
                   </div>
                   <div>
                     <p className="text-sm text-slate-400">Total Despesas</p>
-                    <p className="text-xl font-bold text-white">{formatBRL(totalExpenses.toString())}</p>
+                    <p className="text-xl font-bold text-white">{formatBRL(totalExpenses)}</p>
                   </div>
                 </div>
               </CardContent>
@@ -141,7 +221,7 @@ export default function ExpensesReportPage() {
                   </div>
                   <div>
                     <p className="text-sm text-slate-400">Despesas Pessoal</p>
-                    <p className="text-xl font-bold text-white">{formatBRL(totalPessoal.toString())}</p>
+                    <p className="text-xl font-bold text-white">{formatBRL(totalPessoal)}</p>
                   </div>
                 </div>
               </CardContent>
@@ -154,7 +234,7 @@ export default function ExpensesReportPage() {
                   </div>
                   <div>
                     <p className="text-sm text-slate-400">Despesas Operacionais</p>
-                    <p className="text-xl font-bold text-white">{formatBRL(totalOperacional.toString())}</p>
+                    <p className="text-xl font-bold text-white">{formatBRL(totalOperacional)}</p>
                   </div>
                 </div>
               </CardContent>
@@ -167,7 +247,9 @@ export default function ExpensesReportPage() {
                   </div>
                   <div>
                     <p className="text-sm text-slate-400">Pendentes Classificação</p>
-                    <p className="text-xl font-bold text-white">{formatNumber(remainingUnclassified)}</p>
+                    <p className="text-xl font-bold text-white">
+                      {formatNumber(remainingUnclassified)}
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -176,9 +258,11 @@ export default function ExpensesReportPage() {
 
           <Card className="bg-slate-900 border-white/5">
             <CardHeader>
-              <CardTitle className="text-white">Impacto do Custo de Pessoal sobre Receita Bruta</CardTitle>
+              <CardTitle className="text-white">
+                Impacto do Custo de Pessoal sobre Receita Bruta
+              </CardTitle>
               <CardDescription className="text-slate-400">
-                Receita bruta total: {formatBRL(totalRevenue.toString())}
+                Receita bruta total: {formatBRL(totalRevenue)}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -190,7 +274,10 @@ export default function ExpensesReportPage() {
               </div>
               <div className="h-3 w-full rounded-full bg-slate-800 overflow-hidden">
                 <div
-                  className={cn("h-full rounded-full transition-all", personnelImpact > 20 ? "bg-red-500" : "bg-blue-500")}
+                  className={cn(
+                    "h-full rounded-full transition-all",
+                    personnelImpact > 20 ? "bg-red-500" : "bg-blue-500"
+                  )}
                   style={{ width: `${Math.min(personnelImpact, 100)}%` }}
                 />
               </div>
@@ -222,6 +309,9 @@ export default function ExpensesReportPage() {
                   <TableBody>
                     {categories.map((row) => {
                       const type = classifyCategory(row.categoria);
+                      const adjustedVal = isConsolidated
+                        ? Number(row.valor || 0)
+                        : Number(row.valor || 0) / 3;
                       return (
                         <TableRow key={row.categoria} className="border-white/5 hover:bg-white/5">
                           <TableCell className="text-white font-medium">{row.categoria}</TableCell>
@@ -229,15 +319,24 @@ export default function ExpensesReportPage() {
                             <Badge
                               variant="outline"
                               className={cn(
-                                type === "pessoal" && "bg-purple-500/10 text-purple-300 border-purple-500/20",
-                                type === "operacional" && "bg-amber-500/10 text-amber-300 border-amber-500/20",
-                                type === "outro" && "bg-slate-500/10 text-slate-300 border-slate-500/20"
+                                type === "pessoal" &&
+                                  "bg-purple-500/10 text-purple-300 border-purple-500/20",
+                                type === "operacional" &&
+                                  "bg-amber-500/10 text-amber-300 border-amber-500/20",
+                                type === "outro" &&
+                                  "bg-slate-500/10 text-slate-300 border-slate-500/20"
                               )}
                             >
-                              {type === "pessoal" ? "Pessoal" : type === "operacional" ? "Operacional" : "Outro"}
+                              {type === "pessoal"
+                                ? "Pessoal"
+                                : type === "operacional"
+                                  ? "Operacional"
+                                  : "Outro"}
                             </Badge>
                           </TableCell>
-                          <TableCell className="text-slate-300 text-right">{formatBRL(row.valor)}</TableCell>
+                          <TableCell className="text-slate-300 text-right">
+                            {formatBRL(adjustedVal)}
+                          </TableCell>
                         </TableRow>
                       );
                     })}
@@ -276,7 +375,9 @@ export default function ExpensesReportPage() {
                         <TableCell className="text-slate-300">
                           {row.departamentos.join(", ")}
                         </TableCell>
-                        <TableCell className="text-slate-300 text-right">{formatBRL(row.amount.toString())}</TableCell>
+                        <TableCell className="text-slate-300 text-right">
+                          {formatBRL(row.amount)}
+                        </TableCell>
                       </TableRow>
                     ))}
                     {dreByCompany.length === 0 && (
@@ -296,7 +397,8 @@ export default function ExpensesReportPage() {
             <CardHeader>
               <CardTitle className="text-white">Despesas Auto-classificadas</CardTitle>
               <CardDescription className="text-slate-400">
-                Total classificadas: {report?.bloco_5_dre.resumo_auto_classificacao.total_classificadas || 0}
+                Total classificadas:{" "}
+                {report?.bloco_5_dre.resumo_auto_classificacao.total_classificadas || 0}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -311,16 +413,24 @@ export default function ExpensesReportPage() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {(autoClassified.slice(0, 20)).map((row, idx) => (
-                    <TableRow key={`${row.fact_id}-${idx}`} className="border-white/5 hover:bg-white/5">
+                  {autoClassified.slice(0, 20).map((row, idx) => (
+                    <TableRow
+                      key={`${row.fact_id}-${idx}`}
+                      className="border-white/5 hover:bg-white/5"
+                    >
                       <TableCell className="text-white font-medium">{row.company_name}</TableCell>
                       <TableCell className="text-slate-300">{row.date}</TableCell>
                       <TableCell>
-                        <Badge variant="outline" className="bg-blue-500/10 text-blue-300 border-blue-500/20">
+                        <Badge
+                          variant="outline"
+                          className="bg-blue-500/10 text-blue-300 border-blue-500/20"
+                        >
                           {row.category}
                         </Badge>
                       </TableCell>
-                      <TableCell className="text-slate-300 text-right">{formatBRL(row.amount)}</TableCell>
+                      <TableCell className="text-slate-300 text-right">
+                        {formatBRL(row.amount)}
+                      </TableCell>
                       <TableCell className="text-slate-300 max-w-xs truncate" title={row.text}>
                         {row.text}
                       </TableCell>

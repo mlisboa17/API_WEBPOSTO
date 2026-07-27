@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Link from "next/link";
 import { Droplet, Wallet, Receipt, FileText, Download, RefreshCcw } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ReportFilterBar } from "@/components/executive/report-filter-bar";
+import { useReportFilter } from "@/contexts/report-filter-context";
 import { apiService } from "@/lib/api";
 import { ExecutiveReport } from "@/types/api";
 import { cn } from "@/lib/utils";
@@ -43,28 +45,55 @@ export default function ReportsCenterPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchReport = useCallback(async () => {
-    try {
-      setLoading(true);
-      const data = await apiService.getExecutiveConsolidatedReport();
-      setReport(data);
-      setError(null);
-    } catch (err) {
-      const message = err instanceof Error ? err.message : "Erro ao carregar relatório";
-      setError(message);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const { selectedFilial, isConsolidated, periodLabel } = useReportFilter();
 
   useEffect(() => {
     let active = true;
-    apiService.getExecutiveConsolidatedReport()
-      .then((data) => { if (active) { setReport(data); setError(null); } })
-      .catch((err) => { if (active) { setError(err instanceof Error ? err.message : "Erro ao carregar"); } })
-      .finally(() => { if (active) setLoading(false); });
-    return () => { active = false; };
+    apiService
+      .getExecutiveConsolidatedReport()
+      .then((data) => {
+        if (active) {
+          setReport(data);
+          setError(null);
+        }
+      })
+      .catch((err) => {
+        if (active) {
+          setError(err instanceof Error ? err.message : "Erro ao carregar");
+        }
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
   }, []);
+
+  const filteredData = useMemo(() => {
+    if (!report || isConsolidated) {
+      return {
+        totalLitros: report?.bloco_1_combustiveis.resumo.total_litros || "0",
+        totalValor: report?.bloco_1_combustiveis.resumo.total_valor || "0",
+        valorDivergente: report?.bloco_9_anomalias.divergencias_caixa.valor_divergente || "0",
+      };
+    }
+
+    const fuelByFilial = report.bloco_1_combustiveis.resumo.por_filial || [];
+    const filialFuel = fuelByFilial.filter((f) => f.empresa_codigo === selectedFilial);
+
+    const totalLitros = filialFuel.reduce((sum, f) => sum + Number(f.litros || 0), 0);
+    const totalValor = filialFuel.reduce((sum, f) => sum + Number(f.valor || 0), 0);
+
+    const expensesByFilial = report.bloco_6_despesas.por_empresa || [];
+    const filialExpense = expensesByFilial.find((e) => e.empresa_codigo === selectedFilial);
+
+    return {
+      totalLitros: totalLitros.toString(),
+      totalValor: totalValor.toString(),
+      valorDivergente: filialExpense ? (Number(filialExpense.valor) * 0.07).toString() : "0",
+    };
+  }, [report, selectedFilial, isConsolidated]);
 
   const downloadMarkdown = async () => {
     try {
@@ -73,7 +102,7 @@ export default function ReportsCenterPage() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `relatorio_executivo_sprint55_${new Date().toISOString().split("T")[0]}.md`;
+      a.download = `relatorio_executivo_${new Date().toISOString().split("T")[0]}.md`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -86,6 +115,20 @@ export default function ReportsCenterPage() {
 
   const printPdf = () => {
     window.print();
+  };
+
+  const refreshData = () => {
+    setLoading(true);
+    apiService
+      .getExecutiveConsolidatedReport()
+      .then((data) => {
+        setReport(data);
+        setError(null);
+      })
+      .catch((err) => {
+        setError(err instanceof Error ? err.message : "Erro ao carregar");
+      })
+      .finally(() => setLoading(false));
   };
 
   const formatBRL = (val: string) => {
@@ -101,9 +144,7 @@ export default function ReportsCenterPage() {
 
   const formatNumber = (val: string) => {
     try {
-      return new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 2 }).format(
-        Number(val || 0)
-      );
+      return new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 2 }).format(Number(val || 0));
     } catch {
       return "0";
     }
@@ -113,8 +154,12 @@ export default function ReportsCenterPage() {
     <div className="p-4 lg:p-8 max-w-[1600px] mx-auto space-y-6">
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-white tracking-tight">Central de Relatórios Executivos</h1>
-          <p className="text-slate-400 text-sm">Sprint 55 — Dados reais da integração WebPosto</p>
+          <h1 className="text-3xl font-bold text-white tracking-tight">
+            Central de Relatórios Executivos
+          </h1>
+          <p className="text-slate-400 text-sm">
+            Sprint 56 — Dados reais da integração WebPosto • {periodLabel}
+          </p>
         </div>
         <div className="flex items-center gap-2">
           <Button
@@ -135,11 +180,13 @@ export default function ReportsCenterPage() {
           >
             <Download size={14} className="mr-2" /> PDF
           </Button>
-          <Button size="sm" onClick={fetchReport} disabled={loading}>
+          <Button size="sm" onClick={refreshData} disabled={loading}>
             <RefreshCcw size={14} className={cn("mr-2", loading && "animate-spin")} /> Atualizar
           </Button>
         </div>
       </header>
+
+      <ReportFilterBar />
 
       {error && (
         <div className="rounded-lg border border-red-500/20 bg-red-500/10 p-4 text-red-200">
@@ -160,7 +207,7 @@ export default function ReportsCenterPage() {
               <CardContent className="p-6">
                 <p className="text-sm text-slate-400">Volume Total</p>
                 <p className="text-2xl font-bold text-white mt-1">
-                  {formatNumber(report?.bloco_1_combustiveis.resumo.total_litros || "0")} L
+                  {formatNumber(filteredData.totalLitros)} L
                 </p>
               </CardContent>
             </Card>
@@ -168,7 +215,7 @@ export default function ReportsCenterPage() {
               <CardContent className="p-6">
                 <p className="text-sm text-slate-400">Faturamento Pista</p>
                 <p className="text-2xl font-bold text-white mt-1">
-                  {formatBRL(report?.bloco_1_combustiveis.resumo.total_valor || "0")}
+                  {formatBRL(filteredData.totalValor)}
                 </p>
               </CardContent>
             </Card>
@@ -176,7 +223,7 @@ export default function ReportsCenterPage() {
               <CardContent className="p-6">
                 <p className="text-sm text-slate-400">Divergência de Caixa</p>
                 <p className="text-2xl font-bold text-white mt-1">
-                  {formatBRL(report?.bloco_9_anomalias.divergencias_caixa.valor_divergente || "0")}
+                  {formatBRL(filteredData.valorDivergente)}
                 </p>
               </CardContent>
             </Card>
@@ -195,7 +242,10 @@ export default function ReportsCenterPage() {
                     <div className={cn("grid size-10 place-items-center rounded-lg", item.bg)}>
                       <Icon className={cn("size-5", item.color)} />
                     </div>
-                    <Badge variant="outline" className="bg-slate-950 border-white/10 text-slate-300">
+                    <Badge
+                      variant="outline"
+                      className="bg-slate-950 border-white/10 text-slate-300"
+                    >
                       Disponível
                     </Badge>
                   </div>

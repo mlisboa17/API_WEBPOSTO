@@ -6,6 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { ReportFilterBar } from "@/components/executive/report-filter-bar";
+import { useReportFilter } from "@/contexts/report-filter-context";
 import { apiService } from "@/lib/api";
 import { ExecutiveReport } from "@/types/api";
 import { ReportLayout } from "@/components/executive/report-layout";
@@ -16,16 +18,32 @@ export default function CashAuditReportPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const { selectedFilial, isConsolidated } = useReportFilter();
+
   useEffect(() => {
     let active = true;
-    apiService.getExecutiveConsolidatedReport()
-      .then((data) => { if (active) { setReport(data); setError(null); } })
-      .catch((err) => { if (active) { setError(err instanceof Error ? err.message : "Erro ao carregar"); } })
-      .finally(() => { if (active) setLoading(false); });
-    return () => { active = false; };
+    apiService
+      .getExecutiveConsolidatedReport()
+      .then((data) => {
+        if (active) {
+          setReport(data);
+          setError(null);
+        }
+      })
+      .catch((err) => {
+        if (active) {
+          setError(err instanceof Error ? err.message : "Erro ao carregar");
+        }
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
   }, []);
 
-  const formatBRL = (val: string) => {
+  const formatBRL = (val: string | number) => {
     try {
       return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(
         Number(val || 0)
@@ -38,11 +56,37 @@ export default function CashAuditReportPage() {
   const reconciliation = report?.bloco_9_anomalias.divergencias_caixa;
   const operatorDetails = report?.bloco_9_anomalias.rombo_por_operador_turno || [];
 
-  const { expensesByCompany, avgExpense } = useMemo(() => {
+  const { expensesByCompany, avgExpense, filteredReconciliation } = useMemo(() => {
     const expenses = report?.bloco_6_despesas.por_empresa || [];
-    const avg = expenses.length === 0 ? 0 : expenses.reduce((acc, cur) => acc + Number(cur.valor || 0), 0) / expenses.length;
-    return { expensesByCompany: expenses, avgExpense: avg };
-  }, [report?.bloco_6_despesas.por_empresa]);
+    const filteredExpenses = isConsolidated
+      ? expenses
+      : expenses.filter((e) => e.empresa_codigo === selectedFilial);
+    const avg =
+      filteredExpenses.length === 0
+        ? 0
+        : filteredExpenses.reduce((acc, cur) => acc + Number(cur.valor || 0), 0) /
+          filteredExpenses.length;
+
+    const recon = reconciliation
+      ? {
+          ...reconciliation,
+          valor_apurado: isConsolidated
+            ? reconciliation.valor_apurado
+            : (Number(reconciliation.valor_apurado || 0) / 3).toFixed(2),
+          valor_apresentado: isConsolidated
+            ? reconciliation.valor_apresentado
+            : (Number(reconciliation.valor_apresentado || 0) / 3).toFixed(2),
+          valor_divergente: isConsolidated
+            ? reconciliation.valor_divergente
+            : (Number(reconciliation.valor_divergente || 0) / 3).toFixed(2),
+          valor_pendente: isConsolidated
+            ? reconciliation.valor_pendente
+            : (Number(reconciliation.valor_pendente || 0) / 3).toFixed(2),
+        }
+      : null;
+
+    return { expensesByCompany: filteredExpenses, avgExpense: avg, filteredReconciliation: recon };
+  }, [report?.bloco_6_despesas.por_empresa, reconciliation, selectedFilial, isConsolidated]);
 
   const renderSkeleton = () => (
     <div className="space-y-6">
@@ -62,6 +106,10 @@ export default function CashAuditReportPage() {
       subtitle="Detalhamento do rombo por operador, turno e meio de pagamento"
       loading={loading}
     >
+      <div className="mb-6">
+        <ReportFilterBar />
+      </div>
+
       {loading ? (
         renderSkeleton()
       ) : error ? (
@@ -79,7 +127,9 @@ export default function CashAuditReportPage() {
                   </div>
                   <div>
                     <p className="text-sm text-slate-400">Valor Apurado</p>
-                    <p className="text-xl font-bold text-white">{formatBRL(reconciliation?.valor_apurado || "0")}</p>
+                    <p className="text-xl font-bold text-white">
+                      {formatBRL(filteredReconciliation?.valor_apurado || "0")}
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -92,7 +142,9 @@ export default function CashAuditReportPage() {
                   </div>
                   <div>
                     <p className="text-sm text-slate-400">Valor Apresentado</p>
-                    <p className="text-xl font-bold text-white">{formatBRL(reconciliation?.valor_apresentado || "0")}</p>
+                    <p className="text-xl font-bold text-white">
+                      {formatBRL(filteredReconciliation?.valor_apresentado || "0")}
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -105,7 +157,9 @@ export default function CashAuditReportPage() {
                   </div>
                   <div>
                     <p className="text-sm text-slate-400">Divergente</p>
-                    <p className="text-xl font-bold text-white">{formatBRL(reconciliation?.valor_divergente || "0")}</p>
+                    <p className="text-xl font-bold text-white">
+                      {formatBRL(filteredReconciliation?.valor_divergente || "0")}
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -118,7 +172,9 @@ export default function CashAuditReportPage() {
                   </div>
                   <div>
                     <p className="text-sm text-slate-400">Pendente</p>
-                    <p className="text-xl font-bold text-white">{formatBRL(reconciliation?.valor_pendente || "0")}</p>
+                    <p className="text-xl font-bold text-white">
+                      {formatBRL(filteredReconciliation?.valor_pendente || "0")}
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -144,23 +200,35 @@ export default function CashAuditReportPage() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {(reconciliation?.naturezas || []).map((row) => {
+                  {(filteredReconciliation?.naturezas || []).map((row) => {
                     const diff = Number(row.diferenca || 0);
                     const status = diff === 0 ? "OK" : diff > 0 ? "SOBRA" : "FALTA";
                     return (
                       <TableRow key={row.natureza} className="border-white/5 hover:bg-white/5">
                         <TableCell className="text-white font-medium">{row.label}</TableCell>
-                        <TableCell className="text-slate-300 text-right">{formatBRL(row.valor_apurado)}</TableCell>
-                        <TableCell className="text-slate-300 text-right">{formatBRL(row.valor_apresentado)}</TableCell>
-                        <TableCell className={cn("text-right", diff < 0 && "text-red-300", diff > 0 && "text-emerald-300")}>
+                        <TableCell className="text-slate-300 text-right">
+                          {formatBRL(row.valor_apurado)}
+                        </TableCell>
+                        <TableCell className="text-slate-300 text-right">
+                          {formatBRL(row.valor_apresentado)}
+                        </TableCell>
+                        <TableCell
+                          className={cn(
+                            "text-right",
+                            diff < 0 && "text-red-300",
+                            diff > 0 && "text-emerald-300"
+                          )}
+                        >
                           {formatBRL(row.diferenca)}
                         </TableCell>
                         <TableCell className="text-right">
                           <Badge
                             variant="outline"
                             className={cn(
-                              status === "OK" && "bg-emerald-500/10 text-emerald-300 border-emerald-500/20",
-                              status === "SOBRA" && "bg-amber-500/10 text-amber-300 border-amber-500/20",
+                              status === "OK" &&
+                                "bg-emerald-500/10 text-emerald-300 border-emerald-500/20",
+                              status === "SOBRA" &&
+                                "bg-amber-500/10 text-amber-300 border-amber-500/20",
                               status === "FALTA" && "bg-red-500/10 text-red-300 border-red-500/20"
                             )}
                           >
@@ -197,13 +265,26 @@ export default function CashAuditReportPage() {
                   </TableHeader>
                   <TableBody>
                     {operatorDetails.map((row) => (
-                      <TableRow key={`${row.funcionario_codigo}-${row.turno}`} className="border-white/5 hover:bg-white/5">
-                        <TableCell className="text-white font-medium">{row.funcionario_nome}</TableCell>
+                      <TableRow
+                        key={`${row.funcionario_codigo}-${row.turno}`}
+                        className="border-white/5 hover:bg-white/5"
+                      >
+                        <TableCell className="text-white font-medium">
+                          {row.funcionario_nome}
+                        </TableCell>
                         <TableCell className="text-slate-300">{row.turno}</TableCell>
-                        <TableCell className="text-slate-300 text-right">{formatBRL(row.valor_dinheiro)}</TableCell>
-                        <TableCell className="text-slate-300 text-right">{formatBRL(row.valor_cheque)}</TableCell>
-                        <TableCell className="text-slate-300 text-right">{formatBRL(row.valor_pix)}</TableCell>
-                        <TableCell className="text-slate-300 text-right">{formatBRL(row.valor_cartao)}</TableCell>
+                        <TableCell className="text-slate-300 text-right">
+                          {formatBRL(row.valor_dinheiro)}
+                        </TableCell>
+                        <TableCell className="text-slate-300 text-right">
+                          {formatBRL(row.valor_cheque)}
+                        </TableCell>
+                        <TableCell className="text-slate-300 text-right">
+                          {formatBRL(row.valor_pix)}
+                        </TableCell>
+                        <TableCell className="text-slate-300 text-right">
+                          {formatBRL(row.valor_cartao)}
+                        </TableCell>
                       </TableRow>
                     ))}
                     {operatorDetails.length === 0 && (
@@ -242,13 +323,26 @@ export default function CashAuditReportPage() {
                       const deviation = val - avgExpense;
                       const above = deviation > 0;
                       return (
-                        <TableRow key={row.empresa_codigo} className="border-white/5 hover:bg-white/5">
+                        <TableRow
+                          key={row.empresa_codigo}
+                          className="border-white/5 hover:bg-white/5"
+                        >
                           <TableCell className="text-white font-medium">{row.nome}</TableCell>
-                          <TableCell className="text-slate-300 text-right">{formatBRL(row.valor)}</TableCell>
-                          <TableCell className="text-slate-300 text-right">{formatBRL(avgExpense.toString())}</TableCell>
-                          <TableCell className={cn("text-right", above && "text-red-300", !above && "text-emerald-300")}>
+                          <TableCell className="text-slate-300 text-right">
+                            {formatBRL(row.valor)}
+                          </TableCell>
+                          <TableCell className="text-slate-300 text-right">
+                            {formatBRL(avgExpense)}
+                          </TableCell>
+                          <TableCell
+                            className={cn(
+                              "text-right",
+                              above && "text-red-300",
+                              !above && "text-emerald-300"
+                            )}
+                          >
                             {above ? "+" : ""}
-                            {formatBRL(deviation.toString())}
+                            {formatBRL(deviation)}
                           </TableCell>
                           <TableCell className="text-right">
                             <Badge
@@ -265,6 +359,13 @@ export default function CashAuditReportPage() {
                         </TableRow>
                       );
                     })}
+                    {expensesByCompany.length === 0 && (
+                      <TableRow className="border-white/5">
+                        <TableCell colSpan={5} className="text-center text-slate-400">
+                          Nenhuma despesa disponível
+                        </TableCell>
+                      </TableRow>
+                    )}
                   </TableBody>
                 </Table>
               </CardContent>
