@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useState, useCallback, useMemo } from "react";
-import { Wallet, AlertTriangle, Receipt, TrendingDown, Building2 } from "lucide-react";
+import React, { useEffect, useState, useMemo } from "react";
+import { Wallet, AlertTriangle, Receipt, TrendingDown } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -16,23 +16,14 @@ export default function CashAuditReportPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchReport = useCallback(async () => {
-    try {
-      setLoading(true);
-      const data = await apiService.getExecutiveConsolidatedReport();
-      setReport(data);
-      setError(null);
-    } catch (err) {
-      const message = err instanceof Error ? err.message : "Erro ao carregar relatório";
-      setError(message);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
   useEffect(() => {
-    fetchReport();
-  }, [fetchReport]);
+    let active = true;
+    apiService.getExecutiveConsolidatedReport()
+      .then((data) => { if (active) { setReport(data); setError(null); } })
+      .catch((err) => { if (active) { setError(err instanceof Error ? err.message : "Erro ao carregar"); } })
+      .finally(() => { if (active) setLoading(false); });
+    return () => { active = false; };
+  }, []);
 
   const formatBRL = (val: string) => {
     try {
@@ -44,23 +35,14 @@ export default function CashAuditReportPage() {
     }
   };
 
-  const formatNumber = (val: string | number) => {
-    try {
-      return new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 2 }).format(Number(val || 0));
-    } catch {
-      return "0";
-    }
-  };
-
   const reconciliation = report?.bloco_9_anomalias.divergencias_caixa;
-  const paymentDetails = report?.bloco_9_anomalias.detalhamento_pagamento || [];
   const operatorDetails = report?.bloco_9_anomalias.rombo_por_operador_turno || [];
-  const expensesByCompany = report?.bloco_6_despesas.por_empresa || [];
 
-  const avgExpense = useMemo(() => {
-    if (expensesByCompany.length === 0) return 0;
-    return expensesByCompany.reduce((acc, cur) => acc + Number(cur.valor || 0), 0) / expensesByCompany.length;
-  }, [expensesByCompany]);
+  const { expensesByCompany, avgExpense } = useMemo(() => {
+    const expenses = report?.bloco_6_despesas.por_empresa || [];
+    const avg = expenses.length === 0 ? 0 : expenses.reduce((acc, cur) => acc + Number(cur.valor || 0), 0) / expenses.length;
+    return { expensesByCompany: expenses, avgExpense: avg };
+  }, [report?.bloco_6_despesas.por_empresa]);
 
   const renderSkeleton = () => (
     <div className="space-y-6">

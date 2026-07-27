@@ -58,8 +58,13 @@ export default function ReportsCenterPage() {
   }, []);
 
   useEffect(() => {
-    fetchReport();
-  }, [fetchReport]);
+    let active = true;
+    apiService.getExecutiveConsolidatedReport()
+      .then((data) => { if (active) { setReport(data); setError(null); } })
+      .catch((err) => { if (active) { setError(err instanceof Error ? err.message : "Erro ao carregar"); } })
+      .finally(() => { if (active) setLoading(false); });
+    return () => { active = false; };
+  }, []);
 
   const downloadMarkdown = async () => {
     try {

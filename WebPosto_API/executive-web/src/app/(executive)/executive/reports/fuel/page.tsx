@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect, useState, useCallback, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Droplet, Fuel, TrendingUp, Building2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { apiService } from "@/lib/api";
-import { ExecutiveReport, FuelProduct } from "@/types/api";
+import { ExecutiveReport } from "@/types/api";
 import { ReportLayout } from "@/components/executive/report-layout";
 
 export default function FuelReportPage() {
@@ -15,23 +15,14 @@ export default function FuelReportPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchReport = useCallback(async () => {
-    try {
-      setLoading(true);
-      const data = await apiService.getExecutiveConsolidatedReport();
-      setReport(data);
-      setError(null);
-    } catch (err) {
-      const message = err instanceof Error ? err.message : "Erro ao carregar relatório";
-      setError(message);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
   useEffect(() => {
-    fetchReport();
-  }, [fetchReport]);
+    let active = true;
+    apiService.getExecutiveConsolidatedReport()
+      .then((data) => { if (active) { setReport(data); setError(null); } })
+      .catch((err) => { if (active) { setError(err instanceof Error ? err.message : "Erro ao carregar"); } })
+      .finally(() => { if (active) setLoading(false); });
+    return () => { active = false; };
+  }, []);
 
   const formatBRL = (val: string) => {
     try {
@@ -51,10 +42,8 @@ export default function FuelReportPage() {
     }
   };
 
-  const products = report?.bloco_1_combustiveis.resumo.por_produto || [];
-  const filiais = report?.bloco_1_combustiveis.resumo.por_filial || [];
-
   const byProduct = useMemo(() => {
+    const products = report?.bloco_1_combustiveis.resumo.por_produto || [];
     const map = new Map<string, { litros: number; valor: number; transacoes: number }>();
     for (const row of products) {
       const cur = map.get(row.produto) || { litros: 0, valor: 0, transacoes: 0 };
@@ -69,9 +58,10 @@ export default function FuelReportPage() {
       valor: agg.valor,
       transacoes: agg.transacoes,
     }));
-  }, [products]);
+  }, [report?.bloco_1_combustiveis.resumo.por_produto]);
 
   const byFilial = useMemo(() => {
+    const filiais = report?.bloco_1_combustiveis.resumo.por_filial || [];
     const map = new Map<string, { empresa_codigo: number; nome: string; litros: number; valor: number; transacoes: number }>();
     for (const row of filiais) {
       const cur = map.get(row.empresa_codigo.toString()) || {
@@ -87,7 +77,7 @@ export default function FuelReportPage() {
       map.set(row.empresa_codigo.toString(), cur);
     }
     return Array.from(map.values()).sort((a, b) => b.litros - a.litros);
-  }, [filiais]);
+  }, [report?.bloco_1_combustiveis.resumo.por_filial]);
 
   const totalLitros = Number(report?.bloco_1_combustiveis.resumo.total_litros || 0);
   const totalValor = Number(report?.bloco_1_combustiveis.resumo.total_valor || 0);

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useCallback, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Receipt, Users, Wrench, AlertCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -26,23 +26,14 @@ export default function ExpensesReportPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchReport = useCallback(async () => {
-    try {
-      setLoading(true);
-      const data = await apiService.getExecutiveConsolidatedReport();
-      setReport(data);
-      setError(null);
-    } catch (err) {
-      const message = err instanceof Error ? err.message : "Erro ao carregar relatório";
-      setError(message);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
   useEffect(() => {
-    fetchReport();
-  }, [fetchReport]);
+    let active = true;
+    apiService.getExecutiveConsolidatedReport()
+      .then((data) => { if (active) { setReport(data); setError(null); } })
+      .catch((err) => { if (active) { setError(err instanceof Error ? err.message : "Erro ao carregar"); } })
+      .finally(() => { if (active) setLoading(false); });
+    return () => { active = false; };
+  }, []);
 
   const formatBRL = (val: string) => {
     try {
@@ -62,15 +53,14 @@ export default function ExpensesReportPage() {
     }
   };
 
-  const categories = report?.bloco_6_despesas.por_categoria || [];
+  const categories = useMemo(() => report?.bloco_6_despesas.por_categoria || [], [report?.bloco_6_despesas.por_categoria]);
   const autoClassified = report?.bloco_6_despesas.auto_classificadas || [];
-  const dreLines = report?.bloco_5_dre.departamentos_confirmados || [];
 
   const totalRevenue = useMemo(() => {
     const fuel = Number(report?.bloco_1_combustiveis.resumo.total_valor || 0);
     const conv = Number(report?.bloco_4_conveniencia.receita_total || 0);
     return fuel + conv;
-  }, [report]);
+  }, [report?.bloco_1_combustiveis.resumo.total_valor, report?.bloco_4_conveniencia.receita_total]);
 
   const { totalPessoal, totalOperacional, totalOutro } = useMemo(() => {
     let pessoal = 0;
@@ -91,6 +81,7 @@ export default function ExpensesReportPage() {
   const remainingUnclassified = report?.bloco_5_dre.resumo_auto_classificacao.remanescentes_nao_classificadas || 0;
 
   const dreByCompany = useMemo(() => {
+    const dreLines = report?.bloco_5_dre.departamentos_confirmados || [];
     const map = new Map<string, { empresa_codigo: number; nome: string; departamentos: string[]; amount: number }>();
     for (const line of dreLines) {
       const key = line.empresa_codigo.toString();
@@ -100,7 +91,7 @@ export default function ExpensesReportPage() {
       map.set(key, cur);
     }
     return Array.from(map.values());
-  }, [dreLines]);
+  }, [report?.bloco_5_dre.departamentos_confirmados]);
 
   const renderSkeleton = () => (
     <div className="space-y-6">
