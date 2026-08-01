@@ -533,6 +533,7 @@ export interface CardFraudBicoDetalhe {
   idAbastecimento?: number;
   uuid?: string;
   bico: number;
+  bomba?: number;
   horaBico?: string;
   dataHoraBico?: string;
   produto?: string;
@@ -540,16 +541,73 @@ export interface CardFraudBicoDetalhe {
   postoNome?: string;
   litros: number;
   precoUnitario?: number;
+  precoTabela?: number;
+  precoPraticado?: number;
   valor?: number;
   valorTotal?: number;
   valorDesconto?: number;
+  origemDesconto?: string;
   cpfDesconto?: string | null;
+  tempoRetencaoMinutos?: number;
 }
 
 export interface FraudRankingItem {
   nome: string;
   qtd: number;
   valor: number;
+}
+
+/** Auditoria de Caixas — GET /api/v1/executive/audit/cashier (cache RAM) */
+export interface CashierAuditResumo {
+  totalEsperado: number;
+  totalDeclarado: number;
+  divergenciaTotal: number;
+  sobras: number;
+  faltas: number;
+  qtdTurnos?: number;
+  qtdAuditados?: number;
+  qtdPendentes?: number;
+  qtdComDivergencia?: number;
+}
+
+export interface CashierAuditFechamento {
+  id: string;
+  operadorId?: number | null;
+  operadorNome: string;
+  postoCodigo: number;
+  postoNome: string;
+  turno: string;
+  dataRef: string;
+  faturamentoBico: number;
+  faturamentoCaixa: number;
+  saldo: number;
+  status: "AUDITADO" | "PENDENTE" | string;
+  qtdAbastecimentos: number;
+  caixaCodigo?: number | null;
+}
+
+export interface CashierAuditQuebraForma {
+  forma: string;
+  label: string;
+  valorSistemico: number;
+  valorInformado: number;
+  diferenca: number;
+}
+
+export interface CashierAuditResponse {
+  success?: boolean;
+  fromCache?: boolean;
+  dataRef?: string;
+  geradoEm?: string;
+  latencyMs?: number;
+  resumoDia: CashierAuditResumo;
+  fechamentosPorTurno: CashierAuditFechamento[];
+  quebrasPorFormaPagamento: CashierAuditQuebraForma[];
+  observacoes?: string[];
+  pagina?: number;
+  limite?: number;
+  totalFechamentos?: number;
+  hasMore?: boolean;
 }
 
 export interface CardFraudOcorrencia {
@@ -572,6 +630,7 @@ export interface CardFraudOcorrencia {
   dataHora?: string;
   dataHoraBaixa?: string;
   dataHoraBico?: string;
+  dataHoraEmissaoCupom?: string;
   horaPrimeiroBico?: string;
   horaUltimoBico?: string;
   horaBaixaCartao?: string;
@@ -580,10 +639,23 @@ export interface CardFraudOcorrencia {
   qtdAbastecimentosAgrupados: number;
   valorTotalCartao: number;
   valorTotal?: number;
-  nivelRisco: "ATENCAO" | "CRITICO" | "ALTO" | "MEDIO" | "BAIXO" | string;
+  nivelRisco:
+    | "ATENCAO"
+    | "CRITICO"
+    | "ALTO"
+    | "DESCONTO"
+    | "MEDIO"
+    | "BAIXO"
+    | string;
+  nivelRiscoLegado?: string;
+  scoreGravidade?: number;
   meioPagamento: string;
+  formaPagamento?: string;
   cartaoBandeira?: string;
   cartaoFinal?: string;
+  cartaoNsu?: string;
+  cartaoAutorizacao?: string;
+  isEspecie?: boolean;
   tipoCombustivel?: string;
   litros?: number;
   precoUnitario?: number;
@@ -591,6 +663,7 @@ export interface CardFraudOcorrencia {
   percentualDesconto?: number;
   origemDesconto?: string;
   cpfDesconto?: string | null;
+  cpfRepetido?: boolean;
   motivoSuspeita?: string;
   isAgrupado?: boolean;
   abastecimentosAgrupados?: CardFraudBicoDetalhe[];
@@ -628,9 +701,13 @@ export interface CardFraudResumo {
 export interface CardFraudAuditResponse {
   success: boolean;
   synthetic: boolean;
+  fromCache?: boolean;
   fonte: string;
   endpoint: string;
   periodo: { inicio: string; fim: string };
+  dataRef?: string;
+  geradoEm?: string | null;
+  latencyMs?: number;
   empresaCodigo?: number | null;
   limiarRetencaoMinutos: number;
   limiarCriticoMinutos: number;

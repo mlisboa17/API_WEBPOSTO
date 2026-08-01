@@ -94,45 +94,94 @@ export function Cockpit30sFeed() {
 
   const fetchData = useCallback(async () => {
     const hoje = hojeLocalIso();
-    console.log("[Cockpit30s] Fetch cache RAM + KPIs + card-fraud...", { data: hoje });
+    console.log("[Cockpit30s] Fase 1: KPIs RAM (totaisDia)…", { data: hoje });
+
+    // Fase 1 — paint dos cards superiores (<1s com cache quente)
+    let kpis: Awaited<ReturnType<typeof fetchKpisResumo>>;
     try {
-      const [result, kpis, fraud] = await Promise.all([
+      kpis = await fetchKpisResumo();
+      const totais: TotaisDiaPista = {
+        faturamentoTotal: kpis.totaisDia?.faturamentoTotal ?? 0,
+        volumetriaTotalLitros: kpis.totaisDia?.volumetriaTotalLitros ?? 0,
+        qtdTotalAbastecimentos: kpis.totaisDia?.qtdTotalAbastecimentos ?? 0,
+        pvmMedio: kpis.totaisDia?.pvmMedio ?? 0,
+        valorCartoesDia: kpis.totaisDia?.valorCartoesDia ?? 0,
+        qtdCartoesDia: kpis.totaisDia?.qtdCartoesDia ?? 0,
+        alertasCriticosRetencao: kpis.totaisDia?.alertasCriticosRetencao ?? 0,
+        valorCriticoRetencao: kpis.totaisDia?.valorCriticoRetencao ?? 0,
+      };
+      setTotaisDia(totais);
+      setTotalDia(totais.qtdTotalAbastecimentos);
+      if (kpis.resumoDia) setResumoDia(kpis.resumoDia);
+      setFonte(kpis.fonte || "RAM_CACHE");
+      ultimaSyncIsoRef.current = kpis.ultimaSincronizacaoIso ?? null;
+      setUltimaSyncIso(kpis.ultimaSincronizacaoIso ?? null);
+      setFromCache(Boolean(kpis.fromCache));
+      setSyncAgeSec(segundosDesdeSync(kpis.ultimaSincronizacaoIso));
+      setAlertasCriticos(
+        Number(kpis.fraude?.alertasCriticos ?? 0) ||
+          Number(totais.alertasCriticosRetencao ?? 0) ||
+          0
+      );
+      setConnectionStatus("connected");
+      setLastRefresh(new Date());
+      setCountdown(30);
+      setLoading(false); // cards visíveis imediatamente
+      console.log("[Cockpit30s] KPIs pintados:", {
+        fat: totais.faturamentoTotal,
+        litros: totais.volumetriaTotalLitros,
+        qtd: totais.qtdTotalAbastecimentos,
+        fromCache: kpis.fromCache,
+      });
+    } catch (err) {
+      console.error("[Cockpit30s] Erro KPIs:", err);
+      setConnectionStatus("error");
+      setError(err instanceof Error ? err.message : "Falha de conexao");
+      setLoading(false);
+      return;
+    }
+
+    // Fase 2 — feed + anti-fraude (não bloqueia cards)
+    console.log("[Cockpit30s] Fase 2: feed + card-fraud…");
+    try {
+      const [result, fraud] = await Promise.all([
         fetchFeedVivoPista({
           dataInicio: hoje,
           dataFim: hoje,
           limiteBaixados: 100,
         }),
-        fetchKpisResumo(),
         apiService.getCardFraudAudit(hoje, hoje, undefined, null),
       ]);
-      console.log("[Cockpit30s] Resposta:", {
-        fonte: result.fonte,
-        feed: result.items.length,
-        totalDia: result.totalDia,
-        fat: kpis.totaisDia?.faturamentoTotal,
-        cartoes: kpis.totaisDia?.valorCartoesDia,
-        criticos: fraud?.resumo?.totalCriticos,
-        fromCache: result.fromCache || kpis.fromCache,
-      });
       setItems(Array.isArray(result.items) ? result.items : []);
       setResumoDia(result.resumoDia ?? kpis.resumoDia ?? null);
       const totaisMerged: TotaisDiaPista = {
-        ...(result.totaisDia || {}),
         ...(kpis.totaisDia || {}),
         faturamentoTotal:
-          kpis.totaisDia?.faturamentoTotal ||
-          result.totaisDia?.faturamentoTotal ||
-          result.resumoDia?.totalValor ||
+          kpis.totaisDia?.faturamentoTotal ??
+          result.totaisDia?.faturamentoTotal ??
+          result.resumoDia?.totalValor ??
           0,
         volumetriaTotalLitros:
-          kpis.totaisDia?.volumetriaTotalLitros ||
-          result.totaisDia?.volumetriaTotalLitros ||
-          result.resumoDia?.totalLitros ||
+          kpis.totaisDia?.volumetriaTotalLitros ??
+          result.totaisDia?.volumetriaTotalLitros ??
+          result.resumoDia?.totalLitros ??
           0,
         qtdTotalAbastecimentos:
-          kpis.totaisDia?.qtdTotalAbastecimentos ||
-          result.totaisDia?.qtdTotalAbastecimentos ||
-          result.totalDia ||
+          kpis.totaisDia?.qtdTotalAbastecimentos ??
+          result.totaisDia?.qtdTotalAbastecimentos ??
+          result.totalDia ??
+          0,
+        pvmMedio: kpis.totaisDia?.pvmMedio ?? result.totaisDia?.pvmMedio ?? 0,
+        valorCartoesDia:
+          kpis.totaisDia?.valorCartoesDia ?? result.totaisDia?.valorCartoesDia ?? 0,
+        qtdCartoesDia: kpis.totaisDia?.qtdCartoesDia ?? result.totaisDia?.qtdCartoesDia ?? 0,
+        alertasCriticosRetencao:
+          kpis.totaisDia?.alertasCriticosRetencao ??
+          result.totaisDia?.alertasCriticosRetencao ??
+          0,
+        valorCriticoRetencao:
+          kpis.totaisDia?.valorCriticoRetencao ??
+          result.totaisDia?.valorCriticoRetencao ??
           0,
       };
       setTotaisDia(totaisMerged);
@@ -144,13 +193,11 @@ export function Cockpit30sFeed() {
       );
       setTotalDia(totaisMerged.qtdTotalAbastecimentos || result.totalDia || 0);
       setFonte(kpis.fonte || result.fonte || "RAM_CACHE");
-      ultimaSyncIsoRef.current =
-        kpis.ultimaSincronizacaoIso || result.ultimaSincronizacaoIso;
-      setUltimaSyncIso(kpis.ultimaSincronizacaoIso || result.ultimaSincronizacaoIso);
+      const syncIso = kpis.ultimaSincronizacaoIso || result.ultimaSincronizacaoIso;
+      ultimaSyncIsoRef.current = syncIso;
+      setUltimaSyncIso(syncIso);
       setFromCache(Boolean(result.fromCache || kpis.fromCache));
-      setSyncAgeSec(
-        segundosDesdeSync(kpis.ultimaSincronizacaoIso || result.ultimaSincronizacaoIso)
-      );
+      setSyncAgeSec(segundosDesdeSync(syncIso));
       setObservacoes(result.observacoes || []);
       setError(result.error || kpis.error || null);
       setConnectionStatus(
@@ -161,11 +208,8 @@ export function Cockpit30sFeed() {
       setLastRefresh(new Date());
       setCountdown(30);
     } catch (err) {
-      console.error("[Cockpit30s] Erro no fetch:", err);
-      setConnectionStatus("error");
-      setError(err instanceof Error ? err.message : "Falha de conexao");
-    } finally {
-      setLoading(false);
+      console.error("[Cockpit30s] Erro feed/fraud:", err);
+      // KPIs já pintados — mantém connected se houver totais
     }
   }, []);
 

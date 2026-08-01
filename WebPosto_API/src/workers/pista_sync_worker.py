@@ -101,6 +101,20 @@ class PistaSyncWorker:
             snap = await self._cache.run_sync(force_permissions=force_permissions)
             self._last_run_at = datetime.now(TZ)
             self._last_ok = bool(snap.baixados or snap.pendentes)
+            # Auditoria de caixas em background (bico × caixa × formas) → cache RAM
+            try:
+                from src.services.cashier_audit_service import get_cashier_audit_service
+
+                await get_cashier_audit_service().refresh_from_pista()
+            except Exception:
+                LOGGER.exception("PistaSyncWorker: refresh cashier_audit falhou")
+            # Anti-fraude cartão/TEF → cache RAM (GET só lê memória)
+            try:
+                from src.services.fraud_detection_engine import get_fraud_detection_engine
+
+                await get_fraud_detection_engine().refresh_from_pista()
+            except Exception:
+                LOGGER.exception("PistaSyncWorker: refresh card_fraud falhou")
             return snap
         finally:
             self._running_job = False

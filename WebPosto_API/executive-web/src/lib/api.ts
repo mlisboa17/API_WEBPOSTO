@@ -15,10 +15,36 @@ import {
   ExpenseDetailsResponse,
   CardFraudAuditResponse,
   AuditFraudSettings,
+  CashierAuditResponse,
 } from "@/types/api";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "";
 const API_PREFIX = "/api/proxy";
+
+function networkErrorMessage(err: unknown): string {
+  const msg = err instanceof Error ? err.message : String(err || "");
+  if (/Failed to fetch|NetworkError|Load failed|fetch failed/i.test(msg)) {
+    return "Falha de rede ao falar com a API (proxy/backend). Confirme API :8040 e Next :3000.";
+  }
+  if (/aborted|timeout|TimeoutError/i.test(msg)) {
+    return "Tempo esgotado na consulta à API — tente novamente.";
+  }
+  return msg || "Erro desconhecido na API";
+}
+
+async function browserFetch(url: string, options: RequestInit = {}): Promise<Response> {
+  try {
+    return await fetch(url, {
+      ...options,
+      headers: {
+        "Content-Type": "application/json",
+        ...options.headers,
+      },
+    });
+  } catch (err) {
+    throw new Error(networkErrorMessage(err));
+  }
+}
 
 async function fetchApi(endpoint: string, options: RequestInit = {}) {
   const proxyEndpoint = endpoint.startsWith("/api/v1/") 
@@ -26,13 +52,7 @@ async function fetchApi(endpoint: string, options: RequestInit = {}) {
     : endpoint;
 
   const url = `${API_BASE_URL}${proxyEndpoint}`;
-  const response = await fetch(url, {
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
+  const response = await browserFetch(url, options);
 
   if (!response.ok) {
     let errorMessage = `API error: ${response.status} ${response.statusText}`;
@@ -64,13 +84,7 @@ async function fetchDirectApi(endpoint: string, options: RequestInit = {}) {
     : endpoint;
 
   const url = `${API_BASE_URL}${proxyEndpoint}`;
-  const response = await fetch(url, {
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
+  const response = await browserFetch(url, options);
 
   if (!response.ok) {
     let errorMessage = `API error: ${response.status} ${response.statusText}`;
@@ -162,6 +176,49 @@ export const apiService = {
     }
   },
 
+  async getCashierAudit(
+    company?: number,
+    pagina: number = 1,
+    limite: number = 20
+  ): Promise<CashierAuditResponse> {
+    const params = new URLSearchParams({
+      pagina: String(pagina),
+      limite: String(limite),
+    });
+    if (company) params.append("empresaCodigo", company.toString());
+    const empty: CashierAuditResponse = {
+      success: false,
+      fromCache: true,
+      resumoDia: {
+        totalEsperado: 0,
+        totalDeclarado: 0,
+        divergenciaTotal: 0,
+        sobras: 0,
+        faltas: 0,
+      },
+      fechamentosPorTurno: [],
+      quebrasPorFormaPagamento: [],
+      totalFechamentos: 0,
+      hasMore: false,
+      observacoes: ["Cache de auditoria de caixas indisponível"],
+    };
+    try {
+      // fetchDirectApi: envelope completo { success, data } — evita unwrap ambíguo
+      const envelope = (await fetchDirectApi(
+        `/api/v1/executive/audit/cashier?${params}`
+      )) as { success?: boolean; data?: CashierAuditResponse; error?: string } & CashierAuditResponse;
+
+      if (envelope?.data?.resumoDia) return envelope.data;
+      if (envelope?.resumoDia) return envelope as CashierAuditResponse;
+      if (envelope?.success === false) {
+        throw new Error(envelope.error || "Auditoria de caixas indisponível");
+      }
+      return empty;
+    } catch {
+      return empty;
+    }
+  },
+
   async getCardFraudAudit(
     start: string,
     end: string,
@@ -178,19 +235,20 @@ export const apiService = {
     }
     if (company) params.append("empresaCodigo", company.toString());
     try {
-      const raw = (await fetchApi(
+      const envelope = (await fetchDirectApi(
         `/api/v1/executive/audit/card-fraud?${params}`
-      )) as CardFraudAuditResponse & { data?: CardFraudAuditResponse };
-      if (raw && typeof raw === "object" && raw.data && (raw.data.resumo || raw.data.resumoExecutivo)) {
-        const d = raw.data;
-        return {
-          ...d,
-          success: d.success !== false,
-          resumo: d.resumo || d.resumoExecutivo || d.resumo,
-          resumoExecutivo: d.resumoExecutivo || d.resumo,
-        } as CardFraudAuditResponse;
-      }
-      return raw as CardFraudAuditResponse;
+      )) as { success?: boolean; data?: CardFraudAuditResponse } & CardFraudAuditResponse;
+      const payload =
+        envelope?.data && (envelope.data.resumo || envelope.data.resumoExecutivo || envelope.data.ocorrencias)
+          ? envelope.data
+          : envelope;
+      return {
+        ...payload,
+        success: payload.success !== false,
+        fromCache: true,
+        resumo: payload.resumo || payload.resumoExecutivo || payload.resumo,
+        resumoExecutivo: payload.resumoExecutivo || payload.resumo,
+      } as CardFraudAuditResponse;
     } catch {
       return {
         success: false,

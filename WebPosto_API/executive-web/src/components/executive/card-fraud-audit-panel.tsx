@@ -50,26 +50,63 @@ function formatHora(iso?: string) {
   return iso.slice(0, 8);
 }
 
-function riskTone(nivel: string) {
+function formatDataHora(iso?: string) {
+  if (!iso) return "—";
+  const raw = iso.trim();
+  const [datePart, timePart] = raw.includes("T")
+    ? raw.split("T")
+    : raw.includes(" ")
+      ? raw.split(" ")
+      : [raw, ""];
+  const d = datePart?.slice(0, 10) || "";
+  const t = (timePart || "").slice(0, 8);
+  if (d && t) {
+    const [y, m, day] = d.split("-");
+    return `${day}/${m}/${y} ${t}`;
+  }
+  return formatHora(iso);
+}
+
+function bicoBombaLabel(d: CardFraudBicoDetalhe) {
+  const bico = String(d.bico ?? 0).padStart(2, "0");
+  const bomba =
+    d.bomba && d.bomba > 0
+      ? String(d.bomba).padStart(2, "0")
+      : String(Math.floor((Math.max(1, d.bico || 1) - 1) / 2) + 1).padStart(2, "0");
+  return `Bico ${bico} - Bomba ${bomba}`;
+}
+
+function riskTone(nivel: string, score?: number) {
   const n = (nivel || "").toUpperCase();
   if (n === "ALTO" || n === "CRITICO" || n === "CRÍTICO") {
     return {
-      label: "ALTO",
+      label: score != null ? `CRÍTICO · ${score}` : "CRÍTICO",
       badge: "bg-rose-950/80 text-rose-400 border-rose-500/40",
       card: "border-rose-500/40 bg-rose-950/20",
+      rank: 0,
+    };
+  }
+  if (n === "DESCONTO") {
+    return {
+      label: score != null ? `DESCONTO · ${score}` : "DESCONTO/APP",
+      badge: "bg-orange-950/80 text-orange-400 border-orange-500/40",
+      card: "border-orange-500/40 bg-orange-950/15",
+      rank: 1,
     };
   }
   if (n === "MEDIO" || n === "MÉDIO" || n === "ATENCAO" || n === "ATENÇÃO") {
     return {
-      label: "MÉDIO",
+      label: score != null ? `MÉDIO · ${score}` : "MÉDIO",
       badge: "bg-amber-950/80 text-amber-400 border-amber-500/40",
       card: "border-amber-500/30 bg-amber-950/10",
+      rank: 2,
     };
   }
   return {
-    label: "BAIXO",
+    label: score != null ? `BAIXO · ${score}` : "BAIXO",
     badge: "bg-slate-800 text-slate-300 border-slate-600",
     card: "border-slate-700 bg-slate-900/60",
+    rank: 3,
   };
 }
 
@@ -78,71 +115,94 @@ function detalhesOf(o: CardFraudOcorrencia): CardFraudBicoDetalhe[] {
   return o.detalhes || [];
 }
 
-/** Normaliza forma/bandeira/final com fallback elegante. */
+/** Normaliza forma/bandeira/final — formato: 💳 [forma] • [bandeira] Final [xxxx]. */
 function pagamentoInfo(o: CardFraudOcorrencia) {
-  const raw = (o.meioPagamento || "").trim();
-  const upper = raw.toUpperCase();
-  const bandeiraRaw = (o.cartaoBandeira || "").trim();
-  let bandeira = bandeiraRaw;
+  const forma =
+    (o.formaPagamento || o.meioPagamento || "").trim() || "Não informado";
+  const upper = `${forma} ${o.meioPagamento || ""} ${o.cartaoBandeira || ""}`.toUpperCase();
+  const isPix = upper.includes("PIX");
+  const isCash =
+    !!o.isEspecie ||
+    /\bDINHEIRO\b|\bESP[EÉ]CIE\b|\bCASH\b/.test(upper);
+
+  let bandeira = (o.cartaoBandeira || "").trim();
+  if (/^n\/?i$/i.test(bandeira) || bandeira === "—" || bandeira === "-") {
+    bandeira = "";
+  }
   if (!bandeira || /^cart[aã]o\/tef$/i.test(bandeira)) {
-    for (const name of ["VISA", "MASTER", "MASTERCARD", "ELO", "HIPER", "AMEX"]) {
-      if (upper.includes(name)) {
-        bandeira = name === "MASTER" || name === "MASTERCARD" ? "Mastercard" : name.charAt(0) + name.slice(1).toLowerCase();
-        break;
+    if (isPix) bandeira = "PIX";
+    else if (isCash) bandeira = "—";
+    else {
+      for (const name of [
+        "VISA",
+        "MAESTRO",
+        "MASTERCARD",
+        "MASTER",
+        "ELO",
+        "HIPER",
+        "AMEX",
+        "PREMMIA",
+      ]) {
+        if (upper.includes(name)) {
+          bandeira =
+            name === "MASTER" || name === "MASTERCARD"
+              ? "Mastercard"
+              : name.charAt(0) + name.slice(1).toLowerCase();
+          break;
+        }
       }
     }
   }
+  if (!bandeira) bandeira = isPix ? "PIX" : isCash ? "—" : "—";
+
   const finalDigits =
     (o.cartaoFinal || "").replace(/\D/g, "").slice(-4) ||
-    (raw.match(/\d{4}\s*$/) || [])[0]?.replace(/\D/g, "") ||
+    ((o.meioPagamento || "").match(/\d{4}\s*$/) || [])[0]?.replace(/\D/g, "") ||
     "";
+  const finalLabel = finalDigits || (isPix || isCash ? "—" : "****");
 
-  const hasForma = Boolean(raw);
-  const looksCard =
-    /CART[AÃ]O|CREDITO|CRÉDITO|DEBITO|DÉBITO|TEF|VISA|MASTER|ELO|HIPER|AMEX|POS/i.test(
-      raw + " " + bandeira
-    );
-
-  let formaLabel: string;
-  if (hasForma) {
-    formaLabel = raw;
-  } else if (looksCard || bandeira || finalDigits) {
-    formaLabel = "Cartão/TEF (Aguardando Liquidação)";
-  } else {
-    formaLabel = "Cartão/TEF (Aguardando Liquidação)";
-  }
-
-  let cartaoLabel: string;
-  if (bandeira && finalDigits) {
-    cartaoLabel = `💳 ${bandeira} • Final ${finalDigits}`;
-  } else if (bandeira && !/^cart[aã]o\/tef$/i.test(bandeira)) {
-    cartaoLabel = `💳 ${bandeira} • Final ****`;
-  } else if (finalDigits) {
-    cartaoLabel = `💳 Cartão • Final ${finalDigits}`;
-  } else {
-    cartaoLabel = "Cartão: Não identificado";
-  }
-
-  return { formaLabel, cartaoLabel, bandeira, finalDigits };
+  const linha =
+    isCash
+      ? `💵 ${forma}`
+      : isPix
+        ? `⚡ PIX${finalDigits ? ` · Final ${finalDigits}` : ""}`
+        : `💳 ${forma} • ${bandeira}${finalDigits ? ` Final ${finalDigits}` : ""}`;
+  return { forma, bandeira, finalDigits: finalLabel, linha, isPix, isCash };
 }
 
 function PagamentoBlock({ o }: { o: CardFraudOcorrencia }) {
-  const { formaLabel, cartaoLabel } = pagamentoInfo(o);
+  const { linha, forma, bandeira, finalDigits, isPix, isCash } = pagamentoInfo(o);
   return (
     <div className="rounded-md border border-cyan-500/20 bg-cyan-950/20 px-3 py-2.5 space-y-1.5">
       <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-cyan-400/90 font-bold">
         <CreditCard size={12} />
         Dados de Pagamento
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-        <div>
-          <span className="text-slate-400">Forma de Pagamento:</span>{" "}
-          <span className="text-slate-100 font-medium">{formaLabel}</span>
-        </div>
-        <div>
-          <span className="text-slate-400">Cartão &amp; Bandeira:</span>{" "}
-          <span className="text-slate-100 font-medium font-mono">{cartaoLabel}</span>
-        </div>
+      <p className="text-sm text-slate-100 font-medium font-mono tracking-tight">{linha}</p>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] text-slate-400">
+        <span>
+          Forma: <strong className="text-slate-200">{forma}</strong>
+        </span>
+        <span>
+          {isPix ? "Canal" : isCash ? "Espécie" : "Bandeira"}:{" "}
+          <strong className="text-slate-200">{bandeira}</strong>
+        </span>
+        {!isCash && !isPix ? (
+          <span>
+            Final: <strong className="text-slate-200 font-mono">{finalDigits}</strong>
+          </span>
+        ) : null}
+        {o.cartaoNsu ? (
+          <span>
+            NSU: <strong className="text-slate-200 font-mono">{o.cartaoNsu}</strong>
+          </span>
+        ) : null}
+        {o.cartaoAutorizacao ? (
+          <span>
+            Autorização:{" "}
+            <strong className="text-slate-200 font-mono">{o.cartaoAutorizacao}</strong>
+          </span>
+        ) : null}
       </div>
     </div>
   );
@@ -228,6 +288,7 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
   const banner = data?.bannerAlerta;
   const dist = resumo?.distribuicaoRisco || {
     ALTO: resumo?.totalCriticos ?? 0,
+    DESCONTO: 0,
     MEDIO: resumo?.totalAtencao ?? 0,
     BAIXO: 0,
   };
@@ -284,7 +345,7 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
         </div>
       )}
 
-      {loading ? (
+      {loading && !data ? (
         <div className="space-y-3">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
             {[1, 2, 3, 4].map((i) => (
@@ -293,7 +354,7 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
           </div>
           <Skeleton className="h-64 bg-slate-800" />
         </div>
-      ) : error ? (
+      ) : error && !data ? (
         <Card className="border-red-500/30 bg-red-500/5 p-6 text-center">
           <p className="text-red-300">{error}</p>
           <Button className="mt-3" variant="outline" onClick={() => void fetchData()}>
@@ -306,7 +367,7 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
             <Kpi
               label="Total Fraudes"
               value={String(resumo?.totalFraudes ?? resumo?.totalAgrupamentosSuspeitos ?? 0)}
-              sub={`ALTO ${dist.ALTO ?? 0} · MÉDIO ${dist.MEDIO ?? 0} · BAIXO ${dist.BAIXO ?? 0}`}
+              sub={`🔴${dist.ALTO ?? 0} · 🟧${dist.DESCONTO ?? 0} · 🟡${dist.MEDIO ?? 0} · 🟢${dist.BAIXO ?? 0}`}
             />
             <Kpi
               label="Valor Envolvido"
@@ -350,7 +411,7 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
             ) : (
               data.ocorrencias.map((o) => {
                 const id = o.idOcorrencia || o.id;
-                const tone = riskTone(o.nivelRisco);
+                const tone = riskTone(o.nivelRisco, o.scoreGravidade);
                 const rows = detalhesOf(o);
                 const nome = o.funcionarioNome || o.frentistaNome;
                 const valor = o.valorTotal ?? o.valorTotalCartao;
@@ -364,11 +425,16 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
                           </p>
                           <p className="text-xs text-slate-300 mt-1">
                             {nome} · {o.postoNome || o.empresaNome}
+                            {o.cpfRepetido ? (
+                              <span className="ml-2 text-orange-400 font-semibold">
+                                · CPF/App repetido
+                              </span>
+                            ) : null}
                           </p>
                         </div>
                         <div className="flex items-center gap-2">
                           <Badge className={cn("text-[10px] border", tone.badge)}>
-                            Risco {tone.label}
+                            {tone.label}
                           </Badge>
                           <Button
                             size="sm"
@@ -382,65 +448,30 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
-                        <Meta label="Bico" value={formatHora(o.dataHoraBico || o.dataHora || o.horaBico)} />
-                        <Meta label="Baixa" value={formatHora(o.dataHoraBaixa || o.horaBaixa)} />
+                      <div className="grid grid-cols-2 md:grid-cols-5 gap-2 text-xs">
+                        <Meta
+                          label="Emissão cupom"
+                          value={formatDataHora(
+                            o.dataHoraEmissaoCupom || o.dataHoraBaixa || o.horaBaixa
+                          )}
+                        />
+                        <Meta
+                          label="1º bico"
+                          value={formatHora(o.dataHoraBico || o.dataHora || o.horaBico)}
+                        />
                         <Meta label="Retenção" value={`${o.tempoRetencaoMinutos} min`} />
                         <Meta label="Valor" value={formatBRL(valor)} />
+                        <Meta
+                          label="Desconto App"
+                          value={formatBRL(o.valorDesconto ?? 0)}
+                          highlight={!!o.cpfRepetido || (o.valorDesconto ?? 0) > 0}
+                        />
                       </div>
 
                       <PagamentoBlock o={o} />
 
-                      {o.isAgrupado && rows.length > 0 && (
-                        <div className="overflow-x-auto rounded-md border border-slate-700/60">
-                          <table className="w-full text-xs">
-                            <thead>
-                              <tr className="text-left text-[10px] uppercase text-slate-400 bg-slate-900/80">
-                                <th className="px-2 py-1.5">Data/Hora Bico</th>
-                                <th className="px-2 py-1.5">Posto</th>
-                                <th className="px-2 py-1.5">Combustível</th>
-                                <th className="px-2 py-1.5 text-right">Litros</th>
-                                <th className="px-2 py-1.5 text-right">R$/L</th>
-                                <th className="px-2 py-1.5 text-right">Valor</th>
-                                <th className="px-2 py-1.5 text-right">Desconto</th>
-                                <th className="px-2 py-1.5">CPF Desc.</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {rows.map((d, idx) => (
-                                <tr
-                                  key={`${d.idAbastecimento || d.abastecimentoId}-${idx}`}
-                                  className="border-t border-slate-800 text-slate-200"
-                                >
-                                  <td className="px-2 py-1.5 font-mono">
-                                    {formatHora(d.dataHoraBico || d.horaBico)}
-                                  </td>
-                                  <td className="px-2 py-1.5">
-                                    {d.postoNome || o.postoNome || o.empresaNome}
-                                  </td>
-                                  <td className="px-2 py-1.5">
-                                    {d.tipoCombustivel || d.produto || "—"}
-                                  </td>
-                                  <td className="px-2 py-1.5 text-right font-mono">
-                                    {formatLitros(d.litros)}
-                                  </td>
-                                  <td className="px-2 py-1.5 text-right font-mono">
-                                    {formatBRL(d.precoUnitario ?? 0)}
-                                  </td>
-                                  <td className="px-2 py-1.5 text-right font-mono">
-                                    {formatBRL(d.valorTotal ?? d.valor ?? 0)}
-                                  </td>
-                                  <td className="px-2 py-1.5 text-right font-mono">
-                                    {formatBRL(d.valorDesconto ?? 0)}
-                                  </td>
-                                  <td className="px-2 py-1.5 font-mono text-slate-400">
-                                    {d.cpfDesconto || "—"}
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
+                      {rows.length > 0 && (
+                        <BicosTable rows={rows} postoFallback={o.postoNome || o.empresaNome} compact />
                       )}
 
                       <div className="rounded-md border border-slate-700/50 bg-slate-950/40 px-3 py-2 text-xs text-slate-200">
@@ -481,9 +512,9 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
                 variant="outline"
                 className="border-slate-600 text-slate-200"
                 onClick={closeSettings}
+                aria-label="Fechar"
               >
-                <X size={14} className="mr-1" />
-                Fechar
+                ✕ Fechar
               </Button>
             </CardHeader>
             <CardContent className="space-y-3">
@@ -525,8 +556,7 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
                 className="w-full bg-slate-800 hover:bg-slate-700 text-slate-200"
                 onClick={closeSettings}
               >
-                <ArrowLeft size={14} className="mr-2" />
-                Voltar para Auditoria
+                ← Voltar
               </Button>
             </CardContent>
           </Card>
@@ -540,35 +570,91 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
           role="presentation"
         >
           <Card
-            className="w-full max-w-3xl max-h-[85vh] overflow-y-auto border-slate-700 bg-slate-900"
+            className={cn(
+              "w-full max-w-5xl max-h-[90vh] overflow-y-auto border bg-slate-900",
+              riskTone(selected.nivelRisco, selected.scoreGravidade).card
+            )}
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="fraud-ocorrencia-title"
           >
-            <CardHeader className="flex flex-row items-start justify-between gap-3 pb-2 sticky top-0 bg-slate-900 z-10 border-b border-slate-800">
+            <CardHeader className="flex flex-row items-start justify-between gap-3 pb-2 sticky top-0 bg-slate-900/95 z-10 border-b border-slate-800 backdrop-blur">
               <div>
-                <CardTitle className="text-lg text-white">
+                <CardTitle id="fraud-ocorrencia-title" className="text-lg text-white">
                   🚨 POSSÍVEL FRAUDE #{selected.idOcorrencia || selected.id}
                 </CardTitle>
                 <p className="text-xs text-slate-300 mt-1">
                   {selected.funcionarioNome || selected.frentistaNome} ·{" "}
                   {selected.postoNome || selected.empresaNome}
                 </p>
+                <Badge
+                  className={cn(
+                    "mt-2 text-[10px] border",
+                    riskTone(selected.nivelRisco, selected.scoreGravidade).badge
+                  )}
+                >
+                  {riskTone(selected.nivelRisco, selected.scoreGravidade).label}
+                </Badge>
               </div>
               <Button
                 size="sm"
                 variant="outline"
-                className="border-slate-600 text-slate-200 shrink-0"
+                className="border-slate-500 text-slate-100 shrink-0 gap-1.5"
                 onClick={closeOccurrence}
+                aria-label="Fechar"
               >
-                <X size={14} className="mr-1" />
-                Fechar
+                <X size={14} />
+                ✕ Fechar
               </Button>
             </CardHeader>
             <CardContent className="space-y-4 pt-4">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
-                <Meta label="Valor Bomba" value={formatBRL(selected.valorTotal ?? selected.valorTotalCartao)} />
-                <Meta label="Desconto" value={formatBRL(selected.valorDesconto ?? 0)} />
-                <Meta label="PVM" value={formatBRL(selected.precoUnitario ?? 0)} />
-                <Meta label="Litros" value={formatLitros(selected.litros ?? 0)} />
+              {/* Bloco da Emissão (Topo) */}
+              <div className="rounded-lg border border-emerald-500/25 bg-emerald-950/20 px-4 py-3 space-y-3">
+                <p className="text-[10px] uppercase tracking-wider text-emerald-400/90 font-bold">
+                  Bloco da Emissão do Cupom (Baixa)
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm">
+                  <Meta
+                    label="Data/Hora Emissão"
+                    value={formatDataHora(
+                      selected.dataHoraEmissaoCupom ||
+                        selected.dataHoraBaixa ||
+                        selected.horaBaixa
+                    )}
+                  />
+                  <Meta
+                    label="Valor Total (R$)"
+                    value={formatBRL(selected.valorTotal ?? selected.valorTotalCartao)}
+                  />
+                  <Meta
+                    label="Desconto App/Fidelidade"
+                    value={formatBRL(selected.valorDesconto ?? 0)}
+                    highlight={
+                      !!selected.cpfRepetido || (selected.valorDesconto ?? 0) > 0
+                    }
+                  />
+                  <Meta
+                    label="Litros totais"
+                    value={formatLitros(selected.litros ?? 0)}
+                  />
+                </div>
+                {(selected.cpfRepetido || selected.cpfDesconto) && (
+                  <p
+                    className={cn(
+                      "text-xs font-medium",
+                      selected.cpfRepetido ? "text-orange-300" : "text-slate-400"
+                    )}
+                  >
+                    CPF/App: {selected.cpfDesconto || "—"}
+                    {selected.cpfRepetido
+                      ? " · REPETIDO no turno (abuso de fidelidade)"
+                      : ""}
+                    {selected.origemDesconto
+                      ? ` · Origem: ${selected.origemDesconto}`
+                      : ""}
+                  </p>
+                )}
               </div>
 
               <PagamentoBlock o={selected} />
@@ -576,60 +662,128 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
               <p className="text-sm text-amber-200">
                 <strong>Motivo:</strong> {selected.motivoSuspeita || selected.gatilho}
               </p>
-              <div className="overflow-x-auto rounded-lg border border-slate-700/60">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="text-left text-[11px] uppercase text-slate-400 bg-slate-800/50">
-                      <th className="px-3 py-2">Hora</th>
-                      <th className="px-3 py-2">Combustível</th>
-                      <th className="px-3 py-2 text-right">Litros</th>
-                      <th className="px-3 py-2 text-right">Valor</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {detalhesOf(selected).map((d, idx) => (
-                      <tr key={idx} className="border-t border-slate-800">
-                        <td className="px-3 py-2 font-mono text-slate-200">
-                          {formatHora(d.dataHoraBico || d.horaBico)}
-                        </td>
-                        <td className="px-3 py-2 text-slate-200">
-                          {d.tipoCombustivel || d.produto}
-                        </td>
-                        <td className="px-3 py-2 text-right font-mono">
-                          {formatLitros(d.litros)}
-                        </td>
-                        <td className="px-3 py-2 text-right font-mono">
-                          {formatBRL(d.valorTotal ?? d.valor ?? 0)}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+
+              <div>
+                <p className="text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-2">
+                  Abastecimentos / Bicos Agrupados
+                </p>
+                <BicosTable
+                  rows={detalhesOf(selected)}
+                  postoFallback={selected.postoNome || selected.empresaNome}
+                />
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-2 pt-2 border-t border-slate-800">
+              <div className="flex flex-col sm:flex-row gap-2 pt-2 border-t border-slate-800 sticky bottom-0 bg-slate-900/95 pb-1">
                 <Button
                   type="button"
-                  className="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg"
+                  className="bg-cyan-700 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg gap-1.5"
                   onClick={closeOccurrence}
                 >
-                  <ArrowLeft size={14} className="mr-2" />
-                  Voltar para Auditoria
+                  <ArrowLeft size={14} />
+                  ← Voltar para Auditoria
                 </Button>
                 <Button
                   type="button"
                   variant="outline"
-                  className="border-slate-600 text-slate-200"
+                  className="border-slate-600 text-slate-200 gap-1.5"
                   onClick={closeOccurrence}
+                  aria-label="Fechar"
                 >
-                  <X size={14} className="mr-1" />
-                  Fechar
+                  <X size={14} />
+                  ✕ Fechar
                 </Button>
               </div>
             </CardContent>
           </Card>
         </div>
       )}
+    </div>
+  );
+}
+
+function BicosTable({
+  rows,
+  postoFallback,
+  compact,
+}: {
+  rows: CardFraudBicoDetalhe[];
+  postoFallback?: string;
+  compact?: boolean;
+}) {
+  if (!rows.length) {
+    return (
+      <p className="text-xs text-slate-500">Sem abastecimentos detalhados nesta ocorrência.</p>
+    );
+  }
+  const th = compact ? "px-2 py-1.5" : "px-3 py-2";
+  const td = compact ? "px-2 py-1.5" : "px-3 py-2";
+  const text = compact ? "text-xs" : "text-sm";
+  return (
+    <div className="overflow-x-auto rounded-lg border border-slate-700/60">
+      <table className={cn("w-full", text)}>
+        <thead>
+          <tr className="text-left text-[10px] uppercase text-slate-400 bg-slate-800/60">
+            <th className={th}>Bico / Bomba</th>
+            <th className={th}>Hora Abast.</th>
+            <th className={th}>Retenção</th>
+            <th className={th}>Combustível</th>
+            <th className={cn(th, "text-right")}>Volume</th>
+            <th className={cn(th, "text-right")}>Tabela</th>
+            <th className={cn(th, "text-right")}>Praticado</th>
+            <th className={cn(th, "text-right")}>Desc. Bico</th>
+            <th className={th}>Origem</th>
+            {!compact && <th className={th}>Posto</th>}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((d, idx) => {
+            const tab = d.precoTabela ?? d.precoUnitario ?? 0;
+            const prat = d.precoPraticado ?? d.precoUnitario ?? 0;
+            const gap = tab > 0 && prat > 0 && Math.abs(tab - prat) > 0.001;
+            return (
+              <tr
+                key={`${d.idAbastecimento || d.abastecimentoId}-${idx}`}
+                className="border-t border-slate-800 text-slate-200"
+              >
+                <td className={cn(td, "font-mono whitespace-nowrap")}>{bicoBombaLabel(d)}</td>
+                <td className={cn(td, "font-mono")}>
+                  {formatHora(d.dataHoraBico || d.horaBico)}
+                </td>
+                <td className={cn(td, "font-mono")}>
+                  {d.tempoRetencaoMinutos != null ? `${d.tempoRetencaoMinutos} min` : "—"}
+                </td>
+                <td className={td}>{d.tipoCombustivel || d.produto || "—"}</td>
+                <td className={cn(td, "text-right font-mono")}>{formatLitros(d.litros)}</td>
+                <td className={cn(td, "text-right font-mono")}>{formatBRL(tab)}</td>
+                <td
+                  className={cn(
+                    td,
+                    "text-right font-mono",
+                    gap && "text-amber-300"
+                  )}
+                >
+                  {formatBRL(prat)}
+                </td>
+                <td
+                  className={cn(
+                    td,
+                    "text-right font-mono",
+                    (d.valorDesconto ?? 0) > 0 && "text-orange-300"
+                  )}
+                >
+                  {formatBRL(d.valorDesconto ?? 0)}
+                </td>
+                <td className={cn(td, "text-slate-400 text-[11px]")}>
+                  {d.origemDesconto || ((d.valorDesconto ?? 0) > 0 ? "App/Fid." : "—")}
+                </td>
+                {!compact && (
+                  <td className={td}>{d.postoNome || postoFallback || "—"}</td>
+                )}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 }
@@ -678,11 +832,26 @@ function Ranking({
   );
 }
 
-function Meta({ label, value }: { label: string; value: string }) {
+function Meta({
+  label,
+  value,
+  highlight,
+}: {
+  label: string;
+  value: string;
+  highlight?: boolean;
+}) {
   return (
     <div>
       <p className="text-[10px] uppercase text-slate-500">{label}</p>
-      <p className="text-white font-medium font-mono">{value}</p>
+      <p
+        className={cn(
+          "font-medium font-mono",
+          highlight ? "text-orange-300 font-bold" : "text-white"
+        )}
+      >
+        {value}
+      </p>
     </div>
   );
 }

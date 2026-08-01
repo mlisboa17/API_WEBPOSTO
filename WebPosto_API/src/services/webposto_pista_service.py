@@ -1,7 +1,8 @@
 """Camada de pista — contrato REST v1 (Quality Automação / LOGOS).
 
 Expõe DTOs canônicos:
-  - PENDENTE: pista em aberto (sem baixa / vendaItemCodigo vazio)
+  - PENDENTE: sem Cupom Fiscal, sem Hora Fiscal e sem Abast.×Venda (UI WebPosto);
+    na INTEGRACAO também: vendaItemCodigo vazio/zero
   - BAIXADO: faturado/liquidado (com venda, fiscal e forma de pagamento)
 
 Fonte física Quality (INTEGRACAO):
@@ -67,6 +68,17 @@ class AbastecimentoRestV1(BaseModel):
     formaPagamento: str | None = None
     cliente: str | None = None
     dataHoraBaixa: str | None = None
+    # TEF / CARTAO (JOIN VENDA_FORMA_PAGAMENTO + CARTAO por vendaCodigo)
+    cartaoBandeira: str | None = None
+    cartaoFinal: str | None = None
+    cartaoNsu: str | None = None
+    cartaoAutorizacao: str | None = None
+    isEspecie: bool = False
+    precoTabela: float | None = None
+    valorDesconto: float = 0.0
+    origemDesconto: str | None = None
+    cpfCliente: str | None = None
+    bomba: int | None = None
 
 
 class FilialDiaResumo(BaseModel):
@@ -147,6 +159,63 @@ _CRITICAL_RETENTION_MIN = 30.0
 def _is_pagamento_cartao(forma: str | None) -> bool:
     text = (forma or "").upper()
     return any(k in text for k in _CARD_KEYWORDS)
+
+
+_DINHEIRO_KEYWORDS = (
+    "DINHEIRO",
+    "ESPECIE",
+    "ESPÉCIE",
+    "CASH",
+    "NUMERARIO",
+    "NUMERÁRIO",
+)
+
+
+def _is_especie(forma: str | None) -> bool:
+    text = (forma or "").upper()
+    return bool(text) and any(k in text for k in _DINHEIRO_KEYWORDS)
+
+
+def _bandeira_from_admin_desc(desc: str | None) -> str:
+    """Extrai bandeira de adiministradoraDescricao (ex: 'VISA CREDITO PAGSEGURO')."""
+    upper = (desc or "").upper()
+    for name, label in (
+        ("MASTERCARD", "Mastercard"),
+        ("MASTER", "Mastercard"),
+        ("MAESTRO", "Maestro"),
+        ("VISA", "Visa"),
+        ("ELO", "Elo"),
+        ("HIPER", "Hipercard"),
+        ("AMEX", "Amex"),
+        ("PREMMIA", "Premmia"),
+    ):
+        if name in upper:
+            return label
+    # primeiro token útil
+    token = (desc or "").strip().split(" ")[0] if desc else ""
+    return token.title() if token and token.upper() not in ("CARTAO", "CARTÃO", "TEF") else ""
+
+
+def _final_from_cartao_row(row: dict[str, Any]) -> str:
+    for key in (
+        "finalCartao",
+        "cartaoFinal",
+        "ultimosDigitos",
+        "numeroCartao",
+        "cartaoNumero",
+    ):
+        raw = str(row.get(key) or "").strip()
+        digits = "".join(ch for ch in raw if ch.isdigit())
+        if len(digits) >= 4:
+            return digits[-4:]
+    # Fallback: últimos 4 do NSU numérico (ignora UUID/opaque da Quality)
+    nsu = str(row.get("nsu") or row.get("nsuTef") or "").strip()
+    if "-" in nsu or any(c.isalpha() for c in nsu):
+        return ""
+    nsu_digits = "".join(ch for ch in nsu if ch.isdigit())
+    if len(nsu_digits) >= 4:
+        return nsu_digits[-4:]
+    return ""
 
 
 def _retention_minutes(item: AbastecimentoRestV1) -> float | None:
@@ -294,16 +363,97 @@ def _bico_numero(row: dict[str, Any]) -> int:
     return code
 
 
+def _campo_preenchido(val: Any) -> bool:
+    """True se o campo existe e não é vazio/zero (regra visual WebPosto)."""
+    if val is None:
+        return False
+    if isinstance(val, bool):
+        return val
+    if isinstance(val, (int, float)):
+        return val != 0
+    if isinstance(val, dict):
+        # horaFiscal Quality às vezes vem {hour, minute, second}
+        try:
+            return any(int(val.get(k) or 0) for k in ("hour", "minute", "second", "hora", "minuto"))
+        except (TypeError, ValueError):
+            return bool(val)
+    text = str(val).strip()
+    if not text or text in ("0", "00:00:00", "0000-00-00", "null", "None"):
+        return False
+    return True
+
+
+def _tem_cupom_fiscal(row: dict[str, Any]) -> bool:
+    return any(
+        _campo_preenchido(row.get(k))
+        for k in (
+            "cupom",
+            "cupomFiscal",
+            "numeroCupom",
+            "notaNumero",
+            "numeroNota",
+            "documentoFiscal",
+            "coo",
+            "numeroCoo",
+        )
+    )
+
+
+def _tem_hora_fiscal(row: dict[str, Any]) -> bool:
+    return _campo_preenchido(row.get("horaFiscal")) or (
+        _campo_preenchido(row.get("dataFiscal")) and _campo_preenchido(row.get("horaFiscal"))
+    ) or _campo_preenchido(row.get("dataHoraFiscal"))
+
+
+def _tem_abast_x_venda(row: dict[str, Any]) -> bool:
+    """Coluna 'Abast. x Venda' do WebPosto — tempo entre bomba e baixa."""
+    return any(
+        _campo_preenchido(row.get(k))
+        for k in (
+            "abastXVenda",
+            "abastecimentoXVenda",
+            "tempoAbastVenda",
+            "tempoAbastecimentoVenda",
+            "tempoBaixa",
+            "intervaloAbastecimentoVenda",
+            "diferencaAbastecimentoVenda",
+        )
+    )
+
+
+def _venda_item_codigo(row: dict[str, Any]) -> int:
+    try:
+        return int(row.get("vendaItemCodigo") or 0)
+    except (TypeError, ValueError):
+        return 0
+
+
 def _is_pendente_raw(row: dict[str, Any]) -> bool:
-    """Pendente = sem vínculo de venda (vendaItemCodigo vazio/zero)."""
+    """Pendente — contrato AbastecimentoRede + regra visual WebPosto.
+
+    Primário (schema RetornoPaginadoAbastecimentoRede):
+      vendaItemCodigo == 0  → pendente (ainda sem vínculo de venda)
+      vendaItemCodigo  > 0  → baixado/emitido
+
+    Reforço visual (tela desktop):
+      sem dataFiscal/horaFiscal (e sem cupom / Abast.×Venda) → pendente
+    """
     if row.get("status") in ("PENDENTE", "Pendente", "pendente"):
         return True
     if row.get("baixado") in (False, "N", "n", 0, "0"):
         return True
-    try:
-        return int(row.get("vendaItemCodigo") or 0) <= 0
-    except (TypeError, ValueError):
+
+    vic = _venda_item_codigo(row)
+    # Contrato oficial AbastecimentoRede
+    if vic > 0:
+        return False
+    if vic <= 0 and not (
+        _tem_cupom_fiscal(row) or _tem_hora_fiscal(row) or _tem_abast_x_venda(row)
+    ):
         return True
+
+    # vic==0 mas veio algum vestígio fiscal inconsistente → ainda pendente
+    return True
 
 
 def _uuid_for(emp: int, ab_id: int) -> str:
@@ -342,36 +492,30 @@ class WebPostoPistaService:
         id_empresa: int | None = None,
         id_bico: int | None = None,
     ) -> ListaAbastecimentosResponse:
+        """Pendentes = AbastecimentoRede com vendaItemCodigo == 0 (modo Todos + filtro local)."""
         hoje = str(date.today())
-        observacoes: list[str] = []
         try:
-            raw, frentistas = await asyncio.gather(
-                self._fetch_abastecimentos(hoje, hoje, id_empresa, prefer_pendentes=True),
-                self._fetch_frentistas(),
+            pendentes, _baix, _resumo, observacoes, err = await self.coletar_pista_universo(
+                id_empresa=id_empresa,
+                data_inicio=hoje,
+                data_fim=hoje,
             )
-            items: list[AbastecimentoRestV1] = []
-            for row in raw:
-                if bool(row.get("afericao")):
-                    continue
-                if not _is_pendente_raw(row):
-                    continue
-                dto = self._map_row(row, frentistas, status_force="PENDENTE")
-                if not dto:
-                    continue
-                if id_empresa and dto.idEmpresa != int(id_empresa):
-                    continue
-                if id_bico is not None and dto.bico != int(id_bico):
-                    continue
-                items.append(dto)
-
-            items.sort(key=lambda x: x.dataHora or "", reverse=True)
-
-            if not items:
-                observacoes.append(
-                    "Quality INTEGRACAO não retornou abastecimentos com vendaItemCodigo vazio "
-                    "(pendentes PDV ficam locais até a baixa)."
+            items = pendentes
+            if id_bico is not None:
+                items = [i for i in items if i.bico == int(id_bico)]
+            if err and not items:
+                return ListaAbastecimentosResponse(
+                    success=False,
+                    status="PENDENTE",
+                    error=err,
+                    observacoes=observacoes or [err],
                 )
-
+            if not items:
+                observacoes = list(observacoes or []) + [
+                    "Nenhum pendente na INTEGRACAO (AbastecimentoRede: vendaItemCodigo==0 "
+                    "e sem dataFiscal/horaFiscal). A tela desktop pode listar PDV local "
+                    "que a API cloud ainda não publica."
+                ]
             return ListaAbastecimentosResponse(
                 success=True,
                 synthetic=False,
@@ -391,13 +535,23 @@ class WebPostoPistaService:
                 observacoes=[str(exc)],
             )
 
-    async def coletar_baixados_universo(
+    async def coletar_pista_universo(
         self,
         id_empresa: int | None = None,
         data_inicio: str | None = None,
         data_fim: str | None = None,
-    ) -> tuple[list[AbastecimentoRestV1], ResumoDiaPista, list[str], str | None]:
-        """Uma passagem Quality — todos os baixados do período + resumoDia completo."""
+    ) -> tuple[
+        list[AbastecimentoRestV1],
+        list[AbastecimentoRestV1],
+        ResumoDiaPista,
+        list[str],
+        str | None,
+    ]:
+        """Uma passagem 'Todos' (como a tela WebPosto) → split pendentes/baixados.
+
+        Pendente: vendaItemCodigo == 0 (contrato AbastecimentoRede).
+        Baixado:  vendaItemCodigo  > 0 (+ enriquecimento VENDA/NFCE).
+        """
         hoje = str(date.today())
         start = data_inicio or hoje
         end = data_fim or hoje
@@ -410,38 +564,51 @@ class WebPostoPistaService:
                 pagamentos,
                 vendas,
                 nfces,
+                cartoes,
             ) = await asyncio.gather(
+                # Sem filtro status — equivalente ao radio "Todos" da tela
                 self._fetch_abastecimentos(start, end, id_empresa, prefer_pendentes=False),
                 self._fetch_frentistas(),
                 self._fetch_endpoint("venda_item", start, end, id_empresa),
                 self._fetch_endpoint("venda_forma_pagamento", start, end, id_empresa),
                 self._fetch_endpoint("venda", start, end, id_empresa),
                 self._fetch_endpoint("nfce", start, end, id_empresa),
+                # TEF detalhado: bandeira / NSU / autorização (JOIN por vendaCodigo)
+                self._fetch_endpoint("cartao", start, end, id_empresa),
             )
 
             vi_map = self._index_venda_items(venda_items)
             pag_map = self._index_pagamentos(pagamentos)
             venda_map = self._index_vendas(vendas)
             nfce_map = self._index_nfce(nfces)
+            cartao_map = self._index_cartoes(cartoes)
 
-            items: list[AbastecimentoRestV1] = []
+            pendentes: list[AbastecimentoRestV1] = []
+            baixados: list[AbastecimentoRestV1] = []
+            qtd_vic_zero = 0
+
             for row in raw:
                 if bool(row.get("afericao")):
                     continue
+                if id_empresa is not None:
+                    try:
+                        if int(row.get("empresaCodigo") or 0) != int(id_empresa):
+                            continue
+                    except (TypeError, ValueError):
+                        continue
+
                 if _is_pendente_raw(row):
+                    qtd_vic_zero += 1
+                    dto = self._map_row(row, frentistas, status_force="PENDENTE")
+                    if dto:
+                        pendentes.append(dto)
                     continue
+
                 dto = self._map_row(row, frentistas, status_force="BAIXADO")
                 if not dto:
                     continue
-                if id_empresa and dto.idEmpresa != int(id_empresa):
-                    continue
 
-                vic = 0
-                try:
-                    vic = int(row.get("vendaItemCodigo") or 0)
-                except (TypeError, ValueError):
-                    vic = 0
-
+                vic = _venda_item_codigo(row)
                 vc = vi_map.get(vic) or 0
                 emp = dto.idEmpresa
                 if vc:
@@ -470,20 +637,104 @@ class WebPostoPistaService:
                         ).strip() or None
                     pags = pag_map.get((emp, vc)) or pag_map.get((0, vc)) or []
                     if pags:
+                        # Prefere forma com nome mais descritivo (evita vazio/genérico)
+                        best_pag = max(
+                            pags,
+                            key=lambda p: len(
+                                str(
+                                    p.get("nomeFormaPagamento")
+                                    or p.get("formaPagamento")
+                                    or ""
+                                ).strip()
+                            ),
+                        )
                         dto.formaPagamento = str(
-                            pags[0].get("nomeFormaPagamento")
-                            or pags[0].get("formaPagamento")
+                            best_pag.get("nomeFormaPagamento")
+                            or best_pag.get("formaPagamento")
                             or ""
                         ).strip() or None
+                    dto.isEspecie = _is_especie(dto.formaPagamento)
 
-                dto.dataHoraBaixa = _data_hora_baixa(row)
-                items.append(dto)
+                    # JOIN CARTAO (TEF) — bandeira / final / NSU / autorização
+                    card = cartao_map.get((emp, vc)) or cartao_map.get((0, vc))
+                    if card:
+                        admin_desc = str(
+                            card.get("adiministradoraDescricao")
+                            or card.get("administradoraDescricao")
+                            or ""
+                        ).strip()
+                        dto.cartaoBandeira = _bandeira_from_admin_desc(admin_desc) or None
+                        dto.cartaoNsu = str(card.get("nsu") or card.get("nsuTef") or "").strip() or None
+                        dto.cartaoAutorizacao = str(card.get("autorizacao") or "").strip() or None
+                        dto.cartaoFinal = _final_from_cartao_row(card) or None
+                        cpf_raw = str(card.get("clienteCpfCnpj") or "").strip()
+                        cpf_digits = "".join(ch for ch in cpf_raw if ch.isdigit())
+                        if cpf_digits and set(cpf_digits) != {"0"}:
+                            dto.cpfCliente = cpf_raw
+                        # Se forma genérica (CARTAO POS), enriquece com bandeira+crédito/débito
+                        if dto.formaPagamento and "CARTAO" in dto.formaPagamento.upper():
+                            kind = "Crédito" if "CREDITO" in admin_desc.upper() or "CRÉDITO" in admin_desc.upper() else (
+                                "Débito" if "DEBITO" in admin_desc.upper() or "DÉBITO" in admin_desc.upper() or "MAESTRO" in admin_desc.upper() else ""
+                            )
+                            if dto.cartaoBandeira and kind:
+                                dto.formaPagamento = f"Cartão {kind}"
+                            elif dto.cartaoBandeira:
+                                dto.formaPagamento = f"Cartão {dto.cartaoBandeira}"
+                        elif not dto.formaPagamento and dto.cartaoBandeira:
+                            dto.formaPagamento = f"Cartão {dto.cartaoBandeira}"
 
-            items.sort(key=lambda x: x.dataHora or "", reverse=True)
-            return items, _build_resumo_dia(items), observacoes, None
+                    # Fallbacks sem linha CARTAO: PIX / bandeira embutida na forma
+                    forma_u = (dto.formaPagamento or "").upper()
+                    if "PIX" in forma_u and not dto.cartaoBandeira:
+                        dto.cartaoBandeira = "PIX"
+                    elif not dto.cartaoBandeira and dto.formaPagamento:
+                        parsed = _bandeira_from_admin_desc(dto.formaPagamento)
+                        if parsed:
+                            dto.cartaoBandeira = parsed
+
+                    dto.dataHoraBaixa = _data_hora_baixa(row)
+                baixados.append(dto)
+
+            pendentes.sort(key=lambda x: x.dataHora or "", reverse=True)
+            baixados.sort(key=lambda x: x.dataHora or "", reverse=True)
+            # resumo base = só baixados; o cache mescla pendentes em _publish
+            resumo = _build_resumo_dia(baixados)
+
+            LOGGER.info(
+                "pista.universo periodo=%s..%s raw=%s pendentes=%s (vic0=%s) baixados=%s",
+                start,
+                end,
+                len(raw),
+                len(pendentes),
+                qtd_vic_zero,
+                len(baixados),
+            )
+            if not pendentes and baixados:
+                observacoes.append(
+                    f"Universo INTEGRACAO: {len(baixados)} baixados (vendaItemCodigo>0); "
+                    "0 pendentes (vendaItemCodigo==0) — se a tela desktop mostra pendentes, "
+                    "eles ainda não saíram do PDV local para a API."
+                )
+            return pendentes, baixados, resumo, observacoes, None
         except Exception as exc:
-            LOGGER.exception("pista.coletar_baixados_universo falhou: %s", exc)
-            return [], ResumoDiaPista(), [str(exc)], str(exc)
+            LOGGER.exception("pista.coletar_pista_universo falhou: %s", exc)
+            return [], [], ResumoDiaPista(), [str(exc)], str(exc)
+
+    async def coletar_baixados_universo(
+        self,
+        id_empresa: int | None = None,
+        data_inicio: str | None = None,
+        data_fim: str | None = None,
+    ) -> tuple[list[AbastecimentoRestV1], ResumoDiaPista, list[str], str | None]:
+        """Baixados do dia — reutiliza split do universo (Todos)."""
+        _pend, baixados, resumo, observacoes, err = await self.coletar_pista_universo(
+            id_empresa=id_empresa,
+            data_inicio=data_inicio,
+            data_fim=data_fim,
+        )
+        # resumo dos baixados sem inflar com pendentes (KPIs de faturamento = baixados)
+        resumo_baix = _build_resumo_dia(baixados)
+        return baixados, resumo_baix, observacoes, err
 
     async def listar_baixados(
         self,
@@ -666,6 +917,18 @@ class WebPostoPistaService:
         preco = float(row.get("valorUnitario") or row.get("precoUnitario") or row.get("precoCadastro") or 0)
         if preco <= 0 and litros > 0:
             preco = round(valor / litros, 4)
+        preco_tab = float(
+            row.get("precoCadastro")
+            or row.get("tabelaPrecoA")
+            or row.get("precoTabela")
+            or preco
+            or 0
+        )
+        litros_r = round(litros, 3)
+        preco_r = round(preco, 4)
+        desc = 0.0
+        if preco_tab > 0 and preco_r > 0 and preco_tab > preco_r + 0.0001 and litros_r > 0:
+            desc = round((preco_tab - preco_r) * litros_r, 2)
 
         tanque = None
         try:
@@ -675,16 +938,20 @@ class WebPostoPistaService:
         except (TypeError, ValueError):
             tanque = None
 
+        bico_n = _bico_numero(row)
+        # Heurística de bomba (2 bicos/bomba) quando Quality não envia codigoBomba
+        bomba_n = ((max(1, bico_n) - 1) // 2) + 1 if bico_n else None
+
         return AbastecimentoRestV1(
             idAbastecimento=ab_id,
             uuid=str(row.get("uuid") or _uuid_for(emp, ab_id)),
             dataHora=data_hora,
-            bico=_bico_numero(row),
+            bico=bico_n,
             tanque=tanque,
             idProduto=id_produto,
             descricaoProduto=descricao,
-            litros=round(litros, 3),
-            precoUnitario=round(preco, 4),
+            litros=litros_r,
+            precoUnitario=preco_r,
             valorTotal=round(valor, 2),
             idFrentista=fid,
             nomeFrentista=nome,
@@ -692,6 +959,10 @@ class WebPostoPistaService:
             reservado=bool(row.get("reservado") or row.get("reserva") or False),
             idEmpresa=emp,
             nomeEmpresa=FILIAIS.get(emp, f"Empresa {emp}"),
+            precoTabela=round(preco_tab, 4) if preco_tab else None,
+            valorDesconto=desc,
+            origemDesconto="FIDELIDADE/APP" if desc > 0 else None,
+            bomba=bomba_n,
         )
 
     async def _fetch_abastecimentos(
@@ -924,6 +1195,25 @@ class WebPostoPistaService:
             if not vc:
                 continue
             out.setdefault((emp, vc), []).append(r)
+        return out
+
+    @staticmethod
+    def _index_cartoes(
+        rows: list[dict[str, Any]],
+    ) -> dict[tuple[int, int], dict[str, Any]]:
+        """Indexa CARTAO por (empresa, vendaCodigo) — 1º registro da venda."""
+        out: dict[tuple[int, int], dict[str, Any]] = {}
+        for r in rows:
+            try:
+                vc = int(r.get("vendaCodigo") or 0)
+                emp = int(r.get("empresaCodigo") or 0)
+            except (TypeError, ValueError):
+                continue
+            if not vc:
+                continue
+            key = (emp, vc)
+            if key not in out:
+                out[key] = r
         return out
 
     @staticmethod

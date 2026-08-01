@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   RefreshCcw,
   Droplet,
@@ -22,6 +23,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { GlobalFilterHeader } from "@/components/executive/global-filter-header";
 import { ExpenseDetailModal } from "@/components/executive/expense-detail-modal";
 import { CardFraudAuditPanel } from "@/components/executive/card-fraud-audit-panel";
+import { CashierAuditPanel } from "@/components/executive/cashier-audit-panel";
 import { useGlobalFilter } from "@/contexts/global-filter-context";
 import { apiService } from "@/lib/api";
 import { exportDataAuditExcel, exportDataAuditPdf } from "@/lib/export-executive-report";
@@ -35,14 +37,39 @@ import { cn } from "@/lib/utils";
 
 const FILIAL_ORDER = [5555, 11495, 74014];
 
-type AuditTab = "afericao" | "anti-fraude";
+type AuditTab = "afericao" | "anti-fraude" | "caixas";
+
+function resolveTab(raw: string | null): AuditTab {
+  if (raw === "caixas" || raw === "cashier") return "caixas";
+  if (raw === "anti-fraude" || raw === "fraude") return "anti-fraude";
+  return "afericao";
+}
 
 export default function DataAuditPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="p-4 lg:p-8 max-w-[1600px] mx-auto">
+          <Skeleton className="h-10 w-64 bg-slate-900 mb-4" />
+          <Skeleton className="h-40 w-full bg-slate-900" />
+        </div>
+      }
+    >
+      <DataAuditPageContent />
+    </Suspense>
+  );
+}
+
+function DataAuditPageContent() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const urlTab = resolveTab(searchParams.get("tab"));
   const [data, setData] = useState<DataAuditResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [periodReady, setPeriodReady] = useState(false);
-  const [activeTab, setActiveTab] = useState<AuditTab>("afericao");
+  const [activeTab, setActiveTab] = useState<AuditTab>(urlTab);
 
   const {
     selectedFilial,
@@ -53,6 +80,18 @@ export default function DataAuditPage() {
     setSelectedPeriod,
   } = useGlobalFilter();
   const empresaCodigo = isConsolidated ? undefined : selectedFilial;
+
+  const selectTab = useCallback(
+    (tab: AuditTab) => {
+      setActiveTab(tab);
+      const params = new URLSearchParams(searchParams.toString());
+      if (tab === "afericao") params.delete("tab");
+      else params.set("tab", tab);
+      const qs = params.toString();
+      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+    },
+    [router, pathname, searchParams]
+  );
 
   // DRE / fechamento: sempre inicia em ONTEM (D-1)
   useEffect(() => {
@@ -80,9 +119,15 @@ export default function DataAuditPage() {
   }, [periodDates.start, periodDates.end, empresaCodigo]);
 
   useEffect(() => {
+    setActiveTab(urlTab);
+  }, [urlTab]);
+
+  useEffect(() => {
     if (!periodReady) return;
+    // Aferição pesada só quando a aba correspondente está ativa
+    if (activeTab !== "afericao") return;
     void fetchData();
-  }, [fetchData, periodReady]);
+  }, [fetchData, periodReady, activeTab]);
 
   const formatBRL = (v: number) =>
     new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(v || 0);
@@ -164,7 +209,7 @@ export default function DataAuditPage() {
       <div className="flex gap-1 border-b border-slate-800 pb-0">
         <button
           type="button"
-          onClick={() => setActiveTab("afericao")}
+          onClick={() => selectTab("afericao")}
           className={cn(
             "px-4 py-2 text-sm font-medium rounded-t-md border-b-2 transition-colors",
             activeTab === "afericao"
@@ -176,7 +221,7 @@ export default function DataAuditPage() {
         </button>
         <button
           type="button"
-          onClick={() => setActiveTab("anti-fraude")}
+          onClick={() => selectTab("anti-fraude")}
           className={cn(
             "px-4 py-2 text-sm font-medium rounded-t-md border-b-2 transition-colors",
             activeTab === "anti-fraude"
@@ -186,9 +231,23 @@ export default function DataAuditPage() {
         >
           Auditoria Anti-Fraude
         </button>
+        <button
+          type="button"
+          onClick={() => selectTab("caixas")}
+          className={cn(
+            "px-4 py-2 text-sm font-medium rounded-t-md border-b-2 transition-colors",
+            activeTab === "caixas"
+              ? "border-emerald-400 text-emerald-300 bg-emerald-500/5"
+              : "border-transparent text-slate-400 hover:text-slate-200"
+          )}
+        >
+          Auditoria de Caixas
+        </button>
       </div>
 
-      {activeTab === "anti-fraude" ? (
+      {activeTab === "caixas" ? (
+        <CashierAuditPanel empresaCodigo={empresaCodigo} ready />
+      ) : activeTab === "anti-fraude" ? (
         <CardFraudAuditPanel
           start={periodDates.start}
           end={periodDates.end}

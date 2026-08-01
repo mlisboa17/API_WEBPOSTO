@@ -15,7 +15,7 @@ from typing import Any
 from fastapi import APIRouter, Query
 
 from src.services.pista_cache_service import get_pista_cache
-from src.services.webposto_pista_service import ListaAbastecimentosResponse, get_pista_service
+from src.services.webposto_pista_service import ListaAbastecimentosResponse
 from src.utils.filial_normalizer import resolve_empresa_codigo
 
 LOGGER = logging.getLogger(__name__)
@@ -68,7 +68,7 @@ async def abastecimentos_baixados(
     pagina: int = Query(1, ge=1),
     limite: int = Query(100, ge=1, le=500),
 ) -> ListaAbastecimentosResponse:
-    """Abastecimentos baixados — cache do dia; histórico D-1 via Quality sob demanda."""
+    """Abastecimentos baixados — 100% cache RAM (sem Quality síncrono no GET)."""
     empresa = _normalize_empresa(idEmpresa, filial)
     hoje = str(date.today())
     start = dataInicio or hoje
@@ -76,22 +76,14 @@ async def abastecimentos_baixados(
 
     cache = get_pista_cache()
     snap = cache.get_snapshot()
-
-    # Período ≠ data do cache (ex.: Ontem D-1) → busca histórico Quality, não zera.
     if snap.data_ref and (start != snap.data_ref or end != snap.data_ref):
         LOGGER.info(
-            "pista.baixados fallback histórico cache_ref=%s pedido=%s..%s empresa=%s",
+            "pista.baixados RAM-only cache_ref=%s pedido=%s..%s empresa=%s "
+            "(sem sync Quality no request path)",
             snap.data_ref,
             start,
             end,
             empresa,
-        )
-        return await get_pista_service().listar_baixados(
-            id_empresa=empresa,
-            data_inicio=start,
-            data_fim=end,
-            pagina=pagina,
-            limite=limite,
         )
 
     return await cache.response_baixados(
@@ -105,8 +97,22 @@ async def abastecimentos_baixados(
 
 @router.get("/kpis/resumo")
 async def abastecimentos_kpis_resumo() -> dict[str, Any]:
-    """KPIs do dia (ERR-01) — somente RAM."""
-    return await get_pista_cache().response_kpis()
+    """KPIs do dia (ERR-01) — somente RAM (<50ms)."""
+    cache = get_pista_cache()
+    if not cache.ready:
+        import asyncio
+
+        async def _warm() -> None:
+            try:
+                await cache.run_sync()
+            except Exception as exc:
+                LOGGER.warning("pista kpis warm-up falhou: %s", exc)
+
+        try:
+            asyncio.get_running_loop().create_task(_warm())
+        except RuntimeError:
+            pass
+    return await cache.response_kpis()
 
 
 @router.get("/cache/status")

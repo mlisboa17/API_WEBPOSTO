@@ -18,6 +18,10 @@ const HEAVY_PATH_MARKERS = [
   "briefing",
   "dashboard/bundle",
   "consolidated-report",
+  "cash-reconciliation",
+  "payment-methods",
+  "dre-complete",
+  "finance/center",
 ];
 
 type RouteParams = { params: Promise<{ path: string[] }> };
@@ -112,7 +116,29 @@ function getFallbackResponse(path: string): Record<string, unknown> | unknown[] 
       },
     };
   }
-  if (path.includes("card-fraud") || path.includes("audit/")) {
+  if (path.includes("audit/cashier") || path.endsWith("cashier")) {
+    return {
+      success: true,
+      fromCache: true,
+      data: {
+        success: false,
+        fromCache: true,
+        resumoDia: {
+          totalEsperado: 0,
+          totalDeclarado: 0,
+          divergenciaTotal: 0,
+          sobras: 0,
+          faltas: 0,
+        },
+        fechamentosPorTurno: [],
+        quebrasPorFormaPagamento: [],
+        totalFechamentos: 0,
+        hasMore: false,
+        observacoes: ["Backend indisponivel — cache de caixas vazio"],
+      },
+    };
+  }
+  if (path.includes("card-fraud") || (path.includes("audit/") && !path.includes("cashier"))) {
     return {
       success: true,
       synthetic: false,

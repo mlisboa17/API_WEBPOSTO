@@ -22,6 +22,7 @@ import {
   ClipboardCheck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ClearBrowserCacheButton } from "@/components/executive/clear-browser-cache-button";
 
 const NAV_GROUPS = [
   {
@@ -31,6 +32,7 @@ const NAV_GROUPS = [
       { label: "Gestão de Alertas", href: "/executive/alerts", icon: AlertCircle },
       { label: "Simulador de Margem", href: "/executive/simulator", icon: Calculator },
       { label: "Aferição de Dados", href: "/executive/data-audit", icon: ClipboardCheck },
+      { label: "Auditoria de Caixas", href: "/executive/cashier-audit", icon: Wallet },
     ]
   },
   {
@@ -108,14 +110,15 @@ export function SidebarV2() {
         ))}
       </nav>
 
-      <div className="p-3 border-t border-white/10">
-         <Link 
-            href="#"
-            className="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-sm transition hover:bg-white/5 hover:text-white"
-          >
-            <Settings2 size={18}/>
-            {!collapsed && <span>Configurações</span>}
-          </Link>
+      <div className="p-3 border-t border-white/10 space-y-1">
+        <ClearBrowserCacheButton collapsed={collapsed} />
+        <Link
+          href="/executive/settings"
+          className="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-sm transition hover:bg-white/5 hover:text-white"
+        >
+          <Settings2 size={18} />
+          {!collapsed && <span>Configurações</span>}
+        </Link>
       </div>
 
       <button 

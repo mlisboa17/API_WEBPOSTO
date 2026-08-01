@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import {
-  fetchKpisResumo,
+  fetchPresidentDashboard,
   formatLitros,
   hojeLocalIso,
   type TotaisDiaPista,
@@ -133,20 +133,28 @@ export function PresidentTopKpisLive() {
     (async () => {
       const hoje = hojeLocalIso();
       try {
-        const [kpis, fraud] = await Promise.all([
-          fetchKpisResumo(),
-          apiService.getCardFraudAudit(hoje, hoje, undefined, null),
-        ]);
+        // KPIs primeiro (paint <1s) — fraud em paralelo sem bloquear se atrasar
+        const kpisPromise = fetchPresidentDashboard();
+        const fraudPromise = apiService.getCardFraudAudit(hoje, hoje, undefined, null);
+        const kpis = await kpisPromise;
         if (cancelled) return;
         setTotais(kpis.totaisDia);
         setFromCache(Boolean(kpis.fromCache));
+        setAlertas(
+          Number(kpis.fraude?.alertasCriticos ?? 0) ||
+            Number(kpis.totaisDia?.alertasCriticosRetencao ?? 0) ||
+            0
+        );
+        setLoading(false);
+        const fraud = await fraudPromise.catch(() => null);
+        if (cancelled) return;
         setAlertas(
           Number(fraud?.resumo?.totalCriticos ?? 0) ||
             Number(kpis.fraude?.alertasCriticos ?? 0) ||
             Number(kpis.totaisDia?.alertasCriticosRetencao ?? 0) ||
             0
         );
-      } finally {
+      } catch {
         if (!cancelled) setLoading(false);
       }
     })();

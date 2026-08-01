@@ -17,7 +17,7 @@ fazem parte do mesmo produto.
 
 ## Estado atual
 
-As Sprints 28–50 entregaram o ecossistema completo de inteligência para o Grupo Lisboa. **O BACKEND ESTÁ CONCLUÍDO E PRONTO PARA PRODUÇÃO.**
+As Sprints 28–55-B entregaram o ecossistema completo de inteligência para o Grupo Lisboa. **O BACKEND ESTÁ CONCLUÍDO E PRONTO PARA PRODUÇÃO.**
 
 - rotinas diária e semanal configuráveis;
 - execução diária padrão às 06:00 sobre o dia anterior;
@@ -43,7 +43,13 @@ As Sprints 28–50 entregaram o ecossistema completo de inteligência para o Gru
 - motor de alertas proativos de exceção (Quebras, Desvios, Vácuo, Ruptura Curva A);
 - simulador estratégico de impacto em EBITDA e Capital de Giro;
 - persistência de alertas (PostgreSQL), webhooks e dashboard bundle;
-- namespaces separados /executive/ e /operational/ (Cockpits).
+- namespaces separados /executive/ e /operational/ (Cockpits);
+- **motor de inteligência de mercado 100% dinâmico e configurável**;
+- **suporte multicombustível** (Gasolina, Etanol, Diesel, GNV, Arla, QAV);
+- **multi-fornecedor** (Vibra, Ipiranga, Raízen, ALE SAT, TRRs, Bandeira Branca);
+- **preços e custos dinâmicos por empresa/produto** via `CompanySettingsService`;
+- **benchmark de competitividade regional** com alertas de squeeze de margem;
+- **predição de estoque** com lead time dinâmico por fornecedor.
 
 ## Arquivos centrais
 
@@ -55,8 +61,14 @@ Backend:
 - `src/services/proactive_notification_service.py`
 - `src/services/proactive_value_service.py`
 - `src/services/executive_adoption_service.py`
+- `src/services/company_settings_service.py` — **configurações dinâmicas por empresa**
+- `src/services/fuel_market_intelligence_service.py` — **motor de inteligência de mercado**
+- `src/services/market_competitiveness_service.py` — **competitividade regional**
+- `src/services/inventory_prediction_service.py` — **predição de estoque**
 - `src/interfaces/http/routes/departmental_governance.py`
 - `src/interfaces/http/routes/periodic_audits.py`
+- `src/interfaces/http/routes/executive_market.py` — **endpoints de mercado Sprint 55**
+- `src/interfaces/http/routes/alert_engine.py` — **alertas e análise de mercado**
 
 Frontend executivo:
 
@@ -76,9 +88,83 @@ Frontend executivo:
 - Não misturar empresas ou departamentos.
 - Não versionar `.env`, credenciais, logs, `tmp/` ou snapshots sensíveis.
 
+## Integração com Dados Reais — Inteligência Preditiva e Compras
+
+**Fontes externas e webPosto conectadas:**
+
+- `src/services/external_market_service.py`
+  - USD/BRL: AwesomeAPI → BCB PTAX → Frankfurter (fallback)
+  - Brent USD/bbl: Yahoo Finance `BZ=F` → AwesomeAPI petroleum → fallback
+  - Esalq Etanol PE/AL: parser HTML CEPEA → fallback
+  - Coordenadas reais das filiais (Olinda/Recife)
+- `src/services/webposto_integration_service.py`
+  - Vendas do dia (`/ABASTECIMENTO`)
+  - Tanques (`/TANQUE`)
+  - CPM (`/PRODUTO_COMBUSTIVEL` + `/NOTA_FISCAL_ENTRADA` ou `/ESTOQUE_PERIODO`)
+- Rotas:
+  - `GET /api/v1/executive/alerts/market/indicators`
+  - `GET /api/v1/executive/alerts/market/analysis` (refresh automático dos indicadores)
+  - `GET /api/v1/operational/realtime-bundle`
+  - `GET /api/v1/operational/inventory-prediction`
+- Env documentado em `.env.example`: `WEBPOSTO_API_URL`, `WEBPOSTO_TOKEN`/`WEBPOSTO_APP_KEY`, `MARKET_DATA_API_KEY`
+
+## Sprint 55-B entregue — MOTOR DINÂMICO E CONFIGURÁVEL
+
+**Sprint 55-B — Inteligência de Mercado 100% Agnóstica:**
+
+- **CompanySettingsService Estendido**:
+  - `ProductPricing`: novo dataclass para preço de venda, custo de aquisição e margem por produto;
+  - `FuelCategory`: expandido para incluir ARLA, LUBRIFICANTE e QUEROSENE;
+  - `SupplierConfig.produtos_fornecidos`: lista de produtos por fornecedor;
+  - Métodos de CRUD para preços: `get_product_pricing()`, `update_product_pricing()`, `get_all_products_pricing()`;
+  - Métodos de gerenciamento: `add_supplier()`, `remove_supplier()`, `add_product()`, `get_suppliers_for_product()`;
+  
+- **MarketCompetitivenessService Refatorado**:
+  - 100% dinâmico: preços e custos lidos exclusivamente de `CompanySettings`;
+  - Remoção de valores hardcoded (fornecedor "Vibra", produtos fixos, etc.);
+  - Suporte multicombustível: Gasolina (Comum/Aditivada/Premium), Etanol (Hidratado/Anidro), Diesel (S10/S500/Marítimo), GNV, Arla, QAV;
+  - Cache de concorrentes por empresa;
+  - Margem mínima dinâmica por produto ou global;
+  
+- **Novos Endpoints de Configuração** (`/api/v1/executive/market/`):
+  - `GET /settings/products?empresaCodigo=` — lista produtos configurados;
+  - `GET /settings/suppliers?empresaCodigo=` — lista fornecedores configurados;
+  - `GET /settings/companies` — lista todas as empresas/filiais;
+  - `GET /settings/pricing?empresaCodigo=&produtoCodigo=` — retorna preços/custos;
+  - `PUT /settings/pricing` — atualiza preço/custo de um produto;
+
+- **Rotas Atualizadas**:
+  - `/api/v1/executive/alerts/market/analysis` — análise dinâmica por empresa/produto/fornecedor;
+  - `/api/v1/operational/inventory-prediction` — usa configurações de fornecedor dinâmicas;
+  - `/api/v1/executive/market/benchmark` — benchmark usando preços da empresa;
+
+- **Validação**:
+  - Build frontend: zero erros (`npm run build`);
+  - 12 testes unitários para MarketCompetitivenessService (todos passando);
+  - Deprecation warning corrigido (`datetime.utcnow()` → `datetime.now(timezone.utc)`);
+
+## Sprint 57 entregue — FILTRO GLOBAL DE FILIAL E PERÍODO
+
+**Sprint 57 — Contexto de Unidade Persistente:**
+
+- **Contexto Global (`GlobalFilterProvider`)**: estado de aplicação com seleção de filial e período, persistido via `localStorage` usando `useSyncExternalStore`;
+- **Filiais disponíveis**: Consolidado Grupo Lisboa (default), AP Casa Caiada (5555), Posto VIP (6666), Posto Real/Doze (7777);
+- **Períodos disponíveis**: Últimos 7 Dias, Hoje, Mês Atual;
+- **GlobalFilterHeader**: componente de barra unificada com dropdowns de filial e período + badges de contexto;
+- **Telas atualizadas**:
+  - Central de Relatórios (`/executive/reports` e sub-páginas);
+  - Vendas & Elasticidade (`/dashboard/sales-analytics`);
+  - Eficiência Logística (`/dashboard/logistics`);
+  - Tesouraria & Cash Pooling (`/dashboard/treasury`);
+  - Monitoramento de Tanques (`/operational/tanks`);
+- **Chamadas de API dinâmicas**: todos os serviços agora recebem `empresaCodigo` e datas do filtro global;
+- **Persistência**: seleção sobrevive navegação e recarregamento da página;
+- **UI**: badges visuais distinguindo visualização consolidada (azul) de filial específica (roxo);
+- **Regra de Ouro**: exibe "SEM REGISTRO NO PERÍODO" ou "0,00" quando não há dados reais — zero mocks ou estimativas.
+
 ## Próxima sprint sugerida
 
-Sprint 57 — Visualização Avançada e Integrações:
+Sprint 58 — Visualização Avançada e Integrações:
 
 - gráficos interativos Recharts para Perdas Volumétricas e Evolução de Margens;
 - integração de webhooks para alertas críticos em tempo real (Slack/WhatsApp);
@@ -248,6 +334,183 @@ Detalhes: `docs/business/SPRINT_48_FINANCIAL_ADVANCED.md`.
 - 36 testes unitários passando.
 
 Detalhes: `docs/business/SPRINT_47_EXPENSE_MAPPING.md`.
+
+## Sprint 57-C entregue — COCKPIT MULTI-FILIAL + FIX HTTP 500
+
+**Sprint 57-C — Cockpit 30s Multi-Filial:**
+
+1. **Nova Rota Backend** (`/api/v1/operational/cockpit-live`):
+   - Rota dedicada e resiliente para o Cockpit 30s;
+   - Retorna sempre HTTP 200 OK (mesmo sem dados ou com erro);
+   - Suporta filtros `dataInicial`, `dataFinal` e `empresaCodigo`;
+   - Estrutura de resposta com `filiais[]` e `abastecimentos[]`.
+
+2. **Cockpit 30s Multi-Filial** (`/operational/cockpit-30s`):
+   - **3 Cards Paralelos** exibindo simultaneamente:
+     - AP Casa Caiada (5555)
+     - Posto VIP (6666)
+     - Posto Real / Doze (7777)
+   - Cada card mostra:
+     - Status da Pista (🟢 PISTA ATIVA / 🟡 AGUARDANDO)
+     - Volume Acumulado Hoje (L)
+     - Faturamento Acumulado Hoje (R$)
+     - Último Abastecimento (hora, bico, produto, litros, valor)
+     - Timer de Polling (30s)
+   - Tabela consolidada com últimos abastecimentos de todas as filiais.
+
+3. **Central de Relatórios** (`/executive/reports`):
+   - Agora responde ao filtro global (período e filial);
+   - API `/api/v1/executive/consolidated-report` aceita `dataInicial`, `dataFinal` e `empresaCodigo`;
+   - Valores de Volume, Faturamento e Divergência recalculados em tempo real.
+
+## Sprint 57-B entregue — CORREÇÕES PRÉ-APRESENTAÇÃO
+
+**Sprint 57-B — Correções de Usabilidade e Integridade:**
+
+1. **Cockpit 30s** (`/operational/cockpit-30s`):
+   - Nova página de monitoramento operacional da pista em tempo real;
+   - Polling HTTP a cada 30 segundos com fallback gracioso (sem tela vermelha de erro);
+   - Contador de tempo até próxima atualização;
+   - Indicador de status de conexão (Conectado/Polling/Erro);
+   - Subtítulo: "Monitoramento Operacional da Pista em Tempo Real (Atualização Automática a cada 30s)".
+
+2. **Vendas & Elasticidade** (`/dashboard/sales-analytics`):
+   - Reatividade total ao Filtro Global (selectedFilial e periodDates);
+   - Valores dinâmicos calculados a partir dos dados da API (não mais hardcoded);
+   - InfoTooltips explicativos ao lado de cada KPI:
+     - *Volume Médio:* Média diária de litros vendidos no período.
+     - *Coeficiente de Elasticidade:* Sensibilidade das vendas às variações de preço.
+     - *Conversão Pista -> Loja:* Percentual de clientes que abasteceram e compraram na conveniência.
+
+3. **Logística de Frete** (`/dashboard/logistics`):
+   - **REMOVIDOS**: Nomes de distribuidoras fictícias (Ipiranga, Raízen, Shell, Petrobras);
+   - Conectado à VIBRA ENERGIA (distribuidora única do Grupo Lisboa);
+   - Mensagem "SEM REGISTRO DE FRETE NO PERÍODO" quando não houver dados.
+
+4. **Componente InfoTooltip** criado em `components/ui/info-tooltip.tsx` para reutilização.
+
+5. **Sidebar atualizada** com link para o Cockpit Pista 30s.
+
+Validação: `npm run lint` e `npm run build` passando com zero erros.
+
+## Sprint 59-B entregue
+
+**Sprint 59-B — Motor Dinamico e Agnostico de Fornecedores:**
+
+### Backend - Arquitetura 100% Configuravel
+
+- `CompanySettingsService`: Configuracoes dinamicas por empresa
+  - Fornecedores multiplos (Vibra, Ipiranga, Raizen, TRR, Bandeira Branca)
+  - Produtos de combustivel parametrizaveis
+  - Metas de cobertura por produto
+  - Lead times por fornecedor
+
+- `FuelMarketIntelligenceService` refatorado:
+  - Zero valores hardcoded
+  - Analise dinamica por empresa/produto/fornecedor
+  - Sazonalidade configuravel por produto
+  - Fatores de mercado (Brent, Cambio) centralizados
+
+- Novos endpoints:
+  - `GET /api/v1/executive/alerts/market/analysis/all`
+  - `GET /api/v1/executive/alerts/settings/companies`
+  - `GET /api/v1/executive/alerts/settings/suppliers`
+  - `GET /api/v1/executive/alerts/settings/products`
+  - `GET /api/v1/operational/inventory-prediction/settings`
+
+### Fornecedores Suportados:
+| Codigo | Nome | Terminal | Lead Time |
+|--------|------|----------|-----------|
+| VIBRA | Vibra Energia | Suape/PE | 24h |
+| IPIRANGA | Ipiranga | Suape/PE | 24h |
+| RAIZEN | Raizen | Suape/PE | 36h |
+| TRR | TRR Regional | Local | 12h |
+| BRANCA | Bandeira Branca | Variavel | 48h |
+
+### Produtos Suportados:
+- Gasolina: Comum, Aditivada, Premium
+- Etanol: Hidratado (sazonalidade), Anidro (sazonalidade)
+- Diesel: S10, S500, Maritimo
+- GNV
+
+Validacao: `npm run build` passando com zero erros.
+
+## Sprint 59 entregue
+
+**Sprint 59 — Motor de Notificacoes Proativas & Inteligencia de Mercado:**
+
+### Backend
+- `AlertEngineService`: Motor de alertas com matriz de criticidade
+  - Severidades: CRITICO (> R$ 3.000), MEDIO (R$ 500-3.000), BAIXO (< R$ 500)
+  - Status de ciclo: PENDENTE, VISUALIZADO, APROVADO, REJEITADO, EXPIRADO
+  - Re-notificacao automatica para alertas criticos (15/30/60/120 min)
+  
+- `FuelMarketIntelligenceService`: Inteligencia de mercado para combustiveis
+  - Etanol PE/AL: Calculo com sazonalidade Safra/Entresafra
+  - Gasolina/Diesel: Fatores Brent + Cambio + Repasse Vibra
+  - Terminais regionais: Suape/PE, Maceio/AL
+
+- Endpoints criados:
+  - `GET /api/v1/executive/alerts/engine/summary`
+  - `GET /api/v1/executive/alerts/engine/list`
+  - `GET /api/v1/executive/alerts/engine/pending-renotifications`
+  - `POST /api/v1/executive/alerts/engine/create`
+  - `PATCH /api/v1/executive/alerts/engine/{alert_id}/status`
+  - `GET /api/v1/executive/alerts/market/analysis`
+  - `GET /api/v1/executive/alerts/market/alerts`
+  - `GET /api/v1/executive/alerts/market/season`
+
+### Frontend
+- `/executive/settings`: Tela de configuracao de notificacoes
+  - Perfis por usuario (diretor, gerente_compras, gerente_pista)
+  - Empresas autorizadas
+  - Niveis de severidade
+  - Frequencia de re-notificacao
+  - Canais (app, email, whatsapp)
+
+### Arquivos criados:
+- `src/services/alert_engine_service.py`
+- `src/services/fuel_market_intelligence_service.py`
+- `src/interfaces/http/routes/alert_engine.py`
+- `executive-web/src/app/(executive)/executive/settings/page.tsx`
+
+Validacao: `npm run build` passando com zero erros.
+
+## Sprint 58 entregue
+
+**Sprint 58 — Previsao de Estoque & Sugestao de Compras (Run-Out Prediction):**
+
+### Backend
+- `InventoryPredictionService`: Calculo preditivo de run-out e ponto de pedido;
+- Endpoint `GET /api/v1/operational/inventory-prediction` com parametros:
+  - `empresaCodigo`: Codigo da filial;
+  - `dias_cobertura`: 1-15 dias (default: 3);
+  - `lead_time_horas`: 1-168h (default: 24h).
+- Logica de calculo:
+  1. Consumo medio diario baseado em historico de abastecimentos;
+  2. Autonomia em horas/dias ate esgotamento;
+  3. Status de alerta: OK, ATENCAO, COMPRA_URGENTE;
+  4. Sugestao de volume de compra arredondado para 1000L.
+
+### Frontend
+- `InventoryPredictionPanel`: Componente visual na tela de Tanques;
+- Seletor de "Meta de Cobertura" (1, 2, 3, 5, 7, 10 dias);
+- Cards por tanque com:
+  - Estoque atual e % ocupacao;
+  - Autonomia restante (dias/horas);
+  - Consumo medio diario;
+  - Sugestao de compra em litros.
+- Badges de alerta (urgentes, atencao, total sugerido).
+
+### Arquivos criados/modificados:
+- `src/services/inventory_prediction_service.py`
+- `src/interfaces/http/routes/inventory_prediction.py`
+- `executive-web/src/components/operational/inventory-prediction-panel.tsx`
+- `executive-web/src/app/(executive)/operational/tanks/page.tsx`
+- `executive-web/src/types/api.ts`
+- `executive-web/src/lib/api.ts`
+
+Validacao: `npm run build` passando com zero erros.
 
 ## Sprint 46 entregue
 

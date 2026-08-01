@@ -164,15 +164,9 @@ function emptyTotais(): TotaisDiaPista {
   };
 }
 
-/** KPIs do dia — leitura exclusiva do cache RAM (<50ms). */
-export async function fetchKpisResumo(): Promise<KpisResumoResponse> {
-  try {
-    const res = await fetch("/api/abastecimentos/kpis/resumo", {
-      cache: "no-store",
-      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
-    });
-    const raw = (await res.json()) as KpisResumoResponse;
-    const totais = raw?.totaisDia && typeof raw.totaisDia === "object"
+function normalizeKpisPayload(raw: KpisResumoResponse | null | undefined): KpisResumoResponse {
+  const totais =
+    raw?.totaisDia && typeof raw.totaisDia === "object"
       ? {
           ...emptyTotais(),
           ...raw.totaisDia,
@@ -186,19 +180,56 @@ export async function fetchKpisResumo(): Promise<KpisResumoResponse> {
           valorCriticoRetencao: Number(raw.totaisDia.valorCriticoRetencao ?? 0) || 0,
         }
       : emptyTotais();
-    return {
-      success: raw?.success !== false,
-      synthetic: Boolean(raw?.synthetic),
-      fromCache: Boolean(raw?.fromCache),
-      fonte: raw?.fonte,
-      ultimaSincronizacaoIso: raw?.ultimaSincronizacaoIso ?? null,
-      totaisDia: totais,
-      fraude: raw?.fraude,
-      resumoDia: raw?.resumoDia ?? null,
-      error: raw?.error ?? null,
-    };
+  return {
+    success: raw?.success !== false,
+    synthetic: Boolean(raw?.synthetic),
+    fromCache: Boolean(raw?.fromCache),
+    fonte: raw?.fonte,
+    ultimaSincronizacaoIso: raw?.ultimaSincronizacaoIso ?? null,
+    totaisDia: totais,
+    fraude: raw?.fraude,
+    resumoDia: raw?.resumoDia ?? null,
+    error: raw?.error ?? null,
+  };
+}
+
+/** KPIs do dia — Cockpit Presidente (100% RAM, <50ms). */
+export async function fetchPresidentDashboard(): Promise<KpisResumoResponse> {
+  try {
+    const res = await fetch("/api/executive/dashboard/president", {
+      cache: "no-store",
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+    });
+    const raw = (await res.json()) as KpisResumoResponse;
+    return normalizeKpisPayload(raw);
   } catch (e: unknown) {
     return {
+      success: false,
+      totaisDia: emptyTotais(),
+      fraude: { alertasCriticos: 0 },
+      error: e instanceof Error ? e.message : "Falha ao carregar dashboard presidente",
+    };
+  }
+}
+
+/** KPIs do dia — leitura exclusiva do cache RAM (<50ms). Prefere rota president. */
+export async function fetchKpisResumo(): Promise<KpisResumoResponse> {
+  const primary = await fetchPresidentDashboard();
+  if (primary.success && (primary.totaisDia.qtdTotalAbastecimentos > 0 || primary.fromCache)) {
+    return primary;
+  }
+  try {
+    const res = await fetch("/api/abastecimentos/kpis/resumo", {
+      cache: "no-store",
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+    });
+    const raw = (await res.json()) as KpisResumoResponse;
+    return normalizeKpisPayload(raw);
+  } catch (e: unknown) {
+    if (!primary.error) {
+      primary.error = e instanceof Error ? e.message : "Falha ao carregar KPIs";
+    }
+    return primary.success ? primary : {
       success: false,
       totaisDia: emptyTotais(),
       fraude: { alertasCriticos: 0 },

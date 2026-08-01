@@ -1,4 +1,4 @@
-"""Rota de Auditoria Anti-Fraude de Pista (Cartao/TEF) — engine dinâmica.
+"""Rota Anti-Fraude — leitura exclusiva do cache RAM (<50ms).
 
 GET /api/v1/executive/audit/card-fraud
 """
@@ -11,6 +11,7 @@ from typing import Optional
 from fastapi import APIRouter, Query
 
 from src.services.fraud_detection_engine import get_fraud_detection_engine
+from src.utils.filial_normalizer import resolve_empresa_codigo
 
 logger = logging.getLogger(__name__)
 
@@ -29,58 +30,64 @@ async def get_card_fraud_audit(
         None,
         ge=1,
         le=180,
-        description="Override opcional do limiar de atenção (min). Null = usa settings salvos.",
+        description="Ignorado no GET (thresholds vêm do worker/settings).",
     ),
 ) -> dict:
-    """Auditoria avançada com thresholds dinâmicos (settings) + cache RAM."""
-    from datetime import date, timedelta
+    """Auditoria anti-fraude — 100% memória RAM (PistaSyncWorker 30s)."""
+    _ = limiarRetencaoMinutos
+    from datetime import date
 
     end = dataFinal or date.today().isoformat()
     start = dataInicial or date.today().isoformat()
+    empresa = resolve_empresa_codigo(empresaCodigo)
 
-    try:
-        result = await get_fraud_detection_engine().auditar(
-            data_inicial=start,
-            data_final=end,
-            empresa_codigo=empresaCodigo,
-            limiar_override=limiarRetencaoMinutos,
-        )
-        payload = result.model_dump()
-        # Alias dataHoraBaixa no legado (campo principal já existe)
-        for o in payload.get("ocorrencias") or []:
-            if not o.get("dataHoraBaixa") and o.get("horaBaixa"):
-                o["dataHoraBaixa"] = o["horaBaixa"]
-            # nivelRisco legado CRITICO/ATENCAO
-            nivel = o.get("nivelRisco")
-            if nivel == "ALTO":
-                o["nivelRiscoLegado"] = "CRITICO"
-            elif nivel == "MEDIO":
-                o["nivelRiscoLegado"] = "ATENCAO"
-            else:
-                o["nivelRiscoLegado"] = "BAIXO"
-        return {
-            "success": True,
-            "data": payload,
-            "namespace": "executive",
-            "synthetic": False,
-        }
-    except Exception as exc:
-        logger.exception("audit/card-fraud falhou: %s", exc)
-        return {
-            "success": True,
-            "data": {
-                "success": False,
-                "synthetic": False,
-                "fonte": "FraudDetectionEngine",
-                "endpoint": "/api/v1/abastecimentos/baixados",
-                "periodo": {"inicio": start, "fim": end},
-                "empresaCodigo": empresaCodigo,
-                "resumo": {},
-                "resumoExecutivo": {},
-                "ocorrencias": [],
-                "bannerAlerta": None,
-                "observacoes": [str(exc)],
-            },
-            "synthetic": False,
-            "namespace": "executive",
-        }
+    engine = get_fraud_detection_engine()
+    store = engine.get_store()
+
+    # Warm-up em background se cache ainda vazio — nunca bloqueia o GET
+    if store.result is None and not store.gerado_em:
+        import asyncio
+
+        async def _warm() -> None:
+            try:
+                await engine.refresh_from_pista()
+            except Exception as exc:
+                logger.warning("card-fraud warm-up falhou: %s", exc)
+
+        try:
+            asyncio.get_running_loop().create_task(_warm())
+        except RuntimeError:
+            pass
+
+    result = engine.response_from_ram(
+        empresa_codigo=empresa,
+        data_inicial=start,
+        data_final=end,
+    )
+    payload = result.model_dump()
+
+    for o in payload.get("ocorrencias") or []:
+        if not o.get("formaPagamento"):
+            o["formaPagamento"] = o.get("meioPagamento") or "Cartão/TEF"
+        if not o.get("dataHoraBaixa") and o.get("horaBaixa"):
+            o["dataHoraBaixa"] = o["horaBaixa"]
+        nivel = o.get("nivelRisco")
+        if nivel == "ALTO":
+            o["nivelRiscoLegado"] = "CRITICO"
+        elif nivel == "DESCONTO":
+            o["nivelRiscoLegado"] = "DESCONTO"
+        elif nivel == "MEDIO":
+            o["nivelRiscoLegado"] = "ATENCAO"
+        else:
+            o["nivelRiscoLegado"] = "BAIXO"
+        if not o.get("dataHoraEmissaoCupom"):
+            o["dataHoraEmissaoCupom"] = o.get("dataHoraBaixa") or o.get("horaBaixa") or ""
+
+    return {
+        "success": True,
+        "data": payload,
+        "namespace": "executive",
+        "synthetic": False,
+        "fromCache": True,
+        "latencyMs": payload.get("latencyMs", 0),
+    }

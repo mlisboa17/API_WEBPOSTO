@@ -87,23 +87,36 @@ class PistaCacheService:
         await self.mark_syncing(True)
         try:
             await self._ensure_permissions(svc, force=force_permissions)
-            pend_resp, baix_pack = await asyncio.gather(
-                svc.listar_pendentes(),
-                svc.coletar_baixados_universo(data_inicio=hoje, data_fim=hoje),
+            # Uma passagem "Todos" (AbastecimentoRede) → split pendentes/baixados
+            pend_items, baix_items, baix_resumo, baix_obs, baix_err = (
+                await svc.coletar_pista_universo(data_inicio=hoje, data_fim=hoje)
             )
-            baix_items, baix_resumo, baix_obs, baix_err = baix_pack
+            pend_resp = ListaAbastecimentosResponse(
+                success=baix_err is None,
+                status="PENDENTE",
+                total=len(pend_items),
+                items=pend_items,
+                observacoes=list(baix_obs or []),
+                error=baix_err,
+            )
 
             auth_poison = _looks_like_auth_poison(baix_err, baix_obs, pend_resp)
-            if auth_poison and not baix_items and not (pend_resp.items or []):
+            if auth_poison and not baix_items and not pend_items:
                 LOGGER.warning(
                     "pista_cache: sync vazia por autorização — force discover_permissions + retry"
                 )
                 await self._ensure_permissions(svc, force=True)
-                pend_resp, baix_pack = await asyncio.gather(
-                    svc.listar_pendentes(),
-                    svc.coletar_baixados_universo(data_inicio=hoje, data_fim=hoje),
+                pend_items, baix_items, baix_resumo, baix_obs, baix_err = (
+                    await svc.coletar_pista_universo(data_inicio=hoje, data_fim=hoje)
                 )
-                baix_items, baix_resumo, baix_obs, baix_err = baix_pack
+                pend_resp = ListaAbastecimentosResponse(
+                    success=baix_err is None,
+                    status="PENDENTE",
+                    total=len(pend_items),
+                    items=pend_items,
+                    observacoes=list(baix_obs or []),
+                    error=baix_err,
+                )
 
             return await self._publish(
                 pend_resp, baix_items, baix_resumo, baix_obs, baix_err, hoje, t0
@@ -314,8 +327,10 @@ class PistaCacheService:
         return self._enrich(resp, snap)
 
     async def response_kpis(self) -> dict[str, Any]:
+        t0 = datetime.now(TZ)
         snap = self.get_snapshot()
         totais = totais_from_resumo(snap.resumo_dia, snap.baixados)
+        latency_ms = (datetime.now(TZ) - t0).total_seconds() * 1000.0
         return {
             "success": True,
             "synthetic": False,
@@ -338,6 +353,7 @@ class PistaCacheService:
             },
             "observacoes": list(snap.observacoes),
             "lastDurationMs": snap.last_duration_ms,
+            "latencyMs": round(latency_ms, 3),
             "syncCount": snap.sync_count,
             "error": snap.last_error,
         }

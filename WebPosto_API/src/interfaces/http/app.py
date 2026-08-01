@@ -84,6 +84,8 @@ from src.interfaces.http.routes import inventory_prediction
 from src.interfaces.http.routes import alert_engine
 from src.interfaces.http.routes import data_audit
 from src.interfaces.http.routes import card_fraud_audit
+from src.interfaces.http.routes import cashier_audit
+from src.interfaces.http.routes import president_dashboard
 from src.api.v1.endpoints import audit_settings as audit_settings_ep
 from src.interfaces.http.routes import data_sync
 from src.services.financial_snapshot_scheduler import get_financial_scheduler
@@ -190,6 +192,8 @@ def _mount_executive_support(app: FastAPI) -> None:
     app.include_router(alert_engine.router)
     app.include_router(data_audit.router)
     app.include_router(card_fraud_audit.router)
+    app.include_router(cashier_audit.router)
+    app.include_router(president_dashboard.router)
     app.include_router(audit_settings_ep.router)
     app.include_router(data_sync.router)
 
