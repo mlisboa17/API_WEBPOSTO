@@ -33,7 +33,7 @@ export interface TreasuryData {
 }
 
 type JsonRecord = Record<string, unknown>;
-const API = process.env.WEBPOSTO_API_URL || "http://127.0.0.1:8000";
+const API = process.env.WEBPOSTO_API_URL || "http://127.0.0.1:8040";
 const number = (value: unknown) => Number(value || 0);
 const nullableNumber = (value: unknown) => value === null || value === undefined || value === "" ? null : Number(value);
 const object = (value: unknown): JsonRecord => value && typeof value === "object" && !Array.isArray(value) ? value as JsonRecord : {};

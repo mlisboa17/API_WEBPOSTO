@@ -30,6 +30,7 @@ import { cn } from "@/lib/utils";
 import { DrePanel } from "@/components/executive/dre-panel";
 import { ExpenseClassificationModal } from "@/components/executive/expense-classification-modal";
 import { Skeleton } from "@/components/ui/skeleton";
+import { PresidentTopKpisLive } from "@/components/executive/president-top-kpis";
 
 export default function ExecutiveDashboardPage() {
   const [data, setData] = useState<DashboardBundle | null>(null);
@@ -102,8 +103,8 @@ export default function ExecutiveDashboardPage() {
         <AlertTriangle size={48} className="text-red-500 mb-4" />
         <h1 className="text-2xl font-bold text-white">Erro de Conectividade</h1>
         <p className="text-slate-400 mt-2 max-w-md">{error}</p>
-        <Button onClick={fetchDashboardData} className="mt-6 gap-2">
-          <RefreshCcw size={16} /> Tentar Novamente
+        <Button onClick={fetchDashboardData} className="mt-6 gap-2 bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20">
+          <RefreshCcw size={16} className="text-cyan-400" /> Tentar Novamente
         </Button>
       </div>
     );
@@ -129,42 +130,19 @@ export default function ExecutiveDashboardPage() {
              <span className="text-[10px] text-slate-500 uppercase font-bold">Última Sincronização</span>
              <span className="text-xs font-medium text-green-500">{new Date(synthesis.generated_at).toLocaleTimeString()}</span>
            </div>
-          <Button variant="outline" size="sm" onClick={fetchDashboardData} className="bg-slate-900/50 border-white/10 hover:bg-slate-800">
-            <RefreshCcw size={14} className={cn("mr-2", loading && "animate-spin")} /> Atualizar
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={fetchDashboardData} 
+            className="bg-cyan-500/10 border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 hover:text-cyan-200"
+          >
+            <RefreshCcw size={14} className={cn("mr-2 text-cyan-400", loading && "animate-spin")} /> Atualizar
           </Button>
         </div>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <KpiCard 
-          title="EBITDA Projetado" 
-          value={formatBRL(synthesis.total_gross_margin)} 
-          subValue={`${synthesis.gross_margin_pct?.toFixed(1) || '0.0'}% de Margem`}
-          trend={12.5}
-          icon={<TrendingUp className="text-green-500" />}
-        />
-        <KpiCard 
-          title="Margem Combustível" 
-          value={`${formatBRL(synthesis.fuel_margin_per_liter)}/L`} 
-          subValue={`${synthesis.fuel_liters_sold?.toLocaleString() || '0'} Litros`}
-          trend={-2.1}
-          icon={<Droplet className="text-blue-500" />}
-        />
-        <KpiCard 
-          title="Vácuo de Caixa" 
-          value={formatBRL(cash_cycle.necessidade_capital_giro_rs)} 
-          subValue={`${cash_cycle.vacuo_financeiro_dias?.toFixed(1) || '0.0'} dias de ciclo`}
-          trend={cash_cycle.status === 'NORMAL' ? 0 : 5}
-          status={cash_cycle.status}
-          icon={<Wallet className="text-orange-500" />}
-        />
-        <KpiCard 
-          title="Alertas Críticos" 
-          value={active_alerts.filter(a => a.severity === 'CRITICAL').length.toString()} 
-          subValue={`${active_alerts.length} alertas pendentes`}
-          icon={<AlertTriangle className={cn(active_alerts.some(a => a.severity === 'CRITICAL') ? "text-red-500 animate-pulse" : "text-slate-500")} />}
-        />
-      </div>
+      {/* KPIs reais do cache RAM — mesma fonte de /executive/president */}
+      <PresidentTopKpisLive />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="lg:col-span-2 border-white/5 bg-slate-900/40 backdrop-blur-sm">

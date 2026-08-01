@@ -257,6 +257,61 @@ export interface Block6Despesas {
   auto_classificadas: AutoClassifiedExpense[];
 }
 
+export interface AbastecimentoPendente {
+  id: number;
+  data: string;
+  hora: string;
+  bico: number;
+  produto: string;
+  litros: number;
+  valor: number;
+  empresa_nome: string;
+  frentista_nome: string | null;
+  turno: string | null;
+  minutos_pendente: number;
+  alerta_tipo: string;
+}
+
+export interface ResumoPendentesFilial {
+  empresa_codigo: number;
+  empresa_nome: string;
+  total_pendentes: number;
+  litros_pendentes: number;
+  valor_pendente: number;
+}
+
+export interface AuditoriaPista {
+  total_abastecimentos: number;
+  total_pendentes: number;
+  litros_pendentes: string;
+  valor_pendente: string;
+  alertas_retencao: number;
+  alertas_divergencia_tef: number;
+  por_filial: ResumoPendentesFilial[];
+  por_frentista: Array<{
+    frentista: string;
+    total_pendentes: number;
+    litros: number;
+    valor: number;
+    alertas: number;
+  }>;
+  por_bico: Array<{
+    bico: number;
+    filial: string;
+    total_pendentes: number;
+    litros: number;
+    valor: number;
+  }>;
+  por_turno: Array<{
+    turno: string;
+    total_pendentes: number;
+    litros: number;
+    valor: number;
+    alertas: number;
+  }>;
+  pendentes_detalhados: AbastecimentoPendente[];
+}
+
 export interface Block9Anomalias {
   titulo: string;
   status: string;
@@ -264,6 +319,7 @@ export interface Block9Anomalias {
   detalhamento_pagamento: Array<{ natureza: string; valor: string; transacoes: number }>;
   rombo_por_operador_turno: CashHoleDetail[];
   alertas: Array<Record<string, unknown>>;
+  auditoria_pista: AuditoriaPista | null;
 }
 
 export interface ExecutiveReport {
@@ -277,4 +333,311 @@ export interface ExecutiveReport {
   bloco_5_dre: Block5Dre;
   bloco_6_despesas: Block6Despesas;
   bloco_9_anomalias: Block9Anomalias;
+}
+
+export interface TankPrediction {
+  produto_codigo: number;
+  produto_nome: string;
+  tipo_combustivel: string;
+  estoque_atual_litros: number;
+  capacidade_tanque: number;
+  ocupacao_percentual: number;
+  consumo_medio_diario: number;
+  dias_cobertura_desejado: number;
+  lead_time_horas: number;
+  autonomia_horas_restantes: number;
+  autonomia_dias_restantes: number;
+  status_alerta: "OK" | "ATENCAO" | "COMPRA_URGENTE";
+  sugestao_compra_litros: number;
+  alerta_label?: string;
+  dias_historico_usado: number;
+  observacoes: string[];
+  cpm_rs_litro?: number;
+  preco_venda_rs_litro?: number;
+  margem_bruta_rs_litro?: number;
+  valor_estoque_imobilizado_rs?: number;
+  cpm_origem?: string;
+}
+
+export interface InventoryPredictionResponse {
+  success: boolean;
+  empresa_codigo: number;
+  empresa_nome: string;
+  data_calculo: string;
+  dias_cobertura: number;
+  lead_time_horas: number;
+  predicoes: TankPrediction[];
+  total_sugestao_compra_litros: number;
+  tanques_com_alerta: number;
+  tanques_urgentes: number;
+  observacoes: string[];
+}
+
+/** Inteligência Integrada — GET /api/v1/executive/sales/composition */
+export interface SalesCompositionSummary {
+  faturamentoTotal: number;
+  faturamentoCombustivel: number;
+  faturamentoProdutosPista: number;
+  faturamentoConveniencia: number;
+  litrosVendidos: number;
+  quantidadeAbastecimentos: number;
+  clientesLoja: number;
+  ticketMedioAbastecimento: number;
+  receitaNaoCombustivelPorAbastecimento: number;
+  litrosPorAbastecimento: number;
+  penetracaoProdutosPistaPercentual: number;
+  penetracaoConvenienciaPercentual: number;
+  penetracaoCrossSellingPercentual: number;
+}
+
+export interface SalesCompositionSector {
+  setor: "Combustíveis" | "Produtos de Pista" | "Conveniência" | string;
+  faturamento: number;
+  margem: number;
+  participacao: number;
+}
+
+export interface SalesCrossSellingFunnel {
+  totalAbastecimentos: number;
+  clientesLoja: number;
+  transacoesCombustivelProdutoPista: number;
+  transacoesCombustivelConveniencia: number;
+  transacoesCombustivelComboTotal: number;
+  penetracaoProdutosPistaPercentual: number;
+  penetracaoConvenienciaPercentual: number;
+  penetracaoTotalPercentual: number;
+  relacaoLojaPistaPercentual: number;
+}
+
+export interface SalesCompositionBreakdownItem {
+  categoria: string;
+  litros?: number;
+  faturamento: number;
+  participacao: number;
+}
+
+export interface SalesCompositionResponse {
+  summary: SalesCompositionSummary;
+  compositionBySector: SalesCompositionSector[];
+  crossSellingFunnel: SalesCrossSellingFunnel;
+  combustiveis?: SalesCompositionBreakdownItem[];
+  produtosPista?: SalesCompositionBreakdownItem[];
+  conveniencia?: SalesCompositionBreakdownItem[];
+  empresaCodigo?: number | null;
+  periodo?: { inicio: string; fim: string };
+  fonteAbastecimentos?: string;
+  fallback?: boolean;
+  mensagem?: string | null;
+}
+
+/** Sprint 60 — Painel de Aferição / Drill-down despesas */
+export interface ExpenseDetailItem {
+  id?: string;
+  numeroDocumento?: string;
+  numeroNF?: string;
+  descricao?: string;
+  historico?: string;
+  fornecedor?: string;
+  favorecido?: string;
+  categoria?: string;
+  categoriaLabel?: string;
+  valor?: number;
+  dataPagamento?: string;
+  dataVencimento?: string;
+  planoConta?: string;
+  planoContaCodigo?: number | null;
+  planoContaHierarquia?: string;
+  planoContaOficial?: string;
+  planoContaTipo?: string;
+  grupoConta?: string;
+  grupoContaCodigo?: number | null;
+  centroCusto?: string;
+  centroCustoCodigo?: number | null;
+  empresaCodigo?: number;
+}
+
+export interface ExpenseDetailsResponse {
+  empresaCodigo?: number | null;
+  empresaNome?: string;
+  periodo?: { inicio: string; fim: string };
+  categoria?: string;
+  categoriaKey?: string;
+  subtotal?: number;
+  quantidade?: number;
+  itens?: ExpenseDetailItem[];
+  success?: boolean;
+  mensagem?: string | null;
+}
+
+export interface DataAuditExpenseCategory {
+  categoria: string;
+  categoriaKey?: string;
+  valor: number;
+  qtd_lancamentos: number;
+  itens?: ExpenseDetailItem[];
+}
+
+export interface DataAuditValeItem {
+  descricao?: string;
+  funcionario?: string;
+  valor?: number;
+  planoConta?: string;
+  planoContaCodigo?: number | null;
+  fonte?: string;
+}
+
+export interface DataAuditValesFuncionarios {
+  total: number;
+  quantidade: number;
+  itens: DataAuditValeItem[];
+}
+
+export interface DataAuditFilial {
+  empresaCodigo: number;
+  empresaNome: string;
+  faturamentoTotal: number;
+  volumeLitros: number;
+  quantidadeAbastecimentos: number;
+  ocupacaoTanquesPct: number;
+  despesasTotal: number;
+  despesasPorCategoria: DataAuditExpenseCategory[];
+  valesFuncionarios?: DataAuditValesFuncionarios;
+  resultadoOperacionalDiario: number;
+  margemBrutaMediaRsLitro: number;
+  valorEstoqueImobilizado: number;
+  fallback?: boolean;
+  mensagem?: string | null;
+}
+
+export interface DataAuditResponse {
+  periodo: { inicio: string; fim: string };
+  filiais: DataAuditFilial[];
+  consolidado: Record<string, number | string>;
+  success?: boolean;
+  mensagem?: string;
+}
+
+export interface AuditFraudSettings {
+  empresa_id: number;
+  tempo_retencao_critico_min: number;
+  tempo_retencao_atencao_min: number;
+  tempo_agrupamento_max_min: number;
+  percentual_desconto_suspeito_pct: number;
+  recorrencia_cpf_cartao_limite: number;
+  updated_at?: string | null;
+  fonte?: string;
+}
+
+export interface CardFraudBicoDetalhe {
+  abastecimentoId?: number;
+  idAbastecimento?: number;
+  uuid?: string;
+  bico: number;
+  horaBico?: string;
+  dataHoraBico?: string;
+  produto?: string;
+  tipoCombustivel?: string;
+  postoNome?: string;
+  litros: number;
+  precoUnitario?: number;
+  valor?: number;
+  valorTotal?: number;
+  valorDesconto?: number;
+  cpfDesconto?: string | null;
+}
+
+export interface FraudRankingItem {
+  nome: string;
+  qtd: number;
+  valor: number;
+}
+
+export interface CardFraudOcorrencia {
+  id: string;
+  idOcorrencia?: string;
+  linkOcorrencia?: string;
+  gatilho: "TIME_GAP" | "AGRUPAMENTO_LOTE" | "AMBOS" | string;
+  frentistaId: number | null;
+  frentistaNome: string;
+  funcionarioNome?: string;
+  funcionarioId?: number | null;
+  empresaCodigo: number;
+  empresaNome: string;
+  postoNome?: string;
+  postoUnidade?: number;
+  vendaCodigo: number;
+  uuid?: string;
+  horaBico?: string;
+  horaBaixa?: string;
+  dataHora?: string;
+  dataHoraBaixa?: string;
+  dataHoraBico?: string;
+  horaPrimeiroBico?: string;
+  horaUltimoBico?: string;
+  horaBaixaCartao?: string;
+  tempoRetencaoMinutos: number;
+  intervaloBicosMinutos: number;
+  qtdAbastecimentosAgrupados: number;
+  valorTotalCartao: number;
+  valorTotal?: number;
+  nivelRisco: "ATENCAO" | "CRITICO" | "ALTO" | "MEDIO" | "BAIXO" | string;
+  meioPagamento: string;
+  cartaoBandeira?: string;
+  cartaoFinal?: string;
+  tipoCombustivel?: string;
+  litros?: number;
+  precoUnitario?: number;
+  valorDesconto?: number;
+  percentualDesconto?: number;
+  origemDesconto?: string;
+  cpfDesconto?: string | null;
+  motivoSuspeita?: string;
+  isAgrupado?: boolean;
+  abastecimentosAgrupados?: CardFraudBicoDetalhe[];
+  metricasAgrupamento?: {
+    qtdAbastecimentos: number;
+    intervaloBicosMinutos: number;
+    tempoRetencaoMinutos: number;
+    limiarCriticoMin: number;
+    limiarAtencaoMin: number;
+    limiarAgrupamentoMin: number;
+  };
+  detalhes: CardFraudBicoDetalhe[];
+}
+
+export interface CardFraudResumo {
+  totalAgrupamentosSuspeitos: number;
+  totalCriticos: number;
+  totalAtencao: number;
+  valorTotalRetidoCartoes: number;
+  valorCritico: number;
+  frentistaMaiorIncidencia: string;
+  frentistaMaiorIncidenciaQtd: number;
+  abastecimentosCriticosBanner: number;
+  totalFraudes?: number;
+  valorTotalEnvolvido?: number;
+  totalDescontosIdentificados?: number;
+  totalAbastecimentosSuspeitos?: number;
+  rankingFrentistas?: FraudRankingItem[];
+  rankingCartoes?: FraudRankingItem[];
+  rankingCPFs?: FraudRankingItem[];
+  rankingPostos?: FraudRankingItem[];
+  distribuicaoRisco?: Record<string, number>;
+}
+
+export interface CardFraudAuditResponse {
+  success: boolean;
+  synthetic: boolean;
+  fonte: string;
+  endpoint: string;
+  periodo: { inicio: string; fim: string };
+  empresaCodigo?: number | null;
+  limiarRetencaoMinutos: number;
+  limiarCriticoMinutos: number;
+  parametros?: AuditFraudSettings;
+  resumo: CardFraudResumo;
+  resumoExecutivo?: CardFraudResumo;
+  ocorrencias: CardFraudOcorrencia[];
+  bannerAlerta: string | null;
+  observacoes: string[];
 }

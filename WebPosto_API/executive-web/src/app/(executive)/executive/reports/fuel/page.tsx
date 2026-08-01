@@ -1,46 +1,54 @@
 "use client";
 
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Droplet, Fuel, TrendingUp, Building2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ReportFilterBar } from "@/components/executive/report-filter-bar";
+import { InfoTooltip } from "@/components/ui/info-tooltip";
 import { useReportFilter } from "@/contexts/report-filter-context";
 import { apiService } from "@/lib/api";
 import { ExecutiveReport } from "@/types/api";
 import { ReportLayout } from "@/components/executive/report-layout";
+import { matchesEmpresa, resolveEmpresaCodigo } from "@/utils/filial_normalizer";
 
 export default function FuelReportPage() {
   const [report, setReport] = useState<ExecutiveReport | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const { selectedFilial, isConsolidated } = useReportFilter();
+  const {
+    selectedFilial,
+    isConsolidated,
+    periodDates,
+    filialLabel,
+  } = useReportFilter();
+
+  const empresaResolvida = resolveEmpresaCodigo(isConsolidated ? null : selectedFilial);
+
+  const fetchReport = useCallback(async () => {
+    setLoading(true);
+    try {
+      const data = await apiService.getExecutiveConsolidatedReport(
+        periodDates.start,
+        periodDates.end,
+        empresaResolvida ?? undefined
+      );
+      setReport(data);
+      setError(null);
+    } catch (err) {
+      setReport(null);
+      setError(err instanceof Error ? err.message : "Erro ao carregar");
+    } finally {
+      setLoading(false);
+    }
+  }, [periodDates.start, periodDates.end, empresaResolvida]);
 
   useEffect(() => {
-    let active = true;
-    apiService
-      .getExecutiveConsolidatedReport()
-      .then((data) => {
-        if (active) {
-          setReport(data);
-          setError(null);
-        }
-      })
-      .catch((err) => {
-        if (active) {
-          setError(err instanceof Error ? err.message : "Erro ao carregar");
-        }
-      })
-      .finally(() => {
-        if (active) setLoading(false);
-      });
-    return () => {
-      active = false;
-    };
-  }, []);
+    void fetchReport();
+  }, [fetchReport]);
 
   const formatBRL = (val: string | number) => {
     try {
@@ -52,9 +60,21 @@ export default function FuelReportPage() {
     }
   };
 
-  const formatNumber = (val: string | number) => {
+  /** Volumetria sempre com 3 casas decimais (ex.: 1.234,567 L). */
+  const formatLitros = (val: string | number) => {
     try {
-      return new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 2 }).format(Number(val || 0));
+      return new Intl.NumberFormat("pt-BR", {
+        minimumFractionDigits: 3,
+        maximumFractionDigits: 3,
+      }).format(Number(val || 0));
+    } catch {
+      return "0,000";
+    }
+  };
+
+  const formatInt = (val: string | number) => {
+    try {
+      return new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 0 }).format(Number(val || 0));
     } catch {
       return "0";
     }
@@ -68,15 +88,15 @@ export default function FuelReportPage() {
 
       const filteredProducts = isConsolidated
         ? allProducts
-        : allProducts.filter((p) => p.empresa_codigo === selectedFilial);
+        : allProducts.filter((p) => matchesEmpresa(p.empresa_codigo, selectedFilial));
 
       const filteredFiliais = isConsolidated
         ? allFiliais
-        : allFiliais.filter((f) => f.empresa_codigo === selectedFilial);
+        : allFiliais.filter((f) => matchesEmpresa(f.empresa_codigo, selectedFilial));
 
       const filteredMargens = isConsolidated
         ? allMargens
-        : allMargens.filter((m) => m.empresa_codigo === selectedFilial);
+        : allMargens.filter((m) => matchesEmpresa(m.empresa_codigo, selectedFilial));
 
       const productMap = new Map<string, { litros: number; valor: number; transacoes: number }>();
       for (const row of filteredProducts) {
@@ -92,8 +112,9 @@ export default function FuelReportPage() {
         { empresa_codigo: number; nome: string; litros: number; valor: number; transacoes: number }
       >();
       for (const row of filteredFiliais) {
-        const cur = filialMap.get(row.empresa_codigo.toString()) || {
-          empresa_codigo: row.empresa_codigo,
+        const code = Number(row.empresa_codigo);
+        const cur = filialMap.get(String(code)) || {
+          empresa_codigo: code,
           nome: row.nome_filial,
           litros: 0,
           valor: 0,
@@ -102,7 +123,7 @@ export default function FuelReportPage() {
         cur.litros += Number(row.litros || 0);
         cur.valor += Number(row.valor || 0);
         cur.transacoes += Number(row.transacoes || 0);
-        filialMap.set(row.empresa_codigo.toString(), cur);
+        filialMap.set(String(code), cur);
       }
 
       const byProductArr = Array.from(productMap.entries()).map(([produto, agg]) => ({
@@ -112,8 +133,19 @@ export default function FuelReportPage() {
 
       const byFilialArr = Array.from(filialMap.values()).sort((a, b) => b.litros - a.litros);
 
-      const totLitros = byFilialArr.reduce((s, f) => s + f.litros, 0);
-      const totValor = byFilialArr.reduce((s, f) => s + f.valor, 0);
+      // Prefer totals from API when already filtered server-side; else aggregate.
+      const apiLitros = Number(report?.bloco_1_combustiveis.resumo.total_litros || 0);
+      const apiValor = Number(report?.bloco_1_combustiveis.resumo.total_valor || 0);
+      const totLitros =
+        !isConsolidated && apiLitros > 0
+          ? apiLitros
+          : byFilialArr.reduce((s, f) => s + f.litros, 0) ||
+            byProductArr.reduce((s, p) => s + p.litros, 0);
+      const totValor =
+        !isConsolidated && apiValor > 0
+          ? apiValor
+          : byFilialArr.reduce((s, f) => s + f.valor, 0) ||
+            byProductArr.reduce((s, p) => s + p.valor, 0);
 
       return {
         byProduct: byProductArr,
@@ -124,6 +156,23 @@ export default function FuelReportPage() {
         margensFiltradas: filteredMargens,
       };
     }, [report, selectedFilial, isConsolidated]);
+
+  useEffect(() => {
+    if (loading) return;
+    if (totalLitros > 0 || totalValor > 0) return;
+    console.warn(
+      `[Pista & Volumetria] Filial buscada: ${filialLabel} (${selectedFilial}) | ID resolvido: ${
+        empresaResolvida ?? "TODAS"
+      }`
+    );
+  }, [
+    loading,
+    totalLitros,
+    totalValor,
+    filialLabel,
+    selectedFilial,
+    empresaResolvida,
+  ]);
 
   const renderSkeleton = () => (
     <div className="space-y-6">
@@ -154,7 +203,10 @@ export default function FuelReportPage() {
           {error}
         </div>
       ) : (
-        <div className="space-y-6">
+        <div
+          key={`fuel-${empresaResolvida ?? "all"}-${periodDates.start}-${periodDates.end}`}
+          className="space-y-6"
+        >
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <Card className="bg-slate-900 border-white/5">
               <CardContent className="p-6">
@@ -163,8 +215,11 @@ export default function FuelReportPage() {
                     <Droplet className="size-5 text-blue-400" />
                   </div>
                   <div>
-                    <p className="text-sm text-slate-400">Volume Total</p>
-                    <p className="text-xl font-bold text-white">{formatNumber(totalLitros)} L</p>
+                    <div className="flex items-center gap-1.5">
+                      <p className="text-sm text-slate-400">Volume Total</p>
+                      <InfoTooltip content="Soma de todos os litros vendidos na pista no período selecionado, incluindo Gasolina Comum, Aditivada, Etanol e Diesel." />
+                    </div>
+                    <p className="text-xl font-bold text-white">{formatLitros(totalLitros)} L</p>
                   </div>
                 </div>
               </CardContent>
@@ -176,7 +231,10 @@ export default function FuelReportPage() {
                     <Fuel className="size-5 text-emerald-400" />
                   </div>
                   <div>
-                    <p className="text-sm text-slate-400">Faturamento Pista</p>
+                    <div className="flex items-center gap-1.5">
+                      <p className="text-sm text-slate-400">Faturamento Pista</p>
+                      <InfoTooltip content="Receita bruta total da venda de combustíveis. Valor capturado direto do registro de cada abastecimento." />
+                    </div>
                     <p className="text-xl font-bold text-white">{formatBRL(totalValor)}</p>
                   </div>
                 </div>
@@ -189,7 +247,10 @@ export default function FuelReportPage() {
                     <TrendingUp className="size-5 text-amber-400" />
                   </div>
                   <div>
-                    <p className="text-sm text-slate-400">Ticket Médio</p>
+                    <div className="flex items-center gap-1.5">
+                      <p className="text-sm text-slate-400">Ticket Médio</p>
+                      <InfoTooltip content="Preço médio por litro vendido. Calculado dividindo o faturamento total pelo volume total em litros." />
+                    </div>
                     <p className="text-xl font-bold text-white">
                       {formatBRL(totalLitros > 0 ? totalValor / totalLitros : 0)}
                     </p>
@@ -204,7 +265,10 @@ export default function FuelReportPage() {
                     <Building2 className="size-5 text-purple-400" />
                   </div>
                   <div>
-                    <p className="text-sm text-slate-400">Filiais Ativas</p>
+                    <div className="flex items-center gap-1.5">
+                      <p className="text-sm text-slate-400">Filiais Ativas</p>
+                      <InfoTooltip content="Quantidade de postos com movimentação de combustível no período selecionado." />
+                    </div>
                     <p className="text-xl font-bold text-white">{filiaisAtivas}</p>
                   </div>
                 </div>
@@ -237,13 +301,13 @@ export default function FuelReportPage() {
                       <TableRow key={row.produto} className="border-white/5 hover:bg-white/5">
                         <TableCell className="text-white font-medium">{row.produto}</TableCell>
                         <TableCell className="text-slate-300 text-right">
-                          {formatNumber(row.litros)} L
+                          {formatLitros(row.litros)} L
                         </TableCell>
                         <TableCell className="text-slate-300 text-right">
                           {formatBRL(row.valor)}
                         </TableCell>
                         <TableCell className="text-slate-300 text-right">
-                          {formatNumber(row.transacoes)}
+                          {formatInt(row.transacoes)}
                         </TableCell>
                         <TableCell className="text-right">
                           <Badge
@@ -300,13 +364,13 @@ export default function FuelReportPage() {
                             {row.nome}
                           </TableCell>
                           <TableCell className="text-slate-300 text-right">
-                            {formatNumber(row.litros)} L
+                            {formatLitros(row.litros)} L
                           </TableCell>
                           <TableCell className="text-slate-300 text-right">
                             {formatBRL(row.valor)}
                           </TableCell>
                           <TableCell className="text-slate-300 text-right">
-                            {formatNumber(row.transacoes)}
+                            {formatInt(row.transacoes)}
                           </TableCell>
                           <TableCell className="text-right">
                             <Badge
@@ -347,7 +411,7 @@ export default function FuelReportPage() {
                     <TableRow key={row.empresa_codigo} className="border-white/5 hover:bg-white/5">
                       <TableCell className="text-white font-medium">{row.nome}</TableCell>
                       <TableCell className="text-slate-300 text-right">
-                        {formatNumber(row.litros)} L
+                        {formatLitros(row.litros)} L
                       </TableCell>
                       <TableCell className="text-slate-300 text-right">
                         {formatBRL(row.valor)}

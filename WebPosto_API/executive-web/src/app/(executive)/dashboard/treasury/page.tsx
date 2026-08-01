@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { 
   Landmark, 
   RefreshCcw, 
-  Calendar, 
   ArrowRightLeft, 
   ShieldAlert,
   ShieldCheck,
@@ -25,6 +24,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { GlobalFilterHeader } from "@/components/executive/global-filter-header";
+import { useGlobalFilter } from "@/contexts/global-filter-context";
 import { apiService } from "@/lib/api";
 import { cn } from "@/lib/utils";
 
@@ -65,10 +66,14 @@ export default function TreasuryDashboardPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchData = async () => {
+  const { selectedFilial, isConsolidated, periodLabel } = useGlobalFilter();
+
+  const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-      const result = await apiService.getTreasuryConsolidation() as TreasuryData;
+      const result = await apiService.getTreasuryConsolidation(
+        isConsolidated ? undefined : selectedFilial
+      ) as TreasuryData;
       setData(result);
       setError(null);
     } catch (err) {
@@ -77,13 +82,11 @@ export default function TreasuryDashboardPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedFilial, isConsolidated]);
 
   useEffect(() => {
-    (async () => {
-      await fetchData();
-    })();
-  }, []);
+    fetchData();
+  }, [fetchData]);
 
   const liquidity = useMemo(() => data?.liquidez_por_unidade || [], [data]);
   const sweep = useMemo(() => data?.sugestoes_sweep || [], [data]);
@@ -112,17 +115,21 @@ export default function TreasuryDashboardPage() {
             <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Treasury</span>
           </div>
           <h1 className="text-3xl font-bold text-white tracking-tight">Tesouraria & Cash Pooling</h1>
-          <p className="text-slate-400 text-sm">Consolidação de saldo, exposição a cheque especial e sugestões de sweep</p>
+          <p className="text-slate-400 text-sm">
+            Consolidação de saldo, exposição a cheque especial e sugestões de sweep • {periodLabel}
+          </p>
         </div>
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="bg-slate-900 border-white/5">
-            <Calendar size={14} className="mr-2" /> Hoje
-          </Button>
-          <Button size="sm" onClick={fetchData} disabled={loading}>
-            <RefreshCcw size={14} className={cn("mr-2", loading && "animate-spin")} /> Atualizar
-          </Button>
-        </div>
+        <Button 
+          size="sm" 
+          onClick={fetchData} 
+          disabled={loading}
+          className="bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 hover:text-cyan-200"
+        >
+          <RefreshCcw size={14} className={cn("mr-2 text-cyan-400", loading && "animate-spin")} /> Atualizar
+        </Button>
       </header>
+
+      <GlobalFilterHeader />
 
       {loading ? (
         <div className="space-y-6">
@@ -135,7 +142,7 @@ export default function TreasuryDashboardPage() {
       ) : error ? (
         <div className="p-8 text-center">
           <h2 className="text-xl text-red-500 font-bold mb-2">{error}</h2>
-          <Button onClick={fetchData}>Tentar Novamente</Button>
+          <Button onClick={fetchData} className="bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20">Tentar Novamente</Button>
         </div>
       ) : (
         <div className="space-y-6 animate-in fade-in duration-500">

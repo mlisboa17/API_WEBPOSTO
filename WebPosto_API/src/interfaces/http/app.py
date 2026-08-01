@@ -68,8 +68,27 @@ from src.interfaces.http.routes import departmental_kpis
 from src.interfaces.http.routes import departmental_governance
 from src.interfaces.http.routes import executive_synthesis
 from src.interfaces.http.routes import operational_advanced
+from src.interfaces.http.routes import expense_mappings
+from src.interfaces.http.routes import executive_cockpit
+from src.interfaces.http.routes import operational_cockpit
+from src.interfaces.http.routes import executive_analytics
+from src.interfaces.http.routes import executive_employees
+from src.interfaces.http.routes import executive_market
+from src.interfaces.http.routes import executive_consolidated_report
+from src.interfaces.http.routes import cockpit_live
+from src.interfaces.http.routes import abastecimentos_rest
+from src.interfaces.http.routes import product_inspection
+from src.interfaces.http.routes import operational_fuel_loss
+from src.interfaces.http.routes import debug_fuel_volume
+from src.interfaces.http.routes import inventory_prediction
+from src.interfaces.http.routes import alert_engine
+from src.interfaces.http.routes import data_audit
+from src.interfaces.http.routes import card_fraud_audit
+from src.api.v1.endpoints import audit_settings as audit_settings_ep
+from src.interfaces.http.routes import data_sync
 from src.services.financial_snapshot_scheduler import get_financial_scheduler
 from src.services.departmental_automation_service import get_departmental_automation
+from src.services.data_sync_scheduler import get_data_sync_scheduler
 from src.shared.logger import setup_logging
 
 # Sprint 1 — barramento C-Level: rotas operacionais de pista ficam desligadas por padrão.
@@ -108,7 +127,9 @@ def _mount_executive_barramento(app: FastAPI) -> None:
 
     # Tela 2 & 3 — Comercial + Financeiro (contratos analíticos)
     app.include_router(analytics.router)  # /api/v1/dre, /fuel/executive, /sales/fuel-summary, /kpis
-    app.include_router(fechamento_enterprise.router)  # /v1/financial/overview, /v1/vendas-combustivel, ...
+    app.include_router(
+        fechamento_enterprise.router
+    )  # /v1/financial/overview, /v1/vendas-combustivel, ...
     app.include_router(finance_center.router)
     app.include_router(cash_flow.router)  # /api/v1/finance/cash-flow
     app.include_router(financial_intelligence.router)
@@ -153,6 +174,24 @@ def _mount_executive_support(app: FastAPI) -> None:
     app.include_router(departmental_governance.router)
     app.include_router(executive_synthesis.router)
     app.include_router(operational_advanced.router)
+    app.include_router(expense_mappings.router)
+    app.include_router(executive_cockpit.router)
+    app.include_router(operational_cockpit.router)
+    app.include_router(cockpit_live.router)
+    app.include_router(abastecimentos_rest.router)
+    app.include_router(executive_analytics.router)
+    app.include_router(executive_employees.router)
+    app.include_router(executive_market.router)
+    app.include_router(executive_consolidated_report.router)
+    app.include_router(product_inspection.router)
+    app.include_router(operational_fuel_loss.router)
+    app.include_router(debug_fuel_volume.router)
+    app.include_router(inventory_prediction.router)
+    app.include_router(alert_engine.router)
+    app.include_router(data_audit.router)
+    app.include_router(card_fraud_audit.router)
+    app.include_router(audit_settings_ep.router)
+    app.include_router(data_sync.router)
 
 
 def _mount_operational_deprecated(app: FastAPI) -> None:
@@ -181,6 +220,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
     scheduler_task = None
     if settings.departmental_scheduler_enabled:
+
         async def poll_departmental_schedule() -> None:
             while True:
                 await get_departmental_automation().run_due()
@@ -192,8 +232,30 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         )
         app.state.departmental_scheduler_task = scheduler_task
 
+    # Híbrido: consolidação D-1 + autodiscovery — cron 0 3 * * * (03:00 AM)
+    data_sync_sched = get_data_sync_scheduler()
+    if settings.data_sync_scheduler_enabled:
+        await data_sync_sched.start()
+        app.state.data_sync_scheduler = data_sync_sched
+
+    # Cockpit 30s — worker asyncio → cache RAM (API_WORKERS=1)
+    pista_worker = None
+    if settings.pista_sync_worker_enabled:
+        from src.workers.pista_sync_worker import get_pista_sync_worker
+
+        pista_worker = get_pista_sync_worker()
+        pista_worker.interval_seconds = max(
+            10, int(settings.pista_sync_interval_seconds or 30)
+        )
+        await pista_worker.start()
+        app.state.pista_sync_worker = pista_worker
+
     yield
 
+    if pista_worker is not None:
+        await pista_worker.stop()
+    if settings.data_sync_scheduler_enabled:
+        await data_sync_sched.stop()
     if scheduler_task:
         scheduler_task.cancel()
         with suppress(asyncio.CancelledError):

@@ -31,6 +31,7 @@ from src.gateway.webposto_client import WebPostoClient
 from src.models.response_model import WebPostoResponse
 from src.services.abastecimento_service import AbastecimentoService
 from src.services.caixa_service import CaixaService
+from src.services.pista_audit_service import PistaAuditService
 
 LOGGER = logging.getLogger(__name__)
 
@@ -424,6 +425,22 @@ class Block8IndicadoresOperacionais(BaseModel):
     )
 
 
+class AuditoriaPista(BaseModel):
+    """Auditoria de abastecimentos pendentes e fraudes de giro de caixa."""
+    
+    total_abastecimentos: int = 0
+    total_pendentes: int = 0
+    litros_pendentes: Decimal = Decimal("0")
+    valor_pendente: Decimal = Decimal("0")
+    alertas_retencao: int = 0
+    alertas_divergencia_tef: int = 0
+    por_filial: list[dict[str, Any]] = []
+    por_frentista: list[dict[str, Any]] = []
+    por_bico: list[dict[str, Any]] = []
+    por_turno: list[dict[str, Any]] = []
+    pendentes_detalhados: list[dict[str, Any]] = []
+
+
 class Block9Anomalias(BaseModel):
     titulo: str = "9. Matriz de Anomalias e Desvios (Filiais Fora do Padrão)"
     status: str = "DISPONÍVEL"
@@ -431,6 +448,7 @@ class Block9Anomalias(BaseModel):
     detalhamento_pagamento: list[dict[str, Any]]
     rombo_por_operador_turno: list[dict[str, Any]]
     alertas: list[dict[str, Any]]
+    auditoria_pista: AuditoriaPista | None = None
 
 
 class Block10Rankings(BaseModel):
@@ -519,13 +537,76 @@ class ExecutiveConsolidatedReportService:
         return []
 
     async def _fetch_abastecimento(
-        self, data_inicial: str, data_final: str
+        self,
+        data_inicial: str,
+        data_final: str,
+        empresa_codigo: int | None = None,
     ) -> list[dict[str, Any]]:
-        resp = await self.abastecimento.get_periodo(data_inicial, data_final)
+        resp = await self.abastecimento.get_periodo(
+            data_inicial, data_final, empresa_codigo=empresa_codigo
+        )
+        rows = self._rows(resp.data) if resp.success else []
         if not resp.success:
             LOGGER.warning("Falha ao buscar abastecimento: %s", resp.error)
-            return []
-        return self._rows(resp.data)
+
+        if rows:
+            return rows
+
+        # Fallback: cache/histórico Quality da pista (evita zerar Pista & Volumetria).
+        try:
+            from src.services.pista_cache_service import get_pista_cache
+            from src.services.webposto_pista_service import get_pista_service
+
+            cache = get_pista_cache()
+            snap = cache.get_snapshot()
+            items = []
+            if (
+                snap.data_ref
+                and snap.data_ref == data_inicial == data_final
+                and snap.baixados
+            ):
+                items = list(snap.baixados)
+                LOGGER.info(
+                    "abastecimento fallback cache RAM data_ref=%s items=%s",
+                    snap.data_ref,
+                    len(items),
+                )
+            else:
+                pista_resp = await get_pista_service().listar_baixados(
+                    id_empresa=empresa_codigo,
+                    data_inicio=data_inicial,
+                    data_fim=data_final,
+                    pagina=1,
+                    limite=500,
+                )
+                items = list(pista_resp.items or [])
+                LOGGER.info(
+                    "abastecimento fallback Quality período=%s..%s empresa=%s items=%s",
+                    data_inicial,
+                    data_final,
+                    empresa_codigo,
+                    len(items),
+                )
+
+            mapped: list[dict[str, Any]] = []
+            for it in items:
+                emp = int(getattr(it, "idEmpresa", 0) or 0)
+                if empresa_codigo and emp != int(empresa_codigo):
+                    continue
+                mapped.append(
+                    {
+                        "empresaCodigo": emp,
+                        "codigoProduto": getattr(it, "idProduto", None),
+                        "quantidade": float(getattr(it, "litros", 0) or 0),
+                        "litros": float(getattr(it, "litros", 0) or 0),
+                        "valorTotal": float(getattr(it, "valorTotal", 0) or 0),
+                        "descricaoProduto": getattr(it, "descricaoProduto", "") or "",
+                    }
+                )
+            return mapped
+        except Exception as exc:
+            LOGGER.warning("Fallback pista para abastecimento falhou: %s", exc)
+            return rows
 
     async def _fetch_produto_catalog(self, max_pages: int = 50) -> dict[int, dict[str, Any]]:
         """Busca catálogo de produtos paginado e indexa por produtoCodigo."""
@@ -647,12 +728,12 @@ class ExecutiveConsolidatedReportService:
     def _build_fuel_summary(
         self, abastecimentos: list[dict[str, Any]], catalog: dict[int, dict[str, Any]]
     ) -> FuelSummary:
-        by_product: dict[str, dict[str, Any]] = defaultdict(
+        # chave (empresa, produto) — evita misturar filiais no filtro da UI
+        by_product: dict[tuple[int, str], dict[str, Any]] = defaultdict(
             lambda: {
                 "litros": Decimal("0"),
                 "valor": Decimal("0"),
                 "transacoes": 0,
-                "empresaCodigo": 0,
             }
         )
         by_filial: dict[int, dict[str, Any]] = defaultdict(
@@ -667,14 +748,18 @@ class ExecutiveConsolidatedReportService:
             produto_cod = int(row.get("codigoProduto") or 0)
             product = catalog.get(produto_cod)
             fuel_type = self._classify_fuel_product(produto_cod, product)
+            if fuel_type in ("NÃO CLASSIFICADO", "NAO CLASSIFICADO") and row.get(
+                "descricaoProduto"
+            ):
+                fuel_type = str(row.get("descricaoProduto")).upper()
             litros = self._dec(row.get("quantidade") or row.get("litros") or row.get("volume"))
             valor = self._dec(row.get("valorTotal") or row.get("valor") or row.get("total"))
 
             if empresa and (litros > 0 or valor > 0):
-                by_product[fuel_type]["litros"] += litros
-                by_product[fuel_type]["valor"] += valor
-                by_product[fuel_type]["transacoes"] += 1
-                by_product[fuel_type]["empresaCodigo"] = empresa
+                key = (empresa, fuel_type)
+                by_product[key]["litros"] += litros
+                by_product[key]["valor"] += valor
+                by_product[key]["transacoes"] += 1
 
                 by_filial[empresa]["litros"] += litros
                 by_filial[empresa]["valor"] += valor
@@ -686,7 +771,9 @@ class ExecutiveConsolidatedReportService:
                 total_transacoes += 1
 
         por_produto: list[FuelProduct] = []
-        for produto, vals in sorted(by_product.items(), key=lambda x: x[1]["valor"], reverse=True):
+        for (emp, produto), vals in sorted(
+            by_product.items(), key=lambda x: x[1]["valor"], reverse=True
+        ):
             pct = (
                 (vals["valor"] / total_valor * 100).quantize(Decimal("0.01"))
                 if total_valor
@@ -695,10 +782,8 @@ class ExecutiveConsolidatedReportService:
             por_produto.append(
                 FuelProduct(
                     produto=produto,
-                    empresa_codigo=vals["empresaCodigo"],
-                    nome_filial=FILIAIS.get(
-                        vals["empresaCodigo"], f"Filial {vals['empresaCodigo']}"
-                    ),
+                    empresa_codigo=emp,
+                    nome_filial=FILIAIS.get(emp, f"Filial {emp}"),
                     litros=vals["litros"],
                     valor=vals["valor"],
                     transacoes=vals["transacoes"],
@@ -1028,17 +1113,51 @@ class ExecutiveConsolidatedReportService:
         ]
         return detalhamento, rombo[:10]
 
-    async def build_report(self) -> ExecutiveReport:
-        # Dados ao vivo das APIs WebPosto
+    async def build_report(
+        self,
+        data_inicial: str | None = None,
+        data_final: str | None = None,
+        empresa_codigo: int | None = None,
+    ) -> ExecutiveReport:
+        # Usa parâmetros passados ou fallback para constantes
+        periodo = {
+            "inicio": data_inicial or REPORT_PERIOD["inicio"],
+            "fim": data_final or REPORT_PERIOD["fim"],
+        }
+        
+        from src.utils.filial_normalizer import resolve_empresa_codigo
+
+        empresa_codigo = resolve_empresa_codigo(empresa_codigo)
+
+        # Dados ao vivo das APIs WebPosto (abastecimento já com empresa normalizada)
         abastecimentos, catalog, venda_items, pagamentos, caixas = await asyncio.gather(
-            self._fetch_abastecimento(REPORT_PERIOD["inicio"], REPORT_PERIOD["fim"]),
-            self._fetch_produto_catalog(),
-            self._fetch_venda_item(CONVENIENCE_PERIOD["inicio"], CONVENIENCE_PERIOD["fim"]),
-            self._fetch_venda_forma_pagamento(
-                CASH_RECON_PERIOD["inicio"], CASH_RECON_PERIOD["fim"]
+            self._fetch_abastecimento(
+                periodo["inicio"], periodo["fim"], empresa_codigo=empresa_codigo
             ),
-            self._fetch_caixa(CASH_RECON_PERIOD["inicio"], CASH_RECON_PERIOD["fim"]),
+            self._fetch_produto_catalog(),
+            self._fetch_venda_item(periodo["inicio"], periodo["fim"]),
+            self._fetch_venda_forma_pagamento(periodo["inicio"], periodo["fim"]),
+            self._fetch_caixa(periodo["inicio"], periodo["fim"]),
         )
+
+        # Filtra por empresa se especificado
+        if empresa_codigo:
+            abastecimentos = [
+                r for r in abastecimentos
+                if int(r.get("empresaCodigo") or 0) == empresa_codigo
+            ]
+            venda_items = [
+                r for r in venda_items
+                if int(r.get("empresaCodigo") or 0) == empresa_codigo
+            ]
+            pagamentos = [
+                r for r in pagamentos
+                if int(r.get("empresaCodigo") or 0) == empresa_codigo
+            ]
+            caixas = [
+                r for r in caixas
+                if int(r.get("empresaCodigo") or 0) == empresa_codigo
+            ]
 
         # Snapshots homologados para os demais blocos
         finance = self._load_json(
@@ -1073,9 +1192,16 @@ class ExecutiveConsolidatedReportService:
         )
         auto_classified = self._auto_classify_expenses(director)
 
+        pista_audit_svc = PistaAuditService()
+        pista_audit_result = pista_audit_svc.auditar_abastecimentos(
+            abastecimentos=abastecimentos,
+            pagamentos=pagamentos,
+        )
+        pista_audit_dict = pista_audit_result.model_dump() if pista_audit_result else None
+
         report = ExecutiveReport(
             gerado_em=str(date.today()),
-            periodo_principal=REPORT_PERIOD,
+            periodo_principal=periodo,
             filiais_monitoradas=[{"empresa_codigo": k, "nome": v} for k, v in FILIAIS.items()],
             bloco_1_combustiveis=self._block1(fuel_summary),
             bloco_2_transferencias=self._block2(summary),
@@ -1086,7 +1212,8 @@ class ExecutiveConsolidatedReportService:
             bloco_7_eficiencia=self._block7(fuel_summary),
             bloco_8_indicadores=self._block8(summary, abastecimentos),
             bloco_9_anomalias=self._block9(
-                cash, scorecard, detalhamento_pagamento, rombo_por_operador_turno
+                cash, scorecard, detalhamento_pagamento, rombo_por_operador_turno,
+                auditoria_pista_result=pista_audit_dict,
             ),
             bloco_10_rankings=self._block10(expenses_summary, fuel_summary),
             bloco_11_conclusao=self._block11(
@@ -1269,6 +1396,7 @@ class ExecutiveConsolidatedReportService:
         scorecard: dict[str, Any],
         detalhamento_pagamento: list[dict[str, Any]],
         rombo_por_operador_turno: list[dict[str, Any]],
+        auditoria_pista_result: dict[str, Any] | None = None,
     ) -> Block9Anomalias:
         payload = cash.get("payload", {})
         summary = payload.get("summary", {})
@@ -1303,11 +1431,56 @@ class ExecutiveConsolidatedReportService:
                     "referencia": alert.get("reference"),
                 }
             )
+        
+        auditoria_pista = None
+        if auditoria_pista_result:
+            resumo = auditoria_pista_result.get("resumo", {})
+            pendentes = auditoria_pista_result.get("pendentes", [])
+            auditoria_pista = AuditoriaPista(
+                total_abastecimentos=resumo.get("total_abastecimentos", 0),
+                total_pendentes=resumo.get("total_pendentes", 0),
+                litros_pendentes=self._dec(resumo.get("litros_pendentes", 0)),
+                valor_pendente=self._dec(resumo.get("valor_pendente", 0)),
+                alertas_retencao=resumo.get("alertas_retencao", 0),
+                alertas_divergencia_tef=resumo.get("alertas_divergencia_tef", 0),
+                por_filial=[
+                    {
+                        "empresa_codigo": f.get("empresa_codigo"),
+                        "empresa_nome": f.get("empresa_nome"),
+                        "total_pendentes": f.get("total_pendentes", 0),
+                        "litros_pendentes": float(f.get("litros_pendentes", 0)),
+                        "valor_pendente": float(f.get("valor_pendente", 0)),
+                    }
+                    for f in resumo.get("por_filial", [])
+                ],
+                por_frentista=resumo.get("por_frentista", []),
+                por_bico=resumo.get("por_bico", []),
+                por_turno=resumo.get("por_turno", []),
+                pendentes_detalhados=[
+                    {
+                        "id": p.get("id"),
+                        "data": p.get("data"),
+                        "hora": p.get("hora"),
+                        "bico": p.get("bico"),
+                        "produto": p.get("produto"),
+                        "litros": float(p.get("litros", 0)),
+                        "valor": float(p.get("valor", 0)),
+                        "empresa_nome": p.get("empresa_nome"),
+                        "frentista_nome": p.get("frentista_nome"),
+                        "turno": p.get("turno"),
+                        "minutos_pendente": p.get("minutos_pendente", 0),
+                        "alerta_tipo": p.get("alerta_tipo"),
+                    }
+                    for p in pendentes[:50]
+                ],
+            )
+        
         return Block9Anomalias(
             divergencias_caixa=reconciliation,
             detalhamento_pagamento=detalhamento_pagamento,
             rombo_por_operador_turno=rombo_por_operador_turno,
             alertas=alerts,
+            auditoria_pista=auditoria_pista,
         )
 
     def _block10(

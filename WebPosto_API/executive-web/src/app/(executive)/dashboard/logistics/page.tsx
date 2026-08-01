@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { 
   Truck, 
   RefreshCcw, 
-  Calendar, 
   TrendingUp,
   AlertTriangle,
   ShieldCheck
@@ -26,6 +25,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { GlobalFilterHeader } from "@/components/executive/global-filter-header";
+import { PurchaseOrderAssistant } from "@/components/executive/purchase-order-assistant";
+import { useGlobalFilter } from "@/contexts/global-filter-context";
 import { apiService } from "@/lib/api";
 import { cn } from "@/lib/utils";
 
@@ -35,6 +37,8 @@ interface LogisticsSupplier {
   markup_logistico_pct: number;
   delta_fob_cif_rs_litro: number;
   total_litros_comprados: number;
+  filial?: string;
+  base_operacional?: string;
 }
 
 interface LogisticsData {
@@ -42,6 +46,9 @@ interface LogisticsData {
   frete_medio_grupo_rs_litro: number;
   custo_oportunidade_frete_total_rs: number;
   eficiencia_por_fornecedor: LogisticsSupplier[];
+  fonte?: string;
+  notas_com_frete?: number;
+  detalhe_fonte?: string | null;
 }
 
 interface ChartRow {
@@ -58,12 +65,22 @@ export default function LogisticsDashboardPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchData = async () => {
+  const {
+    selectedFilial,
+    isConsolidated,
+    periodDates,
+    periodLabel,
+    filialShortLabel,
+  } = useGlobalFilter();
+
+  const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-      const start = "2026-07-17";
-      const end = "2026-07-23";
-      const result = await apiService.getLogisticsEfficiency(start, end) as LogisticsData;
+      const result = await apiService.getLogisticsEfficiency(
+        periodDates.start,
+        periodDates.end,
+        isConsolidated ? undefined : selectedFilial
+      ) as LogisticsData;
       setData(result);
       setError(null);
     } catch (err) {
@@ -72,18 +89,21 @@ export default function LogisticsDashboardPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [periodDates.start, periodDates.end, selectedFilial, isConsolidated]);
 
   useEffect(() => {
-    (async () => {
-      await fetchData();
-    })();
-  }, []);
+    fetchData();
+  }, [fetchData]);
 
-  const suppliers = useMemo(() => data?.eficiencia_por_fornecedor || [], [data]);
+  const suppliers = useMemo(
+    () => data?.eficiencia_por_fornecedor || [],
+    [data]
+  );
   const totalFreight = data?.custo_frete_efetivo_total_rs || 0;
   const avgFreight = data?.frete_medio_grupo_rs_litro || 0;
   const opportunityCost = data?.custo_oportunidade_frete_total_rs || 0;
+  const hasData = suppliers.length > 0 || (data?.notas_com_frete || 0) > 0;
+  const fonteLabel = data?.fonte || "Dado Real - Fonte NF webPosto";
 
   const chartData: ChartRow[] = useMemo(() => {
     return suppliers.map((s) => ({
@@ -105,20 +125,35 @@ export default function LogisticsDashboardPage() {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <Badge variant="outline" className="bg-blue-500/10 text-blue-400 border-blue-500/20">S54</Badge>
-            <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Logistics</span>
+            <span className="text-[10px] text-slate-300 uppercase tracking-widest font-bold">Logistics</span>
           </div>
           <h1 className="text-3xl font-bold text-white tracking-tight">Eficiência Logística</h1>
-          <p className="text-slate-400 text-sm">Análise de frete, CIF vs FOB e custo de oportunidade</p>
+          <p className="text-slate-300 text-sm">
+            Custo real de frete por litro (NF de entrada) • {periodLabel}
+          </p>
+          <Badge
+            variant="outline"
+            className="mt-2 border-emerald-500/40 bg-emerald-500/10 text-emerald-300 text-[10px] font-semibold"
+          >
+            {fonteLabel}
+          </Badge>
         </div>
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="bg-slate-900 border-white/5">
-            <Calendar size={14} className="mr-2" /> 17 a 23 Jul 2026
-          </Button>
-          <Button size="sm" onClick={fetchData} disabled={loading}>
-            <RefreshCcw size={14} className={cn("mr-2", loading && "animate-spin")} /> Atualizar
-          </Button>
-        </div>
+        <Button 
+          size="sm" 
+          onClick={fetchData} 
+          disabled={loading}
+          className="bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 hover:text-cyan-200"
+        >
+          <RefreshCcw size={14} className={cn("mr-2 text-cyan-400", loading && "animate-spin")} /> Atualizar
+        </Button>
       </header>
+
+      <GlobalFilterHeader />
+
+      <PurchaseOrderAssistant
+        empresaCodigo={isConsolidated ? undefined : selectedFilial}
+        filialLabel={isConsolidated ? "Selecione uma filial" : filialShortLabel}
+      />
 
       {loading ? (
         <div className="space-y-6">
@@ -131,7 +166,18 @@ export default function LogisticsDashboardPage() {
       ) : error ? (
         <div className="p-8 text-center">
           <h2 className="text-xl text-red-500 font-bold mb-2">{error}</h2>
-          <Button onClick={fetchData}>Tentar Novamente</Button>
+          <Button onClick={fetchData} className="bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20">Tentar Novamente</Button>
+        </div>
+      ) : !hasData ? (
+        <div className="flex flex-col items-center justify-center py-16 text-center">
+          <div className="grid size-16 place-items-center rounded-full bg-slate-800 mb-4">
+            <AlertTriangle size={32} className="text-slate-300" />
+          </div>
+          <h3 className="text-lg font-medium text-white mb-2">Sem Registro de Frete no Período</h3>
+          <p className="text-sm text-slate-300 max-w-md">
+            Nenhuma NF de entrada com <span className="text-white font-medium">valorFrete</span> e
+            volumetria de carreta no período. Amplie o filtro de datas ou confira o cadastro de compras.
+          </p>
         </div>
       ) : (
         <div className="space-y-6 animate-in fade-in duration-500">
@@ -139,16 +185,16 @@ export default function LogisticsDashboardPage() {
             <KpiCard 
               icon={<Truck className="text-blue-500" />}
               title="Custo de Frete Total"
-              value={formatBRL(totalFreight)}
-              subValue="Soma de todos os fornecedores"
+              value={totalFreight > 0 ? formatBRL(totalFreight) : "R$ 0,00"}
+              subValue={`${data?.notas_com_frete || 0} NF(s) com frete destacado`}
               status={null}
               trend={null}
             />
             <KpiCard 
-              icon={<TrendingUp className="text-slate-400" />}
-              title="Frete Médio Grupo"
-              value={`R$ ${avgFreight.toFixed(4)}/L`}
-              subValue="Benchmark de referência"
+              icon={<TrendingUp className="text-sky-300" />}
+              title="Frete Médio (R$/L)"
+              value={avgFreight > 0 ? `R$ ${avgFreight.toFixed(4)}/L` : "R$ 0,0000/L"}
+              subValue="valorFrete ÷ litros descarregados"
               status={null}
               trend={null}
             />
@@ -162,13 +208,15 @@ export default function LogisticsDashboardPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <Card className="lg:col-span-2 border-white/5 bg-slate-900/40">
+            <Card className="lg:col-span-2 border-slate-800 bg-slate-900/90">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Truck size={18} className="text-blue-500" />
                   Frete Médio por Fornecedor (R$/L)
                 </CardTitle>
-                <CardDescription>Comparativo CIF vs FOB histórico e markup logístico</CardDescription>
+                <CardDescription>
+                  Calculado com frete destacado na NF e litros da carreta • {data?.detalhe_fonte || "webPosto"}
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="h-[350px] w-full">
@@ -203,7 +251,7 @@ export default function LogisticsDashboardPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-white/5 bg-slate-900/40">
+            <Card className="border-slate-800 bg-slate-900/90">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <AlertTriangle size={18} className="text-red-500" />
@@ -224,7 +272,7 @@ export default function LogisticsDashboardPage() {
                     .filter(s => s.delta_fob_cif_rs_litro > 0)
                     .sort((a, b) => b.delta_fob_cif_rs_litro - a.delta_fob_cif_rs_litro)
                     .map((s, idx) => (
-                      <div key={idx} className="p-3 rounded-lg border border-white/5 bg-white/5">
+                      <div key={idx} className="p-3 rounded-lg border border-slate-800 bg-white/5">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-xs font-bold text-white">{s.fornecedor}</span>
                           <Badge variant="outline" className="text-red-500 border-red-500/20 text-[10px]">
@@ -241,15 +289,15 @@ export default function LogisticsDashboardPage() {
             </Card>
           </div>
 
-          <Card className="border-white/5 bg-slate-900/40">
+          <Card className="border-slate-800 bg-slate-900/90">
             <CardHeader>
               <CardTitle className="text-lg">Detalhamento por Distribuidora</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="rounded-md border border-white/5 overflow-hidden">
+              <div className="rounded-md border border-slate-800 overflow-hidden">
                 <Table>
                   <TableHeader className="bg-white/5">
-                    <TableRow className="border-white/5 hover:bg-transparent">
+                    <TableRow className="border-slate-800 hover:bg-transparent">
                       <TableHead>Fornecedor</TableHead>
                       <TableHead className="text-right">Total Litros</TableHead>
                       <TableHead className="text-right">Frete Médio R$/L</TableHead>
@@ -260,7 +308,7 @@ export default function LogisticsDashboardPage() {
                   </TableHeader>
                   <TableBody>
                     {suppliers.map((s, idx) => (
-                      <TableRow key={idx} className="border-white/5">
+                      <TableRow key={idx} className="border-slate-800">
                         <TableCell className="font-medium text-xs">{s.fornecedor}</TableCell>
                         <TableCell className="text-right text-xs font-mono">{s.total_litros_comprados.toLocaleString()} L</TableCell>
                         <TableCell className="text-right text-xs font-mono">R$ {s.custo_frete_medio_rs_litro.toFixed(4)}</TableCell>
@@ -293,14 +341,14 @@ function KpiCard({ icon, title, value, subValue, status }: { icon: React.ReactNo
   return (
     <Card className={cn(
       "border-l-4 p-4",
-      status === 'negative' ? "border-red-500/30 bg-red-500/5" : "border-white/5 bg-slate-900/40"
+      status === 'negative' ? "border-red-500/30 bg-red-500/5" : "border-slate-800 bg-slate-900/90"
     )}>
       <div className="flex items-start gap-4">
         <div className="p-2.5 rounded-lg bg-white/5">{icon}</div>
         <div className="flex-1">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">{title}</p>
-          <p className="text-2xl font-bold text-white mt-1">{value}</p>
-          <p className="text-[11px] text-slate-400 mt-0.5">{subValue}</p>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-300">{title}</p>
+          <p className="text-2xl font-bold text-white mt-1 font-mono">{value}</p>
+          <p className="text-[11px] text-slate-300 mt-0.5">{subValue}</p>
         </div>
       </div>
     </Card>

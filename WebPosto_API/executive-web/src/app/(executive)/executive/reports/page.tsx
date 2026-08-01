@@ -1,14 +1,15 @@
 "use client";
 
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import Link from "next/link";
 import { Droplet, Wallet, Receipt, FileText, Download, RefreshCcw } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ReportFilterBar } from "@/components/executive/report-filter-bar";
-import { useReportFilter } from "@/contexts/report-filter-context";
+import { GlobalFilterHeader } from "@/components/executive/global-filter-header";
+import { InfoTooltip } from "@/components/ui/info-tooltip";
+import { useGlobalFilter } from "@/contexts/global-filter-context";
 import { apiService } from "@/lib/api";
 import { ExecutiveReport } from "@/types/api";
 import { cn } from "@/lib/utils";
@@ -45,59 +46,44 @@ export default function ReportsCenterPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const { selectedFilial, isConsolidated, periodLabel } = useReportFilter();
+  const { selectedFilial, isConsolidated, periodDates, periodLabel, filialLabel } = useGlobalFilter();
+
+  const fetchReport = useCallback(async () => {
+    setLoading(true);
+    try {
+      const data = await apiService.getExecutiveConsolidatedReport(
+        periodDates.start,
+        periodDates.end,
+        isConsolidated ? undefined : selectedFilial
+      );
+      setReport(data);
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Erro ao carregar");
+    } finally {
+      setLoading(false);
+    }
+  }, [periodDates.start, periodDates.end, selectedFilial, isConsolidated]);
 
   useEffect(() => {
-    let active = true;
-    apiService
-      .getExecutiveConsolidatedReport()
-      .then((data) => {
-        if (active) {
-          setReport(data);
-          setError(null);
-        }
-      })
-      .catch((err) => {
-        if (active) {
-          setError(err instanceof Error ? err.message : "Erro ao carregar");
-        }
-      })
-      .finally(() => {
-        if (active) setLoading(false);
-      });
-    return () => {
-      active = false;
-    };
-  }, []);
+    fetchReport();
+  }, [fetchReport]);
 
   const filteredData = useMemo(() => {
-    if (!report || isConsolidated) {
-      return {
-        totalLitros: report?.bloco_1_combustiveis.resumo.total_litros || "0",
-        totalValor: report?.bloco_1_combustiveis.resumo.total_valor || "0",
-        valorDivergente: report?.bloco_9_anomalias.divergencias_caixa.valor_divergente || "0",
-      };
-    }
-
-    const fuelByFilial = report.bloco_1_combustiveis.resumo.por_filial || [];
-    const filialFuel = fuelByFilial.filter((f) => f.empresa_codigo === selectedFilial);
-
-    const totalLitros = filialFuel.reduce((sum, f) => sum + Number(f.litros || 0), 0);
-    const totalValor = filialFuel.reduce((sum, f) => sum + Number(f.valor || 0), 0);
-
-    const expensesByFilial = report.bloco_6_despesas.por_empresa || [];
-    const filialExpense = expensesByFilial.find((e) => e.empresa_codigo === selectedFilial);
-
     return {
-      totalLitros: totalLitros.toString(),
-      totalValor: totalValor.toString(),
-      valorDivergente: filialExpense ? (Number(filialExpense.valor) * 0.07).toString() : "0",
+      totalLitros: report?.bloco_1_combustiveis.resumo.total_litros || "0",
+      totalValor: report?.bloco_1_combustiveis.resumo.total_valor || "0",
+      valorDivergente: report?.bloco_9_anomalias.divergencias_caixa.valor_divergente || "0",
     };
-  }, [report, selectedFilial, isConsolidated]);
+  }, [report]);
 
   const downloadMarkdown = async () => {
     try {
-      const markdown = await apiService.getExecutiveConsolidatedReportMarkdown();
+      const markdown = await apiService.getExecutiveConsolidatedReportMarkdown(
+        periodDates.start,
+        periodDates.end,
+        isConsolidated ? undefined : selectedFilial
+      );
       const blob = new Blob([markdown], { type: "text/markdown" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -118,17 +104,7 @@ export default function ReportsCenterPage() {
   };
 
   const refreshData = () => {
-    setLoading(true);
-    apiService
-      .getExecutiveConsolidatedReport()
-      .then((data) => {
-        setReport(data);
-        setError(null);
-      })
-      .catch((err) => {
-        setError(err instanceof Error ? err.message : "Erro ao carregar");
-      })
-      .finally(() => setLoading(false));
+    fetchReport();
   };
 
   const formatBRL = (val: string) => {
@@ -158,7 +134,7 @@ export default function ReportsCenterPage() {
             Central de Relatórios Executivos
           </h1>
           <p className="text-slate-400 text-sm">
-            Sprint 56 — Dados reais da integração WebPosto • {periodLabel}
+            Dados reais da integração WebPosto • {periodLabel} • {filialLabel}
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -180,13 +156,18 @@ export default function ReportsCenterPage() {
           >
             <Download size={14} className="mr-2" /> PDF
           </Button>
-          <Button size="sm" onClick={refreshData} disabled={loading}>
-            <RefreshCcw size={14} className={cn("mr-2", loading && "animate-spin")} /> Atualizar
+          <Button 
+            size="sm" 
+            onClick={refreshData} 
+            disabled={loading}
+            className="bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 hover:text-cyan-200"
+          >
+            <RefreshCcw size={14} className={cn("mr-2 text-cyan-400", loading && "animate-spin")} /> Atualizar
           </Button>
         </div>
       </header>
 
-      <ReportFilterBar />
+      <GlobalFilterHeader />
 
       {error && (
         <div className="rounded-lg border border-red-500/20 bg-red-500/10 p-4 text-red-200">
@@ -205,7 +186,10 @@ export default function ReportsCenterPage() {
           <>
             <Card className="bg-slate-900 border-white/5">
               <CardContent className="p-6">
-                <p className="text-sm text-slate-400">Volume Total</p>
+                <div className="flex items-center gap-1.5">
+                  <p className="text-sm text-slate-400">Volume Total</p>
+                  <InfoTooltip content="Soma de todos os litros vendidos na pista (Gasolina, Etanol, Diesel) no período selecionado. Dados capturados direto das bombas via API WebPosto." />
+                </div>
                 <p className="text-2xl font-bold text-white mt-1">
                   {formatNumber(filteredData.totalLitros)} L
                 </p>
@@ -213,7 +197,10 @@ export default function ReportsCenterPage() {
             </Card>
             <Card className="bg-slate-900 border-white/5">
               <CardContent className="p-6">
-                <p className="text-sm text-slate-400">Faturamento Pista</p>
+                <div className="flex items-center gap-1.5">
+                  <p className="text-sm text-slate-400">Faturamento Pista</p>
+                  <InfoTooltip content="Receita bruta total da venda de combustíveis no período. Calculado a partir do valor de cada abastecimento registrado." />
+                </div>
                 <p className="text-2xl font-bold text-white mt-1">
                   {formatBRL(filteredData.totalValor)}
                 </p>
@@ -221,7 +208,10 @@ export default function ReportsCenterPage() {
             </Card>
             <Card className="bg-slate-900 border-white/5">
               <CardContent className="p-6">
-                <p className="text-sm text-slate-400">Divergência de Caixa</p>
+                <div className="flex items-center gap-1.5">
+                  <p className="text-sm text-slate-400">Divergência de Caixa</p>
+                  <InfoTooltip content="Diferença entre o valor apurado pelo sistema e o valor apresentado pelos operadores. Valores positivos indicam furo de caixa que precisa de investigação." />
+                </div>
                 <p className="text-2xl font-bold text-white mt-1">
                   {formatBRL(filteredData.valorDivergente)}
                 </p>

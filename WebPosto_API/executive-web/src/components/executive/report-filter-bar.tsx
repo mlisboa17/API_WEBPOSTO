@@ -4,7 +4,7 @@ import React from "react";
 import { Building2, Calendar } from "lucide-react";
 import { Select } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { useReportFilter, FILIAIS, PERIOD_OPTIONS } from "@/contexts/report-filter-context";
+import { useGlobalFilter, FILIAIS, PERIOD_OPTIONS } from "@/contexts/global-filter-context";
 import { cn } from "@/lib/utils";
 
 interface ReportFilterBarProps {
@@ -19,7 +19,7 @@ export function ReportFilterBar({ className }: ReportFilterBarProps) {
     setSelectedPeriod,
     filialLabel,
     isConsolidated,
-  } = useReportFilter();
+  } = useGlobalFilter();
 
   const filialOptions = FILIAIS.map((f) => ({
     value: f.empresaCodigo.toString(),

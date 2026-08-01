@@ -16,7 +16,10 @@ import {
   Truck,
   Landmark,
   Wallet,
-  FileText
+  FileText,
+  Fuel,
+  Bell,
+  ClipboardCheck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -24,16 +27,17 @@ const NAV_GROUPS = [
   {
     title: "Visão Estratégica",
     items: [
-      { label: "Cockpit 30s", href: "/dashboard/executive", icon: LayoutDashboard },
+      { label: "Cockpit 30s", href: "/executive/president", icon: LayoutDashboard },
       { label: "Gestão de Alertas", href: "/executive/alerts", icon: AlertCircle },
       { label: "Simulador de Margem", href: "/executive/simulator", icon: Calculator },
+      { label: "Aferição de Dados", href: "/executive/data-audit", icon: ClipboardCheck },
     ]
   },
   {
     title: "Analytics",
     items: [
       { label: "Vendas & Elasticidade", href: "/dashboard/sales-analytics", icon: TrendingUp },
-      { label: "Logística de Frete", href: "/dashboard/logistics", icon: Truck },
+      { label: "Logística de Frete", href: "/executive/logistics", icon: Truck },
       { label: "Tesouraria & Sweep", href: "/dashboard/treasury", icon: Landmark },
       { label: "Central de Relatórios", href: "/executive/reports", icon: FileText },
     ]
@@ -41,8 +45,15 @@ const NAV_GROUPS = [
   {
     title: "Operações",
     items: [
-      { label: "Centro Financeiro", href: "/executive/financial-center", icon: Wallet },
-      { label: "Tanques e Pista", href: "/operational/tanks", icon: Droplets },
+      { label: "Cockpit Pista 30s", href: "/executive/president", icon: Fuel },
+      { label: "Centro Financeiro", href: "/executive/financial", icon: Wallet },
+      { label: "Tanques e Telemetria", href: "/operational/tanks", icon: Droplets },
+    ]
+  },
+  {
+    title: "Configurações",
+    items: [
+      { label: "Notificações", href: "/executive/settings", icon: Bell },
     ]
   }
 ];

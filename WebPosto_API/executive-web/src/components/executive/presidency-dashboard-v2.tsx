@@ -1,13 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AlertTriangle, ArrowRight, CircleDollarSign, Lightbulb, MessageCircleQuestion } from "lucide-react";
+import { AlertTriangle, ArrowRight, BarChart3, CircleDollarSign, Lightbulb, MessageCircleQuestion } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { brl } from "@/lib/utils";
-import { ThemeToggle } from "./theme-toggle";
 
 type Insight = {
   id: string; type: string; title: string; confidence: string; priorityScore: number;
@@ -26,7 +25,7 @@ type Intelligence = {
 };
 const INSUFFICIENT = "Não existem evidências suficientes para produzir uma recomendação confiável.";
 
-export function PresidencyDashboardV2({ day, detailsHref }: { day: string; detailsHref: string }) {
+export function PresidencyDashboardV2({ day, detailsHref, financialHref }: { day: string; detailsHref: string; financialHref: string }) {
   const [data, setData] = useState<Intelligence>({});
   const [loading, setLoading] = useState(true);
   const started = useRef(Date.now());
@@ -39,7 +38,22 @@ export function PresidencyDashboardV2({ day, detailsHref }: { day: string; detai
     void track("PAGE_OPEN", "ATTENTION");
     const controller = new AbortController();
     fetch(`/api/executive-intelligence?day=${encodeURIComponent(day)}`, { signal: controller.signal })
-      .then(response => response.json()).then(setData).finally(() => setLoading(false));
+      .then(response => {
+        if (!response.ok) throw new Error("API failure");
+        const contentType = response.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+           throw new Error("Invalid content type");
+        }
+        return response.json();
+      })
+      .then(setData)
+      .catch(err => {
+        if (err.name !== 'AbortError') {
+          console.error("Dashboard Intelligence fetch error:", err);
+          setData({}); // Reset or handle error state
+        }
+      })
+      .finally(() => setLoading(false));
     return () => controller.abort();
   }, [day]);
 
@@ -49,19 +63,40 @@ export function PresidencyDashboardV2({ day, detailsHref }: { day: string; detai
     await fetch("/api/executive-adoption", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload), keepalive: true }).catch(() => undefined);
   }
 
-  const priorities = data.agents?.presidencyAgent?.coordinatedPriorities || data.radar?.priorities || [];
-  const risks = priorities.filter(item => item.type === "RISK").slice(0, 3);
-  const opportunities = priorities.filter(item => item.type === "OPPORTUNITY").slice(0, 3);
-  const summary = data.value?.summary;
+  const priorities = data?.agents?.presidencyAgent?.coordinatedPriorities || data?.radar?.priorities || [];
+  const risks = Array.isArray(priorities) ? priorities.filter(item => item.type === "RISK").slice(0, 3) : [];
+  const opportunities = Array.isArray(priorities) ? priorities.filter(item => item.type === "OPPORTUNITY").slice(0, 3) : [];
+  const summary = data?.value?.summary;
   const confirmed = summary?.businessValueGeneratedByAI?.totalFinancialValueBRL || 0;
   const estimated = summary?.estimatedValue?.potentialValueBRL || 0;
   const chart = [{ name: "Comprovado", value: confirmed }, { name: "Estimado", value: estimated }];
-  const answers = data.radar?.executiveAnswers || {};
+  const answers = data?.radar?.executiveAnswers || {};
 
   return <main className="min-w-0 flex-1 px-4 py-5 sm:px-7 lg:px-10">
-    <header className="mb-5 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-      <div><Badge>Presidência 2.0</Badge><h1 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">O que precisa da sua decisão hoje</h1><p className="mt-1 text-base text-muted-foreground">{day} · leitura executiva em menos de 30 segundos</p></div>
-      <div className="flex w-full gap-2 sm:w-auto"><ThemeToggle/><Button className="min-h-11 flex-1 sm:flex-none" onClick={() => { void track("FEATURE_USED", "DETAILS"); location.href = detailsHref; }}>Análises detalhadas <ArrowRight size={17}/></Button></div>
+    <header className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+      <div>
+        <div className="flex items-center gap-2 mb-1">
+          <Badge className="bg-blue-600 hover:bg-blue-700">LOGOS v2.0</Badge>
+          <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Modo Executivo Ativo</span>
+        </div>
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">O que precisa da sua decisão hoje?</h1>
+        <p className="mt-2 text-base text-slate-400 font-medium">{day} · Síntese estratégica em menos de 30 segundos</p>
+      </div>
+      <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+        <Button 
+          variant="outline"
+          className="min-h-12 flex-1 sm:flex-none bg-slate-900 border-white/10 hover:bg-slate-800 text-blue-400" 
+          onClick={() => { void track("FEATURE_USED", "FINANCIAL"); location.href = financialHref; }}
+        >
+          <BarChart3 className="mr-2" size={17} /> Centro Financeiro
+        </Button>
+        <Button 
+          className="min-h-12 flex-1 sm:flex-none bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-900/20" 
+          onClick={() => { void track("FEATURE_USED", "DETAILS"); location.href = detailsHref; }}
+        >
+          Cockpit 360º <ArrowRight className="ml-2" size={17}/>
+        </Button>
+      </div>
     </header>
     {loading ? <div className="grid min-h-72 place-items-center text-lg text-muted-foreground">Preparando síntese executiva…</div> :
     <section className="grid gap-5 xl:grid-cols-2" aria-label="Síntese executiva">

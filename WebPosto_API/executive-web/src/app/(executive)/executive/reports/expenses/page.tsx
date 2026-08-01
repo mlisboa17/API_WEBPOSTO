@@ -6,8 +6,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { ReportFilterBar } from "@/components/executive/report-filter-bar";
-import { useReportFilter } from "@/contexts/report-filter-context";
+import { GlobalFilterHeader } from "@/components/executive/global-filter-header";
+import { InfoTooltip } from "@/components/ui/info-tooltip";
+import { useGlobalFilter } from "@/contexts/global-filter-context";
 import { apiService } from "@/lib/api";
 import { ExecutiveReport } from "@/types/api";
 import { ReportLayout } from "@/components/executive/report-layout";
@@ -52,12 +53,17 @@ export default function ExpensesReportPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const { selectedFilial, isConsolidated } = useReportFilter();
+  const { selectedFilial, isConsolidated, periodDates } = useGlobalFilter();
 
   useEffect(() => {
     let active = true;
+    setLoading(true);
     apiService
-      .getExecutiveConsolidatedReport()
+      .getExecutiveConsolidatedReport(
+        periodDates.start,
+        periodDates.end,
+        isConsolidated ? undefined : selectedFilial
+      )
       .then((data) => {
         if (active) {
           setReport(data);
@@ -75,7 +81,7 @@ export default function ExpensesReportPage() {
     return () => {
       active = false;
     };
-  }, []);
+  }, [periodDates.start, periodDates.end, selectedFilial, isConsolidated]);
 
   const formatBRL = (val: string | number) => {
     try {
@@ -188,7 +194,7 @@ export default function ExpensesReportPage() {
       loading={loading}
     >
       <div className="mb-6">
-        <ReportFilterBar />
+        <GlobalFilterHeader />
       </div>
 
       {loading ? (
@@ -207,7 +213,10 @@ export default function ExpensesReportPage() {
                     <Receipt className="size-5 text-blue-400" />
                   </div>
                   <div>
-                    <p className="text-sm text-slate-400">Total Despesas</p>
+                    <div className="flex items-center gap-1.5">
+                      <p className="text-sm text-slate-400">Total Despesas</p>
+                      <InfoTooltip content="Soma de todas as despesas registradas no período, incluindo custos de pessoal, operacionais e outras categorias." />
+                    </div>
                     <p className="text-xl font-bold text-white">{formatBRL(totalExpenses)}</p>
                   </div>
                 </div>
@@ -220,7 +229,10 @@ export default function ExpensesReportPage() {
                     <Users className="size-5 text-purple-400" />
                   </div>
                   <div>
-                    <p className="text-sm text-slate-400">Despesas Pessoal</p>
+                    <div className="flex items-center gap-1.5">
+                      <p className="text-sm text-slate-400">Despesas Pessoal</p>
+                      <InfoTooltip content="Custos com recursos humanos: salários, folha de pagamento, encargos trabalhistas (FGTS, INSS), benefícios e comissões." />
+                    </div>
                     <p className="text-xl font-bold text-white">{formatBRL(totalPessoal)}</p>
                   </div>
                 </div>
@@ -233,7 +245,10 @@ export default function ExpensesReportPage() {
                     <Wrench className="size-5 text-amber-400" />
                   </div>
                   <div>
-                    <p className="text-sm text-slate-400">Despesas Operacionais</p>
+                    <div className="flex items-center gap-1.5">
+                      <p className="text-sm text-slate-400">Despesas Operacionais</p>
+                      <InfoTooltip content="Custos de funcionamento do posto: energia, água, manutenção, frete, segurança, taxas/MDR, aluguel e telecomunicações." />
+                    </div>
                     <p className="text-xl font-bold text-white">{formatBRL(totalOperacional)}</p>
                   </div>
                 </div>
@@ -246,7 +261,10 @@ export default function ExpensesReportPage() {
                     <AlertCircle className="size-5 text-red-400" />
                   </div>
                   <div>
-                    <p className="text-sm text-slate-400">Pendentes Classificação</p>
+                    <div className="flex items-center gap-1.5">
+                      <p className="text-sm text-slate-400">Pendentes Classificação</p>
+                      <InfoTooltip content="Despesas que ainda não foram categorizadas automaticamente e requerem revisão manual da gestão." />
+                    </div>
                     <p className="text-xl font-bold text-white">
                       {formatNumber(remainingUnclassified)}
                     </p>

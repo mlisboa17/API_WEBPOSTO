@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const API = process.env.WEBPOSTO_API_URL || "http://127.0.0.1:8000";
+const API = process.env.WEBPOSTO_API_URL || "http://127.0.0.1:8040";
 const ENDPOINT = `${API}/api/v1/cash-reconciliation/cash-destinations`;
 
 export async function POST(request: NextRequest) {
