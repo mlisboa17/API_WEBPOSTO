@@ -75,6 +75,8 @@ from src.interfaces.http.routes import executive_analytics
 from src.interfaces.http.routes import executive_employees
 from src.interfaces.http.routes import executive_market
 from src.interfaces.http.routes import executive_consolidated_report
+from src.interfaces.http.routes import fuel_volumetry
+from src.interfaces.http.routes import expenses_dre
 from src.interfaces.http.routes import cockpit_live
 from src.interfaces.http.routes import abastecimentos_rest
 from src.interfaces.http.routes import product_inspection
@@ -83,6 +85,9 @@ from src.interfaces.http.routes import debug_fuel_volume
 from src.interfaces.http.routes import inventory_prediction
 from src.interfaces.http.routes import alert_engine
 from src.interfaces.http.routes import data_audit
+from src.interfaces.http.routes import units_performance
+from src.interfaces.http.routes import pista_rush_heatmap
+from src.interfaces.http.routes import forecourt_layout
 from src.interfaces.http.routes import card_fraud_audit
 from src.interfaces.http.routes import cashier_audit
 from src.interfaces.http.routes import president_dashboard
@@ -185,12 +190,17 @@ def _mount_executive_support(app: FastAPI) -> None:
     app.include_router(executive_employees.router)
     app.include_router(executive_market.router)
     app.include_router(executive_consolidated_report.router)
+    app.include_router(fuel_volumetry.router)
+    app.include_router(expenses_dre.router)
     app.include_router(product_inspection.router)
     app.include_router(operational_fuel_loss.router)
     app.include_router(debug_fuel_volume.router)
     app.include_router(inventory_prediction.router)
     app.include_router(alert_engine.router)
     app.include_router(data_audit.router)
+    app.include_router(units_performance.router)
+    app.include_router(pista_rush_heatmap.router)
+    app.include_router(forecourt_layout.router)
     app.include_router(card_fraud_audit.router)
     app.include_router(cashier_audit.router)
     app.include_router(president_dashboard.router)

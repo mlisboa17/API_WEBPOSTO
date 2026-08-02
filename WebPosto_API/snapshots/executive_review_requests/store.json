@@ -1,7 +1,7 @@
 {
   "requests": {
-    "d7ff3eae-b846-4bbb-8e7b-1b49841afbf1": {
-      "id": "d7ff3eae-b846-4bbb-8e7b-1b49841afbf1",
+    "651f4990-99eb-4a4c-ac9c-c5c5f129b308": {
+      "id": "651f4990-99eb-4a4c-ac9c-c5c5f129b308",
       "decision_id": "175da101-6f68-42f4-9d2b-9b42e6cedea2",
       "tenant_id": "74014",
       "empresa_codigo": "74014",
@@ -10,8 +10,8 @@
       "title": "Conferência nominal — 13 lançamento(s)",
       "description": "13 lançamento(s) desta decisão (R$ 7,951.00) requerem validação de beneficiário nas fontes disponíveis.",
       "requested_by": null,
-      "requested_at": "2026-07-07T17:51:55.188268Z",
-      "status": "ASSIGNED",
+      "requested_at": "2026-07-27T20:22:26.333482Z",
+      "status": "REQUESTED",
       "priority": "NORMAL",
       "evidence_item_ids": [
         "d2c17f90-a4eb-d5fc-f6cb-d47e2b376aef",
@@ -34,85 +34,21 @@
       "identified_amount": 450.0,
       "unidentified_count": 13,
       "unidentified_amount": 7951.0,
-      "review_responsible": "Marcio de Lima",
+      "review_responsible": null,
       "review_responsible_id": null,
-      "assigned_at": "2026-07-08T00:19:34.674053Z",
-      "item_checks": {
-        "d2c17f90-a4eb-d5fc-f6cb-d47e2b376aef": {
-          "id": "7bae229c-e45b-4e66-8aa8-ce46333e11ba",
-          "request_id": "d7ff3eae-b846-4bbb-8e7b-1b49841afbf1",
-          "evidence_item_id": "d2c17f90-a4eb-d5fc-f6cb-d47e2b376aef",
-          "status": "NEEDS_MORE_INFO",
-          "beneficiary_name": null,
-          "note": "Validacao runtime live FIN-03 - informacao adicional necessaria",
-          "checked_by": "Marcio de Lima",
-          "checked_at": "2026-07-09T03:49:56.600987Z",
-          "created_at": "2026-07-09T03:49:56.600987Z",
-          "updated_at": "2026-07-09T03:49:56.600987Z",
-          "history": [
-            {
-              "status": "NEEDS_MORE_INFO",
-              "beneficiary_name": null,
-              "note": "Validacao runtime live FIN-03 - informacao adicional necessaria",
-              "checked_by": "Marcio de Lima",
-              "checked_at": "2026-07-09T03:49:56.600987Z"
-            }
-          ]
-        },
-        "032b2496-b1c0-5302-16cb-65210a3fe156": {
-          "id": "fc715d86-e7bc-44e4-a289-102aced56525",
-          "request_id": "d7ff3eae-b846-4bbb-8e7b-1b49841afbf1",
-          "evidence_item_id": "032b2496-b1c0-5302-16cb-65210a3fe156",
-          "status": "NEEDS_MORE_INFO",
-          "beneficiary_name": null,
-          "note": "Validacao runtime live FIN-03R - informacao adicional necessaria",
-          "checked_by": "Marcio de Lima",
-          "checked_at": "2026-07-09T04:05:54.195954Z",
-          "created_at": "2026-07-09T04:05:54.195954Z",
-          "updated_at": "2026-07-09T04:05:54.195954Z",
-          "history": [
-            {
-              "status": "NEEDS_MORE_INFO",
-              "beneficiary_name": null,
-              "note": "Validacao runtime live FIN-03R - informacao adicional necessaria",
-              "checked_by": "Marcio de Lima",
-              "checked_at": "2026-07-09T04:05:54.195954Z"
-            }
-          ]
-        },
-        "4bb4056a-9ee0-d6f8-4256-672a52157487": {
-          "id": "e62efbd2-1c94-4471-a154-41a14a819d28",
-          "request_id": "d7ff3eae-b846-4bbb-8e7b-1b49841afbf1",
-          "evidence_item_id": "4bb4056a-9ee0-d6f8-4256-672a52157487",
-          "status": "NOT_RECOGNIZED",
-          "beneficiary_name": null,
-          "note": "Validacao UI live FIN-03R - item nao reconhecido",
-          "checked_by": "Marcio de Lima",
-          "checked_at": "2026-07-09T04:44:15.325375Z",
-          "created_at": "2026-07-09T04:44:15.325375Z",
-          "updated_at": "2026-07-09T04:44:15.325375Z",
-          "history": [
-            {
-              "status": "NOT_RECOGNIZED",
-              "beneficiary_name": null,
-              "note": "Validacao UI live FIN-03R - item nao reconhecido",
-              "checked_by": "Marcio de Lima",
-              "checked_at": "2026-07-09T04:44:15.325375Z"
-            }
-          ]
-        }
-      },
+      "assigned_at": null,
+      "item_checks": {},
       "due_date": null,
       "resolution_summary": null,
       "resolved_at": null,
       "source_analysis_id": "175da101-6f68-42f4-9d2b-9b42e6cedea2",
-      "created_at": "2026-07-07T17:51:55.188278Z",
-      "updated_at": "2026-07-09T04:44:15.325375Z"
+      "created_at": "2026-07-27T20:22:26.333484Z",
+      "updated_at": "2026-07-27T20:22:26.333484Z"
     }
   },
   "by_decision": {
     "175da101-6f68-42f4-9d2b-9b42e6cedea2": [
-      "d7ff3eae-b846-4bbb-8e7b-1b49841afbf1"
+      "651f4990-99eb-4a4c-ac9c-c5c5f129b308"
     ]
   }
 }

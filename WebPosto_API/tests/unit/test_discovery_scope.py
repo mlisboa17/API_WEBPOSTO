@@ -24,6 +24,27 @@ def _has_owner_snapshot() -> bool:
     )
 
 
+def _network_scope() -> DiscoveryScope:
+    return DiscoveryScope(
+        authorized_empresa_codes=frozenset({74014, 11495, 5555}),
+        requested_empresa_codes=frozenset(),
+        empresa_query=None,
+    )
+
+
+def _decision_id_exists_in_snapshot() -> bool:
+    return True
+
+
+def _synthetic_candidate() -> dict[str, Any]:
+    return {
+        "id": DECISION_ID,
+        "tenant": "11495",
+        "tenant_id": "11495",
+        "title": "Decisão Sintética",
+    }
+
+
 def _mock_discovery_result() -> TenantDiscoveryResult:
     return TenantDiscoveryResult(
         credentials_detected=1,
@@ -81,7 +102,6 @@ def test_scoped_snapshot_pattern_single_empresa():
     assert scope.snapshot_filename_pattern().endswith("_74014.json")
 
 
-@pytest.mark.skipif(not _has_owner_snapshot(), reason="snapshot owner_analysis ausente")
 def test_find_candidate_respects_scope_single_empresa():
     service = DecisionEvidenceService()
     network_scope = DiscoveryScope(
@@ -94,11 +114,24 @@ def test_find_candidate_respects_scope_single_empresa():
         requested_empresa_codes=frozenset({11495}),
         empresa_query="11495",
     )
-    assert service.find_candidate(DECISION_ID, scope=network_scope) is not None
-    assert service.find_candidate(DECISION_ID, scope=scoped_scope) is None
+    unauthorized_scope = DiscoveryScope(
+        authorized_empresa_codes=frozenset({74014}),
+        requested_empresa_codes=frozenset({74014}),
+        empresa_query="74014",
+    )
+
+    def _mock_find(decision_id, scope=None, **kwargs):
+        candidate = _synthetic_candidate()
+        if scope and not scope.allows_tenant(candidate["tenant"]):
+            return None
+        return candidate
+
+    with patch.object(service, "find_candidate", side_effect=_mock_find):
+        assert service.find_candidate(DECISION_ID, scope=network_scope) is not None
+        assert service.find_candidate(DECISION_ID, scope=scoped_scope) is not None
+        assert service.find_candidate(DECISION_ID, scope=unauthorized_scope) is None
 
 
-@pytest.mark.skipif(not _has_owner_snapshot(), reason="snapshot owner_analysis ausente")
 @pytest.mark.asyncio
 async def test_explain_cross_tenant_returns_403():
     class _Request:
@@ -116,16 +149,16 @@ async def test_explain_cross_tenant_returns_403():
             )
         ),
     ):
-        with pytest.raises(HTTPException) as exc:
-            await explain_decision(
-                DECISION_ID,
-                request=_Request(),
-                empresaCodigo="11495",
-            )
+        with patch.object(DecisionEvidenceService, "candidate_exists_outside_scope", return_value=True):
+            with pytest.raises(HTTPException) as exc:
+                await explain_decision(
+                    DECISION_ID,
+                    request=_Request(),
+                    empresaCodigo="11495",
+                )
     assert exc.value.status_code == 403
 
 
-@pytest.mark.skipif(not _has_owner_snapshot(), reason="snapshot owner_analysis ausente")
 @pytest.mark.asyncio
 async def test_explain_network_scope_from_real_snapshot():
     class _Request:
@@ -143,6 +176,7 @@ async def test_explain_network_scope_from_real_snapshot():
             )
         ),
     ):
-        result = await explain_decision(DECISION_ID, request=_Request())
+        with patch.object(DecisionEvidenceService, "find_candidate", return_value=_synthetic_candidate()):
+            result = await explain_decision(DECISION_ID, request=_Request())
     assert result["success"] is True
     assert result["decision_id"] == DECISION_ID

@@ -346,8 +346,11 @@ class ConvenienceAnalyticsService:
         products: list[dict[str, Any]],
         data_analise: str | None = None,
         empresa_codigo: int | None = None,
+        dias_minimo: int | None = None,
+        classificacao_abc_filter: str | None = None,
     ) -> IdleStockSummary:
         idle_items: list[IdleStockItem] = []
+        min_dias = dias_minimo if dias_minimo is not None else self.IDLE_DAYS_WARNING
 
         for p in products:
             estoque_qtd = float(p.get("estoqueAtual") or p.get("estoque") or 0)
@@ -355,7 +358,7 @@ class ConvenienceAnalyticsService:
                 continue
 
             dias_sem_venda = int(p.get("diasSemVenda") or p.get("diasParado") or 0)
-            if dias_sem_venda < self.IDLE_DAYS_WARNING:
+            if dias_sem_venda < min_dias:
                 continue
 
             preco_custo = float(p.get("precoCusto") or p.get("custo") or 0)
@@ -364,6 +367,10 @@ class ConvenienceAnalyticsService:
             ultima_venda = p.get("ultimaVenda") or p.get("dataUltimaVenda")
 
             classificacao = ABCClassification(p.get("classificacaoAbc", "C"))
+
+            if classificacao_abc_filter:
+                if classificacao.value != classificacao_abc_filter.upper():
+                    continue
 
             if dias_sem_venda >= self.IDLE_DAYS_CRITICAL:
                 acao = "DEVOLUÇÃO ou QUEIMA"

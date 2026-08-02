@@ -1,9 +1,22 @@
 import pytest
 
+from unittest.mock import MagicMock
+
 from src.models.response_model import WebPostoResponse
 from src.services.director_financial_reconciliation_pipeline import (
     DirectorFinancialReconciliationPipeline,
 )
+
+
+class EmptyReviewStore:
+    def get(self, fact_id: str):
+        return None
+
+    def get_allocation(self, account_code):
+        return None
+
+    def get_rule(self, account_code):
+        return None
 
 
 class FakeClient:
@@ -111,7 +124,7 @@ async def test_review_queue_exposes_webposto_evidence() -> None:
             return WebPostoResponse.ok([])
 
     result = await DirectorFinancialReconciliationPipeline(
-        UnclassifiedClient(), CompleteCoverage()
+        UnclassifiedClient(), CompleteCoverage(), review_store=EmptyReviewStore()
     ).build("2026-07-01", "2026-07-01", 11495)
 
     fact = result["reviewableFacts"][0]

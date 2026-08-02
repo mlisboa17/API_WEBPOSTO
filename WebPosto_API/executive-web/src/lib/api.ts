@@ -16,6 +16,12 @@ import {
   CardFraudAuditResponse,
   AuditFraudSettings,
   CashierAuditResponse,
+  PistaLiveResponse,
+  UnitsPerformanceResponse,
+  UnitsPerformanceDetailResponse,
+  RushHeatmapResponse,
+  ForecourtLayout,
+  ForecourtPosition,
 } from "@/types/api";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "";
@@ -160,6 +166,165 @@ export const apiService = {
     return fetchApi(`/api/v1/executive/sales/analytics?${params}`);
   },
 
+  async getPistaRushHeatmap(
+    company?: number,
+    window?: { inicio?: string; fim?: string }
+  ): Promise<RushHeatmapResponse> {
+    const params = new URLSearchParams();
+    if (company) params.set("empresaCodigo", company.toString());
+    // datetime-local → ISO (YYYY-MM-DDTHH:mm)
+    if (window?.inicio) params.set("dataInicial", window.inicio);
+    if (window?.fim) params.set("dataFinal", window.fim);
+    const empty: RushHeatmapResponse = {
+      success: false,
+      posts: [],
+      intelligence_cards: [],
+    };
+    try {
+      const envelope = (await fetchDirectApi(
+        `/api/v1/executive/pista-rush-heatmap?${params}`
+      )) as { data?: RushHeatmapResponse } & RushHeatmapResponse;
+      if (envelope?.data?.posts) return envelope.data;
+      if (envelope?.posts) return envelope as RushHeatmapResponse;
+      return empty;
+    } catch {
+      return empty;
+    }
+  },
+
+  async postPistaIntervention(body: {
+    empresa_codigo?: number;
+    unidade_id?: number;
+    tipo?: string;
+    suspeita_type?: string;
+    subject_id?: string;
+    acao?: string;
+    operador?: string;
+    metrics_baseline?: Record<string, unknown>;
+  }): Promise<unknown> {
+    return fetchDirectApi(`/api/v1/executive/pista-interventions`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+  },
+
+  async getForecourtActiveLayout(stationId: number): Promise<ForecourtLayout | null> {
+    try {
+      const envelope = (await fetchDirectApi(
+        `/api/v1/executive/forecourt-layout/active?stationId=${stationId}`
+      )) as { success?: boolean; data?: ForecourtLayout };
+      return envelope?.data ?? null;
+    } catch {
+      return null;
+    }
+  },
+
+  async updateForecourtLayout(
+    layoutId: string,
+    body: { positions?: ForecourtPosition[]; islands?: ForecourtLayout["islands"]; mapping_status?: string }
+  ): Promise<ForecourtLayout> {
+    const envelope = (await fetchDirectApi(
+      `/api/v1/executive/forecourt-layout/${layoutId}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      }
+    )) as { data?: ForecourtLayout } & ForecourtLayout;
+    return (envelope.data || envelope) as ForecourtLayout;
+  },
+
+  async seedForecourtCasaCaiada(force = false): Promise<ForecourtLayout & { seeded?: boolean; seed_id?: string }> {
+    const envelope = (await fetchDirectApi(
+      `/api/v1/executive/forecourt-layout/seed/casa-caiada?force=${force ? "true" : "false"}`,
+      { method: "POST" }
+    )) as { data?: ForecourtLayout & { seeded?: boolean; seed_id?: string } };
+    return (envelope.data || {}) as ForecourtLayout & { seeded?: boolean; seed_id?: string };
+  },
+
+  async seedForecourtPostoReal(force = false): Promise<ForecourtLayout & { seeded?: boolean; seed_id?: string }> {
+    const envelope = (await fetchDirectApi(
+      `/api/v1/executive/forecourt-layout/seed/posto-real?force=${force ? "true" : "false"}`,
+      { method: "POST" }
+    )) as { data?: ForecourtLayout & { seeded?: boolean; seed_id?: string } };
+    return (envelope.data || {}) as ForecourtLayout & { seeded?: boolean; seed_id?: string };
+  },
+
+  async getUnitsPerformance(
+    start: string,
+    end: string
+  ): Promise<UnitsPerformanceResponse> {
+    const params = new URLSearchParams({
+      data_inicio: start,
+      data_fim: end,
+    });
+    const empty: UnitsPerformanceResponse = {
+      success: false,
+      periodo: { inicio: start, fim: end },
+      rede: {
+        faturamento_total_rs: 0,
+        despesas_totais_rs: 0,
+        lucro_liquido_global_rs: 0,
+        resultado_operacional_rs: 0,
+        margem_media_pct: 0,
+        galonagem_total_litros: 0,
+      },
+      unidades: [],
+      insights: [],
+    };
+    try {
+      const envelope = (await fetchDirectApi(
+        `/api/v1/executive/units-performance?${params}`
+      )) as { data?: UnitsPerformanceResponse } & UnitsPerformanceResponse;
+      if (envelope?.data?.unidades) return envelope.data;
+      if (envelope?.unidades) return envelope as UnitsPerformanceResponse;
+      return empty;
+    } catch {
+      return empty;
+    }
+  },
+
+  async getUnitPerformanceDetail(
+    unidadeId: number,
+    start: string,
+    end: string
+  ): Promise<UnitsPerformanceDetailResponse> {
+    const params = new URLSearchParams({
+      data_inicio: start,
+      data_fim: end,
+    });
+    try {
+      const envelope = (await fetchDirectApi(
+        `/api/v1/executive/units-performance/${unidadeId}?${params}`
+      )) as { data?: UnitsPerformanceDetailResponse } & UnitsPerformanceDetailResponse;
+      if (envelope?.data?.unidade) return envelope.data;
+      if (envelope?.unidade) return envelope as UnitsPerformanceDetailResponse;
+      throw new Error("Detalhe da unidade indisponível");
+    } catch (err) {
+      return {
+        success: false,
+        periodo: { inicio: start, fim: end },
+        unidade: {
+          unidade_id: unidadeId,
+          nome_unidade: `Unidade ${unidadeId}`,
+          galonagem_litros: 0,
+          faturamento_total_rs: 0,
+          despesas_totais_rs: 0,
+          diferenca_lucro_rs: 0,
+          resultado_operacional_rs: 0,
+          margem_percentual: 0,
+          margem_operacional_pct: 0,
+          status_operacional: "CRITICO",
+          folha_pagamento_rs: 0,
+        },
+        evolucao_mensal: [],
+        despesas_por_categoria: [],
+        mensagem: err instanceof Error ? err.message : "Erro ao carregar unidade",
+      };
+    }
+  },
+
   async getDataAudit(start: string, end: string, company?: number): Promise<DataAuditResponse> {
     const params = new URLSearchParams({ dataInicial: start, dataFinal: end });
     if (company) params.append("empresaCodigo", company.toString());
@@ -223,7 +388,16 @@ export const apiService = {
     start: string,
     end: string,
     company?: number,
-    limiarRetencaoMinutos?: number | null
+    limiarRetencaoMinutos?: number | null,
+    filtros?: {
+      frentista_id?: number | null;
+      frentista_nome?: string;
+      tipo_infracao?: string;
+      tempo_retencao_min?: number | null;
+      forma_pagamento?: string;
+      busca_texto?: string;
+      filial_id?: number | null;
+    }
   ): Promise<CardFraudAuditResponse> {
     const params = new URLSearchParams({
       dataInicial: start,
@@ -234,6 +408,15 @@ export const apiService = {
       params.set("limiarRetencaoMinutos", String(limiarRetencaoMinutos));
     }
     if (company) params.append("empresaCodigo", company.toString());
+    if (filtros?.filial_id != null) params.set("filial_id", String(filtros.filial_id));
+    if (filtros?.frentista_id != null) params.set("frentista_id", String(filtros.frentista_id));
+    if (filtros?.frentista_nome) params.set("frentista_nome", filtros.frentista_nome);
+    if (filtros?.tipo_infracao) params.set("tipo_infracao", filtros.tipo_infracao);
+    if (filtros?.tempo_retencao_min != null) {
+      params.set("tempo_retencao_min", String(filtros.tempo_retencao_min));
+    }
+    if (filtros?.forma_pagamento) params.set("forma_pagamento", filtros.forma_pagamento);
+    if (filtros?.busca_texto) params.set("busca_texto", filtros.busca_texto);
     try {
       const envelope = (await fetchDirectApi(
         `/api/v1/executive/audit/card-fraud?${params}`
@@ -273,6 +456,28 @@ export const apiService = {
         bannerAlerta: null,
         observacoes: ["Lista vazia — backend indisponível (synthetic: false)"],
       };
+    }
+  },
+
+  async getPistaLive(company?: number): Promise<PistaLiveResponse> {
+    const params = new URLSearchParams();
+    if (company) params.set("empresaCodigo", company.toString());
+    const empty: PistaLiveResponse = {
+      success: false,
+      totalBicos: 0,
+      totalRetencoes: 0,
+      filiais: [],
+      observacoes: ["Cache de pista ao vivo indisponível"],
+    };
+    try {
+      const envelope = (await fetchDirectApi(
+        `/api/v1/executive/audit/pista-live?${params}`
+      )) as { success?: boolean; data?: PistaLiveResponse } & PistaLiveResponse;
+      if (envelope?.data?.filiais) return envelope.data;
+      if (envelope?.filiais) return envelope as PistaLiveResponse;
+      return empty;
+    } catch {
+      return empty;
     }
   },
 
@@ -441,6 +646,72 @@ export const apiService = {
     if (company) params.append("empresaCodigo", company.toString());
     const query = params.toString() ? `?${params}` : "";
     return fetchDirectApi(`/api/v1/executive/consolidated-report${query}`) as Promise<ExecutiveReport>;
+  },
+
+  /** DRE & Despesas — snapshots locais + receita pista rápida. */
+  async getExpensesDreReport(
+    start?: string,
+    end?: string,
+    company?: number | null
+  ): Promise<ExecutiveReport & { fonte?: string; fromCache?: boolean; latencyMs?: number }> {
+    const params = new URLSearchParams();
+    if (start) params.append("dataInicial", start);
+    if (end) params.append("dataFinal", end);
+    if (company != null && company > 0) params.append("empresaCodigo", company.toString());
+    const query = params.toString() ? `?${params}` : "";
+    const envelope = (await fetchDirectApi(
+      `/api/v1/executive/reports/expenses${query}`
+    )) as {
+      success?: boolean;
+      data?: ExecutiveReport;
+      fonte?: string;
+      fromCache?: boolean;
+      latencyMs?: number;
+    } & ExecutiveReport;
+    const payload = (envelope.data || envelope) as ExecutiveReport & {
+      fonte?: string;
+      fromCache?: boolean;
+      latencyMs?: number;
+    };
+    return {
+      ...payload,
+      fonte: envelope.fonte ?? payload.fonte,
+      fromCache: envelope.fromCache ?? payload.fromCache,
+      latencyMs: envelope.latencyMs ?? payload.latencyMs,
+    };
+  },
+
+  /** Pista & Volumetria — D0 RAM / D-1 DB local (rápido). */
+  async getFuelVolumetryReport(
+    start?: string,
+    end?: string,
+    company?: number | null
+  ): Promise<ExecutiveReport & { fonte?: string; fromCache?: boolean; latencyMs?: number }> {
+    const params = new URLSearchParams();
+    if (start) params.append("dataInicial", start);
+    if (end) params.append("dataFinal", end);
+    if (company != null && company > 0) params.append("empresaCodigo", company.toString());
+    const query = params.toString() ? `?${params}` : "";
+    const envelope = (await fetchDirectApi(
+      `/api/v1/executive/reports/fuel${query}`
+    )) as {
+      success?: boolean;
+      data?: ExecutiveReport;
+      fonte?: string;
+      fromCache?: boolean;
+      latencyMs?: number;
+    } & ExecutiveReport;
+    const payload = (envelope.data || envelope) as ExecutiveReport & {
+      fonte?: string;
+      fromCache?: boolean;
+      latencyMs?: number;
+    };
+    return {
+      ...payload,
+      fonte: envelope.fonte ?? payload.fonte,
+      fromCache: envelope.fromCache ?? payload.fromCache,
+      latencyMs: envelope.latencyMs ?? payload.latencyMs,
+    };
   },
 
   async getExecutiveConsolidatedReportMarkdown(

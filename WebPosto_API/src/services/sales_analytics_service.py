@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import asyncio
 import logging
+import time
 from collections import defaultdict
 from datetime import date, datetime
 from typing import Any
@@ -20,9 +22,15 @@ from src.interfaces.http.schemas.executive_sales_schema import (
     SalesHeatmap,
     SectorShare,
 )
+from src.services.abastecimento_local_source import fetch_abastecimentos_local_first
 from src.services.abastecimento_service import AbastecimentoService
+from src.utils.filial_normalizer import resolve_empresa_codigo
 
 logger = logging.getLogger(__name__)
+
+_ANALYTICS_CACHE: dict[str, tuple[float, SalesAnalyticsSummary]] = {}
+_ANALYTICS_TTL_S = 90.0
+_VENDA_ITEM_BUDGET_S = 1.0
 
 # Multiplicadores determinísticos por filial para cestas (quando venda_item não fecha afinidade)
 _AFFINITY_SCALE: dict[int | None, float] = {
@@ -236,22 +244,39 @@ class SalesAnalyticsService:
         data_final: str,
         empresa_codigo: int | None = None,
     ) -> SalesAnalyticsSummary:
-        abastecimentos = await self._fetch_abastecimentos(
-            data_inicial, data_final, empresa_codigo
-        )
-        if empresa_codigo:
-            abastecimentos = [
-                a
-                for a in abastecimentos
-                if int(a.get("empresaCodigo") or a.get("empresa") or 0) == int(empresa_codigo)
-            ]
+        empresa = resolve_empresa_codigo(empresa_codigo)
+        cache_key = f"{data_inicial}|{data_final}|{empresa}"
+        now = time.monotonic()
+        cached = _ANALYTICS_CACHE.get(cache_key)
+        if cached and (now - cached[0]) < _ANALYTICS_TTL_S:
+            return cached[1]
 
-        # Reutiliza fetch por API key da filial (composition) para não zerar pista/loja
+        t0 = time.perf_counter()
+        abastecimentos = await self._fetch_abastecimentos(
+            data_inicial, data_final, empresa
+        )
+
         from src.services.sales_composition_service import SalesCompositionService
 
-        venda_items = await SalesCompositionService()._fetch_venda_items(
-            data_inicial, data_final, empresa_codigo
-        )
+        is_d0 = data_inicial == data_final == date.today().isoformat()
+        if is_d0:
+            # D0: heatmap/bicos vêm do RAM; loja usa escala determinística
+            venda_items = []
+        else:
+            try:
+                venda_items = await asyncio.wait_for(
+                    SalesCompositionService()._fetch_venda_items(
+                        data_inicial, data_final, empresa
+                    ),
+                    timeout=_VENDA_ITEM_BUDGET_S,
+                )
+            except asyncio.TimeoutError:
+                logger.warning(
+                    "analytics venda_item timeout %.1fs empresa=%s",
+                    _VENDA_ITEM_BUDGET_S,
+                    empresa,
+                )
+                venda_items = []
 
         heatmap = self._calculate_heatmap_from_real_data(abastecimentos)
         elasticidade = self._calculate_elasticity_from_real_data(abastecimentos)
@@ -259,14 +284,14 @@ class SalesAnalyticsService:
             abastecimentos, data_inicial, data_final
         )
         coeficiente = self._calculate_coeficiente_elasticidade(elasticidade)
-        composicao = self._build_composition(abastecimentos, venda_items, empresa_codigo)
-        cestas = self._get_cross_selling_combos(empresa_codigo, composicao)
+        composicao = self._build_composition(abastecimentos, venda_items, empresa)
+        cestas = self._get_cross_selling_combos(empresa, composicao)
         conversao = composicao.penetracao_cross_selling_pct or self._calculate_pista_loja_conversion(
-            abastecimentos, empresa_codigo
+            abastecimentos, empresa
         )
         bicos = self._calculate_bico_performance(abastecimentos)
 
-        return SalesAnalyticsSummary(
+        result = SalesAnalyticsSummary(
             heatmap=heatmap,
             elasticidade=elasticidade,
             coeficiente_elasticidade=coeficiente,
@@ -276,6 +301,49 @@ class SalesAnalyticsService:
             composicao=composicao,
             performance_bicos=bicos,
         )
+        has_signal = bool(abastecimentos) or (
+            getattr(composicao, "faturamento_total", 0) or 0
+        ) > 0
+        if not is_d0 or has_signal:
+            _ANALYTICS_CACHE[cache_key] = (time.monotonic(), result)
+        logger.info(
+            "analytics ok empresa=%s n_abast=%d latencyMs=%.1f",
+            empresa,
+            len(abastecimentos),
+            (time.perf_counter() - t0) * 1000,
+        )
+        return result
+
+    async def _fetch_abastecimentos_http(
+        self,
+        data_inicial: str,
+        data_final: str,
+        empresa_codigo: int | None = None,
+    ) -> list[dict[str, Any]]:
+        from src.core.config import OFFICIAL_COMPANY_CODES
+
+        targets = (
+            [int(empresa_codigo)]
+            if empresa_codigo
+            else list(OFFICIAL_COMPANY_CODES)
+        )
+        all_rows: list[dict[str, Any]] = []
+        for code in targets:
+            resp = await self._abastecimento.get_periodo(
+                data_inicial, data_final, empresa_codigo=code
+            )
+            if not resp.success:
+                logger.warning(
+                    "Falha abastecimentos empresa=%s: %s", code, resp.error
+                )
+                continue
+            rows = [
+                r
+                for r in _extract_rows(resp.data)
+                if int(r.get("empresaCodigo") or r.get("empresa") or 0) == int(code)
+            ]
+            all_rows.extend(rows)
+        return all_rows
 
     async def _fetch_abastecimentos(
         self,
@@ -284,30 +352,17 @@ class SalesAnalyticsService:
         empresa_codigo: int | None = None,
     ) -> list[dict[str, Any]]:
         try:
-            from src.core.config import OFFICIAL_COMPANY_CODES
-
-            targets = (
-                [int(empresa_codigo)]
-                if empresa_codigo
-                else list(OFFICIAL_COMPANY_CODES)
+            rows, fonte = await fetch_abastecimentos_local_first(
+                data_inicial,
+                data_final,
+                empresa_codigo,
+                allow_http_fallback=True,
+                http_fetcher=self._fetch_abastecimentos_http,
             )
-            all_rows: list[dict[str, Any]] = []
-            for code in targets:
-                resp = await self._abastecimento.get_periodo(
-                    data_inicial, data_final, empresa_codigo=code
-                )
-                if not resp.success:
-                    logger.warning(
-                        "Falha abastecimentos empresa=%s: %s", code, resp.error
-                    )
-                    continue
-                rows = [
-                    r
-                    for r in _extract_rows(resp.data)
-                    if int(r.get("empresaCodigo") or r.get("empresa") or 0) == int(code)
-                ]
-                all_rows.extend(rows)
-            return all_rows
+            logger.info(
+                "analytics abastecimentos n=%d fonte=%s", len(rows), fonte
+            )
+            return rows
         except Exception as exc:
             logger.exception("Erro ao buscar abastecimentos: %s", exc)
             return []

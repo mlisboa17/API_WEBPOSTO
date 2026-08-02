@@ -82,6 +82,7 @@ class AbastecimentoFraudeDetalhe(BaseModel):
     precoPraticado: float = 0.0
     valorTotal: float = 0.0
     valorDesconto: float = 0.0
+    descontoPorLitro: float = 0.0
     origemDesconto: str = ""
     cpfDesconto: str | None = None
     bico: int = 0
@@ -122,10 +123,15 @@ class OcorrenciaFraudeDTO(BaseModel):
     litros: float = 0.0
     precoUnitario: float = 0.0
     valorDesconto: float = 0.0
+    descontoPorLitro: float = 0.0
     percentualDesconto: float = 0.0
     origemDesconto: str = ""
     cpfDesconto: str | None = None
     cpfRepetido: bool = False
+    # Cartão Curinga — recorrência Bandeira+Final / NSU entre baixas distintas
+    cartaoRepetido: bool = False
+    quantidadeUsoCartao: int = 0
+    quantidadeAbastecimentosCartao: int = 0
     motivoSuspeita: str = ""
     nivelRisco: NivelRisco = "MEDIO"
     scoreGravidade: int = 0
@@ -294,6 +300,22 @@ def _pick_payment_anchor(group: list[AbastecimentoRestV1]) -> AbastecimentoRestV
         return (band + final, forma, final)
 
     return max(group, key=score)
+
+
+def _card_fingerprint_keys(item: AbastecimentoRestV1) -> list[str]:
+    """Chaves de cruzamento: Bandeira+Final e/ou NSU (por filial)."""
+    if _is_especie(item):
+        return []
+    emp = int(getattr(item, "idEmpresa", 0) or 0)
+    keys: list[str] = []
+    bandeira, final = _bandeira_final(item)
+    final_digits = "".join(ch for ch in (final or "") if ch.isdigit())[-4:]
+    if final_digits and len(final_digits) >= 4:
+        keys.append(f"{emp}:F:{(bandeira or 'CARTAO').upper()}:{final_digits}")
+    nsu = str(getattr(item, "cartaoNsu", None) or "").strip()
+    if nsu and nsu.upper() not in {"N/I", "NI", "-", "—"}:
+        keys.append(f"{emp}:N:{nsu}")
+    return keys
 
 
 def _forma_pagamento_label(forma: str | None, *, bandeira: str = "") -> str:
@@ -479,23 +501,24 @@ class FraudDetectionEngine:
         cfg: AuditFraudSettingsDTO,
     ) -> list[OcorrenciaFraudeDTO]:
         by_venda: dict[tuple[int, int], list[AbastecimentoRestV1]] = defaultdict(list)
-        by_card_key: dict[str, list[AbastecimentoRestV1]] = defaultdict(list)
+        # Cartão Curinga: conta baixas (vendas) e abastecimentos distintos por fingerprint
+        by_card_vendas: dict[str, set[int]] = defaultdict(set)
+        by_card_abast: dict[str, set[int]] = defaultdict(set)
         by_cpf_frentista: dict[tuple[int, int | None, str], set[int]] = defaultdict(set)
 
         for item in items:
             vc = int(item.idVenda or 0) or -int(item.idAbastecimento)
             by_venda[(item.idEmpresa, vc)].append(item)
-            bandeira, final = _bandeira_final(item)
-            if final and not _is_especie(item):
-                by_card_key[f"{item.idEmpresa}:{bandeira}:{final}"].append(item)
+            for ck in _card_fingerprint_keys(item):
+                by_card_vendas[ck].add(vc)
+                by_card_abast[ck].add(int(item.idAbastecimento))
             cpf = str(getattr(item, "cpfCliente", None) or "").strip()
             cpf_digits = "".join(ch for ch in cpf if ch.isdigit())
             if cpf_digits and set(cpf_digits) != {"0"} and item.idFrentista:
                 by_cpf_frentista[(item.idEmpresa, item.idFrentista, cpf_digits)].add(vc)
 
-        recorrentes = {
-            k for k, v in by_card_key.items() if len(v) >= cfg.recorrencia_cpf_cartao_limite
-        }
+        # >1 baixa/ocorrência distinta com o mesmo cartão → curinga
+        recorrentes = {k for k, vendas in by_card_vendas.items() if len(vendas) > 1}
         cpf_abuso = {
             k
             for k, vendas in by_cpf_frentista.items()
@@ -547,8 +570,19 @@ class FraudDetectionEngine:
             forma_label = _forma_pagamento_label(anchor.formaPagamento, bandeira=bandeira)
             if forma_label == "PIX":
                 bandeira = bandeira or "PIX"
-            card_key = f"{emp}:{bandeira}:{final}"
-            trigger_recorrencia = eletronico and bool(final) and card_key in recorrentes
+            card_keys = _card_fingerprint_keys(anchor)
+            # Também une fingerprints de todos os itens do grupo (mesmo final em qualquer bico)
+            for _, _, a in enriched:
+                for ck in _card_fingerprint_keys(a):
+                    if ck not in card_keys:
+                        card_keys.append(ck)
+            matching_recur = [k for k in card_keys if k in recorrentes]
+            trigger_recorrencia = eletronico and bool(matching_recur)
+            qtd_uso_cartao = 0
+            qtd_abast_cartao = 0
+            if matching_recur:
+                qtd_uso_cartao = max(len(by_card_vendas[k]) for k in matching_recur)
+                qtd_abast_cartao = max(len(by_card_abast[k]) for k in matching_recur)
 
             descontos = [float(getattr(a, "valorDesconto", 0) or 0) for _, _, a in enriched]
             valor_bruto = sum(a.valorTotal for _, _, a in enriched) + sum(descontos)
@@ -573,15 +607,19 @@ class FraudDetectionEngine:
             trigger_cpf = bool(fid and cpf_grp and (emp, fid, cpf_grp) in cpf_abuso)
 
             # ── Régua de gravidade (score decrescente) ──
+            # Cartão Curinga (recorrência >1 baixa) → Score 100, topo absoluto
             # ALTO só com evidência Cartão/PIX/Frota (elimina "Não informado" no topo)
             nivel: NivelRisco | None = None
             score = 0
-            if eletronico and (trigger_lote or trigger_ret_crit):
+            if trigger_recorrencia:
+                nivel = "ALTO"
+                score = 100
+            elif eletronico and (trigger_lote or trigger_ret_crit):
                 nivel = "ALTO"
                 score = 95 if (trigger_lote and trigger_ret_crit) else (90 if trigger_lote else 85)
-            elif trigger_cpf or trigger_desc or trigger_recorrencia:
+            elif trigger_cpf or trigger_desc:
                 nivel = "DESCONTO"
-                score = 75 if trigger_cpf else (70 if trigger_desc else 65)
+                score = 75 if trigger_cpf else 70
             elif especie and trigger_lote:
                 nivel = "MEDIO"
                 score = 50
@@ -606,6 +644,12 @@ class FraudDetectionEngine:
                 continue
 
             motivos: list[str] = []
+            if trigger_recorrencia:
+                final_lbl = final or "****"
+                motivos.append(
+                    f"CARTÃO CURINGA: final {final_lbl} usado em {qtd_uso_cartao} baixas "
+                    f"({qtd_abast_cartao} abastecimentos) no período — score máximo"
+                )
             if trigger_ret_crit:
                 motivos.append(
                     f"Retenção {retencao} min > {cfg.tempo_retencao_critico_min} min "
@@ -627,10 +671,6 @@ class FraudDetectionEngine:
                     f"Abuso de CPF/App {cpf_grp[-4:].rjust(4, '*')} pelo frentista "
                     f"≥ {cfg.recorrencia_cpf_cartao_limite}x no dia"
                 )
-            if trigger_recorrencia:
-                motivos.append(
-                    f"Reutilização do cartão final {final} ≥ {cfg.recorrencia_cpf_cartao_limite}x"
-                )
             if trigger_desc:
                 motivos.append(
                     f"Desconto/App {pct_desc:.1f}% (R$ {valor_desc:.2f}) acima do teto "
@@ -642,6 +682,7 @@ class FraudDetectionEngine:
             gatilho = "+".join(
                 n
                 for n, f in [
+                    ("CARTAO_CURINGA", trigger_recorrencia),
                     ("RETENCAO", trigger_ret_crit or trigger_ret_med),
                     ("AGRUPAMENTO", trigger_lote),
                     ("ABUSO_CPF_APP", trigger_cpf),
@@ -663,6 +704,10 @@ class FraudDetectionEngine:
                 preco_tab = float(getattr(a, "precoTabela", None) or a.precoUnitario or 0)
                 preco_prat = float(a.precoUnitario or 0)
                 desc_a = float(getattr(a, "valorDesconto", 0) or 0)
+                litros_a = round(float(a.litros or 0), 3)
+                desc_por_litro_a = (
+                    round(desc_a / litros_a, 4) if litros_a > 0 else 0.0
+                )
                 bomba = int(getattr(a, "bomba", None) or (((max(1, a.bico) - 1) // 2) + 1))
                 detalhes.append(
                     AbastecimentoFraudeDetalhe(
@@ -673,13 +718,17 @@ class FraudDetectionEngine:
                         postoNome=FILIAIS.get(a.idEmpresa, a.nomeEmpresa or f"Empresa {a.idEmpresa}"),
                         tipoCombustivel=a.descricaoProduto or "Combustível",
                         produto=a.descricaoProduto or "Combustível",
-                        litros=round(float(a.litros or 0), 3),
+                        litros=litros_a,
                         precoUnitario=round(preco_prat, 4),
                         precoTabela=round(preco_tab, 4),
                         precoPraticado=round(preco_prat, 4),
                         valorTotal=round(float(a.valorTotal or 0), 2),
                         valorDesconto=round(desc_a, 2),
-                        origemDesconto=str(getattr(a, "origemDesconto", None) or ("FIDELIDADE/APP" if desc_a > 0 else "")),
+                        descontoPorLitro=desc_por_litro_a,
+                        origemDesconto=str(
+                            getattr(a, "origemDesconto", None)
+                            or ("FIDELIDADE/APP" if desc_a > 0 else "SEM DESCONTO")
+                        ),
                         cpfDesconto=getattr(a, "cpfCliente", None),
                         bico=a.bico,
                         bomba=bomba,
@@ -690,9 +739,17 @@ class FraudDetectionEngine:
             litros_tot = round(sum(d.litros for d in detalhes), 3)
             valor_tot = round(sum(d.valorTotal for d in detalhes), 2)
             pvm = round(valor_tot / litros_tot, 4) if litros_tot > 0 else 0.0
+            desconto_por_litro = (
+                round(valor_desc / litros_tot, 4) if litros_tot > 0 else 0.0
+            )
             seq += 1
             oid = f"FR-{emp}-{abs(venda)}-{seq}"
-            origem = "FIDELIDADE/APP" if valor_desc > 0 else ("N/I" if not trigger_desc else "DESCONTO_MANUAL")
+            if valor_desc > 0:
+                origem = "FIDELIDADE/APP"
+            elif trigger_desc:
+                origem = "DESCONTO_MANUAL"
+            else:
+                origem = "SEM DESCONTO"
 
             bandeira_out = bandeira or ("—" if especie or forma_label == "PIX" else "")
             if forma_label == "PIX" and not bandeira_out:
@@ -718,10 +775,14 @@ class FraudDetectionEngine:
                 litros=litros_tot,
                 precoUnitario=pvm,
                 valorDesconto=valor_desc,
+                descontoPorLitro=desconto_por_litro,
                 percentualDesconto=pct_desc,
                 origemDesconto=origem,
                 cpfDesconto=cpf_grp or None,
                 cpfRepetido=trigger_cpf,
+                cartaoRepetido=trigger_recorrencia,
+                quantidadeUsoCartao=qtd_uso_cartao,
+                quantidadeAbastecimentosCartao=qtd_abast_cartao,
                 motivoSuspeita=" · ".join(motivos),
                 nivelRisco=nivel,
                 scoreGravidade=score,
@@ -755,8 +816,16 @@ class FraudDetectionEngine:
             )
             out.append(dto)
 
-        # Ordenação padrão: score DESC → retenção DESC → valor DESC
-        out.sort(key=lambda o: (-o.scoreGravidade, -o.tempoRetencaoMinutos, -o.valorTotal))
+        # Cartão Curinga no topo absoluto → score 100 → retenção → usos → valor
+        out.sort(
+            key=lambda o: (
+                -int(bool(o.cartaoRepetido)),
+                -o.scoreGravidade,
+                -int(o.quantidadeUsoCartao or 0),
+                -o.tempoRetencaoMinutos,
+                -o.valorTotal,
+            )
+        )
         return out
 
     def _build_resumo(self, ocorrencias: list[OcorrenciaFraudeDTO]) -> ResumoExecutivoFraude:
@@ -830,6 +899,161 @@ class FraudDetectionEngine:
             f"(retenção > {cfg.tempo_retencao_critico_min} min / agrupamento / CPF repetido). "
             f"Valor envolvido: R$ {resumo.valorCritico:,.2f}."
         )
+
+
+def _match_forma_pagamento(o: OcorrenciaFraudeDTO, forma: str) -> bool:
+    key = (forma or "").strip().upper()
+    if not key or key in {"TODOS", "ALL", "*"}:
+        return True
+    blob = " ".join(
+        [
+            o.formaPagamento or "",
+            o.meioPagamento or "",
+            o.cartaoBandeira or "",
+            "ESPECIE" if o.isEspecie else "",
+        ]
+    ).upper()
+    if key in {"CARTAO", "CARTÃO", "TEF", "CARTAO_TEF"}:
+        return (
+            "CART" in blob
+            or "TEF" in blob
+            or "DEBIT" in blob
+            or "DÉBIT" in blob
+            or "CREDIT" in blob
+            or "CRÉDIT" in blob
+            or "MAESTRO" in blob
+            or "VISA" in blob
+            or "ELO" in blob
+        ) and "PIX" not in blob and "DINHEIRO" not in blob and not o.isEspecie
+    if key == "PIX":
+        return "PIX" in blob
+    if key in {"DINHEIRO", "ESPECIE", "ESPÉCIE", "CASH"}:
+        return o.isEspecie or "DINHEIRO" in blob or "ESPECIE" in blob or "ESPÉCIE" in blob
+    if key in {"FROTA", "CONVENIO", "CONVÊNIO", "PRAZO", "FROTISTA"}:
+        return any(x in blob for x in ("FROTA", "FROTISTA", "CONVENIO", "CONVÊNIO", "PRAZO"))
+    return key in blob
+
+
+def _match_tipo_infracao(o: OcorrenciaFraudeDTO, tipo: str) -> bool:
+    key = (tipo or "").strip().upper()
+    if not key or key in {"TODOS", "ALL", "*"}:
+        return True
+    gatilho = (o.gatilho or "").upper()
+    motivo = (o.motivoSuspeita or "").upper()
+    if key in {"RETENCAO_CARTAO", "RETENCAO", "RETENÇÃO_CARTAO", "RETENCAO_CRITICA"}:
+        return (
+            "RETENCAO" in gatilho
+            or "RETENÇÃO" in gatilho
+            or "RETENCAO" in motivo
+            or "RETENÇÃO" in motivo
+            or (o.tempoRetencaoMinutos > 0 and _match_forma_pagamento(o, "CARTAO"))
+            or (o.tempoRetencaoMinutos > 0 and _match_forma_pagamento(o, "PIX"))
+        )
+    if key in {"EXCESSO_DESCONTO", "DESCONTO", "ABUSO_DESCONTO"}:
+        return (
+            o.nivelRisco == "DESCONTO"
+            or float(o.valorDesconto or 0) > 0
+            or "DESCONTO" in gatilho
+            or "DESCONTO" in motivo
+        )
+    if key in {"AGRUPAMENTO_BICOS", "AGRUPAMENTO", "AGRUPAMENTO_LOTE"}:
+        return (
+            bool(o.isAgrupado)
+            or o.qtdAbastecimentosAgrupados >= 2
+            or "AGRUPAMENTO" in gatilho
+            or "AGRUP" in motivo
+        )
+    if key in {"ABUSO_CPF", "CPF"}:
+        return bool(o.cpfRepetido) or "CPF" in motivo
+    return True
+
+
+def _match_busca_texto(o: OcorrenciaFraudeDTO, texto: str) -> bool:
+    q = (texto or "").strip().casefold()
+    if not q:
+        return True
+    parts: list[str] = [
+        o.funcionarioNome or "",
+        o.frentistaNome or "",
+        o.postoNome or "",
+        o.empresaNome or "",
+        o.idOcorrencia or o.id or "",
+        str(o.vendaCodigo or ""),
+        o.cartaoFinal or "",
+        o.cartaoNsu or "",
+        o.cpfDesconto or "",
+        o.formaPagamento or "",
+        o.meioPagamento or "",
+        o.motivoSuspeita or "",
+    ]
+    for d in o.abastecimentosAgrupados or o.detalhes or []:
+        parts.extend(
+            [
+                str(d.bico or ""),
+                str(d.bomba or ""),
+                f"bico {int(d.bico or 0):02d}",
+                d.tipoCombustivel or "",
+                str(d.idAbastecimento or ""),
+            ]
+        )
+    hay = " ".join(parts).casefold()
+    return q in hay
+
+
+def filter_ocorrencias_ram(
+    ocorrencias: list[OcorrenciaFraudeDTO],
+    *,
+    frentista_id: int | None = None,
+    frentista_nome: str | None = None,
+    tipo_infracao: str | None = None,
+    tempo_retencao_min: int | None = None,
+    forma_pagamento: str | None = None,
+    busca_texto: str | None = None,
+) -> list[OcorrenciaFraudeDTO]:
+    """Filtragem 100% em memória — meta <20ms."""
+    nome_q = (frentista_nome or "").strip().casefold()
+    out: list[OcorrenciaFraudeDTO] = []
+    for o in ocorrencias:
+        if frentista_id is not None:
+            fid = o.frentistaId if o.frentistaId is not None else o.funcionarioId
+            if fid is None or int(fid) != int(frentista_id):
+                continue
+        if nome_q:
+            nome = (o.funcionarioNome or o.frentistaNome or "").casefold()
+            if nome_q not in nome:
+                continue
+        if tempo_retencao_min is not None and int(o.tempoRetencaoMinutos or 0) < int(
+            tempo_retencao_min
+        ):
+            continue
+        if not _match_tipo_infracao(o, tipo_infracao or ""):
+            continue
+        if not _match_forma_pagamento(o, forma_pagamento or ""):
+            continue
+        if not _match_busca_texto(o, busca_texto or ""):
+            continue
+        out.append(o)
+    return out
+
+
+def list_frentistas_disponiveis(
+    ocorrencias: list[OcorrenciaFraudeDTO],
+) -> list[dict[str, Any]]:
+    """Catálogo para o Select Frentista (derivado do dataset RAM)."""
+    seen: dict[int | str, dict[str, Any]] = {}
+    for o in ocorrencias:
+        fid = o.frentistaId if o.frentistaId is not None else o.funcionarioId
+        nome = (o.funcionarioNome or o.frentistaNome or "").strip() or "N/I"
+        key: int | str = int(fid) if fid is not None else f"n:{nome.casefold()}"
+        if key in seen:
+            seen[key]["qtd"] = int(seen[key]["qtd"]) + 1
+            continue
+        seen[key] = {
+            "id": int(fid) if fid is not None else None,
+            "nome": nome,
+            "qtd": 1,
+        }
+    return sorted(seen.values(), key=lambda x: (-int(x["qtd"]), str(x["nome"])))
 
 
 _engine: FraudDetectionEngine | None = None

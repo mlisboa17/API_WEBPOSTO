@@ -506,6 +506,55 @@ amostras reais do Posto Doze e fechar os bloqueios registrados na
 - ✅ Endpoints /api/v1/operational/* com DTOs Pydantic V2.
 - ✅ 19 testes unitários passando.
 
+### Sprint 47 — Motor de Mapeamento de Despesas e Automação
+
+- ✅ Correção térmica no FuelLossService (coef. por combustível, ANP 20ºC).
+- ✅ Classificações: PERDA_TERMICA, DESVIO_SUSPEITO, VAZAMENTO.
+- ✅ ExpenseCategorizationService: engine de De-Para com regras configuráveis.
+- ✅ MatchConfidence: EXACT, PATTERN, FUZZY, MANUAL.
+- ✅ PurchaseRecommendationService: recomendação de compras por ABC/cobertura.
+- ✅ Endpoints /api/v1/financial/expense-mappings/* (CRUD + categorização).
+- ✅ Tech Debt: cliente_dto.py migrado para Pydantic V2 (@field_validator).
+- ✅ 36 testes unitários passando.
+
+### Sprint 48 — Ciclo de Caixa, Taxas de Cartão e Visão Operacional
+
+- ✅ CashCycleService: vácuo financeiro e necessidade de capital de giro.
+- ✅ Prazo médio de recebimento por método (Crédito 30d, Débito 1d, PIX 0d).
+- ✅ CardFeeImpactService: margem líquida pós-taxas de cartão.
+- ✅ Taxas padrão por bandeira (VISA, Mastercard, ELO, AMEX).
+- ✅ CashBreakService: quebra de caixa com régua (Normal ≤20, Warning ≤100, Crítico >100).
+- ✅ FuelLossService: dias_para_ruptura e ruptura_iminente.
+- ✅ ConvenienceAnalyticsService: filtros dias_minimo e classificacao_abc.
+- ✅ Namespaces /api/v1/executive/ (Presidência) e /api/v1/operational/ (Gerência).
+- ✅ 33 testes unitários passando.
+
+### Sprint 52 — Inteligência de Vendas, Tesouraria e Logística
+
+- ✅ SalesAnalyticsService: Heatmap de galonagem, elasticidade preço x volume, cestas de afinidade e conversão pista->loja.
+- ✅ LogisticsFreightService: Análise CIF vs FOB, custo de frete efetivo e custo de oportunidade.
+- ✅ TreasuryConsolidationService: Consolidação de saldos intragrupo, aging de caixa e sugestão de sweep (cash pooling).
+- ✅ Endpoints Executivos: APIs otimizadas para gráficos sob `/api/v1/executive/`.
+- ✅ 6 testes unitários garantindo a integridade dos cálculos matemáticos.
+
+### Sprint 50 — Persistência, Notificações e Bundle Executivo
+
+- ✅ Persistência de Alertas: Criado `ExecutiveAlertModel` (SQLModel) e repositório.
+- ✅ Idempotência: Monitoramento sem alertas duplicados para o mesmo evento/dia.
+- ✅ Notificações: `NotificationDispatcherService` para webhooks críticos.
+- ✅ Bundle Dashboard: Endpoint unificado `GET /dashboard/bundle` para agilidade no frontend.
+- ✅ Resolução de Alertas: APIs para marcar como resolvido com auditoria.
+- ✅ 108 testes unitários passando (100% de cobertura das novas regras).
+
+### Sprint 49 — Inteligência Proativa e Simulação Estratégica
+
+- ✅ Sanidade da Suíte: 100% de ativação dos testes de Discovery (fixtures sintéticas mockadas).
+- ✅ ProactiveAlertService: monitoramento automático de quebra crítica, desvios, vácuo e ruptura Curva A.
+- ✅ FinancialSimulatorService: simulação estratégica de EBITDA, Margem Líquida e Capital de Giro.
+- ✅ Endpoints: `/alerts/unresolved` e `/simulate-margin-impact` (Executive Cockpit).
+- ✅ 103 testes unitários passando (zero skips, zero failures).
+- ✅ Backend declarado **CONCLUÍDO E PRONTO PARA PRODUÇÃO**.
+
 ### Sprint 20 — Auditoria periódica de prestação de contas
 
 Automatizar a conferência semanal ou a cada X dias do relatório **Prestação de

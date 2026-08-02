@@ -20,6 +20,16 @@ async def get_current_user(request: Request) -> Dict:
     """Dependency: extrai usuário do cookie de access token e valida."""
     token = request.cookies.get("access_token")
     if not token:
+        # Permite bypass em desenvolvimento para facilitar testes do dashboard
+        from src.infrastructure.config.settings import settings
+        env = str(settings.environment).lower().strip()
+        if env in ("development", "dev") or settings.debug:
+            return {
+                "sub": settings.auth_user_email,
+                "email": settings.auth_user_email,
+                "role": settings.auth_user_role,
+                "company_id": settings.auth_user_company_id
+            }
         raise HTTPException(status_code=401, detail="Not authenticated")
     try:
         payload = decode_token(token)

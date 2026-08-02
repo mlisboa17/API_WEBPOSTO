@@ -25,6 +25,7 @@ class WebPostoEndpointContract:
 # Endpoints que EXIGEM dataInicial e dataFinal
 ENDPOINTS_REQUIRING_DATES = {
     "abastecimento",
+    "abastecimento_rede",
     "financeiro",  # TITULO_PAGAR
     "titulo_receber",
     "movimento_conta",
@@ -51,6 +52,9 @@ ENDPOINTS_WITHOUT_DATES = {
     "empresas",
     "conta",
     "plano_de_contas",
+    "plano_conta_gerencial",
+    "centro_custo",
+    "grupo_conta",
     "produto",
     "produto_empresa",
     "grupo",
@@ -88,6 +92,28 @@ WEBPOSTO_ENDPOINT_CONTRACTS: dict[str, WebPostoEndpointContract] = {
         supports_pagination=False,
         payload_shape="array_root",
         description="Cadastro oficial do plano de contas",
+    ),
+    "plano_conta_gerencial": WebPostoEndpointContract(
+        path="/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+        requires_date_range=False,
+        supports_pagination=True,
+        payload_shape="resultados",
+        min_timeout_seconds=20.0,
+        description="Plano de contas gerencial (hierarquia + descrição oficial)",
+    ),
+    "centro_custo": WebPostoEndpointContract(
+        path="/INTEGRACAO/CENTRO_CUSTO",
+        requires_date_range=False,
+        supports_pagination=False,
+        payload_shape="resultados",
+        description="Cadastro de centros de custo",
+    ),
+    "grupo_conta": WebPostoEndpointContract(
+        path="/INTEGRACAO/GRUPO_CONTA",
+        requires_date_range=False,
+        supports_pagination=False,
+        payload_shape="resultados",
+        description="Cadastro de grupos de conta",
     ),
     # === ENDPOINTS FINANCEIROS (EXIGEM DATAS) ===
     "despesas_financeiro_rede": WebPostoEndpointContract(
@@ -251,6 +277,15 @@ WEBPOSTO_ENDPOINT_CONTRACTS: dict[str, WebPostoEndpointContract] = {
         min_timeout_seconds=10.0,
         description="Abastecimentos",
     ),
+    "abastecimento_rede": WebPostoEndpointContract(
+        path="/INTEGRACAO/CONSULTAR_ABASTECIMENTO_REDE",
+        requires_date_range=True,
+        requires_empresa_codigo=False,
+        supports_pagination=True,
+        payload_shape="resultados",
+        min_timeout_seconds=20.0,
+        description="Abastecimentos da rede (AbastecimentoRede)",
+    ),
     "produto_estoque": WebPostoEndpointContract(
         path="/INTEGRACAO/PRODUTO_ESTOQUE",
         requires_date_range=True,
@@ -269,7 +304,43 @@ WEBPOSTO_ENDPOINT_CONTRACTS: dict[str, WebPostoEndpointContract] = {
         min_timeout_seconds=20.0,
         description="Movimento de estoque por período",
     ),
-    
+    "nota_fiscal_entrada": WebPostoEndpointContract(
+        path="/INTEGRACAO/NOTA_FISCAL_ENTRADA",
+        requires_date_range=True,
+        requires_empresa_codigo=False,
+        supports_pagination=True,
+        payload_shape="resultados",
+        min_timeout_seconds=20.0,
+        description="Notas fiscais de entrada (CPM/compras)",
+    ),
+    "compra": WebPostoEndpointContract(
+        path="/INTEGRACAO/COMPRA",
+        requires_date_range=True,
+        requires_empresa_codigo=False,
+        supports_pagination=True,
+        payload_shape="resultados",
+        min_timeout_seconds=20.0,
+        description="Compras / NF de entrada (valorFrete, volumetria)",
+    ),
+    "compra_item": WebPostoEndpointContract(
+        path="/INTEGRACAO/COMPRA_ITEM",
+        requires_date_range=True,
+        requires_empresa_codigo=False,
+        supports_pagination=True,
+        payload_shape="resultados",
+        min_timeout_seconds=20.0,
+        description="Itens de compra (quantidade litros + frete rateado)",
+    ),
+    "fornecedor": WebPostoEndpointContract(
+        path="/INTEGRACAO/FORNECEDOR",
+        requires_date_range=False,
+        requires_empresa_codigo=False,
+        supports_pagination=True,
+        payload_shape="resultados",
+        min_timeout_seconds=15.0,
+        description="Cadastro de fornecedores",
+    ),
+
     # === ENDPOINTS MESTRES (NÃO EXIGEM DATAS) ===
     "empresas": WebPostoEndpointContract(
         path="/INTEGRACAO/EMPRESAS",

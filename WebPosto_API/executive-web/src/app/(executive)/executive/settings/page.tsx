@@ -21,6 +21,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Select } from "@/components/ui/select";
 import { InfoTooltip } from "@/components/ui/info-tooltip";
+import { ClearBrowserCacheButton } from "@/components/executive/clear-browser-cache-button";
 import { cn } from "@/lib/utils";
 
 interface NotificationProfile {
@@ -195,7 +196,8 @@ export default function NotificationSettingsPage() {
             Matriz de Criticidade e Escalacao de Alertas Proativos
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2 items-center">
+          <ClearBrowserCacheButton variant="inline" />
           <Button
             variant="outline"
             size="sm"

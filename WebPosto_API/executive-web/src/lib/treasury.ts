@@ -33,7 +33,17 @@ export interface TreasuryData {
 }
 
 type JsonRecord = Record<string, unknown>;
-const API = process.env.WEBPOSTO_API_URL || "http://127.0.0.1:8040";
+
+/** Browser → proxy Next; server → API direta (evita CORS / Failed to fetch). */
+function apiUrl(path: string): string {
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  if (typeof window !== "undefined") {
+    return normalized.replace(/^\/api\/v1\//, "/api/proxy/");
+  }
+  const base = process.env.WEBPOSTO_API_URL || "http://127.0.0.1:8040";
+  return `${base}${normalized}`;
+}
+
 const number = (value: unknown) => Number(value || 0);
 const nullableNumber = (value: unknown) => value === null || value === undefined || value === "" ? null : Number(value);
 const object = (value: unknown): JsonRecord => value && typeof value === "object" && !Array.isArray(value) ? value as JsonRecord : {};
@@ -43,7 +53,7 @@ const companyName = (code: unknown) => COMPANIES.find(item => item.code === Stri
 async function fetchCashFlow(start: string, end: string, company?: string): Promise<JsonRecord> {
   const query = new URLSearchParams({ dataInicial: start, dataFinal: end });
   if (company && company !== "all") query.set("empresaCodigo", company);
-  const response = await fetch(`${API}/api/v1/finance/cash-flow?${query}`, { cache: "no-store", signal: AbortSignal.timeout(30000) });
+  const response = await fetch(apiUrl(`/api/v1/finance/cash-flow?${query}`), { cache: "no-store", signal: AbortSignal.timeout(30000) });
   if (!response.ok) throw new Error(`cash-flow ${response.status}`);
   const envelope = object(await response.json());
   return object(envelope.data || envelope);
@@ -55,7 +65,7 @@ async function fetchExpenses(start: string, end: string, company?: string): Prom
   const load = async (page: number, endpoint: "expenses" | "expenses-snapshot") => {
     const pageQuery = new URLSearchParams(query);
     pageQuery.set("page", String(page));
-    const response = await fetch(`${API}/api/v1/finance/center/${endpoint}?${pageQuery}`, { cache: "no-store", signal: AbortSignal.timeout(endpoint === "expenses" ? 10000 : 15000) });
+    const response = await fetch(apiUrl(`/api/v1/finance/center/${endpoint}?${pageQuery}`), { cache: "no-store", signal: AbortSignal.timeout(endpoint === "expenses" ? 10000 : 15000) });
     if (!response.ok) throw new Error(`expenses ${response.status}`);
     const envelope = object(await response.json());
     if (envelope.success === false) throw new Error("expenses unavailable");
@@ -73,21 +83,21 @@ async function fetchExpenses(start: string, end: string, company?: string): Prom
 }
 
 async function fetchClassifications(): Promise<JsonRecord> {
-  const response = await fetch(`${API}/api/v1/finance/director-reconciliation/expense-classifications`, { cache: "no-store", signal: AbortSignal.timeout(10000) });
+  const response = await fetch(apiUrl("/api/v1/finance/director-reconciliation/expense-classifications"), { cache: "no-store", signal: AbortSignal.timeout(10000) });
   if (!response.ok) return {};
   return object(object(await response.json()).data);
 }
 
 async function fetchCashReconciliation(start: string, end: string, company: string): Promise<JsonRecord> {
   const query = new URLSearchParams({ dataInicial: start, dataFinal: end, empresaCodigo: company });
-  const response = await fetch(`${API}/api/v1/cash-reconciliation/summary?${query}`, { cache: "no-store", signal: AbortSignal.timeout(60000) });
+  const response = await fetch(apiUrl(`/api/v1/cash-reconciliation/summary?${query}`), { cache: "no-store", signal: AbortSignal.timeout(60000) });
   if (!response.ok) throw new Error(`cash-reconciliation ${response.status}`);
   return object(object(await response.json()).data);
 }
 
 async function fetchCashDestinations(start: string, end: string, company: string): Promise<JsonRecord[]> {
   const query = new URLSearchParams({ dataInicial: start, dataFinal: end, empresaCodigo: company });
-  const response = await fetch(`${API}/api/v1/cash-reconciliation/cash-destinations?${query}`, { cache: "no-store", signal: AbortSignal.timeout(10000) });
+  const response = await fetch(apiUrl(`/api/v1/cash-reconciliation/cash-destinations?${query}`), { cache: "no-store", signal: AbortSignal.timeout(10000) });
   if (!response.ok) return [];
   return array(object(await response.json()).data);
 }
@@ -142,7 +152,7 @@ function aggregateCashClosing(results: PromiseSettledResult<JsonRecord>[], alloc
 
 async function fetchPaymentMethodCatalog(start: string, end: string, company: string): Promise<JsonRecord> {
   const query = new URLSearchParams({ dataInicial: start, dataFinal: end, empresaCodigo: company });
-  const response = await fetch(`${API}/api/v1/cash-reconciliation/payment-methods?${query}`, { cache: "no-store", signal: AbortSignal.timeout(120000) });
+  const response = await fetch(apiUrl(`/api/v1/cash-reconciliation/payment-methods?${query}`), { cache: "no-store", signal: AbortSignal.timeout(120000) });
   if (!response.ok) throw new Error(`payment-methods ${response.status}`);
   return object(object(await response.json()).data);
 }
@@ -150,13 +160,13 @@ async function fetchPaymentMethodCatalog(start: string, end: string, company: st
 async function fetchDepartmentalDre(start: string, end: string, company?: string): Promise<JsonRecord[]> {
   const query = new URLSearchParams({ dataInicial: start, dataFinal: end });
   if (company && company !== "all") query.set("empresaCodigo", company);
-  const response = await fetch(`${API}/api/v1/finance/director-reconciliation/dre-complete?${query}`, { cache: "no-store", signal: AbortSignal.timeout(180000) });
+  const response = await fetch(apiUrl(`/api/v1/finance/director-reconciliation/dre-complete?${query}`), { cache: "no-store", signal: AbortSignal.timeout(180000) });
   if (!response.ok) return [];
   return array(object(object(await response.json()).data).lines);
 }
 
 async function fetchPeriodicAudits(): Promise<PeriodicAuditCycle[]> {
-  const response = await fetch(`${API}/api/v1/auditorias-periodicas/ciclos`, { cache: "no-store", signal: AbortSignal.timeout(10000) });
+  const response = await fetch(apiUrl("/api/v1/auditorias-periodicas/ciclos"), { cache: "no-store", signal: AbortSignal.timeout(10000) });
   if (!response.ok) return [];
   return array(object(await response.json()).data) as unknown as PeriodicAuditCycle[];
 }

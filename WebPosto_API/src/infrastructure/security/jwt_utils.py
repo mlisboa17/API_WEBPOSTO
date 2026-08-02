@@ -32,7 +32,11 @@ def create_refresh_token(subject: str, extra: Dict[str, Any] | None = None) -> s
 
 def decode_token(token: str) -> Dict[str, Any]:
     try:
+        if token.startswith("Bearer "):
+            token = token[7:]
         payload = jwt.decode(token, settings.secret_key, algorithms=[settings.jwt_algorithm])
+        if not isinstance(payload, dict):
+            raise ValueError("Token payload is not a dict")
         return payload
     except jwt.ExpiredSignatureError:
         raise

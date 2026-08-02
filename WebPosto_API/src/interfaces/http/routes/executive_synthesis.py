@@ -19,9 +19,15 @@ def _get_synthesis_service() -> ExecutiveSynthesisService:
         DirectorFinancialReconciliationPipeline,
     )
     from src.services.fuel_snapshot_service import FuelSnapshotService
+    from src.services.fuel_analytics_service import FuelAnalyticsService
+    from src.services.fuel_kpi_engine import FuelKpiEngine
+    from src.gateway.shared_client import get_webposto_client
 
-    reconciliation = DirectorFinancialReconciliationPipeline()
-    fuel = FuelSnapshotService()
+    client = get_webposto_client()
+    reconciliation = DirectorFinancialReconciliationPipeline(client)
+    fuel_analytics = FuelAnalyticsService(client)
+    fuel_kpi_engine = FuelKpiEngine()
+    fuel = FuelSnapshotService(fuel_analytics, fuel_kpi_engine)
     dre = CompleteDepartmentalDreService(
         reconciliation=reconciliation, fuel=fuel, non_fuel=fuel
     )

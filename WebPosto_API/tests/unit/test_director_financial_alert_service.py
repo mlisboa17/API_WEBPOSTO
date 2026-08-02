@@ -1,11 +1,12 @@
-from src.domain.financial_reconciliation import FinancialCoverage, FinancialSource
+from src.domain.financial_reconciliation import CoverageStatus, FinancialCoverage, FinancialSource
 from src.services.director_financial_alert_service import DirectorFinancialAlertService
 
 
 def test_incomplete_coverage_creates_critical_blocker() -> None:
     alerts = DirectorFinancialAlertService().evaluate([
         FinancialCoverage(source=FinancialSource.ACCOUNT_MOVEMENT, complete=False,
-                          records=200, strategy="COMPANY_DAY_CURSOR")
+                          records=200, strategy="COMPANY_DAY_CURSOR",
+                          status=CoverageStatus.INCOMPLETE_COVERAGE)
     ], [])
     assert alerts[0].alert_type == "COBERTURA_INCOMPLETA"
     assert alerts[0].severity.value == "CRITICA"

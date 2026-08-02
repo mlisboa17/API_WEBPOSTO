@@ -24,6 +24,7 @@ from src.utils.retry import retry_async
 
 ENDPOINTS = {
     "abastecimento": "/INTEGRACAO/ABASTECIMENTO",
+    "abastecimento_rede": "/INTEGRACAO/CONSULTAR_ABASTECIMENTO_REDE",
     "financeiro": "/INTEGRACAO/TITULO_PAGAR",
     "titulo_receber": "/INTEGRACAO/TITULO_RECEBER",
     "movimento_conta": "/INTEGRACAO/MOVIMENTO_CONTA",
@@ -37,6 +38,9 @@ ENDPOINTS = {
     "empresas": "/INTEGRACAO/EMPRESAS",
     "conta": "/INTEGRACAO/CONTA",
     "plano_de_contas": "/INTEGRACAO/PLANO_DE_CONTAS",
+    "plano_conta_gerencial": "/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+    "centro_custo": "/INTEGRACAO/CENTRO_CUSTO",
+    "grupo_conta": "/INTEGRACAO/GRUPO_CONTA",
     "venda": "/INTEGRACAO/VENDA",
     "venda_item": "/INTEGRACAO/VENDA_ITEM",
     "venda_item_rede": "/INTEGRACAO/CONSULTAR_VENDA_ITEM_REDE",
@@ -56,12 +60,17 @@ ENDPOINTS = {
     "produto_combustivel": "/INTEGRACAO/PRODUTO_COMBUSTIVEL",
     "tanque": "/INTEGRACAO/TANQUE",
     "estoque_periodo": "/INTEGRACAO/ESTOQUE_PERIODO",
+    "nota_fiscal_entrada": "/INTEGRACAO/NOTA_FISCAL_ENTRADA",
+    "compra": "/INTEGRACAO/COMPRA",
+    "compra_item": "/INTEGRACAO/COMPRA_ITEM",
+    "fornecedor": "/INTEGRACAO/FORNECEDOR",
     "lmc_rede": "/INTEGRACAO/CONSULTAR_LMC_REDE",
     "funcionario": "/INTEGRACAO/FUNCIONARIO",
 }
 
-# A ordem acompanha OFFICIAL_WEBPOSTO_TOKEN_ENV_KEYS em src.core.config.
-OFFICIAL_COMPANY_TOKEN_INDEX = {11495: 0, 5555: 1, 74014: 2}
+# A ordem canônica e o mapa empresa→token vivem em src.core.config.
+from src.core.config import OFFICIAL_COMPANY_TOKEN_INDEX  # noqa: F401 — compat legada
+
 
 
 class WebPostoClient:
@@ -125,10 +134,21 @@ class WebPostoClient:
         if not params or params.get("empresaCodigo") in (None, ""):
             return keys
         try:
-            index = OFFICIAL_COMPANY_TOKEN_INDEX[int(params["empresaCodigo"])]
-        except (KeyError, TypeError, ValueError):
+            empresa_codigo = int(params["empresaCodigo"])
+        except (TypeError, ValueError):
             return keys
-        # Configurações isoladas já contêm somente a credencial correta.
+
+        company_key = self.config.key_for_company(empresa_codigo)
+        if company_key:
+            return (company_key,)
+
+        # Fallback índice legado
+        try:
+            from src.core.config import OFFICIAL_COMPANY_TOKEN_INDEX
+
+            index = OFFICIAL_COMPANY_TOKEN_INDEX[empresa_codigo]
+        except KeyError:
+            return keys
         if len(keys) == 1:
             return keys
         return (keys[index],) if index < len(keys) else keys
@@ -199,11 +219,15 @@ class WebPostoClient:
             "venda_item_rede",
             "venda_forma_pagamento",
             "venda_forma_pagamento_rede",
+            "abastecimento_rede",
             "administradora_rede",
             "cartao_rede",
             "nfce",
             "produto_estoque",
             "estoque_periodo",
+            "nota_fiscal_entrada",
+            "compra",
+            "compra_item",
             "lmc_rede",
             "funcionario",
         }:

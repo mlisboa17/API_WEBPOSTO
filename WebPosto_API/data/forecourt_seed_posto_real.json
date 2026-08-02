@@ -1,0 +1,211 @@
+{
+  "seed_id": "FORECOURT-CONFIG-01C-B-POSTO-REAL-V1",
+  "station_alias": "real_doze",
+  "layout": {
+    "name": "Posto Real V1",
+    "mapping_status": "PROVISIONAL",
+    "mapping_note": "MAPEAMENTO PROVISÓRIO — Topologia cadastrada. Orientação física exata dos lados/sensores pendente de validação",
+    "coordinate_width": 1100,
+    "coordinate_height": 780,
+    "zones": [
+      {
+        "code": "ZONE_LIQUIDOS",
+        "name": "Zona Líquidos (frente do T)",
+        "display_order": 1,
+        "x": 36,
+        "y": 48,
+        "width": 1028,
+        "height": 360
+      },
+      {
+        "code": "ZONE_GNV",
+        "name": "Zona GNV (haste traseira do T)",
+        "display_order": 2,
+        "x": 330,
+        "y": 420,
+        "width": 440,
+        "height": 300
+      }
+    ],
+    "markers": [
+      {
+        "code": "BR-101",
+        "label": "BR-101",
+        "x": 520,
+        "y": 72
+      }
+    ],
+    "islands": [
+      {
+        "code": "REAL_LIQ_ILHA_03",
+        "name": "Ilha Líquidos 03",
+        "zone_code": "ZONE_LIQUIDOS",
+        "display_order": 1,
+        "x": 70,
+        "y": 110,
+        "width": 280,
+        "height": 230
+      },
+      {
+        "code": "REAL_LIQ_ILHA_02",
+        "name": "Ilha Líquidos 02",
+        "zone_code": "ZONE_LIQUIDOS",
+        "display_order": 2,
+        "x": 410,
+        "y": 150,
+        "width": 280,
+        "height": 230
+      },
+      {
+        "code": "REAL_LIQ_ILHA_01",
+        "name": "Ilha Líquidos 01",
+        "zone_code": "ZONE_LIQUIDOS",
+        "display_order": 3,
+        "x": 750,
+        "y": 190,
+        "width": 280,
+        "height": 230
+      },
+      {
+        "code": "REAL_GNV_01",
+        "name": "GNV 001",
+        "zone_code": "ZONE_GNV",
+        "display_order": 4,
+        "x": 360,
+        "y": 480,
+        "width": 180,
+        "height": 150
+      },
+      {
+        "code": "REAL_GNV_02",
+        "name": "GNV 002",
+        "zone_code": "ZONE_GNV",
+        "display_order": 5,
+        "x": 560,
+        "y": 480,
+        "width": 180,
+        "height": 150
+      }
+    ],
+    "positions": [
+      {
+        "island_code": "REAL_LIQ_ILHA_01",
+        "pump_id": 1,
+        "pump_name": "BOMBA 01",
+        "code": "REAL_B01_SENSOR_01",
+        "name": "Bomba 01 — Sensor 01 (orientação física não confirmada)",
+        "orientation": "UNCONFIRMED",
+        "x": 770,
+        "y": 220,
+        "nozzles": [
+          { "nozzle_id": 1, "label": "001 S10", "active": true },
+          { "nozzle_id": 2, "label": "002 Comum", "active": true },
+          { "nozzle_id": 3, "label": "003 Etanol", "active": true }
+        ]
+      },
+      {
+        "island_code": "REAL_LIQ_ILHA_01",
+        "pump_id": 1,
+        "pump_name": "BOMBA 01",
+        "code": "REAL_B01_SENSOR_02",
+        "name": "Bomba 01 — Sensor 02 (orientação física não confirmada)",
+        "orientation": "UNCONFIRMED",
+        "x": 770,
+        "y": 320,
+        "nozzles": [
+          { "nozzle_id": 4, "label": "004 S10", "active": true },
+          { "nozzle_id": 5, "label": "005 Comum", "active": true },
+          { "nozzle_id": 6, "label": "006 Etanol", "active": true }
+        ]
+      },
+      {
+        "island_code": "REAL_LIQ_ILHA_02",
+        "pump_id": 2,
+        "pump_name": "BOMBA 02",
+        "code": "REAL_B02_SENSOR_03",
+        "name": "Bomba 02 — Sensor 03 (orientação física não confirmada)",
+        "orientation": "UNCONFIRMED",
+        "x": 430,
+        "y": 180,
+        "nozzles": [
+          { "nozzle_id": 7, "label": "007 Aditivada", "active": true },
+          { "nozzle_id": 8, "label": "008 Comum", "active": true },
+          { "nozzle_id": 9, "label": "009 Etanol", "active": true }
+        ]
+      },
+      {
+        "island_code": "REAL_LIQ_ILHA_02",
+        "pump_id": 2,
+        "pump_name": "BOMBA 02",
+        "code": "REAL_B02_SENSOR_04",
+        "name": "Bomba 02 — Sensor 04 (orientação física não confirmada)",
+        "orientation": "UNCONFIRMED",
+        "x": 430,
+        "y": 280,
+        "nozzles": [
+          { "nozzle_id": 10, "label": "010 Aditivada", "active": true },
+          { "nozzle_id": 11, "label": "011 Comum", "active": true },
+          { "nozzle_id": 12, "label": "012 Etanol", "active": true }
+        ]
+      },
+      {
+        "island_code": "REAL_LIQ_ILHA_03",
+        "pump_id": 3,
+        "pump_name": "BOMBA 03",
+        "code": "REAL_B03_SENSOR_05",
+        "name": "Bomba 03 — Sensor 05 (orientação física não confirmada)",
+        "orientation": "UNCONFIRMED",
+        "x": 90,
+        "y": 140,
+        "nozzles": [
+          { "nozzle_id": 13, "label": "013 Comum", "active": true },
+          { "nozzle_id": 14, "label": "014 Etanol", "active": true },
+          { "nozzle_id": 17, "label": "017 Aditivada", "active": true }
+        ]
+      },
+      {
+        "island_code": "REAL_LIQ_ILHA_03",
+        "pump_id": 3,
+        "pump_name": "BOMBA 03",
+        "code": "REAL_B03_SENSOR_06",
+        "name": "Bomba 03 — Sensor 06 (orientação física não confirmada)",
+        "orientation": "UNCONFIRMED",
+        "x": 90,
+        "y": 240,
+        "nozzles": [
+          { "nozzle_id": 15, "label": "015 Comum", "active": true },
+          { "nozzle_id": 16, "label": "016 Etanol", "active": true },
+          { "nozzle_id": 18, "label": "018 Aditivada", "active": true }
+        ]
+      },
+      {
+        "island_code": "REAL_GNV_01",
+        "pump_id": 101,
+        "pump_name": "GNV 001",
+        "code": "REAL_GNV_001",
+        "name": "Display GNV 1",
+        "orientation": "GNV",
+        "x": 380,
+        "y": 520,
+        "nozzles": [
+          { "nozzle_id": 19, "label": "019 GNV", "active": true },
+          { "nozzle_id": 20, "label": "020 GNV", "active": true }
+        ]
+      },
+      {
+        "island_code": "REAL_GNV_02",
+        "pump_id": 102,
+        "pump_name": "GNV 002",
+        "code": "REAL_GNV_002",
+        "name": "Display GNV 2",
+        "orientation": "GNV",
+        "x": 580,
+        "y": 520,
+        "nozzles": [
+          { "nozzle_id": 21, "label": "021 GNV", "active": true },
+          { "nozzle_id": 22, "label": "022 GNV", "active": true }
+        ]
+      }
+    ]
+  }
+}

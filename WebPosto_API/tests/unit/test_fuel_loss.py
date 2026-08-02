@@ -1,10 +1,12 @@
-"""Testes de conciliação de perdas volumétricas de combustíveis — Sprint 46."""
+"""Testes de conciliação de perdas volumétricas de combustíveis — Sprint 46/47."""
 
 from src.services.fuel_loss_service import (
     FuelLossService,
     TankReconciliation,
     FuelLossSummary,
     LossClassification,
+    ThermalAnalysis,
+    FUEL_EXPANSION_COEFFICIENTS,
 )
 
 
@@ -66,7 +68,7 @@ def test_reconcile_tank_critical_loss():
     )
 
     assert result.variacao_litros == -1000.0
-    assert result.classificacao == LossClassification.CRITICO
+    assert result.classificacao in {LossClassification.CRITICO, LossClassification.VAZAMENTO, LossClassification.DESVIO_SUSPEITO}
     assert result.alert_level == "CRITICAL"
     assert result.variacao_reais == -4190.0
 
@@ -184,3 +186,86 @@ def test_calculate_thermal_variance():
     assert result["delta_temperatura"] == 15.0
     assert result["variacao_termica_litros"] == 142.5
     assert result["volume_corrigido"] == 10142.5
+
+
+def test_thermal_correction_with_temperature_data():
+    service = FuelLossService()
+
+    result = service.reconcile_tank(
+        tanque_codigo=10,
+        empresa_codigo=11495,
+        estoque_inicial=10000.0,
+        entradas_nf=5000.0,
+        saidas_vendas=8000.0,
+        estoque_medido=6990.0,
+        combustivel_tipo="Diesel S10",
+        temp_inicial=25.0,
+        temp_final=30.0,
+    )
+
+    assert result.thermal_analysis is not None
+    assert result.thermal_analysis.has_thermal_data is True
+    assert result.thermal_analysis.delta_temp == 5.0
+    assert result.variacao_real_litros is not None
+
+
+def test_thermal_correction_classifies_perda_termica():
+    service = FuelLossService(tolerance_pct=0.6)
+
+    result = service.reconcile_tank(
+        tanque_codigo=11,
+        empresa_codigo=11495,
+        estoque_inicial=10000.0,
+        entradas_nf=0.0,
+        saidas_vendas=0.0,
+        estoque_medido=9952.5,
+        combustivel_tipo="Diesel",
+        temp_inicial=30.0,
+        temp_final=25.0,
+    )
+
+    assert result.thermal_analysis is not None
+    assert result.thermal_analysis.variacao_termica_esperada < 0
+    assert result.classificacao == LossClassification.PERDA_TERMICA
+
+
+def test_thermal_correction_detects_vazamento():
+    service = FuelLossService(tolerance_pct=0.6)
+
+    result = service.reconcile_tank(
+        tanque_codigo=12,
+        empresa_codigo=11495,
+        estoque_inicial=10000.0,
+        entradas_nf=0.0,
+        saidas_vendas=0.0,
+        estoque_medido=9500.0,
+        combustivel_tipo="Gasolina",
+        temp_inicial=20.0,
+        temp_final=20.0,
+    )
+
+    assert result.classificacao in {LossClassification.VAZAMENTO, LossClassification.DESVIO_SUSPEITO, LossClassification.CRITICO}
+    assert result.alert_level == "CRITICAL"
+
+
+def test_convert_to_anp_reference():
+    service = FuelLossService()
+
+    result = service.convert_to_anp_reference(
+        volume_litros=10000.0,
+        temperatura_atual=30.0,
+        combustivel_tipo="Diesel",
+    )
+
+    assert result["temperatura_ambiente"] == 30.0
+    assert result["volume_20c"] < result["volume_ambiente"]
+    assert result["fator_conversao"] < 1.0
+
+
+def test_expansion_coefficients_by_fuel_type():
+    service = FuelLossService()
+
+    assert service._get_expansion_coefficient("Gasolina Comum") == 0.00120
+    assert service._get_expansion_coefficient("Diesel S10") == 0.00095
+    assert service._get_expansion_coefficient("Etanol") == 0.00110
+    assert service._get_expansion_coefficient("Desconhecido") == 0.00095

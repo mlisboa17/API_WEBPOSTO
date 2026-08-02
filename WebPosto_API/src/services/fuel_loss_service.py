@@ -14,9 +14,40 @@ class LossClassification(str, Enum):
     """Classificação da variação volumétrica."""
 
     NORMAL = "NORMAL"
+    PERDA_TERMICA = "PERDA_TERMICA"
     ATENCAO = "ATENCAO"
     CRITICO = "CRITICO"
     SOBRA_SUSPEITA = "SOBRA_SUSPEITA"
+    DESVIO_SUSPEITO = "DESVIO_SUSPEITO"
+    VAZAMENTO = "VAZAMENTO"
+
+
+FUEL_EXPANSION_COEFFICIENTS: dict[str, float] = {
+    "GASOLINA": 0.00120,
+    "GASOLINA COMUM": 0.00120,
+    "GASOLINA ADITIVADA": 0.00120,
+    "ETANOL": 0.00110,
+    "ALCOOL": 0.00110,
+    "DIESEL": 0.00095,
+    "DIESEL S10": 0.00095,
+    "DIESEL S500": 0.00095,
+    "GNV": 0.00000,
+    "DEFAULT": 0.00095,
+}
+
+
+class ThermalAnalysis(BaseModel):
+    """Análise de variação térmica de um tanque."""
+
+    model_config = ConfigDict(frozen=True)
+
+    temp_inicial: float | None = None
+    temp_final: float | None = None
+    delta_temp: float | None = None
+    coef_expansao: float = 0.00095
+    variacao_termica_esperada: float = 0.0
+    variacao_termica_pct: float = 0.0
+    has_thermal_data: bool = False
 
 
 class TankReconciliation(BaseModel):
@@ -41,6 +72,12 @@ class TankReconciliation(BaseModel):
     tolerancia_pct: float = 0.6
     within_tolerance: bool
     alert_level: str = "OK"
+    thermal_analysis: ThermalAnalysis | None = None
+    variacao_real_litros: float | None = None
+    variacao_real_pct: float | None = None
+    dias_periodo: int = 1
+    venda_media_diaria: float | None = None
+    dias_para_ruptura: float | None = None
 
     @property
     def is_loss(self) -> bool:
@@ -49,6 +86,20 @@ class TankReconciliation(BaseModel):
     @property
     def is_surplus(self) -> bool:
         return self.variacao_litros > 0
+
+    @property
+    def is_thermal_explained(self) -> bool:
+        if not self.thermal_analysis or not self.thermal_analysis.has_thermal_data:
+            return False
+        if self.variacao_real_litros is None:
+            return False
+        return abs(self.variacao_real_litros) <= abs(self.variacao_litros) * 0.3
+
+    @property
+    def ruptura_iminente(self) -> bool:
+        if self.dias_para_ruptura is None:
+            return False
+        return self.dias_para_ruptura <= 3
 
 
 class FuelLossSummary(BaseModel):
@@ -76,14 +127,50 @@ class FuelLossSummary(BaseModel):
 
 
 class FuelLossService:
-    """Concilia medições de tanque e identifica perdas/sobras volumétricas."""
+    """Concilia medições de tanque e identifica perdas/sobras volumétricas com correção térmica."""
 
     DEFAULT_TOLERANCE_PCT = 0.6
     CRITICAL_TOLERANCE_PCT = 1.5
+    VAZAMENTO_THRESHOLD_PCT = 3.0
     SURPLUS_ALERT_PCT = 0.3
+    ANP_REFERENCE_TEMP = 20.0
 
     def __init__(self, tolerance_pct: float | None = None) -> None:
         self._tolerance = tolerance_pct or self.DEFAULT_TOLERANCE_PCT
+
+    def _get_expansion_coefficient(self, combustivel_tipo: str | None) -> float:
+        if not combustivel_tipo:
+            return FUEL_EXPANSION_COEFFICIENTS["DEFAULT"]
+        normalized = combustivel_tipo.upper().strip()
+        for key, coef in FUEL_EXPANSION_COEFFICIENTS.items():
+            if key in normalized or normalized in key:
+                return coef
+        return FUEL_EXPANSION_COEFFICIENTS["DEFAULT"]
+
+    def calculate_thermal_correction(
+        self,
+        volume_litros: float,
+        temp_inicial: float | None,
+        temp_final: float | None,
+        combustivel_tipo: str | None = None,
+    ) -> ThermalAnalysis:
+        if temp_inicial is None or temp_final is None:
+            return ThermalAnalysis(has_thermal_data=False)
+
+        coef = self._get_expansion_coefficient(combustivel_tipo)
+        delta_temp = temp_final - temp_inicial
+        variacao_termica = volume_litros * coef * delta_temp
+        variacao_pct = abs(variacao_termica) / max(volume_litros, 1) * 100
+
+        return ThermalAnalysis(
+            temp_inicial=temp_inicial,
+            temp_final=temp_final,
+            delta_temp=round(delta_temp, 2),
+            coef_expansao=coef,
+            variacao_termica_esperada=round(variacao_termica, 2),
+            variacao_termica_pct=round(variacao_pct, 4),
+            has_thermal_data=True,
+        )
 
     def reconcile_tank(
         self,
@@ -96,6 +183,9 @@ class FuelLossService:
         combustivel_tipo: str | None = None,
         empresa_nome: str | None = None,
         preco_medio: float | None = None,
+        temp_inicial: float | None = None,
+        temp_final: float | None = None,
+        dias_periodo: int = 1,
     ) -> TankReconciliation:
         estoque_esperado = estoque_inicial + entradas_nf - saidas_vendas
         variacao_litros = estoque_medido - estoque_esperado
@@ -107,21 +197,26 @@ class FuelLossService:
         if preco_medio and preco_medio > 0:
             variacao_reais = round(variacao_litros * preco_medio, 2)
 
+        thermal = self.calculate_thermal_correction(
+            estoque_inicial, temp_inicial, temp_final, combustivel_tipo
+        )
+
+        variacao_real_litros = None
+        variacao_real_pct = None
+        if thermal.has_thermal_data:
+            variacao_real_litros = round(variacao_litros - thermal.variacao_termica_esperada, 2)
+            variacao_real_pct = round(abs(variacao_real_litros) / base_volume * 100, 4)
+
+        classificacao, alert_level = self._classify_with_thermal(
+            variacao_litros, variacao_pct, variacao_real_litros, variacao_real_pct, thermal
+        )
+
         within_tolerance = variacao_pct <= self._tolerance
 
-        if variacao_pct > self.CRITICAL_TOLERANCE_PCT:
-            classificacao = LossClassification.CRITICO
-            alert_level = "CRITICAL"
-        elif variacao_pct > self._tolerance:
-            if variacao_litros > 0:
-                classificacao = LossClassification.SOBRA_SUSPEITA
-                alert_level = "WARNING"
-            else:
-                classificacao = LossClassification.ATENCAO
-                alert_level = "WARNING"
-        else:
-            classificacao = LossClassification.NORMAL
-            alert_level = "OK"
+        venda_media_diaria = saidas_vendas / max(dias_periodo, 1)
+        dias_para_ruptura = None
+        if venda_media_diaria > 0 and estoque_medido > 0:
+            dias_para_ruptura = round(estoque_medido / venda_media_diaria, 1)
 
         return TankReconciliation(
             tanque_codigo=tanque_codigo,
@@ -141,7 +236,44 @@ class FuelLossService:
             tolerancia_pct=self._tolerance,
             within_tolerance=within_tolerance,
             alert_level=alert_level,
+            thermal_analysis=thermal if thermal.has_thermal_data else None,
+            variacao_real_litros=variacao_real_litros,
+            variacao_real_pct=variacao_real_pct,
+            dias_periodo=dias_periodo,
+            venda_media_diaria=round(venda_media_diaria, 2) if venda_media_diaria else None,
+            dias_para_ruptura=dias_para_ruptura,
         )
+
+    def _classify_with_thermal(
+        self,
+        variacao_litros: float,
+        variacao_pct: float,
+        variacao_real_litros: float | None,
+        variacao_real_pct: float | None,
+        thermal: ThermalAnalysis,
+    ) -> tuple[LossClassification, str]:
+        if thermal.has_thermal_data and variacao_real_pct is not None:
+            if variacao_real_pct <= self._tolerance * 0.5:
+                return LossClassification.PERDA_TERMICA, "OK"
+            elif variacao_real_pct > self.VAZAMENTO_THRESHOLD_PCT:
+                return LossClassification.VAZAMENTO, "CRITICAL"
+            elif variacao_real_pct > self.CRITICAL_TOLERANCE_PCT:
+                return LossClassification.DESVIO_SUSPEITO, "CRITICAL"
+            elif variacao_real_pct > self._tolerance:
+                if variacao_real_litros and variacao_real_litros > 0:
+                    return LossClassification.SOBRA_SUSPEITA, "WARNING"
+                return LossClassification.ATENCAO, "WARNING"
+            return LossClassification.NORMAL, "OK"
+
+        if variacao_pct > self.VAZAMENTO_THRESHOLD_PCT:
+            return LossClassification.VAZAMENTO, "CRITICAL"
+        if variacao_pct > self.CRITICAL_TOLERANCE_PCT:
+            return LossClassification.CRITICO, "CRITICAL"
+        if variacao_pct > self._tolerance:
+            if variacao_litros > 0:
+                return LossClassification.SOBRA_SUSPEITA, "WARNING"
+            return LossClassification.ATENCAO, "WARNING"
+        return LossClassification.NORMAL, "OK"
 
     def reconcile_batch(
         self,
@@ -168,7 +300,11 @@ class FuelLossService:
 
         com_perda = [r for r in reconciliations if r.is_loss]
         com_sobra = [r for r in reconciliations if r.is_surplus]
-        criticos = [r for r in reconciliations if r.classificacao == LossClassification.CRITICO]
+        criticos = [r for r in reconciliations if r.classificacao in {
+            LossClassification.CRITICO,
+            LossClassification.VAZAMENTO,
+            LossClassification.DESVIO_SUSPEITO,
+        }]
 
         perda_litros = sum(abs(r.variacao_litros) for r in com_perda)
         sobra_litros = sum(r.variacao_litros for r in com_sobra)
@@ -285,4 +421,21 @@ class FuelLossService:
             "coeficiente_expansao": coef_expansao,
             "variacao_termica_litros": round(variacao_termica, 2),
             "volume_corrigido": round(volume_litros + variacao_termica, 2),
+        }
+
+    def convert_to_anp_reference(
+        self,
+        volume_litros: float,
+        temperatura_atual: float,
+        combustivel_tipo: str | None = None,
+    ) -> dict[str, float]:
+        coef = self._get_expansion_coefficient(combustivel_tipo)
+        delta_to_20c = self.ANP_REFERENCE_TEMP - temperatura_atual
+        volume_20c = volume_litros * (1 + coef * delta_to_20c)
+        return {
+            "volume_ambiente": round(volume_litros, 2),
+            "temperatura_ambiente": temperatura_atual,
+            "volume_20c": round(volume_20c, 2),
+            "fator_conversao": round(1 + coef * delta_to_20c, 6),
+            "coeficiente": coef,
         }

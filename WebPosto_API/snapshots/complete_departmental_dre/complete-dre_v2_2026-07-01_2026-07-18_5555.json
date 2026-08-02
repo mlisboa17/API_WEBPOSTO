@@ -1,0 +1,83 @@
+{
+  "lastUpdated": "2026-07-24T00:28:44.247794+00:00",
+  "data": {
+    "period": {
+      "start": "2026-07-01",
+      "end": "2026-07-18"
+    },
+    "lines": [
+      {
+        "companyCode": 5555,
+        "companyName": "AP CASA CAIADA",
+        "department": "combustiveis",
+        "revenue": null,
+        "cost": null,
+        "grossMargin": null,
+        "expenses": null,
+        "operatingResult": null,
+        "operatingMarginPct": null,
+        "status": "BLOQUEADO",
+        "operationalEvidence": {
+          "status": "COMPROVADO",
+          "revenue": "297558.37",
+          "cost": "255831.63",
+          "grossMargin": "41726.74",
+          "coveragePct": "98.17",
+          "itemsCollected": 4255,
+          "itemsAccepted": 4177,
+          "itemsQuarantined": 78,
+          "pagination": {
+            "complete": true,
+            "termination": "SHORT_BATCH",
+            "pages": 22,
+            "duplicatesRemoved": 0,
+            "ultimoCodigo": 759160675
+          }
+        },
+        "missingEvidence": [
+          "CLASSIFICACAO_DESPESAS"
+        ]
+      },
+      {
+        "companyCode": 5555,
+        "companyName": "AP CASA CAIADA",
+        "department": "conveniencia",
+        "revenue": null,
+        "cost": null,
+        "grossMargin": null,
+        "expenses": null,
+        "operatingResult": null,
+        "operatingMarginPct": null,
+        "status": "BLOQUEADO",
+        "operationalEvidence": null,
+        "missingEvidence": [
+          "CLASSIFICACAO_DESPESAS",
+          "FATURAMENTO",
+          "CUSTO",
+          "COBERTURA_VENDAS"
+        ]
+      },
+      {
+        "companyCode": 5555,
+        "companyName": "AP CASA CAIADA",
+        "department": "lubrificantes",
+        "revenue": null,
+        "cost": null,
+        "grossMargin": null,
+        "expenses": null,
+        "operatingResult": null,
+        "operatingMarginPct": null,
+        "status": "BLOQUEADO",
+        "operationalEvidence": null,
+        "missingEvidence": [
+          "CLASSIFICACAO_DESPESAS",
+          "FATURAMENTO",
+          "CUSTO",
+          "COBERTURA_VENDAS"
+        ]
+      }
+    ],
+    "allReleased": false,
+    "consolidatedGenericResult": false
+  }
+}

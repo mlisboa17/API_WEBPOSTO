@@ -13,9 +13,12 @@ import { apiService } from "@/lib/api";
 import { ExecutiveReport } from "@/types/api";
 import { ReportLayout } from "@/components/executive/report-layout";
 import { matchesEmpresa, resolveEmpresaCodigo } from "@/utils/filial_normalizer";
+import { cn } from "@/lib/utils";
 
 export default function FuelReportPage() {
-  const [report, setReport] = useState<ExecutiveReport | null>(null);
+  const [report, setReport] = useState<
+    (ExecutiveReport & { fonte?: string; fromCache?: boolean; latencyMs?: number }) | null
+  >(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -30,17 +33,17 @@ export default function FuelReportPage() {
 
   const fetchReport = useCallback(async () => {
     setLoading(true);
+    setError(null);
     try {
-      const data = await apiService.getExecutiveConsolidatedReport(
+      const data = await apiService.getFuelVolumetryReport(
         periodDates.start,
         periodDates.end,
-        empresaResolvida ?? undefined
+        empresaResolvida
       );
       setReport(data);
-      setError(null);
     } catch (err) {
-      setReport(null);
       setError(err instanceof Error ? err.message : "Erro ao carregar");
+      // Mantém último relatório válido — evita flash zerado ao trocar filial
     } finally {
       setLoading(false);
     }
@@ -133,19 +136,13 @@ export default function FuelReportPage() {
 
       const byFilialArr = Array.from(filialMap.values()).sort((a, b) => b.litros - a.litros);
 
-      // Prefer totals from API when already filtered server-side; else aggregate.
-      const apiLitros = Number(report?.bloco_1_combustiveis.resumo.total_litros || 0);
-      const apiValor = Number(report?.bloco_1_combustiveis.resumo.total_valor || 0);
+      // Totais sempre das linhas filtradas (evita total da rede ao trocar filial).
       const totLitros =
-        !isConsolidated && apiLitros > 0
-          ? apiLitros
-          : byFilialArr.reduce((s, f) => s + f.litros, 0) ||
-            byProductArr.reduce((s, p) => s + p.litros, 0);
+        byFilialArr.reduce((s, f) => s + f.litros, 0) ||
+        byProductArr.reduce((s, p) => s + p.litros, 0);
       const totValor =
-        !isConsolidated && apiValor > 0
-          ? apiValor
-          : byFilialArr.reduce((s, f) => s + f.valor, 0) ||
-            byProductArr.reduce((s, p) => s + p.valor, 0);
+        byFilialArr.reduce((s, f) => s + f.valor, 0) ||
+        byProductArr.reduce((s, p) => s + p.valor, 0);
 
       return {
         byProduct: byProductArr,
@@ -196,17 +193,32 @@ export default function FuelReportPage() {
         <ReportFilterBar />
       </div>
 
-      {loading ? (
+      {loading && !report ? (
         renderSkeleton()
-      ) : error ? (
+      ) : error && !report ? (
         <div className="rounded-lg border border-red-500/20 bg-red-500/10 p-4 text-red-200">
           {error}
         </div>
       ) : (
         <div
           key={`fuel-${empresaResolvida ?? "all"}-${periodDates.start}-${periodDates.end}`}
-          className="space-y-6"
+          className={cn("space-y-6", loading && "opacity-70 transition-opacity")}
         >
+          {(report?.fonte || report?.latencyMs != null || error) && (
+            <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400">
+              {report?.fonte && (
+                <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 text-[10px]">
+                  {report.fonte}
+                  {report.fromCache ? " · RAM" : ""}
+                </Badge>
+              )}
+              {report?.latencyMs != null && (
+                <span className="font-mono">{Number(report.latencyMs).toFixed(1)} ms</span>
+              )}
+              {loading && <span className="text-cyan-400">Atualizando…</span>}
+              {error && <span className="text-amber-400">{error}</span>}
+            </div>
+          )}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <Card className="bg-slate-900 border-white/5">
               <CardContent className="p-6">

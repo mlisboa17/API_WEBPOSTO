@@ -24,6 +24,7 @@ import { GlobalFilterHeader } from "@/components/executive/global-filter-header"
 import { ExpenseDetailModal } from "@/components/executive/expense-detail-modal";
 import { CardFraudAuditPanel } from "@/components/executive/card-fraud-audit-panel";
 import { CashierAuditPanel } from "@/components/executive/cashier-audit-panel";
+import { PistaLivePanel } from "@/components/executive/pista-live-panel";
 import { useGlobalFilter } from "@/contexts/global-filter-context";
 import { apiService } from "@/lib/api";
 import { exportDataAuditExcel, exportDataAuditPdf } from "@/lib/export-executive-report";
@@ -37,11 +38,12 @@ import { cn } from "@/lib/utils";
 
 const FILIAL_ORDER = [5555, 11495, 74014];
 
-type AuditTab = "afericao" | "anti-fraude" | "caixas";
+type AuditTab = "afericao" | "anti-fraude" | "caixas" | "pista-ao-vivo";
 
 function resolveTab(raw: string | null): AuditTab {
   if (raw === "caixas" || raw === "cashier") return "caixas";
   if (raw === "anti-fraude" || raw === "fraude") return "anti-fraude";
+  if (raw === "pista-ao-vivo" || raw === "pista" || raw === "live") return "pista-ao-vivo";
   return "afericao";
 }
 
@@ -243,6 +245,18 @@ function DataAuditPageContent() {
         >
           Auditoria de Caixas
         </button>
+        <button
+          type="button"
+          onClick={() => selectTab("pista-ao-vivo")}
+          className={cn(
+            "px-4 py-2 text-sm font-medium rounded-t-md border-b-2 transition-colors",
+            activeTab === "pista-ao-vivo"
+              ? "border-cyan-400 text-cyan-300 bg-cyan-500/5"
+              : "border-transparent text-slate-400 hover:text-slate-200"
+          )}
+        >
+          🌡️ Pista ao Vivo / Status Bicos
+        </button>
       </div>
 
       {activeTab === "caixas" ? (
@@ -254,6 +268,8 @@ function DataAuditPageContent() {
           empresaCodigo={empresaCodigo}
           periodReady={periodReady}
         />
+      ) : activeTab === "pista-ao-vivo" ? (
+        <PistaLivePanel empresaCodigo={empresaCodigo} ready={periodReady} />
       ) : loading ? (
         <div className="space-y-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">

@@ -10,6 +10,7 @@ from src.services.logistics_freight_service import LogisticsFreightService
 from src.services.treasury_consolidation_service import TreasuryConsolidationService
 from src.services.elasticity_simulator_service import ElasticitySimulatorService
 from src.services.executive_briefing_service import ExecutiveBriefingService
+from src.utils.filial_normalizer import resolve_empresa_codigo
 
 from src.interfaces.http.schemas.executive_sales_schema import SalesAnalyticsSummary
 from src.interfaces.http.schemas.executive_logistics_schema import LogisticsSummary
@@ -55,7 +56,8 @@ async def get_sales_analytics(
     Retorna heatmap de vendas, elasticidade e cesta de afinidade.
     """
     try:
-        data = await _sales_service.analyze(dataInicial, dataFinal, empresaCodigo)
+        empresa = resolve_empresa_codigo(empresaCodigo)
+        data = await _sales_service.analyze(dataInicial, dataFinal, empresa)
         payload = data.model_dump() if hasattr(data, "model_dump") else data
         return {"success": True, "data": payload, "namespace": "executive"}
     except Exception as e:
@@ -77,7 +79,8 @@ async def get_sales_composition(
     Nunca usa contagem de notas fiscais.
     """
     try:
-        data = await _composition_service.build(dataInicial, dataFinal, empresaCodigo)
+        empresa = resolve_empresa_codigo(empresaCodigo)
+        data = await _composition_service.build(dataInicial, dataFinal, empresa)
         payload = data.model_dump() if hasattr(data, "model_dump") else data
         return {"success": True, "data": payload, "namespace": "executive"}
     except Exception as e:

@@ -105,10 +105,10 @@ class ExecutiveSynthesisService:
             return_exceptions=True,
         )
 
-        dre = dre_data if not isinstance(dre_data, Exception) else {}
-        fuel = fuel_data if not isinstance(fuel_data, Exception) else {}
-        alerts = alerts_data if not isinstance(alerts_data, Exception) else []
-        pending = pending_data if not isinstance(pending_data, Exception) else {}
+        dre = dre_data if isinstance(dre_data, dict) else {}
+        fuel = fuel_data if isinstance(fuel_data, dict) else {}
+        alerts = self._normalize_alerts(alerts_data)
+        pending = pending_data if isinstance(pending_data, dict) else {}
 
         synthesis = self._consolidate(start, end, dre, fuel, alerts, pending)
         self._set_cache(key, synthesis)
@@ -135,9 +135,24 @@ class ExecutiveSynthesisService:
         if not self._alerts:
             return []
         try:
-            return self._alerts.list(date)
+            return self._normalize_alerts(self._alerts.list(date))
         except Exception:
             return []
+
+    @staticmethod
+    def _normalize_alerts(payload: Any) -> list[dict[str, Any]]:
+        """DepartmentalAlertService.list() devolve dict; nunca iterar o dict raiz."""
+        if isinstance(payload, Exception) or payload is None:
+            return []
+        if isinstance(payload, list):
+            return [a for a in payload if isinstance(a, dict)]
+        if isinstance(payload, dict):
+            raw = payload.get("alerts")
+            if isinstance(raw, list):
+                return [a for a in raw if isinstance(a, dict)]
+            if isinstance(raw, dict):
+                return [a for a in raw.values() if isinstance(a, dict)]
+        return []
 
     async def _fetch_pending(self, start: str, end: str, company: int | None) -> dict[str, Any]:
         if not self._pending:
@@ -156,7 +171,7 @@ class ExecutiveSynthesisService:
         alerts: list[dict[str, Any]],
         pending: dict[str, Any],
     ) -> ExecutiveSynthesis:
-        lines = dre.get("lines") or []
+        lines = [line for line in (dre.get("lines") or []) if isinstance(line, dict)]
         released = [line for line in lines if line.get("status") == "LIBERADO"]
 
         total_revenue = Decimal("0")
@@ -185,7 +200,11 @@ class ExecutiveSynthesisService:
         fuel_liters = Decimal("0")
         fuel_margin_liter = None
         for empresa in (fuel.get("empresas") or []):
+            if not isinstance(empresa, dict):
+                continue
             for prod in (empresa.get("produtos") or []):
+                if not isinstance(prod, dict):
+                    continue
                 fuel_liters += Decimal(str(prod.get("litrosVendidos") or 0))
 
         if fuel_liters > 0 and fuel_revenue > 0:
@@ -194,7 +213,11 @@ class ExecutiveSynthesisService:
             )
 
         critical_alerts = [a for a in alerts if a.get("severity") == "CRITICAL"]
-        cash_alerts = [a for a in alerts if "caixa" in (a.get("type") or "").lower()]
+        cash_alerts = [
+            a
+            for a in alerts
+            if "caixa" in (a.get("type") or a.get("rule") or a.get("message") or "").lower()
+        ]
 
         gross_margin_pct = None
         if total_revenue > 0:

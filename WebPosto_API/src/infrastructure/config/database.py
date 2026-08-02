@@ -41,6 +41,19 @@ async def init_db():
             # If adapter isn't present or models are not yet defined, skip gracefully
             pass
 
+        # Tabelas SQLModel (alertas, híbrido company_products / sales_daily_summary)
+        try:
+            from sqlmodel import SQLModel
+            import src.models.alert_model  # noqa: F401 — registra metadata
+            import src.models.company_product_model  # noqa: F401
+            import src.models.sales_daily_summary_model  # noqa: F401
+            import src.models.audit_fraud_settings_model  # noqa: F401
+            import src.models.forecourt_layout_model  # noqa: F401 — FORECOURT-CONFIG-01A
+
+            await conn.run_sync(SQLModel.metadata.create_all)
+        except Exception:
+            pass
+
 
 async def close_db():
     """Fecha conexão com o banco."""

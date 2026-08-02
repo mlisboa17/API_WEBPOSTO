@@ -9,16 +9,30 @@ class Settings(BaseSettings):
     debug: bool = True
 
     # webPosto API
-    webposto_base_url: str = "http://web.qualityautomacao.com.br"
+    # Aliases aceitos no .env: WEBPOSTO_API_URL (= WEBPOSTO_BASE_URL),
+    # WEBPOSTO_TOKEN / WEBPOSTO_APP_KEY (= WEBPOSTO_API_KEY).
+    webposto_base_url: str = "https://web.qualityautomacao.com.br"
+    webposto_api_url: str = ""  # alias opcional de WEBPOSTO_API_URL
     webposto_api_key: str = ""
+    webposto_token: str = ""  # alias opcional de WEBPOSTO_TOKEN
+    webposto_app_key: str = ""  # alias opcional de WEBPOSTO_APP_KEY
     webposto_api_key_posto_vip_rio_doce: str = ""
     webposto_api_key_posto_casa_caiada: str = ""
     webposto_api_key_posto_doze_filial_ii: str = ""
+    # Aliases oficiais por filial (preferenciais)
+    webposto_casa_caiada_key: str = ""  # 5555
+    webposto_vip_key: str = ""  # 11495
+    webposto_real_doze_key: str = ""  # 74014
     webposto_vip_posto_id: str = "VIP"
     webposto_vip_posto_nome: str = "POSTO_VIP"
     webposto_sync_interval_seconds: int = 3600
     webposto_timeout_seconds: int = 30
     webposto_money_debug: bool = False
+
+    # Indicadores externos de mercado (USD, Brent, Esalq)
+    market_data_api_key: str = ""  # AwesomeAPI token (opcional)
+    market_data_timeout_seconds: float = 12.0
+    market_data_cache_ttl_seconds: int = 300
 
     # Banco de Dados
     database_url: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/webposto"
@@ -37,9 +51,14 @@ class Settings(BaseSettings):
     # API
     api_host: str = "0.0.0.0"
     api_port: int = 8040
-    api_workers: int = 4
+    # Com pista_sync_worker_enabled=True, main.py força 1 processo (cache RAM único).
+    api_workers: int = 1
     api_title: str = "webPosto Service API"
     api_version: str = "0.1.0"
+
+    # Cockpit 30s — cache RAM + worker asyncio (sem Redis)
+    pista_sync_worker_enabled: bool = True
+    pista_sync_interval_seconds: int = 30
 
     # Rate Limiting
     rate_limit_requests: int = 100
@@ -58,7 +77,7 @@ class Settings(BaseSettings):
     auth_user_role: str = "director"
     auth_user_company_id: str = "default-company"
     auth_cookie_secure: bool = False
-    cors_allowed_origins: str = "http://127.0.0.1:8040,http://localhost:8040"
+    cors_allowed_origins: str = "http://127.0.0.1:8040,http://localhost:8040,http://localhost:3000,http://127.0.0.1:3000,http://localhost:3006,http://127.0.0.1:3006"
 
     # Circuit Breaker
     circuit_breaker_threshold: int = 5
@@ -74,12 +93,19 @@ class Settings(BaseSettings):
     financial_live_budget_seconds: int = 22
     departmental_scheduler_enabled: bool = False
     departmental_scheduler_poll_seconds: int = 60
+    # Arquitetura híbrida — consolidação D-1 às 03:00 AM (cron 0 3 * * *)
+    data_sync_scheduler_enabled: bool = True
     # O WebPosto pode ultrapassar 8 s mesmo em partições diárias da empresa 74014.
     # Mantém a tentativa limitada, mas permite concluir uma chamada diária válida.
     sales_live_timeout_seconds: int = 20
     sales_total_budget_seconds: int = 30
     stock_live_timeout_seconds: int = 8
     stock_total_budget_seconds: int = 22
+
+    # Guardião WhatsApp — alertas anti-fraude em tempo real (Sprint 6)
+    whatsapp_alerts_enabled: bool = False
+    whatsapp_webhook_url: str = ""
+    whatsapp_frontend_base_url: str = "http://localhost:3000"
 
     model_config = SettingsConfigDict(
         env_file=".env",

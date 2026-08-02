@@ -9,6 +9,7 @@ from fastapi import APIRouter, Depends, Query
 
 from src.interfaces.http.authz import require_roles
 from src.services.data_audit_service import DataAuditService
+from src.utils.filial_normalizer import resolve_empresa_codigo
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +30,8 @@ async def get_data_audit(
 ) -> dict:
     """Homologação diária: faturamento, volume, abastecimentos, tanques e DRE de despesas."""
     try:
-        result = await _service.build(dataInicial, dataFinal, empresaCodigo)
+        empresa = resolve_empresa_codigo(empresaCodigo)
+        result = await _service.build(dataInicial, dataFinal, empresa)
         return {
             "success": True,
             "data": result.model_dump(),

@@ -1,0 +1,966 @@
+{
+  "updated_at": "2026-08-02T06:51:39.286610+00:00",
+  "layouts": [
+    {
+      "id": "FL-5555-f5b6f5654d",
+      "station_id": 5555,
+      "version": 1,
+      "name": "Casa Caiada V1",
+      "status": "ARCHIVED",
+      "mapping_status": "PROVISIONAL",
+      "valid_from": "2026-08-02T05:28:13.647685+00:00",
+      "valid_to": null,
+      "coordinate_width": 1000,
+      "coordinate_height": 600,
+      "islands": [
+        {
+          "id": "ISL-954b10a7",
+          "code": "ILHA_01",
+          "name": "Ilha 01",
+          "display_order": 1,
+          "x": 80.0,
+          "y": 160.0,
+          "width": 280.0,
+          "height": 200.0,
+          "active": true
+        },
+        {
+          "id": "ISL-a6b72186",
+          "code": "ILHA_02",
+          "name": "Ilha 02",
+          "display_order": 2,
+          "x": 520.0,
+          "y": 160.0,
+          "width": 280.0,
+          "height": 200.0,
+          "active": true
+        }
+      ],
+      "positions": [
+        {
+          "id": "POS-58b299d5",
+          "island_code": "ILHA_01",
+          "pump_id": 1,
+          "pump_name": "BOMBA 01",
+          "code": "CC_B01_AVENIDA",
+          "name": "Bomba 01 — Avenida",
+          "orientation": "AVENIDA",
+          "x": 100.0,
+          "y": 180.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 7,
+              "active": true,
+              "label": "007 Etanol"
+            }
+          ],
+          "island_id": "ISL-954b10a7"
+        },
+        {
+          "id": "POS-101c1502",
+          "island_code": "ILHA_01",
+          "pump_id": 1,
+          "pump_name": "BOMBA 01",
+          "code": "CC_B01_CONVENIENCIA",
+          "name": "Bomba 01 — Conveniência",
+          "orientation": "CONVENIENCIA",
+          "x": 100.0,
+          "y": 300.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 1,
+              "active": true,
+              "label": "001 Etanol"
+            },
+            {
+              "nozzle_id": 2,
+              "active": true,
+              "label": "002 Gasolina Comum"
+            },
+            {
+              "nozzle_id": 8,
+              "active": true,
+              "label": "008 Gasolina Comum"
+            }
+          ],
+          "island_id": "ISL-954b10a7"
+        },
+        {
+          "id": "POS-b57d7d68",
+          "island_code": "ILHA_02",
+          "pump_id": 2,
+          "pump_name": "BOMBA 02",
+          "code": "CC_B02_AVENIDA",
+          "name": "Bomba 02 — Avenida",
+          "orientation": "AVENIDA",
+          "x": 540.0,
+          "y": 180.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 3,
+              "active": true,
+              "label": "003 Etanol"
+            },
+            {
+              "nozzle_id": 4,
+              "active": true,
+              "label": "004 Gasolina Comum"
+            }
+          ],
+          "island_id": "ISL-a6b72186"
+        },
+        {
+          "id": "POS-3fa48188",
+          "island_code": "ILHA_02",
+          "pump_id": 2,
+          "pump_name": "BOMBA 02",
+          "code": "CC_B02_CONVENIENCIA",
+          "name": "Bomba 02 — Conveniência",
+          "orientation": "CONVENIENCIA",
+          "x": 540.0,
+          "y": 300.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 5,
+              "active": true,
+              "label": "005 Etanol"
+            },
+            {
+              "nozzle_id": 6,
+              "active": true,
+              "label": "006 Gasolina Comum"
+            }
+          ],
+          "island_id": "ISL-a6b72186"
+        }
+      ],
+      "created_at": "2026-08-02T05:28:13.606942+00:00",
+      "updated_at": "2026-08-02T05:28:40.109723+00:00"
+    },
+    {
+      "id": "FL-5555-b3e844a0ea",
+      "station_id": 5555,
+      "version": 2,
+      "name": "Casa Caiada V1",
+      "status": "ACTIVE",
+      "mapping_status": "PROVISIONAL",
+      "valid_from": "2026-08-02T05:30:33.726273+00:00",
+      "valid_to": null,
+      "coordinate_width": 1000,
+      "coordinate_height": 600,
+      "islands": [
+        {
+          "id": "ISL-427305d6",
+          "code": "ILHA_01",
+          "name": "Ilha 01",
+          "display_order": 1,
+          "x": 80.0,
+          "y": 160.0,
+          "width": 280.0,
+          "height": 200.0,
+          "active": true
+        },
+        {
+          "id": "ISL-1651de31",
+          "code": "ILHA_02",
+          "name": "Ilha 02",
+          "display_order": 2,
+          "x": 520.0,
+          "y": 160.0,
+          "width": 280.0,
+          "height": 200.0,
+          "active": true
+        }
+      ],
+      "positions": [
+        {
+          "id": "POS-62910170",
+          "island_code": "ILHA_01",
+          "pump_id": 1,
+          "pump_name": "BOMBA 01",
+          "code": "CC_B01_AVENIDA",
+          "name": "Bomba 01 — Avenida",
+          "orientation": "AVENIDA",
+          "x": 100.0,
+          "y": 180.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 7,
+              "active": true,
+              "label": "007 Etanol"
+            },
+            {
+              "nozzle_id": 8,
+              "active": true,
+              "label": "008 Gasolina Comum"
+            }
+          ],
+          "island_id": "ISL-427305d6"
+        },
+        {
+          "id": "POS-13f07f64",
+          "island_code": "ILHA_01",
+          "pump_id": 1,
+          "pump_name": "BOMBA 01",
+          "code": "CC_B01_CONVENIENCIA",
+          "name": "Bomba 01 — Conveniência",
+          "orientation": "CONVENIENCIA",
+          "x": 100.0,
+          "y": 300.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 1,
+              "active": true,
+              "label": "001 Etanol"
+            },
+            {
+              "nozzle_id": 2,
+              "active": true,
+              "label": "002 Gasolina Comum"
+            }
+          ],
+          "island_id": "ISL-427305d6"
+        },
+        {
+          "id": "POS-bca018de",
+          "island_code": "ILHA_02",
+          "pump_id": 2,
+          "pump_name": "BOMBA 02",
+          "code": "CC_B02_AVENIDA",
+          "name": "Bomba 02 — Avenida",
+          "orientation": "AVENIDA",
+          "x": 540.0,
+          "y": 180.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 3,
+              "active": true,
+              "label": "003 Etanol"
+            },
+            {
+              "nozzle_id": 4,
+              "active": true,
+              "label": "004 Gasolina Comum"
+            }
+          ],
+          "island_id": "ISL-1651de31"
+        },
+        {
+          "id": "POS-c0a7f408",
+          "island_code": "ILHA_02",
+          "pump_id": 2,
+          "pump_name": "BOMBA 02",
+          "code": "CC_B02_CONVENIENCIA",
+          "name": "Bomba 02 — Conveniência",
+          "orientation": "CONVENIENCIA",
+          "x": 540.0,
+          "y": 300.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 5,
+              "active": true,
+              "label": "005 Etanol"
+            },
+            {
+              "nozzle_id": 6,
+              "active": true,
+              "label": "006 Gasolina Comum"
+            }
+          ],
+          "island_id": "ISL-1651de31"
+        }
+      ],
+      "created_at": "2026-08-02T05:30:33.721457+00:00",
+      "updated_at": "2026-08-02T05:30:33.726260+00:00"
+    },
+    {
+      "id": "FL-74014-bad9b25f18",
+      "station_id": 74014,
+      "version": 1,
+      "name": "Posto Real V1",
+      "status": "ARCHIVED",
+      "mapping_status": "PROVISIONAL",
+      "valid_from": "2026-08-02T06:40:09.242915+00:00",
+      "valid_to": null,
+      "coordinate_width": 1100,
+      "coordinate_height": 720,
+      "zones": [
+        {
+          "code": "ZONE_LIQUIDOS",
+          "name": "Zona Líquidos (frente)",
+          "display_order": 1
+        },
+        {
+          "code": "ZONE_GNV",
+          "name": "Zona GNV (haste traseira do T)",
+          "display_order": 2
+        }
+      ],
+      "islands": [
+        {
+          "id": "ISL-4a90ab7e",
+          "code": "REAL_LIQ_ILHA_01",
+          "name": "Ilha Líquidos 01",
+          "zone_code": "ZONE_LIQUIDOS",
+          "display_order": 1,
+          "x": 60.0,
+          "y": 120.0,
+          "width": 300.0,
+          "height": 220.0,
+          "active": true
+        },
+        {
+          "id": "ISL-b262f09e",
+          "code": "REAL_LIQ_ILHA_02",
+          "name": "Ilha Líquidos 02",
+          "zone_code": "ZONE_LIQUIDOS",
+          "display_order": 2,
+          "x": 400.0,
+          "y": 120.0,
+          "width": 300.0,
+          "height": 220.0,
+          "active": true
+        },
+        {
+          "id": "ISL-f53ad19a",
+          "code": "REAL_LIQ_ILHA_03",
+          "name": "Ilha Líquidos 03",
+          "zone_code": "ZONE_LIQUIDOS",
+          "display_order": 3,
+          "x": 740.0,
+          "y": 120.0,
+          "width": 300.0,
+          "height": 220.0,
+          "active": true
+        },
+        {
+          "id": "ISL-6c99199e",
+          "code": "REAL_GNV_01",
+          "name": "GNV 001",
+          "zone_code": "ZONE_GNV",
+          "display_order": 4,
+          "x": 280.0,
+          "y": 420.0,
+          "width": 220.0,
+          "height": 160.0,
+          "active": true
+        },
+        {
+          "id": "ISL-d720ba2f",
+          "code": "REAL_GNV_02",
+          "name": "GNV 002",
+          "zone_code": "ZONE_GNV",
+          "display_order": 5,
+          "x": 600.0,
+          "y": 420.0,
+          "width": 220.0,
+          "height": 160.0,
+          "active": true
+        }
+      ],
+      "positions": [
+        {
+          "id": "POS-d22cf341",
+          "island_code": "REAL_LIQ_ILHA_01",
+          "pump_id": 1,
+          "pump_name": "BOMBA 01",
+          "code": "REAL_B01_SENSOR_01",
+          "name": "Bomba 01 — Sensor 01 (orientação física não confirmada)",
+          "orientation": "UNCONFIRMED",
+          "x": 80.0,
+          "y": 150.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 1,
+              "active": true,
+              "label": "001 S10"
+            },
+            {
+              "nozzle_id": 2,
+              "active": true,
+              "label": "002 Comum"
+            },
+            {
+              "nozzle_id": 3,
+              "active": true,
+              "label": "003 Etanol"
+            }
+          ],
+          "island_id": "ISL-4a90ab7e"
+        },
+        {
+          "id": "POS-d8f3ca13",
+          "island_code": "REAL_LIQ_ILHA_01",
+          "pump_id": 1,
+          "pump_name": "BOMBA 01",
+          "code": "REAL_B01_SENSOR_02",
+          "name": "Bomba 01 — Sensor 02 (orientação física não confirmada)",
+          "orientation": "UNCONFIRMED",
+          "x": 80.0,
+          "y": 260.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 4,
+              "active": true,
+              "label": "004 S10"
+            },
+            {
+              "nozzle_id": 5,
+              "active": true,
+              "label": "005 Comum"
+            },
+            {
+              "nozzle_id": 6,
+              "active": true,
+              "label": "006 Etanol"
+            }
+          ],
+          "island_id": "ISL-4a90ab7e"
+        },
+        {
+          "id": "POS-e557a640",
+          "island_code": "REAL_LIQ_ILHA_02",
+          "pump_id": 2,
+          "pump_name": "BOMBA 02",
+          "code": "REAL_B02_SENSOR_03",
+          "name": "Bomba 02 — Sensor 03 (orientação física não confirmada)",
+          "orientation": "UNCONFIRMED",
+          "x": 420.0,
+          "y": 150.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 7,
+              "active": true,
+              "label": "007 Aditivada"
+            },
+            {
+              "nozzle_id": 8,
+              "active": true,
+              "label": "008 Comum"
+            },
+            {
+              "nozzle_id": 9,
+              "active": true,
+              "label": "009 Etanol"
+            }
+          ],
+          "island_id": "ISL-b262f09e"
+        },
+        {
+          "id": "POS-5534d0f3",
+          "island_code": "REAL_LIQ_ILHA_02",
+          "pump_id": 2,
+          "pump_name": "BOMBA 02",
+          "code": "REAL_B02_SENSOR_04",
+          "name": "Bomba 02 — Sensor 04 (orientação física não confirmada)",
+          "orientation": "UNCONFIRMED",
+          "x": 420.0,
+          "y": 260.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 10,
+              "active": true,
+              "label": "010 Aditivada"
+            },
+            {
+              "nozzle_id": 11,
+              "active": true,
+              "label": "011 Comum"
+            },
+            {
+              "nozzle_id": 12,
+              "active": true,
+              "label": "012 Etanol"
+            }
+          ],
+          "island_id": "ISL-b262f09e"
+        },
+        {
+          "id": "POS-c40f6a81",
+          "island_code": "REAL_LIQ_ILHA_03",
+          "pump_id": 3,
+          "pump_name": "BOMBA 03",
+          "code": "REAL_B03_SENSOR_05",
+          "name": "Bomba 03 — Sensor 05 (orientação física não confirmada)",
+          "orientation": "UNCONFIRMED",
+          "x": 760.0,
+          "y": 150.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 13,
+              "active": true,
+              "label": "013 Comum"
+            },
+            {
+              "nozzle_id": 14,
+              "active": true,
+              "label": "014 Etanol"
+            },
+            {
+              "nozzle_id": 17,
+              "active": true,
+              "label": "017 Aditivada"
+            }
+          ],
+          "island_id": "ISL-f53ad19a"
+        },
+        {
+          "id": "POS-d6129fe0",
+          "island_code": "REAL_LIQ_ILHA_03",
+          "pump_id": 3,
+          "pump_name": "BOMBA 03",
+          "code": "REAL_B03_SENSOR_06",
+          "name": "Bomba 03 — Sensor 06 (orientação física não confirmada)",
+          "orientation": "UNCONFIRMED",
+          "x": 760.0,
+          "y": 260.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 15,
+              "active": true,
+              "label": "015 Comum"
+            },
+            {
+              "nozzle_id": 16,
+              "active": true,
+              "label": "016 Etanol"
+            },
+            {
+              "nozzle_id": 18,
+              "active": true,
+              "label": "018 Aditivada"
+            }
+          ],
+          "island_id": "ISL-f53ad19a"
+        },
+        {
+          "id": "POS-0da04db0",
+          "island_code": "REAL_GNV_01",
+          "pump_id": 101,
+          "pump_name": "GNV 001",
+          "code": "REAL_GNV_001",
+          "name": "Display GNV 1",
+          "orientation": "GNV",
+          "x": 300.0,
+          "y": 460.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 19,
+              "active": true,
+              "label": "019 GNV"
+            },
+            {
+              "nozzle_id": 20,
+              "active": true,
+              "label": "020 GNV"
+            }
+          ],
+          "island_id": "ISL-6c99199e"
+        },
+        {
+          "id": "POS-6b2c080f",
+          "island_code": "REAL_GNV_02",
+          "pump_id": 102,
+          "pump_name": "GNV 002",
+          "code": "REAL_GNV_002",
+          "name": "Display GNV 2",
+          "orientation": "GNV",
+          "x": 620.0,
+          "y": 460.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 21,
+              "active": true,
+              "label": "021 GNV"
+            },
+            {
+              "nozzle_id": 22,
+              "active": true,
+              "label": "022 GNV"
+            }
+          ],
+          "island_id": "ISL-d720ba2f"
+        }
+      ],
+      "created_at": "2026-08-02T06:40:09.237385+00:00",
+      "updated_at": "2026-08-02T06:40:09.242899+00:00"
+    },
+    {
+      "id": "FL-74014-4910964751",
+      "station_id": 74014,
+      "version": 2,
+      "name": "Posto Real V1",
+      "status": "ACTIVE",
+      "mapping_status": "PROVISIONAL",
+      "mapping_note": "MAPEAMENTO PROVISÓRIO — Topologia cadastrada. Orientação física exata dos lados/sensores pendente de validação",
+      "valid_from": "2026-08-02T06:51:38.671736+00:00",
+      "valid_to": null,
+      "coordinate_width": 1100,
+      "coordinate_height": 780,
+      "zones": [
+        {
+          "code": "ZONE_LIQUIDOS",
+          "name": "Zona Líquidos (frente do T)",
+          "display_order": 1,
+          "x": 36.0,
+          "y": 48.0,
+          "width": 1028.0,
+          "height": 360.0
+        },
+        {
+          "code": "ZONE_GNV",
+          "name": "Zona GNV (haste traseira do T)",
+          "display_order": 2,
+          "x": 330.0,
+          "y": 420.0,
+          "width": 440.0,
+          "height": 300.0
+        }
+      ],
+      "markers": [
+        {
+          "code": "BR-101",
+          "label": "BR-101",
+          "x": 520.0,
+          "y": 72.0
+        }
+      ],
+      "islands": [
+        {
+          "id": "ISL-13e1fe32",
+          "code": "REAL_LIQ_ILHA_03",
+          "name": "Ilha Líquidos 03",
+          "zone_code": "ZONE_LIQUIDOS",
+          "display_order": 1,
+          "x": 70.0,
+          "y": 110.0,
+          "width": 280.0,
+          "height": 230.0,
+          "active": true
+        },
+        {
+          "id": "ISL-c6c9484c",
+          "code": "REAL_LIQ_ILHA_02",
+          "name": "Ilha Líquidos 02",
+          "zone_code": "ZONE_LIQUIDOS",
+          "display_order": 2,
+          "x": 410.0,
+          "y": 150.0,
+          "width": 280.0,
+          "height": 230.0,
+          "active": true
+        },
+        {
+          "id": "ISL-9599db17",
+          "code": "REAL_LIQ_ILHA_01",
+          "name": "Ilha Líquidos 01",
+          "zone_code": "ZONE_LIQUIDOS",
+          "display_order": 3,
+          "x": 750.0,
+          "y": 190.0,
+          "width": 280.0,
+          "height": 230.0,
+          "active": true
+        },
+        {
+          "id": "ISL-7b6197e3",
+          "code": "REAL_GNV_01",
+          "name": "GNV 001",
+          "zone_code": "ZONE_GNV",
+          "display_order": 4,
+          "x": 360.0,
+          "y": 480.0,
+          "width": 180.0,
+          "height": 150.0,
+          "active": true
+        },
+        {
+          "id": "ISL-c142c12d",
+          "code": "REAL_GNV_02",
+          "name": "GNV 002",
+          "zone_code": "ZONE_GNV",
+          "display_order": 5,
+          "x": 560.0,
+          "y": 480.0,
+          "width": 180.0,
+          "height": 150.0,
+          "active": true
+        }
+      ],
+      "positions": [
+        {
+          "id": "POS-a950c049",
+          "island_code": "REAL_LIQ_ILHA_01",
+          "pump_id": 1,
+          "pump_name": "BOMBA 01",
+          "code": "REAL_B01_SENSOR_01",
+          "name": "Bomba 01 — Sensor 01 (orientação física não confirmada)",
+          "orientation": "UNCONFIRMED",
+          "x": 770.0,
+          "y": 220.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 1,
+              "active": true,
+              "label": "001 S10"
+            },
+            {
+              "nozzle_id": 2,
+              "active": true,
+              "label": "002 Comum"
+            },
+            {
+              "nozzle_id": 3,
+              "active": true,
+              "label": "003 Etanol"
+            }
+          ],
+          "island_id": "ISL-9599db17"
+        },
+        {
+          "id": "POS-0afff430",
+          "island_code": "REAL_LIQ_ILHA_01",
+          "pump_id": 1,
+          "pump_name": "BOMBA 01",
+          "code": "REAL_B01_SENSOR_02",
+          "name": "Bomba 01 — Sensor 02 (orientação física não confirmada)",
+          "orientation": "UNCONFIRMED",
+          "x": 770.0,
+          "y": 320.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 4,
+              "active": true,
+              "label": "004 S10"
+            },
+            {
+              "nozzle_id": 5,
+              "active": true,
+              "label": "005 Comum"
+            },
+            {
+              "nozzle_id": 6,
+              "active": true,
+              "label": "006 Etanol"
+            }
+          ],
+          "island_id": "ISL-9599db17"
+        },
+        {
+          "id": "POS-e765d1cb",
+          "island_code": "REAL_LIQ_ILHA_02",
+          "pump_id": 2,
+          "pump_name": "BOMBA 02",
+          "code": "REAL_B02_SENSOR_03",
+          "name": "Bomba 02 — Sensor 03 (orientação física não confirmada)",
+          "orientation": "UNCONFIRMED",
+          "x": 430.0,
+          "y": 180.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 7,
+              "active": true,
+              "label": "007 Aditivada"
+            },
+            {
+              "nozzle_id": 9,
+              "active": true,
+              "label": "009 Etanol"
+            },
+            {
+              "nozzle_id": 8,
+              "active": true,
+              "label": "008 Comum"
+            }
+          ],
+          "island_id": "ISL-c6c9484c"
+        },
+        {
+          "id": "POS-3c40dca0",
+          "island_code": "REAL_LIQ_ILHA_02",
+          "pump_id": 2,
+          "pump_name": "BOMBA 02",
+          "code": "REAL_B02_SENSOR_04",
+          "name": "Bomba 02 — Sensor 04 (orientação física não confirmada)",
+          "orientation": "UNCONFIRMED",
+          "x": 430.0,
+          "y": 280.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 10,
+              "active": true,
+              "label": "010 Aditivada"
+            },
+            {
+              "nozzle_id": 11,
+              "active": true,
+              "label": "011 Comum"
+            },
+            {
+              "nozzle_id": 12,
+              "active": true,
+              "label": "012 Etanol"
+            }
+          ],
+          "island_id": "ISL-c6c9484c"
+        },
+        {
+          "id": "POS-2dc7f877",
+          "island_code": "REAL_LIQ_ILHA_03",
+          "pump_id": 3,
+          "pump_name": "BOMBA 03",
+          "code": "REAL_B03_SENSOR_05",
+          "name": "Bomba 03 — Sensor 05 (orientação física não confirmada)",
+          "orientation": "UNCONFIRMED",
+          "x": 90.0,
+          "y": 140.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 13,
+              "active": true,
+              "label": "013 Comum"
+            },
+            {
+              "nozzle_id": 14,
+              "active": true,
+              "label": "014 Etanol"
+            },
+            {
+              "nozzle_id": 17,
+              "active": true,
+              "label": "017 Aditivada"
+            }
+          ],
+          "island_id": "ISL-13e1fe32"
+        },
+        {
+          "id": "POS-3b444edc",
+          "island_code": "REAL_LIQ_ILHA_03",
+          "pump_id": 3,
+          "pump_name": "BOMBA 03",
+          "code": "REAL_B03_SENSOR_06",
+          "name": "Bomba 03 — Sensor 06 (orientação física não confirmada)",
+          "orientation": "UNCONFIRMED",
+          "x": 90.0,
+          "y": 240.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 15,
+              "active": true,
+              "label": "015 Comum"
+            },
+            {
+              "nozzle_id": 16,
+              "active": true,
+              "label": "016 Etanol"
+            },
+            {
+              "nozzle_id": 18,
+              "active": true,
+              "label": "018 Aditivada"
+            }
+          ],
+          "island_id": "ISL-13e1fe32"
+        },
+        {
+          "id": "POS-872662a8",
+          "island_code": "REAL_GNV_01",
+          "pump_id": 101,
+          "pump_name": "GNV 001",
+          "code": "REAL_GNV_001",
+          "name": "Display GNV 1",
+          "orientation": "GNV",
+          "x": 380.0,
+          "y": 520.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 19,
+              "active": true,
+              "label": "019 GNV"
+            },
+            {
+              "nozzle_id": 20,
+              "active": true,
+              "label": "020 GNV"
+            }
+          ],
+          "island_id": "ISL-7b6197e3"
+        },
+        {
+          "id": "POS-76e33e12",
+          "island_code": "REAL_GNV_02",
+          "pump_id": 102,
+          "pump_name": "GNV 002",
+          "code": "REAL_GNV_002",
+          "name": "Display GNV 2",
+          "orientation": "GNV",
+          "x": 580.0,
+          "y": 520.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 21,
+              "active": true,
+              "label": "021 GNV"
+            },
+            {
+              "nozzle_id": 22,
+              "active": true,
+              "label": "022 GNV"
+            }
+          ],
+          "island_id": "ISL-c142c12d"
+        }
+      ],
+      "created_at": "2026-08-02T06:51:38.666305+00:00",
+      "updated_at": "2026-08-02T06:51:39.285342+00:00"
+    }
+  ]
+}

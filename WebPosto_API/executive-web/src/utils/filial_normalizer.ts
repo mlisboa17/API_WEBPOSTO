@@ -31,6 +31,7 @@ const ALIAS_TO_EMPRESA: Record<string, number> = {
   casa: EMPRESA_CASA_CAIADA,
   casacaiada: EMPRESA_CASA_CAIADA,
   apcasacaiada: EMPRESA_CASA_CAIADA,
+  apcasacaiadaolinda: EMPRESA_CASA_CAIADA,
   // VIP
   "2": EMPRESA_VIP,
   "02": EMPRESA_VIP,
@@ -38,6 +39,7 @@ const ALIAS_TO_EMPRESA: Record<string, number> = {
   "11495": EMPRESA_VIP,
   vip: EMPRESA_VIP,
   postovip: EMPRESA_VIP,
+  postovipolinda: EMPRESA_VIP,
   // Real Doze
   "3": EMPRESA_REAL_DOZE,
   "03": EMPRESA_REAL_DOZE,

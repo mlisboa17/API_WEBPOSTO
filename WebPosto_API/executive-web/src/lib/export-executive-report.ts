@@ -1,7 +1,12 @@
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 import * as XLSX from "xlsx";
-import type { DataAuditFilial, DataAuditResponse, ExpenseDetailItem } from "@/types/api";
+import type {
+  DataAuditFilial,
+  DataAuditResponse,
+  ExpenseDetailItem,
+  UnitsPerformanceResponse,
+} from "@/types/api";
 
 function brl(n: number) {
   return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(n || 0);
@@ -166,6 +171,109 @@ export function exportDataAuditExcel(audit: DataAuditResponse) {
   XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(vendas), "Vendas por Produto");
   XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(despesas), "Lancamentos Despesas");
   XLSX.writeFile(wb, `LOGOS_Afericao_${audit.periodo?.inicio || "periodo"}.xlsx`);
+}
+
+export function exportUnitsPerformancePdf(
+  data: UnitsPerformanceResponse,
+  meta: { periodLabel: string }
+) {
+  const doc = new jsPDF({ unit: "pt", format: "a4" });
+  const rede = data.rede || ({} as UnitsPerformanceResponse["rede"]);
+  const unidades = data.unidades || [];
+
+  doc.setFillColor(15, 23, 42);
+  doc.rect(0, 0, 595, 72, "F");
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(16);
+  doc.text("LOGOS | Unidades Consolidadas", 40, 32);
+  doc.setFontSize(10);
+  doc.setTextColor(148, 163, 184);
+  doc.text("Margem Operacional + Galonagem — Grupo Lisboa", 40, 50);
+
+  doc.setTextColor(30, 41, 59);
+  doc.setFontSize(11);
+  doc.text(`Período: ${meta.periodLabel}`, 40, 100);
+  doc.text(`Gerado em: ${new Date().toLocaleString("pt-BR")}`, 40, 116);
+
+  autoTable(doc, {
+    startY: 140,
+    head: [["KPI Rede", "Valor"]],
+    body: [
+      ["Galonagem", litros(rede.galonagem_total_litros || 0)],
+      ["Faturamento", brl(rede.faturamento_total_rs || 0)],
+      ["Despesas", brl(rede.despesas_totais_rs || 0)],
+      ["Resultado Operacional", brl(rede.resultado_operacional_rs || 0)],
+      ["Margem Operacional", `${(rede.margem_media_pct || 0).toFixed(1)}%`],
+    ],
+    theme: "grid",
+    headStyles: { fillColor: [37, 99, 235] },
+  });
+
+  autoTable(doc, {
+    startY: (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 18,
+    head: [["Unidade", "Galonagem", "Faturamento", "Despesas", "Resultado", "Margem %", "Status"]],
+    body: unidades.map((u) => [
+      u.nome_unidade,
+      litros(u.galonagem_litros),
+      brl(u.faturamento_total_rs),
+      brl(u.despesas_totais_rs),
+      brl(u.resultado_operacional_rs),
+      `${(u.margem_operacional_pct ?? u.margem_percentual).toFixed(1)}%`,
+      u.status_operacional,
+    ]),
+    theme: "striped",
+    headStyles: { fillColor: [15, 23, 42] },
+    styles: { fontSize: 8 },
+  });
+
+  doc.save(`LOGOS_Unidades_${data.periodo?.inicio || "periodo"}.pdf`);
+}
+
+export function exportUnitsPerformanceExcel(data: UnitsPerformanceResponse) {
+  const rede = data.rede || ({} as UnitsPerformanceResponse["rede"]);
+  const unidades = data.unidades || [];
+  const resumo = [
+    ["KPI", "Valor"],
+    ["Periodo Inicio", data.periodo?.inicio || ""],
+    ["Periodo Fim", data.periodo?.fim || ""],
+    ["Galonagem Rede L", rede.galonagem_total_litros || 0],
+    ["Faturamento Rede", rede.faturamento_total_rs || 0],
+    ["Despesas Rede", rede.despesas_totais_rs || 0],
+    ["Resultado Operacional", rede.resultado_operacional_rs || 0],
+    ["Margem Operacional %", rede.margem_media_pct || 0],
+  ];
+  const rows: (string | number)[][] = [
+    [
+      "Unidade",
+      "Codigo",
+      "Galonagem L",
+      "Faturamento",
+      "Despesas",
+      "Resultado",
+      "Margem %",
+      "Status",
+      "Folha",
+      "Cresc. Fat %",
+    ],
+  ];
+  for (const u of unidades) {
+    rows.push([
+      u.nome_unidade,
+      u.unidade_id,
+      u.galonagem_litros ?? 0,
+      u.faturamento_total_rs ?? 0,
+      u.despesas_totais_rs ?? 0,
+      u.resultado_operacional_rs ?? 0,
+      u.margem_operacional_pct ?? u.margem_percentual ?? 0,
+      u.status_operacional,
+      u.folha_pagamento_rs ?? 0,
+      u.crescimento_faturamento_pct ?? "",
+    ]);
+  }
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(resumo), "Rede");
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(rows), "Unidades");
+  XLSX.writeFile(wb, `LOGOS_Unidades_${data.periodo?.inicio || "periodo"}.xlsx`);
 }
 
 export type { DataAuditFilial };

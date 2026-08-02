@@ -33,6 +33,7 @@ const NAV_GROUPS = [
       { label: "Simulador de Margem", href: "/executive/simulator", icon: Calculator },
       { label: "Aferição de Dados", href: "/executive/data-audit", icon: ClipboardCheck },
       { label: "Auditoria de Caixas", href: "/executive/cashier-audit", icon: Wallet },
+      { label: "Unidades Consolidadas", href: "/executive/units-consolidated", icon: Building2 },
     ]
   },
   {

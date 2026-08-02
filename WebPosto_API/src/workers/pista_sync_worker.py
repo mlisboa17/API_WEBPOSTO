@@ -112,7 +112,32 @@ class PistaSyncWorker:
             try:
                 from src.services.fraud_detection_engine import get_fraud_detection_engine
 
-                await get_fraud_detection_engine().refresh_from_pista()
+                engine = get_fraud_detection_engine()
+                await engine.refresh_from_pista()
+                # Guardião WhatsApp — Score 100 / retenção crítica cartão >30 min
+                try:
+                    from src.services.whatsapp_guardian_service import (
+                        get_whatsapp_guardian,
+                    )
+
+                    store = engine.get_store()
+                    occ = (
+                        list(store.result.ocorrencias)
+                        if store.result and store.result.ocorrencias
+                        else []
+                    )
+                    if occ:
+                        result = await get_whatsapp_guardian().dispatch_from_ocorrencias(
+                            occ
+                        )
+                        if result.get("sent"):
+                            LOGGER.info(
+                                "Guardião WhatsApp: sent=%s candidates=%s",
+                                result.get("sent"),
+                                result.get("candidates"),
+                            )
+                except Exception:
+                    LOGGER.exception("PistaSyncWorker: Guardião WhatsApp falhou")
             except Exception:
                 LOGGER.exception("PistaSyncWorker: refresh card_fraud falhou")
             return snap

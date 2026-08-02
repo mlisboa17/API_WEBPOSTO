@@ -1,12 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   AlertTriangle,
   ArrowLeft,
   CreditCard,
+  Eraser,
   ExternalLink,
+  FileText,
   RefreshCcw,
+  Search,
   Settings2,
   ShieldAlert,
   X,
@@ -17,13 +20,162 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { InfoTooltip } from "@/components/ui/info-tooltip";
 import { apiService } from "@/lib/api";
+import { exportFraudLegalDossierPdf } from "@/lib/export-fraud-legal-dossier";
 import type {
   AuditFraudSettings,
   CardFraudAuditResponse,
   CardFraudBicoDetalhe,
+  CardFraudFormaPagamentoFiltro,
+  CardFraudFrentistaOption,
   CardFraudOcorrencia,
+  CardFraudTipoInfracao,
 } from "@/types/api";
 import { cn } from "@/lib/utils";
+
+type LocalFilters = {
+  busca: string;
+  frentistaId: string; // "" | "id:123" | "nome:JOAO"
+  tipo: CardFraudTipoInfracao;
+  retencaoMin: string; // "" | "15" | "30" | "60" | "180"
+  forma: CardFraudFormaPagamentoFiltro;
+};
+
+const EMPTY_FILTERS: LocalFilters = {
+  busca: "",
+  frentistaId: "",
+  tipo: "",
+  retencaoMin: "",
+  forma: "",
+};
+
+function detalhesOf(o: CardFraudOcorrencia): CardFraudBicoDetalhe[] {
+  if (o.abastecimentosAgrupados?.length) return o.abastecimentosAgrupados;
+  return o.detalhes || [];
+}
+
+function isCartaoRepetido(o: CardFraudOcorrencia): boolean {
+  return !!(o.cartaoRepetido ?? o.cartao_repetido);
+}
+
+function qtdUsoCartao(o: CardFraudOcorrencia): number {
+  return (
+    o.quantidadeUsoCartao ??
+    o.quantidade_uso_cartao ??
+    o.quantidadeAbastecimentosCartao ??
+    0
+  );
+}
+
+function qtdAbastCartao(o: CardFraudOcorrencia): number {
+  return o.quantidadeAbastecimentosCartao ?? qtdUsoCartao(o);
+}
+
+function matchForma(o: CardFraudOcorrencia, forma: string): boolean {
+  if (!forma) return true;
+  const blob = `${o.formaPagamento || ""} ${o.meioPagamento || ""} ${o.cartaoBandeira || ""} ${
+    o.isEspecie ? "ESPECIE DINHEIRO" : ""
+  }`.toUpperCase();
+  if (forma === "CARTAO") {
+    return (
+      (/CART|TEF|DEBIT|DÉBIT|CREDIT|CRÉDIT|MAESTRO|VISA|ELO|MASTER/.test(blob) ||
+        !!o.cartaoFinal ||
+        !!o.cartaoNsu) &&
+      !blob.includes("PIX") &&
+      !o.isEspecie &&
+      !blob.includes("DINHEIRO")
+    );
+  }
+  if (forma === "PIX") return blob.includes("PIX");
+  if (forma === "DINHEIRO")
+    return !!o.isEspecie || /DINHEIRO|ESPECIE|ESPÉCIE|CASH/.test(blob);
+  if (forma === "FROTA") return /FROTA|FROTISTA|CONVENIO|CONVÊNIO|PRAZO/.test(blob);
+  return true;
+}
+
+function matchTipo(o: CardFraudOcorrencia, tipo: string): boolean {
+  if (!tipo) return true;
+  const gatilho = (o.gatilho || "").toUpperCase();
+  const motivo = (o.motivoSuspeita || "").toUpperCase();
+  if (tipo === "RETENCAO_CARTAO") {
+    return (
+      gatilho.includes("RETENCAO") ||
+      gatilho.includes("RETENÇÃO") ||
+      motivo.includes("RETENÇÃO") ||
+      motivo.includes("RETENCAO") ||
+      (o.tempoRetencaoMinutos > 0 && (matchForma(o, "CARTAO") || matchForma(o, "PIX")))
+    );
+  }
+  if (tipo === "EXCESSO_DESCONTO") {
+    return (
+      (o.nivelRisco || "").toUpperCase() === "DESCONTO" ||
+      (o.valorDesconto ?? 0) > 0 ||
+      gatilho.includes("DESCONTO") ||
+      motivo.includes("DESCONTO")
+    );
+  }
+  if (tipo === "AGRUPAMENTO_BICOS") {
+    return (
+      !!o.isAgrupado ||
+      (o.qtdAbastecimentosAgrupados ?? 0) >= 2 ||
+      gatilho.includes("AGRUPAMENTO") ||
+      motivo.includes("AGRUP")
+    );
+  }
+  if (tipo === "ABUSO_CPF") return !!o.cpfRepetido || motivo.includes("CPF");
+  return true;
+}
+
+function matchBusca(o: CardFraudOcorrencia, raw: string): boolean {
+  const q = raw.trim().toLowerCase();
+  if (!q) return true;
+  const parts: string[] = [
+    o.funcionarioNome || "",
+    o.frentistaNome || "",
+    o.postoNome || "",
+    o.empresaNome || "",
+    o.idOcorrencia || o.id || "",
+    String(o.vendaCodigo || ""),
+    o.cartaoFinal || "",
+    o.cartaoNsu || "",
+    o.cpfDesconto || "",
+    o.formaPagamento || "",
+    o.meioPagamento || "",
+    o.motivoSuspeita || "",
+  ];
+  for (const d of detalhesOf(o)) {
+    parts.push(
+      String(d.bico ?? ""),
+      String(d.bomba ?? ""),
+      `bico ${String(d.bico ?? 0).padStart(2, "0")}`,
+      d.tipoCombustivel || "",
+      String(d.idAbastecimento || d.abastecimentoId || "")
+    );
+  }
+  return parts.join(" ").toLowerCase().includes(q);
+}
+
+function filterOcorrenciasLocal(
+  rows: CardFraudOcorrencia[],
+  f: LocalFilters
+): CardFraudOcorrencia[] {
+  const retMin = f.retencaoMin ? Number(f.retencaoMin) : null;
+  return rows.filter((o) => {
+    if (f.frentistaId.startsWith("id:")) {
+      const id = Number(f.frentistaId.slice(3));
+      const fid = o.frentistaId ?? o.funcionarioId;
+      if (fid == null || Number(fid) !== id) return false;
+    } else if (f.frentistaId.startsWith("nome:")) {
+      const nome = f.frentistaId.slice(5).toLowerCase();
+      const n = (o.funcionarioNome || o.frentistaNome || "").toLowerCase();
+      if (!n.includes(nome)) return false;
+    }
+    if (retMin != null && (o.tempoRetencaoMinutos || 0) < retMin) return false;
+    if (!matchTipo(o, f.tipo)) return false;
+    if (!matchForma(o, f.forma)) return false;
+    if (!matchBusca(o, f.busca)) return false;
+    return true;
+  });
+}
 
 interface Props {
   start: string;
@@ -41,6 +193,25 @@ function formatLitros(v: number) {
     minimumFractionDigits: 3,
     maximumFractionDigits: 3,
   })} L`;
+}
+
+/** Desconto unitário de auditoria: R$/L (sempre exibe, inclusive 0,0000). */
+function formatDescontoPorLitro(v: number) {
+  return `${(v ?? 0).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    minimumFractionDigits: 4,
+    maximumFractionDigits: 4,
+  })}/L`;
+}
+
+function descontoPorLitroOf(o: CardFraudOcorrencia): number {
+  if (o.descontoPorLitro != null && Number.isFinite(o.descontoPorLitro)) {
+    return o.descontoPorLitro;
+  }
+  const desc = o.valorDesconto ?? 0;
+  const litros = o.litros ?? 0;
+  return litros > 0 ? desc / litros : 0;
 }
 
 function formatHora(iso?: string) {
@@ -108,11 +279,6 @@ function riskTone(nivel: string, score?: number) {
     card: "border-slate-700 bg-slate-900/60",
     rank: 3,
   };
-}
-
-function detalhesOf(o: CardFraudOcorrencia): CardFraudBicoDetalhe[] {
-  if (o.abastecimentosAgrupados?.length) return o.abastecimentosAgrupados;
-  return o.detalhes || [];
 }
 
 /** Normaliza forma/bandeira/final — formato: 💳 [forma] • [bandeira] Final [xxxx]. */
@@ -226,12 +392,16 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selected, setSelected] = useState<CardFraudOcorrencia | null>(null);
+  const [filters, setFilters] = useState<LocalFilters>(EMPTY_FILTERS);
+  const [pdfBusy, setPdfBusy] = useState(false);
+  const [pdfMsg, setPdfMsg] = useState<string | null>(null);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
       const [result, cfg] = await Promise.all([
+        // Dataset completo da filial — filtros avançados correm em RAM no client (<20ms)
         apiService.getCardFraudAudit(start, end, empresaCodigo, null),
         apiService.getAuditFraudSettings(empresaCodigo ?? 0),
       ]);
@@ -251,8 +421,83 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
     void fetchData();
   }, [fetchData, periodReady]);
 
-  const closeOccurrence = useCallback(() => setSelected(null), []);
+  // Deep-link Guardião WhatsApp: ?ocorrencia=FR-...
+  useEffect(() => {
+    if (!data?.ocorrencias?.length || typeof window === "undefined") return;
+    const oid = new URLSearchParams(window.location.search).get("ocorrencia");
+    if (!oid) return;
+    const hit = data.ocorrencias.find((o) => (o.idOcorrencia || o.id) === oid);
+    if (hit) setSelected(hit);
+  }, [data]);
+
+  const closeOccurrence = useCallback(() => {
+    setSelected(null);
+    setPdfMsg(null);
+  }, []);
   const closeSettings = useCallback(() => setShowSettings(false), []);
+  const clearFilters = useCallback(() => setFilters(EMPTY_FILTERS), []);
+
+  const allOcorrencias = data?.ocorrencias || [];
+
+  const downloadLegalDossier = useCallback(async () => {
+    if (!selected) return;
+    setPdfBusy(true);
+    setPdfMsg(null);
+    try {
+      const fid = selected.frentistaId ?? selected.funcionarioId;
+      const outrasBaixas =
+        fid != null
+          ? allOcorrencias.filter((o) => {
+              const id = o.frentistaId ?? o.funcionarioId;
+              const same = id != null && Number(id) === Number(fid);
+              const self =
+                (o.idOcorrencia || o.id) === (selected.idOcorrencia || selected.id);
+              return same && !self;
+            }).length
+          : 0;
+      const { hash, filename } = await exportFraudLegalDossierPdf(selected, {
+        outrasBaixasOperador: outrasBaixas,
+      });
+      setPdfMsg(`Dossiê gerado: ${filename} · SHA-256 ${hash.slice(0, 16)}…`);
+    } catch (err) {
+      setPdfMsg(err instanceof Error ? err.message : "Falha ao gerar dossiê PDF");
+    } finally {
+      setPdfBusy(false);
+    }
+  }, [selected, allOcorrencias]);
+
+  const frentistasOptions: CardFraudFrentistaOption[] = useMemo(() => {
+    if (data?.frentistasDisponiveis?.length) return data.frentistasDisponiveis;
+    const map = new Map<string, CardFraudFrentistaOption>();
+    for (const o of allOcorrencias) {
+      const fid = o.frentistaId ?? o.funcionarioId ?? null;
+      const nome = (o.funcionarioNome || o.frentistaNome || "N/I").trim();
+      const key = fid != null ? `id:${fid}` : `nome:${nome.toLowerCase()}`;
+      const prev = map.get(key);
+      if (prev) prev.qtd += 1;
+      else map.set(key, { id: fid, nome, qtd: 1 });
+    }
+    return Array.from(map.values()).sort((a, b) => b.qtd - a.qtd || a.nome.localeCompare(b.nome));
+  }, [data?.frentistasDisponiveis, allOcorrencias]);
+
+  const filteredOcorrencias = useMemo(() => {
+    const rows = filterOcorrenciasLocal(allOcorrencias, filters);
+    // Mantém Cartão Curinga no topo absoluto após filtro local
+    return [...rows].sort(
+      (a, b) =>
+        Number(isCartaoRepetido(b)) - Number(isCartaoRepetido(a)) ||
+        (b.scoreGravidade ?? 0) - (a.scoreGravidade ?? 0) ||
+        qtdUsoCartao(b) - qtdUsoCartao(a) ||
+        (b.tempoRetencaoMinutos ?? 0) - (a.tempoRetencaoMinutos ?? 0)
+    );
+  }, [allOcorrencias, filters]);
+
+  const filtersActive =
+    !!filters.busca.trim() ||
+    !!filters.frentistaId ||
+    !!filters.tipo ||
+    !!filters.retencaoMin ||
+    !!filters.forma;
 
   useEffect(() => {
     if (!selected && !showSettings) return;
@@ -292,6 +537,8 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
     MEDIO: resumo?.totalAtencao ?? 0,
     BAIXO: 0,
   };
+  const selectCls =
+    "h-9 rounded-md border border-slate-700 bg-slate-950 px-2 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-cyan-500/50";
 
   return (
     <div className="space-y-4">
@@ -400,16 +647,156 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
             </div>
           )}
 
+          {/* Barra de Filtros Avançados — filtragem 100% RAM no client */}
+          <Card className="border-slate-700/60 bg-slate-900/70">
+            <CardContent className="pt-4 space-y-3">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <p className="text-[10px] uppercase tracking-wider text-cyan-400/90 font-bold">
+                  Filtros Avançados
+                </p>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <Badge className="bg-slate-800 text-slate-200 border-slate-600 text-[11px] font-mono">
+                    Exibindo {filteredOcorrencias.length} de {allOcorrencias.length}{" "}
+                    ocorrências
+                  </Badge>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    disabled={!filtersActive}
+                    onClick={clearFilters}
+                    className="h-8 border-amber-500/40 text-amber-200 hover:bg-amber-500/10 disabled:opacity-40"
+                  >
+                    <Eraser size={14} className="mr-1.5" />
+                    Limpar
+                  </Button>
+                </div>
+              </div>
+
+              <div className="relative">
+                <Search
+                  size={14}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"
+                />
+                <input
+                  type="search"
+                  value={filters.busca}
+                  onChange={(e) => setFilters((prev) => ({ ...prev, busca: e.target.value }))}
+                  placeholder="Buscar por frentista, bico, NFC-e ou CPF..."
+                  className="h-10 w-full rounded-md border border-slate-700 bg-slate-950 pl-9 pr-3 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-500/50"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2">
+                <label className="flex flex-col gap-1 text-[10px] uppercase text-slate-500">
+                  Frentista
+                  <select
+                    className={selectCls}
+                    value={filters.frentistaId}
+                    onChange={(e) =>
+                      setFilters((prev) => ({ ...prev, frentistaId: e.target.value }))
+                    }
+                  >
+                    <option value="">Todos os frentistas</option>
+                    {frentistasOptions.map((f) => {
+                      const value =
+                        f.id != null ? `id:${f.id}` : `nome:${f.nome.toLowerCase()}`;
+                      return (
+                        <option key={value} value={value}>
+                          {f.nome} ({f.qtd})
+                        </option>
+                      );
+                    })}
+                  </select>
+                </label>
+
+                <label className="flex flex-col gap-1 text-[10px] uppercase text-slate-500">
+                  Categoria / Tipo
+                  <select
+                    className={selectCls}
+                    value={filters.tipo}
+                    onChange={(e) =>
+                      setFilters((prev) => ({
+                        ...prev,
+                        tipo: e.target.value as CardFraudTipoInfracao,
+                      }))
+                    }
+                  >
+                    <option value="">Todos</option>
+                    <option value="RETENCAO_CARTAO">Retenção Crítica (Cartão/PIX)</option>
+                    <option value="EXCESSO_DESCONTO">Abuso de Desconto</option>
+                    <option value="AGRUPAMENTO_BICOS">Agrupamento de Bicos</option>
+                    <option value="ABUSO_CPF">Abuso de CPF</option>
+                  </select>
+                </label>
+
+                <label className="flex flex-col gap-1 text-[10px] uppercase text-slate-500">
+                  Tempo de Retenção
+                  <select
+                    className={selectCls}
+                    value={filters.retencaoMin}
+                    onChange={(e) =>
+                      setFilters((prev) => ({ ...prev, retencaoMin: e.target.value }))
+                    }
+                  >
+                    <option value="">Qualquer Tempo</option>
+                    <option value="15">&gt; 15 min</option>
+                    <option value="30">&gt; 30 min</option>
+                    <option value="60">&gt; 60 min</option>
+                    <option value="180">&gt; 180 min</option>
+                  </select>
+                </label>
+
+                <label className="flex flex-col gap-1 text-[10px] uppercase text-slate-500">
+                  Meio de Pagamento
+                  <select
+                    className={selectCls}
+                    value={filters.forma}
+                    onChange={(e) =>
+                      setFilters((prev) => ({
+                        ...prev,
+                        forma: e.target.value as CardFraudFormaPagamentoFiltro,
+                      }))
+                    }
+                  >
+                    <option value="">Todos</option>
+                    <option value="CARTAO">Cartão / TEF</option>
+                    <option value="PIX">PIX</option>
+                    <option value="DINHEIRO">Dinheiro</option>
+                    <option value="FROTA">Frota / Convênio</option>
+                  </select>
+                </label>
+              </div>
+            </CardContent>
+          </Card>
+
           <div className="space-y-3">
             <h3 className="text-sm font-bold text-slate-200 uppercase tracking-wider">
-              Ocorrências ({data?.ocorrencias?.length ?? 0})
+              Ocorrências ({filteredOcorrencias.length}
+              {filtersActive ? ` / ${allOcorrencias.length}` : ""})
             </h3>
-            {!data?.ocorrencias?.length ? (
+            {!allOcorrencias.length ? (
               <Card className="border-slate-700/50 bg-slate-900/60 p-8 text-center text-slate-300 text-sm">
                 Nenhuma anomalia acima dos limiares configurados no período.
               </Card>
+            ) : !filteredOcorrencias.length ? (
+              <Card className="border-amber-500/30 bg-amber-500/5 p-6 text-center space-y-3">
+                <p className="text-amber-200 text-sm">
+                  Nenhum resultado para os filtros atuais.
+                </p>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  onClick={clearFilters}
+                  className="border-amber-500/40 text-amber-200"
+                >
+                  <Eraser size={14} className="mr-1.5" />
+                  Limpar filtros
+                </Button>
+              </Card>
             ) : (
-              data.ocorrencias.map((o) => {
+              filteredOcorrencias.map((o) => {
                 const id = o.idOcorrencia || o.id;
                 const tone = riskTone(o.nivelRisco, o.scoreGravidade);
                 const rows = detalhesOf(o);
@@ -432,7 +819,12 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
                             ) : null}
                           </p>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 flex-wrap justify-end">
+                          {isCartaoRepetido(o) ? (
+                            <Badge className="text-[10px] border border-rose-400/60 bg-rose-600 text-white font-bold animate-pulse shadow-[0_0_12px_rgba(244,63,94,0.55)]">
+                              🚨 CARTÃO REPETIDO (Usado {qtdUsoCartao(o)} vezes)
+                            </Badge>
+                          ) : null}
                           <Badge className={cn("text-[10px] border", tone.badge)}>
                             {tone.label}
                           </Badge>
@@ -588,14 +980,21 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
                   {selected.funcionarioNome || selected.frentistaNome} ·{" "}
                   {selected.postoNome || selected.empresaNome}
                 </p>
-                <Badge
-                  className={cn(
-                    "mt-2 text-[10px] border",
-                    riskTone(selected.nivelRisco, selected.scoreGravidade).badge
-                  )}
-                >
-                  {riskTone(selected.nivelRisco, selected.scoreGravidade).label}
-                </Badge>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {isCartaoRepetido(selected) ? (
+                    <Badge className="text-[10px] border border-rose-400/60 bg-rose-600 text-white font-bold animate-pulse shadow-[0_0_12px_rgba(244,63,94,0.55)]">
+                      🚨 CARTÃO REPETIDO (Usado {qtdUsoCartao(selected)} vezes)
+                    </Badge>
+                  ) : null}
+                  <Badge
+                    className={cn(
+                      "text-[10px] border",
+                      riskTone(selected.nivelRisco, selected.scoreGravidade).badge
+                    )}
+                  >
+                    {riskTone(selected.nivelRisco, selected.scoreGravidade).label}
+                  </Badge>
+                </div>
               </div>
               <Button
                 size="sm"
@@ -609,6 +1008,35 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
               </Button>
             </CardHeader>
             <CardContent className="space-y-4 pt-4">
+              {isCartaoRepetido(selected) ? (
+                <div className="rounded-lg border border-rose-500/50 bg-gradient-to-r from-rose-950/60 to-amber-950/30 px-4 py-3 space-y-1">
+                  <p className="text-sm font-bold text-rose-200">
+                    ⚠️ Alerta de Rotatividade
+                  </p>
+                  <p className="text-sm text-rose-50/95 leading-relaxed">
+                    O cartão{" "}
+                    <strong>
+                      {selected.cartaoBandeira || "Cartão"} Final{" "}
+                      {(selected.cartaoFinal || "****").replace(/\D/g, "").slice(-4) ||
+                        "****"}
+                    </strong>{" "}
+                    foi utilizado para baixar{" "}
+                    <strong>
+                      {qtdAbastCartao(selected)} abastecimento
+                      {qtdAbastCartao(selected) === 1 ? "" : "s"} diferente
+                      {qtdAbastCartao(selected) === 1 ? "" : "s"}
+                    </strong>{" "}
+                    no período
+                    {qtdUsoCartao(selected) > 0
+                      ? ` (${qtdUsoCartao(selected)} baixa${
+                          qtdUsoCartao(selected) === 1 ? "" : "s"
+                        } / ocorrência${qtdUsoCartao(selected) === 1 ? "" : "s"})`
+                      : ""}
+                    . Possível uso de cartão próprio/curinga na pista.
+                  </p>
+                </div>
+              ) : null}
+
               {/* Bloco da Emissão (Topo) */}
               <div className="rounded-lg border border-emerald-500/25 bg-emerald-950/20 px-4 py-3 space-y-3">
                 <p className="text-[10px] uppercase tracking-wider text-emerald-400/90 font-bold">
@@ -628,33 +1056,81 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
                     value={formatBRL(selected.valorTotal ?? selected.valorTotalCartao)}
                   />
                   <Meta
-                    label="Desconto App/Fidelidade"
-                    value={formatBRL(selected.valorDesconto ?? 0)}
-                    highlight={
-                      !!selected.cpfRepetido || (selected.valorDesconto ?? 0) > 0
-                    }
-                  />
-                  <Meta
                     label="Litros totais"
                     value={formatLitros(selected.litros ?? 0)}
                   />
+                  <Meta
+                    label="Frentista"
+                    value={selected.funcionarioNome || selected.frentistaNome || "—"}
+                  />
                 </div>
-                {(selected.cpfRepetido || selected.cpfDesconto) && (
+              </div>
+
+              {/* Bloco Desconto — sempre visível na auditoria (inclusive R$ 0,00) */}
+              <div
+                className={cn(
+                  "rounded-lg border px-4 py-3 space-y-3",
+                  (selected.valorDesconto ?? 0) > 0 || selected.cpfRepetido
+                    ? "border-orange-500/40 bg-orange-950/25"
+                    : "border-slate-600/50 bg-slate-900/50"
+                )}
+              >
+                <p className="text-[10px] uppercase tracking-wider text-orange-400/90 font-bold">
+                  Desconto por Litro Vendido (Auditoria)
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm">
+                  <Meta
+                    label="Desconto Total (R$)"
+                    value={formatBRL(selected.valorDesconto ?? 0)}
+                    highlight={(selected.valorDesconto ?? 0) > 0}
+                  />
+                  <Meta
+                    label="Desconto / Litro"
+                    value={formatDescontoPorLitro(descontoPorLitroOf(selected))}
+                    highlight={descontoPorLitroOf(selected) > 0}
+                  />
+                  <Meta
+                    label="% Desconto s/ fat."
+                    value={`${(selected.percentualDesconto ?? 0).toLocaleString("pt-BR", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}%`}
+                    highlight={(selected.percentualDesconto ?? 0) > 0}
+                  />
+                  <Meta
+                    label="Origem"
+                    value={
+                      selected.origemDesconto &&
+                      selected.origemDesconto.toUpperCase() !== "N/I"
+                        ? selected.origemDesconto
+                        : (selected.valorDesconto ?? 0) > 0
+                          ? "FIDELIDADE/APP"
+                          : "SEM DESCONTO"
+                    }
+                  />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   <p
                     className={cn(
-                      "text-xs font-medium",
-                      selected.cpfRepetido ? "text-orange-300" : "text-slate-400"
+                      "font-medium",
+                      selected.cpfRepetido ? "text-orange-300" : "text-slate-300"
                     )}
                   >
-                    CPF/App: {selected.cpfDesconto || "—"}
+                    CPF vinculado:{" "}
+                    <strong className="font-mono">
+                      {selected.cpfDesconto?.trim() || "000.000.000-00 (não informado)"}
+                    </strong>
                     {selected.cpfRepetido
                       ? " · REPETIDO no turno (abuso de fidelidade)"
                       : ""}
-                    {selected.origemDesconto
-                      ? ` · Origem: ${selected.origemDesconto}`
-                      : ""}
                   </p>
-                )}
+                  <p className="text-slate-500">
+                    Fórmula: Desconto Total ÷ Litros ={" "}
+                    <span className="font-mono text-slate-300">
+                      {formatDescontoPorLitro(descontoPorLitroOf(selected))}
+                    </span>
+                  </p>
+                </div>
               </div>
 
               <PagamentoBlock o={selected} />
@@ -673,25 +1149,43 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
                 />
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-2 pt-2 border-t border-slate-800 sticky bottom-0 bg-slate-900/95 pb-1">
+              <div className="flex flex-col gap-2 pt-2 border-t border-slate-800 sticky bottom-0 bg-slate-900/95 pb-1">
                 <Button
                   type="button"
-                  className="bg-cyan-700 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg gap-1.5"
-                  onClick={closeOccurrence}
+                  disabled={pdfBusy}
+                  className="w-full bg-rose-700 hover:bg-rose-600 text-white px-4 py-2.5 rounded-lg gap-2 font-semibold shadow-[0_0_16px_rgba(225,29,72,0.35)]"
+                  onClick={() => void downloadLegalDossier()}
                 >
-                  <ArrowLeft size={14} />
-                  ← Voltar para Auditoria
+                  <FileText size={16} />
+                  {pdfBusy
+                    ? "Gerando dossiê…"
+                    : "📄 Baixar Dossiê de Auditoria (PDF Legal)"}
                 </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="border-slate-600 text-slate-200 gap-1.5"
-                  onClick={closeOccurrence}
-                  aria-label="Fechar"
-                >
-                  <X size={14} />
-                  ✕ Fechar
-                </Button>
+                {pdfMsg ? (
+                  <p className="text-[11px] text-slate-400 font-mono break-all">
+                    {pdfMsg}
+                  </p>
+                ) : null}
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <Button
+                    type="button"
+                    className="bg-cyan-700 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg gap-1.5"
+                    onClick={closeOccurrence}
+                  >
+                    <ArrowLeft size={14} />
+                    ← Voltar para Auditoria
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="border-slate-600 text-slate-200 gap-1.5"
+                    onClick={closeOccurrence}
+                    aria-label="Fechar"
+                  >
+                    <X size={14} />
+                    ✕ Fechar
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -731,6 +1225,7 @@ function BicosTable({
             <th className={cn(th, "text-right")}>Tabela</th>
             <th className={cn(th, "text-right")}>Praticado</th>
             <th className={cn(th, "text-right")}>Desc. Bico</th>
+            <th className={cn(th, "text-right")}>Desc./L</th>
             <th className={th}>Origem</th>
             {!compact && <th className={th}>Posto</th>}
           </tr>
@@ -740,6 +1235,13 @@ function BicosTable({
             const tab = d.precoTabela ?? d.precoUnitario ?? 0;
             const prat = d.precoPraticado ?? d.precoUnitario ?? 0;
             const gap = tab > 0 && prat > 0 && Math.abs(tab - prat) > 0.001;
+            const desc = d.valorDesconto ?? 0;
+            const descL =
+              d.descontoPorLitro != null && Number.isFinite(d.descontoPorLitro)
+                ? d.descontoPorLitro
+                : d.litros > 0
+                  ? desc / d.litros
+                  : 0;
             return (
               <tr
                 key={`${d.idAbastecimento || d.abastecimentoId}-${idx}`}
@@ -768,13 +1270,26 @@ function BicosTable({
                   className={cn(
                     td,
                     "text-right font-mono",
-                    (d.valorDesconto ?? 0) > 0 && "text-orange-300"
+                    desc > 0 && "text-orange-300"
                   )}
                 >
-                  {formatBRL(d.valorDesconto ?? 0)}
+                  {formatBRL(desc)}
+                </td>
+                <td
+                  className={cn(
+                    td,
+                    "text-right font-mono",
+                    descL > 0 && "text-orange-300"
+                  )}
+                >
+                  {formatDescontoPorLitro(descL)}
                 </td>
                 <td className={cn(td, "text-slate-400 text-[11px]")}>
-                  {d.origemDesconto || ((d.valorDesconto ?? 0) > 0 ? "App/Fid." : "—")}
+                  {d.origemDesconto && d.origemDesconto.toUpperCase() !== "N/I"
+                    ? d.origemDesconto
+                    : desc > 0
+                      ? "App/Fid."
+                      : "SEM DESCONTO"}
                 </td>
                 {!compact && (
                   <td className={td}>{d.postoNome || postoFallback || "—"}</td>

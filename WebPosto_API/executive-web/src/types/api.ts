@@ -517,6 +517,211 @@ export interface DataAuditResponse {
   mensagem?: string;
 }
 
+/** Sprint 7 — Análise consolidada de unidades */
+export type UnitsStatusOperacional = "EXCELENTE" | "ATENCAO" | "CRITICO" | string;
+
+export interface UnitsPerformanceCategoria {
+  categoria: string;
+  categoriaKey: string;
+  valor: number;
+  qtd_lancamentos: number;
+}
+
+export interface UnitsPerformanceUnidade {
+  unidade_id: number;
+  nome_unidade: string;
+  galonagem_litros: number;
+  faturamento_total_rs: number;
+  despesas_totais_rs: number;
+  diferenca_lucro_rs: number;
+  resultado_operacional_rs: number;
+  margem_percentual: number;
+  margem_operacional_pct: number;
+  status_operacional: UnitsStatusOperacional;
+  folha_pagamento_rs: number;
+  qtd_funcionarios?: number | null;
+  qtd_abastecimentos?: number;
+  ticket_medio_rs?: number;
+  ticket_medio_tipo?: string;
+  crescimento_faturamento_pct?: number | null;
+  crescimento_galonagem_pct?: number | null;
+  crescimento_despesas_pct?: number | null;
+  crescimento_margem_pp?: number | null;
+  despesas_por_categoria?: UnitsPerformanceCategoria[];
+}
+
+export interface UnitsPerformanceRede {
+  faturamento_total_rs: number;
+  despesas_totais_rs: number;
+  lucro_liquido_global_rs: number;
+  resultado_operacional_rs: number;
+  margem_media_pct: number;
+  galonagem_total_litros: number;
+  status_operacional?: UnitsStatusOperacional;
+}
+
+export interface UnitsPerformanceResponse {
+  success?: boolean;
+  periodo: { inicio: string; fim: string };
+  periodo_anterior?: { inicio: string; fim: string };
+  parametros?: {
+    meta_margem_pct: number;
+    limite_atencao_pct: number;
+    metrica?: string;
+    formula?: string;
+  };
+  rede: UnitsPerformanceRede;
+  unidades: UnitsPerformanceUnidade[];
+  ranking_mais_lucrativas?: Array<{
+    unidade_id: number;
+    nome_unidade: string;
+    resultado_operacional_rs: number;
+    margem_operacional_pct: number;
+  }>;
+  ranking_maior_risco?: Array<{
+    unidade_id: number;
+    nome_unidade: string;
+    margem_operacional_pct: number;
+    status_operacional: string;
+  }>;
+  insights?: string[];
+  desvios_categoria?: Array<{
+    unidade_id: number;
+    nome_unidade: string;
+    categoria: string;
+    valor_rs: number;
+    media_rede_rs: number;
+    desvio_pct: number;
+    mensagem: string;
+  }>;
+  grafico_barras?: Array<{
+    unidade_id: number;
+    nome: string;
+    faturamento: number;
+    despesas: number;
+    resultado: number;
+    galonagem: number;
+  }>;
+  gerado_em?: string;
+  mensagem?: string;
+}
+
+export interface UnitsPerformanceDetailResponse {
+  success?: boolean;
+  periodo: { inicio: string; fim: string };
+  unidade: UnitsPerformanceUnidade;
+  evolucao_mensal: Array<{
+    mes: string;
+    label: string;
+    galonagem_litros: number;
+    faturamento_total_rs: number;
+    despesas_totais_rs?: number | null;
+    resultado_operacional_rs?: number | null;
+    margem_operacional_pct?: number | null;
+  }>;
+  despesas_por_categoria: UnitsPerformanceCategoria[];
+  desvios?: Array<{
+    categoria: string;
+    valor_rs: number;
+    media_rede_rs: number;
+    desvio_pct: number;
+    mensagem: string;
+  }>;
+  insights?: string[];
+  rede_resumo?: UnitsPerformanceRede;
+  mensagem?: string;
+}
+
+/** Rush Intelligence V3 — Mapa de Calor Operacional */
+export interface RushHeatmapCard {
+  type: string;
+  severity: string;
+  subject_type: string;
+  subject_id: string;
+  subject_name: string;
+  heat_score: number;
+  evidence?: Record<string, unknown> & {
+    comparativo_absoluto?: string;
+    nota?: string;
+  };
+  recurrence?: number;
+  recommendation: string;
+}
+
+export interface RushHeatmapPost {
+  unidade_id: number;
+  nome_unidade: string;
+  rush_status?: {
+    active: boolean;
+    label: string;
+    start: string;
+    end: string;
+    abastecimentos: number;
+  };
+  heat_score: number;
+  heat_color: string;
+  forecourt_imbalance_score: number;
+  island_pressure?: Array<{
+    ilha: number;
+    capacidade_bicos: number;
+    bicos_ocupados_proxy: number;
+    abastecimentos_janela: number;
+    utilizacao: number;
+    frentistas?: string[];
+  }>;
+  ranking_absoluto?: Array<{
+    pos: number;
+    frentista_id?: number | null;
+    frentista_nome: string;
+    abastecimentos: number;
+    litros: number;
+    valor_rs: number;
+    comparativo: string;
+  }>;
+  ranking_relativo?: Array<{
+    pos: number;
+    frentista_id?: number | null;
+    frentista_nome: string;
+    abastecimentos_hora: number;
+    litros_hora: number;
+    tma_minutos: number;
+    minutos_ativos: number;
+    participacao_equipe_pct: number;
+  }>;
+  suspeitas?: RushHeatmapCard[];
+  drilldown?: {
+    posto: number;
+    ilhas: number[];
+    frentistas: string[];
+    periodo: string;
+    historico_recorrencia: Record<string, number>;
+  };
+}
+
+export interface RushHeatmapResponse {
+  success?: boolean;
+  fonte?: string;
+  data_audit?: Record<string, string>;
+  latency_ms?: number;
+  periodo_analise?: {
+    inicio: string;
+    fim: string;
+    label: string;
+    modo?: string;
+  };
+  rush_status?: {
+    posts_com_rush: number;
+    total_suspeitas: number;
+    modo?: string;
+  };
+  heat_score_rede?: number;
+  forecourt_imbalance_score_rede?: number;
+  posts: RushHeatmapPost[];
+  intelligence_cards: RushHeatmapCard[];
+  regras?: Record<string, string>;
+  mensagem?: string;
+}
+
 export interface AuditFraudSettings {
   empresa_id: number;
   tempo_retencao_critico_min: number;
@@ -546,6 +751,7 @@ export interface CardFraudBicoDetalhe {
   valor?: number;
   valorTotal?: number;
   valorDesconto?: number;
+  descontoPorLitro?: number;
   origemDesconto?: string;
   cpfDesconto?: string | null;
   tempoRetencaoMinutos?: number;
@@ -610,6 +816,65 @@ export interface CashierAuditResponse {
   hasMore?: boolean;
 }
 
+/** Painel Tático — GET /api/v1/executive/audit/pista-live */
+export interface PistaLiveBico {
+  bico: number;
+  bomba: number;
+  ilha: number;
+  status: "NORMAL" | "RETENCAO" | string;
+  idAbastecimento: number;
+  uuid?: string;
+  empresaCodigo: number;
+  empresaNome: string;
+  dataHoraT1: string;
+  valorPendente: number;
+  valorUltimo: number;
+  litros: number;
+  produto: string;
+  frentistaNome: string;
+  frentistaId?: number | null;
+  tempoRetencaoMinutos: number;
+  formaPagamento?: string;
+  ocorrenciaId?: string | null;
+  scoreGravidade?: number | null;
+  cartaoRepetido?: boolean;
+}
+
+export interface PistaLiveBomba {
+  bomba: number;
+  bicos: PistaLiveBico[];
+  retencoes: number;
+}
+
+export interface PistaLiveIlha {
+  ilha: number;
+  label: string;
+  bombas: PistaLiveBomba[];
+  retencoes: number;
+}
+
+export interface PistaLiveFilial {
+  empresaCodigo: number;
+  empresaNome: string;
+  ilhas: PistaLiveIlha[];
+  totalBicos: number;
+  totalRetencoes: number;
+}
+
+export interface PistaLiveResponse {
+  success?: boolean;
+  fromCache?: boolean;
+  fonte?: string;
+  dataRef?: string;
+  ultimaSincronizacaoIso?: string | null;
+  syncing?: boolean;
+  empresaCodigo?: number | null;
+  totalBicos: number;
+  totalRetencoes: number;
+  filiais: PistaLiveFilial[];
+  observacoes?: string[];
+}
+
 export interface CardFraudOcorrencia {
   id: string;
   idOcorrencia?: string;
@@ -660,10 +925,17 @@ export interface CardFraudOcorrencia {
   litros?: number;
   precoUnitario?: number;
   valorDesconto?: number;
+  descontoPorLitro?: number;
   percentualDesconto?: number;
   origemDesconto?: string;
   cpfDesconto?: string | null;
   cpfRepetido?: boolean;
+  /** Cartão Curinga — mesmo Bandeira+Final/NSU em >1 baixa */
+  cartaoRepetido?: boolean;
+  cartao_repetido?: boolean;
+  quantidadeUsoCartao?: number;
+  quantidade_uso_cartao?: number;
+  quantidadeAbastecimentosCartao?: number;
   motivoSuspeita?: string;
   isAgrupado?: boolean;
   abastecimentosAgrupados?: CardFraudBicoDetalhe[];
@@ -698,6 +970,36 @@ export interface CardFraudResumo {
   distribuicaoRisco?: Record<string, number>;
 }
 
+export interface CardFraudFrentistaOption {
+  id: number | null;
+  nome: string;
+  qtd: number;
+}
+
+export type CardFraudTipoInfracao =
+  | ""
+  | "RETENCAO_CARTAO"
+  | "EXCESSO_DESCONTO"
+  | "AGRUPAMENTO_BICOS"
+  | "ABUSO_CPF";
+
+export type CardFraudFormaPagamentoFiltro =
+  | ""
+  | "CARTAO"
+  | "PIX"
+  | "DINHEIRO"
+  | "FROTA";
+
+export interface CardFraudFiltros {
+  frentista_id?: number | null;
+  frentista_nome?: string;
+  tipo_infracao?: CardFraudTipoInfracao | string;
+  tempo_retencao_min?: number | null;
+  forma_pagamento?: CardFraudFormaPagamentoFiltro | string;
+  busca_texto?: string;
+  filial_id?: number | null;
+}
+
 export interface CardFraudAuditResponse {
   success: boolean;
   synthetic: boolean;
@@ -708,6 +1010,7 @@ export interface CardFraudAuditResponse {
   dataRef?: string;
   geradoEm?: string | null;
   latencyMs?: number;
+  filterLatencyMs?: number;
   empresaCodigo?: number | null;
   limiarRetencaoMinutos: number;
   limiarCriticoMinutos: number;
@@ -717,4 +1020,101 @@ export interface CardFraudAuditResponse {
   ocorrencias: CardFraudOcorrencia[];
   bannerAlerta: string | null;
   observacoes: string[];
+  totalOcorrencias?: number;
+  totalFiltrado?: number;
+  frentistasDisponiveis?: CardFraudFrentistaOption[];
+  filtrosAplicados?: CardFraudFiltros;
+}
+
+/** FORECOURT-CONFIG — layout operacional da pista */
+export interface ForecourtNozzleLink {
+  nozzle_id: number;
+  active?: boolean;
+  label?: string;
+}
+
+export interface ForecourtZone {
+  code: string;
+  name?: string;
+  display_order?: number;
+  x?: number | null;
+  y?: number | null;
+  width?: number | null;
+  height?: number | null;
+}
+
+export interface ForecourtMarker {
+  code: string;
+  label?: string;
+  x: number;
+  y: number;
+}
+
+export interface ForecourtIsland {
+  id?: string;
+  code: string;
+  name?: string;
+  zone_code?: string;
+  display_order?: number;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  active?: boolean;
+}
+
+export interface ForecourtPosition {
+  id?: string;
+  island_code: string;
+  island_id?: string;
+  pump_id: number;
+  pump_name?: string;
+  code: string;
+  name?: string;
+  orientation: string;
+  x: number;
+  y: number;
+  active?: boolean;
+  operational?: boolean;
+  nozzles: ForecourtNozzleLink[];
+}
+
+export interface ForecourtLayoutSummary {
+  layout_id?: string;
+  name?: string;
+  station_id?: number;
+  version?: number | string;
+  status?: string;
+  mapping_status?: string;
+  mapping_note?: string;
+  qtd_zonas?: number;
+  qtd_ilhas: number;
+  qtd_ilhas_liquidos?: number;
+  qtd_equip_gnv?: number;
+  qtd_bombas: number;
+  qtd_bombas_liquidos?: number;
+  qtd_posicoes: number;
+  qtd_posicoes_liquidos?: number;
+  qtd_bicos: number;
+}
+
+export interface ForecourtLayout {
+  id: string;
+  station_id: number;
+  version: number;
+  name: string;
+  status: string;
+  mapping_status: string;
+  mapping_note?: string;
+  coordinate_width: number;
+  coordinate_height: number;
+  zones?: ForecourtZone[];
+  markers?: ForecourtMarker[];
+  islands: ForecourtIsland[];
+  positions: ForecourtPosition[];
+  summary?: ForecourtLayoutSummary;
+  seeded?: boolean;
+  seed_id?: string;
+  created_at?: string;
+  updated_at?: string;
 }

@@ -1,0 +1,88 @@
+{
+  "seed_id": "FORECOURT-CONFIG-01B-CASA-CAIADA-V1",
+  "station_alias": "casa_caiada",
+  "layout": {
+    "name": "Casa Caiada V1",
+    "mapping_status": "PROVISIONAL",
+    "coordinate_width": 1000,
+    "coordinate_height": 600,
+    "islands": [
+      {
+        "code": "ILHA_01",
+        "name": "Ilha 01",
+        "display_order": 1,
+        "x": 80,
+        "y": 160,
+        "width": 280,
+        "height": 200
+      },
+      {
+        "code": "ILHA_02",
+        "name": "Ilha 02",
+        "display_order": 2,
+        "x": 520,
+        "y": 160,
+        "width": 280,
+        "height": 200
+      }
+    ],
+    "positions": [
+      {
+        "island_code": "ILHA_01",
+        "pump_id": 1,
+        "pump_name": "BOMBA 01",
+        "code": "CC_B01_AVENIDA",
+        "name": "Bomba 01 — Avenida",
+        "orientation": "AVENIDA",
+        "x": 100,
+        "y": 180,
+        "nozzles": [
+          { "nozzle_id": 7, "label": "007 Etanol", "active": true },
+          { "nozzle_id": 8, "label": "008 Gasolina Comum", "active": true }
+        ]
+      },
+      {
+        "island_code": "ILHA_01",
+        "pump_id": 1,
+        "pump_name": "BOMBA 01",
+        "code": "CC_B01_CONVENIENCIA",
+        "name": "Bomba 01 — Conveniência",
+        "orientation": "CONVENIENCIA",
+        "x": 100,
+        "y": 300,
+        "nozzles": [
+          { "nozzle_id": 1, "label": "001 Etanol", "active": true },
+          { "nozzle_id": 2, "label": "002 Gasolina Comum", "active": true }
+        ]
+      },
+      {
+        "island_code": "ILHA_02",
+        "pump_id": 2,
+        "pump_name": "BOMBA 02",
+        "code": "CC_B02_AVENIDA",
+        "name": "Bomba 02 — Avenida",
+        "orientation": "AVENIDA",
+        "x": 540,
+        "y": 180,
+        "nozzles": [
+          { "nozzle_id": 3, "label": "003 Etanol", "active": true },
+          { "nozzle_id": 4, "label": "004 Gasolina Comum", "active": true }
+        ]
+      },
+      {
+        "island_code": "ILHA_02",
+        "pump_id": 2,
+        "pump_name": "BOMBA 02",
+        "code": "CC_B02_CONVENIENCIA",
+        "name": "Bomba 02 — Conveniência",
+        "orientation": "CONVENIENCIA",
+        "x": 540,
+        "y": 300,
+        "nozzles": [
+          { "nozzle_id": 5, "label": "005 Etanol", "active": true },
+          { "nozzle_id": 6, "label": "006 Gasolina Comum", "active": true }
+        ]
+      }
+    ]
+  }
+}

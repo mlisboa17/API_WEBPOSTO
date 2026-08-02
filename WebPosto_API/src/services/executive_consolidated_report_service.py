@@ -45,8 +45,7 @@ CONVENIENCE_PERIOD = {"inicio": "2026-07-17", "fim": "2026-07-23"}
 FILIAIS = {
     5555: "AP CASA CAIADA",
     11495: "POSTO VIP",
-    5558: "POSTO REAL",
-    74014: "POSTO DOZE FILIAL II",
+    74014: "POSTO REAL / DOZE",
 }
 
 FUEL_KEYWORDS = {
@@ -542,6 +541,40 @@ class ExecutiveConsolidatedReportService:
         data_final: str,
         empresa_codigo: int | None = None,
     ) -> list[dict[str, Any]]:
+        # D0: preferir 100% cache RAM (sem I/O externo)
+        try:
+            from src.services.pista_cache_service import get_pista_cache
+
+            snap = get_pista_cache().get_snapshot()
+            if (
+                snap.data_ref
+                and snap.data_ref == data_inicial == data_final
+                and snap.baixados
+            ):
+                mapped: list[dict[str, Any]] = []
+                for it in snap.baixados:
+                    emp = int(getattr(it, "idEmpresa", 0) or 0)
+                    if empresa_codigo and emp != int(empresa_codigo):
+                        continue
+                    mapped.append(
+                        {
+                            "empresaCodigo": emp,
+                            "codigoProduto": getattr(it, "idProduto", None),
+                            "quantidade": float(getattr(it, "litros", 0) or 0),
+                            "litros": float(getattr(it, "litros", 0) or 0),
+                            "valorTotal": float(getattr(it, "valorTotal", 0) or 0),
+                            "descricaoProduto": getattr(it, "descricaoProduto", "") or "",
+                        }
+                    )
+                LOGGER.info(
+                    "abastecimento D0 via cache RAM data_ref=%s items=%s",
+                    snap.data_ref,
+                    len(mapped),
+                )
+                return mapped
+        except Exception as exc:
+            LOGGER.warning("Leitura RAM pista falhou: %s", exc)
+
         resp = await self.abastecimento.get_periodo(
             data_inicial, data_final, empresa_codigo=empresa_codigo
         )
@@ -552,43 +585,27 @@ class ExecutiveConsolidatedReportService:
         if rows:
             return rows
 
-        # Fallback: cache/histórico Quality da pista (evita zerar Pista & Volumetria).
+        # Fallback Quality (evita zerar Pista & Volumetria fora de D0).
         try:
-            from src.services.pista_cache_service import get_pista_cache
             from src.services.webposto_pista_service import get_pista_service
 
-            cache = get_pista_cache()
-            snap = cache.get_snapshot()
-            items = []
-            if (
-                snap.data_ref
-                and snap.data_ref == data_inicial == data_final
-                and snap.baixados
-            ):
-                items = list(snap.baixados)
-                LOGGER.info(
-                    "abastecimento fallback cache RAM data_ref=%s items=%s",
-                    snap.data_ref,
-                    len(items),
-                )
-            else:
-                pista_resp = await get_pista_service().listar_baixados(
-                    id_empresa=empresa_codigo,
-                    data_inicio=data_inicial,
-                    data_fim=data_final,
-                    pagina=1,
-                    limite=500,
-                )
-                items = list(pista_resp.items or [])
-                LOGGER.info(
-                    "abastecimento fallback Quality período=%s..%s empresa=%s items=%s",
-                    data_inicial,
-                    data_final,
-                    empresa_codigo,
-                    len(items),
-                )
+            pista_resp = await get_pista_service().listar_baixados(
+                id_empresa=empresa_codigo,
+                data_inicio=data_inicial,
+                data_fim=data_final,
+                pagina=1,
+                limite=500,
+            )
+            items = list(pista_resp.items or [])
+            LOGGER.info(
+                "abastecimento fallback Quality período=%s..%s empresa=%s items=%s",
+                data_inicial,
+                data_final,
+                empresa_codigo,
+                len(items),
+            )
 
-            mapped: list[dict[str, Any]] = []
+            mapped = []
             for it in items:
                 emp = int(getattr(it, "idEmpresa", 0) or 0)
                 if empresa_codigo and emp != int(empresa_codigo):
@@ -1203,9 +1220,9 @@ class ExecutiveConsolidatedReportService:
             gerado_em=str(date.today()),
             periodo_principal=periodo,
             filiais_monitoradas=[{"empresa_codigo": k, "nome": v} for k, v in FILIAIS.items()],
-            bloco_1_combustiveis=self._block1(fuel_summary),
+            bloco_1_combustiveis=self._block1(fuel_summary, periodo),
             bloco_2_transferencias=self._block2(summary),
-            bloco_3_margens=self._block3(fuel_summary),
+            bloco_3_margens=self._block3(fuel_summary, periodo),
             bloco_4_conveniencia=block4,
             bloco_5_dre=self._block5(director, auto_classified),
             bloco_6_despesas=self._block6(expenses_summary, summary, auto_classified),
@@ -1224,7 +1241,9 @@ class ExecutiveConsolidatedReportService:
         report.bloco_12_prontidao = self._block12(report)
         return report
 
-    def _block1(self, fuel_summary: FuelSummary) -> Block1Combustiveis:
+    def _block1(
+        self, fuel_summary: FuelSummary, periodo: dict[str, str] | None = None
+    ) -> Block1Combustiveis:
         ranking = [
             {
                 "empresa_codigo": f.empresa_codigo,
@@ -1237,7 +1256,7 @@ class ExecutiveConsolidatedReportService:
             for f in fuel_summary.por_filial
         ]
         return Block1Combustiveis(
-            periodo=REPORT_PERIOD,
+            periodo=periodo or REPORT_PERIOD,
             resumo=fuel_summary,
             ranking_filial=ranking,
         )
@@ -1255,7 +1274,9 @@ class ExecutiveConsolidatedReportService:
             }
         )
 
-    def _block3(self, fuel_summary: FuelSummary) -> Block3Margens:
+    def _block3(
+        self, fuel_summary: FuelSummary, periodo: dict[str, str] | None = None
+    ) -> Block3Margens:
         faturamento_por_litro = []
         for f in fuel_summary.por_filial:
             rpl = (f.valor / f.litros).quantize(Decimal("0.01")) if f.litros else Decimal("0")
@@ -1273,7 +1294,7 @@ class ExecutiveConsolidatedReportService:
                 }
             )
         return Block3Margens(
-            periodo=REPORT_PERIOD,
+            periodo=periodo or REPORT_PERIOD,
             faturamento_por_litro=faturamento_por_litro,
         )
 

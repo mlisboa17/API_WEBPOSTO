@@ -32,9 +32,12 @@ export default function CashAuditReportPage() {
         }
       })
       .catch((err) => {
-        if (active) {
-          setError(err instanceof Error ? err.message : "Erro ao carregar");
-        }
+        if (!active) return;
+        const raw = err instanceof Error ? err.message : "Erro ao carregar";
+        const msg = /Failed to fetch|NetworkError|Load failed/i.test(raw)
+          ? "Falha de rede ao carregar o relatório. Use /executive/cashier-audit (cache RAM) ou confira API :8040."
+          : raw;
+        setError(msg);
       })
       .finally(() => {
         if (active) setLoading(false);

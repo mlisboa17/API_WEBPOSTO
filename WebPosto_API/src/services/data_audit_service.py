@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import logging
 import re
 import time
@@ -14,8 +15,8 @@ from pydantic import BaseModel, Field
 from src.core.config import OFFICIAL_COMPANY_CODES
 from src.gateway.shared_client import get_webposto_client
 from src.services.company_settings_service import get_company_settings_service
-from src.services.sales_composition_service import SalesCompositionService
 from src.services.webposto_integration_service import get_webposto_integration_service
+from src.utils.filial_normalizer import resolve_empresa_codigo
 
 logger = logging.getLogger(__name__)
 
@@ -25,6 +26,20 @@ _PLANO_CACHE_TS: float = 0.0
 _PLANO_CACHE_TTL_S = 3600.0
 _CENTRO_CACHE: dict[int, dict[str, Any]] = {}
 _CENTRO_CACHE_TS: float = 0.0
+
+# Hot-path caches (evita N× composition + HTTP síncrono)
+_AUDIT_RESP_CACHE: dict[str, tuple[float, "DataAuditResponse"]] = {}
+_AUDIT_RESP_TTL_S = 90.0
+_DESPESAS_CACHE: dict[str, tuple[float, list[dict[str, Any]]]] = {}
+_DESPESAS_TTL_S = 120.0
+_VALES_CACHE: dict[str, tuple[float, list[dict[str, Any]]]] = {}
+_VALES_TTL_S = 120.0
+_TANQUE_CACHE: dict[int, tuple[float, Any]] = {}
+_TANQUE_TTL_S = 300.0
+_CPM_CACHE: dict[int, tuple[float, Any]] = {}
+_CPM_TTL_S = 300.0
+_HTTP_BUDGET_S = 0.6
+_TANQUE_BUDGET_S = 0.35
 
 FILIAL_NAMES = {
     5555: "AP Casa Caiada",
@@ -370,7 +385,6 @@ class DataAuditService:
 
     def __init__(self) -> None:
         self._integration = get_webposto_integration_service()
-        self._composition = SalesCompositionService()
         self._client = get_webposto_client()
         self._settings = get_company_settings_service()
 
@@ -484,14 +498,22 @@ class DataAuditService:
         return _CENTRO_CACHE or catalog
 
     async def _fetch_despesas(self, start: str, end: str) -> list[dict[str, Any]]:
+        cache_key = f"{start}|{end}"
+        now = time.monotonic()
+        cached = _DESPESAS_CACHE.get(cache_key)
+        if cached and (now - cached[0]) < _DESPESAS_TTL_S:
+            return cached[1]
         try:
-            resp = await self._client.call_endpoint(
-                "despesas_financeiro_rede",
-                params={"dataInicial": start, "dataFinal": end},
+            resp = await asyncio.wait_for(
+                self._client.call_endpoint(
+                    "despesas_financeiro_rede",
+                    params={"dataInicial": start, "dataFinal": end},
+                ),
+                timeout=_HTTP_BUDGET_S,
             )
             if not resp.success:
                 logger.warning("Despesas rede falhou: %s", resp.error)
-                return []
+                return cached[1] if cached else []
             plano_cat = await self._ensure_plano_catalog()
             centro_cat = await self._ensure_centro_catalog()
             rows = _extract_rows(resp.data)
@@ -501,10 +523,14 @@ class DataAuditService:
                 if item is None:
                     continue
                 normalized.append(item)
+            _DESPESAS_CACHE[cache_key] = (time.monotonic(), normalized)
             return normalized
+        except asyncio.TimeoutError:
+            logger.warning("Despesas rede timeout %.1fs — cache/stale", _HTTP_BUDGET_S)
+            return cached[1] if cached else []
         except Exception as exc:
             logger.warning("Erro ao buscar despesas: %s", exc)
-            return []
+            return cached[1] if cached else []
 
     def _normalize_expense_row(
         self,
@@ -685,37 +711,57 @@ class DataAuditService:
         data_final: str | None = None,
         empresa_codigo: int | None = None,
     ) -> DataAuditResponse:
+        t0 = time.perf_counter()
         hoje = date.today().isoformat()
         start = data_inicial or hoje
         end = data_final or hoje
+        empresa = resolve_empresa_codigo(empresa_codigo)
+        cache_key = f"{start}|{end}|{empresa}"
+        now = time.monotonic()
+        cached = _AUDIT_RESP_CACHE.get(cache_key)
+        if cached and (now - cached[0]) < _AUDIT_RESP_TTL_S:
+            return cached[1]
+
         targets = (
-            [int(empresa_codigo)]
-            if empresa_codigo and int(empresa_codigo) in OFFICIAL_COMPANY_CODES
+            [int(empresa)]
+            if empresa is not None and int(empresa) in OFFICIAL_COMPANY_CODES
             else list(OFFICIAL_COMPANY_CODES)
         )
 
-        despesas_rede = await self._fetch_despesas(start, end)
-        vales_caixa_rede = await self._fetch_vales_caixa_apresentado(start, end)
-        filiais: list[FilialDailyAudit] = []
+        # Fuel local (RAM/DB) uma vez — substitui N× SalesCompositionService
+        from src.services.fuel_volumetry_service import get_fuel_volumetry_service
 
-        for codigo in targets:
-            try:
-                filiais.append(
-                    await self._audit_filial(
-                        codigo, start, end, despesas_rede, vales_caixa_rede
+        fuel = await get_fuel_volumetry_service().build(start, end, empresa)
+        fuel_by_emp = {int(f.empresa_codigo): f for f in fuel.por_filial}
+
+        is_d0 = start == end == hoje
+        if is_d0:
+            # D0: só cache quente — zero HTTP no request (evita disputa com PistaSyncWorker).
+            despesas_rede = self._despesas_cache_only(start, end)
+            vales_caixa_rede = self._vales_cache_only(start, end)
+        else:
+            despesas_rede, vales_caixa_rede = await asyncio.gather(
+                self._fetch_despesas(start, end),
+                self._fetch_vales_caixa_apresentado(start, end),
+            )
+
+        filiais = list(
+            await asyncio.gather(
+                *[
+                    self._audit_filial(
+                        codigo,
+                        start,
+                        end,
+                        despesas_rede,
+                        vales_caixa_rede,
+                        fuel_row=fuel_by_emp.get(codigo),
+                        fuel_fonte=fuel.fonte,
+                        skip_http_tanks=is_d0,
                     )
-                )
-            except Exception as exc:
-                logger.exception("Data audit filial %s falhou: %s", codigo, exc)
-                filiais.append(
-                    FilialDailyAudit(
-                        empresaCodigo=codigo,
-                        empresaNome=FILIAL_NAMES.get(codigo, f"Empresa {codigo}"),
-                        fallback=True,
-                        mensagem=str(exc),
-                        despesasPorCategoria=self._empty_categories(),
-                    )
-                )
+                    for codigo in targets
+                ]
+            )
+        )
 
         consolidado = {
             "faturamentoTotal": round(sum(f.faturamentoTotal for f in filiais), 2),
@@ -740,14 +786,84 @@ class DataAuditService:
                 ),
                 1,
             ),
+            "fonteFuel": fuel.fonte,
+            "latencyMs": round((time.perf_counter() - t0) * 1000.0, 2),
         }
 
-        return DataAuditResponse(
+        result = DataAuditResponse(
             periodo={"inicio": start, "fim": end},
             filiais=filiais,
             consolidado=consolidado,
             success=True,
         )
+        # Não trava 90s com D0 incompleto (despesas ainda aquecendo)
+        incomplete_d0 = is_d0 and not despesas_rede
+        if not incomplete_d0:
+            _AUDIT_RESP_CACHE[cache_key] = (time.monotonic(), result)
+        logger.info(
+            "data-audit ok empresa=%s filiais=%d latencyMs=%.1f fonte=%s incomplete=%s",
+            empresa,
+            len(filiais),
+            consolidado["latencyMs"],
+            fuel.fonte,
+            incomplete_d0,
+        )
+        return result
+
+    @staticmethod
+    def _despesas_cache_only(start: str, end: str) -> list[dict[str, Any]]:
+        cached = _DESPESAS_CACHE.get(f"{start}|{end}")
+        if cached and (time.monotonic() - cached[0]) < _DESPESAS_TTL_S:
+            return cached[1]
+        return []
+
+    @staticmethod
+    def _vales_cache_only(start: str, end: str) -> list[dict[str, Any]]:
+        cached = _VALES_CACHE.get(f"{start}|{end}")
+        if cached and (time.monotonic() - cached[0]) < _VALES_TTL_S:
+            return cached[1]
+        return []
+
+    async def _get_tanks_cached(self, empresa_codigo: int) -> Any:
+        now = time.monotonic()
+        cached = _TANQUE_CACHE.get(empresa_codigo)
+        if cached and (now - cached[0]) < _TANQUE_TTL_S:
+            return cached[1]
+
+        class _Empty:
+            sucesso = False
+            tanques: list = []
+
+        try:
+            tanks = await asyncio.wait_for(
+                self._integration.get_tank_levels(empresa_codigo),
+                timeout=_TANQUE_BUDGET_S,
+            )
+            _TANQUE_CACHE[empresa_codigo] = (time.monotonic(), tanks)
+            return tanks
+        except Exception as exc:
+            logger.warning("tanques empresa=%s: %s", empresa_codigo, exc)
+            return cached[1] if cached else _Empty()
+
+    async def _get_cpm_cached(self, empresa_codigo: int) -> Any:
+        now = time.monotonic()
+        cached = _CPM_CACHE.get(empresa_codigo)
+        if cached and (now - cached[0]) < _CPM_TTL_S:
+            return cached[1]
+
+        class _Empty:
+            custos: list = []
+
+        try:
+            costs = await asyncio.wait_for(
+                self._integration.get_weighted_avg_cost(empresa_codigo),
+                timeout=_TANQUE_BUDGET_S,
+            )
+            _CPM_CACHE[empresa_codigo] = (time.monotonic(), costs)
+            return costs
+        except Exception as exc:
+            logger.warning("cpm empresa=%s: %s", empresa_codigo, exc)
+            return cached[1] if cached else _Empty()
 
     async def _audit_filial(
         self,
@@ -756,26 +872,86 @@ class DataAuditService:
         end: str,
         despesas_rede: list[dict[str, Any]],
         vales_caixa_rede: list[dict[str, Any]] | None = None,
+        *,
+        fuel_row: Any = None,
+        fuel_fonte: str = "",
+        skip_http_tanks: bool = False,
+    ) -> FilialDailyAudit:
+        try:
+            return await self._audit_filial_inner(
+                empresa_codigo,
+                start,
+                end,
+                despesas_rede,
+                vales_caixa_rede,
+                fuel_row=fuel_row,
+                fuel_fonte=fuel_fonte,
+                skip_http_tanks=skip_http_tanks,
+            )
+        except Exception as exc:
+            logger.exception("Data audit filial %s falhou: %s", empresa_codigo, exc)
+            return FilialDailyAudit(
+                empresaCodigo=empresa_codigo,
+                empresaNome=FILIAL_NAMES.get(empresa_codigo, f"Empresa {empresa_codigo}"),
+                fallback=True,
+                mensagem=str(exc),
+                despesasPorCategoria=self._empty_categories(),
+            )
+
+    async def _audit_filial_inner(
+        self,
+        empresa_codigo: int,
+        start: str,
+        end: str,
+        despesas_rede: list[dict[str, Any]],
+        vales_caixa_rede: list[dict[str, Any]] | None = None,
+        *,
+        fuel_row: Any = None,
+        fuel_fonte: str = "",
+        skip_http_tanks: bool = False,
     ) -> FilialDailyAudit:
         nome = FILIAL_NAMES.get(
             empresa_codigo,
             self._settings.get_settings(empresa_codigo).empresa_nome,
         )
 
-        # Vendas / abastecimentos (COUNT DISTINCT operacional)
-        composition = await self._composition.build(start, end, empresa_codigo)
-        fat = composition.summary.faturamentoCombustivel or composition.summary.faturamentoTotal
-        # Preferir faturamento total setorial quando disponível
-        fat_total = composition.summary.faturamentoTotal or fat
-        litros = composition.summary.litrosVendidos
-        qtd_abast = composition.summary.quantidadeAbastecimentos
+        # Vendas / abastecimentos via fuel_volumetry (RAM/DB) — sem composition HTTP
+        fat_total = float(getattr(fuel_row, "valor", 0) or 0) if fuel_row else 0.0
+        litros = float(getattr(fuel_row, "litros", 0) or 0) if fuel_row else 0.0
+        qtd_abast = int(getattr(fuel_row, "transacoes", 0) or 0) if fuel_row else 0
+        fuel_ok = fuel_row is not None and (fat_total > 0 or litros > 0)
 
-        # Tanques + CPM
-        tanks = await self._integration.get_tank_levels(empresa_codigo)
-        costs = await self._integration.get_weighted_avg_cost(empresa_codigo)
+        if skip_http_tanks:
+            # D0: tanques/CPM só cache — sem HTTP nem create_task no request
+            now = time.monotonic()
+            t_cached = _TANQUE_CACHE.get(empresa_codigo)
+            c_cached = _CPM_CACHE.get(empresa_codigo)
+
+            class _EmptyT:
+                sucesso = False
+                tanques: list = []
+
+            class _EmptyC:
+                custos: list = []
+
+            tanks = (
+                t_cached[1]
+                if t_cached and (now - t_cached[0]) < _TANQUE_TTL_S
+                else _EmptyT()
+            )
+            costs = (
+                c_cached[1]
+                if c_cached and (now - c_cached[0]) < _CPM_TTL_S
+                else _EmptyC()
+            )
+        else:
+            tanks, costs = await asyncio.gather(
+                self._get_tanks_cached(empresa_codigo),
+                self._get_cpm_cached(empresa_codigo),
+            )
         cpm_map = {
             str(c.get("produto_codigo")): _f(c.get("cpm_rs"))
-            for c in (costs.custos or [])
+            for c in (getattr(costs, "custos", None) or [])
             if _f(c.get("cpm_rs")) > 0
         }
 
@@ -784,18 +960,20 @@ class DataAuditService:
         valor_estoque = 0.0
         margem_sum = 0.0
         margem_n = 0
+        tanks_ok = bool(getattr(tanks, "sucesso", False))
 
-        for t in tanks.tanques or []:
+        for t in getattr(tanks, "tanques", None) or []:
             vol = _f(t.get("volume_atual_litros"))
             cap = _f(t.get("capacidade_litros"))
             if cap > 0:
                 ocup_sum += (vol / cap) * 100
                 ocup_n += 1
             codigo = str(t.get("produto_codigo") or "")
-            cpm = cpm_map.get(codigo) or self._fallback_custo(empresa_codigo, codigo, str(t.get("produto_nome") or ""))
+            cpm = cpm_map.get(codigo) or self._fallback_custo(
+                empresa_codigo, codigo, str(t.get("produto_nome") or "")
+            )
             if cpm > 0 and vol > 0:
                 valor_estoque += vol * cpm
-            # margem bruta aproximada: preço médio do dia - CPM
             preco_medio = (fat_total / litros) if litros > 0 else 0.0
             if cpm > 0 and preco_medio > 0:
                 margem_sum += preco_medio - cpm
@@ -804,7 +982,6 @@ class DataAuditService:
         ocupacao = round(ocup_sum / ocup_n, 1) if ocup_n else 0.0
         margem_media = round(margem_sum / margem_n, 4) if margem_n else 0.0
 
-        # Despesas da filial
         despesas_filial = [
             r
             for r in despesas_rede
@@ -821,6 +998,14 @@ class DataAuditService:
         ]
         vales = self._build_vales_block(despesas_filial, vales_caixa)
 
+        msg_parts = []
+        if fuel_fonte:
+            msg_parts.append(f"fonte={fuel_fonte}")
+        if not fuel_ok:
+            msg_parts.append("fuel vazio (aguardando cache/DB)")
+        if not tanks_ok:
+            msg_parts.append("tanques indisponíveis/timeout")
+
         return FilialDailyAudit(
             empresaCodigo=empresa_codigo,
             empresaNome=nome,
@@ -834,8 +1019,8 @@ class DataAuditService:
             resultadoOperacionalDiario=resultado,
             margemBrutaMediaRsLitro=margem_media,
             valorEstoqueImobilizado=round(valor_estoque, 2),
-            fallback=bool(composition.fallback) or not tanks.sucesso,
-            mensagem=composition.mensagem,
+            fallback=not fuel_ok or not tanks_ok,
+            mensagem="; ".join(msg_parts) if msg_parts else None,
         )
 
     def _fallback_custo(self, empresa_codigo: int, produto_codigo: str, nome: str) -> float:
@@ -950,17 +1135,26 @@ class DataAuditService:
         self, start: str, end: str
     ) -> list[dict[str, Any]]:
         """Vales apurados nos caixas (valeFunApurado) via CAIXA_APRESENTADO_REDE."""
+        cache_key = f"{start}|{end}"
+        now = time.monotonic()
+        cached = _VALES_CACHE.get(cache_key)
+        if cached and (now - cached[0]) < _VALES_TTL_S:
+            return cached[1]
+
         items: list[dict[str, Any]] = []
         try:
-            resp = await self._client.call_endpoint(
-                "caixa_apresentado_rede",
-                params={"dataInicial": start, "dataFinal": end},
+            resp = await asyncio.wait_for(
+                self._client.call_endpoint(
+                    "caixa_apresentado_rede",
+                    params={"dataInicial": start, "dataFinal": end},
+                ),
+                timeout=_HTTP_BUDGET_S,
             )
             if not resp.success:
                 logger.info(
                     "caixa_apresentado_rede indisponível para vales: %s", resp.error
                 )
-                return []
+                return cached[1] if cached else []
             for row in _extract_rows(resp.data):
                 valor = _f(
                     row.get("valeFunApurado")
@@ -990,8 +1184,13 @@ class DataAuditService:
                         "fonte": "caixa_apresentado",
                     }
                 )
+            _VALES_CACHE[cache_key] = (time.monotonic(), items)
+        except asyncio.TimeoutError:
+            logger.warning("vales caixa timeout %.1fs", _HTTP_BUDGET_S)
+            return cached[1] if cached else []
         except Exception as exc:
             logger.warning("Erro ao buscar vales no caixa apresentado: %s", exc)
+            return cached[1] if cached else []
         return items
 
     def _build_vales_block(

@@ -1,0 +1,5477 @@
+{
+  "lastUpdated": "2026-07-30T20:47:27",
+  "center": {
+    "summary": {
+      "periodo": {
+        "dataInicial": "2026-06-01",
+        "dataFinal": "2026-06-30"
+      },
+      "despesasGerenciais": {
+        "totalRegistros": 160,
+        "totalValor": "52184.10",
+        "porCategoriaLogos": {
+          "ADMINISTRATIVA": "1950.00",
+          "COMPRAS": "12142.43",
+          "FINANCEIRO": "3300.00",
+          "OPERACIONAL": "5124.74",
+          "OUTROS": "4694.92",
+          "PESSOAL": "24972.01"
+        },
+        "porEmpresa": {
+          "74014": "52184.10"
+        }
+      },
+      "contasPagar": {
+        "emAberto": {
+          "count": 118,
+          "valor": "337856.22"
+        },
+        "vencido": {
+          "count": 26,
+          "valor": "152847.91"
+        },
+        "pago": {
+          "count": 58,
+          "valor": "1074208.40"
+        },
+        "aVencer": {
+          "count": 92,
+          "valor": "185008.31"
+        }
+      },
+      "contasReceber": {
+        "pendente": {
+          "count": 11,
+          "valor": "5323.65"
+        },
+        "recebido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "vencido": {
+          "count": 2,
+          "valor": "3263.51"
+        },
+        "aVencer": {
+          "count": 9,
+          "valor": "2060.14"
+        }
+      },
+      "movimentoBancario": {
+        "totalRegistros": 38,
+        "creditos": {
+          "count": 19,
+          "valor": "751.66"
+        },
+        "debitos": {
+          "count": 19,
+          "valor": "3.83"
+        },
+        "tarifas": {
+          "count": 19,
+          "valor": "3.83"
+        },
+        "transferencias": {
+          "count": 19,
+          "valor": "751.66"
+        },
+        "saldoMovimentado": {
+          "creditos": "751.66",
+          "debitos": "3.83",
+          "liquido": "747.83"
+        }
+      },
+      "caixa": {
+        "turnos": 30,
+        "despesaCaixa": {
+          "apurado": "27645.85",
+          "turnos": 30
+        },
+        "valeFuncionario": {
+          "apurado": "31090.81",
+          "turnos": 30
+        },
+        "emprestimos": {
+          "apurado": "0.00",
+          "turnos": 30
+        },
+        "diferencas": 30
+      },
+      "coverage": {
+        "despesasGerenciais": {
+          "status": "ok",
+          "registros": 160
+        },
+        "contasPagar": {
+          "status": "ok",
+          "registros": 176
+        },
+        "contasReceber": {
+          "status": "ok",
+          "registros": 11
+        },
+        "movimentoBancario": {
+          "status": "ok",
+          "registros": 38
+        },
+        "caixa": {
+          "status": "ok",
+          "turnos": 30
+        }
+      },
+      "warnings": [
+        "caixa.fundoCaixa: indisponível na API"
+      ],
+      "snapshotKey": "finance:center:summary:2026-06-01:2026-06-30:74014",
+      "performanceMs": {
+        "despesas": 0,
+        "payables": 4473.7,
+        "receivables": 5506.1,
+        "bank": 5534.3,
+        "cash": 4684.4,
+        "total": 7181.7
+      }
+    },
+    "expenses": {
+      "page": 1,
+      "limit": 500,
+      "total": 160,
+      "resumo": {
+        "totalRegistros": 160,
+        "totalValor": "52184.10",
+        "porCategoriaLogos": {
+          "ADMINISTRATIVA": "1950.00",
+          "COMPRAS": "12142.43",
+          "FINANCEIRO": "3300.00",
+          "OPERACIONAL": "5124.74",
+          "OUTROS": "4694.92",
+          "PESSOAL": "24972.01"
+        },
+        "porEmpresa": {
+          "74014": "52184.10"
+        }
+      },
+      "data": [
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-01",
+          "valor": "54.00",
+          "planoConta": "PORTA DO BANHEIRO",
+          "planoContaCodigo": 141276,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "MANUTENÇÃO",
+          "categoriaLogosV3": "MANUTENÇÃO",
+          "confidenceScore": 92,
+          "confidenceScoreV3": 0.138,
+          "confidenceBand": "outros",
+          "classificationSource": "DESCRICAO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-01",
+          "valor": "6.00",
+          "planoConta": "POSTO",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-01",
+          "valor": "20.00",
+          "planoConta": "SERVIÇO POSTO",
+          "planoContaCodigo": 29060,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "VEÍCULOS",
+          "categoriaLogosV3": "VEÍCULOS",
+          "confidenceScore": 90,
+          "confidenceScoreV3": 0.8626,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-01",
+          "valor": "713.00",
+          "planoConta": "1 PORTS DE MADEIRA PARA O BANHEIRO MASCULINO",
+          "planoContaCodigo": 47656,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "MANUTENÇÃO",
+          "categoriaLogosV3": "MANUTENÇÃO",
+          "confidenceScore": 92,
+          "confidenceScoreV3": 0.902,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-01",
+          "valor": "1080.50",
+          "planoConta": "PAGAMENTO ZE",
+          "planoContaCodigo": 47952,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-01",
+          "valor": "150.00",
+          "planoConta": "Extra,(referente ás férias de Lenilson.)",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.8341,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-02",
+          "valor": "4.00",
+          "planoConta": "uma estopa blinde cliente",
+          "planoContaCodigo": 29020,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-02",
+          "valor": "5.00",
+          "planoConta": "5 para Tawan, autorizado pelo Sr Moises",
+          "planoContaCodigo": 39370,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-02",
+          "valor": "11.99",
+          "planoConta": "confeito para o escritorio",
+          "planoContaCodigo": 141274,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-02",
+          "valor": "12.00",
+          "planoConta": "duas aguas mineral",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-02",
+          "valor": "2956.00",
+          "planoConta": "REF NF:000006363 - UNIFORDEX FIALHO FARDAS - UNIFORDEX FIALHO FARDAS",
+          "planoContaCodigo": 29057,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "categoriaLogosV3": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceScoreV3": 0.896,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-03",
+          "valor": "66.55",
+          "planoConta": "vendas de arla ref 22/06",
+          "planoContaCodigo": 29020,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-03",
+          "valor": "400.00",
+          "planoConta": "400 para o senhor Moises",
+          "planoContaCodigo": 39370,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-03",
+          "valor": "100.00",
+          "planoConta": "100 de gasolina no carro Sr Moises",
+          "planoContaCodigo": 39370,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-03",
+          "valor": "1600.00",
+          "planoConta": "sr moises",
+          "planoContaCodigo": 39370,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-03",
+          "valor": "5.00",
+          "planoConta": "GORJETA",
+          "planoContaCodigo": 39370,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-03",
+          "valor": "1.36",
+          "planoConta": "PASSADA DE BOMBA",
+          "planoContaCodigo": 141278,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-03",
+          "valor": "6.00",
+          "planoConta": "POSTO",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-03",
+          "valor": "80.00",
+          "planoConta": "ALMOÇO DE JACK, ( DESCONTADO NO PAGAMENT",
+          "planoContaCodigo": 65540,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "ADMINISTRATIVA",
+          "categoriaLogosV2": "SERVIÇOS",
+          "categoriaLogosV3": "SERVIÇOS",
+          "confidenceScore": 88,
+          "confidenceScoreV3": 0.8455,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-03",
+          "valor": "1420.00",
+          "planoConta": "SERVÇOS",
+          "planoContaCodigo": 65540,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "ADMINISTRATIVA",
+          "categoriaLogosV2": "SERVIÇOS",
+          "categoriaLogosV3": "SERVIÇOS",
+          "confidenceScore": 90,
+          "confidenceScoreV3": 0.89,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-03",
+          "valor": "150.00",
+          "planoConta": "EXTRA, (REFERENTE Á FÉRIAS DE LENILSON",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.8341,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-03",
+          "valor": "100.00",
+          "planoConta": "FOLGUISTA DA LIMPEZA",
+          "planoContaCodigo": 61815,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-04",
+          "valor": "6.00",
+          "planoConta": "agua mineral",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-04",
+          "valor": "100.00",
+          "planoConta": "arthur gasolina",
+          "planoContaCodigo": 29060,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "VEÍCULOS",
+          "categoriaLogosV3": "VEÍCULOS",
+          "confidenceScore": 93,
+          "confidenceScoreV3": 0.908,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-04",
+          "valor": "1500.00",
+          "planoConta": "QUINZENA CRISTIANE",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-04",
+          "valor": "895.00",
+          "planoConta": "SALARIO JEYMERSON",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-04",
+          "valor": "150.00",
+          "planoConta": "AFASTAMENTO WANDERSON",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-05",
+          "valor": "23.80",
+          "planoConta": "conectaor p/ fita led para toti de preço",
+          "planoContaCodigo": 141278,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-05",
+          "valor": "6.00",
+          "planoConta": "AGUA POSTO",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-05",
+          "valor": "15.13",
+          "planoConta": "FALHA NO BICO 08 , DIGITEI  MAS, PASSSOU",
+          "planoContaCodigo": 29059,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-05",
+          "valor": "20.00",
+          "planoConta": "SERVIÇO POSTO",
+          "planoContaCodigo": 29060,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "VEÍCULOS",
+          "categoriaLogosV3": "VEÍCULOS",
+          "confidenceScore": 90,
+          "confidenceScoreV3": 0.8626,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-05",
+          "valor": "250.00",
+          "planoConta": "LED TOTEN E INDICADORES",
+          "planoContaCodigo": 65540,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "ADMINISTRATIVA",
+          "categoriaLogosV2": "SERVIÇOS",
+          "categoriaLogosV3": "SERVIÇOS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.89,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-05",
+          "valor": "983.00",
+          "planoConta": "QUINZENA LUCIANA",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-05",
+          "valor": "876.00",
+          "planoConta": "QUINZENA CAIO",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-05",
+          "valor": "150.00",
+          "planoConta": "EXTRA RONALDO",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-05",
+          "valor": "150.00",
+          "planoConta": "extra referente ás férias de Lenilson",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.8341,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-05",
+          "valor": "1266.60",
+          "planoConta": "SINDICATO",
+          "planoContaCodigo": 29084,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-05",
+          "valor": "200.00",
+          "planoConta": "LIMPEZA DO POSTO",
+          "planoContaCodigo": 61744,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "ADMINISTRATIVA",
+          "categoriaLogosV2": "SERVIÇOS",
+          "categoriaLogosV3": "SERVIÇOS",
+          "confidenceScore": 88,
+          "confidenceScoreV3": 0.8455,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-06",
+          "valor": "2.07",
+          "planoConta": "ENCHIMENTO MANGUEIRA",
+          "planoContaCodigo": 137578,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "MANUTENÇÃO",
+          "categoriaLogosV3": "MANUTENÇÃO",
+          "confidenceScore": 92,
+          "confidenceScoreV3": 0.138,
+          "confidenceBand": "outros",
+          "classificationSource": "DESCRICAO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-06",
+          "valor": "60.00",
+          "planoConta": "FOLGUISTA FAXINEIRA ANGELA",
+          "planoContaCodigo": 61815,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-07",
+          "valor": "6.00",
+          "planoConta": "1 FLANELA BRINDE",
+          "planoContaCodigo": 29050,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "categoriaLogosV3": "COMPRAS",
+          "confidenceScore": 88,
+          "confidenceScoreV3": 0.8512,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-07",
+          "valor": "6.00",
+          "planoConta": "POSTO",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-07",
+          "valor": "150.00",
+          "planoConta": "EXTRA REFERENTE AS FERIAS DE LENILSON",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.8341,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-07",
+          "valor": "120.00",
+          "planoConta": "FOLGUISTA DA LIMPEZA",
+          "planoContaCodigo": 61815,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-08",
+          "valor": "10.01",
+          "planoConta": "nota de arla/cliente",
+          "planoContaCodigo": 29020,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-08",
+          "valor": "12.00",
+          "planoConta": "duas aguas mineral",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-08",
+          "valor": "150.00",
+          "planoConta": "WANDERSON ATESTADO",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-09",
+          "valor": "6.00",
+          "planoConta": "POSTO",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-09",
+          "valor": "20.00",
+          "planoConta": "PESQUISA DE PREÇO",
+          "planoContaCodigo": 29060,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "VEÍCULOS",
+          "categoriaLogosV3": "VEÍCULOS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.908,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-09",
+          "valor": "10.00",
+          "planoConta": "PESQUISA DE PREÇO DE DOUGLAS",
+          "planoContaCodigo": 29060,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "VEÍCULOS",
+          "categoriaLogosV3": "VEÍCULOS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.908,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-09",
+          "valor": "1.97",
+          "planoConta": "VAZAMENTO DE BICO GNV",
+          "planoContaCodigo": 137578,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-09",
+          "valor": "150.00",
+          "planoConta": "EXTRA",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-09",
+          "valor": "150.00",
+          "planoConta": "EXTRA REFERENTE ÁS FÉRIAS DE LENILSON",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.8341,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-10",
+          "valor": "1200.00",
+          "planoConta": "para seu moraes autorizado sr moises",
+          "planoContaCodigo": 39370,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-10",
+          "valor": "35.95",
+          "planoConta": "sr moises consumo loja convniência",
+          "planoContaCodigo": 39370,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-10",
+          "valor": "26.24",
+          "planoConta": "ANÁLISE DA PETROBRAS",
+          "planoContaCodigo": 29060,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "VEÍCULOS",
+          "categoriaLogosV3": "VEÍCULOS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.908,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-11",
+          "valor": "52.79",
+          "planoConta": "MATERIAS PRO ESCRITÓRIO",
+          "planoContaCodigo": 141274,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-11",
+          "valor": "6.00",
+          "planoConta": "POSTO",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-11",
+          "valor": "150.00",
+          "planoConta": "EXTRA",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-11",
+          "valor": "150.00",
+          "planoConta": "EXTRA REFERETE ÁS FÉRIAS DE LENILSON",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.8341,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-12",
+          "valor": "12.00",
+          "planoConta": "duas aguas mineral",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-12",
+          "valor": "150.00",
+          "planoConta": "AFASTAMENTO WANDERSON",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-12",
+          "valor": "80.00",
+          "planoConta": "extra jeymerson",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-13",
+          "valor": "99.75",
+          "planoConta": "NOTA DE ARLA PARA O CLIENTE",
+          "planoContaCodigo": 29020,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-13",
+          "valor": "6.00",
+          "planoConta": "1 flanela brinde",
+          "planoContaCodigo": 29050,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "categoriaLogosV3": "COMPRAS",
+          "confidenceScore": 88,
+          "confidenceScoreV3": 0.8512,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-13",
+          "valor": "6.00",
+          "planoConta": "posto",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-13",
+          "valor": "20.00",
+          "planoConta": "serviço posto",
+          "planoContaCodigo": 29060,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "VEÍCULOS",
+          "categoriaLogosV3": "VEÍCULOS",
+          "confidenceScore": 90,
+          "confidenceScoreV3": 0.8626,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-13",
+          "valor": "150.00",
+          "planoConta": "extra referente as ferias de Lenilson",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.8341,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-13",
+          "valor": "150.00",
+          "planoConta": "extra",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-13",
+          "valor": "60.00",
+          "planoConta": "folguista da limpeza",
+          "planoContaCodigo": 61815,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-14",
+          "valor": "1450.00",
+          "planoConta": "REF NF:220520226 - DUNAX LUBRIFICANTES LTDA PE VAREJO - DUNAX LUBRIFICANTES LTDA PE VAREJO",
+          "planoContaCodigo": 29020,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "categoriaLogosV3": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceScoreV3": 0.1365,
+          "confidenceBand": "outros",
+          "classificationSource": "DESCRICAO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-14",
+          "valor": "3300.00",
+          "planoConta": "REF NF:000005486 - CIA DO NOBREAK - CIA DO NOBREAK",
+          "planoContaCodigo": 141276,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "categoriaLogosV3": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceScoreV3": 0.1365,
+          "confidenceBand": "outros",
+          "classificationSource": "DESCRICAO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-14",
+          "valor": "6.00",
+          "planoConta": "agua mineral",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-14",
+          "valor": "595.00",
+          "planoConta": "CAMISAS COPA",
+          "planoContaCodigo": 29057,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "categoriaLogosV3": "COMPRAS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.896,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-14",
+          "valor": "289.70",
+          "planoConta": "REF NF:000213869 - COMERCIAL BEZERRA  FILIAL 02 - COMERCIAL BEZERRA  FILIAL 02",
+          "planoContaCodigo": 29057,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "categoriaLogosV3": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceScoreV3": 0.896,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-14",
+          "valor": "108.68",
+          "planoConta": "REF NF:000064769 - CASA E CONSTRUCAO - ABREU E LIMA - CASA E CONSTRUCAO - ABREU E LIMA",
+          "planoContaCodigo": 47656,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "MANUTENÇÃO",
+          "categoriaLogosV3": "MANUTENÇÃO",
+          "confidenceScore": 91,
+          "confidenceScoreV3": 0.8569,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-14",
+          "valor": "94.91",
+          "planoConta": "REF NF:000064770 - CASA E CONSTRUCAO - ABREU E LIMA - CASA E CONSTRUCAO - ABREU E LIMA",
+          "planoContaCodigo": 47656,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "MANUTENÇÃO",
+          "categoriaLogosV3": "MANUTENÇÃO",
+          "confidenceScore": 91,
+          "confidenceScoreV3": 0.8569,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-14",
+          "valor": "150.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 98,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-14",
+          "valor": "120.00",
+          "planoConta": "FOLGUISTA DA LIMPEZAA",
+          "planoContaCodigo": 61815,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-15",
+          "valor": "373.20",
+          "planoConta": "ABSTECIMENTO MÁRCIO",
+          "planoContaCodigo": 148304,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-15",
+          "valor": "6.00",
+          "planoConta": "posto",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-16",
+          "valor": "16.00",
+          "planoConta": "CAFE MECANICO AUTORIZADO SR MOISES",
+          "planoContaCodigo": 39370,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-16",
+          "valor": "25.00",
+          "planoConta": "pesquisa de preço de Lenilson",
+          "planoContaCodigo": 141274,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-16",
+          "valor": "15.00",
+          "planoConta": "UM TEFON P",
+          "planoContaCodigo": 141274,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-16",
+          "valor": "600.00",
+          "planoConta": "REF NF:000006411 - UNIFORDEX FIALHO FARDAS - UNIFORDEX FIALHO FARDAS",
+          "planoContaCodigo": 29057,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "categoriaLogosV3": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceScoreV3": 0.896,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-16",
+          "valor": "713.00",
+          "planoConta": "REF NF:000000115 - COMERCIAL GENESIS LTDA ME - COMERCIAL GENESIS LTDA ME",
+          "planoContaCodigo": 47656,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "MANUTENÇÃO",
+          "categoriaLogosV3": "MANUTENÇÃO",
+          "confidenceScore": 91,
+          "confidenceScoreV3": 0.8569,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-16",
+          "valor": "1000.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 98,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-16",
+          "valor": "1931.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 98,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-16",
+          "valor": "150.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 98,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-16",
+          "valor": "150.00",
+          "planoConta": "AFASTAMENTO WANDERSON",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-17",
+          "valor": "12.00",
+          "planoConta": "POSTO",
+          "planoContaCodigo": 29059,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-17",
+          "valor": "2.57",
+          "planoConta": "VAZAAMENTO GNV",
+          "planoContaCodigo": 29059,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-17",
+          "valor": "55.00",
+          "planoConta": "material pro escritorio",
+          "planoContaCodigo": 45224,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "categoriaLogosV3": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceScoreV3": 0.896,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-17",
+          "valor": "2.27",
+          "planoConta": "VAZOU NO BICO",
+          "planoContaCodigo": 137578,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-17",
+          "valor": "40.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 98,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-17",
+          "valor": "1150.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 98,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-17",
+          "valor": "1000.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 98,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-17",
+          "valor": "150.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 98,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-17",
+          "valor": "150.00",
+          "planoConta": "EXTRA DO ULTIMO DIA DE FERIAS DE LENILSO",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.8341,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-18",
+          "valor": "5.00",
+          "planoConta": "AJUDA PARA PEDINTE",
+          "planoContaCodigo": 39370,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-18",
+          "valor": "39.96",
+          "planoConta": "consumo sr moises loja conveniencia",
+          "planoContaCodigo": 39370,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-18",
+          "valor": "34.00",
+          "planoConta": "DUAS TOMADAS PARA O ESCRITORICO",
+          "planoContaCodigo": 141274,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-18",
+          "valor": "15.69",
+          "planoConta": "PAPEL HIGIENICO",
+          "planoContaCodigo": 29049,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "categoriaLogosV3": "COMPRAS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.896,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-18",
+          "valor": "6.00",
+          "planoConta": "AGUA MINERAL",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-18",
+          "valor": "3.75",
+          "planoConta": "VAZOU NO BICO",
+          "planoContaCodigo": 137578,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-18",
+          "valor": "1000.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 98,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-18",
+          "valor": "1500.00",
+          "planoConta": "QUINZENA CRISTIANE",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-18",
+          "valor": "150.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 98,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-18",
+          "valor": "1150.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 98,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-18",
+          "valor": "150.00",
+          "planoConta": "AFASTAMENTO WWANDERSON",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-19",
+          "valor": "248.60",
+          "planoConta": "JOGO DO BRASIL+PIZZA",
+          "planoContaCodigo": 29050,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "categoriaLogosV3": "COMPRAS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.896,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-19",
+          "valor": "6.00",
+          "planoConta": "posto",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-19",
+          "valor": "20.00",
+          "planoConta": "serviço posto",
+          "planoContaCodigo": 29060,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "VEÍCULOS",
+          "categoriaLogosV3": "VEÍCULOS",
+          "confidenceScore": 90,
+          "confidenceScoreV3": 0.8626,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-19",
+          "valor": "150.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 98,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-19",
+          "valor": "40.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 98,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-19",
+          "valor": "1000.00",
+          "planoConta": "salario luciana",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-19",
+          "valor": "1000.00",
+          "planoConta": "ferias",
+          "planoContaCodigo": 29076,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.92,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-19",
+          "valor": "200.00",
+          "planoConta": "EXTRA",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-20",
+          "valor": "316.78",
+          "planoConta": "material de limpeza",
+          "planoContaCodigo": 29049,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "categoriaLogosV3": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceScoreV3": 0.896,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-20",
+          "valor": "7.00",
+          "planoConta": "frete material de limpeza",
+          "planoContaCodigo": 29049,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "categoriaLogosV3": "COMPRAS",
+          "confidenceScore": 94,
+          "confidenceScoreV3": 0.8512,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-20",
+          "valor": "6.00",
+          "planoConta": "flaneeela p/  uso",
+          "planoContaCodigo": 29050,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "categoriaLogosV3": "COMPRAS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.896,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-20",
+          "valor": "12.00",
+          "planoConta": "duas aguas mineral",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-20",
+          "valor": "30.00",
+          "planoConta": "gasolina p serviços posto",
+          "planoContaCodigo": 48547,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 93,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-20",
+          "valor": "150.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 98,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-20",
+          "valor": "1283.50",
+          "planoConta": "quitação das ferias de flavia",
+          "planoContaCodigo": 29076,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.92,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-20",
+          "valor": "60.00",
+          "planoConta": "folguista angela zeladora",
+          "planoContaCodigo": 61815,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-21",
+          "valor": "52.00",
+          "planoConta": "produto",
+          "planoContaCodigo": 29020,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-21",
+          "valor": "40.00",
+          "planoConta": "nota ryan, cliente abastecimento sem ret",
+          "planoContaCodigo": 29060,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "VEÍCULOS",
+          "categoriaLogosV3": "VEÍCULOS",
+          "confidenceScore": 93,
+          "confidenceScoreV3": 0.908,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-21",
+          "valor": "150.00",
+          "planoConta": "angela",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-22",
+          "valor": "1000.00",
+          "planoConta": "part cota sr moises falar c/pedro rigaud",
+          "planoContaCodigo": 39370,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-22",
+          "valor": "1000.00",
+          "planoConta": "parte cota sr moises, falar c/ pedro rig",
+          "planoContaCodigo": 39370,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-22",
+          "valor": "3500.00",
+          "planoConta": "MORAES",
+          "planoContaCodigo": 29045,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-22",
+          "valor": "3300.00",
+          "planoConta": "MATERIAL CONSTRUCAO CARTAO MARCIO - PARCELA 1 DE 2 - BANCO BRADESCO FINANCIAMENTOS S.A.",
+          "planoContaCodigo": 141279,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "FINANCEIRO",
+          "categoriaLogosV2": "FINANCEIRO",
+          "categoriaLogosV3": "FINANCEIRO",
+          "confidenceScore": 98,
+          "confidenceScoreV3": 0.147,
+          "confidenceBand": "outros",
+          "classificationSource": "DESCRICAO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-22",
+          "valor": "6.00",
+          "planoConta": "agua mineral",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-22",
+          "valor": "5.00",
+          "planoConta": "uma fita adesiva dupla face escritorio",
+          "planoContaCodigo": 45224,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "categoriaLogosV3": "COMPRAS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.896,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-22",
+          "valor": "150.00",
+          "planoConta": "mao de obra pedreiro concerto banheiro",
+          "planoContaCodigo": 48547,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 92,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-22",
+          "valor": "150.00",
+          "planoConta": "FOLGA AÍLTON",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-23",
+          "valor": "6.00",
+          "planoConta": "posto",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-23",
+          "valor": "600.00",
+          "planoConta": "fardamento",
+          "planoContaCodigo": 29057,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "COMPRAS",
+          "categoriaLogosV2": "COMPRAS",
+          "categoriaLogosV3": "COMPRAS",
+          "confidenceScore": 91,
+          "confidenceScoreV3": 0.896,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-23",
+          "valor": "20.00",
+          "planoConta": "DEVOLUÇAO AO TANQUE",
+          "planoContaCodigo": 137578,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-23",
+          "valor": "150.00",
+          "planoConta": "extra",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-24",
+          "valor": "100.00",
+          "planoConta": "MILHO DE RONALDO AUT, PELO SR MOISES",
+          "planoContaCodigo": 29089,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.1425,
+          "confidenceBand": "outros",
+          "classificationSource": "DESCRICAO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-24",
+          "valor": "120.00",
+          "planoConta": "folguista da limpeza",
+          "planoContaCodigo": 61815,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-24",
+          "valor": "250.00",
+          "planoConta": "EXTRA DO FERIADO",
+          "planoContaCodigo": 122035,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-25",
+          "valor": "55.00",
+          "planoConta": "calculadora e um mause",
+          "planoContaCodigo": 141274,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-25",
+          "valor": "12.00",
+          "planoConta": "posto",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-25",
+          "valor": "18.50",
+          "planoConta": "PERDA BICOS",
+          "planoContaCodigo": 29059,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-25",
+          "valor": "40.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 98,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-25",
+          "valor": "150.00",
+          "planoConta": "Vale de funcionário referente a consolidação de caixa",
+          "planoContaCodigo": 29072,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 98,
+          "confidenceScoreV3": 0.9025,
+          "confidenceBand": "alta",
+          "classificationSource": "HIBRIDO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-26",
+          "valor": "20.00",
+          "planoConta": "DESCONTO DIESEL",
+          "planoContaCodigo": 62800,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "VEÍCULOS",
+          "categoriaLogosV3": "VEÍCULOS",
+          "confidenceScore": 93,
+          "confidenceScoreV3": 0.1395,
+          "confidenceBand": "outros",
+          "classificationSource": "DESCRICAO"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-27",
+          "valor": "6.00",
+          "planoConta": "posto",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-27",
+          "valor": "1.61",
+          "planoConta": "falha bico",
+          "planoContaCodigo": 137578,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-27",
+          "valor": "60.00",
+          "planoConta": "angelaa",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-28",
+          "valor": "12.00",
+          "planoConta": "duas agua mineral",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 88,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-28",
+          "valor": "2.77",
+          "planoConta": "vazou",
+          "planoContaCodigo": 137578,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-28",
+          "valor": "120.00",
+          "planoConta": "Folguista da limpeza",
+          "planoContaCodigo": 61815,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "PESSOAL",
+          "categoriaLogosV2": "PESSOAL",
+          "categoriaLogosV3": "PESSOAL",
+          "confidenceScore": 95,
+          "confidenceScoreV3": 0.95,
+          "confidenceBand": "automatico",
+          "classificationSource": "MANUAL"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-29",
+          "valor": "6.00",
+          "planoConta": "posto",
+          "planoContaCodigo": 29051,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-29",
+          "valor": "0.90",
+          "planoConta": "VENDA SEM IDENTIFICAÇAO",
+          "planoContaCodigo": 137578,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-30",
+          "valor": "39.00",
+          "planoConta": "um extra turbo furado",
+          "planoContaCodigo": 29020,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OUTROS",
+          "categoriaLogosV2": "OUTROS",
+          "categoriaLogosV3": "OUTROS",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.0,
+          "confidenceBand": "outros",
+          "classificationSource": "OUTROS"
+        },
+        {
+          "empresaCodigo": 74014,
+          "data": "2026-06-30",
+          "valor": "60.00",
+          "planoConta": "extra",
+          "planoContaCodigo": 29079,
+          "centroCusto": "",
+          "funcionarioCodigo": null,
+          "employeeName": null,
+          "categoriaLogos": "OPERACIONAL",
+          "categoriaLogosV2": "OPERACIONAL",
+          "categoriaLogosV3": "OPERACIONAL",
+          "confidenceScore": 0,
+          "confidenceScoreV3": 0.878,
+          "confidenceBand": "alta",
+          "classificationSource": "PLANO_CONTA"
+        }
+      ],
+      "snapshotKey": "finance:center:expenses:2026-06-01:2026-06-30:74014",
+      "performanceMs": {
+        "despesas": 6969.3
+      }
+    },
+    "payables": {
+      "page": 1,
+      "limit": 500,
+      "total": 176,
+      "resumo": {
+        "emAberto": {
+          "count": 118,
+          "valor": "337856.22"
+        },
+        "vencido": {
+          "count": 26,
+          "valor": "152847.91"
+        },
+        "pago": {
+          "count": 58,
+          "valor": "1074208.40"
+        },
+        "aVencer": {
+          "count": 92,
+          "valor": "185008.31"
+        }
+      },
+      "buckets": {
+        "emAberto": {
+          "count": 118,
+          "valor": "337856.22"
+        },
+        "vencido": {
+          "count": 26,
+          "valor": "152847.91"
+        },
+        "pago": {
+          "count": 58,
+          "valor": "1074208.40"
+        },
+        "aVencer": {
+          "count": 92,
+          "valor": "185008.31"
+        }
+      },
+      "data": [
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075676,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "29804.50",
+          "vencimento": "2026-06-04",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075678,
+          "fornecedor": "UNIFORDEX FIALHO FARDAS",
+          "valor": "2956.00",
+          "vencimento": "2026-06-02",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075728,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "2373.64",
+          "vencimento": "2026-06-16",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075729,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "2373.64",
+          "vencimento": "2026-07-16",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075733,
+          "fornecedor": "SULAMERICA COMPANHIA DE SEGURO SAUDE",
+          "valor": "3500.00",
+          "vencimento": "2026-06-05",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075741,
+          "fornecedor": "BRITO PIMENTEL  A ASSOCIADOS",
+          "valor": "1363.64",
+          "vencimento": "2026-06-25",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075749,
+          "fornecedor": "CIA DO NOBREAK",
+          "valor": "3300.00",
+          "vencimento": "2026-06-03",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3078115,
+          "fornecedor": "COPERGAS",
+          "valor": "8919.20",
+          "vencimento": "2026-06-04",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3078116,
+          "fornecedor": "COMERCIAL GENESIS LTDA ME",
+          "valor": "713.00",
+          "vencimento": "2026-06-04",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3079596,
+          "fornecedor": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+          "valor": "1950.00",
+          "vencimento": "2026-06-05",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3079597,
+          "fornecedor": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+          "valor": "1950.00",
+          "vencimento": "2026-07-05",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3079701,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "30092.50",
+          "vencimento": "2026-06-08",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3079703,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "21295.62",
+          "vencimento": "2026-06-08",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3080418,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "30092.50",
+          "vencimento": "2026-06-09",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3083095,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "21295.62",
+          "vencimento": "2026-06-11",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3083102,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "30092.50",
+          "vencimento": "2026-06-11",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3084568,
+          "fornecedor": "VECTOR",
+          "valor": "711.14",
+          "vencimento": "2026-06-11",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3084569,
+          "fornecedor": "VECTOR",
+          "valor": "3950.26",
+          "vencimento": "2026-06-11",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3085308,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "21295.62",
+          "vencimento": "2026-06-13",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3085309,
+          "fornecedor": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+          "valor": "300.00",
+          "vencimento": "2026-06-13",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3085316,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "32939.00",
+          "vencimento": "2026-06-13",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3085317,
+          "fornecedor": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+          "valor": "300.00",
+          "vencimento": "2026-06-13",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3085321,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "32939.00",
+          "vencimento": "2026-06-13",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3085322,
+          "fornecedor": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+          "valor": "300.00",
+          "vencimento": "2026-06-13",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3085329,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "32676.00",
+          "vencimento": "2026-06-13",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3085330,
+          "fornecedor": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+          "valor": "300.00",
+          "vencimento": "2026-06-13",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3085332,
+          "fornecedor": "COPERGAS",
+          "valor": "59442.72",
+          "vencimento": "2026-06-18",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3085334,
+          "fornecedor": "UNIFORDEX FIALHO FARDAS",
+          "valor": "600.00",
+          "vencimento": "2026-06-11",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3087766,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "30130.50",
+          "vencimento": "2026-06-16",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3087778,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "21295.20",
+          "vencimento": "2026-06-16",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3087791,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "30130.50",
+          "vencimento": "2026-06-16",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3089854,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "21044.71",
+          "vencimento": "2026-06-19",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3090816,
+          "fornecedor": "VECTOR",
+          "valor": "4907.14",
+          "vencimento": "2026-06-24",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3093207,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "30130.50",
+          "vencimento": "2026-06-19",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3093209,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "20844.07",
+          "vencimento": "2026-06-20",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3093212,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "29980.50",
+          "vencimento": "2026-06-20",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3093214,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "18409.20",
+          "vencimento": "2026-06-20",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3093216,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "32008.50",
+          "vencimento": "2026-06-20",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3093218,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "29980.50",
+          "vencimento": "2026-06-20",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3095047,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "20844.07",
+          "vencimento": "2026-06-23",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3095049,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "29980.50",
+          "vencimento": "2026-06-23",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3096338,
+          "fornecedor": "SINDCOMBUSTIVEIS",
+          "valor": "295.00",
+          "vencimento": "2026-07-20",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3096536,
+          "fornecedor": "COPERGAS",
+          "valor": "61546.27",
+          "vencimento": "2026-06-24",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3097612,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "20935.73",
+          "vencimento": "2026-06-26",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3097615,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "30105.50",
+          "vencimento": "2026-06-26",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3099133,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "30105.50",
+          "vencimento": "2026-06-27",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3099134,
+          "fornecedor": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+          "valor": "300.00",
+          "vencimento": "2026-06-27",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3099135,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "32008.50",
+          "vencimento": "2026-06-27",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3099136,
+          "fornecedor": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+          "valor": "300.00",
+          "vencimento": "2026-06-27",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3099139,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "30105.50",
+          "vencimento": "2026-06-27",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3099143,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "20935.73",
+          "vencimento": "2026-06-27",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3099144,
+          "fornecedor": "ARLEGO TRANSPORTES DE COMBUSTIVEIS LTDA",
+          "valor": "300.00",
+          "vencimento": "2026-06-27",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3100979,
+          "fornecedor": "COPERGAS",
+          "valor": "58756.63",
+          "vencimento": "2026-07-02",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3102814,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "29780.00",
+          "vencimento": "2026-06-30",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3104268,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "20935.73",
+          "vencimento": "2026-07-02",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3104273,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "29780.00",
+          "vencimento": "2026-07-02",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105365,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2026-06-30",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3107297,
+          "fornecedor": "COPERGAS",
+          "valor": "8288.83",
+          "vencimento": "2026-07-03",
+          "situacao": "Pago"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075677,
+          "fornecedor": "MMS TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-04",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075730,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "2373.64",
+          "vencimento": "2026-08-16",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075731,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "2373.64",
+          "vencimento": "2026-09-16",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075732,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "2373.64",
+          "vencimento": "2026-10-16",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075734,
+          "fornecedor": "SULAMERICA COMPANHIA DE SEGURO SAUDE",
+          "valor": "3500.00",
+          "vencimento": "2026-07-05",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075735,
+          "fornecedor": "SULAMERICA COMPANHIA DE SEGURO SAUDE",
+          "valor": "3500.00",
+          "vencimento": "2026-08-05",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075736,
+          "fornecedor": "SULAMERICA COMPANHIA DE SEGURO SAUDE",
+          "valor": "3500.00",
+          "vencimento": "2026-09-05",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075737,
+          "fornecedor": "SULAMERICA COMPANHIA DE SEGURO SAUDE",
+          "valor": "3500.00",
+          "vencimento": "2026-10-05",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075738,
+          "fornecedor": "SULAMERICA COMPANHIA DE SEGURO SAUDE",
+          "valor": "3500.00",
+          "vencimento": "2026-11-05",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075739,
+          "fornecedor": "SULAMERICA COMPANHIA DE SEGURO SAUDE",
+          "valor": "3500.00",
+          "vencimento": "2026-12-05",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075740,
+          "fornecedor": "SULAMERICA COMPANHIA DE SEGURO SAUDE",
+          "valor": "3500.00",
+          "vencimento": "2027-01-05",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075742,
+          "fornecedor": "BRITO PIMENTEL  A ASSOCIADOS",
+          "valor": "1363.64",
+          "vencimento": "2026-07-25",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075743,
+          "fornecedor": "BRITO PIMENTEL  A ASSOCIADOS",
+          "valor": "1363.64",
+          "vencimento": "2026-08-25",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075744,
+          "fornecedor": "BRITO PIMENTEL  A ASSOCIADOS",
+          "valor": "1363.64",
+          "vencimento": "2026-09-25",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075745,
+          "fornecedor": "BRITO PIMENTEL  A ASSOCIADOS",
+          "valor": "1363.64",
+          "vencimento": "2026-10-25",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075746,
+          "fornecedor": "BRITO PIMENTEL  A ASSOCIADOS",
+          "valor": "1363.64",
+          "vencimento": "2026-11-25",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075747,
+          "fornecedor": "BRITO PIMENTEL  A ASSOCIADOS",
+          "valor": "1363.64",
+          "vencimento": "2026-12-25",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3075748,
+          "fornecedor": "BRITO PIMENTEL  A ASSOCIADOS",
+          "valor": "1363.64",
+          "vencimento": "2027-01-25",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3078109,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "33461.50",
+          "vencimento": "2026-06-06",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3078110,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "30224.50",
+          "vencimento": "2026-06-06",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3078111,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "30224.50",
+          "vencimento": "2026-06-06",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3078112,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "30926.50",
+          "vencimento": "2026-06-06",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3078113,
+          "fornecedor": "VIBRA ENERGIA S.A",
+          "valor": "21715.91",
+          "vencimento": "2026-06-06",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3079598,
+          "fornecedor": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+          "valor": "1950.00",
+          "vencimento": "2026-08-05",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3079599,
+          "fornecedor": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+          "valor": "1950.00",
+          "vencimento": "2026-09-05",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3079600,
+          "fornecedor": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+          "valor": "1950.00",
+          "vencimento": "2026-10-05",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3079601,
+          "fornecedor": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+          "valor": "1950.00",
+          "vencimento": "2026-11-05",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3079602,
+          "fornecedor": "O.E.C. - ORGANIZACAO DE EMPRESAS E CONTABILIDADE",
+          "valor": "1950.00",
+          "vencimento": "2026-12-05",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3079702,
+          "fornecedor": "IPSEP TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-08",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3079704,
+          "fornecedor": "IPSEP TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-08",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3080419,
+          "fornecedor": "MMS TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-09",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3083096,
+          "fornecedor": "IPSEP TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-11",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3083103,
+          "fornecedor": "IPSEP TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-11",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3087767,
+          "fornecedor": "MMS TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-16",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3087779,
+          "fornecedor": "MMS TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-16",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3087792,
+          "fornecedor": "MMS TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-16",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3089855,
+          "fornecedor": "MMS TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-19",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3093208,
+          "fornecedor": "MMS TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-19",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3093210,
+          "fornecedor": "IPSEP TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-20",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3093213,
+          "fornecedor": "IPSEP TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-20",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3093215,
+          "fornecedor": "IPSEP TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-20",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3093217,
+          "fornecedor": "IPSEP TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-20",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3095048,
+          "fornecedor": "MMS TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-23",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3095050,
+          "fornecedor": "MMS TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-23",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3096337,
+          "fornecedor": "SINDCOMBUSTIVEIS",
+          "valor": "295.00",
+          "vencimento": "2026-06-20",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3096339,
+          "fornecedor": "SINDCOMBUSTIVEIS",
+          "valor": "295.00",
+          "vencimento": "2026-08-20",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3096340,
+          "fornecedor": "SINDCOMBUSTIVEIS",
+          "valor": "295.00",
+          "vencimento": "2026-09-20",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3096341,
+          "fornecedor": "SINDCOMBUSTIVEIS",
+          "valor": "295.00",
+          "vencimento": "2026-10-20",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3096342,
+          "fornecedor": "SINDCOMBUSTIVEIS",
+          "valor": "295.00",
+          "vencimento": "2026-11-20",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3096343,
+          "fornecedor": "SINDCOMBUSTIVEIS",
+          "valor": "295.00",
+          "vencimento": "2026-12-20",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3096344,
+          "fornecedor": "SINDCOMBUSTIVEIS",
+          "valor": "295.00",
+          "vencimento": "2027-01-20",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3096345,
+          "fornecedor": "SINDCOMBUSTIVEIS",
+          "valor": "295.00",
+          "vencimento": "2027-02-20",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3096346,
+          "fornecedor": "SINDCOMBUSTIVEIS",
+          "valor": "295.00",
+          "vencimento": "2027-03-20",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3097613,
+          "fornecedor": "MMS TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-26",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3097616,
+          "fornecedor": "MMS TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-26",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3099140,
+          "fornecedor": "MMS TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-27",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3102815,
+          "fornecedor": "MMS TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-06-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3104269,
+          "fornecedor": "MMS TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-07-02",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3104274,
+          "fornecedor": "MMS TRANSPORTE",
+          "valor": "300.00",
+          "vencimento": "2026-07-02",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105366,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2026-07-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105367,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2026-08-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105368,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2026-09-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105369,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2026-10-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105370,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2026-11-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105371,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2026-12-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105372,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2027-01-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105373,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2027-02-28",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105374,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2027-03-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105375,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2027-04-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105376,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2027-05-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105377,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2027-06-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105378,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2027-07-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105379,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2027-08-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105380,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2027-09-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105381,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2027-10-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105382,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2027-11-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105383,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2027-12-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105384,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2028-01-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105385,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2028-02-29",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105386,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2028-03-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105387,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2028-04-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105388,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2028-05-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105389,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2028-06-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105390,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2028-07-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105391,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2028-08-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105392,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2028-09-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105393,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2028-10-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105394,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2028-11-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105395,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2028-12-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105396,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2029-01-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105397,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2029-02-28",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105398,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2029-03-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105399,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2029-04-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105400,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2029-05-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105401,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2029-06-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105402,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2029-07-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105403,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2029-08-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105404,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2029-09-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105405,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2029-10-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105406,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2029-11-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105407,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2029-12-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105408,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2030-01-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105409,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2030-02-28",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105410,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2030-03-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105411,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2030-04-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105412,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2030-05-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105413,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2030-06-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105414,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2030-07-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105415,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2030-08-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105416,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2030-09-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105417,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2030-10-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105418,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2030-11-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105419,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2030-12-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105420,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2031-01-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105421,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2031-02-28",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105422,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2031-03-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105423,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2031-04-30",
+          "situacao": "Aberto"
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloPagarCodigo": 3105424,
+          "fornecedor": "RECEITA FEDERAL",
+          "valor": "2217.49",
+          "vencimento": "2031-05-30",
+          "situacao": "Aberto"
+        }
+      ],
+      "snapshotKey": "finance:center:payables:2026-06-01:2026-06-30:74014",
+      "performanceMs": {
+        "payables": 5936.6
+      }
+    },
+    "receivables": {
+      "page": 1,
+      "limit": 500,
+      "total": 11,
+      "resumo": {
+        "pendente": {
+          "count": 11,
+          "valor": "5323.65"
+        },
+        "recebido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "vencido": {
+          "count": 2,
+          "valor": "3263.51"
+        },
+        "aVencer": {
+          "count": 9,
+          "valor": "2060.14"
+        }
+      },
+      "buckets": {
+        "pendente": {
+          "count": 11,
+          "valor": "5323.65"
+        },
+        "recebido": {
+          "count": 0,
+          "valor": "0.00"
+        },
+        "vencido": {
+          "count": 2,
+          "valor": "3263.51"
+        },
+        "aVencer": {
+          "count": 9,
+          "valor": "2060.14"
+        }
+      },
+      "data": [
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20718576,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "346.98",
+          "vencimento": "2026-07-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20719053,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "56.45",
+          "vencimento": "2026-07-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20749800,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "250.11",
+          "vencimento": "2026-07-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20801054,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "62.27",
+          "vencimento": "2026-07-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20805386,
+          "cliente": "F.J. SERVICOS E COMERCIO LTDA.",
+          "valor": "1798.70",
+          "vencimento": "2026-06-11",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20807101,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "370.20",
+          "vencimento": "2026-07-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20854502,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "273.46",
+          "vencimento": "2026-07-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20862819,
+          "cliente": "F.J. SERVICOS E COMERCIO LTDA.",
+          "valor": "1464.81",
+          "vencimento": "2026-06-18",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20882315,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "344.73",
+          "vencimento": "2026-07-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20906509,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "68.04",
+          "vencimento": "2026-07-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20939645,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "287.90",
+          "vencimento": "2026-07-20",
+          "pendente": true
+        }
+      ],
+      "snapshotKey": "finance:center:receivables:2026-06-01:2026-06-30:74014",
+      "performanceMs": {
+        "receivables": 5087.6
+      }
+    },
+    "bank": {
+      "page": 1,
+      "limit": 500,
+      "total": 57,
+      "resumo": {
+        "creditos": {
+          "count": 19,
+          "valor": "751.66"
+        },
+        "debitos": {
+          "count": 19,
+          "valor": "3.83"
+        },
+        "tarifas": {
+          "count": 19,
+          "valor": "3.83"
+        },
+        "transferencias": {
+          "count": 19,
+          "valor": "751.66"
+        },
+        "saldoMovimentado": {
+          "creditos": "751.66",
+          "debitos": "3.83",
+          "liquido": "747.83"
+        },
+        "totalRegistros": 38
+      },
+      "data": [
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63005997,
+          "valor": "27.71",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:0000000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006062,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006068,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:00000000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006086,
+          "valor": "20.00",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:00000000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006148,
+          "valor": "37.90",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:00000000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006162,
+          "valor": "10.05",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:0000000000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006197,
+          "valor": "10.05",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:00000000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006291,
+          "valor": "50.00",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:00000000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006324,
+          "valor": "35.00",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:00000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006346,
+          "valor": "10.90",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:0000000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006367,
+          "valor": "13.00",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:0000000000000000000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006563,
+          "valor": "27.16",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:00000000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006578,
+          "valor": "106.45",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:00000000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006641,
+          "valor": "30.00",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:00000000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006662,
+          "valor": "21.00",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:000000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006677,
+          "valor": "27.86",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:00000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006766,
+          "valor": "45.29",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:0000000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006799,
+          "valor": "150.00",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:0000000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006845,
+          "valor": "49.29",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TRANSF. BANCÁRIA : AG:0 CONTA:000000000-0 CLIENTE : CONSUMIDOR FINAL",
+          "tipo": "Crédito",
+          "tipoDocumentoOrigem": "TRANSFERENCIA_BANCARIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63005998,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:0000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006063,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006069,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006087,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006149,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006163,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:0000000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006198,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006292,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006325,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006347,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:0000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006368,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:0000000000000000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006564,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006579,
+          "valor": "0.32",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006642,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006663,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006678,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006767,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:0000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006800,
+          "valor": "0.45",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:0000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006846,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:000000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63005998,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:0000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006063,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006069,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006087,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006149,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006163,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:0000000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006198,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006292,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006325,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006347,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:0000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006368,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:0000000000000000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006564,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006579,
+          "valor": "0.32",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006642,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006663,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006678,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:00000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006767,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:0000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006800,
+          "valor": "0.45",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:0000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        },
+        {
+          "empresaCodigo": 74014,
+          "movimentoContaCodigo": 63006846,
+          "valor": "0.18",
+          "dataMovimento": "2026-06-01",
+          "descricao": "TAXA REFERENTE A TRANSFERÊNCIA: AG:0 CONTA:000000000-0 ",
+          "tipo": "Débito",
+          "tipoDocumentoOrigem": "TAXA_TRANSFERENCIA",
+          "contaCodigo": 86115
+        }
+      ],
+      "paginacaoCompleta": 38,
+      "snapshotKey": "finance:center:bank:2026-06-01:2026-06-30:74014",
+      "performanceMs": {
+        "bank": 6343.6
+      }
+    },
+    "cash": {
+      "turnos": {
+        "count": 30,
+        "items": [
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4335863,
+            "data": "2026-06-01",
+            "diferenca": "-42.54"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4336766,
+            "data": "2026-06-02",
+            "diferenca": "-24.24"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4337820,
+            "data": "2026-06-03",
+            "diferenca": "-21.43"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4338721,
+            "data": "2026-06-04",
+            "diferenca": "-4.10"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4339667,
+            "data": "2026-06-05",
+            "diferenca": "-2.04"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4340592,
+            "data": "2026-06-06",
+            "diferenca": "3.78"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4341602,
+            "data": "2026-06-07",
+            "diferenca": "-11.35"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4342442,
+            "data": "2026-06-08",
+            "diferenca": "-0.76"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4343448,
+            "data": "2026-06-09",
+            "diferenca": "-105.63"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4344376,
+            "data": "2026-06-10",
+            "diferenca": "2.09"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4345355,
+            "data": "2026-06-11",
+            "diferenca": "-55.11"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4346306,
+            "data": "2026-06-12",
+            "diferenca": "-7.68"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4347293,
+            "data": "2026-06-13",
+            "diferenca": "-58.98"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4348219,
+            "data": "2026-06-14",
+            "diferenca": "-39.70"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4349094,
+            "data": "2026-06-15",
+            "diferenca": "-129.23"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4350113,
+            "data": "2026-06-16",
+            "diferenca": "-1.41"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4351086,
+            "data": "2026-06-17",
+            "diferenca": "-20.56"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4352035,
+            "data": "2026-06-18",
+            "diferenca": "-20.58"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4353027,
+            "data": "2026-06-19",
+            "diferenca": "-1.91"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4354022,
+            "data": "2026-06-20",
+            "diferenca": "-12.22"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4354996,
+            "data": "2026-06-21",
+            "diferenca": "-196.83"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4355839,
+            "data": "2026-06-22",
+            "diferenca": "-101.39"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4356790,
+            "data": "2026-06-23",
+            "diferenca": "-177.35"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4357874,
+            "data": "2026-06-24",
+            "diferenca": "-19.86"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4359188,
+            "data": "2026-06-25",
+            "diferenca": "-201.25"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4359778,
+            "data": "2026-06-26",
+            "diferenca": "-33.52"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4360802,
+            "data": "2026-06-27",
+            "diferenca": "-17.02"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4361743,
+            "data": "2026-06-28",
+            "diferenca": "-23.64"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4362622,
+            "data": "2026-06-29",
+            "diferenca": "-45.61"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4363630,
+            "data": "2026-06-30",
+            "diferenca": "-349.66"
+          }
+        ]
+      },
+      "diferencas": {
+        "count": 30,
+        "items": [
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4335863,
+            "data": "2026-06-01",
+            "diferenca": "-42.54"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4336766,
+            "data": "2026-06-02",
+            "diferenca": "-24.24"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4337820,
+            "data": "2026-06-03",
+            "diferenca": "-21.43"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4338721,
+            "data": "2026-06-04",
+            "diferenca": "-4.10"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4339667,
+            "data": "2026-06-05",
+            "diferenca": "-2.04"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4340592,
+            "data": "2026-06-06",
+            "diferenca": "3.78"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4341602,
+            "data": "2026-06-07",
+            "diferenca": "-11.35"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4342442,
+            "data": "2026-06-08",
+            "diferenca": "-0.76"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4343448,
+            "data": "2026-06-09",
+            "diferenca": "-105.63"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4344376,
+            "data": "2026-06-10",
+            "diferenca": "2.09"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4345355,
+            "data": "2026-06-11",
+            "diferenca": "-55.11"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4346306,
+            "data": "2026-06-12",
+            "diferenca": "-7.68"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4347293,
+            "data": "2026-06-13",
+            "diferenca": "-58.98"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4348219,
+            "data": "2026-06-14",
+            "diferenca": "-39.70"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4349094,
+            "data": "2026-06-15",
+            "diferenca": "-129.23"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4350113,
+            "data": "2026-06-16",
+            "diferenca": "-1.41"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4351086,
+            "data": "2026-06-17",
+            "diferenca": "-20.56"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4352035,
+            "data": "2026-06-18",
+            "diferenca": "-20.58"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4353027,
+            "data": "2026-06-19",
+            "diferenca": "-1.91"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4354022,
+            "data": "2026-06-20",
+            "diferenca": "-12.22"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4354996,
+            "data": "2026-06-21",
+            "diferenca": "-196.83"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4355839,
+            "data": "2026-06-22",
+            "diferenca": "-101.39"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4356790,
+            "data": "2026-06-23",
+            "diferenca": "-177.35"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4357874,
+            "data": "2026-06-24",
+            "diferenca": "-19.86"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4359188,
+            "data": "2026-06-25",
+            "diferenca": "-201.25"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4359778,
+            "data": "2026-06-26",
+            "diferenca": "-33.52"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4360802,
+            "data": "2026-06-27",
+            "diferenca": "-17.02"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4361743,
+            "data": "2026-06-28",
+            "diferenca": "-23.64"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4362622,
+            "data": "2026-06-29",
+            "diferenca": "-45.61"
+          },
+          {
+            "empresaCodigo": 74014,
+            "caixaCodigo": 4363630,
+            "data": "2026-06-30",
+            "diferenca": "-349.66"
+          }
+        ]
+      },
+      "despesaCaixa": {
+        "apurado": "27645.85",
+        "turnos": 30
+      },
+      "valeFuncionario": {
+        "apurado": "31090.81",
+        "turnos": 30
+      },
+      "emprestimos": {
+        "apurado": "0.00",
+        "turnos": 30
+      },
+      "fundoCaixa": {
+        "disponivel": false,
+        "apurado": null
+      },
+      "snapshotKey": "finance:center:cash:2026-06-01:2026-06-30:74014",
+      "performanceMs": {
+        "cash": 4892.9
+      },
+      "warnings": [
+        "fundoCaixa: campo não disponível na API WebPosto"
+      ]
+    }
+  },
+  "warnings": [
+    "caixa.fundoCaixa: indisponível na API"
+  ],
+  "snapshotKey": "finance:center:all:2026-06-01:2026-06-30:74014"
+}

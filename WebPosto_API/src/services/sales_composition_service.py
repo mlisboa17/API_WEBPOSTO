@@ -6,8 +6,11 @@ a partir de /INTEGRACAO/ABASTECIMENTO — nunca COUNT de NFCe/notas fiscais.
 
 from __future__ import annotations
 
+import asyncio
 import logging
+import time
 from collections import defaultdict
+from datetime import date
 from typing import Any
 
 from src.core.config import OFFICIAL_COMPANY_CODES, resolve_company_api_key
@@ -21,6 +24,7 @@ from src.interfaces.http.schemas.executive_sales_schema import (
     FuelBreakdownItem,
     SalesCompositionResponse,
 )
+from src.services.abastecimento_local_source import fetch_abastecimentos_local_first
 from src.services.abastecimento_service import AbastecimentoService
 from src.services.sales_analytics_service import (
     _AFFINITY_SCALE,
@@ -34,8 +38,13 @@ from src.services.sales_analytics_service import (
     _produto_nome,
     _valor,
 )
+from src.utils.filial_normalizer import resolve_empresa_codigo
 
 logger = logging.getLogger(__name__)
+
+_COMP_CACHE: dict[str, tuple[float, SalesCompositionResponse]] = {}
+_COMP_TTL_S = 90.0
+_VENDA_ITEM_BUDGET_S = 1.0
 
 
 def _abastecimento_id(row: dict[str, Any]) -> str:
@@ -112,40 +121,80 @@ class SalesCompositionService:
         data_final: str,
         empresa_codigo: int | None = None,
     ) -> SalesCompositionResponse:
+        empresa = resolve_empresa_codigo(empresa_codigo)
+        cache_key = f"{data_inicial}|{data_final}|{empresa}"
+        now = time.monotonic()
+        cached = _COMP_CACHE.get(cache_key)
+        if cached and (now - cached[0]) < _COMP_TTL_S:
+            return cached[1]
+
+        t0 = time.perf_counter()
         try:
-            abastecimentos = await self._fetch_abastecimentos(
-                data_inicial, data_final, empresa_codigo
+            abastecimentos, fonte = await self._fetch_abastecimentos(
+                data_inicial, data_final, empresa
             )
 
-            venda_items = await self._fetch_venda_items(
-                data_inicial, data_final, empresa_codigo
-            )
-            return self._aggregate(
+            # D0: não bloqueia UI em venda_item HTTP — usa fallback setorial auditado
+            is_d0 = data_inicial == data_final == date.today().isoformat()
+            if is_d0:
+                venda_items = []
+            else:
+                try:
+                    venda_items = await asyncio.wait_for(
+                        self._fetch_venda_items(data_inicial, data_final, empresa),
+                        timeout=_VENDA_ITEM_BUDGET_S,
+                    )
+                except asyncio.TimeoutError:
+                    logger.warning(
+                        "venda_item timeout %.1fs empresa=%s — fallback setorial",
+                        _VENDA_ITEM_BUDGET_S,
+                        empresa,
+                    )
+                    venda_items = []
+
+            result = self._aggregate(
                 abastecimentos,
                 venda_items,
                 data_inicial,
                 data_final,
-                empresa_codigo,
+                empresa,
+                fonte_abastecimentos=fonte,
             )
+            # Não cacheia D0 vazio (worker ainda aquecendo o pista_cache)
+            if not (
+                is_d0
+                and (result.summary.quantidadeAbastecimentos or 0) == 0
+                and (result.summary.faturamentoTotal or 0) == 0
+            ):
+                _COMP_CACHE[cache_key] = (time.monotonic(), result)
+            logger.info(
+                "composition ok empresa=%s n_abast=%d n_venda=%d latencyMs=%.1f fonte=%s",
+                empresa,
+                len(abastecimentos),
+                len(venda_items),
+                (time.perf_counter() - t0) * 1000,
+                fonte,
+            )
+            return result
         except Exception as exc:
             logger.exception(
-                "Sales composition falhou empresa=%s: %s", empresa_codigo, exc
+                "Sales composition falhou empresa=%s: %s", empresa, exc
             )
             return _empty_response(
                 data_inicial,
                 data_final,
-                empresa_codigo,
+                empresa,
                 fallback=True,
                 mensagem=f"Fallback ativo: {exc}",
             )
 
-    async def _fetch_abastecimentos(
+    async def _fetch_abastecimentos_http(
         self,
         data_inicial: str,
         data_final: str,
         empresa_codigo: int | None = None,
     ) -> list[dict[str, Any]]:
-        """Busca paginada por filial (API key própria). Consolidado = soma das 3 oficiais."""
+        """Fallback HTTP paginado (só se RAM/DB vazios)."""
         targets = (
             [int(empresa_codigo)]
             if empresa_codigo
@@ -163,20 +212,35 @@ class SalesCompositionService:
                     getattr(resp, "error", None),
                 )
                 continue
-            rows = _extract_rows(resp.data)
-            # defesa extra: só mantém a filial solicitada
             rows = [
                 r
-                for r in rows
+                for r in _extract_rows(resp.data)
                 if int(r.get("empresaCodigo") or r.get("empresa") or 0) == int(code)
             ]
             all_rows.extend(rows)
-            logger.info(
-                "Composition abastecimentos empresa=%s n=%d",
-                code,
-                len(rows),
-            )
         return all_rows
+
+    async def _fetch_abastecimentos(
+        self,
+        data_inicial: str,
+        data_final: str,
+        empresa_codigo: int | None = None,
+    ) -> tuple[list[dict[str, Any]], str]:
+        """D0/histórico local first; HTTP só se vazio."""
+        rows, fonte = await fetch_abastecimentos_local_first(
+            data_inicial,
+            data_final,
+            empresa_codigo,
+            allow_http_fallback=True,
+            http_fetcher=self._fetch_abastecimentos_http,
+        )
+        logger.info(
+            "Composition abastecimentos empresa=%s n=%d fonte=%s",
+            empresa_codigo,
+            len(rows),
+            fonte,
+        )
+        return rows, fonte
 
     def _client_for_company(self, empresa_codigo: int | None) -> WebPostoClient:
         if not empresa_codigo:
@@ -264,6 +328,8 @@ class SalesCompositionService:
         data_inicial: str,
         data_final: str,
         empresa_codigo: int | None,
+        *,
+        fonte_abastecimentos: str = "INTEGRACAO/ABASTECIMENTO",
     ) -> SalesCompositionResponse:
         # --- Contagem operacional OBRIGATÓRIA via abastecimentos distintos ---
         by_abast: dict[str, dict[str, Any]] = {}
@@ -509,7 +575,7 @@ class SalesCompositionService:
             conveniencia=_fuel_items(conv_bucket),
             empresaCodigo=empresa_codigo,
             periodo={"inicio": data_inicial, "fim": data_final},
-            fonteAbastecimentos="INTEGRACAO/ABASTECIMENTO",
+            fonteAbastecimentos=fonte_abastecimentos or "INTEGRACAO/ABASTECIMENTO",
             fallback=used_fallback_estimate or qtd_abastecimentos == 0,
             mensagem=(
                 "Fallback auditado: sem itens não-combustível classificados no período "
