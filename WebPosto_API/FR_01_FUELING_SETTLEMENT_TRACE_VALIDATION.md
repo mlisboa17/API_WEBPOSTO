@@ -73,6 +73,15 @@ Retenções individuais: **35 / 18 / 13** min (não reduzidas a MAX na camada FR
 | `valorTotalCartao` | DEPRECATED_PROJECTION |
 | `settlementTrace` | FR-01 source of truth |
 
+### Consumidores N→1 (preflight)
+
+| Superfície | Usa settlementTrace? | Narrativa falsa N→1? | Severidade | Status |
+|---|---|---|---|---|
+| card-fraud-audit-panel `PagamentoBlock` | YES | NÃO (quando trace presente) | — | SAFE |
+| export-fraud-legal-dossier | YES (`buildDossierPaymentEvidence`) | NÃO se trace presente; disclaimer se ausente | era HIGH | **FIXED** |
+| whatsapp_guardian | NO | Baixo (valor total sem NSU único) | LOW | DEFERRED |
+| API ocorrência (campos legados) | YES (+ campos legados) | Campos legados ainda presentes | MEDIUM | documentado |
+
 ## NSU Semantics
 
 - Campo WebPosto `nsu` é dado bruto real.
