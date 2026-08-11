@@ -1670,6 +1670,15 @@ export async function fetchCashReconciliationSummary(filters) {
   };
 }
 
+/** CASH-01 — divergência de fechamento Apresentado×Apurado (CASH_CLOSING). */
+export async function fetchCashClosingExposure(filters) {
+  const raw = await apiClient.get("/api/v1/cash-reconciliation/cash-exposure", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
 export async function fetchOwnerTop5Decisions(filters) {
   // FASE 5: Usar o novo endpoint que suporta pesos de preferência e auditoria
   // Mantemos o fallback caso o novo endpoint não retorne o esperado por algum motivo

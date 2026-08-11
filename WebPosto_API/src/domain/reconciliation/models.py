@@ -133,6 +133,9 @@ class ReconciliationItem(BaseModel):
     turno: str | None = None
     consolidationStatus: str = "UNKNOWN"
     consolidationEvidence: str | None = None
+    # WebPosto `fechado` — distinto de consolidado (CASH-01S).
+    # True/False quando o campo raw existe; None = ausente (não inventar CLOSED).
+    caixaFechado: bool | None = None
     periodoInicio: str
     periodoFim: str
     paymentNature: PaymentNatureCode

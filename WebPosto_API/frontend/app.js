@@ -58,6 +58,7 @@ import {
   fetchActionCenterCockpit,
   postActionCenterRefresh,
   fetchCashReconciliationSummary,
+  fetchCashClosingExposure,
   fetchOwnerDiretoriaBundle,
   fetchDecisionEvidence,
   fetchDecisionReviewRequests,
@@ -2242,9 +2243,17 @@ async function loadExecutiveCopilotWithSnapshotFirst(bypassCache = false) {
 
 async function loadCashReconciliationWithSnapshotFirst(bypassCache = false) {
   try {
-    const payload = await fetchCashReconciliationSummary(state.filters);
+    const [payload, exposure] = await Promise.all([
+      fetchCashReconciliationSummary(state.filters),
+      fetchCashClosingExposure(state.filters).catch((err) => {
+        console.warn("[cashExposure] falha CASH-01:", err);
+        return null;
+      }),
+    ]);
+    const data = payload.data || {};
+    if (exposure) data.cashExposure = exposure;
     state.data.cashReconciliation = {
-      data: payload.data,
+      data,
       snapshot: payload.snapshot,
       lastUpdated: new Date().toISOString(),
     };

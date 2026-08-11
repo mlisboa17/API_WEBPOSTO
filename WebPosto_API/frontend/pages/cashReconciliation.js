@@ -80,6 +80,66 @@ function renderAuditSignals(signals = []) {
     .join("");
 }
 
+function _amt(b, key, legacy) {
+  const v = b?.[key];
+  if (v !== undefined && v !== null) return v;
+  return b?.[legacy];
+}
+
+function renderExposureBlock(exposure) {
+  if (!exposure || !exposure.has_data) {
+    return `<section class="panel">
+      <h3>Divergência de Fechamento (CASH-01)</h3>
+      <p class="muted">Sem dados de fechamento no período.</p>
+      <p class="muted">Escopo: <code>CASH_CLOSING</code> — Apresentado × Apurado do WebPosto.</p>
+    </section>`;
+  }
+  const presented = _amt(exposure, "presented_amount", "identified_amount");
+  const calculated = _amt(exposure, "calculated_amount", "expected_amount");
+  const difference = _amt(exposure, "difference_amount", "exposure_amount");
+  const closing = exposure.closing_status || "UNKNOWN";
+  const auditState = exposure.audit_state || "NOT_READY";
+  const auditLabel =
+    auditState === "FINAL"
+      ? "Consolidado (final)"
+      : auditState === "PROVISIONAL"
+        ? "Fechado — aguardando consolidação (valor provisório)"
+        : "Não pronto para auditoria de fechamento";
+  const rows = (exposure.breakdown || [])
+    .filter((b) => b.status === "OK" || b.status === "OPEN")
+    .map((b) => {
+      const p = _amt(b, "presented_amount", "identified_amount");
+      const c = _amt(b, "calculated_amount", "expected_amount");
+      const d = _amt(b, "difference_amount", "exposure_amount");
+      return `
+      <tr>
+        <td>${b.payment_method}${b.status === "OPEN" ? " <span class='text-warn'>(aberto)</span>" : ""}</td>
+        <td>${fmt(p)}</td>
+        <td>${fmt(c)}</td>
+        <td class="${Math.abs(d || 0) > 0.009 ? "text-crit" : ""}">${fmt(d)}</td>
+        <td>${b.sangria_amount != null ? fmt(b.sangria_amount) : "—"}</td>
+      </tr>`;
+    })
+    .join("");
+  return `<section class="panel">
+    <h3>Divergência de Fechamento (CASH-01)</h3>
+    <p class="muted">${exposure.disclaimer || "Apresentado × Apurado — não é perda confirmada."}</p>
+    <p><strong>Escopo:</strong> <code>${exposure.data_scope || "CASH_CLOSING"}</code>
+       · <strong>Fechamento:</strong> <code>${closing}</code>
+       · <strong>Consolidado:</strong> <code>${exposure.is_consolidated || "unknown"}</code>
+       · <strong>Finalidade:</strong> <code>${auditState}</code> — ${auditLabel}
+       ${exposure.open_caixa_count ? ` · caixas abertos: ${exposure.open_caixa_count}` : ""}</p>
+    <dl class="recon-dl">
+      <div><dt>Apresentado</dt><dd>${fmt(presented)}</dd></div>
+      <div><dt>Apurado</dt><dd>${fmt(calculated)}</dd></div>
+      <div><dt>Diferença</dt><dd class="${Math.abs(difference || 0) > 0.009 ? "text-crit" : ""}">${fmt(difference)}</dd></div>
+    </dl>
+    <table class="data-table"><thead><tr>
+      <th>Meio</th><th>Apresentado</th><th>Apurado</th><th>Diferença</th><th>Sangria</th>
+    </tr></thead><tbody>${rows || "<tr><td colspan='5' class='muted'>Sem breakdown</td></tr>"}</tbody></table>
+  </section>`;
+}
+
 export function renderCashReconciliation(node, payload, filters, options = {}) {
   if (!node) return;
   const data = payload?.data || payload;
@@ -92,18 +152,31 @@ export function renderCashReconciliation(node, payload, filters, options = {}) {
   }
 
   const summary = data.summary;
+  const exposure = data.cashExposure || options.cashExposure || null;
   const pre = summary.preCheck || {};
   const progress = `${summary.naturezasConferidas || 0} de ${summary.naturezasTotal || 0} naturezas conferidas`;
   const subtitle = companySubtitle(filters, options.companies || []);
 
+  const presentedKpi = exposure?.presented_amount ?? exposure?.identified_amount ?? summary.valorApresentado;
+  const calculatedKpi = exposure?.calculated_amount ?? exposure?.expected_amount ?? summary.valorApurado;
+  const differenceKpi = exposure?.difference_amount ?? exposure?.exposure_amount ?? summary.valorDivergente;
   const kpis = [
-    { label: "Valor apurado", value: fmt(summary.valorApurado), status: "ok" },
-    { label: "Valor conferido", value: fmt(summary.valorConferido), status: "ok" },
-    { label: "Valor divergente", value: fmt(summary.valorDivergente), status: summary.valorDivergente > 0 ? "crit" : "ok" },
-    { label: "Valor pendente", value: fmt(summary.valorPendente), status: summary.valorPendente > 0 ? "warn" : "ok" },
+    { label: "Apresentado", value: fmt(presentedKpi), status: "ok" },
+    { label: "Apurado", value: fmt(calculatedKpi), status: "ok" },
+    {
+      label: "Diferença de Fechamento",
+      value: fmt(differenceKpi),
+      status: Math.abs(differenceKpi || 0) > 0.009 ? "crit" : "ok",
+    },
+    {
+      label: "Finalidade",
+      value: exposure?.audit_state || "NOT_READY",
+      status: exposure?.audit_state === "FINAL" ? "ok" : "warn",
+    },
   ];
 
   const detailHtml = `
+    ${renderExposureBlock(exposure)}
     <section class="panel"><h3>Progresso</h3>
       <p class="recon-progress">${progress}</p>
       <p class="muted">Pré-conferência: ${pre.autoMatched || 0} automático · ${pre.needsReview || 0} revisão · ${pre.divergent || 0} divergente · ${fmt(pre.divergentAmount)}</p>

@@ -4,6 +4,7 @@ from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field
 from typing import Literal
 
+from src.services.cash_reconciliation.cash_exposure_service import CashExposureService
 from src.services.cash_reconciliation.cash_reconciliation_service import CashReconciliationService
 from src.services.cash_reconciliation.cash_reconciliation_snapshot_service import CashReconciliationSnapshotService
 from src.services.payment_method_catalog_service import PaymentMethodCatalogService
@@ -13,6 +14,7 @@ router = APIRouter(prefix="/api/v1/cash-reconciliation", tags=["Cash Reconciliat
 _service = CashReconciliationService()
 _snapshot = CashReconciliationSnapshotService(_service)
 _payment_methods = PaymentMethodCatalogService()
+_exposure = CashExposureService(_service)
 
 
 class JustifyBody(BaseModel):
@@ -79,6 +81,22 @@ async def reconciliation_summary(
     if not payload:
         raise HTTPException(status_code=502, detail="Falha ao consolidar conferência financeira")
     return {"success": True, "data": payload, "snapshot": {"hit": hit, "stale": stale}}
+
+
+@router.get("/cash-exposure")
+async def cash_closing_exposure(
+    dataInicial: str = Query(..., pattern=r"^\d{4}-\d{2}-\d{2}$"),
+    dataFinal: str = Query(..., pattern=r"^\d{4}-\d{2}-\d{2}$"),
+    empresaCodigo: str | None = Query(
+        None, description="Código da empresa/posto (obrigatório para leitura útil)."
+    ),
+) -> dict:
+    """CASH-01 — Divergência de fechamento (Apresentado × Apurado). Escopo: CASH_CLOSING.
+
+    Não afirma liquidação bancária, EDI, recebível adquirente ou perda confirmada.
+    """
+    dto = await _exposure.build(dataInicial, dataFinal, empresaCodigo)
+    return {"success": True, "data": dto.model_dump()}
 
 
 @router.get("/exceptions")
