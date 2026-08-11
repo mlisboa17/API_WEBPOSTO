@@ -42,6 +42,8 @@ class PistaCacheSnapshot:
     observacoes: tuple[str, ...] = ()
     sync_count: int = 0
     last_duration_ms: float = 0.0
+    # FR-01: traces factuais por (empresaCodigo, vendaCodigo) — immutable map
+    settlement_traces: dict[tuple[int, int], Any] = field(default_factory=dict)
 
 
 class PistaCacheService:
@@ -73,6 +75,7 @@ class PistaCacheService:
                 observacoes=s.observacoes,
                 sync_count=s.sync_count,
                 last_duration_ms=s.last_duration_ms,
+                settlement_traces=s.settlement_traces,
             )
 
     async def run_sync(
@@ -119,7 +122,14 @@ class PistaCacheService:
                 )
 
             return await self._publish(
-                pend_resp, baix_items, baix_resumo, baix_obs, baix_err, hoje, t0
+                pend_resp,
+                baix_items,
+                baix_resumo,
+                baix_obs,
+                baix_err,
+                hoje,
+                t0,
+                settlement_traces=dict(svc.last_settlement_traces or {}),
             )
         except Exception as exc:
             LOGGER.exception("pista_cache.run_sync falhou: %s", exc)
@@ -137,6 +147,7 @@ class PistaCacheService:
                     observacoes=s.observacoes,
                     sync_count=s.sync_count,
                     last_duration_ms=s.last_duration_ms,
+                    settlement_traces=s.settlement_traces,
                 )
                 return self._snap
 
@@ -160,6 +171,7 @@ class PistaCacheService:
         baix_err: str | None,
         hoje: str,
         t0: datetime,
+        settlement_traces: dict[tuple[int, int], Any] | None = None,
     ) -> PistaCacheSnapshot:
         pendentes = tuple(pend_resp.items or [])
         resumo = baix_resumo or ResumoDiaPista()
@@ -183,6 +195,7 @@ class PistaCacheService:
                 )
             )
 
+            traces = dict(settlement_traces or {})
             if new_empty and prev_good and (auth_fail or err):
                 snap = PistaCacheSnapshot(
                     data_ref=prev.data_ref,
@@ -200,6 +213,7 @@ class PistaCacheService:
                     ),
                     sync_count=prev.sync_count,
                     last_duration_ms=round(duration_ms, 1),
+                    settlement_traces=prev.settlement_traces,
                 )
                 self._snap = snap
                 LOGGER.warning(
@@ -220,6 +234,7 @@ class PistaCacheService:
                 observacoes=obs,
                 sync_count=prev.sync_count + 1,
                 last_duration_ms=round(duration_ms, 1),
+                settlement_traces=traces,
             )
             self._snap = snap
             LOGGER.info(

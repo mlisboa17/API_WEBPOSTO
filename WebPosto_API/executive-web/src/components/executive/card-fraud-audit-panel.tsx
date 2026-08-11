@@ -338,38 +338,105 @@ function pagamentoInfo(o: CardFraudOcorrencia) {
 
 function PagamentoBlock({ o }: { o: CardFraudOcorrencia }) {
   const { linha, forma, bandeira, finalDigits, isPix, isCash } = pagamentoInfo(o);
+  const trace = o.settlementTrace;
+  const payments = trace?.payments ?? [];
+  const cards = trace?.cards ?? [];
+  const hasFr01 = payments.length > 0;
+
   return (
     <div className="rounded-md border border-cyan-500/20 bg-cyan-950/20 px-3 py-2.5 space-y-1.5">
       <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-cyan-400/90 font-bold">
         <CreditCard size={12} />
-        Dados de Pagamento
+        {hasFr01 ? "Componentes de Pagamento (FR-01)" : "Dados de Pagamento"}
       </div>
-      <p className="text-sm text-slate-100 font-medium font-mono tracking-tight">{linha}</p>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] text-slate-400">
-        <span>
-          Forma: <strong className="text-slate-200">{forma}</strong>
-        </span>
-        <span>
-          {isPix ? "Canal" : isCash ? "Espécie" : "Bandeira"}:{" "}
-          <strong className="text-slate-200">{bandeira}</strong>
-        </span>
-        {!isCash && !isPix ? (
-          <span>
-            Final: <strong className="text-slate-200 font-mono">{finalDigits}</strong>
-          </span>
-        ) : null}
-        {o.cartaoNsu ? (
-          <span>
-            NSU: <strong className="text-slate-200 font-mono">{o.cartaoNsu}</strong>
-          </span>
-        ) : null}
-        {o.cartaoAutorizacao ? (
-          <span>
-            Autorização:{" "}
-            <strong className="text-slate-200 font-mono">{o.cartaoAutorizacao}</strong>
-          </span>
-        ) : null}
-      </div>
+
+      {hasFr01 ? (
+        <div className="space-y-2">
+          <p className="text-[10px] text-slate-500">
+            Trace {trace?.trace_status ?? "—"} · modo {trace?.payment_mode ?? "—"} ·{" "}
+            {payments.length} pagamento(s) · {cards.length} cartão(ões)
+            {o.legacyPaymentProjection
+              ? " · projeção legada N→1 ainda presente abaixo"
+              : ""}
+          </p>
+          <ul className="space-y-1.5">
+            {payments.map((p, idx) => {
+              const card = cards.find((c) => c.card_id === p.card_id);
+              return (
+                <li
+                  key={`${p.financeiro_codigo ?? idx}-${p.amount}`}
+                  className="rounded border border-slate-700/60 bg-slate-950/40 px-2 py-1.5 text-[11px] text-slate-300"
+                >
+                  <span className="font-mono text-slate-100">
+                    {p.type} · {formatBRL(p.amount)}
+                  </span>
+                  {card ? (
+                    <span className="block text-slate-400 mt-0.5">
+                      {card.administrator || "Cartão"}
+                      {card.raw_nsu ? (
+                        <>
+                          {" "}
+                          · raw NSU/token:{" "}
+                          <strong className="font-mono text-slate-300">
+                            {card.raw_nsu}
+                          </strong>
+                          {card.nsu_kind ? ` (${card.nsu_kind})` : ""}
+                        </>
+                      ) : null}
+                    </span>
+                  ) : p.is_cash ? (
+                    <span className="block text-slate-500 mt-0.5">Sem TEF/NSU</span>
+                  ) : null}
+                </li>
+              );
+            })}
+          </ul>
+          {trace?.reconciliation ? (
+            <p className="text-[10px] text-slate-500 font-mono">
+              fueling {formatBRL(trace.reconciliation.fueling_total ?? 0)} · sale{" "}
+              {formatBRL(trace.reconciliation.sale_total ?? 0)} · pay{" "}
+              {formatBRL(trace.reconciliation.payment_total ?? 0)} ·{" "}
+              {trace.reconciliation.fueling_to_sale_status}/
+              {trace.reconciliation.sale_to_payment_status}
+            </p>
+          ) : null}
+        </div>
+      ) : (
+        <>
+          <p className="text-sm text-slate-100 font-medium font-mono tracking-tight">
+            {linha}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] text-slate-400">
+            <span>
+              Forma: <strong className="text-slate-200">{forma}</strong>
+            </span>
+            <span>
+              {isPix ? "Canal" : isCash ? "Espécie" : "Bandeira"}:{" "}
+              <strong className="text-slate-200">{bandeira}</strong>
+            </span>
+            {!isCash && !isPix ? (
+              <span>
+                Final:{" "}
+                <strong className="text-slate-200 font-mono">{finalDigits}</strong>
+              </span>
+            ) : null}
+            {o.cartaoNsu ? (
+              <span>
+                NSU (legado):{" "}
+                <strong className="text-slate-200 font-mono">{o.cartaoNsu}</strong>
+              </span>
+            ) : null}
+            {o.cartaoAutorizacao ? (
+              <span>
+                Autorização (legado):{" "}
+                <strong className="text-slate-200 font-mono">
+                  {o.cartaoAutorizacao}
+                </strong>
+              </span>
+            ) : null}
+          </div>
+        </>
+      )}
     </div>
   );
 }

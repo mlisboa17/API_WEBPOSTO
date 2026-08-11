@@ -948,6 +948,58 @@ export interface CardFraudOcorrencia {
     limiarAgrupamentoMin: number;
   };
   detalhes: CardFraudBicoDetalhe[];
+  /** FR-01 — cadeia factual (N pagamentos / N cartões). Não é score. */
+  settlementTrace?: FuelingSettlementTrace | null;
+  legacyPaymentProjection?: boolean;
+}
+
+/** FR-01 factual payment/card components (source of truth vs legacy N→1). */
+export interface FuelingSettlementTrace {
+  trace_status?: string;
+  payment_mode?: string;
+  sale?: {
+    sale_id?: number;
+    cupom?: string | null;
+    timestamp?: string | null;
+    employee_id?: number | null;
+    total?: number;
+  } | null;
+  fuelings?: Array<{
+    fueling_id: number;
+    amount: number;
+    retention_minutes?: number | null;
+    timestamp?: string | null;
+    settlement_timestamp?: string | null;
+    employee_id?: number | null;
+  }>;
+  payments?: Array<{
+    type: string;
+    amount: number;
+    is_cash?: boolean;
+    financeiro_codigo?: number | null;
+    card_id?: number | null;
+  }>;
+  cards?: Array<{
+    card_id: number;
+    amount: number;
+    administrator?: string | null;
+    raw_nsu?: string | null;
+    raw_authorization?: string | null;
+    nsu_tef?: string | null;
+    nsu_kind?: string;
+  }>;
+  reconciliation?: {
+    fueling_total?: number;
+    sale_total?: number;
+    payment_total?: number;
+    fueling_to_sale_status?: string;
+    sale_to_payment_status?: string;
+  };
+  retention?: {
+    max_retention_minutes?: number | null;
+    min_retention_minutes?: number | null;
+    per_fueling?: number[];
+  };
 }
 
 export interface CardFraudResumo {

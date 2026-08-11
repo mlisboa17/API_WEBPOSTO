@@ -156,6 +156,9 @@ class OcorrenciaFraudeDTO(BaseModel):
     valorTotalCartao: float = 0.0
     meioPagamento: str = ""
     detalhes: list[AbastecimentoFraudeDetalhe] = Field(default_factory=list)
+    # FR-01 — fatos com cardinalidade N preservada (não altera score FR-02)
+    settlementTrace: Any | None = None
+    legacyPaymentProjection: bool = True
 
 
 class RankingItem(BaseModel):
@@ -375,7 +378,8 @@ class FraudDetectionEngine:
                 "Fonte: cache RAM pista (worker 30s) — GET sem I/O externo",
                 "Régua: ALTO(80-100) Cartão/PIX/Frota · DESCONTO(60-79) · "
                 "MEDIO(40-59) agrup. dinheiro · BAIXO(0-39) retenção dinheiro/sem TEF",
-                "TEF: bandeira/NSU via JOIN /INTEGRACAO/CARTAO por vendaCodigo",
+                "TEF: bandeira/NSU via JOIN /INTEGRACAO/CARTAO por vendaCodigo "
+                "(projeção legada N→1; FR-01 em settlementTrace)",
             ]
             if not items:
                 obs.append("SEM REGISTRO NO PERIODO — cache pista vazio")
@@ -383,9 +387,19 @@ class FraudDetectionEngine:
             else:
                 qtd_dinheiro = sum(1 for i in items if _is_especie(i))
                 ocorrencias = self._detect(items, settings)
+                # FR-01: anexa fatos sem alterar score/nível/gatilhos
+                traces = getattr(snap, "settlement_traces", None) or {}
+                attached = 0
+                for o in ocorrencias:
+                    key = (int(o.empresaCodigo or o.postoUnidade or 0), int(o.vendaCodigo or 0))
+                    tr = traces.get(key) or traces.get((0, key[1]))
+                    if tr is not None:
+                        o.settlementTrace = tr
+                        o.legacyPaymentProjection = True
+                        attached += 1
                 obs.append(
                     f"Baixados={len(items)} · dinheiro={qtd_dinheiro} · "
-                    f"ocorrências={len(ocorrencias)}"
+                    f"ocorrências={len(ocorrencias)} · FR01_traces={attached}"
                 )
                 result.ocorrencias = ocorrencias
                 resumo = self._build_resumo(ocorrencias)
