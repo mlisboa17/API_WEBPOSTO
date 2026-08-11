@@ -99,7 +99,27 @@ class CashReconciliationService:
         return []
 
     @staticmethod
+    def _parse_fechado_flag(row: dict[str, Any], ap_row: dict[str, Any]) -> bool | None:
+        """Lê WebPosto `fechado` (≠ consolidado). None se o campo não existir."""
+        merged = {**row, **ap_row}
+        for field in ("fechado", "ap_fechado", "caixaFechado", "ap_caixaFechado"):
+            if field not in merged:
+                continue
+            value = merged.get(field)
+            if value in (None, ""):
+                continue
+            if isinstance(value, bool):
+                return value
+            normalized = _norm(value)
+            if normalized in {"1", "S", "SIM", "TRUE", "FECHADO", "CLOSED"}:
+                return True
+            if normalized in {"0", "N", "NAO", "NÃO", "FALSE", "ABERTO", "OPEN"}:
+                return False
+        return None
+
+    @staticmethod
     def _consolidation_status(row: dict[str, Any], ap_row: dict[str, Any]) -> tuple[str, str | None]:
+        """Status de consolidação administrativa — NÃO confundir com caixa fechado."""
         merged = {**row, **ap_row}
         explicit_fields = (
             "consolidado", "consolidada", "caixaConsolidado", "fechamentoConsolidado",
@@ -267,6 +287,7 @@ class CashReconciliationService:
         caixa = row.get("caixaCodigo") or ap_row.get("caixaCodigo")
         item_id = f"{empresa}:{caixa}:{nature.value}"
         consolidation_status, consolidation_evidence = self._consolidation_status(row, ap_row)
+        caixa_fechado = self._parse_fechado_flag(row, ap_row)
 
         return ReconciliationItem(
             id=item_id,
@@ -275,6 +296,7 @@ class CashReconciliationService:
             turno=str(row.get("turno") or row.get("turnoCodigo") or ""),
             consolidationStatus=consolidation_status,
             consolidationEvidence=consolidation_evidence,
+            caixaFechado=caixa_fechado,
             periodoInicio=periodo_inicio,
             periodoFim=periodo_fim,
             paymentNature=nature,

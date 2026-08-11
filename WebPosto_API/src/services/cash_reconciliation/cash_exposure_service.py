@@ -84,7 +84,8 @@ class CashClosingExposureDTO(BaseModel):
     breakdown: list[CashExposureLaneDTO] = Field(default_factory=list)
     data_scope: str = DATA_SCOPE_TOTAL
     has_data: bool = False
-    closing_status: str = "UNKNOWN"  # CLOSED | OPEN | MIXED | UNKNOWN
+    closing_status: str = "UNKNOWN"  # CLOSED | OPEN | MIXED | UNKNOWN (via campo fechado)
+    is_consolidated: str = "unknown"  # true | false | unknown (via consolidado; atributo separado)
     open_caixa_count: int = 0
     reliable_for_closing_audit: bool = False
     disclaimer: str = DISCLAIMER
@@ -113,25 +114,68 @@ def _item_difference(item: ReconciliationItem) -> float:
     return _round2(float(item.valorApresentado or 0) - float(item.valorApurado or 0))
 
 
-def _closing_status_from_items(items: list[ReconciliationItem]) -> tuple[str, int]:
-    """Deriva status agregado a partir de consolidationStatus D02 + situacao de caixa."""
-    open_n = 0
-    closed_n = 0
+def _caixa_key(item: ReconciliationItem) -> tuple[Any, Any]:
+    return (item.filial, item.caixaCodigo)
+
+
+def _closing_and_consolidation_from_items(
+    items: list[ReconciliationItem],
+) -> tuple[str, str, int]:
+    """Separa FECHADO (operacional) de CONSOLIDADO (administrativo).
+
+    closing_status ← campo WebPosto `fechado` (caixaFechado no item).
+    is_consolidated ← consolidationStatus (consolidado*).
+    Não inventa CLOSED quando fechado está ausente.
+    """
+    by_caixa: dict[tuple[Any, Any], dict[str, Any]] = {}
     for item in items:
-        status = (item.consolidationStatus or "").upper()
-        # Evidência de caixa ainda aberto (quando presente no payload CAIXA)
-        # consolidationStatus NOT_CONSOLIDATED ≠ necessariamente aberto, mas sinaliza.
-        if status == "NOT_CONSOLIDATED":
-            open_n += 1
-        elif status == "CONSOLIDATED":
+        key = _caixa_key(item)
+        bucket = by_caixa.setdefault(
+            key, {"fechado": None, "consolidation": "UNKNOWN"}
+        )
+        if item.caixaFechado is not None:
+            bucket["fechado"] = item.caixaFechado
+        status = (item.consolidationStatus or "UNKNOWN").upper()
+        if status in {"CONSOLIDATED", "NOT_CONSOLIDATED"}:
+            bucket["consolidation"] = status
+
+    closed_n = open_n = unknown_n = 0
+    cons_true = cons_false = cons_unknown = 0
+    for bucket in by_caixa.values():
+        fechado = bucket["fechado"]
+        if fechado is True:
             closed_n += 1
-    if open_n and closed_n:
-        return "MIXED", open_n
-    if open_n and not closed_n:
-        return "OPEN", open_n
-    if closed_n:
-        return "CLOSED", 0
-    return "UNKNOWN", 0
+        elif fechado is False:
+            open_n += 1
+        else:
+            unknown_n += 1
+        cons = bucket["consolidation"]
+        if cons == "CONSOLIDATED":
+            cons_true += 1
+        elif cons == "NOT_CONSOLIDATED":
+            cons_false += 1
+        else:
+            cons_unknown += 1
+
+    if closed_n and open_n:
+        closing_status = "MIXED"
+    elif open_n and not closed_n:
+        closing_status = "OPEN"
+    elif closed_n and not open_n:
+        closing_status = "CLOSED"
+    else:
+        closing_status = "UNKNOWN"
+
+    if cons_true and not cons_false and not cons_unknown:
+        is_consolidated = "true"
+    elif cons_false and not cons_true and not cons_unknown:
+        is_consolidated = "false"
+    elif cons_true or cons_false:
+        is_consolidated = "mixed"
+    else:
+        is_consolidated = "unknown"
+
+    return closing_status, is_consolidated, open_n
 
 
 def compute_cash_closing_exposure(
@@ -181,9 +225,7 @@ def compute_cash_closing_exposure(
         difference = _round2(sum(_item_difference(i) for i in group))
         sangria_vals = [float(i.sangria) for i in group if i.sangria is not None]
         sangria = _round2(sum(sangria_vals)) if sangria_vals else None
-        lane_open = any(
-            (i.consolidationStatus or "").upper() == "NOT_CONSOLIDATED" for i in group
-        )
+        lane_open = any(i.caixaFechado is False for i in group)
         breakdown.append(
             CashExposureLaneDTO(
                 payment_method=label,
@@ -201,9 +243,11 @@ def compute_cash_closing_exposure(
         key=lambda x: (0 if x.status != "UNKNOWN" else 1, -abs(x.difference_amount))
     )
 
-    closing_status, open_count = _closing_status_from_items(items)
-    # Caixa aberto / não consolidado: números existem, mas não equivalem a fechamento concluído.
-    reliable = closing_status == "CLOSED" and open_count == 0
+    closing_status, is_consolidated, open_count = _closing_and_consolidation_from_items(
+        items
+    )
+    # Auditável = fechamento operacional encerrado (fechado), independente de consolidação.
+    reliable = closing_status == "CLOSED"
 
     return CashClosingExposureDTO(
         company_id=company_id,
@@ -216,6 +260,7 @@ def compute_cash_closing_exposure(
         data_scope=DATA_SCOPE_TOTAL,
         has_data=True,
         closing_status=closing_status,
+        is_consolidated=is_consolidated,
         open_caixa_count=open_count,
         reliable_for_closing_audit=reliable,
         sources=_sources(),
@@ -229,6 +274,9 @@ def _sources() -> dict[str, str]:
         "difference": "ReconciliationItem.diferenca ← *Diferenca | apresentado − apurado",
         "sangria": "item.sangria (quando D02 popular) | meta.sangriaTotal separado — não entra na fórmula da diferença",
         "breakdown": "DINHEIRO/CARTAO/TRANSFERENCIA_CREDITO/PRE_PAGO (PaymentNatureCode D02)",
+        "closing_status": "WebPosto fechado → item.caixaFechado (CLOSED/OPEN/UNKNOWN) — ≠ consolidado",
+        "is_consolidated": "WebPosto consolidado → consolidationStatus (atributo administrativo separado)",
+        "reliable_for_closing_audit": "true quando closing_status=CLOSED (fechado), mesmo se não consolidado",
         "not_used": "expected_realized / cardBreakdown.expectedNet (fora do escopo CASH-01 V1)",
         "engine": "CashReconciliationService.build_items (+ PreEngine só para estado/justificativas)",
         "aliases": "expected_amount=calculated; identified_amount=presented; exposure_amount=difference (sinal WebPosto)",

@@ -118,9 +118,10 @@ function renderExposureBlock(exposure) {
     <h3>Divergência de Fechamento (CASH-01)</h3>
     <p class="muted">${exposure.disclaimer || "Apresentado × Apurado — não é perda confirmada."}</p>
     <p><strong>Escopo:</strong> <code>${exposure.data_scope || "CASH_CLOSING"}</code>
-       · <strong>Status:</strong> <code>${closing}</code>
+       · <strong>Fechamento:</strong> <code>${closing}</code>
+       · <strong>Consolidado:</strong> <code>${exposure.is_consolidated || "unknown"}</code>
        · <strong>Auditável como fechamento:</strong> ${exposure.reliable_for_closing_audit ? "SIM" : "NÃO"}
-       ${exposure.open_caixa_count ? ` · itens não consolidados: ${exposure.open_caixa_count}` : ""}</p>
+       ${exposure.open_caixa_count ? ` · caixas abertos: ${exposure.open_caixa_count}` : ""}</p>
     <dl class="recon-dl">
       <div><dt>Apresentado</dt><dd>${fmt(presented)}</dd></div>
       <div><dt>Apurado</dt><dd>${fmt(calculated)}</dd></div>

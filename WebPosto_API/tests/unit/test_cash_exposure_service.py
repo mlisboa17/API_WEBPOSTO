@@ -21,11 +21,13 @@ def _item(
     item_id: str = "t",
     card_breakdown: list | None = None,
     consolidation_status: str = "UNKNOWN",
+    caixa_fechado: bool | None = None,
+    caixa_codigo: int = 1,
 ) -> ReconciliationItem:
     return ReconciliationItem(
         id=item_id,
         filial=74014,
-        caixaCodigo=1,
+        caixaCodigo=caixa_codigo,
         periodoInicio="2026-08-06",
         periodoFim="2026-08-06",
         paymentNature=nature,
@@ -35,6 +37,7 @@ def _item(
         diferenca=round(apresentado - apurado, 2),
         cardBreakdown=card_breakdown or [],
         consolidationStatus=consolidation_status,
+        caixaFechado=caixa_fechado,
     )
 
 
@@ -199,3 +202,83 @@ def test_despesa_enters_total_not_primary_false_pix_label():
     methods = {b.payment_method for b in dto.breakdown if b.status == "OK"}
     assert "TRANSFERENCIA_CREDITO" in methods
     assert "PIX" not in methods
+
+
+def test_cash01s_fechado_true_consolidado_false_is_auditable():
+    """Case 1: fechado=true, consolidado=false → CLOSED + auditável."""
+    items = [
+        _item(
+            PaymentNatureCode.DINHEIRO,
+            apurado=100,
+            apresentado=90,
+            item_id="d",
+            caixa_fechado=True,
+            consolidation_status="NOT_CONSOLIDATED",
+        )
+    ]
+    dto = compute_cash_closing_exposure(
+        items, period_start="2026-08-08", period_end="2026-08-08"
+    )
+    assert dto.closing_status == "CLOSED"
+    assert dto.is_consolidated == "false"
+    assert dto.reliable_for_closing_audit is True
+    assert dto.difference_amount == -10
+
+
+def test_cash01s_fechado_false_not_auditable():
+    """Case 2: fechado=false → OPEN, não auditável."""
+    items = [
+        _item(
+            PaymentNatureCode.DINHEIRO,
+            apurado=100,
+            apresentado=0,
+            item_id="d",
+            caixa_fechado=False,
+            consolidation_status="NOT_CONSOLIDATED",
+        )
+    ]
+    dto = compute_cash_closing_exposure(
+        items, period_start="2026-08-11", period_end="2026-08-11"
+    )
+    assert dto.closing_status == "OPEN"
+    assert dto.reliable_for_closing_audit is False
+
+
+def test_cash01s_fechado_and_consolidado_true():
+    """Case 3: fechado=true, consolidado=true → CLOSED + auditável."""
+    items = [
+        _item(
+            PaymentNatureCode.CARTAO,
+            apurado=50,
+            apresentado=50,
+            item_id="c",
+            caixa_fechado=True,
+            consolidation_status="CONSOLIDATED",
+        )
+    ]
+    dto = compute_cash_closing_exposure(
+        items, period_start="2026-08-06", period_end="2026-08-06"
+    )
+    assert dto.closing_status == "CLOSED"
+    assert dto.is_consolidated == "true"
+    assert dto.reliable_for_closing_audit is True
+
+
+def test_cash01s_fechado_absent_does_not_invent_closed():
+    """Case 4: campo fechado ausente → UNKNOWN, não inventa CLOSED."""
+    items = [
+        _item(
+            PaymentNatureCode.DINHEIRO,
+            apurado=100,
+            apresentado=100,
+            item_id="d",
+            caixa_fechado=None,
+            consolidation_status="CONSOLIDATED",
+        )
+    ]
+    dto = compute_cash_closing_exposure(
+        items, period_start="2026-08-06", period_end="2026-08-06"
+    )
+    assert dto.closing_status == "UNKNOWN"
+    assert dto.reliable_for_closing_audit is False
+    assert dto.is_consolidated == "true"

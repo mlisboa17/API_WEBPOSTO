@@ -612,3 +612,56 @@ Justificativa:
 
 **Sem commit/PR/merge nesta entrega.**
 
+
+---
+
+## Closing Status Semantics (CASH-01S)
+
+Date: 2026-08-11  
+Commit base CASH-01: `8b9eda6`  
+Artifact live: `tmp_cash01s_status_live.json`
+
+### Fechado vs Consolidado
+
+| Conceito | Campo WebPosto | Item D02 | CASH-01 DTO |
+|----------|----------------|----------|-------------|
+| Fechamento operacional | `fechado` | `caixaFechado` | `closing_status` CLOSED/OPEN/UNKNOWN |
+| Consolidação administrativa | `consolidado` | `consolidationStatus` | `is_consolidated` true/false/unknown/mixed |
+
+**Fechado ≠ Consolidado.** Caixa pode estar `fechado=true` e `consolidado=false` (08–10 comprovado) com números estáveis.
+
+### Regra final
+
+`
+closing_status = f(fechado)
+  True  → CLOSED
+  False → OPEN
+  ausente → UNKNOWN   # não inventa CLOSED
+
+is_consolidated = f(consolidado)   # atributo separado
+
+reliable_for_closing_audit = (closing_status == CLOSED)
+  # responde: o caixa terminou o fechamento e pode ser auditado?
+  # NÃO exige consolidação administrativa
+`
+
+Valores financeiros (presented/calculated/difference) **não** mudam com CASH-01S.
+
+### Exemplos live 08–11 (74014)
+
+| DATE | closing_status | is_consolidated | reliable | presented | calculated | difference | fin vs golden |
+|------|----------------|-----------------|----------|-----------|------------|------------|---------------|
+| 08/08 | CLOSED | false | true | 59649.62 | 63252.36 | -3602.74 | YES |
+| 09/08 | CLOSED | false | true | 56012.23 | 57060.35 | -1048.12 | YES |
+| 10/08 | CLOSED | false | true | 49151.91 | 51158.58 | -2006.67 | YES |
+| 11/08 | OPEN | false | false | 0.00 | mutável | — | presented=0 OK |
+
+### Impacto no Cash Hunter
+
+- Priorizar divergências com `reliable_for_closing_audit=true`.
+- Caixa OPEN: exibir com disclaimer; não tratar como gap consolidado de fechamento.
+- Consolidação futura pode alimentar workflow administrativo separado — não bloqueia CASH-01.
+
+### Product Gate CASH-01S
+
+**CASH01_STATUS_VALIDATED**
