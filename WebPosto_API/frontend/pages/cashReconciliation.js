@@ -98,6 +98,13 @@ function renderExposureBlock(exposure) {
   const calculated = _amt(exposure, "calculated_amount", "expected_amount");
   const difference = _amt(exposure, "difference_amount", "exposure_amount");
   const closing = exposure.closing_status || "UNKNOWN";
+  const auditState = exposure.audit_state || "NOT_READY";
+  const auditLabel =
+    auditState === "FINAL"
+      ? "Consolidado (final)"
+      : auditState === "PROVISIONAL"
+        ? "Fechado — aguardando consolidação (valor provisório)"
+        : "Não pronto para auditoria de fechamento";
   const rows = (exposure.breakdown || [])
     .filter((b) => b.status === "OK" || b.status === "OPEN")
     .map((b) => {
@@ -120,7 +127,7 @@ function renderExposureBlock(exposure) {
     <p><strong>Escopo:</strong> <code>${exposure.data_scope || "CASH_CLOSING"}</code>
        · <strong>Fechamento:</strong> <code>${closing}</code>
        · <strong>Consolidado:</strong> <code>${exposure.is_consolidated || "unknown"}</code>
-       · <strong>Auditável como fechamento:</strong> ${exposure.reliable_for_closing_audit ? "SIM" : "NÃO"}
+       · <strong>Finalidade:</strong> <code>${auditState}</code> — ${auditLabel}
        ${exposure.open_caixa_count ? ` · caixas abertos: ${exposure.open_caixa_count}` : ""}</p>
     <dl class="recon-dl">
       <div><dt>Apresentado</dt><dd>${fmt(presented)}</dd></div>
@@ -161,7 +168,11 @@ export function renderCashReconciliation(node, payload, filters, options = {}) {
       value: fmt(differenceKpi),
       status: Math.abs(differenceKpi || 0) > 0.009 ? "crit" : "ok",
     },
-    { label: "Status fechamento", value: exposure?.closing_status || "UNKNOWN", status: "warn" },
+    {
+      label: "Finalidade",
+      value: exposure?.audit_state || "NOT_READY",
+      status: exposure?.audit_state === "FINAL" ? "ok" : "warn",
+    },
   ];
 
   const detailHtml = `

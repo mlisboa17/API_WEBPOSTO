@@ -665,3 +665,76 @@ Valores financeiros (presented/calculated/difference) **não** mudam com CASH-01
 ### Product Gate CASH-01S
 
 **CASH01_STATUS_VALIDATED**
+
+---
+
+## Closing Finality Semantics (CASH-01S2)
+
+Date: 2026-08-11  
+Corrige `af035ca`: `reliable_for_closing_audit = (closing_status == CLOSED)` era forte demais.  
+Artifact: `tmp_cash01s2_finality_live.json`
+
+### Consumers review
+
+| Consumer | Uso anterior de `reliable` | Impacto |
+|----------|------------------------------|---------|
+| `cash_exposure_service` | derivava do CLOSED | atualizado |
+| UI `cashReconciliation.js` | label SIM/NÃO | passou a exibir `audit_state` |
+| Outros módulos produção | nenhum | — |
+
+Nenhum consumidor externo assumia `reliable == can inspect` além da UI CASH-01.
+
+### Eixos independentes
+
+| Eixo | Valores |
+|------|---------|
+| FECHAMENTO | OPEN / CLOSED / UNKNOWN |
+| CONSOLIDAÇÃO | false / true / unknown / mixed |
+| FINALIDADE (`audit_state`) | NOT_READY / PROVISIONAL / FINAL |
+
+### Matriz
+
+| Caso | fechado | consolidado | closing_status | audit_state | reliable_for_closing_audit |
+|------|---------|-------------|----------------|-------------|----------------------------|
+| OPEN | false | false | OPEN | NOT_READY | false |
+| CLOSED MUTABLE | true | false | CLOSED | PROVISIONAL | false |
+| FINAL | true | true | CLOSED | FINAL | true |
+| UNKNOWN | ausente | * | UNKNOWN | NOT_READY | false |
+
+**PROVISIONAL permanece visível no CASH-01** (detecção antecipada). Não é excluído.  
+**FINAL** = estável para auditoria de fechamento consolidada.  
+Nenhum estado implica perda/fraude/dinheiro desaparecido.
+
+### `reliable_for_closing_audit` decision
+
+Mantido no contrato por compatibilidade, com semântica **inequívoca**:
+
+`
+reliable_for_closing_audit ≡ (audit_state == FINAL)
+`
+
+Não usar como "pode inspecionar". Inspeção antecipada = `audit_state in {PROVISIONAL, FINAL}` ou simplesmente `has_data`.
+
+### Live 08–11 (valores financeiros inalterados)
+
+| DATE | STATUS | AUDIT_STATE | FINANCIAL UNCHANGED |
+|------|--------|-------------|---------------------|
+| 08/08 | CLOSED | PROVISIONAL | YES (59649.62 / 63252.36 / -3602.74) |
+| 09/08 | CLOSED | PROVISIONAL | YES |
+| 10/08 | CLOSED | PROVISIONAL | YES |
+| 11/08 | OPEN | NOT_READY | presented=0 |
+
+### Source drift / mutabilidade (06/08)
+
+Caixas `CLOSED + NOT_CONSOLIDATED` **podem sofrer alterações** até a consolidação.  
+Isso é uma **possível** explicação de domínio para divergências temporais Prestação ↔ CAIXA_APRESENTADO (ex.: delta R no 06/08), mas **não** declara causa definitiva sem evidência adicional.
+
+### Cash Hunter
+
+- PROVISIONAL → "Divergência provisória" (priorizar com menor confiança)
+- FINAL → "Divergência consolidada"
+- NOT_READY → não tratar como fechamento concluído
+
+### Product Gate CASH-01S2
+
+**CASH01_FINALITY_VALIDATED**

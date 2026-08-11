@@ -85,8 +85,11 @@ class CashClosingExposureDTO(BaseModel):
     data_scope: str = DATA_SCOPE_TOTAL
     has_data: bool = False
     closing_status: str = "UNKNOWN"  # CLOSED | OPEN | MIXED | UNKNOWN (via campo fechado)
-    is_consolidated: str = "unknown"  # true | false | unknown (via consolidado; atributo separado)
+    is_consolidated: str = "unknown"  # true | false | unknown | mixed (via consolidado)
+    audit_state: str = "NOT_READY"  # NOT_READY | PROVISIONAL | FINAL
     open_caixa_count: int = 0
+    # True SOMENTE quando audit_state=FINAL (fechado+consolidado).
+    # NÃO significa "pode inspecionar" — PROVISIONAL também é inspecionável.
     reliable_for_closing_audit: bool = False
     disclaimer: str = DISCLAIMER
     sources: dict[str, str] = Field(default_factory=dict)
@@ -178,6 +181,20 @@ def _closing_and_consolidation_from_items(
     return closing_status, is_consolidated, open_n
 
 
+def _audit_state(closing_status: str, is_consolidated: str) -> str:
+    """Finalidade da auditoria de fechamento (eixo independente do valor financeiro).
+
+    OPEN / UNKNOWN / MIXED → NOT_READY
+    CLOSED + consolidado≠true → PROVISIONAL (mutável; detecção antecipada)
+    CLOSED + consolidado=true → FINAL (estável para auditoria de fechamento)
+    """
+    if closing_status != "CLOSED":
+        return "NOT_READY"
+    if is_consolidated == "true":
+        return "FINAL"
+    return "PROVISIONAL"
+
+
 def compute_cash_closing_exposure(
     items: list[ReconciliationItem],
     *,
@@ -246,8 +263,9 @@ def compute_cash_closing_exposure(
     closing_status, is_consolidated, open_count = _closing_and_consolidation_from_items(
         items
     )
-    # Auditável = fechamento operacional encerrado (fechado), independente de consolidação.
-    reliable = closing_status == "CLOSED"
+    audit_state = _audit_state(closing_status, is_consolidated)
+    # reliable = finalidade FINAL apenas (não confundir com inspeção provisória).
+    reliable = audit_state == "FINAL"
 
     return CashClosingExposureDTO(
         company_id=company_id,
@@ -261,6 +279,7 @@ def compute_cash_closing_exposure(
         has_data=True,
         closing_status=closing_status,
         is_consolidated=is_consolidated,
+        audit_state=audit_state,
         open_caixa_count=open_count,
         reliable_for_closing_audit=reliable,
         sources=_sources(),
@@ -276,7 +295,8 @@ def _sources() -> dict[str, str]:
         "breakdown": "DINHEIRO/CARTAO/TRANSFERENCIA_CREDITO/PRE_PAGO (PaymentNatureCode D02)",
         "closing_status": "WebPosto fechado → item.caixaFechado (CLOSED/OPEN/UNKNOWN) — ≠ consolidado",
         "is_consolidated": "WebPosto consolidado → consolidationStatus (atributo administrativo separado)",
-        "reliable_for_closing_audit": "true quando closing_status=CLOSED (fechado), mesmo se não consolidado",
+        "audit_state": "NOT_READY | PROVISIONAL | FINAL — ver Closing Finality Semantics",
+        "reliable_for_closing_audit": "true SOMENTE se audit_state=FINAL (fechado+consolidado); PROVISIONAL continua visível",
         "not_used": "expected_realized / cardBreakdown.expectedNet (fora do escopo CASH-01 V1)",
         "engine": "CashReconciliationService.build_items (+ PreEngine só para estado/justificativas)",
         "aliases": "expected_amount=calculated; identified_amount=presented; exposure_amount=difference (sinal WebPosto)",

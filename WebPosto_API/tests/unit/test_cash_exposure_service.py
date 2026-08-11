@@ -204,8 +204,30 @@ def test_despesa_enters_total_not_primary_false_pix_label():
     assert "PIX" not in methods
 
 
-def test_cash01s_fechado_true_consolidado_false_is_auditable():
-    """Case 1: fechado=true, consolidado=false → CLOSED + auditável."""
+def test_cash01s2_open_not_ready():
+    """OPEN: fechado=false, consolidado=false → NOT_READY."""
+    items = [
+        _item(
+            PaymentNatureCode.DINHEIRO,
+            apurado=100,
+            apresentado=0,
+            item_id="d",
+            caixa_fechado=False,
+            consolidation_status="NOT_CONSOLIDATED",
+        )
+    ]
+    dto = compute_cash_closing_exposure(
+        items, period_start="2026-08-11", period_end="2026-08-11"
+    )
+    assert dto.closing_status == "OPEN"
+    assert dto.is_consolidated == "false"
+    assert dto.audit_state == "NOT_READY"
+    assert dto.reliable_for_closing_audit is False
+    assert dto.has_data is True  # provisório/aberto continua visível
+
+
+def test_cash01s2_closed_mutable_provisional():
+    """CLOSED MUTABLE: fechado=true, consolidado=false → PROVISIONAL."""
     items = [
         _item(
             PaymentNatureCode.DINHEIRO,
@@ -221,31 +243,13 @@ def test_cash01s_fechado_true_consolidado_false_is_auditable():
     )
     assert dto.closing_status == "CLOSED"
     assert dto.is_consolidated == "false"
-    assert dto.reliable_for_closing_audit is True
+    assert dto.audit_state == "PROVISIONAL"
+    assert dto.reliable_for_closing_audit is False
     assert dto.difference_amount == -10
 
 
-def test_cash01s_fechado_false_not_auditable():
-    """Case 2: fechado=false → OPEN, não auditável."""
-    items = [
-        _item(
-            PaymentNatureCode.DINHEIRO,
-            apurado=100,
-            apresentado=0,
-            item_id="d",
-            caixa_fechado=False,
-            consolidation_status="NOT_CONSOLIDATED",
-        )
-    ]
-    dto = compute_cash_closing_exposure(
-        items, period_start="2026-08-11", period_end="2026-08-11"
-    )
-    assert dto.closing_status == "OPEN"
-    assert dto.reliable_for_closing_audit is False
-
-
-def test_cash01s_fechado_and_consolidado_true():
-    """Case 3: fechado=true, consolidado=true → CLOSED + auditável."""
+def test_cash01s2_final_closed_consolidated():
+    """FINAL: fechado=true, consolidado=true → FINAL."""
     items = [
         _item(
             PaymentNatureCode.CARTAO,
@@ -261,11 +265,12 @@ def test_cash01s_fechado_and_consolidado_true():
     )
     assert dto.closing_status == "CLOSED"
     assert dto.is_consolidated == "true"
+    assert dto.audit_state == "FINAL"
     assert dto.reliable_for_closing_audit is True
 
 
-def test_cash01s_fechado_absent_does_not_invent_closed():
-    """Case 4: campo fechado ausente → UNKNOWN, não inventa CLOSED."""
+def test_cash01s2_unknown_fechado_not_final():
+    """UNKNOWN: campo fechado ausente — não inventa FINAL nem CLOSED."""
     items = [
         _item(
             PaymentNatureCode.DINHEIRO,
@@ -280,5 +285,6 @@ def test_cash01s_fechado_absent_does_not_invent_closed():
         items, period_start="2026-08-06", period_end="2026-08-06"
     )
     assert dto.closing_status == "UNKNOWN"
+    assert dto.audit_state == "NOT_READY"
     assert dto.reliable_for_closing_audit is False
     assert dto.is_consolidated == "true"
