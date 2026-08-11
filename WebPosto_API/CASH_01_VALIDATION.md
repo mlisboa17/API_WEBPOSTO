@@ -1,6 +1,131 @@
-# CASH-01 Validation — Exposição de Fechamento de Caixa
+# CASH-01 Validation — Divergência de Fechamento
 
-## 1. Implementation
+> **Read this first.** Sections under *Validation History* are chronological evidence (including failed validations). They do **not** describe the current implementation.
+
+## Current Validated Implementation
+
+Camada fina sobre a conferência D02:
+
+| Peça | Path / endpoint |
+|------|-----------------|
+| Service | `src/services/cash_reconciliation/cash_exposure_service.py` |
+| API | `GET /api/v1/cash-reconciliation/cash-exposure` |
+| UI | `frontend/pages/cashReconciliation.js` (Conferência Financeira) |
+| Tests | `tests/unit/test_cash_exposure_service.py` |
+| Fechado flag | `ReconciliationItem.caixaFechado` via `CashReconciliationService._parse_fechado_flag` |
+
+**Não** cria FinancialFinding, migrations, Money Hunter, EDI, OFX ou Expense Hunter.
+
+### Reuse (current)
+
+| Componente | Uso atual CASH-01 |
+|------------|-------------------|
+| `CashReconciliationService.build_items` | Fonte Apresentado / Apurado / Diferença / `fechado` / consolidado |
+| `PreReconciliationEngine` | Status/justificativas apenas — **não** define o cálculo CASH-01 |
+| `PaymentNatureCode` | Lanes DINHEIRO, CARTAO, TRANSFERENCIA_CREDITO, PRE_PAGO |
+| HTTP `/api/v1/cash-reconciliation` | Extensão mínima |
+| UI Conferência Financeira | Superfície existente |
+
+**Explicitamente fora do cálculo CASH-01:** `expected_realized()`, `cardBreakdown.expectedNet`.
+
+## Current Financial Semantics
+
+| Campo produto | Origem |
+|---------------|--------|
+| `presented_amount` | Σ `ReconciliationItem.valorApresentado` |
+| `calculated_amount` | Σ `ReconciliationItem.valorApurado` |
+| `difference_amount` | Σ `ReconciliationItem.diferenca` (fallback `presented − calculated`) |
+
+Convenção WebPosto:
+
+```
+difference = presented - calculated
+```
+
+### Legacy aliases (compatibility only — not product terminology)
+
+| Alias | Maps to |
+|-------|---------|
+| `expected_amount` | `calculated_amount` |
+| `identified_amount` | `presented_amount` |
+| `exposure_amount` | `difference_amount` |
+
+### Current breakdown
+
+- **DINHEIRO**
+- **CARTAO** — fechamento bruto D02 (`cartaoApresentado` / `cartaoApurado` / `cartaoDiferenca`); **não** `expectedNet`
+- **TRANSFERENCIA_CREDITO** — lane própria (não “PIX”)
+- **PRE_PAGO** — lane própria
+
+Totais do DTO somam **todas** as naturezas com movimento; o breakdown UI destaca as lanes acima.
+
+### Current product meaning
+
+CASH-01 = **DIVERGÊNCIA DE FECHAMENTO**.
+
+**Não** significa: `BANK_SETTLED`, `CONFIRMED_LOSS`, `FRAUD`, `MISSING_MONEY`, `RECOVERED_VALUE`.
+
+## Current Finality Semantics
+
+| Condição | `closing_status` | `audit_state` | `reliable_for_closing_audit` |
+|----------|------------------|---------------|------------------------------|
+| `fechado=false` | OPEN | NOT_READY | false |
+| `fechado=true` + não consolidado | CLOSED | **PROVISIONAL** | false |
+| `fechado=true` + consolidado | CLOSED | **FINAL** | **true** |
+| `fechado` ausente | UNKNOWN | NOT_READY | false |
+
+- PROVISIONAL permanece **visível** (detecção antecipada) e é **mutável**.
+- FINAL = estável para auditoria de fechamento consolidada.
+- `reliable_for_closing_audit ≡ (audit_state == FINAL)`.
+
+## Current Golden Validation
+
+Empresa: **74014 — POSTO DOZE FILIAL II**
+
+| Date | presented | calculated | difference | audit_state |
+|------|-----------|------------|------------|-------------|
+| 2026-08-08 | 59649.62 | 63252.36 | -3602.74 | PROVISIONAL |
+| 2026-08-09 | 56012.23 | 57060.35 | -1048.12 | PROVISIONAL |
+| 2026-08-10 | 49151.91 | 51158.58 | -2006.67 | PROVISIONAL |
+| 2026-08-11 | 0.00 (open) | mutável | — | NOT_READY (`closing_status=OPEN`) |
+
+## Current Tests
+
+```bash
+python -m pytest tests/unit/test_cash_exposure_service.py \
+       tests/unit/test_cash_reconciliation_service.py \
+       -o addopts= -q
+```
+
+**17 passed** (inclui anti-regressão `expectedNet`×N turnos e matriz de finality).
+
+## Current Product Gate
+
+**CASH01_DOMAIN_VALIDATED** + **CASH01_FINALITY_VALIDATED** (HEAD `dc3de92`, PR #3).
+
+### Known limitations (current)
+
+- Sem OFX/EDI / liquidação bancária / PIX bank-level.
+- Valores PROVISIONAL podem mutar até consolidar.
+- Drift Prestação UI ↔ CAIXA_APRESENTADO pode existir (ex. 06/08 R$155 documentado).
+- CASH-01 mede divergência de fechamento, não perda confirmada.
+
+### Future candidates (not an approved next sprint)
+
+- CASH-02 / matching cartão×OFX — **candidate only**; depends on CTO/PO product gate.
+- FIN bridge / Expense Hunter / Money Hunter — **out of scope** until approved.
+
+---
+
+# Validation History
+
+Chronological evidence. **Do not treat as current implementation** unless a subsection explicitly says it is still in force.
+
+### H0 — Initial write-up (pre-domain correction) — SUPERSEDED
+
+> Describes the **incorrect** V0 model (`expected_realized` / PIX lane). Not current.
+
+## 1. Implementation (historical)
 
 Camada fina de orquestração sobre a conferência D02 existente:
 
@@ -17,8 +142,8 @@ Camada fina de orquestração sobre a conferência D02 existente:
 |------------|-----|
 | `CashReconciliationService.build_items` | Ingestão CAIXA / CAIXA_APRESENTADO |
 | `PreReconciliationEngine` | Alinha valorEsperado/valorRealizado |
-| `expected_realized()` (`nature_strategies`) | Regra DINHEIRO (apurado − sangria) e demais naturezas |
-| `PaymentNatureCode` | Breakdown DINHEIRO / CARTAO / PIX |
+| `expected_realized()` (`nature_strategies`) | **Historical V0 only** — used incorrectly for CARTÃO; **not** current CASH-01 |
+| `PaymentNatureCode` | Historical V0 listed PIX = TRANSF+PRE_PAGO — **not** current |
 | Rota prefix `/api/v1/cash-reconciliation` | Extensão HTTP mínima |
 | UI Conferência Financeira | Superfície existente |
 
@@ -65,7 +190,7 @@ test_cash_exposure_service.py + test_cash_reconciliation_service.py + test_finan
 test_prestacao_contas_parser.py: ABSENT neste HEAD (33a880a)
 ```
 
-Re-run pós-live (2026-07-31 worktree; venv compartilhado sem `asyncpg`):
+Re-run pós-live (note recorded as 2026-07-31 — **unreliable timestamp**, same caveat as LIVE section; venv sem `asyncpg`):
 
 ```
 test_cash_exposure_service.py + test_cash_reconciliation_service.py → 13 passed
@@ -94,11 +219,11 @@ Exposição **não** significa perda confirmada. Pode ser:
 - Financial Review bridge **adiado** (requer novo `request_type` ≠ `NOMINAL_IDENTIFICATION_REVIEW`).
 - UI apenas no frontend legado de Conferência (executive-web `/financial/reconciliation` não existe neste HEAD `33a880a`).
 
-## 9. Technical Debt (próximo sprint)
+## 9. Technical Debt (historical note)
 
-1. Expor HTTP do matching cartão×OFX (CASH-02) — lib já existe.
-2. Bridge FIN com `request_type` adequado + assign.
-3. Validação live documentada com evidência real.
+1. Matching cartão×OFX (**CASH-02**) — **future candidate / not approved by current product gate** (depends on CTO/PO).
+2. Bridge FIN com `request_type` adequado + assign — future candidate.
+3. Validação live — later completed; see history below.
 
 ## 10. Product Gate (pré-live)
 
@@ -108,7 +233,12 @@ Exposição **não** significa perda confirmada. Pode ser:
 
 ## LIVE FINANCIAL VALIDATION
 
-Validation date: 2026-07-31  
+> **STATUS: HISTORICAL FAILED VALIDATION — SUPERSEDED**  
+> Resolved by **CARD DOMAIN CORRECTION** (see DOMAIN CORRECTION / FINAL DOMAIN RECONCILIATION).  
+> Preserved as evidence for the anti-regression test against `expectedNet`×N turns.
+
+Validation date: **UNKNOWN / documentation timestamp corrected**  
+Note: The original validation note recorded `2026-07-31`, which is inconsistent with the source period `2026-08-10`; the timestamp is therefore **not treated as reliable evidence**.  
 Branch: `feature/cash-01-exposure`  
 HEAD: `33a880ad3bbfbf4a230843ada2fabe1363601185`  
 Worktree: `C:/Users/mlisb/OneDrive/ProjetosAntigravy/LOGOS SPACE/Api_WebPosto_CASH01_CLEAN`  
@@ -315,6 +445,8 @@ Motivo: source trace e reprodução manual confirmam o cálculo, mas **EXPECTED/
 ---
 
 ## DOMAIN CORRECTION
+
+> Historical record of the card/domain fix that superseded the failed LIVE validation above.
 
 Validation / correction date: 2026-08-11  
 Branch: `feature/cash-01-exposure`  
