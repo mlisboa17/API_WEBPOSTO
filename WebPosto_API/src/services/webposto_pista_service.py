@@ -63,12 +63,13 @@ class AbastecimentoRestV1(BaseModel):
     nomeEmpresa: str = ""
     # Extras baixados
     idVenda: int | None = None
+    vendaItemCodigo: int | None = None
     documentoFiscal: str | None = None
     chaveAcesso: str | None = None
     formaPagamento: str | None = None
     cliente: str | None = None
     dataHoraBaixa: str | None = None
-    # TEF / CARTAO (JOIN VENDA_FORMA_PAGAMENTO + CARTAO por vendaCodigo)
+    # TEF / CARTAO — projeção legada N→1 (DEPRECATED para FR-01; ver settlementTrace)
     cartaoBandeira: str | None = None
     cartaoFinal: str | None = None
     cartaoNsu: str | None = None
@@ -486,6 +487,8 @@ class WebPostoPistaService:
 
     def __init__(self) -> None:
         self.client = get_webposto_client()
+        # FR-01: traces do último coletar_pista_universo (não colapsam N→1)
+        self.last_settlement_traces: dict[tuple[int, int], Any] = {}
 
     async def listar_pendentes(
         self,
@@ -577,11 +580,18 @@ class WebPostoPistaService:
                 self._fetch_endpoint("cartao", start, end, id_empresa),
             )
 
+            from src.services.fueling_settlement_trace import (
+                build_traces_for_baixados,
+                index_cartoes_by_venda,
+            )
+
             vi_map = self._index_venda_items(venda_items)
             pag_map = self._index_pagamentos(pagamentos)
             venda_map = self._index_vendas(vendas)
             nfce_map = self._index_nfce(nfces)
-            cartao_map = self._index_cartoes(cartoes)
+            # FR-01: lista completa por venda; legado N→1 usa o 1º cartão
+            cartao_by_venda = index_cartoes_by_venda(cartoes)
+            cartao_map = self._index_cartoes(cartoes)  # DEPRECATED_PROJECTION
 
             pendentes: list[AbastecimentoRestV1] = []
             baixados: list[AbastecimentoRestV1] = []
@@ -611,6 +621,8 @@ class WebPostoPistaService:
                 vic = _venda_item_codigo(row)
                 vc = vi_map.get(vic) or 0
                 emp = dto.idEmpresa
+                if vic:
+                    dto.vendaItemCodigo = int(vic)
                 if vc:
                     dto.idVenda = vc
                     v = venda_map.get((emp, vc)) or venda_map.get((0, vc))
@@ -637,7 +649,7 @@ class WebPostoPistaService:
                         ).strip() or None
                     pags = pag_map.get((emp, vc)) or pag_map.get((0, vc)) or []
                     if pags:
-                        # Prefere forma com nome mais descritivo (evita vazio/genérico)
+                        # LEGACY N→1 (DEPRECATED_PROJECTION) — FR-01 usa payments[] completo
                         best_pag = max(
                             pags,
                             key=lambda p: len(
@@ -655,7 +667,7 @@ class WebPostoPistaService:
                         ).strip() or None
                     dto.isEspecie = _is_especie(dto.formaPagamento)
 
-                    # JOIN CARTAO (TEF) — bandeira / final / NSU / autorização
+                    # LEGACY N→1 CARTAO (1º da venda) — FR-01 usa cards[] completo
                     card = cartao_map.get((emp, vc)) or cartao_map.get((0, vc))
                     if card:
                         admin_desc = str(
@@ -715,9 +727,22 @@ class WebPostoPistaService:
                     "0 pendentes (vendaItemCodigo==0) — se a tela desktop mostra pendentes, "
                     "eles ainda não saíram do PDV local para a API."
                 )
+            # FR-01: traces factuais com N pagamentos / N cartões preservados
+            self.last_settlement_traces = build_traces_for_baixados(
+                baixados=baixados,
+                vendas=venda_map,
+                pagamentos=pag_map,
+                cartoes_por_venda=cartao_by_venda,
+                employee_names=frentistas,
+            )
+            observacoes.append(
+                f"FR-01 settlement traces={len(self.last_settlement_traces)} "
+                "(payments/cards cardinality preserved; legacy N→1 still on AbastecimentoRestV1)"
+            )
             return pendentes, baixados, resumo, observacoes, None
         except Exception as exc:
             LOGGER.exception("pista.coletar_pista_universo falhou: %s", exc)
+            self.last_settlement_traces = {}
             return [], [], ResumoDiaPista(), [str(exc)], str(exc)
 
     async def coletar_baixados_universo(
@@ -1201,7 +1226,10 @@ class WebPostoPistaService:
     def _index_cartoes(
         rows: list[dict[str, Any]],
     ) -> dict[tuple[int, int], dict[str, Any]]:
-        """Indexa CARTAO por (empresa, vendaCodigo) — 1º registro da venda."""
+        """DEPRECATED_PROJECTION — 1º CARTAO por venda (legado AbastecimentoRestV1).
+
+        FR-01: usar index_cartoes_by_venda / index_cartoes_by_financeiro.
+        """
         out: dict[tuple[int, int], dict[str, Any]] = {}
         for r in rows:
             try:

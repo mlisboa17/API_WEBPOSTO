@@ -89,6 +89,7 @@ from src.interfaces.http.routes import units_performance
 from src.interfaces.http.routes import pista_rush_heatmap
 from src.interfaces.http.routes import forecourt_layout
 from src.interfaces.http.routes import card_fraud_audit
+from src.interfaces.http.routes import fueling_settlement_trace
 from src.interfaces.http.routes import cashier_audit
 from src.interfaces.http.routes import president_dashboard
 from src.api.v1.endpoints import audit_settings as audit_settings_ep
@@ -202,6 +203,7 @@ def _mount_executive_support(app: FastAPI) -> None:
     app.include_router(pista_rush_heatmap.router)
     app.include_router(forecourt_layout.router)
     app.include_router(card_fraud_audit.router)
+    app.include_router(fueling_settlement_trace.router)
     app.include_router(cashier_audit.router)
     app.include_router(president_dashboard.router)
     app.include_router(audit_settings_ep.router)

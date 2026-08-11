@@ -5,7 +5,11 @@
 
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
-import type { CardFraudBicoDetalhe, CardFraudOcorrencia } from "@/types/api";
+import type {
+  CardFraudBicoDetalhe,
+  CardFraudOcorrencia,
+  FuelingSettlementTrace,
+} from "@/types/api";
 import { FILIAIS_CONFIG } from "@/config/filiais_config";
 
 /** CNPJs cadastrais do Grupo Lisboa (exibição institucional no laudo). */
@@ -20,6 +24,68 @@ function brl(n: number) {
     style: "currency",
     currency: "BRL",
   }).format(n || 0);
+}
+
+/** Exportável para testes — monta linhas factuais de pagamento (FR-01). */
+export function buildDossierPaymentEvidence(o: CardFraudOcorrencia): {
+  source: "FR01_SETTLEMENT_TRACE" | "LEGACY_N1_PROJECTION";
+  rows: string[][];
+  disclaimer: string;
+} {
+  const tr = o.settlementTrace as FuelingSettlementTrace | null | undefined;
+  if (tr?.payments && tr.payments.length > 0) {
+    const rows = tr.payments.map((p) => {
+      const card = (tr.cards || []).find((c) => c.card_id === p.card_id);
+      if (p.is_cash) {
+        return [
+          p.type || "DINHEIRO",
+          brl(p.amount),
+          "—",
+          "sem TEF/NSU",
+          "—",
+          "—",
+        ];
+      }
+      const kind = card?.nsu_kind || "UNKNOWN";
+      const nsuLabel =
+        kind === "TEF_CLASSIC"
+          ? "NSU TEF"
+          : kind === "RAW_UUID_OR_TOKEN"
+            ? "raw token/ID (não NSU TEF clássico)"
+            : "raw NSU/campo WebPosto";
+      return [
+        p.type || "CARTAO",
+        brl(p.amount),
+        card?.administrator || "—",
+        nsuLabel,
+        card?.raw_nsu || "—",
+        card?.raw_authorization || "—",
+      ];
+    });
+    return {
+      source: "FR01_SETTLEMENT_TRACE",
+      rows,
+      disclaimer:
+        "FR-01: cada identificador de cartão pertence ao respectivo componente de pagamento. " +
+        "Valor total da venda ≠ valor de um único cartão em pagamentos mistos.",
+    };
+  }
+  return {
+    source: "LEGACY_N1_PROJECTION",
+    rows: [
+      [
+        o.formaPagamento || o.meioPagamento || "—",
+        brl(o.valorTotal ?? o.valorTotalCartao ?? 0),
+        o.cartaoBandeira || "—",
+        "PROJEÇÃO LEGADA N→1 (não usar como prova de cartão único)",
+        o.cartaoNsu || "—",
+        o.cartaoAutorizacao || "—",
+      ],
+    ],
+    disclaimer:
+      "ATENÇÃO: settlementTrace ausente — campos de cartão/NSU são projeção legada N→1 " +
+      "e NÃO devem ser lidos como um único cartão pagando o total da venda.",
+  };
 }
 
 function litros3(n: number) {
@@ -133,6 +199,8 @@ function canonicalPayload(o: CardFraudOcorrencia): string {
     t1: d.dataHoraBico || d.horaBico,
     ret: d.tempoRetencaoMinutos,
   }));
+  const payEv = buildDossierPaymentEvidence(o);
+  const tr = o.settlementTrace;
   return JSON.stringify({
     id: o.idOcorrencia || o.id,
     venda: o.vendaCodigo,
@@ -143,8 +211,11 @@ function canonicalPayload(o: CardFraudOcorrencia): string {
     retencao: o.tempoRetencaoMinutos,
     valor: o.valorTotal ?? o.valorTotalCartao,
     desconto: o.valorDesconto,
-    final: (o.cartaoFinal || "").replace(/\D/g, "").slice(-4),
-    nsu: o.cartaoNsu || "",
+    paymentEvidenceSource: payEv.source,
+    paymentComponents: tr?.payments ?? null,
+    cardComponents: tr?.cards ?? null,
+    // legado mantido só para hash quando FR-01 ausente
+    legacyNsu: payEv.source === "LEGACY_N1_PROJECTION" ? o.cartaoNsu || "" : null,
     bicos: rows,
     score: o.scoreGravidade,
     gatilho: o.gatilho,
@@ -279,31 +350,66 @@ export async function exportFraudLegalDossierPdf(
   doc.text("3. Quadro de Evidências Temporais & Financeiras (PCI-DSS / LGPD)", 40, y);
   y += 8;
 
+  const payEv = buildDossierPaymentEvidence(o);
+  const evidBody: string[][] = [
+    ["Hora da Puxada (T₁)", formatDataHora(t1)],
+    ["Hora da Emissão / Baixa (T₂)", formatDataHora(t2)],
+    ["Tempo de Retenção (ΔT)", `${o.tempoRetencaoMinutos ?? 0} min`],
+    [
+      "Valor Total da Venda/Cupom (R$)",
+      brl(o.valorTotal ?? o.valorTotalCartao ?? 0),
+    ],
+    ["Desconto Aplicado (R$)", brl(o.valorDesconto ?? 0)],
+    ["Desconto / Litro (R$/L)", rsL4(descontoPorLitro(o))],
+    ["Litros totais", litros3(o.litros ?? 0)],
+    ["CPF vinculado (LGPD)", maskCpfLgpd(o.cpfDesconto)],
+    ["Fonte pagamentos", payEv.source],
+  ];
+  if (payEv.source === "LEGACY_N1_PROJECTION") {
+    evidBody.push(
+      ["Forma (legado N→1)", o.formaPagamento || o.meioPagamento || "—"],
+      ["Bandeira (legado N→1)", o.cartaoBandeira || "—"],
+      ["Cartão PCI (legado)", maskPanPci(o.cartaoFinal)],
+      ["Identificador (legado)", o.cartaoNsu || "—"],
+      ["Autorização (legado)", o.cartaoAutorizacao || "—"]
+    );
+  }
+
   autoTable(doc, {
     startY: y,
     head: [["Evidência", "Valor"]],
-    body: [
-      ["Hora da Puxada (T₁)", formatDataHora(t1)],
-      ["Hora da Emissão / Baixa (T₂)", formatDataHora(t2)],
-      ["Tempo de Retenção (ΔT)", `${o.tempoRetencaoMinutos ?? 0} min`],
-      ["Valor Total (R$)", brl(o.valorTotal ?? o.valorTotalCartao ?? 0)],
-      ["Desconto Aplicado (R$)", brl(o.valorDesconto ?? 0)],
-      ["Desconto / Litro (R$/L)", rsL4(descontoPorLitro(o))],
-      ["Litros totais", litros3(o.litros ?? 0)],
-      ["CPF vinculado (LGPD)", maskCpfLgpd(o.cpfDesconto)],
-      ["Forma de Pagamento", o.formaPagamento || o.meioPagamento || "—"],
-      ["Adquirente / Canal", o.meioPagamento || o.formaPagamento || "—"],
-      ["Bandeira", o.cartaoBandeira || "—"],
-      ["Cartão (PCI-DSS)", maskPanPci(o.cartaoFinal)],
-      ["NSU", o.cartaoNsu || "—"],
-      ["Autorização TEF", o.cartaoAutorizacao || "—"],
-    ],
+    body: evidBody,
     theme: "striped",
     headStyles: { fillColor: [15, 23, 42], textColor: 255, fontSize: 8 },
     styles: { fontSize: 8, cellPadding: 3.5 },
     columnStyles: { 0: { cellWidth: 160 }, 1: { cellWidth: 355 } },
   });
   y = yAfterTable(doc, y);
+
+  // Componentes de pagamento factuais (FR-01) — evita NSU único no total misto
+  y = ensureSpace(doc, y, 90);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(10);
+  doc.setTextColor(15, 23, 42);
+  doc.text("3.1 Componentes de Pagamento (cardinalidade preservada)", 40, y);
+  y += 10;
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(7.5);
+  doc.setTextColor(71, 85, 105);
+  const disc = doc.splitTextToSize(payEv.disclaimer, 515);
+  doc.text(disc, 40, y);
+  y += disc.length * 9 + 4;
+
+  autoTable(doc, {
+    startY: y,
+    head: [["Forma", "Valor", "Administradora", "Tipo ID", "raw NSU/token", "raw Autorização"]],
+    body: payEv.rows,
+    theme: "grid",
+    headStyles: { fillColor: [15, 118, 110], textColor: 255, fontSize: 7 },
+    styles: { fontSize: 7, cellPadding: 3 },
+  });
+  y = yAfterTable(doc, y);
+  doc.setTextColor(15, 23, 42);
 
   // ── Prova de dolo / recorrência ──
   if (isCartaoRepetido(o)) {
@@ -394,15 +500,15 @@ export async function exportFraudLegalDossierPdf(
   doc.setFont("helvetica", "normal");
   doc.setFontSize(8);
   const parecer = doc.splitTextToSize(
-    "PARECER TÉCNICO DE AUDITORIA: Com base nas evidências temporais, financeiras e " +
-      "eletrônicas (TEF) consolidadas neste dossiê — inclusive eventual recorrência de " +
-      "cartão (Cartão Curinga) e retenção anormal de abastecimentos —, a conduta apurada " +
-      "pode configurar, em tese, hipótese de justa causa por improbidade e/ou mau " +
+    "PARECER TÉCNICO DE AUDITORIA: Com base nas evidências temporais e financeiras " +
+      "consolidadas neste dossiê — inclusive componentes de pagamento listados na seção 3.1, " +
+      "eventual recorrência de cartão (Cartão Curinga) e retenção anormal de abastecimentos —, " +
+      "a conduta apurada pode configurar, em tese, hipótese de justa causa por improbidade e/ou mau " +
       "procedimento, nos termos do art. 482, alíneas \"a\" e \"b\", da Consolidação das " +
-      "Leis do Trabalho (CLT). Este documento integra a cadeia de custódia digital do " +
-      "Grupo Lisboa / WebPosto LOGOS e destina-se a suporte de auditoria interna, " +
-      "compliance e eventual instrução disciplinar, observando PCI-DSS (mascaramento de " +
-      "PAN) e LGPD (minimização/mascaramento de dados pessoais).",
+      "Leis do Trabalho (CLT). EXPLAINED/FR-01 reconstrução factual não equivale a ausência de fraude. " +
+      "Este documento integra a cadeia de custódia digital do Grupo Lisboa / WebPosto LOGOS e " +
+      "destina-se a suporte de auditoria interna, compliance e eventual instrução disciplinar, " +
+      "observando PCI-DSS (mascaramento de PAN) e LGPD (minimização/mascaramento de dados pessoais).",
     515
   );
   doc.text(parecer, 40, y);
