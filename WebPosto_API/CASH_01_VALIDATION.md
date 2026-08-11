@@ -28,21 +28,23 @@ Camada fina sobre a conferência D02:
 
 **Explicitamente fora do cálculo CASH-01:** `expected_realized()`, `cardBreakdown.expectedNet`.
 
-## Current Financial Semantics
+## Current Validated Financial Semantics
 
 | Campo produto | Origem |
 |---------------|--------|
 | `presented_amount` | Σ `ReconciliationItem.valorApresentado` |
 | `calculated_amount` | Σ `ReconciliationItem.valorApurado` |
-| `difference_amount` | Σ `ReconciliationItem.diferenca` (fallback `presented − calculated`) |
+| `difference_amount` | Σ `ReconciliationItem.diferenca` |
 
-Convenção WebPosto:
+Fallback / convenção WebPosto:
 
 ```
 difference = presented - calculated
 ```
 
-### Legacy aliases (compatibility only — not product terminology)
+### LEGACY COMPATIBILITY ALIASES
+
+Não são a terminologia principal do produto. Apenas compatibilidade de contrato:
 
 | Alias | Maps to |
 |-------|---------|
@@ -101,7 +103,11 @@ python -m pytest tests/unit/test_cash_exposure_service.py \
 
 ## Current Product Gate
 
-**CASH01_DOMAIN_VALIDATED** + **CASH01_FINALITY_VALIDATED** (HEAD `dc3de92`, PR #3).
+- **CASH01_DOMAIN_VALIDATED**
+- **CASH01_FINALITY_VALIDATED**
+- **READY_FOR_PR** (PR #3)
+
+`READY_FOR_USER_VALIDATION` aparece apenas no histórico (estado pré-live).
 
 ### Known limitations (current)
 
@@ -110,9 +116,9 @@ python -m pytest tests/unit/test_cash_exposure_service.py \
 - Drift Prestação UI ↔ CAIXA_APRESENTADO pode existir (ex. 06/08 R$155 documentado).
 - CASH-01 mede divergência de fechamento, não perda confirmada.
 
-### Future candidates (not an approved next sprint)
+### Future candidates / deferred work
 
-- CASH-02 / matching cartão×OFX — **candidate only**; depends on CTO/PO product gate.
+- CASH-02 / matching cartão×OFX — **not an approved next sprint**. Requires CTO/Product Review before implementation.
 - FIN bridge / Expense Hunter / Money Hunter — **out of scope** until approved.
 
 ---
@@ -237,8 +243,9 @@ Exposição **não** significa perda confirmada. Pode ser:
 > Resolved by **CARD DOMAIN CORRECTION** (see DOMAIN CORRECTION / FINAL DOMAIN RECONCILIATION).  
 > Preserved as evidence for the anti-regression test against `expectedNet`×N turns.
 
-Validation date: **UNKNOWN / documentation timestamp corrected**  
-Note: The original validation note recorded `2026-07-31`, which is inconsistent with the source period `2026-08-10`; the timestamp is therefore **not treated as reliable evidence**.  
+Validation date: **UNKNOWN**  
+
+The original note recorded `2026-07-31`, which is inconsistent with the `2026-08-10` source period. The original timestamp is therefore not considered reliable validation evidence.  
 Branch: `feature/cash-01-exposure`  
 HEAD: `33a880ad3bbfbf4a230843ada2fabe1363601185`  
 Worktree: `C:/Users/mlisb/OneDrive/ProjetosAntigravy/LOGOS SPACE/Api_WebPosto_CASH01_CLEAN`  
