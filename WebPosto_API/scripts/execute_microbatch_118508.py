@@ -442,15 +442,18 @@ def main() -> None:
             print()
 
     created_count = sum(1 for r in executed if r.get("classification") == "CREATED_AND_VERIFIED")
-    save_json(
-        batch_lock,
-        {
-            "executedAt": datetime.now(timezone.utc).isoformat(),
-            "postCount": post_count,
-            "createdAndVerified": created_count,
-            "haltedReason": halted_reason,
-        },
-    )
+    # A trava impede POST repetido. Lote barrado antes de qualquer POST nao trava, senao
+    # uma validacao mal configurada bloquearia o lote sem nada ter sido enviado.
+    if post_count:
+        save_json(
+            batch_lock,
+            {
+                "executedAt": datetime.now(timezone.utc).isoformat(),
+                "postCount": post_count,
+                "createdAndVerified": created_count,
+                "haltedReason": halted_reason,
+            },
+        )
     save_json(
         result_path,
         {

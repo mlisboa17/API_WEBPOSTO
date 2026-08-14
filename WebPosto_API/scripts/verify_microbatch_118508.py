@@ -29,7 +29,16 @@ from src.operational.product_registration.company_credentials import (  # noqa: 
 COMPANY_CODE = 118508
 PROFILE = "WEBPOSTO_CONVENIENCIA_24_HORAS_KEY"
 REGISTRATION_DIR = ROOT / "data" / "product_registration"
-BATCH_FOLDERS = {"01": "microbatch_01_118508", "02": "microbatch_02_118508"}
+BATCH_FOLDERS = {
+    "01": "microbatch_01_118508",
+    "02": "microbatch_02_118508",
+    "03": "microbatch_03_118508",
+}
+PREFLIGHT_NAMES = {
+    "01": "preflight_microbatch.json",
+    "02": "microbatch_selection.json",
+    "03": "pilot_selection.json",
+}
 TOLERANCE = 0.005
 
 
@@ -40,10 +49,9 @@ def main() -> None:
 
     out_dir = REGISTRATION_DIR / BATCH_FOLDERS[args.batch]
     execution = json.loads((out_dir / "execution_result.json").read_text(encoding="utf-8"))
-    preflight_name = (
-        "microbatch_selection.json" if args.batch == "02" else "preflight_microbatch.json"
+    preflight = json.loads(
+        (out_dir / PREFLIGHT_NAMES[args.batch]).read_text(encoding="utf-8")
     )
-    preflight = json.loads((out_dir / preflight_name).read_text(encoding="utf-8"))
     expected = {p["ean"]: p for p in preflight.get("products", [])}
 
     credential = resolve_credential(COMPANY_CODE)
