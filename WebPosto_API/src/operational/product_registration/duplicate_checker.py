@@ -43,6 +43,26 @@ def distinctive_tokens(description: str) -> frozenset[str]:
     )
 
 
+def looks_fabricated_gtin(ean: str) -> str | None:
+    """Aponta GTIN com aparencia de preenchimento manual, ou None.
+
+    Checksum valido nao garante que o codigo exista: sequencia crescente e digito
+    repetido sao padroes de codigo inventado, que no PDV nao le e polui o catalogo.
+    """
+    digits = "".join(c for c in str(ean or "") if c.isdigit())
+    if len(digits) < 8:
+        return None
+    body = digits[:-1]
+    if len(set(body)) == 1:
+        return "digito repetido em toda a extensao"
+    ascending = "".join(str(d % 10) for d in range(int(body[0]), int(body[0]) + len(body)))
+    if body == ascending:
+        return "sequencia numerica crescente"
+    if "123456" in body or "654321" in body:
+        return "contem sequencia numerica evidente"
+    return None
+
+
 SAME_PRODUCT_NEW_GTIN = "SAME_PRODUCT_NEW_GTIN"
 POSSIBLE_VARIANT = "POSSIBLE_VARIANT"
 FALSE_POSITIVE = "FALSE_POSITIVE"

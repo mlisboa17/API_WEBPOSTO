@@ -1,0 +1,592 @@
+"""Executa uma onda de cadastro por perfis fiscais na empresa 118508.
+
+A aprovacao e por perfil, nao por produto: o primeiro produto de cada perfil e o canario e
+so ele exige leitura completa. Verificado o canario, os demais produtos do mesmo perfil
+seguem na mesma execucao.
+
+Falha fiscal conhecida antes do POST remove apenas aquele produto. Problema de integridade
+— duplicidade, empresa errada, divergencia entre o enviado e o lido, perfil que nao
+corresponde ao body — interrompe a onda inteira.
+
+Uso: python scripts/execute_wave_118508.py --wave 1 --limit 20
+
+Nao imprime credencial. Nao envia empresaCodigo. Sem PUT, PATCH, DELETE ou rollback.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import sys
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+import httpx
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from src.operational.product_registration.company_credentials import (  # noqa: E402
+    HttpProductReader,
+    company_guard,
+    resolve_credential,
+)
+from src.operational.product_registration.duplicate_checker import (  # noqa: E402
+    find_description_duplicates,
+    looks_fabricated_gtin,
+)
+
+BASE_URL = "https://web.qualityautomacao.com.br"
+LEGACY_ENDPOINT = "/INTEGRACAO/INCLUIR_PRODUTO"
+COMPANY_CODE = 118508
+PROFILE = "WEBPOSTO_CONVENIENCIA_24_HORAS_KEY"
+COST_CENTER = 24886
+MAX_WAVE = 20
+PAUSE_SECONDS = 1.5
+
+REGISTRATION_DIR = ROOT / "data" / "product_registration"
+PROFILES = REGISTRATION_DIR / "fiscal_profiles_118508.json"
+CHECKPOINT = REGISTRATION_DIR / "execution" / "checkpoint_118508.json"
+ACCOUNTANT_REVIEW = REGISTRATION_DIR / "accountant_review_118508.json"
+PENDING_COST_UPDATE = REGISTRATION_DIR / "pending_cost_update_118508.json"
+
+PENDING_COST_FLAG = "ALLOW_PENDING_DFE_COST"
+PENDING_COST_STATUS = "PENDING"
+
+BLOCKED_EANS = {"7891000376928", "7891962076317"}
+BLOCKED_CODES = {2481160, 2481344}
+WAVE_LEVELS = {1: {"PROFILE_A", "PROFILE_B", "PROFILE_C"}, 2: {"PROFILE_D"}}
+
+
+class WaveHalted(Exception):
+    """Interrompe a onda sem enviar mais nenhum POST."""
+
+
+def load_json(path: Path, default: Any) -> Any:
+    return json.loads(path.read_text(encoding="utf-8")) if path.is_file() else default
+
+
+def save_json(path: Path, payload: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def barcodes(product: dict[str, Any]) -> set[str]:
+    values = {
+        str((e.get("codigoBarra") if isinstance(e, dict) else e) or "").strip()
+        for e in product.get("produtoCodigoBarra") or []
+    }
+    external = product.get("produtoCodigoExterno")
+    if external:
+        values.add(str(external).strip())
+    return {v for v in values if v}
+
+
+def pending_cost_allowed() -> bool:
+    """Autorizacao de custo zero, valida apenas para o processo atual."""
+    return os.environ.get(PENDING_COST_FLAG, "").strip().lower() == "true"
+
+
+def validate_cost(cost: Any, cost_info: dict[str, Any]) -> tuple[bool, str]:
+    if cost is None:
+        return False, "CUSTO_AUSENTE"
+    cost = float(cost)
+    if cost < 0:
+        return False, "CUSTO_NEGATIVO"
+    if cost > 0:
+        if cost_info.get("source") != "DFE":
+            return False, "CUSTO_POSITIVO_SEM_ORIGEM_DFE"
+        return True, "CUSTO_DFE"
+    if cost_info.get("cost_status") != PENDING_COST_STATUS:
+        return False, "CUSTO_ZERO_SEM_STATUS_PENDENTE"
+    if not pending_cost_allowed():
+        return False, "CUSTO_ZERO_SEM_AUTORIZACAO_EXPLICITA"
+    return True, "CUSTO_ZERO_AUTORIZADO"
+
+
+def body_matches_profile(body: dict[str, Any], profile: dict[str, Any]) -> list[str]:
+    """Campos do body que nao correspondem ao perfil aprovado."""
+    divergences = []
+    if body.get("codigoNcm") not in profile["ncms"]:
+        divergences.append("ncm")
+    if profile["cests"] and body.get("codigoCest") not in profile["cests"]:
+        divergences.append("cest")
+    if body.get("tributoIcms") != profile["tributo_icms"]:
+        divergences.append("tributoIcms")
+    if body.get("tributoPisCofins") != profile["tributo_pis_cofins"]:
+        divergences.append("tributoPisCofins")
+    if body.get("cdCfopSaida") != profile["cfop_saida"]:
+        divergences.append("cfopSaida")
+    if body.get("cdCfopEntrada") != profile["cfop_entrada"]:
+        divergences.append("cfopEntrada")
+    return divergences
+
+
+def build_queue(profiles: list[dict[str, Any]], levels: set[str], limit: int) -> list[dict[str, Any]]:
+    """Fila da onda: canario de cada perfil primeiro, depois os demais do mesmo perfil.
+
+    Perfis com mais produtos vem antes, para que uma unica aprovacao de perfil renda o
+    maximo de cadastros no lote.
+    """
+    eligible = [p for p in profiles if p["level"] in levels]
+    eligible.sort(key=lambda p: (-p["quantidade_candidatos"], p["profile_id"]))
+    queue: list[dict[str, Any]] = []
+    for profile in eligible:
+        products = sorted(
+            profile["produtos"],
+            key=lambda prod: (prod["ean"] != profile.get("produto_canario"), prod["precoVenda"]),
+        )
+        for index, product in enumerate(products):
+            if len(queue) >= limit:
+                return queue
+            queue.append(
+                {
+                    "profile": profile,
+                    "product": product,
+                    "is_canary": index == 0
+                    and profile.get("profile_canary_status") != "VERIFIED",
+                }
+            )
+    return queue
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Executa uma onda de perfis fiscais da 118508")
+    parser.add_argument("--wave", type=int, default=1, choices=sorted(WAVE_LEVELS))
+    parser.add_argument("--limit", type=int, default=MAX_WAVE)
+    args = parser.parse_args()
+
+    if args.limit > MAX_WAVE:
+        raise WaveHalted(f"Limite {args.limit} excede o maximo de {MAX_WAVE} por execucao")
+
+    out_dir = REGISTRATION_DIR / f"wave_{args.wave:02d}_118508"
+    result_path = out_dir / "execution_result.json"
+    wave_lock = out_dir / "wave_lock.json"
+    if wave_lock.is_file():
+        lock = load_json(wave_lock, {})
+        raise WaveHalted(
+            f"Onda {args.wave} já executada em {lock.get('executedAt')} "
+            f"({lock.get('postCount')} POSTs). Nova execução recusada."
+        )
+
+    payload = load_json(PROFILES, {})
+    if not payload.get("profiles"):
+        raise WaveHalted("fiscal_profiles_118508.json ausente ou vazio")
+
+    queue = build_queue(payload["profiles"], WAVE_LEVELS[args.wave], args.limit)
+    if not queue:
+        raise WaveHalted(f"Nenhum produto elegivel na onda {args.wave}")
+
+    credential = resolve_credential(COMPANY_CODE)
+    if credential.variable_name != PROFILE:
+        raise WaveHalted(f"Credencial fora do profile exigido: {credential.variable_name}")
+
+    checkpoint = load_json(CHECKPOINT, {})
+    review = load_json(ACCOUNTANT_REVIEW, {})
+    pending_cost = load_json(PENDING_COST_UPDATE, {})
+
+    print("=" * 78)
+    profile_ids = {item["profile"]["profile_id"] for item in queue}
+    print(f"ONDA {args.wave} — EMPRESA {COMPANY_CODE} — {len(queue)} PRODUTOS "
+          f"EM {len(profile_ids)} PERFIS")
+    print("=" * 78)
+    print(f"credencial: {credential.variable_name} (nunca impressa)")
+    print(f"custo pendente autorizado: {pending_cost_allowed()}")
+
+    executed: list[dict[str, Any]] = []
+    skipped: list[dict[str, Any]] = []
+    verified_profiles: set[str] = set()
+    halted_reason: str | None = None
+    post_count = 0
+
+    with httpx.Client(timeout=120.0) as client:
+        reader = HttpProductReader(client)
+
+        guard = company_guard(credential, reader)
+        if not guard.passed:
+            raise WaveHalted("Sentinel BONO não confirmado na empresa 118508")
+        print(f"sentinel BONO: encontrado={guard.sentinel_found} "
+              f"vinculo={guard.company_link_confirmed}")
+
+        catalog_rows: list[dict[str, Any]] = []
+        cursor = 0
+        seen: set[int] = set()
+        page = reader.get_catalog(credential.key, cursor=0, page_size=200)
+        while page:
+            catalog_rows.extend(page)
+            nxt = max(int(p.get("produtoCodigo") or 0) for p in page)
+            if nxt == cursor or nxt in seen:
+                break
+            seen.add(nxt)
+            cursor = nxt
+            page = reader.get_catalog(credential.key, cursor=cursor, page_size=200)
+        all_codes: dict[str, int] = {}
+        for entry in catalog_rows:
+            for bar in barcodes(entry):
+                all_codes.setdefault(bar, int(entry.get("produtoCodigo") or 0))
+        print(f"catalogo indexado: {len(catalog_rows)} produtos | {len(all_codes)} codigos")
+        print()
+
+        for item in queue:
+            profile = item["profile"]
+            product = item["product"]
+            ean = product["ean"]
+            body = product["body"]["preview"]
+            expected_hash = product["body"]["hash"]
+            canary = item["is_canary"] and profile["profile_id"] not in verified_profiles
+
+            label = "CANARIO" if canary else "perfil já validado"
+            print(f"--- {ean} — {product['descricao']}")
+            print(f"    perfil {profile['profile_id']} ({label})")
+
+            def skip(reason: str, detail: str | None = None) -> None:
+                skipped.append(
+                    {
+                        "ean": ean,
+                        "descricao": product["descricao"],
+                        "profileId": profile["profile_id"],
+                        "motivo": reason,
+                        "detalhe": detail,
+                    }
+                )
+                print(f"    REMOVIDO DO LOTE: {reason}{f' — {detail}' if detail else ''}")
+
+            # --- Falhas individuais: removem o produto e a onda continua ---------------
+            if ean in BLOCKED_EANS or ean in checkpoint:
+                skip("JA_PROCESSADO_OU_BLOQUEADO")
+                continue
+            fabricated = looks_fabricated_gtin(ean)
+            if fabricated:
+                skip("GTIN_COM_APARENCIA_DE_INVENTADO", fabricated)
+                continue
+            if not body.get("precoVenda") or body["precoVenda"] <= 0:
+                skip("PRECO_VENDA_INVALIDO")
+                continue
+            cost_ok, cost_reason = validate_cost(body.get("precoCusto"), product.get("custo") or {})
+            if not cost_ok:
+                skip(cost_reason)
+                continue
+
+            # --- Falhas de integridade: interrompem a onda -----------------------------
+            if ean in all_codes:
+                halted_reason = f"DUPLICADO_NO_CATALOGO:{ean}->{all_codes[ean]}"
+                break
+            description_matches = find_description_duplicates(product["descricao"], catalog_rows)
+            if description_matches:
+                halted_reason = (
+                    f"DUPLICIDADE_POR_DESCRICAO:{ean}->"
+                    f"{description_matches[0].get('produtoCodigo')}"
+                )
+                break
+            if "empresaCodigo" in body:
+                halted_reason = f"BODY_COM_EMPRESA_CODIGO:{ean}"
+                break
+            if body["codigoBarras"] != ean or body["codigoExterno"] != ean:
+                halted_reason = f"BODY_DIVERGENTE_DO_EAN:{ean}"
+                break
+            profile_divergences = body_matches_profile(body, profile)
+            if profile_divergences:
+                halted_reason = f"BODY_FORA_DO_PERFIL:{ean}:{','.join(profile_divergences)}"
+                break
+
+            print(f"    custo {body['precoCusto']} ({cost_reason}) | venda {body['precoVenda']}"
+                  f" | NCM {body['codigoNcm']} | CEST {body['codigoCest']}"
+                  f" | hash {expected_hash[:16]}...")
+
+            response = client.post(
+                f"{BASE_URL}{LEGACY_ENDPOINT}",
+                params={"CHAVE": credential.key},
+                content=json.dumps(body, ensure_ascii=False).encode("utf-8"),
+                headers={"Content-Type": "application/json; charset=utf-8"},
+            )
+            post_count += 1
+            http_status = response.status_code
+            try:
+                response_payload = response.json()
+            except Exception:
+                response_payload = {"raw": (response.text or "")[:400]}
+
+            ret = response_payload.get("RET") if isinstance(response_payload, dict) else None
+            men = response_payload.get("MEN") if isinstance(response_payload, dict) else None
+            cod_produto = (
+                response_payload.get("codProduto") if isinstance(response_payload, dict) else None
+            )
+            print(f"    POST -> HTTP {http_status} | RET={ret} | MEN={men} "
+                  f"| codProduto={cod_produto}")
+
+            record: dict[str, Any] = {
+                "ean": ean,
+                "descricao": product["descricao"],
+                "profileId": profile["profile_id"],
+                "profileLevel": profile["level"],
+                "canary": canary,
+                "httpStatus": http_status,
+                "ret": ret,
+                "men": men,
+                "codProduto": cod_produto,
+                "bodyHash": expected_hash,
+                "response": response_payload,
+            }
+
+            if http_status != 200:
+                record["classification"] = "HTTP_INESPERADO"
+                executed.append(record)
+                halted_reason = f"HTTP_INESPERADO:{http_status}"
+                break
+            if ret not in (None, 0, "0"):
+                record["classification"] = "RET_NAO_SUCESSO"
+                executed.append(record)
+                halted_reason = f"RET_NAO_SUCESSO:{ret}"
+                break
+            if not cod_produto:
+                record["classification"] = "SEM_CODPRODUTO"
+                executed.append(record)
+                halted_reason = "SEM_CODPRODUTO"
+                break
+
+            code = int(cod_produto)
+            if code in BLOCKED_CODES:
+                record["classification"] = "CODIGO_BLOQUEADO_RETORNADO"
+                executed.append(record)
+                halted_reason = f"CODIGO_BLOQUEADO_RETORNADO:{code}"
+                break
+
+            links = reader.get_company_links(credential.key, cursor=code - 1, page_size=50)
+            matching = [row for row in links if int(row.get("produtoCodigo") or 0) == code]
+            company_link = next(
+                (row for row in matching if int(row.get("empresaCodigo") or 0) == COMPANY_CODE),
+                None,
+            )
+            rows = reader.get_catalog(credential.key, cursor=code - 1, page_size=50)
+            created = next((p for p in rows if int(p.get("produtoCodigo") or 0) == code), None)
+
+            record["verification"] = {
+                "produtoCodigo": code,
+                "links": [
+                    {
+                        "empresaCodigo": row.get("empresaCodigo"),
+                        "precoVenda": row.get("precoVenda"),
+                        "precoCusto": row.get("precoCusto"),
+                        "ativo": row.get("ativo"),
+                    }
+                    for row in matching
+                ],
+                "companyLinkConfirmed": bool(company_link),
+                "catalog": (
+                    {
+                        "nome": created.get("nome"),
+                        "referenciaCodigo": created.get("referenciaCodigo"),
+                        "ncm": created.get("ncm"),
+                        "cest": created.get("cest"),
+                        "grupoCodigo": created.get("grupoCodigo"),
+                        "produtoCodigoExterno": created.get("produtoCodigoExterno"),
+                    }
+                    if created
+                    else None
+                ),
+                "centerSent": COST_CENTER,
+            }
+
+            if not company_link:
+                record["classification"] = (
+                    "CREATED_IN_WRONG_COMPANY" if matching else "ORPHANED_SHARED_CATALOG_RECORD"
+                )
+                executed.append(record)
+                halted_reason = record["classification"]
+                print(f"    ALERTA: {record['classification']}")
+                break
+
+            divergences = []
+            if abs(float(company_link.get("precoVenda") or 0) - float(body["precoVenda"])) > 0.005:
+                divergences.append("precoVenda")
+            if abs(float(company_link.get("precoCusto") or 0) - float(body["precoCusto"])) > 0.005:
+                divergences.append("precoCusto")
+            if not company_link.get("ativo"):
+                divergences.append("ativo")
+            if created and str(created.get("ncm") or "") != str(body["codigoNcm"]):
+                divergences.append("ncm")
+            if created and str(created.get("cest") or "") != str(body["codigoCest"]):
+                divergences.append("cest")
+            if created and ean not in barcodes(created):
+                divergences.append("codigoBarras")
+            record["verification"]["divergences"] = divergences
+
+            if divergences:
+                record["classification"] = "DIVERGENCIA_BODY_VS_LIDO"
+                executed.append(record)
+                halted_reason = f"DIVERGENCIA:{','.join(divergences)}"
+                print(f"    ALERTA: divergência em {divergences}")
+                break
+
+            record["classification"] = "CREATED_AND_VERIFIED"
+            executed.append(record)
+            reference = record["verification"]["catalog"]["referenciaCodigo"]
+            print(f"    verificado: empresa {company_link.get('empresaCodigo')} | "
+                  f"venda {company_link.get('precoVenda')} | "
+                  f"custo {company_link.get('precoCusto')} | "
+                  f"ativo {company_link.get('ativo')} | ref {reference}")
+            if canary:
+                verified_profiles.add(profile["profile_id"])
+                print(f"    canario verificado: perfil {profile['profile_id']} liberado")
+
+            cost_info = product.get("custo") or {}
+            nfe = cost_info.get("nfe") or {}
+            checkpoint[ean] = {
+                "status": "CREATED_AND_VERIFIED",
+                "codProduto": code,
+                "referenciaCodigo": reference,
+                "descricao": product["descricao"],
+                "body_hash": expected_hash,
+                "empresa_pretendida": COMPANY_CODE,
+                "empresa_efetiva": int(company_link.get("empresaCodigo") or 0),
+                "credencial_usada": credential.variable_name,
+                "preco_venda": company_link.get("precoVenda"),
+                "preco_custo": company_link.get("precoCusto"),
+                "precoCusto": body["precoCusto"],
+                "ncm": body["codigoNcm"],
+                "cest": body["codigoCest"],
+                "cost_source": cost_info.get("source"),
+                "cost_status": cost_info.get("cost_status"),
+                "cost_risk": cost_info.get("cost_risk"),
+                "requires_cost_update": cost_info.get("requires_cost_update", False),
+                "dfe_invoice": f"{nfe.get('numero')}/{nfe.get('serie')}" if nfe else None,
+                "profile_id": profile["profile_id"],
+                "profile_level": profile["level"],
+                "profile_canary": canary,
+                "icms_table_reference": profile["referencia_icms"],
+                "pis_cofins_table_reference": profile["referencia_pis_cofins"],
+                "confidence": profile["confidence"],
+                "fiscal_risk": profile["fiscal_risk"],
+                "requires_accountant_review": profile["requires_accountant_review"],
+                "rollback": "NOT_PERFORMED",
+                "bloqueio": "Cadastrado e verificado. Nao reenviar.",
+            }
+            save_json(CHECKPOINT, checkpoint)
+
+            if profile["requires_accountant_review"]:
+                review[ean] = {
+                    "ean": ean,
+                    "descricao": product["descricao"],
+                    "produtoCodigo": code,
+                    "referenciaCodigo": reference,
+                    "ncm": body["codigoNcm"],
+                    "cest": body["codigoCest"],
+                    "profileId": profile["profile_id"],
+                    "profileLevel": profile["level"],
+                    "baseUsada": {
+                        "icmsTableReference": profile["referencia_icms"],
+                        "tributoIcms": body["tributoIcms"],
+                        "pisCofinsTableReference": profile["referencia_pis_cofins"],
+                        "tributoPisCofins": body["tributoPisCofins"],
+                        "cfopEntrada": body["cdCfopEntrada"],
+                        "cfopSaida": body["cdCfopSaida"],
+                        "tratamentoObservado": profile["tratamento_observado"],
+                    },
+                    "evidencias": profile["evidencias"],
+                    "confidence": profile["confidence"],
+                    "fiscal_risk": profile["fiscal_risk"],
+                    "requires_accountant_review": True,
+                    "justificativa": (
+                        "Base atribuida por perfil fiscal aprovado pelo proprietario, "
+                        f"nivel {profile['level']}, sem lancamento fiscal proprio do produto."
+                    ),
+                    "criadoEm": datetime.now(timezone.utc).isoformat(),
+                }
+                save_json(ACCOUNTANT_REVIEW, review)
+
+            if cost_info.get("requires_cost_update"):
+                pending_cost[ean] = {
+                    "ean": ean,
+                    "descricao": product["descricao"],
+                    "produtoCodigo": code,
+                    "referenciaCodigo": reference,
+                    "precoCustoCadastrado": body["precoCusto"],
+                    "precoVenda": body["precoVenda"],
+                    "cost_source": cost_info.get("source"),
+                    "cost_status": cost_info.get("cost_status"),
+                    "cost_risk": cost_info.get("cost_risk"),
+                    "requires_cost_update": True,
+                    "motivo": cost_info.get("motivoRevisao")
+                    or "Sem NF-e de entrada autorizada com o EAN no armazenamento de DF-e",
+                    "acaoNecessaria": (
+                        "Atualizar custo quando a NF-e de compra entrar no DF-e. "
+                        "Correcao de cadastro existente depende de operacao de escrita "
+                        "hoje proibida (PUT)."
+                    ),
+                    "criadoEm": datetime.now(timezone.utc).isoformat(),
+                }
+                save_json(PENDING_COST_UPDATE, pending_cost)
+
+            print()
+            time.sleep(PAUSE_SECONDS)
+
+    created = [r for r in executed if r.get("classification") == "CREATED_AND_VERIFIED"]
+    if post_count:
+        save_json(
+            wave_lock,
+            {
+                "executedAt": datetime.now(timezone.utc).isoformat(),
+                "wave": args.wave,
+                "postCount": post_count,
+                "createdAndVerified": len(created),
+                "haltedReason": halted_reason,
+                "verifiedProfiles": sorted(verified_profiles),
+            },
+        )
+    save_json(
+        result_path,
+        {
+            "title": f"ONDA {args.wave} EXECUTION — 118508",
+            "executedAt": datetime.now(timezone.utc).isoformat(),
+            "endpoint": f"POST {LEGACY_ENDPOINT}",
+            "urlSanitized": f"{LEGACY_ENDPOINT}?CHAVE=***REDACTED***",
+            "routing": "CHAVE_ONLY",
+            "empresaCodigoInQuery": "OMITTED",
+            "credentialVariable": credential.variable_name,
+            "keyExposed": False,
+            "queued": len(queue),
+            "postCount": post_count,
+            "createdAndVerified": len(created),
+            "verifiedProfiles": sorted(verified_profiles),
+            "haltedReason": halted_reason,
+            "products": executed,
+            "skipped": skipped,
+            "rollback": "NOT_PERFORMED",
+            "nextWave": "PAUSED_AWAITING_AUTHORIZATION",
+        },
+    )
+
+    # O arquivo de perfis guarda o canario verificado, para que a proxima onda nao repita
+    # a aprovacao de um perfil que já foi provado em producao.
+    if verified_profiles:
+        for profile in payload["profiles"]:
+            if profile["profile_id"] in verified_profiles:
+                created_here = next(
+                    r for r in created if r["profileId"] == profile["profile_id"] and r["canary"]
+                )
+                profile["profile_canary_status"] = "VERIFIED"
+                profile["produto_canario"] = created_here["ean"]
+                profile["produto_canario_codigo"] = created_here["codProduto"]
+                profile["canario_origem"] = f"VERIFICADO_NA_ONDA_{args.wave}"
+        save_json(PROFILES, payload)
+
+    print("=" * 78)
+    print(f"POSTS ENVIADOS: {post_count}")
+    print(f"CRIADOS E VERIFICADOS: {len(created)}/{len(queue)}")
+    print(f"REMOVIDOS DO LOTE: {len(skipped)}")
+    print(f"PERFIS COM CANARIO VERIFICADO NESTA ONDA: {len(verified_profiles)}")
+    print(f"INTERROMPIDO POR: {halted_reason or 'NADA — onda concluida'}")
+    print("PROXIMA ONDA: PAUSADA aguardando autorizacao")
+    print(f"resultado: {result_path}")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except WaveHalted as exc:
+        print(f"ONDA NAO EXECUTADA: {exc}")
+        print("POSTS ENVIADOS: 0")
+        sys.exit(1)

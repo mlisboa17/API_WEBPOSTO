@@ -1,10 +1,11 @@
-"""Verificacao independente dos produtos criados em um microbatch (somente leitura).
+"""Verificacao independente dos produtos criados (somente leitura).
 
 Confere, produto por produto, os sete campos exigidos apos cada POST: empresaCodigo,
 ativo, EAN, NCM, CEST, preco de venda e preco de custo. A leitura e feita de novo na API,
 sem reaproveitar a resposta do POST.
 
 Uso: python scripts/verify_microbatch_118508.py --batch 02
+     python scripts/verify_microbatch_118508.py --wave 1
 """
 
 from __future__ import annotations
@@ -47,16 +48,31 @@ TOLERANCE = 0.005
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Verifica os produtos criados em um microbatch")
-    parser.add_argument("--batch", default="02", choices=sorted(BATCH_FOLDERS))
+    parser = argparse.ArgumentParser(description="Verifica os produtos criados em um lote ou onda")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--batch", choices=sorted(BATCH_FOLDERS))
+    group.add_argument("--wave", type=int)
     args = parser.parse_args()
 
-    out_dir = REGISTRATION_DIR / BATCH_FOLDERS[args.batch]
+    if args.wave:
+        # Na onda o body aprovado mora no perfil fiscal, nao em um preflight por lote.
+        label = f"ONDA {args.wave}"
+        out_dir = REGISTRATION_DIR / f"wave_{args.wave:02d}_118508"
+        profiles = json.loads(
+            (REGISTRATION_DIR / "fiscal_profiles_118508.json").read_text(encoding="utf-8")
+        )
+        expected = {
+            product["ean"]: product
+            for profile in profiles["profiles"]
+            for product in profile["produtos"]
+        }
+    else:
+        batch = args.batch or "02"
+        label = f"MICROBATCH {batch}"
+        out_dir = REGISTRATION_DIR / BATCH_FOLDERS[batch]
+        preflight = json.loads((out_dir / PREFLIGHT_NAMES[batch]).read_text(encoding="utf-8"))
+        expected = {p["ean"]: p for p in preflight.get("products", [])}
     execution = json.loads((out_dir / "execution_result.json").read_text(encoding="utf-8"))
-    preflight = json.loads(
-        (out_dir / PREFLIGHT_NAMES[args.batch]).read_text(encoding="utf-8")
-    )
-    expected = {p["ean"]: p for p in preflight.get("products", [])}
 
     credential = resolve_credential(COMPANY_CODE)
     if credential.variable_name != PROFILE:
@@ -67,7 +83,7 @@ def main() -> None:
     ]
 
     print("=" * 78)
-    print(f"VERIFICACAO INDEPENDENTE — MICROBATCH {args.batch} — {len(created)} PRODUTOS")
+    print(f"VERIFICACAO INDEPENDENTE — {label} — {len(created)} PRODUTOS")
     print("=" * 78)
     print(f"credencial: {credential.variable_name} (nunca impressa)")
     print()
@@ -145,7 +161,7 @@ def main() -> None:
             )
 
     payload = {
-        "title": f"VERIFICACAO INDEPENDENTE MICROBATCH {args.batch} — 118508",
+        "title": f"VERIFICACAO INDEPENDENTE {label} — 118508",
         "verifiedAt": datetime.now(timezone.utc).isoformat(),
         "apiWrites": 0,
         "productsVerified": len(findings),
