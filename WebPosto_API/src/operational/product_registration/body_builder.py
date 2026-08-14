@@ -17,18 +17,23 @@ def build_registration_body(
     Monta body para POST /INTEGRACAO/INCLUIR_PRODUTO.
     
     Usa template BONO como base e ajusta campos necessários.
+    Garante presença de campos críticos: codigoExterno, utilizaCodigoBarras, Tributação Monofásica.
     """
     if template is None:
         template = get_default_bono_template()
 
     body = template.get("body", {}).copy()
 
-    # Ajustar campos obrigatórios
+    # Campos obrigatórios sempre presentes
     body["descricao"] = product.descricao
     body["descricaoResumida"] = product.descricao[:50]  # Resumida
     body["codigoBarras"] = product.ean
+    body["codigoExterno"] = product.ean  # CRÍTICO: mesmo valor do EAN
+    body["utilizaCodigoBarras"] = True  # CRÍTICO: sempre True para produtos com EAN
+    body["Tributação Monofásica"] = 0  # CRÍTICO: campo obrigatório
     body["precoVenda"] = float(product.preco_venda)
 
+    # Campos condicionais
     if product.grupo_api_codigo:
         body["grupoCodigo"] = product.grupo_api_codigo
 
@@ -41,8 +46,15 @@ def build_registration_body(
     if product.cest:
         body["codigoCest"] = product.cest
 
+    # Tributação ICMS com validação de CSOSN
     if product.tributo_icms:
-        body["tributoIcms"] = product.tributo_icms
+        icms = product.tributo_icms.copy()
+        # Garantir que dsCsosnEntrada e dsCsosnSaida sejam strings "0" e não vazias
+        if "dsCsosnEntrada" in icms and icms["dsCsosnEntrada"] in ("", None):
+            icms["dsCsosnEntrada"] = "0"
+        if "dsCsosnSaida" in icms and icms["dsCsosnSaida"] in ("", None):
+            icms["dsCsosnSaida"] = "0"
+        body["tributoIcms"] = icms
 
     if product.tributo_pis_cofins:
         body["tributoPisCofins"] = product.tributo_pis_cofins
@@ -51,13 +63,19 @@ def build_registration_body(
 
 
 def get_default_bono_template() -> dict[str, Any]:
-    """Template BONO padrão (BISCOITO RECHEADO)."""
+    """
+    Template BONO padrão baseado no artefato de sucesso definitivo.
+    
+    Fonte: ninth_legacy_icms_csosn_zero_probe_report.json
+    Status: Comprovadamente aceito (HTTP 200, codProduto 2481160)
+    """
     return {
         "body": {
             "descricao": "",
             "descricaoResumida": "",
             "tipoProduto": "P",
             "grupoCodigo": 55446,
+            "codigoExterno": "",  # CRÍTICO: deve ser igual ao EAN
             "unidadeCompra": "UN",
             "unidadeVenda": "UN",
             "iat": "A",
@@ -66,41 +84,39 @@ def get_default_bono_template() -> dict[str, Any]:
             "precoCusto": 2.0,
             "precoVenda": 5.0,
             "centroCustoCodigo": 24886,
-            "ativo": True,
             "codigoBarras": "",
             "codigoNcm": "19053100",
             "codigoCest": "1705300",
+            "ativo": True,
             "permiteVendaEstoqueNegativo": False,
             "produtoVendeFracionado": False,
+            "utilizaCodigoBarras": True,  # CRÍTICO: sempre True
             "utilizaBalanca": False,
-            "codigoBarrasPrincipal": True,
-            "enviarGtin": True,
-            "venderSemCodigoBarras": "N",
             "cdCfopEntrada": "1.102",
             "cdCfopSaida": "5.405",
-            "naturezaReceitaCodigo": "001",
+            "Tributação Monofásica": 0,  # CRÍTICO: campo obrigatório
             "tributoIcms": {
-                "cstEntrada": "060",
+                "percentualIcmsSaida": 0.0,
                 "cstSaida": "060",
                 "percentualIcmsEntrada": 0.0,
-                "percentualIcmsSaida": 0.0,
+                "cstEntrada": "060",
+                "dsCsosnEntrada": "0",  # CRÍTICO: string "0", não vazio
+                "dsCsosnSaida": "0",    # CRÍTICO: string "0", não vazio
                 "valorPercentualFcp": 0,
-                "dsCsosnEntrada": "0",
-                "dsCsosnSaida": "0",
             },
             "tributoPisCofins": {
-                "cstPisEntrada": "50",
-                "cstPisSaida": "01",
-                "percentualPisEntrada": 0.65,
-                "percentualPisSaida": 0.65,
-                "percentualBaseCalculoPisEntrada": 100,
-                "percentualBaseCalculoPisSaida": 100,
-                "cstCofinsEntrada": "50",
-                "cstCofinsSaida": "01",
                 "percentualCofinsEntrada": 3.0,
+                "percentualBaseCalculoCofinsEntrada": 100,
+                "cstCofinsEntrada": "50",
                 "percentualCofinsSaida": 3.0,
-                "percentualBaseCalculoCofinsEntrada": 100,
-                "percentualBaseCalculoCofinsEntrada": 100,
+                "percentualBaseCalculoCofinsSaida": 100,
+                "cstCofinsSaida": "01",
+                "percentualPisEntrada": 0.65,
+                "percentualBaseCalculoPisEntrada": 100,
+                "cstPisEntrada": "50",
+                "percentualPisSaida": 0.65,
+                "percentualBaseCalculoPisSaida": 100,
+                "cstPisSaida": "01",
             },
         },
         "meta": {
