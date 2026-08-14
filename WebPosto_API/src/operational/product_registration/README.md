@@ -69,6 +69,20 @@ Confiança alta exige evidência de entrada. Inferência sempre grava `confidenc
 Capítulos de NCM com regime próprio (bebida alcoólica, tabaco, fármaco, combustível,
 pirotécnico) não entram em lote automático.
 
+Na analogia por NCM e CEST, a evidência precisa vir de notas distintas. Itens
+concentrados em uma ou duas notas podem refletir a prática de um único fornecedor, e não
+o regime da mercadoria, então não sustentam a base.
+
+## Duplicidade
+
+O EAN não basta para decidir se o produto já existe. Fabricante que troca o código de
+barras faz o mesmo item parecer novo, e cadastrar de novo dividiria estoque e histórico.
+Por isso a descrição também é comparada: termos de ligação, embalagem e medida são
+descartados e o produto é considerado repetido quando todos os termos restantes já
+aparecem em um cadastro existente. Sabor ou variante diferente sobra um termo e não
+casa. Como a medida é descartada, produtos que diferem apenas no tamanho são retidos
+para conferência em vez de cadastrados — a decisão é de quem opera, não do lote.
+
 ## Roteamento e credencial
 
 A empresa 118508 usa exclusivamente `WEBPOSTO_CONVENIENCIA_24_HORAS_KEY`, sem fallback.

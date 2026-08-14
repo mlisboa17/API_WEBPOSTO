@@ -27,11 +27,13 @@ import httpx
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from src.operational.dfe import store  # noqa: E402
 from src.operational.product_registration.company_credentials import (  # noqa: E402
     HttpProductReader,
     company_guard,
     resolve_credential,
+)
+from src.operational.product_registration.entry_evidence_index import (  # noqa: E402
+    build_ncm_cest_evidence,
 )
 from src.operational.product_registration.dfe_cost_resolver import (  # noqa: E402
     build_authorized_index,
@@ -135,41 +137,6 @@ def barcodes(product: dict[str, Any]) -> set[str]:
     if external:
         values.add(str(external).strip())
     return {v for v in values if v}
-
-
-def build_ncm_cest_evidence(company_code: int) -> dict[tuple[str, str], list[dict[str, Any]]]:
-    """Agrupa itens de NF-e autorizadas por (NCM, CEST) com a classificacao da entrada."""
-    grouped: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
-    for document in store.list_documents(company_code):
-        protocol = document.get("protocol") or {}
-        if protocol.get("cancelled") is True or str(protocol.get("cStat") or "") != "100":
-            continue
-        for raw_item in store.load_items(document["id"]):
-            item = raw_item.get("normalized_json") or {}
-            ncm = str(item.get("ncm") or "").strip()
-            cest = str(item.get("cest") or "").strip()
-            if not ncm or not cest:
-                continue
-            icms = item.get("icms") or {}
-            st_retido = icms.get("ICMS.vICMSSTRet")
-            evidence = EntryEvidence(
-                cst_icms=icms.get("ICMS.CST"),
-                icms_st_retido=float(st_retido) if st_retido else None,
-                cest=cest,
-                ncm=ncm,
-                invoice_reference=f"{document.get('nNF')}/{document.get('serie')}",
-            )
-            grouped[(ncm, cest)].append(
-                {
-                    "classification": classify_entry(evidence),
-                    "cstIcms": icms.get("ICMS.CST"),
-                    "aliquotaEntrada": icms.get("ICMS.pICMS"),
-                    "descricao": item.get("x_prod"),
-                    "nfe": evidence.invoice_reference,
-                    "ean": item.get("c_ean"),
-                }
-            )
-    return grouped
 
 
 def body_hash(body: dict[str, Any]) -> str:

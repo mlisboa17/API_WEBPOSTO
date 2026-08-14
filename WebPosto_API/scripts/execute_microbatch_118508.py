@@ -47,6 +47,7 @@ BATCHES = {
     "01": ("microbatch_01_118508", "preflight_microbatch.json"),
     "02": ("microbatch_02_118508", "microbatch_selection.json"),
     "03": ("microbatch_03_118508", "pilot_selection.json"),
+    "04": ("microbatch_04_118508", "microbatch_selection.json"),
 }
 
 # Custo zero so passa com autorizacao explicita por variavel de ambiente da execucao,
