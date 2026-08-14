@@ -51,6 +51,27 @@ def is_atomic_unit(unit: Any) -> bool:
     return str(unit).strip().upper() in ATOMIC_UNITS
 
 
+QUANTITY_FROM_COMMERCIAL = "uCom"
+QUANTITY_FROM_TAXABLE = "uTrib"
+
+
+def resolve_sale_unit_quantity(item: dict[str, Any]) -> tuple[Decimal, str | None]:
+    """Quantidade de unidades de venda contidas no item da NF-e.
+
+    Quando a unidade comercial é a de venda, a própria quantidade comercial responde.
+    Quando é embalagem, a nota ainda pode declarar a quantidade tributável em unidades,
+    e esse é um fator de conversão do próprio documento — não uma suposição. Só quando
+    nenhuma das duas unidades é de venda o custo unitário fica indeterminado.
+    """
+    q_com = _dec(item.get("q_com"))
+    if is_atomic_unit(item.get("u_com")):
+        return q_com, QUANTITY_FROM_COMMERCIAL
+    q_trib = _dec(item.get("q_trib"))
+    if is_atomic_unit(item.get("u_trib")) and q_trib > 0:
+        return q_trib, QUANTITY_FROM_TAXABLE
+    return Decimal("0"), None
+
+
 class DfeCostError(Exception):
     """Falha ao resolver custo pelo DF-e."""
 
@@ -109,6 +130,7 @@ class CostEvidence:
     candidatos_avaliados: int = 0
     notas_descartadas: list[dict[str, Any]] = field(default_factory=list)
     unidade_atomica: bool | None = None
+    quantidade_origem: str | None = None
     reason: str | None = None
 
     @property
@@ -194,7 +216,13 @@ def allocate(share_base: Decimal, total_base: Decimal, amount: Decimal) -> Decim
 def compute_unit_cost(item: dict[str, Any], totals: InvoiceTotals) -> dict[str, Decimal | str]:
     """Calcula o custo unitario do item conforme a politica de custo do DF-e."""
     valor_produto = _dec(item.get("v_prod"))
-    quantidade = _dec(item.get("q_com"))
+    quantidade, quantidade_origem = resolve_sale_unit_quantity(item)
+    if quantidade <= 0:
+        # Sem unidade de venda identificável o custo por unidade não é derivável; segue o
+        # cálculo pela quantidade comercial apenas para o relatório, e quem consome marca
+        # o item como pendente de conversão.
+        quantidade = _dec(item.get("q_com"))
+        quantidade_origem = None
     if quantidade <= 0:
         raise DfeCostError("Quantidade comercial invalida (zero ou negativa)")
     if valor_produto <= 0:
@@ -218,6 +246,7 @@ def compute_unit_cost(item: dict[str, Any], totals: InvoiceTotals) -> dict[str, 
 
     return {
         "quantidade": quantidade,
+        "quantidade_origem": quantidade_origem,
         "valor_produto": valor_produto,
         "desconto_item": desconto,
         "frete_rateado": frete,
@@ -380,7 +409,8 @@ def _build_evidence(
     totals = read_invoice_totals(document["id"])
     computed = compute_unit_cost(item, totals)
     protocol = document.get("protocol") or {}
-    unit_atomic = is_atomic_unit(item.get("u_com"))
+    quantity_source = computed.get("quantidade_origem")
+    unit_atomic = quantity_source is not None
 
     return CostEvidence(
         status=STATUS_RESOLVED if unit_atomic else STATUS_REVIEW_UNIT,
@@ -417,7 +447,14 @@ def _build_evidence(
         candidatos_avaliados=evaluated,
         notas_descartadas=discarded,
         unidade_atomica=unit_atomic,
-        reason=None
+        quantidade_origem=quantity_source,
+        reason=(
+            f"Unidade comercial '{item.get('u_com')}' agrupa múltiplos itens e a nota "
+            f"declara a quantidade tributável em '{item.get('u_trib')}': custo por "
+            f"unidade obtido de qTrib={item.get('q_trib')}"
+        )
+        if quantity_source == QUANTITY_FROM_TAXABLE
+        else None
         if unit_atomic
         else (
             f"Unidade comercial '{item.get('u_com')}' agrupa múltiplos itens "

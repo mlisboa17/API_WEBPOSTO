@@ -34,12 +34,14 @@ BATCH_FOLDERS = {
     "02": "microbatch_02_118508",
     "03": "microbatch_03_118508",
     "04": "microbatch_04_118508",
+    "05": "microbatch_05_118508",
 }
 PREFLIGHT_NAMES = {
     "01": "preflight_microbatch.json",
     "02": "microbatch_selection.json",
     "03": "pilot_selection.json",
     "04": "microbatch_selection.json",
+    "05": "microbatch_selection.json",
 }
 TOLERANCE = 0.005
 

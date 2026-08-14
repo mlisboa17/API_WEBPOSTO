@@ -12,7 +12,7 @@ from .schemas import ProductAnalysis
 # comercial. "NOVO" costuma indicar troca de código de barras do mesmo produto.
 GENERIC_TOKENS = frozenset(
     {
-        "DE", "DA", "DO", "DOS", "DAS", "COM", "SEM", "E", "EM", "P", "PARA",
+        "DE", "DA", "DO", "DOS", "DAS", "COM", "C", "SEM", "S", "E", "EM", "P", "PARA",
         "SABOR", "SABORES", "NOVO", "NOVA", "UN", "UNI", "UND", "PC", "PCT", "PACOTE",
         "CX", "CAIXA", "DP", "FD", "FARDO", "KG", "G", "GR", "ML", "L", "LT", "LATA",
         "SALG", "REF", "TIPO",
@@ -40,6 +40,91 @@ def distinctive_tokens(description: str) -> frozenset[str]:
         token
         for token in tokens
         if token and token not in GENERIC_TOKENS and not SIZE_TOKEN.match(token)
+    )
+
+
+SAME_PRODUCT_NEW_GTIN = "SAME_PRODUCT_NEW_GTIN"
+POSSIBLE_VARIANT = "POSSIBLE_VARIANT"
+FALSE_POSITIVE = "FALSE_POSITIVE"
+
+# Fator de conversão para a unidade base de cada grandeza.
+MASS_UNITS = {"G": 1.0, "GR": 1.0, "GRS": 1.0, "KG": 1000.0}
+VOLUME_UNITS = {"ML": 1.0, "L": 1000.0, "LT": 1000.0, "LTS": 1000.0, "LITRO": 1000.0}
+
+MEASURE_PATTERN = re.compile(
+    r"(?<![A-Z0-9])(\d+(?:[.,]\d+)?)\s*(KG|GRS|GR|G|ML|LTS|LT|LITRO|L)(?![A-Z0-9])"
+)
+# Embalagem múltipla ("70X130G", "12 X 500ML") descreve o fardo, não a unidade de venda.
+PACK_PATTERN = re.compile(r"(?<![A-Z0-9])(\d+)\s*X\s*(\d+(?:[.,]\d+)?)\s*(KG|GR|G|ML|LT|L)(?![A-Z0-9])")
+
+
+def extract_measure(description: str) -> tuple[float, str] | None:
+    """Conteúdo declarado na descrição, convertido para grama ou mililitro.
+
+    Devolve None quando a descrição não declara medida: ausência não é zero e não pode
+    ser tratada como medida coincidente.
+    """
+    text = _strip_accents(str(description or "")).upper().replace(",", ".")
+    pack = PACK_PATTERN.search(text)
+    if pack:
+        amount, unit = float(pack.group(2)), pack.group(3)
+    else:
+        found = MEASURE_PATTERN.search(text)
+        if not found:
+            return None
+        amount, unit = float(found.group(1)), found.group(2)
+    if unit in MASS_UNITS:
+        return amount * MASS_UNITS[unit], "G"
+    if unit in VOLUME_UNITS:
+        return amount * VOLUME_UNITS[unit], "ML"
+    return None
+
+
+def classify_duplicate(
+    candidate_description: str,
+    existing_description: str,
+    *,
+    candidate_family: str | None = None,
+    existing_family: str | None = None,
+) -> tuple[str, str]:
+    """Classifica um par retido pela busca por descrição.
+
+    A medida serve para confirmar, nunca para presumir: par sem medida nos dois lados
+    fica como variante possível, para decisão humana, e não como produto confirmado.
+    """
+    if candidate_family and existing_family and candidate_family != existing_family:
+        return FALSE_POSITIVE, (
+            f"Famílias comerciais diferentes: {candidate_family} e {existing_family}"
+        )
+
+    candidate_tokens = distinctive_tokens(candidate_description)
+    existing_tokens = distinctive_tokens(existing_description)
+    extra = existing_tokens - candidate_tokens
+    candidate_measure = extract_measure(candidate_description)
+    existing_measure = extract_measure(existing_description)
+
+    # Conteúdo diferente é o motivo mais objetivo, por isso vem antes do qualificador.
+    if candidate_measure and existing_measure:
+        if candidate_measure[1] != existing_measure[1]:
+            return POSSIBLE_VARIANT, (
+                f"Grandezas diferentes: {candidate_measure[1]} e {existing_measure[1]}"
+            )
+        if abs(candidate_measure[0] - existing_measure[0]) > 0.01:
+            return POSSIBLE_VARIANT, (
+                f"Conteúdo diferente: {candidate_measure[0]:g}{candidate_measure[1]} "
+                f"e {existing_measure[0]:g}{existing_measure[1]}"
+            )
+    if extra:
+        return POSSIBLE_VARIANT, (
+            "Cadastro existente traz qualificador ausente no candidato: "
+            f"{', '.join(sorted(extra))}"
+        )
+    if candidate_measure is None or existing_measure is None:
+        missing = "candidato" if candidate_measure is None else "cadastro existente"
+        return POSSIBLE_VARIANT, f"Medida não declarada no {missing}; duplicidade não confirmável"
+    return SAME_PRODUCT_NEW_GTIN, (
+        f"Mesmos termos e mesmo conteúdo ({candidate_measure[0]:g}{candidate_measure[1]}); "
+        "difere apenas o código de barras"
     )
 
 

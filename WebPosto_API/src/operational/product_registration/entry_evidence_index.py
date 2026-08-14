@@ -14,6 +14,14 @@ from typing import Any
 from src.operational.dfe import store
 
 from .fiscal_resolver import EntryEvidence, classify_entry
+from .product_family import commercial_family
+
+
+def _mask_cnpj(cnpj: str | None) -> str | None:
+    digits = "".join(c for c in str(cnpj or "") if c.isdigit())
+    if len(digits) < 8:
+        return None
+    return f"{digits[:2]}***{digits[-4:]}"
 
 
 def item_entry_evidence(item: dict[str, Any], invoice_reference: str | None = None) -> EntryEvidence:
@@ -52,14 +60,46 @@ def build_ncm_cest_evidence(company_code: int) -> dict[tuple[str, str], list[dic
                 continue
             evidence = item_entry_evidence(item, reference)
             icms = item.get("icms") or {}
+            descricao = item.get("x_prod")
             grouped[(ncm, cest)].append(
                 {
                     "classification": classify_entry(evidence),
                     "cstIcms": icms.get("ICMS.CST"),
                     "aliquotaEntrada": icms.get("ICMS.pICMS"),
-                    "descricao": item.get("x_prod"),
+                    "icmsStRetido": icms.get("ICMS.vICMSSTRet"),
+                    "icmsStCobrado": icms.get("ICMS.vICMSST"),
+                    "descricao": descricao,
+                    "familiaComercial": commercial_family(descricao or ""),
                     "nfe": reference,
+                    "fornecedor": document.get("issuer_name"),
+                    "fornecedorCnpjMascarado": _mask_cnpj(document.get("issuer_cnpj")),
                     "ean": item.get("c_ean"),
                 }
             )
     return grouped
+
+
+def summarize_evidence(entries: list[dict[str, Any]]) -> dict[str, Any]:
+    """Resume a evidência de um par NCM+CEST para registro e decisão.
+
+    Contar itens não basta: uma nota com dez itens do mesmo fornecedor não diz mais sobre
+    o regime da mercadoria do que uma nota com um item. Por isso notas e fornecedores
+    são contados separadamente.
+    """
+    cst_distribution: dict[str, int] = defaultdict(int)
+    families: dict[str, int] = defaultdict(int)
+    for entry in entries:
+        cst_distribution[str(entry.get("cstIcms") or "SEM_CST")] += 1
+        families[str(entry.get("familiaComercial") or "NAO_RECONHECIDA")] += 1
+    return {
+        "itens": len(entries),
+        "notasDistintas": len({e.get("nfe") for e in entries}),
+        "fornecedoresDistintos": len(
+            {e.get("fornecedorCnpjMascarado") for e in entries if e.get("fornecedorCnpjMascarado")}
+        ),
+        "classificacoes": sorted({e["classification"] for e in entries}),
+        "distribuicaoCst": dict(sorted(cst_distribution.items())),
+        "familiasObservadas": dict(sorted(families.items(), key=lambda kv: -kv[1])),
+        "itensComStRetida": sum(1 for e in entries if e.get("icmsStRetido")),
+        "itensComStCobrada": sum(1 for e in entries if e.get("icmsStCobrado")),
+    }

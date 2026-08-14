@@ -32,9 +32,12 @@ O IPI entra quando destacado, porque a empresa é comércio e não credita IPI. 
 cobrado em `CST 10` e `CST 30` entra porque a saída é sem débito e o valor não é
 recuperável. Em `CST 60` a ST foi retida antes na cadeia e não é cobrada de novo.
 
-A unidade comercial precisa ser a unidade de venda. Caixa, fardo, display e unidades de
-peso agrupam vários itens: dividir o valor pelo número de embalagens produz custo várias
-vezes maior que o real. Sem fator de conversão confiável no documento, o custo é recusado.
+A quantidade do divisor é a de unidades de venda, não a de embalagens. Quando a unidade
+comercial é caixa, fardo ou display, a nota ainda pode declarar a quantidade tributável
+em unidades, e esse fator vem do próprio documento: um display com `qTrib = 30 UNI` dá
+trinta unidades. Quando a unidade tributável é peso ou repete a embalagem, o número de
+unidades é indeterminado e o custo é recusado — dividir pelo número de caixas produziria
+custo várias vezes maior que o real.
 
 ### Custo pendente
 
@@ -69,9 +72,12 @@ Confiança alta exige evidência de entrada. Inferência sempre grava `confidenc
 Capítulos de NCM com regime próprio (bebida alcoólica, tabaco, fármaco, combustível,
 pirotécnico) não entram em lote automático.
 
-Na analogia por NCM e CEST, a evidência precisa vir de notas distintas. Itens
-concentrados em uma ou duas notas podem refletir a prática de um único fornecedor, e não
-o regime da mercadoria, então não sustentam a base.
+Na analogia por NCM e CEST, contar itens não basta. A evidência precisa vir de pelo
+menos três notas e dois fornecedores, com CST único e a maioria dos itens na mesma
+família comercial do candidato. Itens concentrados em um fornecedor podem refletir a
+prática dele, e não o regime da mercadoria. Produto cuja família não é reconhecida não
+recebe base por analogia, porque afirmar semelhança sem reconhecer a mercadoria seria
+inventar evidência.
 
 ## Duplicidade
 
