@@ -9,7 +9,9 @@ from src.operational.product_registration.duplicate_checker import (
     POSSIBLE_VARIANT,
     SAME_PRODUCT_NEW_GTIN,
     classify_duplicate,
+    distinctive_tokens,
     extract_measure,
+    find_description_duplicates,
 )
 from src.operational.product_registration.product_family import commercial_family
 
@@ -119,3 +121,40 @@ def test_family_keyword_matches_whole_word_only():
 
 def test_unknown_product_has_no_family():
     assert commercial_family("PRODUTO GENERICO XYZ") is None
+
+
+# Qualificadores de modelo/tamanho/versao devem ser preservados na normalizacao e
+# distintivos na confirmacao de duplicidade.
+
+def test_model_numbers_are_distinctive_tokens():
+    assert "102" in distinctive_tokens("FILTRO PARA CAFE 102 CAIXA 30 UNIDADES - MELITTA")
+    assert "103" in distinctive_tokens("FILTRO PARA CAFE 103 CAIXA 30 UNIDADES - MELITTA")
+
+
+def test_filter_102_and_103_are_not_duplicates():
+    f102 = "FILTRO PARA CAFE 102 CAIXA 30 UNIDADES - MELITTA"
+    f103 = "FILTRO PARA CAFE 103 CAIXA 30 UNIDADES - MELITTA"
+
+    assert find_description_duplicates(f102, [{"nome": f103}]) == []
+    assert find_description_duplicates(f103, [{"nome": f102}]) == []
+
+
+def test_same_model_103_with_abbreviated_description_is_still_duplicate():
+    f103_full = "FILTRO PARA CAFE 103 CAIXA 30 UNIDADES - MELITTA"
+    f103_short = "FILTRO MELITTA 103"
+
+    assert find_description_duplicates(f103_short, [{"nome": f103_full}]) != []
+
+
+@pytest.mark.parametrize(
+    ("first", "second"),
+    [
+        ("PILHA DURACELL AA", "PILHA DURACELL AAA"),
+        ("CAMISETA BRANCA P", "CAMISETA BRANCA M"),
+        ("VENTILADOR ARNO 110V", "VENTILADOR ARNO 220V"),
+        ("SMARTPHONE X MODELO 1", "SMARTPHONE X MODELO 2"),
+    ],
+)
+def test_model_size_and_version_numbers_are_not_duplicates(first, second):
+    assert find_description_duplicates(first, [{"nome": second}]) == []
+    assert find_description_duplicates(second, [{"nome": first}]) == []

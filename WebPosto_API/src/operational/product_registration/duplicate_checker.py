@@ -12,14 +12,21 @@ from .schemas import ProductAnalysis
 # comercial. "NOVO" costuma indicar troca de código de barras do mesmo produto.
 GENERIC_TOKENS = frozenset(
     {
-        "DE", "DA", "DO", "DOS", "DAS", "COM", "C", "SEM", "S", "E", "EM", "P", "PARA",
+        "DE", "DA", "DO", "DOS", "DAS", "COM", "C", "SEM", "S", "E", "EM", "PARA",
         "SABOR", "SABORES", "NOVO", "NOVA", "UN", "UNI", "UND", "PC", "PCT", "PACOTE",
         "CX", "CAIXA", "DP", "FD", "FARDO", "KG", "G", "GR", "ML", "L", "LT", "LATA",
         "SALG", "REF", "TIPO",
     }
 )
 
-# Token que expressa apenas peso, volume ou multiplicação de embalagem.
+# Qualificadores de modelo, tamanho ou versao: nunca sao removidos, porque "FILTRO 102"
+# e "FILTRO 103" sao produtos diferentes. Inclui tamanhos de vestuario (P, M, G, GG),
+# pilhas (AA, AAA), voltagem (110V, 220V) e numeros de modelo puros.
+MODEL_TOKEN = re.compile(
+    r"^(\d+V|110V|220V|127V|380V|AA|AAA|A23|A27|CR\d+|LR\d+|P|M|G|GG|XG|XXG|MODEL[Oo]?\d+|MODELO\d+|\d+)$"
+)
+
+# Token que expressa apenas peso, volume ou multiplicacao de embalagem.
 SIZE_TOKEN = re.compile(r"^\d+([.,]\d+)?(G|GR|KG|ML|L|LT|UN|UNI|X\d+)?$|^\d+X\d+")
 
 
@@ -32,14 +39,18 @@ def distinctive_tokens(description: str) -> frozenset[str]:
     """Extrai os termos que realmente identificam a mercadoria.
 
     Remove ligação, embalagem e medidas, de modo que "SALG PINGO OURO PICANHA 55G NOVO"
-    e "PINGO DE OURO PICANHA" produzam o mesmo conjunto.
+    e "PINGO DE OURO PICANHA" produzam o mesmo conjunto. Preserva qualificadores de
+    modelo, tamanho e versao: "FILTRO MELITTA 102" e "FILTRO MELITTA 103" nao podem
+    ser considerados o mesmo produto.
     """
     text = _strip_accents(str(description or "")).upper()
     tokens = re.split(r"[^A-Z0-9]+", text)
     return frozenset(
         token
         for token in tokens
-        if token and token not in GENERIC_TOKENS and not SIZE_TOKEN.match(token)
+        if token
+        and token not in GENERIC_TOKENS
+        and (MODEL_TOKEN.match(token) or not SIZE_TOKEN.match(token))
     )
 
 

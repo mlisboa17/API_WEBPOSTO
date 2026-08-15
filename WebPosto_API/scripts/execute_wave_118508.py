@@ -510,11 +510,13 @@ def main() -> None:
                 break
             description_matches = find_description_duplicates(product["descricao"], catalog_rows)
             if description_matches:
-                halted_reason = (
-                    f"DUPLICIDADE_POR_DESCRICAO:{ean}->"
-                    f"{description_matches[0].get('produtoCodigo')}"
+                # Duplicidade por descricao nao interrompe mais a onda: bloqueia apenas o
+                # produto e a proxima iteracao preenche a vaga com o seguinte elegivel.
+                skip(
+                    "DUPLICIDADE_POR_DESCRICAO",
+                    f"{ean}->{description_matches[0].get('produtoCodigo')}",
                 )
-                break
+                continue
             if "empresaCodigo" in body:
                 halted_reason = f"BODY_COM_EMPRESA_CODIGO:{ean}"
                 break
