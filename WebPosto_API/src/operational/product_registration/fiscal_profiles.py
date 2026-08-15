@@ -19,6 +19,7 @@ NCM nao e evidencia de tratamento.
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -147,11 +148,35 @@ class Profile:
         }
 
 
-def special_category(ncm: str | None) -> str | None:
-    """Categoria de regime proprio do NCM, quando houver."""
-    if not ncm or len(ncm) < 2:
-        return None
-    return CATEGORIES_WITH_OWN_REGIME.get(ncm[:2])
+# Itens de consumo fumigeno que nao ficam no capitulo 24: o NCM os trata como carvao,
+# papel ou acessorio, mas comercialmente pertencem a tabacaria e seguem com ela.
+SMOKING_RELATED_TERMS = (
+    "NARGUILE",
+    "NARGUILLE",
+    "CIGARRO",
+    "CIGARRILHA",
+    "CHARUTO",
+    "TABACO",
+    "FUMO",
+    "PITEIRA",
+    "SEDA P",
+    "SEDA PARA",
+)
+
+
+def special_category(ncm: str | None, description: str | None = None) -> str | None:
+    """Categoria de regime proprio do produto, quando houver.
+
+    O NCM decide primeiro; a descricao entra para os fumigenos que o NCM nao revela.
+    """
+    if ncm and len(ncm) >= 2:
+        found = CATEGORIES_WITH_OWN_REGIME.get(ncm[:2])
+        if found:
+            return found
+    text = (description or "").upper()
+    if any(term in text for term in SMOKING_RELATED_TERMS):
+        return "TABACARIA_CORRELATO"
+    return None
 
 
 def read_evidence(
@@ -253,6 +278,73 @@ LEVEL_STRENGTH = {LEVEL_A: 0, LEVEL_B: 1, LEVEL_C: 2, LEVEL_D: 3, LEVEL_SPECIAL:
 
 def weakest_level(levels: list[str]) -> str:
     return max(levels, key=lambda level: LEVEL_STRENGTH[level])
+
+
+ORIGIN_OWN_INVOICE = "NF_E_DO_PRODUTO"
+ORIGIN_ANALOGY = "ANALOGIA_NCM_CEST"
+ORIGIN_LOCAL_TABLE = "TABELA_LOCAL_POR_CEST"
+
+
+def audit_trail(origin: str, confidence: str) -> dict[str, str]:
+    """De onde veio a base e quem responde por ela.
+
+    Sem lancamento fiscal do proprio produto nao existe tratamento comprovado, e a
+    trilha precisa dizer isso com clareza para quem revisar depois.
+    """
+    if origin == ORIGIN_OWN_INVOICE:
+        return {
+            "tax_basis_source": "OWN_INVOICE",
+            "entry_tax_evidence": "AVAILABLE",
+            "decision_authority": (
+                "PIPELINE_EVIDENCE" if confidence == CONFIDENCE_HIGH else RISK_ASSUMED
+            ),
+        }
+    if origin == ORIGIN_ANALOGY:
+        return {
+            "tax_basis_source": "NCM_CEST_ANALOGY",
+            "entry_tax_evidence": "UNAVAILABLE_FOR_THIS_PRODUCT",
+            "decision_authority": "OWNER_RISK_ACCEPTANCE",
+        }
+    return {
+        "tax_basis_source": "LOCAL_TABLE_INFERENCE",
+        "entry_tax_evidence": "UNAVAILABLE",
+        "decision_authority": "OWNER_RISK_ACCEPTANCE",
+    }
+
+
+def payload_key(profile: dict[str, Any]) -> tuple:
+    """Identidade do payload fiscal que a API vai receber.
+
+    Dois produtos de NCM diferente podem gerar exatamente o mesmo payload tributario. Se
+    geram, um unico canario prova a aceitacao do payload para os dois: o que o canario
+    demonstra e que a combinacao de referencias, CFOP e tributos e aceita e volta intacta.
+    NCM e CEST continuam sendo conferidos produto a produto na verificacao individual.
+    """
+    return (
+        profile["referencia_icms"],
+        profile["referencia_pis_cofins"],
+        profile["cfop_entrada"],
+        profile["cfop_saida"],
+        profile["tributacao_monofasica"],
+        bool(profile["cests"]),
+        json.dumps(profile["tributo_icms"], sort_keys=True),
+        json.dumps(profile["tributo_pis_cofins"], sort_keys=True),
+    )
+
+
+def payload_id(profile: dict[str, Any]) -> str:
+    """Identificador legivel do payload fiscal."""
+    return "-".join(
+        [
+            "PAYLOAD",
+            str(profile["referencia_icms"] or "SEM_REF"),
+            str(profile["referencia_pis_cofins"] or "SEM_REF"),
+            f"E{profile['cfop_entrada']}",
+            f"S{profile['cfop_saida']}",
+            f"MONO{profile['tributacao_monofasica']}",
+            "COM_CEST" if profile["cests"] else "SEM_CEST",
+        ]
+    )
 
 
 def resolve_profile_family(families: list[str | None]) -> str | None | bool:

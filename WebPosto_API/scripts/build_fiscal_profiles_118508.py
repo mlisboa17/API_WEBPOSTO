@@ -41,6 +41,9 @@ from src.operational.product_registration.duplicate_checker import (  # noqa: E4
     find_description_duplicates,
     looks_fabricated_gtin,
 )
+from src.operational.product_registration.ean_service import (  # noqa: E402
+    gtin_prefix_length_conflict,
+)
 from src.operational.product_registration.entry_evidence_index import (  # noqa: E402
     build_ncm_cest_evidence,
     item_entry_evidence,
@@ -58,6 +61,7 @@ from src.operational.product_registration.fiscal_profiles import (  # noqa: E402
     TREATMENT_TAXED,
     WAVE_BY_LEVEL,
     Profile,
+    audit_trail,
     build_profile_id,
     place_from_evidence,
     read_evidence,
@@ -345,7 +349,7 @@ def main() -> None:
                 "confidence": confidence,
                 "family": family,
                 "special": special,
-                "evidence": evidence,
+                "evidence": {**evidence, **audit_trail(evidence["origem"], confidence)},
                 "produto": {
                     "linha": row.line,
                     "ean": row.ean,
@@ -370,6 +374,10 @@ def main() -> None:
         fabricated = looks_fabricated_gtin(row.ean)
         if fabricated:
             block(row, "GTIN_COM_APARENCIA_DE_INVENTADO", fabricated)
+            continue
+        prefix_conflict = gtin_prefix_length_conflict(row.ean)
+        if prefix_conflict:
+            block(row, "GTIN_INCOERENTE_COM_O_PREFIXO", prefix_conflict)
             continue
         if row.ean in PERMANENT_EXCLUSIONS:
             block(row, "EXCLUSAO_PERMANENTE")
@@ -419,7 +427,7 @@ def main() -> None:
                 )
             continue
 
-        special = special_category(row.ncm)
+        special = special_category(row.ncm, row.descricao)
         hit = dfe_index.get(row.ean)
 
         # --- Custo -----------------------------------------------------------------

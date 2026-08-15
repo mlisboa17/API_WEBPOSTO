@@ -157,6 +157,24 @@ def test_special_categories_are_detected_by_ncm_chapter():
     assert special_category("19053100") is None
 
 
+def test_smoking_items_outside_chapter_24_are_still_special():
+    """Carvao de narguile entra como carvao no NCM, mas e tabacaria na loja."""
+    assert (
+        special_category("44029000", "CARVAO BALIHAI PARA NARGUILE DISCO COM 10UN")
+        == "TABACARIA_CORRELATO"
+    )
+    assert special_category("48131000", "SEDA PARA CIGARRO") == "TABACARIA_CORRELATO"
+
+
+def test_ncm_chapter_wins_over_the_description():
+    assert special_category("24022000", "CIGARRO QUALQUER") == "TABACO"
+
+
+def test_common_products_are_not_caught_by_the_smoking_terms():
+    assert special_category("19053100", "BISCOITO RECHEADO CHOCOLATE") is None
+    assert special_category("20079990", "DOCE DE FUMO DE ROLO CASEIRO") == "TABACARIA_CORRELATO"
+
+
 def test_profile_id_separates_family_and_reference():
     first = build_profile_id("PROFILE_B", "BISCOITO", "19053100", "1705300", "0000000061")
     second = build_profile_id("PROFILE_B", "BOLO_INDUSTRIAL", "19053100", "1705300", "0000000061")

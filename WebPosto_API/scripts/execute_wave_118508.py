@@ -38,6 +38,14 @@ from src.operational.product_registration.duplicate_checker import (  # noqa: E4
     find_description_duplicates,
     looks_fabricated_gtin,
 )
+from src.operational.product_registration.ean_service import (  # noqa: E402
+    gtin_prefix_length_conflict,
+)
+from src.operational.product_registration.fiscal_profiles import (  # noqa: E402
+    payload_id,
+    payload_key,
+    special_category,
+)
 
 BASE_URL = "https://web.qualityautomacao.com.br"
 LEGACY_ENDPOINT = "/INTEGRACAO/INCLUIR_PRODUTO"
@@ -59,6 +67,12 @@ PENDING_COST_STATUS = "PENDING"
 BLOCKED_EANS = {"7891000376928", "7891962076317"}
 BLOCKED_CODES = {2481160, 2481344}
 WAVE_LEVELS = {1: {"PROFILE_A", "PROFILE_B", "PROFILE_C"}, 2: {"PROFILE_D"}}
+
+# Familias que seguem com as categorias especiais, mesmo quando o NCM nao denuncia o
+# regime: isqueiro entra como acendedor, mas a loja o vende no balcao da tabacaria.
+SENSITIVE_FAMILIES = frozenset(
+    {"TABACARIA", "FARMACIA", "CERVEJA", "VINHO_ESPUMANTE", "DESTILADO"}
+)
 
 
 class WaveHalted(Exception):
@@ -114,6 +128,18 @@ def body_matches_profile(body: dict[str, Any], profile: dict[str, Any]) -> list[
         divergences.append("ncm")
     if profile["cests"] and body.get("codigoCest") not in profile["cests"]:
         divergences.append("cest")
+    divergences.extend(body_matches_payload(body, profile))
+    return divergences
+
+
+def body_matches_payload(body: dict[str, Any], profile: dict[str, Any]) -> list[str]:
+    """Campos tributarios do body que nao correspondem ao payload aprovado.
+
+    O payload nao fixa NCM nem CEST, porque produtos de NCM diferente podem gerar o mesmo
+    payload tributario. Exige, porem, que a presenca de CEST seja a mesma: payload com CEST
+    aprovado nao autoriza enviar produto sem CEST.
+    """
+    divergences = []
     if body.get("tributoIcms") != profile["tributo_icms"]:
         divergences.append("tributoIcms")
     if body.get("tributoPisCofins") != profile["tributo_pis_cofins"]:
@@ -122,53 +148,235 @@ def body_matches_profile(body: dict[str, Any], profile: dict[str, Any]) -> list[
         divergences.append("cfopSaida")
     if body.get("cdCfopEntrada") != profile["cfop_entrada"]:
         divergences.append("cfopEntrada")
+    if body.get("Tributação Monofásica") != profile["tributacao_monofasica"]:
+        divergences.append("tributacaoMonofasica")
+    if bool(body.get("codigoCest")) != bool(profile["cests"]):
+        divergences.append("presencaDeCest")
     return divergences
 
 
-def build_queue(profiles: list[dict[str, Any]], levels: set[str], limit: int) -> list[dict[str, Any]]:
+def group_by_payload(profiles: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Funde perfis fiscais que produzem o mesmo payload em um perfil operacional.
+
+    O canario passa a provar o payload, nao o NCM: assim uma unica prova serve para todos
+    os produtos que a API vai receber com a mesma tributacao. O perfil fiscal de origem
+    continua registrado em cada produto, para a trilha individual.
+    """
+    grouped: dict[tuple, dict[str, Any]] = {}
+    for profile in profiles:
+        key = payload_key(profile)
+        operational = grouped.get(key)
+        if operational is None:
+            operational = {
+                **profile,
+                "profile_id": payload_id(profile),
+                "ncms": [],
+                "cests": [],
+                "produtos": [],
+                "profile_canary_status": "PENDING",
+                "produto_canario": None,
+                "canario_origem": None,
+                "perfis_fiscais": [],
+            }
+            grouped[key] = operational
+        operational["ncms"] = sorted(set(operational["ncms"]) | set(profile["ncms"]))
+        operational["cests"] = sorted(set(operational["cests"]) | set(profile["cests"]))
+        operational["perfis_fiscais"].append(profile["profile_id"])
+        for product in profile["produtos"]:
+            operational["produtos"].append({**product, "perfilFiscal": profile["profile_id"]})
+        if profile.get("profile_canary_status") == "VERIFIED":
+            operational["profile_canary_status"] = "VERIFIED"
+            operational["produto_canario"] = profile.get("produto_canario")
+            operational["canario_origem"] = profile.get("canario_origem")
+    for operational in grouped.values():
+        operational["quantidade_candidatos"] = len(operational["produtos"])
+    return list(grouped.values())
+
+
+def product_gate(product: dict[str, Any]) -> str | None:
+    """Motivo para o produto nao entrar na fila, ou None.
+
+    Roda antes de ocupar vaga no lote: assim uma exclusao nao consome uma das vagas
+    autorizadas nem interrompe os demais produtos.
+    """
+    ean = product["ean"]
+    fabricated = looks_fabricated_gtin(ean)
+    if fabricated:
+        return f"GTIN_COM_APARENCIA_DE_INVENTADO:{fabricated}"
+    prefix_conflict = gtin_prefix_length_conflict(ean)
+    if prefix_conflict:
+        return f"GTIN_INCOERENTE_COM_O_PREFIXO:{prefix_conflict}"
+    special = special_category(product.get("ncm"), product.get("descricao"))
+    if special:
+        return f"CATEGORIA_ESPECIAL_DA_ONDA_4:{special}"
+    family = product.get("familiaComercial")
+    if family in SENSITIVE_FAMILIES:
+        return f"CATEGORIA_ESPECIAL_DA_ONDA_4:{family}"
+    if not product.get("precoVenda") or product["precoVenda"] <= 0:
+        return "PRECO_VENDA_INVALIDO"
+    return None
+
+
+def build_queue(
+    profiles: list[dict[str, Any]],
+    levels: set[str],
+    limit: int,
+    *,
+    by_payload: bool = False,
+    gate: Any = None,
+    rejected: list[dict[str, Any]] | None = None,
+) -> list[dict[str, Any]]:
     """Fila da onda: canario de cada perfil primeiro, depois os demais do mesmo perfil.
 
-    Perfis com mais produtos vem antes, para que uma unica aprovacao de perfil renda o
-    maximo de cadastros no lote.
+    Perfis com mais produtos vem antes, para que uma unica aprovacao renda o maximo de
+    cadastros no lote. Com by_payload, o agrupamento e feito pelo payload tributario.
     """
     eligible = [p for p in profiles if p["level"] in levels]
+    if by_payload:
+        eligible = group_by_payload(eligible)
     eligible.sort(key=lambda p: (-p["quantidade_candidatos"], p["profile_id"]))
     queue: list[dict[str, Any]] = []
     for profile in eligible:
         products = sorted(
             profile["produtos"],
-            key=lambda prod: (prod["ean"] != profile.get("produto_canario"), prod["precoVenda"]),
+            key=lambda prod: (
+                prod["ean"] != profile.get("produto_canario"),
+                not prod.get("familiaComercial"),
+                prod["precoVenda"],
+            ),
         )
-        for index, product in enumerate(products):
+        for product in products:
             if len(queue) >= limit:
                 return queue
+            reason = gate(product) if gate else None
+            if reason:
+                if rejected is not None:
+                    rejected.append(
+                        {
+                            "ean": product["ean"],
+                            "descricao": product["descricao"],
+                            "ncm": product.get("ncm"),
+                            "cest": product.get("cest"),
+                            "familiaComercial": product.get("familiaComercial"),
+                            "perfilFiscal": product.get("perfilFiscal")
+                            or profile["profile_id"],
+                            "motivo": reason,
+                        }
+                    )
+                continue
             queue.append(
                 {
                     "profile": profile,
                     "product": product,
-                    "is_canary": index == 0
+                    # O canario e o primeiro produto que de fato sera enviado deste perfil.
+                    "is_canary": not any(
+                        item["profile"]["profile_id"] == profile["profile_id"] for item in queue
+                    )
                     and profile.get("profile_canary_status") != "VERIFIED",
+                    "by_payload": by_payload,
                 }
             )
     return queue
+
+
+def retry_after_seconds(response: httpx.Response, default: float = 5.0) -> float:
+    """Espera pedida pelo servidor em 429, limitada para nao travar o lote."""
+    header = response.headers.get("Retry-After", "").strip()
+    try:
+        return min(max(float(header), 1.0), 60.0)
+    except ValueError:
+        return default
+
+
+def find_recent_by_ean(
+    reader: HttpProductReader, key: str, ean: str, from_code: int
+) -> dict[str, Any] | None:
+    """Procura um EAN entre os produtos criados a partir de from_code.
+
+    Serve para decidir, depois de um timeout, se o POST chegou a criar o produto. Produto
+    novo recebe codigo crescente, entao basta varrer dai para frente.
+    """
+    cursor = max(from_code - 1, 0)
+    seen: set[int] = set()
+    for _ in range(50):
+        rows = reader.get_catalog(key, cursor=cursor, page_size=200)
+        if not rows:
+            return None
+        for row in rows:
+            if ean in barcodes(row):
+                return row
+        nxt = max(int(row.get("produtoCodigo") or 0) for row in rows)
+        if nxt == cursor or nxt in seen:
+            return None
+        seen.add(nxt)
+        cursor = nxt
+    return None
+
+
+def send_product(
+    client: httpx.Client,
+    reader: HttpProductReader,
+    key: str,
+    body: dict[str, Any],
+    *,
+    ean: str,
+    from_code: int,
+) -> tuple[str, httpx.Response | None, dict[str, Any] | None, str | None]:
+    """Envia o POST respeitando 429 e sem reenviar as cegas depois de um timeout.
+
+    Timeout nao diz se o servidor gravou. Antes de qualquer reenvio, o EAN e procurado no
+    catalogo: reenviar sem essa prova arriscaria criar o produto duas vezes.
+    """
+    for attempt in (1, 2, 3):
+        try:
+            response = client.post(
+                f"{BASE_URL}{LEGACY_ENDPOINT}",
+                params={"CHAVE": key},
+                content=json.dumps(body, ensure_ascii=False).encode("utf-8"),
+                headers={"Content-Type": "application/json; charset=utf-8"},
+            )
+        except (httpx.TimeoutException, httpx.TransportError) as exc:
+            existing = find_recent_by_ean(reader, key, ean, from_code)
+            if existing is not None:
+                return "TIMEOUT_BUT_CREATED", None, existing, str(exc)
+            if attempt == 3:
+                return "TIMEOUT_UNCONFIRMED", None, None, str(exc)
+            time.sleep(PAUSE_SECONDS * attempt)
+            continue
+        if response.status_code == 429 and attempt < 3:
+            wait = retry_after_seconds(response)
+            print(f"    429 recebido; aguardando {wait:.0f}s (Retry-After)")
+            time.sleep(wait)
+            continue
+        return "RESPONSE", response, None, None
+    return "TIMEOUT_UNCONFIRMED", None, None, "tentativas esgotadas"
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Executa uma onda de perfis fiscais da 118508")
     parser.add_argument("--wave", type=int, default=1, choices=sorted(WAVE_LEVELS))
     parser.add_argument("--limit", type=int, default=MAX_WAVE)
+    parser.add_argument("--batch", default="01")
+    parser.add_argument(
+        "--by-payload",
+        action="store_true",
+        help="agrupa perfis de mesmo payload tributario sob um unico canario",
+    )
     args = parser.parse_args()
 
     if args.limit > MAX_WAVE:
         raise WaveHalted(f"Limite {args.limit} excede o maximo de {MAX_WAVE} por execucao")
 
-    out_dir = REGISTRATION_DIR / f"wave_{args.wave:02d}_118508"
+    out_dir = REGISTRATION_DIR / f"wave_{args.wave:02d}_batch_{args.batch}_118508"
+    if args.wave == 1 and args.batch == "01":
+        # A onda 1 executou antes de existir a numeracao de lote; preserva a trava dela.
+        out_dir = REGISTRATION_DIR / "wave_01_118508"
     result_path = out_dir / "execution_result.json"
     wave_lock = out_dir / "wave_lock.json"
     if wave_lock.is_file():
         lock = load_json(wave_lock, {})
         raise WaveHalted(
-            f"Onda {args.wave} já executada em {lock.get('executedAt')} "
+            f"Onda {args.wave} lote {args.batch} já executado em {lock.get('executedAt')} "
             f"({lock.get('postCount')} POSTs). Nova execução recusada."
         )
 
@@ -176,7 +384,15 @@ def main() -> None:
     if not payload.get("profiles"):
         raise WaveHalted("fiscal_profiles_118508.json ausente ou vazio")
 
-    queue = build_queue(payload["profiles"], WAVE_LEVELS[args.wave], args.limit)
+    gated_out: list[dict[str, Any]] = []
+    queue = build_queue(
+        payload["profiles"],
+        WAVE_LEVELS[args.wave],
+        args.limit,
+        by_payload=args.by_payload,
+        gate=product_gate,
+        rejected=gated_out,
+    )
     if not queue:
         raise WaveHalted(f"Nenhum produto elegivel na onda {args.wave}")
 
@@ -195,6 +411,10 @@ def main() -> None:
     print("=" * 78)
     print(f"credencial: {credential.variable_name} (nunca impressa)")
     print(f"custo pendente autorizado: {pending_cost_allowed()}")
+    if gated_out:
+        print(f"fora da fila por gate previo: {len(gated_out)}")
+        for entry in gated_out:
+            print(f"   {entry['ean']} | {entry['descricao'][:40]} | {entry['motivo']}")
 
     executed: list[dict[str, Any]] = []
     skipped: list[dict[str, Any]] = []
@@ -227,7 +447,11 @@ def main() -> None:
         for entry in catalog_rows:
             for bar in barcodes(entry):
                 all_codes.setdefault(bar, int(entry.get("produtoCodigo") or 0))
-        print(f"catalogo indexado: {len(catalog_rows)} produtos | {len(all_codes)} codigos")
+        # Referencia para localizar um produto criado durante um timeout: codigo novo é
+        # sempre maior que os existentes.
+        highest_code = max(int(row.get("produtoCodigo") or 0) for row in catalog_rows)
+        print(f"catalogo indexado: {len(catalog_rows)} produtos | {len(all_codes)} codigos"
+              f" | maior codigo {highest_code}")
         print()
 
         for item in queue:
@@ -287,22 +511,60 @@ def main() -> None:
             if body["codigoBarras"] != ean or body["codigoExterno"] != ean:
                 halted_reason = f"BODY_DIVERGENTE_DO_EAN:{ean}"
                 break
-            profile_divergences = body_matches_profile(body, profile)
+            profile_divergences = (
+                body_matches_payload(body, profile)
+                if item["by_payload"]
+                else body_matches_profile(body, profile)
+            )
             if profile_divergences:
                 halted_reason = f"BODY_FORA_DO_PERFIL:{ean}:{','.join(profile_divergences)}"
                 break
+            if not body.get("codigoNcm"):
+                skip("NCM_AUSENTE")
+                continue
 
             print(f"    custo {body['precoCusto']} ({cost_reason}) | venda {body['precoVenda']}"
                   f" | NCM {body['codigoNcm']} | CEST {body['codigoCest']}"
                   f" | hash {expected_hash[:16]}...")
 
-            response = client.post(
-                f"{BASE_URL}{LEGACY_ENDPOINT}",
-                params={"CHAVE": credential.key},
-                content=json.dumps(body, ensure_ascii=False).encode("utf-8"),
-                headers={"Content-Type": "application/json; charset=utf-8"},
+            outcome, response, recovered, transport_error = send_product(
+                client,
+                reader,
+                credential.key,
+                body,
+                ean=ean,
+                from_code=highest_code,
             )
             post_count += 1
+            if outcome == "TIMEOUT_UNCONFIRMED":
+                executed.append(
+                    {
+                        "ean": ean,
+                        "descricao": product["descricao"],
+                        "profileId": profile["profile_id"],
+                        "classification": "TIMEOUT_SEM_CONFIRMACAO",
+                        "transportError": transport_error,
+                    }
+                )
+                halted_reason = f"TIMEOUT_SEM_CONFIRMACAO:{ean}"
+                print("    ALERTA: sem resposta e EAN nao localizado; nao houve reenvio")
+                break
+            if outcome == "TIMEOUT_BUT_CREATED":
+                executed.append(
+                    {
+                        "ean": ean,
+                        "descricao": product["descricao"],
+                        "profileId": profile["profile_id"],
+                        "classification": "TIMEOUT_COM_PRODUTO_CRIADO",
+                        "codProduto": recovered.get("produtoCodigo"),
+                        "transportError": transport_error,
+                    }
+                )
+                halted_reason = f"TIMEOUT_COM_PRODUTO_CRIADO:{ean}"
+                print(f"    ALERTA: timeout, mas o produto {recovered.get('produtoCodigo')} "
+                      "existe; parando para conferencia manual")
+                break
+
             http_status = response.status_code
             try:
                 response_payload = response.json()
@@ -434,7 +696,18 @@ def main() -> None:
 
             cost_info = product.get("custo") or {}
             nfe = cost_info.get("nfe") or {}
+            evidence = profile["evidencias"]
+            trail = {
+                "tax_basis_source": evidence.get("tax_basis_source"),
+                "entry_tax_evidence": evidence.get("entry_tax_evidence"),
+                "decision_authority": evidence.get("decision_authority"),
+            }
             checkpoint[ean] = {
+                **trail,
+                "payload_id": profile["profile_id"] if item["by_payload"] else None,
+                "perfil_fiscal": product.get("perfilFiscal") or profile["profile_id"],
+                # Payload compartilhado nao apaga a identidade fiscal do produto.
+                "familia_comercial": product.get("familiaComercial"),
                 "status": "CREATED_AND_VERIFIED",
                 "codProduto": code,
                 "referenciaCodigo": reference,
@@ -468,13 +741,16 @@ def main() -> None:
 
             if profile["requires_accountant_review"]:
                 review[ean] = {
+                    **trail,
                     "ean": ean,
                     "descricao": product["descricao"],
                     "produtoCodigo": code,
                     "referenciaCodigo": reference,
                     "ncm": body["codigoNcm"],
                     "cest": body["codigoCest"],
-                    "profileId": profile["profile_id"],
+                    "familiaComercial": product.get("familiaComercial"),
+                    "profileId": product.get("perfilFiscal") or profile["profile_id"],
+                    "payloadId": profile["profile_id"] if item["by_payload"] else None,
                     "profileLevel": profile["level"],
                     "baseUsada": {
                         "icmsTableReference": profile["referencia_icms"],
@@ -530,6 +806,8 @@ def main() -> None:
             {
                 "executedAt": datetime.now(timezone.utc).isoformat(),
                 "wave": args.wave,
+                "batch": args.batch,
+                "groupedByPayload": args.by_payload,
                 "postCount": post_count,
                 "createdAndVerified": len(created),
                 "haltedReason": halted_reason,
@@ -539,8 +817,9 @@ def main() -> None:
     save_json(
         result_path,
         {
-            "title": f"ONDA {args.wave} EXECUTION — 118508",
+            "title": f"ONDA {args.wave} LOTE {args.batch} EXECUTION — 118508",
             "executedAt": datetime.now(timezone.utc).isoformat(),
+            "groupedByPayload": args.by_payload,
             "endpoint": f"POST {LEGACY_ENDPOINT}",
             "urlSanitized": f"{LEGACY_ENDPOINT}?CHAVE=***REDACTED***",
             "routing": "CHAVE_ONLY",
@@ -548,6 +827,7 @@ def main() -> None:
             "credentialVariable": credential.variable_name,
             "keyExposed": False,
             "queued": len(queue),
+            "gatedOut": gated_out,
             "postCount": post_count,
             "createdAndVerified": len(created),
             "verifiedProfiles": sorted(verified_profiles),
@@ -563,14 +843,20 @@ def main() -> None:
     # a aprovacao de um perfil que já foi provado em producao.
     if verified_profiles:
         for profile in payload["profiles"]:
-            if profile["profile_id"] in verified_profiles:
-                created_here = next(
-                    r for r in created if r["profileId"] == profile["profile_id"] and r["canary"]
-                )
-                profile["profile_canary_status"] = "VERIFIED"
-                profile["produto_canario"] = created_here["ean"]
-                profile["produto_canario_codigo"] = created_here["codProduto"]
-                profile["canario_origem"] = f"VERIFICADO_NA_ONDA_{args.wave}"
+            # Com agrupamento por payload, o canario prova o payload: todos os perfis
+            # fiscais que geram aquele mesmo payload ficam liberados junto.
+            identifier = payload_id(profile) if args.by_payload else profile["profile_id"]
+            if identifier not in verified_profiles:
+                continue
+            proof = next(r for r in created if r["profileId"] == identifier and r["canary"])
+            profile["profile_canary_status"] = "VERIFIED"
+            profile["produto_canario"] = proof["ean"]
+            profile["produto_canario_codigo"] = proof["codProduto"]
+            profile["canario_origem"] = (
+                f"PAYLOAD_VERIFICADO_NA_ONDA_{args.wave}_LOTE_{args.batch}"
+                if args.by_payload
+                else f"VERIFICADO_NA_ONDA_{args.wave}"
+            )
         save_json(PROFILES, payload)
 
     print("=" * 78)

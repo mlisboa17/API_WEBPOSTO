@@ -49,15 +49,18 @@ TOLERANCE = 0.005
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Verifica os produtos criados em um lote ou onda")
-    group = parser.add_mutually_exclusive_group()
-    group.add_argument("--batch", choices=sorted(BATCH_FOLDERS))
-    group.add_argument("--wave", type=int)
+    parser.add_argument("--batch")
+    parser.add_argument("--wave", type=int)
     args = parser.parse_args()
+    if not args.wave and args.batch not in BATCH_FOLDERS:
+        parser.error(f"--batch deve ser um de {sorted(BATCH_FOLDERS)} quando nao houver --wave")
 
     if args.wave:
         # Na onda o body aprovado mora no perfil fiscal, nao em um preflight por lote.
-        label = f"ONDA {args.wave}"
-        out_dir = REGISTRATION_DIR / f"wave_{args.wave:02d}_118508"
+        label = f"ONDA {args.wave} LOTE {args.batch or '01'}"
+        out_dir = REGISTRATION_DIR / f"wave_{args.wave:02d}_batch_{args.batch or '01'}_118508"
+        if not out_dir.is_dir():
+            out_dir = REGISTRATION_DIR / f"wave_{args.wave:02d}_118508"
         profiles = json.loads(
             (REGISTRATION_DIR / "fiscal_profiles_118508.json").read_text(encoding="utf-8")
         )

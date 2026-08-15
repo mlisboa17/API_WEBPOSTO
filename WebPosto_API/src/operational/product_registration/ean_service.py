@@ -50,6 +50,26 @@ def validate_ean_strict(value: Any) -> dict[str, Any]:
     return {"ok": True, "ean": ean, "gate": "EAN_OK", "issues": []}
 
 
+# Prefixos GS1 do Brasil. Aparecem em GTIN-13; num codigo de 12 digitos indicam que o
+# codigo foi copiado com um digito a menos, ainda que o checksum feche por coincidencia.
+GS1_BRAZIL_PREFIXES = ("789", "790")
+
+
+def gtin_prefix_length_conflict(ean: str) -> str | None:
+    """Aponta incoerencia entre prefixo GS1 e comprimento, ou None.
+
+    Checksum valido nao prova comprimento correto: um GTIN-13 brasileiro ao qual falta um
+    digito pode fechar como GTIN-12 e nao ler no PDV.
+    """
+    digits = "".join(c for c in str(ean or "") if c.isdigit())
+    if len(digits) == 12 and digits.startswith(GS1_BRAZIL_PREFIXES):
+        return (
+            f"prefixo GS1 Brasil ({digits[:3]}) com 12 digitos: "
+            "GTIN-13 provavelmente truncado"
+        )
+    return None
+
+
 def find_ean_duplicates(
     ean: str,
     *,
