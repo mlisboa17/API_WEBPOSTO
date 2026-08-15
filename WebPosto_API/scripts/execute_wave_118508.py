@@ -225,12 +225,18 @@ def build_queue(
     by_payload: bool = False,
     gate: Any = None,
     rejected: list[dict[str, Any]] | None = None,
+    checkpoint: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     """Fila da onda: canario de cada perfil primeiro, depois os demais do mesmo perfil.
 
     Perfis com mais produtos vem antes, para que uma unica aprovacao renda o maximo de
     cadastros no lote. Com by_payload, o agrupamento e feito pelo payload tributario.
+
+    Produtos ja presentes no checkpoint sao pulados silenciosamente: eles ja foram
+    processados em lotes anteriores e nao devem consumir vagas nem ser contados como
+    rejeicao do gate.
     """
+    checkpoint = checkpoint or {}
     eligible = [p for p in profiles if p["level"] in levels]
     if by_payload:
         eligible = group_by_payload(eligible)
@@ -248,6 +254,9 @@ def build_queue(
         for product in products:
             if len(queue) >= limit:
                 return queue
+            ean = product["ean"]
+            if ean in checkpoint:
+                continue
             reason = gate(product) if gate else None
             if reason:
                 if rejected is not None:
@@ -384,6 +393,14 @@ def main() -> None:
     if not payload.get("profiles"):
         raise WaveHalted("fiscal_profiles_118508.json ausente ou vazio")
 
+    credential = resolve_credential(COMPANY_CODE)
+    if credential.variable_name != PROFILE:
+        raise WaveHalted(f"Credencial fora do profile exigido: {credential.variable_name}")
+
+    checkpoint = load_json(CHECKPOINT, {})
+    review = load_json(ACCOUNTANT_REVIEW, {})
+    pending_cost = load_json(PENDING_COST_UPDATE, {})
+
     gated_out: list[dict[str, Any]] = []
     queue = build_queue(
         payload["profiles"],
@@ -392,17 +409,10 @@ def main() -> None:
         by_payload=args.by_payload,
         gate=product_gate,
         rejected=gated_out,
+        checkpoint=checkpoint,
     )
     if not queue:
         raise WaveHalted(f"Nenhum produto elegivel na onda {args.wave}")
-
-    credential = resolve_credential(COMPANY_CODE)
-    if credential.variable_name != PROFILE:
-        raise WaveHalted(f"Credencial fora do profile exigido: {credential.variable_name}")
-
-    checkpoint = load_json(CHECKPOINT, {})
-    review = load_json(ACCOUNTANT_REVIEW, {})
-    pending_cost = load_json(PENDING_COST_UPDATE, {})
 
     print("=" * 78)
     profile_ids = {item["profile"]["profile_id"] for item in queue}
