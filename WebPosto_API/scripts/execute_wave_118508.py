@@ -54,7 +54,7 @@ PROFILE = "WEBPOSTO_CONVENIENCIA_24_HORAS_KEY"
 COST_CENTER = 24886
 MAX_WAVE = 20
 EXHAUST_MAX = 36
-EXHAUST_MAX_BY_WAVE = {2: 36, 4: 80}
+EXHAUST_MAX_BY_WAVE = {2: 36, 3: 80, 4: 80}
 PAUSE_SECONDS = 1.5
 SENTINEL_EVERY = 10
 
@@ -72,6 +72,7 @@ BLOCKED_CODES = {2481160, 2481344}
 WAVE_LEVELS = {
     1: {"PROFILE_A", "PROFILE_B", "PROFILE_C"},
     2: {"PROFILE_D"},
+    3: {"PROFILE_D"},
     4: {"PROFILE_SPECIAL", "PROFILE_D"},
 }
 
@@ -330,6 +331,7 @@ def build_queue(
     gate: Any = None,
     rejected: list[dict[str, Any]] | None = None,
     checkpoint: dict[str, Any] | None = None,
+    onda: int | None = None,
 ) -> list[dict[str, Any]]:
     """Fila da onda: canario de cada perfil primeiro, depois os demais do mesmo perfil.
 
@@ -342,6 +344,8 @@ def build_queue(
     """
     checkpoint = checkpoint or {}
     eligible = [p for p in profiles if p["level"] in levels]
+    if onda is not None:
+        eligible = [p for p in eligible if p.get("onda") == onda]
     if by_payload:
         eligible = group_by_payload(eligible)
     eligible.sort(key=lambda p: (-p["quantidade_candidatos"], p["profile_id"]))
@@ -571,6 +575,7 @@ def main() -> None:
             gate=None if args.exhaust else product_gate,
             rejected=gated_out,
             checkpoint=checkpoint,
+            onda=args.wave,
         )
     if not queue:
         raise WaveHalted(f"Nenhum produto elegivel na onda {args.wave}")
@@ -633,6 +638,7 @@ def main() -> None:
             print()
 
             current_category: str | None = None
+            blocked_payloads: set[str] = set()
             for item in queue:
                 profile = item["profile"]
                 product = item["product"]
@@ -660,6 +666,9 @@ def main() -> None:
                     print(f"SKIP {ean} {reason}{f':{detail}' if detail else ''}")
 
                 # --- Falhas individuais: removem o produto e a onda continua ---------------
+                if profile["profile_id"] in blocked_payloads:
+                    skip("PERFIL_BLOQUEADO_SEM_CEST")
+                    continue
                 gate_reason = product_gate(product, allow_special=args.wave == 4)
                 if gate_reason:
                     skip("GATE", gate_reason)
@@ -784,6 +793,12 @@ def main() -> None:
                     print(f"STOP HTTP {http_status} {ean}")
                     break
                 if ret not in (None, 0, "0"):
+                    if args.wave == 3 and not body.get("codigoCest"):
+                        record["classification"] = "CEST_REJEITADO_PELA_API"
+                        executed.append(record)
+                        blocked_payloads.add(profile["profile_id"])
+                        print(f"SKIP {ean} CEST_REJEITADO_PELA_API:{ret}")
+                        continue
                     record["classification"] = "RET_NAO_SUCESSO"
                     executed.append(record)
                     halted_reason = f"RET_NAO_SUCESSO:{ret}"
@@ -855,7 +870,7 @@ def main() -> None:
                     divergences.append("ativo")
                 if created and str(created.get("ncm") or "") != str(body["codigoNcm"]):
                     divergences.append("ncm")
-                if created and str(created.get("cest") or "") != str(body["codigoCest"]):
+                if created and str(created.get("cest") or "") != str(body.get("codigoCest") or ""):
                     divergences.append("cest")
                 if created and ean not in barcodes(created):
                     divergences.append("codigoBarras")
@@ -898,6 +913,7 @@ def main() -> None:
                     "perfil_fiscal": product.get("perfilFiscal") or profile["profile_id"],
                     # Payload compartilhado nao apaga a identidade fiscal do produto.
                     "familia_comercial": product.get("familiaComercial"),
+                    "cest_status": "NOT_PROVIDED" if not body.get("codigoCest") else "PROVIDED",
                     "categoria_especial": product.get("categoriaEspecial"),
                     "categoria_especial_sistema": product.get("categoriaEspecialSistema"),
                     "cfop_entrada": body.get("cdCfopEntrada"),
@@ -915,7 +931,7 @@ def main() -> None:
                     "preco_custo": company_link.get("precoCusto"),
                     "precoCusto": body["precoCusto"],
                     "ncm": body["codigoNcm"],
-                    "cest": body["codigoCest"],
+                    "cest": body.get("codigoCest"),
                     "cost_source": cost_info.get("source"),
                     "cost_status": cost_info.get("cost_status"),
                     "cost_risk": cost_info.get("cost_risk"),
@@ -942,7 +958,7 @@ def main() -> None:
                         "produtoCodigo": code,
                         "referenciaCodigo": reference,
                         "ncm": body["codigoNcm"],
-                        "cest": body["codigoCest"],
+                        "cest": body.get("codigoCest"),
                         "familiaComercial": product.get("familiaComercial"),
                         "profileId": product.get("perfilFiscal") or profile["profile_id"],
                         "payloadId": profile["profile_id"] if item["by_payload"] else None,
