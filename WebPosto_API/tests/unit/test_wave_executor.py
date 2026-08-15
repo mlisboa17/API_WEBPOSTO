@@ -321,9 +321,15 @@ def test_a_common_product_passes_the_gate():
 
 
 def test_truncated_brazilian_gtin_is_gated_out():
-    reason = executor.product_gate(_candidate(ean="789607405141"))
+    reason = executor.product_gate(_candidate(ean="789864778012"))
 
     assert reason.startswith("GTIN_INCOERENTE_COM_O_PREFIXO")
+
+
+def test_interbrasil_truncated_gtin_is_permanently_blocked():
+    reason = executor.product_gate(_candidate(ean="789607405141"))
+
+    assert reason == "GTIN_BLOQUEADO_PERMANENTE"
 
 
 def test_smoking_related_item_is_sent_to_wave_four():
@@ -332,6 +338,16 @@ def test_smoking_related_item_is_sent_to_wave_four():
     )
 
     assert reason == "CATEGORIA_ESPECIAL_DA_ONDA_4:TABACARIA_CORRELATO"
+
+
+def test_wave_four_gate_allows_special_categories():
+    assert (
+        executor.product_gate(
+            _candidate(descricao="CERVEJA IMPERIO 330ML", ncm="22030000"),
+            allow_special=True,
+        )
+        is None
+    )
 
 
 def test_tobacco_counter_family_is_sent_to_wave_four():
@@ -415,3 +431,40 @@ def test_persist_lock_writes_running_then_completed(tmp_path):
     assert done["reexecution"] == "LOCKED"
     assert done["postCount"] == 33
     assert done["skippedPrePost"] == 3
+
+
+def test_wave4_puts_tobacco_last_and_accessories_first():
+    assert executor.wave4_category({"ncm": "44029000", "descricao": "CARVAO NARGUILE"}) == (
+        "TABACARIA_ACESSORIO"
+    )
+    assert executor.wave4_category({"ncm": "96131000", "familiaComercial": "TABACARIA"}) == (
+        "TABACARIA_ACESSORIO"
+    )
+    assert executor.wave4_category({"ncm": "22030000", "descricao": "CERVEJA"}) == "BEBIDA_ALCOOLICA"
+    assert executor.wave4_category({"ncm": "30059090", "descricao": "ALGODAO"}) == "OUTRO_ESPECIAL"
+    assert executor.wave4_category({"ncm": "24022000", "descricao": "CIGARRO"}) == "TABACO"
+
+
+def test_wave4_queue_orders_categories_and_shares_canary_per_payload():
+    accessory = _profile("ACC", level="PROFILE_D", eans=["7898923964799"], ncm="44029000")
+    accessory["onda"] = 4
+    accessory["produtos"][0].update(
+        {"descricao": "CARVAO NARGUILE", "familiaComercial": "TABACARIA", "ncm": "44029000"}
+    )
+    beer = _profile("BEER", level="PROFILE_SPECIAL", eans=["7898738660718"], ncm="22030000")
+    beer["onda"] = 4
+    beer["produtos"][0].update({"descricao": "CERVEJA IMPERIO", "ncm": "22030000"})
+    smoke = _profile("SMOKE", level="PROFILE_SPECIAL", eans=["78944473"], ncm="24022000")
+    smoke["onda"] = 4
+    smoke["produtos"][0].update({"descricao": "CIGARRO ROTHMANS", "ncm": "24022000"})
+
+    queue = executor.build_wave4_queue(
+        [smoke, beer, accessory], 10, gate=lambda product: executor.product_gate(product, allow_special=True)
+    )
+
+    assert [item["wave4_category"] for item in queue] == [
+        "TABACARIA_ACESSORIO",
+        "BEBIDA_ALCOOLICA",
+        "TABACO",
+    ]
+    assert all(item["is_canary"] for item in queue)

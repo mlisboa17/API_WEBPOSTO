@@ -54,6 +54,7 @@ PROFILE = "WEBPOSTO_CONVENIENCIA_24_HORAS_KEY"
 COST_CENTER = 24886
 MAX_WAVE = 20
 EXHAUST_MAX = 36
+EXHAUST_MAX_BY_WAVE = {2: 36, 4: 80}
 PAUSE_SECONDS = 1.5
 SENTINEL_EVERY = 10
 
@@ -66,9 +67,20 @@ PENDING_COST_UPDATE = REGISTRATION_DIR / "pending_cost_update_118508.json"
 PENDING_COST_FLAG = "ALLOW_PENDING_DFE_COST"
 PENDING_COST_STATUS = "PENDING"
 
-BLOCKED_EANS = {"7891000376928", "7891962076317"}
+BLOCKED_EANS = {"7891000376928", "7891962076317", "789607405141"}
 BLOCKED_CODES = {2481160, 2481344}
-WAVE_LEVELS = {1: {"PROFILE_A", "PROFILE_B", "PROFILE_C"}, 2: {"PROFILE_D"}}
+WAVE_LEVELS = {
+    1: {"PROFILE_A", "PROFILE_B", "PROFILE_C"},
+    2: {"PROFILE_D"},
+    4: {"PROFILE_SPECIAL", "PROFILE_D"},
+}
+
+WAVE4_CATEGORY_RANK = {
+    "TABACARIA_ACESSORIO": 1,
+    "BEBIDA_ALCOOLICA": 2,
+    "OUTRO_ESPECIAL": 3,
+    "TABACO": 4,
+}
 
 # Familias que seguem com as categorias especiais, mesmo quando o NCM nao denuncia o
 # regime: isqueiro entra como acendedor, mas a loja o vende no balcao da tabacaria.
@@ -195,28 +207,118 @@ def group_by_payload(profiles: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return list(grouped.values())
 
 
-def product_gate(product: dict[str, Any]) -> str | None:
+def product_gate(product: dict[str, Any], *, allow_special: bool = False) -> str | None:
     """Motivo para o produto nao entrar na fila, ou None.
 
     Roda antes de ocupar vaga no lote: assim uma exclusao nao consome uma das vagas
-    autorizadas nem interrompe os demais produtos.
+    autorizadas nem interrompe os demais produtos. Na onda 4 as categorias especiais
+    sao a fila, nao o bloqueio.
     """
     ean = product["ean"]
+    if ean in BLOCKED_EANS:
+        return "GTIN_BLOQUEADO_PERMANENTE"
     fabricated = looks_fabricated_gtin(ean)
     if fabricated:
         return f"GTIN_COM_APARENCIA_DE_INVENTADO:{fabricated}"
     prefix_conflict = gtin_prefix_length_conflict(ean)
     if prefix_conflict:
         return f"GTIN_INCOERENTE_COM_O_PREFIXO:{prefix_conflict}"
-    special = special_category(product.get("ncm"), product.get("descricao"))
-    if special:
-        return f"CATEGORIA_ESPECIAL_DA_ONDA_4:{special}"
-    family = product.get("familiaComercial")
-    if family in SENSITIVE_FAMILIES:
-        return f"CATEGORIA_ESPECIAL_DA_ONDA_4:{family}"
+    if not allow_special:
+        special = special_category(product.get("ncm"), product.get("descricao"))
+        if special:
+            return f"CATEGORIA_ESPECIAL_DA_ONDA_4:{special}"
+        family = product.get("familiaComercial")
+        if family in SENSITIVE_FAMILIES:
+            return f"CATEGORIA_ESPECIAL_DA_ONDA_4:{family}"
     if not product.get("precoVenda") or product["precoVenda"] <= 0:
         return "PRECO_VENDA_INVALIDO"
     return None
+
+
+def wave4_category(product: dict[str, Any]) -> str:
+    """Ordem fiscal da onda 4: acessorio, alcool, demais especiais, tabaco por ultimo."""
+    spec = special_category(product.get("ncm"), product.get("descricao"))
+    ncm = str(product.get("ncm") or "")
+    if spec == "TABACO" or ncm.startswith("24"):
+        return "TABACO"
+    if spec == "TABACARIA_CORRELATO" or product.get("familiaComercial") == "TABACARIA":
+        return "TABACARIA_ACESSORIO"
+    if spec == "BEBIDA_ALCOOLICA":
+        return "BEBIDA_ALCOOLICA"
+    return "OUTRO_ESPECIAL"
+
+
+def build_wave4_queue(
+    profiles: list[dict[str, Any]],
+    limit: int,
+    *,
+    gate: Any = None,
+    rejected: list[dict[str, Any]] | None = None,
+    checkpoint: dict[str, Any] | None = None,
+) -> list[dict[str, Any]]:
+    """Fila da onda 4: categoria fiscal, depois payload, canario primeiro."""
+    checkpoint = checkpoint or {}
+    staged: list[tuple[str, dict[str, Any], dict[str, Any]]] = []
+    for profile in profiles:
+        if profile.get("onda") != 4:
+            continue
+        for product in profile["produtos"]:
+            if product["ean"] in checkpoint:
+                continue
+            reason = gate(product) if gate else None
+            if reason:
+                if rejected is not None:
+                    rejected.append(
+                        {
+                            "ean": product["ean"],
+                            "descricao": product["descricao"],
+                            "ncm": product.get("ncm"),
+                            "cest": product.get("cest"),
+                            "familiaComercial": product.get("familiaComercial"),
+                            "perfilFiscal": profile["profile_id"],
+                            "motivo": reason,
+                        }
+                    )
+                continue
+            staged.append((wave4_category(product), profile, product))
+    staged.sort(
+        key=lambda item: (
+            WAVE4_CATEGORY_RANK[item[0]],
+            payload_id(item[1]),
+            item[2]["precoVenda"],
+            item[2]["ean"],
+        )
+    )
+    queue: list[dict[str, Any]] = []
+    opened: set[tuple[str, str]] = set()
+    for category, profile, product in staged:
+        if len(queue) >= limit:
+            break
+        operational_id = payload_id(profile)
+        key = (category, operational_id)
+        canary = key not in opened
+        opened.add(key)
+        queue.append(
+            {
+                "profile": {
+                    **profile,
+                    "profile_id": operational_id,
+                    "wave4_category": category,
+                },
+                "product": {
+                    **product,
+                    "perfilFiscal": profile["profile_id"],
+                    "categoriaEspecial": category,
+                    "categoriaEspecialSistema": special_category(
+                        product.get("ncm"), product.get("descricao")
+                    ),
+                },
+                "is_canary": canary,
+                "by_payload": True,
+                "wave4_category": category,
+            }
+        )
+    return queue
 
 
 def build_queue(
@@ -420,7 +522,9 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    max_allowed = EXHAUST_MAX if args.exhaust else MAX_WAVE
+    max_allowed = EXHAUST_MAX_BY_WAVE.get(args.wave, EXHAUST_MAX) if args.exhaust else MAX_WAVE
+    if args.wave == 4 and args.exhaust and args.limit == MAX_WAVE:
+        args.limit = max_allowed
     if args.limit > max_allowed:
         raise WaveHalted(f"Limite {args.limit} excede o maximo de {max_allowed} por execucao")
 
@@ -450,15 +554,24 @@ def main() -> None:
     pending_cost = load_json(PENDING_COST_UPDATE, {})
 
     gated_out: list[dict[str, Any]] = []
-    queue = build_queue(
-        payload["profiles"],
-        WAVE_LEVELS[args.wave],
-        args.limit,
-        by_payload=args.by_payload,
-        gate=None if args.exhaust else product_gate,
-        rejected=gated_out,
-        checkpoint=checkpoint,
-    )
+    if args.wave == 4:
+        queue = build_wave4_queue(
+            payload["profiles"],
+            args.limit,
+            gate=lambda product: product_gate(product, allow_special=True),
+            rejected=gated_out,
+            checkpoint=checkpoint,
+        )
+    else:
+        queue = build_queue(
+            payload["profiles"],
+            WAVE_LEVELS[args.wave],
+            args.limit,
+            by_payload=args.by_payload,
+            gate=None if args.exhaust else product_gate,
+            rejected=gated_out,
+            checkpoint=checkpoint,
+        )
     if not queue:
         raise WaveHalted(f"Nenhum produto elegivel na onda {args.wave}")
 
@@ -519,6 +632,7 @@ def main() -> None:
                   f" | maior codigo {highest_code}")
             print()
 
+            current_category: str | None = None
             for item in queue:
                 profile = item["profile"]
                 product = item["product"]
@@ -526,6 +640,12 @@ def main() -> None:
                 body = product["body"]["preview"]
                 expected_hash = product["body"]["hash"]
                 canary = item["is_canary"] and profile["profile_id"] not in verified_profiles
+                category = item.get("wave4_category")
+                if category and category != current_category:
+                    if current_category is not None:
+                        confirm_sentinel(credential, reader, f"troca_{current_category}_para_{category}")
+                    current_category = category
+                    print(f"CATEGORIA {category}")
 
                 def skip(reason: str, detail: str | None = None) -> None:
                     skipped.append(
@@ -540,7 +660,7 @@ def main() -> None:
                     print(f"SKIP {ean} {reason}{f':{detail}' if detail else ''}")
 
                 # --- Falhas individuais: removem o produto e a onda continua ---------------
-                gate_reason = product_gate(product)
+                gate_reason = product_gate(product, allow_special=args.wave == 4)
                 if gate_reason:
                     skip("GATE", gate_reason)
                     continue
@@ -778,6 +898,11 @@ def main() -> None:
                     "perfil_fiscal": product.get("perfilFiscal") or profile["profile_id"],
                     # Payload compartilhado nao apaga a identidade fiscal do produto.
                     "familia_comercial": product.get("familiaComercial"),
+                    "categoria_especial": product.get("categoriaEspecial"),
+                    "categoria_especial_sistema": product.get("categoriaEspecialSistema"),
+                    "cfop_entrada": body.get("cdCfopEntrada"),
+                    "cfop_saida": body.get("cdCfopSaida"),
+                    "tributacao_monofasica": body.get("Tributação Monofásica"),
                     "status": "CREATED_AND_VERIFIED",
                     "codProduto": code,
                     "referenciaCodigo": reference,
