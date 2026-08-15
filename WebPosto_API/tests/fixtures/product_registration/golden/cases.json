@@ -1,0 +1,81 @@
+{
+  "schema": "golden_master_v1",
+  "cases": [
+    {
+      "id": "bono_st",
+      "descricao": "BISCOITO RECHEADO SABOR CHOCOLATE 90G",
+      "ean": "7891000377130",
+      "ncm": "19053100",
+      "cest": "1700400",
+      "entry": "ST_COMPROVADA",
+      "custo": 2.1,
+      "preco_venda": 4.99
+    },
+    {
+      "id": "negresco_st",
+      "descricao": "BISCOITO RECHEADO SABOR CHOCOLATE 140G",
+      "ean": "7891000377147",
+      "ncm": "19053100",
+      "cest": "1700400",
+      "entry": "ST_COMPROVADA",
+      "custo": 3.2,
+      "preco_venda": 6.49
+    },
+    {
+      "id": "cst00_taxed",
+      "descricao": "PRODUTO TRIBUTADO EXEMPLO 500ML",
+      "ean": "7891000377154",
+      "ncm": "22021000",
+      "cest": "0300100",
+      "entry": "SEM_ST_COMPROVADA",
+      "custo": 1.5,
+      "preco_venda": 3.5
+    },
+    {
+      "id": "no_cost",
+      "descricao": "PRODUTO SEM NOTA 200G",
+      "ean": "7891000377161",
+      "ncm": "19059090",
+      "cest": "1706201",
+      "entry": "SEM_EVIDENCIA_DE_ENTRADA",
+      "custo": 0,
+      "preco_venda": 8.9
+    },
+    {
+      "id": "no_cest",
+      "descricao": "SAL REFINADO PACOTE 1KG",
+      "ean": "7891000377178",
+      "ncm": "25010019",
+      "cest": null,
+      "entry": "SEM_EVIDENCIA_DE_ENTRADA",
+      "custo": 0,
+      "preco_venda": 2.5
+    },
+    {
+      "id": "legitimate_variant",
+      "descricao": "CERVEJA EXEMPLO GOLD 330ML",
+      "existing": "CERVEJA EXEMPLO GOLD 269ML",
+      "expected": "LEGITIMATE_VARIANT"
+    },
+    {
+      "id": "duplicate",
+      "descricao": "CERVEJA EXEMPLO PURO MALTE LATA 350 ML",
+      "existing": "CERVEJA EXEMPLO PURO MALTE 350 ML",
+      "expected": "SAME_PRODUCT"
+    },
+    {
+      "id": "convertible_pack",
+      "unidade": "CX",
+      "q_trib": 12,
+      "u_trib": "UN",
+      "expected": "CONVERTIBLE"
+    },
+    {
+      "id": "indeterminate_pack",
+      "unidade": "CX",
+      "q_trib": 2.4,
+      "u_trib": "KG",
+      "expected": "INDETERMINATE"
+    }
+  ]
+}
