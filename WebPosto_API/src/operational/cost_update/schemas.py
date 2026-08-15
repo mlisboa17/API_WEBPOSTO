@@ -84,6 +84,7 @@ class CostUpdateProposal(BaseModel):
     created_at: str
     updated_at: str
     previous_proposal_hash: str | None = None
+    lifecycle: str = "ACTIVE"
 
 
 class ScanSummary(BaseModel):

@@ -1,10 +1,9 @@
 # Generated runtime artifacts (do not commit)
 .runtime/
 # DF-e — segredos/XML locais (nunca commitar PFX/ciphertext)
-data/dfe_store/secrets/
-data/dfe_store/documents/*.xml
-data/dfe_store/**/*.bin.json
+data/dfe_store/
 data/cost_update/
+data/dfe/
 *.pfx
 *.p12
 

@@ -54,6 +54,14 @@ class CostProposalStore:
             versions.append(proposal.proposal_hash)
         return {"created": True, "proposal": payload}
 
+    def mark_superseded(self, proposal_hash: str) -> None:
+        payload = self.get_by_hash(proposal_hash)
+        if not payload or payload.get("lifecycle") == "SUPERSEDED":
+            return
+        payload["lifecycle"] = "SUPERSEDED"
+        path = self.history / f"{proposal_hash}.json"
+        self._atomic_write(path, payload)
+
     def _atomic_write(self, path: Path, payload: dict[str, Any]) -> None:
         path.parent.mkdir(parents=True, exist_ok=True)
         fd, tmp = tempfile.mkstemp(prefix=path.name, dir=path.parent)

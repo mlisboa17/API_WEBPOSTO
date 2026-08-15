@@ -91,11 +91,13 @@ class CostUpdateService:
             raise RuntimeError("CurrentProductCostReader nao configurado")
         return self.reader.read(key, produto_codigo, ean)
 
-    def _iter_evaluated(self, key: str):
+    def _iter_evaluated(self, key: str, eans: set[str] | None = None):
         if self.reader is None:
             raise RuntimeError("CurrentProductCostReader nao configurado")
         self.resolver.build_index()
         for candidate in self.load_queue():
+            if eans is not None and candidate.ean not in eans:
+                continue
             current = self.verify_current_state(key, int(candidate.produto_codigo or 0), candidate.ean)
             evidence = self.resolver.resolve(candidate.ean)
             self.audit.record("scan_item", ean=candidate.ean, extra={"dfe": evidence.status})
@@ -155,11 +157,20 @@ class CostUpdateService:
         self._write_json(self.output_dir / "scan_summary.json", json.loads(summary.model_dump_json()))
         return summary
 
-    def propose(self, key: str, scan: ScanSummary | None = None) -> dict[str, Any]:
-        evaluated = list(self._iter_evaluated(key))
+    def propose(
+        self,
+        key: str,
+        scan: ScanSummary | None = None,
+        *,
+        eans: set[str] | None = None,
+        persist_aggregates: bool = True,
+        event: str = "propose_item",
+    ) -> dict[str, Any]:
+        evaluated = list(self._iter_evaluated(key, eans))
         if scan is None:
             scan = self._summary_from_evaluated(evaluated)
-            self._write_json(self.output_dir / "scan_summary.json", json.loads(scan.model_dump_json()))
+            if persist_aggregates:
+                self._write_json(self.output_dir / "scan_summary.json", json.loads(scan.model_dump_json()))
         buckets: dict[str, list[dict[str, Any]]] = {
             "PROPOSED": [],
             "NO_CHANGE": [],
@@ -176,14 +187,21 @@ class CostUpdateService:
                 expected_ncm=current.ncm or candidate.ncm,
                 expected_cest=current.cest or candidate.cest,
             )
+            previous = self.store.latest_for_ean(candidate.ean)
             proposal = self._build_proposal(candidate, current, evidence, decision)
             persisted = self.store.persist(proposal)
             payload = persisted["proposal"]
+            if (
+                previous
+                and previous.get("proposal_hash") != proposal.proposal_hash
+                and persisted.get("created")
+            ):
+                self.store.mark_superseded(str(previous["proposal_hash"]))
             buckets[proposal.status].append(payload)
             if proposal.custo_acima_da_venda:
                 above_sale += 1
             self.audit.record(
-                "propose_item",
+                event,
                 ean=candidate.ean,
                 extra={"status": proposal.status, "hash": proposal.proposal_hash},
             )
@@ -203,17 +221,20 @@ class CostUpdateService:
             "api_reads": self.reader.api_reads,
             "api_writes": 0,
         }
-        self._write_json(self.output_dir / "cost_update_proposals.json", {"items": buckets["PROPOSED"]})
-        self._write_json(self.output_dir / "cost_update_no_change.json", {"items": buckets["NO_CHANGE"]})
-        self._write_json(self.output_dir / "cost_update_review_required.json", {"items": buckets["REVIEW_REQUIRED"]})
-        self._write_json(self.output_dir / "cost_update_blocked.json", {"items": buckets["BLOCKED"]})
-        self._write_json(self.output_dir / "cost_update_dfe_not_found.json", {"items": buckets["DFE_NOT_FOUND"]})
-        self._write_json(self.output_dir / "propose_summary.json", result)
+        if persist_aggregates:
+            self._write_json(self.output_dir / "cost_update_proposals.json", {"items": buckets["PROPOSED"]})
+            self._write_json(self.output_dir / "cost_update_no_change.json", {"items": buckets["NO_CHANGE"]})
+            self._write_json(self.output_dir / "cost_update_review_required.json", {"items": buckets["REVIEW_REQUIRED"]})
+            self._write_json(self.output_dir / "cost_update_blocked.json", {"items": buckets["BLOCKED"]})
+            self._write_json(self.output_dir / "cost_update_dfe_not_found.json", {"items": buckets["DFE_NOT_FOUND"]})
+            self._write_json(self.output_dir / "propose_summary.json", result)
+            (self.output_dir / "COST_UPDATE_REPORT.md").write_text(
+                self._report(scan, result, buckets),
+                encoding="utf-8",
+            )
+        else:
+            self._write_json(self.output_dir / "recalculate_delta.json", {"items": buckets, "summary": result})
         self.store.flush()
-        (self.output_dir / "COST_UPDATE_REPORT.md").write_text(
-            self._report(scan, result, buckets),
-            encoding="utf-8",
-        )
         return result
 
     def status(self) -> dict[str, Any]:

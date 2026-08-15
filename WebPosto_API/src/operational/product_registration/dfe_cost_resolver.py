@@ -69,6 +69,14 @@ def resolve_sale_unit_quantity(item: dict[str, Any]) -> tuple[Decimal, str | Non
     q_trib = _dec(item.get("q_trib"))
     if is_atomic_unit(item.get("u_trib")) and q_trib > 0:
         return q_trib, QUANTITY_FROM_TAXABLE
+    from src.operational.dfe_sync.packaging_conversion import (  # noqa: I001
+        PackagingConversionResolver,
+    )
+
+    resolved = PackagingConversionResolver().resolve(item, supplier_cnpj=item.get("supplier_cnpj"))
+    factor = resolved.get("factor")
+    if resolved.get("ok") and factor:
+        return q_com * factor, "packaging_conversion"
     return Decimal("0"), None
 
 
