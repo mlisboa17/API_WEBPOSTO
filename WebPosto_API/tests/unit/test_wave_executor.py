@@ -393,6 +393,8 @@ def test_recent_search_stops_when_the_catalog_ends():
 def test_exhaust_allows_thirty_six_and_keeps_regular_cap():
     assert executor.MAX_WAVE == 20
     assert executor.EXHAUST_MAX == 36
+    assert executor.EXHAUST_MAX_BY_WAVE[5] == 80
+    assert 5 in executor.WAVE_LEVELS
     assert executor.SENTINEL_EVERY == 10
 
 
@@ -431,6 +433,25 @@ def test_persist_lock_writes_running_then_completed(tmp_path):
     assert done["reexecution"] == "LOCKED"
     assert done["postCount"] == 33
     assert done["skippedPrePost"] == 3
+
+
+def test_partial_lock_blocks_reexecution(tmp_path):
+    path = tmp_path / "wave_lock.json"
+    executor.persist_lock(
+        path,
+        status="PARTIAL",
+        wave=5,
+        batch="01",
+        by_payload=True,
+        post_count=4,
+        created=4,
+        skipped=1,
+        halted_reason="RESULT_UNKNOWN:x",
+        verified_profiles=set(),
+    )
+    done = executor.load_json(path, {})
+    assert done["status"] == "PARTIAL"
+    assert done["reexecution"] == "LOCKED"
 
 
 def test_wave4_puts_tobacco_last_and_accessories_first():

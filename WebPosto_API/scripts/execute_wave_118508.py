@@ -41,10 +41,19 @@ from src.operational.product_registration.duplicate_checker import (  # noqa: E4
 from src.operational.product_registration.ean_service import (  # noqa: E402
     gtin_prefix_length_conflict,
 )
+from src.operational.product_registration.final_wave import (  # noqa: E402
+    LEGITIMATE_VARIANT,
+    SAME_PRODUCT,
+    UNRESOLVED_DUPLICATE,
+    classify_final_duplicate,
+)
 from src.operational.product_registration.fiscal_profiles import (  # noqa: E402
     payload_id,
     payload_key,
     special_category,
+)
+from src.operational.product_registration.product_family import (  # noqa: E402
+    commercial_family,
 )
 
 BASE_URL = "https://web.qualityautomacao.com.br"
@@ -54,7 +63,7 @@ PROFILE = "WEBPOSTO_CONVENIENCIA_24_HORAS_KEY"
 COST_CENTER = 24886
 MAX_WAVE = 20
 EXHAUST_MAX = 36
-EXHAUST_MAX_BY_WAVE = {2: 36, 3: 80, 4: 80}
+EXHAUST_MAX_BY_WAVE = {2: 36, 3: 80, 4: 80, 5: 80}
 PAUSE_SECONDS = 1.5
 SENTINEL_EVERY = 10
 
@@ -63,6 +72,7 @@ PROFILES = REGISTRATION_DIR / "fiscal_profiles_118508.json"
 CHECKPOINT = REGISTRATION_DIR / "execution" / "checkpoint_118508.json"
 ACCOUNTANT_REVIEW = REGISTRATION_DIR / "accountant_review_118508.json"
 PENDING_COST_UPDATE = REGISTRATION_DIR / "pending_cost_update_118508.json"
+PENDING_PRICE_REVIEW = REGISTRATION_DIR / "pending_price_review_118508.json"
 
 PENDING_COST_FLAG = "ALLOW_PENDING_DFE_COST"
 PENDING_COST_STATUS = "PENDING"
@@ -74,6 +84,7 @@ WAVE_LEVELS = {
     2: {"PROFILE_D"},
     3: {"PROFILE_D"},
     4: {"PROFILE_SPECIAL", "PROFILE_D"},
+    5: {"PROFILE_D", "PROFILE_SPECIAL"},
 }
 
 WAVE4_CATEGORY_RANK = {
@@ -504,7 +515,7 @@ def persist_lock(
             "skippedPrePost": skipped,
             "haltedReason": halted_reason,
             "verifiedProfiles": sorted(verified_profiles),
-            "reexecution": "LOCKED" if status == "COMPLETED" else "OPEN",
+            "reexecution": "LOCKED" if status in {"COMPLETED", "PARTIAL"} else "OPEN",
         },
     )
 
@@ -527,7 +538,7 @@ def main() -> None:
     args = parser.parse_args()
 
     max_allowed = EXHAUST_MAX_BY_WAVE.get(args.wave, EXHAUST_MAX) if args.exhaust else MAX_WAVE
-    if args.wave == 4 and args.exhaust and args.limit == MAX_WAVE:
+    if args.wave in {4, 5} and args.exhaust and args.limit == MAX_WAVE:
         args.limit = max_allowed
     if args.limit > max_allowed:
         raise WaveHalted(f"Limite {args.limit} excede o maximo de {max_allowed} por execucao")
@@ -556,6 +567,7 @@ def main() -> None:
     checkpoint = load_json(CHECKPOINT, {})
     review = load_json(ACCOUNTANT_REVIEW, {})
     pending_cost = load_json(PENDING_COST_UPDATE, {})
+    pending_price = load_json(PENDING_PRICE_REVIEW, {})
 
     gated_out: list[dict[str, Any]] = []
     if args.wave == 4:
@@ -571,13 +583,17 @@ def main() -> None:
             payload["profiles"],
             WAVE_LEVELS[args.wave],
             args.limit,
-            by_payload=args.by_payload,
-            gate=None if args.exhaust else product_gate,
+            by_payload=args.by_payload or args.wave == 5,
+            gate=(
+                (lambda product: product_gate(product, allow_special=True))
+                if args.wave == 5
+                else None if args.exhaust else product_gate
+            ),
             rejected=gated_out,
             checkpoint=checkpoint,
             onda=args.wave,
         )
-    if not queue:
+    if not queue and args.wave != 5:
         raise WaveHalted(f"Nenhum produto elegivel na onda {args.wave}")
 
     profile_ids = {item["profile"]["profile_id"] for item in queue}
@@ -646,7 +662,9 @@ def main() -> None:
                 body = product["body"]["preview"]
                 expected_hash = product["body"]["hash"]
                 canary = item["is_canary"] and profile["profile_id"] not in verified_profiles
-                category = item.get("wave4_category")
+                category = item.get("wave4_category") or (
+                    wave4_category(product) if args.wave == 5 else None
+                )
                 if category and category != current_category:
                     if current_category is not None:
                         confirm_sentinel(credential, reader, f"troca_{current_category}_para_{category}")
@@ -669,7 +687,7 @@ def main() -> None:
                 if profile["profile_id"] in blocked_payloads:
                     skip("PERFIL_BLOQUEADO_SEM_CEST")
                     continue
-                gate_reason = product_gate(product, allow_special=args.wave == 4)
+                gate_reason = product_gate(product, allow_special=args.wave in {4, 5})
                 if gate_reason:
                     skip("GATE", gate_reason)
                     continue
@@ -696,11 +714,41 @@ def main() -> None:
                     continue
                 description_matches = find_description_duplicates(product["descricao"], catalog_rows)
                 if description_matches:
-                    skip(
-                        "DUPLICIDADE_POR_DESCRICAO",
-                        f"{ean}->{description_matches[0].get('produtoCodigo')}",
-                    )
-                    continue
+                    existing = description_matches[0]
+                    if args.wave == 5:
+                        label, reason = classify_final_duplicate(
+                            product["descricao"],
+                            existing.get("nome") or "",
+                            candidate_family=product.get("familiaComercial"),
+                            existing_family=commercial_family(existing.get("nome") or ""),
+                        )
+                        if label == LEGITIMATE_VARIANT:
+                            pass
+                        elif label == SAME_PRODUCT:
+                            skip(
+                                "ALREADY_REGISTERED_BY_DESCRIPTION",
+                                str(existing.get("produtoCodigo")),
+                            )
+                            checkpoint[ean] = {
+                                "status": "ALREADY_REGISTERED_BY_DESCRIPTION",
+                                "ean": ean,
+                                "descricao": product["descricao"],
+                                "produto_existente": existing.get("produtoCodigo"),
+                                "produto_existente_descricao": existing.get("nome"),
+                                "bloqueio": "Nao cadastrar. Nao alterar o produto existente.",
+                                "classificadoEm": datetime.now(timezone.utc).isoformat(),
+                            }
+                            save_json(CHECKPOINT, checkpoint)
+                            continue
+                        else:
+                            skip("UNRESOLVED_DUPLICATE" if label == UNRESOLVED_DUPLICATE else label, reason)
+                            continue
+                    else:
+                        skip(
+                            "DUPLICIDADE_POR_DESCRICAO",
+                            f"{ean}->{existing.get('produtoCodigo')}",
+                        )
+                        continue
                 if "empresaCodigo" in body:
                     halted_reason = f"BODY_COM_EMPRESA_CODIGO:{ean}"
                     break
@@ -793,7 +841,7 @@ def main() -> None:
                     print(f"STOP HTTP {http_status} {ean}")
                     break
                 if ret not in (None, 0, "0"):
-                    if args.wave == 3 and not body.get("codigoCest"):
+                    if args.wave in {3, 5} and not body.get("codigoCest"):
                         record["classification"] = "CEST_REJEITADO_PELA_API"
                         executed.append(record)
                         blocked_payloads.add(profile["profile_id"])
@@ -984,6 +1032,21 @@ def main() -> None:
                     }
                     save_json(ACCOUNTANT_REVIEW, review)
 
+                if product.get("requires_price_review") or cost_info.get("requires_price_review"):
+                    pending_price[ean] = {
+                        "ean": ean,
+                        "descricao": product["descricao"],
+                        "produtoCodigo": code,
+                        "referenciaCodigo": reference,
+                        "precoCustoDfe": body["precoCusto"],
+                        "precoVenda": body["precoVenda"],
+                        "negative_margin": True,
+                        "commercial_risk": "OWNER_ACCEPTED",
+                        "requires_price_review": True,
+                        "criadoEm": datetime.now(timezone.utc).isoformat(),
+                    }
+                    save_json(PENDING_PRICE_REVIEW, pending_price)
+
                 if cost_info.get("requires_cost_update"):
                     pending_cost[ean] = {
                         "ean": ean,
@@ -1030,7 +1093,7 @@ def main() -> None:
     except WaveHalted as exc:
         persist_lock(
             wave_lock,
-            status="HALTED",
+            status="PARTIAL" if args.wave == 5 else "HALTED",
             wave=args.wave,
             batch=args.batch,
             by_payload=args.by_payload,
@@ -1045,9 +1108,14 @@ def main() -> None:
         raise
 
     created = [r for r in executed if r.get("classification") == "CREATED_AND_VERIFIED"]
+    final_status = (
+        "COMPLETED"
+        if not halted_reason
+        else ("PARTIAL" if args.wave == 5 else "HALTED")
+    )
     persist_lock(
         wave_lock,
-        status="COMPLETED" if not halted_reason else "HALTED",
+        status=final_status,
         wave=args.wave,
         batch=args.batch,
         by_payload=args.by_payload,
@@ -1078,7 +1146,8 @@ def main() -> None:
             "products": executed,
             "skipped": skipped,
             "rollback": "NOT_PERFORMED",
-            "nextWave": "PAUSED_AWAITING_AUTHORIZATION",
+            "nextWave": "NONE" if args.wave == 5 else "PAUSED_AWAITING_AUTHORIZATION",
+            "ondaFinal": args.wave == 5,
         },
     )
 
@@ -1108,7 +1177,7 @@ def main() -> None:
     print(f"REMOVIDOS DO LOTE: {len(skipped)}")
     print(f"PERFIS COM CANARIO VERIFICADO NESTA ONDA: {len(verified_profiles)}")
     print(f"INTERROMPIDO POR: {halted_reason or 'NADA — onda concluida'}")
-    print("PROXIMA ONDA: PAUSADA aguardando autorizacao")
+    print("PROXIMA ONDA: NENHUMA" if args.wave == 5 else "PROXIMA ONDA: PAUSADA aguardando autorizacao")
     print(f"resultado: {result_path}")
 
 
