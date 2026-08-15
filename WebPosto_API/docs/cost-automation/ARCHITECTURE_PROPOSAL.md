@@ -1,6 +1,6 @@
 # Proposta — atualizador de custos
 
-PUT de custo não está implementado. Esta nota só descreve o fluxo futuro.
+Fase 1 entregue: propostas read-only. PUT de custo continua sem implementação.
 
 ## Fluxo
 
