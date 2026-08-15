@@ -53,7 +53,9 @@ COMPANY_CODE = 118508
 PROFILE = "WEBPOSTO_CONVENIENCIA_24_HORAS_KEY"
 COST_CENTER = 24886
 MAX_WAVE = 20
+EXHAUST_MAX = 36
 PAUSE_SECONDS = 1.5
+SENTINEL_EVERY = 10
 
 REGISTRATION_DIR = ROOT / "data" / "product_registration"
 PROFILES = REGISTRATION_DIR / "fiscal_profiles_118508.json"
@@ -361,6 +363,46 @@ def send_product(
     return "TIMEOUT_UNCONFIRMED", None, None, "tentativas esgotadas"
 
 
+def confirm_sentinel(credential: Any, reader: HttpProductReader, when: str) -> None:
+    """Confere o BONO no inicio, a cada 10 confirmados e no encerramento."""
+    guard = company_guard(credential, reader)
+    if not guard.passed:
+        raise WaveHalted(f"Sentinel BONO nao confirmado ({when})")
+    print(f"sentinel BONO ({when}): encontrado={guard.sentinel_found} "
+          f"vinculo={guard.company_link_confirmed}")
+
+
+def persist_lock(
+    path: Path,
+    *,
+    status: str,
+    wave: int,
+    batch: str,
+    by_payload: bool,
+    post_count: int,
+    created: int,
+    skipped: int,
+    halted_reason: str | None,
+    verified_profiles: set[str],
+) -> None:
+    save_json(
+        path,
+        {
+            "status": status,
+            "executedAt": datetime.now(timezone.utc).isoformat(),
+            "wave": wave,
+            "batch": batch,
+            "groupedByPayload": by_payload,
+            "postCount": post_count,
+            "createdAndVerified": created,
+            "skippedPrePost": skipped,
+            "haltedReason": halted_reason,
+            "verifiedProfiles": sorted(verified_profiles),
+            "reexecution": "LOCKED" if status == "COMPLETED" else "OPEN",
+        },
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Executa uma onda de perfis fiscais da 118508")
     parser.add_argument("--wave", type=int, default=1, choices=sorted(WAVE_LEVELS))
@@ -371,10 +413,16 @@ def main() -> None:
         action="store_true",
         help="agrupa perfis de mesmo payload tributario sob um unico canario",
     )
+    parser.add_argument(
+        "--exhaust",
+        action="store_true",
+        help="permite ate EXHAUST_MAX produtos numa unica execucao da onda",
+    )
     args = parser.parse_args()
 
-    if args.limit > MAX_WAVE:
-        raise WaveHalted(f"Limite {args.limit} excede o maximo de {MAX_WAVE} por execucao")
+    max_allowed = EXHAUST_MAX if args.exhaust else MAX_WAVE
+    if args.limit > max_allowed:
+        raise WaveHalted(f"Limite {args.limit} excede o maximo de {max_allowed} por execucao")
 
     out_dir = REGISTRATION_DIR / f"wave_{args.wave:02d}_batch_{args.batch}_118508"
     if args.wave == 1 and args.batch == "01":
@@ -382,11 +430,11 @@ def main() -> None:
         out_dir = REGISTRATION_DIR / "wave_01_118508"
     result_path = out_dir / "execution_result.json"
     wave_lock = out_dir / "wave_lock.json"
-    if wave_lock.is_file():
-        lock = load_json(wave_lock, {})
+    existing_lock = load_json(wave_lock, {}) if wave_lock.is_file() else {}
+    if existing_lock and existing_lock.get("status") != "RUNNING":
         raise WaveHalted(
-            f"Onda {args.wave} lote {args.batch} já executado em {lock.get('executedAt')} "
-            f"({lock.get('postCount')} POSTs). Nova execução recusada."
+            f"Onda {args.wave} lote {args.batch} já executado em {existing_lock.get('executedAt')} "
+            f"({existing_lock.get('postCount')} POSTs). Nova execução recusada."
         )
 
     payload = load_json(PROFILES, {})
@@ -407,425 +455,467 @@ def main() -> None:
         WAVE_LEVELS[args.wave],
         args.limit,
         by_payload=args.by_payload,
-        gate=product_gate,
+        gate=None if args.exhaust else product_gate,
         rejected=gated_out,
         checkpoint=checkpoint,
     )
     if not queue:
         raise WaveHalted(f"Nenhum produto elegivel na onda {args.wave}")
 
-    print("=" * 78)
     profile_ids = {item["profile"]["profile_id"] for item in queue}
-    print(f"ONDA {args.wave} — EMPRESA {COMPANY_CODE} — {len(queue)} PRODUTOS "
-          f"EM {len(profile_ids)} PERFIS")
-    print("=" * 78)
-    print(f"credencial: {credential.variable_name} (nunca impressa)")
-    print(f"custo pendente autorizado: {pending_cost_allowed()}")
-    if gated_out:
-        print(f"fora da fila por gate previo: {len(gated_out)}")
-        for entry in gated_out:
-            print(f"   {entry['ean']} | {entry['descricao'][:40]} | {entry['motivo']}")
+    print(f"ONDA {args.wave} LOTE {args.batch} | fila={len(queue)} | "
+          f"perfis={len(profile_ids)} | gated={len(gated_out)} | "
+          f"custo_pendente={pending_cost_allowed()}")
 
     executed: list[dict[str, Any]] = []
     skipped: list[dict[str, Any]] = []
     verified_profiles: set[str] = set()
     halted_reason: str | None = None
     post_count = 0
+    sent_hashes = {
+        str(row.get("body_hash"))
+        for row in checkpoint.values()
+        if isinstance(row, dict) and row.get("body_hash")
+    }
 
-    with httpx.Client(timeout=120.0) as client:
-        reader = HttpProductReader(client)
+    persist_lock(
+        wave_lock,
+        status="RUNNING",
+        wave=args.wave,
+        batch=args.batch,
+        by_payload=args.by_payload,
+        post_count=0,
+        created=0,
+        skipped=0,
+        halted_reason=None,
+        verified_profiles=verified_profiles,
+    )
 
-        guard = company_guard(credential, reader)
-        if not guard.passed:
-            raise WaveHalted("Sentinel BONO não confirmado na empresa 118508")
-        print(f"sentinel BONO: encontrado={guard.sentinel_found} "
-              f"vinculo={guard.company_link_confirmed}")
+    try:
+        with httpx.Client(timeout=120.0) as client:
+            reader = HttpProductReader(client)
+            confirm_sentinel(credential, reader, "inicio")
 
-        catalog_rows: list[dict[str, Any]] = []
-        cursor = 0
-        seen: set[int] = set()
-        page = reader.get_catalog(credential.key, cursor=0, page_size=200)
-        while page:
-            catalog_rows.extend(page)
-            nxt = max(int(p.get("produtoCodigo") or 0) for p in page)
-            if nxt == cursor or nxt in seen:
-                break
-            seen.add(nxt)
-            cursor = nxt
-            page = reader.get_catalog(credential.key, cursor=cursor, page_size=200)
-        all_codes: dict[str, int] = {}
-        for entry in catalog_rows:
-            for bar in barcodes(entry):
-                all_codes.setdefault(bar, int(entry.get("produtoCodigo") or 0))
-        # Referencia para localizar um produto criado durante um timeout: codigo novo é
-        # sempre maior que os existentes.
-        highest_code = max(int(row.get("produtoCodigo") or 0) for row in catalog_rows)
-        print(f"catalogo indexado: {len(catalog_rows)} produtos | {len(all_codes)} codigos"
-              f" | maior codigo {highest_code}")
-        print()
+            catalog_rows: list[dict[str, Any]] = []
+            cursor = 0
+            seen: set[int] = set()
+            page = reader.get_catalog(credential.key, cursor=0, page_size=200)
+            while page:
+                catalog_rows.extend(page)
+                nxt = max(int(p.get("produtoCodigo") or 0) for p in page)
+                if nxt == cursor or nxt in seen:
+                    break
+                seen.add(nxt)
+                cursor = nxt
+                page = reader.get_catalog(credential.key, cursor=cursor, page_size=200)
+            all_codes: dict[str, int] = {}
+            for entry in catalog_rows:
+                for bar in barcodes(entry):
+                    all_codes.setdefault(bar, int(entry.get("produtoCodigo") or 0))
+            # Referencia para localizar um produto criado durante um timeout: codigo novo é
+            # sempre maior que os existentes.
+            highest_code = max(int(row.get("produtoCodigo") or 0) for row in catalog_rows)
+            print(f"catalogo indexado: {len(catalog_rows)} produtos | {len(all_codes)} codigos"
+                  f" | maior codigo {highest_code}")
+            print()
 
-        for item in queue:
-            profile = item["profile"]
-            product = item["product"]
-            ean = product["ean"]
-            body = product["body"]["preview"]
-            expected_hash = product["body"]["hash"]
-            canary = item["is_canary"] and profile["profile_id"] not in verified_profiles
+            for item in queue:
+                profile = item["profile"]
+                product = item["product"]
+                ean = product["ean"]
+                body = product["body"]["preview"]
+                expected_hash = product["body"]["hash"]
+                canary = item["is_canary"] and profile["profile_id"] not in verified_profiles
 
-            label = "CANARIO" if canary else "perfil já validado"
-            print(f"--- {ean} — {product['descricao']}")
-            print(f"    perfil {profile['profile_id']} ({label})")
+                def skip(reason: str, detail: str | None = None) -> None:
+                    skipped.append(
+                        {
+                            "ean": ean,
+                            "descricao": product["descricao"],
+                            "profileId": profile["profile_id"],
+                            "motivo": "SKIPPED_PRE_POST",
+                            "detalhe": f"{reason}{f':{detail}' if detail else ''}",
+                        }
+                    )
+                    print(f"SKIP {ean} {reason}{f':{detail}' if detail else ''}")
 
-            def skip(reason: str, detail: str | None = None) -> None:
-                skipped.append(
-                    {
-                        "ean": ean,
-                        "descricao": product["descricao"],
-                        "profileId": profile["profile_id"],
-                        "motivo": reason,
-                        "detalhe": detail,
-                    }
+                # --- Falhas individuais: removem o produto e a onda continua ---------------
+                gate_reason = product_gate(product)
+                if gate_reason:
+                    skip("GATE", gate_reason)
+                    continue
+                if ean in BLOCKED_EANS or ean in checkpoint:
+                    skip("JA_PROCESSADO_OU_BLOQUEADO")
+                    continue
+                if expected_hash in sent_hashes:
+                    skip("BODY_HASH_JA_ENVIADO")
+                    continue
+                fabricated = looks_fabricated_gtin(ean)
+                if fabricated:
+                    skip("GTIN_COM_APARENCIA_DE_INVENTADO", fabricated)
+                    continue
+                if not body.get("precoVenda") or body["precoVenda"] <= 0:
+                    skip("PRECO_VENDA_INVALIDO")
+                    continue
+                cost_ok, cost_reason = validate_cost(body.get("precoCusto"), product.get("custo") or {})
+                if not cost_ok:
+                    skip(cost_reason)
+                    continue
+
+                if ean in all_codes:
+                    skip("DUPLICADO_NO_CATALOGO", str(all_codes[ean]))
+                    continue
+                description_matches = find_description_duplicates(product["descricao"], catalog_rows)
+                if description_matches:
+                    skip(
+                        "DUPLICIDADE_POR_DESCRICAO",
+                        f"{ean}->{description_matches[0].get('produtoCodigo')}",
+                    )
+                    continue
+                if "empresaCodigo" in body:
+                    halted_reason = f"BODY_COM_EMPRESA_CODIGO:{ean}"
+                    break
+                if body["codigoBarras"] != ean or body["codigoExterno"] != ean:
+                    halted_reason = f"BODY_DIVERGENTE_DO_EAN:{ean}"
+                    break
+                profile_divergences = (
+                    body_matches_payload(body, profile)
+                    if item["by_payload"]
+                    else body_matches_profile(body, profile)
                 )
-                print(f"    REMOVIDO DO LOTE: {reason}{f' — {detail}' if detail else ''}")
+                if profile_divergences:
+                    halted_reason = f"BODY_FORA_DO_PERFIL:{ean}:{','.join(profile_divergences)}"
+                    break
+                if not body.get("codigoNcm"):
+                    skip("NCM_AUSENTE")
+                    continue
 
-            # --- Falhas individuais: removem o produto e a onda continua ---------------
-            if ean in BLOCKED_EANS or ean in checkpoint:
-                skip("JA_PROCESSADO_OU_BLOQUEADO")
-                continue
-            fabricated = looks_fabricated_gtin(ean)
-            if fabricated:
-                skip("GTIN_COM_APARENCIA_DE_INVENTADO", fabricated)
-                continue
-            if not body.get("precoVenda") or body["precoVenda"] <= 0:
-                skip("PRECO_VENDA_INVALIDO")
-                continue
-            cost_ok, cost_reason = validate_cost(body.get("precoCusto"), product.get("custo") or {})
-            if not cost_ok:
-                skip(cost_reason)
-                continue
-
-            # --- Falhas de integridade: interrompem a onda -----------------------------
-            if ean in all_codes:
-                halted_reason = f"DUPLICADO_NO_CATALOGO:{ean}->{all_codes[ean]}"
-                break
-            description_matches = find_description_duplicates(product["descricao"], catalog_rows)
-            if description_matches:
-                # Duplicidade por descricao nao interrompe mais a onda: bloqueia apenas o
-                # produto e a proxima iteracao preenche a vaga com o seguinte elegivel.
-                skip(
-                    "DUPLICIDADE_POR_DESCRICAO",
-                    f"{ean}->{description_matches[0].get('produtoCodigo')}",
+                outcome, response, recovered, transport_error = send_product(
+                    client,
+                    reader,
+                    credential.key,
+                    body,
+                    ean=ean,
+                    from_code=highest_code,
                 )
-                continue
-            if "empresaCodigo" in body:
-                halted_reason = f"BODY_COM_EMPRESA_CODIGO:{ean}"
-                break
-            if body["codigoBarras"] != ean or body["codigoExterno"] != ean:
-                halted_reason = f"BODY_DIVERGENTE_DO_EAN:{ean}"
-                break
-            profile_divergences = (
-                body_matches_payload(body, profile)
-                if item["by_payload"]
-                else body_matches_profile(body, profile)
-            )
-            if profile_divergences:
-                halted_reason = f"BODY_FORA_DO_PERFIL:{ean}:{','.join(profile_divergences)}"
-                break
-            if not body.get("codigoNcm"):
-                skip("NCM_AUSENTE")
-                continue
-
-            print(f"    custo {body['precoCusto']} ({cost_reason}) | venda {body['precoVenda']}"
-                  f" | NCM {body['codigoNcm']} | CEST {body['codigoCest']}"
-                  f" | hash {expected_hash[:16]}...")
-
-            outcome, response, recovered, transport_error = send_product(
-                client,
-                reader,
-                credential.key,
-                body,
-                ean=ean,
-                from_code=highest_code,
-            )
-            post_count += 1
-            if outcome == "TIMEOUT_UNCONFIRMED":
-                executed.append(
-                    {
-                        "ean": ean,
-                        "descricao": product["descricao"],
-                        "profileId": profile["profile_id"],
-                        "classification": "TIMEOUT_SEM_CONFIRMACAO",
-                        "transportError": transport_error,
-                    }
-                )
-                halted_reason = f"TIMEOUT_SEM_CONFIRMACAO:{ean}"
-                print("    ALERTA: sem resposta e EAN nao localizado; nao houve reenvio")
-                break
-            if outcome == "TIMEOUT_BUT_CREATED":
-                executed.append(
-                    {
-                        "ean": ean,
-                        "descricao": product["descricao"],
-                        "profileId": profile["profile_id"],
-                        "classification": "TIMEOUT_COM_PRODUTO_CRIADO",
+                post_count += 1
+                if outcome == "TIMEOUT_UNCONFIRMED":
+                    executed.append(
+                        {
+                            "ean": ean,
+                            "descricao": product["descricao"],
+                            "profileId": profile["profile_id"],
+                            "classification": "RESULT_UNKNOWN",
+                            "transportError": transport_error,
+                        }
+                    )
+                    halted_reason = f"RESULT_UNKNOWN:{ean}"
+                    print(f"STOP RESULT_UNKNOWN {ean}")
+                    break
+                if outcome == "TIMEOUT_BUT_CREATED":
+                    # Timeout, mas o EAN existe: segue para a mesma verificacao do POST ok.
+                    http_status = 200
+                    response_payload = {
                         "codProduto": recovered.get("produtoCodigo"),
+                        "recoveredAfterTimeout": True,
                         "transportError": transport_error,
                     }
-                )
-                halted_reason = f"TIMEOUT_COM_PRODUTO_CRIADO:{ean}"
-                print(f"    ALERTA: timeout, mas o produto {recovered.get('produtoCodigo')} "
-                      "existe; parando para conferencia manual")
-                break
+                    ret = None
+                    men = None
+                    cod_produto = recovered.get("produtoCodigo")
+                else:
+                    http_status = response.status_code
+                    try:
+                        response_payload = response.json()
+                    except Exception:
+                        response_payload = {"raw": (response.text or "")[:400]}
+                    ret = response_payload.get("RET") if isinstance(response_payload, dict) else None
+                    men = response_payload.get("MEN") if isinstance(response_payload, dict) else None
+                    cod_produto = (
+                        response_payload.get("codProduto")
+                        if isinstance(response_payload, dict)
+                        else None
+                    )
 
-            http_status = response.status_code
-            try:
-                response_payload = response.json()
-            except Exception:
-                response_payload = {"raw": (response.text or "")[:400]}
-
-            ret = response_payload.get("RET") if isinstance(response_payload, dict) else None
-            men = response_payload.get("MEN") if isinstance(response_payload, dict) else None
-            cod_produto = (
-                response_payload.get("codProduto") if isinstance(response_payload, dict) else None
-            )
-            print(f"    POST -> HTTP {http_status} | RET={ret} | MEN={men} "
-                  f"| codProduto={cod_produto}")
-
-            record: dict[str, Any] = {
-                "ean": ean,
-                "descricao": product["descricao"],
-                "profileId": profile["profile_id"],
-                "profileLevel": profile["level"],
-                "canary": canary,
-                "httpStatus": http_status,
-                "ret": ret,
-                "men": men,
-                "codProduto": cod_produto,
-                "bodyHash": expected_hash,
-                "response": response_payload,
-            }
-
-            if http_status != 200:
-                record["classification"] = "HTTP_INESPERADO"
-                executed.append(record)
-                halted_reason = f"HTTP_INESPERADO:{http_status}"
-                break
-            if ret not in (None, 0, "0"):
-                record["classification"] = "RET_NAO_SUCESSO"
-                executed.append(record)
-                halted_reason = f"RET_NAO_SUCESSO:{ret}"
-                break
-            if not cod_produto:
-                record["classification"] = "SEM_CODPRODUTO"
-                executed.append(record)
-                halted_reason = "SEM_CODPRODUTO"
-                break
-
-            code = int(cod_produto)
-            if code in BLOCKED_CODES:
-                record["classification"] = "CODIGO_BLOQUEADO_RETORNADO"
-                executed.append(record)
-                halted_reason = f"CODIGO_BLOQUEADO_RETORNADO:{code}"
-                break
-
-            links = reader.get_company_links(credential.key, cursor=code - 1, page_size=50)
-            matching = [row for row in links if int(row.get("produtoCodigo") or 0) == code]
-            company_link = next(
-                (row for row in matching if int(row.get("empresaCodigo") or 0) == COMPANY_CODE),
-                None,
-            )
-            rows = reader.get_catalog(credential.key, cursor=code - 1, page_size=50)
-            created = next((p for p in rows if int(p.get("produtoCodigo") or 0) == code), None)
-
-            record["verification"] = {
-                "produtoCodigo": code,
-                "links": [
-                    {
-                        "empresaCodigo": row.get("empresaCodigo"),
-                        "precoVenda": row.get("precoVenda"),
-                        "precoCusto": row.get("precoCusto"),
-                        "ativo": row.get("ativo"),
-                    }
-                    for row in matching
-                ],
-                "companyLinkConfirmed": bool(company_link),
-                "catalog": (
-                    {
-                        "nome": created.get("nome"),
-                        "referenciaCodigo": created.get("referenciaCodigo"),
-                        "ncm": created.get("ncm"),
-                        "cest": created.get("cest"),
-                        "grupoCodigo": created.get("grupoCodigo"),
-                        "produtoCodigoExterno": created.get("produtoCodigoExterno"),
-                    }
-                    if created
-                    else None
-                ),
-                "centerSent": COST_CENTER,
-            }
-
-            if not company_link:
-                record["classification"] = (
-                    "CREATED_IN_WRONG_COMPANY" if matching else "ORPHANED_SHARED_CATALOG_RECORD"
-                )
-                executed.append(record)
-                halted_reason = record["classification"]
-                print(f"    ALERTA: {record['classification']}")
-                break
-
-            divergences = []
-            if abs(float(company_link.get("precoVenda") or 0) - float(body["precoVenda"])) > 0.005:
-                divergences.append("precoVenda")
-            if abs(float(company_link.get("precoCusto") or 0) - float(body["precoCusto"])) > 0.005:
-                divergences.append("precoCusto")
-            if not company_link.get("ativo"):
-                divergences.append("ativo")
-            if created and str(created.get("ncm") or "") != str(body["codigoNcm"]):
-                divergences.append("ncm")
-            if created and str(created.get("cest") or "") != str(body["codigoCest"]):
-                divergences.append("cest")
-            if created and ean not in barcodes(created):
-                divergences.append("codigoBarras")
-            record["verification"]["divergences"] = divergences
-
-            if divergences:
-                record["classification"] = "DIVERGENCIA_BODY_VS_LIDO"
-                executed.append(record)
-                halted_reason = f"DIVERGENCIA:{','.join(divergences)}"
-                print(f"    ALERTA: divergência em {divergences}")
-                break
-
-            record["classification"] = "CREATED_AND_VERIFIED"
-            executed.append(record)
-            reference = record["verification"]["catalog"]["referenciaCodigo"]
-            print(f"    verificado: empresa {company_link.get('empresaCodigo')} | "
-                  f"venda {company_link.get('precoVenda')} | "
-                  f"custo {company_link.get('precoCusto')} | "
-                  f"ativo {company_link.get('ativo')} | ref {reference}")
-            if canary:
-                verified_profiles.add(profile["profile_id"])
-                print(f"    canario verificado: perfil {profile['profile_id']} liberado")
-
-            cost_info = product.get("custo") or {}
-            nfe = cost_info.get("nfe") or {}
-            evidence = profile["evidencias"]
-            trail = {
-                "tax_basis_source": evidence.get("tax_basis_source"),
-                "entry_tax_evidence": evidence.get("entry_tax_evidence"),
-                "decision_authority": evidence.get("decision_authority"),
-            }
-            checkpoint[ean] = {
-                **trail,
-                "payload_id": profile["profile_id"] if item["by_payload"] else None,
-                "perfil_fiscal": product.get("perfilFiscal") or profile["profile_id"],
-                # Payload compartilhado nao apaga a identidade fiscal do produto.
-                "familia_comercial": product.get("familiaComercial"),
-                "status": "CREATED_AND_VERIFIED",
-                "codProduto": code,
-                "referenciaCodigo": reference,
-                "descricao": product["descricao"],
-                "body_hash": expected_hash,
-                "empresa_pretendida": COMPANY_CODE,
-                "empresa_efetiva": int(company_link.get("empresaCodigo") or 0),
-                "credencial_usada": credential.variable_name,
-                "preco_venda": company_link.get("precoVenda"),
-                "preco_custo": company_link.get("precoCusto"),
-                "precoCusto": body["precoCusto"],
-                "ncm": body["codigoNcm"],
-                "cest": body["codigoCest"],
-                "cost_source": cost_info.get("source"),
-                "cost_status": cost_info.get("cost_status"),
-                "cost_risk": cost_info.get("cost_risk"),
-                "requires_cost_update": cost_info.get("requires_cost_update", False),
-                "dfe_invoice": f"{nfe.get('numero')}/{nfe.get('serie')}" if nfe else None,
-                "profile_id": profile["profile_id"],
-                "profile_level": profile["level"],
-                "profile_canary": canary,
-                "icms_table_reference": profile["referencia_icms"],
-                "pis_cofins_table_reference": profile["referencia_pis_cofins"],
-                "confidence": profile["confidence"],
-                "fiscal_risk": profile["fiscal_risk"],
-                "requires_accountant_review": profile["requires_accountant_review"],
-                "rollback": "NOT_PERFORMED",
-                "bloqueio": "Cadastrado e verificado. Nao reenviar.",
-            }
-            save_json(CHECKPOINT, checkpoint)
-
-            if profile["requires_accountant_review"]:
-                review[ean] = {
-                    **trail,
+                record: dict[str, Any] = {
                     "ean": ean,
                     "descricao": product["descricao"],
+                    "profileId": profile["profile_id"],
+                    "profileLevel": profile["level"],
+                    "canary": canary,
+                    "httpStatus": http_status,
+                    "ret": ret,
+                    "men": men,
+                    "codProduto": cod_produto,
+                    "bodyHash": expected_hash,
+                    "response": response_payload,
+                }
+
+                if http_status in {401, 403}:
+                    record["classification"] = "HTTP_AUTH"
+                    executed.append(record)
+                    halted_reason = f"HTTP_AUTH:{http_status}"
+                    print(f"STOP HTTP_AUTH {http_status} {ean}")
+                    break
+                if http_status != 200:
+                    record["classification"] = "HTTP_INESPERADO"
+                    executed.append(record)
+                    halted_reason = f"HTTP_INESPERADO:{http_status}"
+                    print(f"STOP HTTP {http_status} {ean}")
+                    break
+                if ret not in (None, 0, "0"):
+                    record["classification"] = "RET_NAO_SUCESSO"
+                    executed.append(record)
+                    halted_reason = f"RET_NAO_SUCESSO:{ret}"
+                    break
+                if not cod_produto:
+                    record["classification"] = "SEM_CODPRODUTO"
+                    executed.append(record)
+                    halted_reason = "SEM_CODPRODUTO"
+                    break
+
+                code = int(cod_produto)
+                if code in BLOCKED_CODES:
+                    record["classification"] = "CODIGO_BLOQUEADO_RETORNADO"
+                    executed.append(record)
+                    halted_reason = f"CODIGO_BLOQUEADO_RETORNADO:{code}"
+                    break
+
+                links = reader.get_company_links(credential.key, cursor=code - 1, page_size=50)
+                matching = [row for row in links if int(row.get("produtoCodigo") or 0) == code]
+                company_link = next(
+                    (row for row in matching if int(row.get("empresaCodigo") or 0) == COMPANY_CODE),
+                    None,
+                )
+                rows = reader.get_catalog(credential.key, cursor=code - 1, page_size=50)
+                created = next((p for p in rows if int(p.get("produtoCodigo") or 0) == code), None)
+
+                record["verification"] = {
                     "produtoCodigo": code,
+                    "links": [
+                        {
+                            "empresaCodigo": row.get("empresaCodigo"),
+                            "precoVenda": row.get("precoVenda"),
+                            "precoCusto": row.get("precoCusto"),
+                            "ativo": row.get("ativo"),
+                        }
+                        for row in matching
+                    ],
+                    "companyLinkConfirmed": bool(company_link),
+                    "catalog": (
+                        {
+                            "nome": created.get("nome"),
+                            "referenciaCodigo": created.get("referenciaCodigo"),
+                            "ncm": created.get("ncm"),
+                            "cest": created.get("cest"),
+                            "grupoCodigo": created.get("grupoCodigo"),
+                            "produtoCodigoExterno": created.get("produtoCodigoExterno"),
+                        }
+                        if created
+                        else None
+                    ),
+                    "centerSent": COST_CENTER,
+                }
+
+                if not company_link:
+                    record["classification"] = (
+                        "CREATED_IN_WRONG_COMPANY" if matching else "ORPHANED_SHARED_CATALOG_RECORD"
+                    )
+                    executed.append(record)
+                    halted_reason = record["classification"]
+                    print(f"    ALERTA: {record['classification']}")
+                    break
+
+                divergences = []
+                if abs(float(company_link.get("precoVenda") or 0) - float(body["precoVenda"])) > 0.005:
+                    divergences.append("precoVenda")
+                if abs(float(company_link.get("precoCusto") or 0) - float(body["precoCusto"])) > 0.005:
+                    divergences.append("precoCusto")
+                if not company_link.get("ativo"):
+                    divergences.append("ativo")
+                if created and str(created.get("ncm") or "") != str(body["codigoNcm"]):
+                    divergences.append("ncm")
+                if created and str(created.get("cest") or "") != str(body["codigoCest"]):
+                    divergences.append("cest")
+                if created and ean not in barcodes(created):
+                    divergences.append("codigoBarras")
+                record["verification"]["divergences"] = divergences
+
+                if divergences:
+                    record["classification"] = "DIVERGENCIA_BODY_VS_LIDO"
+                    executed.append(record)
+                    halted_reason = f"DIVERGENCIA:{','.join(divergences)}"
+                    print(f"    ALERTA: divergência em {divergences}")
+                    break
+
+                record["classification"] = "CREATED_AND_VERIFIED"
+                executed.append(record)
+                reference = record["verification"]["catalog"]["referenciaCodigo"]
+                created_count = len(
+                    [row for row in executed if row.get("classification") == "CREATED_AND_VERIFIED"]
+                )
+                print(f"OK {created_count}/{len(queue)} {ean} {code}")
+                if canary:
+                    verified_profiles.add(profile["profile_id"])
+                if created:
+                    catalog_rows.append(created)
+                    for bar in barcodes(created):
+                        all_codes.setdefault(bar, code)
+                    highest_code = max(highest_code, code)
+                sent_hashes.add(expected_hash)
+
+                cost_info = product.get("custo") or {}
+                nfe = cost_info.get("nfe") or {}
+                evidence = profile["evidencias"]
+                trail = {
+                    "tax_basis_source": evidence.get("tax_basis_source"),
+                    "entry_tax_evidence": evidence.get("entry_tax_evidence"),
+                    "decision_authority": evidence.get("decision_authority"),
+                }
+                checkpoint[ean] = {
+                    **trail,
+                    "payload_id": profile["profile_id"] if item["by_payload"] else None,
+                    "perfil_fiscal": product.get("perfilFiscal") or profile["profile_id"],
+                    # Payload compartilhado nao apaga a identidade fiscal do produto.
+                    "familia_comercial": product.get("familiaComercial"),
+                    "status": "CREATED_AND_VERIFIED",
+                    "codProduto": code,
                     "referenciaCodigo": reference,
+                    "descricao": product["descricao"],
+                    "body_hash": expected_hash,
+                    "empresa_pretendida": COMPANY_CODE,
+                    "empresa_efetiva": int(company_link.get("empresaCodigo") or 0),
+                    "credencial_usada": credential.variable_name,
+                    "preco_venda": company_link.get("precoVenda"),
+                    "preco_custo": company_link.get("precoCusto"),
+                    "precoCusto": body["precoCusto"],
                     "ncm": body["codigoNcm"],
                     "cest": body["codigoCest"],
-                    "familiaComercial": product.get("familiaComercial"),
-                    "profileId": product.get("perfilFiscal") or profile["profile_id"],
-                    "payloadId": profile["profile_id"] if item["by_payload"] else None,
-                    "profileLevel": profile["level"],
-                    "baseUsada": {
-                        "icmsTableReference": profile["referencia_icms"],
-                        "tributoIcms": body["tributoIcms"],
-                        "pisCofinsTableReference": profile["referencia_pis_cofins"],
-                        "tributoPisCofins": body["tributoPisCofins"],
-                        "cfopEntrada": body["cdCfopEntrada"],
-                        "cfopSaida": body["cdCfopSaida"],
-                        "tratamentoObservado": profile["tratamento_observado"],
-                    },
-                    "evidencias": profile["evidencias"],
-                    "confidence": profile["confidence"],
-                    "fiscal_risk": profile["fiscal_risk"],
-                    "requires_accountant_review": True,
-                    "justificativa": (
-                        "Base atribuida por perfil fiscal aprovado pelo proprietario, "
-                        f"nivel {profile['level']}, sem lancamento fiscal proprio do produto."
-                    ),
-                    "criadoEm": datetime.now(timezone.utc).isoformat(),
-                }
-                save_json(ACCOUNTANT_REVIEW, review)
-
-            if cost_info.get("requires_cost_update"):
-                pending_cost[ean] = {
-                    "ean": ean,
-                    "descricao": product["descricao"],
-                    "produtoCodigo": code,
-                    "referenciaCodigo": reference,
-                    "precoCustoCadastrado": body["precoCusto"],
-                    "precoVenda": body["precoVenda"],
                     "cost_source": cost_info.get("source"),
                     "cost_status": cost_info.get("cost_status"),
                     "cost_risk": cost_info.get("cost_risk"),
-                    "requires_cost_update": True,
-                    "motivo": cost_info.get("motivoRevisao")
-                    or "Sem NF-e de entrada autorizada com o EAN no armazenamento de DF-e",
-                    "acaoNecessaria": (
-                        "Atualizar custo quando a NF-e de compra entrar no DF-e. "
-                        "Correcao de cadastro existente depende de operacao de escrita "
-                        "hoje proibida (PUT)."
-                    ),
-                    "criadoEm": datetime.now(timezone.utc).isoformat(),
+                    "requires_cost_update": cost_info.get("requires_cost_update", False),
+                    "dfe_invoice": f"{nfe.get('numero')}/{nfe.get('serie')}" if nfe else None,
+                    "profile_id": profile["profile_id"],
+                    "profile_level": profile["level"],
+                    "profile_canary": canary,
+                    "icms_table_reference": profile["referencia_icms"],
+                    "pis_cofins_table_reference": profile["referencia_pis_cofins"],
+                    "confidence": profile["confidence"],
+                    "fiscal_risk": profile["fiscal_risk"],
+                    "requires_accountant_review": profile["requires_accountant_review"],
+                    "rollback": "NOT_PERFORMED",
+                    "bloqueio": "Cadastrado e verificado. Nao reenviar.",
                 }
-                save_json(PENDING_COST_UPDATE, pending_cost)
+                save_json(CHECKPOINT, checkpoint)
 
-            print()
-            time.sleep(PAUSE_SECONDS)
+                if profile["requires_accountant_review"]:
+                    review[ean] = {
+                        **trail,
+                        "ean": ean,
+                        "descricao": product["descricao"],
+                        "produtoCodigo": code,
+                        "referenciaCodigo": reference,
+                        "ncm": body["codigoNcm"],
+                        "cest": body["codigoCest"],
+                        "familiaComercial": product.get("familiaComercial"),
+                        "profileId": product.get("perfilFiscal") or profile["profile_id"],
+                        "payloadId": profile["profile_id"] if item["by_payload"] else None,
+                        "profileLevel": profile["level"],
+                        "baseUsada": {
+                            "icmsTableReference": profile["referencia_icms"],
+                            "tributoIcms": body["tributoIcms"],
+                            "pisCofinsTableReference": profile["referencia_pis_cofins"],
+                            "tributoPisCofins": body["tributoPisCofins"],
+                            "cfopEntrada": body["cdCfopEntrada"],
+                            "cfopSaida": body["cdCfopSaida"],
+                            "tratamentoObservado": profile["tratamento_observado"],
+                        },
+                        "evidencias": profile["evidencias"],
+                        "confidence": profile["confidence"],
+                        "fiscal_risk": profile["fiscal_risk"],
+                        "requires_accountant_review": True,
+                        "justificativa": (
+                            "Base atribuida por perfil fiscal aprovado pelo proprietario, "
+                            f"nivel {profile['level']}, sem lancamento fiscal proprio do produto."
+                        ),
+                        "criadoEm": datetime.now(timezone.utc).isoformat(),
+                    }
+                    save_json(ACCOUNTANT_REVIEW, review)
+
+                if cost_info.get("requires_cost_update"):
+                    pending_cost[ean] = {
+                        "ean": ean,
+                        "descricao": product["descricao"],
+                        "produtoCodigo": code,
+                        "referenciaCodigo": reference,
+                        "precoCustoCadastrado": body["precoCusto"],
+                        "precoVenda": body["precoVenda"],
+                        "cost_source": cost_info.get("source"),
+                        "cost_status": cost_info.get("cost_status"),
+                        "cost_risk": cost_info.get("cost_risk"),
+                        "requires_cost_update": True,
+                        "motivo": cost_info.get("motivoRevisao")
+                        or "Sem NF-e de entrada autorizada com o EAN no armazenamento de DF-e",
+                        "acaoNecessaria": (
+                            "Atualizar custo quando a NF-e de compra entrar no DF-e. "
+                            "Correcao de cadastro existente depende de operacao de escrita "
+                            "hoje proibida (PUT)."
+                        ),
+                        "criadoEm": datetime.now(timezone.utc).isoformat(),
+                    }
+                    save_json(PENDING_COST_UPDATE, pending_cost)
+
+                created_so_far = len(
+                    [row for row in executed if row.get("classification") == "CREATED_AND_VERIFIED"]
+                )
+                persist_lock(
+                    wave_lock,
+                    status="RUNNING",
+                    wave=args.wave,
+                    batch=args.batch,
+                    by_payload=args.by_payload,
+                    post_count=post_count,
+                    created=created_so_far,
+                    skipped=len(skipped),
+                    halted_reason=None,
+                    verified_profiles=verified_profiles,
+                )
+                if created_so_far and created_so_far % SENTINEL_EVERY == 0:
+                    confirm_sentinel(credential, reader, f"a_cada_{SENTINEL_EVERY}")
+                time.sleep(PAUSE_SECONDS)
+
+            confirm_sentinel(credential, reader, "encerramento")
+    except WaveHalted as exc:
+        persist_lock(
+            wave_lock,
+            status="HALTED",
+            wave=args.wave,
+            batch=args.batch,
+            by_payload=args.by_payload,
+            post_count=post_count,
+            created=len(
+                [row for row in executed if row.get("classification") == "CREATED_AND_VERIFIED"]
+            ),
+            skipped=len(skipped),
+            halted_reason=str(exc),
+            verified_profiles=verified_profiles,
+        )
+        raise
 
     created = [r for r in executed if r.get("classification") == "CREATED_AND_VERIFIED"]
-    if post_count:
-        save_json(
-            wave_lock,
-            {
-                "executedAt": datetime.now(timezone.utc).isoformat(),
-                "wave": args.wave,
-                "batch": args.batch,
-                "groupedByPayload": args.by_payload,
-                "postCount": post_count,
-                "createdAndVerified": len(created),
-                "haltedReason": halted_reason,
-                "verifiedProfiles": sorted(verified_profiles),
-            },
-        )
+    persist_lock(
+        wave_lock,
+        status="COMPLETED" if not halted_reason else "HALTED",
+        wave=args.wave,
+        batch=args.batch,
+        by_payload=args.by_payload,
+        post_count=post_count,
+        created=len(created),
+        skipped=len(skipped),
+        halted_reason=halted_reason,
+        verified_profiles=verified_profiles,
+    )
     save_json(
         result_path,
         {

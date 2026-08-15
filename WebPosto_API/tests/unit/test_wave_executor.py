@@ -372,3 +372,46 @@ def test_recent_search_stops_when_the_catalog_ends():
     reader = FakeReader([_catalog_row(10, "a"), _catalog_row(11, "b")])
 
     assert executor.find_recent_by_ean(reader, "k", "ausente", 5) is None
+
+
+def test_exhaust_allows_thirty_six_and_keeps_regular_cap():
+    assert executor.MAX_WAVE == 20
+    assert executor.EXHAUST_MAX == 36
+    assert executor.SENTINEL_EVERY == 10
+
+
+def test_persist_lock_writes_running_then_completed(tmp_path):
+    path = tmp_path / "wave_lock.json"
+    executor.persist_lock(
+        path,
+        status="RUNNING",
+        wave=2,
+        batch="04",
+        by_payload=True,
+        post_count=0,
+        created=0,
+        skipped=0,
+        halted_reason=None,
+        verified_profiles=set(),
+    )
+    running = executor.load_json(path, {})
+    assert running["status"] == "RUNNING"
+    assert running["reexecution"] == "OPEN"
+
+    executor.persist_lock(
+        path,
+        status="COMPLETED",
+        wave=2,
+        batch="04",
+        by_payload=True,
+        post_count=33,
+        created=33,
+        skipped=3,
+        halted_reason=None,
+        verified_profiles=set(),
+    )
+    done = executor.load_json(path, {})
+    assert done["status"] == "COMPLETED"
+    assert done["reexecution"] == "LOCKED"
+    assert done["postCount"] == 33
+    assert done["skippedPrePost"] == 3
