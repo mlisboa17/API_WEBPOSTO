@@ -29,10 +29,33 @@ MODEL_TOKEN = re.compile(
 # Token que expressa apenas peso, volume ou multiplicacao de embalagem.
 SIZE_TOKEN = re.compile(r"^\d+([.,]\d+)?(G|GR|KG|ML|L|LT|UN|UNI|X\d+)?$|^\d+X\d+")
 
+# Conectores e interfaces: "USB C" vira USBC antes da tokenizacao, senao o "C" some
+# como palavra generica e USB-C passa a ser o mesmo produto que Micro USB.
+CONNECTOR_PHRASES = (
+    (re.compile(r"DISPLAY\s*PORT"), "DISPLAYPORT"),
+    (re.compile(r"MICRO\s*USB"), "MICROUSB"),
+    (re.compile(r"MINI\s*USB"), "MINIUSB"),
+    (re.compile(r"USB[\s-]*C\b"), "USBC"),
+    (re.compile(r"USB[\s-]*A\b"), "USBA"),
+    (re.compile(r"TYPE[\s-]*C\b"), "USBC"),
+    (re.compile(r"\bLIGHTNING\b"), "LIGHTNING"),
+    (re.compile(r"\bHDMI\b"), "HDMI"),
+)
+CONNECTOR_TOKENS = frozenset(
+    {"USBC", "USBA", "MICROUSB", "MINIUSB", "LIGHTNING", "HDMI", "DISPLAYPORT"}
+)
+
 
 def _strip_accents(value: str) -> str:
     normalized = unicodedata.normalize("NFKD", value)
     return "".join(c for c in normalized if not unicodedata.combining(c))
+
+
+def _normalize_connectors(text: str) -> str:
+    """Cruza USB-C e Micro USB em tokens atomicos antes de cortar palavras genericas."""
+    for pattern, token in CONNECTOR_PHRASES:
+        text = pattern.sub(token, text)
+    return text
 
 
 def distinctive_tokens(description: str) -> frozenset[str]:
@@ -40,18 +63,23 @@ def distinctive_tokens(description: str) -> frozenset[str]:
 
     Remove ligação, embalagem e medidas, de modo que "SALG PINGO OURO PICANHA 55G NOVO"
     e "PINGO DE OURO PICANHA" produzam o mesmo conjunto. Preserva qualificadores de
-    modelo, tamanho e versao: "FILTRO MELITTA 102" e "FILTRO MELITTA 103" nao podem
-    ser considerados o mesmo produto.
+    modelo, tamanho, versao e conector: "FILTRO MELITTA 102" e "FILTRO MELITTA 103"
+    nao podem ser o mesmo produto, nem "CABO USB-C" e "CABO MICRO USB".
     """
-    text = _strip_accents(str(description or "")).upper()
+    text = _normalize_connectors(_strip_accents(str(description or "")).upper())
     tokens = re.split(r"[^A-Z0-9]+", text)
     return frozenset(
         token
         for token in tokens
         if token
         and token not in GENERIC_TOKENS
-        and (MODEL_TOKEN.match(token) or not SIZE_TOKEN.match(token))
+        and (MODEL_TOKEN.match(token) or token in CONNECTOR_TOKENS or not SIZE_TOKEN.match(token))
     )
+
+
+def connector_tokens(description: str) -> frozenset[str]:
+    """Conectores declarados na descricao. Comprimento nao entra aqui."""
+    return frozenset(token for token in distinctive_tokens(description) if token in CONNECTOR_TOKENS)
 
 
 def looks_fabricated_gtin(ean: str) -> str | None:
@@ -131,6 +159,14 @@ def classify_duplicate(
     candidate_tokens = distinctive_tokens(candidate_description)
     existing_tokens = distinctive_tokens(existing_description)
     extra = existing_tokens - candidate_tokens
+    candidate_connectors = connector_tokens(candidate_description)
+    existing_connectors = connector_tokens(existing_description)
+    if candidate_connectors != existing_connectors:
+        return POSSIBLE_VARIANT, (
+            "Conectores diferentes: "
+            f"{', '.join(sorted(candidate_connectors)) or 'nenhum'} e "
+            f"{', '.join(sorted(existing_connectors)) or 'nenhum'}"
+        )
     candidate_measure = extract_measure(candidate_description)
     existing_measure = extract_measure(existing_description)
 
@@ -176,11 +212,16 @@ def find_description_duplicates(
     wanted = distinctive_tokens(description)
     if len(wanted) < min_tokens:
         return []
-    return [
-        product
-        for product in products
-        if wanted <= distinctive_tokens(product.get(name_key) or "")
-    ]
+    wanted_connectors = connector_tokens(description)
+    matches = []
+    for product in products:
+        name = product.get(name_key) or ""
+        if wanted_connectors != connector_tokens(name):
+            # Comprimento pode gerar candidato; conector diferente nunca confirma.
+            continue
+        if wanted <= distinctive_tokens(name):
+            matches.append(product)
+    return matches
 
 
 class DuplicateChecker:

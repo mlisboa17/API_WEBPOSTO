@@ -158,3 +158,28 @@ def test_same_model_103_with_abbreviated_description_is_still_duplicate():
 def test_model_size_and_version_numbers_are_not_duplicates(first, second):
     assert find_description_duplicates(first, [{"nome": second}]) == []
     assert find_description_duplicates(second, [{"nome": first}]) == []
+
+
+@pytest.mark.parametrize(
+    ("first", "second"),
+    [
+        ("CABO I2GO USB C PARA USB C 1,2M", "CABO I2GO MICRO USB ANDROID USB USB A 1,2M"),
+        ("CABO I2GO USB-C PARA USB-C 1,2M", "CABO I2GO USB-A PARA USB-C 1,2M"),
+        ("CABO LIGHTNING 1M", "CABO USB-C 1M"),
+        ("CABO HDMI 2M", "CABO DISPLAYPORT 2M"),
+        ("CABO ANDROID MICRO USB 1,2M", "CABO USB-C 1,2M"),
+    ],
+)
+def test_connectors_and_interfaces_are_not_duplicates(first, second):
+    assert find_description_duplicates(first, [{"nome": second}]) == []
+    assert find_description_duplicates(second, [{"nome": first}]) == []
+    label, reason = classify_duplicate(first, second)
+    assert label == POSSIBLE_VARIANT
+    assert "Conectores" in reason
+
+
+def test_same_usb_c_cable_with_abbreviated_description_is_still_duplicate():
+    full = "CABO I2GO USB C PARA USB C 1,2M"
+    short = "CABO I2GO USB-C"
+
+    assert find_description_duplicates(short, [{"nome": full}]) != []
