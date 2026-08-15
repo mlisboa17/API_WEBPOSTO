@@ -26,6 +26,10 @@ from src.operational.product_registration.company_credentials import (  # noqa: 
     resolve_credential,
 )
 from src.operational.product_registration.dfe_cost_resolver import find_cost_evidence  # noqa: E402
+from src.operational.product_registration.registration_engine import (  # noqa: E402
+    ProductRegistrationService,
+)
+from src.operational.product_registration.stores import interpret_lock  # noqa: E402
 
 BASE_URL = "https://web.qualityautomacao.com.br"
 LEGACY_ENDPOINT = "/INTEGRACAO/INCLUIR_PRODUTO"
@@ -59,7 +63,7 @@ def rows(payload: Any) -> list[dict[str, Any]]:
 def assert_single_post_allowed() -> None:
     """Trava persistente: no modo piloto so um POST pode existir."""
     if PILOT_LOCK.is_file():
-        lock = json.loads(PILOT_LOCK.read_text(encoding="utf-8"))
+        lock = interpret_lock(json.loads(PILOT_LOCK.read_text(encoding="utf-8")))
         raise PilotBlocked(
             f"POST do piloto já executado em {lock.get('sentAt')} "
             f"(bodyHash={str(lock.get('bodyHash'))[:16]}...). Segunda tentativa recusada."
@@ -70,12 +74,14 @@ def write_lock(body_hash: str, extra: dict[str, Any]) -> None:
     PILOT_LOCK.write_text(
         json.dumps(
             {
+                "status": extra.get("status", "COMPLETED"),
                 "ean": EAN,
                 "empresaCodigo": COMPANY_CODE,
                 "bodyHash": body_hash,
                 "sentAt": datetime.now(timezone.utc).isoformat(),
                 "postCount": 1,
-                **extra,
+                "reexecution": "LOCKED",
+                **{k: v for k, v in extra.items() if k != "status"},
             },
             ensure_ascii=False,
             indent=2,
@@ -159,21 +165,37 @@ def main() -> None:
             raise PilotBlocked(f"EAN já existe no catálogo: produtoCodigo {duplicate.get('produtoCodigo')}")
         print(f"duplicidade: nenhuma ({scanned} produtos varridos)")
 
-        # --- POST unico -------------------------------------------------
+        # --- POST unico via fachada -------------------------------------
         url = f"{BASE_URL}{LEGACY_ENDPOINT}"
         print()
         print(f"POST {sanitize(url + '?CHAVE=' + credential.key)}")
-        response = client.post(
-            url,
-            params={"CHAVE": credential.key},
-            content=json.dumps(body, ensure_ascii=False).encode("utf-8"),
-            headers={"Content-Type": "application/json; charset=utf-8"},
+        service = ProductRegistrationService(OUT_DIR / "_facade_checkpoint.json")
+        outcome, response, recovered, transport_error = service.post_product(
+            client,
+            reader,
+            credential.key,
+            body,
+            ean=EAN,
+            from_code=0,
         )
-        http_status = response.status_code
-        try:
-            payload = response.json()
-        except Exception:
-            payload = {"raw": (response.text or "")[:400]}
+        if response is None and recovered is None:
+            write_lock(
+                body_hash,
+                {"outcome": outcome, "error": transport_error, "status": "PARTIAL"},
+            )
+            raise PilotBlocked(f"POST falhou: {outcome}:{transport_error}")
+        if response is None:
+            http_status = 200
+            payload = {
+                "codProduto": recovered.get("produtoCodigo"),
+                "recoveredAfterTimeout": True,
+            }
+        else:
+            http_status = response.status_code
+            try:
+                payload = response.json()
+            except Exception:
+                payload = {"raw": (response.text or "")[:400]}
 
         cod_produto = None
         if isinstance(payload, dict):
@@ -192,9 +214,10 @@ def main() -> None:
         if cod_produto:
             code = int(cod_produto)
             links = reader.get_company_links(credential.key, cursor=code - 1, page_size=50)
-            matching = [l for l in links if int(l.get("produtoCodigo") or 0) == code]
+            matching = [link for link in links if int(link.get("produtoCodigo") or 0) == code]
             company_link = next(
-                (l for l in matching if int(l.get("empresaCodigo") or 0) == COMPANY_CODE), None
+                (link for link in matching if int(link.get("empresaCodigo") or 0) == COMPANY_CODE),
+                None,
             )
             catalog_rows = reader.get_catalog(credential.key, cursor=code - 1, page_size=50)
             created = next((p for p in catalog_rows if int(p.get("produtoCodigo") or 0) == code), None)
@@ -204,12 +227,12 @@ def main() -> None:
                 "produtoCodigo": code,
                 "linksFound": [
                     {
-                        "empresaCodigo": l.get("empresaCodigo"),
-                        "precoVenda": l.get("precoVenda"),
-                        "precoCusto": l.get("precoCusto"),
-                        "ativo": l.get("ativo"),
+                        "empresaCodigo": link.get("empresaCodigo"),
+                        "precoVenda": link.get("precoVenda"),
+                        "precoCusto": link.get("precoCusto"),
+                        "ativo": link.get("ativo"),
                     }
-                    for l in matching
+                    for link in matching
                 ],
                 "companyLinkConfirmed": bool(company_link),
                 "catalog": (
@@ -241,7 +264,10 @@ def main() -> None:
                 )
             elif matching:
                 classification = "CREATED_IN_WRONG_COMPANY"
-                print(f"ALERTA: vinculo em outra empresa: {[l.get('empresaCodigo') for l in matching]}")
+                print(
+                    f"ALERTA: vinculo em outra empresa: "
+                    f"{[link.get('empresaCodigo') for link in matching]}"
+                )
             else:
                 classification = "ORPHANED_SHARED_CATALOG_RECORD"
                 print("ALERTA: produto no catalogo compartilhado sem vinculo PRODUTO_EMPRESA")

@@ -21,6 +21,16 @@ Consolidar o comportamento comprovado em `src/operational/product_registration/`
 - Escrita continua exigindo autorização explícita.
 - Extensões de custo e auditor fiscal existem só como interface.
 
+## Estado da migração (final)
+
+Executores operacionais de escrita (`execute_wave_118508`, `execute_microbatch_118508`, `execute_negresco_pilot_118508`, `execute_ready_products_118508`, `RegistrationExecutor`) não chamam o gateway nem `client.post` no endpoint legado. O único POST operacional é `ProductRegistrationService.post_product`.
+
+`compatibility.py` adapta argumentos antigos e termina na fachada. `body_builder.py` permanece como adaptador deprecated: `get_default_bono_template()` devolve body vazio e não herda fiscal, custo ou grupo.
+
+Locks históricos sem `status` são interpretados só na leitura (`interpret_lock`). Arquivos em `data/` não são reescritos. Novos locks exigem `status` explícito.
+
+Esta migração não executa cadastro e não altera checkpoint 249.
+
 ## Extensões futuras
 
 - `CostUpdate*` para PUT controlado de custo.

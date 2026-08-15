@@ -13,6 +13,28 @@ from .checkpoint_migration import read_checkpoint
 from .versions import CHECKPOINT_SCHEMA_VERSION
 
 
+def interpret_lock(payload: dict[str, Any] | None) -> dict[str, Any]:
+    """Interpreta lock antigo na leitura. Nao reescreve o arquivo."""
+    if not payload:
+        return {}
+    viewed = dict(payload)
+    if viewed.get("status"):
+        if "reexecution" not in viewed:
+            viewed["reexecution"] = (
+                "LOCKED" if viewed["status"] in {"COMPLETED", "PARTIAL"} else "OPEN"
+            )
+        return viewed
+    if viewed.get("postCount"):
+        viewed["status"] = "COMPLETED"
+        viewed["reexecution"] = "LOCKED"
+        viewed["status_inferred"] = True
+        return viewed
+    viewed["status"] = "UNKNOWN"
+    viewed["reexecution"] = "OPEN"
+    viewed["status_inferred"] = True
+    return viewed
+
+
 class RegistrationCheckpointStore:
     """Idempotencia por EAN com gravacao atomica. Nao reescreve historico automaticamente."""
 
@@ -58,7 +80,7 @@ class RegistrationLockStore:
     def load(self) -> dict[str, Any]:
         if not self.path.is_file():
             return {}
-        return json.loads(self.path.read_text(encoding="utf-8"))
+        return interpret_lock(json.loads(self.path.read_text(encoding="utf-8")))
 
     def can_start(self) -> tuple[bool, str]:
         existing = self.load()
@@ -78,9 +100,8 @@ class RegistrationLockStore:
         halted_reason: str | None,
         batch_id: str,
     ) -> None:
-        if status == "RUNNING" and post_count == 0 and created == 0:
-            # A trava RUNNING so nasce depois do primeiro POST previsto pelo caller.
-            pass
+        if not status:
+            raise ValueError("novo lock exige status explicito")
         payload = {
             "status": status,
             "batch_id": batch_id,

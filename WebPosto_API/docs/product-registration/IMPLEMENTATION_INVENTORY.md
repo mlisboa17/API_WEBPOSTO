@@ -40,7 +40,7 @@ API writes nesta consolidação: **0**. Artefatos históricos de `data/product_r
 | `dfe_cost_resolver.py` | custo DF-e |
 | `fiscal_resolver.py` / `fiscal_profiles.py` / `tax_table_matcher.py` | fiscal |
 | `fiscal_sheet_loader.py` | NCM/CEST com zeros à esquerda |
-| `body_builder.py` | legado FASE 7 (herda template BONO) |
+| `body_builder.py` | deprecated; adaptador temporário; não herda BONO |
 | `registration_body.py` | body permanente, sem herança silenciosa |
 | `checkpoint_store.py` | legado FASE 4 |
 | `stores.py` / `checkpoint_migration.py` | checkpoint v2 + leitura v1 |
@@ -54,7 +54,10 @@ API writes nesta consolidação: **0**. Artefatos históricos de `data/product_r
 
 | Script | Situação |
 | --- | --- |
-| `execute_wave_118508.py` | histórico das ondas 1-5; permanece |
+| `execute_wave_118508.py` | ondas 1-5; POST só via fachada |
+| `execute_microbatch_118508.py` | microbatch; POST só via fachada |
+| `execute_negresco_pilot_118508.py` | piloto; POST só via fachada |
+| `execute_ready_products_118508.py` | READY; body sem BONO; POST via fachada |
 | `build_onda_final_118508.py` | montagem da onda 5; permanece |
 | `build_fiscal_profiles_118508.py` | geração original; não rerodar no 257 |
 | `build_onda3_no_cest_118508.py` | específico da onda 3 |
@@ -69,6 +72,7 @@ API writes nesta consolidação: **0**. Artefatos históricos de `data/product_r
 - `test_fiscal_resolver_st_evidence.py` / `test_icms_entry_rate_match.py` / `test_fiscal_profiles.py`
 - `test_wave_executor.py` / `test_final_wave.py`
 - `test_registration_engine.py` / `test_registration_golden_master.py`
+- `test_registration_migration.py`
 
 ## Funções duplicadas (a unificar via fachada)
 

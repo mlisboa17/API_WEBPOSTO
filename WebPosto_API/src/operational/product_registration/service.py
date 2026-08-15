@@ -11,7 +11,7 @@ from typing import Any
 
 import httpx
 
-from .body_builder import create_registration_request, get_default_bono_template
+from .body_builder import create_registration_request
 from .checkpoint_store import CheckpointStore
 from .duplicate_checker import DuplicateChecker
 from .fiscal_resolver import FiscalResolver
@@ -245,18 +245,12 @@ class ProductRegistrationService:
         result_unknown: list[dict[str, Any]] = []
         audit_records: list[dict[str, Any]] = []
 
-        bono_template = get_default_bono_template()
-
         async with httpx.AsyncClient(timeout=120) as client:
             for idx, analysis in enumerate(ready_products):
                 self.execution_state.checkpoint_index = idx
 
                 try:
-                    # FASE 7: Montar body e POST
-                    registration_request = create_registration_request(
-                        analysis,
-                        template=bono_template,
-                    )
+                    registration_request = create_registration_request(analysis)
 
                     logger.info(
                         f"[FASE 7] POST {idx+1}/{len(ready_products)}: "

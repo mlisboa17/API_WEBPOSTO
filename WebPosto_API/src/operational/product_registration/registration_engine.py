@@ -2,18 +2,27 @@
 
 from __future__ import annotations
 
+import time
 from pathlib import Path
 from typing import Any
+
+import httpx
 
 from .audit import RegistrationAuditTrail
 from .company_credentials import resolve_credential
 from .dfe_cost_resolver import cost_from_index
 from .engine_schemas import ProductRegistrationRequest, ProductRegistrationResult, RiskAuthorization
 from .final_wave import pick_icms_row
-from .gateway import ProductPostVerifier, WebPostoRegistrationGateway
+from .gateway import (
+    ProductPostVerifier,
+    WebPostoRegistrationGateway,
+    find_recent_by_ean,
+)
 from .policies.execution_policy import ExecutionPolicy
 from .preflight import ProductPreflightService
 from .stores import RegistrationCheckpointStore, RegistrationLockStore
+
+DEFAULT_BASE_URL = "https://web.qualityautomacao.com.br"
 
 
 class CompanyCredentialResolver:
@@ -119,11 +128,13 @@ class ProductRegistrationService:
         *,
         gateway: WebPostoRegistrationGateway | None = None,
         verifier: ProductPostVerifier | None = None,
+        base_url: str = DEFAULT_BASE_URL,
     ) -> None:
         self.checkpoint = RegistrationCheckpointStore(checkpoint_path)
         self.lock = RegistrationLockStore(lock_path or checkpoint_path.with_name("wave_lock.json"))
         self.preflight_service = ProductPreflightService(self.checkpoint)
-        self.gateway = gateway
+        self.base_url = base_url
+        self.gateway = gateway or WebPostoRegistrationGateway(base_url)
         self.verifier = verifier
         self.audit = RegistrationAuditTrail()
         self.credentials = CompanyCredentialResolver()
@@ -148,12 +159,47 @@ class ProductRegistrationService:
             return preview
         if not request.authorization.execute:
             return preview
-        if self.gateway is None:
-            preview.mensagem = "Gateway ausente; escrita recusada nesta consolidacao"
-            preview.status = "PREFLIGHT_BLOCKED"
-            preview.riscos.append("NO_GATEWAY")
-            return preview
-        raise RuntimeError("Escrita real deve passar pelo executor de onda com gateway injetado")
+        raise RuntimeError(
+            "register() com execute exige post_product() via esta fachada; "
+            "scripts nao podem chamar o gateway diretamente"
+        )
+
+    def post_product(
+        self,
+        client: httpx.Client,
+        reader: Any,
+        key: str,
+        body: dict[str, Any],
+        *,
+        ean: str,
+        from_code: int,
+        pause_seconds: float = 1.5,
+    ) -> tuple[str, httpx.Response | None, dict[str, Any] | None, str | None]:
+        """Unico caminho operacional de POST. Timeout resolve por GET."""
+        if "empresaCodigo" in body:
+            raise ValueError("empresaCodigo e proibido no body do endpoint legado")
+        self.audit.record("post_attempt", ean=ean, extra={"from_code": from_code})
+        for attempt in (1, 2, 3):
+            try:
+                response = self.gateway.post_once(client, key, body)
+            except (httpx.TimeoutException, httpx.TransportError) as exc:
+                existing = find_recent_by_ean(reader, key, ean, from_code)
+                if existing is not None:
+                    return "TIMEOUT_BUT_CREATED", None, existing, str(exc)
+                if attempt == 3:
+                    return "TIMEOUT_UNCONFIRMED", None, None, str(exc)
+                time.sleep(pause_seconds * attempt)
+                continue
+            if response.status_code == 429 and attempt < 3:
+                time.sleep(self.gateway.wait_retry_after(response))
+                continue
+            return "RESPONSE", response, None, None
+        return "TIMEOUT_UNCONFIRMED", None, None, "tentativas esgotadas"
+
+    async def post_once_async(self, client: httpx.AsyncClient, key: str, body: dict[str, Any]):
+        if "empresaCodigo" in body:
+            raise ValueError("empresaCodigo e proibido no body do endpoint legado")
+        return await self.gateway.post_once_async(client, key, body)
 
     def verify(self, product_code: int, expected: dict[str, Any], *, key: str) -> dict[str, Any]:
         if self.verifier is None:

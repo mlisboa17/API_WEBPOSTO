@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import time
 from typing import Any, Protocol
 
@@ -30,7 +31,17 @@ class WebPostoRegistrationGateway:
         return client.post(
             f"{self.base_url}{LEGACY_ENDPOINT}",
             params={"CHAVE": key},
-            content=__import__("json").dumps(body, ensure_ascii=False).encode("utf-8"),
+            content=json.dumps(body, ensure_ascii=False).encode("utf-8"),
+            headers={"Content-Type": "application/json; charset=utf-8"},
+        )
+
+    async def post_once_async(self, client: httpx.AsyncClient, key: str, body: dict[str, Any]) -> httpx.Response:
+        if "empresaCodigo" in body:
+            raise ValueError("empresaCodigo e proibido no body do endpoint legado")
+        return await client.post(
+            f"{self.base_url}{LEGACY_ENDPOINT}",
+            params={"CHAVE": key},
+            content=json.dumps(body, ensure_ascii=False).encode("utf-8"),
             headers={"Content-Type": "application/json; charset=utf-8"},
         )
 
@@ -102,6 +113,37 @@ class ProductPostVerifier:
             "referencia": (created or {}).get("referenciaCodigo"),
             "ativo": company_link.get("ativo"),
         }
+
+
+def catalog_barcodes(product: dict[str, Any]) -> set[str]:
+    values = {
+        str((item.get("codigoBarra") if isinstance(item, dict) else item) or "").strip()
+        for item in product.get("produtoCodigoBarra") or []
+    }
+    if product.get("produtoCodigoExterno"):
+        values.add(str(product["produtoCodigoExterno"]).strip())
+    return {value for value in values if value}
+
+
+def find_recent_by_ean(
+    reader: CatalogReader, key: str, ean: str, from_code: int
+) -> dict[str, Any] | None:
+    """Procura o EAN entre produtos criados a partir de from_code. Sem POST."""
+    cursor = max(from_code - 1, 0)
+    seen: set[int] = set()
+    for _ in range(50):
+        rows = reader.get_catalog(key, cursor=cursor, page_size=200)
+        if not rows:
+            return None
+        for row in rows:
+            if ean in catalog_barcodes(row):
+                return row
+        nxt = max(int(row.get("produtoCodigo") or 0) for row in rows)
+        if nxt == cursor or nxt in seen:
+            return None
+        seen.add(nxt)
+        cursor = nxt
+    return None
 
 
 def sleep_retry_after(seconds: float) -> None:

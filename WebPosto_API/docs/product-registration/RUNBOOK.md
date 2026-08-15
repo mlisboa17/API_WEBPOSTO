@@ -8,7 +8,7 @@ Bloqueios comuns: GTIN inválido/inventado/truncado, EAN no checkpoint, SAME_PRO
 
 ## Cadastro individual
 
-`register-one` é dry-run por padrão. `--execute` é recusado na CLI permanente até um operador autorizar um lote novo pelo executor de onda.
+`register-one` é dry-run por padrão. `--execute` é recusado na CLI permanente até um operador autorizar um lote novo pelo executor de onda. O executor de onda também escreve só pela fachada `ProductRegistrationService`; não há POST direto ao gateway.
 
 ## Lote
 

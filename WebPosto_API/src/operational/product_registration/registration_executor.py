@@ -3,9 +3,7 @@
 from __future__ import annotations
 
 import asyncio
-import json
 import logging
-from datetime import datetime
 from typing import Any
 
 import httpx
@@ -145,13 +143,11 @@ class RegistrationExecutor:
                 "error": "IDEMPOTENCE_CHECK",
             }
 
-        endpoint = f"{self.base_url}/INTEGRACAO/INCLUIR_PRODUTO"
-        params = {}
-        if self.chave:
-            params["CHAVE"] = self.chave
+        from pathlib import Path
 
-        headers = {"Content-Type": "application/json"}
+        from .registration_engine import ProductRegistrationService
 
+        service = ProductRegistrationService(Path("."), base_url=self.base_url)
         attempt = 0
         last_error = None
 
@@ -160,27 +156,15 @@ class RegistrationExecutor:
             try:
                 if client is None:
                     async with httpx.AsyncClient(timeout=self.timeout) as _client:
-                        response = await _client.post(
-                            endpoint,
-                            params=params,
-                            json=body,
-                            headers=headers,
-                        )
+                        response = await service.post_once_async(_client, self.chave or "", body)
                 else:
-                    response = await client.post(
-                        endpoint,
-                        params=params,
-                        json=body,
-                        headers=headers,
-                    )
+                    response = await service.post_once_async(client, self.chave or "", body)
 
-                # Registrar tentativa (sem credenciais)
-                log_body = {k: v for k, v in body.items() if k not in ("senha", "token")}
                 logger.info(
                     f"[POST] EAN {ean} (tentativa {attempt}): "
                     f"HTTP {response.status_code}, "
                     f"body_hash {body_hash[:8]}..., "
-                    f"endpoint /{'/'.join(endpoint.split('/')[-2:])}"
+                    f"via ProductRegistrationService"
                 )
 
                 # Parsear resposta
@@ -210,7 +194,7 @@ class RegistrationExecutor:
                 self.executed_hashes.add(body_hash)
                 return result
 
-            except asyncio.TimeoutError as e:
+            except asyncio.TimeoutError:
                 last_error = f"Timeout após {self.timeout}s"
                 logger.warning(f"[TIMEOUT] EAN {ean} (tentativa {attempt}): {last_error}")
                 if attempt < self.max_retries and self.should_retry(408):

@@ -29,6 +29,10 @@ from src.operational.product_registration.company_credentials import (  # noqa: 
     company_guard,
     resolve_credential,
 )
+from src.operational.product_registration.registration_engine import (  # noqa: E402
+    ProductRegistrationService,
+)
+from src.operational.product_registration.stores import interpret_lock  # noqa: E402
 
 BASE_URL = "https://web.qualityautomacao.com.br"
 LEGACY_ENDPOINT = "/INTEGRACAO/INCLUIR_PRODUTO"
@@ -124,7 +128,7 @@ def main() -> None:
     batch_lock = out_dir / "batch_lock.json"
 
     if batch_lock.is_file():
-        lock = load_json(batch_lock, {})
+        lock = interpret_lock(load_json(batch_lock, {}))
         raise BatchHalted(
             f"Microbatch {args.batch} já executado em {lock.get('executedAt')} "
             f"({lock.get('postCount')} POSTs). Nova execução recusada."
@@ -190,6 +194,7 @@ def main() -> None:
         print(f"catalogo indexado: {len(all_codes)} codigos de barras")
         print()
 
+        service = ProductRegistrationService(CHECKPOINT)
         for product in products:
             ean = product["ean"]
             body = product["body"]["preview"]
@@ -222,18 +227,30 @@ def main() -> None:
                 f" | hash {expected_hash[:16]}..."
             )
 
-            response = client.post(
-                f"{BASE_URL}{LEGACY_ENDPOINT}",
-                params={"CHAVE": credential.key},
-                content=json.dumps(body, ensure_ascii=False).encode("utf-8"),
-                headers={"Content-Type": "application/json; charset=utf-8"},
+            outcome, response, recovered, transport_error = service.post_product(
+                client,
+                reader,
+                credential.key,
+                body,
+                ean=ean,
+                from_code=0,
             )
+            if response is None and recovered is None:
+                halted_reason = f"{outcome}:{ean}:{transport_error}"
+                break
             post_count += 1
-            http_status = response.status_code
-            try:
-                payload = response.json()
-            except Exception:
-                payload = {"raw": (response.text or "")[:400]}
+            if response is None:
+                http_status = 200
+                payload = {
+                    "codProduto": recovered.get("produtoCodigo"),
+                    "recoveredAfterTimeout": True,
+                }
+            else:
+                http_status = response.status_code
+                try:
+                    payload = response.json()
+                except Exception:
+                    payload = {"raw": (response.text or "")[:400]}
 
             ret = payload.get("RET") if isinstance(payload, dict) else None
             men = payload.get("MEN") if isinstance(payload, dict) else None
@@ -276,9 +293,10 @@ def main() -> None:
 
             # Verificacao individual obrigatoria
             links = reader.get_company_links(credential.key, cursor=code - 1, page_size=50)
-            matching = [l for l in links if int(l.get("produtoCodigo") or 0) == code]
+            matching = [link for link in links if int(link.get("produtoCodigo") or 0) == code]
             company_link = next(
-                (l for l in matching if int(l.get("empresaCodigo") or 0) == COMPANY_CODE), None
+                (link for link in matching if int(link.get("empresaCodigo") or 0) == COMPANY_CODE),
+                None,
             )
             rows = reader.get_catalog(credential.key, cursor=code - 1, page_size=50)
             created = next((p for p in rows if int(p.get("produtoCodigo") or 0) == code), None)
@@ -287,12 +305,12 @@ def main() -> None:
                 "produtoCodigo": code,
                 "links": [
                     {
-                        "empresaCodigo": l.get("empresaCodigo"),
-                        "precoVenda": l.get("precoVenda"),
-                        "precoCusto": l.get("precoCusto"),
-                        "ativo": l.get("ativo"),
+                        "empresaCodigo": link.get("empresaCodigo"),
+                        "precoVenda": link.get("precoVenda"),
+                        "precoCusto": link.get("precoCusto"),
+                        "ativo": link.get("ativo"),
                     }
-                    for l in matching
+                    for link in matching
                 ],
                 "companyLinkConfirmed": bool(company_link),
                 "catalog": (
@@ -450,10 +468,12 @@ def main() -> None:
         save_json(
             batch_lock,
             {
+                "status": "PARTIAL" if halted_reason else "COMPLETED",
                 "executedAt": datetime.now(timezone.utc).isoformat(),
                 "postCount": post_count,
                 "createdAndVerified": created_count,
                 "haltedReason": halted_reason,
+                "reexecution": "LOCKED",
             },
         )
     save_json(

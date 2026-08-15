@@ -55,6 +55,10 @@ from src.operational.product_registration.fiscal_profiles import (  # noqa: E402
 from src.operational.product_registration.product_family import (  # noqa: E402
     commercial_family,
 )
+from src.operational.product_registration.registration_engine import (  # noqa: E402
+    ProductRegistrationService,
+)
+from src.operational.product_registration.stores import interpret_lock  # noqa: E402
 
 BASE_URL = "https://web.qualityautomacao.com.br"
 LEGACY_ENDPOINT = "/INTEGRACAO/INCLUIR_PRODUTO"
@@ -449,35 +453,19 @@ def send_product(
     *,
     ean: str,
     from_code: int,
+    service: ProductRegistrationService | None = None,
 ) -> tuple[str, httpx.Response | None, dict[str, Any] | None, str | None]:
-    """Envia o POST respeitando 429 e sem reenviar as cegas depois de um timeout.
-
-    Timeout nao diz se o servidor gravou. Antes de qualquer reenvio, o EAN e procurado no
-    catalogo: reenviar sem essa prova arriscaria criar o produto duas vezes.
-    """
-    for attempt in (1, 2, 3):
-        try:
-            response = client.post(
-                f"{BASE_URL}{LEGACY_ENDPOINT}",
-                params={"CHAVE": key},
-                content=json.dumps(body, ensure_ascii=False).encode("utf-8"),
-                headers={"Content-Type": "application/json; charset=utf-8"},
-            )
-        except (httpx.TimeoutException, httpx.TransportError) as exc:
-            existing = find_recent_by_ean(reader, key, ean, from_code)
-            if existing is not None:
-                return "TIMEOUT_BUT_CREATED", None, existing, str(exc)
-            if attempt == 3:
-                return "TIMEOUT_UNCONFIRMED", None, None, str(exc)
-            time.sleep(PAUSE_SECONDS * attempt)
-            continue
-        if response.status_code == 429 and attempt < 3:
-            wait = retry_after_seconds(response)
-            print(f"    429 recebido; aguardando {wait:.0f}s (Retry-After)")
-            time.sleep(wait)
-            continue
-        return "RESPONSE", response, None, None
-    return "TIMEOUT_UNCONFIRMED", None, None, "tentativas esgotadas"
+    """Envia o POST somente pela fachada. Timeout resolve por GET."""
+    facade = service or ProductRegistrationService(CHECKPOINT)
+    return facade.post_product(
+        client,
+        reader,
+        key,
+        body,
+        ean=ean,
+        from_code=from_code,
+        pause_seconds=PAUSE_SECONDS,
+    )
 
 
 def confirm_sentinel(credential: Any, reader: HttpProductReader, when: str) -> None:
@@ -502,6 +490,8 @@ def persist_lock(
     halted_reason: str | None,
     verified_profiles: set[str],
 ) -> None:
+    if not status:
+        raise ValueError("novo lock exige status explicito")
     save_json(
         path,
         {
@@ -549,7 +539,7 @@ def main() -> None:
         out_dir = REGISTRATION_DIR / "wave_01_118508"
     result_path = out_dir / "execution_result.json"
     wave_lock = out_dir / "wave_lock.json"
-    existing_lock = load_json(wave_lock, {}) if wave_lock.is_file() else {}
+    existing_lock = interpret_lock(load_json(wave_lock, {}) if wave_lock.is_file() else {})
     if existing_lock and existing_lock.get("status") != "RUNNING":
         raise WaveHalted(
             f"Onda {args.wave} lote {args.batch} já executado em {existing_lock.get('executedAt')} "
@@ -628,6 +618,7 @@ def main() -> None:
     try:
         with httpx.Client(timeout=120.0) as client:
             reader = HttpProductReader(client)
+            service = ProductRegistrationService(CHECKPOINT, wave_lock)
             confirm_sentinel(credential, reader, "inicio")
 
             catalog_rows: list[dict[str, Any]] = []
@@ -774,6 +765,7 @@ def main() -> None:
                     body,
                     ean=ean,
                     from_code=highest_code,
+                    service=service,
                 )
                 post_count += 1
                 if outcome == "TIMEOUT_UNCONFIRMED":

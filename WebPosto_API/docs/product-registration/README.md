@@ -18,7 +18,7 @@ ProductRegistrationService
    └─ RegistrationLockStore
 ```
 
-O orquestrador antigo das FASES 3-10 permanece em `service.py` (`LegacyProductRegistrationService`). Scripts das ondas 1-5 continuam válidos.
+O orquestrador antigo das FASES 3-10 permanece em `service.py` (`LegacyProductRegistrationService`). Scripts das ondas 1-5 continuam válidos, mas toda escrita operacional passa por `ProductRegistrationService.post_product`. `body_builder.py` está deprecated e não herda BONO.
 
 ## Componentes
 
@@ -43,4 +43,4 @@ python scripts/product_registration.py --empresa 118508 status --batch-id wave_0
 python scripts/product_registration.py --empresa 118508 --ean ... --descricao ... --ncm ... --preco-venda 1 --accept-fiscal-risk preflight
 ```
 
-Não use `--execute` sem autorização operacional nova. Esta consolidação não executa escrita.
+Não use `--execute` sem autorização operacional nova. Esta consolidação não executa escrita. Fluxos operacionais externos não importam `WebPostoRegistrationGateway`.
