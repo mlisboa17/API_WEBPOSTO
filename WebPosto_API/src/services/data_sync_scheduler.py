@@ -22,6 +22,7 @@ class DataSyncScheduler:
 
     def __init__(self) -> None:
         self._task: asyncio.Task | None = None
+        self._boot_task: asyncio.Task | None = None
         self._running = False
         self._last_run_at: datetime | None = None
         self._last_result: dict[str, Any] | None = None
@@ -33,18 +34,23 @@ class DataSyncScheduler:
         return CRON_EXPR
 
     def get_status(self) -> dict[str, Any]:
-        return {
-            "enabled": self.enabled,
-            "cron": CRON_EXPR,
-            "timezone": str(TZ),
-            "hour": CRON_HOUR,
-            "minute": CRON_MINUTE,
-            "running_loop": self._task is not None and not self._task.done(),
-            "job_running": self._running,
-            "next_run_at": self._next_run_at.isoformat() if self._next_run_at else None,
-            "last_run_at": self._last_run_at.isoformat() if self._last_run_at else None,
-            "last_result": self._last_result,
-        }
+        from src.services.sds_sanitize import sanitize_value
+
+        return sanitize_value(
+            {
+                "enabled": self.enabled,
+                "cron": CRON_EXPR,
+                "timezone": str(TZ),
+                "hour": CRON_HOUR,
+                "minute": CRON_MINUTE,
+                "running_loop": self._task is not None and not self._task.done(),
+                "job_running": self._running,
+                "boot_task": self._boot_task is not None and not self._boot_task.done(),
+                "next_run_at": self._next_run_at.isoformat() if self._next_run_at else None,
+                "last_run_at": self._last_run_at.isoformat() if self._last_run_at else None,
+                "last_result": self._last_result,
+            }
+        )
 
     def next_run_after(self, from_time: datetime | None = None) -> datetime:
         now = from_time or datetime.now(TZ)
@@ -70,6 +76,16 @@ class DataSyncScheduler:
             CRON_EXPR,
             self._next_run_at.isoformat(),
         )
+        try:
+            from src.infrastructure.config.settings import settings
+
+            if getattr(settings, "data_sync_catchup_on_boot", True):
+                self._boot_task = asyncio.create_task(
+                    self._execute(trigger="boot"),
+                    name="data-sync-boot-catchup",
+                )
+        except Exception as exc:
+            logger.warning("DataSync boot catch-up não agendado: %s", exc)
 
     async def stop(self) -> None:
         self.enabled = False
@@ -117,17 +133,21 @@ class DataSyncScheduler:
         self._running = True
         started = datetime.now(TZ)
         try:
-            from src.services.data_sync_service import get_data_sync_service
+            from src.services.sds_catchup_service import get_sds_catchup_service
+            from src.services.sds_sanitize import sanitize_text, sanitize_value
 
-            result = await get_data_sync_service().sync_yesterday()
-            payload = {
-                "success": bool(result.get("success")),
-                "trigger": trigger,
-                "cron": CRON_EXPR,
-                "started_at": started.isoformat(),
-                "finished_at": datetime.now(TZ).isoformat(),
-                **result,
-            }
+            catchup = get_sds_catchup_service()
+            result = await catchup.run(trigger=trigger, include_d1=True)
+            payload = sanitize_value(
+                {
+                    "success": bool(result.get("success")),
+                    "trigger": trigger,
+                    "cron": CRON_EXPR,
+                    "started_at": started.isoformat(),
+                    "finished_at": datetime.now(TZ).isoformat(),
+                    "catchup": result,
+                }
+            )
             self._last_result = payload
             self._last_run_at = datetime.now(TZ)
             logger.info(
@@ -137,15 +157,19 @@ class DataSyncScheduler:
             )
             return payload
         except Exception as exc:
-            logger.exception("DataSyncScheduler falhou: %s", exc)
-            payload = {
-                "success": False,
-                "trigger": trigger,
-                "cron": CRON_EXPR,
-                "erro": str(exc),
-                "started_at": started.isoformat(),
-                "finished_at": datetime.now(TZ).isoformat(),
-            }
+            from src.services.sds_sanitize import sanitize_text, sanitize_value
+
+            logger.exception("DataSyncScheduler falhou: %s", sanitize_text(str(exc)))
+            payload = sanitize_value(
+                {
+                    "success": False,
+                    "trigger": trigger,
+                    "cron": CRON_EXPR,
+                    "erro": sanitize_text(str(exc)),
+                    "started_at": started.isoformat(),
+                    "finished_at": datetime.now(TZ).isoformat(),
+                }
+            )
             self._last_result = payload
             self._last_run_at = datetime.now(TZ)
             return payload

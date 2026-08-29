@@ -4,6 +4,7 @@ import logging
 from typing import Any
 
 from src.gateway.webposto_client import WebPostoClient
+from src.models.error_model import WebPostoError
 from src.models.response_model import WebPostoResponse
 
 logger = logging.getLogger(__name__)
@@ -77,12 +78,13 @@ class AbastecimentoService:
             
             if not resp.success:
                 logger.warning(
-                    "Falha na página %d de abastecimentos empresa=%s: %s",
+                    "Falha na página %d de abastecimentos empresa=%s",
                     page,
                     empresa_codigo,
-                    resp.error,
                 )
-                break
+                if page == 0:
+                    return resp
+                return resp
             
             raw = resp.data
             batch: list[dict] = []
@@ -114,8 +116,18 @@ class AbastecimentoService:
                 ]
 
             all_records.extend(batch)
-            
-            if new_ultimo in (None, "", prev_ultimo, ultimo_codigo):
+
+            cursor_repetido = new_ultimo in (None, "", prev_ultimo, ultimo_codigo)
+            if cursor_repetido and raw_len >= self.PAGE_SIZE:
+                return WebPostoResponse.fail(
+                    WebPostoError(
+                        endpoint="abastecimento",
+                        status=500,
+                        type="PAGINATION_AMBIGUOUS",
+                        message="Cursor repetido ou ausente em pagina cheia",
+                    )
+                )
+            if cursor_repetido:
                 logger.info(
                     "Fim da paginação (cursor): empresa=%s registros=%d",
                     empresa_codigo,

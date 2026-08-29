@@ -10,12 +10,14 @@ from typing import Any
 from sqlalchemy import select, update
 from sqlmodel import col
 
-from src.core.config import OFFICIAL_COMPANY_CODES
 from src.gateway.shared_client import get_webposto_client
 from src.infrastructure.config.database import AsyncSessionLocal
 from src.models.company_product_model import CompanyProductModel
 from src.models.sales_daily_summary_model import SalesDailySummaryModel
 from src.services.abastecimento_service import AbastecimentoService
+from src.services.sds_identity import LICENSED_SDS_CODES, summarize_abastecimentos
+from src.services.sds_sanitize import sanitize_text
+from src.services.webposto.schemas import WEBPOSTO_WRITES
 from src.services.webposto_integration_service import get_webposto_integration_service
 
 logger = logging.getLogger(__name__)
@@ -101,27 +103,17 @@ def _product_name(row: dict[str, Any], codigo: str = "") -> str:
     return ""
 
 
-def _abastecimento_id(row: dict[str, Any]) -> str:
-    for key in ("abastecimentoCodigo", "codigo", "vendaItemCodigo", "stringFull"):
-        val = row.get(key)
-        if val is not None and str(val).strip():
-            return str(val).strip()
-    return (
-        f"{row.get('empresaCodigo')}-"
-        f"{row.get('dataHoraAbastecimento') or row.get('dataFiscal')}-"
-        f"{row.get('codigoBico')}-"
-        f"{row.get('quantidade')}-"
-        f"{row.get('valorTotal')}"
-    )
+class SdsReadError(RuntimeError):
+    """Falha de leitura GET no WebPosto — não é ausência de movimento."""
 
 
 class DataSyncService:
     """Consolida D-1 (ou período) no SQLite/Postgres local + autodiscovery."""
 
-    def __init__(self) -> None:
-        self._abastecimento = AbastecimentoService(get_webposto_client())
-        self._integration = get_webposto_integration_service()
-        # Cache por empresa durante backfill (TANQUE/CPM não mudam a cada dia)
+    def __init__(self, fetch_fn: Any | None = None) -> None:
+        self._fetch_fn = fetch_fn
+        self._abastecimento = None if fetch_fn else AbastecimentoService(get_webposto_client())
+        self._integration = None if fetch_fn else get_webposto_integration_service()
         self._catalog_cache: dict[int, dict[str, str]] = {}
         self._cpm_cache: dict[int, dict[str, float]] = {}
 
@@ -129,60 +121,26 @@ class DataSyncService:
         self,
         empresa_codigo: int,
         data_referencia: date,
+        force: bool = False,
     ) -> dict[str, Any]:
+        del force  # o skip de dia completo fica no catch-up
         day = data_referencia.isoformat()
         rows = await self._fetch_abastecimentos(empresa_codigo, day, day)
+        summary = summarize_abastecimentos(rows)
+        by_product = summary["by_product"]
         if empresa_codigo in self._catalog_cache:
             products_seen = dict(self._catalog_cache[empresa_codigo])
-        else:
+        elif self._integration is not None:
             products_seen = await self._enrich_from_catalog_and_tanks(empresa_codigo)
+        else:
+            products_seen = {}
 
-        by_product: dict[str, dict[str, Any]] = defaultdict(
-            lambda: {
-                "nome": "",
-                "litros": 0.0,
-                "faturamento": 0.0,
-                "ids": set(),
-                "ultima": None,
-            }
-        )
-
-        for row in rows:
-            codigo = _product_code(row)
-            if not codigo:
-                continue
-            nome = _product_name(row, codigo)
-            litros = _f(
-                row.get("quantidade")
-                or row.get("quantidadeLitros")
-                or row.get("litros")
-            )
-            valor = _f(
-                row.get("valorTotal")
-                or row.get("valorVenda")
-                or row.get("valor")
-            )
-            bucket = by_product[codigo]
-            resolved_nome = (
-                nome
-                or products_seen.get(codigo)
-                or bucket["nome"]
-                or f"Produto {codigo}"
-            )
-            if not bucket["nome"] or (
-                nome and (not bucket["nome"].startswith("Produto ") or len(nome) > len(bucket["nome"]))
-            ):
-                bucket["nome"] = resolved_nome
-            bucket["litros"] += litros
-            bucket["faturamento"] += valor
-            bucket["ids"].add(_abastecimento_id(row))
-            ts = row.get("dataHoraAbastecimento") or row.get("dataFiscal") or day
-            bucket["ultima"] = str(ts)
-            # Nunca sobrescrever nome bom do tanque com placeholder
-            if nome:
+        for codigo, bucket in by_product.items():
+            nome = bucket.get("nome") or ""
+            if nome and not str(nome).startswith("Produto "):
                 products_seen[codigo] = nome
             elif codigo not in products_seen:
-                products_seen[codigo] = f"Produto {codigo}"
+                products_seen[codigo] = nome or f"Produto {codigo}"
 
         # Atualiza cache com nomes resolvidos (tanque + vendas)
         self._catalog_cache[empresa_codigo] = dict(products_seen)
@@ -277,15 +235,45 @@ class DataSyncService:
             "empresa_codigo": empresa_codigo,
             "empresa_nome": FILIAL_NAMES.get(empresa_codigo, str(empresa_codigo)),
             "data_referencia": day,
-            "abastecimentos_lidos": len(rows),
+            "abastecimentos_lidos": summary["linhasCombustivel"],
             "produtos_descobertos": products_upserted,
             "linhas_summary": summaries,
-            "litros": round(sum(a["litros"] for a in by_product.values()), 2),
-            "faturamento": round(sum(a["faturamento"] for a in by_product.values()), 2),
-            "quantidade_abastecimentos": sum(len(a["ids"]) for a in by_product.values()),
+            "litros": summary["litrosVendidos"],
+            "faturamento": summary["faturamentoCombustivel"],
+            "quantidade_abastecimentos": summary["quantidadeAbastecimentos"],
+            "quantidadeAbastecimentos": summary["quantidadeAbastecimentos"],
+            "registrosSemIdentidade": summary["registrosSemIdentidade"],
+            "contagemConfiavel": summary["contagemConfiavel"],
+            "ticketMedioLitros": summary["ticketMedioLitros"],
+            "ticketMedioReais": summary["ticketMedioReais"],
+            "status": summary["status"],
+            "avisos": summary["avisos"],
+            "webpostoWrites": WEBPOSTO_WRITES,
         }
-        logger.info("DataSync dia ok: %s", result)
+        logger.info(
+            "DataSync dia status=%s empresa=%s data=%s qtd=%s sem_id=%s writes=%s",
+            result["status"],
+            empresa_codigo,
+            day,
+            result["quantidade_abastecimentos"],
+            result["registrosSemIdentidade"],
+            WEBPOSTO_WRITES,
+        )
         return result
+
+    async def last_summary_date(self, empresa_codigo: int) -> date | None:
+        try:
+            from sqlalchemy import func, select
+
+            async with AsyncSessionLocal() as session:
+                stmt = select(func.max(SalesDailySummaryModel.data_referencia)).where(
+                    SalesDailySummaryModel.empresa_codigo == empresa_codigo
+                )
+                value = (await session.execute(stmt)).scalar_one_or_none()
+            return value
+        except Exception as exc:
+            logger.warning("last_summary_date falhou empresa=%s: %s", empresa_codigo, sanitize_text(str(exc)))
+            return None
 
     async def sync_yesterday(
         self,
@@ -293,7 +281,7 @@ class DataSyncService:
     ) -> dict[str, Any]:
         """Job noturno 03:00 — consolida D-1."""
         target = date.today() - timedelta(days=1)
-        codes = empresas or list(OFFICIAL_COMPANY_CODES)
+        codes = empresas or list(LICENSED_SDS_CODES)
         results = []
         for code in codes:
             try:
@@ -319,7 +307,7 @@ class DataSyncService:
         empresas: list[int] | None = None,
         progress_cb: Any | None = None,
     ) -> dict[str, Any]:
-        codes = empresas or list(OFFICIAL_COMPANY_CODES)
+        codes = empresas or list(LICENSED_SDS_CODES)
         end = date.today() - timedelta(days=1)
         start = end - timedelta(days=days - 1)
         total_days = (end - start).days + 1
@@ -407,16 +395,16 @@ class DataSyncService:
     async def _fetch_abastecimentos(
         self, empresa_codigo: int, start: str, end: str
     ) -> list[dict[str, Any]]:
+        if self._fetch_fn is not None:
+            return await self._fetch_fn(empresa_codigo, start, end)
+        if self._abastecimento is None:
+            raise SdsReadError("Leitor de abastecimento não configurado")
         resp = await self._abastecimento.get_periodo(
             start, end, empresa_codigo=empresa_codigo
         )
         if not resp.success:
-            logger.warning(
-                "ABASTECIMENTO sync falhou empresa=%s: %s",
-                empresa_codigo,
-                resp.error,
-            )
-            return []
+            logger.warning("ABASTECIMENTO sync falhou empresa=%s", empresa_codigo)
+            raise SdsReadError(sanitize_text(str(resp.error or "ABASTECIMENTO indisponível")))
         raw = resp.data
         if isinstance(raw, dict):
             rows = raw.get("dados") or raw.get("resultados") or raw.get("data") or []
@@ -489,6 +477,8 @@ class DataSyncService:
 
     async def _cpm_map(self, empresa_codigo: int) -> dict[str, float]:
         mapping: dict[str, float] = {}
+        if self._integration is None:
+            return mapping
         try:
             costs = await self._integration.get_weighted_avg_cost(empresa_codigo)
             for item in costs.custos or []:
