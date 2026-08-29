@@ -26,23 +26,29 @@ OFFICIAL_COMPANY_CREDENTIAL_ALIASES: dict[int, tuple[str, ...]] = {
         "WEBPOSTO_REAL_DOZE_KEY",
         "WEBPOSTO_API_KEY_POSTO_DOZE_FILIAL_II",
     ),
+    118508: (
+        "WEBPOSTO_CONVENIENCIA_24_HORAS_KEY",
+        "WEBPOSTO_API_GERAL_CONVENIENCIA_KEY",
+    ),
 }
 
-# Ordem canônica para listagens (VIP, Casa Caiada, Real Doze).
+# Ordem canônica para listagens (VIP, Casa Caiada, Real Doze, Conveniência 24H).
 OFFICIAL_WEBPOSTO_TOKEN_ENV_KEYS: tuple[str, ...] = (
     "WEBPOSTO_VIP_KEY",
     "WEBPOSTO_CASA_CAIADA_KEY",
     "WEBPOSTO_REAL_DOZE_KEY",
+    "WEBPOSTO_CONVENIENCIA_24_HORAS_KEY",
     # legado
     "WEBPOSTO_API_KEY_POSTO_VIP_RIO_DOCE",
     "WEBPOSTO_API_KEY_POSTO_CASA_CAIADA",
     "WEBPOSTO_API_KEY_POSTO_DOZE_FILIAL_II",
+    "WEBPOSTO_API_GERAL_CONVENIENCIA_KEY",
 )
 
 # Índice legado (mantido para compatibilidade pontual).
-OFFICIAL_COMPANY_TOKEN_INDEX = {11495: 0, 5555: 1, 74014: 2}
+OFFICIAL_COMPANY_TOKEN_INDEX = {11495: 0, 5555: 1, 74014: 2, 118508: 3}
 
-OFFICIAL_COMPANY_CODES: tuple[int, ...] = (5555, 11495, 74014)
+OFFICIAL_COMPANY_CODES: tuple[int, ...] = (5555, 11495, 74014, 118508)
 
 
 @dataclass(frozen=True)
@@ -57,11 +63,8 @@ class CoreConfig:
     circuit_block_seconds: int = 3600
 
     def key_for_company(self, empresa_codigo: int) -> str | None:
-        """Token específico da filial; fallback para WEBPOSTO_TOKEN/global."""
-        specific = self.webposto_company_keys.get(int(empresa_codigo))
-        if specific:
-            return specific
-        return self.webposto_api_key or None
+        """Retorna somente token explicitamente associado à filial solicitada."""
+        return self.webposto_company_keys.get(int(empresa_codigo))
 
 
 def _env_file_value(key: str) -> str:
@@ -84,19 +87,13 @@ def _resolve_env_value(key: str) -> str:
 
 
 def resolve_company_api_key(empresa_codigo: int) -> str:
-    """Resolve token da filial pelos aliases oficiais (novo → legado)."""
+    """Resolve token da filial por aliases exclusivos, sem fallback genérico."""
     aliases = OFFICIAL_COMPANY_CREDENTIAL_ALIASES.get(int(empresa_codigo), ())
     for alias in aliases:
         value = _resolve_env_value(alias)
         if value:
             return value
-    # Fallback global
-    return (
-        _resolve_env_value("WEBPOSTO_TOKEN")
-        or _resolve_env_value("WEBPOSTO_APP_KEY")
-        or _resolve_env_value("WEBPOSTO_API_KEY")
-        or ""
-    ).strip()
+    return ""
 
 
 def _official_webposto_api_keys() -> tuple[str, ...]:
