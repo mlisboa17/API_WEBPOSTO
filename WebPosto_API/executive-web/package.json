@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test --experimental-strip-types src/components/copilot/expense-draft-ui.test.ts src/services/api/executive_copilot_api.test.ts src/services/copilot-normalizer.act02.test.ts"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

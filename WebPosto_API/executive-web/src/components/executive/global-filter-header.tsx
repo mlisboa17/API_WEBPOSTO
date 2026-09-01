@@ -13,6 +13,7 @@ interface GlobalFilterHeaderProps {
   showTitle?: boolean;
   title?: string;
   subtitle?: string;
+  hideFilial?: boolean;
 }
 
 export function GlobalFilterHeader({
@@ -20,6 +21,7 @@ export function GlobalFilterHeader({
   showTitle = false,
   title,
   subtitle,
+  hideFilial = false,
 }: GlobalFilterHeaderProps) {
   const {
     selectedFilial,
@@ -66,8 +68,13 @@ export function GlobalFilterHeader({
         </div>
       )}
 
-      <div className="flex flex-col gap-3 p-3 rounded-lg bg-slate-900/50 border border-white/5">
+      {/* Fonte única de verdade: Filial + Período (sticky sob a barra de operação) */}
+      <div
+        className="sticky top-[42px] z-20 flex flex-col gap-3 p-3 rounded-lg bg-slate-950/95 border border-white/5 backdrop-blur-md shadow-lg shadow-black/20"
+        data-testid="global-filter-header"
+      >
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          {!hideFilial && (
           <div className="flex items-center gap-2 flex-1 min-w-0">
             <div className="grid size-8 place-items-center rounded-md bg-blue-500/10 shrink-0">
               <Building2 size={16} className="text-blue-400" />
@@ -80,6 +87,7 @@ export function GlobalFilterHeader({
               className="flex-1 min-w-[200px]"
             />
           </div>
+          )}
 
           <div className="flex items-center gap-2">
             <div className="grid size-8 place-items-center rounded-md bg-amber-500/10 shrink-0">
@@ -97,6 +105,7 @@ export function GlobalFilterHeader({
           <div className="flex items-center gap-2 sm:ml-auto">
             <MapPin size={14} className="text-slate-500" />
             <span className="text-xs text-slate-500">Exibindo:</span>
+            {!hideFilial && (
             <Badge
               variant="outline"
               className={cn(
@@ -108,6 +117,7 @@ export function GlobalFilterHeader({
             >
               {filialLabel}
             </Badge>
+            )}
             <Badge variant="outline" className="text-xs bg-slate-800 text-slate-300 border-white/10">
               {periodLabel}
             </Badge>
