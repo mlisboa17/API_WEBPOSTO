@@ -20,13 +20,18 @@ from src.services.executive_copilot.contracts import (
     LineageItem,
     SpecialistId,
 )
-from src.services.sds_identity import LICENSED_SDS_CODES
+from src.services.executive_copilot.unit_capabilities import (
+    CONVENIENCIA_24H,
+    COPILOT_UNIT_CODES,
+    POSTO_VIP,
+    is_copilot_unit,
+)
 from src.utils.filial_normalizer import EMPRESA_VIP, EMPRESA_VIP_LEGACY_ALIAS, resolve_empresa_codigo
 
-BLOCKED_COMPANY = 118508
+BLOCKED_COMPANY = CONVENIENCIA_24H
 VIP_LEGACY_ALIAS = EMPRESA_VIP_LEGACY_ALIAS
 FORBIDDEN_DEMO_CODES = frozenset({5333, 15880})
-LICENSED_EXECUTIVE_UNITS = tuple(LICENSED_SDS_CODES)
+LICENSED_EXECUTIVE_UNITS = tuple(COPILOT_UNIT_CODES)
 DRE_DEPARTMENTS = CompleteDepartmentalDreService.DEPARTMENTS
 MANUAL_EXPENSE_METHODS = frozenset({"MANUAL", "MANUAL_REVIEW"})
 AUTO_EXPENSE_METHODS = frozenset({"KEYWORD", "RULE", "MODEL", "PATTERN", "FUZZY"})
@@ -73,12 +78,6 @@ def resolve_executive_units(raw_codes: list[int] | tuple[int, ...] | None) -> Un
                 persisted_units=[],
                 blocked={"code": "UNIT_INVALID", "message": "Unidade inválida."},
             )
-        if code == BLOCKED_COMPANY:
-            return UnitResolution(
-                units=[],
-                persisted_units=[],
-                blocked={"code": "UNIT_BLOCKED", "message": "118508 bloqueado neste Copiloto Executivo."},
-            )
         if code in FORBIDDEN_DEMO_CODES:
             return UnitResolution(
                 units=[],
@@ -95,18 +94,23 @@ def resolve_executive_units(raw_codes: list[int] | tuple[int, ...] | None) -> Un
                 normalized_alias = True
             elif resolved in LICENSED_COMPANY_CODES:
                 code = int(resolved)
+            elif is_copilot_unit(code):
+                code = int(code)
             elif code not in LICENSED_COMPANY_CODES:
                 return UnitResolution(
                     units=[],
                     persisted_units=[],
-                    blocked={"code": "UNIT_OUT_OF_SCOPE", "message": f"Unidade {code} fora do escopo 5555/11495/74014."},
+                    blocked={"code": "UNIT_OUT_OF_SCOPE", "message": f"Unidade {code} fora do escopo oficial."},
                 )
-        if code not in LICENSED_SDS_CODES:
+        if not is_copilot_unit(code):
             return UnitResolution(
                 units=[],
                 persisted_units=[],
-                blocked={"code": "UNIT_OUT_OF_SCOPE", "message": f"Unidade {code} fora do escopo SDS."},
+                blocked={"code": "UNIT_OUT_OF_SCOPE", "message": f"Unidade {code} fora do escopo do Copiloto."},
             )
+        if code == VIP_LEGACY_ALIAS:
+            code = POSTO_VIP
+            normalized_alias = True
         if code not in units:
             units.append(code)
 

@@ -8,12 +8,17 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
-from src.services.sds_identity import LICENSED_SDS_CODES
+from src.services.executive_copilot.unit_capabilities import (
+    COPILOT_UNIT_CODES,
+    PISTA_UNIT_CODES,
+    VIP_ALIAS,
+)
 from src.services.sds_sanitize import sanitize_value
 
 WEBPOSTO_WRITES = 0
-LICENSED_PUBLIC_UNITS = frozenset(LICENSED_SDS_CODES)
-FORBIDDEN_PUBLIC_UNITS = frozenset({6666, 118508, 5333, 15880})
+LICENSED_PUBLIC_UNITS = frozenset(COPILOT_UNIT_CODES)
+FORBIDDEN_PUBLIC_UNITS = frozenset({VIP_ALIAS, 5333, 15880})
+LICENSED_PISTA_UNITS = frozenset(PISTA_UNIT_CODES)
 
 SpecialistId = Literal["PRESIDENTE", "FINANCEIRO", "OPERACIONAL"]
 
@@ -211,6 +216,7 @@ class CopilotAnswer(BaseModel):
     recommendation: str = ""
     impact: Impact
     units: list[int] = Field(default_factory=list)
+    unit_public_names: list[str] = Field(default_factory=list, alias="unitPublicNames")
     departments: list[str] = Field(default_factory=list)
     probable_cause: str | None = Field(None, alias="probableCause")
     evidence: list[EvidenceItem] = Field(default_factory=list)
@@ -264,6 +270,12 @@ class CopilotAnswer(BaseModel):
                 status=self.impact.status,
             )
         self.confidence = _coherent_confidence(self.impact.status, self.confidence)
+        if self.units:
+            from src.services.executive_copilot.unit_capabilities import public_names
+
+            self.unit_public_names = public_names(self.units)
+        else:
+            self.unit_public_names = []
         return self
 
     def to_public_payload(self) -> dict[str, Any]:
@@ -289,11 +301,11 @@ def _item_matches_answer_units(
     consolidated: bool,
     answer_units: list[int],
 ) -> None:
-    official = set(LICENSED_PUBLIC_UNITS)
+    official = set(LICENSED_PISTA_UNITS)
     units = set(answer_units)
     if consolidated:
         if units != official:
-            raise ValueError("escopo consolidado exige as três unidades oficiais")
+            raise ValueError("escopo consolidado exige as três pistas oficiais")
         return
     if empresa_codigo is None or empresa_codigo not in units:
         raise ValueError("evidência/linhagem fora das unidades da resposta")

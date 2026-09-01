@@ -250,7 +250,7 @@ def test_lineage_requires_source_nature() -> None:
         )
 
 
-@pytest.mark.parametrize("code", [118508, 5333, 15880, 6666])
+@pytest.mark.parametrize("code", [5333, 15880, 6666])
 def test_direct_forbidden_unit_is_rejected(code: int) -> None:
     with pytest.raises(ValidationError):
         CopilotAnswer(
@@ -294,10 +294,11 @@ def test_6666_is_normalized_and_never_persisted() -> None:
     assert 11495 in payload["units"]
 
 
-def test_118508_is_blocked() -> None:
+def test_118508_is_licensed_loja_unit() -> None:
     resolved = resolve_executive_units([118508])
-    assert resolved.blocked is not None
-    assert resolved.units == []
+    assert resolved.blocked is None
+    assert resolved.units == [118508]
+    assert 6666 not in resolved.persisted_units
     for forbidden in FORBIDDEN_DEMO_CODES:
         other = resolve_executive_units([forbidden])
         assert other.blocked is not None
@@ -351,7 +352,7 @@ def test_fact_requires_typed_evidence_and_lineage() -> None:
                 "resumo": "ok",
                 "claimStatus": ClaimStatus.FACT,
                 "periodo": _period(),
-                "empresaCodigo": 118508,
+                "empresaCodigo": 5333,
             }
         )
     with pytest.raises((ValueError, ValidationError)):
