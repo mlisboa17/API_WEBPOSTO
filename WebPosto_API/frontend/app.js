@@ -147,6 +147,7 @@ import { renderFinancialReviewInbox } from "./pages/financialReviewInbox.js";
 import { renderFinancialReviewDetail } from "./pages/financialReviewDetail.js";
 import { renderTreasuryHub } from "./pages/treasuryHub.js";
 import { renderProductsHub } from "./pages/productsHub.js";
+import { renderPriceUpdateOperational } from "./pages/priceUpdateOperational.js";
 import { resolveViewRoute, HUB_VIEWS } from "./services/viewRouting.js";
 import {
   getDefaultViewForArea,
@@ -247,6 +248,9 @@ const VIEW_ALIASES = {
   cashflow: "cashFlow",
   "cash-operations": "cashOperations",
   cashoperations: "cashOperations",
+  "price-update-operational": "priceUpdateOperational",
+  priceupdateoperational: "priceUpdateOperational",
+  "atualizacao-precos": "priceUpdateOperational",
   "operator-performance": "operatorPerformance",
   operatorperformance: "operatorPerformance",
   "people-intelligence": "peopleIntelligence",
@@ -405,6 +409,7 @@ const VIEW_URL_NAMES = {
   financialReviewDetail: "financial-review-detail",
   treasuryHub: "tesouraria",
   productsHub: "produtos-vendidos",
+  priceUpdateOperational: "atualizacao-precos",
 };
 
 function normalizeViewId(view) {
@@ -771,6 +776,7 @@ const accountsNode = document.querySelector("#accountsView");
 const financeCenterNode = document.querySelector("#financeCenterView");
 const cashFlowNode = document.querySelector("#cashFlowView");
 const cashOperationsNode = document.querySelector("#cashOperationsView");
+const priceUpdateOperationalNode = document.querySelector("#priceUpdateOperationalView");
 const operatorPerformanceNode = document.querySelector("#operatorPerformanceView");
 const peopleIntelligenceNode = document.querySelector("#peopleIntelligenceView");
 const peopleRoiNode = document.querySelector("#peopleRoiView");
@@ -895,6 +901,7 @@ function setView(view, options = {}) {
   financeCenterNode.classList.toggle("hidden", activeView !== "financeCenter");
   cashFlowNode.classList.toggle("hidden", activeView !== "cashFlow");
   cashOperationsNode.classList.toggle("hidden", activeView !== "cashOperations");
+  priceUpdateOperationalNode?.classList.toggle("hidden", activeView !== "priceUpdateOperational");
   operatorPerformanceNode.classList.toggle("hidden", activeView !== "operatorPerformance");
   peopleIntelligenceNode.classList.toggle("hidden", activeView !== "peopleIntelligence");
   peopleRoiNode.classList.toggle("hidden", activeView !== "peopleRoi");
@@ -3371,6 +3378,10 @@ async function refreshAll(bypassCache = false) {
 
     if (state.view === "cashOperations") {
       await loadCashOperationsWithSnapshotFirst(bypassCache);
+    }
+
+    if (state.view === "priceUpdateOperational") {
+      renderPriceUpdateOperational(priceUpdateOperationalNode);
     }
 
     if (state.view === "operatorPerformance") {

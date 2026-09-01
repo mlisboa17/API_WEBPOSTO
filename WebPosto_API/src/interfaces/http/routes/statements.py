@@ -7,6 +7,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel, Field
 
 from src.core.config import load_core_config
+from src.interfaces.http.read_mode_guard import assert_webposto_writes_allowed
 from src.models.error_model import WebPostoError
 from src.models.response_model import WebPostoResponse
 
@@ -30,6 +31,7 @@ class OfxImportIn(BaseModel):
 
 @router.post("/import-ofx")
 async def import_ofx(body: OfxImportIn) -> dict[str, Any]:
+    assert_webposto_writes_allowed()
     cfg = load_core_config()
     payload = body.model_dump()
     payload["transacoes"] = [t.model_dump(exclude_none=True) for t in body.transacoes]

@@ -31,6 +31,17 @@ class DirectorFinancialReconciliationSnapshotService:
         stored, expired = self._store.load_stale(key)
         if stored and not expired:
             return stored["data"], False, True
+        from src.services.webposto.offline_mode import (
+            WebPostoOfflineBlocked,
+            webposto_offline_mode,
+        )
+
+        if webposto_offline_mode():
+            if stored:
+                return stored["data"], True, True
+            raise WebPostoOfflineBlocked(
+                "conciliação da diretoria sem snapshot local"
+            )
         try:
             data = await self._pipeline.build(start, end, company_code)
         except Exception:

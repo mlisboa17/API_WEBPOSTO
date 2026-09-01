@@ -4,6 +4,8 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   AlertTriangle,
   CheckCircle2,
+  Lock,
+  Pencil,
   RefreshCcw,
   Wallet,
   ArrowDownCircle,
@@ -13,6 +15,7 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { apiService } from "@/lib/api";
 import type {
   CashierAuditFechamento,
   CashierAuditQuebraForma,
@@ -94,6 +97,10 @@ export function CashierAuditPanel({ empresaCodigo, ready = true }: Props) {
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [bootMs, setBootMs] = useState<number | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [draft, setDraft] = useState<Record<string, string>>({});
+  const [savingId, setSavingId] = useState<string | null>(null);
+  const [adjustError, setAdjustError] = useState<string | null>(null);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const reqSeq = useRef(0);
   const empresaRef = useRef(empresaCodigo);
@@ -101,6 +108,42 @@ export function CashierAuditPanel({ empresaCodigo, ready = true }: Props) {
 
   const formatBRL = (v: number) =>
     new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(v || 0);
+
+  const openEdit = (f: CashierAuditFechamento) => {
+    setAdjustError(null);
+    setEditingId(f.id);
+    setDraft({
+      dinheiro_declarado: String(f.dinheiro_declarado ?? 0),
+      pix_declarado: String(f.pix_declarado ?? 0),
+      cartao_debito_declarado: String(f.cartao_debito_declarado ?? 0),
+      cartao_credito_declarado: String(f.cartao_credito_declarado ?? 0),
+      convenio_declarado: String(f.convenio_declarado ?? 0),
+      observacao_auditoria: f.observacao_auditoria || "",
+    });
+  };
+
+  const saveAdjust = async (id: string) => {
+    setSavingId(id);
+    setAdjustError(null);
+    try {
+      const updated = await apiService.adjustCashierAudit(id, {
+        dinheiro_declarado: Number(draft.dinheiro_declarado || 0),
+        pix_declarado: Number(draft.pix_declarado || 0),
+        cartao_debito_declarado: Number(draft.cartao_debito_declarado || 0),
+        cartao_credito_declarado: Number(draft.cartao_credito_declarado || 0),
+        convenio_declarado: Number(draft.convenio_declarado || 0),
+        observacao_auditoria: draft.observacao_auditoria || null,
+      });
+      setItems((prev) => prev.map((x) => (x.id === id ? { ...x, ...updated } : x)));
+      setEditingId(null);
+      // Recarrega resumo/quebras (Δ rede)
+      void reload();
+    } catch (err) {
+      setAdjustError(err instanceof Error ? err.message : "Falha ao salvar ajuste");
+    } finally {
+      setSavingId(null);
+    }
+  };
 
   useEffect(() => {
     if (!ready) return;
@@ -289,8 +332,19 @@ export function CashierAuditPanel({ empresaCodigo, ready = true }: Props) {
       {quebras.length > 0 && (
         <Card className="border-slate-800 bg-slate-900/80">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base text-white">Quebras por Forma de Pagamento</CardTitle>
-            <CardDescription>Sistêmico (bico) × informado (caixa)</CardDescription>
+            <CardTitle className="flex items-center gap-2 text-base text-white">
+              Quebras por Forma de Pagamento
+              <Badge
+                variant="outline"
+                className="border-slate-600 text-[10px] text-slate-400 font-normal"
+              >
+                <Lock size={10} className="mr-1" />
+                Sistêmico somente leitura
+              </Badge>
+            </CardTitle>
+            <CardDescription>
+              Sistêmico (bico/PDV — imutável) × informado/declarado (auditável)
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
@@ -301,7 +355,10 @@ export function CashierAuditPanel({ empresaCodigo, ready = true }: Props) {
                 >
                   <p className="font-semibold text-slate-200">{q.label}</p>
                   <p className="text-slate-400 mt-1">
-                    Sistêmico {formatBRL(q.valorSistemico)} · Inf. {formatBRL(q.valorInformado)}
+                    <span className="text-slate-500">Sistêmico</span>{" "}
+                    {formatBRL(q.valorSistemico)} ·{" "}
+                    <span className="text-violet-300/80">Declarado</span>{" "}
+                    {formatBRL(q.valorInformado)}
                   </p>
                   <p
                     className={cn(
@@ -317,6 +374,12 @@ export function CashierAuditPanel({ empresaCodigo, ready = true }: Props) {
           </CardContent>
         </Card>
       )}
+
+      {adjustError ? (
+        <p className="rounded-md border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-200">
+          {adjustError}
+        </p>
+      ) : null}
 
       <div className="space-y-2">
         <div className="flex items-center justify-between">
@@ -363,37 +426,131 @@ export function CashierAuditPanel({ empresaCodigo, ready = true }: Props) {
                           className={cn(
                             "text-[10px]",
                             f.status === "AUDITADO"
-                              ? "border-cyan-500/30 text-cyan-300"
+                              ? "border-emerald-500/40 text-emerald-300"
                               : "border-amber-500/30 text-amber-300"
                           )}
                         >
-                          {f.status === "AUDITADO" ? "Auditado" : "Pendente"}
+                          {f.status === "AUDITADO"
+                            ? "🟢 AUDITADO / APROVADO"
+                            : "Pendente"}
                         </Badge>
                         {zerado ? (
                           <span className="inline-flex items-center gap-1 text-[11px] text-emerald-300 font-medium">
                             <CheckCircle2 size={12} />
-                            Sobra/Falta: R$ 0,00
+                            Δ R$ 0,00
                           </span>
                         ) : (
                           <span className="inline-flex items-center gap-1 text-[11px] text-rose-300 font-medium">
                             <AlertTriangle size={12} />
-                            Divergência: {formatBRL(f.saldo)} — Operador {f.operadorNome}
+                            Δ {formatBRL(f.saldo)}
                           </span>
                         )}
                       </div>
                     </div>
                     <div className="grid grid-cols-3 gap-2 text-[11px]">
-                      <Meta label="Bico" value={formatBRL(f.faturamentoBico)} />
-                      <Meta label="Caixa" value={formatBRL(f.faturamentoCaixa)} />
                       <Meta
-                        label="Saldo"
+                        label="Esperado (Bico) 🔒"
+                        value={formatBRL(f.faturamentoBico)}
+                        className="text-slate-300"
+                      />
+                      <Meta label="Declarado" value={formatBRL(f.faturamentoCaixa)} />
+                      <Meta
+                        label="Δ (Sobra/Falta)"
                         value={formatBRL(f.saldo)}
                         className={zerado ? "text-emerald-300" : "text-rose-300"}
                       />
                     </div>
-                    <p className="text-[10px] text-slate-500">
-                      {f.qtdAbastecimentos} abastecimentos
-                    </p>
+                    <div className="rounded-md border border-slate-800 bg-slate-950/50 px-2 py-1.5 text-[10px] text-slate-500">
+                      <p className="mb-1 flex items-center gap-1 font-semibold uppercase tracking-wide text-slate-400">
+                        <Lock size={10} /> Sistêmico (somente leitura)
+                      </p>
+                      <p>
+                        Din {formatBRL(f.dinheiro_sistemico ?? 0)} · PIX{" "}
+                        {formatBRL(f.pix_sistemico ?? 0)} · Déb{" "}
+                        {formatBRL(f.cartao_debito_sistemico ?? 0)} · Créd{" "}
+                        {formatBRL(f.cartao_credito_sistemico ?? 0)} · Conv{" "}
+                        {formatBRL(f.convenio_sistemico ?? 0)}
+                      </p>
+                    </div>
+                    {editingId === f.id ? (
+                      <div className="space-y-2 rounded-md border border-violet-500/30 bg-violet-500/5 p-2">
+                        <p className="text-[10px] font-semibold uppercase tracking-wide text-violet-200">
+                          Ajustar valores declarados
+                        </p>
+                        <div className="grid grid-cols-2 gap-2">
+                          {(
+                            [
+                              ["dinheiro_declarado", "Dinheiro"],
+                              ["pix_declarado", "PIX"],
+                              ["cartao_debito_declarado", "Débito"],
+                              ["cartao_credito_declarado", "Crédito"],
+                              ["convenio_declarado", "Convênio"],
+                            ] as const
+                          ).map(([key, label]) => (
+                            <label key={key} className="text-[10px] text-slate-400">
+                              {label}
+                              <input
+                                type="number"
+                                step="0.01"
+                                min="0"
+                                className="mt-0.5 w-full rounded border border-slate-700 bg-slate-950 px-2 py-1 font-mono text-xs text-white"
+                                value={draft[key] ?? "0"}
+                                onChange={(e) =>
+                                  setDraft((d) => ({ ...d, [key]: e.target.value }))
+                                }
+                              />
+                            </label>
+                          ))}
+                        </div>
+                        <label className="block text-[10px] text-slate-400">
+                          Observação auditoria
+                          <input
+                            className="mt-0.5 w-full rounded border border-slate-700 bg-slate-950 px-2 py-1 text-xs text-white"
+                            value={draft.observacao_auditoria ?? ""}
+                            onChange={(e) =>
+                              setDraft((d) => ({
+                                ...d,
+                                observacao_auditoria: e.target.value,
+                              }))
+                            }
+                          />
+                        </label>
+                        <div className="flex gap-2">
+                          <Button
+                            size="sm"
+                            className="bg-violet-600 text-white hover:bg-violet-500"
+                            disabled={savingId === f.id}
+                            onClick={() => void saveAdjust(f.id)}
+                          >
+                            {savingId === f.id ? "Salvando…" : "Salvar & recalcular Δ"}
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="border-slate-600"
+                            onClick={() => setEditingId(null)}
+                          >
+                            Cancelar
+                          </Button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-between gap-2">
+                        <p className="text-[10px] text-slate-500">
+                          {f.qtdAbastecimentos} abastecimentos
+                          {f.ajustadoManualmente ? " · ajuste manual" : ""}
+                        </p>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="h-7 border-violet-500/30 text-violet-200"
+                          onClick={() => openEdit(f)}
+                        >
+                          <Pencil size={12} className="mr-1" />
+                          Ajustar declarado
+                        </Button>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               );

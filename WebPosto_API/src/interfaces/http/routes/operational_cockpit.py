@@ -12,6 +12,7 @@ from src.services.cash_break_service import CashBreakService, CashBreakSummary
 from src.services.fuel_loss_service import FuelLossService
 from src.services.convenience_analytics_service import ConvenienceAnalyticsService
 from src.services.purchase_recommendation_service import PurchaseRecommendationService
+from src.services.operational_cash_break_source import closures_from_cashier_audit
 
 
 router = APIRouter(
@@ -30,51 +31,26 @@ async def operational_cash_breaks(
     current_user: dict = Depends(require_roles("director", "admin", "manager", "supervisor")),
 ) -> dict:
     try:
-        mock_closures = [
-            {
-                "caixaCodigo": 101,
-                "empresaCodigo": empresaCodigo or 11495,
-                "dataFechamento": dataInicial,
-                "turno": "MANHA",
-                "operadorCodigo": 501,
-                "operadorNome": "João Silva",
-                "valorEsperado": 5000.0,
-                "valorInformado": 4985.0,
-            },
-            {
-                "caixaCodigo": 102,
-                "empresaCodigo": empresaCodigo or 11495,
-                "dataFechamento": dataInicial,
-                "turno": "TARDE",
-                "operadorCodigo": 502,
-                "operadorNome": "Maria Santos",
-                "valorEsperado": 8000.0,
-                "valorInformado": 7870.0,
-            },
-            {
-                "caixaCodigo": 103,
-                "empresaCodigo": empresaCodigo or 11495,
-                "dataFechamento": dataFinal,
-                "turno": "NOITE",
-                "operadorCodigo": 503,
-                "operadorNome": "Pedro Oliveira",
-                "valorEsperado": 6500.0,
-                "valorInformado": 6500.0,
-            },
-        ]
-
-        if turno:
-            mock_closures = [c for c in mock_closures if c["turno"] == turno.upper()]
-        if operadorCodigo:
-            mock_closures = [c for c in mock_closures if c["operadorCodigo"] == operadorCodigo]
-
+        closures = closures_from_cashier_audit(
+            data_inicial=dataInicial,
+            data_final=dataFinal,
+            empresa_codigo=empresaCodigo,
+            turno=turno,
+            operador_codigo=operadorCodigo,
+        )
         service = CashBreakService()
-        summary = service.analyze_batch(mock_closures, dataInicial, dataFinal, empresaCodigo)
-
+        summary = service.analyze_batch(closures, dataInicial, dataFinal, empresaCodigo)
+        payload = summary.model_dump()
+        if not closures:
+            payload["observacoes"] = [
+                "Sem fechamentos no cache RAM do CashierAudit para o período — "
+                "aguarde o PistaSyncWorker ou amplie o filtro."
+            ]
         return {
             "success": True,
-            "data": summary.model_dump(),
+            "data": payload,
             "namespace": "operational",
+            "fonte": "cashier_audit_ram",
         }
     except Exception as e:
         return {"success": False, "error": str(e)}
@@ -89,18 +65,14 @@ async def operational_cash_breaks_by_operator(
 ) -> dict:
     try:
         service = CashBreakService()
-
-        mock_closures = [
-            {"caixaCodigo": 1, "empresaCodigo": empresaCodigo or 11495, "dataFechamento": dataInicial,
-             "operadorCodigo": 501, "operadorNome": "João", "valorEsperado": 5000, "valorInformado": 4850},
-            {"caixaCodigo": 2, "empresaCodigo": empresaCodigo or 11495, "dataFechamento": dataInicial,
-             "operadorCodigo": 502, "operadorNome": "Maria", "valorEsperado": 6000, "valorInformado": 6000},
-            {"caixaCodigo": 3, "empresaCodigo": empresaCodigo or 11495, "dataFechamento": dataFinal,
-             "operadorCodigo": 501, "operadorNome": "João", "valorEsperado": 5500, "valorInformado": 5380},
-        ]
+        closures = closures_from_cashier_audit(
+            data_inicial=dataInicial,
+            data_final=dataFinal,
+            empresa_codigo=empresaCodigo,
+        )
 
         by_operator: dict[int, dict] = {}
-        for closure in mock_closures:
+        for closure in closures:
             op_id = closure["operadorCodigo"]
             if op_id not in by_operator:
                 by_operator[op_id] = {
@@ -117,6 +89,7 @@ async def operational_cash_breaks_by_operator(
             by_operator[op_id]["quebras_absolutas"] += item.diferenca_absoluta
 
         operators = sorted(by_operator.values(), key=lambda x: -x["quebras_absolutas"])
+        # empty-ok: sem mocks quando cache vazio
 
         return {
             "success": True,
@@ -375,11 +348,14 @@ async def operational_summary(
 ) -> dict:
     try:
         cash_service = CashBreakService()
-        mock_closures = [
-            {"caixaCodigo": 1, "empresaCodigo": empresaCodigo or 11495, "dataFechamento": dataInicial,
-             "valorEsperado": 5000, "valorInformado": 4920},
-        ]
-        cash_summary = cash_service.analyze_batch(mock_closures, dataInicial, dataFinal, empresaCodigo)
+        closures = closures_from_cashier_audit(
+            data_inicial=dataInicial,
+            data_final=dataFinal,
+            empresa_codigo=empresaCodigo,
+        )
+        cash_summary = cash_service.analyze_batch(
+            closures, dataInicial, dataFinal, empresaCodigo
+        )
 
         return {
             "success": True,
@@ -393,8 +369,14 @@ async def operational_summary(
                     "soma_quebras": cash_summary.soma_quebras_absoluta,
                     "status": cash_summary.overall_status.value,
                 },
+                "observacoes": (
+                    []
+                    if closures
+                    else ["Sem fechamentos no cache RAM do CashierAudit."]
+                ),
             },
             "namespace": "operational",
+            "fonte": "cashier_audit_ram",
         }
     except Exception as e:
         return {"success": False, "error": str(e)}

@@ -1,7 +1,12 @@
-"""Pista & Volumetria — D0 = cache RAM (<50ms), D-1/histórico = sales_daily_summary (<200ms)."""
+"""Pista & Volumetria — D0 = cache RAM (<50ms), D-1/histórico = sales_daily_summary (<200ms).
+
+Hot-path da Central de Relatórios: budget HTTP < 800ms.
+Nunca varre ABASTECIMENTO paginado sem teto de tempo no request.
+"""
 
 from __future__ import annotations
 
+import asyncio
 import logging
 import time
 from collections import defaultdict
@@ -26,6 +31,12 @@ FILIAIS: dict[int, str] = {
     EMPRESA_VIP: "POSTO VIP",
     EMPRESA_REAL_DOZE: "POSTO REAL / DOZE",
 }
+
+# Budget da Central de Relatórios (aceite < 1.5s UI / < 800ms serviço)
+_HTTP_BUDGET_S = 0.75
+_RESP_CACHE: dict[str, tuple[float, "FuelVolumetryResult"]] = {}
+_RESP_TTL_S = 60.0
+_BACKFILL_KEYS: set[str] = set()
 
 
 class FuelRow(BaseModel):
@@ -112,6 +123,16 @@ def _round2(v: float) -> float:
     return round(float(v or 0), 2)
 
 
+def _empty_buckets() -> tuple[
+    dict[tuple[int, str], dict[str, float]],
+    dict[int, dict[str, float]],
+]:
+    return (
+        defaultdict(lambda: {"litros": 0.0, "valor": 0.0, "transacoes": 0.0}),
+        defaultdict(lambda: {"litros": 0.0, "valor": 0.0, "transacoes": 0.0}),
+    )
+
+
 def _build_from_buckets(
     by_prod: dict[tuple[int, str], dict[str, float]],
     by_filial: dict[int, dict[str, float]],
@@ -173,8 +194,14 @@ def _build_from_buckets(
     )
 
 
+def _targets(empresa: int | None) -> list[int]:
+    if empresa is not None:
+        return [int(empresa)]
+    return [EMPRESA_CASA_CAIADA, EMPRESA_VIP, EMPRESA_REAL_DOZE]
+
+
 class FuelVolumetryService:
-    """Agrega volumetria pista com política D0=RAM / histórico=DB local."""
+    """Agrega volumetria pista com política D0=RAM / histórico=DB local + fallbacks rápidos."""
 
     async def build(
         self,
@@ -184,6 +211,16 @@ class FuelVolumetryService:
     ) -> FuelVolumetryResult:
         t0 = time.perf_counter()
         empresa = resolve_empresa_codigo(empresa_codigo)
+        cache_key = f"{data_inicial}|{data_final}|{empresa or 'all'}"
+        now = time.monotonic()
+        hit = _RESP_CACHE.get(cache_key)
+        if hit and (now - hit[0]) < _RESP_TTL_S:
+            cached = hit[1].model_copy(deep=True)
+            cached.fromCache = True
+            cached.latencyMs = round((time.perf_counter() - t0) * 1000.0, 3)
+            cached.observacoes = list(cached.observacoes) + ["resp_cache_hit"]
+            return cached
+
         hoje = date.today().isoformat()
         ontem = (date.today() - timedelta(days=1)).isoformat()
         obs: list[str] = [
@@ -194,12 +231,7 @@ class FuelVolumetryService:
         is_d0 = single and data_inicial == hoje
         is_d1 = single and data_inicial == ontem
 
-        by_prod: dict[tuple[int, str], dict[str, float]] = defaultdict(
-            lambda: {"litros": 0.0, "valor": 0.0, "transacoes": 0.0}
-        )
-        by_filial: dict[int, dict[str, float]] = defaultdict(
-            lambda: {"litros": 0.0, "valor": 0.0, "transacoes": 0.0}
-        )
+        by_prod, by_filial = _empty_buckets()
         fonte = ""
         from_cache = False
 
@@ -208,13 +240,9 @@ class FuelVolumetryService:
             fonte = "pista_cache_service+RAM"
             from_cache = True
         elif is_d1:
-            n = await self._ingest_db(by_prod, by_filial, data_inicial, data_final, empresa, obs)
-            fonte = "sales_daily_summary+DB"
-            if n == 0:
-                await self._ingest_abastecimento(
-                    by_prod, by_filial, data_inicial, data_final, empresa, obs
-                )
-                fonte = "sales_daily_summary(vazio)+ABASTECIMENTO"
+            fonte, from_cache = await self._build_d1(
+                by_prod, by_filial, data_inicial, data_final, empresa, obs
+            )
         else:
             await self._ingest_db(by_prod, by_filial, data_inicial, data_final, empresa, obs)
             if data_inicial <= hoje <= data_final:
@@ -224,10 +252,26 @@ class FuelVolumetryService:
             else:
                 fonte = "sales_daily_summary+DB"
             if not by_filial:
-                await self._ingest_abastecimento(
-                    by_prod, by_filial, data_inicial, data_final, empresa, obs
-                )
-                fonte = "ABASTECIMENTO(fallback)"
+                from src.services.webposto.offline_mode import webposto_offline_mode
+
+                if not webposto_offline_mode():
+                    await self._ingest_abastecimento_budgeted(
+                        by_prod, by_filial, data_inicial, data_final, empresa, obs
+                    )
+                    if by_filial:
+                        fonte = "ABASTECIMENTO(budget)"
+                    else:
+                        n_cx = await self._ingest_fechamento_turno(
+                            by_prod, by_filial, data_inicial, empresa, obs
+                        )
+                        if n_cx:
+                            fonte = "fechamento_turno(fallback)"
+                else:
+                    n_cx = await self._ingest_fechamento_turno(
+                        by_prod, by_filial, data_inicial, empresa, obs
+                    )
+                    if n_cx:
+                        fonte = "fechamento_turno(fallback)"
 
         por_produto, por_filial, margens, tot_l, tot_v, tot_t = _build_from_buckets(
             by_prod, by_filial
@@ -235,11 +279,11 @@ class FuelVolumetryService:
         latency = round((time.perf_counter() - t0) * 1000.0, 3)
         if is_d0 and latency >= 50:
             obs.append(f"ALERTA latência D0={latency}ms (meta <50ms)")
-        if is_d1 and latency >= 200:
-            obs.append(f"ALERTA latência D-1={latency}ms (meta <200ms)")
+        if is_d1 and latency >= 800:
+            obs.append(f"ALERTA latência D-1={latency}ms (meta <800ms)")
         obs.append(f"fonte={fonte}")
 
-        return FuelVolumetryResult(
+        result = FuelVolumetryResult(
             fromCache=from_cache,
             fonte=fonte,
             latencyMs=latency,
@@ -253,6 +297,92 @@ class FuelVolumetryService:
             faturamento_por_litro=margens,
             observacoes=obs,
         )
+        # Cacheia inclusive zeros só se veio de RAM/DB estável — evita travar zeros de miss
+        if tot_l > 0 or tot_v > 0 or from_cache:
+            _RESP_CACHE[cache_key] = (time.monotonic(), result)
+        return result
+
+    async def _build_d1(
+        self,
+        by_prod: dict[tuple[int, str], dict[str, float]],
+        by_filial: dict[int, dict[str, float]],
+        data_inicial: str,
+        data_final: str,
+        empresa: int | None,
+        obs: list[str],
+    ) -> tuple[str, bool]:
+        """D-1: DB → RAM (se data_ref=D-1) → fechamento turno → ABASTECIMENTO budgetado."""
+        n = await self._ingest_db(by_prod, by_filial, data_inicial, data_final, empresa, obs)
+        if n > 0:
+            return "sales_daily_summary+DB", False
+
+        obs.append("sales_daily_summary(vazio) — fallback rápido (sem varredura pesada)")
+        # Backfill assíncrono aquece o DB; NÃO bloqueia o HTTP no ABASTECIMENTO paginado
+        self._schedule_d1_backfill(data_inicial)
+
+        # pista_cache ainda pode cobrir D-1 se o dia não rolou / stale preservado
+        from src.services.pista_cache_service import get_pista_cache
+
+        snap = get_pista_cache().get_snapshot()
+        if snap.data_ref == data_inicial and (snap.baixados or snap.pendentes):
+            self._ingest_ram(by_prod, by_filial, empresa, obs)
+            if by_filial:
+                return "pista_cache_service+RAM(D-1)", True
+
+        n_cx = await self._ingest_fechamento_turno(
+            by_prod, by_filial, data_inicial, empresa, obs
+        )
+        if n_cx > 0 and by_filial:
+            return "fechamento_turno(fallback)", False
+
+        from src.services.webposto.offline_mode import webposto_offline_mode
+
+        if webposto_offline_mode():
+            return "sales_daily_summary(vazio)+sem_dados", False
+
+        # Último recurso: 1 página/filial em paralelo com timeout de socket curto
+        await self._ingest_abastecimento_budgeted(
+            by_prod, by_filial, data_inicial, data_final, empresa, obs
+        )
+        if by_filial:
+            return "sales_daily_summary(vazio)+ABASTECIMENTO(budget)", False
+        return "sales_daily_summary(vazio)+sem_dados", False
+
+    def _schedule_d1_backfill(self, day: str) -> None:
+        """Dispara sync_day em background para aquecer sales_daily_summary."""
+        from src.services.webposto.offline_mode import webposto_offline_mode
+
+        if webposto_offline_mode():
+            return
+        key = f"d1:{day}"
+        if key in _BACKFILL_KEYS:
+            return
+        _BACKFILL_KEYS.add(key)
+
+        async def _run() -> None:
+            try:
+                from src.services.data_sync_service import DataSyncService
+
+                svc = DataSyncService()
+                target = date.fromisoformat(day)
+                await asyncio.gather(
+                    *[svc.sync_day(code, target) for code in FILIAIS],
+                    return_exceptions=True,
+                )
+                # Invalida cache de resposta para próximo hit usar DB
+                for emp in list(FILIAIS) + [None]:
+                    _RESP_CACHE.pop(f"{day}|{day}|{emp or 'all'}", None)
+                LOGGER.info("fuel_volumetry backfill D-1 ok day=%s", day)
+            except Exception:
+                LOGGER.exception("fuel_volumetry backfill D-1 falhou day=%s", day)
+            finally:
+                _BACKFILL_KEYS.discard(key)
+
+        try:
+            loop = asyncio.get_running_loop()
+            loop.create_task(_run())
+        except RuntimeError:
+            _BACKFILL_KEYS.discard(key)
 
     def _ingest_ram(
         self,
@@ -353,7 +483,115 @@ class FuelVolumetryService:
             obs.append(f"DB indisponível: {exc}")
             return 0
 
-    async def _ingest_abastecimento(
+    async def _ingest_fechamento_turno(
+        self,
+        by_prod: dict[tuple[int, str], dict[str, float]],
+        by_filial: dict[int, dict[str, float]],
+        day: str,
+        empresa: int | None,
+        obs: list[str],
+    ) -> int:
+        """Fallback: totais de fechamento de turno (bico) — evita zerar faturamento."""
+        n = 0
+        try:
+            from src.services.cashier_audit_service import get_cashier_audit_service
+
+            store = get_cashier_audit_service().get_store()
+            fechamentos = list(store.fechamentos or ())
+            if store.data_ref == day and fechamentos:
+                for f in fechamentos:
+                    emp = int(f.postoCodigo or 0)
+                    if empresa is not None and emp != empresa:
+                        continue
+                    if emp <= 0:
+                        continue
+                    valor = float(f.faturamentoBico or 0)
+                    if valor <= 0:
+                        continue
+                    # litros: se já houver da fonte budgetada, não sobrescreve — só preenche valor
+                    if by_filial[emp]["valor"] <= 0:
+                        by_filial[emp]["valor"] += valor
+                        by_filial[emp]["transacoes"] += int(f.qtdAbastecimentos or 0) or 1
+                        key = (emp, "COMBUSTÍVEL (fechamento turno)")
+                        by_prod[key]["valor"] += valor
+                        by_prod[key]["transacoes"] += int(f.qtdAbastecimentos or 0) or 1
+                        n += 1
+                if n:
+                    obs.append(f"fechamento_turno RAM data_ref={day} turnos={n}")
+                    return n
+
+            # CAIXA do dia (budget curto) — soma valor informado/apresentado por filial
+            caixas = await asyncio.wait_for(self._fetch_caixas(day, day), timeout=0.35)
+            by_emp_val: dict[int, float] = defaultdict(float)
+            by_emp_tx: dict[int, int] = defaultdict(int)
+            for cx in caixas:
+                emp = int(cx.get("empresaCodigo") or 0)
+                if empresa is not None and emp != empresa:
+                    continue
+                if emp not in FILIAIS:
+                    continue
+                valor = float(
+                    cx.get("valorInformado")
+                    or cx.get("valorApresentado")
+                    or cx.get("valorFechamento")
+                    or cx.get("totalInformado")
+                    or cx.get("valorTotal")
+                    or 0
+                )
+                litros = float(
+                    cx.get("litros")
+                    or cx.get("volumeLitros")
+                    or cx.get("quantidadeLitros")
+                    or 0
+                )
+                if valor <= 0 and litros <= 0:
+                    continue
+                by_emp_val[emp] += valor
+                by_emp_tx[emp] += 1
+                if litros > 0:
+                    by_filial[emp]["litros"] += litros
+                    key = (emp, "COMBUSTÍVEL (fechamento turno)")
+                    by_prod[key]["litros"] += litros
+            for emp, valor in by_emp_val.items():
+                if by_filial[emp]["valor"] > 0:
+                    continue
+                by_filial[emp]["valor"] += valor
+                by_filial[emp]["transacoes"] += by_emp_tx[emp]
+                key = (emp, "COMBUSTÍVEL (fechamento turno)")
+                by_prod[key]["valor"] += valor
+                by_prod[key]["transacoes"] += by_emp_tx[emp]
+                n += 1
+            if n:
+                obs.append(f"fechamento_turno CAIXA day={day} filiais={n}")
+            else:
+                obs.append(f"fechamento_turno sem dados day={day}")
+            return n
+        except asyncio.TimeoutError:
+            obs.append("fechamento_turno timeout (<350ms)")
+            return 0
+        except Exception as exc:
+            LOGGER.warning("fuel_volumetry fechamento_turno falhou: %s", exc)
+            obs.append(f"fechamento_turno falhou: {exc}")
+            return 0
+
+    @staticmethod
+    async def _fetch_caixas(inicio: str, fim: str) -> list[dict[str, Any]]:
+        from src.gateway.shared_client import get_webposto_client
+        from src.services.caixa_service import CaixaService
+
+        resp = await CaixaService(get_webposto_client()).get_caixa(inicio, fim)
+        if not resp.success:
+            return []
+        data = resp.data
+        if isinstance(data, dict):
+            rows = data.get("dados") or data.get("data") or data.get("resultados") or []
+        elif isinstance(data, list):
+            rows = data
+        else:
+            rows = []
+        return [r for r in rows if isinstance(r, dict)]
+
+    async def _ingest_abastecimento_budgeted(
         self,
         by_prod: dict[tuple[int, str], dict[str, float]],
         by_filial: dict[int, dict[str, float]],
@@ -362,32 +600,50 @@ class FuelVolumetryService:
         empresa: int | None,
         obs: list[str],
     ) -> int:
-        """Fallback degradado — nunca usado em D0 (meta RAM)."""
-        try:
-            from src.gateway.shared_client import get_webposto_client
-            from src.services.abastecimento_service import AbastecimentoService
+        """Multi-station paralelo com teto de tempo — nunca bloqueia 11s."""
+        targets = _targets(empresa)
+        deadline = time.monotonic() + _HTTP_BUDGET_S
 
-            svc = AbastecimentoService(get_webposto_client())
-            resp = await svc.get_periodo(data_inicial, data_final, empresa_codigo=empresa)
-            data = resp.data if resp.success else None
-            rows: list[dict[str, Any]] = []
-            if isinstance(data, dict):
-                for k in ("resultados", "items", "data"):
-                    if isinstance(data.get(k), list):
-                        rows = [x for x in data[k] if isinstance(x, dict)]
-                        break
-            elif isinstance(data, list):
-                rows = [x for x in data if isinstance(x, dict)]
+        async def _one(code: int) -> list[dict[str, Any]]:
+            remaining = deadline - time.monotonic()
+            if remaining <= 0.05:
+                return []
+            try:
+                return await asyncio.wait_for(
+                    self._fetch_abastecimento_pages(
+                        data_inicial, data_final, code, deadline
+                    ),
+                    timeout=remaining,
+                )
+            except (asyncio.TimeoutError, Exception) as exc:
+                LOGGER.warning(
+                    "ABASTECIMENTO budget empresa=%s: %s", code, exc
+                )
+                return []
 
-            n = 0
+        results = await asyncio.gather(*[_one(c) for c in targets])
+        cleared: set[int] = set()
+        n = 0
+        for rows in results:
             for row in rows:
-                emp = int(row.get("empresaCodigo") or 0)
+                emp = int(row.get("empresaCodigo") or row.get("empresa") or 0)
                 if empresa is not None and emp != empresa:
+                    continue
+                if emp <= 0:
                     continue
                 litros = float(row.get("quantidade") or row.get("litros") or 0)
                 valor = float(row.get("valorTotal") or row.get("valor") or 0)
                 if litros <= 0 and valor <= 0:
                     continue
+                # Substitui placeholder do fechamento por linhas reais de produto
+                placeholder = (emp, "COMBUSTÍVEL (fechamento turno)")
+                if emp not in cleared and placeholder in by_prod:
+                    by_filial[emp]["litros"] = 0.0
+                    by_filial[emp]["valor"] = 0.0
+                    by_filial[emp]["transacoes"] = 0.0
+                    del by_prod[placeholder]
+                    cleared.add(emp)
+
                 cod = str(row.get("codigoProduto") or row.get("produtoCodigo") or "")
                 nome = str(
                     row.get("descricaoProduto") or row.get("nomeProduto") or ""
@@ -401,12 +657,66 @@ class FuelVolumetryService:
                 by_filial[emp]["valor"] += valor
                 by_filial[emp]["transacoes"] += 1
                 n += 1
-            obs.append(f"Fallback ABASTECIMENTO rows={n}")
-            return n
+        elapsed = round((_HTTP_BUDGET_S - max(0.0, deadline - time.monotonic())) * 1000)
+        obs.append(
+            f"ABASTECIMENTO budget={_HTTP_BUDGET_S * 1000:.0f}ms filiais={len(targets)} rows={n} ~{elapsed}ms"
+        )
+        return n
+
+    async def _fetch_abastecimento_pages(
+        self,
+        data_inicial: str,
+        data_final: str,
+        empresa_codigo: int,
+        deadline: float,
+        *,
+        max_pages: int = 1,
+    ) -> list[dict[str, Any]]:
+        """1 página/filial com timeout de socket curto (não usa client longo do gateway)."""
+        import httpx
+
+        from src.core.config import resolve_company_api_key
+        from src.gateway.shared_client import get_webposto_client
+
+        if time.monotonic() >= deadline:
+            return []
+        remaining = max(0.15, deadline - time.monotonic())
+        base = get_webposto_client()
+        api_key = resolve_company_api_key(int(empresa_codigo)) or (
+            base._api_keys[0] if getattr(base, "_api_keys", None) else None
+        )
+        if not api_key:
+            return []
+        params = {
+            "CHAVE": api_key,
+            "dataInicial": data_inicial,
+            "dataFinal": data_final,
+            "empresaCodigo": str(empresa_codigo),
+        }
+        url = f"{base.config.webposto_base_url.rstrip('/')}/INTEGRACAO/ABASTECIMENTO"
+        try:
+            async with httpx.AsyncClient(
+                timeout=httpx.Timeout(remaining, connect=min(0.25, remaining))
+            ) as client:
+                resp = await client.get(url, params=params)
+            if resp.status_code != 200:
+                return []
+            raw = resp.json()
+            batch: list[dict] = []
+            if isinstance(raw, dict):
+                batch = raw.get("dados") or raw.get("data") or raw.get("resultados") or []
+            elif isinstance(raw, list):
+                batch = raw
+            return [
+                row
+                for row in batch
+                if isinstance(row, dict)
+                and int(row.get("empresaCodigo") or row.get("empresa") or 0)
+                == int(empresa_codigo)
+            ][:200]
         except Exception as exc:
-            LOGGER.warning("fuel_volumetry ABASTECIMENTO fallback falhou: %s", exc)
-            obs.append(f"Fallback ABASTECIMENTO falhou: {exc}")
-            return 0
+            LOGGER.warning("ABASTECIMENTO fast-page empresa=%s: %s", empresa_codigo, exc)
+            return []
 
 
 _svc: FuelVolumetryService | None = None

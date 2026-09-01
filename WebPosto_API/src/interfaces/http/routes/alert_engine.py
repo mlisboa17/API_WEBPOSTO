@@ -27,6 +27,11 @@ from src.services.fuel_market_intelligence_service import (
 from src.services.company_settings_service import (
     get_company_settings_service,
 )
+from src.services.notification_profile_service import (
+    NotificationProfileUpdate,
+    get_profile,
+    save_profile,
+)
 
 router = APIRouter(prefix="/api/v1/executive/alerts", tags=["Alerts"])
 
@@ -428,6 +433,26 @@ async def get_supplier_info(
     
     market = get_market_intelligence()
     return market.get_supplier_info(empresa_codigo, fornecedor_codigo)
+
+
+@router.get("/settings/profile")
+async def get_notification_profile(
+    userId: str = Query("usr_001", description="ID do usuário do perfil"),
+) -> dict[str, Any]:
+    """Carrega perfil de notificação persistido (Postgres / JSON fallback)."""
+    dto = await get_profile(user_id=userId)
+    return {"success": True, "data": dto.model_dump()}
+
+
+@router.put("/settings/profile")
+async def put_notification_profile(body: NotificationProfileUpdate) -> dict[str, Any]:
+    """Persiste perfil de notificação em notification_profiles (+ JSON mirror)."""
+    dto = await save_profile(body)
+    return {
+        "success": True,
+        "data": dto.model_dump(),
+        "message": "Perfil de notificação salvo.",
+    }
 
 
 @router.get("/settings/companies")

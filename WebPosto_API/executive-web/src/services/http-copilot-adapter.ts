@@ -16,11 +16,23 @@ export interface DateCoverageResponse {
   lastCompleteDate: string | null;
   suggestedStartDate: string | null;
   suggestedEndDate: string | null;
-  gaps?: any[];
+  gaps?: unknown[];
   empty?: boolean;
   source?: string;
   webpostoWrites?: number;
   blocked?: { code: string; message: string } | null;
+}
+
+export class HttpCopilotError extends Error {
+  status: number;
+  detail: string;
+
+  constructor(message: string, status: number, detail: string) {
+    super(message);
+    this.name = "HttpCopilotError";
+    this.status = status;
+    this.detail = detail;
+  }
 }
 
 /**
@@ -65,10 +77,7 @@ export async function queryHttpCopilot(options: HttpCopilotQueryOptions): Promis
       customMessage = "Backend local indisponível";
     }
 
-    const err = new Error(customMessage);
-    (err as any).status = status;
-    (err as any).detail = errorText;
-    throw err;
+    throw new HttpCopilotError(customMessage, status, errorText);
   }
 
   const rawJson = await response.json();

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-02T06:51:39.286610+00:00",
+  "updated_at": "2026-08-04T22:45:43.859560+00:00",
   "layouts": [
     {
       "id": "FL-5555-f5b6f5654d",
@@ -316,7 +316,7 @@
         {
           "id": "ISL-4a90ab7e",
           "code": "REAL_LIQ_ILHA_01",
-          "name": "Ilha Líquidos 01",
+          "name": "Ilha 01",
           "zone_code": "ZONE_LIQUIDOS",
           "display_order": 1,
           "x": 60.0,
@@ -328,7 +328,7 @@
         {
           "id": "ISL-b262f09e",
           "code": "REAL_LIQ_ILHA_02",
-          "name": "Ilha Líquidos 02",
+          "name": "Ilha 02",
           "zone_code": "ZONE_LIQUIDOS",
           "display_order": 2,
           "x": 400.0,
@@ -340,7 +340,7 @@
         {
           "id": "ISL-f53ad19a",
           "code": "REAL_LIQ_ILHA_03",
-          "name": "Ilha Líquidos 03",
+          "name": "Ilha 03",
           "zone_code": "ZONE_LIQUIDOS",
           "display_order": 3,
           "x": 740.0,
@@ -352,7 +352,7 @@
         {
           "id": "ISL-6c99199e",
           "code": "REAL_GNV_01",
-          "name": "GNV 001",
+          "name": "GNV 1",
           "zone_code": "ZONE_GNV",
           "display_order": 4,
           "x": 280.0,
@@ -364,7 +364,7 @@
         {
           "id": "ISL-d720ba2f",
           "code": "REAL_GNV_02",
-          "name": "GNV 002",
+          "name": "GNV 2",
           "zone_code": "ZONE_GNV",
           "display_order": 5,
           "x": 600.0,
@@ -622,7 +622,7 @@
       "station_id": 74014,
       "version": 2,
       "name": "Posto Real V1",
-      "status": "ACTIVE",
+      "status": "ARCHIVED",
       "mapping_status": "PROVISIONAL",
       "mapping_note": "MAPEAMENTO PROVISÓRIO — Topologia cadastrada. Orientação física exata dos lados/sensores pendente de validação",
       "valid_from": "2026-08-02T06:51:38.671736+00:00",
@@ -653,15 +653,16 @@
         {
           "code": "BR-101",
           "label": "BR-101",
-          "x": 520.0,
-          "y": 72.0
+          "kind": "ROAD",
+          "x": 550.0,
+          "y": 28.0
         }
       ],
       "islands": [
         {
           "id": "ISL-13e1fe32",
           "code": "REAL_LIQ_ILHA_03",
-          "name": "Ilha Líquidos 03",
+          "name": "Ilha 03",
           "zone_code": "ZONE_LIQUIDOS",
           "display_order": 1,
           "x": 70.0,
@@ -673,7 +674,7 @@
         {
           "id": "ISL-c6c9484c",
           "code": "REAL_LIQ_ILHA_02",
-          "name": "Ilha Líquidos 02",
+          "name": "Ilha 02",
           "zone_code": "ZONE_LIQUIDOS",
           "display_order": 2,
           "x": 410.0,
@@ -685,7 +686,7 @@
         {
           "id": "ISL-9599db17",
           "code": "REAL_LIQ_ILHA_01",
-          "name": "Ilha Líquidos 01",
+          "name": "Ilha 01",
           "zone_code": "ZONE_LIQUIDOS",
           "display_order": 3,
           "x": 750.0,
@@ -697,7 +698,7 @@
         {
           "id": "ISL-7b6197e3",
           "code": "REAL_GNV_01",
-          "name": "GNV 001",
+          "name": "GNV 1",
           "zone_code": "ZONE_GNV",
           "display_order": 4,
           "x": 360.0,
@@ -709,7 +710,7 @@
         {
           "id": "ISL-c142c12d",
           "code": "REAL_GNV_02",
-          "name": "GNV 002",
+          "name": "GNV 2",
           "zone_code": "ZONE_GNV",
           "display_order": 5,
           "x": 560.0,
@@ -960,7 +961,353 @@
         }
       ],
       "created_at": "2026-08-02T06:51:38.666305+00:00",
-      "updated_at": "2026-08-02T06:51:39.285342+00:00"
+      "updated_at": "2026-08-04T22:45:43.857439+00:00"
+    },
+    {
+      "id": "FL-74014-44a7134e6a",
+      "station_id": 74014,
+      "version": 3,
+      "name": "Posto Real — Séxtuplas ⊥ BR-101",
+      "status": "ACTIVE",
+      "mapping_status": "PROVISIONAL",
+      "mapping_note": "HEATMAP-01: bombas séxtuplas (3+3) perpendiculares à BR-101. Sensor A = lado esquerdo; Sensor B = lado direito. Haste T = GNV.",
+      "valid_from": "2026-08-04T22:45:43.858258+00:00",
+      "valid_to": null,
+      "coordinate_width": 1100,
+      "coordinate_height": 820,
+      "zones": [
+        {
+          "code": "ZONE_LIQUIDOS",
+          "name": "Zona Líquidos (perpendicular à BR-101)",
+          "display_order": 1,
+          "x": 40.0,
+          "y": 56.0,
+          "width": 1020.0,
+          "height": 420.0
+        },
+        {
+          "code": "ZONE_GNV",
+          "name": "Zona GNV (haste traseira do T)",
+          "display_order": 2,
+          "x": 330.0,
+          "y": 500.0,
+          "width": 440.0,
+          "height": 280.0
+        }
+      ],
+      "markers": [
+        {
+          "code": "BR-101",
+          "label": "BR-101",
+          "x": 550.0,
+          "y": 28.0,
+          "kind": "ROAD"
+        }
+      ],
+      "islands": [
+        {
+          "id": "ISL-2622ded0",
+          "code": "REAL_LIQ_ILHA_03",
+          "name": "Ilha 03",
+          "zone_code": "ZONE_LIQUIDOS",
+          "display_order": 1,
+          "x": 90.0,
+          "y": 90.0,
+          "width": 220.0,
+          "height": 340.0,
+          "active": true
+        },
+        {
+          "id": "ISL-68d2aab0",
+          "code": "REAL_LIQ_ILHA_02",
+          "name": "Ilha 02",
+          "zone_code": "ZONE_LIQUIDOS",
+          "display_order": 2,
+          "x": 440.0,
+          "y": 90.0,
+          "width": 220.0,
+          "height": 340.0,
+          "active": true
+        },
+        {
+          "id": "ISL-e16c61aa",
+          "code": "REAL_LIQ_ILHA_01",
+          "name": "Ilha 01",
+          "zone_code": "ZONE_LIQUIDOS",
+          "display_order": 3,
+          "x": 790.0,
+          "y": 90.0,
+          "width": 220.0,
+          "height": 340.0,
+          "active": true
+        },
+        {
+          "id": "ISL-a0608202",
+          "code": "REAL_GNV_01",
+          "name": "GNV 1",
+          "zone_code": "ZONE_GNV",
+          "display_order": 4,
+          "x": 360.0,
+          "y": 540.0,
+          "width": 180.0,
+          "height": 160.0,
+          "active": true
+        },
+        {
+          "id": "ISL-9bce49e5",
+          "code": "REAL_GNV_02",
+          "name": "GNV 2",
+          "zone_code": "ZONE_GNV",
+          "display_order": 5,
+          "x": 560.0,
+          "y": 540.0,
+          "width": 180.0,
+          "height": 160.0,
+          "active": true
+        }
+      ],
+      "positions": [
+        {
+          "id": "POS-19496e0e",
+          "island_code": "REAL_LIQ_ILHA_01",
+          "pump_id": 1,
+          "pump_name": "BOMBA 01 SÉXTUPLA",
+          "code": "REAL_B01_SENSOR_A",
+          "name": "Bomba 01 — Sensor A (3 bicos · lado esquerdo)",
+          "orientation": "SENSOR_A",
+          "x": 808.0,
+          "y": 180.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 1,
+              "active": true,
+              "label": "001 S10"
+            },
+            {
+              "nozzle_id": 2,
+              "active": true,
+              "label": "002 Comum"
+            },
+            {
+              "nozzle_id": 3,
+              "active": true,
+              "label": "003 Etanol"
+            }
+          ],
+          "island_id": "ISL-e16c61aa"
+        },
+        {
+          "id": "POS-dd66fafe",
+          "island_code": "REAL_LIQ_ILHA_01",
+          "pump_id": 1,
+          "pump_name": "BOMBA 01 SÉXTUPLA",
+          "code": "REAL_B01_SENSOR_B",
+          "name": "Bomba 01 — Sensor B (3 bicos · lado direito)",
+          "orientation": "SENSOR_B",
+          "x": 908.0,
+          "y": 180.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 4,
+              "active": true,
+              "label": "004 S10"
+            },
+            {
+              "nozzle_id": 5,
+              "active": true,
+              "label": "005 Comum"
+            },
+            {
+              "nozzle_id": 6,
+              "active": true,
+              "label": "006 Etanol"
+            }
+          ],
+          "island_id": "ISL-e16c61aa"
+        },
+        {
+          "id": "POS-a27955e2",
+          "island_code": "REAL_LIQ_ILHA_02",
+          "pump_id": 2,
+          "pump_name": "BOMBA 02 SÉXTUPLA",
+          "code": "REAL_B02_SENSOR_A",
+          "name": "Bomba 02 — Sensor A (3 bicos · lado esquerdo)",
+          "orientation": "SENSOR_A",
+          "x": 458.0,
+          "y": 180.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 7,
+              "active": true,
+              "label": "007 Aditivada"
+            },
+            {
+              "nozzle_id": 8,
+              "active": true,
+              "label": "008 Comum"
+            },
+            {
+              "nozzle_id": 9,
+              "active": true,
+              "label": "009 Etanol"
+            }
+          ],
+          "island_id": "ISL-68d2aab0"
+        },
+        {
+          "id": "POS-f1fc9283",
+          "island_code": "REAL_LIQ_ILHA_02",
+          "pump_id": 2,
+          "pump_name": "BOMBA 02 SÉXTUPLA",
+          "code": "REAL_B02_SENSOR_B",
+          "name": "Bomba 02 — Sensor B (3 bicos · lado direito)",
+          "orientation": "SENSOR_B",
+          "x": 558.0,
+          "y": 180.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 10,
+              "active": true,
+              "label": "010 Aditivada"
+            },
+            {
+              "nozzle_id": 11,
+              "active": true,
+              "label": "011 Comum"
+            },
+            {
+              "nozzle_id": 12,
+              "active": true,
+              "label": "012 Etanol"
+            }
+          ],
+          "island_id": "ISL-68d2aab0"
+        },
+        {
+          "id": "POS-fa9e1a44",
+          "island_code": "REAL_LIQ_ILHA_03",
+          "pump_id": 3,
+          "pump_name": "BOMBA 03 SÉXTUPLA",
+          "code": "REAL_B03_SENSOR_A",
+          "name": "Bomba 03 — Sensor A (3 bicos · lado esquerdo)",
+          "orientation": "SENSOR_A",
+          "x": 108.0,
+          "y": 180.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 13,
+              "active": true,
+              "label": "013 Comum"
+            },
+            {
+              "nozzle_id": 14,
+              "active": true,
+              "label": "014 Etanol"
+            },
+            {
+              "nozzle_id": 17,
+              "active": true,
+              "label": "017 Aditivada"
+            }
+          ],
+          "island_id": "ISL-2622ded0"
+        },
+        {
+          "id": "POS-f810e085",
+          "island_code": "REAL_LIQ_ILHA_03",
+          "pump_id": 3,
+          "pump_name": "BOMBA 03 SÉXTUPLA",
+          "code": "REAL_B03_SENSOR_B",
+          "name": "Bomba 03 — Sensor B (3 bicos · lado direito)",
+          "orientation": "SENSOR_B",
+          "x": 208.0,
+          "y": 180.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 15,
+              "active": true,
+              "label": "015 Comum"
+            },
+            {
+              "nozzle_id": 16,
+              "active": true,
+              "label": "016 Etanol"
+            },
+            {
+              "nozzle_id": 18,
+              "active": true,
+              "label": "018 Aditivada"
+            }
+          ],
+          "island_id": "ISL-2622ded0"
+        },
+        {
+          "id": "POS-3cd80fda",
+          "island_code": "REAL_GNV_01",
+          "pump_id": 101,
+          "pump_name": "GNV 001",
+          "code": "REAL_GNV_001",
+          "name": "Display GNV 1 (haste T)",
+          "orientation": "GNV",
+          "x": 385.0,
+          "y": 580.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 19,
+              "active": true,
+              "label": "019 GNV"
+            },
+            {
+              "nozzle_id": 20,
+              "active": true,
+              "label": "020 GNV"
+            }
+          ],
+          "island_id": "ISL-a0608202"
+        },
+        {
+          "id": "POS-9a16ce5c",
+          "island_code": "REAL_GNV_02",
+          "pump_id": 102,
+          "pump_name": "GNV 002",
+          "code": "REAL_GNV_002",
+          "name": "Display GNV 2 (haste T)",
+          "orientation": "GNV",
+          "x": 585.0,
+          "y": 580.0,
+          "active": true,
+          "operational": true,
+          "nozzles": [
+            {
+              "nozzle_id": 21,
+              "active": true,
+              "label": "021 GNV"
+            },
+            {
+              "nozzle_id": 22,
+              "active": true,
+              "label": "022 GNV"
+            }
+          ],
+          "island_id": "ISL-9bce49e5"
+        }
+      ],
+      "created_at": "2026-08-04T22:45:43.846404+00:00",
+      "updated_at": "2026-08-04T22:45:43.858242+00:00"
     }
   ]
 }

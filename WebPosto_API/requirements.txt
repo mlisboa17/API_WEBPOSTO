@@ -7,6 +7,8 @@ pydantic-settings>=2.1.0
 fastapi>=0.115.0
 uvicorn[standard]>=0.30.0
 httpx>=0.26.0
+openpyxl>=3.1.0
+python-multipart>=0.0.9
 redis>=5.0.0
 aiosqlite>=0.20.0
 tenacity>=8.2.3
@@ -16,3 +18,8 @@ supabase>=2.9.0
 pypdf>=6.0.0,<7
 reportlab>=4.0.0,<5
 sqlmodel>=0.0.22
+# DF-e / NF-e entrada — versão fixa (LGPL-3.0); não instalar de main
+pynfe==0.6.5
+cryptography>=43.0.3
+lxml>=5.4.0
+pyOpenSSL>=25.0.0

@@ -58,12 +58,35 @@ class FechamentoTurno(BaseModel):
     postoNome: str = ""
     turno: str = ""
     dataRef: str = ""
+    # IMUTÁVEIS via API (bico / sistêmico PDV)
     faturamentoBico: float = 0.0
+    dinheiro_sistemico: float = 0.0
+    pix_sistemico: float = 0.0
+    cartao_debito_sistemico: float = 0.0
+    cartao_credito_sistemico: float = 0.0
+    convenio_sistemico: float = 0.0
+    # Auditáveis / alteráveis pela diretoria
     faturamentoCaixa: float = 0.0
+    dinheiro_declarado: float = 0.0
+    pix_declarado: float = 0.0
+    cartao_debito_declarado: float = 0.0
+    cartao_credito_declarado: float = 0.0
+    convenio_declarado: float = 0.0
+    observacao_auditoria: str | None = None
+    ajustadoManualmente: bool = False
     saldo: float = 0.0
     status: str = "PENDENTE"  # AUDITADO | PENDENTE
     qtdAbastecimentos: int = 0
     caixaCodigo: int | None = None
+
+
+class CashierAuditAdjustRequest(BaseModel):
+    dinheiro_declarado: float | None = None
+    pix_declarado: float | None = None
+    cartao_debito_declarado: float | None = None
+    cartao_credito_declarado: float | None = None
+    convenio_declarado: float | None = None
+    observacao_auditoria: str | None = None
 
 
 class QuebraFormaPagamento(BaseModel):
@@ -101,6 +124,8 @@ class _RamStore:
     observacoes: tuple[str, ...] = ()
     last_error: str | None = None
     last_duration_ms: float = 0.0
+    # Overrides de auditoria (sobrevivem ao refresh do worker)
+    adjustments: dict[str, dict[str, Any]] = field(default_factory=dict)
 
 
 def _money(v: Any) -> float:
@@ -151,6 +176,44 @@ _FORMA_LABEL = {
 }
 
 
+_DECL_FIELDS = (
+    "dinheiro_declarado",
+    "pix_declarado",
+    "cartao_debito_declarado",
+    "cartao_credito_declarado",
+    "convenio_declarado",
+)
+
+
+def _recalc_fechamento(f: FechamentoTurno) -> FechamentoTurno:
+    """Recalcula Δ e status a partir dos declarados (bico permanece imutável)."""
+    total_dec = round(
+        sum(_money(getattr(f, k)) for k in _DECL_FIELDS),
+        2,
+    )
+    # Se nenhum breakdown foi informado, mantém faturamentoCaixa legado
+    if total_dec <= 0 and _money(f.faturamentoCaixa) > 0:
+        total_dec = _money(f.faturamentoCaixa)
+        if _money(f.dinheiro_declarado) <= 0 and _money(f.dinheiro_sistemico) > 0:
+            # proporção sistêmica como baseline editável
+            ratio = total_dec / max(_money(f.faturamentoBico), 0.01)
+            f.dinheiro_declarado = round(_money(f.dinheiro_sistemico) * ratio, 2)
+            f.pix_declarado = round(_money(f.pix_sistemico) * ratio, 2)
+            f.cartao_debito_declarado = round(_money(f.cartao_debito_sistemico) * ratio, 2)
+            f.cartao_credito_declarado = round(_money(f.cartao_credito_sistemico) * ratio, 2)
+            f.convenio_declarado = round(_money(f.convenio_sistemico) * ratio, 2)
+            total_dec = round(sum(_money(getattr(f, k)) for k in _DECL_FIELDS), 2)
+
+    f.faturamentoCaixa = total_dec
+    f.saldo = round(total_dec - _money(f.faturamentoBico), 2)
+    if abs(f.saldo) < 0.01:
+        f.status = "AUDITADO"
+        f.saldo = 0.0
+    elif f.ajustadoManualmente:
+        f.status = "PENDENTE"
+    return f
+
+
 class CashierAuditService:
     """Cache RAM de auditoria de caixa — publish atômico."""
 
@@ -177,8 +240,28 @@ class CashierAuditService:
                 obs.append("CAIXA indisponível no ciclo — cruzamento parcial via bico/pagamentos.")
 
             fechamentos, quebras, resumo = self._build(baixados, caixas, data_ref)
-            duration = (time.perf_counter() - t0) * 1000.0
             async with self._lock:
+                adjustments = dict(self._store.adjustments or {})
+                # Reaplica overrides de auditoria (declarados) sem tocar no bico
+                if adjustments:
+                    patched: list[FechamentoTurno] = []
+                    for f in fechamentos:
+                        adj = adjustments.get(f.id)
+                        if adj:
+                            data = f.model_dump()
+                            for k in _DECL_FIELDS:
+                                if k in adj and adj[k] is not None:
+                                    data[k] = _money(adj[k])
+                            if adj.get("observacao_auditoria") is not None:
+                                data["observacao_auditoria"] = adj["observacao_auditoria"]
+                            data["ajustadoManualmente"] = True
+                            f = _recalc_fechamento(FechamentoTurno(**data))
+                        patched.append(f)
+                    fechamentos = patched
+                    quebras, resumo = self._rebuild_aggregates(fechamentos)
+                    obs.append(f"Overrides de auditoria reaplicados: {len(adjustments)}")
+
+                duration = (time.perf_counter() - t0) * 1000.0
                 self._store = _RamStore(
                     data_ref=data_ref,
                     gerado_em=datetime.now(TZ).isoformat(),
@@ -188,6 +271,7 @@ class CashierAuditService:
                     observacoes=tuple(obs),
                     last_error=None,
                     last_duration_ms=duration,
+                    adjustments=adjustments,
                 )
             LOGGER.info(
                 "cashier_audit.refresh ok data_ref=%s turnos=%s duration_ms=%.1f",
@@ -209,8 +293,109 @@ class CashierAuditService:
                     observacoes=prev.observacoes + (f"refresh_error: {exc}",),
                     last_error=str(exc),
                     last_duration_ms=(time.perf_counter() - t0) * 1000.0,
+                    adjustments=dict(prev.adjustments or {}),
                 )
                 return self._store
+
+    def _rebuild_aggregates(
+        self, fechamentos: list[FechamentoTurno]
+    ) -> tuple[list[QuebraFormaPagamento], ResumoDiaCaixa]:
+        sobras = sum(f.saldo for f in fechamentos if f.saldo > 0)
+        faltas = sum(abs(f.saldo) for f in fechamentos if f.saldo < 0)
+        esp = sum(f.faturamentoBico for f in fechamentos)
+        dec = sum(f.faturamentoCaixa for f in fechamentos)
+        formas_sys = {
+            "DINHEIRO": sum(f.dinheiro_sistemico for f in fechamentos),
+            "PIX": sum(f.pix_sistemico for f in fechamentos),
+            "CARTAO_DEBITO": sum(f.cartao_debito_sistemico for f in fechamentos),
+            "CARTAO_CREDITO": sum(f.cartao_credito_sistemico for f in fechamentos),
+            "CONVENIO": sum(f.convenio_sistemico for f in fechamentos),
+        }
+        formas_inf = {
+            "DINHEIRO": sum(f.dinheiro_declarado for f in fechamentos),
+            "PIX": sum(f.pix_declarado for f in fechamentos),
+            "CARTAO_DEBITO": sum(f.cartao_debito_declarado for f in fechamentos),
+            "CARTAO_CREDITO": sum(f.cartao_credito_declarado for f in fechamentos),
+            "CONVENIO": sum(f.convenio_declarado for f in fechamentos),
+        }
+        quebras: list[QuebraFormaPagamento] = []
+        for forma in FORMAS_ORDEM:
+            if forma == "OUTROS":
+                continue
+            sist = round(formas_sys.get(forma, 0.0), 2)
+            inf = round(formas_inf.get(forma, 0.0), 2)
+            if sist <= 0 and inf <= 0:
+                continue
+            quebras.append(
+                QuebraFormaPagamento(
+                    forma=forma,
+                    label=_FORMA_LABEL.get(forma, forma),
+                    valorSistemico=sist,
+                    valorInformado=inf,
+                    diferenca=round(inf - sist, 2),
+                )
+            )
+        resumo = ResumoDiaCaixa(
+            totalEsperado=round(esp, 2),
+            totalDeclarado=round(dec, 2),
+            divergenciaTotal=round(dec - esp, 2),
+            sobras=round(sobras, 2),
+            faltas=round(faltas, 2),
+            qtdTurnos=len(fechamentos),
+            qtdAuditados=sum(1 for f in fechamentos if f.status == "AUDITADO"),
+            qtdPendentes=sum(1 for f in fechamentos if f.status == "PENDENTE"),
+            qtdComDivergencia=sum(1 for f in fechamentos if abs(f.saldo) >= 0.01),
+        )
+        return quebras, resumo
+
+    async def adjust_fechamento(
+        self, fechamento_id: str, body: CashierAuditAdjustRequest
+    ) -> FechamentoTurno:
+        """Altera apenas valores declarados; recalcula Δ e status."""
+        async with self._lock:
+            items = list(self._store.fechamentos)
+            idx = next((i for i, f in enumerate(items) if f.id == fechamento_id), -1)
+            if idx < 0:
+                raise KeyError(f"Fechamento não encontrado: {fechamento_id}")
+
+            current = items[idx]
+            data = current.model_dump()
+            payload = body.model_dump(exclude_unset=True)
+            adj = dict(self._store.adjustments.get(fechamento_id) or {})
+
+            for k in _DECL_FIELDS:
+                if k in payload and payload[k] is not None:
+                    data[k] = _money(payload[k])
+                    adj[k] = data[k]
+            if "observacao_auditoria" in payload:
+                data["observacao_auditoria"] = payload["observacao_auditoria"]
+                adj["observacao_auditoria"] = payload["observacao_auditoria"]
+
+            data["ajustadoManualmente"] = True
+            updated = _recalc_fechamento(FechamentoTurno(**data))
+            items[idx] = updated
+            quebras, resumo = self._rebuild_aggregates(items)
+
+            adjustments = dict(self._store.adjustments)
+            adjustments[fechamento_id] = adj
+            self._store = _RamStore(
+                data_ref=self._store.data_ref,
+                gerado_em=self._store.gerado_em,
+                resumo=resumo,
+                fechamentos=tuple(items),
+                quebras=tuple(quebras),
+                observacoes=self._store.observacoes,
+                last_error=self._store.last_error,
+                last_duration_ms=self._store.last_duration_ms,
+                adjustments=adjustments,
+            )
+            LOGGER.info(
+                "cashier_audit.adjust id=%s saldo=%.2f status=%s",
+                fechamento_id,
+                updated.saldo,
+                updated.status,
+            )
+            return updated
 
     async def _fetch_caixas(self, inicio: str, fim: str) -> list[dict[str, Any]]:
         try:
@@ -311,7 +496,6 @@ class CashierAuditService:
                     # fallback: declara = bico (sem divergência sistêmica) mas marca auditado se caixa existe
                     declarado = bico
                 status = "AUDITADO"
-                auditados += 1
                 caixa_cod = int(cx.get("caixaCodigo") or cx.get("codigo") or 0) or None
                 op_nome = str(
                     cx.get("funcionarioNome") or cx.get("operadorNome") or g["nome"] or "N/I"
@@ -320,72 +504,78 @@ class CashierAuditService:
                 # Sem fechamento de CAIXA: declarado = soma pagamentos sistêmicos (= bico)
                 declarado = bico
                 status = "PENDENTE"
-                pendentes += 1
                 caixa_cod = None
                 op_nome = g["nome"]
 
-            saldo = round(declarado - bico, 2)
-            if abs(saldo) >= 0.01:
+            formas_g: dict[str, float] = g["formas"]
+            din_s = round(float(formas_g.get("DINHEIRO", 0)), 2)
+            pix_s = round(float(formas_g.get("PIX", 0)), 2)
+            deb_s = round(float(formas_g.get("CARTAO_DEBITO", 0)), 2)
+            cred_s = round(float(formas_g.get("CARTAO_CREDITO", 0)), 2)
+            conv_s = round(float(formas_g.get("CONVENIO", 0)), 2)
+            # Declarado inicial: proporcional ao sistêmico (editável depois via PATCH)
+            ratio_turno = (declarado / bico) if bico > 0 else 1.0
+            ft = FechamentoTurno(
+                id=f"CX-{emp}-{fid or 0}-{turno}-{data_ref}",
+                operadorId=fid,
+                operadorNome=op_nome,
+                postoCodigo=emp,
+                postoNome=FILIAIS.get(emp, f"Empresa {emp}"),
+                turno=turno,
+                dataRef=data_ref,
+                faturamentoBico=bico,
+                dinheiro_sistemico=din_s,
+                pix_sistemico=pix_s,
+                cartao_debito_sistemico=deb_s,
+                cartao_credito_sistemico=cred_s,
+                convenio_sistemico=conv_s,
+                faturamentoCaixa=round(declarado, 2),
+                dinheiro_declarado=round(din_s * ratio_turno, 2),
+                pix_declarado=round(pix_s * ratio_turno, 2),
+                cartao_debito_declarado=round(deb_s * ratio_turno, 2),
+                cartao_credito_declarado=round(cred_s * ratio_turno, 2),
+                convenio_declarado=round(conv_s * ratio_turno, 2),
+                saldo=0.0,
+                status=status,
+                qtdAbastecimentos=int(g["qtd"]),
+                caixaCodigo=caixa_cod,
+            )
+            ft = _recalc_fechamento(ft)
+            # Sem CAIXA → sempre pendente; com CAIXA e Δ=0 → auditado
+            if not cx:
+                ft.status = "PENDENTE"
+            elif abs(ft.saldo) < 0.01:
+                ft.status = "AUDITADO"
+            else:
+                ft.status = status  # AUDITADO se caixa existe, mesmo com Δ
+
+            if abs(ft.saldo) >= 0.01:
                 com_div += 1
-            if saldo > 0:
-                sobras += saldo
-            elif saldo < 0:
-                faltas += abs(saldo)
+            if ft.saldo > 0:
+                sobras += ft.saldo
+            elif ft.saldo < 0:
+                faltas += abs(ft.saldo)
 
             total_esp += bico
-            total_dec += declarado
+            total_dec += ft.faturamentoCaixa
+            if ft.status == "AUDITADO":
+                auditados += 1
+            else:
+                pendentes += 1
 
-            fechamentos.append(
-                FechamentoTurno(
-                    id=f"CX-{emp}-{fid or 0}-{turno}-{data_ref}",
-                    operadorId=fid,
-                    operadorNome=op_nome,
-                    postoCodigo=emp,
-                    postoNome=FILIAIS.get(emp, f"Empresa {emp}"),
-                    turno=turno,
-                    dataRef=data_ref,
-                    faturamentoBico=bico,
-                    faturamentoCaixa=round(declarado, 2),
-                    saldo=saldo,
-                    status=status,
-                    qtdAbastecimentos=int(g["qtd"]),
-                    caixaCodigo=caixa_cod,
-                )
-            )
+            fechamentos.append(ft)
 
         fechamentos.sort(key=lambda f: (abs(f.saldo), f.faturamentoBico), reverse=True)
-
-        # Quebras por forma — sistêmico do bico; informado proporcional ao declarado do dia
-        ratio = (total_dec / total_esp) if total_esp > 0 else 1.0
-        quebras: list[QuebraFormaPagamento] = []
-        for forma in FORMAS_ORDEM:
-            sist = round(formas_sys.get(forma, 0.0), 2)
-            if sist <= 0 and forma == "OUTROS":
-                continue
-            if sist <= 0:
-                continue
-            informado = round(sist * ratio, 2)
-            quebras.append(
-                QuebraFormaPagamento(
-                    forma=forma,
-                    label=_FORMA_LABEL.get(forma, forma),
-                    valorSistemico=sist,
-                    valorInformado=informado,
-                    diferenca=round(informado - sist, 2),
-                )
-            )
-
-        resumo = ResumoDiaCaixa(
-            totalEsperado=round(total_esp, 2),
-            totalDeclarado=round(total_dec, 2),
-            divergenciaTotal=round(total_dec - total_esp, 2),
-            sobras=round(sobras, 2),
-            faltas=round(faltas, 2),
-            qtdTurnos=len(fechamentos),
-            qtdAuditados=auditados,
-            qtdPendentes=pendentes,
-            qtdComDivergencia=com_div,
-        )
+        quebras, resumo = self._rebuild_aggregates(fechamentos)
+        # Prefer contadores locais se aggregates divergirem por OUTROS
+        resumo.qtdAuditados = auditados
+        resumo.qtdPendentes = pendentes
+        resumo.qtdComDivergencia = com_div
+        resumo.sobras = round(sobras, 2)
+        resumo.faltas = round(faltas, 2)
+        resumo.totalEsperado = round(total_esp, 2)
+        resumo.totalDeclarado = round(total_dec, 2)
+        resumo.divergenciaTotal = round(total_dec - total_esp, 2)
         return fechamentos, quebras, resumo
 
     def response(

@@ -183,7 +183,7 @@ class WebPostoClient:
         if company_key:
             return (company_key,)
 
-        # Fallback índice legado
+        # Isolamento estrito: empresa não mapeada não herda chave genérica
         return ()
 
     @staticmethod

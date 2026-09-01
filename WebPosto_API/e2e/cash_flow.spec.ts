@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, Page } from "@playwright/test";
 import {
   gotoFinanceCenter,
   selectTodosPostos,
@@ -7,7 +7,7 @@ import {
   FC_PERIOD,
 } from "./helpers/financeCenter.helpers";
 
-async function gotoCashFlow(page) {
+async function gotoCashFlow(page: Page) {
   const params = new URLSearchParams({
     view: "cash-flow",
     dataInicial: FC_PERIOD.dataInicial,

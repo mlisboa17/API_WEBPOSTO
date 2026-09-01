@@ -50,6 +50,7 @@ class TankPredictionDTO(BaseModel):
     margem_bruta_rs_litro: float = 0.0
     valor_estoque_imobilizado_rs: float = 0.0
     cpm_origem: str = ""
+    data_hora_medidor: str | None = None
     
     @classmethod
     def from_prediction(cls, p: TankPrediction) -> "TankPredictionDTO":
@@ -75,6 +76,7 @@ class TankPredictionDTO(BaseModel):
             margem_bruta_rs_litro=getattr(p, "margem_bruta_rs_litro", 0.0),
             valor_estoque_imobilizado_rs=getattr(p, "valor_estoque_imobilizado_rs", 0.0),
             cpm_origem=getattr(p, "cpm_origem", ""),
+            data_hora_medidor=getattr(p, "data_hora_medidor", None),
         )
 
 
@@ -208,4 +210,37 @@ async def get_realtime_operational_bundle(
                 "tanques": {"sucesso": False, "mensagem": str(exc)},
                 "cpm": {"sucesso": False, "mensagem": str(exc)},
             },
+        }
+
+
+@router.get("/tank-discharge-history")
+async def get_tank_discharge_history(
+    empresaCodigo: int = Query(..., description="Codigo da filial"),
+    fuel: str | None = Query(None, description="Nome/tipo do combustivel"),
+    produtoCodigo: int | None = Query(None),
+    tanqueId: int | None = Query(None),
+    dias: int = Query(45, ge=7, le=90),
+    limit: int = Query(20, ge=1, le=50),
+) -> dict[str, Any]:
+    """Histórico real de descarga (COMPRA/COMPRA_ITEM ou LMC_REDE)."""
+    from src.services.tank_discharge_history_service import (
+        get_tank_discharge_history_service,
+    )
+
+    try:
+        return await get_tank_discharge_history_service().get_history(
+            empresa_codigo=empresaCodigo,
+            fuel=fuel,
+            produto_codigo=produtoCodigo,
+            tanque_id=tanqueId,
+            dias=dias,
+            limit=limit,
+        )
+    except Exception as exc:
+        return {
+            "success": False,
+            "empresa_codigo": empresaCodigo,
+            "fonte": "error",
+            "items": [],
+            "observacoes": [str(exc)],
         }

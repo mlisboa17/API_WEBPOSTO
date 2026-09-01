@@ -50,6 +50,7 @@ class TankPrediction:
     margem_bruta_rs_litro: float = 0.0
     valor_estoque_imobilizado_rs: float = 0.0
     cpm_origem: str = ""
+    data_hora_medidor: str | None = None
 
 
 @dataclass
@@ -384,6 +385,14 @@ class InventoryPredictionService:
         if consumo_diario <= 0:
             consumo_diario = self._estimate_default_consumption(tipo_combustivel)
         
+        medidor_raw = (
+            tank.get("dataHoraMedidor")
+            or tank.get("dataHoraMedicao")
+            or tank.get("dataMedicao")
+            or tank.get("ultimaMedicao")
+        )
+        medidor_iso = str(medidor_raw).strip() if medidor_raw else None
+
         prediction = TankPrediction(
             produto_codigo=prod_codigo,
             produto_nome=prod_nome,
@@ -395,6 +404,7 @@ class InventoryPredictionService:
             dias_cobertura_desejado=dias_cobertura,
             lead_time_horas=lead_time_horas,
             dias_historico_usado=dias_historico,
+            data_hora_medidor=medidor_iso,
         )
 
         # CPM / margem / valor imobilizado
@@ -481,6 +491,23 @@ class InventoryPredictionService:
             prediction.autonomia_dias_restantes = 999
             prediction.autonomia_horas_restantes = 999 * 24
             prediction.observacoes.append("Sem historico de consumo - usando estimativa")
+
+        # GNV (099): gás canalizado — sem cilindro líquido / sem "Pedir Carreta"
+        is_gnv = (
+            tipo_combustivel == "GNV"
+            or "GNV" in (prod_nome or "").upper()
+            or "GAS NATURAL" in (prod_nome or "").upper()
+            or str(prod_codigo).lstrip("0") == "99"
+            or str(prod_codigo) in {"99", "099"}
+        )
+        if is_gnv:
+            prediction.status_alerta = "OK"
+            prediction.alerta_label = "GNV canalizado — sem carreta"
+            prediction.sugestao_compra_litros = 0
+            prediction.observacoes.append(
+                "GNV excluído de alerta Pedir Carreta / sugestão em litros"
+            )
+            return prediction
 
         # Alertas: Crítico < 1.5d | Atenção < 3d | Saudável >= 3d
         autonomia = prediction.autonomia_dias_restantes

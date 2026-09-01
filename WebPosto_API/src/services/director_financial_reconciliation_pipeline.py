@@ -27,6 +27,13 @@ from src.services.director_financial_alert_service import DirectorFinancialAlert
 from src.services.financial_partition_coverage_service import FinancialPartitionCoverageService
 from src.services.department_review_store import DepartmentReviewStore
 from src.services.financial_expense_taxonomy_service import FinancialExpenseTaxonomyService
+from src.services.dre_regime import (
+    classify_period_lock,
+    date_fields_for_regime,
+    normalize_regime,
+    regime_label,
+    row_in_period,
+)
 
 
 def _rows(payload: Any) -> list[dict[str, Any]]:
@@ -92,7 +99,14 @@ class DirectorFinancialReconciliationPipeline:
             value = sha256(stable.encode("utf-8")).hexdigest()[:20]
         return f"{source.value}:{value}"
 
-    def _normalize(self, source: FinancialSource, rows: list[dict[str, Any]]) -> list[FinancialFact]:
+    def _normalize(
+        self,
+        source: FinancialSource,
+        rows: list[dict[str, Any]],
+        regime: str = "competencia",
+    ) -> list[FinancialFact]:
+        regime_norm = normalize_regime(regime)
+        date_fields = date_fields_for_regime(regime_norm)
         facts: list[FinancialFact] = []
         for index, row in enumerate(rows):
             try:
@@ -104,19 +118,23 @@ class DirectorFinancialReconciliationPipeline:
             if source == FinancialSource.EXPENSES:
                 concept = FinancialConcept.FINANCIAL_EXPENSE
                 amount = _money(row.get("valor"))
-                effective = _date(row, "data", "dataMovimento")
+                effective = _date(row, *date_fields)
             elif source == FinancialSource.PAYABLE:
                 concept = FinancialConcept.ACCOUNT_PAYABLE
                 amount = _money(row.get("valor"))
-                effective = _date(row, "dataMovimento", "dataPagamento", "vencimento")
+                # Caixa prioriza liquidação; competência prioriza movimento/vencimento
+                if regime_norm == "caixa":
+                    effective = _date(row, "dataPagamento", "dataLiquidacao", "dataBaixa", "dataMovimento", "vencimento")
+                else:
+                    effective = _date(row, "dataMovimento", "dataEmissao", "vencimento", "dataPagamento")
             elif source == FinancialSource.CASH_EXPENSE:
                 concept = FinancialConcept.CASH_REGISTER_EXPENSE
                 amount = _money(row.get("despesaApurado"))
-                effective = _date(row, "dataMovimento", "fechamento", "data")
+                effective = _date(row, "dataMovimento", "fechamento", "data", *date_fields)
             else:
                 concept = FinancialConcept.ACCOUNT_MOVEMENT
                 amount = _money(row.get("valor"))
-                effective = _date(row, "dataMovimento", "data")
+                effective = _date(row, "dataMovimento", "data", *date_fields)
             if amount is None or effective is None:
                 continue
             fact_id = self._fact_id(source, row, index)
@@ -171,8 +189,16 @@ class DirectorFinancialReconciliationPipeline:
             ))
         return facts
 
-    async def build(self, start: str, end: str, company_code: int | None = None) -> dict[str, Any]:
+    async def build(
+        self,
+        start: str,
+        end: str,
+        company_code: int | None = None,
+        regime: str | None = None,
+    ) -> dict[str, Any]:
         started = perf_counter()
+        regime_norm = normalize_regime(regime)
+        period_lock = classify_period_lock(start, end)
         requested = ((company_code,) if company_code is not None else tuple(sorted(LICENSED_COMPANY_CODES)))
         if any(code not in LICENSED_COMPANY_CODES for code in requested):
             raise ValueError("empresaCodigo fora das tres licencas autorizadas")
@@ -194,7 +220,9 @@ class DirectorFinancialReconciliationPipeline:
         for source, response in source_responses.items():
             rows = _rows(response.data) if response.success else []
             rows = [row for row in rows if int(row.get("empresaCodigo") or 0) in requested]
-            normalized = self._normalize(source, rows)
+            if source in (FinancialSource.EXPENSES, FinancialSource.PAYABLE):
+                rows = [row for row in rows if row_in_period(row, start, end, regime_norm)]
+            normalized = self._normalize(source, rows, regime=regime_norm)
             facts.extend(normalized)
 
             if not response.success:
@@ -359,6 +387,9 @@ class DirectorFinancialReconciliationPipeline:
         } for group in homologation_groups.values()]
         return {
             "period": {"start": start, "end": end},
+            "regime": regime_norm,
+            "regimeLabel": regime_label(regime_norm),
+            "periodLock": period_lock,
             "scope": {"companies": list(requested), "departments": ["combustiveis", "conveniencia", "lubrificantes"]},
             "coverage": [item.model_dump(mode="json") for item in coverages],
             "departmentGovernance": governance,

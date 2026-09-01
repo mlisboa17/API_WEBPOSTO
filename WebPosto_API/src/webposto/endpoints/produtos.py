@@ -96,6 +96,26 @@ class ProdutosEndpoints:
         """Troca preço de produto com valor exato."""
         self._http.post("/INTEGRACAO/TROCA_PRECO_PRODUTO", body)
 
+    def trocar_precos_produtos_v1(
+        self,
+        body: Dict,
+        *,
+        empresa_codigo: Optional[int] = None,
+    ) -> Dict:
+        """
+        Troca oficial de preços (OpenAPI):
+        POST /INTEGRACAO/V1/TROCA_PRECOS_PRODUTOS
+        Body: ParametrosTrocaPreco (sem centroCusto).
+        """
+        params: Dict = {}
+        if empresa_codigo is not None:
+            params["empresaCodigo"] = int(empresa_codigo)
+        return self._http.post(
+            "/INTEGRACAO/V1/TROCA_PRECOS_PRODUTOS",
+            body,
+            params=params or None,
+        )
+
     def trocar_preco_combustivel(self, body: Dict) -> None:
         """Troca preço de combustível."""
         self._http.post("/INTEGRACAO/TROCA_PRECO_COMBUSTIVEL", body)

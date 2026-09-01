@@ -7,10 +7,19 @@ from src.services.director_financial_reconciliation_snapshot_service import (
     DirectorFinancialReconciliationSnapshotService,
 )
 from src.services.complete_departmental_dre_service import CompleteDepartmentalDreService
-from src.services.complete_departmental_dre_snapshot_service import CompleteDepartmentalDreSnapshotService
+from src.services.complete_departmental_dre_snapshot_service import (
+    CompleteDepartmentalDreSnapshotService,
+    summarize_dre_payload,
+)
 from src.services.fuel_sales_reconciliation_service import FuelSalesReconciliationService
 from src.services.non_fuel_product_sales_service import NonFuelProductSalesService
 from src.services.dre_homologation_service import DreHomologationService
+from src.services.webposto.offline_mode import (
+    WebPostoOfflineBlocked,
+    annotate_offline_success,
+    offline_unavailable_response,
+    webposto_offline_mode,
+)
 
 
 router = APIRouter(prefix="/api/v1/finance/director-reconciliation", tags=["Director Financial Reconciliation"])
@@ -72,9 +81,14 @@ async def get_director_financial_reconciliation(
 ) -> dict:
     try:
         data, stale, hit = await _snapshot.get_or_collect(dataInicial, dataFinal, empresaCodigo)
+    except WebPostoOfflineBlocked:
+        return offline_unavailable_response(route="/api/v1/finance/director-reconciliation")
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
-    return {"success": True, "data": data, "snapshot": {"hit": hit, "stale": stale}}
+    body = {"success": True, "data": data, "snapshot": {"hit": hit, "stale": stale}}
+    if webposto_offline_mode():
+        return annotate_offline_success(body, source="snapshot")
+    return body
 
 
 @router.post("/refresh")
@@ -98,15 +112,20 @@ async def get_confirmed_departmental_dre(
 ) -> dict:
     try:
         data, stale, hit = await _snapshot.get_or_collect(dataInicial, dataFinal, empresaCodigo)
+    except WebPostoOfflineBlocked:
+        return offline_unavailable_response(route="/api/v1/finance/director-reconciliation/dre")
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
-    return {"success": True, "data": {
+    body = {"success": True, "data": {
         "period": data.get("period"),
         "scope": data.get("scope"),
         "lines": data.get("departmentalDre") or [],
         "publication": data.get("publication"),
         "coverage": data.get("coverage"),
     }, "snapshot": {"hit": hit, "stale": stale}}
+    if webposto_offline_mode():
+        return annotate_offline_success(body, source="snapshot")
+    return body
 
 
 @router.get("/dre-complete")
@@ -114,12 +133,45 @@ async def get_complete_departmental_dre(
     dataInicial: str = Query(...),
     dataFinal: str = Query(...),
     empresaCodigo: int | None = Query(None),
+    regime: str = Query(
+        "competencia",
+        description="competencia (data da nota) | caixa (data do pagamento/boleto)",
+    ),
+    summary: bool = Query(
+        True,
+        description="Retorna árvore resumida (totais) — padrão para budget HTTP < 1.2s",
+    ),
+    refresh: bool = Query(
+        False,
+        description="Força recálculo (ignora cache RAM/TTL 60s)",
+    ),
 ) -> dict:
     try:
-        data, stale, hit = await _complete_dre_snapshot.get_or_collect(dataInicial, dataFinal, empresaCodigo)
+        data, stale, hit = await _complete_dre_snapshot.get_or_collect(
+            dataInicial,
+            dataFinal,
+            empresaCodigo,
+            force_refresh=refresh,
+            regime=regime,
+        )
+    except WebPostoOfflineBlocked:
+        return offline_unavailable_response(
+            route="/api/v1/finance/director-reconciliation/dre-complete"
+        )
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
-    return {"success": True, "data": data, "snapshot": {"hit": hit, "stale": stale}}
+    payload = summarize_dre_payload(data) if summary else data
+    if isinstance(payload, dict):
+        payload.setdefault("regime", data.get("regime") or regime)
+        payload.setdefault("periodLock", data.get("periodLock") or {})
+    body = {
+        "success": True,
+        "data": payload,
+        "snapshot": {"hit": hit, "stale": stale, "summary": summary, "ttlSeconds": 60},
+    }
+    if webposto_offline_mode():
+        return annotate_offline_success(body, source="snapshot")
+    return body
 
 
 @router.get("/dre-validation")

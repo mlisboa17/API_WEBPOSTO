@@ -15,6 +15,20 @@ from pydantic import BaseModel, Field
 from src.core.config import OFFICIAL_COMPANY_CODES
 from src.gateway.shared_client import get_webposto_client
 from src.services.company_settings_service import get_company_settings_service
+from src.services.expense_reclassify_service import get_expense_reclassify_service
+from src.services.plano_contas_resolver import (
+    PLANO_CATEGORIA_FALLBACK,
+    catalog_as_options,
+    enrich_catalog_with_fallbacks,
+    format_plano_label,
+    resolve_plano_nome,
+)
+from src.services.dre_regime import (
+    classify_period_lock,
+    filter_rows_by_regime,
+    normalize_regime,
+    regime_label,
+)
 from src.services.webposto_integration_service import get_webposto_integration_service
 from src.utils.filial_normalizer import resolve_empresa_codigo
 
@@ -38,8 +52,10 @@ _TANQUE_CACHE: dict[int, tuple[float, Any]] = {}
 _TANQUE_TTL_S = 300.0
 _CPM_CACHE: dict[int, tuple[float, Any]] = {}
 _CPM_TTL_S = 300.0
-_HTTP_BUDGET_S = 0.6
-_TANQUE_BUDGET_S = 0.35
+# Despesas rede: budget realista (0.6s matava CPV/plano de contas → zeros na UI)
+_HTTP_BUDGET_S = 8.0
+_HTTP_BUDGET_D0_S = 4.0
+_TANQUE_BUDGET_S = 0.8
 
 FILIAL_NAMES = {
     5555: "AP Casa Caiada",
@@ -149,15 +165,19 @@ _OUTRAS_KEYS = (
 
 # Heurística por código de plano gerencial observado no Grupo Lisboa
 _PLANO_CODE_CATEGORY = {
-    29019: "CPV",       # compras mercadoria / conveniência
-    29050: "CPV",       # compras diversas (atacado/loja)
-    47952: "CPV",       # compras de alimentos / cozinha
-    29073: "PESSOAL",   # VEM trabalhador / encargos
-    48547: "PESSOAL",   # vales / benefícios (keywords refinariam o restante)
+    **PLANO_CATEGORIA_FALLBACK,
+    29019: "CPV",
+    29050: "CPV",
+    47952: "CPV",
+    29073: "PESSOAL",
+    48547: "PESSOAL",
     29020: "ADMINISTRATIVA",
     29051: "ADMINISTRATIVA",
     141276: "ADMINISTRATIVA",
     137578: "ADMINISTRATIVA",
+    141278: "OUTRAS",
+    141275: "OUTRAS",
+    148304: "OUTRAS",
 }
 
 
@@ -216,6 +236,8 @@ class ValeFuncionarioItem(BaseModel):
     planoConta: str = ""
     planoContaCodigo: int | None = None
     fonte: str = "despesa"  # despesa | caixa_apresentado
+    dataCaixa: str = ""
+    turno: str = ""
 
 
 class ValesFuncionariosBlock(BaseModel):
@@ -236,6 +258,9 @@ class FilialDailyAudit(BaseModel):
     valesFuncionarios: ValesFuncionariosBlock = Field(default_factory=ValesFuncionariosBlock)
     resultadoOperacionalDiario: float = 0.0
     margemBrutaMediaRsLitro: float = 0.0
+    cpvCombustivel: float = 0.0
+    margemBrutaCombustivel: float = 0.0
+    custoMedioRsLitro: float = 0.0
     valorEstoqueImobilizado: float = 0.0
     fallback: bool = False
     mensagem: str | None = None
@@ -246,6 +271,8 @@ class DataAuditResponse(BaseModel):
     filiais: list[FilialDailyAudit] = Field(default_factory=list)
     consolidado: dict[str, Any] = Field(default_factory=dict)
     success: bool = True
+    regime: str = "competencia"
+    periodLock: dict[str, Any] = Field(default_factory=dict)
 
 
 def _f(val: Any, default: float = 0.0) -> float:
@@ -273,6 +300,13 @@ def classify_expense_category(
     descricao: str = "",
     plano_codigo: int | None = None,
 ) -> str:
+    from src.services.cash_reconciliation.prestacao_contas_parser import (
+        is_operational_expense_text,
+    )
+
+    # Consumo/infra nunca vai para Pessoal/Vales
+    if is_operational_expense_text(plano, descricao):
+        return "ADMINISTRATIVA"
     blob = f"{plano} {descricao}".casefold()
     # Keywords têm prioridade sobre código (ex.: vale vs material no mesmo plano)
     if any(k in blob for k in _PESSOAL_KEYS):
@@ -294,14 +328,28 @@ def is_vale_funcionario(
     plano: str,
     descricao: str = "",
     plano_codigo: int | None = None,
+    funcionario: str | None = None,
 ) -> bool:
+    """Vale legítimo: tipo VALE/ADIANTAMENTO + sem marcadores operacionais.
+
+    Despesas de consumo/infra (crachá, água, graxa, etc.) NUNCA são vale.
+    Plano 48547 sozinho não basta — exige keyword de vale ou nome de colaborador.
+    """
+    from src.services.cash_reconciliation.prestacao_contas_parser import (
+        is_operational_expense_text,
+        is_valid_employee_identity,
+    )
+
+    if is_operational_expense_text(plano, descricao):
+        return False
     blob = f"{plano} {descricao}".casefold()
-    if any(k in blob for k in _VALE_KEYS):
+    has_vale_kw = any(k in blob for k in _VALE_KEYS)
+    nome = (funcionario or "").strip() or _extract_funcionario_name(descricao)
+    if has_vale_kw:
+        # Keyword de vale sem identidade ainda pode ser candidata; o block filtra depois
         return True
-    # Plano 48547 no Grupo Lisboa concentra vales; exclui material óbvio
-    if plano_codigo == 48547 and not any(
-        k in blob for k in ("cadeado", "carregador", "aluguel", "mouse", "boia")
-    ):
+    # Plano 48547: só com nome/código válido (evita material operacional no mesmo plano)
+    if plano_codigo == 48547 and is_valid_employee_identity(nome):
         return True
     return False
 
@@ -389,11 +437,11 @@ class DataAuditService:
         self._settings = get_company_settings_service()
 
     async def _ensure_plano_catalog(self) -> dict[int, dict[str, Any]]:
-        """Carrega PLANO_CONTA_GERENCIAL (paginado) com cache em memória."""
+        """Carrega PLANO_CONTA_GERENCIAL (+ fallback PLANO_DE_CONTAS) com de-para local."""
         global _PLANO_CACHE, _PLANO_CACHE_TS
         now = time.monotonic()
         if _PLANO_CACHE and (now - _PLANO_CACHE_TS) < _PLANO_CACHE_TTL_S:
-            return _PLANO_CACHE
+            return enrich_catalog_with_fallbacks(_PLANO_CACHE)
         catalog: dict[int, dict[str, Any]] = {}
         try:
             ultimo: int | None = None
@@ -425,14 +473,14 @@ class DataAuditService:
                         continue
                     hierarquia = str(row.get("hierarquia") or "").strip()
                     descricao = str(row.get("descricao") or "").strip()
-                    oficial = (
-                        f"{hierarquia} - {descricao}"
-                        if hierarquia and descricao
-                        else (descricao or hierarquia or f"Plano {code}")
+                    oficial = format_plano_label(
+                        code, descricao=descricao, hierarquia=hierarquia
                     )
                     catalog[code] = {
                         "codigo": code,
-                        "descricao": descricao,
+                        "descricao": resolve_plano_nome(
+                            code, descricao=descricao, hierarquia=hierarquia
+                        ),
                         "hierarquia": hierarquia,
                         "oficial": oficial,
                         "tipo": str(row.get("tipo") or ""),
@@ -443,6 +491,7 @@ class DataAuditService:
                             or ""
                         ),
                         "grupoContaCodigo": row.get("grupoContaCodigo"),
+                        "fonte": "plano_conta_gerencial",
                     }
                 raw = resp.data if isinstance(resp.data, dict) else {}
                 new_u = raw.get("ultimoCodigo")
@@ -457,16 +506,56 @@ class DataAuditService:
                 ):
                     break
                 ultimo = new_u_int
+            # Complemento via PLANO_DE_CONTAS quando gerencial veio vazio/parcial
+            if len(catalog) < 20:
+                try:
+                    resp2 = await self._client.call_endpoint(
+                        "plano_de_contas", params={}
+                    )
+                    if resp2.success:
+                        for row in _extract_rows(resp2.data):
+                            try:
+                                code = int(
+                                    row.get("planoContaCodigo")
+                                    or row.get("codigo")
+                                    or row.get("id")
+                                    or 0
+                                )
+                            except (TypeError, ValueError):
+                                continue
+                            if code <= 0 or code in catalog:
+                                continue
+                            descricao = str(
+                                row.get("descricao")
+                                or row.get("nome")
+                                or row.get("planoConta")
+                                or ""
+                            )
+                            catalog[code] = {
+                                "codigo": code,
+                                "descricao": resolve_plano_nome(
+                                    code, descricao=descricao
+                                ),
+                                "hierarquia": str(row.get("hierarquia") or ""),
+                                "oficial": format_plano_label(
+                                    code, descricao=descricao
+                                ),
+                                "fonte": "plano_de_contas",
+                            }
+                except Exception as exc2:
+                    logger.warning("plano_de_contas fallback: %s", exc2)
+            catalog = enrich_catalog_with_fallbacks(catalog)
             if catalog:
                 _PLANO_CACHE = catalog
                 _PLANO_CACHE_TS = now
                 logger.info(
-                    "Catálogo plano_conta_gerencial carregado: %s contas",
+                    "Catálogo plano de contas carregado: %s contas",
                     len(catalog),
                 )
         except Exception as exc:
             logger.warning("Erro ao carregar plano_conta_gerencial: %s", exc)
-        return _PLANO_CACHE or catalog
+            catalog = enrich_catalog_with_fallbacks(catalog or _PLANO_CACHE or {})
+        return enrich_catalog_with_fallbacks(_PLANO_CACHE or catalog)
 
     async def _ensure_centro_catalog(self) -> dict[int, dict[str, Any]]:
         global _CENTRO_CACHE, _CENTRO_CACHE_TS
@@ -497,19 +586,26 @@ class DataAuditService:
             logger.warning("Erro ao carregar centro_custo: %s", exc)
         return _CENTRO_CACHE or catalog
 
-    async def _fetch_despesas(self, start: str, end: str) -> list[dict[str, Any]]:
+    async def _fetch_despesas(
+        self, start: str, end: str, *, budget_s: float | None = None
+    ) -> list[dict[str, Any]]:
         cache_key = f"{start}|{end}"
         now = time.monotonic()
         cached = _DESPESAS_CACHE.get(cache_key)
         if cached and (now - cached[0]) < _DESPESAS_TTL_S:
             return cached[1]
+        from src.services.webposto.offline_mode import webposto_offline_mode
+
+        if webposto_offline_mode():
+            return cached[1] if cached else []
+        timeout = float(budget_s if budget_s is not None else _HTTP_BUDGET_S)
         try:
             resp = await asyncio.wait_for(
                 self._client.call_endpoint(
                     "despesas_financeiro_rede",
                     params={"dataInicial": start, "dataFinal": end},
                 ),
-                timeout=_HTTP_BUDGET_S,
+                timeout=timeout,
             )
             if not resp.success:
                 logger.warning("Despesas rede falhou: %s", resp.error)
@@ -526,7 +622,7 @@ class DataAuditService:
             _DESPESAS_CACHE[cache_key] = (time.monotonic(), normalized)
             return normalized
         except asyncio.TimeoutError:
-            logger.warning("Despesas rede timeout %.1fs — cache/stale", _HTTP_BUDGET_S)
+            logger.warning("Despesas rede timeout %.1fs — cache/stale", timeout)
             return cached[1] if cached else []
         except Exception as exc:
             logger.warning("Erro ao buscar despesas: %s", exc)
@@ -564,24 +660,24 @@ class DataAuditService:
             or meta.get("hierarquia")
             or ""
         )
-        plano_desc = str(
+        plano_desc_raw = str(
             row.get("planoContaGerencialDescricao")
             or row.get("planoConta")
             or row.get("descricaoPlano")
             or meta.get("descricao")
             or ""
         )
-        plano_oficial = str(
-            meta.get("oficial")
-            or (
-                f"{hierarquia} - {plano_desc}"
-                if hierarquia and plano_desc
-                else (
-                    plano_desc
-                    or hierarquia
-                    or (f"Plano {plano_codigo}" if plano_codigo else "")
-                )
-            )
+        plano_desc = resolve_plano_nome(
+            plano_codigo,
+            descricao=plano_desc_raw,
+            hierarquia=hierarquia,
+            catalog=plano_cat,
+        )
+        plano_oficial = format_plano_label(
+            plano_codigo,
+            descricao=plano_desc_raw,
+            hierarquia=hierarquia,
+            catalog=plano_cat,
         )
         plano = plano_oficial or plano_desc
 
@@ -665,11 +761,24 @@ class DataAuditService:
         )
         data_pag = str(
             row.get("dataPagamento")
+            or row.get("dataLiquidacao")
+            or row.get("dataBaixa")
+            or ""
+        )[:10]
+        data_comp = str(
+            row.get("dataEmissao")
+            or row.get("dataNota")
             or row.get("data")
             or row.get("dataLancamento")
             or row.get("dataMovimento")
+            or row.get("dataCompetencia")
             or ""
         )[:10]
+        # Fallback cruzado para não perder linha sem um dos lados preenchido
+        if not data_pag:
+            data_pag = data_comp
+        if not data_comp:
+            data_comp = data_pag
         data_venc = str(
             row.get("dataVencimento") or row.get("vencimento") or ""
         )[:10]
@@ -681,7 +790,7 @@ class DataAuditService:
             or f"{empresa}-{plano_codigo}-{data_pag}-{valor}"
         )
         cat_key = classify_expense_category(plano_desc or plano, desc, plano_codigo)
-        return {
+        item = {
             "id": str(raw_id),
             "empresaCodigo": empresa,
             "valor": valor,
@@ -701,22 +810,32 @@ class DataAuditService:
             "fornecedor": fornecedor,
             "favorecido": favorecido,
             "dataPagamento": data_pag,
+            "dataCompetencia": data_comp,
+            "dataEmissao": data_comp,
+            "data": data_comp,
             "dataVencimento": data_venc,
             "categoria": cat_key,
         }
+        return get_expense_reclassify_service().apply_to_row(
+            item, catalog=plano_cat
+        )
 
     async def build(
         self,
         data_inicial: str | None = None,
         data_final: str | None = None,
         empresa_codigo: int | None = None,
+        regime: str | None = None,
     ) -> DataAuditResponse:
         t0 = time.perf_counter()
         hoje = date.today().isoformat()
         start = data_inicial or hoje
         end = data_final or hoje
         empresa = resolve_empresa_codigo(empresa_codigo)
-        cache_key = f"{start}|{end}|{empresa}"
+        regime_norm = normalize_regime(regime)
+        period_lock = classify_period_lock(start, end)
+        # v4: regime competencia/caixa + trava de período
+        cache_key = f"v4|{start}|{end}|{empresa}|{regime_norm}"
         now = time.monotonic()
         cached = _AUDIT_RESP_CACHE.get(cache_key)
         if cached and (now - cached[0]) < _AUDIT_RESP_TTL_S:
@@ -735,15 +854,38 @@ class DataAuditService:
         fuel_by_emp = {int(f.empresa_codigo): f for f in fuel.por_filial}
 
         is_d0 = start == end == hoje
+        # D0: tenta HTTP com budget menor; se vazio, usa cache quente (nunca trava CPV em 0 sem tentar).
         if is_d0:
-            # D0: só cache quente — zero HTTP no request (evita disputa com PistaSyncWorker).
-            despesas_rede = self._despesas_cache_only(start, end)
-            vales_caixa_rede = self._vales_cache_only(start, end)
+            despesas_rede, vales_caixa_rede = await asyncio.gather(
+                self._fetch_despesas(start, end, budget_s=_HTTP_BUDGET_D0_S),
+                self._fetch_vales_caixa_apresentado(start, end),
+            )
+            if not despesas_rede:
+                despesas_rede = self._despesas_cache_only(start, end)
+            if not vales_caixa_rede:
+                vales_caixa_rede = self._vales_cache_only(start, end)
         else:
             despesas_rede, vales_caixa_rede = await asyncio.gather(
                 self._fetch_despesas(start, end),
                 self._fetch_vales_caixa_apresentado(start, end),
             )
+
+        # Re-filtra despesas pela data do regime escolhido (nota vs boleto)
+        despesas_rede = filter_rows_by_regime(despesas_rede, start, end, regime_norm)
+
+        from src.services.webposto.offline_mode import raise_if_offline_without_local
+
+        raise_if_offline_without_local(
+            bool(despesas_rede)
+            or bool(vales_caixa_rede)
+            or float(getattr(fuel, "total_litros", 0) or 0) > 0
+            or float(getattr(fuel, "total_valor", 0) or 0) > 0,
+            detail="data-audit sem cache/SQLite local",
+        )
+
+        fuel_prod_by_emp: dict[int, list[Any]] = defaultdict(list)
+        for row in fuel.por_produto or []:
+            fuel_prod_by_emp[int(getattr(row, "empresa_codigo", 0) or 0)].append(row)
 
         filiais = list(
             await asyncio.gather(
@@ -755,6 +897,7 @@ class DataAuditService:
                         despesas_rede,
                         vales_caixa_rede,
                         fuel_row=fuel_by_emp.get(codigo),
+                        fuel_products=fuel_prod_by_emp.get(codigo) or [],
                         fuel_fonte=fuel.fonte,
                         skip_http_tanks=is_d0,
                     )
@@ -763,11 +906,36 @@ class DataAuditService:
             )
         )
 
+        cpv_total = 0.0
+        cpv_comb = 0.0
+        for f in filiais:
+            for cat in f.despesasPorCategoria or []:
+                if (cat.categoriaKey or "").upper() == "CPV":
+                    cpv_total += float(cat.valor or 0)
+            cpv_comb += float(getattr(f, "cpvCombustivel", 0) or 0)
+        if cpv_comb > cpv_total:
+            cpv_total = cpv_comb
+        fat_total = round(sum(f.faturamentoTotal for f in filiais), 2)
+        desp_total = round(sum(f.despesasTotal for f in filiais), 2)
+        litros_total = round(sum(f.volumeLitros for f in filiais), 2)
+        margem_bruta = round(fat_total - cpv_total, 2)
+        margem_rs_l = (
+            round(margem_bruta / litros_total, 4) if litros_total > 0 else 0.0
+        )
         consolidado = {
-            "faturamentoTotal": round(sum(f.faturamentoTotal for f in filiais), 2),
-            "volumeLitros": round(sum(f.volumeLitros for f in filiais), 2),
+            "faturamentoTotal": fat_total,
+            "volumeLitros": litros_total,
             "quantidadeAbastecimentos": sum(f.quantidadeAbastecimentos for f in filiais),
-            "despesasTotal": round(sum(f.despesasTotal for f in filiais), 2),
+            "despesasTotal": desp_total,
+            "cpvTotal": round(cpv_total, 2),
+            "cpvCombustivel": round(cpv_comb or cpv_total, 2),
+            "margemBruta": margem_bruta,
+            "margemBrutaCombustivel": round(
+                sum(float(getattr(f, "margemBrutaCombustivel", 0) or 0) for f in filiais),
+                2,
+            ),
+            "margemBrutaMediaRsLitro": margem_rs_l,
+            "despesasOperacionais": round(max(0.0, desp_total - cpv_total), 2),
             "valesFuncionariosTotal": round(
                 sum(f.valesFuncionarios.total for f in filiais), 2
             ),
@@ -787,6 +955,9 @@ class DataAuditService:
                 1,
             ),
             "fonteFuel": fuel.fonte,
+            "regime": regime_norm,
+            "regimeLabel": regime_label(regime_norm),
+            "periodLockMode": period_lock.get("mode"),
             "latencyMs": round((time.perf_counter() - t0) * 1000.0, 2),
         }
 
@@ -795,6 +966,8 @@ class DataAuditService:
             filiais=filiais,
             consolidado=consolidado,
             success=True,
+            regime=regime_norm,
+            periodLock=period_lock,
         )
         # Não trava 90s com D0 incompleto (despesas ainda aquecendo)
         incomplete_d0 = is_d0 and not despesas_rede
@@ -874,6 +1047,7 @@ class DataAuditService:
         vales_caixa_rede: list[dict[str, Any]] | None = None,
         *,
         fuel_row: Any = None,
+        fuel_products: list[Any] | None = None,
         fuel_fonte: str = "",
         skip_http_tanks: bool = False,
     ) -> FilialDailyAudit:
@@ -885,6 +1059,7 @@ class DataAuditService:
                 despesas_rede,
                 vales_caixa_rede,
                 fuel_row=fuel_row,
+                fuel_products=fuel_products or [],
                 fuel_fonte=fuel_fonte,
                 skip_http_tanks=skip_http_tanks,
             )
@@ -907,6 +1082,7 @@ class DataAuditService:
         vales_caixa_rede: list[dict[str, Any]] | None = None,
         *,
         fuel_row: Any = None,
+        fuel_products: list[Any] | None = None,
         fuel_fonte: str = "",
         skip_http_tanks: bool = False,
     ) -> FilialDailyAudit:
@@ -982,14 +1158,89 @@ class DataAuditService:
         ocupacao = round(ocup_sum / ocup_n, 1) if ocup_n else 0.0
         margem_media = round(margem_sum / margem_n, 4) if margem_n else 0.0
 
+        # CPV combustível: litros × custo aquisição (CPM/NF/distribuidora + frete/ST)
+        from src.services.fuel_cpv_engine import (
+            compute_fuel_cpv,
+            ledger_cpv_is_unreliable,
+        )
+
+        cpm_weighted = 0.0
+        cpm_weight = 0.0
+        for t in getattr(tanks, "tanques", None) or []:
+            vol = _f(t.get("volume_atual_litros"))
+            codigo = str(t.get("produto_codigo") or "")
+            cpm = cpm_map.get(codigo) or self._fallback_custo(
+                empresa_codigo, codigo, str(t.get("produto_nome") or "")
+            )
+            if cpm > 0 and vol > 0:
+                cpm_weighted += cpm * vol
+                cpm_weight += vol
+        avg_cpm = (cpm_weighted / cpm_weight) if cpm_weight > 0 else 0.0
+        if avg_cpm <= 0 and cpm_map:
+            vals = list(cpm_map.values())
+            avg_cpm = sum(vals) / len(vals)
+        if avg_cpm <= 0:
+            avg_cpm = self._resolve_avg_cpm_fallback(empresa_codigo)
+
+        fuel_cpv = compute_fuel_cpv(
+            litros_total=litros,
+            faturamento_combustivel=fat_total,
+            products=list(fuel_products or []),
+            cpm_map=cpm_map,
+            cost_resolver=lambda cod, nome: self._fallback_custo(empresa_codigo, cod, nome),
+            avg_cpm_estoque=avg_cpm,
+        )
+        cpv_fuel_est = float(fuel_cpv["cpv"])
+        cpv_source = str(fuel_cpv["fonte"])
+        margem_media = float(fuel_cpv["margem_bruta_rs_litro"]) or margem_media
+
         despesas_filial = [
             r
             for r in despesas_rede
             if int(r.get("empresaCodigo") or 0) == int(empresa_codigo)
         ]
         cats = self._group_expenses(despesas_filial)
+        # CPV autoritativo da pista: substitui ledger zerado OU subestimado (margem ~50%)
+        cpv_from_ledger = next(
+            (c for c in cats if (c.categoriaKey or "").upper() == "CPV"), None
+        )
+        cpv_injected = False
+        ledger_cpv = float(cpv_from_ledger.valor or 0) if cpv_from_ledger else 0.0
+        if cpv_fuel_est > 0 and (
+            cpv_from_ledger is None
+            or ledger_cpv_is_unreliable(
+                ledger_cpv=ledger_cpv,
+                fat_combustivel=fat_total,
+                litros=litros,
+                cpv_estimado=cpv_fuel_est,
+            )
+        ):
+            if cpv_from_ledger is None:
+                cats.insert(
+                    0,
+                    ExpenseCategoryBreakdown(
+                        categoria="Custo de Produtos Vendidos (CPV)",
+                        categoriaKey="CPV",
+                        valor=cpv_fuel_est,
+                        qtd_lancamentos=1,
+                        itens=[],
+                    ),
+                )
+            else:
+                cpv_from_ledger.valor = cpv_fuel_est
+                cpv_from_ledger.qtd_lancamentos = max(
+                    int(cpv_from_ledger.qtd_lancamentos or 0), 1
+                )
+            cpv_injected = True
+
         desp_total = round(sum(c.valor for c in cats), 2)
+        # Resultado Líquido = Faturamento − (CPV + Despesas operacionais) = Fat − despesasTotal
         resultado = round(fat_total - desp_total, 2)
+        cpv_combustivel = cpv_fuel_est if cpv_fuel_est > 0 else (
+            float(cpv_from_ledger.valor or 0) if cpv_from_ledger else 0.0
+        )
+        margem_bruta_comb = round(fat_total - cpv_combustivel, 2)
+        custo_medio_l = float(fuel_cpv["custo_medio_rs_litro"])
 
         vales_caixa = [
             r
@@ -1005,6 +1256,10 @@ class DataAuditService:
             msg_parts.append("fuel vazio (aguardando cache/DB)")
         if not tanks_ok:
             msg_parts.append("tanques indisponíveis/timeout")
+        if cpv_injected:
+            msg_parts.append(
+                f"CPV combustível via {cpv_source or 'CPM/estoque'} (sem lançamento CPV no período)"
+            )
 
         return FilialDailyAudit(
             empresaCodigo=empresa_codigo,
@@ -1018,10 +1273,35 @@ class DataAuditService:
             valesFuncionarios=vales,
             resultadoOperacionalDiario=resultado,
             margemBrutaMediaRsLitro=margem_media,
+            cpvCombustivel=round(cpv_combustivel, 2),
+            margemBrutaCombustivel=margem_bruta_comb,
+            custoMedioRsLitro=round(custo_medio_l, 4),
             valorEstoqueImobilizado=round(valor_estoque, 2),
             fallback=not fuel_ok or not tanks_ok,
             mensagem="; ".join(msg_parts) if msg_parts else None,
         )
+
+    def _resolve_avg_cpm_fallback(self, empresa_codigo: int) -> float:
+        """CPM médio quando tanques/ledger estão vazios — pricing cadastro → metadata → 5.0."""
+        settings = self._settings.get_settings(empresa_codigo)
+        custos = [
+            float(p.custo_aquisicao_rs)
+            for p in (getattr(settings, "precos_produtos", None) or [])
+            if float(getattr(p, "custo_aquisicao_rs", 0) or 0) > 0
+        ]
+        if custos:
+            return sum(custos) / len(custos)
+        bases = [
+            float(p.custo_base)
+            for p in (getattr(settings, "produtos", None) or [])
+            if float(getattr(p, "custo_base", 0) or 0) > 0
+            and bool(getattr(p, "ativo", True))
+        ]
+        if bases:
+            return sum(bases) / len(bases)
+        meta = settings.metadata or {}
+        g = _f(meta.get("custo_fallback_global"), 0.0)
+        return g if g > 0 else 5.0
 
     def _fallback_custo(self, empresa_codigo: int, produto_codigo: str, nome: str) -> float:
         pricing = self._settings.get_product_pricing(empresa_codigo, produto_codigo)
@@ -1031,22 +1311,30 @@ class DataAuditService:
         settings = self._settings.get_settings(empresa_codigo)
         meta = settings.metadata or {}
         fallback_map = meta.get("custo_fallback_por_produto") or {}
-        if isinstance(fallback_map, dict) and produto_codigo in fallback_map:
+        if isinstance(fallback_map, dict) and produto_codigo and produto_codigo in fallback_map:
             return _f(fallback_map.get(produto_codigo))
         # custo_base por categoria no cadastro de produtos
-        prod = self._settings.get_product_config(empresa_codigo, produto_codigo)
-        if prod and prod.custo_base > 0:
-            return float(prod.custo_base)
-        # heurística por nome
-        low = nome.casefold()
-        defaults = meta.get("custo_fallback_defaults") or {}
-        if isinstance(defaults, dict):
-            if "etanol" in low or "alcool" in low:
-                return _f(defaults.get("ETANOL"), 3.50)
-            if "diesel" in low:
-                return _f(defaults.get("DIESEL"), 5.50)
-            if "gasolina" in low:
-                return _f(defaults.get("GASOLINA"), 5.10)
+        if produto_codigo:
+            prod = self._settings.get_product_config(empresa_codigo, produto_codigo)
+            if prod and prod.custo_base > 0:
+                return float(prod.custo_base)
+        # match por nome no cadastro (Gasolina C / Etanol Hidratado etc.)
+        low = (nome or "").casefold()
+        if low:
+            for p in getattr(settings, "produtos", None) or []:
+                pname = str(getattr(p, "nome", "") or "").casefold()
+                if pname and (pname in low or low in pname) and float(getattr(p, "custo_base", 0) or 0) > 0:
+                    return float(p.custo_base)
+            defaults = meta.get("custo_fallback_defaults") or {}
+            if isinstance(defaults, dict):
+                if "etanol" in low or "alcool" in low:
+                    return _f(defaults.get("ETANOL"), 3.50)
+                if "diesel" in low or "s10" in low or "s500" in low:
+                    return _f(defaults.get("DIESEL"), 5.50)
+                if "gasolina" in low:
+                    return _f(defaults.get("GASOLINA"), 5.10)
+                if "gnv" in low:
+                    return _f(defaults.get("GNV"), 3.80)
         return _f(meta.get("custo_fallback_global"), 0.0)
 
     async def get_expense_details(
@@ -1099,12 +1387,25 @@ class DataAuditService:
             success=True,
         )
 
+    async def list_plano_contas_options(self) -> list[dict[str, Any]]:
+        catalog = await self._ensure_plano_catalog()
+        return catalog_as_options(catalog)
+
+    def invalidate_despesas_cache(self) -> None:
+        _DESPESAS_CACHE.clear()
+        _AUDIT_RESP_CACHE.clear()
+
     @staticmethod
     def _to_expense_item(row: dict[str, Any], label: str) -> ExpenseItem:
-        oficial = str(
-            row.get("planoContaOficial")
-            or row.get("planoConta")
-            or ""
+        codigo = row.get("planoContaCodigo")
+        try:
+            codigo_int = int(codigo) if codigo is not None else None
+        except (TypeError, ValueError):
+            codigo_int = None
+        oficial = format_plano_label(
+            codigo_int,
+            descricao=str(row.get("planoContaOficial") or row.get("planoConta") or ""),
+            hierarquia=str(row.get("planoContaHierarquia") or ""),
         )
         return ExpenseItem(
             id=str(row.get("id") or ""),
@@ -1120,7 +1421,7 @@ class DataAuditService:
             dataPagamento=str(row.get("dataPagamento") or ""),
             dataVencimento=str(row.get("dataVencimento") or ""),
             planoConta=oficial,
-            planoContaCodigo=row.get("planoContaCodigo"),
+            planoContaCodigo=codigo_int,
             planoContaHierarquia=str(row.get("planoContaHierarquia") or ""),
             planoContaOficial=oficial,
             planoContaTipo=str(row.get("planoContaTipo") or ""),
@@ -1155,6 +1456,12 @@ class DataAuditService:
                     "caixa_apresentado_rede indisponível para vales: %s", resp.error
                 )
                 return cached[1] if cached else []
+            from src.services.cash_reconciliation.prestacao_contas_parser import (
+                has_caixa_traceability,
+                is_operational_expense_text,
+                is_valid_employee_identity,
+            )
+
             for row in _extract_rows(resp.data):
                 valor = _f(
                     row.get("valeFunApurado")
@@ -1168,9 +1475,31 @@ class DataAuditService:
                     row.get("funcionarioNome")
                     or row.get("nomeFuncionario")
                     or row.get("operador")
-                    or row.get("funcionarioCodigo")
-                    or "Funcionário"
+                    or ""
+                ).strip()
+                fid = row.get("funcionarioCodigo") or row.get("codigoFuncionario")
+                data_caixa = str(
+                    row.get("dataMovimento")
+                    or row.get("dataAbertura")
+                    or row.get("data")
+                    or ""
+                )[:10]
+                turno = str(
+                    row.get("turno")
+                    or row.get("pdv")
+                    or row.get("caixaCodigo")
+                    or row.get("codigo")
+                    or ""
+                ).strip()
+                desc = (
+                    f"Vale caixa {row.get('caixaCodigo') or row.get('codigo') or ''}".strip()
                 )
+                if is_operational_expense_text(desc, row.get("observacao"), row.get("historico")):
+                    continue
+                if not is_valid_employee_identity(funcionario, fid):
+                    continue
+                if not has_caixa_traceability(data_caixa, turno):
+                    continue
                 items.append(
                     {
                         "empresaCodigo": int(
@@ -1178,10 +1507,12 @@ class DataAuditService:
                         ),
                         "valor": valor,
                         "funcionario": funcionario,
-                        "descricao": f"Vale caixa {row.get('caixaCodigo') or row.get('codigo') or ''}".strip(),
+                        "descricao": desc,
                         "planoConta": "Caixa Apresentado",
                         "planoContaCodigo": None,
                         "fonte": "caixa_apresentado",
+                        "dataCaixa": data_caixa,
+                        "turno": turno,
                     }
                 )
             _VALES_CACHE[cache_key] = (time.monotonic(), items)
@@ -1198,6 +1529,11 @@ class DataAuditService:
         despesas_filial: list[dict[str, Any]],
         vales_caixa: list[dict[str, Any]],
     ) -> ValesFuncionariosBlock:
+        from src.services.cash_reconciliation.prestacao_contas_parser import (
+            has_caixa_traceability,
+            is_valid_employee_identity,
+        )
+
         itens: list[ValeFuncionarioItem] = []
 
         for row in despesas_filial:
@@ -1208,37 +1544,80 @@ class DataAuditService:
                 plano_codigo = int(codigo) if codigo is not None else None
             except (TypeError, ValueError):
                 plano_codigo = None
-            if not is_vale_funcionario(plano, desc, plano_codigo):
+            funcionario = (
+                str(row.get("funcionario") or row.get("funcionarioNome") or "").strip()
+                or _extract_funcionario_name(desc)
+            )
+            if not is_vale_funcionario(plano, desc, plano_codigo, funcionario):
                 continue
+            if not is_valid_employee_identity(funcionario, row.get("funcionarioCodigo")):
+                continue
+            data_caixa = str(
+                row.get("dataCaixa")
+                or row.get("dataMovimento")
+                or row.get("dataPagamento")
+                or row.get("data")
+                or ""
+            )[:10]
+            turno = str(
+                row.get("turno") or row.get("pdv") or row.get("caixaCodigo") or ""
+            ).strip()
+            # Despesas nominais: data obrigatória; turno preferencial (usa plano como fallback fraco)
+            if not data_caixa:
+                continue
+            if not turno:
+                turno = str(plano_codigo or plano or "DESPESA")[:20]
             itens.append(
                 ValeFuncionarioItem(
                     descricao=desc or plano,
-                    funcionario=_extract_funcionario_name(desc),
+                    funcionario=funcionario,
                     valor=round(_f(row.get("valor")), 2),
                     planoConta=plano,
                     planoContaCodigo=plano_codigo,
                     fonte="despesa",
+                    dataCaixa=data_caixa,
+                    turno=turno,
                 )
             )
 
-        # Se despesas não trouxeram linhas nominais, usa apurado do caixa
-        if not itens and vales_caixa:
+        # Complementa com apurado do caixa (já filtrado na origem)
+        if vales_caixa:
+            seen = {
+                (
+                    i.funcionario.casefold(),
+                    round(i.valor, 2),
+                    i.dataCaixa,
+                    i.turno,
+                )
+                for i in itens
+            }
             for row in vales_caixa:
+                funcionario = str(row.get("funcionario") or "").strip()
+                data_caixa = str(row.get("dataCaixa") or "")[:10]
+                turno = str(row.get("turno") or "").strip()
+                if not is_valid_employee_identity(funcionario, row.get("funcionarioCodigo")):
+                    continue
+                if not has_caixa_traceability(data_caixa, turno):
+                    continue
+                key = (funcionario.casefold(), round(_f(row.get("valor")), 2), data_caixa, turno)
+                if key in seen:
+                    continue
+                seen.add(key)
                 itens.append(
                     ValeFuncionarioItem(
                         descricao=str(row.get("descricao") or "Vale (caixa apresentado)"),
-                        funcionario=str(row.get("funcionario") or ""),
+                        funcionario=funcionario,
                         valor=round(_f(row.get("valor")), 2),
                         planoConta=str(row.get("planoConta") or "Caixa Apresentado"),
                         fonte="caixa_apresentado",
+                        dataCaixa=data_caixa,
+                        turno=turno,
                     )
                 )
 
         itens.sort(key=lambda i: i.valor, reverse=True)
-        despesa_total = round(sum(i.valor for i in itens if i.fonte == "despesa"), 2)
-        caixa_total = round(sum(_f(r.get("valor")) for r in vales_caixa), 2)
-        # Total = maior fonte (evita somar despesa + caixa do mesmo vale)
-        total = max(despesa_total, caixa_total, round(sum(i.valor for i in itens), 2))
+        # Totalizador = soma apenas dos débitos cobráveis exibidos
+        total = round(sum(i.valor for i in itens), 2)
         return ValesFuncionariosBlock(
             total=total,
             quantidade=len(itens),
@@ -1270,16 +1649,15 @@ class DataAuditService:
         for key in ("CPV", "PESSOAL", "ADMINISTRATIVA", "OUTRAS"):
             items = buckets[key]
             valor = round(sum(_f(i.get("valor")) for i in items), 2)
+            # Lançamentos individuais só via drill-down lazy
+            # (GET /expenses/details ou /finance/expense-entry/drill-down).
             result.append(
                 ExpenseCategoryBreakdown(
                     categoria=labels[key],
                     categoriaKey=key,
                     valor=valor,
                     qtd_lancamentos=len(items),
-                    itens=[
-                        self._to_expense_item(i, labels[key]).model_dump()
-                        for i in items
-                    ],
+                    itens=[],
                 )
             )
         return result

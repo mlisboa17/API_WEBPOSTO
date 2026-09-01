@@ -4,7 +4,7 @@ from typing import AsyncIterator
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, RedirectResponse
+from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 from starlette.requests import Request
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
@@ -35,6 +35,7 @@ from src.interfaces.http.routes import action_center
 from src.interfaces.http.routes import owner_action_center  # BUILD-01D
 from src.interfaces.http.routes import decision_discovery  # VALUE-01
 from src.interfaces.http.routes import executive_ai_copilot
+from src.interfaces.http.routes import executive_copilot_ask
 from src.interfaces.http.routes import autonomous_recommendation_engine
 from src.interfaces.http.routes import closed_loop_learning_engine
 from src.interfaces.http.routes import nfce_intelligence
@@ -76,8 +77,11 @@ from src.interfaces.http.routes import executive_employees
 from src.interfaces.http.routes import executive_market
 from src.interfaces.http.routes import executive_consolidated_report
 from src.interfaces.http.routes import fuel_volumetry
+from src.interfaces.http.routes import fuel_demand_intelligence
 from src.interfaces.http.routes import expenses_dre
 from src.interfaces.http.routes import cockpit_live
+from src.interfaces.http.routes import pista_live_feed
+from src.interfaces.http.routes import pista_intelligence
 from src.interfaces.http.routes import abastecimentos_rest
 from src.interfaces.http.routes import product_inspection
 from src.interfaces.http.routes import operational_fuel_loss
@@ -85,22 +89,67 @@ from src.interfaces.http.routes import debug_fuel_volume
 from src.interfaces.http.routes import inventory_prediction
 from src.interfaces.http.routes import alert_engine
 from src.interfaces.http.routes import data_audit
+from src.interfaces.http.routes import branch_benchmark
+from src.interfaces.http.routes import financial_intelligence_dre
+from src.interfaces.http.routes import dre_multidimensional
+from src.interfaces.http.routes import executive_health_synthesis
+from src.interfaces.http.routes import financial_conciliation
+from src.interfaces.http.routes import expense_reclassify
 from src.interfaces.http.routes import units_performance
 from src.interfaces.http.routes import pista_rush_heatmap
 from src.interfaces.http.routes import forecourt_layout
 from src.interfaces.http.routes import card_fraud_audit
 from src.interfaces.http.routes import cashier_audit
+from src.interfaces.http.routes import cashier_audit_finance
 from src.interfaces.http.routes import president_dashboard
 from src.api.v1.endpoints import audit_settings as audit_settings_ep
+from src.api.v1.endpoints import fiscal_audit as fiscal_audit_ep
+from src.api.v1.endpoints import ai_chat as ai_chat_ep
+from src.api.v1.endpoints import ai_health as ai_health_ep
+from src.api.v1.endpoints import conveniencia as conveniencia_ep
+from src.api.v1.endpoints import webhooks_audit as webhooks_audit_ep
+from src.api.v1.endpoints import webhooks_receiver as webhooks_receiver_ep
+from src.api.v1.endpoints import cost_proposals as cost_proposals_ep
+from src.api.v1.endpoints import conveniencia_sales as conveniencia_sales_ep
+from src.api.v1.endpoints import proposals as proposals_ep
+from src.api.v1.endpoints import logistica as logistica_ep
+from src.api.v1.endpoints import conveniencia_sync as conveniencia_sync_ep
+from src.api.v1.endpoints import conveniencia_receiving as conveniencia_receiving_ep
+from src.api.v1.endpoints import conveniencia_visual_audit as conveniencia_visual_audit_ep
+from src.api.v1.endpoints import conveniencia_analytics as conveniencia_analytics_ep
+from src.api.v1.endpoints import conveniencia_onboarding as conveniencia_onboarding_ep
+from src.api.v1.endpoints import conveniencia_quality as conveniencia_quality_ep
+from src.api.v1.endpoints import conveniencia_executive as conveniencia_executive_ep
+from src.api.v1.endpoints import conveniencia_ia_ops as conveniencia_ia_ops_ep
+from src.api.v1.endpoints import financial as financial_ep
+from src.api.v1.endpoints import premmia as premmia_ep
+from src.api.v1.endpoints import cash_deposit as cash_deposit_ep
+from src.api.v1.endpoints import expense_review as expense_review_ep
 from src.interfaces.http.routes import data_sync
+from src.interfaces.http.routes import price_update_operational
+from src.interfaces.http.routes import product_registration_operational
+from src.interfaces.http.routes import fiscal_models_operational
+from src.interfaces.http.routes import dfe_operational
 from src.services.financial_snapshot_scheduler import get_financial_scheduler
 from src.services.departmental_automation_service import get_departmental_automation
 from src.services.data_sync_scheduler import get_data_sync_scheduler
+from src.interfaces.http.read_mode_guard import (
+    enforce_read_mode,
+    should_mount_public_snapshots,
+)
+from src.services.webposto.offline_mode import (
+    WebPostoOfflineBlocked,
+    install_webposto_offline_network_guard,
+    offline_unavailable_payload,
+    webposto_background_jobs_allowed,
+    webposto_offline_mode,
+)
 from src.shared.logger import setup_logging
 
-# Sprint 1 — barramento C-Level: rotas operacionais de pista ficam desligadas por padrão.
-# Reative apenas em dev legado via ENABLE_OPERATIONAL_ROUTES=true no ambiente.
-ENABLE_OPERATIONAL_ROUTES = False
+
+def _operational_routes_enabled() -> bool:
+    """Sprint 01 — default True; override via ENABLE_OPERATIONAL_ROUTES no .env."""
+    return bool(getattr(settings, "enable_operational_routes", True))
 
 
 def _mount_core(app: FastAPI) -> None:
@@ -160,6 +209,7 @@ def _mount_executive_support(app: FastAPI) -> None:
     app.include_router(commercial_learning.router)
     app.include_router(commercial_copilot.router)
     app.include_router(data_trust_baseline.router)
+    app.include_router(executive_copilot_ask.router)
     app.include_router(executive_ai_copilot.router)
     app.include_router(autonomous_recommendation_engine.router)
     app.include_router(closed_loop_learning_engine.router)
@@ -185,12 +235,15 @@ def _mount_executive_support(app: FastAPI) -> None:
     app.include_router(executive_cockpit.router)
     app.include_router(operational_cockpit.router)
     app.include_router(cockpit_live.router)
+    app.include_router(pista_live_feed.router)
+    app.include_router(pista_intelligence.router)
     app.include_router(abastecimentos_rest.router)
     app.include_router(executive_analytics.router)
     app.include_router(executive_employees.router)
     app.include_router(executive_market.router)
     app.include_router(executive_consolidated_report.router)
     app.include_router(fuel_volumetry.router)
+    app.include_router(fuel_demand_intelligence.router)
     app.include_router(expenses_dre.router)
     app.include_router(product_inspection.router)
     app.include_router(operational_fuel_loss.router)
@@ -198,31 +251,65 @@ def _mount_executive_support(app: FastAPI) -> None:
     app.include_router(inventory_prediction.router)
     app.include_router(alert_engine.router)
     app.include_router(data_audit.router)
+    app.include_router(branch_benchmark.router)
+    app.include_router(financial_intelligence_dre.router)
+    app.include_router(dre_multidimensional.router)
+    app.include_router(executive_health_synthesis.router)
+    app.include_router(financial_conciliation.router)
+    app.include_router(expense_reclassify.router)
     app.include_router(units_performance.router)
     app.include_router(pista_rush_heatmap.router)
     app.include_router(forecourt_layout.router)
     app.include_router(card_fraud_audit.router)
     app.include_router(cashier_audit.router)
+    app.include_router(cashier_audit_finance.router)
     app.include_router(president_dashboard.router)
     app.include_router(audit_settings_ep.router)
+    app.include_router(fiscal_audit_ep.router)
+    app.include_router(ai_chat_ep.router)
+    app.include_router(ai_health_ep.router)
+    app.include_router(conveniencia_ep.router)
+    app.include_router(webhooks_audit_ep.router)
+    app.include_router(webhooks_receiver_ep.router)
+    app.include_router(webhooks_receiver_ep.admin_router)
+    app.include_router(cost_proposals_ep.router)
+    app.include_router(conveniencia_sales_ep.router)
+    app.include_router(proposals_ep.router)
+    app.include_router(logistica_ep.router)
+    app.include_router(conveniencia_sync_ep.router)
+    app.include_router(conveniencia_receiving_ep.router)
+    app.include_router(conveniencia_visual_audit_ep.router)
+    app.include_router(conveniencia_analytics_ep.router)
+    app.include_router(conveniencia_onboarding_ep.router)
+    app.include_router(conveniencia_quality_ep.router)
+    app.include_router(conveniencia_executive_ep.router)
+    app.include_router(conveniencia_ia_ops_ep.router)
+    app.include_router(financial_ep.router)
+    app.include_router(premmia_ep.router)
+    app.include_router(cash_deposit_ep.router)
+    app.include_router(expense_review_ep.router)
     app.include_router(data_sync.router)
 
 
 def _mount_operational_deprecated(app: FastAPI) -> None:
     """
-    Deprecated/Operacional — pista, turnos, operadores, PDVs, paridade unitária.
+    Operacional — turnos, operadores, PDVs, ROI de pessoas/turno.
 
-    Fora do escopo C-Level (context.md). Código preservado; roteamento desligado na Sprint 1.
+    Sprint 01: montado por padrão (settings.enable_operational_routes=True).
     """
-    if not ENABLE_OPERATIONAL_ROUTES:
+    if not _operational_routes_enabled():
         return
 
-    app.include_router(cash_operations.router)  # turnos, pdvs, operadores
-    app.include_router(operator_performance.router)  # /performance/operators|pdvs|turns
-    app.include_router(operator_sales_intelligence.router)  # vendas por funcionário
-    app.include_router(operator_accountability_incentive.router)  # people-intelligence
-    app.include_router(operator_profitability.router)  # people-roi
-    app.include_router(store_shift_profitability.router)  # operation-roi por turno
+    app.include_router(cash_operations.router)  # /api/v1/cash/operations
+    app.include_router(operator_performance.router)  # /api/v1/performance
+    app.include_router(operator_sales_intelligence.router)  # /api/v1/operator-intelligence
+    app.include_router(operator_accountability_incentive.router)  # /api/v1/people-intelligence
+    app.include_router(operator_profitability.router)  # /api/v1/people-roi
+    app.include_router(store_shift_profitability.router)  # /api/v1/operation-roi
+    app.include_router(price_update_operational.router)  # /api/v1/operational/price-update
+    app.include_router(product_registration_operational.router)  # /api/v1/operational/product-registration
+    app.include_router(fiscal_models_operational.router)  # /api/v1/operational/fiscal-models
+    app.include_router(dfe_operational.router)  # /api/v1/operational/dfe
 
 
 @asynccontextmanager
@@ -230,10 +317,18 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     """Lifecycle manager — substitui on_event startup/shutdown (FastAPI 0.93+)."""
     await init_db()
     await init_gateway_db()
-    get_financial_scheduler().schedule_next_run()
+    try:
+        from src.services.proposals.db import init_local_db
+
+        init_local_db()
+    except Exception:
+        pass
+    jobs_ok = webposto_background_jobs_allowed()
+    if jobs_ok:
+        get_financial_scheduler().schedule_next_run()
 
     scheduler_task = None
-    if settings.departmental_scheduler_enabled:
+    if jobs_ok and settings.departmental_scheduler_enabled:
 
         async def poll_departmental_schedule() -> None:
             while True:
@@ -248,13 +343,13 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
     # Híbrido: consolidação D-1 + autodiscovery — cron 0 3 * * * (03:00 AM)
     data_sync_sched = get_data_sync_scheduler()
-    if settings.data_sync_scheduler_enabled:
+    if jobs_ok and settings.data_sync_scheduler_enabled:
         await data_sync_sched.start()
         app.state.data_sync_scheduler = data_sync_sched
 
     # Cockpit 30s — worker asyncio → cache RAM (API_WORKERS=1)
     pista_worker = None
-    if settings.pista_sync_worker_enabled:
+    if jobs_ok and settings.pista_sync_worker_enabled:
         from src.workers.pista_sync_worker import get_pista_sync_worker
 
         pista_worker = get_pista_sync_worker()
@@ -268,7 +363,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
     if pista_worker is not None:
         await pista_worker.stop()
-    if settings.data_sync_scheduler_enabled:
+    if jobs_ok and settings.data_sync_scheduler_enabled:
         await data_sync_sched.stop()
     if scheduler_task:
         scheduler_task.cancel()
@@ -281,6 +376,7 @@ def create_app() -> FastAPI:
     """Factory para criar instância da aplicação FastAPI."""
 
     settings.validate_production_security()
+    install_webposto_offline_network_guard()
 
     # Setup logging
     setup_logging(settings.log_level, settings.log_format)
@@ -302,6 +398,27 @@ def create_app() -> FastAPI:
         allow_headers=["*"],
     )
 
+    @app.exception_handler(WebPostoOfflineBlocked)
+    async def webposto_offline_blocked_handler(request: Request, exc: WebPostoOfflineBlocked):
+        return JSONResponse(
+            status_code=503,
+            content=offline_unavailable_payload(route=request.url.path),
+        )
+
+    @app.middleware("http")
+    async def read_mode_security(request: Request, call_next):
+        blocked = enforce_read_mode(request)
+        if blocked is not None:
+            return blocked
+        return await call_next(request)
+
+    @app.middleware("http")
+    async def offline_mode_header(request: Request, call_next):
+        response = await call_next(request)
+        if webposto_offline_mode():
+            response.headers["X-WebPosto-Offline-Mode"] = "true"
+        return response
+
     @app.middleware("http")
     async def disable_frontend_cache(request: Request, call_next):
         response = await call_next(request)
@@ -321,7 +438,7 @@ def create_app() -> FastAPI:
     root = Path(__file__).resolve().parents[3]
     frontend_dir = root / "frontend"
     snapshots_dir = root / "snapshots"
-    if snapshots_dir.is_dir():
+    if snapshots_dir.is_dir() and should_mount_public_snapshots():
         app.mount("/snapshots", StaticFiles(directory=str(snapshots_dir)), name="snapshots")
 
     if frontend_dir.is_dir():

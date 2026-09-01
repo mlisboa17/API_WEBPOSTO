@@ -30,6 +30,7 @@ import { PurchaseOrderAssistant } from "@/components/executive/purchase-order-as
 import { useGlobalFilter } from "@/contexts/global-filter-context";
 import { apiService } from "@/lib/api";
 import { cn } from "@/lib/utils";
+import { InactiveModuleBanner } from "@/components/executive/inactive-module-banner";
 
 interface LogisticsSupplier {
   fornecedor: string;
@@ -120,15 +121,20 @@ export default function LogisticsDashboardPage() {
     new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val);
 
   return (
-    <div className="p-4 lg:p-8 max-w-[1600px] mx-auto space-y-6">
+    <div className="p-4 lg:p-8 max-w-[1600px] mx-auto space-y-6 opacity-50 pointer-events-none select-none">
+      <InactiveModuleBanner
+        className="pointer-events-auto opacity-100"
+        title="Logística de Frete indisponível"
+        description="Módulo em desenvolvimento. A prévia visual permanece para referência — botões e atualizações estão desabilitados."
+      />
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Badge variant="outline" className="bg-blue-500/10 text-blue-400 border-blue-500/20">S54</Badge>
-            <span className="text-[10px] text-slate-300 uppercase tracking-widest font-bold">Logistics</span>
+            <Badge variant="outline" className="bg-slate-800 text-slate-400 border-slate-700">S54</Badge>
+            <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Logistics</span>
           </div>
-          <h1 className="text-3xl font-bold text-white tracking-tight">Eficiência Logística</h1>
-          <p className="text-slate-300 text-sm">
+          <h1 className="text-3xl font-bold text-slate-500 tracking-tight">Eficiência Logística</h1>
+          <p className="text-slate-500 text-sm">
             Custo real de frete por litro (NF de entrada) • {periodLabel}
           </p>
           <Badge

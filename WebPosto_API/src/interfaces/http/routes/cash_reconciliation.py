@@ -6,6 +6,7 @@ from typing import Literal
 
 from src.services.cash_reconciliation.cash_reconciliation_service import CashReconciliationService
 from src.services.cash_reconciliation.cash_reconciliation_snapshot_service import CashReconciliationSnapshotService
+from src.services.cash_reconciliation.prestacao_periodica_service import PrestacaoPeriodicaService
 from src.services.payment_method_catalog_service import PaymentMethodCatalogService
 
 router = APIRouter(prefix="/api/v1/cash-reconciliation", tags=["Cash Reconciliation"])
@@ -13,6 +14,7 @@ router = APIRouter(prefix="/api/v1/cash-reconciliation", tags=["Cash Reconciliat
 _service = CashReconciliationService()
 _snapshot = CashReconciliationSnapshotService(_service)
 _payment_methods = PaymentMethodCatalogService()
+_prestacao = PrestacaoPeriodicaService(_service)
 
 
 class JustifyBody(BaseModel):
@@ -79,6 +81,20 @@ async def reconciliation_summary(
     if not payload:
         raise HTTPException(status_code=502, detail="Falha ao consolidar conferência financeira")
     return {"success": True, "data": payload, "snapshot": {"hit": hit, "stale": stale}}
+
+
+@router.get("/prestacao-periodica")
+async def prestacao_periodica(
+    dataInicial: str = Query(...),
+    dataFinal: str = Query(...),
+    empresaCodigo: str | None = Query(None),
+) -> dict:
+    """Prestação de Contas Quality — meios, encerrantes, vales e 4 motores de batimento."""
+    result = await _prestacao.build(dataInicial, dataFinal, empresaCodigo)
+    if not result.success:
+        detail = result.error.message if result.error else "Falha na prestação periódica"
+        raise HTTPException(status_code=502, detail=detail)
+    return {"success": True, "data": result.data}
 
 
 @router.get("/exceptions")

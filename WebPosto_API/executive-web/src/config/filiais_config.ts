@@ -31,6 +31,12 @@ export const FILIAIS_CONFIG: Record<number, FilialIntegrationConfig> = {
     nomeAbreviado: "Real Doze",
     convenienciaStatus: "EM_MIGRACAO",
   },
+  118508: {
+    empresaCodigo: 118508,
+    nome: "Loja Conveniência 24H",
+    nomeAbreviado: "Conveniência",
+    convenienciaStatus: "INTEGRADO",
+  },
 };
 
 export function getFilialConfig(

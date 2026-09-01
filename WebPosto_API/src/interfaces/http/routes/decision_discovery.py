@@ -41,11 +41,13 @@ from src.services.decision_discovery.root_cause.investigators import (
 )
 from src.services.decision_discovery.root_cause.root_cause_engine import RootCauseEngine
 from src.services.decision_evidence.decision_evidence_service import DecisionEvidenceService
+from src.services.management_copilot_service import ManagementCopilotService
 
 router = APIRouter(prefix="/api/v1/discovery", tags=["Decision Discovery"])
 
 _evidence_service = DecisionEvidenceService()
 _scope_service = DiscoveryScopeService()
+_management_copilot = ManagementCopilotService()
 
 
 def _build_root_cause_engine() -> RootCauseEngine:
@@ -168,6 +170,51 @@ async def get_top_5_decisions(
         raise HTTPException(
             status_code=500,
             detail=f"Erro ao executar Decision Discovery Engine: {str(exc)}",
+        ) from exc
+
+
+@router.get("/briefing")
+async def get_management_briefing(
+    request: Request,
+    dataInicial: str = Query(..., description="Data inicial (YYYY-MM-DD)"),
+    dataFinal: str = Query(..., description="Data final (YYYY-MM-DD)"),
+    empresaCodigo: str | None = Query(None, description="Código da empresa ou lista separada por vírgula"),
+) -> Dict[str, Any]:
+    """Entrega prioridades gerenciais a partir de decisões evidenciadas.
+
+    A rota não escreve no ERP e não usa IA generativa: recomendações continuam
+    sujeitas à revisão do gestor.
+    """
+    try:
+        scope = await _resolve_scope(empresaCodigo, request)
+        engine = _get_discovery_engine()
+        result = await discover_for_scope(
+            engine,
+            scope,
+            data_inicial=dataInicial,
+            data_final=dataFinal,
+            top_n=5,
+        )
+        companies = (
+            sorted(scope.requested_empresa_codes)
+            if not scope.is_network_view
+            else sorted(scope.authorized_empresa_codes)
+        )
+        return {
+            "success": True,
+            "data": _management_copilot.build_briefing(
+                (candidate.to_dict() for candidate in result.all_candidates),
+                period_start=dataInicial,
+                period_end=dataFinal,
+                company_codes=companies,
+            ),
+        }
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Erro ao gerar briefing gerencial: {str(exc)}",
         ) from exc
 
 

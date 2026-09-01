@@ -59,5 +59,7 @@ async def get_auditoria_service() -> AuditoriaService:
 
     Returns:
         AuditoriaService totalmente configurado
-
-  
+    """
+    session = await get_session()
+    repository = AuditoriaRepository(session=session)
+    return AuditoriaService(repository=repository)

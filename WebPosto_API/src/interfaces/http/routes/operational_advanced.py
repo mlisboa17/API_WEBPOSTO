@@ -206,7 +206,8 @@ async def convenience_idle_stock(
     current_user: dict = Depends(require_roles("director", "admin", "owner", "manager")),
 ) -> IdleStockResponse:
     try:
-        products_with_idle = _mock_idle_stock_data(empresaCodigo, diasMinimo)
+        # Sem mock: estoque parado exige feed de produtos; retorna vazio até integração.
+        products_with_idle: list[dict] = []
 
         conv_service = ConvenienceAnalyticsService()
         conv_service.IDLE_DAYS_WARNING = diasMinimo
@@ -216,41 +217,6 @@ async def convenience_idle_stock(
 
     except Exception as e:
         return IdleStockResponse(success=False, error=str(e))
-
-
-def _mock_idle_stock_data(empresa_codigo: int | None, dias_minimo: int) -> list[dict]:
-    return [
-        {
-            "produtoCodigo": 1001,
-            "produtoNome": "Energético XYZ 250ml",
-            "empresaCodigo": empresa_codigo or 11495,
-            "estoqueAtual": 48,
-            "precoCusto": 8.50,
-            "diasSemVenda": 45,
-            "ultimaVenda": "2026-06-10",
-            "classificacaoAbc": "C",
-        },
-        {
-            "produtoCodigo": 1002,
-            "produtoNome": "Chocolate Premium 100g",
-            "empresaCodigo": empresa_codigo or 11495,
-            "estoqueAtual": 24,
-            "precoCusto": 12.00,
-            "diasSemVenda": 72,
-            "ultimaVenda": "2026-05-14",
-            "classificacaoAbc": "C",
-        },
-        {
-            "produtoCodigo": 1003,
-            "produtoNome": "Revista Especial Ed. 45",
-            "empresaCodigo": empresa_codigo or 11495,
-            "estoqueAtual": 15,
-            "precoCusto": 18.00,
-            "diasSemVenda": 90,
-            "ultimaVenda": "2026-04-26",
-            "classificacaoAbc": "C",
-        },
-    ]
 
 
 @router.get("/summary")

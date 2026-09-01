@@ -67,7 +67,7 @@ ELETRONICO_KEYWORDS = (
     "PRAZO",
 )
 
-NivelRisco = Literal["ALTO", "DESCONTO", "MEDIO", "BAIXO"]
+NivelRisco = Literal["ALTO", "DESCONTO", "MEDIO", "BAIXO", "FRAUDE_SUSPEITA"]
 
 
 class AbastecimentoFraudeDetalhe(BaseModel):
@@ -182,7 +182,13 @@ class ResumoExecutivoFraude(BaseModel):
     valorCritico: float = 0.0
     frentistaMaiorIncidencia: str = "SEM REGISTRO NO PERIODO"
     frentistaMaiorIncidenciaQtd: int = 0
+    frentistaMaiorIncidenciaRetencaoMediaMin: float = 0.0
     abastecimentosCriticosBanner: int = 0
+    # Severidades UI (🔴 Crítico · 🟧 Alto · 🟡 Médio · 🟢 Baixo)
+    totalSeveridadeCritico: int = 0
+    totalSeveridadeAlto: int = 0
+    totalSeveridadeMedio: int = 0
+    totalSeveridadeBaixo: int = 0
 
 
 class FraudAuditEngineResult(BaseModel):
@@ -374,7 +380,10 @@ class FraudDetectionEngine:
             obs: list[str] = [
                 "Fonte: cache RAM pista (worker 30s) — GET sem I/O externo",
                 "Régua: ALTO(80-100) Cartão/PIX/Frota · DESCONTO(60-79) · "
-                "MEDIO(40-59) agrup. dinheiro · BAIXO(0-39) retenção dinheiro/sem TEF",
+                "MEDIO(40-59) agrupamento eletrônico · BAIXO(0-39) sem TEF · "
+                "FRAUDE_SUSPEITA dinheiro (desconto manual / falta / estorno)",
+                "Dinheiro sem desconto = OK (não gera alerta). "
+                "Retenção/agrupamento em espécie NÃO são fraude de dinheiro.",
                 "TEF: bandeira/NSU via JOIN /INTEGRACAO/CARTAO por vendaCodigo",
             ]
             if not items:
@@ -383,9 +392,21 @@ class FraudDetectionEngine:
             else:
                 qtd_dinheiro = sum(1 for i in items if _is_especie(i))
                 ocorrencias = self._detect(items, settings)
+                faltas = self._detect_faltas_dinheiro_caixa(data_ref)
+                if faltas:
+                    ocorrencias.extend(faltas)
+                    ocorrencias.sort(
+                        key=lambda o: (
+                            -int(bool(o.cartaoRepetido)),
+                            -o.scoreGravidade,
+                            -int(o.quantidadeUsoCartao or 0),
+                            -o.tempoRetencaoMinutos,
+                            -o.valorTotal,
+                        )
+                    )
                 obs.append(
                     f"Baixados={len(items)} · dinheiro={qtd_dinheiro} · "
-                    f"ocorrências={len(ocorrencias)}"
+                    f"ocorrências={len(ocorrencias)} · faltas_dinheiro={len(faltas)}"
                 )
                 result.ocorrencias = ocorrencias
                 resumo = self._build_resumo(ocorrencias)
@@ -487,13 +508,273 @@ class FraudDetectionEngine:
         empresa_codigo: int | None = None,
         limiar_override: int | None = None,
     ) -> FraudAuditEngineResult:
-        """Compat: leitura exclusiva da RAM (limiar_override ignorado no GET — settings do worker)."""
+        """Auditoria do período — histórico via WebPosto; D0 usa RAM do worker quando possível."""
         _ = limiar_override
-        return self.response_from_ram(
-            empresa_codigo=empresa_codigo,
+        return await self.auditar_periodo(
             data_inicial=data_inicial,
             data_final=data_final,
+            empresa_codigo=empresa_codigo,
         )
+
+    async def auditar_periodo(
+        self,
+        *,
+        data_inicial: str,
+        data_final: str,
+        empresa_codigo: int | None = None,
+    ) -> FraudAuditEngineResult:
+        """Carrega baixados reais do período e aplica os 4 motores de auditoria."""
+        t0 = time.perf_counter()
+        hoje = str(date.today())
+        settings = await get_settings(empresa_id=int(empresa_codigo or 0))
+        single_day = data_inicial == data_final
+        is_d0 = single_day and data_inicial == hoje
+
+        # D0: preferir cache RAM do worker (rápido)
+        if is_d0 and self._store.result and self._store.result.ocorrencias:
+            ram = self.response_from_ram(
+                empresa_codigo=empresa_codigo,
+                data_inicial=data_inicial,
+                data_final=data_final,
+            )
+            if ram.ocorrencias:
+                return ram
+
+        targets: list[int | None]
+        if empresa_codigo is not None:
+            targets = [int(empresa_codigo)]
+        else:
+            targets = list(FILIAIS.keys())
+
+        items: list[AbastecimentoRestV1] = []
+        obs: list[str] = [
+            f"Auditoria período {data_inicial}..{data_final}",
+            f"Régua retenção: Atenção >{settings.tempo_retencao_atencao_min} min · "
+            f"Crítico >{settings.tempo_retencao_critico_min} min",
+        ]
+        try:
+            from src.services.webposto_pista_service import WebPostoPistaService
+
+            svc = WebPostoPistaService()
+            for emp in targets:
+                try:
+                    baixados, _resumo, _o, err = await asyncio.wait_for(
+                        svc.coletar_baixados_universo(
+                            id_empresa=emp,
+                            data_inicio=data_inicial,
+                            data_fim=data_final,
+                        ),
+                        timeout=90.0,
+                    )
+                    if err:
+                        obs.append(f"empresa={emp} aviso: {err}")
+                    items.extend(baixados or [])
+                except Exception as exc:
+                    LOGGER.warning("auditar_periodo empresa=%s falhou: %s", emp, exc)
+                    obs.append(f"empresa={emp} erro: {exc}")
+        except Exception as exc:
+            LOGGER.exception("auditar_periodo falhou: %s", exc)
+            obs.append(f"falha carga: {exc}")
+            # Fallback RAM
+            return self.response_from_ram(
+                empresa_codigo=empresa_codigo,
+                data_inicial=data_inicial,
+                data_final=data_final,
+            )
+
+        if empresa_codigo is not None:
+            emp = int(empresa_codigo)
+            items = [i for i in items if int(i.idEmpresa or 0) == emp]
+
+        result = FraudAuditEngineResult(
+            periodo={"inicio": data_inicial, "fim": data_final},
+            dataRef=data_final,
+            empresaCodigo=empresa_codigo,
+            parametros=settings,
+            limiarRetencaoMinutos=settings.tempo_retencao_atencao_min,
+            limiarCriticoMinutos=settings.tempo_retencao_critico_min,
+            fonte="FraudDetectionEngine+WEBPOSTO_BAIXADOS",
+            fromCache=False,
+            endpoint="/INTEGRACAO/CONSULTAR_ABASTECIMENTO_REDE",
+        )
+
+        if not items:
+            obs.append("SEM REGISTRO NO PERIODO — nenhum abastecimento baixado no intervalo")
+            result.observacoes = obs
+            result.latencyMs = round((time.perf_counter() - t0) * 1000.0, 3)
+            result.geradoEm = datetime.now(TZ).isoformat()
+            return result
+
+        ocorrencias = self._detect(items, settings)
+        ocorrencias.extend(self._detect_agrupamento_mesmo_bico(items, settings))
+        faltas = self._detect_faltas_dinheiro_caixa(data_final)
+        if faltas:
+            ocorrencias.extend(faltas)
+        # Dedup por idOcorrencia
+        seen: set[str] = set()
+        uniq: list[OcorrenciaFraudeDTO] = []
+        for o in ocorrencias:
+            if o.idOcorrencia in seen:
+                continue
+            seen.add(o.idOcorrencia)
+            uniq.append(o)
+        uniq.sort(
+            key=lambda o: (
+                -int(bool(o.cartaoRepetido)),
+                -o.scoreGravidade,
+                -o.tempoRetencaoMinutos,
+                -o.valorTotal,
+            )
+        )
+        resumo = self._build_resumo(uniq)
+        result.ocorrencias = uniq
+        result.resumo = resumo
+        result.resumoExecutivo = resumo
+        result.bannerAlerta = self._banner(resumo, settings)
+        obs.append(
+            f"Baixados={len(items)} · ocorrências={len(uniq)} · "
+            f"valor_suspeita=R${resumo.valorTotalEnvolvido:,.2f}"
+        )
+        result.observacoes = obs
+        result.geradoEm = datetime.now(TZ).isoformat()
+        result.latencyMs = round((time.perf_counter() - t0) * 1000.0, 3)
+        LOGGER.info(
+            "auditar_periodo ok %s..%s emp=%s items=%s occ=%s ms=%.0f",
+            data_inicial,
+            data_final,
+            empresa_codigo,
+            len(items),
+            len(uniq),
+            result.latencyMs,
+        )
+        return result
+
+    def _detect_agrupamento_mesmo_bico(
+        self,
+        items: list[AbastecimentoRestV1],
+        cfg: AuditFraudSettingsDTO,
+    ) -> list[OcorrenciaFraudeDTO]:
+        """Abastecimentos sequenciais no mesmo bico baixados no mesmo fechamento de caixa."""
+        by_bico: dict[tuple[int, int], list[AbastecimentoRestV1]] = defaultdict(list)
+        for it in items:
+            if int(it.bico or 0) <= 0:
+                continue
+            if not it.dataHoraBaixa:
+                continue
+            by_bico[(int(it.idEmpresa or 0), int(it.bico))].append(it)
+
+        out: list[OcorrenciaFraudeDTO] = []
+        seq = 0
+        for (emp, bico), group in by_bico.items():
+            # Agrupa por horário de baixa (fechamento)
+            by_baixa: dict[str, list[AbastecimentoRestV1]] = defaultdict(list)
+            for g in group:
+                by_baixa[str(g.dataHoraBaixa)[:19]].append(g)
+            for baixa_key, batch in by_baixa.items():
+                if len(batch) < 2:
+                    continue
+                enriched = []
+                for a in batch:
+                    dt = _parse_iso(a.dataHora)
+                    if dt:
+                        enriched.append((dt, a))
+                if len(enriched) < 2:
+                    continue
+                enriched.sort(key=lambda x: x[0])
+                # Sequencial: gaps entre bicos ≤ limiar de agrupamento
+                gaps_ok = True
+                for (a_dt, _), (b_dt, _) in zip(enriched, enriched[1:]):
+                    gap = (b_dt - a_dt).total_seconds() / 60.0
+                    if gap > cfg.tempo_agrupamento_max_min * 2:
+                        gaps_ok = False
+                        break
+                if not gaps_ok:
+                    continue
+                # Só alerta se vendas distintas (fechamento em lote)
+                vendas = {int(a.idVenda or 0) for _, a in enriched}
+                if len([v for v in vendas if v > 0]) < 2 and len(enriched) < 3:
+                    continue
+                items_grp = [a for _, a in enriched]
+                anchor = _pick_payment_anchor(items_grp)
+                especie = _is_especie(anchor)
+                if especie:
+                    continue  # agrupamento em espécie não é fraude de meio
+                valor_tot = round(sum(float(a.valorTotal or 0) for a in items_grp), 2)
+                retencoes = []
+                baixa_dt = _parse_iso(baixa_key)
+                for bico_dt, a in enriched:
+                    if baixa_dt and baixa_dt >= bico_dt:
+                        retencoes.append(int((baixa_dt - bico_dt).total_seconds() / 60))
+                retencao = max(retencoes) if retencoes else 0
+                counts: dict[tuple[int | None, str], int] = defaultdict(int)
+                for a in items_grp:
+                    counts[(a.idFrentista, a.nomeFrentista or "N/I")] += 1
+                (fid, fname), _ = max(counts.items(), key=lambda x: x[1])
+                seq += 1
+                oid = f"FR-AGR-{emp}-{bico}-{seq}"
+                detalhes = [
+                    AbastecimentoFraudeDetalhe(
+                        idAbastecimento=a.idAbastecimento,
+                        uuid=a.uuid or "",
+                        dataHoraBico=_fmt(_parse_iso(a.dataHora)),
+                        horaBico=_fmt(_parse_iso(a.dataHora)),
+                        postoNome=FILIAIS.get(emp, a.nomeEmpresa or f"Empresa {emp}"),
+                        tipoCombustivel=a.descricaoProduto or "Combustível",
+                        produto=a.descricaoProduto or "Combustível",
+                        litros=round(float(a.litros or 0), 3),
+                        valorTotal=round(float(a.valorTotal or 0), 2),
+                        bico=a.bico,
+                        tempoRetencaoMinutos=retencao,
+                    )
+                    for a in items_grp
+                ]
+                out.append(
+                    OcorrenciaFraudeDTO(
+                        idOcorrencia=oid,
+                        linkOcorrencia=f"/executive/data-audit?tab=anti-fraude&ocorrencia={oid}",
+                        funcionarioNome=fname,
+                        funcionarioId=fid,
+                        formaPagamento=_forma_pagamento_label(anchor.formaPagamento),
+                        postoNome=FILIAIS.get(emp, f"Empresa {emp}"),
+                        postoUnidade=emp,
+                        valorTotal=valor_tot,
+                        dataHoraBico=_fmt(enriched[0][0]),
+                        dataHoraBaixa=_fmt(baixa_dt),
+                        tipoCombustivel=detalhes[0].tipoCombustivel if detalhes else "",
+                        litros=round(sum(d.litros for d in detalhes), 3),
+                        motivoSuspeita=(
+                            f"Agrupamento de {len(batch)} abastecimentos no bico {bico:02d} "
+                            f"sem fechamento intermediário de caixa (baixa {baixa_key})"
+                        ),
+                        nivelRisco="ALTO",
+                        scoreGravidade=88,
+                        isAgrupado=True,
+                        abastecimentosAgrupados=detalhes,
+                        metricasAgrupamento=MetricasAgrupamento(
+                            qtdAbastecimentos=len(batch),
+                            intervaloBicosMinutos=max(
+                                0,
+                                int((enriched[-1][0] - enriched[0][0]).total_seconds() / 60),
+                            ),
+                            tempoRetencaoMinutos=retencao,
+                            limiarCriticoMin=cfg.tempo_retencao_critico_min,
+                            limiarAtencaoMin=cfg.tempo_retencao_atencao_min,
+                            limiarAgrupamentoMin=cfg.tempo_agrupamento_max_min,
+                        ),
+                        id=oid,
+                        gatilho="AGRUPAMENTO_BICOS",
+                        frentistaNome=fname,
+                        frentistaId=fid,
+                        empresaCodigo=emp,
+                        empresaNome=FILIAIS.get(emp, f"Empresa {emp}"),
+                        tempoRetencaoMinutos=retencao,
+                        qtdAbastecimentosAgrupados=len(batch),
+                        valorTotalCartao=valor_tot,
+                        meioPagamento=anchor.formaPagamento or "",
+                        detalhes=detalhes,
+                    )
+                )
+        return out
 
     def _detect(
         self,
@@ -588,9 +869,6 @@ class FraudDetectionEngine:
             valor_bruto = sum(a.valorTotal for _, _, a in enriched) + sum(descontos)
             valor_desc = round(sum(descontos), 2)
             pct_desc = round((valor_desc / valor_bruto) * 100, 2) if valor_bruto > 0 else 0.0
-            trigger_desc = pct_desc > cfg.percentual_desconto_suspeito_pct or (
-                valor_desc > 0 and pct_desc >= cfg.percentual_desconto_suspeito_pct
-            )
 
             counts: dict[tuple[int | None, str], int] = defaultdict(int)
             for _, _, a in enriched:
@@ -606,12 +884,99 @@ class FraudDetectionEngine:
                     break
             trigger_cpf = bool(fid and cpf_grp and (emp, fid, cpf_grp) in cpf_abuso)
 
+            # Abuso de desconto: PDV sem fidelidade/App+CPF e sem código de gerente
+            from src.services.anti_fraud_service import is_desconto_autorizado
+
+            origem_detect = ""
+            for _, _, a in enriched:
+                od = str(getattr(a, "origemDesconto", None) or "").strip()
+                if od:
+                    origem_detect = od
+                    break
+            origem_up = origem_detect.upper()
+            autorizado_gerente = any(
+                k in origem_up
+                for k in ("GERENTE", "AUTORIZ", "SUPERVISOR", "COD_GERENTE", "CODIGO_GERENTE")
+            )
+            autorizado_app = is_desconto_autorizado(
+                origem_desconto=origem_detect, cpf_cliente=cpf_grp or None
+            )
+            origem_manual = any(
+                k in origem_up for k in ("MANUAL", "PDV", "OPERADOR", "SEM AUTORIZ", "BALCAO", "BALCÃO")
+            )
+            trigger_desc_pct = pct_desc > cfg.percentual_desconto_suspeito_pct
+            # Sem origem explícita: só flag se % acima do teto (evita flood)
+            trigger_desc_nao_autorizado = (
+                valor_desc > 0
+                and not autorizado_app
+                and not autorizado_gerente
+                and (origem_manual or (not origem_detect and trigger_desc_pct))
+            )
+            trigger_desc = trigger_desc_nao_autorizado or trigger_desc_pct
+
             # ── Régua de gravidade (score decrescente) ──
-            # Cartão Curinga (recorrência >1 baixa) → Score 100, topo absoluto
-            # ALTO só com evidência Cartão/PIX/Frota (elimina "Não informado" no topo)
+            # Dinheiro: regra estrita em anti_fraud_service (sem retenção/agrupamento).
             nivel: NivelRisco | None = None
             score = 0
-            if trigger_recorrencia:
+            motivos: list[str] = []
+            gatilho = "ANOMALIA"
+
+            if especie:
+                from src.services.anti_fraud_service import classify_dinheiro_pagamento
+
+                origem_grp = ""
+                for _, _, a in enriched:
+                    od = str(getattr(a, "origemDesconto", None) or "").strip()
+                    if od:
+                        origem_grp = od
+                        break
+                if not origem_grp and valor_desc > 0:
+                    origem_grp = "DESCONTO_MANUAL"
+                preco_tab = float(
+                    getattr(anchor, "precoTabela", None) or anchor.precoUnitario or 0
+                )
+                preco_prat = float(anchor.precoUnitario or 0)
+                cash_status, cash_motivo = classify_dinheiro_pagamento(
+                    valor_desconto=valor_desc,
+                    origem_desconto=origem_grp,
+                    cpf_cliente=cpf_grp or None,
+                    preco_tabela=preco_tab,
+                    preco_praticado=preco_prat,
+                    status=str(getattr(anchor, "status", "") or ""),
+                    forma_pagamento=anchor.formaPagamento,
+                    valor_total=sum(float(a.valorTotal or 0) for _, _, a in enriched),
+                    percentual_desconto=pct_desc,
+                    limiar_desconto_suspeito_pct=cfg.percentual_desconto_suspeito_pct,
+                )
+                # Inconsistência: Dinheiro + rastros TEF/PIX (meio não conciliado)
+                tem_tef = bool(
+                    getattr(anchor, "cartaoNsu", None)
+                    or getattr(anchor, "cartaoFinal", None)
+                    or getattr(anchor, "cartaoAutorizacao", None)
+                )
+                if cash_status == "OK" and tem_tef and (trigger_ret_med or trigger_ret_crit):
+                    nivel = "MEDIO"
+                    score = 55
+                    motivos.append(
+                        "Inconsistência de meio: venda como Dinheiro com NSU/TEF e "
+                        f"retenção atípica ({retencao} min)"
+                    )
+                    gatilho = "INCONSISTENCIA_MEIO_PAGAMENTO"
+                elif cash_status == "OK":
+                    continue
+                else:
+                    nivel = "FRAUDE_SUSPEITA"
+                    score = 72
+                    if cash_motivo:
+                        motivos.append(cash_motivo)
+                    gatilho = (
+                        "ESTORNO_DINHEIRO"
+                        if cash_motivo and "estorno" in cash_motivo.casefold()
+                        else "DESCONTO_DINHEIRO_MANUAL"
+                        if valor_desc > 0
+                        else "FRAUDE_DINHEIRO"
+                    )
+            elif trigger_recorrencia:
                 nivel = "ALTO"
                 score = 100
             elif eletronico and (trigger_lote or trigger_ret_crit):
@@ -620,21 +985,13 @@ class FraudDetectionEngine:
             elif trigger_cpf or trigger_desc:
                 nivel = "DESCONTO"
                 score = 75 if trigger_cpf else 70
-            elif especie and trigger_lote:
-                nivel = "MEDIO"
-                score = 50
             elif eletronico and trigger_ret_med:
                 nivel = "MEDIO"
                 score = 45
-            elif especie and (trigger_ret_crit or trigger_ret_med):
-                nivel = "BAIXO"
-                score = 30 if trigger_ret_crit else 20
-            elif (not eletronico) and (not especie) and trigger_lote:
-                # Sem TEF/forma: agrupamento não sobe a CRÍTICO
+            elif (not eletronico) and trigger_lote:
                 nivel = "MEDIO"
                 score = 42
             elif (not eletronico) and (trigger_ret_crit or trigger_ret_med):
-                # Sem TEF/forma: retenção longa fica na base
                 nivel = "BAIXO"
                 score = 25 if trigger_ret_crit else 15
             elif eletronico and trigger_frac:
@@ -643,55 +1000,61 @@ class FraudDetectionEngine:
             else:
                 continue
 
-            motivos: list[str] = []
-            if trigger_recorrencia:
-                final_lbl = final or "****"
-                motivos.append(
-                    f"CARTÃO CURINGA: final {final_lbl} usado em {qtd_uso_cartao} baixas "
-                    f"({qtd_abast_cartao} abastecimentos) no período — score máximo"
-                )
-            if trigger_ret_crit:
-                motivos.append(
-                    f"Retenção {retencao} min > {cfg.tempo_retencao_critico_min} min "
-                    f"({'Dinheiro → BAIXO' if especie else f'baixa em {forma_label}'})"
-                )
-            elif trigger_ret_med:
-                motivos.append(
-                    f"Retenção {retencao} min > {cfg.tempo_retencao_atencao_min} min "
-                    f"({'Dinheiro' if especie else forma_label})"
-                )
-            if trigger_lote:
-                motivos.append(
-                    f"Agrupamento de {qtd} bicos em {intervalo} min "
-                    f"baixados em {forma_label}"
-                    + (" (espécie → MÉDIO)" if especie else "")
-                )
-            if trigger_cpf:
-                motivos.append(
-                    f"Abuso de CPF/App {cpf_grp[-4:].rjust(4, '*')} pelo frentista "
-                    f"≥ {cfg.recorrencia_cpf_cartao_limite}x no dia"
-                )
-            if trigger_desc:
-                motivos.append(
-                    f"Desconto/App {pct_desc:.1f}% (R$ {valor_desc:.2f}) acima do teto "
-                    f"{cfg.percentual_desconto_suspeito_pct}%"
-                )
-            if trigger_frac and score < 40:
-                motivos.append(f"Fracionamento curto: {qtd} abast. em {intervalo} min")
-
-            gatilho = "+".join(
-                n
-                for n, f in [
-                    ("CARTAO_CURINGA", trigger_recorrencia),
-                    ("RETENCAO", trigger_ret_crit or trigger_ret_med),
-                    ("AGRUPAMENTO", trigger_lote),
-                    ("ABUSO_CPF_APP", trigger_cpf),
-                    ("RECORRENCIA_CARTAO", trigger_recorrencia),
-                    ("DESCONTO", trigger_desc),
-                    ("FRACIONAMENTO", trigger_frac and not trigger_lote),
-                ]
-                if f
-            ) or "ANOMALIA"
+            if not especie:
+                if trigger_recorrencia:
+                    final_lbl = final or "****"
+                    motivos.append(
+                        f"CARTÃO CURINGA: final {final_lbl} usado em {qtd_uso_cartao} baixas "
+                        f"({qtd_abast_cartao} abastecimentos) no período — score máximo"
+                    )
+                if trigger_ret_crit:
+                    motivos.append(
+                        f"Retenção {retencao} min > {cfg.tempo_retencao_critico_min} min "
+                        f"(baixa em {forma_label})"
+                    )
+                elif trigger_ret_med:
+                    motivos.append(
+                        f"Retenção {retencao} min > {cfg.tempo_retencao_atencao_min} min "
+                        f"({forma_label})"
+                    )
+                if trigger_lote:
+                    motivos.append(
+                        f"Agrupamento de {qtd} bicos em {intervalo} min "
+                        f"baixados em {forma_label}"
+                    )
+                if trigger_cpf:
+                    motivos.append(
+                        f"Abuso de CPF/App {cpf_grp[-4:].rjust(4, '*')} pelo frentista "
+                        f"≥ {cfg.recorrencia_cpf_cartao_limite}x no dia"
+                    )
+                if trigger_desc:
+                    if trigger_desc_nao_autorizado:
+                        motivos.append(
+                            f"Abuso de desconto PDV R$ {valor_desc:.2f} ({pct_desc:.1f}%) "
+                            f"sem autorização/código de gerente (origem={origem_detect or 'N/I'})"
+                        )
+                    else:
+                        motivos.append(
+                            f"Desconto/App {pct_desc:.1f}% (R$ {valor_desc:.2f}) acima do teto "
+                            f"{cfg.percentual_desconto_suspeito_pct}%"
+                        )
+                if trigger_frac and score < 40:
+                    motivos.append(
+                        f"Fracionamento curto: {qtd} abast. em {intervalo} min"
+                    )
+                gatilho = "+".join(
+                    n
+                    for n, f in [
+                        ("CARTAO_CURINGA", trigger_recorrencia),
+                        ("RETENCAO", trigger_ret_crit or trigger_ret_med),
+                        ("AGRUPAMENTO", trigger_lote),
+                        ("ABUSO_CPF_APP", trigger_cpf),
+                        ("RECORRENCIA_CARTAO", trigger_recorrencia),
+                        ("DESCONTO", trigger_desc),
+                        ("FRACIONAMENTO", trigger_frac and not trigger_lote),
+                    ]
+                    if f
+                ) or "ANOMALIA"
 
             emissao = _fmt(pag_dt)
             detalhes: list[AbastecimentoFraudeDetalhe] = []
@@ -756,7 +1119,7 @@ class FraudDetectionEngine:
                 bandeira_out = "PIX"
             dto = OcorrenciaFraudeDTO(
                 idOcorrencia=oid,
-                linkOcorrencia=f"/executive/data-audit?ocorrencia={oid}",
+                linkOcorrencia=f"/executive/data-audit?tab=anti-fraude&ocorrencia={oid}",
                 funcionarioNome=fname,
                 funcionarioId=fid,
                 formaPagamento=forma_label,
@@ -828,6 +1191,65 @@ class FraudDetectionEngine:
         )
         return out
 
+    def _detect_faltas_dinheiro_caixa(self, data_ref: str) -> list[OcorrenciaFraudeDTO]:
+        """Regra 2: falta em dinheiro no encerramento (caixa vs bico sistêmico)."""
+        from src.services.anti_fraud_service import classify_falta_dinheiro_caixa
+
+        out: list[OcorrenciaFraudeDTO] = []
+        try:
+            from src.services.cashier_audit_service import get_cashier_audit_service
+
+            store = get_cashier_audit_service().get_store()
+            if store.data_ref and store.data_ref != data_ref:
+                # Ainda assim avalia o cache atual (D0 típico)
+                pass
+            for f in store.fechamentos:
+                sist = float(getattr(f, "dinheiro_sistemico", 0) or 0)
+                decl = float(getattr(f, "dinheiro_declarado", 0) or 0)
+                if sist <= 0 and decl <= 0:
+                    # fallback: falta global do turno com peso em dinheiro
+                    if float(f.saldo or 0) >= -0.01:
+                        continue
+                    sist = float(f.faturamentoBico or 0)
+                    decl = float(f.faturamentoCaixa or 0)
+                status, motivo = classify_falta_dinheiro_caixa(
+                    dinheiro_sistemico=sist,
+                    dinheiro_declarado=decl,
+                )
+                if status != "FRAUDE_SUSPEITA" or not motivo:
+                    continue
+                oid = f"FR-CASH-{f.id}"
+                falta = round(abs(min(0.0, decl - sist if sist or decl else float(f.saldo))), 2)
+                out.append(
+                    OcorrenciaFraudeDTO(
+                        idOcorrencia=oid,
+                        linkOcorrencia=f"/executive/cashier-audit?fechamento={f.id}",
+                        funcionarioNome=f.operadorNome,
+                        funcionarioId=f.operadorId,
+                        formaPagamento="Dinheiro",
+                        isEspecie=True,
+                        postoNome=f.postoNome,
+                        postoUnidade=f.postoCodigo,
+                        valorTotal=falta,
+                        motivoSuspeita=motivo,
+                        nivelRisco="FRAUDE_SUSPEITA",
+                        scoreGravidade=68,
+                        id=oid,
+                        gatilho="FALTA_DINHEIRO_CAIXA",
+                        frentistaNome=f.operadorNome,
+                        frentistaId=f.operadorId,
+                        empresaCodigo=f.postoCodigo,
+                        empresaNome=f.postoNome,
+                        dataHora=f"{f.dataRef}T12:00:00",
+                        dataHoraBico=f"{f.dataRef}T12:00:00",
+                        meioPagamento="DINHEIRO",
+                        origemDesconto="SEM DESCONTO",
+                    )
+                )
+        except Exception as exc:
+            LOGGER.warning("faltas_dinheiro_caixa: %s", exc)
+        return out
+
     def _build_resumo(self, ocorrencias: list[OcorrenciaFraudeDTO]) -> ResumoExecutivoFraude:
         if not ocorrencias:
             return ResumoExecutivoFraude()
@@ -836,6 +1258,7 @@ class FraudDetectionEngine:
         descontos = [o for o in ocorrencias if o.nivelRisco == "DESCONTO"]
         medios = [o for o in ocorrencias if o.nivelRisco == "MEDIO"]
         baixos = [o for o in ocorrencias if o.nivelRisco == "BAIXO"]
+        fraude_cash = [o for o in ocorrencias if o.nivelRisco == "FRAUDE_SUSPEITA"]
 
         def top5(counter: dict[str, list[float]]) -> list[RankingItem]:
             items = [
@@ -862,6 +1285,19 @@ class FraudDetectionEngine:
             postos[o.postoNome][1] += o.valorTotal
 
         rank_f = top5(frent)
+        # Tempo médio de retenção do top frentista
+        top_nome = rank_f[0].nome if rank_f else ""
+        top_rets = [
+            o.tempoRetencaoMinutos
+            for o in ocorrencias
+            if top_nome and (o.funcionarioNome or o.frentistaNome) == top_nome
+        ]
+        top_ret_media = round(sum(top_rets) / len(top_rets), 1) if top_rets else 0.0
+        # Severidade UI: Crítico=ALTO · Alto=DESCONTO/FRAUDE_CASH · Médio=MEDIO · Baixo=BAIXO
+        sev_critico = len(altos)
+        sev_alto = len(descontos) + len(fraude_cash)
+        sev_medio = len(medios)
+        sev_baixo = len(baixos)
         return ResumoExecutivoFraude(
             totalFraudes=len(ocorrencias),
             valorTotalEnvolvido=round(sum(o.valorTotal for o in ocorrencias), 2),
@@ -876,15 +1312,27 @@ class FraudDetectionEngine:
                 "DESCONTO": len(descontos),
                 "MEDIO": len(medios),
                 "BAIXO": len(baixos),
+                "FRAUDE_SUSPEITA": len(fraude_cash),
+                "CRITICO": sev_critico,
             },
-            totalAgrupamentosSuspeitos=len(ocorrencias),
-            totalCriticos=len(altos) + len(descontos),
-            totalAtencao=len(medios) + len(baixos),
+            totalAgrupamentosSuspeitos=sum(1 for o in ocorrencias if o.isAgrupado),
+            totalCriticos=sev_critico + sev_alto,
+            totalAtencao=sev_medio + sev_baixo,
             valorTotalRetidoCartoes=round(sum(o.valorTotal for o in ocorrencias), 2),
-            valorCritico=round(sum(o.valorTotal for o in altos) + sum(o.valorTotal for o in descontos), 2),
+            valorCritico=round(
+                sum(o.valorTotal for o in altos)
+                + sum(o.valorTotal for o in descontos)
+                + sum(o.valorTotal for o in fraude_cash),
+                2,
+            ),
             frentistaMaiorIncidencia=rank_f[0].nome if rank_f else "SEM REGISTRO NO PERIODO",
             frentistaMaiorIncidenciaQtd=rank_f[0].qtd if rank_f else 0,
+            frentistaMaiorIncidenciaRetencaoMediaMin=top_ret_media,
             abastecimentosCriticosBanner=sum(o.qtdAbastecimentosAgrupados for o in altos),
+            totalSeveridadeCritico=sev_critico,
+            totalSeveridadeAlto=sev_alto,
+            totalSeveridadeMedio=sev_medio,
+            totalSeveridadeBaixo=sev_baixo,
         )
 
     @staticmethod

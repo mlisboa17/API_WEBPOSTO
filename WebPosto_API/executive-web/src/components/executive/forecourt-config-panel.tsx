@@ -16,8 +16,6 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { apiService } from "@/lib/api";
 import { Forecourt2DCanvas } from "@/components/executive/Forecourt2DCanvas";
-import { useGlobalFilter } from "@/contexts/global-filter-context";
-import { useForecourtFuelEvents } from "@/hooks/use-forecourt-fuel-events";
 import type { ForecourtLayout, ForecourtNozzleLink, ForecourtPosition } from "@/types/api";
 import { cn } from "@/lib/utils";
 
@@ -88,7 +86,6 @@ function summaryFrom(layout: ForecourtLayout | null) {
 }
 
 export function ForecourtConfigPanel({ empresaCodigo }: Props) {
-  const { periodDates } = useGlobalFilter();
   const [stationId, setStationId] = useState<number>(empresaCodigo || 5555);
   const [layout, setLayout] = useState<ForecourtLayout | null>(null);
   const [draftPositions, setDraftPositions] = useState<ForecourtPosition[]>([]);
@@ -97,12 +94,6 @@ export function ForecourtConfigPanel({ empresaCodigo }: Props) {
   const [seeding, setSeeding] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
-  const { events: fuelEvents } = useForecourtFuelEvents(
-    stationId,
-    periodDates.start,
-    periodDates.end,
-    true
-  );
 
   useEffect(() => {
     if (empresaCodigo) setStationId(empresaCodigo);
@@ -353,7 +344,6 @@ export function ForecourtConfigPanel({ empresaCodigo }: Props) {
                 <CardContent className="px-4 pb-4">
                   <Forecourt2DCanvas
                     layout={{ ...layout, positions: draftPositions }}
-                    fuelEvents={fuelEvents}
                   />
                 </CardContent>
               </Card>

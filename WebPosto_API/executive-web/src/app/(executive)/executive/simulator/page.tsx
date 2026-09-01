@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { 
   Calculator, 
   TrendingUp, 
@@ -9,7 +9,6 @@ import {
   Zap,
   Wallet
 } from "lucide-react";
-import { apiService } from "@/lib/api";
 import { SimulationInput, SimulationResult } from "@/types/api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -17,6 +16,7 @@ import { Slider } from "@/components/ui/slider";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
+import { InactiveModuleBanner } from "@/components/executive/inactive-module-banner";
 
 export default function FinancialSimulatorPage() {
   const [input, setInput] = useState<SimulationInput>({
@@ -28,40 +28,31 @@ export default function FinancialSimulatorPage() {
   const [loading, setLoading] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
 
-  const runSimulation = useCallback(async () => {
-    try {
-      setLoading(true);
-      const res = await apiService.simulateMarginImpact(input);
-      setResult(res);
-    } catch (err) {
-      const message = err instanceof Error ? err.message : "Erro na simulação";
-      alert("Erro na simulação: " + message);
-    } finally {
-      setLoading(false);
-      setInitialLoading(false);
-    }
-  }, [input]);
-
+  // Módulo inativo: não dispara API / botões quebrados
   useEffect(() => {
-    const timer = setTimeout(() => {
-      runSimulation();
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [runSimulation]);
+    setInitialLoading(false);
+    setLoading(false);
+    setResult(null);
+  }, []);
 
   const formatCurrency = (val: number) => 
     new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val);
 
   return (
-    <div className="p-4 lg:p-8 max-w-[1200px] mx-auto space-y-6">
+    <div className="p-4 lg:p-8 max-w-[1200px] mx-auto space-y-6 opacity-50 pointer-events-none select-none">
+      <InactiveModuleBanner
+        className="pointer-events-auto opacity-100"
+        title="Simulador de Margem indisponível"
+        description="Módulo em desenvolvimento. Os controles abaixo são apenas prévia visual — nenhuma simulação é executada."
+      />
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Badge variant="outline" className="bg-purple-500/10 text-purple-400 border-purple-500/20">S54</Badge>
+            <Badge variant="outline" className="bg-slate-800 text-slate-400 border-slate-700">S54</Badge>
             <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Simulator</span>
           </div>
-          <h1 className="text-3xl font-bold text-white tracking-tight">Simulador Estratégico de Margem</h1>
-          <p className="text-slate-400 text-sm">Projeção de impacto em EBITDA, Margem e Vácuo de Caixa</p>
+          <h1 className="text-3xl font-bold text-slate-500 tracking-tight">Simulador Estratégico de Margem</h1>
+          <p className="text-slate-500 text-sm">Projeção de impacto em EBITDA, Margem e Vácuo de Caixa</p>
         </div>
         <Button 
           variant="outline" 

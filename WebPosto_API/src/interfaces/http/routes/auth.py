@@ -1,6 +1,7 @@
 import hmac
+import logging
 
-from fastapi import APIRouter, Depends, HTTPException, Response, status, Request
+from fastapi import APIRouter, HTTPException, Response, status, Request
 from pydantic import BaseModel
 
 from src.infrastructure.config.settings import settings
@@ -11,7 +12,9 @@ from src.infrastructure.security.jwt_utils import (
 )
 from src.infrastructure.security.passwords import verify_password
 
-router = APIRouter(prefix="/auth", tags=["auth"]) 
+router = APIRouter(prefix="/auth", tags=["auth"])
+logger = logging.getLogger(__name__)
+LOCAL_AUTH_UNCONFIGURED = "Autenticação local não está configurada."
 
 
 class LoginPayload(BaseModel):
@@ -20,18 +23,30 @@ class LoginPayload(BaseModel):
 
 
 def _validate_credentials(email: str, password: str) -> bool:
-    if email != settings.auth_user_email:
+    configured_email = (settings.auth_user_email or "").strip()
+    if not configured_email or (email or "").strip() != configured_email:
         return False
 
-    if settings.auth_user_password_hash:
-        return verify_password(password, settings.auth_user_password_hash)
+    password_hash = (settings.auth_user_password_hash or "").strip()
+    if password_hash:
+        return verify_password(password, password_hash)
 
-    return hmac.compare_digest(password, settings.auth_user_password)
+    configured_password = settings.auth_user_password or ""
+    try:
+        return hmac.compare_digest(password, configured_password)
+    except (TypeError, ValueError):
+        return False
 
 
 @router.post("/login")
 async def login(payload: LoginPayload, response: Response):
     """Validate credentials and issue access/refresh tokens."""
+    if not settings.local_auth_configured():
+        logger.warning("login recusado: autenticacao local nao configurada")
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=LOCAL_AUTH_UNCONFIGURED,
+        )
     if not _validate_credentials(payload.email, payload.password):
         raise HTTPException(status_code=401, detail="Invalid credentials")
 

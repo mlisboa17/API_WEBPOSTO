@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -13,12 +13,13 @@ import {
   AlertTriangle,
   ShoppingCart,
   Clock,
-  Fuel,
-  TrendingDown,
   RefreshCcw,
   Package,
+  TrendingDown,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { empresaNomeOperacional } from "@/utils/filial_normalizer";
+import { TankMonitorCard, isGnvProduct } from "@/components/operational/tank-monitor-card";
 
 interface InventoryPredictionPanelProps {
   empresaCodigo: number;
@@ -34,24 +35,6 @@ const COVERAGE_OPTIONS = [
   { value: "10", label: "10 Dias" },
 ];
 
-const STATUS_CONFIG = {
-  OK: {
-    color: "bg-emerald-500/20 border-emerald-500/30 text-emerald-300",
-    icon: Fuel,
-    label: "Saudável",
-  },
-  ATENCAO: {
-    color: "bg-amber-500/20 border-amber-500/30 text-amber-300",
-    icon: Clock,
-    label: "Atenção",
-  },
-  COMPRA_URGENTE: {
-    color: "bg-red-500/20 border-red-500/30 text-red-300",
-    icon: AlertTriangle,
-    label: "Risco de Ruptura - Pedir Carreta",
-  },
-};
-
 function formatNumber(value: number, decimals: number = 0): string {
   return value.toLocaleString("pt-BR", {
     minimumFractionDigits: decimals,
@@ -59,103 +42,77 @@ function formatNumber(value: number, decimals: number = 0): string {
   });
 }
 
-function TankPredictionCard({ prediction }: { prediction: TankPrediction }) {
-  const config = STATUS_CONFIG[prediction.status_alerta] || STATUS_CONFIG.OK;
-  const StatusIcon = config.icon;
+function normalizePrediction(p: TankPrediction): TankPrediction {
+  const gnv =
+    isGnvProduct(p.produto_nome) ||
+    isGnvProduct(p.tipo_combustivel) ||
+    String(p.produto_codigo) === "99" ||
+    String(p.produto_codigo) === "099";
+  if (!gnv) return p;
+  return {
+    ...p,
+    status_alerta: "OK",
+    alerta_label: "GNV canalizado — sem carreta",
+    sugestao_compra_litros: 0,
+    observacoes: [
+      ...(p.observacoes || []),
+      "GNV excluído de alerta Pedir Carreta / sugestão em litros",
+    ],
+  };
+}
 
-  const occupancyColor =
-    prediction.ocupacao_percentual > 70
-      ? "text-emerald-400"
-      : prediction.ocupacao_percentual > 30
-      ? "text-amber-400"
-      : "text-red-400";
+function TankPredictionCard({
+  prediction,
+  empresaCodigo,
+}: {
+  prediction: TankPrediction;
+  empresaCodigo: number;
+}) {
+  const gnv =
+    isGnvProduct(prediction.produto_nome) ||
+    isGnvProduct(prediction.tipo_combustivel);
+  const title = `Tanque — ${prediction.produto_nome || prediction.tipo_combustivel}`;
 
   return (
-    <Card className="bg-slate-800/50 border-slate-700/50">
-      <CardHeader className="pb-2">
-        <div className="flex items-center justify-between">
-          <CardTitle className="text-sm font-medium text-slate-200">
-            {prediction.produto_nome}
-          </CardTitle>
-          <Badge variant="outline" className={cn("text-[10px] max-w-[200px] text-center", config.color)}>
-            <StatusIcon size={12} className="mr-1 shrink-0" />
-            {prediction.alerta_label || config.label}
-          </Badge>
-        </div>
-        <p className="text-xs text-slate-300">{prediction.tipo_combustivel}</p>
-      </CardHeader>
-      <CardContent className="space-y-3">
-        <div className="grid grid-cols-2 gap-3">
-          <div>
-            <p className="text-xs text-slate-300">Estoque Atual</p>
-            <p className="text-lg font-bold text-white">
-              {formatNumber(prediction.estoque_atual_litros)} L
-            </p>
-            <p className={cn("text-xs", occupancyColor)}>
-              {prediction.ocupacao_percentual.toFixed(1)}% da capacidade
-            </p>
-          </div>
-          <div>
-            <p className="text-xs text-slate-300">Autonomia (Dias)</p>
-            <p
-              className={cn(
-                "text-lg font-bold",
-                prediction.autonomia_dias_restantes < 1.5
-                  ? "text-rose-400"
-                  : prediction.autonomia_dias_restantes < 3
-                  ? "text-amber-400"
-                  : "text-emerald-400"
-              )}
-            >
-              {prediction.autonomia_dias_restantes.toFixed(1)} dias
-            </p>
-            <p className="text-xs text-slate-300">
-              Média 7d: {formatNumber(prediction.consumo_medio_diario)} L/dia
-            </p>
-          </div>
-        </div>
-
-        <div className="border-t border-slate-700/50 pt-3">
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <p className="text-xs text-slate-400">Consumo Diario</p>
-              <p className="text-sm font-medium text-slate-200">
-                {formatNumber(prediction.consumo_medio_diario)} L/dia
-              </p>
-            </div>
-            <div>
-              <p className="text-xs text-slate-400">Capacidade</p>
-              <p className="text-sm font-medium text-slate-200">
-                {formatNumber(prediction.capacidade_tanque)} L
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {prediction.sugestao_compra_litros > 0 && (
-          <div className="bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-3">
+    <TankMonitorCard
+      title={title}
+      fuelLabel={prediction.tipo_combustivel}
+      currentLiters={prediction.estoque_atual_litros}
+      capacityLiters={prediction.capacidade_tanque}
+      autonomiaDias={prediction.autonomia_dias_restantes}
+      consumoMedioDiario={prediction.consumo_medio_diario}
+      alertLevel={prediction.status_alerta}
+      alertLabel={prediction.alerta_label}
+      isGnv={gnv}
+      tankId={prediction.produto_codigo}
+      empresaCodigo={empresaCodigo}
+      sugestaoCompraLitros={prediction.sugestao_compra_litros}
+      diasCobertura={prediction.dias_cobertura_desejado || 3}
+      measuredAt={prediction.data_hora_medidor}
+      footer={
+        !gnv && prediction.sugestao_compra_litros > 0 ? (
+          <div className="rounded-lg border border-cyan-500/30 bg-cyan-500/10 p-3">
             <div className="flex items-center gap-2 mb-1">
-              <ShoppingCart size={14} className="text-cyan-400" />
+              <ShoppingCart size={14} className="text-cyan-400 shrink-0" />
               <span className="text-xs font-medium text-cyan-300">
-                Sugestao de Compra
+                Sugestão de Compra
               </span>
             </div>
-            <p className="text-xl font-bold text-cyan-300">
+            <p className="text-xl font-bold font-mono text-cyan-300 leading-none">
               {formatNumber(prediction.sugestao_compra_litros)} L
             </p>
-            <p className="text-xs text-cyan-400/70">
+            <p className="text-xs text-cyan-400/80 mt-1">
               Para {prediction.dias_cobertura_desejado} dias de cobertura
             </p>
           </div>
-        )}
-
-        {prediction.observacoes.length > 0 && (
-          <div className="text-xs text-slate-500 italic">
-            {prediction.observacoes.join("; ")}
-          </div>
-        )}
-      </CardContent>
-    </Card>
+        ) : gnv ? (
+          <p className="text-[11px] text-sky-300/90 leading-relaxed">
+            Combustível gasoso canalizado — monitoramento por vazão/pressão, sem
+            ruptura de carreta em litros.
+          </p>
+        ) : null
+      }
+    />
   );
 }
 
@@ -169,8 +126,12 @@ export function InventoryPredictionPanel({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const filialNome =
+    empresaNome && !/^filial\s*\d+/i.test(empresaNome)
+      ? empresaNome
+      : empresaNomeOperacional(empresaCodigo);
+
   const fetchPrediction = useCallback(async () => {
-    console.log("[InventoryPrediction] Iniciando fetch...", { empresaCodigo, diasCobertura, leadTimeHoras });
     setLoading(true);
     setError(null);
     try {
@@ -179,13 +140,11 @@ export function InventoryPredictionPanel({
         parseInt(diasCobertura),
         leadTimeHoras
       );
-      console.log("[InventoryPrediction] Resposta recebida:", result);
       setData(result);
       if (!result.success) {
-        setError(result.observacoes.join("; ") || "Erro ao buscar previsao");
+        setError(result.observacoes.join("; ") || "Erro ao buscar previsão");
       }
-    } catch (err) {
-      console.error("[InventoryPrediction] Erro no fetch:", err);
+    } catch {
       setError("Erro ao conectar com o servidor");
     } finally {
       setLoading(false);
@@ -193,22 +152,55 @@ export function InventoryPredictionPanel({
   }, [empresaCodigo, diasCobertura, leadTimeHoras]);
 
   useEffect(() => {
-    fetchPrediction();
+    void fetchPrediction();
   }, [fetchPrediction]);
+
+  const predicoes = useMemo(
+    () => (data?.predicoes || []).map(normalizePrediction),
+    [data?.predicoes]
+  );
+
+  const liquidPredictions = useMemo(
+    () =>
+      predicoes.filter(
+        (p) =>
+          !isGnvProduct(p.produto_nome) && !isGnvProduct(p.tipo_combustivel)
+      ),
+    [predicoes]
+  );
+  const gnvPredictions = useMemo(
+    () =>
+      predicoes.filter(
+        (p) =>
+          isGnvProduct(p.produto_nome) || isGnvProduct(p.tipo_combustivel)
+      ),
+    [predicoes]
+  );
+
+  const urgentCount = liquidPredictions.filter(
+    (p) => p.status_alerta === "COMPRA_URGENTE"
+  ).length;
+  const alertCount = liquidPredictions.filter(
+    (p) => p.status_alerta === "ATENCAO" || p.status_alerta === "COMPRA_URGENTE"
+  ).length;
+  const totalSugestao = liquidPredictions.reduce(
+    (s, p) => s + (p.sugestao_compra_litros || 0),
+    0
+  );
 
   if (loading) {
     return (
-      <Card className="bg-slate-800/50 border-slate-700/50">
+      <Card className="border-slate-800 bg-slate-900/90">
         <CardHeader>
-          <div className="flex items-center justify-between">
-            <Skeleton className="h-6 w-48 bg-slate-700" />
-            <Skeleton className="h-9 w-32 bg-slate-700" />
+          <div className="flex items-center justify-between gap-3">
+            <Skeleton className="h-6 w-56 bg-slate-800" />
+            <Skeleton className="h-9 w-28 bg-slate-800" />
           </div>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             {[1, 2, 3].map((i) => (
-              <Skeleton key={i} className="h-64 bg-slate-700" />
+              <Skeleton key={i} className="h-72 bg-slate-800" />
             ))}
           </div>
         </CardContent>
@@ -218,12 +210,12 @@ export function InventoryPredictionPanel({
 
   if (error && !data) {
     return (
-      <Card className="bg-slate-800/50 border-slate-700/50">
-        <CardContent className="py-8 text-center">
-          <AlertTriangle className="mx-auto h-12 w-12 text-amber-500 mb-4" />
-          <p className="text-slate-300 mb-4">{error}</p>
+      <Card className="border-slate-800 bg-slate-900/90">
+        <CardContent className="py-8 text-center space-y-3">
+          <AlertTriangle className="mx-auto h-10 w-10 text-amber-500" />
+          <p className="text-slate-300">{error}</p>
           <Button
-            onClick={fetchPrediction}
+            onClick={() => void fetchPrediction()}
             className="bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20"
           >
             Tentar Novamente
@@ -233,25 +225,28 @@ export function InventoryPredictionPanel({
     );
   }
 
-  const urgentCount = data?.tanques_urgentes || 0;
-  const alertCount = data?.tanques_com_alerta || 0;
-
   return (
-    <Card className="bg-slate-800/50 border-slate-700/50">
-      <CardHeader className="pb-4">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <Package className="h-5 w-5 text-cyan-400" />
-            <CardTitle className="text-lg text-slate-100">
-              Previsao de Estoque & Sugestao de Compras
-              {empresaNome ? ` — ${empresaNome}` : ` — Filial ${empresaCodigo}`}
-            </CardTitle>
-            <InfoTooltip content="Calculo preditivo de run-out baseado no consumo medio historico. Sugere volume de compra para manter a meta de cobertura em dias." />
+    <Card className="border-slate-800 bg-slate-900/90">
+      <CardHeader className="pb-4 space-y-3">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+          <div className="space-y-1 min-w-0">
+            <div className="flex items-center gap-2 flex-wrap">
+              <Package className="h-5 w-5 text-cyan-400 shrink-0" />
+              <CardTitle className="text-lg text-white leading-snug">
+                Previsão de Estoque & Sugestão de Compras
+              </CardTitle>
+              <InfoTooltip content="Cálculo preditivo de run-out com base no consumo médio histórico. GNV canalizado não gera alerta de carreta." />
+            </div>
+            <p className="text-sm font-semibold text-cyan-300/90 pl-7">
+              {filialNome}
+            </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
             <div className="flex items-center gap-2">
-              <span className="text-xs text-slate-400">Meta de Cobertura:</span>
+              <span className="text-xs text-slate-400 whitespace-nowrap">
+                Meta de Cobertura:
+              </span>
               <Select
                 value={diasCobertura}
                 onChange={setDiasCobertura}
@@ -259,11 +254,10 @@ export function InventoryPredictionPanel({
                 className="w-28"
               />
             </div>
-
             <Button
               variant="outline"
               size="sm"
-              onClick={fetchPrediction}
+              onClick={() => void fetchPrediction()}
               disabled={loading}
               className="bg-cyan-500/10 border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 hover:text-cyan-200"
             >
@@ -276,8 +270,8 @@ export function InventoryPredictionPanel({
           </div>
         </div>
 
-        {(urgentCount > 0 || alertCount > 0) && (
-          <div className="flex items-center gap-3 mt-3">
+        {(urgentCount > 0 || alertCount > 0 || totalSugestao > 0) && (
+          <div className="flex flex-wrap items-center gap-2">
             {urgentCount > 0 && (
               <Badge
                 variant="outline"
@@ -293,43 +287,61 @@ export function InventoryPredictionPanel({
                 className="bg-amber-500/20 border-amber-500/30 text-amber-300"
               >
                 <Clock size={12} className="mr-1" />
-                {alertCount - urgentCount} em atencao
+                {alertCount - urgentCount} em atenção
               </Badge>
             )}
-            {data?.total_sugestao_compra_litros && data.total_sugestao_compra_litros > 0 && (
+            {totalSugestao > 0 && (
               <Badge
                 variant="outline"
                 className="bg-cyan-500/20 border-cyan-500/30 text-cyan-300"
               >
                 <ShoppingCart size={12} className="mr-1" />
-                Total sugerido: {formatNumber(data.total_sugestao_compra_litros)} L
+                Total sugerido: {formatNumber(totalSugestao)} L
               </Badge>
             )}
           </div>
         )}
       </CardHeader>
 
-      <CardContent>
-        {data?.predicoes && data.predicoes.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {data.predicoes.map((prediction) => (
-              <TankPredictionCard 
-                key={`${prediction.produto_codigo}-${prediction.tipo_combustivel}`} 
-                prediction={prediction} 
+      <CardContent className="space-y-6">
+        {liquidPredictions.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            {liquidPredictions.map((prediction) => (
+              <TankPredictionCard
+                key={`${prediction.produto_codigo}-${prediction.tipo_combustivel}`}
+                prediction={prediction}
+                empresaCodigo={empresaCodigo}
               />
             ))}
           </div>
         ) : (
           <div className="text-center py-8">
-            <TrendingDown className="mx-auto h-12 w-12 text-slate-500 mb-4" />
+            <TrendingDown className="mx-auto h-10 w-10 text-slate-500 mb-3" />
             <p className="text-slate-400">
-              Nenhum tanque encontrado para esta filial
+              Nenhum tanque líquido encontrado para {filialNome}
             </p>
           </div>
         )}
 
+        {gnvPredictions.length > 0 ? (
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-sky-400/90">
+              GNV — Vazão / Canalizado (fora da regra de carreta)
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+              {gnvPredictions.map((prediction) => (
+                <TankPredictionCard
+                  key={`gnv-${prediction.produto_codigo}-${prediction.tipo_combustivel}`}
+                  prediction={prediction}
+                  empresaCodigo={empresaCodigo}
+                />
+              ))}
+            </div>
+          </div>
+        ) : null}
+
         {data?.observacoes && data.observacoes.length > 0 && (
-          <div className="mt-4 text-xs text-slate-500">
+          <div className="text-xs text-slate-500 leading-relaxed">
             {data.observacoes.join(" | ")}
           </div>
         )}

@@ -191,11 +191,23 @@ class ExpensesDreService:
         data_inicial: str,
         data_final: str,
         empresa_codigo: int | None = None,
+        regime: str | None = None,
     ) -> ExpensesDreResult:
+        from src.services.dre_regime import (
+            classify_period_lock,
+            filter_rows_by_regime,
+            normalize_regime,
+            regime_label,
+        )
+
         t0 = time.perf_counter()
         empresa = resolve_empresa_codigo(empresa_codigo)
+        regime_norm = normalize_regime(regime)
+        period_lock = classify_period_lock(data_inicial, data_final)
         obs: list[str] = [
             f"empresa={'TODAS' if empresa is None else empresa}",
+            f"regime={regime_norm}",
+            f"periodLock={period_lock.get('mode')}",
             "Fonte: snapshots locais (finance_center + director) + receita pista rápida",
         ]
 
@@ -217,10 +229,32 @@ class ExpensesDreService:
         classified = list(auto["classified"])
         if empresa is not None:
             classified = [c for c in classified if int(c.get("company_code") or 0) == empresa]
+        # Snapshot director: filtra por data efetiva do regime quando disponível
+        classified = filter_rows_by_regime(
+            [
+                {
+                    **c,
+                    "data": c.get("date") or c.get("data") or c.get("effective_date"),
+                    "dataPagamento": c.get("dataPagamento") or c.get("payment_date"),
+                    "dataCompetencia": c.get("date") or c.get("data") or c.get("effective_date"),
+                }
+                for c in classified
+            ],
+            data_inicial,
+            data_final,
+            regime_norm,
+        ) or classified
+        obs.append(f"regimeLabel={regime_label(regime_norm)}")
 
-        # Receita pista real (D0 RAM / D-1 DB) — elimina hack /3
+        # Receita + CPV pista real (D0 RAM / D-1 DB) — margem em R$/L
         receita_pista = 0.0
+        litros_pista = 0.0
+        cpv_pista = 0.0
+        margem_pista = 0.0
+        margem_rs_litro = 0.0
+        custo_medio_l = 0.0
         try:
+            from src.services.fuel_cpv_engine import compute_fuel_cpv
             from src.services.fuel_volumetry_service import get_fuel_volumetry_service
 
             fuel = await get_fuel_volumetry_service().build(
@@ -229,9 +263,22 @@ class ExpensesDreService:
                 empresa_codigo=empresa,
             )
             receita_pista = float(fuel.total_valor or 0)
-            obs.append(f"receita_pista={receita_pista:.2f} fonte_fuel={fuel.fonte}")
+            litros_pista = float(fuel.total_litros or 0)
+            fuel_cpv = compute_fuel_cpv(
+                litros_total=litros_pista,
+                faturamento_combustivel=receita_pista,
+                products=[r.model_dump() for r in (fuel.por_produto or [])],
+            )
+            cpv_pista = float(fuel_cpv["cpv"])
+            margem_pista = float(fuel_cpv["margem_bruta"])
+            margem_rs_litro = float(fuel_cpv["margem_bruta_rs_litro"])
+            custo_medio_l = float(fuel_cpv["custo_medio_rs_litro"])
+            obs.append(
+                f"receita_pista={receita_pista:.2f} cpv={cpv_pista:.2f} "
+                f"margem_rs_l={margem_rs_litro:.4f} fonte_fuel={fuel.fonte}"
+            )
         except Exception as exc:
-            LOGGER.warning("receita pista falhou: %s", exc)
+            LOGGER.warning("receita/CPV pista falhou: %s", exc)
             obs.append(f"receita_pista indisponível: {exc}")
 
         por_empresa_raw = expenses_summary.get("porEmpresa") or {}
@@ -303,27 +350,74 @@ class ExpensesDreService:
                 if c.get("category") == "AGUARDANDO CLASSIFICACAO"
             )
 
+        from src.services.dre_analytics import vertical_analysis
+        from src.services.dre_variance import pista_metrics
+
+        despesas_fixas = max(0.0, float(total_desp) - float(cpv_pista))
+        metricas_pista = pista_metrics(
+            margem_bruta_combustivel=margem_pista,
+            litros=litros_pista,
+            despesas_operacionais_fixas=despesas_fixas,
+        )
+        analise_vertical = vertical_analysis(
+            {
+                "receita": receita_pista,
+                "cpv": cpv_pista,
+                "margemBruta": margem_pista,
+                "despesas": total_desp,
+                "despesasOperacionais": despesas_fixas,
+                "resultado": receita_pista - total_desp,
+            },
+            receita_liquida=receita_pista,
+        )
+
         periodo = {"inicio": data_inicial, "fim": data_final}
         payload = {
             "gerado_em": date.today().isoformat(),
-            "sprint": "Sprint3-expenses-fast",
+            "sprint": "Sprint2.5-health-synthesis",
             "periodo_principal": periodo,
+            "metricas_pista": metricas_pista,
+            "analise_vertical_pct_rl": analise_vertical,
             "filiais_monitoradas": [
                 {"empresa_codigo": k, "nome": v} for k, v in FILIAIS.items()
             ],
             "bloco_1_combustiveis": {
-                "titulo": "Receita Pista (rápida)",
+                "titulo": "Pista — Receita, CPV e Margem R$/L",
                 "status": "OK",
                 "periodo": periodo,
                 "resumo": {
-                    "total_litros": 0,
+                    "total_litros": litros_pista,
                     "total_valor": receita_pista,
+                    "cpv_real": cpv_pista,
+                    "margem_bruta": margem_pista,
+                    "margem_bruta_rs_litro": margem_rs_litro,
+                    "custo_medio_rs_litro": custo_medio_l,
                     "total_transacoes": 0,
                     "por_filial": [],
                     "por_produto": [],
-                    "observacao": "Receita pista via fuel_volumetry (D0 RAM / D-1 DB)",
+                    "observacao": (
+                        "Margem Bruta (Pista) = Receita − CPV (litros × custo aquisição "
+                        "distribuidora/CPM). Indicador: R$/Litro."
+                    ),
                 },
                 "ranking_filial": [],
+            },
+            "bloco_3_margens": {
+                "periodo": periodo,
+                "pista": {
+                    "faturamento": receita_pista,
+                    "volume_litros": litros_pista,
+                    "cpv": cpv_pista,
+                    "margem_bruta": margem_pista,
+                    "margem_bruta_rs_litro": margem_rs_litro,
+                },
+                "conveniencia": {
+                    "faturamento": 0,
+                    "cpv": 0,
+                    "margem_bruta": 0,
+                    "margem_bruta_pct": 0,
+                    "observacao": "Conveniência via composition na DRE Executiva",
+                },
             },
             "bloco_4_conveniencia": {
                 "receita_total": 0,
@@ -355,6 +449,9 @@ class ExpensesDreService:
                 "contas_pagar": summary.get("contasPagar", {}),
                 "contas_receber": summary.get("contasReceber", {}),
             },
+            "regime": regime_norm,
+            "regimeLabel": regime_label(regime_norm),
+            "periodLock": period_lock,
             "fonte": "snapshots+fuel_volumetry",
             "fromCache": True,
             "observacoes": obs,

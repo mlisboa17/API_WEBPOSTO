@@ -10,6 +10,10 @@ from src.infrastructure.config.settings import settings
 ROOT = Path(__file__).resolve().parents[2]
 ENV_FILE = ROOT / ".env"
 
+# RFC 7518 §3.2 — HS256 exige chave HMAC com no mínimo 32 bytes.
+HS256_MIN_KEY_BYTES = 32
+LOCAL_HS256_SECRET_FALLBACK = "logos-dev-hs256-local-only-not-for-prod!"
+
 # Aliases preferenciais (novos) + legados por empresa oficial.
 OFFICIAL_COMPANY_CREDENTIAL_ALIASES: dict[int, tuple[str, ...]] = {
     5555: (
@@ -29,6 +33,7 @@ OFFICIAL_COMPANY_CREDENTIAL_ALIASES: dict[int, tuple[str, ...]] = {
     118508: (
         "WEBPOSTO_CONVENIENCIA_24_HORAS_KEY",
         "WEBPOSTO_API_GERAL_CONVENIENCIA_KEY",
+        "WEBPOSTO_API_KEY_CONVENIENCIA_24_HORAS",
     ),
 }
 
@@ -84,6 +89,26 @@ def _resolve_env_value(key: str) -> str:
     settings_attr = key.lower()
     settings_value = getattr(settings, settings_attr, "")
     return (os.getenv(key) or settings_value or _env_file_value(key)).strip()
+
+
+def ensure_hs256_secret_key() -> str:
+    """Garante SECRET_KEY ≥32 bytes para HS256 no ambiente local/demo."""
+    current = (
+        os.getenv("SECRET_KEY")
+        or _env_file_value("SECRET_KEY")
+        or getattr(settings, "secret_key", "")
+        or ""
+    ).strip()
+    environment = str(getattr(settings, "environment", "") or "").strip().lower()
+    if len(current.encode("utf-8")) >= HS256_MIN_KEY_BYTES:
+        if settings.secret_key != current:
+            settings.secret_key = current
+        return current
+    if environment in {"production", "prod"}:
+        return current
+    os.environ["SECRET_KEY"] = LOCAL_HS256_SECRET_FALLBACK
+    settings.secret_key = LOCAL_HS256_SECRET_FALLBACK
+    return LOCAL_HS256_SECRET_FALLBACK
 
 
 def resolve_company_api_key(empresa_codigo: int) -> str:
@@ -150,3 +175,6 @@ def load_core_config() -> CoreConfig:
         webposto_company_keys=company_keys,
         timeout_seconds=float(os.getenv("WEBPOSTO_TIMEOUT_SECONDS") or 10.0),
     )
+
+
+ensure_hs256_secret_key()

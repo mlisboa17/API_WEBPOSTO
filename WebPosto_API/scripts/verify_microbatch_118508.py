@@ -22,6 +22,12 @@ import httpx
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv(ROOT / ".env")
+except ImportError:
+    pass
+
 from src.operational.product_registration.company_credentials import (  # noqa: E402
     HttpProductReader,
     resolve_credential,
@@ -30,12 +36,15 @@ from src.operational.product_registration.company_credentials import (  # noqa: 
 COMPANY_CODE = 118508
 PROFILE = "WEBPOSTO_CONVENIENCIA_24_HORAS_KEY"
 REGISTRATION_DIR = ROOT / "data" / "product_registration"
-BATCH_FOLDERS = {
+BATCHES = {
     "01": "microbatch_01_118508",
     "02": "microbatch_02_118508",
     "03": "microbatch_03_118508",
     "04": "microbatch_04_118508",
     "05": "microbatch_05_118508",
+    "06": "microbatch_06_118508",
+    "07": "microbatch_07_118508",
+    "08": "microbatch_08_118508",
 }
 PREFLIGHT_NAMES = {
     "01": "preflight_microbatch.json",
@@ -43,6 +52,9 @@ PREFLIGHT_NAMES = {
     "03": "pilot_selection.json",
     "04": "microbatch_selection.json",
     "05": "microbatch_selection.json",
+    "06": "microbatch_selection.json",
+    "07": "microbatch_selection.json",
+    "08": "microbatch_selection.json",
 }
 TOLERANCE = 0.005
 
@@ -52,8 +64,8 @@ def main() -> None:
     parser.add_argument("--batch")
     parser.add_argument("--wave", type=int)
     args = parser.parse_args()
-    if not args.wave and args.batch not in BATCH_FOLDERS:
-        parser.error(f"--batch deve ser um de {sorted(BATCH_FOLDERS)} quando nao houver --wave")
+    if not args.wave and args.batch not in BATCHES:
+        parser.error(f"--batch deve ser um de {sorted(BATCHES)} quando nao houver --wave")
 
     if args.wave:
         # Na onda o body aprovado mora no perfil fiscal, nao em um preflight por lote.
@@ -72,13 +84,17 @@ def main() -> None:
     else:
         batch = args.batch or "02"
         label = f"MICROBATCH {batch}"
-        out_dir = REGISTRATION_DIR / BATCH_FOLDERS[batch]
+        out_dir = REGISTRATION_DIR / BATCHES[batch]
         preflight = json.loads((out_dir / PREFLIGHT_NAMES[batch]).read_text(encoding="utf-8"))
-        expected = {p["ean"]: p for p in preflight.get("products", [])}
+        if isinstance(preflight, list):
+            expected = {p.get("ean") or p.get("codigoBarras"): p for p in preflight}
+        else:
+            expected = {p["ean"]: p for p in preflight.get("products", [])}
     execution = json.loads((out_dir / "execution_result.json").read_text(encoding="utf-8"))
 
     credential = resolve_credential(COMPANY_CODE)
-    if credential.variable_name != PROFILE:
+    valid_profiles = {PROFILE, "WEBPOSTO_API_KEY_CONVENIENCIA_24_HORAS", "WEBPOSTO_API_GERAL_CONVENIENCIA_KEY"}
+    if credential.variable_name not in valid_profiles:
         raise SystemExit(f"credencial fora do profile exigido: {credential.variable_name}")
 
     created = [
@@ -99,12 +115,13 @@ def main() -> None:
         for record in created:
             code = int(record["codProduto"])
             ean = record["ean"]
-            body = expected[ean]["body"]["preview"] if ean in expected else {
+            exp_item = expected.get(ean, {})
+            body = exp_item.get("body", {}).get("preview") if "body" in exp_item else (exp_item or {
                 "codigoNcm": record.get("verification", {}).get("catalog", {}).get("ncm"),
                 "codigoCest": record.get("verification", {}).get("catalog", {}).get("cest"),
                 "precoVenda": record.get("verification", {}).get("links", [{}])[0].get("precoVenda"),
                 "precoCusto": record.get("verification", {}).get("links", [{}])[0].get("precoCusto"),
-            }
+            })
 
             links = reader.get_company_links(credential.key, cursor=code - 1, page_size=50)
             link = next(

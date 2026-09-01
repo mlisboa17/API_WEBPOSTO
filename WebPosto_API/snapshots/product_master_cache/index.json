@@ -1,28 +1,65 @@
 {
   "version": "F07.3",
-  "updatedAt": "2026-07-27T20:25:22.884128+00:00",
+  "updatedAt": "2026-09-01T12:28:38.531674+00:00",
   "total": 72,
   "entries": {
-    "1802483:11495": {
-      "produtoCodigo": 1802483,
+    "1727011:11495": {
+      "produtoCodigo": 1727011,
       "empresaCodigo": 11495,
-      "nomeProduto": "FREEGELLS CEREJA",
+      "nomeProduto": "Produto 1727011",
       "departamento": "PRODUTOS_DE_LOJA",
       "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.883143+00:00",
+      "lastSeen": "2026-09-01T12:28:38.529178+00:00",
       "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
+      "evidence": null
     },
-    "1802200:11495": {
-      "produtoCodigo": 1802200,
+    "1801804:11495": {
+      "produtoCodigo": 1801804,
       "empresaCodigo": 11495,
-      "nomeProduto": "FREEGELLS MELÃO",
+      "nomeProduto": "Produto 1801804",
       "departamento": "PRODUTOS_DE_LOJA",
       "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882987+00:00",
+      "lastSeen": "2026-09-01T12:28:38.529334+00:00",
+      "confidence": "MEDIA",
+      "evidence": null
+    },
+    "1802031:11495": {
+      "produtoCodigo": 1802031,
+      "empresaCodigo": 11495,
+      "nomeProduto": "Produto 1802031",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529242+00:00",
+      "confidence": "MEDIA",
+      "evidence": null
+    },
+    "1801810:11495": {
+      "produtoCodigo": 1801810,
+      "empresaCodigo": 11495,
+      "nomeProduto": "Produto 1801810",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529366+00:00",
+      "confidence": "MEDIA",
+      "evidence": null
+    },
+    "1801812:11495": {
+      "produtoCodigo": 1801812,
+      "empresaCodigo": 11495,
+      "nomeProduto": "Produto 1801812",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529380+00:00",
+      "confidence": "MEDIA",
+      "evidence": null
+    },
+    "1802196:11495": {
+      "produtoCodigo": 1802196,
+      "empresaCodigo": 11495,
+      "nomeProduto": "PIPPOS ANIME CEBOLA E SALSA 60G",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529394+00:00",
       "confidence": "MEDIA",
       "evidence": [
         "PRODUTO.combustivel=false ou tipo≠C",
@@ -32,12 +69,28 @@
     "1802182:11495": {
       "produtoCodigo": 1802182,
       "empresaCodigo": 11495,
-      "nomeProduto": "Produto 1802182",
+      "nomeProduto": "FINI TUBES MORANGO NATA AZEDINHO 80G",
       "departamento": "PRODUTOS_DE_LOJA",
       "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882791+00:00",
+      "lastSeen": "2026-09-01T12:28:38.529302+00:00",
       "confidence": "MEDIA",
-      "evidence": null
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1802483:11495": {
+      "produtoCodigo": 1802483,
+      "empresaCodigo": 11495,
+      "nomeProduto": "FREEGELLS CEREJA",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529491+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
     },
     "1802397:11495": {
       "produtoCodigo": 1802397,
@@ -45,82 +98,7 @@
       "nomeProduto": "SKINKA LARANJA",
       "departamento": "PRODUTOS_DE_LOJA",
       "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882512+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1802207:11495": {
-      "produtoCodigo": 1802207,
-      "empresaCodigo": 11495,
-      "nomeProduto": "REFRIGERANTE SUKITA LARANJA LT 350ML",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.883035+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1802523:11495": {
-      "produtoCodigo": 1802523,
-      "empresaCodigo": 11495,
-      "nomeProduto": "PITU LATÃO 473ML",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882487+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1802381:11495": {
-      "produtoCodigo": 1802381,
-      "empresaCodigo": 11495,
-      "nomeProduto": "PAÇOQUERO GG (PAÇOCAO) 50G",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882376+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1802196:11495": {
-      "produtoCodigo": 1802196,
-      "empresaCodigo": 11495,
-      "nomeProduto": "PIPPOS ANIME CEBOLA E SALSA 60G",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882963+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1802031:11495": {
-      "produtoCodigo": 1802031,
-      "empresaCodigo": 11495,
-      "nomeProduto": "Produto 1802031",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882678+00:00",
-      "confidence": "MEDIA",
-      "evidence": null
-    },
-    "1802530:11495": {
-      "produtoCodigo": 1802530,
-      "empresaCodigo": 11495,
-      "nomeProduto": "BISCOITO PASSATEMPO  RECH 130G",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882550+00:00",
+      "lastSeen": "2026-09-01T12:28:38.529152+00:00",
       "confidence": "MEDIA",
       "evidence": [
         "PRODUTO.combustivel=false ou tipo≠C",
@@ -133,111 +111,59 @@
       "nomeProduto": "CHEETOS LUA 34 G",
       "departamento": "PRODUTOS_DE_LOJA",
       "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882975+00:00",
+      "lastSeen": "2026-09-01T12:28:38.529401+00:00",
       "confidence": "MEDIA",
       "evidence": [
         "PRODUTO.combustivel=false ou tipo≠C",
         "PRODUTO.lookup(produtoCodigo)"
       ]
     },
-    "1802532:11495": {
-      "produtoCodigo": 1802532,
+    "1802523:11495": {
+      "produtoCodigo": 1802523,
       "empresaCodigo": 11495,
-      "nomeProduto": "BISCOITO TRELOSO MORANGO 120G",
+      "nomeProduto": "PITU LATÃO 473ML",
       "departamento": "PRODUTOS_DE_LOJA",
       "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882577+00:00",
+      "lastSeen": "2026-09-01T12:28:38.529138+00:00",
       "confidence": "MEDIA",
       "evidence": [
         "PRODUTO.combustivel=false ou tipo≠C",
         "PRODUTO.lookup(produtoCodigo)"
       ]
     },
-    "1802654:11495": {
-      "produtoCodigo": 1802654,
+    "1802200:11495": {
+      "produtoCodigo": 1802200,
       "empresaCodigo": 11495,
-      "nomeProduto": "BISCOITO BONO MORANGO 90G",
+      "nomeProduto": "FREEGELLS MELÃO",
       "departamento": "PRODUTOS_DE_LOJA",
       "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882537+00:00",
+      "lastSeen": "2026-09-01T12:28:38.529407+00:00",
       "confidence": "MEDIA",
       "evidence": [
         "PRODUTO.combustivel=false ou tipo≠C",
         "PRODUTO.lookup(produtoCodigo)"
       ]
     },
-    "1802613:11495": {
-      "produtoCodigo": 1802613,
+    "1802207:11495": {
+      "produtoCodigo": 1802207,
       "empresaCodigo": 11495,
-      "nomeProduto": "REFRIGERANTE FANTA UVA LATA 350ML",
+      "nomeProduto": "REFRIGERANTE SUKITA LARANJA LT 350ML",
       "departamento": "PRODUTOS_DE_LOJA",
       "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.883155+00:00",
+      "lastSeen": "2026-09-01T12:28:38.529432+00:00",
       "confidence": "MEDIA",
       "evidence": [
         "PRODUTO.combustivel=false ou tipo≠C",
         "PRODUTO.lookup(produtoCodigo)"
       ]
     },
-    "1803141:11495": {
-      "produtoCodigo": 1803141,
+    "1802381:11495": {
+      "produtoCodigo": 1802381,
       "empresaCodigo": 11495,
-      "nomeProduto": "REFRIGERANTE COCA ZERO 1L",
+      "nomeProduto": "PAÇOQUERO GG (PAÇOCAO) 50G",
       "departamento": "PRODUTOS_DE_LOJA",
       "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882296+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803055:11495": {
-      "produtoCodigo": 1803055,
-      "empresaCodigo": 11495,
-      "nomeProduto": "CERVEJA DEVASSA 473ML",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882691+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803180:11495": {
-      "produtoCodigo": 1803180,
-      "empresaCodigo": 11495,
-      "nomeProduto": "CERVEJA BUDWEISER LONG 330ML",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882665+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803344:11495": {
-      "produtoCodigo": 1803344,
-      "empresaCodigo": 11495,
-      "nomeProduto": "REFRIGERANTE PEPSI COLA 200ML PET",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882888+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803445:11495": {
-      "produtoCodigo": 1803445,
-      "empresaCodigo": 11495,
-      "nomeProduto": "DUNHILL RED (CARLTON)",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882715+00:00",
+      "lastSeen": "2026-09-01T12:28:38.529076+00:00",
       "confidence": "MEDIA",
       "evidence": [
         "PRODUTO.combustivel=false ou tipo≠C",
@@ -250,124 +176,7 @@
       "nomeProduto": "ROTHMANS BLUE KS",
       "departamento": "PRODUTOS_DE_LOJA",
       "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.883131+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803364:11495": {
-      "produtoCodigo": 1803364,
-      "empresaCodigo": 11495,
-      "nomeProduto": "BISC RECH TRELOSO 120G CHOC",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.883073+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803402:11495": {
-      "produtoCodigo": 1803402,
-      "empresaCodigo": 11495,
-      "nomeProduto": "MARLBORO GOLD SELECTION BOX",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882347+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803302:11495": {
-      "produtoCodigo": 1803302,
-      "empresaCodigo": 11495,
-      "nomeProduto": "REFRIGERANTE GUARANA ANTARTICA 200ML PET",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882615+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803474:11495": {
-      "produtoCodigo": 1803474,
-      "empresaCodigo": 11495,
-      "nomeProduto": "LUCKY STRIKE FRESH DOUBLE ICE",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882950+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803229:11495": {
-      "produtoCodigo": 1803229,
-      "empresaCodigo": 11495,
-      "nomeProduto": "ICE LEAO PESSEGO 300ML",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.883022+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803593:11495": {
-      "produtoCodigo": 1803593,
-      "empresaCodigo": 11495,
-      "nomeProduto": "REFRIGERANTE COCA 350ML LT",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882828+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803580:11495": {
-      "produtoCodigo": 1803580,
-      "empresaCodigo": 11495,
-      "nomeProduto": "CERVEJA SCHIN LATÃO",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882728+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803664:11495": {
-      "produtoCodigo": 1803664,
-      "empresaCodigo": 11495,
-      "nomeProduto": "REFRIGERANTE COCA COLA 1L",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882418+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803561:11495": {
-      "produtoCodigo": 1803561,
-      "empresaCodigo": 11495,
-      "nomeProduto": "BIS BLACK",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882641+00:00",
+      "lastSeen": "2026-09-01T12:28:38.529484+00:00",
       "confidence": "MEDIA",
       "evidence": [
         "PRODUTO.combustivel=false ou tipo≠C",
@@ -380,20 +189,72 @@
       "nomeProduto": "MARLBORO RED SELECTION BOX",
       "departamento": "PRODUTOS_DE_LOJA",
       "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882194+00:00",
+      "lastSeen": "2026-09-01T12:28:38.528990+00:00",
       "confidence": "MEDIA",
       "evidence": [
         "PRODUTO.combustivel=false ou tipo≠C",
         "PRODUTO.lookup(produtoCodigo)"
       ]
     },
-    "1803673:11495": {
-      "produtoCodigo": 1803673,
+    "1803474:11495": {
+      "produtoCodigo": 1803474,
       "empresaCodigo": 11495,
-      "nomeProduto": "REFRIGERANTE COCA COLA MINI PET 250ML",
+      "nomeProduto": "LUCKY STRIKE FRESH DOUBLE ICE",
       "departamento": "PRODUTOS_DE_LOJA",
       "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882473+00:00",
+      "lastSeen": "2026-09-01T12:28:38.529387+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803445:11495": {
+      "produtoCodigo": 1803445,
+      "empresaCodigo": 11495,
+      "nomeProduto": "DUNHILL RED (CARLTON)",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529262+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803402:11495": {
+      "produtoCodigo": 1803402,
+      "empresaCodigo": 11495,
+      "nomeProduto": "MARLBORO GOLD SELECTION BOX",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529061+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803525:11495": {
+      "produtoCodigo": 1803525,
+      "empresaCodigo": 11495,
+      "nomeProduto": "ROTHMANS RED BOX",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529034+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803530:11495": {
+      "produtoCodigo": 1803530,
+      "empresaCodigo": 11495,
+      "nomeProduto": "LUCKY STRIKE PATTERSON RED BOX",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529053+00:00",
       "confidence": "MEDIA",
       "evidence": [
         "PRODUTO.combustivel=false ou tipo≠C",
@@ -403,23 +264,30 @@
     "1803533:11495": {
       "produtoCodigo": 1803533,
       "empresaCodigo": 11495,
-      "nomeProduto": "ROTHMANS GLOBAL RED",
+      "nomeProduto": "Produto 1803533",
       "departamento": "PRODUTOS_DE_LOJA",
       "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882362+00:00",
+      "lastSeen": "2026-09-01T12:28:38.529068+00:00",
       "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
+      "evidence": null
     },
-    "1803621:11495": {
-      "produtoCodigo": 1803621,
+    "1803561:11495": {
+      "produtoCodigo": 1803561,
       "empresaCodigo": 11495,
-      "nomeProduto": "CERVEJA BRAHMA CHOPP 473ML",
+      "nomeProduto": "Produto 1803561",
       "departamento": "PRODUTOS_DE_LOJA",
       "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.883085+00:00",
+      "lastSeen": "2026-09-01T12:28:38.529216+00:00",
+      "confidence": "MEDIA",
+      "evidence": null
+    },
+    "1887871:11495": {
+      "produtoCodigo": 1887871,
+      "empresaCodigo": 11495,
+      "nomeProduto": "AGUA PETROPOLIS SEM GAS 1,5L",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529509+00:00",
       "confidence": "MEDIA",
       "evidence": [
         "PRODUTO.combustivel=false ou tipo≠C",
@@ -432,482 +300,7 @@
       "nomeProduto": "REFRIGERANTE SODA 350ML LT",
       "departamento": "PRODUTOS_DE_LOJA",
       "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882432+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803592:11495": {
-      "produtoCodigo": 1803592,
-      "empresaCodigo": 11495,
-      "nomeProduto": "REFRIGERANTE COCA COLA 2L.",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882816+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803587:11495": {
-      "produtoCodigo": 1803587,
-      "empresaCodigo": 11495,
-      "nomeProduto": "CERVEJA HEINEKEN LONG 330ML",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882753+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803628:11495": {
-      "produtoCodigo": 1803628,
-      "empresaCodigo": 11495,
-      "nomeProduto": "CERVEJA HEINEKEN 600ML VAS INCLUSO",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.883119+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803530:11495": {
-      "produtoCodigo": 1803530,
-      "empresaCodigo": 11495,
-      "nomeProduto": "Produto 1803530",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882312+00:00",
-      "confidence": "MEDIA",
-      "evidence": null
-    },
-    "1803525:11495": {
-      "produtoCodigo": 1803525,
-      "empresaCodigo": 11495,
-      "nomeProduto": "Produto 1803525",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882280+00:00",
-      "confidence": "MEDIA",
-      "evidence": null
-    },
-    "1822404:11495": {
-      "produtoCodigo": 1822404,
-      "empresaCodigo": 11495,
-      "nomeProduto": "SANDUICHE NATURAL LEVE FRANCO\\RICOTA",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882778+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1803739:11495": {
-      "produtoCodigo": 1803739,
-      "empresaCodigo": 11495,
-      "nomeProduto": "VINHO CARRETEIRO 900ML",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882999+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1940573:11495": {
-      "produtoCodigo": 1940573,
-      "empresaCodigo": 11495,
-      "nomeProduto": "DORITOS 75G",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.883010+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1862860:11495": {
-      "produtoCodigo": 1862860,
-      "empresaCodigo": 11495,
-      "nomeProduto": "LUCKY STRIKE PATTERSON AZUL KS",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882864+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "2039836:11495": {
-      "produtoCodigo": 2039836,
-      "empresaCodigo": 11495,
-      "nomeProduto": "PRESERVATIVOS EROS MENTA 3UN",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882500+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1920399:11495": {
-      "produtoCodigo": 1920399,
-      "empresaCodigo": 11495,
-      "nomeProduto": "PINGO OURO BACON 76G",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882404+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "2114922:11495": {
-      "produtoCodigo": 2114922,
-      "empresaCodigo": 11495,
-      "nomeProduto": "CERVEJA BUDWEISER LT 473ML",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.883096+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "2048588:11495": {
-      "produtoCodigo": 2048588,
-      "empresaCodigo": 11495,
-      "nomeProduto": "BROWNIE BAKERY",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882839+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "2008580:11495": {
-      "produtoCodigo": 2008580,
-      "empresaCodigo": 11495,
-      "nomeProduto": "CAFE MAQUINA LACTEO ( TODOS )",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882262+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "2189991:11495": {
-      "produtoCodigo": 2189991,
-      "empresaCodigo": 11495,
-      "nomeProduto": "PAO DE QUEIJO C/REQUEIJÃO",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882628+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "2323122:11495": {
-      "produtoCodigo": 2323122,
-      "empresaCodigo": 11495,
-      "nomeProduto": "PASTEL DE FRANGO (CASA DO SALGADO)",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882703+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "2191502:11495": {
-      "produtoCodigo": 2191502,
-      "empresaCodigo": 11495,
-      "nomeProduto": "COXINHA DE FRANGO (CASA DO SALGADO)",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882390+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "2155814:11495": {
-      "produtoCodigo": 2155814,
-      "empresaCodigo": 11495,
-      "nomeProduto": "COXINHA DE FRANGO C/CATUPIRY CHIC",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882602+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "2155820:11495": {
-      "produtoCodigo": 2155820,
-      "empresaCodigo": 11495,
-      "nomeProduto": "ENROLADINHO CHIC",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882652+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1887871:11495": {
-      "produtoCodigo": 1887871,
-      "empresaCodigo": 11495,
-      "nomeProduto": "AGUA PETROPOLIS SEM GAS 1,5L",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.883178+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "2175768:11495": {
-      "produtoCodigo": 2175768,
-      "empresaCodigo": 11495,
-      "nomeProduto": "AGUA PETROPOLIS SEM GAS 500ML",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882459+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "2008579:11495": {
-      "produtoCodigo": 2008579,
-      "empresaCodigo": 11495,
-      "nomeProduto": "CAFE MAQUINA ESPRESSO",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882240+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "2387407:11495": {
-      "produtoCodigo": 2387407,
-      "empresaCodigo": 11495,
-      "nomeProduto": "PIRULITO POP OREO",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882900+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "2407138:11495": {
-      "produtoCodigo": 2407138,
-      "empresaCodigo": 11495,
-      "nomeProduto": "FINI MIX SURPRESA 80G",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.883060+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "2443106:11495": {
-      "produtoCodigo": 2443106,
-      "empresaCodigo": 11495,
-      "nomeProduto": "REFRIGERANTE COCA ZERO 600ML",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.883047+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "2420899:11495": {
-      "produtoCodigo": 2420899,
-      "empresaCodigo": 11495,
-      "nomeProduto": "AGUA SAO FRANCISCO 20LT",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882590+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1727011:11495": {
-      "produtoCodigo": 1727011,
-      "empresaCodigo": 11495,
-      "nomeProduto": "ROTH RED MACO",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882564+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1801810:11495": {
-      "produtoCodigo": 1801810,
-      "empresaCodigo": 11495,
-      "nomeProduto": "HALLS UVA VERDE",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882913+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1801812:11495": {
-      "produtoCodigo": 1801812,
-      "empresaCodigo": 11495,
-      "nomeProduto": "MENTOS MINT 37,5G",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882937+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1801758:11495": {
-      "produtoCodigo": 1801758,
-      "empresaCodigo": 11495,
-      "nomeProduto": "HALLS EXTRA FORTE",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882525+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1802775:11495": {
-      "produtoCodigo": 1802775,
-      "empresaCodigo": 11495,
-      "nomeProduto": "PITU LATA 350 ML",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882445+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1801804:11495": {
-      "produtoCodigo": 1801804,
-      "empresaCodigo": 11495,
-      "nomeProduto": "JUJUBA GOMETS FRUTAS 32G",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882852+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1802831:11495": {
-      "produtoCodigo": 1802831,
-      "empresaCodigo": 11495,
-      "nomeProduto": "AGUA MINERAL CRYSTAL 1,5L",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882876+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1801337:11495": {
-      "produtoCodigo": 1801337,
-      "empresaCodigo": 11495,
-      "nomeProduto": "SUCO DEL VALLE CITRUS LARANJA 450ML",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.883167+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1802688:11495": {
-      "produtoCodigo": 1802688,
-      "empresaCodigo": 11495,
-      "nomeProduto": "ENERGETICO MONSTER 473 ML",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882740+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1802823:11495": {
-      "produtoCodigo": 1802823,
-      "empresaCodigo": 11495,
-      "nomeProduto": "REFRIGERANTE PEPSI TWISTER 2L",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882804+00:00",
-      "confidence": "MEDIA",
-      "evidence": [
-        "PRODUTO.combustivel=false ou tipo≠C",
-        "PRODUTO.lookup(produtoCodigo)"
-      ]
-    },
-    "1802730:11495": {
-      "produtoCodigo": 1802730,
-      "empresaCodigo": 11495,
-      "nomeProduto": "BEM CASADO DOCES LABANCA/ BAKERY",
-      "departamento": "PRODUTOS_DE_LOJA",
-      "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.883108+00:00",
+      "lastSeen": "2026-09-01T12:28:38.529110+00:00",
       "confidence": "MEDIA",
       "evidence": [
         "PRODUTO.combustivel=false ou tipo≠C",
@@ -920,7 +313,605 @@
       "nomeProduto": "LUCKY STRIKE PATTERSON RED KS",
       "departamento": "PRODUTOS_DE_LOJA",
       "fonte": "PRODUTO_TARGETED",
-      "lastSeen": "2026-07-27T20:25:22.882925+00:00",
+      "lastSeen": "2026-09-01T12:28:38.529373+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803673:11495": {
+      "produtoCodigo": 1803673,
+      "empresaCodigo": 11495,
+      "nomeProduto": "REFRIGERANTE COCA COLA MINI PET 250ML",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529131+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1862860:11495": {
+      "produtoCodigo": 1862860,
+      "empresaCodigo": 11495,
+      "nomeProduto": "LUCKY STRIKE PATTERSON AZUL KS",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529341+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1822404:11495": {
+      "produtoCodigo": 1822404,
+      "empresaCodigo": 11495,
+      "nomeProduto": "SANDUICHE NATURAL SABOR LEVE",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529296+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803739:11495": {
+      "produtoCodigo": 1803739,
+      "empresaCodigo": 11495,
+      "nomeProduto": "VINHO CARRETEIRO 900ML",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529413+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803580:11495": {
+      "produtoCodigo": 1803580,
+      "empresaCodigo": 11495,
+      "nomeProduto": "CERVEJA SCHIN LATÃO",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529269+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803587:11495": {
+      "produtoCodigo": 1803587,
+      "empresaCodigo": 11495,
+      "nomeProduto": "CERVEJA HEINEKEN LONG 330ML",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529282+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803592:11495": {
+      "produtoCodigo": 1803592,
+      "empresaCodigo": 11495,
+      "nomeProduto": "REFRIGERANTE COCA COLA 2L.",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529315+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803593:11495": {
+      "produtoCodigo": 1803593,
+      "empresaCodigo": 11495,
+      "nomeProduto": "REFRIGERANTE COCA 350ML LT",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529321+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803628:11495": {
+      "produtoCodigo": 1803628,
+      "empresaCodigo": 11495,
+      "nomeProduto": "CERVEJA HEINEKEN 600ML VAS INCLUSO",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529477+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803664:11495": {
+      "produtoCodigo": 1803664,
+      "empresaCodigo": 11495,
+      "nomeProduto": "REFRIGERANTE COCA COLA 1L",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529099+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803621:11495": {
+      "produtoCodigo": 1803621,
+      "empresaCodigo": 11495,
+      "nomeProduto": "CERVEJA BRAHMA CHOPP 473ML",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529458+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "2039836:11495": {
+      "produtoCodigo": 2039836,
+      "empresaCodigo": 11495,
+      "nomeProduto": "PRESERVATIVOS EROS MENTA 3UN",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529145+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "2008580:11495": {
+      "produtoCodigo": 2008580,
+      "empresaCodigo": 11495,
+      "nomeProduto": "CAFE MAQUINA LACTEO ( TODOS )",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529025+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "2114922:11495": {
+      "produtoCodigo": 2114922,
+      "empresaCodigo": 11495,
+      "nomeProduto": "CERVEJA BUDWEISER LT 473ML",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529464+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "2155814:11495": {
+      "produtoCodigo": 2155814,
+      "empresaCodigo": 11495,
+      "nomeProduto": "COXINHA DE FRANGO C/CATUPIRY CHIC",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529198+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "2008579:11495": {
+      "produtoCodigo": 2008579,
+      "empresaCodigo": 11495,
+      "nomeProduto": "CAFE MAQUINA ESPRESSO",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529015+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "2407138:11495": {
+      "produtoCodigo": 2407138,
+      "empresaCodigo": 11495,
+      "nomeProduto": "FINI MIX SURPRESA 80G",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529445+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "2420899:11495": {
+      "produtoCodigo": 2420899,
+      "empresaCodigo": 11495,
+      "nomeProduto": "AGUA SAO FRANCISCO 20LT",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529191+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "2387407:11495": {
+      "produtoCodigo": 2387407,
+      "empresaCodigo": 11495,
+      "nomeProduto": "PIRULITO POP OREO",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529359+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "2048588:11495": {
+      "produtoCodigo": 2048588,
+      "empresaCodigo": 11495,
+      "nomeProduto": "BROWNIE BAKERY",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529328+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "2155820:11495": {
+      "produtoCodigo": 2155820,
+      "empresaCodigo": 11495,
+      "nomeProduto": "ENROLADINHO CHIC",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529223+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "2175768:11495": {
+      "produtoCodigo": 2175768,
+      "empresaCodigo": 11495,
+      "nomeProduto": "AGUA PETROPOLIS SEM GAS 500ML",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529124+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "2323122:11495": {
+      "produtoCodigo": 2323122,
+      "empresaCodigo": 11495,
+      "nomeProduto": "PASTEL DE FRANGO (CASA DO SALGADO)",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529256+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "2189991:11495": {
+      "produtoCodigo": 2189991,
+      "empresaCodigo": 11495,
+      "nomeProduto": "PAO DE QUEIJO C/REQUEIJÃO",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529210+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1940573:11495": {
+      "produtoCodigo": 1940573,
+      "empresaCodigo": 11495,
+      "nomeProduto": "DORITOS 75G",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529420+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1920399:11495": {
+      "produtoCodigo": 1920399,
+      "empresaCodigo": 11495,
+      "nomeProduto": "PINGO OURO BACON 76G",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529091+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "2191502:11495": {
+      "produtoCodigo": 2191502,
+      "empresaCodigo": 11495,
+      "nomeProduto": "COXINHA DE FRANGO (CASA DO SALGADO)",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529084+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "2443106:11495": {
+      "produtoCodigo": 2443106,
+      "empresaCodigo": 11495,
+      "nomeProduto": "REFRIGERANTE COCA ZERO 600ML",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529439+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1801337:11495": {
+      "produtoCodigo": 1801337,
+      "empresaCodigo": 11495,
+      "nomeProduto": "SUCO DEL VALLE CITRUS LARANJA 450ML",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529503+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1802775:11495": {
+      "produtoCodigo": 1802775,
+      "empresaCodigo": 11495,
+      "nomeProduto": "PITU LATA 350 ML",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529117+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1801758:11495": {
+      "produtoCodigo": 1801758,
+      "empresaCodigo": 11495,
+      "nomeProduto": "HALLS EXTRA FORTE",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529159+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1802823:11495": {
+      "produtoCodigo": 1802823,
+      "empresaCodigo": 11495,
+      "nomeProduto": "REFRIGERANTE PEPSI TWISTER 2L",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529309+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1802530:11495": {
+      "produtoCodigo": 1802530,
+      "empresaCodigo": 11495,
+      "nomeProduto": "BISCOITO PASSATEMPO  RECH 130G",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529171+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1802831:11495": {
+      "produtoCodigo": 1802831,
+      "empresaCodigo": 11495,
+      "nomeProduto": "AGUA MINERAL CRYSTAL 1,5L",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529347+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803141:11495": {
+      "produtoCodigo": 1803141,
+      "empresaCodigo": 11495,
+      "nomeProduto": "REFRIGERANTE COCA ZERO 1L",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529044+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1802532:11495": {
+      "produtoCodigo": 1802532,
+      "empresaCodigo": 11495,
+      "nomeProduto": "BISCOITO TRELOSO MORANGO 120G",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529185+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1802730:11495": {
+      "produtoCodigo": 1802730,
+      "empresaCodigo": 11495,
+      "nomeProduto": "BEM CASADO DOCES LABANCA/ BAKERY",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529471+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1802613:11495": {
+      "produtoCodigo": 1802613,
+      "empresaCodigo": 11495,
+      "nomeProduto": "REFRIGERANTE FANTA UVA LATA 350ML",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529497+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803180:11495": {
+      "produtoCodigo": 1803180,
+      "empresaCodigo": 11495,
+      "nomeProduto": "CERVEJA BUDWEISER LONG 330ML",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529229+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1802654:11495": {
+      "produtoCodigo": 1802654,
+      "empresaCodigo": 11495,
+      "nomeProduto": "BISCOITO BONO MORANGO 90G",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529165+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803229:11495": {
+      "produtoCodigo": 1803229,
+      "empresaCodigo": 11495,
+      "nomeProduto": "ICE LEAO PESSEGO 300ML",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529426+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803302:11495": {
+      "produtoCodigo": 1803302,
+      "empresaCodigo": 11495,
+      "nomeProduto": "REFRIGERANTE GUARANA ANTARTICA 200ML PET",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529204+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1802688:11495": {
+      "produtoCodigo": 1802688,
+      "empresaCodigo": 11495,
+      "nomeProduto": "ENERGETICO MONSTER 473 ML",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529275+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803055:11495": {
+      "produtoCodigo": 1803055,
+      "empresaCodigo": 11495,
+      "nomeProduto": "CERVEJA DEVASSA 473ML",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529249+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803344:11495": {
+      "produtoCodigo": 1803344,
+      "empresaCodigo": 11495,
+      "nomeProduto": "REFRIGERANTE PEPSI COLA 200ML PET",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529353+00:00",
+      "confidence": "MEDIA",
+      "evidence": [
+        "PRODUTO.combustivel=false ou tipo≠C",
+        "PRODUTO.lookup(produtoCodigo)"
+      ]
+    },
+    "1803364:11495": {
+      "produtoCodigo": 1803364,
+      "empresaCodigo": 11495,
+      "nomeProduto": "BISC RECH TRELOSO 120G CHOC",
+      "departamento": "PRODUTOS_DE_LOJA",
+      "fonte": "PRODUTO_TARGETED",
+      "lastSeen": "2026-09-01T12:28:38.529452+00:00",
       "confidence": "MEDIA",
       "evidence": [
         "PRODUTO.combustivel=false ou tipo≠C",

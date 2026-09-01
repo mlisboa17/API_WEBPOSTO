@@ -28,6 +28,8 @@ class Settings(BaseSettings):
     webposto_sync_interval_seconds: int = 3600
     webposto_timeout_seconds: int = 30
     webposto_money_debug: bool = False
+    # Opt-in: sem HTTP ao ERP; só cache/SQLite/snapshot. Default false = online.
+    webposto_offline_mode: bool = False
 
     # Indicadores externos de mercado (USD, Brent, Esalq)
     market_data_api_key: str = ""  # AwesomeAPI token (opcional)
@@ -56,6 +58,9 @@ class Settings(BaseSettings):
     api_title: str = "webPosto Service API"
     api_version: str = "0.1.0"
 
+    # Sprint 01 — monta rotas cash/operator (/cash/operations, /performance, …)
+    enable_operational_routes: bool = True
+
     # Cockpit 30s — cache RAM + worker asyncio (sem Redis)
     pista_sync_worker_enabled: bool = True
     pista_sync_interval_seconds: int = 30
@@ -65,14 +70,14 @@ class Settings(BaseSettings):
     rate_limit_window_seconds: int = 60
 
     # Security / Auth
-    secret_key: str = "changeme_replace_in_env"
+    secret_key: str = "logos-dev-hs256-local-only-not-for-prod!"
     jwt_algorithm: str = "HS256"
     access_token_expire_minutes: int = 15
     refresh_token_expire_days: int = 7
     consumer_token: str = "dev-consumer-token"
     admin_token: str = "dev-admin-token"
-    auth_user_email: str = "admin@company.com"
-    auth_user_password: str = "password"
+    auth_user_email: str = ""
+    auth_user_password: str = ""
     auth_user_password_hash: str = ""
     auth_user_role: str = "director"
     auth_user_company_id: str = "default-company"
@@ -95,6 +100,11 @@ class Settings(BaseSettings):
     departmental_scheduler_poll_seconds: int = 60
     # Arquitetura híbrida — consolidação D-1 às 03:00 AM (cron 0 3 * * *)
     data_sync_scheduler_enabled: bool = True
+    data_sync_catchup_enabled: bool = True
+    data_sync_catchup_on_boot: bool = True
+    data_sync_catchup_max_days: int = 7
+    data_sync_day_timeout_seconds: float = 40
+    data_sync_day_retries: int = 2
     # O WebPosto pode ultrapassar 8 s mesmo em partições diárias da empresa 74014.
     # Mantém a tentativa limitada, mas permite concluir uma chamada diária válida.
     sales_live_timeout_seconds: int = 20
@@ -106,6 +116,15 @@ class Settings(BaseSettings):
     whatsapp_alerts_enabled: bool = False
     whatsapp_webhook_url: str = ""
     whatsapp_frontend_base_url: str = "http://localhost:3000"
+
+    # DF-e / NF-e entrada — defaults seguros (não alterar .env nesta entrega)
+    # Documentar: DFE_AUTO_SYNC_ENABLED, DFE_MANIFESTATION_ENABLED, DFE_VAULT_MASTER_KEY
+    dfe_auto_sync_enabled: bool = False
+    dfe_manifestation_enabled: bool = False
+    dfe_vault_master_key: str = ""  # espelho; vault lê os.environ DFE_VAULT_MASTER_KEY
+
+    # HMAC da conta bancária no módulo de depósito em dinheiro (VIP 11495)
+    cash_deposit_account_hash_key: str = ""
 
     model_config = SettingsConfigDict(
         env_file=".env",
@@ -121,13 +140,24 @@ class Settings(BaseSettings):
             if origin.strip()
         ]
 
+    def local_auth_configured(self) -> bool:
+        """Login local só vale com e-mail e senha ou hash definidos no ambiente."""
+        if not (self.auth_user_email or "").strip():
+            return False
+        if (self.auth_user_password_hash or "").strip():
+            return True
+        return bool((self.auth_user_password or "").strip())
+
     def validate_production_security(self) -> None:
         if self.environment.strip().lower() not in {"production", "prod"}:
             return
         failures: list[str] = []
         if self.debug:
             failures.append("DEBUG_ENABLED")
-        if self.secret_key == "changeme_replace_in_env" or len(self.secret_key) < 32:
+        if self.secret_key in {
+            "changeme_replace_in_env",
+            "logos-dev-hs256-local-only-not-for-prod!",
+        } or len(self.secret_key.encode("utf-8")) < 32:
             failures.append("WEAK_SECRET_KEY")
         if self.consumer_token == "dev-consumer-token":
             failures.append("DEFAULT_CONSUMER_TOKEN")
@@ -139,6 +169,8 @@ class Settings(BaseSettings):
             failures.append("SECURE_COOKIE_REQUIRED")
         if "*" in self.allowed_origins():
             failures.append("WILDCARD_CORS_FORBIDDEN")
+        if not self.cash_deposit_account_hash_key.strip():
+            failures.append("CASH_DEPOSIT_ACCOUNT_HASH_KEY_MISSING")
         if failures:
             raise RuntimeError(
                 "INSECURE_PRODUCTION_CONFIGURATION:" + ",".join(failures)

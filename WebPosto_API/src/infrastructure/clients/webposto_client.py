@@ -18,8 +18,11 @@ from src.infrastructure.clients.webposto_pagination import (
     fetch_all_abastecimento,
     fetch_all_paginated,
 )
+from src.gateway.webposto_client import WebPostoClient
 
 logger = logging.getLogger(__name__)
+
+__all__ = ["WebPostoAuditClient", "WebPostoClient"]
 
 
 class WebPostoAuditClient(AuditGateway):

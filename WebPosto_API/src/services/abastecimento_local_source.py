@@ -48,6 +48,9 @@ def _row_from_baixado(it: Any) -> dict[str, Any]:
         "produtoDescricao": str(getattr(it, "descricaoProduto", None) or ""),
         "nomeProduto": str(getattr(it, "descricaoProduto", None) or ""),
         "vendaCodigo": getattr(it, "idVenda", None),
+        "codigoFrentista": getattr(it, "idFrentista", None),
+        "idFrentista": getattr(it, "idFrentista", None),
+        "nomeFrentista": str(getattr(it, "nomeFrentista", None) or "N/I"),
         "fonteLocal": "pista_cache_RAM",
     }
 
@@ -195,10 +198,11 @@ async def fetch_abastecimentos_local_first(
     if allow_http_fallback and callable(http_fetcher):
         import asyncio
 
+        # Budget curto: evita estouro quando sales_daily_summary(vazio) no D-1
         try:
             http_rows = await asyncio.wait_for(
                 http_fetcher(data_inicial, data_final, empresa),
-                timeout=1.5,
+                timeout=0.8,
             )
             return list(http_rows or []), "ABASTECIMENTO(http_fallback)"
         except Exception as exc:

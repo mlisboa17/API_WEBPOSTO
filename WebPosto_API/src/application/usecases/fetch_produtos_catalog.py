@@ -362,6 +362,7 @@ async def fetch_produtos_catalog(
     pagina: int = 1,
     limite: int = 50,
     descricao: Optional[str] = None,
+    codigo: Optional[int] = None,
     grupo: Optional[int] = None,
     grupos: Optional[list[int]] = None,
     situacao: SituacaoProduto = "todos",
@@ -398,7 +399,7 @@ async def fetch_produtos_catalog(
 
     raw = await asyncio.to_thread(
         webposto_client.produtos.listar,
-        codigo=None,
+        codigo=codigo,
         nome=descricao,
         grupo_codigo=grupo_unico if not (grupos and len(grupos) > 1) else None,
         ativo=ativo_api,
@@ -433,15 +434,9 @@ async def fetch_produtos_catalog(
         produtos = _filtrar_tipo_produto(produtos, tipo_produto)
         produtos = _filtrar_subgrupos(produtos, sg_ids)
 
-    total_filtrado = (
-        len(produtos)
-        if (grupos and len(grupos) > 1)
-        or situacao != "todos"
-        or tipo_produto
-        or subgrupo is not None
-        or subgrupos
-        else total
-    )
+    # Mantém o total da API. Trocar por len(página) quebrava a paginação
+    # quando o cockpit enviava tipo_produto=P.
+    total_filtrado = int(total or 0)
     total_paginas = max(1, (total_filtrado + limite - 1) // limite) if limite else 1
 
     return PaginatedProdutosResponse(

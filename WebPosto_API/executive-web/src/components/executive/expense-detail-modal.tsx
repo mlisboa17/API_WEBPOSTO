@@ -1,7 +1,15 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { ArrowLeft, RefreshCcw, Search, X, AlertTriangle, CheckCircle2 } from "lucide-react";
+import {
+  ArrowLeft,
+  RefreshCcw,
+  Search,
+  X,
+  AlertTriangle,
+  CheckCircle2,
+  Pencil,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { apiService } from "@/lib/api";
 import type { ExpenseDetailItem, ExpenseDetailsResponse } from "@/types/api";
@@ -17,9 +25,18 @@ export interface ExpenseDetailModalProps {
   cardTotal: number;
   periodStart: string;
   periodEnd: string;
-  /** Itens já embutidos no payload do data-audit (fallback imediato). */
   seedItens?: ExpenseDetailItem[];
+  /** Notifica o pai para refrescar KPIs/DRE após reclassificação. */
+  onReclassified?: () => void;
 }
+
+type PlanoOption = {
+  codigo: number;
+  nome: string;
+  label: string;
+  hierarquia?: string;
+  categoria?: string;
+};
 
 function formatBRL(v: number) {
   return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(v || 0);
@@ -40,12 +57,22 @@ function docLabel(item: ExpenseDetailItem) {
   return parts.length ? parts.join(" · ") : "—";
 }
 
+/** `[Código] - [NOME]` em maiúsculas. */
 function planoOficialLabel(item: ExpenseDetailItem) {
-  return (
-    item.planoContaOficial ||
-    item.planoConta ||
-    (item.planoContaCodigo ? `Plano ${item.planoContaCodigo}` : "—")
-  );
+  const code = item.planoContaCodigo;
+  const raw = (item.planoContaOficial || item.planoConta || "").trim();
+  if (code && raw) {
+    const upper = raw.toUpperCase();
+    if (upper.startsWith(`${code} -`) || upper.startsWith(`${code}-`)) return upper;
+    // Evita "Plano 141278"
+    if (/^PLANO\s+\d+$/i.test(raw)) {
+      return `${code} - PLANO ${code}`;
+    }
+    const nome = raw.replace(/^\d+\s*[-–]\s*/, "").toUpperCase();
+    return `${code} - ${nome}`;
+  }
+  if (code) return `${code} - PLANO ${code}`;
+  return raw ? raw.toUpperCase() : "—";
 }
 
 export function ExpenseDetailModal({
@@ -59,10 +86,16 @@ export function ExpenseDetailModal({
   periodStart,
   periodEnd,
   seedItens = [],
+  onReclassified,
 }: ExpenseDetailModalProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [payload, setPayload] = useState<ExpenseDetailsResponse | null>(null);
+  const [planoOptions, setPlanoOptions] = useState<PlanoOption[]>([]);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [draftPlano, setDraftPlano] = useState<string>("");
+  const [savingId, setSavingId] = useState<string | null>(null);
+  const [filterPlano, setFilterPlano] = useState("");
 
   const fetchDetails = useCallback(async () => {
     try {
@@ -130,16 +163,23 @@ export function ExpenseDetailModal({
       });
     }
     void fetchDetails();
+    void apiService.getPlanoContasOptions().then(setPlanoOptions);
   }, [isOpen]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!isOpen) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        if (editingId) {
+          setEditingId(null);
+          return;
+        }
+        onClose();
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, editingId]);
 
   const itens = payload?.itens || [];
   const subtotal = useMemo(
@@ -148,6 +188,86 @@ export function ExpenseDetailModal({
   );
   const expected = round2(cardTotal);
   const matches = Math.abs(subtotal - expected) < 0.015;
+
+  const filteredOptions = useMemo(() => {
+    const q = filterPlano.trim().toLowerCase();
+    const base = planoOptions.length
+      ? planoOptions
+      : FALLBACK_PLANOS.map((p) => ({
+          codigo: p.codigo,
+          nome: p.nome,
+          label: `${p.codigo} - ${p.nome}`,
+          categoria: p.categoria,
+        }));
+    if (!q) return base.slice(0, 80);
+    return base
+      .filter(
+        (o) =>
+          String(o.codigo).includes(q) ||
+          o.nome.toLowerCase().includes(q) ||
+          o.label.toLowerCase().includes(q)
+      )
+      .slice(0, 80);
+  }, [planoOptions, filterPlano]);
+
+  const confirmReclassify = async (item: ExpenseDetailItem) => {
+    if (!item.id || !draftPlano) return;
+    setSavingId(item.id);
+    setError(null);
+    const res = await apiService.reclassifyExpenseEntry(
+      item.id,
+      draftPlano,
+      "Reclassificação via DRE Executiva",
+      item.planoContaCodigo
+    );
+    setSavingId(null);
+    if (!res.success) {
+      setError(res.error || "Falha ao reclassificar");
+      return;
+    }
+    const novoCodigo = Number(res.novo_plano_codigo || draftPlano);
+    const novoLabel =
+      res.plano_label ||
+      `${novoCodigo} - ${(res.plano_nome || "").toUpperCase()}`.trim();
+    const novaCat = (res.categoria || item.categoria || "").toUpperCase();
+    const sameGroup =
+      !novaCat ||
+      novaCat === (categoriaKey || "").toUpperCase() ||
+      novaCat === (item.categoria || "").toUpperCase();
+
+    setPayload((prev) => {
+      if (!prev) return prev;
+      const nextItens = (prev.itens || [])
+        .map((row) => {
+          if (row.id !== item.id) return row;
+          return {
+            ...row,
+            planoContaCodigo: novoCodigo,
+            planoConta: novoLabel,
+            planoContaOficial: novoLabel,
+            categoria: novaCat || row.categoria,
+          };
+        })
+        .filter((row) => {
+          // Se mudou de grupo DRE, remove da lista atual (subtotal atualiza)
+          if (row.id !== item.id) return true;
+          return sameGroup;
+        });
+      const nextSub = round2(
+        nextItens.reduce((s, i) => s + (Number(i.valor) || 0), 0)
+      );
+      return {
+        ...prev,
+        itens: nextItens,
+        quantidade: nextItens.length,
+        subtotal: nextSub,
+      };
+    });
+    setEditingId(null);
+    setDraftPlano("");
+    setFilterPlano("");
+    onReclassified?.();
+  };
 
   if (!isOpen) return null;
 
@@ -158,7 +278,7 @@ export function ExpenseDetailModal({
       role="presentation"
     >
       <div
-        className="bg-slate-900 border border-white/10 rounded-xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col"
+        className="bg-slate-900 border border-white/10 rounded-xl shadow-2xl w-full max-w-6xl max-h-[90vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
@@ -227,13 +347,14 @@ export function ExpenseDetailModal({
               "flex items-center gap-2 rounded-md border px-3 py-2 text-xs",
               matches
                 ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-300"
-                : "border-red-500/30 bg-red-500/10 text-red-300"
+                : "border-amber-500/30 bg-amber-500/10 text-amber-200"
             )}
           >
             {matches ? <CheckCircle2 size={14} /> : <AlertTriangle size={14} />}
             <span>
               Soma tabela {formatBRL(subtotal)} {matches ? "=" : "≠"} card{" "}
               {formatBRL(expected)}
+              {!matches ? " (após reclassificação o card atualiza no refresh)" : ""}
             </span>
           </div>
         </div>
@@ -257,49 +378,123 @@ export function ExpenseDetailModal({
                     <th className="text-left py-2 pr-3 font-bold">Plano de Contas webPosto</th>
                     <th className="text-left py-2 pr-3 font-bold">Histórico</th>
                     <th className="text-left py-2 pr-3 font-bold">Fornecedor / Favorecido</th>
-                    <th className="text-right py-2 font-bold">Valor (R$)</th>
+                    <th className="text-right py-2 pr-3 font-bold">Valor (R$)</th>
+                    <th className="text-right py-2 font-bold">Ação</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {itens.map((item, idx) => (
-                    <tr
-                      key={`${item.id || idx}-${item.valor}`}
-                      className="border-b border-white/5 hover:bg-white/[0.02]"
-                    >
-                      <td className="py-2.5 pr-3 text-slate-300 whitespace-nowrap align-top">
-                        <div>{formatDateBR(item.dataPagamento || item.dataVencimento)}</div>
-                        <div className="text-[11px] text-slate-500">{docLabel(item)}</div>
-                      </td>
-                      <td className="py-2.5 pr-3 text-cyan-100 max-w-[260px] align-top">
-                        <p className="font-medium leading-snug">{planoOficialLabel(item)}</p>
-                        <p className="text-[11px] text-slate-500 mt-0.5">
-                          {[
-                            item.planoContaCodigo ? `cód. ${item.planoContaCodigo}` : null,
-                            item.grupoConta ? `Grupo: ${item.grupoConta}` : null,
-                            item.centroCusto ? `CC: ${item.centroCusto}` : null,
-                          ]
-                            .filter(Boolean)
-                            .join(" · ") || null}
-                        </p>
-                      </td>
-                      <td className="py-2.5 pr-3 text-slate-300 max-w-[280px] align-top">
-                        <p className="leading-snug">
-                          {item.historico || item.descricao || "—"}
-                        </p>
-                      </td>
-                      <td className="py-2.5 pr-3 text-slate-400 max-w-[180px] align-top">
-                        {item.fornecedor || item.favorecido || "—"}
-                      </td>
-                      <td className="py-2.5 text-right font-semibold text-white whitespace-nowrap align-top">
-                        {formatBRL(Number(item.valor) || 0)}
-                      </td>
-                    </tr>
-                  ))}
+                  {itens.map((item, idx) => {
+                    const isEditing = editingId === item.id;
+                    return (
+                      <tr
+                        key={`${item.id || idx}-${item.valor}`}
+                        className="border-b border-white/5 hover:bg-white/[0.02]"
+                      >
+                        <td className="py-2.5 pr-3 text-slate-300 whitespace-nowrap align-top">
+                          <div>{formatDateBR(item.dataPagamento || item.dataVencimento)}</div>
+                          <div className="text-[11px] text-slate-500">{docLabel(item)}</div>
+                        </td>
+                        <td className="py-2.5 pr-3 text-cyan-100 max-w-[320px] align-top">
+                          {isEditing ? (
+                            <div className="space-y-2">
+                              <input
+                                value={filterPlano}
+                                onChange={(e) => setFilterPlano(e.target.value)}
+                                placeholder="Buscar plano…"
+                                className="w-full rounded-md border border-white/10 bg-slate-950 px-2 py-1.5 text-xs text-white"
+                              />
+                              <select
+                                value={draftPlano}
+                                onChange={(e) => setDraftPlano(e.target.value)}
+                                className="w-full rounded-md border border-cyan-500/40 bg-slate-950 px-2 py-1.5 text-xs text-cyan-100"
+                                size={6}
+                              >
+                                {filteredOptions.map((o) => (
+                                  <option key={o.codigo} value={String(o.codigo)}>
+                                    {o.label}
+                                  </option>
+                                ))}
+                              </select>
+                              <div className="flex gap-2">
+                                <Button
+                                  size="sm"
+                                  className="h-7 bg-cyan-500 text-slate-950 text-xs"
+                                  disabled={!draftPlano || savingId === item.id}
+                                  onClick={() => void confirmReclassify(item)}
+                                >
+                                  {savingId === item.id ? "Salvando…" : "Confirmar"}
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  className="h-7 border-white/20 text-xs"
+                                  onClick={() => {
+                                    setEditingId(null);
+                                    setDraftPlano("");
+                                    setFilterPlano("");
+                                  }}
+                                >
+                                  Cancelar
+                                </Button>
+                              </div>
+                            </div>
+                          ) : (
+                            <>
+                              <p className="font-medium leading-snug uppercase tracking-tight">
+                                {planoOficialLabel(item)}
+                              </p>
+                              <p className="text-[11px] text-slate-500 mt-0.5">
+                                {[
+                                  item.grupoConta ? `Grupo: ${item.grupoConta}` : null,
+                                  item.centroCusto ? `CC: ${item.centroCusto}` : null,
+                                ]
+                                  .filter(Boolean)
+                                  .join(" · ") || null}
+                              </p>
+                            </>
+                          )}
+                        </td>
+                        <td className="py-2.5 pr-3 text-slate-300 max-w-[240px] align-top">
+                          <p className="leading-snug">
+                            {item.historico || item.descricao || "—"}
+                          </p>
+                        </td>
+                        <td className="py-2.5 pr-3 text-slate-400 max-w-[160px] align-top">
+                          {item.fornecedor || item.favorecido || "—"}
+                        </td>
+                        <td className="py-2.5 pr-3 text-right font-semibold text-white whitespace-nowrap align-top">
+                          {formatBRL(Number(item.valor) || 0)}
+                        </td>
+                        <td className="py-2.5 text-right align-top">
+                          {!isEditing ? (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="h-7 border-amber-500/30 bg-amber-500/10 text-amber-200 text-[11px] gap-1"
+                              disabled={!item.id}
+                              onClick={() => {
+                                setEditingId(item.id || null);
+                                setDraftPlano(
+                                  item.planoContaCodigo
+                                    ? String(item.planoContaCodigo)
+                                    : ""
+                                );
+                                setFilterPlano("");
+                              }}
+                            >
+                              <Pencil size={12} />
+                              Reclassificar
+                            </Button>
+                          ) : null}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
                 <tfoot>
                   <tr className="border-t border-white/10">
                     <td
-                      colSpan={4}
+                      colSpan={5}
                       className="py-3 text-right text-slate-400 text-xs font-bold uppercase tracking-wider"
                     >
                       Total
@@ -312,10 +507,10 @@ export function ExpenseDetailModal({
               </table>
             </div>
           )}
-          {error && itens.length > 0 ? (
+          {error ? (
             <p className="text-[11px] text-amber-400/80 mt-3 flex items-center gap-1">
               <AlertTriangle size={12} />
-              API: {error} — exibindo itens do consolidado.
+              {error}
             </p>
           ) : null}
         </div>
@@ -341,6 +536,16 @@ export function ExpenseDetailModal({
     </div>
   );
 }
+
+const FALLBACK_PLANOS = [
+  { codigo: 141278, nome: "MANUTENÇÃO DE MÁQUINAS E EQUIPAMENTOS", categoria: "OUTRAS" },
+  { codigo: 141275, nome: "AFERIÇÃO E CALIBRAGEM", categoria: "OUTRAS" },
+  { codigo: 148304, nome: "COMBUSTÍVEL DE APOIO / FROTA", categoria: "OUTRAS" },
+  { codigo: 141276, nome: "MANUTENÇÃO PREDIAL / INSTALAÇÕES", categoria: "ADMINISTRATIVA" },
+  { codigo: 137578, nome: "MATERIAL DE USO E CONSUMO", categoria: "ADMINISTRATIVA" },
+  { codigo: 48547, nome: "VALES / BENEFÍCIOS A FUNCIONÁRIOS", categoria: "PESSOAL" },
+  { codigo: 29019, nome: "COMPRAS DE MERCADORIAS / CONVENIÊNCIA", categoria: "CPV" },
+];
 
 function round2(n: number) {
   return Math.round((n + Number.EPSILON) * 100) / 100;

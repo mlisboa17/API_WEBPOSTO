@@ -156,17 +156,26 @@ def _strip_ns(tag: str) -> str:
     return tag.rsplit("}", 1)[-1]
 
 
+def _xml_bytes_for_document(document_id: str) -> bytes:
+    xml_path = store.store_root() / "documents" / f"{document_id}.xml"
+    if xml_path.is_file():
+        return xml_path.read_bytes()
+    document = store.load_document(document_id) or {}
+    ref = str(document.get("xml_storage_reference") or "")
+    if ref.startswith("dfe_sec_"):
+        from src.operational.dfe.vault import get_vault
+
+        return get_vault().get_secret(ref)
+    raise DfeCostError(f"XML ausente para documento {document_id}")
+
+
 def read_invoice_totals(document_id: str) -> InvoiceTotals:
     """Le os totais em ICMSTot direto do XML arquivado.
 
     Os totais nao estao no documento normalizado, e sao obrigatorios para saber se
     existe rateio a aplicar. Sem eles, assumir zero seria fallback silencioso.
     """
-    xml_path = store.store_root() / "documents" / f"{document_id}.xml"
-    if not xml_path.is_file():
-        raise DfeCostError(f"XML ausente para documento {document_id}")
-
-    root = ET.parse(xml_path).getroot()
+    root = ET.fromstring(_xml_bytes_for_document(document_id))
     totals: dict[str, str] = {}
     for node in root.iter():
         if _strip_ns(node.tag) != "ICMSTot":

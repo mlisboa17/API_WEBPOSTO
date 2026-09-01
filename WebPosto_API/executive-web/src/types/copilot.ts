@@ -82,6 +82,27 @@ export interface ActionDraftProposal {
   executionDisabledReason: string;
 }
 
+export interface SuggestedAction {
+  actionId?: string;
+  actionType?: string;
+  title?: string;
+  priority?: "ALTA" | "MEDIA" | "BAIXA" | string;
+  status?: string;
+  requiresConfirmation?: boolean;
+  requiresApproval?: boolean;
+  camposPreenchidos?: Record<string, unknown>;
+  camposObrigatoriosAusentes?: string[];
+  risco?: string;
+  executionCode?: string;
+}
+
+export interface CopilotSimulation {
+  scenarioName?: string;
+  potentialSavings?: number | null;
+  targetUnit?: string;
+  [key: string]: unknown;
+}
+
 export interface CopilotAnswer {
   specialist: SpecialistId;
   answer: string;
@@ -96,8 +117,8 @@ export interface CopilotAnswer {
   evidence: EvidenceItem[];
   lineage: LineageItem[];
   confidence: Confidence;
-  simulation?: Record<string, any> | null;
-  suggestedAction?: Record<string, any> | null;
+  simulation?: CopilotSimulation | Record<string, unknown> | null;
+  suggestedAction?: SuggestedAction | Record<string, unknown> | null;
   actionDraft?: ActionDraftProposal | null;
   blocked?: BlockedInfo | null;
   webpostoWrites: number;
@@ -125,3 +146,31 @@ export interface SpecialistConfig {
   badgeBg: string;
   suggestedQuestions: string[];
 }
+
+export interface ReconciliationItem {
+  ean: string;
+  descricao: string;
+  empresa_codigo: number;
+  preco_venda: number;
+  preco_custo_atual: number;
+  status_reconciliacao: "PENDING" | "RECONCILED" | "UNMATCHED" | string;
+  dfe_nfe_numero?: string | null;
+  custo_dfe?: number | null;
+}
+
+export interface ReconciliationPayload {
+  empresa_codigo: number;
+  empresa_cnpj: string;
+  xml_content: string;
+  itens_pendentes: ReconciliationItem[];
+}
+
+export interface ReconciliationResult {
+  empresa_codigo: number;
+  total_processado: number;
+  total_reconciliado: number;
+  total_pendente: number;
+  webposto_writes: number;
+  itens_atualizados: ReconciliationItem[];
+}
+

@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from fastapi import HTTPException, Request
 
+from src.core.config import ensure_hs256_secret_key
 from src.interfaces.http.routes.auth import router as auth_router
 from src.interfaces.http.routes.executive_copilot_ask import router
 from src.interfaces.http.routes.executive_copilot_data_requests import (
@@ -20,6 +21,8 @@ from src.interfaces.http.routes.executive_copilot_action_drafts import (
 )
 from src.services.executive_copilot.contracts import WEBPOSTO_WRITES
 from src.services.executive_copilot.data_on_demand.http_contract import EXECUTOR_MODE
+
+ensure_hs256_secret_key()
 
 DEMO_BIND = "127.0.0.1"
 DEMO_PORT = 8095

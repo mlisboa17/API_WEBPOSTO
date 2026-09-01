@@ -55,10 +55,14 @@ class CostProposalStore:
         return {"created": True, "proposal": payload}
 
     def mark_superseded(self, proposal_hash: str) -> None:
+        self.mark_lifecycle(proposal_hash, "SUPERSEDED")
+
+    def mark_lifecycle(self, proposal_hash: str, lifecycle: str) -> None:
         payload = self.get_by_hash(proposal_hash)
-        if not payload or payload.get("lifecycle") == "SUPERSEDED":
+        if not payload or payload.get("lifecycle") == lifecycle:
             return
-        payload["lifecycle"] = "SUPERSEDED"
+        payload["lifecycle"] = lifecycle
+        payload["updated_at"] = datetime.now(timezone.utc).isoformat()
         path = self.history / f"{proposal_hash}.json"
         self._atomic_write(path, payload)
 

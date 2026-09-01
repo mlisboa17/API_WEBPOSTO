@@ -11,6 +11,13 @@ from src.services.treasury_consolidation_service import TreasuryConsolidationSer
 from src.services.elasticity_simulator_service import ElasticitySimulatorService
 from src.services.executive_briefing_service import ExecutiveBriefingService
 from src.utils.filial_normalizer import resolve_empresa_codigo
+from src.services.webposto.offline_mode import (
+    WebPostoOfflineBlocked,
+    annotate_offline_success,
+    classify_local_source,
+    offline_unavailable_response,
+    webposto_offline_mode,
+)
 
 from src.interfaces.http.schemas.executive_sales_schema import SalesAnalyticsSummary
 from src.interfaces.http.schemas.executive_logistics_schema import LogisticsSummary
@@ -38,9 +45,17 @@ async def get_executive_briefing(
 ):
     """Três destaques automáticos do D-1 para o cockpit da diretoria."""
     try:
-        data = await _briefing_service.build(dataReferencia, empresaCodigo)
-        return {"success": True, "data": data, "namespace": "executive"}
+        empresa = resolve_empresa_codigo(empresaCodigo)
+        data = await _briefing_service.build(dataReferencia, empresa)
+        body = {"success": True, "data": data, "namespace": "executive"}
+        if webposto_offline_mode():
+            return annotate_offline_success(body, source="cache_local")
+        return body
+    except WebPostoOfflineBlocked:
+        return offline_unavailable_response(route="/api/v1/executive/briefing")
     except Exception as e:
+        if webposto_offline_mode():
+            return offline_unavailable_response(route="/api/v1/executive/briefing")
         logger.exception("briefing: %s", e)
         return {"success": False, "error": str(e)}
 
@@ -82,8 +97,20 @@ async def get_sales_composition(
         empresa = resolve_empresa_codigo(empresaCodigo)
         data = await _composition_service.build(dataInicial, dataFinal, empresa)
         payload = data.model_dump() if hasattr(data, "model_dump") else data
-        return {"success": True, "data": payload, "namespace": "executive"}
+        body = {"success": True, "data": payload, "namespace": "executive"}
+        if webposto_offline_mode():
+            fonte = ""
+            if isinstance(payload, dict):
+                fonte = str(payload.get("fonteAbastecimentos") or "")
+            else:
+                fonte = str(getattr(data, "fonteAbastecimentos", "") or "")
+            return annotate_offline_success(body, source=classify_local_source(fonte))
+        return body
+    except WebPostoOfflineBlocked:
+        return offline_unavailable_response(route="/api/v1/executive/sales/composition")
     except Exception as e:
+        if webposto_offline_mode():
+            return offline_unavailable_response(route="/api/v1/executive/sales/composition")
         logger.exception("Erro em sales composition: %s", e)
         return {
             "success": True,

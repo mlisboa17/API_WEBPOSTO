@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 from typing import List, Optional
 
 from sqlalchemy import select, and_, update
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.models.alert_model import ExecutiveAlertModel, AlertSeverity, AlertCategory
 
@@ -23,11 +24,18 @@ class ExecutiveAlertRepository:
         return result.scalar_one_or_none()
 
     async def create(self, alert: ExecutiveAlertModel) -> ExecutiveAlertModel:
-        """Persiste um novo alerta."""
+        """Persiste um novo alerta (safe sob corrida em alert_external_id)."""
         self.session.add(alert)
-        await self.session.commit()
-        await self.session.refresh(alert)
-        return alert
+        try:
+            await self.session.commit()
+            await self.session.refresh(alert)
+            return alert
+        except IntegrityError:
+            await self.session.rollback()
+            existing = await self.get_by_external_id(alert.alert_external_id)
+            if existing is not None:
+                return existing
+            raise
 
     async def list_unresolved(self, unit_id: Optional[int] = None) -> List[ExecutiveAlertModel]:
         """Lista alertas pendentes, opcionalmente filtrados por unidade."""

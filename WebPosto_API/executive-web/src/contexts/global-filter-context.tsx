@@ -10,9 +10,9 @@ export interface Filial {
 
 export const FILIAIS: Filial[] = [
   { empresaCodigo: 0, nome: "Todas as Filiais (Consolidado Grupo Lisboa)", nomeAbreviado: "Consolidado" },
-  { empresaCodigo: 5555, nome: "AP Casa Caiada", nomeAbreviado: "Casa Caiada" },
-  { empresaCodigo: 11495, nome: "Posto VIP", nomeAbreviado: "VIP" },
-  { empresaCodigo: 74014, nome: "Posto Real / Doze", nomeAbreviado: "Real" },
+  { empresaCodigo: 5555, nome: "AP CASA CAIADA", nomeAbreviado: "Casa Caiada" },
+  { empresaCodigo: 11495, nome: "POSTO VIP", nomeAbreviado: "VIP" },
+  { empresaCodigo: 74014, nome: "POSTO REAL / DOZE", nomeAbreviado: "Real" },
 ];
 
 export type PeriodOption = "7d" | "today" | "yesterday" | "month" | "custom";

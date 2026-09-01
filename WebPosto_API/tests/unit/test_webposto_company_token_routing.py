@@ -48,4 +48,5 @@ def test_118508_does_not_accept_real_doze_aliases() -> None:
     assert OFFICIAL_COMPANY_CREDENTIAL_ALIASES[118508] == (
         "WEBPOSTO_CONVENIENCIA_24_HORAS_KEY",
         "WEBPOSTO_API_GERAL_CONVENIENCIA_KEY",
+        "WEBPOSTO_API_KEY_CONVENIENCIA_24_HORAS",
     )

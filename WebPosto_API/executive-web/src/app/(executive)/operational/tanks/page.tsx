@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
-import { Droplet, Thermometer, RefreshCcw, AlertTriangle } from "lucide-react";
+import { RefreshCcw, AlertTriangle } from "lucide-react";
 import {
   Bar,
   XAxis,
@@ -22,11 +22,29 @@ import { useGlobalFilter } from "@/contexts/global-filter-context";
 import { apiService, TankData } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import { InventoryPredictionPanel } from "@/components/operational/inventory-prediction-panel";
+import {
+  TankMonitorCard,
+  isGnvProduct,
+} from "@/components/operational/tank-monitor-card";
+import { empresaNomeOperacional } from "@/utils/filial_normalizer";
+
+const POLL_INTERVAL_MS = 10 * 60 * 1000; // 10 minutos
 
 interface FetchState {
   tanks: TankData[];
   loading: boolean;
   error: string | null;
+  lastFetchedAt: Date | null;
+}
+
+function formatClock(d: Date | null): string {
+  if (!d) return "--:--";
+  return d.toLocaleTimeString("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: "America/Recife",
+  });
 }
 
 export default function OperationalTanksPage() {
@@ -34,14 +52,27 @@ export default function OperationalTanksPage() {
     tanks: [],
     loading: true,
     error: null,
+    lastFetchedAt: null,
   });
+  const [refreshing, setRefreshing] = useState(false);
   const mountedRef = useRef(true);
+  const hasDataRef = useRef(false);
 
   const { selectedFilial, isConsolidated, periodDates, filialLabel } = useGlobalFilter();
 
-  const fetchTanks = useCallback(async () => {
-    console.log("[Tanks] Iniciando fetch...", { start: periodDates.start, end: periodDates.end, filial: selectedFilial });
-    setState((prev) => ({ ...prev, loading: true, error: null }));
+  const fetchTanks = useCallback(async (opts?: { silent?: boolean }) => {
+    const silent = Boolean(opts?.silent && hasDataRef.current);
+    console.log("[Tanks] Iniciando fetch...", {
+      start: periodDates.start,
+      end: periodDates.end,
+      filial: selectedFilial,
+      silent,
+    });
+    if (silent) {
+      setRefreshing(true);
+    } else {
+      setState((prev) => ({ ...prev, loading: true, error: null }));
+    }
     try {
       const response = await apiService.getOperationalTanks(
         periodDates.start,
@@ -50,34 +81,94 @@ export default function OperationalTanksPage() {
       );
       console.log("[Tanks] Resposta recebida:", response);
       if (mountedRef.current) {
-        setState({ tanks: response.tanks || [], loading: false, error: null });
+        const tanks = response.tanks || [];
+        hasDataRef.current = tanks.length > 0 || hasDataRef.current;
+        setState((prev) => ({
+          tanks,
+          loading: false,
+          error: null,
+          lastFetchedAt: new Date(),
+        }));
       }
     } catch (err) {
       console.error("[Tanks] Erro no fetch:", err);
       if (mountedRef.current) {
-        setState({
-          tanks: [],
+        setState((prev) => ({
+          tanks: silent ? prev.tanks : [],
           loading: false,
           error: err instanceof Error ? err.message : "Erro ao carregar dados",
-        });
+          lastFetchedAt: silent ? prev.lastFetchedAt : prev.lastFetchedAt,
+        }));
       }
+    } finally {
+      if (mountedRef.current) setRefreshing(false);
     }
   }, [periodDates.start, periodDates.end, isConsolidated, selectedFilial]);
 
   useEffect(() => {
     mountedRef.current = true;
-    fetchTanks();
+    hasDataRef.current = false;
+    void fetchTanks({ silent: false });
     return () => {
       mountedRef.current = false;
     };
   }, [fetchTanks]);
 
-  const { tanks, loading, error } = state;
+  // Polling silencioso a cada 10 minutos — sem skeleton / sem reset de scroll
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      void fetchTanks({ silent: true });
+    }, POLL_INTERVAL_MS);
+    return () => window.clearInterval(id);
+  }, [fetchTanks]);
+
+  const { tanks, loading, error, lastFetchedAt } = state;
 
   const filteredTanks = useMemo(() => {
-    if (isConsolidated) return tanks;
-    return tanks.filter((t) => t.empresa_codigo === selectedFilial);
+    const base = isConsolidated
+      ? tanks
+      : tanks.filter((t) => t.empresa_codigo === selectedFilial);
+    // Dedupe defensivo (empresa + tanque) — evita cards repetidos
+    const seen = new Set<string>();
+    const unique: TankData[] = [];
+    for (const t of base) {
+      const key = `${t.empresa_codigo}:${t.id}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      unique.push(t);
+    }
+    return unique;
   }, [tanks, selectedFilial, isConsolidated]);
+
+  const tanksByFilial = useMemo(() => {
+    const order = [5555, 11495, 74014];
+    const map = new Map<number, TankData[]>();
+    for (const t of filteredTanks) {
+      const code = Number(t.empresa_codigo) || 0;
+      if (!map.has(code)) map.set(code, []);
+      map.get(code)!.push(t);
+    }
+    const codes = [
+      ...order.filter((c) => map.has(c)),
+      ...[...map.keys()].filter((c) => !order.includes(c)).sort((a, b) => a - b),
+    ];
+    return codes.map((code) => ({
+      code,
+      nome: empresaNomeOperacional(code),
+      tanks: map.get(code) || [],
+    }));
+  }, [filteredTanks]);
+
+  const chartData = useMemo(
+    () =>
+      filteredTanks.map((t) => ({
+        ...t,
+        chartLabel: isConsolidated
+          ? `${empresaNomeOperacional(t.empresa_codigo).split(" ").slice(-1)[0]} · ${t.name}`
+          : t.name,
+      })),
+    [filteredTanks, isConsolidated]
+  );
 
   const summary = useMemo(() => {
     const criticos = filteredTanks.filter((t) => t.status === "CRITICO").length;
@@ -114,22 +205,35 @@ export default function OperationalTanksPage() {
   return (
     <div className="p-4 lg:p-8 max-w-[1400px] mx-auto space-y-6">
       <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
-        <div>
+        <div className="space-y-2">
           <h1 className="text-2xl font-bold tracking-tight text-white">
             Monitoramento de Tanques
           </h1>
           <p className="text-slate-500 text-sm">
             Variação térmica (Física) vs Desvios Reais na Pista — Dados Reais WebPosto
           </p>
+          <div
+            className="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1 text-[11px] text-emerald-200/90"
+            title="Rebusca automática da API a cada 10 minutos, sem recarregar a tela"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            </span>
+            <span>
+              Atualização automática (10m) · Última leitura: {formatClock(lastFetchedAt)}
+              {refreshing ? " · sync…" : ""}
+            </span>
+          </div>
         </div>
         <Button 
           variant="outline" 
           size="sm" 
-          onClick={fetchTanks} 
-          disabled={loading}
+          onClick={() => void fetchTanks({ silent: hasDataRef.current })} 
+          disabled={loading || refreshing}
           className="bg-cyan-500/10 border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 hover:text-cyan-200"
         >
-          <RefreshCcw size={14} className={cn("mr-2 text-cyan-400", loading && "animate-spin")} />
+          <RefreshCcw size={14} className={cn("mr-2 text-cyan-400", (loading || refreshing) && "animate-spin")} />
           Atualizar
         </Button>
       </header>
@@ -167,11 +271,37 @@ export default function OperationalTanksPage() {
         renderEmptyState()
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {filteredTanks.map((tank, idx) => (
-              <TankMiniCard key={`tank-${tank.id}-${tank.empresa_codigo}-${idx}`} tank={tank} />
-            ))}
-          </div>
+          {isConsolidated ? (
+            <div className="space-y-8">
+              {tanksByFilial.map((grupo) => (
+                <section key={grupo.code} className="space-y-3">
+                  <div className="flex items-center gap-2 border-b border-white/10 pb-2">
+                    <h2 className="text-base font-bold text-white">{grupo.nome}</h2>
+                    <Badge variant="outline" className="text-[10px] border-slate-700 text-slate-400">
+                      {grupo.tanks.length} tanque(s)
+                    </Badge>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                    {grupo.tanks.map((tank) => (
+                      <TankLevelCard
+                        key={`tank-${tank.empresa_codigo}-${tank.id}`}
+                        tank={tank}
+                      />
+                    ))}
+                  </div>
+                </section>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+              {filteredTanks.map((tank) => (
+                <TankLevelCard
+                  key={`tank-${tank.empresa_codigo}-${tank.id}`}
+                  tank={tank}
+                />
+              ))}
+            </div>
+          )}
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <Card className="lg:col-span-2 border-white/5 bg-slate-900/40">
@@ -186,18 +316,22 @@ export default function OperationalTanksPage() {
               <CardContent>
                 <div className="h-[400px] w-full">
                   <ResponsiveContainer width="100%" height="100%">
-                    <ComposedChart data={filteredTanks}>
+                    <ComposedChart data={chartData}>
                       <CartesianGrid
                         strokeDasharray="3 3"
                         vertical={false}
                         strokeOpacity={0.1}
                       />
                       <XAxis
-                        dataKey="name"
-                        fontSize={11}
+                        dataKey="chartLabel"
+                        fontSize={10}
                         axisLine={false}
                         tickLine={false}
                         tick={{ fill: "#94a3b8" }}
+                        interval={0}
+                        angle={isConsolidated ? -25 : 0}
+                        textAnchor={isConsolidated ? "end" : "middle"}
+                        height={isConsolidated ? 70 : 30}
                       />
                       <YAxis
                         fontSize={11}
@@ -252,16 +386,20 @@ export default function OperationalTanksPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                {filteredTanks
+                {[...filteredTanks]
                   .sort((a, b) => Math.abs(b.physical_var) - Math.abs(a.physical_var))
-                  .map((tank, idx) => (
+                  .map((tank) => (
                     <div
-                      key={`status-${tank.id}-${tank.empresa_codigo}-${idx}`}
+                      key={`status-${tank.empresa_codigo}-${tank.id}`}
                       className="flex items-center justify-between p-3 rounded-lg border border-white/5 bg-slate-50/5 dark:bg-slate-900/50"
                     >
-                      <div className="space-y-1">
-                        <p className="text-sm font-bold text-white">{tank.name}</p>
-                        <p className="text-[10px] text-slate-500">{tank.fuel}</p>
+                      <div className="space-y-1 min-w-0">
+                        <p className="text-sm font-bold text-white truncate">{tank.name}</p>
+                        <p className="text-[10px] text-slate-500 truncate">
+                          {isConsolidated
+                            ? `${empresaNomeOperacional(tank.empresa_codigo)} · ${tank.fuel}`
+                            : tank.fuel}
+                        </p>
                       </div>
                       <div className="text-right">
                         <p
@@ -300,148 +438,85 @@ export default function OperationalTanksPage() {
   );
 }
 
-function TankMiniCard({ tank }: { tank: TankData }) {
-  const percent = tank.capacity > 0 ? (tank.current / tank.capacity) * 100 : 0;
-  const autonomia = tank.autonomia_dias;
-  const alerta = tank.alerta_autonomia || "OK";
-  const label =
-    tank.alerta_label ||
-    (alerta === "COMPRA_URGENTE"
-      ? "Risco de Ruptura - Pedir Carreta"
-      : alerta === "ATENCAO"
-        ? "Atenção"
-        : "Saudável");
+function TankLevelCard({ tank }: { tank: TankData }) {
+  const gnv = isGnvProduct(tank.fuel) || isGnvProduct(tank.name);
+  const tankNum = String(tank.id).padStart(2, "0");
+  const fuel = (tank.fuel || tank.name || "COMBUSTÍVEL").toUpperCase();
+  const title = `Tanque ${tankNum} - ${fuel}`;
+  const filialNome = empresaNomeOperacional(tank.empresa_codigo);
+  const alerta = gnv ? "OK" : tank.alerta_autonomia || "OK";
+  const label = gnv
+    ? "GNV canalizado — sem carreta"
+    : tank.alerta_label ||
+      (alerta === "COMPRA_URGENTE"
+        ? "Pedir Carreta"
+        : alerta === "ATENCAO"
+          ? "Atenção"
+          : "Saudável");
+
+  const divergencia = tank.divergencia_litros ?? tank.physical_var ?? 0;
 
   return (
-    <Card className="border-slate-800 bg-slate-900/90">
-      <CardContent className="pt-6">
-        <div className="flex items-center justify-between mb-3">
-          <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400">
-            <Droplet size={20} />
-          </div>
-          <div className="flex items-center gap-1 text-slate-300">
-            <Thermometer size={14} />
-            <span className="text-xs font-medium">
-              {tank.temp > 0 ? `${tank.temp}ºC` : "N/D"}
+    <TankMonitorCard
+      title={title}
+      fuelLabel={`${filialNome}${tank.temp > 0 ? ` · ${tank.temp}ºC` : ""}`}
+      currentLiters={tank.current}
+      capacityLiters={tank.capacity}
+      autonomiaDias={gnv ? null : tank.autonomia_dias}
+      consumoMedioDiario={gnv ? null : tank.consumo_medio_diario}
+      alertLevel={alerta}
+      alertLabel={label}
+      isGnv={gnv}
+      tankId={tank.id}
+      empresaCodigo={tank.empresa_codigo}
+      measuredAt={tank.data_hora_medidor}
+      footer={
+        <>
+          <p className="text-[10px] uppercase font-bold tracking-wider text-slate-500">
+            Auditoria Físico × Contábil
+          </p>
+          <div className="flex justify-between gap-2">
+            <span>Físico</span>
+            <span className="font-mono text-slate-200">
+              {(tank.estoque_fisico ?? tank.current).toLocaleString("pt-BR")} L
             </span>
           </div>
-        </div>
-
-        <div className="space-y-2">
-          <div className="flex justify-between items-end gap-2">
-            <p className="text-sm font-bold truncate text-white">{tank.name}</p>
-            <p className="text-[10px] text-slate-300 shrink-0">
-              {tank.current > 0
-                ? `${tank.current.toLocaleString("pt-BR")}L / ${tank.capacity.toLocaleString("pt-BR")}L`
-                : "SEM REGISTRO"}
-            </p>
+          <div className="flex justify-between gap-2">
+            <span>Contábil</span>
+            <span className="font-mono text-slate-200">
+              {(tank.estoque_contabil ?? 0).toLocaleString("pt-BR")} L
+            </span>
           </div>
-
-          {tank.fuel ? (
-            <p className="text-[10px] text-slate-300 truncate">{tank.fuel}</p>
-          ) : null}
-
-          <div className="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
-            <div
+          <div className="flex justify-between gap-2">
+            <span>Divergência</span>
+            <span
               className={cn(
-                "h-full transition-all",
-                percent < 15 ? "bg-rose-500" : percent < 30 ? "bg-amber-500" : "bg-emerald-500"
-              )}
-              style={{ width: `${Math.min(100, Math.max(0, percent))}%` }}
-            />
-          </div>
-
-          <div className="rounded-md border border-slate-800 bg-slate-950/50 px-2 py-1.5">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] uppercase font-bold tracking-wider text-slate-300">
-                Autonomia
-              </span>
-              <span
-                className={cn(
-                  "text-sm font-mono font-bold",
-                  autonomia != null && autonomia < 1.5
-                    ? "text-rose-400"
-                    : autonomia != null && autonomia < 3
-                      ? "text-amber-400"
-                      : "text-emerald-400"
-                )}
-              >
-                {autonomia != null && autonomia < 900
-                  ? `${autonomia.toFixed(1)} dias`
-                  : "—"}
-              </span>
-            </div>
-            {tank.consumo_medio_diario ? (
-              <p className="text-[10px] text-slate-300 mt-0.5">
-                Média 7d: {tank.consumo_medio_diario.toLocaleString("pt-BR")} L/dia
-              </p>
-            ) : null}
-            <Badge
-              variant="outline"
-              className={cn(
-                "mt-1.5 text-[9px] h-auto py-0.5 whitespace-normal text-left",
-                alerta === "COMPRA_URGENTE" &&
-                  "border-rose-500/40 bg-rose-500/10 text-rose-300",
-                alerta === "ATENCAO" &&
-                  "border-amber-500/40 bg-amber-500/10 text-amber-300",
-                alerta === "OK" &&
-                  "border-emerald-500/40 bg-emerald-500/10 text-emerald-300"
+                "font-mono font-bold",
+                tank.alerta_variancia ? "text-rose-400" : "text-emerald-400"
               )}
             >
-              {alerta === "COMPRA_URGENTE"
-                ? "🔴 "
-                : alerta === "ATENCAO"
-                  ? "🟡 "
-                  : "🟢 "}
-              {label}
+              {divergencia > 0 ? "+" : ""}
+              {divergencia.toLocaleString("pt-BR")} L
+              {tank.divergencia_pct != null
+                ? ` (${tank.divergencia_pct.toFixed(2)}%)`
+                : ""}
+            </span>
+          </div>
+          {tank.alerta_variancia ? (
+            <Badge
+              variant="outline"
+              className="text-[9px] h-auto py-0.5 whitespace-normal text-left border-rose-500/40 bg-rose-500/10 text-rose-300"
+            >
+              {tank.alerta_variancia_label ||
+                "Alerta de variância (térmica ou fuga)"}
             </Badge>
-          </div>
-
-          <div className="rounded-md border border-slate-800 bg-slate-950/40 px-2 py-1.5 space-y-1">
-            <p className="text-[10px] uppercase font-bold tracking-wider text-slate-300">
-              Auditoria Físico × Contábil
+          ) : (
+            <p className="text-[10px] text-emerald-400">
+              Dentro da tolerância ±0,6%
             </p>
-            <div className="flex justify-between text-[10px] text-slate-300">
-              <span>Físico</span>
-              <span className="font-mono text-white">
-                {(tank.estoque_fisico ?? tank.current).toLocaleString("pt-BR")} L
-              </span>
-            </div>
-            <div className="flex justify-between text-[10px] text-slate-300">
-              <span>Contábil</span>
-              <span className="font-mono text-white">
-                {(tank.estoque_contabil ?? 0).toLocaleString("pt-BR")} L
-              </span>
-            </div>
-            <div className="flex justify-between text-[10px]">
-              <span className="text-slate-300">Divergência</span>
-              <span
-                className={cn(
-                  "font-mono font-bold",
-                  tank.alerta_variancia ? "text-rose-400" : "text-emerald-400"
-                )}
-              >
-                {(tank.divergencia_litros ?? tank.physical_var ?? 0) > 0 ? "+" : ""}
-                {(tank.divergencia_litros ?? tank.physical_var ?? 0).toLocaleString("pt-BR")} L
-                {tank.divergencia_pct != null
-                  ? ` (${tank.divergencia_pct.toFixed(2)}%)`
-                  : ""}
-              </span>
-            </div>
-            {tank.alerta_variancia ? (
-              <Badge
-                variant="outline"
-                className="text-[9px] h-auto py-0.5 whitespace-normal text-left border-rose-500/40 bg-rose-500/10 text-rose-300"
-              >
-                {tank.alerta_variancia_label ||
-                  "Alerta de Auditoria de Variância (Possível Variação Térmica ou Fuga)"}
-              </Badge>
-            ) : (
-              <p className="text-[10px] text-emerald-400">Dentro da tolerância ±0,6%</p>
-            )}
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+          )}
+        </>
+      }
+    />
   );
 }

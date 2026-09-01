@@ -1,6 +1,7 @@
-"""Rota Anti-Fraude — leitura exclusiva do cache RAM (<50ms) + filtros em memória (<20ms).
+"""Rota Anti-Fraude — audita baixados reais do período (WebPosto) + filtros em memória.
 
 GET /api/v1/executive/audit/card-fraud
+D0 pode usar cache RAM do PistaSyncWorker; histórico/multi-dia chama FraudDetectionEngine.auditar_periodo.
 """
 
 from __future__ import annotations
@@ -54,7 +55,7 @@ async def get_card_fraud_audit(
         description="Ignorado no GET (thresholds vêm do worker/settings).",
     ),
 ) -> dict:
-    """Auditoria anti-fraude — 100% memória RAM (PistaSyncWorker 30s) + filtros RAM."""
+    """Auditoria anti-fraude sobre baixados do período + filtros RAM opcionais."""
     _ = limiarRetencaoMinutos
     from datetime import date
 
@@ -67,27 +68,21 @@ async def get_card_fraud_audit(
     )
 
     engine = get_fraud_detection_engine()
-    store = engine.get_store()
 
-    if store.result is None and not store.gerado_em:
-        import asyncio
-
-        async def _warm() -> None:
-            try:
-                await engine.refresh_from_pista()
-            except Exception as exc:
-                logger.warning("card-fraud warm-up falhou: %s", exc)
-
-        try:
-            asyncio.get_running_loop().create_task(_warm())
-        except RuntimeError:
-            pass
-
-    result = engine.response_from_ram(
-        empresa_codigo=empresa,
-        data_inicial=start,
-        data_final=end,
-    )
+    # Período histórico / multi-dia → audita baixados reais WebPosto (não só RAM D0)
+    try:
+        result = await engine.auditar_periodo(
+            data_inicial=start,
+            data_final=end,
+            empresa_codigo=empresa,
+        )
+    except Exception as exc:
+        logger.exception("card-fraud auditar_periodo falhou: %s", exc)
+        result = engine.response_from_ram(
+            empresa_codigo=empresa,
+            data_inicial=start,
+            data_final=end,
+        )
 
     total_antes = len(result.ocorrencias)
     frentistas = list_frentistas_disponiveis(result.ocorrencias)

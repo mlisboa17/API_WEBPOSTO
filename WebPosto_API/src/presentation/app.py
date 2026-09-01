@@ -38,6 +38,7 @@ from src.application.usecases.fetch_produtos_catalog import (
     fetch_produtos_catalog_completo,
 )
 from src.application.usecases.produto_crud import (
+    alterar_preco_oficial,
     atualizar_produto,
     criar_produto,
     obter_produto,
@@ -123,8 +124,24 @@ _POSTO_ALIASES = {
 _PRODUCTION_POSTO_IDS = ("rio_doce", "casa_caiada")
 
 
+_REDE_NOME_CANONICO = "Lisb\u00f4a"
+
+
+def _recuperar_mojibake(valor: str) -> str:
+    if "Ã" not in valor:
+        return valor
+    try:
+        return valor.encode("latin-1").decode("utf-8")
+    except (UnicodeDecodeError, UnicodeEncodeError):
+        return valor
+
+
 def _rede_nome() -> str:
-    return (_env("WEBPOSTO_REDE_NOME") or "LISBÔA").strip() or "LISBÔA"
+    bruto = _recuperar_mojibake((_env("WEBPOSTO_REDE_NOME") or _REDE_NOME_CANONICO).strip())
+    chave = "".join(ch for ch in bruto.casefold() if ch.isalpha())
+    if chave in {"lisboa", "lisb\u00f4a"} or chave.startswith("lisb"):
+        return _REDE_NOME_CANONICO
+    return bruto or _REDE_NOME_CANONICO
 
 
 def _parse_posto_sel(posto: Optional[str]) -> List[str]:
@@ -362,6 +379,169 @@ def create_unified_app() -> FastAPI:
         app.include_router(auditoria.router)
     except Exception:
         pass
+
+    try:
+        from src.api.v1.endpoints import fiscal_audit as fiscal_audit_ep
+
+        app.include_router(fiscal_audit_ep.router)
+    except Exception as exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas fiscal audit não carregadas: %s", exc)
+
+    try:
+        from src.api.v1.endpoints import ai_chat as ai_chat_ep
+
+        app.include_router(ai_chat_ep.router)
+    except Exception as exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas AI chat não carregadas: %s", exc)
+
+    try:
+        from src.api.v1.endpoints import ai_health as ai_health_ep
+
+        app.include_router(ai_health_ep.router)
+    except Exception as exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas AI health não carregadas: %s", exc)
+
+    try:
+        from src.api.v1.endpoints import conveniencia as conveniencia_ep
+
+        app.include_router(conveniencia_ep.router)
+    except Exception as exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas conveniência não carregadas: %s", exc)
+
+    try:
+        from src.api.v1.endpoints import webhooks_audit as webhooks_audit_ep
+
+        app.include_router(webhooks_audit_ep.router)
+    except Exception as exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas webhooks audit não carregadas: %s", exc)
+
+    try:
+        from src.api.v1.endpoints import webhooks_receiver as webhooks_receiver_ep
+
+        app.include_router(webhooks_receiver_ep.router)
+        app.include_router(webhooks_receiver_ep.admin_router)
+    except Exception as exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas webhooks receiver não carregadas: %s", exc)
+
+    try:
+        from src.api.v1.endpoints import cost_proposals as cost_proposals_ep
+
+        app.include_router(cost_proposals_ep.router)
+    except Exception as exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas cost proposals não carregadas: %s", exc)
+
+    try:
+        from src.api.v1.endpoints import conveniencia_sales as conveniencia_sales_ep
+
+        app.include_router(conveniencia_sales_ep.router)
+    except Exception as exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas conveniencia sales não carregadas: %s", exc)
+
+    try:
+        from src.api.v1.endpoints import proposals as proposals_ep
+
+        app.include_router(proposals_ep.router)
+    except Exception as exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas proposals lifecycle não carregadas: %s", exc)
+
+    try:
+        from src.api.v1.endpoints import logistica as logistica_ep
+
+        app.include_router(logistica_ep.router)
+    except Exception as exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas logística TMS não carregadas: %s", exc)
+
+    try:
+        from src.api.v1.endpoints import conveniencia_sync as conveniencia_sync_ep
+
+        app.include_router(conveniencia_sync_ep.router)
+    except Exception as exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas conveniencia sync não carregadas: %s", exc)
+
+    try:
+        from src.api.v1.endpoints import conveniencia_receiving as conveniencia_receiving_ep
+
+        app.include_router(conveniencia_receiving_ep.router)
+    except Exception as exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas conveniencia recebimento não carregadas: %s", exc)
+
+    try:
+        from src.api.v1.endpoints import conveniencia_visual_audit as conveniencia_visual_audit_ep
+
+        app.include_router(conveniencia_visual_audit_ep.router)
+    except Exception as exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas conveniencia visual audit não carregadas: %s", exc)
+
+    try:
+        from src.api.v1.endpoints import conveniencia_analytics as conveniencia_analytics_ep
+
+        app.include_router(conveniencia_analytics_ep.router)
+    except Exception as exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas conveniencia analytics não carregadas: %s", exc)
+
+    try:
+        from src.api.v1.endpoints import conveniencia_onboarding as conveniencia_onboarding_ep
+
+        app.include_router(conveniencia_onboarding_ep.router)
+    except Exception as exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas conveniencia onboarding não carregadas: %s", exc)
+
+    try:
+        from src.api.v1.endpoints import conveniencia_quality as conveniencia_quality_ep
+
+        app.include_router(conveniencia_quality_ep.router)
+    except Exception as exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas conveniencia quality não carregadas: %s", exc)
+
+    try:
+        from src.api.v1.endpoints import conveniencia_executive as conveniencia_executive_ep
+
+        app.include_router(conveniencia_executive_ep.router)
+    except Exception as trans_exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas conveniencia executive não carregadas: %s", trans_exc)
+
+    try:
+        from src.api.v1.endpoints import conveniencia_ia_ops as conveniencia_ia_ops_ep
+
+        app.include_router(conveniencia_ia_ops_ep.router)
+    except Exception as exc:
+        import logging
+
+        logging.getLogger(__name__).warning("Rotas conveniencia ia-ops não carregadas: %s", exc)
 
     cache = get_cache()
     cache_svc = get_cache_service()
@@ -620,6 +800,15 @@ def create_unified_app() -> FastAPI:
         # Salva o resultado final consolidado no cache (300 segundos)
         cache.set_json(ck, out.model_dump(mode="json"), ttl=300)
         return out
+
+    @app.on_event("startup")
+    async def init_conveniencia_sqlite() -> None:
+        try:
+            from src.services.proposals.db import init_local_db
+
+            init_local_db()
+        except Exception:
+            pass
 
     @app.on_event("startup")
     async def prewarm_adelaide_kpis() -> None:

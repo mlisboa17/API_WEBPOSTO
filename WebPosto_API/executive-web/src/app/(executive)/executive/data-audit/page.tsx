@@ -24,11 +24,12 @@ import { GlobalFilterHeader } from "@/components/executive/global-filter-header"
 import { ExpenseDetailModal } from "@/components/executive/expense-detail-modal";
 import { CardFraudAuditPanel } from "@/components/executive/card-fraud-audit-panel";
 import { CashierAuditPanel } from "@/components/executive/cashier-audit-panel";
-import { PistaLivePanel } from "@/components/executive/pista-live-panel";
 import { useGlobalFilter } from "@/contexts/global-filter-context";
 import { apiService } from "@/lib/api";
 import { exportDataAuditExcel, exportDataAuditPdf } from "@/lib/export-executive-report";
+import { exportFraudAuditExcel, exportFraudAuditPdf } from "@/lib/export-fraud-audit-report";
 import type {
+  CardFraudAuditResponse,
   DataAuditExpenseCategory,
   DataAuditFilial,
   DataAuditResponse,
@@ -43,7 +44,8 @@ type AuditTab = "afericao" | "anti-fraude" | "caixas" | "pista-ao-vivo";
 function resolveTab(raw: string | null): AuditTab {
   if (raw === "caixas" || raw === "cashier") return "caixas";
   if (raw === "anti-fraude" || raw === "fraude") return "anti-fraude";
-  if (raw === "pista-ao-vivo" || raw === "pista" || raw === "live") return "pista-ao-vivo";
+  // Pista ao Vivo desativada — redireciona para aferição
+  if (raw === "pista-ao-vivo" || raw === "pista" || raw === "live") return "afericao";
   return "afericao";
 }
 
@@ -68,6 +70,7 @@ function DataAuditPageContent() {
   const searchParams = useSearchParams();
   const urlTab = resolveTab(searchParams.get("tab"));
   const [data, setData] = useState<DataAuditResponse | null>(null);
+  const [fraudData, setFraudData] = useState<CardFraudAuditResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [periodReady, setPeriodReady] = useState(false);
@@ -95,11 +98,18 @@ function DataAuditPageContent() {
     [router, pathname, searchParams]
   );
 
-  // DRE / fechamento: sempre inicia em ONTEM (D-1)
+  // Aferição: default ONTEM (D-1). Anti-fraude: preserva o período do filtro global
+  // (ex.: Últimos 7 Dias) para auditoria histórica real.
   useEffect(() => {
-    setSelectedPeriod("yesterday");
+    if (urlTab === "afericao") {
+      setSelectedPeriod("yesterday");
+    }
     setPeriodReady(true);
-  }, [setSelectedPeriod]);
+  }, [setSelectedPeriod, urlTab]);
+
+  const onFraudDataLoaded = useCallback((payload: CardFraudAuditResponse | null) => {
+    setFraudData(payload);
+  }, []);
 
   const fetchData = useCallback(async () => {
     try {
@@ -171,14 +181,28 @@ function DataAuditPageContent() {
           <Button
             size="sm"
             variant="outline"
-            disabled={!data || loading}
-            onClick={() =>
-              data &&
-              exportDataAuditPdf(data, {
-                filialLabel: filialShortLabel,
-                periodLabel,
-              })
+            disabled={
+              activeTab === "anti-fraude"
+                ? !fraudData
+                : !data || loading
             }
+            onClick={() => {
+              if (activeTab === "anti-fraude") {
+                if (fraudData) {
+                  exportFraudAuditPdf(fraudData, {
+                    filialLabel: filialShortLabel,
+                    periodLabel,
+                  });
+                }
+                return;
+              }
+              if (data) {
+                exportDataAuditPdf(data, {
+                  filialLabel: filialShortLabel,
+                  periodLabel,
+                });
+              }
+            }}
             className="border-rose-500/30 text-rose-200 hover:bg-rose-500/10"
           >
             <FileDown size={14} className="mr-2" />
@@ -187,8 +211,18 @@ function DataAuditPageContent() {
           <Button
             size="sm"
             variant="outline"
-            disabled={!data || loading}
-            onClick={() => data && exportDataAuditExcel(data)}
+            disabled={
+              activeTab === "anti-fraude"
+                ? !fraudData
+                : !data || loading
+            }
+            onClick={() => {
+              if (activeTab === "anti-fraude") {
+                if (fraudData) exportFraudAuditExcel(fraudData);
+                return;
+              }
+              if (data) exportDataAuditExcel(data);
+            }}
             className="border-emerald-500/30 text-emerald-200 hover:bg-emerald-500/10"
           >
             <FileSpreadsheet size={14} className="mr-2" />
@@ -197,7 +231,7 @@ function DataAuditPageContent() {
           <Button
             size="sm"
             onClick={() => void fetchData()}
-            disabled={loading}
+            disabled={loading || activeTab !== "afericao"}
             className="bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20"
           >
             <RefreshCcw size={14} className={cn("mr-2", loading && "animate-spin")} />
@@ -247,15 +281,18 @@ function DataAuditPageContent() {
         </button>
         <button
           type="button"
-          onClick={() => selectTab("pista-ao-vivo")}
+          disabled
+          title="Recurso em desenvolvimento"
           className={cn(
             "px-4 py-2 text-sm font-medium rounded-t-md border-b-2 transition-colors",
-            activeTab === "pista-ao-vivo"
-              ? "border-cyan-400 text-cyan-300 bg-cyan-500/5"
-              : "border-transparent text-slate-400 hover:text-slate-200"
+            "opacity-50 text-slate-500 bg-slate-900/50 border-slate-800 border-b-2",
+            "cursor-not-allowed pointer-events-none select-none inline-flex items-center gap-2"
           )}
         >
-          🌡️ Pista ao Vivo / Status Bicos
+          Pista ao Vivo / Status Bicos
+          <span className="bg-slate-800 text-slate-400 text-[10px] px-2 py-0.5 rounded border border-slate-700 font-semibold uppercase">
+            Inativo
+          </span>
         </button>
       </div>
 
@@ -267,9 +304,8 @@ function DataAuditPageContent() {
           end={periodDates.end}
           empresaCodigo={empresaCodigo}
           periodReady={periodReady}
+          onDataLoaded={onFraudDataLoaded}
         />
-      ) : activeTab === "pista-ao-vivo" ? (
-        <PistaLivePanel empresaCodigo={empresaCodigo} ready={periodReady} />
       ) : loading ? (
         <div className="space-y-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -542,11 +578,16 @@ function ValesFilialBlock({
             >
               <div className="min-w-0">
                 <p className="text-slate-200 truncate">
-                  {item.funcionario || "Funcionário"}
+                  {item.funcionario || "—"}
                 </p>
-                <p className="text-slate-300 truncate">{item.descricao}</p>
+                <p className="text-slate-400 truncate text-[10px]">
+                  {[item.dataCaixa, item.turno].filter(Boolean).join(" · ") || "sem rastreio"}
+                </p>
+                <p className="text-slate-300 truncate" title={item.descricao}>
+                  {item.descricao}
+                </p>
               </div>
-              <span className="shrink-0 font-semibold text-rose-200">
+              <span className="shrink-0 font-semibold text-rose-200 tabular-nums">
                 {formatBRL(item.valor ?? 0)}
               </span>
             </div>
@@ -612,6 +653,8 @@ function ValesConsolidatedTable({
               <thead>
                 <tr className="text-[10px] uppercase tracking-wider text-slate-300 border-b border-slate-800">
                   <th className="text-left py-2 pr-3 font-bold">Filial</th>
+                  <th className="text-left py-2 pr-3 font-bold">Data do Caixa</th>
+                  <th className="text-left py-2 pr-3 font-bold">Turno/PDV</th>
                   <th className="text-left py-2 pr-3 font-bold">Funcionário</th>
                   <th className="text-left py-2 pr-3 font-bold">Descrição</th>
                   <th className="text-left py-2 pr-3 font-bold">Fonte</th>
@@ -627,10 +670,16 @@ function ValesConsolidatedTable({
                     <td className="py-2 pr-3 text-slate-300 whitespace-nowrap">
                       {r.empresaNome}
                     </td>
+                    <td className="py-2 pr-3 text-slate-300 whitespace-nowrap">
+                      {r.dataCaixa || "—"}
+                    </td>
+                    <td className="py-2 pr-3 text-slate-300 whitespace-nowrap">
+                      {r.turno || "—"}
+                    </td>
                     <td className="py-2 pr-3 text-white font-medium whitespace-nowrap">
                       {r.funcionario || "—"}
                     </td>
-                    <td className="py-2 pr-3 text-slate-400 max-w-[320px] truncate">
+                    <td className="py-2 pr-3 text-slate-400 max-w-[280px] truncate" title={r.descricao}>
                       {r.descricao || "—"}
                     </td>
                     <td className="py-2 pr-3 text-slate-300 text-xs">

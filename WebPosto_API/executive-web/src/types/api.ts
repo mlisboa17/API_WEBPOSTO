@@ -357,6 +357,8 @@ export interface TankPrediction {
   margem_bruta_rs_litro?: number;
   valor_estoque_imobilizado_rs?: number;
   cpm_origem?: string;
+  /** ISO WebPosto dataHoraMedidor */
+  data_hora_medidor?: string | null;
 }
 
 export interface InventoryPredictionResponse {
@@ -427,6 +429,7 @@ export interface SalesCompositionResponse {
   periodo?: { inicio: string; fim: string };
   fonteAbastecimentos?: string;
   fallback?: boolean;
+  unavailable?: boolean;
   mensagem?: string | null;
 }
 
@@ -484,6 +487,8 @@ export interface DataAuditValeItem {
   planoConta?: string;
   planoContaCodigo?: number | null;
   fonte?: string;
+  dataCaixa?: string;
+  turno?: string;
 }
 
 export interface DataAuditValesFuncionarios {
@@ -504,6 +509,9 @@ export interface DataAuditFilial {
   valesFuncionarios?: DataAuditValesFuncionarios;
   resultadoOperacionalDiario: number;
   margemBrutaMediaRsLitro: number;
+  cpvCombustivel?: number;
+  margemBrutaCombustivel?: number;
+  custoMedioRsLitro?: number;
   valorEstoqueImobilizado: number;
   fallback?: boolean;
   mensagem?: string | null;
@@ -515,6 +523,310 @@ export interface DataAuditResponse {
   consolidado: Record<string, number | string>;
   success?: boolean;
   mensagem?: string;
+  unavailable?: boolean;
+  regime?: string;
+  periodLock?: {
+    mode?: string;
+    autoProject?: boolean;
+    realizedStart?: string;
+    realizedEnd?: string;
+    projectStart?: string | null;
+    projectEnd?: string | null;
+    badgeLabel?: string;
+  };
+}
+
+/** Sprint 2.1 — Benchmark justo entre filiais */
+export interface BranchNormalizedMetrics {
+  receitaPorLitro: number;
+  margemBrutaPorLitro: number;
+  despesaOperacionalPorLitro: number;
+  lucroLiquidoPorLitro: number;
+  faturamentoPorColaborador: number;
+  litrosPorBicoDia: number;
+  crescimentoVolumetriaPct: number | null;
+  despesasOperacionais: number;
+  funcionarios: number;
+  bicosAtivos: number;
+  dias: number;
+}
+
+export interface BranchBenchmarkVariance {
+  key: string;
+  empresaCodigo: number;
+  empresaNome: string;
+  metric: string;
+  label: string;
+  current: number;
+  previous: number;
+  deltaRsLitro: number;
+  deltaPct: number;
+  impactMargemRs: number;
+  direction: "up" | "down";
+  badge: string;
+  severity: string;
+}
+
+export interface BranchVsNetworkMetric {
+  value: number;
+  networkAvg: number | null;
+  deltaPctVsNetwork: number | null;
+  aboveNetwork: boolean;
+}
+
+export interface BranchBenchmarkRow {
+  empresaCodigo: number;
+  empresaNome: string;
+  faturamento: number;
+  litros: number;
+  resultado: number;
+  metrics: BranchNormalizedMetrics;
+  score: number;
+  rank: number;
+  classification: { tier: string; badge: string; color: string };
+  scoreBreakdown?: Record<string, number | Record<string, number>>;
+  leverage?: {
+    code: string;
+    badge: string;
+    detail?: string;
+    pctDespesa?: number | null;
+    pctReceita?: number | null;
+  };
+  vsNetwork?: Record<string, BranchVsNetworkMetric>;
+}
+
+export interface BranchRankingEntry {
+  rank: number;
+  empresaCodigo: number;
+  empresaNome: string;
+  value: number;
+  medal: string;
+}
+
+export interface BranchBenchmarkResponse {
+  period: { start: string; end: string };
+  comparePeriod: { start: string; end: string };
+  compareMode: string;
+  compareLabel?: string;
+  compareScale?: number;
+  regime: string;
+  networkAverage?: {
+    weight: string;
+    margemBrutaPorLitro: number | null;
+    despesaOperacionalPorLitro: number | null;
+    lucroLiquidoPorLitro: number | null;
+    receitaPorLitro: number | null;
+  };
+  rankings?: {
+    vendas: BranchRankingEntry[];
+    margemBruta: BranchRankingEntry[];
+    lucroLiquido: BranchRankingEntry[];
+    eficienciaCustos: BranchRankingEntry[];
+  };
+  branches: BranchBenchmarkRow[];
+  duel: { top3: BranchBenchmarkRow[]; bottom3: BranchBenchmarkRow[] };
+  topVariances: BranchBenchmarkVariance[];
+  narrative: string;
+  fairnessRule?: string;
+}
+
+/** Sprint 2.3 — Drivers / Forecast / Sanidade */
+export interface DreDriverItem {
+  key: string;
+  label: string;
+  formula: string;
+  value: number;
+}
+
+export interface DreIntelligenceResponse {
+  regime?: string;
+  compareMode?: string;
+  compareLabel?: string;
+  compareScale?: number;
+  drivers: {
+    deltaResultado: number;
+    margemRsLitroAtual: number;
+    margemRsLitroAnterior: number;
+    drivers: DreDriverItem[];
+    waterfall: { label: string; value: number; type: string; runningTotal?: number }[];
+    narrative: string;
+  } | null;
+  forecast: {
+    horizon: { horizon: string; label: string; endDate: string; daysToProject: number };
+    scenarios: Record<
+      string,
+      {
+        label: string;
+        assumptions: string;
+        faturamento: number;
+        litros: number;
+        margemBruta: number;
+        despesasOperacionais: number;
+        ebitda: number;
+        lucroLiquido: number;
+        margemRsLitro: number;
+      }
+    >;
+  } | null;
+  sanity: {
+    score: number;
+    status: string;
+    alertCount: number;
+    alerts: {
+      type: string;
+      severity: string;
+      badge: string;
+      message: string;
+      empresaCodigo?: number;
+      valor?: number;
+    }[];
+    summary?: Record<string, number>;
+  } | null;
+}
+
+/** Sprint 2.5 — Score de Saúde + Síntese Executiva */
+export interface HealthDimension {
+  label: string;
+  weight: number;
+  score: number;
+  value: number;
+  unit: string;
+  pctAditivados?: number;
+  pctNaoCombustivel?: number;
+}
+
+export interface ExecutiveHealthSynthesisResponse {
+  sprint?: string;
+  periodo?: { inicio: string; fim: string };
+  regime?: string;
+  compareMode?: string;
+  compareLabel?: string;
+  empresaCodigo?: number | null;
+  filialLabel?: string;
+  health: {
+    score: number;
+    classification: {
+      tier: string;
+      badge: string;
+      label: string;
+      color: string;
+    };
+    weights: Record<string, number>;
+    dimensions: Record<string, HealthDimension>;
+    metrics: {
+      litros: number;
+      lucro: number;
+      margemBruta: number;
+      despesasOp: number;
+      lucroRsLitro: number;
+      margemRsLitro: number;
+      despesaRsLitro: number;
+    };
+  } | null;
+  narrative: {
+    lines: string[];
+    texto: string;
+    line1_resultado?: string;
+    line2_drivers?: string;
+    line3_atencao?: string;
+    score?: number;
+    classification?: { tier: string; badge: string; label: string; color: string };
+  } | null;
+  sanitySummary?: { score?: number; alertCount?: number; status?: string };
+}
+
+/** Sprint 2.4 — DRE Multi-Dimensional */
+export interface DreCostCenterFamily {
+  familia: string;
+  litros: number;
+  receita: number;
+  cpv: number;
+  margemBruta: number;
+  margemRsLitro: number;
+}
+
+export interface DreCostCenterBlock {
+  key: string;
+  label: string;
+  receita: number;
+  cpv: number;
+  margemBruta: number;
+  margemRsLitro: number;
+  litros: number;
+  despesasAlocadas: number;
+  despesasRateioSugerido?: number;
+  resultado: number;
+  familias: DreCostCenterFamily[];
+}
+
+export interface DreTimeWindowRow {
+  key: string;
+  label: string;
+  litros: number;
+  receita: number;
+  cpv: number;
+  margemBruta: number;
+  margemRsLitro: number;
+  ticketMedio: number;
+  qtdAbastecimentos: number;
+  destaque?: boolean;
+}
+
+export interface DreFrentistaRow {
+  codigoFrentista: number | null;
+  nome: string;
+  litros: number;
+  receita: number;
+  margemBruta: number;
+  pctAditivados: number;
+  ticketMedio: number;
+  qtdAbastecimentos: number;
+  pctCoberturaCustoFixo: number;
+  pctCoberturaCustoFixoDiario?: number;
+}
+
+export interface DreMultidimensionalResponse {
+  sprint?: string;
+  allocationRule?: string;
+  periodo?: { inicio: string; fim: string; dias?: number };
+  regime?: string;
+  fonteAbastecimentos?: string;
+  dataQuality?: {
+    rows?: number;
+    realTimestamps?: number;
+    syntheticTimestamps?: number;
+    frentistasIdentificados?: number;
+    windowsReliable?: boolean;
+    frentistasReliable?: boolean;
+    httpEnriched?: boolean;
+    warning?: string | null;
+    warnings?: string[];
+  };
+  custoFixoPeriodo: number;
+  custoFixoDiario?: number;
+  despesasAlocadasTotal?: number;
+  despesasNaoAlocado?: number;
+  costCenters: DreCostCenterBlock[];
+  mixEffect: {
+    litrosComum: number;
+    litrosAditivada: number;
+    pctAditivada: number;
+    margemRsLitroComum: number;
+    margemRsLitroAditivada: number;
+    efeitoMixRs: number;
+    narrative: string;
+  } | null;
+  timeWindows: DreTimeWindowRow[];
+  frentistas: DreFrentistaRow[];
+  summary?: {
+    receitaPista?: number;
+    margemPista?: number;
+    litros?: number;
+    frentistasAtivos?: number;
+    pctCoberturaPista?: number;
+    pctCoberturaPistaDiaria?: number;
+    turnoDestaque?: string | null;
+  };
 }
 
 /** Sprint 7 — Análise consolidada de unidades */
@@ -784,12 +1096,36 @@ export interface CashierAuditFechamento {
   postoNome: string;
   turno: string;
   dataRef: string;
+  /** Imutável — medição bico/LDF */
   faturamentoBico: number;
+  dinheiro_sistemico?: number;
+  pix_sistemico?: number;
+  cartao_debito_sistemico?: number;
+  cartao_credito_sistemico?: number;
+  convenio_sistemico?: number;
+  /** Auditável — informado/declarado (PATCH adjust) */
   faturamentoCaixa: number;
+  dinheiro_declarado?: number;
+  pix_declarado?: number;
+  cartao_debito_declarado?: number;
+  cartao_credito_declarado?: number;
+  convenio_declarado?: number;
+  observacao_auditoria?: string | null;
+  ajustadoManualmente?: boolean;
   saldo: number;
   status: "AUDITADO" | "PENDENTE" | string;
+  statusLabel?: string;
   qtdAbastecimentos: number;
   caixaCodigo?: number | null;
+}
+
+export interface CashierAuditAdjustPayload {
+  dinheiro_declarado?: number;
+  pix_declarado?: number;
+  cartao_debito_declarado?: number;
+  cartao_credito_declarado?: number;
+  convenio_declarado?: number;
+  observacao_auditoria?: string | null;
 }
 
 export interface CashierAuditQuebraForma {
@@ -875,6 +1211,162 @@ export interface PistaLiveResponse {
   observacoes?: string[];
 }
 
+/** GET /api/v1/executive/live-feed */
+export interface LiveFeedFrentistaRow {
+  frentista_id: number | null;
+  nome_frentista: string;
+  qtd_atendimentos: number;
+  volume_litros_total: number;
+  faturamento_total: number;
+  pct_aditivada: number;
+  ticket_medio: number;
+  qtd_aditivada?: number;
+  ultimo_bico?: number;
+  ultimo_ilha?: number;
+}
+
+/** GET /api/v1/executive/pista-intelligence */
+export interface PistaIntelligenceTbico {
+  media_min: number;
+  media_segundos: number;
+  status: string;
+  cor: string;
+  amostra: number;
+  limites: { verde_max: number; amarelo_max: number };
+  ponteiro_pct: number;
+}
+
+export interface PistaIntelligenceFrentista {
+  frentista_id: number | null;
+  nome_frentista: string;
+  t_bico_media_min: number;
+  status: string;
+  cor: string;
+  qtd_janela: number;
+  pct_aditivada: number;
+  score_rush: number;
+  ultimo_bico: number;
+  ultimo_ilha: number;
+  ultimo_data_hora?: string;
+  faturamento_janela?: number;
+}
+
+export interface PistaIntelligenceAlerta {
+  tipo: string;
+  severidade: string;
+  titulo: string;
+  texto: string;
+  acao?: string;
+  bico?: number;
+  ilha?: number;
+  ilha_origem?: number;
+  ilha_destino?: number;
+}
+
+export interface PistaIntelligenceDuelo {
+  faturamento_hoje: number;
+  faturamento_ontem: number;
+  delta_faturamento: number;
+  litros_hoje: number;
+  litros_ontem: number;
+  delta_litros: number;
+  qtd_hoje: number;
+  qtd_ontem: number;
+  vencedor: string;
+  label_delta_fat: string;
+  label_delta_litros: string;
+}
+
+export interface PistaIntelligenceResponse {
+  success?: boolean;
+  error?: string;
+  empresaCodigo?: number | null;
+  empresaNome?: string;
+  dataRef?: string;
+  ultimaSincronizacaoIso?: string | null;
+  fromCache?: boolean;
+  fonte?: string;
+  janela_minutos?: number;
+  latencyMs?: number;
+  turno?: {
+    inicio: string;
+    fim: string;
+    faturamento_hoje: number;
+    litros_hoje: number;
+    qtd_hoje: number;
+  };
+  tbico: PistaIntelligenceTbico;
+  frentistas: PistaIntelligenceFrentista[];
+  destaque_rush: PistaIntelligenceFrentista | null;
+  duelo: PistaIntelligenceDuelo;
+  ilhas?: Array<{
+    ilha: number;
+    ocupacao_pct: number;
+    bicos_ocupados: number;
+    bicos_total: number;
+    minutos_saturada: number;
+    frentistas: string[];
+  }>;
+  alertas: PistaIntelligenceAlerta[];
+  ultimo_evento?: {
+    bico: number;
+    ilha: number;
+    frentista_id?: number | null;
+    frentista_nome?: string;
+    data_hora?: string;
+  } | null;
+}
+
+export interface LiveFeedStreamItem {
+  id: number;
+  uuid?: string;
+  data_hora: string;
+  hora: string;
+  bico: number;
+  produto: string;
+  litros: number;
+  valor: number;
+  empresa_codigo: number;
+  empresa_nome: string;
+  frentista_id?: number | null;
+  frentista_nome: string;
+  status: string;
+  venda_item_codigo: number;
+  aditivada?: boolean;
+  forma_pagamento?: string;
+}
+
+export interface LiveFeedKpis {
+  faturamento_dia: number;
+  volume_litros: number;
+  qtd_abastecimentos: number;
+  ticket_medio_pista: number;
+  mix_aditivada_pct: number;
+  ritmo_abast_por_minuto: number;
+}
+
+export interface LiveFeedResponse {
+  success?: boolean;
+  fromCache?: boolean;
+  fonte?: string;
+  dataRef?: string;
+  ultimaSincronizacaoIso?: string | null;
+  syncAgeSec?: number | null;
+  syncing?: boolean;
+  empresaCodigo?: number | null;
+  ordenarPor?: "faturamento" | "volume";
+  kpis: LiveFeedKpis;
+  ranking: LiveFeedFrentistaRow[];
+  destaques: {
+    campeao_aditivada: LiveFeedFrentistaRow | null;
+    oportunidade_treinamento: LiveFeedFrentistaRow | null;
+    media_pct_aditivada: number;
+  };
+  stream: LiveFeedStreamItem[];
+  observacoes?: string[];
+  error?: string;
+}
+
 export interface CardFraudOcorrencia {
   id: string;
   idOcorrencia?: string;
@@ -958,6 +1450,7 @@ export interface CardFraudResumo {
   valorCritico: number;
   frentistaMaiorIncidencia: string;
   frentistaMaiorIncidenciaQtd: number;
+  frentistaMaiorIncidenciaRetencaoMediaMin?: number;
   abastecimentosCriticosBanner: number;
   totalFraudes?: number;
   valorTotalEnvolvido?: number;
@@ -968,6 +1461,11 @@ export interface CardFraudResumo {
   rankingCPFs?: FraudRankingItem[];
   rankingPostos?: FraudRankingItem[];
   distribuicaoRisco?: Record<string, number>;
+  /** 🔴 Crítico · 🟧 Alto · 🟡 Médio · 🟢 Baixo */
+  totalSeveridadeCritico?: number;
+  totalSeveridadeAlto?: number;
+  totalSeveridadeMedio?: number;
+  totalSeveridadeBaixo?: number;
 }
 
 export interface CardFraudFrentistaOption {
@@ -1048,6 +1546,8 @@ export interface ForecourtMarker {
   label?: string;
   x: number;
   y: number;
+  /** ROAD = rótulo viário externo (nunca ilha/bomba/fonte térmica). */
+  kind?: "ROAD" | "LANDMARK" | string;
 }
 
 export interface ForecourtIsland {

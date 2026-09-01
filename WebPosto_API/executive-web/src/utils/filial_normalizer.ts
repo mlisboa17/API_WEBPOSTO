@@ -9,6 +9,18 @@ export const EMPRESA_CASA_CAIADA = 5555;
 export const EMPRESA_VIP = 11495;
 export const EMPRESA_REAL_DOZE = 74014;
 
+/** Nomes operacionais oficiais (UI — nunca "Filial 5555"). */
+export const EMPRESA_NOME_OPERACIONAL: Record<number, string> = {
+  [EMPRESA_CASA_CAIADA]: "AP CASA CAIADA",
+  [EMPRESA_VIP]: "POSTO VIP",
+  [EMPRESA_REAL_DOZE]: "POSTO REAL / DOZE",
+};
+
+export function empresaNomeOperacional(codigo: number | null | undefined): string {
+  if (codigo == null || codigo === 0) return "Todas as Filiais";
+  return EMPRESA_NOME_OPERACIONAL[codigo] || `Filial ${codigo}`;
+}
+
 /** Ordinal interno (legado UI/cache) → código WebPosto. */
 export const ORDINAL_TO_EMPRESA: Record<number, number> = {
   1: EMPRESA_CASA_CAIADA,
@@ -37,6 +49,7 @@ const ALIAS_TO_EMPRESA: Record<string, number> = {
   "02": EMPRESA_VIP,
   "002": EMPRESA_VIP,
   "11495": EMPRESA_VIP,
+  "6666": EMPRESA_VIP,
   vip: EMPRESA_VIP,
   postovip: EMPRESA_VIP,
   postovipolinda: EMPRESA_VIP,
@@ -78,6 +91,7 @@ export function resolveEmpresaCodigo(raw: unknown): number | null {
 
   if (typeof raw === "number" && Number.isFinite(raw)) {
     const n = Math.trunc(raw);
+    if (n === 6666) return EMPRESA_VIP;
     if (n === EMPRESA_CASA_CAIADA || n === EMPRESA_VIP || n === EMPRESA_REAL_DOZE) return n;
     if (ORDINAL_TO_EMPRESA[n]) return ORDINAL_TO_EMPRESA[n];
     return n > 0 ? n : null;

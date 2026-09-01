@@ -39,9 +39,15 @@ class CompleteDepartmentalDreService:
                 found.extend(cls._walk_department_rows(child))
         return found
 
-    async def build(self, start: str, end: str, company_code: int | None = None) -> dict[str, Any]:
+    async def build(
+        self,
+        start: str,
+        end: str,
+        company_code: int | None = None,
+        regime: str | None = None,
+    ) -> dict[str, Any]:
         reconciliation, fuel_response, non_fuel_response = await asyncio.gather(
-            self._reconciliation.build(start, end, company_code),
+            self._reconciliation.build(start, end, company_code, regime=regime),
             self._fuel.build(start, end, company_code),
             self._non_fuel.build(start, end, company_code),
         )
@@ -135,6 +141,9 @@ class CompleteDepartmentalDreService:
                 })
         return {
             "period": {"start": start, "end": end},
+            "regime": reconciliation.get("regime"),
+            "regimeLabel": reconciliation.get("regimeLabel"),
+            "periodLock": reconciliation.get("periodLock") or {},
             "lines": lines,
             "allReleased": all(row["status"] == "LIBERADO" for row in lines),
             "consolidatedGenericResult": False,

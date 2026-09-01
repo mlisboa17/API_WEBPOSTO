@@ -111,7 +111,10 @@ export const NAV_AREAS = [
 
     label: "Produtos Vendidos",
 
-    tabs: [{ id: "produtos", label: "Produtos Vendidos", view: "productsHub" }],
+    tabs: [
+      { id: "produtos", label: "Produtos Vendidos", view: "productsHub" },
+      { id: "atualizacao_precos", label: "Atualização de Preços", view: "priceUpdateOperational" },
+    ],
 
     motors: [],
 

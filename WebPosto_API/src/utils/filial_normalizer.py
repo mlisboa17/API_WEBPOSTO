@@ -13,6 +13,7 @@ from typing import Any
 EMPRESA_CASA_CAIADA = 5555
 EMPRESA_VIP = 11495
 EMPRESA_REAL_DOZE = 74014
+EMPRESA_VIP_LEGACY_ALIAS = 6666
 
 ORDINAL_TO_EMPRESA: dict[int, int] = {
     1: EMPRESA_CASA_CAIADA,
@@ -39,6 +40,7 @@ _ALIAS_TO_EMPRESA: dict[str, int] = {
     "02": EMPRESA_VIP,
     "002": EMPRESA_VIP,
     "11495": EMPRESA_VIP,
+    "6666": EMPRESA_VIP,
     "vip": EMPRESA_VIP,
     "postovip": EMPRESA_VIP,
     "postovipolinda": EMPRESA_VIP,
@@ -81,6 +83,8 @@ def resolve_empresa_codigo(raw: Any) -> int | None:
 
     if isinstance(raw, (int, float)):
         n = int(raw)
+        if n == EMPRESA_VIP_LEGACY_ALIAS:
+            return EMPRESA_VIP
         if n in (EMPRESA_CASA_CAIADA, EMPRESA_VIP, EMPRESA_REAL_DOZE):
             return n
         if n in ORDINAL_TO_EMPRESA:

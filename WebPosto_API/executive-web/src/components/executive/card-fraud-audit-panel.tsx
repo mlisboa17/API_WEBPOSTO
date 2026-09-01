@@ -106,11 +106,12 @@ function matchTipo(o: CardFraudOcorrencia, tipo: string): boolean {
     );
   }
   if (tipo === "EXCESSO_DESCONTO") {
+    const nivel = (o.nivelRisco || "").toUpperCase();
     return (
-      (o.nivelRisco || "").toUpperCase() === "DESCONTO" ||
-      (o.valorDesconto ?? 0) > 0 ||
+      nivel === "DESCONTO" ||
+      nivel === "FRAUDE_SUSPEITA" ||
       gatilho.includes("DESCONTO") ||
-      motivo.includes("DESCONTO")
+      (motivo.includes("DESCONTO") && (o.valorDesconto ?? 0) > 0)
     );
   }
   if (tipo === "AGRUPAMENTO_BICOS") {
@@ -182,6 +183,8 @@ interface Props {
   end: string;
   empresaCodigo?: number;
   periodReady: boolean;
+  /** Expõe o snapshot para exportação PDF/Excel no header da página. */
+  onDataLoaded?: (data: CardFraudAuditResponse | null) => void;
 }
 
 function formatBRL(v: number) {
@@ -262,6 +265,14 @@ function riskTone(nivel: string, score?: number) {
       label: score != null ? `DESCONTO · ${score}` : "DESCONTO/APP",
       badge: "bg-orange-950/80 text-orange-400 border-orange-500/40",
       card: "border-orange-500/40 bg-orange-950/15",
+      rank: 1,
+    };
+  }
+  if (n === "FRAUDE_SUSPEITA") {
+    return {
+      label: score != null ? `FRAUDE $ · ${score}` : "FRAUDE SUSPEITA (DINHEIRO)",
+      badge: "bg-rose-950/80 text-rose-300 border-rose-500/50",
+      card: "border-rose-500/35 bg-rose-950/25",
       rank: 1,
     };
   }
@@ -376,14 +387,20 @@ function PagamentoBlock({ o }: { o: CardFraudOcorrencia }) {
 
 const DEFAULT_SETTINGS: AuditFraudSettings = {
   empresa_id: 0,
-  tempo_retencao_critico_min: 30,
-  tempo_retencao_atencao_min: 15,
+  tempo_retencao_critico_min: 15,
+  tempo_retencao_atencao_min: 10,
   tempo_agrupamento_max_min: 15,
   percentual_desconto_suspeito_pct: 10,
   recorrencia_cpf_cartao_limite: 3,
 };
 
-export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: Props) {
+export function CardFraudAuditPanel({
+  start,
+  end,
+  empresaCodigo,
+  periodReady,
+  onDataLoaded,
+}: Props) {
   const [data, setData] = useState<CardFraudAuditResponse | null>(null);
   const [settings, setSettings] = useState<AuditFraudSettings>(DEFAULT_SETTINGS);
   const [draft, setDraft] = useState<AuditFraudSettings>(DEFAULT_SETTINGS);
@@ -406,20 +423,26 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
         apiService.getAuditFraudSettings(empresaCodigo ?? 0),
       ]);
       setData(result);
+      onDataLoaded?.(result);
       setSettings(cfg);
       setDraft(cfg);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erro ao carregar auditoria anti-fraude");
       setData(null);
+      onDataLoaded?.(null);
     } finally {
       setLoading(false);
     }
-  }, [start, end, empresaCodigo]);
+  }, [start, end, empresaCodigo, onDataLoaded]);
 
   useEffect(() => {
     if (!periodReady) return;
     void fetchData();
   }, [fetchData, periodReady]);
+
+  useEffect(() => {
+    if (!periodReady) onDataLoaded?.(null);
+  }, [periodReady, onDataLoaded]);
 
   // Deep-link Guardião WhatsApp: ?ocorrencia=FR-...
   useEffect(() => {
@@ -537,6 +560,12 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
     MEDIO: resumo?.totalAtencao ?? 0,
     BAIXO: 0,
   };
+  const sevCritico = resumo?.totalSeveridadeCritico ?? dist.ALTO ?? 0;
+  const sevAlto =
+    resumo?.totalSeveridadeAlto ??
+    (dist.DESCONTO ?? 0) + (dist.FRAUDE_SUSPEITA ?? 0);
+  const sevMedio = resumo?.totalSeveridadeMedio ?? dist.MEDIO ?? 0;
+  const sevBaixo = resumo?.totalSeveridadeBaixo ?? dist.BAIXO ?? 0;
   const selectCls =
     "h-9 rounded-md border border-slate-700 bg-slate-950 px-2 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-cyan-500/50";
 
@@ -614,7 +643,7 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
             <Kpi
               label="Total Fraudes"
               value={String(resumo?.totalFraudes ?? resumo?.totalAgrupamentosSuspeitos ?? 0)}
-              sub={`🔴${dist.ALTO ?? 0} · 🟧${dist.DESCONTO ?? 0} · 🟡${dist.MEDIO ?? 0} · 🟢${dist.BAIXO ?? 0}`}
+              sub={`🔴${sevCritico} · 🟧${sevAlto} · 🟡${sevMedio} · 🟢${sevBaixo}`}
             />
             <Kpi
               label="Valor Envolvido"
@@ -633,7 +662,7 @@ export function CardFraudAuditPanel({ start, end, empresaCodigo, periodReady }: 
             <Kpi
               label="Top Frentista"
               value={resumo?.frentistaMaiorIncidencia || "—"}
-              sub={`${resumo?.frentistaMaiorIncidenciaQtd ?? 0} ocorrência(s)`}
+              sub={`${resumo?.frentistaMaiorIncidenciaQtd ?? 0} occ · ret. média ${resumo?.frentistaMaiorIncidenciaRetencaoMediaMin ?? 0} min`}
             />
           </div>
 

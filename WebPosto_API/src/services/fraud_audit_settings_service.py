@@ -12,13 +12,15 @@ from pathlib import Path
 from typing import Any
 
 from pydantic import BaseModel, Field
+from sqlalchemy.exc import IntegrityError
 
 LOGGER = logging.getLogger(__name__)
 
 DEFAULTS = {
     "empresa_id": 0,
-    "tempo_retencao_critico_min": 30,
-    "tempo_retencao_atencao_min": 15,
+    # Régua LOGOS UX: Atenção > 10 min · Crítico > 15 min
+    "tempo_retencao_critico_min": 15,
+    "tempo_retencao_atencao_min": 10,
     "tempo_agrupamento_max_min": 15,
     "percentual_desconto_suspeito_pct": 10.0,
     "recorrencia_cpf_cartao_limite": 3,
@@ -29,8 +31,8 @@ _JSON_PATH = Path(__file__).resolve().parents[2] / "data" / "audit_fraud_setting
 
 class AuditFraudSettingsDTO(BaseModel):
     empresa_id: int = 0
-    tempo_retencao_critico_min: int = 30
-    tempo_retencao_atencao_min: int = 15
+    tempo_retencao_critico_min: int = 15
+    tempo_retencao_atencao_min: int = 10
     tempo_agrupamento_max_min: int = 15
     percentual_desconto_suspeito_pct: float = 10.0
     recorrencia_cpf_cartao_limite: int = 3
@@ -169,6 +171,14 @@ async def save_settings(update: AuditFraudSettingsUpdate) -> AuditFraudSettingsD
         from src.models.audit_fraud_settings_model import ConfiguracaoAuditoriaFraude
 
         async with AsyncSessionLocal() as session:
+            async def _apply(row: ConfiguracaoAuditoriaFraude) -> None:
+                row.tempo_retencao_critico_min = update.tempo_retencao_critico_min
+                row.tempo_retencao_atencao_min = update.tempo_retencao_atencao_min
+                row.tempo_agrupamento_max_min = update.tempo_agrupamento_max_min
+                row.percentual_desconto_suspeito_pct = update.percentual_desconto_suspeito_pct
+                row.recorrencia_cpf_cartao_limite = update.recorrencia_cpf_cartao_limite
+                row.updated_at = now
+
             result = await session.execute(
                 select(ConfiguracaoAuditoriaFraude).where(
                     ConfiguracaoAuditoriaFraude.empresa_id == update.empresa_id
@@ -178,13 +188,22 @@ async def save_settings(update: AuditFraudSettingsUpdate) -> AuditFraudSettingsD
             if row is None:
                 row = ConfiguracaoAuditoriaFraude(empresa_id=update.empresa_id)
                 session.add(row)
-            row.tempo_retencao_critico_min = update.tempo_retencao_critico_min
-            row.tempo_retencao_atencao_min = update.tempo_retencao_atencao_min
-            row.tempo_agrupamento_max_min = update.tempo_agrupamento_max_min
-            row.percentual_desconto_suspeito_pct = update.percentual_desconto_suspeito_pct
-            row.recorrencia_cpf_cartao_limite = update.recorrencia_cpf_cartao_limite
-            row.updated_at = now
-            await session.commit()
+            await _apply(row)
+            try:
+                await session.commit()
+            except IntegrityError:
+                # Concorrência: outro request inseriu a mesma empresa_id
+                await session.rollback()
+                result = await session.execute(
+                    select(ConfiguracaoAuditoriaFraude).where(
+                        ConfiguracaoAuditoriaFraude.empresa_id == update.empresa_id
+                    )
+                )
+                row = result.scalar_one_or_none()
+                if row is None:
+                    raise
+                await _apply(row)
+                await session.commit()
             db_ok = True
             dto.fonte = "database"
     except Exception as exc:

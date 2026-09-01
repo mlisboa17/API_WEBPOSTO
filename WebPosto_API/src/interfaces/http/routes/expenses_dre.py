@@ -27,6 +27,10 @@ async def get_expenses_dre(
     dataInicial: Optional[str] = Query(None, pattern=r"^\d{4}-\d{2}-\d{2}$"),
     dataFinal: Optional[str] = Query(None, pattern=r"^\d{4}-\d{2}-\d{2}$"),
     empresaCodigo: Optional[int] = Query(None),
+    regime: Optional[str] = Query(
+        "competencia",
+        description="competencia (data da nota) | caixa (data do pagamento/boleto)",
+    ),
     filial: Optional[str] = Query(
         None, description="Alias: AP Casa Caiada, Posto VIP, Real Doze, TODAS…"
     ),
@@ -38,17 +42,19 @@ async def get_expenses_dre(
     empresa = resolve_empresa_codigo(raw)
 
     LOGGER.info(
-        "[DRE & Despesas] Filial buscada: %s | ID resolvido: %s | periodo=%s..%s",
+        "[DRE & Despesas] Filial buscada: %s | ID resolvido: %s | periodo=%s..%s | regime=%s",
         raw if raw is not None else "TODAS",
         empresa if empresa is not None else "TODAS",
         start,
         end,
+        regime or "competencia",
     )
 
     result = await get_expenses_dre_service().build(
         data_inicial=start,
         data_final=end,
         empresa_codigo=empresa,
+        regime=regime,
     )
     return {
         "success": True,

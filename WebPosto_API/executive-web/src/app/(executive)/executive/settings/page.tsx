@@ -107,21 +107,41 @@ export default function NotificationSettingsPage() {
   });
 
   const fetchData = useCallback(async () => {
-    console.log("[NotificationSettings] Fetching summary...");
     setLoading(true);
     try {
-      const response = await fetch("/api/proxy/executive/alerts/engine/summary");
-      if (response.ok) {
-        const data = await response.json() as AlertSummary;
-        console.log("[NotificationSettings] Summary:", data);
-        setSummary(data);
+      const [summaryRes, profileRes] = await Promise.all([
+        fetch("/api/proxy/executive/alerts/engine/summary"),
+        fetch(`/api/proxy/executive/alerts/settings/profile?userId=${encodeURIComponent(profile.user_id)}`),
+      ]);
+      if (summaryRes.ok) {
+        setSummary((await summaryRes.json()) as AlertSummary);
+      }
+      if (profileRes.ok) {
+        const body = (await profileRes.json()) as {
+          success?: boolean;
+          data?: NotificationProfile;
+        };
+        const saved = body?.data;
+        if (saved?.user_id) {
+          setProfile((prev) => ({
+            user_id: saved.user_id,
+            user_name: saved.user_name || prev.user_name,
+            role: saved.role || "diretor",
+            empresas_autorizadas: saved.empresas_autorizadas || [],
+            severidades_autorizadas: saved.severidades_autorizadas || [],
+            categorias_autorizadas: saved.categorias_autorizadas || [],
+            renotification_interval_min: saved.renotification_interval_min || 30,
+            notification_channels: saved.notification_channels || ["app"],
+            active: saved.active !== false,
+          }));
+        }
       }
     } catch (err) {
       console.error("[NotificationSettings] Error:", err);
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [profile.user_id]);
 
   useEffect(() => {
     fetchData();
@@ -129,10 +149,38 @@ export default function NotificationSettingsPage() {
 
   const handleSave = async () => {
     setSaving(true);
-    console.log("[NotificationSettings] Saving profile:", profile);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setSaving(false);
-    alert("Configuracoes salvas com sucesso!");
+    try {
+      const response = await fetch("/api/proxy/executive/alerts/settings/profile", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(profile),
+      });
+      const body = (await response.json().catch(() => null)) as {
+        success?: boolean;
+        data?: NotificationProfile;
+        error?: string;
+        message?: string;
+      } | null;
+      if (!response.ok || body?.success === false) {
+        throw new Error(body?.error || "Falha ao persistir configurações");
+      }
+      if (body?.data?.user_id) {
+        setProfile((prev) => ({
+          ...prev,
+          ...body.data!,
+          empresas_autorizadas: body.data!.empresas_autorizadas || prev.empresas_autorizadas,
+          severidades_autorizadas: body.data!.severidades_autorizadas || prev.severidades_autorizadas,
+          categorias_autorizadas: body.data!.categorias_autorizadas || prev.categorias_autorizadas,
+          notification_channels: body.data!.notification_channels || prev.notification_channels,
+        }));
+      }
+      alert(body?.message || "Configurações salvas com sucesso!");
+    } catch (err) {
+      console.error("[NotificationSettings] Save error:", err);
+      alert(err instanceof Error ? err.message : "Erro ao salvar configurações");
+    } finally {
+      setSaving(false);
+    }
   };
 
   const toggleEmpresa = (codigo: number) => {

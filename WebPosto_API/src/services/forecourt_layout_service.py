@@ -40,6 +40,9 @@ ORIENTATIONS = frozenset(
         # Sensores líquidos — orientação física não confirmada (sem inventar AVENIDA/CONV)
         "UNCONFIRMED",
         "SENSOR",
+        # HEATMAP-01 — séxtupla Real (3+3) / lados físicos
+        "SENSOR_A",
+        "SENSOR_B",
         "GNV",
     }
 )
@@ -88,12 +91,16 @@ class ZoneDTO(BaseModel):
 
 
 class MarkerDTO(BaseModel):
-    """Marcador orientativo no canvas (ex.: BR-101) — dados do seed, sem hardcode no FE."""
+    """Marcador não-operacional no canvas (ex.: BR-101 = rótulo viário).
+
+    kind=ROAD → boundary/road label (nunca ilha, bomba, bico ou fonte térmica).
+    """
 
     code: str
     label: str = ""
     x: float = 0.0
     y: float = 0.0
+    kind: str = "ROAD"  # ROAD | LANDMARK
 
 
 class IslandDTO(BaseModel):

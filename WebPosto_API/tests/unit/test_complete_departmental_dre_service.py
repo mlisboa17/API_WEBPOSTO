@@ -3,9 +3,11 @@ from src.services.complete_departmental_dre_service import CompleteDepartmentalD
 
 
 class Reconciliation:
-    async def build(self, start, end, company):
+    async def build(self, start, end, company, **kwargs):
         return {
             "publication": {"dreTotalsReleased": True},
+            "regime": kwargs.get("regime") or "competencia",
+            "periodLock": {},
             "departmentalDre": [
                 {"companyCode": 11495, "department": dept, "confirmedExpenses": "10.00"}
                 for dept in ("combustiveis", "conveniencia", "lubrificantes")
@@ -44,7 +46,7 @@ async def test_builds_complete_dre_without_generic_consolidation() -> None:
 
 async def test_exposes_proven_sales_without_publishing_blocked_dre() -> None:
     class PendingExpenses:
-        async def build(self, start, end, company):
+        async def build(self, start, end, company, **kwargs):
             return {"publication": {"dreTotalsReleased": False}, "departmentalDre": []}
 
     result = await CompleteDepartmentalDreService(PendingExpenses(), Fuel(), NonFuel()).build(
@@ -72,7 +74,7 @@ async def test_blocks_department_when_sales_evidence_is_missing() -> None:
 
 async def test_dre_reports_financial_evidence_status() -> None:
     class ZeroProvenReconciliation:
-        async def build(self, start, end, company):
+        async def build(self, start, end, company, **kwargs):
             return {
                 "publication": {"dreTotalsReleased": True},
                 "coverage": [{

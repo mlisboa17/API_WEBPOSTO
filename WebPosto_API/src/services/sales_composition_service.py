@@ -39,6 +39,11 @@ from src.services.sales_analytics_service import (
     _valor,
 )
 from src.utils.filial_normalizer import resolve_empresa_codigo
+from src.services.webposto.offline_mode import (
+    WebPostoOfflineBlocked,
+    raise_if_offline_without_local,
+    webposto_offline_mode,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -133,10 +138,14 @@ class SalesCompositionService:
             abastecimentos, fonte = await self._fetch_abastecimentos(
                 data_inicial, data_final, empresa
             )
+            raise_if_offline_without_local(
+                bool(abastecimentos),
+                detail="composition sem cache/SQLite local de abastecimentos",
+            )
 
             # D0: não bloqueia UI em venda_item HTTP — usa fallback setorial auditado
             is_d0 = data_inicial == data_final == date.today().isoformat()
-            if is_d0:
+            if is_d0 or webposto_offline_mode():
                 venda_items = []
             else:
                 try:
@@ -176,10 +185,14 @@ class SalesCompositionService:
                 fonte,
             )
             return result
+        except WebPostoOfflineBlocked:
+            raise
         except Exception as exc:
             logger.exception(
                 "Sales composition falhou empresa=%s: %s", empresa, exc
             )
+            if webposto_offline_mode():
+                raise WebPostoOfflineBlocked(str(exc)) from exc
             return _empty_response(
                 data_inicial,
                 data_final,
@@ -194,29 +207,40 @@ class SalesCompositionService:
         data_final: str,
         empresa_codigo: int | None = None,
     ) -> list[dict[str, Any]]:
-        """Fallback HTTP paginado (só se RAM/DB vazios)."""
+        """Fallback HTTP paralelo multi-filial (budget curto — não serializa 3 postos)."""
         targets = (
             [int(empresa_codigo)]
             if empresa_codigo
             else list(OFFICIAL_COMPANY_CODES)
         )
-        all_rows: list[dict[str, Any]] = []
-        for code in targets:
-            resp = await self._abastecimento.get_periodo(
-                data_inicial, data_final, empresa_codigo=code
-            )
+
+        async def _one(code: int) -> list[dict[str, Any]]:
+            try:
+                resp = await asyncio.wait_for(
+                    self._abastecimento.get_periodo(
+                        data_inicial, data_final, empresa_codigo=code
+                    ),
+                    timeout=1.2,
+                )
+            except asyncio.TimeoutError:
+                logger.warning("ABASTECIMENTO timeout empresa=%s", code)
+                return []
             if not resp.success:
                 logger.warning(
                     "ABASTECIMENTO indisponível empresa=%s: %s",
                     code,
                     getattr(resp, "error", None),
                 )
-                continue
-            rows = [
+                return []
+            return [
                 r
                 for r in _extract_rows(resp.data)
                 if int(r.get("empresaCodigo") or r.get("empresa") or 0) == int(code)
             ]
+
+        chunks = await asyncio.gather(*[_one(c) for c in targets])
+        all_rows: list[dict[str, Any]] = []
+        for rows in chunks:
             all_rows.extend(rows)
         return all_rows
 
@@ -231,7 +255,7 @@ class SalesCompositionService:
             data_inicial,
             data_final,
             empresa_codigo,
-            allow_http_fallback=True,
+            allow_http_fallback=not webposto_offline_mode(),
             http_fetcher=self._fetch_abastecimentos_http,
         )
         logger.info(
@@ -462,7 +486,37 @@ class SalesCompositionService:
             )
 
         fat_total = fat_combustivel + fat_pista + fat_loja
-        margem_fuel = fat_combustivel * 0.08
+        # Margem combustível: tenta custo de aquisição cadastrado; senão fallback 8%
+        margem_fuel_pct = 0.08
+        try:
+            from src.services.company_settings_service import get_company_settings_service
+
+            settings_svc = get_company_settings_service()
+            codes = (
+                [int(empresa_codigo)]
+                if empresa_codigo is not None
+                else list(OFFICIAL_COMPANY_CODES)
+            )
+            pcts: list[float] = []
+            for code in codes:
+                st = settings_svc.get_settings(int(code))
+                meta = st.metadata or {}
+                raw = meta.get("margem_bruta_combustivel_pct")
+                if raw is not None:
+                    try:
+                        pcts.append(float(raw) / 100.0)
+                    except (TypeError, ValueError):
+                        pass
+                # média de pricing cadastrado (custo vs preço)
+                pricing_map = settings_svc.get_all_products_pricing(int(code)) or {}
+                for p in pricing_map.values():
+                    if getattr(p, "margem_bruta_pct", None) and float(p.margem_bruta_pct) > 0:
+                        pcts.append(float(p.margem_bruta_pct) / 100.0)
+            if pcts:
+                margem_fuel_pct = max(0.02, min(0.35, sum(pcts) / len(pcts)))
+        except Exception:
+            pass
+        margem_fuel = fat_combustivel * margem_fuel_pct
         margem_pista = sum(v.get("margem", v["faturamento"] * 0.35) for v in pista_bucket.values())
         margem_loja = sum(v.get("margem", v["faturamento"] * 0.28) for v in conv_bucket.values())
 
