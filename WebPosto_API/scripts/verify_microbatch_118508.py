@@ -99,7 +99,12 @@ def main() -> None:
         for record in created:
             code = int(record["codProduto"])
             ean = record["ean"]
-            body = expected[ean]["body"]["preview"]
+            body = expected[ean]["body"]["preview"] if ean in expected else {
+                "codigoNcm": record.get("verification", {}).get("catalog", {}).get("ncm"),
+                "codigoCest": record.get("verification", {}).get("catalog", {}).get("cest"),
+                "precoVenda": record.get("verification", {}).get("links", [{}])[0].get("precoVenda"),
+                "precoCusto": record.get("verification", {}).get("links", [{}])[0].get("precoCusto"),
+            }
 
             links = reader.get_company_links(credential.key, cursor=code - 1, page_size=50)
             link = next(

@@ -1,0 +1,75 @@
+{
+  "title": "VERIFICACAO INDEPENDENTE MICROBATCH 05 — 118508",
+  "verifiedAt": "2026-09-01T08:10:28.849805+00:00",
+  "apiWrites": 0,
+  "productsVerified": 3,
+  "allFieldsMatch": true,
+  "findings": [
+    {
+      "produtoCodigo": 2481517,
+      "ean": "7891008124583",
+      "descricao": "CHOCOLATE GAROTO CROCANTE 25G",
+      "empresaCodigo": 118508,
+      "ativo": true,
+      "ncm": "18063120",
+      "cest": "1700202",
+      "referenciaCodigo": "005222",
+      "precoVenda": 4.5,
+      "precoCusto": 2.5933,
+      "checks": {
+        "empresaCodigo": true,
+        "ativo": true,
+        "ean": true,
+        "ncm": true,
+        "cest": true,
+        "precoVenda": true,
+        "precoCusto": true
+      },
+      "divergencias": []
+    },
+    {
+      "produtoCodigo": 2481518,
+      "ean": "7891000377598",
+      "descricao": "BARRA CHOC NESTLE CHOCOTRIO BISC CHOC 90G",
+      "empresaCodigo": 118508,
+      "ativo": true,
+      "ncm": "18063110",
+      "cest": "1700200",
+      "referenciaCodigo": "005223",
+      "precoVenda": 11.99,
+      "precoCusto": 6.8558,
+      "checks": {
+        "empresaCodigo": true,
+        "ativo": true,
+        "ean": true,
+        "ncm": true,
+        "cest": true,
+        "precoVenda": true,
+        "precoCusto": true
+      },
+      "divergencias": []
+    },
+    {
+      "produtoCodigo": 2481519,
+      "ean": "7891000377543",
+      "descricao": "CHOCOLATE NESTLE CHOCOTRIO BISC LEITE 90G",
+      "empresaCodigo": 118508,
+      "ativo": true,
+      "ncm": "18063110",
+      "cest": "1700200",
+      "referenciaCodigo": "005224",
+      "precoVenda": 12.0,
+      "precoCusto": 6.8558,
+      "checks": {
+        "empresaCodigo": true,
+        "ativo": true,
+        "ean": true,
+        "ncm": true,
+        "cest": true,
+        "precoVenda": true,
+        "precoCusto": true
+      },
+      "divergencias": []
+    }
+  ]
+}

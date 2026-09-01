@@ -1,0 +1,29 @@
+{
+  "title": "PREFLIGHT MICROBATCH 04 — 118508",
+  "generatedAt": "2026-09-01T07:59:44.059966+00:00",
+  "sheet": "FISCAL_PRODUTOS_A_CADASTRAR_118508.xlsx",
+  "empresa": 118508,
+  "credential": {
+    "variable": "WEBPOSTO_CONVENIENCIA_24_HORAS_KEY",
+    "keyExposed": false,
+    "sentinelFound": true,
+    "sentinelCompanyLinkConfirmed": true
+  },
+  "batchSize": 5,
+  "eligibleWithCost": 0,
+  "eligiblePending": 0,
+  "selectedWithCost": 0,
+  "selectedPending": 0,
+  "pendingCostFlagRequired": false,
+  "requiredFlag": null,
+  "rejections": {
+    "EM_CHECKPOINT": 247,
+    "JA_NO_CATALOGO": 7,
+    "EXCLUSAO_PERMANENTE": 1,
+    "GTIN_INVALIDO": 2
+  },
+  "possibleDuplicatesByDescription": [],
+  "products": [],
+  "apiWrites": 0,
+  "status": "NOTHING_TO_WRITE"
+}
