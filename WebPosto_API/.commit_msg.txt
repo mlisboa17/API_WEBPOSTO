@@ -1,0 +1,54 @@
+feat: implementar cadastro automatico de produtos WebPosto (FASES 3-10)
+
+Implementacao completa do pipeline de cadastro automatico para empresa 118508.
+
+FASES CONCLUIDAS:
+- FASE 3: Consolidar pipeline (ler XLSX, mapear colunas, preservar zeros)
+- FASE 4: Sistema persistente (Pydantic schemas, checkpoint/lock)
+- FASE 5: Pre-voo read-only (validacao EAN, duplicidade, NCM, grupo, modelo fiscal)
+- FASE 6: Resumo pre-voo (contagens por status/risco)
+- FASE 10: Relatorios (XLSX, JSON, JSONL)
+
+FASES ESTRUTURADAS (prontas para execucao):
+- FASE 7: POST /INTEGRACAO/INCLUIR_PRODUTO (timeout 120s, 1 tentativa)
+- FASE 8: GET pos-cadastro (verificacao, 2s delay)
+- FASE 9: Fila sequencial (tratamento RET codes, pausa/resume)
+
+MODULOS CRIADOS:
+- schemas.py: Pydantic (ProductRow, ProductAnalysis, ExecutionState)
+- spreadsheet_reader.py: XLSX com mapeamento flexivel de colunas
+- duplicate_checker.py: Validacao de duplicidade (ativos/inativos)
+- fiscal_resolver.py: Classificacao fiscal automatica (modelo BONO)
+- body_builder.py: Montagem de request JSON com body_hash
+- registration_executor.py: POST assincrono com retry/timeout
+- post_verifier.py: GET para validacao pos-cadastro
+- checkpoint_store.py: Persistencia (JSON, lock, pause/resume)
+- report_exporter.py: Geracao de XLSX/JSON/JSONL
+- service.py: Orquestrador central (FASES 3-10)
+
+DADOS PROCESSADOS:
+- Planilha: 484 produtos
+- Hash SHA-256: 234d5656634008827a024a22a6e342402157a2ee40ae0fcaa983f51e8cba6834
+- Template BONO: produto 2481160
+- Empresa: 118508, Centro: 24886, Regime: LUCRO_PRESUMIDO
+
+VALIDACOES IMPLEMENTADAS:
+- GTIN (8/12/13/14) com checksum
+- Duplicidade (ativos + inativos)
+- Bloqueio de combustiveis/medicamentos/cigarros
+- Modelo fiscal automatico (NCM 19xxx = BONO)
+- Grupo e centro obrigatorios
+- Provenance de campos e confianca
+
+TESTES:
+- OK: Carregamento XLSX 484 produtos
+- OK: Analise preflight 30 bloqueados, 454 REVIEW_REQUIRED
+- OK: Geracao de relatorios XLSX, JSON, JSONL
+
+SEGURANCA:
+- Nenhuma credencial em logs
+- Body request sanitizado
+- .env para credenciais (nao versionado)
+- Uma tentativa por body_hash (idempotencia)
+
+PROXIMOS: Enriquecer NCM/Grupo/Centro, executar FASES 7-9

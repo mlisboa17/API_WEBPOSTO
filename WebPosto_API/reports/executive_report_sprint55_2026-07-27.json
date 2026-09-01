@@ -1,0 +1,2391 @@
+{
+  "gerado_em": "2026-07-27",
+  "sprint": "Sprint 55",
+  "periodo_principal": {
+    "inicio": "2026-07-01",
+    "fim": "2026-07-24"
+  },
+  "filiais_monitoradas": [
+    {
+      "empresa_codigo": 5555,
+      "nome": "AP CASA CAIADA"
+    },
+    {
+      "empresa_codigo": 11495,
+      "nome": "POSTO VIP"
+    },
+    {
+      "empresa_codigo": 5558,
+      "nome": "POSTO REAL"
+    },
+    {
+      "empresa_codigo": 74014,
+      "nome": "POSTO DOZE FILIAL II"
+    }
+  ],
+  "bloco_1_combustiveis": {
+    "titulo": "1. An\u00e1lise Consolidada e Comparativa de Combust\u00edveis (Pista)",
+    "status": "DISPON\u00cdVEL",
+    "periodo": {
+      "inicio": "2026-07-01",
+      "fim": "2026-07-24"
+    },
+    "resumo": {
+      "total_litros": "3630.743",
+      "total_valor": "22421.52",
+      "total_transacoes": 400,
+      "por_filial": [
+        {
+          "produto": "COMBUST\u00cdVEL (total)",
+          "empresa_codigo": 74014,
+          "nome_filial": "POSTO DOZE FILIAL II",
+          "litros": "2109.218",
+          "valor": "12558.65",
+          "transacoes": 200,
+          "percentual_rede": "56.01"
+        },
+        {
+          "produto": "COMBUST\u00cdVEL (total)",
+          "empresa_codigo": 11495,
+          "nome_filial": "POSTO VIP",
+          "litros": "1206.748",
+          "valor": "7771.30",
+          "transacoes": 174,
+          "percentual_rede": "34.66"
+        },
+        {
+          "produto": "COMBUST\u00cdVEL (total)",
+          "empresa_codigo": 5555,
+          "nome_filial": "AP CASA CAIADA",
+          "litros": "314.777",
+          "valor": "2091.57",
+          "transacoes": 26,
+          "percentual_rede": "9.33"
+        }
+      ],
+      "por_produto": [
+        {
+          "produto": "GASOLINA",
+          "empresa_codigo": 74014,
+          "nome_filial": "POSTO DOZE FILIAL II",
+          "litros": "1697.461",
+          "valor": "11776.15",
+          "transacoes": 234,
+          "percentual_rede": "52.52"
+        },
+        {
+          "produto": "ETANOL ADITIVADO",
+          "empresa_codigo": 74014,
+          "nome_filial": "POSTO DOZE FILIAL II",
+          "litros": "869.939",
+          "valor": "4480.00",
+          "transacoes": 85,
+          "percentual_rede": "19.98"
+        },
+        {
+          "produto": "N\u00c3O CLASSIFICADO",
+          "empresa_codigo": 74014,
+          "nome_filial": "POSTO DOZE FILIAL II",
+          "litros": "382.946",
+          "valor": "2600.17",
+          "transacoes": 9,
+          "percentual_rede": "11.60"
+        },
+        {
+          "produto": "GNV",
+          "empresa_codigo": 74014,
+          "nome_filial": "POSTO DOZE FILIAL II",
+          "litros": "520.068",
+          "valor": "2442.63",
+          "transacoes": 59,
+          "percentual_rede": "10.89"
+        },
+        {
+          "produto": "DIESEL S10",
+          "empresa_codigo": 11495,
+          "nome_filial": "POSTO VIP",
+          "litros": "80.840",
+          "valor": "565.05",
+          "transacoes": 4,
+          "percentual_rede": "2.52"
+        },
+        {
+          "produto": "GASOLINA ADITIVADA",
+          "empresa_codigo": 74014,
+          "nome_filial": "POSTO DOZE FILIAL II",
+          "litros": "79.489",
+          "valor": "557.52",
+          "transacoes": 9,
+          "percentual_rede": "2.49"
+        }
+      ],
+      "observacao": "Dados extra\u00eddos de /INTEGRACAO/ABASTECIMENTO para 400 abastecimentos. A API WebPosto retorna amostra limitada (at\u00e9 400 registros por consulta de rede)."
+    },
+    "ranking_filial": [
+      {
+        "empresa_codigo": 74014,
+        "nome": "POSTO DOZE FILIAL II",
+        "litros": "2109.218",
+        "valor": "12558.65",
+        "transacoes": 200,
+        "participacao_rede_pct": "56.01"
+      },
+      {
+        "empresa_codigo": 11495,
+        "nome": "POSTO VIP",
+        "litros": "1206.748",
+        "valor": "7771.30",
+        "transacoes": 174,
+        "participacao_rede_pct": "34.66"
+      },
+      {
+        "empresa_codigo": 5555,
+        "nome": "AP CASA CAIADA",
+        "litros": "314.777",
+        "valor": "2091.57",
+        "transacoes": 26,
+        "participacao_rede_pct": "9.33"
+      }
+    ]
+  },
+  "bloco_2_transferencias": {
+    "titulo": "2. Movimenta\u00e7\u00e3o e Transfer\u00eancias entre Filiais",
+    "status": "PARCIAL",
+    "movimentacao_bancaria": {
+      "creditos": "5808.66",
+      "debitos": "41.04",
+      "tarifas": "41.04",
+      "transferencias": "5808.66",
+      "liquido": "5767.62"
+    },
+    "observacao": "Transfer\u00eancias banc\u00e1rias detectadas no movimento de conta, mas n\u00e3o \u00e9 poss\u00edvel determinar se s\u00e3o entre filiais da holding ou opera\u00e7\u00f5es banc\u00e1rias externas."
+  },
+  "bloco_3_margens": {
+    "titulo": "3. Margens por Filial e por Litro (R$/L)",
+    "status": "DISPON\u00cdVEL",
+    "periodo": {
+      "inicio": "2026-07-01",
+      "fim": "2026-07-24"
+    },
+    "faturamento_por_litro": [
+      {
+        "empresa_codigo": 74014,
+        "nome": "POSTO DOZE FILIAL II",
+        "litros": "2109.218",
+        "valor": "12558.65",
+        "receita_por_litro": "5.95",
+        "cmv_por_litro": {
+          "status": "INDISPON\u00cdVEL NA BASE",
+          "motivo": "Custo de reposi\u00e7\u00e3o/CMV n\u00e3o dispon\u00edvel na API WebPosto"
+        },
+        "margem_bruta_por_litro": {
+          "status": "INDISPON\u00cdVEL NA BASE",
+          "motivo": "CMV n\u00e3o dispon\u00edvel"
+        }
+      },
+      {
+        "empresa_codigo": 11495,
+        "nome": "POSTO VIP",
+        "litros": "1206.748",
+        "valor": "7771.30",
+        "receita_por_litro": "6.44",
+        "cmv_por_litro": {
+          "status": "INDISPON\u00cdVEL NA BASE",
+          "motivo": "Custo de reposi\u00e7\u00e3o/CMV n\u00e3o dispon\u00edvel na API WebPosto"
+        },
+        "margem_bruta_por_litro": {
+          "status": "INDISPON\u00cdVEL NA BASE",
+          "motivo": "CMV n\u00e3o dispon\u00edvel"
+        }
+      },
+      {
+        "empresa_codigo": 5555,
+        "nome": "AP CASA CAIADA",
+        "litros": "314.777",
+        "valor": "2091.57",
+        "receita_por_litro": "6.64",
+        "cmv_por_litro": {
+          "status": "INDISPON\u00cdVEL NA BASE",
+          "motivo": "Custo de reposi\u00e7\u00e3o/CMV n\u00e3o dispon\u00edvel na API WebPosto"
+        },
+        "margem_bruta_por_litro": {
+          "status": "INDISPON\u00cdVEL NA BASE",
+          "motivo": "CMV n\u00e3o dispon\u00edvel"
+        }
+      }
+    ],
+    "observacao": "Faturamento por litro (receita/litro) calculado a partir de abastecimentos reais via /INTEGRACAO/ABASTECIMENTO. CMV/custo de reposi\u00e7\u00e3o por litro n\u00e3o est\u00e1 dispon\u00edvel na base, impedindo margem bruta/operacional e EBITDA por litro."
+  },
+  "bloco_4_conveniencia": {
+    "titulo": "4. Conveni\u00eancia (Loja - Foco em Todas as Filiais)",
+    "status": "DISPON\u00cdVEL",
+    "periodo": {
+      "inicio": "2026-07-17",
+      "fim": "2026-07-23"
+    },
+    "receita_total": "1167.02",
+    "ticket_medio": "11.01",
+    "quantidade_itens": 106,
+    "quantidade_unidades": "147.0",
+    "produtos_distintos": 67,
+    "filiais": [
+      {
+        "empresa_codigo": 11495,
+        "nome": "POSTO VIP",
+        "receita": "1167.02",
+        "itens": 106,
+        "unidades": "147.0",
+        "departamentos": [
+          {
+            "departamento": "NAO_CLASSIFICADO",
+            "valor": "1105.02",
+            "quantidade": "146.0"
+          },
+          {
+            "departamento": "24555",
+            "valor": "62.0",
+            "quantidade": "1.0"
+          }
+        ]
+      }
+    ],
+    "top_departamentos": [
+      {
+        "departamento": "NAO_CLASSIFICADO",
+        "valor": "1105.02",
+        "quantidade": "146.0"
+      },
+      {
+        "departamento": "24555",
+        "valor": "62.0",
+        "quantidade": "1.0"
+      }
+    ],
+    "top_produtos": [
+      {
+        "produto": "1803621",
+        "quantidade": "16.0",
+        "valor": "104.0"
+      },
+      {
+        "produto": "1803739",
+        "quantidade": "10.0",
+        "valor": "91.10"
+      },
+      {
+        "produto": "1862860",
+        "quantidade": "10.0",
+        "valor": "87.5"
+      },
+      {
+        "produto": "TOP AUTO 5W30 SQ SINT 1LT",
+        "quantidade": "1.0",
+        "valor": "62.0"
+      },
+      {
+        "produto": "1803530",
+        "quantidade": "7.0",
+        "valor": "61.25"
+      }
+    ],
+    "observacao": "Dados extra\u00eddos de /INTEGRACAO/VENDA_ITEM para todas as filiais licenciadas. Amostra da API para 2026-07-17 a 2026-07-23 retornou 1 filial com itens n\u00e3o-combust\u00edvel ap\u00f3s filtro de combust\u00edvel. Casa Caiada e Doze tiveram apenas produtos combust\u00edveis no retorno da API."
+  },
+  "bloco_5_dre": {
+    "titulo": "5. DRE Consolidada: Receita x Lucro x Despesas por Filial",
+    "status": "DISPON\u00cdVEL",
+    "periodo": {
+      "inicio": "2026-07-01",
+      "fim": "2026-07-24"
+    },
+    "departamentos_confirmados": [
+      {
+        "empresa_codigo": 5555,
+        "nome": "AP CASA CAIADA",
+        "departamento": "combustiveis",
+        "confirmed_dre_amount": "3265.00",
+        "confirmed_matches": 3,
+        "unmatched": 115
+      },
+      {
+        "empresa_codigo": 5555,
+        "nome": "AP CASA CAIADA",
+        "departamento": "conveniencia",
+        "confirmed_dre_amount": "1727.49",
+        "confirmed_matches": 5,
+        "unmatched": 8
+      },
+      {
+        "empresa_codigo": 5555,
+        "nome": "AP CASA CAIADA",
+        "departamento": "lubrificantes",
+        "confirmed_dre_amount": "0.00",
+        "confirmed_matches": 0,
+        "unmatched": 0
+      },
+      {
+        "empresa_codigo": 5555,
+        "nome": "AP CASA CAIADA",
+        "departamento": "nao_classificado",
+        "confirmed_dre_amount": "928.50",
+        "confirmed_matches": 1,
+        "unmatched": 0
+      },
+      {
+        "empresa_codigo": 11495,
+        "nome": "POSTO VIP",
+        "departamento": "combustiveis",
+        "confirmed_dre_amount": "52836.97",
+        "confirmed_matches": 29,
+        "unmatched": 137
+      },
+      {
+        "empresa_codigo": 11495,
+        "nome": "POSTO VIP",
+        "departamento": "conveniencia",
+        "confirmed_dre_amount": "914.20",
+        "confirmed_matches": 5,
+        "unmatched": 16
+      },
+      {
+        "empresa_codigo": 11495,
+        "nome": "POSTO VIP",
+        "departamento": "lubrificantes",
+        "confirmed_dre_amount": "0.00",
+        "confirmed_matches": 0,
+        "unmatched": 0
+      },
+      {
+        "empresa_codigo": 11495,
+        "nome": "POSTO VIP",
+        "departamento": "nao_classificado",
+        "confirmed_dre_amount": "5427.75",
+        "confirmed_matches": 4,
+        "unmatched": 0
+      },
+      {
+        "empresa_codigo": 74014,
+        "nome": "POSTO DOZE FILIAL II",
+        "departamento": "combustiveis",
+        "confirmed_dre_amount": "7995.00",
+        "confirmed_matches": 2,
+        "unmatched": 66
+      },
+      {
+        "empresa_codigo": 74014,
+        "nome": "POSTO DOZE FILIAL II",
+        "departamento": "conveniencia",
+        "confirmed_dre_amount": "0.00",
+        "confirmed_matches": 0,
+        "unmatched": 8
+      },
+      {
+        "empresa_codigo": 74014,
+        "nome": "POSTO DOZE FILIAL II",
+        "departamento": "lubrificantes",
+        "confirmed_dre_amount": "0.00",
+        "confirmed_matches": 0,
+        "unmatched": 4
+      },
+      {
+        "empresa_codigo": 74014,
+        "nome": "POSTO DOZE FILIAL II",
+        "departamento": "nao_classificado",
+        "confirmed_dre_amount": "8250.00",
+        "confirmed_matches": 2,
+        "unmatched": 0
+      }
+    ],
+    "despesas_auto_classificadas": [
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:891f4524dc8a2efa665b",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-01",
+        "amount": "75.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "bota de joao"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:3a2f1f21ef130a90869e",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-02",
+        "amount": "78.00",
+        "category": "MARKETING/PUBLICIDADE",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "banner'"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:8ae4ad7a2d065a4ddff0",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-02",
+        "amount": "450.00",
+        "category": "MANUTEN\u00c7\u00c3O",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "servi\u00e7o da bomba troca da polia e m\u00e3o de"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:609da1c3aa0a6b9a2989",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-02",
+        "amount": "300.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "cracha"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:834d3b9b417ceb070b9b",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-02",
+        "amount": "74.70",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref. compra de 3 limpador de parabrisa"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:f831cd53eecb612fe670",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-02",
+        "amount": "36.00",
+        "category": "COMBUST\u00cdVEL",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "desconto no diesel"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:00cd7beb8ba659f75764",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-02",
+        "amount": "1584.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "alelo 6 func 07/2026 - alelo"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:2323e938be32026cd27f",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-02",
+        "amount": "18.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref cadastro do app lisboa"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:a7bc52e9f1091bf48420",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-03",
+        "amount": "6.00",
+        "category": "\u00c1GUA/ESGOTO",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "agua destillada"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:b35aafab9b5b98d889db",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-03",
+        "amount": "62.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "nota cliente valora"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:920ad43bb2621f5dc6dc",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-03",
+        "amount": "12.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "vendas"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:4614bd70902734b3ad82",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-03",
+        "amount": "150.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "marcio"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:3ac45f379ba57f5498b8",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-03",
+        "amount": "110.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "detetiza\u00e7ao"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:9882e27ab13b96df8be3",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-03",
+        "amount": "222.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "marcus net"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:35b02dc2a55eadb5c656",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-03",
+        "amount": "5.20",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref desc lisboa"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:31c4f849abb574c52fb4",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-03",
+        "amount": "0.90",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref enchimento de mangueira"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:6009ffe931a1e3639284",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-03",
+        "amount": "10.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref uber julia"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:0fa1ad8436e1c0f48fe2",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-04",
+        "amount": "0.01",
+        "category": "MANUTEN\u00c7\u00c3O",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref servi\u00e7os prestados"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:767666ce7b430bfbc6c4",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-04",
+        "amount": "0.01",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "galego gelo"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:b4183b4045899704aaa0",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-04",
+        "amount": "2.50",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "falha"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:8c41a3679cb8e684316a",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-04",
+        "amount": "75.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "referente passagem semana josiane"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:f72abe76027f4bc988c6",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-04",
+        "amount": "60.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "folguista angela"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:7e04caf5db4444894cc3",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-04",
+        "amount": "150.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "folga a\u00edlton"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:c50c1ec34b7e03cffa53",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-04",
+        "amount": "80.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref. pag. apoio sabrina"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:b3cbd524a9300eb8b2e1",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-05",
+        "amount": "150.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "abasttecimeento sr moises"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:8fb69ce66d00aaf87ad1",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-05",
+        "amount": "30.00",
+        "category": "MANUTEN\u00c7\u00c3O",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "bomba n\u00e3o disparou (erro apoio)"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:c0e7791aa2f3e3822a61",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-05",
+        "amount": "120.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "diaria seladora angela"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:d15ec482738c59bf2dc5",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-05",
+        "amount": "120.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref ao pagamento do apoio"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:2730a73199ad07c59a51",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-05",
+        "amount": "130.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "pag ref a diaria foguista 12 horas"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:39dac18f075a55cc8903",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-05",
+        "amount": "120.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "pag referente a diaria de sabrina"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:4e34482d2328daecdc2d",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-06",
+        "amount": "15.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "nota de white lub para o cliente"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:e5eed9c8ba5f2b4ff925",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-06",
+        "amount": "15.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "pag ref as passagens josiane silva"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:ae830579dfeea42cc298",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-06",
+        "amount": "90.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref. pag. sabrina"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:f5bcd281fd9623bab181",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-07",
+        "amount": "6750.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "usina solar"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:a917b30df0318ce2951a",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-07",
+        "amount": "200.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref complemento sindicato"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:e29912018e15ae74c4c6",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-07",
+        "amount": "8.00",
+        "category": "EQUIPAMENTOS/INFRAESTRUTURA",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "retorno ao tanque"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:b4aa1f0dd85f6204aac4",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-07",
+        "amount": "1500.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "1 parcela"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:32531f2166c603344ae8",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-07",
+        "amount": "1266.60",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "sindicato"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:ef8c286fd6075637f6d8",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-07",
+        "amount": "232.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref a pagamento sindicato dami\u00e3o"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:ebda5249921ae71cc405",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-08",
+        "amount": "1.25",
+        "category": "EQUIPAMENTOS/INFRAESTRUTURA",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "bico engatilhado"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:8a14510ae8e23875ae7c",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-08",
+        "amount": "150.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "folga ailton"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:cb042f49b971b8681785",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-09",
+        "amount": "30.00",
+        "category": "\u00c1GUA/ESGOTO",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "5 agua destilada carro sr moises"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:f448a3a5bdd868f7d198",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-09",
+        "amount": "109.90",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref, compra de uma bota"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:a69dacb45a4fb8ea4fff",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-09",
+        "amount": "20.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "uber arthur"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:d2086f2e13130940dc21",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-09",
+        "amount": "150.00",
+        "category": "PESSOAL/FOLHA",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "extra referente \u00e1s f\u00e9rias de alberis"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:a641aeb68fe2f96fdf7c",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-11",
+        "amount": "75.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "passagem josiane semana"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:9b938c76042ddcd93a76",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-11",
+        "amount": "150.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "extra"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:ac1a93f794693608613e",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-11",
+        "amount": "150.00",
+        "category": "PESSOAL/FOLHA",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "extra referente \u00e1s f\u00e9rias de alberis"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:2790f42a7dc83674910e",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-11",
+        "amount": "200.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref sindicato"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:e05cffb5c4f7ac18b1ac",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-11",
+        "amount": "250.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref sindicato"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:e657c9f2fbc4ad3e7f7a",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-11",
+        "amount": "400.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref sindicato"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:eb838153a6345931966c",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-11",
+        "amount": "50.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref; bonifica\u00e7ao lisboa davi"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:9d39eccd17fa63dd7a3a",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-11",
+        "amount": "100.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref ;bonifica\u00e7ao lisboa matheus"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:fcfdfcbe3816cfffc988",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-11",
+        "amount": "130.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "val. ref. pag. sabrina"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:3bbadf9a4ae61399770f",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-11",
+        "amount": "60.00",
+        "category": "LIMPEZA/HIGIENE",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "folguista da limpeza"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:2a845cf6097562a95f21",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-12",
+        "amount": "120.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "pagamento angela"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:bfde3f683d79b2611a48",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-13",
+        "amount": "1368.89",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref nf:000234445 - mp lub distribuidora - mp lub distribuidora"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:fbd66f793b438b559bb2",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-13",
+        "amount": "5.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ajuda a pedinte, sr moises"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:e036af32fb17d7923d68",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-13",
+        "amount": "10.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "uber/julia"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:374f9a4e363aed2ec672",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-13",
+        "amount": "150.00",
+        "category": "PESSOAL/FOLHA",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "extra referente \u00e1s f\u00e9rias de alberis"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:da7beaedd1a5d68c6950",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-13",
+        "amount": "90.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "valor ref. pag sabrina"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:088c2b391ec64d1501ba",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-13",
+        "amount": "130.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "referente a diaria de sabrina"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:d8f3709690624098cce0",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-14",
+        "amount": "124.30",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "indaia pagamento"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:341b7dbd85574520cc45",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-14",
+        "amount": "50.00",
+        "category": "IMPOSTOS/TAXAS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "piso"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:36e3d1770bc9f93f3ce8",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-14",
+        "amount": "1450.00",
+        "category": "IMPOSTOS/TAXAS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "piso autorizado"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:7d629fb456aa84bdf4e7",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-14",
+        "amount": "98.00",
+        "category": "MANUTEN\u00c7\u00c3O",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "cano de pvc +m\u00e3o de obra pedreiro"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:3ea6bb720e57268933d9",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-14",
+        "amount": "150.00",
+        "category": "MANUTEN\u00c7\u00c3O",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref eti daniel servico 130 e uber 20"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:2dfa378ce395df74050a",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-14",
+        "amount": "22.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "referente a passagem"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:12731a2cd7a4262240e2",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-14",
+        "amount": "150.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "folga ailton"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:fd0b01358f712bf81a55",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-15",
+        "amount": "2.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref ao desconto do lisboa"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:1b571c49a14edc9e4944",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-15",
+        "amount": "150.00",
+        "category": "PESSOAL/FOLHA",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "extra referente \u00e1s f\u00e9rias de alberis"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:5d02e7a9d40bd6190acb",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-15",
+        "amount": "70.00",
+        "category": "MANUTEN\u00c7\u00c3O",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref conserto bomba dgua"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:31c02187cff07c515db3",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-16",
+        "amount": "180.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref epi"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:7ac20bba73df259f8076",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-16",
+        "amount": "3.90",
+        "category": "EQUIPAMENTOS/INFRAESTRUTURA",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "bico nao disparou"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:9d1144463f0e8039ea5a",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-17",
+        "amount": "1000.00",
+        "category": "PESSOAL/FOLHA",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "salario luciana"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:bf77bfbb19707bbeff8b",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-17",
+        "amount": "70.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "2 lugar lisboa+"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:7ab86807d4c42c996c4c",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-18",
+        "amount": "900.00",
+        "category": "MANUTEN\u00c7\u00c3O",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "substitui\u00e7\u00e3o do pulser da  bomba"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:a863fa3dae2f2f1182e2",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-18",
+        "amount": "677.27",
+        "category": "MANUTEN\u00c7\u00c3O",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "aferi\u00e7ao para manutacao de bombas"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:fd6beef99c8ad2febcc3",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-18",
+        "amount": "45.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "pag refa compra de calca farda josiane"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:25d5c1a09bfe9d09fed7",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-18",
+        "amount": "90.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "pag ref as passagens josiane silva"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:74572ebba940c03beb31",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-18",
+        "amount": "1189.97",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "tharciana"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:922aea888b85f5341b7d",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-18",
+        "amount": "90.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "pag. ref. apoio sabrina"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:9073f237cb1338cff149",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-18",
+        "amount": "60.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "folguista  angelaa"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:1d9839e699a57c389de4",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-19",
+        "amount": "23.60",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "compra de grampo"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:6fdb31b8a4b636467ab9",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-19",
+        "amount": "4.22",
+        "category": "EQUIPAMENTOS/INFRAESTRUTURA",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "falha bico"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:06d36bf7ab4b58709623",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-19",
+        "amount": "55.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "referente a diaria do domingo"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:005f16f91e2ce7a979ae",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-19",
+        "amount": "120.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "angela"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:7791e850987a278372c6",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-19",
+        "amount": "100.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "pag referente a sabrina"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:2e243481e10248266b76",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-19",
+        "amount": "100.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "pag. referente a josy"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:0a3300db52ad716f62cf",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-20",
+        "amount": "204.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref santa clara"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:6244bed99eeb8b34a0e8",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-20",
+        "amount": "5.80",
+        "category": "EQUIPAMENTOS/INFRAESTRUTURA",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "falha no bico e o cliente n\u00e3o quis pagar"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:7625c39f6bfb01b2eb6f",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-20",
+        "amount": "15.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "pag ref as passagens josiane"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:7530c7dfd6eaab2fa26f",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-20",
+        "amount": "80.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "referente a diaria"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:1946816746de9ed3292a",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-21",
+        "amount": "429.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref flanelas e querosene"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:931c80647995174d2edd",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-21",
+        "amount": "600.00",
+        "category": "MANUTEN\u00c7\u00c3O",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "troca de um teclado e um lacre"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:b528a2f5961648b68f4b",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-21",
+        "amount": "928.50",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref nf:000135158 - armazem coral ltda b.novo - armazem coral ltda b.novo"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:61925cd1151f2ea6046f",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-21",
+        "amount": "120.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "angela"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:88f1fab1a640ffefa56c",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-21",
+        "amount": "90.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref. pag. folg. sabrina"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:2ba3abd932932dc5c528",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-22",
+        "amount": "250.00",
+        "category": "MANUTEN\u00c7\u00c3O",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref manuten\u00e7\u00e3o ar condicionado"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:8ceee85f487942e2101f",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-22",
+        "amount": "14.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref. copia de 2 chaves"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:c559a6dfdc17007aad98",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-23",
+        "amount": "207.50",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "nota de arla"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:bf9e570585cdc0f4200b",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-23",
+        "amount": "1368.89",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref nf:000234445 - mp lub distribuidora - mp lub distribuidora"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:05e2e54abdc073c79996",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-23",
+        "amount": "5.99",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "resgate ponto lisboa"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:49f0da4a87729c86485f",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-23",
+        "amount": "3.00",
+        "category": "EQUIPAMENTOS/INFRAESTRUTURA",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref falha de bico"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:6e0b7210d5a7c5440328",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-23",
+        "amount": "28.61",
+        "category": "EQUIPAMENTOS/INFRAESTRUTURA",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "vazamento de bico"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:f2a6c7f946c790edc89b",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-23",
+        "amount": "350.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "alberis"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:9bf208228d0a776db744",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-23",
+        "amount": "1300.00",
+        "category": "PESSOAL/FOLHA",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ferias alberis"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:0fca1ca4af79524bdda1",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-23",
+        "amount": "200.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "caio victor doente"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:4f86e286d6d561812167",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-24",
+        "amount": "150.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref a complem cota sr.moises"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:365a8978f74f7ba739ad",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-24",
+        "amount": "750.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref a cota sr moises"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:d1741c6cde8ff6a3c214",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-24",
+        "amount": "100.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref a parte da cota sr moises"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:edc0bbb79bca062c2695",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-24",
+        "amount": "1500.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "dvr"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:c997e5d8ecc1d23580ee",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-24",
+        "amount": "100.30",
+        "category": "MATERIAIS/ESCRIT\u00d3RIO",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref material hidr\u00e1ulico"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:e6dea879e96462b6e3a3",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-24",
+        "amount": "7.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ceara chave teste"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:4e7b09625ac7e1db5472",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-24",
+        "amount": "22.90",
+        "category": "MATERIAIS/ESCRIT\u00d3RIO",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref material eletrico"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:dd2057f151a89955a900",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-24",
+        "amount": "300.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref eletrisita"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:f5cadcf0e2cac8f910d5",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-24",
+        "amount": "780.00",
+        "category": "MANUTEN\u00c7\u00c3O",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "servi\u00e7os posto"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:178cd53e1c0b206fc401",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-24",
+        "amount": "75.00",
+        "category": "EQUIPAMENTOS/INFRAESTRUTURA",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref concet d 1 bico"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:cfd5966050d6e0805f34",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-24",
+        "amount": "150.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "folga ailton"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:a9796e579439dee4ce6d",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-25",
+        "amount": "6.00",
+        "category": "\u00c1GUA/ESGOTO",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "agua destilada"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:85affb2f46f02f28b3d6",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-25",
+        "amount": "150.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref. parte da cota seu moises"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:991adc41b627cab32ed3",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-25",
+        "amount": "100.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref ao adiant. pagamento do pedreiro"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:e23e39081099f271e508",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-25",
+        "amount": "5.50",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "app grupo lisboa"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:c6af1afdf8004edbbcca",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-25",
+        "amount": "8.00",
+        "category": "MANUTEN\u00c7\u00c3O",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "falha de bico bomba 02 ja foi trocado"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:f5b40342beb09a233fc8",
+        "company_code": 5555,
+        "company_name": "AP CASA CAIADA",
+        "date": "2026-07-25",
+        "amount": "150.00",
+        "category": "MANUTEN\u00c7\u00c3O",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref trocade um quarda bico mola"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:ae7934d3acd7adb9c37c",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-25",
+        "amount": "50.00",
+        "category": "LIMPEZA/HIGIENE",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "diaria angela limpeza"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:bcb55e6da6c170e92e26",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-25",
+        "amount": "130.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "ref. pag. diaria sabrina"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:53b5239f6e06e6b34484",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-26",
+        "amount": "8.35",
+        "category": "MANUTEN\u00c7\u00c3O",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "falha na bomba"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:4345be98c8e61856cefd",
+        "company_code": 11495,
+        "company_name": "POSTO VIP",
+        "date": "2026-07-26",
+        "amount": "55.00",
+        "category": "INSUMOS OPERACIONAIS",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "diaria"
+      },
+      {
+        "fact_id": "DESPESAS_FINANCEIRO_REDE:3dd5048ba10339896125",
+        "company_code": 74014,
+        "company_name": "POSTO DOZE FILIAL II",
+        "date": "2026-07-26",
+        "amount": "120.00",
+        "category": "LIMPEZA/HIGIENE",
+        "original_taxonomy": "INSUMOS OPERACIONAIS",
+        "text": "folguista da limpeza"
+      }
+    ],
+    "resumo_auto_classificacao": {
+      "total_classificadas": 130,
+      "remanescentes_nao_classificadas": 0,
+      "valor_por_categoria": {
+        "INSUMOS OPERACIONAIS": "26890.95",
+        "MARKETING/PUBLICIDADE": "78.00",
+        "MANUTEN\u00c7\u00c3O": "4171.63",
+        "COMBUST\u00cdVEL": "36.00",
+        "\u00c1GUA/ESGOTO": "42.00",
+        "EQUIPAMENTOS/INFRAESTRUTURA": "129.78",
+        "PESSOAL/FOLHA": "2900.00",
+        "LIMPEZA/HIGIENE": "230.00",
+        "IMPOSTOS/TAXAS": "1500.00",
+        "MATERIAIS/ESCRIT\u00d3RIO": "123.20"
+      },
+      "valor_por_filial_categoria": {
+        "74014": {
+          "INSUMOS OPERACIONAIS": "12751.20",
+          "MARKETING/PUBLICIDADE": "78.00",
+          "MANUTEN\u00c7\u00c3O": "3513.27",
+          "COMBUST\u00cdVEL": "36.00",
+          "\u00c1GUA/ESGOTO": "42.00",
+          "EQUIPAMENTOS/INFRAESTRUTURA": "51.78",
+          "PESSOAL/FOLHA": "2900.00",
+          "LIMPEZA/HIGIENE": "230.00",
+          "IMPOSTOS/TAXAS": "1500.00"
+        },
+        "11495": {
+          "INSUMOS OPERACIONAIS": "10024.75",
+          "MANUTEN\u00c7\u00c3O": "258.36",
+          "EQUIPAMENTOS/INFRAESTRUTURA": "3.00",
+          "MATERIAIS/ESCRIT\u00d3RIO": "123.20"
+        },
+        "5555": {
+          "INSUMOS OPERACIONAIS": "4115.00",
+          "MANUTEN\u00c7\u00c3O": "400.00",
+          "EQUIPAMENTOS/INFRAESTRUTURA": "75.00"
+        }
+      }
+    },
+    "observacao": "Valores 'confirmedDreAmount' s\u00e3o parcelas com evid\u00eancia de departamento. A DRE completa est\u00e1 bloqueada por falta de CLASSIFICACAO_DESPESAS e FATURAMENTO/CUSTO em v\u00e1rios departamentos."
+  },
+  "bloco_6_despesas": {
+    "titulo": "6. An\u00e1lise Detalhada e Estruturada de Despesas",
+    "status": "DISPON\u00cdVEL",
+    "periodo": {
+      "inicio": "2026-07-01",
+      "fim": "2026-07-24"
+    },
+    "total_despesas_gerenciais": "163706.62",
+    "por_categoria": [
+      {
+        "categoria": "ADMINISTRATIVA",
+        "valor": "200.00"
+      },
+      {
+        "categoria": "COMPRAS",
+        "valor": "47495.85"
+      },
+      {
+        "categoria": "OPERACIONAL",
+        "valor": "15413.28"
+      },
+      {
+        "categoria": "OUTROS",
+        "valor": "15493.97"
+      },
+      {
+        "categoria": "PESSOAL",
+        "valor": "85103.52"
+      }
+    ],
+    "por_empresa": [
+      {
+        "empresa_codigo": 5555,
+        "nome": "AP CASA CAIADA",
+        "valor": "25032.90"
+      },
+      {
+        "empresa_codigo": 11495,
+        "nome": "POSTO VIP",
+        "valor": "83877.64"
+      },
+      {
+        "empresa_codigo": 74014,
+        "nome": "POSTO DOZE FILIAL II",
+        "valor": "54796.08"
+      }
+    ],
+    "auto_classificadas": [
+      {
+        "categoria": "INSUMOS OPERACIONAIS",
+        "valor": "26890.95"
+      },
+      {
+        "categoria": "MANUTEN\u00c7\u00c3O",
+        "valor": "4171.63"
+      },
+      {
+        "categoria": "PESSOAL/FOLHA",
+        "valor": "2900.00"
+      },
+      {
+        "categoria": "IMPOSTOS/TAXAS",
+        "valor": "1500.00"
+      },
+      {
+        "categoria": "LIMPEZA/HIGIENE",
+        "valor": "230.00"
+      },
+      {
+        "categoria": "EQUIPAMENTOS/INFRAESTRUTURA",
+        "valor": "129.78"
+      },
+      {
+        "categoria": "MATERIAIS/ESCRIT\u00d3RIO",
+        "valor": "123.20"
+      },
+      {
+        "categoria": "MARKETING/PUBLICIDADE",
+        "valor": "78.00"
+      },
+      {
+        "categoria": "\u00c1GUA/ESGOTO",
+        "valor": "42.00"
+      },
+      {
+        "categoria": "COMBUST\u00cdVEL",
+        "valor": "36.00"
+      }
+    ],
+    "contas_pagar": {
+      "emAberto": {
+        "count": 255,
+        "valor": "837150.14"
+      },
+      "vencido": {
+        "count": 127,
+        "valor": "307951.80"
+      },
+      "pago": {
+        "count": 99,
+        "valor": "1554361.82"
+      },
+      "aVencer": {
+        "count": 128,
+        "valor": "529198.34"
+      }
+    },
+    "contas_receber": {
+      "pendente": {
+        "count": 23,
+        "valor": "3180.65"
+      },
+      "recebido": {
+        "count": 0,
+        "valor": "0.00"
+      },
+      "vencido": {
+        "count": 16,
+        "valor": "2068.96"
+      },
+      "aVencer": {
+        "count": 7,
+        "valor": "1111.69"
+      }
+    }
+  },
+  "bloco_7_eficiencia": {
+    "titulo": "7. Rela\u00e7\u00e3o de Efici\u00eancia: Vendas x Lucro x Despesas",
+    "status": "PARCIAL",
+    "periodo": {
+      "inicio": "2026-07-01",
+      "fim": "2026-07-24"
+    },
+    "faturamento_por_litro": [
+      {
+        "empresa_codigo": 74014,
+        "nome": "POSTO DOZE FILIAL II",
+        "receita_por_litro": "5.95",
+        "custo_folha_por_litro": {
+          "status": "INDISPON\u00cdVEL NA BASE",
+          "motivo": "Headcount e folha por litro indispon\u00edveis"
+        },
+        "despesa_operacional_por_litro": {
+          "status": "INDISPON\u00cdVEL NA BASE",
+          "motivo": "Despesas operacionais por litro indispon\u00edveis"
+        }
+      },
+      {
+        "empresa_codigo": 11495,
+        "nome": "POSTO VIP",
+        "receita_por_litro": "6.44",
+        "custo_folha_por_litro": {
+          "status": "INDISPON\u00cdVEL NA BASE",
+          "motivo": "Headcount e folha por litro indispon\u00edveis"
+        },
+        "despesa_operacional_por_litro": {
+          "status": "INDISPON\u00cdVEL NA BASE",
+          "motivo": "Despesas operacionais por litro indispon\u00edveis"
+        }
+      },
+      {
+        "empresa_codigo": 5555,
+        "nome": "AP CASA CAIADA",
+        "receita_por_litro": "6.64",
+        "custo_folha_por_litro": {
+          "status": "INDISPON\u00cdVEL NA BASE",
+          "motivo": "Headcount e folha por litro indispon\u00edveis"
+        },
+        "despesa_operacional_por_litro": {
+          "status": "INDISPON\u00cdVEL NA BASE",
+          "motivo": "Despesas operacionais por litro indispon\u00edveis"
+        }
+      }
+    ],
+    "observacao": "C\u00e1lculos R$/L de custo de folha, despesa operacional e % lucro bruto consumido dependem de CMV e lucro bruto por litro, ainda indispon\u00edveis."
+  },
+  "bloco_8_indicadores": {
+    "titulo": "8. Indicadores Executivos de Efici\u00eancia Operacional",
+    "status": "PARCIAL",
+    "periodo": {
+      "inicio": "2026-07-01",
+      "fim": "2026-07-24"
+    },
+    "turnos_analisados": 96,
+    "despesa_caixa": "40816.50",
+    "vale_funcionario": "81237.49",
+    "emprestimos": "0.00",
+    "litros_por_frentista": [
+      {
+        "funcionario_codigo": 299244,
+        "litros": "479.702",
+        "transacoes": 45
+      },
+      {
+        "funcionario_codigo": 299252,
+        "litros": "339.667",
+        "transacoes": 19
+      },
+      {
+        "funcionario_codigo": 251934,
+        "litros": "328.980",
+        "transacoes": 40
+      },
+      {
+        "funcionario_codigo": 252430,
+        "litros": "299.211",
+        "transacoes": 39
+      },
+      {
+        "funcionario_codigo": 299243,
+        "litros": "293.428",
+        "transacoes": 36
+      },
+      {
+        "funcionario_codigo": 299254,
+        "litros": "279.293",
+        "transacoes": 30
+      },
+      {
+        "funcionario_codigo": 299239,
+        "litros": "265.955",
+        "transacoes": 26
+      },
+      {
+        "funcionario_codigo": 299249,
+        "litros": "250.023",
+        "transacoes": 27
+      },
+      {
+        "funcionario_codigo": 294273,
+        "litros": "229.837",
+        "transacoes": 38
+      },
+      {
+        "funcionario_codigo": 163694,
+        "litros": "202.810",
+        "transacoes": 40
+      }
+    ],
+    "observacao": "Litros por frentista calculado a partir de abastecimentos reais. Headcount completo e faturamento por colaborador dependem de dados de pessoal."
+  },
+  "bloco_9_anomalias": {
+    "titulo": "9. Matriz de Anomalias e Desvios (Filiais Fora do Padr\u00e3o)",
+    "status": "DISPON\u00cdVEL",
+    "divergencias_caixa": {
+      "valor_apurado": "724369.54",
+      "valor_apresentado": "724097.07",
+      "valor_conferido": "568119.72",
+      "valor_divergente": "11792.47",
+      "valor_pendente": "156249.82",
+      "naturezas": [
+        {
+          "natureza": "DINHEIRO",
+          "label": "Dinheiro",
+          "valor_apurado": "156249.82",
+          "valor_apresentado": "150217.35",
+          "diferenca": "-6032.47",
+          "status": "DIVERGENT"
+        },
+        {
+          "natureza": "CHEQUE_VISTA",
+          "label": "Cheque \u00e0 Vista",
+          "valor_apurado": "0",
+          "valor_apresentado": "5760.0",
+          "diferenca": "5760.0",
+          "status": "DIVERGENT"
+        },
+        {
+          "natureza": "CARTAO",
+          "label": "Cart\u00e3o",
+          "valor_apurado": "351288.34",
+          "valor_apresentado": "351288.34",
+          "diferenca": "0",
+          "status": "AUTO_MATCHED"
+        },
+        {
+          "natureza": "DESPESA",
+          "label": "Despesa",
+          "valor_apurado": "13497.47",
+          "valor_apresentado": "13497.47",
+          "diferenca": "0",
+          "status": "AUTO_MATCHED"
+        },
+        {
+          "natureza": "VALE_FUNCIONARIO",
+          "label": "Vale Funcion\u00e1rio",
+          "valor_apurado": "21776.04",
+          "valor_apresentado": "21776.04",
+          "diferenca": "0",
+          "status": "AUTO_MATCHED"
+        },
+        {
+          "natureza": "TRANSFERENCIA_CREDITO",
+          "label": "Transfer\u00eancia Cr\u00e9dito",
+          "valor_apurado": "179055.86",
+          "valor_apresentado": "179055.86",
+          "diferenca": "0",
+          "status": "AUTO_MATCHED"
+        },
+        {
+          "natureza": "NOTAS",
+          "label": "Notas",
+          "valor_apurado": "2152.01",
+          "valor_apresentado": "2152.01",
+          "diferenca": "0",
+          "status": "AUTO_MATCHED"
+        },
+        {
+          "natureza": "PRE_PAGO",
+          "label": "Pr\u00e9-pago",
+          "valor_apurado": "200.0",
+          "valor_apresentado": "200.0",
+          "diferenca": "0",
+          "status": "AUTO_MATCHED"
+        },
+        {
+          "natureza": "CHEQUE_PRE",
+          "label": "Cheque Pr\u00e9",
+          "valor_apurado": "150.0",
+          "valor_apresentado": "150.0",
+          "diferenca": "0",
+          "status": "AUTO_MATCHED"
+        }
+      ]
+    },
+    "detalhamento_pagamento": [
+      {
+        "natureza": "CART\u00c3O",
+        "valor": "8176.38",
+        "transacoes": 155
+      },
+      {
+        "natureza": "DINHEIRO",
+        "valor": "4503.71",
+        "transacoes": 100
+      },
+      {
+        "natureza": "PIX",
+        "valor": "4384.21",
+        "transacoes": 125
+      },
+      {
+        "natureza": "TEF",
+        "valor": "472.12",
+        "transacoes": 17
+      }
+    ],
+    "rombo_por_operador_turno": [
+      {
+        "funcionario_codigo": 299242,
+        "funcionario_nome": "N\u00c3O INFORMADO",
+        "turno": "1\u00ba TURNO",
+        "valor_dinheiro": "3046.58",
+        "valor_cheque": "0",
+        "valor_pix": "2330.77",
+        "valor_cartao": "6081.47",
+        "transacoes": 197
+      },
+      {
+        "funcionario_codigo": 276288,
+        "funcionario_nome": "N\u00c3O INFORMADO",
+        "turno": "1\u00ba TURNO",
+        "valor_dinheiro": "1288.60",
+        "valor_cheque": "0",
+        "valor_pix": "1647.89",
+        "valor_cartao": "1863.44",
+        "transacoes": 179
+      },
+      {
+        "funcionario_codigo": 158924,
+        "funcionario_nome": "N\u00c3O INFORMADO",
+        "turno": "1\u00ba TURNO",
+        "valor_dinheiro": "168.53",
+        "valor_cheque": "0",
+        "valor_pix": "405.55",
+        "valor_cartao": "231.47",
+        "transacoes": 21
+      }
+    ],
+    "alertas": [
+      {
+        "severidade": "CRITICO",
+        "categoria": "FILIAL",
+        "mensagem": "Filial cr\u00edtica: FILIAL 5333",
+        "referencia": {
+          "empresaCodigo": 5333,
+          "nomeFilial": "FILIAL 5333",
+          "receita": 0.0,
+          "lucro": -1133.51,
+          "roi": 0.0,
+          "perdas": 0.0,
+          "metas": 0,
+          "alertas": 0,
+          "scoreMedio": null,
+          "participacao": 0.0,
+          "crescimentoProxy": 0.0
+        }
+      },
+      {
+        "severidade": "CRITICO",
+        "categoria": "ROI",
+        "mensagem": "Financial Score abaixo do limiar executivo",
+        "referencia": {
+          "financialScore": 30.0
+        }
+      },
+      {
+        "severidade": "ALTO",
+        "categoria": "PDV",
+        "mensagem": "PDV cr\u00edtico: 54193",
+        "referencia": {
+          "pdvCodigo": 54193,
+          "fechamentos": 7,
+          "diferencaAcumulada": -479.61,
+          "desvioPadrao": 61.77,
+          "diferencaMedia": -68.52,
+          "operadores": [
+            {
+              "funcionarioCodigo": 227386,
+              "fechamentos": 3
+            },
+            {
+              "funcionarioCodigo": 294273,
+              "fechamentos": 3
+            },
+            {
+              "funcionarioCodigo": 299371,
+              "fechamentos": 1
+            }
+          ],
+          "turnos": [
+            {
+              "turno": "1\u00ba TURNO",
+              "fechamentos": 7
+            }
+          ],
+          "cashRiskScore": 59.83,
+          "band": "Atencao",
+          "vsMediaRede": 7.64,
+          "monitoramentoPrioritario": true,
+          "indiceRecorrencia": 0.69,
+          "componentDiferenca": 0.0,
+          "componentRecorrencia": 31.0,
+          "componentRisk": 59.83,
+          "componentCompensado": 50.0,
+          "_rawScore": 19.716,
+          "componentEvolucao": 50.0,
+          "evolucaoDelta": 0.0,
+          "operatorPerformanceScore": 26.72,
+          "performanceScore": 26.72,
+          "performanceBand": "Critico"
+        }
+      },
+      {
+        "severidade": "ALTO",
+        "categoria": "TURNO",
+        "mensagem": "Turno cr\u00edtico: 1\u00ba Turno",
+        "referencia": {
+          "turno": "1\u00ba Turno",
+          "turnoCodigo": 1,
+          "receitaBruta": 2196.79,
+          "destruicaoMargem": 1533.8,
+          "margemOperacional": 662.99,
+          "cancelamentos": 0.0,
+          "faltas": 766.9,
+          "sobras": 0,
+          "perdasCaixa": 766.9,
+          "quantidadeVendas": 106,
+          "resultadoLiquido": 662.99,
+          "riscoEconomico": 1533.8,
+          "roi": 0.43,
+          "incidenciaQuebraPct": 100.0,
+          "alertas": 0,
+          "metasPct": 0.43
+        }
+      },
+      {
+        "severidade": "ATENCAO",
+        "categoria": "OPERADOR",
+        "mensagem": "Operador cr\u00edtico: 299151",
+        "referencia": {
+          "funcionarioCodigo": 299151,
+          "employeeName": null,
+          "salesScore": 0.0,
+          "productivityScore": 0.0,
+          "accountabilityScore": 0.0,
+          "resultadoLiquido": 0.0,
+          "roi": 0.0,
+          "globalScore": 10.03,
+          "goalPercentual": 88.55,
+          "performanceScore": 22.8,
+          "evolucaoDelta": 0.0,
+          "cashRiskScore": 46.77,
+          "benchmarkScore": 14.79
+        }
+      }
+    ]
+  },
+  "bloco_10_rankings": {
+    "titulo": "10. Rankings Gerenciais Consolidados",
+    "status": "PARCIAL",
+    "ranking_despesas_gerenciais": [
+      {
+        "empresa_codigo": 5555,
+        "nome": "AP CASA CAIADA",
+        "valor": "25032.90"
+      },
+      {
+        "empresa_codigo": 11495,
+        "nome": "POSTO VIP",
+        "valor": "83877.64"
+      },
+      {
+        "empresa_codigo": 74014,
+        "nome": "POSTO DOZE FILIAL II",
+        "valor": "54796.08"
+      }
+    ],
+    "ranking_volume_combustivel": [
+      {
+        "empresa_codigo": 74014,
+        "nome": "POSTO DOZE FILIAL II",
+        "litros": "2109.218",
+        "valor": "12558.65"
+      },
+      {
+        "empresa_codigo": 11495,
+        "nome": "POSTO VIP",
+        "litros": "1206.748",
+        "valor": "7771.30"
+      },
+      {
+        "empresa_codigo": 5555,
+        "nome": "AP CASA CAIADA",
+        "litros": "314.777",
+        "valor": "2091.57"
+      }
+    ],
+    "observacao": "Rankings de receita total, lucro l\u00edquido, custo operacional/litro e faturamento/folha dependem de dados ainda indispon\u00edveis (CMV, lucro bruto)."
+  },
+  "bloco_11_conclusao": {
+    "titulo": "11. Conclus\u00e3o Executiva para Tomada de Decis\u00e3o (30 segundos)",
+    "status": "BASEADA_EM_DADOS_REAIS",
+    "mais_rentavel": "AP CASA CAIADA (menor despesa gerencial: R$ 25.032,90)",
+    "menos_rentavel": "POSTO VIP (maior despesa gerencial: R$ 83.877,64)",
+    "custos_criticos": [
+      "Despesas gerenciais de PESSOAL representam 51,99% do total (R$ 85.103,52 / R$ 163.706,62)",
+      "Diverg\u00eancias de caixa n\u00e3o justificadas: R$ 12111.69 em 21 itens",
+      "Score financeiro executivo: 30.0 \u2014 diagn\u00f3stico: PERDENDO",
+      "Volume de combust\u00edvel real: 3.630,74 L / R$ 22.421,52 \u2014 POSTO DOZE FILIAL II lidera",
+      "Auto-classifica\u00e7\u00e3o de despesas: 130 itens classificados (R$ 36.101,56); 0 ainda pendentes de revis\u00e3o manual"
+    ],
+    "acoes_urgentes": [
+      "Habilitar carga cont\u00ednua de abastecimentos via /INTEGRACAO/ABASTECIMENTO para cobertura completa do per\u00edodo (API limita a ~400 registros/consulta).",
+      "Revisar as 0 despesas ainda pendentes ap\u00f3s aplica\u00e7\u00e3o das regras de palavras-chave.",
+      "Revisar diverg\u00eancias de caixa em dinheiro e cheque sem justificativa, cruzando VENDA_FORMA_PAGAMENTO com CAIXA.",
+      "Validar movimenta\u00e7\u00e3o banc\u00e1ria: transfer\u00eancias precisam de contra-partida entre filiais."
+    ]
+  },
+  "bloco_12_prontidao": {
+    "titulo": "12. Levantamento do que J\u00c1 EST\u00c1 PRONTO na Base de Dados",
+    "status": "DISPON\u00cdVEL",
+    "tabela": [
+      {
+        "indicador": "Volume de combust\u00edvel por produto e filial",
+        "fonte": "/INTEGRACAO/ABASTECIMENTO (API WebPosto)",
+        "periodo": "2026-07-01 a 2026-07-24",
+        "confiabilidade": "ALTA \u2014 dados reais da pista",
+        "valor": "3.630,74 L / R$ 22.421,52 em 400 abastecimentos"
+      },
+      {
+        "indicador": "Vendas de conveni\u00eancia por filial",
+        "fonte": "/INTEGRACAO/VENDA_ITEM + /INTEGRACAO/PRODUTO (API WebPosto)",
+        "periodo": "2026-07-17 a 2026-07-23",
+        "confiabilidade": "ALTA \u2014 itens vendidos reais, todas as filiais",
+        "valor": "R$ 1.167,02; 106 itens; 1 filial ativa"
+      },
+      {
+        "indicador": "Detalhamento de rombo de caixa por operador/turno",
+        "fonte": "/INTEGRACAO/VENDA_FORMA_PAGAMENTO + /INTEGRACAO/CAIXA (API WebPosto)",
+        "periodo": "2026-07-17 a 2026-07-23",
+        "confiabilidade": "ALTA \u2014 cruzamento de formas de pagamento com caixa",
+        "valor": "3 operadores/turnos com diverg\u00eancia em dinheiro/cheque; total divergente R$ 11.792,47"
+      },
+      {
+        "indicador": "Despesas gerenciais por categoria e filial",
+        "fonte": "finance_center.summary + expenses (snapshot)",
+        "periodo": "2026-07-01 a 2026-07-24",
+        "confiabilidade": "ALTA \u2014 homologado, 526 registros",
+        "valor": "R$ 163.706,62 total; PESSOAL 51,99% (85.103,52)"
+      },
+      {
+        "indicador": "Contas a pagar / receber",
+        "fonte": "finance_center.summary (TITULO_PAGAR / TITULO_RECEBER)",
+        "periodo": "2026-07-01 a 2026-07-24",
+        "confiabilidade": "ALTA \u2014 354 pag\u00e1veis, 23 receb\u00edveis",
+        "valor": "Pagar em aberto R$ 837.150,14; Receber pendente R$ 3.180,65"
+      },
+      {
+        "indicador": "Reconcilia\u00e7\u00e3o de caixa por natureza de pagamento",
+        "fonte": "cash_reconciliation.recon_summary (snapshot)",
+        "periodo": "2026-07-17 a 2026-07-23",
+        "confiabilidade": "ALTA \u2014 139 itens analisados, 109 auto-matched",
+        "valor": "Apurado R$ 724.369,54 vs Apresentado R$ 724.097,07; divergente R$ 11.792,47"
+      },
+      {
+        "indicador": "DRE departamental confirmada + auto-classifica\u00e7\u00e3o",
+        "fonte": "director_financial_reconciliation (snapshot) + regras de palavras-chave",
+        "periodo": "2026-07-01 a 2026-07-24",
+        "confiabilidade": "M\u00c9DIA \u2014 classifica\u00e7\u00e3o autom\u00e1tica aplicada, requer revis\u00e3o manual",
+        "valor": "130 despesas classificadas; 0 pendentes; top confirmados: POSTO VIP combustiveis R$ 52.836,97; POSTO DOZE FILIAL II nao_classificado R$ 8.250,00; POSTO DOZE FILIAL II combustiveis R$ 7.995,00"
+      },
+      {
+        "indicador": "CMV / custo de reposi\u00e7\u00e3o por litro",
+        "fonte": "COMPRAS + ESTOQUE + abastecimento",
+        "periodo": "INDISPON\u00cdVEL",
+        "confiabilidade": "NULA",
+        "valor": "INDISPON\u00cdVEL NA BASE \u2014 impossibilita margem bruta/operacional e EBITDA por litro"
+      },
+      {
+        "indicador": "Folha de pagamento / headcount por filial",
+        "fonte": "PESSOAL (despesas classificadas) + /INTEGRACAO/FUNCIONARIO",
+        "periodo": "PARCIAL",
+        "confiabilidade": "M\u00c9DIA \u2014 despesas de pessoal consolidadas, mas sem headcount operacional",
+        "valor": "R$ 85.103,52 em despesas gerenciais de PESSOAL"
+      },
+      {
+        "indicador": "Transfer\u00eancias entre filiais",
+        "fonte": "MOVIMENTO_CONTA + TRANSFERENCIA_BANCARIA",
+        "periodo": "PARCIAL",
+        "confiabilidade": "BAIXA \u2014 MOVIMENTO_CONTA indispon\u00edvel no director reconciliation",
+        "valor": "R$ 5.808,66 em transfer\u00eancias banc\u00e1rias n\u00e3o alocadas por filial"
+      },
+      {
+        "indicador": "Efici\u00eancia operacional de caixa",
+        "fonte": "finance_center.summary.caixa",
+        "periodo": "2026-07-01 a 2026-07-24",
+        "confiabilidade": "ALTA \u2014 96 turnos com dados de caixa",
+        "valor": "Despesa caixa R$ 40.816,50; vale funcion\u00e1rio R$ 81.237,49; empr\u00e9stimos R$ 0,00"
+      },
+      {
+        "indicador": "Alertas e anomalias executivas",
+        "fonte": "executive_scorecard + cash_reconciliation",
+        "periodo": "2026-07-01 a 2026-07-24",
+        "confiabilidade": "ALTA \u2014 alertas gerados a partir de dados reais",
+        "valor": "5 alertas recentes; diverg\u00eancias n\u00e3o justificadas R$ 11.792,47"
+      }
+    ]
+  }
+}

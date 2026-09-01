@@ -1,0 +1,37 @@
+{
+  "kind": "financial_overview",
+  "key": "2026-07-01:2026-07-18:5555,11495,74014",
+  "lastUpdated": "2026-07-18T21:51:27",
+  "homologated": true,
+  "source": "live",
+  "data": {
+    "postos": [
+      {
+        "empresaCodigo": 11495,
+        "nome": "POSTO VIP",
+        "total_despesas": "0",
+        "total_a_pagar": "311812.20",
+        "synthetic": false
+      },
+      {
+        "empresaCodigo": 5555,
+        "nome": "AP CASA CAIADA",
+        "total_despesas": "0",
+        "total_a_pagar": "146939.87",
+        "synthetic": false
+      },
+      {
+        "empresaCodigo": 74014,
+        "nome": "POSTO DOZE FILIAL II",
+        "total_despesas": "0",
+        "total_a_pagar": "284202.85",
+        "synthetic": false
+      }
+    ],
+    "consolidado": {
+      "total_despesas": "0",
+      "total_a_pagar": "742954.92"
+    },
+    "synthetic": false
+  }
+}

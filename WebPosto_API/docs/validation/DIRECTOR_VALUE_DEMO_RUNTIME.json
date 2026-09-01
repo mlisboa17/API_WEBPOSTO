@@ -1,0 +1,60 @@
+{
+  "validation": "Director value demo runtime",
+  "runtime_frontend": "WebPosto_API/frontend",
+  "api_port": "127.0.0.1:8046",
+  "home_route": "http://127.0.0.1:8046/app/financial?view=owner-diretoria&dataInicial=2026-06-05&dataFinal=2026-07-04",
+  "journey_steps": [
+    {
+      "step": "HOME",
+      "ok": true
+    },
+    {
+      "step": "TOP_DECISIONS_VISIBLE",
+      "ok": true,
+      "decisions_count": 2
+    },
+    {
+      "step": "OBSERVATIONS_VISIBLE",
+      "ok": true
+    },
+    {
+      "step": "FOLLOW_UP_VISIBLE",
+      "ok": true
+    },
+    {
+      "step": "DECISION_DETAIL",
+      "ok": true
+    },
+    {
+      "step": "FOLLOW_UP_DETAIL",
+      "ok": true
+    }
+  ],
+  "dead_buttons": [],
+  "false_success_states": [],
+  "mocks": false,
+  "ui_validated": true,
+  "runtime_http": true,
+  "tenants_visible": 3,
+  "detectors_visible": [
+    "FuelRevenueDetector",
+    "ExpenseDetector",
+    "CardReceivableDetector",
+    "SupplierInvoiceSpikeDetector"
+  ],
+  "priority_decision_visible": true,
+  "priority_tenant": "POSTO DOZE FILIAL II",
+  "priority_amount": 11251.5,
+  "money_label": "ESTIMATED",
+  "confidence_visible": true,
+  "observations_visible": true,
+  "observations_count": 2,
+  "follow_up_visible": true,
+  "review_request_id": "d7ff3eae-b846-4bbb-8e7b-1b49841afbf1",
+  "review_responsible": "Marcio de Lima",
+  "fin03_progress": {
+    "checked_items": 3,
+    "total_items": 13,
+    "percent": 23.08
+  }
+}

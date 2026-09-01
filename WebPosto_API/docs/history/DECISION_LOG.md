@@ -11,6 +11,13 @@
 
 ---
 
+## ADR-026: Decision Evidence Items (DIR-01)
+**Status:** ✅ ACCEPTED | **Data:** 2026-07-05 | **Sprint:** DIR-01
+
+Preservar `evidence_items` em `DecisionCandidate.evidence` (ExpenseDetector). Endpoint dedicado para detalhe sem alterar ranking/thresholds. Campos ausentes = null.
+
+---
+
 ## ADR-025: Card Receivable Detector LEVEL 1
 **Status:** ✅ ACCEPTED | **Data:** 2026-07-04 | **Sprint:** VALUE-04
 

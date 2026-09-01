@@ -1,0 +1,97 @@
+{
+  "title": "VERIFICACAO INDEPENDENTE MICROBATCH 04 — 118508",
+  "verifiedAt": "2026-09-01T08:03:42.659807+00:00",
+  "apiWrites": 0,
+  "productsVerified": 4,
+  "allFieldsMatch": true,
+  "findings": [
+    {
+      "produtoCodigo": 2481512,
+      "ean": "7891000402856",
+      "descricao": "BISCOITO COOKIE GAROTO CROCANTE 60GR",
+      "empresaCodigo": 118508,
+      "ativo": true,
+      "ncm": "19053100",
+      "cest": "1705300",
+      "referenciaCodigo": "005218",
+      "precoVenda": 5.49,
+      "precoCusto": 0.0,
+      "checks": {
+        "empresaCodigo": true,
+        "ativo": true,
+        "ean": true,
+        "ncm": true,
+        "cest": true,
+        "precoVenda": true,
+        "precoCusto": true
+      },
+      "divergencias": []
+    },
+    {
+      "produtoCodigo": 2481513,
+      "ean": "7891000402894",
+      "descricao": "COOKIES GAROTO CARIBE 60 G",
+      "empresaCodigo": 118508,
+      "ativo": true,
+      "ncm": "19053100",
+      "cest": "1705300",
+      "referenciaCodigo": "005219",
+      "precoVenda": 5.99,
+      "precoCusto": 0.0,
+      "checks": {
+        "empresaCodigo": true,
+        "ativo": true,
+        "ean": true,
+        "ncm": true,
+        "cest": true,
+        "precoVenda": true,
+        "precoCusto": true
+      },
+      "divergencias": []
+    },
+    {
+      "produtoCodigo": 2481514,
+      "ean": "7891962080802",
+      "descricao": "BISC BAUDUCCO COOKIES AMORA 96G",
+      "empresaCodigo": 118508,
+      "ativo": true,
+      "ncm": "19053100",
+      "cest": "1705300",
+      "referenciaCodigo": "005220",
+      "precoVenda": 10.5,
+      "precoCusto": 0.0,
+      "checks": {
+        "empresaCodigo": true,
+        "ativo": true,
+        "ean": true,
+        "ncm": true,
+        "cest": true,
+        "precoVenda": true,
+        "precoCusto": true
+      },
+      "divergencias": []
+    },
+    {
+      "produtoCodigo": 2481515,
+      "ean": "7891962076676",
+      "descricao": "COOKIES BAUDUCCO FINI DENTADURA 96G",
+      "empresaCodigo": 118508,
+      "ativo": true,
+      "ncm": "19053100",
+      "cest": "1705300",
+      "referenciaCodigo": "005221",
+      "precoVenda": 10.99,
+      "precoCusto": 0.0,
+      "checks": {
+        "empresaCodigo": true,
+        "ativo": true,
+        "ean": true,
+        "ncm": true,
+        "cest": true,
+        "precoVenda": true,
+        "precoCusto": true
+      },
+      "divergencias": []
+    }
+  ]
+}

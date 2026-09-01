@@ -1,60 +1,73 @@
 {
-  "executed_at": "2026-07-03T21:34:08.028829",
+  "executed_at": "2026-07-04T12:14:55.701983",
   "period": {
-    "start": "2026-06-26",
-    "end": "2026-07-03"
+    "start": "2026-06-27",
+    "end": "2026-07-04"
   },
   "tests": {
     "A_first_open": {
-      "current_analysis_response_ms": 14.6,
-      "freshness": "NO_ANALYSIS",
+      "current_analysis_response_ms": 1270.2,
+      "freshness": "STALE_REFRESHING",
       "refresh_status": "RUNNING",
-      "analysis_id": "639c3fb0-a952-4ff0-8be7-5a329feec370",
+      "analysis_id": "0a617eed-6c31-4eea-bd52-5f86e2f4146f",
       "final_status": {
-        "analysis_id": "639c3fb0-a952-4ff0-8be7-5a329feec370",
-        "scope_key": "2026-06-26:2026-07-03:all_discovered:FuelRevenueDetector:all",
-        "status": "FAILED",
-        "started_at": "2026-07-04T00:33:47.241735+00:00",
-        "completed_at": "2026-07-04T00:34:56.656563+00:00",
-        "tenants_total": 0,
-        "tenants_completed": 0,
+        "analysis_id": "0a617eed-6c31-4eea-bd52-5f86e2f4146f",
+        "scope_key": "2026-06-27:2026-07-04:all_discovered:FuelRevenueDetector:all",
+        "status": "COMPLETED",
+        "started_at": "2026-07-04T15:14:56+00:00",
+        "completed_at": "2026-07-04T15:16:20+00:00",
+        "tenants_total": 3,
+        "tenants_completed": 3,
         "tenants_failed": 0,
         "current_detector": "FuelRevenueDetector",
-        "progress_message": "Não foi possível concluir a análise",
-        "error": "run_owner_analysis.<locals>._progress() takes 1 positional argument but 3 were given",
+        "progress_message": "Análise concluída",
+        "error": null,
         "duplicate_prevented": false
       }
     },
     "B_second_open": {
-      "home_first_useful_render_proxy_ms": 65.6,
-      "current_analysis_response_ms": 65.6,
-      "freshness": "NO_ANALYSIS",
-      "last_analysis_at": null,
-      "has_analysis_proof": false
+      "home_first_useful_render_proxy_ms": 15.8,
+      "current_analysis_response_ms": 15.8,
+      "freshness": "FRESH",
+      "last_analysis_at": "2026-07-04T15:16:20.765645+00:00",
+      "has_analysis_proof": true
     },
     "C_stale_refreshing": {
-      "trigger_ms": 31.4,
-      "current_ms": 32.8,
-      "freshness": "NO_ANALYSIS",
-      "refresh_status": "PENDING",
-      "still_has_proof": false,
+      "trigger_ms": 22.8,
+      "current_ms": 10.4,
+      "freshness": "FRESH",
+      "refresh_status": "COMPLETED",
+      "still_has_proof": true,
       "trigger": {
-        "analysis_id": "fd30a9a7-7c14-4017-9e34-c5ff6dbd1a21",
+        "analysis_id": "b8252756-06c6-46b2-81d8-0dd77db3ed6a",
         "refresh_status": "PENDING",
         "already_running": false,
-        "scope_key": "2026-06-26:2026-07-03:all_discovered:FuelRevenueDetector:all",
+        "scope_key": "2026-06-27:2026-07-04:all_discovered:FuelRevenueDetector:all",
         "reason": "manual"
       }
     },
     "D_duplicate_refresh": {
-      "first_analysis_id": "c01b86cf-98cb-4b17-820d-c58333ae943d",
-      "second_analysis_id": "3245f5d7-6488-49c0-8ed4-0ad4bd644840",
+      "first_analysis_id": "a25ea909-3e23-477d-8529-d716655b4bc1",
+      "second_analysis_id": "eb9da04b-6b20-4cf7-990b-cc3c59477596",
       "second_already_running": false,
-      "trigger_response_ms": 30.2,
-      "duplicate_analysis_count": 1
+      "trigger_response_ms": 8.2,
+      "duplicate_analysis_count": 14
     },
     "E_cache_isolation": {
-      "tenants": []
+      "tenants": [
+        {
+          "tenant_id": "5555",
+          "empresa_codigo": "5555"
+        },
+        {
+          "tenant_id": "11495",
+          "empresa_codigo": "11495"
+        },
+        {
+          "tenant_id": "74014",
+          "empresa_codigo": "74014"
+        }
+      ]
     },
     "F_refresh_failure": {
       "status": "NOT_EXECUTED",
@@ -62,43 +75,57 @@
     }
   },
   "metrics_after_a": {
-    "tenant_registry_cache_hit": 0,
-    "tenant_registry_cache_miss": 1,
-    "empresas_request_count": 3,
-    "permission_cache_hit": 47,
-    "permission_cache_miss": 1,
-    "permission_probe_duration_ms": 20732,
-    "permission_endpoints_checked": 29,
-    "permission_probe_http_count": 29,
-    "fuel_cache_hit_count": 0,
-    "fuel_cache_miss_count": 1,
-    "duplicate_analysis_count": 1,
+    "tenant_registry_cache_hit": 6,
+    "tenant_registry_cache_miss": 2,
+    "empresas_request_count": 6,
+    "permission_cache_hit": 428,
+    "permission_cache_miss": 4,
+    "permission_probe_duration_ms": 59922,
+    "permission_endpoints_checked": 116,
+    "permission_probe_http_count": 116,
+    "fuel_cache_hit_count": 14,
+    "fuel_cache_miss_count": 8,
+    "webposto_request_total": 252,
+    "webposto_venda_requests": 18,
+    "webposto_venda_item_requests": 180,
+    "webposto_produto_requests": 18,
+    "webposto_429_count": 0,
+    "webposto_timeout_count": 0,
+    "webposto_5xx_count": 0,
+    "duplicate_analysis_count": 14,
     "duplicate_request_count": 0,
-    "analysis_trigger_count": 1,
-    "snapshot_freshness_last": "NO_ANALYSIS",
-    "snapshot_age_seconds_last": null
+    "analysis_trigger_count": 350,
+    "snapshot_freshness_last": "STALE_REFRESHING",
+    "snapshot_age_seconds_last": 2399
   },
   "final_metrics": {
-    "tenant_registry_cache_hit": 0,
-    "tenant_registry_cache_miss": 1,
-    "empresas_request_count": 3,
-    "permission_cache_hit": 47,
-    "permission_cache_miss": 1,
-    "permission_probe_duration_ms": 20732,
-    "permission_endpoints_checked": 29,
-    "permission_probe_http_count": 29,
-    "fuel_cache_hit_count": 0,
-    "fuel_cache_miss_count": 1,
-    "duplicate_analysis_count": 1,
+    "tenant_registry_cache_hit": 9,
+    "tenant_registry_cache_miss": 2,
+    "empresas_request_count": 6,
+    "permission_cache_hit": 428,
+    "permission_cache_miss": 4,
+    "permission_probe_duration_ms": 59922,
+    "permission_endpoints_checked": 116,
+    "permission_probe_http_count": 116,
+    "fuel_cache_hit_count": 23,
+    "fuel_cache_miss_count": 8,
+    "webposto_request_total": 252,
+    "webposto_venda_requests": 18,
+    "webposto_venda_item_requests": 180,
+    "webposto_produto_requests": 18,
+    "webposto_429_count": 0,
+    "webposto_timeout_count": 0,
+    "webposto_5xx_count": 0,
+    "duplicate_analysis_count": 14,
     "duplicate_request_count": 0,
-    "analysis_trigger_count": 6,
-    "snapshot_freshness_last": "NO_ANALYSIS",
-    "snapshot_age_seconds_last": null
+    "analysis_trigger_count": 353,
+    "snapshot_freshness_last": "FRESH",
+    "snapshot_age_seconds_last": 0
   },
   "summary": {
-    "HOME_FIRST_USEFUL_RENDER_MS": 65.6,
-    "CURRENT_ANALYSIS_RESPONSE_MS": 65.6,
-    "ANALYSIS_TRIGGER_MS": 31.4,
-    "DUPLICATE_ANALYSIS_COUNT": 1
+    "HOME_FIRST_USEFUL_RENDER_MS": 15.8,
+    "CURRENT_ANALYSIS_RESPONSE_MS": 15.8,
+    "ANALYSIS_TRIGGER_MS": 22.8,
+    "DUPLICATE_ANALYSIS_COUNT": 14
   }
 }

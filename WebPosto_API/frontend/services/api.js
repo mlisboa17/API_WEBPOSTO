@@ -38,6 +38,35 @@ function toQuery(params) {
 
 import { apiClient } from './apiClient.js';
 import { validateResponse, SCHEMAS } from './validation.js';
+import {
+  EXECUTIVE_UNAVAILABLE_MSG,
+  normalizeBusinessHealth,
+  normalizeCashFlow,
+  normalizeDre,
+  normalizeFuelExecutive,
+  unavailablePayload,
+} from './executivePayload.js';
+
+async function executiveGet(path, options = {}) {
+  try {
+    const raw = await apiClient.get(path, options);
+    return {
+      data: raw?.data ?? raw,
+      snapshot: raw?.snapshot,
+      unavailable: false,
+    };
+  } catch (error) {
+    if (error?.unavailable || error?.status === 403 || error?.status === 404) {
+      return {
+        data: null,
+        snapshot: null,
+        unavailable: true,
+        message: EXECUTIVE_UNAVAILABLE_MSG,
+      };
+    }
+    throw error;
+  }
+}
 
 async function get(path, params = {}, options = {}) {
   if (ENABLE_AUDIT_MODE) {
@@ -340,6 +369,58 @@ const COVERAGE_TIMEOUT_MS = 45000;
 const SNAPSHOT_TIMEOUT_MS = 8000;
 const REFRESH_TIMEOUT_MS = 5000;
 
+// Sprint 1 — alinhado a ENABLE_OPERATIONAL_ROUTES=false no backend (app.py)
+const ENABLE_OPERATIONAL_ROUTES = false;
+
+function deprecatedOperationalMeta(filters = {}) {
+  return {
+    deprecated: true,
+    operational: true,
+    empresaCodigo: filters?.empresaCodigo ?? null,
+    warnings: ["DEPRECATED - OPERATIONAL — rota desligada no barramento C-Level"],
+  };
+}
+
+function deprecatedCashOperationsAll(filters = {}) {
+  return {
+    summary: { total: 0, deprecated: true },
+    alerts: { data: [] },
+    operators: { data: [] },
+    pdvs: { data: [] },
+    turns: { data: [] },
+    riskScore: { score: 0 },
+    fromSnapshot: false,
+    lastUpdated: null,
+    ...deprecatedOperationalMeta(filters),
+  };
+}
+
+function deprecatedPerformanceAll(filters = {}) {
+  return {
+    summary: {},
+    operators: { data: [] },
+    pdvs: { data: [] },
+    turns: { data: [] },
+    evolution: [],
+    bestPractices: [],
+    criticalFocus: [],
+    periodo: null,
+    fromSnapshot: false,
+    lastUpdated: null,
+    ...deprecatedOperationalMeta(filters),
+  };
+}
+
+function deprecatedCockpit(filters = {}) {
+  return {
+    cockpit: null,
+    executiveAnswers: [],
+    parecerFinal: null,
+    snapshot: { hit: false, stale: true },
+    ...deprecatedOperationalMeta(filters),
+  };
+}
+
 function snapshotParams(filters) {
   const empresaCodigo = normalizeEmpresaParam(filters.empresaCodigo);
   const centroCusto = Array.isArray(filters.centroCusto)
@@ -376,13 +457,14 @@ export async function fetchKpis(filters) {
 
 export async function fetchDre(filters) {
   if (ENABLE_AUDIT_MODE) {
-    return await auditDre(filters);
+    return normalizeDre(await auditDre(filters));
   }
-  const raw = await apiClient.get("/api/v1/dre", {
+  const result = await executiveGet("/api/v1/dre", {
     params: analyticsParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
   });
-  return raw?.data || raw;
+  if (result.unavailable) return unavailablePayload(result.message);
+  return normalizeDre(result.data);
 }
 
 export async function fetchDataQuality(filters) {
@@ -405,11 +487,12 @@ export async function fetchFuelSummary(filters) {
 }
 
 export async function fetchFuelExecutive(filters) {
-  const raw = await apiClient.get("/api/v1/fuel/executive", {
+  const result = await executiveGet("/api/v1/fuel/executive", {
     params: analyticsParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
   });
-  return raw?.data || raw;
+  if (result.unavailable) return unavailablePayload(result.message);
+  return normalizeFuelExecutive(result.data);
 }
 
 export async function fetchFuelSnapshot(filters) {
@@ -456,7 +539,11 @@ export async function fetchExecutiveSnapshot(filters) {
     params: snapshotParams(filters),
     timeout: SNAPSHOT_TIMEOUT_MS,
   });
-  return raw?.data || raw;
+  const data = raw?.data || raw;
+  if (data?.dre) {
+    data.dre = normalizeDre(data.dre);
+  }
+  return data;
 }
 
 export async function postExecutiveRefresh(filters) {
@@ -501,6 +588,48 @@ export async function fetchFinanceCenterSummary(filters) {
   const raw = await apiClient.get("/api/v1/finance/center/summary", {
     params: financeCenterParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function fetchDirectorFinancialReconciliation(filters) {
+  const raw = await apiClient.get("/api/v1/finance/director-reconciliation", {
+    params: financeCenterParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function postDirectorFinancialReconciliationRefresh(filters) {
+  const raw = await apiClient.post("/api/v1/finance/director-reconciliation/refresh", null, {
+    params: financeCenterParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
+  });
+  return raw?.data || raw;
+}
+
+export async function postDepartmentReview(filters, body) {
+  const raw = await apiClient.post(
+    "/api/v1/finance/director-reconciliation/department-reviews",
+    body,
+    { params: financeCenterParams(filters), timeout: REFRESH_TIMEOUT_MS },
+  );
+  return raw?.data || raw;
+}
+
+export async function postSharedAllocationRule(filters, body) {
+  const raw = await apiClient.post(
+    "/api/v1/finance/director-reconciliation/allocation-rules",
+    body,
+    { params: financeCenterParams(filters), timeout: REFRESH_TIMEOUT_MS },
+  );
+  return raw?.data || raw;
+}
+
+export async function fetchCompleteDepartmentalDre(filters) {
+  const raw = await apiClient.get("/api/v1/finance/director-reconciliation/dre-complete", {
+    params: financeCenterParams(filters),
+    timeout: REFRESH_TIMEOUT_MS,
   });
   return raw?.data || raw;
 }
@@ -630,11 +759,12 @@ export async function postCashFlowRefresh(filters) {
 }
 
 export async function fetchCashFlow(filters) {
-  const raw = await apiClient.get("/api/v1/finance/cash-flow", {
+  const result = await executiveGet("/api/v1/finance/cash-flow", {
     params: cashFlowParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
   });
-  return raw?.data || raw;
+  if (result.unavailable) return unavailablePayload(result.message);
+  return normalizeCashFlow(result.data);
 }
 
 function cashOperationsParams(filters) {
@@ -642,6 +772,10 @@ function cashOperationsParams(filters) {
 }
 
 export async function fetchCashOperationsSnapshot(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { fromSnapshot: false, lastUpdated: null, data: null, ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.get("/api/v1/cash/operations/snapshot", {
     params: cashOperationsParams(filters),
     timeout: SNAPSHOT_TIMEOUT_MS,
@@ -650,6 +784,10 @@ export async function fetchCashOperationsSnapshot(filters) {
 }
 
 export async function postCashOperationsRefresh(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { status: "disabled", ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.post("/api/v1/cash/operations/refresh", null, {
     params: cashOperationsParams(filters),
     timeout: REFRESH_TIMEOUT_MS,
@@ -658,6 +796,10 @@ export async function postCashOperationsRefresh(filters) {
 }
 
 export async function fetchCashOperationsSummary(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { total: 0, data: [], ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.get("/api/v1/cash/operations/summary", {
     params: cashOperationsParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
@@ -666,6 +808,10 @@ export async function fetchCashOperationsSummary(filters) {
 }
 
 export async function fetchCashOperationsAll(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return deprecatedCashOperationsAll(filters);
+  }
   const [summary, alerts, operators, pdvs, turns, riskScore] = await Promise.all([
     fetchCashOperationsSummary(filters),
     apiClient.get("/api/v1/cash/operations/alerts", { params: cashOperationsParams(filters), timeout: ANALYTICS_TIMEOUT_MS }),
@@ -692,6 +838,10 @@ function performanceParams(filters) {
 }
 
 export async function fetchOperatorPerformanceSnapshot(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { fromSnapshot: false, lastUpdated: null, data: null, ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.get("/api/v1/performance/snapshot", {
     params: performanceParams(filters),
     timeout: SNAPSHOT_TIMEOUT_MS,
@@ -700,6 +850,10 @@ export async function fetchOperatorPerformanceSnapshot(filters) {
 }
 
 export async function postOperatorPerformanceRefresh(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { status: "disabled", ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.post("/api/v1/performance/refresh", null, {
     params: performanceParams(filters),
     timeout: REFRESH_TIMEOUT_MS,
@@ -708,6 +862,10 @@ export async function postOperatorPerformanceRefresh(filters) {
 }
 
 export async function fetchOperatorPerformanceSummary(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { data: [], ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.get("/api/v1/performance/summary", {
     params: performanceParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
@@ -716,6 +874,10 @@ export async function fetchOperatorPerformanceSummary(filters) {
 }
 
 export async function fetchOperatorPerformanceAll(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return deprecatedPerformanceAll(filters);
+  }
   const [summaryResp, operatorsResp, pdvsResp, turnsResp] = await Promise.all([
     apiClient.get("/api/v1/performance/summary", { params: performanceParams(filters), timeout: ANALYTICS_TIMEOUT_MS }),
     apiClient.get("/api/v1/performance/operators", { params: performanceParams(filters), timeout: ANALYTICS_TIMEOUT_MS }),
@@ -739,6 +901,10 @@ export async function fetchOperatorPerformanceAll(filters) {
 }
 
 export async function fetchOperatorIntelligenceSnapshot(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { fromSnapshot: false, lastUpdated: null, data: null, ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.get("/api/v1/operator-intelligence/snapshot", {
     params: performanceParams(filters),
     timeout: SNAPSHOT_TIMEOUT_MS,
@@ -747,6 +913,10 @@ export async function fetchOperatorIntelligenceSnapshot(filters) {
 }
 
 export async function fetchOperatorIntelligenceCockpit(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return deprecatedCockpit(filters);
+  }
   const raw = await apiClient.get("/api/v1/operator-intelligence/cockpit", {
     params: performanceParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
@@ -761,6 +931,10 @@ export async function fetchOperatorIntelligenceCockpit(filters) {
 }
 
 export async function postOperatorIntelligenceRefresh(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { status: "disabled", ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.post("/api/v1/operator-intelligence/refresh", null, {
     params: performanceParams(filters),
     timeout: REFRESH_TIMEOUT_MS,
@@ -769,6 +943,10 @@ export async function postOperatorIntelligenceRefresh(filters) {
 }
 
 export async function fetchPeopleIntelligenceCockpit(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { ...deprecatedCockpit(filters), classification: null };
+  }
   const raw = await apiClient.get("/api/v1/people-intelligence/cockpit", {
     params: performanceParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
@@ -784,6 +962,10 @@ export async function fetchPeopleIntelligenceCockpit(filters) {
 }
 
 export async function postPeopleIntelligenceRefresh(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { status: "disabled", ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.post("/api/v1/people-intelligence/refresh", null, {
     params: performanceParams(filters),
     timeout: REFRESH_TIMEOUT_MS,
@@ -792,6 +974,10 @@ export async function postPeopleIntelligenceRefresh(filters) {
 }
 
 export async function fetchPeopleRoiCockpit(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { ...deprecatedCockpit(filters), qa: [] };
+  }
   const raw = await apiClient.get("/api/v1/people-roi/cockpit", {
     params: performanceParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
@@ -807,6 +993,10 @@ export async function fetchPeopleRoiCockpit(filters) {
 }
 
 export async function postPeopleRoiRefresh(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { status: "disabled", ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.post("/api/v1/people-roi/refresh", null, {
     params: performanceParams(filters),
     timeout: REFRESH_TIMEOUT_MS,
@@ -815,6 +1005,10 @@ export async function postPeopleRoiRefresh(filters) {
 }
 
 export async function fetchOperationRoiCockpit(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { ...deprecatedCockpit(filters), qa: [] };
+  }
   const raw = await apiClient.get("/api/v1/operation-roi/cockpit", {
     params: performanceParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
@@ -830,6 +1024,10 @@ export async function fetchOperationRoiCockpit(filters) {
 }
 
 export async function postOperationRoiRefresh(filters) {
+  // DEPRECATED - OPERATIONAL
+  if (!ENABLE_OPERATIONAL_ROUTES) {
+    return { status: "disabled", ...deprecatedOperationalMeta(filters) };
+  }
   const raw = await apiClient.post("/api/v1/operation-roi/refresh", null, {
     params: performanceParams(filters),
     timeout: REFRESH_TIMEOUT_MS,
@@ -1473,11 +1671,53 @@ export async function fetchCashReconciliationSummary(filters) {
 }
 
 export async function fetchOwnerTop5Decisions(filters) {
+  // FASE 5: Usar o novo endpoint que suporta pesos de preferência e auditoria
+  // Mantemos o fallback caso o novo endpoint não retorne o esperado por algum motivo
+  try {
+    const raw = await apiClient.get("/api/v1/decisions/top5", {
+      params: {
+        tenant_id: filters.empresaCodigo || "default",
+        empresa_codigo: filters.empresaCodigo || "default",
+      },
+      timeout: ANALYTICS_TIMEOUT_MS,
+    });
+    if (raw && raw.success) return raw;
+  } catch (error) {
+    console.warn("[api] Falha ao buscar Top 5 via Decisions API, tentando fallback:", error);
+  }
+
+  // Fallback para o endpoint clássico de snapshot
   const raw = await apiClient.get("/api/v1/owner-action-center/top5", {
     params: performanceParams(filters),
     timeout: ANALYTICS_TIMEOUT_MS,
   });
   return raw;
+}
+
+export async function fetchBusinessHealth(filters) {
+  const result = await executiveGet("/api/v1/owner-action-center/business-health", {
+    params: performanceParams(filters),
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  if (result.unavailable) {
+    return {
+      ...unavailablePayload(result.message),
+      snapshot: result.snapshot,
+    };
+  }
+  return normalizeBusinessHealth(result.data);
+}
+
+/** Carga única da Tela 1 — top5 + business-health (sem ping duplicado). */
+export async function fetchOwnerDiretoriaBundle(filters) {
+  const [top5, businessHealth] = await Promise.all([
+    fetchOwnerTop5Decisions(filters),
+    fetchBusinessHealth(filters),
+  ]);
+  return {
+    ...top5,
+    businessHealth,
+  };
 }
 
 export async function fetchDecisionEvidence(decisionId) {
@@ -1501,6 +1741,43 @@ export async function postDecisionReviewRequest(decisionId, body = {}) {
     body,
     { timeout: ANALYTICS_TIMEOUT_MS },
   );
+  return raw;
+}
+
+/** EXEC-02 — Owner clica "Executar Agora": NEW/READY -> EXECUTING. */
+export async function executeDecision(decisionId, body = {}) {
+  const raw = await apiClient.post(
+    `/api/v1/decisions/${encodeURIComponent(decisionId)}/execute`,
+    body,
+    { timeout: ANALYTICS_TIMEOUT_MS },
+  );
+  return raw;
+}
+
+/** EXEC-02 — Confirmação de resultado (SIM/PARCIALMENTE/NÃO). body.result: 'yes'|'partial'|'no'. */
+export async function confirmDecisionResult(decisionId, body) {
+  const raw = await apiClient.post(
+    `/api/v1/decisions/${encodeURIComponent(decisionId)}/confirm`,
+    body,
+    { timeout: ANALYTICS_TIMEOUT_MS },
+  );
+  return raw;
+}
+
+/** EXEC-02 — Timeline completa (status, eventos, impacto estimado/confirmado) de uma decisão. */
+export async function fetchDecisionTimeline(decisionId) {
+  const raw = await apiClient.get(`/api/v1/decisions/${encodeURIComponent(decisionId)}/timeline`, {
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
+  return raw;
+}
+
+/** EXEC-03 — Dashboard de métricas de execução (pendentes, hoje, período, all-time) por tenant. */
+export async function fetchExecutionMetricsSummary(tenantId, empresaCodigo) {
+  const raw = await apiClient.get("/api/v1/decisions/metrics/summary", {
+    params: { tenant_id: tenantId, empresa_codigo: empresaCodigo },
+    timeout: ANALYTICS_TIMEOUT_MS,
+  });
   return raw;
 }
 

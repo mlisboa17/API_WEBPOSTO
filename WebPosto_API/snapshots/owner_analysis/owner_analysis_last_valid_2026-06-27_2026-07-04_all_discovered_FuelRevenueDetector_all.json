@@ -1,0 +1,164 @@
+{
+  "lastUpdated": "2026-07-04T15:16:24.070825+00:00",
+  "snapshot": {
+    "analysis_id": "eb9da04b-6b20-4cf7-990b-cc3c59477596",
+    "response": {
+      "success": true,
+      "data": {
+        "top_5_decisions": [],
+        "observations": [],
+        "total_decisions": 0,
+        "total_observations": 0,
+        "filtered_by_confidence": 0,
+        "has_sufficient_data": false,
+        "message": "Análise concluída. Nenhuma ação prioritária foi identificada nas áreas verificadas."
+      },
+      "analysis_status": "ANALYSIS_COMPLETE_NO_PRIORITY",
+      "monitoring_state": "NORMAL",
+      "analysis_proof": {
+        "analysis_id": "eb9da04b-6b20-4cf7-990b-cc3c59477596",
+        "started_at": "2026-07-04T15:16:24.064505+00:00",
+        "completed_at": "2026-07-04T15:16:24.070825+00:00",
+        "execution_time_ms": 6,
+        "tenant_count": 3,
+        "tenant_ids": [
+          "5555",
+          "11495",
+          "74014"
+        ],
+        "tenants": [
+          {
+            "tenant_id": "5555",
+            "tenant_name": "AP CASA CAIADA",
+            "empresa_codigo": "5555",
+            "credential_alias": "WEBPOSTO_API_KEY_POSTO_VIP_RIO_DOCE",
+            "status": "ANALYZED",
+            "detectors_executed": [
+              "FuelRevenueDetector"
+            ],
+            "candidates_found": 0,
+            "decisions_found": 0,
+            "observations_found": 0,
+            "requests_count": 2,
+            "execution_time_ms": 1,
+            "period_analyzed": {
+              "start": "2026-06-27",
+              "end": "2026-07-04"
+            },
+            "error": null
+          },
+          {
+            "tenant_id": "11495",
+            "tenant_name": "POSTO VIP",
+            "empresa_codigo": "11495",
+            "credential_alias": "WEBPOSTO_API_KEY_POSTO_VIP_RIO_DOCE",
+            "status": "ANALYZED",
+            "detectors_executed": [
+              "FuelRevenueDetector"
+            ],
+            "candidates_found": 0,
+            "decisions_found": 0,
+            "observations_found": 0,
+            "requests_count": 2,
+            "execution_time_ms": 1,
+            "period_analyzed": {
+              "start": "2026-06-27",
+              "end": "2026-07-04"
+            },
+            "error": null
+          },
+          {
+            "tenant_id": "74014",
+            "tenant_name": "POSTO DOZE FILIAL II",
+            "empresa_codigo": "74014",
+            "credential_alias": "WEBPOSTO_API_KEY_POSTO_DOZE_FILIAL_II",
+            "status": "ANALYZED",
+            "detectors_executed": [
+              "FuelRevenueDetector"
+            ],
+            "candidates_found": 0,
+            "decisions_found": 0,
+            "observations_found": 0,
+            "requests_count": 2,
+            "execution_time_ms": 1,
+            "period_analyzed": {
+              "start": "2026-06-27",
+              "end": "2026-07-04"
+            },
+            "error": null
+          }
+        ],
+        "credentials_detected": 3,
+        "tenants_discovered": 3,
+        "tenants_validated": 3,
+        "tenants_analyzed": 3,
+        "tenants_failed": 0,
+        "period_analyzed": {
+          "start": "2026-06-27",
+          "end": "2026-07-04"
+        },
+        "detectors_available": 1,
+        "detectors_executed": [
+          "FuelRevenueDetector"
+        ],
+        "detectors_successful": [
+          "FuelRevenueDetector"
+        ],
+        "detectors_failed": 0,
+        "data_sources_consulted": [
+          "/api/v1/sales/fuel-summary"
+        ],
+        "endpoints_consulted": [
+          "/api/v1/sales/fuel-summary"
+        ],
+        "records_analyzed": null,
+        "candidates_found": 0,
+        "candidates_approved": 0,
+        "candidates_discarded": 0,
+        "decisions_approved": 0,
+        "discard_reasons": [],
+        "confidence_threshold": 0.8,
+        "financial_impact_threshold": 5000.0,
+        "limitations": [
+          "Apenas vendas de combustível foram verificadas.",
+          "Caixa, Cartões e Despesas ainda não estão sendo analisados.",
+          "Nenhum candidato atingiu os critérios de prioridade"
+        ],
+        "last_analysis_at": "2026-07-04T15:16:24.070825+00:00"
+      },
+      "generated_at": "2026-07-04T15:16:24.070825+00:00"
+    },
+    "period_start": "2026-06-27",
+    "period_end": "2026-07-04",
+    "scope_key": "2026-06-27:2026-07-04:all_discovered:FuelRevenueDetector:all",
+    "created_at": "2026-07-04T15:16:24+00:00",
+    "completed_at": "2026-07-04T15:16:24.070825+00:00",
+    "duration_ms": 6,
+    "expires_at": "2026-07-04T15:46:24.070901+00:00",
+    "refresh_status": "COMPLETED",
+    "metrics": {
+      "tenant_registry_cache_hit": 9,
+      "tenant_registry_cache_miss": 2,
+      "empresas_request_count": 6,
+      "permission_cache_hit": 428,
+      "permission_cache_miss": 4,
+      "permission_probe_duration_ms": 59922,
+      "permission_endpoints_checked": 116,
+      "permission_probe_http_count": 116,
+      "fuel_cache_hit_count": 23,
+      "fuel_cache_miss_count": 8,
+      "webposto_request_total": 252,
+      "webposto_venda_requests": 18,
+      "webposto_venda_item_requests": 180,
+      "webposto_produto_requests": 18,
+      "webposto_429_count": 0,
+      "webposto_timeout_count": 0,
+      "webposto_5xx_count": 0,
+      "duplicate_analysis_count": 14,
+      "duplicate_request_count": 0,
+      "analysis_trigger_count": 353,
+      "snapshot_freshness_last": "FRESH",
+      "snapshot_age_seconds_last": 0
+    }
+  }
+}

@@ -11,8 +11,11 @@ import httpx
 
 from src.core.config import CoreConfig, load_core_config
 from src.core.logger import get_logger, log_structured
+from src.services.sds_sanitize import sanitize_text
+from src.core.management_scope import LICENSED_COMPANY_CODES
 from src.gateway.webposto_endpoint_contracts import endpoint_requires_dates
 from src.metrics.collector import metrics_collector
+from src.gateway.response_cache import WebPostoResponseCache
 from src.models.error_model import WebPostoError
 from src.models.response_model import WebPostoResponse
 from src.services.date_range_resolver import DateRangeResolver
@@ -20,9 +23,42 @@ from src.utils.circuit_breaker import SimpleCircuitBreaker
 from src.utils.permission_cache import get_permissions, is_cache_fresh, set_permissions
 from src.services.performance.performance_metrics import performance_metrics
 from src.utils.retry import retry_async
+from src.services.webposto.offline_mode import webposto_offline_mode
+
+# Sprint 03 — política de timeout do gateway
+CONNECT_TIMEOUT_S = 5.0
+READ_TIMEOUT_S = 10.0
+HEAVY_READ_TIMEOUT_S = 20.0
+REQUEST_RETRY_ATTEMPTS = 2
+
+HEAVY_ENDPOINTS = frozenset(
+    {
+        "analise_vendas_combustivel",
+        "despesas_financeiro_rede",
+        "venda",
+        "venda_item",
+        "venda_item_rede",
+        "venda_forma_pagamento",
+        "venda_forma_pagamento_rede",
+        "abastecimento_rede",
+        "administradora_rede",
+        "cartao_rede",
+        "nfce",
+        "produto_estoque",
+        "estoque_periodo",
+        "nota_fiscal_entrada",
+        "compra",
+        "compra_item",
+        "lmc_rede",
+        "funcionario",
+    }
+)
+
+PISTA_FALLBACK_ENDPOINTS = frozenset({"abastecimento", "abastecimento_rede"})
 
 ENDPOINTS = {
     "abastecimento": "/INTEGRACAO/ABASTECIMENTO",
+    "abastecimento_rede": "/INTEGRACAO/CONSULTAR_ABASTECIMENTO_REDE",
     "financeiro": "/INTEGRACAO/TITULO_PAGAR",
     "titulo_receber": "/INTEGRACAO/TITULO_RECEBER",
     "movimento_conta": "/INTEGRACAO/MOVIMENTO_CONTA",
@@ -35,23 +71,40 @@ ENDPOINTS = {
     "despesas_financeiro_rede": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
     "empresas": "/INTEGRACAO/EMPRESAS",
     "conta": "/INTEGRACAO/CONTA",
+    "plano_de_contas": "/INTEGRACAO/PLANO_DE_CONTAS",
+    "plano_conta_gerencial": "/INTEGRACAO/PLANO_CONTA_GERENCIAL",
+    "centro_custo": "/INTEGRACAO/CENTRO_CUSTO",
+    "grupo_conta": "/INTEGRACAO/GRUPO_CONTA",
     "venda": "/INTEGRACAO/VENDA",
     "venda_item": "/INTEGRACAO/VENDA_ITEM",
     "venda_item_rede": "/INTEGRACAO/CONSULTAR_VENDA_ITEM_REDE",
     "venda_forma_pagamento": "/INTEGRACAO/VENDA_FORMA_PAGAMENTO",
     "venda_forma_pagamento_rede": "/INTEGRACAO/CONSULTAR_VENDA_FORMA_PAGAMENTO_REDE",
+    "administradora_rede": "/INTEGRACAO/CONSULTAR_ADMINISTRADORA_REDE",
+    "cartao": "/INTEGRACAO/CARTAO",
+    "cartao_rede": "/INTEGRACAO/CONSULTAR_CARTAO_REDE",
     "nfce": "/INTEGRACAO/NFCE",
     "produto_estoque": "/INTEGRACAO/PRODUTO_ESTOQUE",
     "produto": "/INTEGRACAO/PRODUTO",
+    "grupo": "/INTEGRACAO/GRUPO",
+    "grupo_meta": "/INTEGRACAO/GRUPO_META",
     "produto_empresa": "/INTEGRACAO/PRODUTO_EMPRESA",
     "produto_rede": "/INTEGRACAO/PRODUTO_REDE",
     "produto_empresa_rede": "/INTEGRACAO/PRODUTO_EMPRESA_REDE",
     "produto_combustivel": "/INTEGRACAO/PRODUTO_COMBUSTIVEL",
     "tanque": "/INTEGRACAO/TANQUE",
     "estoque_periodo": "/INTEGRACAO/ESTOQUE_PERIODO",
+    "nota_fiscal_entrada": "/INTEGRACAO/NOTA_FISCAL_ENTRADA",
+    "compra": "/INTEGRACAO/COMPRA",
+    "compra_item": "/INTEGRACAO/COMPRA_ITEM",
+    "fornecedor": "/INTEGRACAO/FORNECEDOR",
     "lmc_rede": "/INTEGRACAO/CONSULTAR_LMC_REDE",
     "funcionario": "/INTEGRACAO/FUNCIONARIO",
 }
+
+# A ordem canônica e o mapa empresa→token vivem em src.core.config.
+from src.core.config import OFFICIAL_COMPANY_TOKEN_INDEX  # noqa: F401 — compat legada
+
 
 
 class WebPostoClient:
@@ -64,15 +117,22 @@ class WebPostoClient:
             failure_threshold=self.config.circuit_fail_threshold,
             block_seconds=self.config.circuit_block_seconds,
         )
+        self.response_cache = WebPostoResponseCache()
 
     @classmethod
     def for_api_key(cls, api_key: str, config: CoreConfig | None = None) -> WebPostoClient:
         """Cliente isolado para uma única credencial — evita mistura entre tenants."""
         base = config or load_core_config()
+        company_keys = {
+            int(code): key
+            for code, key in dict(base.webposto_company_keys).items()
+            if key == api_key
+        }
         isolated = CoreConfig(
             webposto_base_url=base.webposto_base_url,
             webposto_api_key=api_key,
             webposto_api_keys=(api_key,),
+            webposto_company_keys=company_keys,
             timeout_seconds=base.timeout_seconds,
             permission_ttl_seconds=base.permission_ttl_seconds,
             circuit_fail_threshold=base.circuit_fail_threshold,
@@ -110,6 +170,22 @@ class WebPostoClient:
             (self.config.webposto_api_key,) if self.config.webposto_api_key else ()
         )
 
+    def _api_keys_for_params(self, params: dict[str, Any] | None) -> tuple[str, ...]:
+        keys = self._api_keys
+        if not params or params.get("empresaCodigo") in (None, ""):
+            return keys
+        try:
+            empresa_codigo = int(params["empresaCodigo"])
+        except (TypeError, ValueError):
+            return keys
+
+        company_key = self.config.key_for_company(empresa_codigo)
+        if company_key:
+            return (company_key,)
+
+        # Isolamento estrito: empresa não mapeada não herda chave genérica
+        return ()
+
     @staticmethod
     def _fingerprint(api_key: str) -> str:
         return sha256(api_key.encode("utf-8")).hexdigest()[:12]
@@ -132,24 +208,167 @@ class WebPostoClient:
             unique.append(row)
         return unique
 
+    @staticmethod
+    def _scope_network_payload(
+        payload: Any,
+        requested_company: Any = None,
+    ) -> Any:
+        """Remove empresas não licenciadas de respostas de endpoints de rede."""
+        requested: int | None
+        try:
+            requested = int(requested_company) if requested_company not in (None, "") else None
+        except (TypeError, ValueError):
+            requested = None
+        allowed = {requested} if requested in LICENSED_COMPANY_CODES else set(LICENSED_COMPANY_CODES)
+
+        def scoped(rows: list[Any]) -> list[Any]:
+            return [
+                row
+                for row in rows
+                if isinstance(row, dict)
+                and row.get("empresaCodigo") is not None
+                and str(row.get("empresaCodigo")).isdigit()
+                and int(row["empresaCodigo"]) in allowed
+            ]
+
+        if isinstance(payload, list):
+            return scoped(payload)
+        if isinstance(payload, dict):
+            result = dict(payload)
+            for key in ("resultados", "data", "items"):
+                if isinstance(payload.get(key), list):
+                    result[key] = scoped(payload[key])
+                    break
+            return result
+        return payload
+
     def _endpoint_timeout(self, endpoint_key: str) -> httpx.Timeout:
-        base = self.config.timeout_seconds
-        if endpoint_key in {
-            "analise_vendas_combustivel",
-            "despesas_financeiro_rede",
-            "venda",
-            "venda_item",
-            "venda_item_rede",
-            "venda_forma_pagamento",
-            "venda_forma_pagamento_rede",
-            "nfce",
-            "produto_estoque",
-            "estoque_periodo",
-            "lmc_rede",
-            "funcionario",
-        }:
-            base = max(20.0, base)
-        return httpx.Timeout(base, connect=min(5.0, base))
+        """Sprint 03: connect=5s, read=10s (pesados ≥20s)."""
+        if endpoint_key in HEAVY_ENDPOINTS:
+            read = max(HEAVY_READ_TIMEOUT_S, float(self.config.timeout_seconds or READ_TIMEOUT_S))
+        else:
+            read = READ_TIMEOUT_S
+        return httpx.Timeout(
+            connect=CONNECT_TIMEOUT_S,
+            read=read,
+            write=read,
+            pool=CONNECT_TIMEOUT_S,
+        )
+
+    @staticmethod
+    def _annotate_cache_flags(payload: Any, *, from_cache: bool, stale: bool) -> Any:
+        if isinstance(payload, dict):
+            out = dict(payload)
+            out["from_cache"] = from_cache
+            out["stale"] = stale
+            return out
+        return {"data": payload, "from_cache": from_cache, "stale": stale}
+
+    def _stale_from_response_cache(
+        self,
+        endpoint_key: str,
+        params: dict[str, Any] | None,
+        *,
+        reason: str,
+    ) -> WebPostoResponse | None:
+        payload, expired = self.response_cache.get_stale(endpoint_key, params)
+        if payload is None:
+            return None
+        annotated = self._annotate_cache_flags(payload, from_cache=True, stale=True)
+        log_structured(
+            self.logger,
+            {
+                "system": "webposto",
+                "endpoint": ENDPOINTS.get(endpoint_key, endpoint_key),
+                "status": 200,
+                "latency_ms": 0,
+                "has_data": True,
+                "synthetic": False,
+                "from_cache": True,
+                "stale": True,
+                "cache_expired": expired,
+                "fallback_reason": reason,
+            },
+        )
+        return WebPostoResponse.ok(annotated, from_cache=True, stale=True)
+
+    def _stale_from_pista_cache(
+        self,
+        endpoint_key: str,
+        params: dict[str, Any] | None,
+        *,
+        reason: str,
+    ) -> WebPostoResponse | None:
+        if endpoint_key not in PISTA_FALLBACK_ENDPOINTS:
+            return None
+        try:
+            from src.services.pista_cache_service import get_pista_cache
+
+            snap = get_pista_cache().get_snapshot()
+        except Exception as exc:  # pragma: no cover - defensive
+            self.logger.warning("pista_cache fallback indisponivel: %s", exc)
+            return None
+        ready = bool(getattr(snap, "ready", None))
+        if not ready:
+            ready = bool(getattr(snap, "baixados", None) or getattr(snap, "pendentes", None))
+        if not ready:
+            return None
+
+        empresa = None
+        if params and params.get("empresaCodigo") not in (None, ""):
+            try:
+                empresa = int(params["empresaCodigo"])
+            except (TypeError, ValueError):
+                empresa = None
+
+        rows: list[dict[str, Any]] = []
+        for item in (*snap.pendentes, *snap.baixados):
+            dump = item.model_dump() if hasattr(item, "model_dump") else dict(item)
+            if empresa is not None:
+                code = dump.get("empresaCodigo") or dump.get("idEmpresa") or dump.get("empresa_codigo")
+                try:
+                    if code is not None and int(code) != empresa:
+                        continue
+                except (TypeError, ValueError):
+                    pass
+            rows.append(dump)
+
+        payload = {
+            "resultados": rows,
+            "from_cache": True,
+            "stale": True,
+            "fonte": "PistaCacheService",
+            "ultimaSincronizacaoIso": snap.ultima_sincronizacao_iso,
+            "fallback_reason": reason,
+        }
+        log_structured(
+            self.logger,
+            {
+                "system": "webposto",
+                "endpoint": ENDPOINTS.get(endpoint_key, endpoint_key),
+                "status": 200,
+                "latency_ms": 0,
+                "has_data": bool(rows),
+                "synthetic": False,
+                "from_cache": True,
+                "stale": True,
+                "fallback_reason": reason,
+                "fonte": "PistaCacheService",
+            },
+        )
+        return WebPostoResponse.ok(payload, from_cache=True, stale=True)
+
+    def _fallback_stale(
+        self,
+        endpoint_key: str,
+        params: dict[str, Any] | None,
+        *,
+        reason: str,
+    ) -> WebPostoResponse | None:
+        cached = self._stale_from_response_cache(endpoint_key, params, reason=reason)
+        if cached is not None:
+            return cached
+        return self._stale_from_pista_cache(endpoint_key, params, reason=reason)
 
     async def discover_permissions(self, force: bool = False) -> dict[str, bool]:
         fingerprint = (
@@ -157,6 +376,11 @@ class WebPostoClient:
             if len(self._api_keys) == 1
             else "_merged"
         )
+        if webposto_offline_mode():
+            cached = get_permissions(fingerprint)
+            if cached:
+                return cached
+            return {key: False for key in ENDPOINTS}
         if not force and is_cache_fresh(self.config.permission_ttl_seconds, fingerprint):
             cached = get_permissions(fingerprint)
             if all(key in cached for key in ENDPOINTS):
@@ -196,7 +420,6 @@ class WebPostoClient:
                             "has_data": allowed,
                             "synthetic": False,
                             "check": "permission_discovery",
-                            "token": self._fingerprint(api_key),
                         },
                     )
                 except Exception as exc:
@@ -211,8 +434,7 @@ class WebPostoClient:
                             "has_data": False,
                             "synthetic": False,
                             "check": "permission_discovery",
-                            "token": self._fingerprint(api_key),
-                            "error": str(exc)[:220],
+                            "error": sanitize_text(str(exc)[:220]),
                         },
                     )
 
@@ -221,7 +443,12 @@ class WebPostoClient:
 
             async with httpx.AsyncClient(
                 base_url=self.config.webposto_base_url,
-                timeout=httpx.Timeout(max(20.0, self.config.timeout_seconds), connect=min(5.0, max(20.0, self.config.timeout_seconds))),
+                timeout=httpx.Timeout(
+                    connect=CONNECT_TIMEOUT_S,
+                    read=max(HEAVY_READ_TIMEOUT_S, float(self.config.timeout_seconds or READ_TIMEOUT_S)),
+                    write=READ_TIMEOUT_S,
+                    pool=CONNECT_TIMEOUT_S,
+                ),
             ) as client:
                 tasks = [
                     _probe_permission(client, key, path, api_key)
@@ -252,14 +479,37 @@ class WebPostoClient:
                 WebPostoError(endpoint=endpoint_key, status=400, type="INVALID_ENDPOINT", message="Endpoint nao mapeado")
             )
 
-        permissions = await self.discover_permissions()
-        if not permissions.get(endpoint_key, False):
+        if webposto_offline_mode():
+            stale = self._fallback_stale(endpoint_key, params, reason="OFFLINE_MODE")
+            if stale is not None:
+                return stale
             return WebPostoResponse.fail(
-                WebPostoError(endpoint=path, status=401, type="AUTHORIZATION_ERROR", message="Endpoint sem permissao")
+                WebPostoError(
+                    endpoint=path,
+                    status=503,
+                    type="OFFLINE_SOURCE_UNAVAILABLE",
+                    message="Modo local offline — fonte WebPosto indisponível e não há cache/snapshot local.",
+                )
             )
+
+        selected_keys = self._api_keys_for_params(params)
+        targeted_official_call = (
+            bool(params and params.get("empresaCodigo") not in (None, ""))
+            and len(selected_keys) == 1
+        ) or endpoint_key == "despesas_financeiro_rede"
+        permissions: dict[str, bool] = {}
+        if not targeted_official_call:
+            permissions = await self.discover_permissions()
+            if not permissions.get(endpoint_key, False):
+                return WebPostoResponse.fail(
+                    WebPostoError(endpoint=path, status=401, type="AUTHORIZATION_ERROR", message="Endpoint sem permissao")
+                )
 
         if self.breaker.is_blocked(endpoint_key):
             metrics_collector.record(path, 503, 0.0, circuit_open=True)
+            stale = self._fallback_stale(endpoint_key, params, reason="CIRCUIT_OPEN")
+            if stale is not None:
+                return stale
             log_structured(
                 self.logger,
                 {
@@ -300,13 +550,13 @@ class WebPostoClient:
 
             try:
                 started = perf_counter()
-                response = await retry_async(_do, attempts=3)
+                response = await retry_async(_do, attempts=REQUEST_RETRY_ATTEMPTS)
                 latency_ms = (perf_counter() - started) * 1000
                 return api_key, response, latency_ms, None
             except Exception as exc:
                 return api_key, None, 0.0, exc
 
-        if not self._api_keys:
+        if not selected_keys:
             return WebPostoResponse.fail(
                 WebPostoError(
                     endpoint=path,
@@ -317,7 +567,7 @@ class WebPostoClient:
             )
 
         async with httpx.AsyncClient(base_url=self.config.webposto_base_url, timeout=timeout) as client:
-            results = await asyncio.gather(*[_call_with_key(client, api_key) for api_key in self._api_keys])
+            results = await asyncio.gather(*[_call_with_key(client, api_key) for api_key in selected_keys])
 
         ok_payloads: list[Any] = []
         ok_rows: list[dict[str, Any]] = []
@@ -329,7 +579,12 @@ class WebPostoClient:
                 is_timeout = "timeout" in str(exc).casefold() or isinstance(exc, httpx.TimeoutException)
                 performance_metrics.record_webposto_request(endpoint_key, 500, is_timeout=is_timeout)
                 metrics_collector.record(path, 500, 0.0)
-                last_error = WebPostoError(endpoint=path, status=500, type="NETWORK_ERROR", message=str(exc)[:220])
+                last_error = WebPostoError(
+                    endpoint=path,
+                    status=500,
+                    type="NETWORK_ERROR",
+                    message=sanitize_text(str(exc)[:220]),
+                )
                 log_structured(
                     self.logger,
                     {
@@ -339,8 +594,7 @@ class WebPostoClient:
                         "latency_ms": 0,
                         "has_data": False,
                         "synthetic": False,
-                        "token": self._fingerprint(api_key),
-                        "error": str(exc)[:220],
+                        "error": sanitize_text(str(exc)[:220]),
                     },
                 )
                 continue
@@ -353,6 +607,11 @@ class WebPostoClient:
             metrics_collector.record(path, status, latency_ms)
             if status == 200:
                 payload = response.json()
+                if endpoint_key == "despesas_financeiro_rede":
+                    payload = self._scope_network_payload(
+                        payload,
+                        (params or {}).get("empresaCodigo"),
+                    )
                 rows = self._extract_rows(payload)
                 ok_payloads.append(payload)
                 ok_rows.extend(rows)
@@ -365,7 +624,6 @@ class WebPostoClient:
                         "latency_ms": round(latency_ms, 2),
                         "has_data": bool(rows),
                         "synthetic": False,
-                        "token": self._fingerprint(api_key),
                     },
                 )
                 continue
@@ -381,12 +639,16 @@ class WebPostoClient:
                         "latency_ms": round(latency_ms, 2),
                         "has_data": False,
                         "synthetic": False,
-                        "token": self._fingerprint(api_key),
                     },
                 )
                 continue
 
-            last_error = WebPostoError(endpoint=path, status=status, type="UPSTREAM_ERROR", message=response.text[:220])
+            last_error = WebPostoError(
+                endpoint=path,
+                status=status,
+                type="UPSTREAM_ERROR",
+                message=sanitize_text(response.text[:220]),
+            )
             log_structured(
                 self.logger,
                 {
@@ -396,27 +658,30 @@ class WebPostoClient:
                     "latency_ms": round(latency_ms, 2),
                     "has_data": False,
                     "synthetic": False,
-                    "token": self._fingerprint(api_key),
                 },
             )
 
         if ok_payloads:
             self.breaker.record_success(endpoint_key)
             if len(ok_payloads) == 1:
-                return WebPostoResponse.ok(ok_payloads[0])
-            return WebPostoResponse.ok(
-                {
+                result_payload = ok_payloads[0]
+            else:
+                result_payload = {
                     "resultados": self._dedupe_rows(ok_rows),
                     "tokensConsultados": len(ok_payloads),
                     "synthetic": False,
                 }
-            )
+            try:
+                self.response_cache.put(endpoint_key, params, result_payload)
+            except Exception as exc:  # pragma: no cover
+                self.logger.warning("response_cache.put falhou: %s", exc)
+            return WebPostoResponse.ok(result_payload)
 
-        if auth_errors and auth_errors == len(self._api_keys):
+        if auth_errors and auth_errors == len(selected_keys):
             permissions[endpoint_key] = False
             fp = (
-                self._fingerprint(self._api_keys[0])
-                if len(self._api_keys) == 1
+                self._fingerprint(selected_keys[0])
+                if len(selected_keys) == 1
                 else "_merged"
             )
             set_permissions(permissions, fp)
@@ -426,8 +691,18 @@ class WebPostoClient:
             )
 
         self.breaker.record_failure(endpoint_key)
+        reason = "TIMEOUT" if last_error and "timeout" in (last_error.message or "").casefold() else "NETWORK_ERROR"
+        stale = self._fallback_stale(endpoint_key, params, reason=reason)
+        if stale is not None:
+            return stale
         return WebPostoResponse.fail(
-            last_error or WebPostoError(endpoint=path, status=500, type="NETWORK_ERROR", message="Falha ao consultar tokens oficiais")
+            last_error
+            or WebPostoError(
+                endpoint=path,
+                status=500,
+                type="NETWORK_ERROR",
+                message="Falha ao consultar tokens oficiais",
+            )
         )
 
     def get_circuit_status(self, endpoint_keys: set[str] | None = None) -> dict[str, str]:

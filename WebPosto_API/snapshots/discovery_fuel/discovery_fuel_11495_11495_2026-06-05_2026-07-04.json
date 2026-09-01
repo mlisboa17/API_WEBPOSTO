@@ -1,0 +1,26 @@
+{
+  "lastUpdated": "2026-07-17T23:58:07+00:00",
+  "fuel_data": {
+    "current_period": {
+      "revenue": 0.0
+    },
+    "previous_period": {
+      "revenue": 0.0
+    },
+    "product_comparisons": [],
+    "data_quality": 0.5,
+    "comparison_validity": 0.5,
+    "period_adequacy": 0.85,
+    "source_endpoints": [
+      "/api/v1/sales/fuel-summary"
+    ],
+    "fetch_status": "empty_rows",
+    "tenant_id": "11495",
+    "period_start": "2026-06-05",
+    "period_end": "2026-07-04",
+    "fetched_at": "2026-07-17T23:58:07+00:00",
+    "cache_status": "MISS",
+    "snapshot_key": "discovery_fuel:11495:11495:2026-06-05:2026-07-04",
+    "source_endpoint": "/api/v1/sales/fuel-summary"
+  }
+}

@@ -1,4 +1,4 @@
-import { getAreaById, NAV_AREAS } from "../config/navigation.js";
+import { getAreaById, getNavigationAreas } from "../config/navigation.js";
 
 
 
@@ -40,7 +40,14 @@ const MOTOR_LABELS = {
 
 
 
-export function mountNavigationShell({ areaId, view, onAreaChange, onTabChange, onMotorChange }) {
+export function mountNavigationShell({
+  areaId,
+  view,
+  presidentMode = false,
+  onAreaChange,
+  onTabChange,
+  onMotorChange,
+}) {
 
   const sidebar = document.querySelector("#sidebarNav");
 
@@ -50,14 +57,17 @@ export function mountNavigationShell({ areaId, view, onAreaChange, onTabChange, 
 
   if (!sidebar || !areaTabs) return;
 
+  const navAreas = getNavigationAreas(presidentMode);
 
 
-  document.body.dataset.area = areaId || "executivo";
+
+  document.body.dataset.area = areaId || (presidentMode ? "presidente" : "executivo");
   document.body.classList.toggle("area-admin", areaId === "administracao");
+  document.body.classList.toggle("president-mode", presidentMode);
 
 
 
-  sidebar.innerHTML = NAV_AREAS.map(
+  sidebar.innerHTML = navAreas.map(
 
     (area) => `
 
@@ -85,30 +95,22 @@ export function mountNavigationShell({ areaId, view, onAreaChange, onTabChange, 
 
 
 
-  const area = getAreaById(areaId);
+  const area = getAreaById(areaId, presidentMode);
+  const activeHubTab = document.body.dataset.hubTab || "";
 
   areaTabs.innerHTML = area.tabs
-
-    .map(
-
-      (tab) => `
-
+    .map((tab) => {
+      const isActive = tab.view === view && (!tab.hubTab || tab.hubTab === activeHubTab);
+      return `
         <button
-
           type="button"
-
-          class="area-tab${tab.view === view ? " active" : ""}"
-
+          class="area-tab${isActive ? " active" : ""}"
           data-view="${tab.view}"
-
           data-tab-id="${tab.id}"
-
+          data-hub-tab="${tab.hubTab || ""}"
         >${tab.label}</button>
-
-      `
-
-    )
-
+      `;
+    })
     .join("");
 
 
@@ -172,9 +174,9 @@ export function mountNavigationShell({ areaId, view, onAreaChange, onTabChange, 
   });
 
   areaTabs.querySelectorAll("[data-view]").forEach((button) => {
-
-    button.addEventListener("click", () => onTabChange(button.dataset.view, button.dataset.tabId));
-
+    button.addEventListener("click", () =>
+      onTabChange(button.dataset.view, button.dataset.tabId, button.dataset.hubTab || "")
+    );
   });
 
   motorStrip?.querySelectorAll(".motor-tab[data-view]").forEach((button) => {

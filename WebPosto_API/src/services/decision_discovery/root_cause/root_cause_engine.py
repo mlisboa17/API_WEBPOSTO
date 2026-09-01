@@ -37,6 +37,7 @@ class RootCauseEngine:
     def __init__(self):
         """Inicializa o Root Cause Engine."""
         self._investigators: Dict[str, BaseRootCauseInvestigator] = {}
+        self._detector_investigators: Dict[str, BaseRootCauseInvestigator] = {}
     
     def register_investigator(
         self,
@@ -51,6 +52,14 @@ class RootCauseEngine:
             investigator: Investigador a ser registrado
         """
         self._investigators[decision_category.value] = investigator
+
+    def register_detector_investigator(
+        self,
+        detector_name: str,
+        investigator: BaseRootCauseInvestigator,
+    ) -> None:
+        """Registra investigador específico por detector (prioridade sobre categoria)."""
+        self._detector_investigators[detector_name] = investigator
     
     async def investigate(
         self,
@@ -68,8 +77,10 @@ class RootCauseEngine:
         start_time = time.time()
         
         try:
-            # Selecionar investigador apropriado
-            investigator = self._investigators.get(decision.category.value)
+            # Selecionar investigador (detector específico tem prioridade)
+            investigator = self._detector_investigators.get(decision.detector_name)
+            if not investigator:
+                investigator = self._investigators.get(decision.category.value)
             
             if not investigator:
                 return RootCauseResult(

@@ -12,6 +12,7 @@ export type TmsPosto = {
 export type TmsProduto = {
   id: string;
   nome: string;
+  codigo?: string;
 };
 
 export type TmsTanque = {
@@ -21,6 +22,9 @@ export type TmsTanque = {
   codigo: string;
   qr_code?: string;
   ativo: boolean;
+  produto?: string;
+  capacidade_litros?: number;
+  estoque_atual_litros?: number;
 };
 
 export type TmsCompartimento = {

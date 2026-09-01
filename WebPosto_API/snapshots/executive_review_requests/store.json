@@ -1,0 +1,54 @@
+{
+  "requests": {
+    "e136f3a0-1723-4bda-b3b2-9a63150b2e62": {
+      "id": "e136f3a0-1723-4bda-b3b2-9a63150b2e62",
+      "decision_id": "175da101-6f68-42f4-9d2b-9b42e6cedea2",
+      "tenant_id": "74014",
+      "empresa_codigo": "74014",
+      "tenant_name": "POSTO DOZE FILIAL II",
+      "request_type": "NOMINAL_IDENTIFICATION_REVIEW",
+      "title": "Conferência nominal — 13 lançamento(s)",
+      "description": "13 lançamento(s) desta decisão (R$ 7,951.00) requerem validação de beneficiário nas fontes disponíveis.",
+      "requested_by": null,
+      "requested_at": "2026-09-01T12:24:24.439920Z",
+      "status": "REQUESTED",
+      "priority": "NORMAL",
+      "evidence_item_ids": [
+        "d2c17f90-a4eb-d5fc-f6cb-d47e2b376aef",
+        "032b2496-b1c0-5302-16cb-65210a3fe156",
+        "4bb4056a-9ee0-d6f8-4256-672a52157487",
+        "3f205c7e-fe89-e187-6658-66b4183709a7",
+        "4ef2940c-9383-9889-901c-3ee83dfc455a",
+        "766a1022-7a88-f76d-27b8-8c5fe2220f33",
+        "a5f8a718-829a-5136-c542-76b2d606c989",
+        "dd65e487-4370-16dd-2fc4-7f6dfa529d9e",
+        "9bfd055d-26b5-fa54-0ca1-f70de320918a",
+        "1f80d928-9009-2254-e7eb-f58d9728a9fa",
+        "bee92ee8-8c0a-1685-e954-a33fdacc8d61",
+        "19cfe83f-0ac7-828d-5428-ab8b25f6ea8a",
+        "d287bf83-7a2e-b951-b3c4-4687bfb6b830"
+      ],
+      "evidence_count": 13,
+      "evidence_total_amount": 7951.0,
+      "identified_count": 3,
+      "identified_amount": 450.0,
+      "unidentified_count": 13,
+      "unidentified_amount": 7951.0,
+      "review_responsible": null,
+      "review_responsible_id": null,
+      "assigned_at": null,
+      "item_checks": {},
+      "due_date": null,
+      "resolution_summary": null,
+      "resolved_at": null,
+      "source_analysis_id": "175da101-6f68-42f4-9d2b-9b42e6cedea2",
+      "created_at": "2026-09-01T12:24:24.439922Z",
+      "updated_at": "2026-09-01T12:24:24.439923Z"
+    }
+  },
+  "by_decision": {
+    "175da101-6f68-42f4-9d2b-9b42e6cedea2": [
+      "e136f3a0-1723-4bda-b3b2-9a63150b2e62"
+    ]
+  }
+}

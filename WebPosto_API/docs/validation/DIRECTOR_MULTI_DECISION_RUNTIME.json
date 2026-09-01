@@ -1,0 +1,96 @@
+{
+  "validation": "Director multi-decision runtime",
+  "analysis_id": "532c5eee-1275-47f1-a3d3-ee0d6214bea5",
+  "freshness": "2026-07-11T18:06:55.772904+00:00",
+  "tenants": 3,
+  "active_detectors": [
+    "FuelRevenueDetector",
+    "ExpenseDetector",
+    "CardReceivableDetector",
+    "SupplierInvoiceSpikeDetector"
+  ],
+  "decisions_count": 2,
+  "observations_count": 2,
+  "journey_steps": [
+    {
+      "step": "HOME",
+      "ok": true
+    },
+    {
+      "step": "HIERARCHY_VISIBLE",
+      "ok": true,
+      "hero": true,
+      "next_decisions": true,
+      "intro": true
+    },
+    {
+      "step": "OBSERVATIONS_VISIBLE",
+      "ok": true
+    },
+    {
+      "step": "FOLLOW_UP_VISIBLE",
+      "ok": true
+    },
+    {
+      "step": "DECISION_2_DETAIL",
+      "ok": true,
+      "nf_visible": true,
+      "supplier_visible": true,
+      "root_cause_visible": true,
+      "recommendation_visible": true
+    },
+    {
+      "step": "EXECUTIVE_ACTION_AVAILABLE",
+      "ok": true
+    },
+    {
+      "step": "RETURN_HOME_FOLLOW_UP",
+      "ok": true
+    }
+  ],
+  "dead_buttons": [],
+  "false_success_states": [],
+  "js_errors": [],
+  "mocks": false,
+  "seeds": false,
+  "ui_validated": true,
+  "runtime_http": true,
+  "home_route": "http://127.0.0.1:8046/app/financial?view=owner-diretoria&dataInicial=2026-06-05&dataFinal=2026-07-04",
+  "rank_1_decision": {
+    "rank": 1,
+    "decision_id": "210704b2-5bfa-41ae-a224-d44cccc2183d",
+    "tenant": "POSTO DOZE FILIAL II",
+    "detector": "ExpenseDetector",
+    "title": "R$ 7,501 acima do comportamento de referência em Vale de funcionário referente a consolidação de caixa",
+    "amount": 7501.0,
+    "money_type": "ESTIMATED",
+    "confidence": 0.89,
+    "priority_score": 52.63
+  },
+  "rank_2_decision": {
+    "rank": 2,
+    "decision_id": "478125d7-c720-4eb2-97f4-7c8d6fc02285",
+    "tenant": "POSTO VIP",
+    "detector": "SupplierInvoiceSpikeDetector",
+    "title": "R$ 5,979 em NF 001872693 (SOUZA CRUZ LTDA.) sem histórico no período anterior",
+    "amount": 5979.47,
+    "money_type": "ESTIMATED",
+    "confidence": 0.902,
+    "priority_score": 51.4
+  },
+  "backend_order_equals_ui_order": true,
+  "second_decision_visible": true,
+  "second_decision_detail_opened": true,
+  "supplier_visible": true,
+  "document_visible": true,
+  "baseline_comparison_visible": true,
+  "root_cause_visible": true,
+  "evidence_visible": true,
+  "director_question_visible": true,
+  "recommendation_visible": true,
+  "executive_action_available": true,
+  "observations_visible": true,
+  "follow_up_visible": true,
+  "review_responsible": "Marcio de Lima",
+  "fin03_progress": "3/13"
+}

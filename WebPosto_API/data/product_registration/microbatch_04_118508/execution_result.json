@@ -1,0 +1,157 @@
+{
+  "title": "MICROBATCH 04 EXECUTION — 118508",
+  "executedAt": "2026-08-14T22:20:35.158041+00:00",
+  "endpoint": "POST /INTEGRACAO/INCLUIR_PRODUTO",
+  "urlSanitized": "/INTEGRACAO/INCLUIR_PRODUTO?CHAVE=***REDACTED***",
+  "routing": "CHAVE_ONLY",
+  "empresaCodigoInQuery": "OMITTED",
+  "credentialVariable": "WEBPOSTO_CONVENIENCIA_24_HORAS_KEY",
+  "keyExposed": false,
+  "postCount": 4,
+  "createdAndVerified": 4,
+  "haltedReason": null,
+  "products": [
+    {
+      "ean": "7891000402856",
+      "descricao": "BISCOITO COOKIE GAROTO CROCANTE 60GR",
+      "httpStatus": 200,
+      "ret": null,
+      "men": null,
+      "codProduto": 2481512,
+      "bodyHash": "990d39492f7fa48b6d383b59fd75c732cb537b7d8b585a0bb697c670ff413529",
+      "response": {
+        "codProduto": 2481512
+      },
+      "verification": {
+        "produtoCodigo": 2481512,
+        "links": [
+          {
+            "empresaCodigo": 118508,
+            "precoVenda": 5.49,
+            "precoCusto": 0.0,
+            "ativo": true
+          }
+        ],
+        "companyLinkConfirmed": true,
+        "catalog": {
+          "nome": "BISCOITO COOKIE GAROTO CROCANTE 60GR",
+          "referenciaCodigo": "005218",
+          "ncm": "19053100",
+          "cest": "1705300",
+          "grupoCodigo": 55446,
+          "produtoCodigoExterno": "7891000402856"
+        },
+        "centerSent": 24886,
+        "divergences": []
+      },
+      "classification": "CREATED_AND_VERIFIED"
+    },
+    {
+      "ean": "7891000402894",
+      "descricao": "COOKIES GAROTO CARIBE 60 G",
+      "httpStatus": 200,
+      "ret": null,
+      "men": null,
+      "codProduto": 2481513,
+      "bodyHash": "63e4d0a6a149fe76e3d345ae36cb5936c0e5dd52efa9db92c5b343e6d2207aeb",
+      "response": {
+        "codProduto": 2481513
+      },
+      "verification": {
+        "produtoCodigo": 2481513,
+        "links": [
+          {
+            "empresaCodigo": 118508,
+            "precoVenda": 5.99,
+            "precoCusto": 0.0,
+            "ativo": true
+          }
+        ],
+        "companyLinkConfirmed": true,
+        "catalog": {
+          "nome": "COOKIES GAROTO CARIBE 60 G",
+          "referenciaCodigo": "005219",
+          "ncm": "19053100",
+          "cest": "1705300",
+          "grupoCodigo": 55446,
+          "produtoCodigoExterno": "7891000402894"
+        },
+        "centerSent": 24886,
+        "divergences": []
+      },
+      "classification": "CREATED_AND_VERIFIED"
+    },
+    {
+      "ean": "7891962080802",
+      "descricao": "BISC BAUDUCCO COOKIES AMORA 96G",
+      "httpStatus": 200,
+      "ret": null,
+      "men": null,
+      "codProduto": 2481514,
+      "bodyHash": "b33f6e7fc5341bccf2af9b8b922ac51b59466639a36d0fb6e994bae747b00dff",
+      "response": {
+        "codProduto": 2481514
+      },
+      "verification": {
+        "produtoCodigo": 2481514,
+        "links": [
+          {
+            "empresaCodigo": 118508,
+            "precoVenda": 10.5,
+            "precoCusto": 0.0,
+            "ativo": true
+          }
+        ],
+        "companyLinkConfirmed": true,
+        "catalog": {
+          "nome": "BISC BAUDUCCO COOKIES AMORA 96G",
+          "referenciaCodigo": "005220",
+          "ncm": "19053100",
+          "cest": "1705300",
+          "grupoCodigo": 55446,
+          "produtoCodigoExterno": "7891962080802"
+        },
+        "centerSent": 24886,
+        "divergences": []
+      },
+      "classification": "CREATED_AND_VERIFIED"
+    },
+    {
+      "ean": "7891962076676",
+      "descricao": "COOKIES BAUDUCCO FINI DENTADURA 96G",
+      "httpStatus": 200,
+      "ret": null,
+      "men": null,
+      "codProduto": 2481515,
+      "bodyHash": "4133d7b1ebd2d8872df505c104334c9aaeb86820b86a734e242f6879064dbe05",
+      "response": {
+        "codProduto": 2481515
+      },
+      "verification": {
+        "produtoCodigo": 2481515,
+        "links": [
+          {
+            "empresaCodigo": 118508,
+            "precoVenda": 10.99,
+            "precoCusto": 0.0,
+            "ativo": true
+          }
+        ],
+        "companyLinkConfirmed": true,
+        "catalog": {
+          "nome": "COOKIES BAUDUCCO FINI DENTADURA 96G",
+          "referenciaCodigo": "005221",
+          "ncm": "19053100",
+          "cest": "1705300",
+          "grupoCodigo": 55446,
+          "produtoCodigoExterno": "7891962076676"
+        },
+        "centerSent": 24886,
+        "divergences": []
+      },
+      "classification": "CREATED_AND_VERIFIED"
+    }
+  ],
+  "rollback": "NOT_PERFORMED",
+  "nextBatch": "PAUSED_AWAITING_AUTHORIZATION"
+}

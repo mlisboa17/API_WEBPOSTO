@@ -1,0 +1,79 @@
+{
+  "lastUpdated": "2026-07-20T17:18:58.243257+00:00",
+  "data": {
+    "period": {
+      "start": "2026-07-18",
+      "end": "2026-07-18"
+    },
+    "lines": [
+      {
+        "companyCode": 5555,
+        "companyName": "AP CASA CAIADA",
+        "department": "combustiveis",
+        "revenue": "13394.67",
+        "cost": "11546.16",
+        "grossMargin": "1848.51",
+        "expenses": "0.00",
+        "operatingResult": "1848.51",
+        "operatingMarginPct": "13.80",
+        "status": "LIBERADO",
+        "operationalEvidence": {
+          "status": "COMPROVADO",
+          "revenue": "13394.67",
+          "cost": "11546.16",
+          "grossMargin": "1848.51",
+          "coveragePct": "99.52",
+          "itemsCollected": 209,
+          "itemsAccepted": 208,
+          "itemsQuarantined": 1,
+          "pagination": {
+            "complete": true,
+            "termination": "SHORT_BATCH",
+            "pages": 2,
+            "duplicatesRemoved": 0,
+            "ultimoCodigo": 759160675
+          }
+        },
+        "missingEvidence": []
+      },
+      {
+        "companyCode": 5555,
+        "companyName": "AP CASA CAIADA",
+        "department": "conveniencia",
+        "revenue": null,
+        "cost": null,
+        "grossMargin": null,
+        "expenses": null,
+        "operatingResult": null,
+        "operatingMarginPct": null,
+        "status": "BLOQUEADO",
+        "operationalEvidence": null,
+        "missingEvidence": [
+          "FATURAMENTO",
+          "CUSTO",
+          "COBERTURA_VENDAS"
+        ]
+      },
+      {
+        "companyCode": 5555,
+        "companyName": "AP CASA CAIADA",
+        "department": "lubrificantes",
+        "revenue": null,
+        "cost": null,
+        "grossMargin": null,
+        "expenses": null,
+        "operatingResult": null,
+        "operatingMarginPct": null,
+        "status": "BLOQUEADO",
+        "operationalEvidence": null,
+        "missingEvidence": [
+          "FATURAMENTO",
+          "CUSTO",
+          "COBERTURA_VENDAS"
+        ]
+      }
+    ],
+    "allReleased": false,
+    "consolidatedGenericResult": false
+  }
+}

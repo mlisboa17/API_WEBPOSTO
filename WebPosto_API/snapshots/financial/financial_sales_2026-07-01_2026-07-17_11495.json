@@ -1,0 +1,41 @@
+{
+  "kind": "financial_sales",
+  "key": "2026-07-01:2026-07-17:11495",
+  "lastUpdated": "2026-07-17T22:44:01",
+  "homologated": true,
+  "source": "live",
+  "data": {
+    "page": 1,
+    "limit": 2,
+    "total": 200,
+    "data": [
+      {
+        "empresaCodigo": 11495,
+        "filial": "POSTO VIP",
+        "vendaCodigo": 360031677,
+        "data": "2026-07-01",
+        "cliente": "consumidor final",
+        "itens": 2,
+        "formaPagamento": "",
+        "totalVenda": "50.00",
+        "synthetic": false
+      },
+      {
+        "empresaCodigo": 11495,
+        "filial": "POSTO VIP",
+        "vendaCodigo": 360031678,
+        "data": "2026-07-01",
+        "cliente": "consumidor final",
+        "itens": 2,
+        "formaPagamento": "",
+        "totalVenda": "5.00",
+        "synthetic": false
+      }
+    ],
+    "consolidado": {
+      "total_vendas": "7473.11",
+      "qtd_vendas": 200
+    },
+    "synthetic": false
+  }
+}

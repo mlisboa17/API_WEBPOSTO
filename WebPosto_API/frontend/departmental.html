@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LOGOS — Gestão Departamental</title>
+  <style>
+    :root{--ink:#17202a;--muted:#667085;--bg:#f4f6f8;--card:#fff;--brand:#12372a;--accent:#d7a72f;--risk:#b42318;--ok:#067647}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px system-ui,-apple-system,Segoe UI,sans-serif}
+    header{background:var(--brand);color:#fff;padding:22px max(24px,calc((100vw - 1380px)/2));display:flex;gap:20px;align-items:end;justify-content:space-between;flex-wrap:wrap}
+    h1{margin:0;font-size:24px}header p{margin:5px 0 0;color:#d0d5dd}.filters{display:flex;gap:10px;flex-wrap:wrap}.filters label{font-size:11px;display:grid;gap:4px}
+    select,input,button{border:1px solid #d0d5dd;border-radius:7px;padding:9px 10px;background:#fff;color:#111}button{cursor:pointer;background:var(--accent);border-color:var(--accent);font-weight:700}
+    main{max-width:1380px;margin:auto;padding:20px}.tabs{display:flex;gap:8px;margin-bottom:16px}.tabs button{background:#fff}.tabs button.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+    .notice{background:#fffaeb;border:1px solid #fedf89;border-radius:9px;padding:12px;margin-bottom:16px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{background:var(--card);border-radius:11px;padding:18px;box-shadow:0 1px 3px #10182814}
+    .card h2{font-size:16px;text-transform:capitalize;margin:0 0 14px}.metric{font-size:25px;font-weight:750}.muted{color:var(--muted)}.risk{color:var(--risk)}.ok{color:var(--ok)}
+    dl{display:grid;grid-template-columns:1fr auto;gap:8px;margin:12px 0}dt,dd{margin:0}.section{margin-top:16px}.section h2{font-size:18px}
+    table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden}th,td{text-align:left;padding:11px;border-bottom:1px solid #eaecf0}th{color:var(--muted);font-size:12px}
+    .hidden{display:none}.state{padding:30px;text-align:center}.badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#f2f4f7;font-size:12px}
+    @media(max-width:850px){
+      header{align-items:start;padding:18px 16px}
+      header>div,.filters,.filters label{width:100%}
+      select,input,button{min-height:44px}
+      main{padding:14px}
+      .tabs{overflow-x:auto;overscroll-behavior-inline:contain;padding-bottom:6px;scrollbar-width:thin}
+      .tabs button{flex:0 0 auto;white-space:nowrap}
+      .grid{grid-template-columns:1fr}
+      .section,table{max-width:100%}
+      table{display:block;overflow-x:auto;white-space:nowrap}
+      th,td{padding:10px}
+    }
+    @media(max-width:420px){
+      h1{font-size:21px}
+      .card{padding:14px}
+      .metric{font-size:22px}
+    }
+    @media print{header,.tabs,button{display:none}main{max-width:none}.card{box-shadow:none;border:1px solid #ddd}}
+  </style>
+</head>
+<body>
+  <header>
+    <div><h1>Gestão Departamental</h1><p>Presidência e Diretoria — três empresas, três departamentos, uma fonte</p></div>
+    <div class="filters">
+      <label>Empresa<select id="company"><option value="11495">Posto VIP</option><option value="5555">AP Casa Caiada</option><option value="74014">Posto Doze Filial II</option></select></label>
+      <label>Início<input id="start" type="date" value="2026-07-23"></label>
+      <label>Fim<input id="end" type="date" value="2026-07-23"></label>
+      <button id="load">Atualizar</button>
+    </div>
+  </header>
+  <main>
+    <nav class="tabs"><button data-tab="presidency" class="active">Presidência</button><button data-tab="financial">Financeiro</button><button data-tab="commercial">Comercial</button><button data-tab="operational">Operacional</button><button data-tab="governance">Alertas e saúde</button><button data-tab="audits">Auditorias</button></nav>
+    <div id="status" class="state">Carregando dados reais…</div>
+    <div id="content" class="hidden"></div>
+  </main>
+  <script>
+    const $=id=>document.getElementById(id), money=v=>v==null?"Indisponível":Number(v).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+    const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    const names={combustiveis:"Combustíveis",conveniencia:"Conveniência",lubrificantes:"Lubrificantes"};
+    let state={tab:"presidency",cockpit:null,director:null,governance:null,radar:null,agents:null,notifications:[],value:null,audits:null,schedule:null,scheduleHistory:[]};
+    function radarCard(){
+      const radar=state.radar;if(!radar)return `<article class="card"><h2>Radar Executivo Diário</h2><p class="muted">Será gerado automaticamente após a próxima rotina diária.</p></article>`;
+      const priorities=radar.priorities||[];
+      return `<article class="card"><h2>Radar Executivo Diário</h2><p class="muted">${esc(radar.day)} · ${esc(radar.status)} · revisão humana obrigatória</p>
+        ${priorities.length?priorities.map((x,i)=>`<div class="section"><strong>${i+1}. ${esc(x.title)}</strong><p>${esc(x.companyCode)} · ${esc(names[x.department]||x.department)} · impacto ${money(x.estimatedImpactBRL)}</p><p class="muted">Responsável: ${esc(x.suggestedOwner)} · prioridade ${esc(x.priorityScore)}</p></div>`).join(""):"<p>Nenhuma decisão urgente com evidência equivalente.</p>"}
+      </article>`;
+    }
+    function valueCard(){
+      const data=state.value?.summary;if(!data)return "";
+      const evs=data.executiveValueScore||{},confirmed=data.businessValueGeneratedByAI||{},estimated=data.estimatedValue||{},counts=data.recommendations||{},agent=data.topContributingAgent;
+      return `<article class="card"><h2>Business Value Generated by AI</h2><div class="metric">${money(confirmed.totalFinancialValueBRL||0)}</div>
+        <p class="muted">Valor validado com evidência · EVS ${esc(evs.score??0)}</p>
+        <dl><dt>Potencial estimado</dt><dd>${money(estimated.potentialValueBRL||0)}</dd><dt>Implementadas</dt><dd>${esc(counts.implemented||0)}</dd><dt>Resultados validados</dt><dd>${esc(counts.validated||0)}</dd><dt>Taxa de adoção</dt><dd>${esc(data.adoptionRate||0)}%</dd><dt>Receita capturada</dt><dd>${money(confirmed.revenueGeneratedBRL||0)}</dd><dt>Custos reduzidos</dt><dd>${money(confirmed.costAvoidedBRL||0)}</dd><dt>Riscos mitigados</dt><dd>${money(confirmed.riskMitigatedBRL||0)}</dd><dt>Horas poupadas</dt><dd>${esc(confirmed.executiveHoursSaved||0)}</dd><dt>Agente de maior contribuição</dt><dd>${esc(agent?.agent||"Sem resultado validado")}</dd></dl>
+      </article>`;
+    }
+    function agentsCard(){
+      const data=state.agents;if(!data)return "";
+      const presidency=data.presidencyAgent||{},items=presidency.coordinatedPriorities||[];
+      return `<article class="card"><h2>Conselho de Agentes</h2><p class="muted">${esc(presidency.status)}</p>
+        ${items.length?items.map(x=>`<p><strong>${esc(x.title)}</strong><br><span class="muted">${esc((x.contributingAgents||[]).join(" + "))} · confiança ${esc(x.confidence)}</span></p>`).join(""):`<p>${esc(presidency.message||"Sem recomendação coordenada.")}</p>`}
+      </article>`;
+    }
+    function scheduleCard(){
+      const s=state.schedule;if(!s)return "";
+      const weekdays=["Segunda","Terca","Quarta","Quinta","Sexta","Sabado","Domingo"];
+      const history=state.scheduleHistory.slice(0,8);
+      return `<article class="card"><h2>Configuracao das rotinas</h2><form id="schedule-form" class="filters">
+        <label>Fuso<input name="timezoneName" value="${esc(s.timezoneName)}" required></label>
+        <label>Horario diario<input name="dailyTime" type="time" value="${esc(s.dailyTime.slice(0,5))}" required></label>
+        <label>Defasagem (dias)<input name="dailyOffsetDays" type="number" min="1" max="7" value="${esc(s.dailyOffsetDays)}" required></label>
+        <label>Dia semanal<select name="weeklyWeekday">${weekdays.map((x,i)=>`<option value="${i}" ${i===s.weeklyWeekday?"selected":""}>${x}</option>`).join("")}</select></label>
+        <label>Horario semanal<input name="weeklyTime" type="time" value="${esc(s.weeklyTime.slice(0,5))}" required></label>
+        <label>Janela (dias)<input name="weeklyWindowDays" type="number" min="1" max="31" value="${esc(s.weeklyWindowDays)}" required></label>
+        <label>Diaria ativa<input name="dailyEnabled" type="checkbox" ${s.dailyEnabled?"checked":""}></label>
+        <label>Semanal ativa<input name="weeklyEnabled" type="checkbox" ${s.weeklyEnabled?"checked":""}></label>
+        <button type="submit">Salvar</button>
+      </form><p id="schedule-message" class="muted"></p>
+      <h2>Historico automatico</h2>${history.length?`<table><thead><tr><th>Janela</th><th>Status</th><th>Finalizada</th></tr></thead><tbody>${history.map(x=>`<tr><td>${esc(x.key)}</td><td>${esc(x.status)}</td><td>${esc(x.finishedAt||"-")}</td></tr>`).join("")}</tbody></table>`:"<p class=\"muted\">Nenhuma execucao automatica registrada.</p>"}</article>`;
+    }
+    async function saveSchedule(event){
+      event.preventDefault();const form=new FormData(event.currentTarget),message=$("schedule-message");
+      const body={timezoneName:form.get("timezoneName"),dailyEnabled:form.has("dailyEnabled"),dailyTime:form.get("dailyTime"),dailyOffsetDays:Number(form.get("dailyOffsetDays")),weeklyEnabled:form.has("weeklyEnabled"),weeklyWeekday:Number(form.get("weeklyWeekday")),weeklyTime:form.get("weeklyTime"),weeklyWindowDays:Number(form.get("weeklyWindowDays"))};
+      message.textContent="Salvando...";
+      const response=await fetch("/api/v1/departmental-governance/schedule",{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+      const payload=await response.json();
+      message.textContent=response.ok?"Configuracao salva.":(payload.detail||"Falha ao salvar.");
+      if(response.ok)state.schedule=payload.data;
+    }
+    function evidence(block){return `<details><summary>Evidência</summary><pre>${esc(JSON.stringify(block.evidence||{},null,2))}</pre></details>`}
+    function render(){
+      const root=$("content"); let html="";
+      if(state.tab==="presidency"){
+        const d=state.cockpit;
+        html=`<section class="grid">${radarCard()}${agentsCard()}${valueCard()}</section><div class="notice">${d.dataCoverage.complete?"Cobertura disponível para as três empresas.":"Cobertura incompleta: "+d.dataCoverage.missingCompanies.join(", ")} Lucro e tendência permanecem indisponíveis até a base ser completa.</div><section class="grid">`+
+          d.blocks.map(x=>`<article class="card"><h2>${esc(names[x.department])}</h2><div class="muted">Margem bruta da melhor empresa</div><div class="metric">${money(x.bestCompany?.grossMarginValue)}</div><dl><dt>Melhor empresa</dt><dd>${esc(x.bestCompany?.companyCode??"—")}</dd><dt>Pior empresa</dt><dd>${esc(x.worstCompany?.companyCode??"—")}</dd><dt>Lucro operacional</dt><dd>Indisponível</dd><dt>Tendência</dt><dd>Indisponível</dd></dl><p class="${x.risk.includes("Sem risco")?"muted":"risk"}">${esc(x.risk)}</p>${evidence(x)}</article>`).join("")+"</section>";
+      }else if(state.tab==="audits"){
+        const d=state.audits;
+        html=`<div class="notice"><strong>${d.cycles.length} ciclos programados</strong> — Pista e Conveniência permanecem separados.</div><table><thead><tr><th>Empresa</th><th>Centro</th><th>Responsável</th><th>Próxima auditoria</th><th>Status</th></tr></thead><tbody>`+
+          d.cycles.map(x=>`<tr><td>${esc(x.empresa_codigo)}</td><td>${esc(x.centro_custo)}</td><td>${esc(x.responsavel)}</td><td>${esc(x.proximaAuditoria)}</td><td>${esc(x.statusAgenda)}</td></tr>`).join("")+"</tbody></table>"+
+          `<div class="section"><h2>Execuções</h2><p class="muted">${d.runs.length?d.runs.length+" execução(ões) registrada(s).":"Nenhuma execução aberta ainda."}</p></div>`;
+      }else if(state.tab==="governance"){
+        const d=state.governance;
+        html=`<div class="notice"><strong>Saúde: ${d.health.status}</strong> — ${d.alertSummary.total} alertas (${d.alertSummary.critical} críticos).</div><table><thead><tr><th>Empresa</th><th>Departamento</th><th>Severidade</th><th>Regra</th><th>Responsável</th><th>Prazo</th></tr></thead><tbody>`+
+          d.alerts.map(x=>`<tr><td>${esc(x.companyCode)}</td><td>${esc(names[x.department]||x.department)}</td><td class="${x.severity==="CRITICAL"?"risk":""}">${esc(x.severity)}</td><td>${esc(x.message)}</td><td>${esc(x.suggestedOwner)}</td><td>${esc(x.dueInDays)} dia(s)</td></tr>`).join("")+"</tbody></table>";
+      }else{
+        const panel=state.director.panels[state.tab];
+        html=`<div class="notice"><strong>${esc(panel.owner)}</strong> — ${esc(panel.action)}</div>`;
+        if(panel.departments) html+=`<table><thead><tr><th>Departamento</th><th>Receita</th><th>Margem bruta</th><th>Margem %</th><th>Status</th></tr></thead><tbody>`+
+          panel.departments.map(x=>`<tr><td>${esc(names[x.department])}</td><td>${money(x.revenue)}</td><td>${money(x.grossMarginValue)}</td><td>${x.grossMarginPercent==null?"—":esc(x.grossMarginPercent)+"%"}</td><td><span class="badge">${esc(x.status||"KPI departamental")}</span></td></tr>`).join("")+"</tbody></table>";
+        if(panel.limitations) html+=`<article class="card"><h2>Limitações atuais</h2>${panel.limitations.map(x=>`<p class="muted">${esc(x)}</p>`).join("")}</article>`;
+      }
+      root.innerHTML=html;
+      if(state.tab==="audits"&&state.schedule){
+        root.insertAdjacentHTML("afterbegin",scheduleCard());
+        $("schedule-form").onsubmit=saveSchedule;
+      }
+    }
+    async function load(){
+      $("status").className="state"; $("status").textContent="Carregando dados reais…"; $("content").className="hidden";
+      const company=$("company").value,start=$("start").value,end=$("end").value;
+      try{
+        const [c,p,g,radar,agents,notifications,value,cycles,runs,schedule,scheduleHistory]=await Promise.all([
+          fetch(`/api/v1/departmental-kpis/presidency-cockpit?data=${encodeURIComponent(end)}`).then(r=>{if(!r.ok)throw Error("Cockpit indisponível");return r.json()}),
+          fetch(`/api/v1/departmental-kpis/director-panels?empresaCodigo=${company}&dataInicial=${start}&dataFinal=${end}`).then(r=>{if(!r.ok)throw Error("Painéis indisponíveis");return r.json()}),
+          fetch(`/api/v1/departmental-governance/daily-report?data=${encodeURIComponent(end)}`).then(r=>{if(!r.ok)throw Error("Governança indisponível");return r.json()}),
+          fetch(`/api/v1/departmental-governance/proactive-radar?data=${encodeURIComponent(end)}`).then(r=>r.ok?r.json():{data:null}),
+          fetch(`/api/v1/departmental-governance/proactive-agents?data=${encodeURIComponent(end)}`).then(r=>r.ok?r.json():{data:null}),
+          fetch("/api/v1/departmental-governance/proactive-notifications").then(r=>r.ok?r.json():{data:[]}),
+          fetch(`/api/v1/departmental-governance/proactive-value?month=${encodeURIComponent(end.slice(0,7))}`).then(r=>r.ok?r.json():{data:null}),
+          fetch("/api/v1/auditorias-periodicas/ciclos").then(r=>r.json()),
+          fetch("/api/v1/auditorias-periodicas/execucoes").then(r=>r.json()),
+          fetch("/api/v1/departmental-governance/schedule").then(r=>r.json()),
+          fetch("/api/v1/departmental-governance/schedule/history").then(r=>r.json())
+        ]);
+        state.cockpit=c.data;state.director=p.data;state.governance=g.data;state.radar=radar.data;state.agents=agents.data;state.notifications=notifications.data||[];state.value=value.data;state.audits={cycles:cycles.data||[],runs:runs.data||[]};state.schedule=schedule.data;state.scheduleHistory=scheduleHistory.data||[];$("status").className="hidden";$("content").className="";render();
+      }catch(e){$("status").textContent=`Não foi possível carregar: ${String(e.message||e)}`;}
+    }
+    document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-tab]").forEach(x=>x.classList.remove("active"));b.classList.add("active");state.tab=b.dataset.tab;render()});
+    $("load").onclick=load;load();
+  </script>
+</body>
+</html>

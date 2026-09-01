@@ -1,0 +1,76 @@
+{
+  "decision_id": "175da101-6f68-42f4-9d2b-9b42e6cedea2",
+  "before": {
+    "EXACT": 0,
+    "PROBABLE": 3,
+    "AMBIGUOUS": 0,
+    "NO_MATCH": 13,
+    "with_funcionario": 3,
+    "with_caixa": 3,
+    "with_turno": 3,
+    "total_with_funcionario_amount": 450.0,
+    "total_without_funcionario_amount": 7951.0,
+    "evidence_items_count": 16,
+    "evidence_items_total": 8401.0
+  },
+  "after": {
+    "EXACT": 0,
+    "PROBABLE": 3,
+    "AMBIGUOUS": 0,
+    "NO_MATCH": 13,
+    "with_funcionario": 3,
+    "with_caixa": 3,
+    "with_turno": 3,
+    "total_with_funcionario_amount": 450.0,
+    "total_without_funcionario_amount": 7951.0,
+    "evidence_items_count": 16,
+    "evidence_items_total": 8401.0
+  },
+  "vale_endpoint_audit": {
+    "endpoints": [
+      {
+        "endpoint": "VALE_FUNCIONARIO_REDE",
+        "path": "/INTEGRACAO/VALE_FUNCIONARIO_REDE",
+        "method": "GET",
+        "empresaCodigo": 74014,
+        "http_status": 401,
+        "row_count": 0,
+        "sample_fields": []
+      },
+      {
+        "endpoint": "CONSULTAR_VALE_FUNCIONARIO_REDE",
+        "path": "/INTEGRACAO/CONSULTAR_VALE_FUNCIONARIO_REDE",
+        "method": "GET",
+        "empresaCodigo": 74014,
+        "http_status": 200,
+        "row_count": 0,
+        "sample_fields": []
+      }
+    ],
+    "401_cause": "HTTP 401 em /INTEGRACAO/VALE_FUNCIONARIO_REDE = endpoint sem permissão no token (Authorization), não rota incorreta — reproduzido para 5555, 11495 e 74014.",
+    "consultar_usable": true,
+    "consultar_rows_in_period": 0
+  },
+  "prestacao_audit": {
+    "parser_reused": "PrestacaoContasIntelligenceService.vale_forensics",
+    "vale_forensics_total": 17,
+    "sample_with_funcionario": 0,
+    "can_enrich_line_level": false,
+    "note": "Prestação (camada API) agrega vales consolidados — amostra sem funcionarioCodigo para lançamentos financeiros desta categoria."
+  },
+  "api_http_status": 200,
+  "beneficiary_vs_review": {
+    "beneficiary_field": "person_name",
+    "review_responsible_field": "review_responsible",
+    "review_workflow_implemented": false
+  },
+  "forced_match": false,
+  "limitations": [
+    "3 de 16 lançamentos com funcionário identificado via match operacional; 13 permanecem sem beneficiário nominal.",
+    "13 lançamento(s) sem candidato operacional (NO_MATCH) — consolidação financeira sem espelho linha a linha na API.",
+    "Fonte complementar necessária: VALE_FUNCIONARIO_REDE — HTTP 401 (sem permissão no token Quality).",
+    "Fonte complementar necessária: CONSULTAR_VALE_FUNCIONARIO_REDE — HTTP 200, porém 0 registros no período 74014.",
+    "Fonte complementar necessária: Prestação PDF — campos nominais linha a linha ausentes na API para vales consolidados.",
+    "Estes lançamentos explicam o aumento versus comportamento de referência — não constituem acusação automática."
+  ]
+}

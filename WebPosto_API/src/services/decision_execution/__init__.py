@@ -34,19 +34,37 @@ from .models import (
     EstimatedImpact,
     ConfirmedImpact,
     ImpactType,
+    DecisionAction,
+    PartialReason,
+    RejectionReason,
 )
 
 from .status_machine import DecisionStatusMachine, StatusTransitionError
 
-from .execution_service import ExecutionService, ExecutionError
+from .execution_service import ExecutionService, ExecutionError, ConfirmationError
+
+from .execution_store import ExecutionRecordStore
+
+from .sql_store import SQLExecutionRecordStore
 
 from .metrics_calculator import ExecutionMetricsCalculator
+
+from .feedback import ExecutionFeedbackService
+
+from .behavior_analytics import BehaviorAnalyticsService
+
+from .efficacy_analytics import CategoryEfficacy, EfficacyAnalyticsEngine
+
+from .preference_model import PreferenceModelService, PreferenceWeightResult
 
 __all__ = [
     # Enums
     "DecisionStatus",
     "ConfirmationResult",
     "ImpactType",
+    "DecisionAction",
+    "PartialReason",
+    "RejectionReason",
     # Models
     "ExecutionRecord",
     "ResultConfirmation",
@@ -59,5 +77,14 @@ __all__ = [
     "StatusTransitionError",
     "ExecutionService",
     "ExecutionError",
+    "ConfirmationError",
+    "ExecutionRecordStore",
+    "SQLExecutionRecordStore",
     "ExecutionMetricsCalculator",
+    "ExecutionFeedbackService",
+    "BehaviorAnalyticsService",
+    "EfficacyAnalyticsEngine",
+    "CategoryEfficacy",
+    "PreferenceModelService",
+    "PreferenceWeightResult",
 ]

@@ -1,0 +1,125 @@
+{
+  "seed_id": "FORECOURT-HEATMAP-01-CASA-CAIADA-QUADRUPLA-V2",
+  "station_alias": "casa_caiada",
+  "layout": {
+    "name": "Casa Caiada — Quádruplas ‖ Avenida",
+    "mapping_status": "PROVISIONAL",
+    "mapping_note": "HEATMAP-01: bombas quádruplas (2+2). Ilhas paralelas à Av. Gov. Carlos de Lima Cavalcante. Lados AVENIDA (frente) e CONVENIÊNCIA (loja).",
+    "coordinate_width": 1000,
+    "coordinate_height": 640,
+    "zones": [
+      {
+        "code": "ZONE_AVENIDA",
+        "name": "Faixa Avenida (paralela à via)",
+        "display_order": 1,
+        "x": 40,
+        "y": 70,
+        "width": 920,
+        "height": 200
+      },
+      {
+        "code": "ZONE_CONVENIENCIA",
+        "name": "Faixa Conveniência (loja)",
+        "display_order": 2,
+        "x": 40,
+        "y": 360,
+        "width": 920,
+        "height": 200
+      }
+    ],
+    "markers": [
+      {
+        "code": "AV_CARLOS_LIMA",
+        "label": "Av. Gov. Carlos de Lima",
+        "kind": "ROAD",
+        "x": 500,
+        "y": 28
+      },
+      {
+        "code": "LOJA_CONVENIENCIA",
+        "label": "Conveniência",
+        "kind": "LANDMARK",
+        "x": 500,
+        "y": 600
+      }
+    ],
+    "islands": [
+      {
+        "code": "ILHA_01",
+        "name": "Ilha 01",
+        "display_order": 1,
+        "x": 80,
+        "y": 140,
+        "width": 360,
+        "height": 300
+      },
+      {
+        "code": "ILHA_02",
+        "name": "Ilha 02",
+        "display_order": 2,
+        "x": 560,
+        "y": 140,
+        "width": 360,
+        "height": 300
+      }
+    ],
+    "positions": [
+      {
+        "island_code": "ILHA_01",
+        "pump_id": 1,
+        "pump_name": "BOMBA 01 QUÁDRUPLA",
+        "code": "CC_B01_AVENIDA",
+        "name": "Bomba 01 — lado Avenida (2 bicos)",
+        "orientation": "AVENIDA",
+        "x": 130,
+        "y": 175,
+        "nozzles": [
+          { "nozzle_id": 7, "label": "007 Etanol", "active": true },
+          { "nozzle_id": 8, "label": "008 Gasolina Comum", "active": true }
+        ]
+      },
+      {
+        "island_code": "ILHA_01",
+        "pump_id": 1,
+        "pump_name": "BOMBA 01 QUÁDRUPLA",
+        "code": "CC_B01_CONVENIENCIA",
+        "name": "Bomba 01 — lado Conveniência (2 bicos)",
+        "orientation": "CONVENIENCIA",
+        "x": 130,
+        "y": 340,
+        "nozzles": [
+          { "nozzle_id": 1, "label": "001 Etanol", "active": true },
+          { "nozzle_id": 2, "label": "002 Gasolina Comum", "active": true }
+        ]
+      },
+      {
+        "island_code": "ILHA_02",
+        "pump_id": 2,
+        "pump_name": "BOMBA 02 QUÁDRUPLA",
+        "code": "CC_B02_AVENIDA",
+        "name": "Bomba 02 — lado Avenida (2 bicos)",
+        "orientation": "AVENIDA",
+        "x": 610,
+        "y": 175,
+        "nozzles": [
+          { "nozzle_id": 3, "label": "003 Etanol", "active": true },
+          { "nozzle_id": 4, "label": "004 Gasolina Comum", "active": true }
+        ]
+      },
+      {
+        "island_code": "ILHA_02",
+        "pump_id": 2,
+        "pump_name": "BOMBA 02 QUÁDRUPLA",
+        "code": "CC_B02_CONVENIENCIA",
+        "name": "Bomba 02 — lado Conveniência (2 bicos)",
+        "orientation": "CONVENIENCIA",
+        "x": 610,
+        "y": 340,
+        "nozzles": [
+          { "nozzle_id": 5, "label": "005 Etanol", "active": true },
+          { "nozzle_id": 6, "label": "006 Gasolina Comum", "active": true }
+        ]
+      }
+    ]
+  }
+}

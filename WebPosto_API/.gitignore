@@ -1,0 +1,39 @@
+# Generated runtime artifacts (do not commit)
+.runtime/
+# DF-e — segredos/XML locais (nunca commitar PFX/ciphertext)
+data/dfe_store/
+data/cost_update/
+data/dfe/
+data/logos_local.db
+data/logos_local.db-*
+data/sds_catchup_lock.sqlite
+data/sds_catchup_lock.sqlite-shm
+data/sds_catchup_lock.sqlite-wal
+data/sds_catchup_lock.sqlite-journal
+data/sds_catchup_lock.sqlite-*
+data/sds_catchup_lock.db
+data/sds_catchup_lock.db-*
+data/premmia_imports/
+**/5039-conference.xlsx
+**/Pagamentos a receber*.xlsx
+*.pfx
+*.p12
+
+snapshots/decision_execution/*.db
+snapshots/decision_execution/*.db-journal
+snapshots/periodic_audits/
+tests/runtime_tmp/
+.pytest_cache/
+__pycache__/
+*.pyc
+.coverage
+htmlcov/
+api.log
+server.log
+server_log.txt
+webposto-codex.out.log
+webposto-codex.err.log
+president-8040.out.log
+president-8040.err.log
+diretoria-api-8040.out.log
+diretoria-api-8040.err.log

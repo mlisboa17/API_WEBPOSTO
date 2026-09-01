@@ -1,0 +1,289 @@
+{
+  "total": 42,
+  "passed": 42,
+  "failed": [],
+  "console_errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "http_errors": [
+    {
+      "screen": "commercial-execution",
+      "status": 404,
+      "url": "http://127.0.0.1:8040/snapshots/financial/financial_sales_2026-07-17_2026-07-23_all.json"
+    },
+    {
+      "screen": "commercial-execution",
+      "status": 404,
+      "url": "http://127.0.0.1:8040/snapshots/financial/financial_stock_2026-07-17_2026-07-23_all.json"
+    }
+  ],
+  "optional_snapshot_misses": [
+    {
+      "screen": "commercial-execution",
+      "status": 404,
+      "url": "http://127.0.0.1:8040/snapshots/financial/financial_sales_2026-07-17_2026-07-23_all.json"
+    },
+    {
+      "screen": "commercial-execution",
+      "status": 404,
+      "url": "http://127.0.0.1:8040/snapshots/financial/financial_stock_2026-07-17_2026-07-23_all.json"
+    }
+  ],
+  "blocking_http_errors": [],
+  "results": [
+    {
+      "screen": "finance-center",
+      "ok": true,
+      "visible_views": 0,
+      "visible_headings": 1
+    },
+    {
+      "screen": "cash-flow",
+      "ok": true,
+      "visible_views": 0,
+      "visible_headings": 1
+    },
+    {
+      "screen": "cash-operations",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "operator-performance",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "people-intelligence",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "people-roi",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "operation-roi",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "management-action",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "goals-campaigns",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "benchmark",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "executive-scorecard",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "corporate-hub",
+      "ok": true,
+      "visible_views": 0,
+      "visible_headings": 1
+    },
+    {
+      "screen": "executive-decision",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "action-center",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "cash-reconciliation",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "owner-diretoria",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 6
+    },
+    {
+      "screen": "executive-follow-up",
+      "ok": true,
+      "visible_views": 0,
+      "visible_headings": 1
+    },
+    {
+      "screen": "executive-follow-up-detail",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 2
+    },
+    {
+      "screen": "decision-detail",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 2
+    },
+    {
+      "screen": "executive-copilot",
+      "ok": true,
+      "visible_views": 0,
+      "visible_headings": 1
+    },
+    {
+      "screen": "recommendations",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "learning",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "nfce-intelligence",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "lmc-intelligence",
+      "ok": true,
+      "visible_views": 0,
+      "visible_headings": 1
+    },
+    {
+      "screen": "fiscal-intelligence",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "fiscal-reconciliation",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "fuel-governance",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "non-fuel-products",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "president-dashboard",
+      "ok": true,
+      "visible_views": 0,
+      "visible_headings": 1
+    },
+    {
+      "screen": "commercial-execution",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "commercial-learning",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "commercial-copilot",
+      "ok": true,
+      "visible_views": 0,
+      "visible_headings": 1
+    },
+    {
+      "screen": "administration",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "executive-workspace",
+      "ok": true,
+      "visible_views": 0,
+      "visible_headings": 1
+    },
+    {
+      "screen": "financial-operations-center",
+      "ok": true,
+      "visible_views": 0,
+      "visible_headings": 1
+    },
+    {
+      "screen": "financial-intelligence",
+      "ok": true,
+      "visible_views": 0,
+      "visible_headings": 1
+    },
+    {
+      "screen": "visao-financeira",
+      "ok": true,
+      "visible_views": 0,
+      "visible_headings": 1
+    },
+    {
+      "screen": "financial-review-inbox",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 2
+    },
+    {
+      "screen": "financial-review-detail",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 2
+    },
+    {
+      "screen": "tesouraria",
+      "ok": true,
+      "visible_views": 0,
+      "visible_headings": 1
+    },
+    {
+      "screen": "produtos-vendidos",
+      "ok": true,
+      "visible_views": 1,
+      "visible_headings": 4
+    },
+    {
+      "screen": "departmental-mobile",
+      "ok": true,
+      "visible_views": 0,
+      "visible_headings": 4,
+      "horizontal_page_overflow": false
+    }
+  ]
+}

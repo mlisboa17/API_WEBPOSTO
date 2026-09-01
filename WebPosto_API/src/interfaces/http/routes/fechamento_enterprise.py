@@ -189,8 +189,7 @@ async def financial_overview(
 
 @router.get("/financial/companies")
 async def financial_companies() -> dict:
-    resp = await _network_financial_overview.get_companies()
-    return resp.to_dict()
+    return await _financial_resilience.get_financial_companies()
 
 
 def _parse_expense_natures(raw: str | None) -> tuple[str, ...] | None:
@@ -349,8 +348,8 @@ async def financial_accounts_payable(
         vencimento_inicial=vencimentoInicial,
         vencimento_final=vencimentoFinal,
     )
-    resp = await _network_financial_overview.get_accounts_payable(filters, page=page, limit=limit)
-    return resp.to_dict()
+    resp = await _financial_resilience.get_financial_accounts_payable(filters, page=page, limit=limit)
+    return resp
 
 
 @router.get("/financial/accounts-receivable")
@@ -368,8 +367,8 @@ async def financial_accounts_receivable(
         empresa_codigo=base.empresa_codigo,
         empresa_codigos=base.empresa_codigos,
     )
-    resp = await _network_financial_overview.get_accounts_receivable(filters, page=page, limit=limit)
-    return resp.to_dict()
+    resp = await _financial_resilience.get_financial_accounts_receivable(filters, page=page, limit=limit)
+    return resp
 
 
 @router.get("/sales")

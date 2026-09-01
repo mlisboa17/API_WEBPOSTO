@@ -87,7 +87,8 @@ class PriorityEngine:
         action_type: ActionType,
         priority: ActionPriority,
         time_to_resolve: Optional[int] = None,
-        custom_weights: Optional[PriorityWeights] = None
+        custom_weights: Optional[PriorityWeights] = None,
+        dampening_multiplier: float = 1.0
     ) -> Dict[str, float]:
         """
         Calculate priority score for a decision.
@@ -100,6 +101,9 @@ class PriorityEngine:
             priority: Priority level
             time_to_resolve: Estimated minutes to resolve
             custom_weights: Optional custom weights
+            dampening_multiplier: EXEC-03 execution feedback signal (0-1). Applied
+                when the owner has repeatedly confirmed decisions of this category
+                as not-a-priority or already-resolved. Defaults to 1.0 (no effect).
             
         Returns:
             Dictionary with all component scores and total
@@ -125,6 +129,9 @@ class PriorityEngine:
             
             # Apply priority multipliers
             total_score = self._apply_priority_multiplier(total_score, priority, action_type)
+
+            # Apply EXEC-03 execution feedback dampening (owner behavior signal)
+            total_score = total_score * dampening_multiplier
             
             # Cap at 100
             total_score = min(100, total_score)

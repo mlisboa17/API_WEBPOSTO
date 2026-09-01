@@ -6,10 +6,15 @@ from decimal import Decimal
 import re
 from typing import Any
 
+from pydantic import ValidationError
+
+from src.core.management_scope import is_licensed_company
 from src.domain.entities.filial_master import filial_name_lookup
+from src.domain.fuel.models import FuelVolumeFact
 from src.gateway.webposto_client import WebPostoClient
 from src.models.error_model import WebPostoError
 from src.models.response_model import WebPostoResponse
+from src.services.produto_catalog import ProdutoCatalogService
 
 
 FILIAIS = filial_name_lookup()
@@ -25,8 +30,9 @@ class FuelAnalyticsFilters:
 class FuelAnalyticsService:
     """Analitico executivo de combustiveis baseado em CONSULTAR_LMC_REDE."""
 
-    def __init__(self, client: WebPostoClient) -> None:
+    def __init__(self, client: WebPostoClient, *, catalog: ProdutoCatalogService | None = None) -> None:
         self.client = client
+        self._catalog = catalog or ProdutoCatalogService(client)
 
     @staticmethod
     def _rows(payload: Any) -> list[dict[str, Any]]:
@@ -141,41 +147,40 @@ class FuelAnalyticsService:
     def _to_float(value: Decimal) -> float:
         return round(float(value), 3)
 
-    async def _product_name_map(self, filtros: FuelAnalyticsFilters, empresas: set[int]) -> tuple[dict[int, str], dict[int, str]]:
+    async def _product_name_map(self, empresas: set[int]) -> tuple[dict[int, str], dict[int, str]]:
+        """Nomes resolvidos via ProdutoCatalogService, incluindo o cruzamento por
+        produtoLmcCodigo (Sprint 19) que elimina "Produto {codigo}" quando um produto
+        irmao no mesmo bico ja tem nome real cadastrado."""
+        catalog_response = await self._catalog.get_catalog(sorted(empresas))
+        if not catalog_response.success:
+            return {}, {}
+
         by_code: dict[int, str] = {}
         by_lmc_code: dict[int, str] = {}
-        for empresa_codigo in sorted(empresas):
-            response = await self.client.call_endpoint(
-                "produto",
-                params={
-                    "dataInicial": filtros.data_inicial,
-                    "dataFinal": filtros.data_final,
-                    "empresaCodigo": empresa_codigo,
-                },
-            )
-            if not response.success:
+        for produto in (catalog_response.data or {}).get("products") or []:
+            codigo = produto.get("produtoCodigo")
+            if codigo is None:
                 continue
-            for produto in self._rows(response.data):
-                codigo = produto.get("produtoCodigo") or produto.get("codigo")
-                if codigo is None:
-                    continue
-                try:
-                    codigo_int = int(codigo)
-                except Exception:
-                    continue
-                nome = self._clean_product_name(produto.get("nome") or produto.get("descricao"))
-                if nome and codigo_int not in by_code:
-                    by_code[codigo_int] = nome
-                lmc_codigo = produto.get("produtoLmcCodigo")
-                try:
-                    lmc_codigo_int = int(lmc_codigo)
-                except Exception:
-                    lmc_codigo_int = None
-                if nome and lmc_codigo_int is not None and lmc_codigo_int not in by_lmc_code:
-                    by_lmc_code[lmc_codigo_int] = nome
+            nome = self._clean_product_name(produto.get("nomeProduto"))
+            if not nome or nome.startswith("Produto "):
+                continue
+            codigo_int = int(codigo)
+            by_code.setdefault(codigo_int, nome)
+            lmc_codigo = produto.get("produtoLmcCodigo")
+            if lmc_codigo is not None:
+                by_lmc_code.setdefault(int(lmc_codigo), nome)
         return by_code, by_lmc_code
 
     async def _fetch_lmc_rows(self, filtros: FuelAnalyticsFilters) -> WebPostoResponse:
+        if filtros.empresa_codigo is not None and not is_licensed_company(filtros.empresa_codigo):
+            return WebPostoResponse.fail(
+                WebPostoError(
+                    endpoint="/INTEGRACAO/CONSULTAR_LMC_REDE",
+                    status=403,
+                    type="UNLICENSED_COMPANY",
+                    message="Empresa fora do escopo das três licenças WebPosto",
+                )
+            )
         params: dict[str, Any] = {
             "dataInicial": filtros.data_inicial,
             "dataFinal": filtros.data_final,
@@ -208,7 +213,7 @@ class FuelAnalyticsService:
             except Exception:
                 continue
 
-        product_names, product_names_by_lmc = await self._product_name_map(filtros, empresas)
+        product_names, product_names_by_lmc = await self._product_name_map(empresas)
 
         by_company: dict[int, Decimal] = defaultdict(lambda: Decimal("0"))
         by_product: dict[int, dict[str, Any]] = {}
@@ -225,6 +230,9 @@ class FuelAnalyticsService:
             try:
                 empresa_codigo = int(empresa_codigo_raw)
             except Exception:
+                continue
+
+            if not is_licensed_company(empresa_codigo):
                 continue
 
             litros = self._extract_litros(row)
@@ -252,6 +260,21 @@ class FuelAnalyticsService:
                     nome_produto = self._clean_product_name(product_names_by_lmc.get(lmc_codigo_int))
             if not nome_produto:
                 nome_produto = f"Produto {produto_codigo}"
+
+            try:
+                fact = FuelVolumeFact(
+                    empresa_codigo=empresa_codigo,
+                    produto_codigo=produto_codigo,
+                    produto_lmc_codigo=row.get("produtoLmcCodigo"),
+                    combustivel=nome_produto,
+                    data_referencia=data_ref,
+                    litros=litros,
+                )
+            except ValidationError:
+                continue
+
+            litros = fact.litros
+            nome_produto = fact.combustivel
 
             litros_total += litros
             by_company[empresa_codigo] += litros

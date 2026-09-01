@@ -175,6 +175,7 @@ async def fetch_fuel_executive_multiselect(
     data_inicial: str,
     data_final: str,
     empresa_codigo: str | int | None,
+    fuel_pricing: Any | None = None,
 ) -> dict[str, Any]:
     codes = parse_empresa_codigos(empresa_codigo)
     if len(codes) <= 1:
@@ -185,6 +186,10 @@ async def fetch_fuel_executive_multiselect(
             return summary_resp.to_dict()
         payload = summary_resp.data or {}
         payload["kpis"] = fuel_kpi_engine.build(payload)
+        if fuel_pricing is not None:
+            payload = await fuel_pricing.enrich_executive_payload(
+                payload, data_inicial, data_final, empresa_codigo
+            )
         return {"success": True, "data": payload, "error": None}
 
     payloads: list[dict[str, Any]] = []
@@ -206,6 +211,10 @@ async def fetch_fuel_executive_multiselect(
 
     merged = aggregate_fuel_executive_payload(merged, codes)
     merged["kpis"] = fuel_kpi_engine.build(merged)
+    if fuel_pricing is not None:
+        merged = await fuel_pricing.enrich_executive_payload(
+            merged, data_inicial, data_final, empresa_codigo
+        )
     return {"success": True, "data": merged, "error": None}
 
 

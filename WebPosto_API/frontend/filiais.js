@@ -1,4 +1,5 @@
 import { normalizeEmpresaRede } from "./services/api.js";
+import { isLicensedCompanyCode } from "./config/managementScope.js";
 
 const FALLBACK_FILIAIS = [
   { nro: 1, codWeb: 11495, razaoSocial: "RIO DOCE COMERCIO E SERVICOS LTDA", nomeFantasia: "POSTO VIP", cnpj: "03.008.754/0001-86", ativo: true, cidade: "OLINDA", uf: "PE", tipoFilial: "Posto", status: "CONFIRMADA" },
@@ -45,7 +46,7 @@ function isFilialComprovada(filial) {
 
 function mapManifestRows(rows = []) {
   if (!rows?.length) {
-    return FALLBACK_FILIAIS.filter(isFilialComprovada).map((row) => ({
+    return FALLBACK_FILIAIS.filter(isFilialComprovada).filter((row) => isLicensedCompanyCode(row.codWeb)).map((row) => ({
       ...row,
       statusEvidencia: row.status === "INATIVA" ? "COMPROVADA" : row.status === "CONFIRMADA" ? "COMPROVADA" : row.status,
       comprovada: true,
@@ -69,7 +70,7 @@ function mapManifestRows(rows = []) {
       dataEncerramento: row.dataEncerramento || null,
       origem: "manifest",
     }))
-    .filter((row) => row.comprovada);
+    .filter((row) => row.comprovada && isLicensedCompanyCode(row.codWeb));
 }
 
 async function loadFiliaisBase() {
@@ -154,7 +155,7 @@ export function mergeFiliais(apiFiliais = []) {
   const locais = FILIAIS;
   const normalizadas = apiFiliais
     .map((row) => normalizeEmpresaRede(row))
-    .filter((filial) => filialMapKey(filial));
+    .filter((filial) => filialMapKey(filial) && isLicensedCompanyCode(filial.codWeb));
 
   const mapa = new Map();
   for (const filial of locais) {

@@ -1,0 +1,274 @@
+{
+  "lastUpdated": "2026-07-12T18:43:17+00:00",
+  "receivable_data": {
+    "receivable_rows": [
+      {
+        "empresaCodigo": 74014,
+        "tituloCodigo": 20854502,
+        "dataMovimento": "2026-06-18",
+        "dataVencimento": "2026-07-20",
+        "valor": 273.46,
+        "vendaCodigo": 357991574,
+        "duplicataCodigo": null,
+        "tipo": "Nota",
+        "pendente": true,
+        "clienteCodigo": 1024319,
+        "dataPagamento": null,
+        "planoContaGerencialCodigo": null,
+        "nomeCliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+        "cpfCnpjCliente": "46.966.733/0001-86",
+        "convertido": false,
+        "documento": "1 / 1",
+        "tituloNumero": 12,
+        "codigo": 20854502
+      },
+      {
+        "empresaCodigo": 74014,
+        "tituloCodigo": 20862819,
+        "dataMovimento": "2026-06-18",
+        "dataVencimento": "2026-06-18",
+        "valor": 1464.81,
+        "vendaCodigo": 358137915,
+        "duplicataCodigo": null,
+        "tipo": "Nota",
+        "pendente": true,
+        "clienteCodigo": 581564,
+        "dataPagamento": null,
+        "planoContaGerencialCodigo": null,
+        "nomeCliente": "F.J. SERVICOS E COMERCIO LTDA.",
+        "cpfCnpjCliente": "62.455.490/0001-78",
+        "convertido": false,
+        "documento": "1 / 1",
+        "tituloNumero": 13,
+        "codigo": 20862819
+      },
+      {
+        "empresaCodigo": 74014,
+        "tituloCodigo": 20882315,
+        "dataMovimento": "2026-06-22",
+        "dataVencimento": "2026-07-20",
+        "valor": 344.73,
+        "vendaCodigo": 358649018,
+        "duplicataCodigo": null,
+        "tipo": "Nota",
+        "pendente": true,
+        "clienteCodigo": 1024319,
+        "dataPagamento": null,
+        "planoContaGerencialCodigo": null,
+        "nomeCliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+        "cpfCnpjCliente": "46.966.733/0001-86",
+        "convertido": false,
+        "documento": "1 / 1",
+        "tituloNumero": 14,
+        "codigo": 20882315
+      },
+      {
+        "empresaCodigo": 74014,
+        "tituloCodigo": 20906509,
+        "dataMovimento": "2026-06-25",
+        "dataVencimento": "2026-07-20",
+        "valor": 68.04,
+        "vendaCodigo": 359140222,
+        "duplicataCodigo": null,
+        "tipo": "Nota",
+        "pendente": true,
+        "clienteCodigo": 1024319,
+        "dataPagamento": null,
+        "planoContaGerencialCodigo": null,
+        "nomeCliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+        "cpfCnpjCliente": "46.966.733/0001-86",
+        "convertido": false,
+        "documento": "1 / 1",
+        "tituloNumero": 15,
+        "codigo": 20906509
+      },
+      {
+        "empresaCodigo": 74014,
+        "tituloCodigo": 20939645,
+        "dataMovimento": "2026-06-30",
+        "dataVencimento": "2026-07-20",
+        "valor": 287.9,
+        "vendaCodigo": 359874602,
+        "duplicataCodigo": null,
+        "tipo": "Nota",
+        "pendente": true,
+        "clienteCodigo": 1024319,
+        "dataPagamento": null,
+        "planoContaGerencialCodigo": null,
+        "nomeCliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+        "cpfCnpjCliente": "46.966.733/0001-86",
+        "convertido": false,
+        "documento": "1 / 1",
+        "tituloNumero": 16,
+        "codigo": 20939645
+      },
+      {
+        "empresaCodigo": 74014,
+        "tituloCodigo": 20981418,
+        "dataMovimento": "2026-07-05",
+        "dataVencimento": "2026-08-20",
+        "valor": 71.38,
+        "vendaCodigo": 360721369,
+        "duplicataCodigo": null,
+        "tipo": "Nota",
+        "pendente": true,
+        "clienteCodigo": 1024319,
+        "dataPagamento": null,
+        "planoContaGerencialCodigo": null,
+        "nomeCliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+        "cpfCnpjCliente": "46.966.733/0001-86",
+        "convertido": false,
+        "documento": "1 / 1",
+        "tituloNumero": 17,
+        "codigo": 20981418
+      },
+      {
+        "empresaCodigo": 74014,
+        "tituloCodigo": 20984118,
+        "dataMovimento": "2026-07-06",
+        "dataVencimento": "2026-08-20",
+        "valor": 241.04,
+        "vendaCodigo": 360824402,
+        "duplicataCodigo": null,
+        "tipo": "Nota",
+        "pendente": true,
+        "clienteCodigo": 1024319,
+        "dataPagamento": null,
+        "planoContaGerencialCodigo": null,
+        "nomeCliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+        "cpfCnpjCliente": "46.966.733/0001-86",
+        "convertido": false,
+        "documento": "1 / 1",
+        "tituloNumero": 18,
+        "codigo": 20984118
+      }
+    ],
+    "buckets": {
+      "pendente": [
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20854502,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "273.46",
+          "vencimento": "2026-07-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20862819,
+          "cliente": "F.J. SERVICOS E COMERCIO LTDA.",
+          "valor": "1464.81",
+          "vencimento": "2026-06-18",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20882315,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "344.73",
+          "vencimento": "2026-07-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20906509,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "68.04",
+          "vencimento": "2026-07-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20939645,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "287.90",
+          "vencimento": "2026-07-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20981418,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "71.38",
+          "vencimento": "2026-08-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20984118,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "241.04",
+          "vencimento": "2026-08-20",
+          "pendente": true
+        }
+      ],
+      "recebido": [],
+      "vencido": [
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20862819,
+          "cliente": "F.J. SERVICOS E COMERCIO LTDA.",
+          "valor": "1464.81",
+          "vencimento": "2026-06-18",
+          "pendente": true
+        }
+      ],
+      "aVencer": [
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20854502,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "273.46",
+          "vencimento": "2026-07-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20882315,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "344.73",
+          "vencimento": "2026-07-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20906509,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "68.04",
+          "vencimento": "2026-07-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20939645,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "287.90",
+          "vencimento": "2026-07-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20981418,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "71.38",
+          "vencimento": "2026-08-20",
+          "pendente": true
+        },
+        {
+          "empresaCodigo": 74014,
+          "tituloCodigo": 20984118,
+          "cliente": "MAVISA DISTRIBUIDORA DE ALIMENTOS LTDA",
+          "valor": "241.04",
+          "vencimento": "2026-08-20",
+          "pendente": true
+        }
+      ]
+    },
+    "card_sales_count": 0,
+    "card_sales_gross": 0.0,
+    "bank_credits": 9687.67,
+    "data_quality": 0.85,
+    "card_data_available": false,
+    "cache_status": "MISS"
+  }
+}

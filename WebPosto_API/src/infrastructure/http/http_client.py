@@ -43,6 +43,9 @@ class ExternalHttpClient:
         headers: Optional[Dict[str, str]] = None,
     ) -> httpx.Response:
         url = f"{self.base_url}{path if path.startswith('/') else '/' + path}"
+        from src.services.webposto.offline_mode import assert_webposto_network_allowed
+
+        assert_webposto_network_allowed(url, extra_base=self.base_url)
 
         async def _do() -> httpx.Response:
             async with httpx.AsyncClient(timeout=_timeout(), verify=self.verify_ssl) as client:
@@ -64,6 +67,9 @@ class ExternalHttpClient:
     async def head_connectivity(self) -> tuple[bool, int, int]:
         """Teste rápido de conectividade (sem CHAVE)."""
         try:
+            from src.services.webposto.offline_mode import assert_webposto_network_allowed
+
+            assert_webposto_network_allowed(self.base_url)
             async with httpx.AsyncClient(timeout=_timeout(), verify=self.verify_ssl) as client:
                 r = await client.head(self.base_url)
                 return True, r.status_code, 0

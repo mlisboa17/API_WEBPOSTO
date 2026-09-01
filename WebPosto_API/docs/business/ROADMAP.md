@@ -98,6 +98,12 @@ O LOGOS passa a ser uma **Decision Execution Platform** — um sistema que não 
 - Primeira decisão: POSTO DOZE FILIAL II (vales funcionário)
 - PCG 96/100 — `docs/governance/PCG_VALUE_03.md`
 
+#### DIR-01 — Decision Evidence Detail ✅ (2026-07-05)
+- `GET /api/v1/decisions/{id}/evidence`
+- `evidence_items` no ExpenseDetector
+- UI detalhe com 16 lançamentos VALUE-03
+- Evidência: `docs/validation/DIR_01_REPORT.md`
+
 #### PERFORMANCE-01 — Fast Daily Analysis Loop ✅ (2026-07-04)
 - Home imediata (~3 ms) + refresh background
 - Fuel cache isolado; concurrency 3 medida
@@ -110,8 +116,8 @@ O LOGOS passa a ser uma **Decision Execution Platform** — um sistema que não 
 |--------|--------|-------------|
 | **EXEC-01** | ✅ | Decision Execution Platform (Backend) |
 | **UX-01** | ✅ | Momento Zero & Executive Experience (Design) |
-| EXEC-02 | ⏳ | API Endpoints + Frontend Implementation |
-| EXEC-03 | ⏳ | Persistência + Integração |
+| **EXEC-02** | ✅ | API Endpoints + Frontend Implementation |
+| **EXEC-03** | ✅ | Persistência + Integração (Owner Intelligence feedback loop, dashboard de métricas, persistência SQL) |
 
 **Entregáveis Completos:**
 
@@ -134,11 +140,14 @@ O LOGOS passa a ser uma **Decision Execution Platform** — um sistema que não 
 - ✅ **Princípio 18:** Clareza acima de Complexidade
 
 **Próximos (EXEC-02):**
-- Implementação Next.js da Nova Home
-- Botões "Executar Agora" funcionais
-- Telas de confirmação (SIM/PARCIAL/NÃO)
-- Dashboard de métricas de execução
-- Integração com Owner Intelligence Engine
+- ✅ 3 endpoints HTTP (`/execute`, `/confirm`, `/timeline`) sobre o serviço EXEC-01
+- ✅ Botões "Executar Agora" funcionais (frontend vanilla JS do cockpit, não Next.js — ver nota abaixo)
+- ✅ Telas de confirmação (SIM/PARCIAL/NÃO)
+- ✅ Dashboard de métricas de execução (`GET /metrics/summary`, `GET /metrics/period`, widget no cockpit)
+- ✅ Integração com Owner Intelligence Engine (feedback loop de priorização)
+- ✅ Persistência real (SQL — `SQLExecutionRecordStore`, SQLite por padrão / Postgres via `EXECUTION_DB_URL`)
+
+> Nota: o cockpit de decisões roda em `frontend/` (vanilla JS), não em Next.js. O app Next.js (`frontend/cockpit`) é um produto separado (vendas/produtos/TMS), sem relação com decisions/execution.
 
 **Resultado Esperado:**
 - Proprietário executa direto da plataforma
@@ -148,18 +157,22 @@ O LOGOS passa a ser uma **Decision Execution Platform** — um sistema que não 
 
 ---
 
-### FASE 5: APRENDER 🧬 (FUTURE)
+### FASE 5: APRENDER 🧬 (IN PROGRESS)
 **O LOGOS aprende comportamento.**
 
 | Sprint | Status | Entregáveis |
 |--------|--------|-------------|
-| Behavior Learning | 🔮 | Padrões de execução do proprietário |
+| Behavior Learning | 🔄 | `BehaviorAnalyticsService` + `GET /api/v1/decisions/behavior-insights` |
 | Efficacy Analytics | 🔮 | Eficácia de diferentes recomendações |
 | Preference Model | 🔮 | Preferências e prioridades do owner |
 | Adaptive UI | 🔮 | Interface que se adapta ao comportamento |
 
-**Planejado:**
-- Aprende quais decisões o proprietário executa vs ignora
+**Behavior Learning — implementado (2026-07-22):**
+- ✅ `BehaviorAnalyticsService.analyze(records)`: agrupa `ExecutionRecord`s por `decision_category`, calcula execution/completion rate, motivos de rejeição por categoria, tempo médio até executar, categoria mais executada/mais ignorada, ranking de motivos de rejeição
+- ✅ `GET /api/v1/decisions/behavior-insights` expõe o relatório via HTTP
+- ⏳ Pendente: Efficacy Analytics, Preference Model, Adaptive UI (ainda sem escopo definido)
+
+**Planejado (restante):**
 - Identifica padrões de comportamento (horários, tipos, valores)
 - Adapta recomendações às preferências
 - Personaliza interface baseada em uso
@@ -264,7 +277,7 @@ O LOGOS passa a ser uma **Decision Execution Platform** — um sistema que não 
 | **FASE 2: ENTENDER** — Analysis | Q2 2026 | ✅ COMPLETE |
 | **FASE 3: DECIDIR** — Decision Engine | Q3 2026 | ✅ COMPLETE |
 | **FASE 4: EXECUTAR** — Execution Platform | Q3 2026 | 🔄 IN PROGRESS |
-| **FASE 5: APRENDER** — Learning | Q4 2026 | ⏳ PLANNED |
+| **FASE 5: APRENDER** — Learning | Q4 2026 | 🔄 IN PROGRESS |
 | **FASE 6: ANTECIPAR** — Prediction | Q4 2026 | 🔮 FUTURE |
 | **FASE 7: AI EXECUTIVE** — Autonomous | 2027 | 🔮 VISION |
 

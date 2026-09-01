@@ -31,6 +31,12 @@ class ProdutoCreateRequest(BaseModel):
 
     model_config = ConfigDict(populate_by_name=True, str_strip_whitespace=True)
 
+    empresa_codigo: int = Field(
+        ...,
+        alias="empresaCodigo",
+        description="Obrigatório — empresa explícita (sem fallback silencioso)",
+        gt=0,
+    )
     descricao: str = Field(..., min_length=1, max_length=120)
     descricao_resumida: Optional[str] = Field(None, alias="descricaoResumida")
     tipo_produto: str = Field("P", alias="tipoProduto", description="C|P|U|I|O|S|K|8")
@@ -62,6 +68,12 @@ class ProdutoUpdateRequest(BaseModel):
 
     model_config = ConfigDict(populate_by_name=True, str_strip_whitespace=True)
 
+    empresa_codigo: int = Field(
+        ...,
+        alias="empresaCodigo",
+        description="Obrigatório — empresa explícita (sem fallback silencioso)",
+        gt=0,
+    )
     descricao: Optional[str] = None
     descricao_resumida: Optional[str] = Field(None, alias="descricaoResumida")
     tipo_produto: Optional[str] = Field(None, alias="tipoProduto")
@@ -81,9 +93,26 @@ class ProdutoUpdateRequest(BaseModel):
     )
 
 
+class ProdutoPriceOnlyRequest(BaseModel):
+    """POST oficial /INTEGRACAO/V1/TROCA_PRECOS_PRODUTOS (sem centroCusto no body)."""
+
+    model_config = ConfigDict(populate_by_name=True)
+
+    empresa_codigo: int = Field(..., alias="empresaCodigo", gt=0)
+    produto_codigo: int = Field(..., alias="produtoCodigo", gt=0)
+    price_level: str = Field(..., alias="priceLevel", pattern="^[ABCabc]$")
+    novo_preco: Decimal = Field(..., alias="novoPreco", gt=0)
+    hora: Optional[str] = None
+    tipo_alteracao: str = Field("I", alias="tipoAlteracao")
+
+
 class ProdutoCrudResponse(BaseModel):
     ok: bool = True
     produto: Optional[WebPostoProdutoSchema] = None
     raw: Optional[Any] = None
     mensagem: Optional[str] = None
     endpoint: Optional[str] = None
+    gate: Optional[str] = None
+    empresa_codigo: Optional[int] = Field(None, alias="empresaCodigo")
+    centro_custo_codigo: Optional[int] = Field(None, alias="centroCustoCodigo")
+    verification: Optional[dict[str, Any]] = None

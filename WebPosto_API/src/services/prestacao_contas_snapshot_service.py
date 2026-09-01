@@ -25,16 +25,17 @@ class PrestacaoContasSnapshotService:
         self._lock = asyncio.Lock()
 
     @classmethod
-    def master_key(cls, data_inicial: str, data_final: str, empresa_codigo: str | int | None) -> str:
-        return f"prestacao:all:{data_inicial}:{data_final}:{empresa_snapshot_suffix(empresa_codigo)}"
+    def master_key(cls, data_inicial: str, data_final: str, empresa_codigo: str | int | None, centro_custo: str | None = None) -> str:
+        return f"prestacao:all:{data_inicial}:{data_final}:{empresa_snapshot_suffix(empresa_codigo)}:{(centro_custo or 'todos').upper()}"
 
     def get_master(
         self,
         data_inicial: str,
         data_final: str,
         empresa_codigo: str | int | None = None,
+        centro_custo: str | None = None,
     ) -> dict[str, Any]:
-        key = self.master_key(data_inicial, data_final, empresa_codigo)
+        key = self.master_key(data_inicial, data_final, empresa_codigo, centro_custo)
         stored, expired = self._store.load_stale(key)
         if stored:
             return {
@@ -61,13 +62,14 @@ class PrestacaoContasSnapshotService:
         data_inicial: str,
         data_final: str,
         empresa_codigo: str | int | None = None,
+        centro_custo: str | None = None,
     ) -> dict[str, Any]:
-        resp = await self._svc.build(data_inicial, data_final, empresa_codigo)
+        resp = await self._svc.build(data_inicial, data_final, empresa_codigo, centro_custo)
         ts = datetime.now().isoformat(timespec="seconds")
         if not resp.success or not resp.data:
             return {"lastUpdated": ts, "payload": None, "error": resp.error}
-        master = {"lastUpdated": ts, "payload": resp.data, "snapshotKey": self.master_key(data_inicial, data_final, empresa_codigo)}
-        self._store.save(self.master_key(data_inicial, data_final, empresa_codigo), master)
+        master = {"lastUpdated": ts, "payload": resp.data, "snapshotKey": self.master_key(data_inicial, data_final, empresa_codigo, centro_custo)}
+        self._store.save(self.master_key(data_inicial, data_final, empresa_codigo, centro_custo), master)
         return master
 
     async def get_or_collect(
@@ -75,13 +77,14 @@ class PrestacaoContasSnapshotService:
         data_inicial: str,
         data_final: str,
         empresa_codigo: str | int | None = None,
+        centro_custo: str | None = None,
     ) -> tuple[dict[str, Any] | None, bool, bool]:
-        master = self.get_master(data_inicial, data_final, empresa_codigo)
+        master = self.get_master(data_inicial, data_final, empresa_codigo, centro_custo)
         if master.get("payload"):
             if master.get("stale"):
-                asyncio.create_task(self.refresh_background(data_inicial, data_final, empresa_codigo))
+                asyncio.create_task(self.refresh_background(data_inicial, data_final, empresa_codigo, centro_custo))
             return master.get("payload"), master.get("stale", False), True
-        collected = await self.collect(data_inicial, data_final, empresa_codigo)
+        collected = await self.collect(data_inicial, data_final, empresa_codigo, centro_custo)
         return collected.get("payload"), False, False
 
     async def refresh_background(
@@ -89,14 +92,15 @@ class PrestacaoContasSnapshotService:
         data_inicial: str,
         data_final: str,
         empresa_codigo: str | int | None = None,
+        centro_custo: str | None = None,
     ) -> None:
-        key = self.master_key(data_inicial, data_final, empresa_codigo)
+        key = self.master_key(data_inicial, data_final, empresa_codigo, centro_custo)
         async with self._lock:
             if key in self._running:
                 return
             self._running.add(key)
         try:
-            await self.collect(data_inicial, data_final, empresa_codigo)
+            await self.collect(data_inicial, data_final, empresa_codigo, centro_custo)
         finally:
             async with self._lock:
                 self._running.discard(key)

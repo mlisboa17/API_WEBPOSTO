@@ -13,4 +13,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.infrastructure.webposto.client import WebPostoClient
 from src.interfaces.http.routes import (
     auditoria,
-    clientes,
+    reconciliation_router,
+)
+
+app = FastAPI(title="WebPosto API - Logos Auditoria")
+
+app.include_router(auditoria.router)
+app.include_router(reconciliation_router.router)
+

@@ -1,0 +1,28 @@
+{
+  "cases": [
+    {
+      "id": "zero_to_positive",
+      "ean": "7891000000001",
+      "current_cost": "0",
+      "proposed": "2.6500",
+      "sale": "4.90",
+      "expected_status": "PROPOSED"
+    },
+    {
+      "id": "no_change",
+      "ean": "7891000000002",
+      "current_cost": "2.6500",
+      "proposed": "2.6540",
+      "sale": "4.90",
+      "expected_status": "NO_CHANGE"
+    },
+    {
+      "id": "above_sale",
+      "ean": "7891000000003",
+      "current_cost": "1.00",
+      "proposed": "5.00",
+      "sale": "4.00",
+      "expected_status": "REVIEW_REQUIRED"
+    }
+  ]
+}

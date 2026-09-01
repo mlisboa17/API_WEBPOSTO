@@ -1,0 +1,60 @@
+{
+  "lastUpdated": "2026-07-20T17:16:06.361847+00:00",
+  "data": {
+    "period": {
+      "start": "2026-07-18",
+      "end": "2026-07-18"
+    },
+    "lines": [
+      {
+        "companyCode": 5555,
+        "companyName": "AP CASA CAIADA",
+        "department": "combustiveis",
+        "revenue": "13394.67",
+        "cost": "11546.16",
+        "grossMargin": "1848.51",
+        "expenses": "0.00",
+        "operatingResult": "1848.51",
+        "operatingMarginPct": "13.80",
+        "status": "LIBERADO",
+        "missingEvidence": []
+      },
+      {
+        "companyCode": 5555,
+        "companyName": "AP CASA CAIADA",
+        "department": "conveniencia",
+        "revenue": null,
+        "cost": null,
+        "grossMargin": null,
+        "expenses": null,
+        "operatingResult": null,
+        "operatingMarginPct": null,
+        "status": "BLOQUEADO",
+        "missingEvidence": [
+          "FATURAMENTO",
+          "CUSTO",
+          "COBERTURA_VENDAS"
+        ]
+      },
+      {
+        "companyCode": 5555,
+        "companyName": "AP CASA CAIADA",
+        "department": "lubrificantes",
+        "revenue": null,
+        "cost": null,
+        "grossMargin": null,
+        "expenses": null,
+        "operatingResult": null,
+        "operatingMarginPct": null,
+        "status": "BLOQUEADO",
+        "missingEvidence": [
+          "FATURAMENTO",
+          "CUSTO",
+          "COBERTURA_VENDAS"
+        ]
+      }
+    ],
+    "allReleased": false,
+    "consolidatedGenericResult": false
+  }
+}

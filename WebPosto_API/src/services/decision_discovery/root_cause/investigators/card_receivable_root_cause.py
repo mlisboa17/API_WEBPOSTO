@@ -41,10 +41,7 @@ class CardReceivableRootCause(BaseRootCauseInvestigator):
             investigations=investigations,
             most_probable_cause=most_probable,
             alternative_causes=[c for c in causes if c != most_probable],
-            discarded_hypotheses=[
-                "Gap de cartão TEF descartado (sem NSU/bandeira/adquirente)",
-                "Movimento bancário isolado descartado como prova titulo a titulo",
-            ],
+            discarded_hypotheses=self._discarded_hypotheses(evidence),
             recommendations=recommendations,
             overall_confidence=overall,
             confidence_explanation=explanation,
@@ -96,7 +93,13 @@ class CardReceivableRootCause(BaseRootCauseInvestigator):
 
     def _investigate_reconciliation_level(self, evidence: Dict) -> Investigation:
         level = evidence.get("reconciliation_level", 1)
-        finding = f"Reconciliation LEVEL {level} — comparação agregada, sem vínculo transacional TEF"
+        if level >= 2:
+            finding = (
+                f"Reconciliation LEVEL {level} — taxa REAL por venda via /INTEGRACAO/CARTAO "
+                "(NSU/autorização/bandeira disponíveis), ainda sem match transação-a-transação com o extrato"
+            )
+        else:
+            finding = f"Reconciliation LEVEL {level} — comparação agregada, sem vínculo transacional TEF"
         return Investigation(
             aspect="Nível de prova",
             finding=finding,
@@ -104,6 +107,20 @@ class CardReceivableRootCause(BaseRootCauseInvestigator):
             contribution_to_problem=0.4,
             confidence=0.95,
         )
+
+    def _discarded_hypotheses(self, evidence: Dict) -> List[str]:
+        level = evidence.get("reconciliation_level", 1)
+        if level >= 2:
+            card_gap_hypothesis = (
+                "Gap de cartão TEF descartado como mero ruído agregado — LEVEL 2 já identifica "
+                "NSU/autorização/bandeira/taxa real por venda via /INTEGRACAO/CARTAO"
+            )
+        else:
+            card_gap_hypothesis = "Gap de cartão TEF descartado (sem NSU/bandeira/adquirente)"
+        return [
+            card_gap_hypothesis,
+            "Movimento bancário isolado descartado como prova titulo a titulo",
+        ]
 
     def _analyze_causes(self, investigations: List[Investigation], evidence: Dict) -> List[CauseProbability]:
         share = float(evidence.get("top_client_share") or 0)

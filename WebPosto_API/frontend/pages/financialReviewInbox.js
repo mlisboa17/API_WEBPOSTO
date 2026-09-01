@@ -1,4 +1,5 @@
 import { formatCurrency } from "../services/format.js";
+import { formatMoneyInText, splitDecisionAlert } from "../services/decisionDisplay.js";
 
 function fmtMoney(value) {
   if (value == null || value === "") return "Indisponível";
@@ -28,21 +29,42 @@ function renderSummary(summary) {
     <p class="muted fin-inbox-note">Valor em revisão — não constitui perda confirmada.</p>`;
 }
 
-function renderInboxCard(item) {
-  const title = item.decision_title || item.decision_category || item.request_type_label || "Solicitação";
+function renderAlertCard(item) {
+  const rawTitle = item.decision_title || item.decision_category || item.request_type_label || "Solicitação";
+  const { amount, context } = splitDecisionAlert(rawTitle);
+  const category = formatMoneyInText(item.decision_category || "");
+  const tenant = item.tenant_name || item.tenant_id || "—";
+
   return `
-    <article class="fin-inbox-card" data-request-id="${item.request_id}">
-      <header>
-        <span class="fin-inbox-card__tenant">${item.tenant_name || item.tenant_id || "—"}</span>
-        <span class="fin-inbox-card__status">${item.financial_status_label || item.technical_status}</span>
+    <article class="fin-inbox-alert-card" data-request-id="${item.request_id}">
+      <header class="fin-inbox-alert-card__header">
+        <span class="fin-inbox-alert-card__badge">Requer atenção</span>
+        <span class="fin-inbox-alert-card__tenant">${tenant}</span>
       </header>
-      <h3>${title}</h3>
-      <p class="fin-inbox-card__amount">
-        ${item.evidence_items_count} lançamento(s) aguardando conferência · ${fmtMoney(item.amount_under_review)}
-      </p>
-      <p class="muted">
+      ${
+        amount
+          ? `<p class="fin-inbox-alert-card__amount">${amount}</p>
+             <p class="fin-inbox-alert-card__context">${context}</p>`
+          : `<p class="fin-inbox-alert-card__context fin-inbox-alert-card__context--solo">${formatMoneyInText(rawTitle)}</p>`
+      }
+      ${category && category !== rawTitle ? `<p class="fin-inbox-alert-card__category">${category}</p>` : ""}
+      <dl class="fin-inbox-alert-card__meta">
+        <div>
+          <dt>Valor em revisão</dt>
+          <dd>${fmtMoney(item.amount_under_review)}</dd>
+        </div>
+        <div>
+          <dt>Lançamentos</dt>
+          <dd>${item.evidence_items_count ?? 0}</dd>
+        </div>
+        <div>
+          <dt>Status</dt>
+          <dd>${item.financial_status_label || item.technical_status || "—"}</dd>
+        </div>
+      </dl>
+      <p class="muted fin-inbox-alert-card__footnote">
         Solicitado pela Diretoria · ${fmtDateTime(item.requested_at)}
-        ${item.review_responsible ? ` · Responsável: ${item.review_responsible}` : ""}
+        ${item.review_responsible ? ` · Responsável: <strong>${item.review_responsible}</strong>` : ""}
       </p>
       <button type="button" class="btn-primary fin-open-review" data-request-id="${item.request_id}">
         Abrir conferência
@@ -73,7 +95,7 @@ export function renderFinancialReviewInbox(node, payload, filters, options = {})
       <header class="dir-home__header">
         <div>
           <h2>Conferências</h2>
-          <p class="muted">Solicitações enviadas pela Diretoria para análise financeira</p>
+          <p class="muted">Solicitações enviadas pela Diretoria — priorize o que exige validação</p>
         </div>
         <button type="button" id="finInboxRefresh" class="btn-secondary">Atualizar</button>
       </header>
@@ -82,7 +104,7 @@ export function renderFinancialReviewInbox(node, payload, filters, options = {})
 
       ${
         items.length
-          ? `<div class="dir-decision-grid">${items.map(renderInboxCard).join("")}</div>`
+          ? `<div class="fin-inbox-alert-grid">${items.map(renderAlertCard).join("")}</div>`
           : `<div class="dir-empty">
               <p>Nenhuma conferência aguardando análise.</p>
               <p class="muted">Quando a Diretoria solicitar uma conferência, ela aparecerá aqui.</p>

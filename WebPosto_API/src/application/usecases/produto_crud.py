@@ -1,5 +1,8 @@
 """
 CRUD de produtos via API Quality (INTEGRACAO/PRODUTO, INCLUIR_PRODUTO, ALTERAR_PRODUTO).
+
+Regra de centro de custo para venda aplicada em inclusão/alteração.
+Troca exclusiva de preço → POST /INTEGRACAO/V1/TROCA_PRECOS_PRODUTOS.
 """
 
 from __future__ import annotations
@@ -8,16 +11,19 @@ from decimal import Decimal
 from typing import Any, Optional
 
 from src.application.usecases.fetch_produtos_catalog import (
-    _rows_from_raw,
     map_raw_produto,
-    parse_produto_response,
 )
 from src.domain.catalog.produto_crud_schema import (
     ProdutoCreateRequest,
     ProdutoCrudResponse,
+    ProdutoPriceOnlyRequest,
     ProdutoUpdateRequest,
 )
 from src.domain.catalog.product_schema import WebPostoProdutoSchema
+from src.services.product_cadastro_write_service import (
+    ProductCadastroWriteService,
+    ProductWriteBlocked,
+)
 
 
 def _float(v: Decimal | float | int) -> float:
@@ -67,7 +73,7 @@ def _body_from_create(data: ProdutoCreateRequest) -> dict[str, Any]:
     return body
 
 
-def _body_from_update(data: ProdutoUpdateRequest) -> dict[str, Any]:
+def _patch_from_update(data: ProdutoUpdateRequest) -> dict[str, Any]:
     body: dict[str, Any] = {}
     fields = [
         ("descricao", "descricao"),
@@ -100,6 +106,44 @@ def _body_from_update(data: ProdutoUpdateRequest) -> dict[str, Any]:
     return body
 
 
+def _result_to_response(result) -> ProdutoCrudResponse:
+    produto = None
+    if result.after and result.produto_codigo:
+        # map minimal schema if possible
+        try:
+            produto = WebPostoProdutoSchema(
+                id=int(result.produto_codigo),
+                descricao=str(result.after.get("nome") or ""),
+                preco_venda=result.after.get("precoA") or 0,
+                preco_custo=result.after.get("custo") or 0,
+                ativo=bool(result.after.get("ativo") if result.after.get("ativo") is not None else True),
+                codigo_barra=result.after.get("ean"),
+                ncm=result.after.get("ncm"),
+                cest=result.after.get("cest"),
+                tipo_produto=result.after.get("tipoProduto"),
+                combustivel=False,
+            )
+        except Exception:
+            produto = None
+    cc = result.center_cost.codigo if result.center_cost else None
+    return ProdutoCrudResponse(
+        ok=result.ok,
+        produto=produto,
+        raw={
+            "baseline": result.baseline,
+            "after": result.after,
+            "verification": result.verification,
+            "centerCostGate": result.center_cost.gate if result.center_cost else None,
+        },
+        mensagem=result.mensagem,
+        endpoint=result.endpoint,
+        gate=result.gate,
+        empresa_codigo=result.empresa_codigo,
+        centro_custo_codigo=cc,
+        verification=result.verification,
+    )
+
+
 async def obter_produto(
     webposto_client: Any,
     produto_id: int,
@@ -107,7 +151,6 @@ async def obter_produto(
     from src.application.usecases.fetch_produtos_catalog import (
         _buscar_linha_empresa,
         _buscar_linha_produto,
-        map_raw_produto,
     )
 
     row = _buscar_linha_produto(webposto_client, produto_id)
@@ -121,26 +164,21 @@ async def criar_produto(
     webposto_client: Any,
     data: ProdutoCreateRequest,
 ) -> ProdutoCrudResponse:
+    svc = ProductCadastroWriteService(webposto_client)
     body = _body_from_create(data)
-    endpoint = "/INTEGRACAO/INCLUIR_PRODUTO"
     try:
-        raw = webposto_client.produtos.incluir(body)
-    except Exception:
-        endpoint = "/INTEGRACAO/PRODUTO"
-        raw = webposto_client.produtos.criar(body)
-
-    produto = None
-    if isinstance(raw, dict):
-        cod = raw.get("produtoCodigo") or raw.get("codigo") or raw.get("id")
-        if cod is not None:
-            produto = await obter_produto(webposto_client, int(cod))
-    return ProdutoCrudResponse(
-        ok=True,
-        produto=produto,
-        raw=raw,
-        mensagem="Produto cadastrado na WebPosto",
-        endpoint=endpoint,
-    )
+        result = svc.create_with_center_cost(
+            empresa_codigo=data.empresa_codigo,
+            body=body,
+        )
+    except ProductWriteBlocked as exc:
+        return ProdutoCrudResponse(
+            ok=False,
+            mensagem=str(exc),
+            gate=exc.gate,
+            empresa_codigo=data.empresa_codigo,
+        )
+    return _result_to_response(result)
 
 
 async def atualizar_produto(
@@ -148,14 +186,46 @@ async def atualizar_produto(
     produto_id: int,
     data: ProdutoUpdateRequest,
 ) -> ProdutoCrudResponse:
-    body = _body_from_update(data)
-    if not body:
+    patch = _patch_from_update(data)
+    if not patch:
         raise ValueError("Nenhum campo para atualizar")
-    webposto_client.produtos.atualizar(produto_id, body)
-    produto = await obter_produto(webposto_client, produto_id)
-    return ProdutoCrudResponse(
-        ok=True,
-        produto=produto,
-        mensagem="Produto atualizado",
-        endpoint=f"/INTEGRACAO/ALTERAR_PRODUTO/{produto_id}",
-    )
+    svc = ProductCadastroWriteService(webposto_client)
+    try:
+        result = svc.update_cadastro_with_center_cost(
+            empresa_codigo=data.empresa_codigo,
+            produto_codigo=produto_id,
+            patch=patch,
+        )
+    except ProductWriteBlocked as exc:
+        return ProdutoCrudResponse(
+            ok=False,
+            mensagem=str(exc),
+            gate=exc.gate,
+            empresa_codigo=data.empresa_codigo,
+        )
+    return _result_to_response(result)
+
+
+async def alterar_preco_oficial(
+    webposto_client: Any,
+    data: ProdutoPriceOnlyRequest,
+) -> ProdutoCrudResponse:
+    """Troca exclusiva de preço — endpoint oficial V1 (sem centroCusto no body)."""
+    svc = ProductCadastroWriteService(webposto_client)
+    try:
+        result = svc.change_price_only(
+            empresa_codigo=data.empresa_codigo,
+            produto_codigo=data.produto_codigo,
+            price_level=data.price_level,
+            novo_preco=float(data.novo_preco),
+            hora=data.hora,
+            tipo_alteracao=data.tipo_alteracao,
+        )
+    except ProductWriteBlocked as exc:
+        return ProdutoCrudResponse(
+            ok=False,
+            mensagem=str(exc),
+            gate=exc.gate,
+            empresa_codigo=data.empresa_codigo,
+        )
+    return _result_to_response(result)

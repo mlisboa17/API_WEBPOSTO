@@ -65,8 +65,8 @@ async def executive_copilot_refresh(
     return {"success": result.get("status") == "ok", "data": result}
 
 
-@router.post("/ask")
-async def executive_copilot_ask(
+@router.post("/ask-legacy")
+async def executive_copilot_ask_legacy(
     dataInicial: str = Query(...),
     dataFinal: str = Query(...),
     empresaCodigo: str | None = Query(None),

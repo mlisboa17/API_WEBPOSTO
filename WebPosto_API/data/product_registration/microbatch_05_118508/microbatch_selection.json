@@ -1,0 +1,1837 @@
+{
+  "title": "PREFLIGHT MICROBATCH 05 — 118508",
+  "generatedAt": "2026-09-01T08:09:49.408108+00:00",
+  "sheet": "FISCAL_PRODUTOS_A_CADASTRAR_118508.xlsx",
+  "empresa": 118508,
+  "centroCusto": 24886,
+  "credential": {
+    "variable": "WEBPOSTO_CONVENIENCIA_24_HORAS_KEY",
+    "keyExposed": false,
+    "sentinelFound": true,
+    "sentinelCompanyLinkConfirmed": true
+  },
+  "criteriosEvidenciaPendente": {
+    "minItens": 3,
+    "minNotas": 3,
+    "minFornecedores": 2,
+    "fracaoMinimaMesmaFamilia": 0.7,
+    "cstUnicoObrigatorio": true
+  },
+  "batchSize": 5,
+  "eligibleWithCost": 0,
+  "eligiblePending": 0,
+  "selectedWithCost": 0,
+  "selectedPending": 0,
+  "pendingCostFlagRequired": false,
+  "requiredFlag": null,
+  "rejections": {
+    "EM_CHECKPOINT": 247,
+    "JA_NO_CATALOGO": 7,
+    "EXCLUSAO_PERMANENTE": 1,
+    "GTIN_INVALIDO": 2
+  },
+  "rejectedDetail": [
+    {
+      "linha": 2,
+      "ean": "7891000246306",
+      "descricao": "1 CAFE NESCAFE GRAOS MAQUINA",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481901"
+    },
+    {
+      "linha": 3,
+      "ean": "7899941203310",
+      "descricao": "100 PURE WHEY CHOCOLATE REFIL 900G PROBIOTICA",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481847"
+    },
+    {
+      "linha": 4,
+      "ean": "7896104993927",
+      "descricao": "ABSORVENTE MILI DIA E NOITE COM ABAS",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481506"
+    },
+    {
+      "linha": 5,
+      "ean": "7756509000197",
+      "descricao": "ACENDEDOR 2USB 2,1AMPS - I2GDBL197 I2GO",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481762"
+    },
+    {
+      "linha": 6,
+      "ean": "7898617582261",
+      "descricao": "ADOCANTE DIETETICO LIQUIDO MARATA 100ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481741"
+    },
+    {
+      "linha": 7,
+      "ean": "7897395000455",
+      "descricao": "AGUA TONICA PETRA LATA 350ML",
+      "motivo": "JA_NO_CATALOGO",
+      "detalhe": null
+    },
+    {
+      "linha": 8,
+      "ean": "7896607100013",
+      "descricao": "AGUARDENTE PITU BANANA 350ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481804"
+    },
+    {
+      "linha": 9,
+      "ean": "7896607100907",
+      "descricao": "AGUARDENTE PITU COLA 269ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481897"
+    },
+    {
+      "linha": 10,
+      "ean": "7896607100266",
+      "descricao": "AGUARDENTE PITU GOLD LITRO",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481822"
+    },
+    {
+      "linha": 11,
+      "ean": "7896012300213",
+      "descricao": "ARROZ PARBOILIZADO TIPO 2 EMOCOES PACOTE 1KG",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481558"
+    },
+    {
+      "linha": 12,
+      "ean": "7896272005712",
+      "descricao": "AZEITONA VALE FERTIL RECHEADA PRESUNTO IBERICO VIDRO 130G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481757"
+    },
+    {
+      "linha": 13,
+      "ean": "7896272005729",
+      "descricao": "AZEITONA VALE FERTIL RECHEADA QUEIJO AZUL 130G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481578"
+    },
+    {
+      "linha": 14,
+      "ean": "7896272005736",
+      "descricao": "AZEITONA VALE FERTIL RECHEADA SALMAO 130G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481758"
+    },
+    {
+      "linha": 15,
+      "ean": "7896945402480",
+      "descricao": "AZEITONA VERDES TAMBAU 100G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481742"
+    },
+    {
+      "linha": 16,
+      "ean": "7896321021656",
+      "descricao": "BALA BRAZILIAN COFFEE FLORESTAL UN",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481899"
+    },
+    {
+      "linha": 17,
+      "ean": "7891331010485",
+      "descricao": "BARRA CEREAL NUTRY AVELA CHOCOLATE 22G",
+      "motivo": "JA_NO_CATALOGO",
+      "detalhe": null
+    },
+    {
+      "linha": 18,
+      "ean": "7891331010522",
+      "descricao": "BARRA CEREAL NUTRY MORCHOC 22G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481535"
+    },
+    {
+      "linha": 19,
+      "ean": "7891000377598",
+      "descricao": "BARRA CHOC NESTLE CHOCOTRIO BISC CHOC 90G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481518"
+    },
+    {
+      "linha": 20,
+      "ean": "7898192257523",
+      "descricao": "BARRA CHOCOLATE CIA CACAU TAB 70 85G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481527"
+    },
+    {
+      "linha": 21,
+      "ean": "7896066770000",
+      "descricao": "BARRA MORANGO PROTEICA MORANGUETE PRO 45G PROTEINA",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481851"
+    },
+    {
+      "linha": 22,
+      "ean": "7892840817978",
+      "descricao": "BATATA ORIGINAL RUFFLES 115G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481494"
+    },
+    {
+      "linha": 23,
+      "ean": "7896067202340",
+      "descricao": "BATERIA PANASONIC LITHIUM 3V REF CR2032",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481849"
+    },
+    {
+      "linha": 24,
+      "ean": "7891000389225",
+      "descricao": "BEB LACTEA NESCAFE CANELA 270ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481784"
+    },
+    {
+      "linha": 25,
+      "ean": "7610113026878",
+      "descricao": "BEB RUM BACARDI BIG APPLE 700ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481819"
+    },
+    {
+      "linha": 26,
+      "ean": "736532573964",
+      "descricao": "BEBIDA LACTEA MAIS MU UTH CHOCOLATE 250ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481569"
+    },
+    {
+      "linha": 27,
+      "ean": "7891000381113",
+      "descricao": "BEBIDA LACTEA NESCAU ZERO LACT 180ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481782"
+    },
+    {
+      "linha": 28,
+      "ean": "7891962080802",
+      "descricao": "BISC BAUDUCCO COOKIES AMORA 96G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481514"
+    },
+    {
+      "linha": 29,
+      "ean": "7891000376928",
+      "descricao": "BISCOITO BONO RECHEIO DOCE DE LEITE 90G",
+      "motivo": "EXCLUSAO_PERMANENTE",
+      "detalhe": null
+    },
+    {
+      "linha": 30,
+      "ean": "7891000402856",
+      "descricao": "BISCOITO COOKIE GAROTO CROCANTE 60GR",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481512"
+    },
+    {
+      "linha": 31,
+      "ean": "7891000377130",
+      "descricao": "BISCOITO NEGRESCO RECHEADO CHOCOLATE 90G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481443"
+    },
+    {
+      "linha": 32,
+      "ean": "7891962065908",
+      "descricao": "BISCOITO RECHEADO BAUDUCCO 108G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481511"
+    },
+    {
+      "linha": 33,
+      "ean": "7622210592668",
+      "descricao": "BISCOITO TRAKINAS 126 GR CHOCOLATE BRANC",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto None"
+    },
+    {
+      "linha": 34,
+      "ean": "7891962067889",
+      "descricao": "BOLINHO LARANJA BAUDUCCO PACOTE 40G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481856"
+    },
+    {
+      "linha": 35,
+      "ean": "7756509000074",
+      "descricao": "CABO I2GO IPHONE LIGHTNING CABLE 1,2M",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481766"
+    },
+    {
+      "linha": 36,
+      "ean": "7908506101685",
+      "descricao": "CABO I2GO IPHONE LIGHTNING USB C 1,2M",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481767"
+    },
+    {
+      "linha": 37,
+      "ean": "7756509000043",
+      "descricao": "CABO I2GO MICRO USB ANDROID USB USB A 1,2M",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481763"
+    },
+    {
+      "linha": 38,
+      "ean": "7898647780125",
+      "descricao": "CABO I2GO USB C 1,2M I2GCBL555",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481765"
+    },
+    {
+      "linha": 39,
+      "ean": "7908506101678",
+      "descricao": "CABO I2GO USB C PARA USB C 1,2M",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481773"
+    },
+    {
+      "linha": 40,
+      "ean": "7898906925267",
+      "descricao": "CACHAÇA MATUTA BLACK BLEND 1000 ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481825"
+    },
+    {
+      "linha": 41,
+      "ean": "7891021006071",
+      "descricao": "CAFE TRADICIONAL MELITTA VACUO 250G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481577"
+    },
+    {
+      "linha": 42,
+      "ean": "6958547548865",
+      "descricao": "CAPA PARA DOC CARTEIRA HABILITACAO ICOVERS",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481745"
+    },
+    {
+      "linha": 43,
+      "ean": "7895552090004",
+      "descricao": "CAPA PARA DOC NOVO RG ICOVERS",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481747"
+    },
+    {
+      "linha": 44,
+      "ean": "6958547548353",
+      "descricao": "CAPA PARA DOCUMENTO VEICULO",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481746"
+    },
+    {
+      "linha": 45,
+      "ean": "7896438200616",
+      "descricao": "CARB UP GEL SUPER FORMULA  PROBIOTICA  30G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481848"
+    },
+    {
+      "linha": 46,
+      "ean": "7756509000203",
+      "descricao": "CARREGADOR DE PAREDE I2GO BASIC COM 2 SAIDAS USB",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481583"
+    },
+    {
+      "linha": 47,
+      "ean": "7756509000012",
+      "descricao": "CARREGADOR VEICULAR 1 USB 1AMP I2GO VERDE",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481580"
+    },
+    {
+      "linha": 48,
+      "ean": "7898923964799",
+      "descricao": "CARVAO BALIHAI PARA NARGUILE DISCO COM 10UN",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481779"
+    },
+    {
+      "linha": 49,
+      "ean": "7897261900025",
+      "descricao": "CARVAO PCT 3KG",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481574"
+    },
+    {
+      "linha": 50,
+      "ean": "0074468558878",
+      "descricao": "CASTANHA REIS SABORES 60G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481905"
+    },
+    {
+      "linha": 51,
+      "ean": "7891000050927",
+      "descricao": "CEREAL MATINAL MOCA FLAKES 120GR",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481906"
+    },
+    {
+      "linha": 52,
+      "ean": "7891000070673",
+      "descricao": "CEREAL MATINAL NESCAU SACHE 120G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481898"
+    },
+    {
+      "linha": 53,
+      "ean": "7898230716654",
+      "descricao": "CERVEJA BADEN IPA LATA 350ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481862"
+    },
+    {
+      "linha": 54,
+      "ean": "7898377661060",
+      "descricao": "CERVEJA BLACK PRINCESS GOLD LATA 350ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481790"
+    },
+    {
+      "linha": 55,
+      "ean": "7896045506514",
+      "descricao": "CERVEJA BLUE MOON BELGIAN WHITE ALE 355ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481870"
+    },
+    {
+      "linha": 56,
+      "ean": "7897395001247",
+      "descricao": "CERVEJA CABARE PURO MALTE LATA 350ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481789"
+    },
+    {
+      "linha": 57,
+      "ean": "7897395001292",
+      "descricao": "CERVEJA CABARE PURO MALTE LONG 330ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481865"
+    },
+    {
+      "linha": 58,
+      "ean": "6947050202227",
+      "descricao": "CERVEJA CAPUNGA BALA DE PRATA 500ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481876"
+    },
+    {
+      "linha": 59,
+      "ean": "6947059005775",
+      "descricao": "CERVEJA CAPUNGA LAGER 600ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481808"
+    },
+    {
+      "linha": 60,
+      "ean": "7898605251827",
+      "descricao": "CERVEJA COLORADO RIBEIRAO LAGER 600ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481811"
+    },
+    {
+      "linha": 61,
+      "ean": "742832816588",
+      "descricao": "CERVEJA DUVALIA APA PREMIUM 500ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481812"
+    },
+    {
+      "linha": 62,
+      "ean": "742832816595",
+      "descricao": "CERVEJA DUVALIA BLONDE ALE PREMIUM 500ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481809"
+    },
+    {
+      "linha": 63,
+      "ean": "742832178334",
+      "descricao": "CERVEJA DUVALIA PILSEN EXTRA 500ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481807"
+    },
+    {
+      "linha": 64,
+      "ean": "742832962216",
+      "descricao": "CERVEJA DUVALIA SILIBRINA IPA 500ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481813"
+    },
+    {
+      "linha": 65,
+      "ean": "742832816601",
+      "descricao": "CERVEJA DUVALIA STOUT ESCURA 500ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481816"
+    },
+    {
+      "linha": 66,
+      "ean": "742832816618",
+      "descricao": "CERVEJA DUVALIA WEISS PREMIUM 500ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481810"
+    },
+    {
+      "linha": 67,
+      "ean": "7898367984377",
+      "descricao": "CERVEJA EISENBAHN PILSEN UNFILTERED LT 350ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481793"
+    },
+    {
+      "linha": 68,
+      "ean": "7898738660091",
+      "descricao": "CERVEJA IMPERIO GOLD 330ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481860"
+    },
+    {
+      "linha": 69,
+      "ean": "7898738660718",
+      "descricao": "CERVEJA IMPERIO HELLES 330ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481791"
+    },
+    {
+      "linha": 70,
+      "ean": "7898738660107",
+      "descricao": "CERVEJA IMPERIO LAGER 330ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481861"
+    },
+    {
+      "linha": 71,
+      "ean": "7898915949636",
+      "descricao": "CERVEJA IMPERIO LAGER 600ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481868"
+    },
+    {
+      "linha": 72,
+      "ean": "7898915949797",
+      "descricao": "CERVEJA IMPERIO PURO MALTE LATA 350 ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto None"
+    },
+    {
+      "linha": 73,
+      "ean": "7897395002121",
+      "descricao": "CERVEJA ITAIPAVA LONG NECK PREMIUM 330ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481859"
+    },
+    {
+      "linha": 74,
+      "ean": "7897395001032",
+      "descricao": "CERVEJA PETRA LONG NECK PURO MALTE 330ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481792"
+    },
+    {
+      "linha": 75,
+      "ean": "7897395001063",
+      "descricao": "CERVEJA PETRA PREMIUM ESCURA 330ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481863"
+    },
+    {
+      "linha": 76,
+      "ean": "7897395000790",
+      "descricao": "CERVEJA PURO MALTE CACILDIS GARRAFA 330ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481866"
+    },
+    {
+      "linha": 77,
+      "ean": "7896045507368",
+      "descricao": "CERVEJA SOL PREMIUM 00 LN 330ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481796"
+    },
+    {
+      "linha": 78,
+      "ean": "7891098042149",
+      "descricao": "CHA ICE TEA LEAO PESSEGO ZERO 300ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481903"
+    },
+    {
+      "linha": 79,
+      "ean": "7891098041067",
+      "descricao": "CHA LEAO ICE TEA LIMAO ZERO 300ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481783"
+    },
+    {
+      "linha": 80,
+      "ean": "070235103517",
+      "descricao": "CHARUTO PHILLIES TITAN",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481843"
+    },
+    {
+      "linha": 81,
+      "ean": "7898961369198",
+      "descricao": "CHIPS LEVE GUSTO BANANA DOCE CANELA 45G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481737"
+    },
+    {
+      "linha": 82,
+      "ean": "7898961369181",
+      "descricao": "CHIPS LEVE GUSTO BANANA SALGADA 45G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481738"
+    },
+    {
+      "linha": 83,
+      "ean": "7898961369150",
+      "descricao": "CHIPS LEVE GUSTO BATATA DOCE 45G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481739"
+    },
+    {
+      "linha": 84,
+      "ean": "7891000402979",
+      "descricao": "CHOCO BISCUIT NESTLE CHOCOLATE AO LEITE 78G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481570"
+    },
+    {
+      "linha": 85,
+      "ean": "7891008124583",
+      "descricao": "CHOCOLATE GAROTO CROCANTE 25G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481517"
+    },
+    {
+      "linha": 86,
+      "ean": "7891008124071",
+      "descricao": "CHOCOLATE GAROTO CROCANTE 80G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481867"
+    },
+    {
+      "linha": 87,
+      "ean": "7891000377543",
+      "descricao": "CHOCOLATE NESTLE CHOCOTRIO BISC LEITE 90G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481519"
+    },
+    {
+      "linha": 88,
+      "ean": "7896423456561",
+      "descricao": "CHOCOLATE SNICKERS  MOUSSE MARACUJA 42G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481904"
+    },
+    {
+      "linha": 89,
+      "ean": "7896423439038",
+      "descricao": "CHOCOLATE SNICKERS BRANCO 40G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481549"
+    },
+    {
+      "linha": 90,
+      "ean": "7898978918006",
+      "descricao": "CHOPP DE VINHO ALAMOA GASEFICADO 300ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481864"
+    },
+    {
+      "linha": 91,
+      "ean": "7898335052473",
+      "descricao": "CIGARRO ALONSO GOLD UN",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481839"
+    },
+    {
+      "linha": 92,
+      "ean": "78939004",
+      "descricao": "CIGARRO CRETEC GREEN",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481841"
+    },
+    {
+      "linha": 93,
+      "ean": "78944473",
+      "descricao": "CIGARRO ROTHMANS ICE BOOST",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481840"
+    },
+    {
+      "linha": 94,
+      "ean": "7898953777048",
+      "descricao": "COCADA DOCE ALIANA SORTIDAS 50GR",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481528"
+    },
+    {
+      "linha": 95,
+      "ean": "7891962076676",
+      "descricao": "COOKIES BAUDUCCO FINI DENTADURA 96G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481515"
+    },
+    {
+      "linha": 96,
+      "ean": "7891000402894",
+      "descricao": "COOKIES GAROTO CARIBE 60 G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481513"
+    },
+    {
+      "linha": 97,
+      "ean": "7896030892516",
+      "descricao": "COPO COPOBRAS TRANSP VERMELHO PS 180ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481567"
+    },
+    {
+      "linha": 98,
+      "ean": "12608573",
+      "descricao": "COPO NPRO NESCAFE 200ML",
+      "motivo": "GTIN_INVALIDO",
+      "detalhe": null
+    },
+    {
+      "linha": 99,
+      "ean": "7896438200906",
+      "descricao": "CREATINA PROBIOTICA 300G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481853"
+    },
+    {
+      "linha": 100,
+      "ean": "7896002364768",
+      "descricao": "CROCANTISSIMO QUEIJO  CEBOLA  40G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481541"
+    },
+    {
+      "linha": 101,
+      "ean": "7898031170808",
+      "descricao": "DESINFETANTE BEM TE VI LAVANDA 500ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481551"
+    },
+    {
+      "linha": 102,
+      "ean": "7891022860191",
+      "descricao": "DESINFETANTE KALIPTO LAVANDA 500ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481902"
+    },
+    {
+      "linha": 103,
+      "ean": "7891350034639",
+      "descricao": "DESODORANTE MONANGE FRUTAS VERMELHAS 90G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481871"
+    },
+    {
+      "linha": 104,
+      "ean": "7896013100515",
+      "descricao": "DETERGENTE BRILUX NEUTRO 500ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481900"
+    },
+    {
+      "linha": 105,
+      "ean": "742832800105",
+      "descricao": "DICHAVADOR DE ACRÍLICO BEM BOLADO GRANDE",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481759"
+    },
+    {
+      "linha": 106,
+      "ean": "7898738660220",
+      "descricao": "DRINK ICE LEEV 275 ML MORANGO",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481794"
+    },
+    {
+      "linha": 107,
+      "ean": "7898915949001",
+      "descricao": "DRINK ICE LEEV SABOR LIMAO 275ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481795"
+    },
+    {
+      "linha": 108,
+      "ean": "7896102500448",
+      "descricao": "DUETO ERVILHA MILHO VERDE QUERO LATA 170G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481550"
+    },
+    {
+      "linha": 109,
+      "ean": "7898377662944",
+      "descricao": "ENERGETICAO TNT XFOCUS BERRY 473ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481802"
+    },
+    {
+      "linha": 110,
+      "ean": "7898377662982",
+      "descricao": "ENERGETICO TNT PESSEGO ZERO 473ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481803"
+    },
+    {
+      "linha": 111,
+      "ean": "7891024184509",
+      "descricao": "ESCOVA DENTAL COLGATE CLASSIC CLEAN MACIA LONGA 1 UNIDADE",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481562"
+    },
+    {
+      "linha": 112,
+      "ean": "7896013107361",
+      "descricao": "ESPONJA MULTIUSO BRILUX",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481534"
+    },
+    {
+      "linha": 113,
+      "ean": "7891083611183",
+      "descricao": "ESPUMANTE CHANDON BRUT ROSE 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481831"
+    },
+    {
+      "linha": 114,
+      "ean": "7896023082993",
+      "descricao": "ESPUMANTE SALTON  BRUT 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481893"
+    },
+    {
+      "linha": 115,
+      "ean": "7896023012372",
+      "descricao": "ESPUMANTE SALTON SERIES BRUT ROSE 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481817"
+    },
+    {
+      "linha": 116,
+      "ean": "7898202617026",
+      "descricao": "FACA STRAWPLAST BRANCO C50UN UN 1000",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481743"
+    },
+    {
+      "linha": 117,
+      "ean": "7898204100007",
+      "descricao": "FARINHA MANDIOCA FEIRA NOVA 1K T1",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481554"
+    },
+    {
+      "linha": 118,
+      "ean": "7899567245480",
+      "descricao": "FEIJOADA ENLATADA KITUT 430G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481529"
+    },
+    {
+      "linha": 119,
+      "ean": "7891167022027",
+      "descricao": "FILE SARDINHA C PIMENTA GOMES COSTA 125G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481872"
+    },
+    {
+      "linha": 120,
+      "ean": "7896080901657",
+      "descricao": "FILME PVC PARANA 15M",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481740"
+    },
+    {
+      "linha": 121,
+      "ean": "7896080901695",
+      "descricao": "FILME PVC PARANA 30M",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481750"
+    },
+    {
+      "linha": 122,
+      "ean": "7898950283313",
+      "descricao": "FILTRO PAPELITO MENTOLADO 120UN",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481755"
+    },
+    {
+      "linha": 123,
+      "ean": "7891021001885",
+      "descricao": "FILTRO PARA CAFE 102 CAIXA 30 UNIDADES - MELITTA",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481552"
+    },
+    {
+      "linha": 124,
+      "ean": "7891021001946",
+      "descricao": "FILTRO PARA CAFE 103 CAIXA COM 30 UNIDADES - MELITTA",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481564"
+    },
+    {
+      "linha": 125,
+      "ean": "7908228810353",
+      "descricao": "FINI FAZENDO ARTE 80G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto None"
+    },
+    {
+      "linha": 126,
+      "ean": "7896184800504",
+      "descricao": "FLOCAO DE MILHO NUTRIVITA 500G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481896"
+    },
+    {
+      "linha": 127,
+      "ean": "7898927947057",
+      "descricao": "FOLHA DE ALUMINIO WYDA ROLO 75MX30CM",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481850"
+    },
+    {
+      "linha": 128,
+      "ean": "7898647780095",
+      "descricao": "FONE DE OUVIDO C/ MICROFONE REF.I2GEAR001",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481582"
+    },
+    {
+      "linha": 129,
+      "ean": "7756509000050",
+      "descricao": "FONE DE OUVIDO I2GO SEM MICROFONE",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481581"
+    },
+    {
+      "linha": 130,
+      "ean": "7898202615022",
+      "descricao": "GARFO STRAWPLAST REFEICAO 50UN  BRANCO",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481744"
+    },
+    {
+      "linha": 131,
+      "ean": "7897584000013",
+      "descricao": "GELO DE COCO D COCO PCT 800G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481573"
+    },
+    {
+      "linha": 132,
+      "ean": "5010677715003",
+      "descricao": "GIN BOMBAY SAPPHIRE 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481830"
+    },
+    {
+      "linha": 133,
+      "ean": "5000289929417",
+      "descricao": "GIN GORDONS PINK 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481828"
+    },
+    {
+      "linha": 134,
+      "ean": "8411144101010",
+      "descricao": "GIN LARIOS ESPANHOL ORIGINAL 700ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481826"
+    },
+    {
+      "linha": 135,
+      "ean": "8411144100402",
+      "descricao": "GIN LARIOS ROSE 700ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481821"
+    },
+    {
+      "linha": 136,
+      "ean": "7897383500011",
+      "descricao": "GUARDANAPO MALU 14CM X14CM",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481532"
+    },
+    {
+      "linha": 137,
+      "ean": "7899970403439",
+      "descricao": "HERSHEYS SPECIAL DARK 73 CACAU AVELA 80G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481526"
+    },
+    {
+      "linha": 138,
+      "ean": "7894900508017",
+      "descricao": "ISOTONICO POWERADE FRUTAS TROPICAIS 500ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481798"
+    },
+    {
+      "linha": 139,
+      "ean": "6920302800082",
+      "descricao": "ISQUEIRO GRANDE HIPER UN",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481780"
+    },
+    {
+      "linha": 140,
+      "ean": "4512345678999",
+      "descricao": "JULI DOCES LOLITA CEBOLA TODOS",
+      "motivo": "JA_NO_CATALOGO",
+      "detalhe": null
+    },
+    {
+      "linha": 141,
+      "ean": "7891141022777",
+      "descricao": "KEEP COOLER CLASSIC CITRUS 275ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481805"
+    },
+    {
+      "linha": 142,
+      "ean": "7891141022852",
+      "descricao": "KEEP COOLER CLASSIC MORANGO 275ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481799"
+    },
+    {
+      "linha": 143,
+      "ean": "7891141023019",
+      "descricao": "KEEP COOLER UVA 275 ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481800"
+    },
+    {
+      "linha": 144,
+      "ean": "7896102000382",
+      "descricao": "KETCHUP HEINZ 260G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481873"
+    },
+    {
+      "linha": 145,
+      "ean": "7896945402282",
+      "descricao": "KETCHUP TRADICIONAL TAMBAU  190G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481548"
+    },
+    {
+      "linha": 146,
+      "ean": "7898994462095",
+      "descricao": "KUMBAYA FLOWERS SASSO 25G SEM NICOTINA",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481911"
+    },
+    {
+      "linha": 147,
+      "ean": "7891515496357",
+      "descricao": "LASANHA PERDIGAO BOLONHESA 600G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481874"
+    },
+    {
+      "linha": 148,
+      "ean": "7891515475703",
+      "descricao": "LASANHA SADIA BOLONHESA 600G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481877"
+    },
+    {
+      "linha": 149,
+      "ean": "7896945400738",
+      "descricao": "LEITE COCO TAMBAU 200ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481553"
+    },
+    {
+      "linha": 150,
+      "ean": "6001495062508",
+      "descricao": "LICOR AMARULA FRUIT AND CREAM 750ML.",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481835"
+    },
+    {
+      "linha": 151,
+      "ean": "080686043782",
+      "descricao": "LICOR WHISKY JIM BEAM APPLE 1L",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481832"
+    },
+    {
+      "linha": 152,
+      "ean": "7896013104483",
+      "descricao": "LIMPA-VIDRO LIQUIDO BRILUX SQUEEZE 500ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481752"
+    },
+    {
+      "linha": 153,
+      "ean": "7898712245306",
+      "descricao": "MACARICO SADHU  MULTIPLANET",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481852"
+    },
+    {
+      "linha": 154,
+      "ean": "7896005030530",
+      "descricao": "MACARRAO ESPAGUETE FINO PILAR PACOTE 400G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481546"
+    },
+    {
+      "linha": 155,
+      "ean": "7891079001011",
+      "descricao": "MACARRAO GALINHA TURMA MONICA 85G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481507"
+    },
+    {
+      "linha": 156,
+      "ean": "7891079001004",
+      "descricao": "MACARRAO LAMEN CARNE TURMA MONICA 85G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481508"
+    },
+    {
+      "linha": 157,
+      "ean": "7896102584189",
+      "descricao": "MAIONESE HEINZ TRADICIONAL 215G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481575"
+    },
+    {
+      "linha": 158,
+      "ean": "7898930234168",
+      "descricao": "MILHO PIPOCA KICALDO 500G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481555"
+    },
+    {
+      "linha": 159,
+      "ean": "7891962051383",
+      "descricao": "MINI BOLO BAUDUCCO SABOR DUO CHOCOLATE PACOTE 27G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481537"
+    },
+    {
+      "linha": 160,
+      "ean": "7312040017508",
+      "descricao": "MINIATURA VODKA ABSOLUT 50ML  UNIDADE",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481806"
+    },
+    {
+      "linha": 161,
+      "ean": "7896945403111",
+      "descricao": "MOLHO PRONTO TAMBAU TRADICIONAL 300G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481539"
+    },
+    {
+      "linha": 162,
+      "ean": "7896102503715",
+      "descricao": "MOSTARDA AMARELA HEINZ 255G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481576"
+    },
+    {
+      "linha": 163,
+      "ean": "7891000319628",
+      "descricao": "MUCILON ARROZ SACHET 180G BR",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481568"
+    },
+    {
+      "linha": 164,
+      "ean": "7896013102878",
+      "descricao": "MULTIUSO TRADICIONAL BRILUX SQUEEZE 500ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481751"
+    },
+    {
+      "linha": 165,
+      "ean": "7898136150019",
+      "descricao": "NATHY ALGODAO MULTIUSO 25G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481838"
+    },
+    {
+      "linha": 166,
+      "ean": "7898960638806",
+      "descricao": "NAWA ICE DRINK MACA VERDE 160G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481786"
+    },
+    {
+      "linha": 167,
+      "ean": "7891000184004",
+      "descricao": "NESCAFE DESCAFEINADO SH 40G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481531"
+    },
+    {
+      "linha": 168,
+      "ean": "7891000366141",
+      "descricao": "NESQUIK 180ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481781"
+    },
+    {
+      "linha": 169,
+      "ean": "7891079013847",
+      "descricao": "NISSIN UFOYAKISSOBA CARNE MOLHO JAPONES 97G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481571"
+    },
+    {
+      "linha": 170,
+      "ean": "0401441235411",
+      "descricao": "OLEO ESSENCIA RAINHA LIMPEZA",
+      "motivo": "GTIN_INVALIDO",
+      "detalhe": null
+    },
+    {
+      "linha": 171,
+      "ean": "7896002368162",
+      "descricao": "PAO PLUSVITA 100 INTEGRAL GRAOS  CASTANHAS 450G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481756"
+    },
+    {
+      "linha": 172,
+      "ean": "7896002302203",
+      "descricao": "PAO PLUSVITA ARTESANO 500G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481754"
+    },
+    {
+      "linha": 173,
+      "ean": "7896074605974",
+      "descricao": "PAO QUEIJO INTERBRASIL REQUEIJAO 90GR",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481556"
+    },
+    {
+      "linha": 174,
+      "ean": "789607405141",
+      "descricao": "PAO QUEIJO INTERBRASIL TRADICIONAL 70G",
+      "motivo": "JA_NO_CATALOGO",
+      "detalhe": null
+    },
+    {
+      "linha": 175,
+      "ean": "7896002365420",
+      "descricao": "PAO RAP 10 INT FIBRAS 330GR",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481753"
+    },
+    {
+      "linha": 176,
+      "ean": "7896347501354",
+      "descricao": "PAPEL HIGIENICO ROSE 4 ROLOS 30M",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481557"
+    },
+    {
+      "linha": 177,
+      "ean": "7898960207132",
+      "descricao": "PAPEL PARA CIGARRO KING BLUNT MIX 25FLS",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481869"
+    },
+    {
+      "linha": 178,
+      "ean": "7898934593490",
+      "descricao": "PAPERMINT LAMINAS ZERO ACUCAR MENTA",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481540"
+    },
+    {
+      "linha": 179,
+      "ean": "78915398",
+      "descricao": "PASTILHA VALDA FRIENDS SEM ACUCAR 25G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481565"
+    },
+    {
+      "linha": 180,
+      "ean": "0041689200657",
+      "descricao": "PEDRA PARA ISQUEIRO ZIPPO",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481910"
+    },
+    {
+      "linha": 181,
+      "ean": "7898654350137",
+      "descricao": "PICOLE FRUTAS GRAVIOLA BIG SORVETE",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481857"
+    },
+    {
+      "linha": 182,
+      "ean": "7896067202241",
+      "descricao": "PILHA PANASONIC ALCALINA AA COM 02 UNIDADES",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481566"
+    },
+    {
+      "linha": 183,
+      "ean": "7896067202265",
+      "descricao": "PILHA PANASONIC ALCALINA PALITO AAA 2UNIDADE",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481572"
+    },
+    {
+      "linha": 184,
+      "ean": "7896067202364",
+      "descricao": "PILHA PANASONIC DIGITAL MOEDA CR2025 3V",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481846"
+    },
+    {
+      "linha": 185,
+      "ean": "7896060903671",
+      "descricao": "PIPOCA KARINTO SALGADA 45G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto None"
+    },
+    {
+      "linha": 186,
+      "ean": "7891095002207",
+      "descricao": "PIPOCA MICROONDAS NATURAL YOKI COM SAL 100G",
+      "motivo": "JA_NO_CATALOGO",
+      "detalhe": null
+    },
+    {
+      "linha": 187,
+      "ean": "7798040463635",
+      "descricao": "PIRULITO PUSH POP 14G",
+      "motivo": "JA_NO_CATALOGO",
+      "detalhe": null
+    },
+    {
+      "linha": 188,
+      "ean": "7893000632073",
+      "descricao": "PIZZA SADIA DE CALABRESA 460G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481525"
+    },
+    {
+      "linha": 189,
+      "ean": "7893000672109",
+      "descricao": "PIZZA SADIA FRANGO CATUPIRY 460G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481523"
+    },
+    {
+      "linha": 190,
+      "ean": "7893000671997",
+      "descricao": "PIZZA SADIA LOMBO CATUPIRY MUSSARELA 460G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481524"
+    },
+    {
+      "linha": 191,
+      "ean": "7891143017863",
+      "descricao": "POLENGUINHO POLENGHI LIGHT",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481736"
+    },
+    {
+      "linha": 192,
+      "ean": "4005900687265",
+      "descricao": "PROTETOR SOLAR FPS 50 100ML NIVEA*",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481760"
+    },
+    {
+      "linha": 193,
+      "ean": "7896902213098",
+      "descricao": "PROTETOR SOLAR SUNLESS - TOQUE SECO FPS 50",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481761"
+    },
+    {
+      "linha": 194,
+      "ean": "7891000118115",
+      "descricao": "RACAO FRISKIES ATUM 85G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481858"
+    },
+    {
+      "linha": 195,
+      "ean": "7891000115763",
+      "descricao": "RACAO FRISKIES CARNE AO MOLHO  85G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481543"
+    },
+    {
+      "linha": 196,
+      "ean": "7891000118108",
+      "descricao": "RACAO FRISKIES SALMAO AO MOLHO 85G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481544"
+    },
+    {
+      "linha": 197,
+      "ean": "7891000118085",
+      "descricao": "RACAO PURINA FRISKIES PEIXE BRANCO AO MOLHO PCT 85G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481545"
+    },
+    {
+      "linha": 198,
+      "ean": "7894900015034",
+      "descricao": "REFR. COCA COLA  KS  290ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481788"
+    },
+    {
+      "linha": 199,
+      "ean": "7896052608126",
+      "descricao": "REFRIGERANTE FYS LIMAO ZERO ACUCAR LT 350 ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481787"
+    },
+    {
+      "linha": 200,
+      "ean": "7896679226833",
+      "descricao": "REMOVEDOR DE ESMALTE IDEAL 100 ML COM ACETONA",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481749"
+    },
+    {
+      "linha": 201,
+      "ean": "7896006801535",
+      "descricao": "REMOVEDOR ESMALTE GUARARAPES 100ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481748"
+    },
+    {
+      "linha": 202,
+      "ean": "7892840824655",
+      "descricao": "RUFFLES CHURRASCO ONDULADA 32G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481495"
+    },
+    {
+      "linha": 203,
+      "ean": "7891050004734",
+      "descricao": "RUM MALIBU COCO 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481823"
+    },
+    {
+      "linha": 204,
+      "ean": "7898031174547",
+      "descricao": "SABAO BARRA BEM TE VI 180G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481536"
+    },
+    {
+      "linha": 205,
+      "ean": "7898031174660",
+      "descricao": "SABAO PO BEM TE VI LAVANDA 400G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481547"
+    },
+    {
+      "linha": 206,
+      "ean": "7896013107934",
+      "descricao": "SABONETE EVEN SUAVE FLOR PESSEGO PCT 85G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481538"
+    },
+    {
+      "linha": 207,
+      "ean": "7896110100814",
+      "descricao": "SAL MARINHO CHURRASCO 1KG 1 UN LEBRE",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481845"
+    },
+    {
+      "linha": 208,
+      "ean": "7896110100043",
+      "descricao": "SAL MARINHO REFINADO LEBRE PACOTE 1KG",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481844"
+    },
+    {
+      "linha": 209,
+      "ean": "7892840825270",
+      "descricao": "SALG PINGO OURO PICANHA 55G NOVO",
+      "motivo": "JA_NO_CATALOGO",
+      "detalhe": null
+    },
+    {
+      "linha": 210,
+      "ean": "7892840824396",
+      "descricao": "SALGADINHO CEBOLITOS 91G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481496"
+    },
+    {
+      "linha": 211,
+      "ean": "7896002302449",
+      "descricao": "SALGADINHO CROCANTISSIMO CHURRASCO 40G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481542"
+    },
+    {
+      "linha": 212,
+      "ean": "7891091061963",
+      "descricao": "SALGADINHO PIPPOS ANIME PRESUNTO 60G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481530"
+    },
+    {
+      "linha": 213,
+      "ean": "7893000043220",
+      "descricao": "SANDUICHE HOT POCKET SADIA  X BACON 145 G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481908"
+    },
+    {
+      "linha": 214,
+      "ean": "7893000043213",
+      "descricao": "SANDUICHE HOT POCKET SADIA  X PICANHA 145G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481909"
+    },
+    {
+      "linha": 215,
+      "ean": "7890303150228",
+      "descricao": "SANDUICHE NATURAL MARICOTA SABORES 153G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481522"
+    },
+    {
+      "linha": 216,
+      "ean": "7894900184372",
+      "descricao": "SCHWEPPES SPRITZ MIXED LATA 269ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481797"
+    },
+    {
+      "linha": 217,
+      "ean": "7891141036170",
+      "descricao": "SUCO INTEGRAL UVA BRANCO AURORA CAIXA 1,5L",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481579"
+    },
+    {
+      "linha": 218,
+      "ean": "7899916900329",
+      "descricao": "SUCO ONE LARANJA INTEGRAL REFRIGERADO 300ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481563"
+    },
+    {
+      "linha": 219,
+      "ean": "7898952050173",
+      "descricao": "TABACO ALIAR VIRGINIA 25G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481875"
+    },
+    {
+      "linha": 220,
+      "ean": "7898994389811",
+      "descricao": "TABACO FUMO HI GOLDEN VIRGINIA 35 G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481886"
+    },
+    {
+      "linha": 221,
+      "ean": "7898994462088",
+      "descricao": "TABACO VEIO PIMENTA 50GR",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481842"
+    },
+    {
+      "linha": 222,
+      "ean": "7756509000029",
+      "descricao": "TOMADA USB I2GO 1AMP 5V",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481764"
+    },
+    {
+      "linha": 223,
+      "ean": "72451663",
+      "descricao": "TORRESMO MINEIRINHO 30G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481907"
+    },
+    {
+      "linha": 224,
+      "ean": "7898923384559",
+      "descricao": "TORRESMO PURURUCA PORKAO LIMAO 100G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481559"
+    },
+    {
+      "linha": 225,
+      "ean": "7898923384023",
+      "descricao": "TORRESMO PURURUCA PORKAO NATURAL 100G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481560"
+    },
+    {
+      "linha": 226,
+      "ean": "7898923384566",
+      "descricao": "TORRESMO PURURUCA PORKAO PIMENTA 100G",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481561"
+    },
+    {
+      "linha": 227,
+      "ean": "7896013105633",
+      "descricao": "VINAGRE DE ALCOOL MURIONGO FRASCO LEVE 500ML PAGUE 450ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481785"
+    },
+    {
+      "linha": 228,
+      "ean": "7896013101024",
+      "descricao": "VINAGRE MURIONGO 500ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto None"
+    },
+    {
+      "linha": 229,
+      "ean": "5602012444046",
+      "descricao": "VINHO ALECRIM BRANCO SECO PORTUGAL 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481887"
+    },
+    {
+      "linha": 230,
+      "ean": "5601096013902",
+      "descricao": "VINHO CASAL GARCIA SWEET ROSE 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481895"
+    },
+    {
+      "linha": 231,
+      "ean": "7804320303178",
+      "descricao": "VINHO CASILLERO DEL DIABLO CABERNET SAUVIGNON 2018",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481894"
+    },
+    {
+      "linha": 232,
+      "ean": "7791843008041",
+      "descricao": "VINHO CEPAS CHARDONAY BRANC MEISEC 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481892"
+    },
+    {
+      "linha": 233,
+      "ean": "7791843007945",
+      "descricao": "VINHO CEPAS MALBEC MENDOZA 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481891"
+    },
+    {
+      "linha": 234,
+      "ean": "7798123971583",
+      "descricao": "VINHO CHAC CHAC SAUVIGNON BLANC 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481888"
+    },
+    {
+      "linha": 235,
+      "ean": "7804340808028",
+      "descricao": "VINHO COSECHA SAUVIGNON BLANC 2018 750 ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481885"
+    },
+    {
+      "linha": 236,
+      "ean": "7804340100054",
+      "descricao": "VINHO COSECHA TARAPACA CHARDONNAY 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481884"
+    },
+    {
+      "linha": 237,
+      "ean": "7804340822178",
+      "descricao": "VINHO COSECHA TARAPACA MERLOT 750 ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481882"
+    },
+    {
+      "linha": 238,
+      "ean": "7798130463903",
+      "descricao": "VINHO MINIMALISTA PINOT BRIGIO BC 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481889"
+    },
+    {
+      "linha": 239,
+      "ean": "7896037913221",
+      "descricao": "VINHO OREMUS CHARDONNAY",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481820"
+    },
+    {
+      "linha": 240,
+      "ean": "7804671790009",
+      "descricao": "VINHO RENO CABERNET SAUVIGNON CHILE 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481883"
+    },
+    {
+      "linha": 241,
+      "ean": "7798081667481",
+      "descricao": "VINHO SANTA HELENA RESERVADO MALBEC 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481880"
+    },
+    {
+      "linha": 242,
+      "ean": "7804300121846",
+      "descricao": "VINHO SANTA HELENA RESERVADO MERLOT 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481881"
+    },
+    {
+      "linha": 243,
+      "ean": "7804300003227",
+      "descricao": "VINHO SANTA HELENA SAUVIGNON BLANC 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481879"
+    },
+    {
+      "linha": 244,
+      "ean": "7896037913207",
+      "descricao": "VINHO TINTO CABERNET OREMUS 750 ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481890"
+    },
+    {
+      "linha": 245,
+      "ean": "7896037913214",
+      "descricao": "VINHO TINTO MERLOT OREMUS",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481818"
+    },
+    {
+      "linha": 246,
+      "ean": "7894900337006",
+      "descricao": "VODKA ABSOLUT SPRITE 269ML LT",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481801"
+    },
+    {
+      "linha": 247,
+      "ean": "088076161863",
+      "descricao": "VODKA CIROC 5X DESTILADA 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481837"
+    },
+    {
+      "linha": 248,
+      "ean": "7891125160457",
+      "descricao": "VODKA NATASHA 900ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481878"
+    },
+    {
+      "linha": 249,
+      "ean": "7891125160471",
+      "descricao": "VODKA NATASHA HITS 900ML MARACUJA",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481815"
+    },
+    {
+      "linha": 250,
+      "ean": "7891125160488",
+      "descricao": "VODKA NATASHA HITS BLUEBERRY 900ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481814"
+    },
+    {
+      "linha": 251,
+      "ean": "7893218003634",
+      "descricao": "VODKA SMIRNOFF N21 PET 1,75L",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481824"
+    },
+    {
+      "linha": 252,
+      "ean": "0080432400432",
+      "descricao": "WHISKY CHIVAS REGAL 12 ANOS GF 1L",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481836"
+    },
+    {
+      "linha": 253,
+      "ean": "5099873089798",
+      "descricao": "WHISKY JACK DANIELS 700ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481855"
+    },
+    {
+      "linha": 254,
+      "ean": "5099873017623",
+      "descricao": "WHISKY JACK DANIELS APPLE MACA VERDE 700ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481834"
+    },
+    {
+      "linha": 255,
+      "ean": "5000267023601",
+      "descricao": "WHISKY JOHNNIE WALKER BLACK LABEL 1L",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto None"
+    },
+    {
+      "linha": 256,
+      "ean": "5000267190556",
+      "descricao": "WHISKY JOHNNIE WALKER BLONDE 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481829"
+    },
+    {
+      "linha": 257,
+      "ean": "5000281003160",
+      "descricao": "WHISKY OLD PAR 750ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481833"
+    },
+    {
+      "linha": 258,
+      "ean": "5010093501778",
+      "descricao": "WHISKY TEACHERS 1000ML",
+      "motivo": "EM_CHECKPOINT",
+      "detalhe": "produto 2481827"
+    }
+  ],
+  "products": [],
+  "apiWrites": 0,
+  "status": "NOTHING_TO_WRITE"
+}

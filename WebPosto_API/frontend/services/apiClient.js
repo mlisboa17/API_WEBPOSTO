@@ -1,5 +1,11 @@
 const API_BASE = window.location.origin || "";
 
+function readAccessToken() {
+  if (typeof document === "undefined") return null;
+  const match = document.cookie.match(/(?:^|;\s*)access_token=([^;]+)/);
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
 /**
  * Faz a requisição HTTP com timeout.
  * @param {string} url
@@ -41,10 +47,18 @@ export const apiClient = {
     const { params, body, headers, timeout = 30000, allowDegraded = false } = options;
     const url = `${API_BASE}${path}${buildQueryString(params)}`;
 
+    const authHeaders = {};
+    const token = readAccessToken();
+    if (token) {
+      authHeaders.Authorization = `Bearer ${token}`;
+    }
+
     const fetchOptions = {
       method: method.toUpperCase(),
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        ...authHeaders,
         ...headers,
       },
     };
@@ -74,7 +88,11 @@ export const apiClient = {
 
     if (!response.ok || (data && data.success === false && !allowDegraded && !data?.degraded)) {
       const msg = data?.error?.message || data?.detail || `Falha na requisicao ${method} ${path}`;
-      throw new Error(msg);
+      const error = new Error(typeof msg === "string" ? msg : JSON.stringify(msg));
+      error.status = response.status;
+      error.unavailable = response.status === 403 || response.status === 404;
+      error.path = path;
+      throw error;
     }
 
     return data;

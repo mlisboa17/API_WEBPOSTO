@@ -102,13 +102,18 @@ class CashOperationsService:
 
     @staticmethod
     def _matches_empresa(row: dict[str, Any], filters: FinancialOverviewFilters) -> bool:
-        if not filters.empresa_codigos:
-            return True
         code = row.get("empresaCodigo")
+        if code is None:
+            return False
         try:
-            return int(code) in filters.empresa_codigos
+            code_int = int(code)
         except (TypeError, ValueError):
             return False
+        if filters.empresa_codigo is not None:
+            return code_int == filters.empresa_codigo
+        if filters.empresa_codigos:
+            return code_int in filters.empresa_codigos
+        return True
 
     async def _fetch_paged(
         self,

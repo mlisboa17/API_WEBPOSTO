@@ -1,8 +1,11 @@
+import logging
+
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 
 from src.infrastructure.config.settings import settings
 
+LOGGER = logging.getLogger(__name__)
 
 # Criar engine async
 engine = create_async_engine(
@@ -30,16 +33,33 @@ async def get_db() -> AsyncSession:
 
 
 async def init_db():
-    """Inicializa o banco de dados."""
+    """Sincroniza tabelas SQLModel/Adapter (create_all idempotente)."""
     async with engine.begin() as conn:
-        # Import models' Base metadata and create tables if missing
         try:
             from src.infrastructure.adapter.database import Base as AdapterBase
 
             await conn.run_sync(AdapterBase.metadata.create_all)
-        except Exception:
-            # If adapter isn't present or models are not yet defined, skip gracefully
-            pass
+        except Exception as exc:
+            LOGGER.warning("init_db adapter metadata: %s", exc)
+
+        try:
+            from sqlmodel import SQLModel
+            import src.models.alert_model  # noqa: F401
+            import src.models.company_product_model  # noqa: F401
+            import src.models.sales_daily_summary_model  # noqa: F401
+            import src.models.sds_day_status_model  # noqa: F401
+            import src.models.audit_fraud_settings_model  # noqa: F401
+            import src.models.forecourt_layout_model  # noqa: F401
+            import src.models.notification_profile_model  # noqa: F401
+
+            await conn.run_sync(SQLModel.metadata.create_all)
+            LOGGER.info(
+                "init_db SQLModel OK — tabelas: executive_alerts, "
+                "configuracao_auditoria_fraude, notification_profiles, …"
+            )
+        except Exception as exc:
+            # Não aborta o boot: settings/alerts têm fallback JSON local.
+            LOGGER.error("init_db SQLModel falhou: %s", exc, exc_info=True)
 
 
 async def close_db():

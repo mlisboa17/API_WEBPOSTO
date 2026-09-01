@@ -1,0 +1,79 @@
+{
+  "results": [
+    {
+      "check": "backend_health",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "check": "summary_http",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "check": "summary_apresentado",
+      "ok": true,
+      "detail": "191420.46"
+    },
+    {
+      "check": "summary_nature_cards",
+      "ok": true,
+      "detail": "6"
+    },
+    {
+      "check": "summary_items",
+      "ok": true,
+      "detail": "62"
+    },
+    {
+      "check": "no_zero_pollution",
+      "ok": true,
+      "detail": "zerados=0"
+    },
+    {
+      "check": "divergencias_priorizadas",
+      "ok": true,
+      "detail": "maior_dif=11667.18"
+    },
+    {
+      "check": "exceptions_http",
+      "ok": true,
+      "detail": "20"
+    },
+    {
+      "check": "audit_signals_http",
+      "ok": true,
+      "detail": "40"
+    },
+    {
+      "check": "sem_acusacao_fraude",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "justify_http",
+      "ok": true,
+      "detail": "11495:4363558:DINHEIRO"
+    },
+    {
+      "check": "justificativa_historico",
+      "ok": true,
+      "detail": "11495:4363558:DINHEIRO"
+    },
+    {
+      "check": "diretoria_http",
+      "ok": true,
+      "detail": "200"
+    },
+    {
+      "check": "frontend_shell",
+      "ok": true,
+      "detail": "len=6228"
+    }
+  ],
+  "params": {
+    "dataInicial": "2026-06-29",
+    "dataFinal": "2026-07-05",
+    "empresaCodigo": "11495"
+  }
+}

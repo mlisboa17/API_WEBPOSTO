@@ -1,0 +1,61 @@
+{
+  "test": "Director 60 second test",
+  "url": "http://127.0.0.1:8040/app/financial?view=owner-diretoria&dataInicial=2026-06-05&dataFinal=2026-07-04",
+  "runtime_frontend": "WebPosto_API/frontend",
+  "api_base": "http://127.0.0.1:8040",
+  "boot_ready": true,
+  "api_snapshot": {
+    "analysis_status": null,
+    "monitoring_state": null,
+    "decisions_count": 0,
+    "observations_count": 0,
+    "follow_up_count": 1
+  },
+  "questions": [
+    {
+      "id": "tenants_analyzed",
+      "question": "Quantos postos foram analisados?",
+      "score": "PASS"
+    },
+    {
+      "id": "priority_tenant",
+      "question": "Qual posto precisa da minha atenção?",
+      "score": "PARTIAL"
+    },
+    {
+      "id": "money_involved",
+      "question": "Quanto dinheiro está envolvido?",
+      "score": "FAIL"
+    },
+    {
+      "id": "main_problem",
+      "question": "Qual é o principal problema?",
+      "score": "PARTIAL"
+    },
+    {
+      "id": "why_happened",
+      "question": "Por que isso aconteceu?",
+      "score": "FAIL"
+    },
+    {
+      "id": "what_to_do",
+      "question": "O que devo fazer agora?",
+      "score": "FAIL"
+    },
+    {
+      "id": "already_forwarded",
+      "question": "Existe algo que eu já encaminhei?",
+      "score": "PARTIAL"
+    },
+    {
+      "id": "forwarding_state",
+      "question": "Qual o estado desse encaminhamento?",
+      "score": "FAIL"
+    }
+  ],
+  "scores": {
+    "PASS": 1,
+    "PARTIAL": 3,
+    "FAIL": 4
+  }
+}

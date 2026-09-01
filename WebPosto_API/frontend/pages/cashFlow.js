@@ -3,6 +3,7 @@ import { downloadCsv, openPdfPreview } from "../services/export.js";
 import { renderExecutiveCockpitPage } from "../services/executiveCockpitAdapter.js";
 import { buildFourQuestionBrief, enrichAlert } from "../services/executiveBrief.js";
 import { buildChartBars, moneyKpi } from "../services/executiveKpis.js";
+import { EXECUTIVE_UNAVAILABLE_MSG } from "../services/executivePayload.js";
 
 function fmtMoney(value) {
   if (value === null || value === undefined || value === "") return "—";
@@ -68,12 +69,34 @@ function renderTreasury(t) {
   </ul>`;
 }
 
+function renderSemanticTable(rows, columns) {
+  if (!rows?.length) return '<p class="small">Sem dados semânticos.</p>';
+  const head = columns.map((c) => `<th>${c.label}</th>`).join("");
+  const body = rows
+    .slice(0, 15)
+    .map(
+      (row) =>
+        `<tr>${columns.map((c) => `<td>${c.formatter ? c.formatter(row[c.key]) : row[c.key] || "—"}</td>`).join("")}</tr>`
+    )
+    .join("");
+  return `<table class="table-compact cf-table-export"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+}
+
 function buildCashFlowDetail(flow) {
   const fromSnapshot = flow.fromSnapshot ? "Snapshot" : "Live";
   const lastUpdated = flow.lastUpdated || "—";
+  const breakdown = flow.semanticBreakdown || {};
   return `
     <div class="cash-flow" data-testid="cash-flow-root">
       <p class="small muted">Fatos WebPosto — TITULO_PAGAR · TITULO_RECEBER · MOVIMENTO_CONTA · CAIXA_APRESENTADO · ${fromSnapshot} · ${lastUpdated}</p>
+      <section class="panel"><h3>Despesas por natureza (semântico)</h3>${renderSemanticTable(breakdown.despesas, [
+        { key: "natureza", label: "Natureza" },
+        { key: "valor", label: "Valor", formatter: fmtMoney },
+      ])}</section>
+      <section class="panel"><h3>Receitas por natureza (semântico)</h3>${renderSemanticTable(breakdown.receitas, [
+        { key: "natureza", label: "Natureza" },
+        { key: "valor", label: "Valor", formatter: fmtMoney },
+      ])}</section>
       <section class="panel"><h3>Linha temporal diária</h3>${renderSparkline(flow.daily)}${renderTable(flow.daily, EXPORT_COLUMNS)}</section>
       <div class="fc-grid">
         <section class="panel" data-testid="cf-weekly"><h3>Fluxo semanal</h3>${renderTable(flow.weekly, EXPORT_COLUMNS)}</section>
@@ -87,6 +110,17 @@ function buildCashFlowDetail(flow) {
 }
 
 export function renderCashFlow(container, data, filters, options = {}) {
+  if (data?.unavailable) {
+    container.innerHTML = `
+      <section class="panel">
+        <h2>Fluxo de Caixa Corporativo</h2>
+        <p class="small exec-fallback-msg">${data.message || EXECUTIVE_UNAVAILABLE_MSG}</p>
+        <button type="button" class="btn-secondary" id="cfRetry">Tentar novamente</button>
+      </section>`;
+    container.querySelector("#cfRetry")?.addEventListener("click", () => options.onRefresh?.());
+    return;
+  }
+
   const flow = data || {};
   const cards = flow.cards || {};
   const exportRows = buildCashFlowExportRows(flow);

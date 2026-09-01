@@ -60,6 +60,7 @@ class ExecutiveReviewRequest(BaseModel):
     review_responsible: str | None = None
     review_responsible_id: str | None = None
     assigned_at: datetime | None = None
+    item_checks: dict[str, Any] = Field(default_factory=dict)
     due_date: str | None = None
     resolution_summary: str | None = None
     resolved_at: datetime | None = None

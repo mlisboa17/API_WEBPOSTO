@@ -1,0 +1,828 @@
+{
+  "lastUpdated": "2026-07-05T00:00:00+00:00",
+  "snapshot": {
+    "analysis_id": "2106317a-5557-454d-84a1-436436d1c338",
+    "response": {
+      "success": true,
+      "data": {
+        "top_5_decisions": [
+          {
+            "decision_id": "175da101-6f68-42f4-9d2b-9b42e6cedea2",
+            "rank": 1,
+            "tenant_id": "74014",
+            "tenant_name": "POSTO DOZE FILIAL II",
+            "action": {
+              "id": "175da101-6f68-42f4-9d2b-9b42e6cedea2",
+              "title": "R$ 7,501 acima do comportamento de referência em Vale de funcionário referente a consolidação de caixa",
+              "description": "Despesas em POSTO DOZE FILIAL II: Vale de funcionário referente a consolidação de caixa ficou R$ 7,501.00 acima do baseline. Valor estimado em risco — não é perda confirmada.",
+              "confidence": 0.89,
+              "financial_impact": {
+                "estimated_value": 7501.0
+              }
+            },
+            "candidate": {
+              "id": "175da101-6f68-42f4-9d2b-9b42e6cedea2",
+              "detector": "ExpenseDetector",
+              "title": "R$ 7,501 acima do comportamento de referência em Vale de funcionário referente a consolidação de caixa",
+              "summary": "Despesas em POSTO DOZE FILIAL II: Vale de funcionário referente a consolidação de caixa ficou R$ 7,501.00 acima do baseline. Valor estimado em risco — não é perda confirmada.",
+              "category": "COST",
+              "impact_type": "cost",
+              "tenant": "74014",
+              "tenant_name": "POSTO DOZE FILIAL II",
+              "period": {
+                "start": "2026-06-05",
+                "end": "2026-07-04"
+              },
+              "confidence": 0.89,
+              "money_found": {
+                "at_risk": {
+                  "value": 7501.0,
+                  "type": "ESTIMATED"
+                },
+                "recoverable": {
+                  "value": 3750.5,
+                  "type": "ESTIMATED"
+                },
+                "additional": {
+                  "value": 0.0,
+                  "type": "ESTIMATED"
+                }
+              },
+              "evidence": {
+                "category": "Vale de funcionário referente a consolidação de caixa",
+                "current_count": 16,
+                "baseline_count": 7,
+                "anomaly_type": "CATEGORY_SPIKE",
+                "evidence_items": [
+                  {
+                    "id": "d2c17f90-a4eb-d5fc-f6cb-d47e2b376aef",
+                    "tenant_id": "74014",
+                    "empresa_codigo": "74014",
+                    "tenant_name": "POSTO DOZE FILIAL II",
+                    "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                    "category": "Vale de funcionário referente a consolidação de caixa",
+                    "person_name": null,
+                    "date": "2026-06-16",
+                    "amount": 1931.0,
+                    "description": "Vale de funcionário referente a consolidação de caixa",
+                    "origin": "financeiro",
+                    "cash_register": null,
+                    "shift": null,
+                    "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                    "status": null,
+                    "raw_reference": {
+                      "planoContaCodigo": 29072,
+                      "funcionarioCodigo": null,
+                      "origem": "financeiro"
+                    }
+                  },
+                  {
+                    "id": "032b2496-b1c0-5302-16cb-65210a3fe156",
+                    "tenant_id": "74014",
+                    "empresa_codigo": "74014",
+                    "tenant_name": "POSTO DOZE FILIAL II",
+                    "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                    "category": "Vale de funcionário referente a consolidação de caixa",
+                    "person_name": null,
+                    "date": "2026-06-17",
+                    "amount": 1150.0,
+                    "description": "Vale de funcionário referente a consolidação de caixa",
+                    "origin": "financeiro",
+                    "cash_register": null,
+                    "shift": null,
+                    "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                    "status": null,
+                    "raw_reference": {
+                      "planoContaCodigo": 29072,
+                      "funcionarioCodigo": null,
+                      "origem": "financeiro"
+                    }
+                  },
+                  {
+                    "id": "4bb4056a-9ee0-d6f8-4256-672a52157487",
+                    "tenant_id": "74014",
+                    "empresa_codigo": "74014",
+                    "tenant_name": "POSTO DOZE FILIAL II",
+                    "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                    "category": "Vale de funcionário referente a consolidação de caixa",
+                    "person_name": null,
+                    "date": "2026-06-18",
+                    "amount": 1150.0,
+                    "description": "Vale de funcionário referente a consolidação de caixa",
+                    "origin": "financeiro",
+                    "cash_register": null,
+                    "shift": null,
+                    "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                    "status": null,
+                    "raw_reference": {
+                      "planoContaCodigo": 29072,
+                      "funcionarioCodigo": null,
+                      "origem": "financeiro"
+                    }
+                  },
+                  {
+                    "id": "3f205c7e-fe89-e187-6658-66b4183709a7",
+                    "tenant_id": "74014",
+                    "empresa_codigo": "74014",
+                    "tenant_name": "POSTO DOZE FILIAL II",
+                    "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                    "category": "Vale de funcionário referente a consolidação de caixa",
+                    "person_name": null,
+                    "date": "2026-06-16",
+                    "amount": 1000.0,
+                    "description": "Vale de funcionário referente a consolidação de caixa",
+                    "origin": "financeiro",
+                    "cash_register": null,
+                    "shift": null,
+                    "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                    "status": null,
+                    "raw_reference": {
+                      "planoContaCodigo": 29072,
+                      "funcionarioCodigo": null,
+                      "origem": "financeiro"
+                    }
+                  },
+                  {
+                    "id": "4ef2940c-9383-9889-901c-3ee83dfc455a",
+                    "tenant_id": "74014",
+                    "empresa_codigo": "74014",
+                    "tenant_name": "POSTO DOZE FILIAL II",
+                    "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                    "category": "Vale de funcionário referente a consolidação de caixa",
+                    "person_name": null,
+                    "date": "2026-06-17",
+                    "amount": 1000.0,
+                    "description": "Vale de funcionário referente a consolidação de caixa",
+                    "origin": "financeiro",
+                    "cash_register": null,
+                    "shift": null,
+                    "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                    "status": null,
+                    "raw_reference": {
+                      "planoContaCodigo": 29072,
+                      "funcionarioCodigo": null,
+                      "origem": "financeiro"
+                    }
+                  },
+                  {
+                    "id": "766a1022-7a88-f76d-27b8-8c5fe2220f33",
+                    "tenant_id": "74014",
+                    "empresa_codigo": "74014",
+                    "tenant_name": "POSTO DOZE FILIAL II",
+                    "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                    "category": "Vale de funcionário referente a consolidação de caixa",
+                    "person_name": null,
+                    "date": "2026-06-18",
+                    "amount": 1000.0,
+                    "description": "Vale de funcionário referente a consolidação de caixa",
+                    "origin": "financeiro",
+                    "cash_register": null,
+                    "shift": null,
+                    "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                    "status": null,
+                    "raw_reference": {
+                      "planoContaCodigo": 29072,
+                      "funcionarioCodigo": null,
+                      "origem": "financeiro"
+                    }
+                  },
+                  {
+                    "id": "ca6038fa-c459-1043-cf46-9dbcbf6f524a",
+                    "tenant_id": "74014",
+                    "empresa_codigo": "74014",
+                    "tenant_name": "POSTO DOZE FILIAL II",
+                    "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                    "category": "Vale de funcionário referente a consolidação de caixa",
+                    "person_name": null,
+                    "date": "2026-06-14",
+                    "amount": 150.0,
+                    "description": "Vale de funcionário referente a consolidação de caixa",
+                    "origin": "financeiro",
+                    "cash_register": null,
+                    "shift": null,
+                    "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                    "status": null,
+                    "raw_reference": {
+                      "planoContaCodigo": 29072,
+                      "funcionarioCodigo": null,
+                      "origem": "financeiro"
+                    }
+                  },
+                  {
+                    "id": "a5f8a718-829a-5136-c542-76b2d606c989",
+                    "tenant_id": "74014",
+                    "empresa_codigo": "74014",
+                    "tenant_name": "POSTO DOZE FILIAL II",
+                    "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                    "category": "Vale de funcionário referente a consolidação de caixa",
+                    "person_name": null,
+                    "date": "2026-06-16",
+                    "amount": 150.0,
+                    "description": "Vale de funcionário referente a consolidação de caixa",
+                    "origin": "financeiro",
+                    "cash_register": null,
+                    "shift": null,
+                    "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                    "status": null,
+                    "raw_reference": {
+                      "planoContaCodigo": 29072,
+                      "funcionarioCodigo": null,
+                      "origem": "financeiro"
+                    }
+                  },
+                  {
+                    "id": "dd65e487-4370-16dd-2fc4-7f6dfa529d9e",
+                    "tenant_id": "74014",
+                    "empresa_codigo": "74014",
+                    "tenant_name": "POSTO DOZE FILIAL II",
+                    "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                    "category": "Vale de funcionário referente a consolidação de caixa",
+                    "person_name": null,
+                    "date": "2026-06-17",
+                    "amount": 150.0,
+                    "description": "Vale de funcionário referente a consolidação de caixa",
+                    "origin": "financeiro",
+                    "cash_register": null,
+                    "shift": null,
+                    "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                    "status": null,
+                    "raw_reference": {
+                      "planoContaCodigo": 29072,
+                      "funcionarioCodigo": null,
+                      "origem": "financeiro"
+                    }
+                  },
+                  {
+                    "id": "cad57036-fbbc-ce4d-fe5f-fedfb7a5dca9",
+                    "tenant_id": "74014",
+                    "empresa_codigo": "74014",
+                    "tenant_name": "POSTO DOZE FILIAL II",
+                    "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                    "category": "Vale de funcionário referente a consolidação de caixa",
+                    "person_name": null,
+                    "date": "2026-06-18",
+                    "amount": 150.0,
+                    "description": "Vale de funcionário referente a consolidação de caixa",
+                    "origin": "financeiro",
+                    "cash_register": null,
+                    "shift": null,
+                    "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                    "status": null,
+                    "raw_reference": {
+                      "planoContaCodigo": 29072,
+                      "funcionarioCodigo": null,
+                      "origem": "financeiro"
+                    }
+                  },
+                  {
+                    "id": "9bfd055d-26b5-fa54-0ca1-f70de320918a",
+                    "tenant_id": "74014",
+                    "empresa_codigo": "74014",
+                    "tenant_name": "POSTO DOZE FILIAL II",
+                    "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                    "category": "Vale de funcionário referente a consolidação de caixa",
+                    "person_name": null,
+                    "date": "2026-06-19",
+                    "amount": 150.0,
+                    "description": "Vale de funcionário referente a consolidação de caixa",
+                    "origin": "financeiro",
+                    "cash_register": null,
+                    "shift": null,
+                    "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                    "status": null,
+                    "raw_reference": {
+                      "planoContaCodigo": 29072,
+                      "funcionarioCodigo": null,
+                      "origem": "financeiro"
+                    }
+                  },
+                  {
+                    "id": "1f80d928-9009-2254-e7eb-f58d9728a9fa",
+                    "tenant_id": "74014",
+                    "empresa_codigo": "74014",
+                    "tenant_name": "POSTO DOZE FILIAL II",
+                    "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                    "category": "Vale de funcionário referente a consolidação de caixa",
+                    "person_name": null,
+                    "date": "2026-06-20",
+                    "amount": 150.0,
+                    "description": "Vale de funcionário referente a consolidação de caixa",
+                    "origin": "financeiro",
+                    "cash_register": null,
+                    "shift": null,
+                    "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                    "status": null,
+                    "raw_reference": {
+                      "planoContaCodigo": 29072,
+                      "funcionarioCodigo": null,
+                      "origem": "financeiro"
+                    }
+                  },
+                  {
+                    "id": "59b27aa8-c5c6-47e1-0827-4618713f64ae",
+                    "tenant_id": "74014",
+                    "empresa_codigo": "74014",
+                    "tenant_name": "POSTO DOZE FILIAL II",
+                    "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                    "category": "Vale de funcionário referente a consolidação de caixa",
+                    "person_name": null,
+                    "date": "2026-06-25",
+                    "amount": 150.0,
+                    "description": "Vale de funcionário referente a consolidação de caixa",
+                    "origin": "financeiro",
+                    "cash_register": null,
+                    "shift": null,
+                    "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                    "status": null,
+                    "raw_reference": {
+                      "planoContaCodigo": 29072,
+                      "funcionarioCodigo": null,
+                      "origem": "financeiro"
+                    }
+                  },
+                  {
+                    "id": "bee92ee8-8c0a-1685-e954-a33fdacc8d61",
+                    "tenant_id": "74014",
+                    "empresa_codigo": "74014",
+                    "tenant_name": "POSTO DOZE FILIAL II",
+                    "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                    "category": "Vale de funcionário referente a consolidação de caixa",
+                    "person_name": null,
+                    "date": "2026-06-17",
+                    "amount": 40.0,
+                    "description": "Vale de funcionário referente a consolidação de caixa",
+                    "origin": "financeiro",
+                    "cash_register": null,
+                    "shift": null,
+                    "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                    "status": null,
+                    "raw_reference": {
+                      "planoContaCodigo": 29072,
+                      "funcionarioCodigo": null,
+                      "origem": "financeiro"
+                    }
+                  },
+                  {
+                    "id": "19cfe83f-0ac7-828d-5428-ab8b25f6ea8a",
+                    "tenant_id": "74014",
+                    "empresa_codigo": "74014",
+                    "tenant_name": "POSTO DOZE FILIAL II",
+                    "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                    "category": "Vale de funcionário referente a consolidação de caixa",
+                    "person_name": null,
+                    "date": "2026-06-19",
+                    "amount": 40.0,
+                    "description": "Vale de funcionário referente a consolidação de caixa",
+                    "origin": "financeiro",
+                    "cash_register": null,
+                    "shift": null,
+                    "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                    "status": null,
+                    "raw_reference": {
+                      "planoContaCodigo": 29072,
+                      "funcionarioCodigo": null,
+                      "origem": "financeiro"
+                    }
+                  },
+                  {
+                    "id": "d287bf83-7a2e-b951-b3c4-4687bfb6b830",
+                    "tenant_id": "74014",
+                    "empresa_codigo": "74014",
+                    "tenant_name": "POSTO DOZE FILIAL II",
+                    "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                    "category": "Vale de funcionário referente a consolidação de caixa",
+                    "person_name": null,
+                    "date": "2026-06-25",
+                    "amount": 40.0,
+                    "description": "Vale de funcionário referente a consolidação de caixa",
+                    "origin": "financeiro",
+                    "cash_register": null,
+                    "shift": null,
+                    "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                    "status": null,
+                    "raw_reference": {
+                      "planoContaCodigo": 29072,
+                      "funcionarioCodigo": null,
+                      "origem": "financeiro"
+                    }
+                  }
+                ],
+                "evidence_items_count": 16,
+                "evidence_items_total": 8401.0
+              },
+              "baseline": {
+                "current_value": 8401.0,
+                "baseline_value": 900.0
+              },
+              "source_endpoints": [
+                "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE"
+              ]
+            }
+          }
+        ],
+        "stored_candidates": [
+          {
+            "id": "175da101-6f68-42f4-9d2b-9b42e6cedea2",
+            "detector": "ExpenseDetector",
+            "title": "R$ 7,501 acima do comportamento de referência em Vale de funcionário referente a consolidação de caixa",
+            "summary": "Despesas em POSTO DOZE FILIAL II: Vale de funcionário referente a consolidação de caixa ficou R$ 7,501.00 acima do baseline. Valor estimado em risco — não é perda confirmada.",
+            "category": "COST",
+            "impact_type": "cost",
+            "tenant": "74014",
+            "tenant_name": "POSTO DOZE FILIAL II",
+            "period": {
+              "start": "2026-06-05",
+              "end": "2026-07-04"
+            },
+            "confidence": 0.89,
+            "money_found": {
+              "at_risk": {
+                "value": 7501.0,
+                "type": "ESTIMATED"
+              },
+              "recoverable": {
+                "value": 3750.5,
+                "type": "ESTIMATED"
+              },
+              "additional": {
+                "value": 0.0,
+                "type": "ESTIMATED"
+              }
+            },
+            "evidence": {
+              "category": "Vale de funcionário referente a consolidação de caixa",
+              "current_count": 16,
+              "baseline_count": 7,
+              "anomaly_type": "CATEGORY_SPIKE",
+              "evidence_items": [
+                {
+                  "id": "d2c17f90-a4eb-d5fc-f6cb-d47e2b376aef",
+                  "tenant_id": "74014",
+                  "empresa_codigo": "74014",
+                  "tenant_name": "POSTO DOZE FILIAL II",
+                  "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                  "category": "Vale de funcionário referente a consolidação de caixa",
+                  "person_name": null,
+                  "date": "2026-06-16",
+                  "amount": 1931.0,
+                  "description": "Vale de funcionário referente a consolidação de caixa",
+                  "origin": "financeiro",
+                  "cash_register": null,
+                  "shift": null,
+                  "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                  "status": null,
+                  "raw_reference": {
+                    "planoContaCodigo": 29072,
+                    "funcionarioCodigo": null,
+                    "origem": "financeiro"
+                  }
+                },
+                {
+                  "id": "032b2496-b1c0-5302-16cb-65210a3fe156",
+                  "tenant_id": "74014",
+                  "empresa_codigo": "74014",
+                  "tenant_name": "POSTO DOZE FILIAL II",
+                  "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                  "category": "Vale de funcionário referente a consolidação de caixa",
+                  "person_name": null,
+                  "date": "2026-06-17",
+                  "amount": 1150.0,
+                  "description": "Vale de funcionário referente a consolidação de caixa",
+                  "origin": "financeiro",
+                  "cash_register": null,
+                  "shift": null,
+                  "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                  "status": null,
+                  "raw_reference": {
+                    "planoContaCodigo": 29072,
+                    "funcionarioCodigo": null,
+                    "origem": "financeiro"
+                  }
+                },
+                {
+                  "id": "4bb4056a-9ee0-d6f8-4256-672a52157487",
+                  "tenant_id": "74014",
+                  "empresa_codigo": "74014",
+                  "tenant_name": "POSTO DOZE FILIAL II",
+                  "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                  "category": "Vale de funcionário referente a consolidação de caixa",
+                  "person_name": null,
+                  "date": "2026-06-18",
+                  "amount": 1150.0,
+                  "description": "Vale de funcionário referente a consolidação de caixa",
+                  "origin": "financeiro",
+                  "cash_register": null,
+                  "shift": null,
+                  "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                  "status": null,
+                  "raw_reference": {
+                    "planoContaCodigo": 29072,
+                    "funcionarioCodigo": null,
+                    "origem": "financeiro"
+                  }
+                },
+                {
+                  "id": "3f205c7e-fe89-e187-6658-66b4183709a7",
+                  "tenant_id": "74014",
+                  "empresa_codigo": "74014",
+                  "tenant_name": "POSTO DOZE FILIAL II",
+                  "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                  "category": "Vale de funcionário referente a consolidação de caixa",
+                  "person_name": null,
+                  "date": "2026-06-16",
+                  "amount": 1000.0,
+                  "description": "Vale de funcionário referente a consolidação de caixa",
+                  "origin": "financeiro",
+                  "cash_register": null,
+                  "shift": null,
+                  "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                  "status": null,
+                  "raw_reference": {
+                    "planoContaCodigo": 29072,
+                    "funcionarioCodigo": null,
+                    "origem": "financeiro"
+                  }
+                },
+                {
+                  "id": "4ef2940c-9383-9889-901c-3ee83dfc455a",
+                  "tenant_id": "74014",
+                  "empresa_codigo": "74014",
+                  "tenant_name": "POSTO DOZE FILIAL II",
+                  "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                  "category": "Vale de funcionário referente a consolidação de caixa",
+                  "person_name": null,
+                  "date": "2026-06-17",
+                  "amount": 1000.0,
+                  "description": "Vale de funcionário referente a consolidação de caixa",
+                  "origin": "financeiro",
+                  "cash_register": null,
+                  "shift": null,
+                  "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                  "status": null,
+                  "raw_reference": {
+                    "planoContaCodigo": 29072,
+                    "funcionarioCodigo": null,
+                    "origem": "financeiro"
+                  }
+                },
+                {
+                  "id": "766a1022-7a88-f76d-27b8-8c5fe2220f33",
+                  "tenant_id": "74014",
+                  "empresa_codigo": "74014",
+                  "tenant_name": "POSTO DOZE FILIAL II",
+                  "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                  "category": "Vale de funcionário referente a consolidação de caixa",
+                  "person_name": null,
+                  "date": "2026-06-18",
+                  "amount": 1000.0,
+                  "description": "Vale de funcionário referente a consolidação de caixa",
+                  "origin": "financeiro",
+                  "cash_register": null,
+                  "shift": null,
+                  "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                  "status": null,
+                  "raw_reference": {
+                    "planoContaCodigo": 29072,
+                    "funcionarioCodigo": null,
+                    "origem": "financeiro"
+                  }
+                },
+                {
+                  "id": "ca6038fa-c459-1043-cf46-9dbcbf6f524a",
+                  "tenant_id": "74014",
+                  "empresa_codigo": "74014",
+                  "tenant_name": "POSTO DOZE FILIAL II",
+                  "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                  "category": "Vale de funcionário referente a consolidação de caixa",
+                  "person_name": null,
+                  "date": "2026-06-14",
+                  "amount": 150.0,
+                  "description": "Vale de funcionário referente a consolidação de caixa",
+                  "origin": "financeiro",
+                  "cash_register": null,
+                  "shift": null,
+                  "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                  "status": null,
+                  "raw_reference": {
+                    "planoContaCodigo": 29072,
+                    "funcionarioCodigo": null,
+                    "origem": "financeiro"
+                  }
+                },
+                {
+                  "id": "a5f8a718-829a-5136-c542-76b2d606c989",
+                  "tenant_id": "74014",
+                  "empresa_codigo": "74014",
+                  "tenant_name": "POSTO DOZE FILIAL II",
+                  "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                  "category": "Vale de funcionário referente a consolidação de caixa",
+                  "person_name": null,
+                  "date": "2026-06-16",
+                  "amount": 150.0,
+                  "description": "Vale de funcionário referente a consolidação de caixa",
+                  "origin": "financeiro",
+                  "cash_register": null,
+                  "shift": null,
+                  "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                  "status": null,
+                  "raw_reference": {
+                    "planoContaCodigo": 29072,
+                    "funcionarioCodigo": null,
+                    "origem": "financeiro"
+                  }
+                },
+                {
+                  "id": "dd65e487-4370-16dd-2fc4-7f6dfa529d9e",
+                  "tenant_id": "74014",
+                  "empresa_codigo": "74014",
+                  "tenant_name": "POSTO DOZE FILIAL II",
+                  "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                  "category": "Vale de funcionário referente a consolidação de caixa",
+                  "person_name": null,
+                  "date": "2026-06-17",
+                  "amount": 150.0,
+                  "description": "Vale de funcionário referente a consolidação de caixa",
+                  "origin": "financeiro",
+                  "cash_register": null,
+                  "shift": null,
+                  "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                  "status": null,
+                  "raw_reference": {
+                    "planoContaCodigo": 29072,
+                    "funcionarioCodigo": null,
+                    "origem": "financeiro"
+                  }
+                },
+                {
+                  "id": "cad57036-fbbc-ce4d-fe5f-fedfb7a5dca9",
+                  "tenant_id": "74014",
+                  "empresa_codigo": "74014",
+                  "tenant_name": "POSTO DOZE FILIAL II",
+                  "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                  "category": "Vale de funcionário referente a consolidação de caixa",
+                  "person_name": null,
+                  "date": "2026-06-18",
+                  "amount": 150.0,
+                  "description": "Vale de funcionário referente a consolidação de caixa",
+                  "origin": "financeiro",
+                  "cash_register": null,
+                  "shift": null,
+                  "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                  "status": null,
+                  "raw_reference": {
+                    "planoContaCodigo": 29072,
+                    "funcionarioCodigo": null,
+                    "origem": "financeiro"
+                  }
+                },
+                {
+                  "id": "9bfd055d-26b5-fa54-0ca1-f70de320918a",
+                  "tenant_id": "74014",
+                  "empresa_codigo": "74014",
+                  "tenant_name": "POSTO DOZE FILIAL II",
+                  "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                  "category": "Vale de funcionário referente a consolidação de caixa",
+                  "person_name": null,
+                  "date": "2026-06-19",
+                  "amount": 150.0,
+                  "description": "Vale de funcionário referente a consolidação de caixa",
+                  "origin": "financeiro",
+                  "cash_register": null,
+                  "shift": null,
+                  "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                  "status": null,
+                  "raw_reference": {
+                    "planoContaCodigo": 29072,
+                    "funcionarioCodigo": null,
+                    "origem": "financeiro"
+                  }
+                },
+                {
+                  "id": "1f80d928-9009-2254-e7eb-f58d9728a9fa",
+                  "tenant_id": "74014",
+                  "empresa_codigo": "74014",
+                  "tenant_name": "POSTO DOZE FILIAL II",
+                  "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                  "category": "Vale de funcionário referente a consolidação de caixa",
+                  "person_name": null,
+                  "date": "2026-06-20",
+                  "amount": 150.0,
+                  "description": "Vale de funcionário referente a consolidação de caixa",
+                  "origin": "financeiro",
+                  "cash_register": null,
+                  "shift": null,
+                  "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                  "status": null,
+                  "raw_reference": {
+                    "planoContaCodigo": 29072,
+                    "funcionarioCodigo": null,
+                    "origem": "financeiro"
+                  }
+                },
+                {
+                  "id": "59b27aa8-c5c6-47e1-0827-4618713f64ae",
+                  "tenant_id": "74014",
+                  "empresa_codigo": "74014",
+                  "tenant_name": "POSTO DOZE FILIAL II",
+                  "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                  "category": "Vale de funcionário referente a consolidação de caixa",
+                  "person_name": null,
+                  "date": "2026-06-25",
+                  "amount": 150.0,
+                  "description": "Vale de funcionário referente a consolidação de caixa",
+                  "origin": "financeiro",
+                  "cash_register": null,
+                  "shift": null,
+                  "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                  "status": null,
+                  "raw_reference": {
+                    "planoContaCodigo": 29072,
+                    "funcionarioCodigo": null,
+                    "origem": "financeiro"
+                  }
+                },
+                {
+                  "id": "bee92ee8-8c0a-1685-e954-a33fdacc8d61",
+                  "tenant_id": "74014",
+                  "empresa_codigo": "74014",
+                  "tenant_name": "POSTO DOZE FILIAL II",
+                  "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                  "category": "Vale de funcionário referente a consolidação de caixa",
+                  "person_name": null,
+                  "date": "2026-06-17",
+                  "amount": 40.0,
+                  "description": "Vale de funcionário referente a consolidação de caixa",
+                  "origin": "financeiro",
+                  "cash_register": null,
+                  "shift": null,
+                  "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                  "status": null,
+                  "raw_reference": {
+                    "planoContaCodigo": 29072,
+                    "funcionarioCodigo": null,
+                    "origem": "financeiro"
+                  }
+                },
+                {
+                  "id": "19cfe83f-0ac7-828d-5428-ab8b25f6ea8a",
+                  "tenant_id": "74014",
+                  "empresa_codigo": "74014",
+                  "tenant_name": "POSTO DOZE FILIAL II",
+                  "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                  "category": "Vale de funcionário referente a consolidação de caixa",
+                  "person_name": null,
+                  "date": "2026-06-19",
+                  "amount": 40.0,
+                  "description": "Vale de funcionário referente a consolidação de caixa",
+                  "origin": "financeiro",
+                  "cash_register": null,
+                  "shift": null,
+                  "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                  "status": null,
+                  "raw_reference": {
+                    "planoContaCodigo": 29072,
+                    "funcionarioCodigo": null,
+                    "origem": "financeiro"
+                  }
+                },
+                {
+                  "id": "d287bf83-7a2e-b951-b3c4-4687bfb6b830",
+                  "tenant_id": "74014",
+                  "empresa_codigo": "74014",
+                  "tenant_name": "POSTO DOZE FILIAL II",
+                  "source": "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",
+                  "category": "Vale de funcionário referente a consolidação de caixa",
+                  "person_name": null,
+                  "date": "2026-06-25",
+                  "amount": 40.0,
+                  "description": "Vale de funcionário referente a consolidação de caixa",
+                  "origin": "financeiro",
+                  "cash_register": null,
+                  "shift": null,
+                  "document_reference": "Vale de funcionário referente a consolidação de caixa",
+                  "status": null,
+                  "raw_reference": {
+                    "planoContaCodigo": 29072,
+                    "funcionarioCodigo": null,
+                    "origem": "financeiro"
+                  }
+                }
+              ],
+              "evidence_items_count": 16,
+              "evidence_items_total": 8401.0
+            },
+            "baseline": {
+              "current_value": 8401.0,
+              "baseline_value": 900.0
+            },
+            "source_endpoints": [
+              "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE"
+            ]
+          }
+        ]
+      },
+      "analysis_status": "PRIORITY_FOUND",
+      "monitoring_state": "DECISION"
+    }
+  }
+}

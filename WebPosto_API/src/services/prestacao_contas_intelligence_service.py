@@ -101,6 +101,39 @@ class PrestacaoContasIntelligenceService:
     def __init__(self, cash_ops: CashOperationsService | None = None) -> None:
         self._cash = cash_ops or CashOperationsService()
 
+    @staticmethod
+    def _center_aliases(centro_custo: str | None) -> tuple[str, ...]:
+        normalized = _norm(centro_custo)
+        if normalized in {"PISTA", "COMBUSTIVEIS", "COMBUSTÍVEIS"}:
+            return ("PISTA", "COMBUST")
+        if normalized in {"CONVENIENCIA", "CONVENIÊNCIA", "LOJA"}:
+            return ("CONVENIENCIA", "CONVENIÊNCIA", "LOJA")
+        return (normalized,) if normalized else ()
+
+    @classmethod
+    def _filter_center_rows(
+        cls,
+        rows: list[dict[str, Any]],
+        centro_custo: str | None,
+    ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+        aliases = cls._center_aliases(centro_custo)
+        if not aliases:
+            return rows, {"requested": None, "status": "NAO_APLICAVEL", "sourceRows": len(rows), "matchedRows": len(rows), "withoutCenter": 0}
+
+        def center_of(row: dict[str, Any]) -> str:
+            return _norm(row.get("centroCusto") or row.get("descricaoCentroCusto") or row.get("subCentro") or row.get("ap_centroCusto"))
+
+        without_center = sum(1 for row in rows if not center_of(row))
+        matched = [row for row in rows if any(alias in center_of(row) for alias in aliases)]
+        status = "COMPROVADA" if rows and without_center == 0 else "PENDENTE_EVIDENCIA_CENTRO"
+        return matched, {
+            "requested": centro_custo,
+            "status": status,
+            "sourceRows": len(rows),
+            "matchedRows": len(matched),
+            "withoutCenter": without_center,
+        }
+
     async def _enriched_expenses(
         self,
         filters: FinancialOverviewFilters,
@@ -519,35 +552,73 @@ class PrestacaoContasIntelligenceService:
         data_inicial: str,
         data_final: str,
         empresa_codigo: str | int | None = None,
+        centro_custo: str | None = None,
     ) -> WebPostoResponse:
         t0 = time.perf_counter()
         from src.services.analytics_multiselect import build_finance_center_filters
 
-        filters = build_finance_center_filters(data_inicial, data_final, empresa_codigo)
+        filters = build_finance_center_filters(data_inicial, data_final, empresa_codigo, centro_custo=centro_custo)
         enriched, ledger_ctx = await self._enriched_expenses(filters)
         if ledger_ctx.get("error"):
             return WebPostoResponse.fail(str(ledger_ctx["error"]))
+
+        enriched, expense_center_coverage = self._filter_center_rows(enriched, centro_custo)
 
         cash_resp = await self._cash.build(data_inicial, data_final, empresa_codigo)
         merged: list[dict[str, Any]] = []
         if cash_resp.success and cash_resp.data:
             merged, _, _ = await self._cash._fetch_merged(filters)
+        merged, cash_center_coverage = self._filter_center_rows(merged, centro_custo)
 
         mov_resp = await self._cash._client.call_endpoint(
             "movimento_conta",
             params={"dataInicial": data_inicial, "dataFinal": data_final},
         )
         movimentos = self._cash._rows(mov_resp.data if mov_resp.success else [])
+        movimentos, bank_center_coverage = self._filter_center_rows(movimentos, centro_custo)
 
         discovery = self.discovery_report()
-        accountability = self.employee_accountability(ledger_ctx)
+        # A prestação por centro de custo não pode reutilizar o ledger geral da
+        # empresa: títulos e movimentos ainda não trazem centro comprovado.
+        # Para Pista/Conveniência, mostramos apenas a forense reconstruída com
+        # caixas e despesas do próprio centro e bloqueamos a responsabilização.
+        scoped_ledger_ctx = ledger_ctx
+        accountability_blocked = False
+        if centro_custo:
+            from src.services.employee_cash_ledger_service import EmployeeCashLedgerService
+
+            ledger = EmployeeCashLedgerService()
+            scoped_caixa_events = ledger.build_caixa_events(merged)
+            scoped_expense_events = ledger.build_expense_events(enriched)
+            scoped_balance_by_op = ledger.build_balance_by_operator(
+                scoped_caixa_events, scoped_expense_events
+            )
+            scoped_ledger_ctx = {
+                "caixa_events": scoped_caixa_events,
+                "expense_events": scoped_expense_events,
+                "balance_by_op": scoped_balance_by_op,
+                "forensics": ledger.summarize_forensics(scoped_caixa_events),
+                "balance": ledger.summarize_balance(scoped_balance_by_op),
+                "recovery": None,
+            }
+            accountability_blocked = True
+
+        accountability = self.employee_accountability(scoped_ledger_ctx)
+        if accountability_blocked:
+            accountability.update({
+                "status": "BLOQUEADO_EVIDENCIA_CENTRO",
+                "motivo": (
+                    "Títulos, descontos e documentos de funcionário ainda não possuem "
+                    "centro de custo comprovado; não foram rateados entre Pista e Conveniência."
+                ),
+            })
         expense_origin = self.cash_expense_origin(enriched)
         vale = self.vale_forensics(enriched)
         sangria = self.sangria_intelligence(enriched, merged, movimentos)
         productivity = self.productivity_score(
-            merged, ledger_ctx.get("balance_by_op") or {}, enriched
+            merged, scoped_ledger_ctx.get("balance_by_op") or {}, enriched
         )
-        lineage = self.document_lineage(enriched, ledger_ctx.get("caixa_events") or [])
+        lineage = self.document_lineage(enriched, scoped_ledger_ctx.get("caixa_events") or [])
         vs_api = self.prestacao_vs_api(discovery)
         executive = self.executive_consolidation(
             discovery,
@@ -556,12 +627,29 @@ class PrestacaoContasIntelligenceService:
             vale,
             sangria,
             lineage,
-            ledger_ctx.get("recovery"),
+            scoped_ledger_ctx.get("recovery"),
         )
 
         total_ms = round((time.perf_counter() - t0) * 1000, 1)
         payload = {
             "periodo": {"dataInicial": data_inicial, "dataFinal": data_final},
+            "scope": {
+                "empresaCodigo": empresa_codigo,
+                "centroCusto": centro_custo,
+                "centerCoverage": {
+                    "despesas": expense_center_coverage,
+                    "caixas": cash_center_coverage,
+                    "banco": bank_center_coverage,
+                },
+                "publicationStatus": (
+                    "BLOQUEADO_EVIDENCIA_CENTRO"
+                    if centro_custo and any(
+                        coverage["status"] != "COMPROVADA"
+                        for coverage in (expense_center_coverage, cash_center_coverage)
+                    )
+                    else "PRONTO_PARA_CONFERENCIA"
+                ),
+            },
             "discovery": discovery,
             "employeeAccountability": accountability,
             "cashExpenseOrigin": expense_origin,

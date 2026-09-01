@@ -32,7 +32,10 @@ class RefreshStatus(str, Enum):
     FAILED = "FAILED"
 
 
-DETECTOR_SET_SIGNATURE = "CardReceivableDetector,ExpenseDetector,FuelRevenueDetector"
+DETECTOR_SET_SIGNATURE = (
+    "CardReceivableDetector,ExpenseDetector,FuelRevenueDetector,MarginDetector"
+)
+LEGACY_DETECTOR_SET_SIGNATURE = "CardReceivableDetector,ExpenseDetector,FuelRevenueDetector"
 OWNER_ANALYSIS_FRESHNESS_TTL_SECONDS = 1800
 OWNER_ANALYSIS_SNAPSHOT_DIR = "snapshots/owner_analysis"
 

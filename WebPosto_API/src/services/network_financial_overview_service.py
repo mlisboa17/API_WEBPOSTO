@@ -1,11 +1,15 @@
 from __future__ import annotations
 
+import asyncio
+
 from dataclasses import dataclass
 from decimal import Decimal
+import json
 import logging
 from typing import Any
 
 from src.domain.entities.filial_master import filial_name_lookup, list_filiais_master
+from src.core.management_scope import LICENSED_COMPANIES, LICENSED_COMPANY_CODES
 from src.gateway.webposto_client import WebPostoClient
 from src.infrastructure.config.settings import settings
 from src.models.error_model import WebPostoError
@@ -613,6 +617,7 @@ class NetworkFinancialOverviewService:
             "dataFinal": filters.data_final,
         }
         all_rows: list[dict[str, Any]] = []
+        seen_pages: set[str] = set()
         for page in range(max_pages):
             page_params = {**params, "pagina": page + 1} if page else params
             resp = await self.client.call_endpoint(endpoint_key, params=page_params)
@@ -621,6 +626,15 @@ class NetworkFinancialOverviewService:
             chunk = self._rows(resp.data)
             if not chunk:
                 break
+            signature = json.dumps(chunk, sort_keys=True, ensure_ascii=False, default=str)
+            if signature in seen_pages:
+                LOGGER.warning(
+                    "WebPosto ignorou paginacao em %s; coleta interrompida na pagina repetida %s",
+                    endpoint_key,
+                    page + 1,
+                )
+                break
+            seen_pages.add(signature)
             all_rows.extend(chunk)
             if isinstance(resp.data, dict) and resp.data.get("ultimaPagina", True):
                 break
@@ -746,54 +760,45 @@ class NetworkFinancialOverviewService:
         if empresa_codigo is not None:
             params["empresaCodigo"] = empresa_codigo
 
-        async def _call_with_fallback(primary_key: str, fallback_key: str, params_: dict[str, Any]) -> WebPostoResponse:
-            primary = await self.client.call_endpoint(primary_key, params=params_)
-            if primary.success:
-                return primary
+        from src.services.webposto_cursor_paginator import WebPostoCursorPaginator
 
-
-            fallback = await self.client.call_endpoint(fallback_key, params=params_)
-            return fallback
+        paginator = WebPostoCursorPaginator(self.client)
 
         async def _collect_with_cursor(primary_key: str, fallback_key: str) -> WebPostoResponse:
-            resultados: list[dict[str, Any]] = []
-            ultimo_codigo: Any = None
-            for _ in range(10):
-                page_params = dict(params)
-                if ultimo_codigo is not None:
-                    page_params["ultimoCodigo"] = ultimo_codigo
+            return await paginator.collect(primary_key, fallback_key, params)
 
-                response = await _call_with_fallback(primary_key, fallback_key, page_params)
-                if not response.success:
-                    return response
-
-                payload = response.data
-                batch = self._rows(payload)
-                resultados.extend(batch)
-
-                if not isinstance(payload, dict):
-                    break
-
-                novo_ultimo = payload.get("ultimoCodigo")
-                if novo_ultimo is None or novo_ultimo == ultimo_codigo or not batch:
-                    break
-                ultimo_codigo = novo_ultimo
-
-            return WebPostoResponse.ok({"resultados": resultados, "synthetic": False})
-
-        venda = await self.client.call_endpoint("venda", params=params)
+        venda = await paginator.collect(
+            "venda", "venda", params, cursor_field="vendaCodigo"
+        )
         if not venda.success:
             return venda
 
-        venda_item = await _collect_with_cursor("venda_item_rede", "venda_item")
+        venda_rows = self._rows(venda.data)
+        # Caminho executivo: o total da venda é suficiente para faturamento e
+        # evita baixar milhares de itens/formas de pagamento sem necessidade.
+        has_complete_totals = bool(venda_rows) and all(
+            row.get("totalVenda") not in (None, "")
+            or row.get("valorTotal") not in (None, "")
+            for row in venda_rows
+        )
+        if has_complete_totals:
+            return WebPostoResponse.ok({
+                "venda": venda_rows,
+                "venda_item": [],
+                "venda_forma_pagamento": [],
+                "detailCoverage": "SALES_TOTALS_ONLY",
+                "synthetic": False,
+            })
+
+        venda_item, venda_fp = await asyncio.gather(
+            _collect_with_cursor("venda_item_rede", "venda_item"),
+            _collect_with_cursor("venda_forma_pagamento_rede", "venda_forma_pagamento"),
+        )
         if not venda_item.success:
             return venda_item
-
-        venda_fp = await _collect_with_cursor("venda_forma_pagamento_rede", "venda_forma_pagamento")
         if not venda_fp.success:
             return venda_fp
 
-        venda_rows = self._rows(venda.data)
         item_rows = self._rows(venda_item.data)
         fp_rows = self._rows(venda_fp.data)
 
@@ -870,6 +875,19 @@ class NetworkFinancialOverviewService:
         return total
 
     async def _resolve_empresas(self, filters: FinancialOverviewFilters) -> tuple[list[dict[str, Any]], WebPostoResponse | None]:
+        if filters.empresa_codigo in LICENSED_COMPANY_CODES:
+            company = next(
+                item for item in LICENSED_COMPANIES
+                if item.empresa_codigo == filters.empresa_codigo
+            )
+            return [{
+                "empresaCodigo": company.empresa_codigo,
+                "codigo": company.empresa_codigo,
+                "fantasia": company.nome,
+                "nome": company.nome,
+                "scopeSource": "LICENSED_COMPANY_REGISTRY",
+            }], None
+
         companies_resp = await self.get_companies()
         if not companies_resp.success:
             return [], companies_resp

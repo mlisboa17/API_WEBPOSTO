@@ -47,9 +47,23 @@ export function renderProductsHub(container, props) {
 
   setViewTitle(TAB_TITLES[tabId] || "Produtos Vendidos");
 
-  if (!container.querySelector("#productsHubShell")) {
-    container.innerHTML = `<div id="productsHubShell"></div>`;
+  if (!container.querySelector("#productsHubRoot")) {
+    container.innerHTML = `
+      <div id="productsHubRoot">
+        <div class="products-hub-toolbar" style="display:flex;justify-content:flex-end;gap:.5rem;margin:0 0 .75rem;">
+          <button type="button" class="btn primary" id="btn-price-update-nav">ATUALIZAÇÃO DE PREÇOS</button>
+        </div>
+        <div id="productsHubShell"></div>
+      </div>`;
     shellInstance = null;
+  }
+
+  const navBtn = container.querySelector("#btn-price-update-nav");
+  if (navBtn && !navBtn.dataset.bound) {
+    navBtn.dataset.bound = "1";
+    navBtn.addEventListener("click", () => {
+      (latestProps?.options || options).onNavigate?.("priceUpdateOperational");
+    });
   }
 
   const host = container.querySelector("#productsHubShell");

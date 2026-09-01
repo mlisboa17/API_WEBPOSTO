@@ -10,9 +10,24 @@ from typing import Any, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from src.domain.reconciliation.acquirer_fee_model import PAGBANK_TAXAS_OFICIAIS
+
 TWOPLACES = Decimal("0.01")
 MONOFASICO_PIS_COFINS_RATE = Decimal("0.0137")  # ~1,37% combustíveis monofásico
-DEFAULT_CARD_FEE_RATE = Decimal("0.0199")  # 1,99% média adquirente
+
+
+def _default_card_fee_rate() -> Decimal:
+    """Estimativa de taxa média de cartão para simulação de margem (Adelaide), calculada a
+    partir das taxas REAIS validadas em ``acquirer_fee_model.PAGBANK_TAXAS_OFICIAIS`` (não é
+    mais um percentual fixo escrito no código). Só serve de fallback quando o chamador não sabe
+    a bandeira/adquirente real da venda -- sempre que possível, resolva a taxa exata via
+    ``resolver_taxa()`` (empresa + adquirente + bandeira + modalidade) e passe ``card_fee_rate``
+    explicitamente ao construir o perfil.
+    """
+    taxas = [t.percentual for t in PAGBANK_TAXAS_OFICIAIS]
+    return (sum(taxas, Decimal("0")) / Decimal(len(taxas)) / Decimal("100")).quantize(
+        Decimal("0.0001")
+    )
 
 
 class AdelaideTaxProfile(BaseModel):
@@ -26,7 +41,7 @@ class AdelaideTaxProfile(BaseModel):
     faturamento_bruto: Decimal = Field(default=Decimal("0"))
     custo_aquisicao_litro: Decimal = Field(default=Decimal("0"))
     pis_cofins_rate: Decimal = Field(default=MONOFASICO_PIS_COFINS_RATE)
-    card_fee_rate: Decimal = Field(default=DEFAULT_CARD_FEE_RATE)
+    card_fee_rate: Decimal = Field(default_factory=_default_card_fee_rate)
 
     @property
     def custo_total(self) -> Decimal:

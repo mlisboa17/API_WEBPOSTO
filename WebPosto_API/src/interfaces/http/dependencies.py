@@ -13,19 +13,19 @@ from src.infrastructure.webposto.client import WebPostoClient
 from src.application.usecases.extract_expenses import ExtractExpensesFromCashMovement
 from fastapi import Depends, HTTPException, Request
 from typing import Dict
-from src.infrastructure.security.jwt_utils import decode_token
 
 
 async def get_current_user(request: Request) -> Dict:
     """Dependency: extrai usuário do cookie de access token e valida."""
-    token = request.cookies.get("access_token")
-    if not token:
-        raise HTTPException(status_code=401, detail="Not authenticated")
+    from src.interfaces.http.read_mode_guard import user_from_request
+
     try:
-        payload = decode_token(token)
-        return payload
-    except Exception:
-        raise HTTPException(status_code=401, detail="Invalid token")
+        user = user_from_request(request, allow_dev_bypass=True)
+    except HTTPException:
+        raise
+    if user is None:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    return user
 
 
 async def get_db() -> AsyncGenerator[AsyncSession, None]:

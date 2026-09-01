@@ -9,9 +9,11 @@ from src.services.fuel_aggregate import aggregate_fuel_executive_payload
 from src.services.fuel_analytics_service import FuelAnalyticsFilters, FuelAnalyticsService
 from src.services.fuel_kpi_engine import FuelKpiEngine
 from src.services.multiselect_utils import parse_empresa_codigos
+from src.infrastructure.cache.snapshot_ttl import (
+    FUEL_SNAPSHOT_TTL_SECONDS,
+    build_snapshot_cache_meta,
+)
 from src.services.snapshot_store import SnapshotStore
-
-FUEL_SNAPSHOT_TTL_SECONDS = 15 * 60
 
 
 class FuelSnapshotService:
@@ -35,17 +37,16 @@ class FuelSnapshotService:
         empresa_codigo: str | int | None = None,
     ) -> dict[str, Any]:
         key = build_snapshot_key(data_inicial, data_final, empresa_codigo)
-        stored = self._store.load(key)
+        stored, expired = self._store.load_stale(key)
+        meta = build_snapshot_cache_meta(self._store, key, stored, expired=expired)
         if stored:
             return {
-                "fromSnapshot": True,
-                "lastUpdated": stored.get("lastUpdated"),
+                **meta,
                 "fuel": stored.get("fuel"),
                 "warnings": stored.get("warnings") or [],
             }
         return {
-            "fromSnapshot": False,
-            "lastUpdated": None,
+            **meta,
             "fuel": None,
             "warnings": [],
         }

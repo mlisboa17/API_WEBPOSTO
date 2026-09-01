@@ -19,6 +19,7 @@ from src.services.decision_discovery.models import (
     MoneyFound,
 )
 from src.services.network_financial_overview_service import NetworkFinancialOverviewService
+from src.services.decision_evidence.expense_evidence_builder import attach_expense_evidence_items
 from src.services.performance.performance_metrics import performance_metrics
 from src.services.snapshot_store import SnapshotStore
 from src.utils.utc_datetime import age_seconds, utc_now_iso
@@ -82,6 +83,8 @@ class ExpenseDetector(BaseDetector):
                 base_end=base_end.isoformat(),
                 webposto_api_key=kwargs.get("webposto_api_key"),
             )
+            if payload is not None:
+                payload["tenant_id"] = tenant_code
             if not payload:
                 return None
 
@@ -97,7 +100,14 @@ class ExpenseDetector(BaseDetector):
                 if analysis["impact_brl"] < self.MIN_IMPACT_BRL:
                     continue
                 candidates.append(
-                    self._create_candidate(tenant_code, tenant_name, cur_start, cur_end, analysis)
+                    self._create_candidate(
+                        tenant_code,
+                        tenant_name,
+                        cur_start,
+                        cur_end,
+                        analysis,
+                        current_rows=analysis.get("current_rows"),
+                    )
                 )
             if not candidates:
                 return None
@@ -222,6 +232,9 @@ class ExpenseDetector(BaseDetector):
             cur_count = sum(1 for r in cur if str(r.get("planoConta") or "SEM_CATEGORIA") == cat)
             base_count = sum(1 for r in base if str(r.get("planoConta") or "SEM_CATEGORIA") == cat)
             conf = self._confidence(payload, cur_count, base_count, base_val > 0)
+            category_rows = [
+                row for row in cur if str(row.get("planoConta") or "SEM_CATEGORIA") == cat
+            ]
             analyses.append(
                 self._analysis(
                     anomaly_type="CATEGORY_SPIKE",
@@ -237,6 +250,7 @@ class ExpenseDetector(BaseDetector):
                         "baseline_count": base_count,
                         "anomaly_type": "CATEGORY_SPIKE",
                     },
+                    current_rows=category_rows,
                 )
             )
 
@@ -340,6 +354,7 @@ class ExpenseDetector(BaseDetector):
         base_val: float,
         confidence: float,
         evidence: dict,
+        current_rows: list[dict] | None = None,
     ) -> dict:
         factors = ConfidenceFactors(
             data_quality=0.85,
@@ -362,6 +377,7 @@ class ExpenseDetector(BaseDetector):
             "confidence_factors": factors,
             "money_found": money,
             "evidence": evidence,
+            "current_rows": current_rows or [],
             "baseline": {
                 "baseline_value": base_val,
                 "current_value": cur_val,
@@ -376,7 +392,18 @@ class ExpenseDetector(BaseDetector):
         period_start: str,
         period_end: str,
         analysis: dict[str, Any],
+        current_rows: list[dict[str, Any]] | None = None,
     ) -> DecisionCandidate:
+        evidence = dict(analysis["evidence"])
+        if current_rows and not evidence.get("evidence_items"):
+            cat = analysis["title_cat"]
+            evidence = attach_expense_evidence_items(
+                evidence,
+                current_rows,
+                category=cat,
+                tenant_id=tenant_code,
+                tenant_name=tenant_name,
+            )
         impact = analysis["impact_brl"]
         cat = analysis["title_cat"]
         atype = analysis["anomaly_type"]
@@ -412,7 +439,7 @@ class ExpenseDetector(BaseDetector):
             confidence_factors=analysis["confidence_factors"],
             recommended_actions=actions,
             estimated_execution_time=25,
-            evidence=analysis["evidence"],
+            evidence=evidence,
             baseline_used=analysis["baseline"],
             source_endpoints=[
                 "/INTEGRACAO/CONSULTAR_DESPESAS_FINANCEIRO_REDE",

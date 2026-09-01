@@ -17,36 +17,31 @@ Warnings são **pré-existentes** ou **amplificados por import de `create_app()`
 
 ## Itens
 
-### 1. FastAPI `on_event` deprecation (prioridade alta)
+### 1. ~~FastAPI `on_event` deprecation~~ ✅ RESOLVIDO (Sprint 45)
 
-**Origem:** `src/interfaces/http/app.py` linhas 174–185
+**Origem:** `src/interfaces/http/app.py`
 
-```
-@app.on_event("startup")
-@app.on_event("shutdown")
-```
+**Ação realizada:** Migração para `lifespan` async context manager.
 
-**Ação:** Migrar para `lifespan` context manager ([FastAPI Lifespan Events](https://fastapi.tiangolo.com/advanced/events/)).
-
-**Arquivos prováveis:** `src/interfaces/http/app.py`, possivelmente `src/main.py` se duplicado.
-
-**Critério de done:** pytest FIN suite sem `DeprecationWarning: on_event is deprecated`.
+**Commit:** `feat(sprint-44-45): sessao executiva 30s e sanidade financeira`
 
 ---
 
-### 2. Pydantic v2 — Settings `class Config` (prioridade média)
+### 2. ~~Pydantic v2 — Settings `class Config`~~ ✅ RESOLVIDO (pré-Sprint 47)
 
 **Origem:** `src/infrastructure/config/settings.py`
 
-**Ação:** Substituir por `model_config = ConfigDict(...)`.
+**Ação realizada:** Já estava usando `model_config = SettingsConfigDict(...)`.
 
 ---
 
-### 3. Pydantic v2 — `@validator` legacy (prioridade média)
+### 3. ~~Pydantic v2 — `@validator` legacy~~ ✅ RESOLVIDO (Sprint 47)
 
 **Origem:** `src/application/dto/cliente_dto.py` (5 warnings)
 
-**Ação:** Migrar para `@field_validator`.
+**Ação realizada:** Migrado para `@field_validator` e `model_config = ConfigDict(...)`.
+
+**Commit:** `feat(sprint-47): motor mapeamento despesas e correcao termica`
 
 ---
 

@@ -10,7 +10,7 @@ from decimal import Decimal
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import AliasChoices, BaseModel, ConfigDict, Field, field_validator
 
 from src.domain.value_objects.payment_method import PaymentMethod
 
@@ -75,6 +75,142 @@ class VendaCupom(BaseModel):
             valorTotal=row.get("valorTotal") or row.get("valor") or 0,
             itens=[],
         )
+
+
+class WebPostoVendaItem(BaseModel):
+    """Contrato tolerante às variações conhecidas de VENDA_ITEM."""
+
+    model_config = ConfigDict(frozen=True, populate_by_name=True, extra="allow")
+
+    venda_codigo: int = Field(
+        validation_alias=AliasChoices("vendaCodigo", "codigoVenda", "venda_codigo")
+    )
+    produto_codigo: int = Field(
+        validation_alias=AliasChoices("produtoCodigo", "codigoProduto", "produto_codigo")
+    )
+    quantidade: Decimal = Decimal("0")
+    valor_unitario: Decimal = Field(
+        default=Decimal("0"),
+        validation_alias=AliasChoices(
+            "valorUnitario", "precoUnitario", "precoVenda", "valor_unitario"
+        ),
+    )
+    valor_total: Decimal = Field(
+        default=Decimal("0"),
+        validation_alias=AliasChoices("valorTotal", "totalVenda", "valor", "valor_total"),
+    )
+    grupo_codigo: Optional[int] = Field(
+        default=None,
+        validation_alias=AliasChoices("grupoCodigo", "codigoGrupo", "grupo_codigo"),
+    )
+
+    @field_validator("quantidade", "valor_unitario", "valor_total", mode="before")
+    @classmethod
+    def parse_decimal(cls, value) -> Decimal:
+        return Decimal(str(value or 0))
+
+
+class WebPostoVenda(BaseModel):
+    """Contrato transacional mínimo de VENDA, sem fabricar campos ausentes."""
+
+    model_config = ConfigDict(frozen=True, populate_by_name=True, extra="allow")
+
+    venda_codigo: int = Field(
+        validation_alias=AliasChoices("vendaCodigo", "codigo", "codigoVenda", "venda_codigo")
+    )
+    empresa_codigo: Optional[int] = Field(
+        default=None,
+        validation_alias=AliasChoices("empresaCodigo", "filialCodigo", "empresa_codigo"),
+    )
+    data_emissao: Optional[datetime] = Field(
+        default=None,
+        validation_alias=AliasChoices(
+            "dataEmissao", "dataHora", "data", "dataVenda", "data_emissao"
+        ),
+    )
+    valor_total: Decimal = Field(
+        default=Decimal("0"),
+        validation_alias=AliasChoices("valorTotal", "totalVenda", "valor", "valor_total"),
+    )
+
+    @field_validator("valor_total", mode="before")
+    @classmethod
+    def parse_decimal(cls, value) -> Decimal:
+        return Decimal(str(value or 0))
+
+
+class WebPostoDespesa(BaseModel):
+    """Contrato mínimo de despesa financeira retornada pelo WebPosto."""
+
+    model_config = ConfigDict(frozen=True, populate_by_name=True, extra="allow")
+
+    despesa_codigo: Optional[int] = Field(
+        default=None,
+        validation_alias=AliasChoices(
+            "despesaCodigo", "codigo", "codigoDespesa", "despesa_codigo"
+        ),
+    )
+    empresa_codigo: int = Field(
+        validation_alias=AliasChoices("empresaCodigo", "filialCodigo", "empresa_codigo"),
+    )
+    data_movimento: Optional[datetime] = Field(
+        default=None,
+        validation_alias=AliasChoices(
+            "dataMovimento", "dataEmissao", "data", "data_movimento"
+        ),
+    )
+    descricao: str = ""
+    valor: Decimal = Decimal("0")
+    centro_custo_codigo: Optional[int] = Field(
+        default=None,
+        validation_alias=AliasChoices(
+            "centroCustoCodigo", "codigoCentroCusto", "centro_custo_codigo"
+        ),
+    )
+    plano_conta_gerencial_codigo: Optional[int] = Field(
+        default=None,
+        validation_alias=AliasChoices(
+            "planoContaGerencialCodigo",
+            "plano_conta_gerencial_codigo",
+        ),
+    )
+
+    @field_validator("valor", mode="before")
+    @classmethod
+    def parse_decimal(cls, value) -> Decimal:
+        return Decimal(str(value or 0))
+
+
+class WebPostoMovimentoCaixa(BaseModel):
+    """Contrato mínimo para entradas e saídas de caixa."""
+
+    model_config = ConfigDict(frozen=True, populate_by_name=True, extra="allow")
+
+    movimento_codigo: int = Field(
+        validation_alias=AliasChoices(
+            "movimentoCodigo",
+            "caixaCodigo",
+            "codigo",
+            "codigoMovimento",
+            "movimento_codigo",
+        )
+    )
+    empresa_codigo: Optional[int] = Field(
+        default=None,
+        validation_alias=AliasChoices("empresaCodigo", "filialCodigo", "empresa_codigo"),
+    )
+    data_movimento: Optional[datetime] = Field(
+        default=None,
+        validation_alias=AliasChoices("dataMovimento", "data", "data_movimento"),
+    )
+    tipo: str = ""
+    descricao: str = ""
+    valor: Decimal = Decimal("0")
+
+    @field_validator("valor", mode="before")
+    @classmethod
+    def parse_decimal(cls, value) -> Decimal:
+        return Decimal(str(value or 0))
 
 
 class VolumeTanque(BaseModel):
